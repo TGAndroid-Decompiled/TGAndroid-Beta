@@ -3110,13 +3110,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         botWebViewContainer.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws InterruptedException {
                 BotWebViewContainer.m5053$r8$lambda$gvKITzydsf6Q09_O1BNAnqC344(this.f$0, tLObject, strArr, tL_error, alertDialog);
             }
         });
     }
 
-    public static void m5053$r8$lambda$gvKITzydsf6Q09_O1BNAnqC344(BotWebViewContainer botWebViewContainer, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, AlertDialog alertDialog) {
+    public static void m5053$r8$lambda$gvKITzydsf6Q09_O1BNAnqC344(BotWebViewContainer botWebViewContainer, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, AlertDialog alertDialog) throws InterruptedException {
         botWebViewContainer.getClass();
         if (tLObject != null) {
             strArr[0] = "allowed";
@@ -3627,14 +3627,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInputPeer(user));
         ConnectionsManager.getInstance(botWebViewContainer.currentAccount).sendRequestTyped(tL_messages_sendBotRequestedPeer, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws InterruptedException {
                 BotWebViewContainer.$r8$lambda$w345IPjP_0oEop8tsRi45Bza2b8(this.f$0, str, user, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
         botWebViewContainer.notifyEvent("requested_chat_sent", obj("req_id", str));
     }
 
-    public static void $r8$lambda$w345IPjP_0oEop8tsRi45Bza2b8(BotWebViewContainer botWebViewContainer, String str, TLRPC.User user, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$w345IPjP_0oEop8tsRi45Bza2b8(BotWebViewContainer botWebViewContainer, String str, TLRPC.User user, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
         if (updates == null) {
             if (tL_error != null) {
                 BulletinFactory.of(botWebViewContainer, botWebViewContainer.resourcesProvider).showForError(tL_error);
@@ -3716,13 +3716,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
         ConnectionsManager.getInstance(botWebViewContainer.currentAccount).sendRequestTyped(tL_messages_sendBotRequestedPeer, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws InterruptedException {
                 BotWebViewContainer.$r8$lambda$aLufqnisHmmc4SiKBxnd25Lse50(this.f$0, str, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void $r8$lambda$aLufqnisHmmc4SiKBxnd25Lse50(BotWebViewContainer botWebViewContainer, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$aLufqnisHmmc4SiKBxnd25Lse50(BotWebViewContainer botWebViewContainer, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
         if (updates != null) {
             MessagesController.getInstance(botWebViewContainer.currentAccount).processUpdates(updates, false);
             botWebViewContainer.notifyEvent("requested_chat_sent", obj("req_id", str));
@@ -3767,7 +3767,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
             ConnectionsManager.getInstance(botWebViewContainer.currentAccount).sendRequestTyped(tL_messages_sendBotRequestedPeer, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
-                public final void run(Object obj2, Object obj3) {
+                public final void run(Object obj2, Object obj3) throws InterruptedException {
                     BotWebViewContainer.m5050$r8$lambda$Wsxp1YWA7tpepuc6QlzJApak04(this.f$0, str, (TLRPC.Updates) obj2, (TLRPC.TL_error) obj3);
                 }
             });
@@ -3776,7 +3776,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return true;
     }
 
-    public static void m5050$r8$lambda$Wsxp1YWA7tpepuc6QlzJApak04(BotWebViewContainer botWebViewContainer, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public static void m5050$r8$lambda$Wsxp1YWA7tpepuc6QlzJApak04(BotWebViewContainer botWebViewContainer, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
         if (updates != null) {
             MessagesController.getInstance(botWebViewContainer.currentAccount).processUpdates(updates, false);
             botWebViewContainer.notifyEvent("requested_chat_sent", obj("req_id", str));

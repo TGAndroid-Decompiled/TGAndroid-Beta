@@ -850,13 +850,13 @@ public class TagEditCell extends LinearLayout {
         tL_messages_editChatParticipantRank.rank = strArr[0];
         ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_editChatParticipantRank, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws InterruptedException {
                 TagEditCell.$r8$lambda$EYaTEK9ekuFJlW_iXKESiNrDaJI(messagesController, j, user, tL_messages_editChatParticipantRank, bottomSheet, z, resourcesProvider, buttonWithCounterView, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void $r8$lambda$EYaTEK9ekuFJlW_iXKESiNrDaJI(MessagesController messagesController, long j, TLRPC.User user, TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank, BottomSheet bottomSheet, boolean z, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$EYaTEK9ekuFJlW_iXKESiNrDaJI(MessagesController messagesController, long j, TLRPC.User user, TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank, BottomSheet bottomSheet, boolean z, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
         if (updates == null) {
             if (tL_error != null) {
                 BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).showForError(tL_error);

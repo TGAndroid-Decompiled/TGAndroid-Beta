@@ -230,7 +230,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
                 this.sharedMediaPreloader = new SharedMediaLayout.SharedMediaPreloader(baseFragment);
             }
             ChatActivity chatActivity3 = this.parentFragment;
-            boolean z4 = chatActivity3 != null && (chatActivity3.isThreadChat() || this.parentFragment.getChatMode() == 2 || this.parentFragment.getChatMode() == 5 || this.parentFragment.getChatMode() == 9 || this.parentFragment.getChatMode() == 6);
+            boolean z4 = chatActivity3 != null && ((chatActivity3.isThreadChat() && !this.parentFragment.isReplyChatComment()) || this.parentFragment.getChatMode() == 2 || this.parentFragment.getChatMode() == 5 || this.parentFragment.getChatMode() == 9 || this.parentFragment.getChatMode() == 6);
             this.avatarImageIsHidden = z4;
             if (z4) {
                 this.avatarImageView.setVisibility(8);
@@ -544,7 +544,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
     protected void dispatchDraw(Canvas canvas) {
         canvas.save();
         float scale = this.bounce.getScale(0.02f);
-        canvas.scale(scale, scale, getWidth() / 2.0f, getHeight() - (ActionBar.getCurrentActionBarHeight() / 2.0f));
+        canvas.scale(scale, scale, getPivotX(), getHeight() - (ActionBar.getCurrentActionBarHeight() / 2.0f));
         super.dispatchDraw(canvas);
         canvas.restore();
     }
@@ -2109,7 +2109,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
             fMax = Math.max(fMax, simpleTextView2.getExactWidthIncludeDrawables());
         }
         if (hasVisibleAvatar()) {
-            iDp = AndroidUtilities.dp(68.0f);
+            iDp = AndroidUtilities.dp(70.0f);
         } else {
             iDp = AndroidUtilities.dp(34.0f);
         }

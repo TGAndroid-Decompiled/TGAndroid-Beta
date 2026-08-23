@@ -910,7 +910,7 @@ public class FileRefController extends BaseController {
         return "message(dialogId=" + messageObject.getDialogId() + "messageId" + messageObject.getId() + ")";
     }
 
-    public void broadcastWaitersData(ArrayList<Waiter> arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void broadcastWaitersData(ArrayList<Waiter> arrayList, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         int size = arrayList.size();
         int i = 0;
         while (i < size) {
@@ -945,7 +945,7 @@ public class FileRefController extends BaseController {
             tL_stories_getStoriesByID.id.add(Integer.valueOf(storyItem.id));
             getConnectionsManager().sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -954,7 +954,7 @@ public class FileRefController extends BaseController {
         if (obj instanceof TLRPC.TL_help_premiumPromo) {
             getConnectionsManager().sendRequest(new TLRPC.TL_help_getPremiumPromo(), new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     FileRefController.m467$r8$lambda$CsMplTyYZ49bpqTmF4RM5rUTmY(this.f$0, str, str2, tLObject, tL_error);
                 }
             });
@@ -965,7 +965,7 @@ public class FileRefController extends BaseController {
             tL_messages_getAvailableReactions.hash = 0;
             getConnectionsManager().sendRequest(tL_messages_getAvailableReactions, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -976,7 +976,7 @@ public class FileRefController extends BaseController {
             tL_users_getFullUser.id = getMessagesController().getInputUser(((TL_bots.BotInfo) obj).user_id);
             getConnectionsManager().sendRequest(tL_users_getFullUser, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -987,7 +987,7 @@ public class FileRefController extends BaseController {
             tL_messages_getAttachMenuBot.bot = getMessagesController().getInputUser(((TLRPC.TL_attachMenuBot) obj).bot_id);
             getConnectionsManager().sendRequest(tL_messages_getAttachMenuBot, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -1003,7 +1003,7 @@ public class FileRefController extends BaseController {
                 tL_messages_getScheduledMessages.id.add(Integer.valueOf(messageObject.getRealId()));
                 getConnectionsManager().sendRequest(tL_messages_getScheduledMessages, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                     }
                 });
@@ -1016,7 +1016,7 @@ public class FileRefController extends BaseController {
                 tL_messages_getQuickReplyMessages.id.add(Integer.valueOf(messageObject.getRealId()));
                 getConnectionsManager().sendRequest(tL_messages_getQuickReplyMessages, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                     }
                 });
@@ -1029,7 +1029,7 @@ public class FileRefController extends BaseController {
                 getrichmessage.id = messageObject.getRealId();
                 getConnectionsManager().sendRequest(getrichmessage, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                     }
                 });
@@ -1041,7 +1041,7 @@ public class FileRefController extends BaseController {
                 tL_channels_getMessages.id.add(Integer.valueOf(messageObject.getRealId()));
                 getConnectionsManager().sendRequest(tL_channels_getMessages, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                     }
                 });
@@ -1051,7 +1051,7 @@ public class FileRefController extends BaseController {
             tL_messages_getMessages.id.add(Integer.valueOf(messageObject.getRealId()));
             getConnectionsManager().sendRequest(tL_messages_getMessages, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -1066,7 +1066,7 @@ public class FileRefController extends BaseController {
             getwallpaper.wallpaper = tL_inputWallPaper;
             getConnectionsManager().sendRequest(getwallpaper, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -1082,7 +1082,7 @@ public class FileRefController extends BaseController {
             gettheme.format = "android";
             getConnectionsManager().sendRequest(gettheme, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -1094,7 +1094,7 @@ public class FileRefController extends BaseController {
             tL_messages_getWebPage.hash = 0;
             getConnectionsManager().sendRequest(tL_messages_getWebPage, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -1105,7 +1105,7 @@ public class FileRefController extends BaseController {
             tL_users_getUsers.id.add(getMessagesController().getInputUser((TLRPC.User) obj));
             getConnectionsManager().sendRequest(tL_users_getUsers, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -1118,7 +1118,7 @@ public class FileRefController extends BaseController {
                 tL_messages_getChats.id.add(Long.valueOf(chat.id));
                 getConnectionsManager().sendRequest(tL_messages_getChats, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                     }
                 });
@@ -1129,7 +1129,7 @@ public class FileRefController extends BaseController {
                     tL_channels_getChannels.id.add(MessagesController.getInputChannel(chat));
                     getConnectionsManager().sendRequest(tL_channels_getChannels, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                         }
                     });
@@ -1144,7 +1144,7 @@ public class FileRefController extends BaseController {
                 if (this.wallpaperWaiters.isEmpty()) {
                     getConnectionsManager().sendRequest(new TL_account.getWallPapers(), new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             FileRefController fileRefController = this.f$0;
                             fileRefController.broadcastWaitersData(fileRefController.wallpaperWaiters, tLObject, tL_error);
                         }
@@ -1157,7 +1157,7 @@ public class FileRefController extends BaseController {
                 if (this.savedGifsWaiters.isEmpty()) {
                     getConnectionsManager().sendRequest(new TLRPC.TL_messages_getSavedGifs(), new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             FileRefController fileRefController = this.f$0;
                             fileRefController.broadcastWaitersData(fileRefController.savedGifsWaiters, tLObject, tL_error);
                         }
@@ -1170,7 +1170,7 @@ public class FileRefController extends BaseController {
                 if (this.recentStickersWaiter.isEmpty()) {
                     getConnectionsManager().sendRequest(new TLRPC.TL_messages_getRecentStickers(), new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             FileRefController fileRefController = this.f$0;
                             fileRefController.broadcastWaitersData(fileRefController.recentStickersWaiter, tLObject, tL_error);
                         }
@@ -1183,7 +1183,7 @@ public class FileRefController extends BaseController {
                 if (this.favStickersWaiter.isEmpty()) {
                     getConnectionsManager().sendRequest(new TLRPC.TL_messages_getFavedStickers(), new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             FileRefController fileRefController = this.f$0;
                             fileRefController.broadcastWaitersData(fileRefController.favStickersWaiter, tLObject, tL_error);
                         }
@@ -1203,7 +1203,7 @@ public class FileRefController extends BaseController {
                 }
                 getConnectionsManager().sendRequest(tL_help_getAppUpdate, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                     }
                 });
@@ -1219,7 +1219,7 @@ public class FileRefController extends BaseController {
                     tL_photos_getUserPhotos.user_id = getMessagesController().getInputUser(jLongValue);
                     getConnectionsManager().sendRequest(tL_photos_getUserPhotos, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                         }
                     });
@@ -1233,7 +1233,7 @@ public class FileRefController extends BaseController {
                 tL_messages_search.peer = getMessagesController().getInputPeer(jLongValue);
                 getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                     }
                 });
@@ -1249,7 +1249,7 @@ public class FileRefController extends BaseController {
                         tL_channels_getMessages2.id.add(Utilities.parseInt((CharSequence) strArrSplit[2]));
                         getConnectionsManager().sendRequest(tL_channels_getMessages2, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                                 this.f$0.onRequestComplete(str, str2, tLObject, tL_error, false, false);
                             }
                         });
@@ -1259,7 +1259,7 @@ public class FileRefController extends BaseController {
                     tL_messages_getMessages2.id.add(Utilities.parseInt((CharSequence) strArrSplit[2]));
                     getConnectionsManager().sendRequest(tL_messages_getMessages2, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             this.f$0.onRequestComplete(str, str2, tLObject, tL_error, false, false);
                         }
                     });
@@ -1280,7 +1280,7 @@ public class FileRefController extends BaseController {
             tL_inputStickerSetID.access_hash = stickerSet.access_hash;
             getConnectionsManager().sendRequest(tL_messages_getStickerSet, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -1295,7 +1295,7 @@ public class FileRefController extends BaseController {
             tL_inputStickerSetID2.access_hash = stickerSet2.access_hash;
             getConnectionsManager().sendRequest(tL_messages_getStickerSet2, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -1306,7 +1306,7 @@ public class FileRefController extends BaseController {
             tL_messages_getStickerSet3.stickerset = (TLRPC.InputStickerSet) obj;
             getConnectionsManager().sendRequest(tL_messages_getStickerSet3, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.onRequestComplete(str, str2, tLObject, tL_error, true, false);
                 }
             });
@@ -1319,13 +1319,13 @@ public class FileRefController extends BaseController {
         fileRefController.getClass();
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws InterruptedException {
                 this.f$0.onRequestComplete(str, str2, botPreview, null, true, false);
             }
         });
     }
 
-    public static void m467$r8$lambda$CsMplTyYZ49bpqTmF4RM5rUTmY(FileRefController fileRefController, String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m467$r8$lambda$CsMplTyYZ49bpqTmF4RM5rUTmY(FileRefController fileRefController, String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         fileRefController.getClass();
         int iCurrentTimeMillis = (int) (System.currentTimeMillis() / 1000);
         if (tLObject instanceof TLRPC.TL_help_premiumPromo) {
@@ -1910,7 +1910,7 @@ public class FileRefController extends BaseController {
         });
     }
 
-    public boolean onRequestComplete(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error, boolean z, boolean z2) {
+    public boolean onRequestComplete(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error, boolean z, boolean z2) throws InterruptedException {
         String str3;
         String str4;
         TLObject tLObject2;
@@ -3514,7 +3514,7 @@ public class FileRefController extends BaseController {
         return z3;
     }
 
-    private Pair<byte[], TLRPC.InputFileLocation> getFileReferenceFromResponse(TLRPC.InputFileLocation inputFileLocation, String str, String str2, TLObject tLObject, Object... objArr) {
+    private Pair<byte[], TLRPC.InputFileLocation> getFileReferenceFromResponse(TLRPC.InputFileLocation inputFileLocation, String str, String str2, TLObject tLObject, Object... objArr) throws InterruptedException {
         TLRPC.InputFileLocation[] inputFileLocationArr;
         boolean[] zArr;
         TLObject tLObject2;
@@ -4703,7 +4703,7 @@ public class FileRefController extends BaseController {
         }
     }
 
-    public boolean applyCachedFileReference(Object obj, Object... objArr) {
+    public boolean applyCachedFileReference(Object obj, Object... objArr) throws InterruptedException {
         String str;
         Object[] objArr2;
         Pair<byte[], TLRPC.InputFileLocation> fileReferenceFromResponse;

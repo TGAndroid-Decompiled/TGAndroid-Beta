@@ -1705,13 +1705,13 @@ public abstract class AlertsCreator {
         }
         accountInstance.getConnectionsManager().sendRequest(tL_contacts_blockFromReplies, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 AlertsCreator.$r8$lambda$Wui4zyolXQCx9ysbyHxqZCWt420(accountInstance, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$Wui4zyolXQCx9ysbyHxqZCWt420(AccountInstance accountInstance, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$Wui4zyolXQCx9ysbyHxqZCWt420(AccountInstance accountInstance, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             accountInstance.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -10777,7 +10777,7 @@ public abstract class AlertsCreator {
             }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     MessagesController.getInstance(i).processUpdates(updates, false);
                 }
             });

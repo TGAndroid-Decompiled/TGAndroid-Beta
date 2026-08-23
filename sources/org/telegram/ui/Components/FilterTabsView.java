@@ -1851,7 +1851,10 @@ public abstract class FilterTabsView extends FrameLayout {
                     this.invalidated = true;
                     requestLayout();
                     this.allTabsWidth = 0;
-                    findDefaultTab().setTitle(LocaleController.getString(R.string.FilterAllChats), null, false);
+                    Tab tabFindDefaultTab = findDefaultTab();
+                    if (tabFindDefaultTab != null) {
+                        tabFindDefaultTab.setTitle(LocaleController.getString(R.string.FilterAllChats), null, false);
+                    }
                     for (int i2 = 0; i2 < size; i2++) {
                         this.allTabsWidth += ((Tab) this.tabs.get(i2)).getWidth(true) + AndroidUtilities.dp(24.0f);
                     }
@@ -1881,9 +1884,15 @@ public abstract class FilterTabsView extends FrameLayout {
             this.invalidated = true;
             requestLayout();
             this.listView.setItemAnimator(this.itemAnimator);
-            this.adapter.notifyDataSetChanged();
+            ListAdapter listAdapter = this.adapter;
+            if (listAdapter != null) {
+                listAdapter.notifyDataSetChanged();
+            }
             this.allTabsWidth = 0;
-            findDefaultTab().setTitle(LocaleController.getString(R.string.FilterAllChats), null, false);
+            Tab tabFindDefaultTab = findDefaultTab();
+            if (tabFindDefaultTab != null) {
+                tabFindDefaultTab.setTitle(LocaleController.getString(R.string.FilterAllChats), null, false);
+            }
             int size = this.tabs.size();
             for (int i3 = 0; i3 < size; i3++) {
                 this.allTabsWidth += ((Tab) this.tabs.get(i3)).getWidth(true) + AndroidUtilities.dp(24.0f);

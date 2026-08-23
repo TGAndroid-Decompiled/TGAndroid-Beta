@@ -108,6 +108,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     private FireworksEffect fireworksEffect;
     private Paint.FontMetricsInt fontMetricsInt;
     private boolean forceSkipTouches;
+    private int forcedMenuMinWidth;
     private int forcedMenuWidth;
     private boolean fromBottom;
     private BlurredBackgroundDrawable glassDrawable;
@@ -116,6 +117,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     private boolean glassMode;
     private boolean glassModeIsForum;
     private boolean glassOnlyBack;
+    private boolean hasForcedMenuMinWidth;
     private boolean hasForcedMenuWidth;
     private boolean ignoreLayoutRequest;
     private View.OnTouchListener interceptTouchEventListener;
@@ -2085,6 +2087,42 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     }
 
     @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.chatAvatarContainer != null && this.glassMode && motionEvent.getAction() == 0) {
+            int x = (int) motionEvent.getX();
+            int y = (int) motionEvent.getY();
+            float f = x;
+            float f2 = y;
+            View viewFindChildUnder = findChildUnder(this, f, f2, this.chatAvatarContainer);
+            if (viewFindChildUnder == null) {
+                viewFindChildUnder = findChildUnder(this, f, f2, null);
+            }
+            BlurredBackgroundDrawable blurredBackgroundDrawable = this.glassDrawable;
+            boolean z = blurredBackgroundDrawable != null && blurredBackgroundDrawable.getBounds().contains(x, y);
+            if (viewFindChildUnder != null && viewFindChildUnder != this.chatAvatarContainer) {
+                BlurredBackgroundDrawable blurredBackgroundDrawable2 = this.glassDrawableBack;
+                boolean z2 = z | (blurredBackgroundDrawable2 != null && blurredBackgroundDrawable2.getBounds().contains(x, y));
+                BlurredBackgroundDrawable blurredBackgroundDrawable3 = this.glassDrawableMenu;
+                z = z2 | (blurredBackgroundDrawable3 != null && blurredBackgroundDrawable3.getBounds().contains(x, y));
+            }
+            if (!z) {
+                return false;
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public static View findChildUnder(ViewGroup viewGroup, float f, float f2, View view) {
+        for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
+            View childAt = viewGroup.getChildAt(childCount);
+            if (childAt.getVisibility() == 0 && childAt != view && f >= childAt.getX() && f <= childAt.getX() + childAt.getWidth() && f2 >= childAt.getTop() && f2 <= childAt.getBottom()) {
+                return childAt;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (this.forceSkipTouches) {
             return false;
@@ -2329,11 +2367,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
             return;
         }
         boolean zHasVisibleAvatar = chatAvatarContainer.hasVisibleAvatar();
-        int visualWidth = this.chatAvatarContainer.getVisualWidth();
-        if (zHasVisibleAvatar) {
-            visualWidth = Math.max(visualWidth, AndroidUtilities.dp(192.0f));
-        }
-        int iMin = Math.min(getMeasuredWidth() - AndroidUtilities.dp(116.0f), visualWidth);
+        int iMin = Math.min(getMeasuredWidth() - AndroidUtilities.dp(116.0f), this.chatAvatarContainer.getVisualWidth());
         if (z) {
             float f = iMin;
             if (this.animatorAvatarContainerWidth.getToFactor() != f) {
@@ -2354,6 +2388,14 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         this.hasForcedMenuWidth = true;
         if (this.forcedMenuWidth != i) {
             this.forcedMenuWidth = i;
+            invalidate();
+        }
+    }
+
+    public void setForcedMenuMinWidth(int i) {
+        this.hasForcedMenuMinWidth = true;
+        if (this.forcedMenuMinWidth != i) {
+            this.forcedMenuMinWidth = i;
             invalidate();
         }
     }
@@ -2386,6 +2428,9 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         int iDp2 = AndroidUtilities.dp(46.0f);
         float actionModeFactor = getActionModeFactor();
         int factor = this.hasForcedMenuWidth ? this.forcedMenuWidth : (int) this.animatorMenuItemsWidth.getFactor();
+        if (this.hasForcedMenuMinWidth) {
+            factor = Math.max((int) (this.forcedMenuMinWidth * (1.0f - this.searchFactor)), factor);
+        }
         ImageView imageView = this.backButtonImageView;
         boolean z = imageView != null && imageView.getVisibility() == 0;
         int height = (getHeight() - ((getCurrentActionBarHeight() + iDp2) / 2)) - iDp;
@@ -2410,8 +2455,10 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                 int iLerp3 = AndroidUtilities.lerp(Math.min(i5, ((int) this.animatorAvatarContainerWidth.getFactor()) + i), i5, Math.max(this.searchFactor, actionModeFactor));
                 iLerp2 = ((width + iLerp2) - iLerp3) / 2;
                 width = iLerp2 + iLerp3;
+                float leftPadding = ((iLerp2 - ((ViewGroup.MarginLayoutParams) this.chatAvatarContainer.getLayoutParams()).leftMargin) - this.chatAvatarContainer.getLeftPadding()) + iDp + AndroidUtilities.dp(3.0f);
+                this.chatAvatarContainer.setTranslationX(leftPadding);
                 ChatAvatarContainer chatAvatarContainer = this.chatAvatarContainer;
-                chatAvatarContainer.setTranslationX(((iLerp2 - ((ViewGroup.MarginLayoutParams) chatAvatarContainer.getLayoutParams()).leftMargin) - this.chatAvatarContainer.getLeftPadding()) + iDp + AndroidUtilities.dp(3.0f));
+                chatAvatarContainer.setPivotX((chatAvatarContainer.getMeasuredWidth() / 2.0f) - leftPadding);
             }
             this.glassDrawable.setBounds(iLerp2, height, width, i2);
             this.glassDrawable.draw(canvas);

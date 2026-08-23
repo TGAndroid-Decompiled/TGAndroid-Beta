@@ -826,7 +826,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 iArr[i2] = iArr[i2] + 1;
                 getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         ChannelColorActivity.m1560$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(this.f$0, callback, tLObject, tL_error);
                     }
                 });
@@ -865,7 +865,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 iArr[i2] = iArr[i2] + 1;
                 getConnectionsManager().sendRequest(tL_messages_setChatWallPaper, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         ChannelColorActivity.$r8$lambda$vGBFSGZqBZaEbimimGSFFXKFoQg(this.f$0, callback, tLObject, tL_error);
                     }
                 });
@@ -919,7 +919,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 iArr[i2] = iArr[i2] + 1;
                 getConnectionsManager().sendRequest(tL_channels_updateEmojiStatus, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         ChannelColorActivity.$r8$lambda$dJHR91666oWz7dFZK8wzm0c4gdQ(this.f$0, callback, tLObject, tL_error);
                     }
                 });
@@ -965,7 +965,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         iArr[0] = iArr[0] + 1;
         getConnectionsManager().sendRequest(tL_channels_updateColor2, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 ChannelColorActivity.m1555$r8$lambda$C8kKo15K3PchMwrJ9lkLF4StE8(this.f$0, callback, tLObject, tL_error);
             }
         });
@@ -1002,7 +1002,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[i2] = iArr[i2] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     ChannelColorActivity.m1560$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(this.f$0, callback, tLObject, tL_error);
                 }
             });
@@ -1039,7 +1039,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[i2] = iArr[i2] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     ChannelColorActivity.m1560$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(this.f$0, callback, tLObject, tL_error);
                 }
             });
@@ -1078,7 +1078,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[i2] = iArr[i2] + 1;
             getConnectionsManager().sendRequest(tL_messages_setChatWallPaper, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     ChannelColorActivity.$r8$lambda$vGBFSGZqBZaEbimimGSFFXKFoQg(this.f$0, callback, tLObject, tL_error);
                 }
             });
@@ -1123,7 +1123,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[i2] = iArr[i2] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateEmojiStatus, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     ChannelColorActivity.$r8$lambda$dJHR91666oWz7dFZK8wzm0c4gdQ(this.f$0, callback, tLObject, tL_error);
                 }
             });
@@ -1173,7 +1173,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public static void m1555$r8$lambda$C8kKo15K3PchMwrJ9lkLF4StE8(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1555$r8$lambda$C8kKo15K3PchMwrJ9lkLF4StE8(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         channelColorActivity.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             channelColorActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
@@ -1183,7 +1183,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public static void m1560$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1560$r8$lambda$mSs1dzk2RSGtewEW2o7ejo9cPQ(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         channelColorActivity.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             channelColorActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
@@ -1193,7 +1193,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$vGBFSGZqBZaEbimimGSFFXKFoQg(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$vGBFSGZqBZaEbimimGSFFXKFoQg(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         channelColorActivity.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             channelColorActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
@@ -1203,7 +1203,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$dJHR91666oWz7dFZK8wzm0c4gdQ(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$dJHR91666oWz7dFZK8wzm0c4gdQ(ChannelColorActivity channelColorActivity, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         channelColorActivity.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             channelColorActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);

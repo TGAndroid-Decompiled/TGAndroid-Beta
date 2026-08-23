@@ -958,7 +958,7 @@ public class ChatbotsActivity extends BaseFragment {
         if (tLObject instanceof TLRPC.Updates) {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     MessagesController.getInstance(this.f$0.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
                 }
             });

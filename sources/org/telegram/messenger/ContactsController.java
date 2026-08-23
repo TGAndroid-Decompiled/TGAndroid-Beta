@@ -3277,13 +3277,13 @@ public class ContactsController extends BaseController {
         }
         getConnectionsManager().sendRequest(tL_contacts_addContact, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 ContactsController.$r8$lambda$WMOqe2SZnqwy1urgVCcm1dIWs1c(this.f$0, user, tLObject, tL_error);
             }
         }, 6);
     }
 
-    public static void $r8$lambda$WMOqe2SZnqwy1urgVCcm1dIWs1c(final ContactsController contactsController, final TLRPC.User user, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$WMOqe2SZnqwy1urgVCcm1dIWs1c(final ContactsController contactsController, final TLRPC.User user, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         int iIndexOf;
         contactsController.getClass();
         if (tL_error != null) {
@@ -3461,13 +3461,13 @@ public class ContactsController extends BaseController {
         final String str = arrayList.get(0).first_name;
         getConnectionsManager().sendRequest(tL_contacts_deleteContacts, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 ContactsController.$r8$lambda$Uut7dQkVNNt0ILgqBBwZu6CLlYs(this.f$0, arrayList2, arrayList, z, str, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$Uut7dQkVNNt0ILgqBBwZu6CLlYs(final ContactsController contactsController, ArrayList arrayList, final ArrayList arrayList2, final boolean z, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$Uut7dQkVNNt0ILgqBBwZu6CLlYs(final ContactsController contactsController, ArrayList arrayList, final ArrayList arrayList2, final boolean z, final String str, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         int iIndexOf;
         if (tL_error != null) {
             contactsController.getClass();

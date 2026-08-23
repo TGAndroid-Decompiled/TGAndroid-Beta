@@ -11146,13 +11146,13 @@ public class MediaDataController extends BaseController {
         this.loadingDrafts = true;
         getConnectionsManager().sendRequest(new TLRPC.TL_messages_getAllDrafts(), new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 MediaDataController.$r8$lambda$ceAsjl22NMlLl8gPB68v3nngZyk(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$ceAsjl22NMlLl8gPB68v3nngZyk(final MediaDataController mediaDataController, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$ceAsjl22NMlLl8gPB68v3nngZyk(final MediaDataController mediaDataController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error != null) {
             mediaDataController.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {

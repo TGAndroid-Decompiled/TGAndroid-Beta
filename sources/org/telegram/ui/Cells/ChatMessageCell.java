@@ -9358,7 +9358,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (messageObject == null || (message = messageObject.messageOwner) == null) {
             return false;
         }
-        return (messageObject.type == 29 && ((groupMedia = chatMessageCell.groupMedia) == null || !groupMedia.hidden)) || message.noforwards || messageObject.isVoiceOnce() || chatMessageCell.currentMessageObject.hasRevealedExtendedMedia();
+        if (messageObject.type != 29 || ((groupMedia = chatMessageCell.groupMedia) != null && groupMedia.hidden)) {
+            return (message.noforwards && !messageObject.isEphemeral()) || chatMessageCell.currentMessageObject.isVoiceOnce() || chatMessageCell.currentMessageObject.hasRevealedExtendedMedia();
+        }
+        return true;
     }
 
     public void checkVideoPlayback(boolean z, Bitmap bitmap) {

@@ -635,13 +635,13 @@ public class ChatObject {
             editgroupcalltitle.title = str;
             this.currentAccount.getConnectionsManager().sendRequest(editgroupcalltitle, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     ChatObject.Call.$r8$lambda$9UEmUNochbRxpihfnOCWOSXZeLI(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void $r8$lambda$9UEmUNochbRxpihfnOCWOSXZeLI(Call call, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$9UEmUNochbRxpihfnOCWOSXZeLI(Call call, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
             call.getClass();
             if (tLObject != null) {
                 call.currentAccount.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
@@ -1801,14 +1801,14 @@ public class ChatObject {
             }
             this.currentAccount.getConnectionsManager().sendRequest(togglegroupcallrecord, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     ChatObject.Call.$r8$lambda$bTMK8nManqOzPSgCalzsHopT0_0(this.f$0, tLObject, tL_error);
                 }
             });
             this.currentAccount.getNotificationCenter().postNotificationName(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.id), Boolean.FALSE);
         }
 
-        public static void $r8$lambda$bTMK8nManqOzPSgCalzsHopT0_0(Call call, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$bTMK8nManqOzPSgCalzsHopT0_0(Call call, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
             call.getClass();
             if (tLObject != null) {
                 call.currentAccount.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);

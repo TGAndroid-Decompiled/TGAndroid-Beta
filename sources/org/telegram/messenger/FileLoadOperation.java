@@ -1921,16 +1921,20 @@ public class FileLoadOperation {
         try {
             if (this.filePartsStream != null) {
                 synchronized (this) {
-                    if (!this.writingToFilePartsStream) {
-                        try {
-                            this.filePartsStream.getChannel().close();
-                        } catch (Exception e7) {
-                            FileLog.e(e7);
+                    try {
+                        if (!this.writingToFilePartsStream) {
+                            try {
+                                this.filePartsStream.getChannel().close();
+                            } catch (Exception e7) {
+                                FileLog.e(e7);
+                            }
+                            this.filePartsStream.close();
+                            this.filePartsStream = null;
+                        } else {
+                            this.closeFilePartsStreamOnWriteEnd = true;
                         }
-                        this.filePartsStream.close();
-                        this.filePartsStream = null;
-                    } else {
-                        this.closeFilePartsStreamOnWriteEnd = true;
+                    } catch (Throwable th) {
+                        throw th;
                     }
                 }
             }

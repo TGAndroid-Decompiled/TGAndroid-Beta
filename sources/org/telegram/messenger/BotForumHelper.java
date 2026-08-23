@@ -299,11 +299,42 @@ public class BotForumHelper extends BaseController {
 
     public boolean hasBotForumDrafts(long j, int i) {
         LongSparseArray<BotDraftMessage> longSparseArray = this.botTextDraftsByRandomIds.get(j, i);
-        return longSparseArray != null && longSparseArray.size() > 0;
+        if (longSparseArray != null && longSparseArray.size() > 0) {
+            int size = longSparseArray.size();
+            for (int i2 = 0; i2 < size; i2++) {
+                if (!longSparseArray.valueAt(i2).removed) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void removeAllMarkedAsRemovedMessages(long j, int i) {
+        long j2 = i;
+        long j3 = j;
+        LongSparseArray<BotDraftMessage> longSparseArray = this.botTextDraftsByRandomIds.get(j3, j2);
+        if (longSparseArray == null) {
+            return;
+        }
+        int size = longSparseArray.size();
+        int i2 = 0;
+        while (i2 < size) {
+            BotDraftMessage botDraftMessageValueAt = longSparseArray.valueAt(i2);
+            if (botDraftMessageValueAt.removed) {
+                getNotificationCenter().postNotificationName(NotificationCenter.botForumDraftDelete, new BotForumTextDraftDeleteNotification(j3, j2, botDraftMessageValueAt.localMessageId));
+                this.botTextDraftsByRandomIds.remove(j, j2, botDraftMessageValueAt.randomId);
+                i2--;
+                size--;
+            }
+            i2++;
+            j3 = j;
+        }
     }
 
     public MessageObject onBotForumDraftCheckNewMessages(long j, int i, int i2, String str) {
         BotDraftMessage botDraftMessage;
+        removeAllMarkedAsRemovedMessages(j, i);
         long j2 = i;
         LongSparseArray<BotDraftMessage> longSparseArray = this.botTextDraftsByRandomIds.get(j, j2);
         if (longSparseArray == null) {
@@ -453,13 +484,13 @@ public class BotForumHelper extends BaseController {
         tL_messages_createForumTopic.random_id = j;
         getConnectionsManager().sendRequestTyped(tL_messages_createForumTopic, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws InterruptedException {
                 BotForumHelper.$r8$lambda$BNFiiZDUX9EcxYRrHTTH6ljSovk(this.f$0, peerDialogId, str, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void $r8$lambda$BNFiiZDUX9EcxYRrHTTH6ljSovk(BotForumHelper botForumHelper, long j, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$BNFiiZDUX9EcxYRrHTTH6ljSovk(BotForumHelper botForumHelper, long j, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
         TL_update.TL_updateMessageID tL_updateMessageID;
         if (updates == null) {
             botForumHelper.performSendBotTopicCreateComplete(j, -1);

@@ -58,7 +58,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
     private NativeByteBuffer(int i, boolean z) {
     }
 
-    public NativeByteBuffer(int i) throws Exception {
+    public NativeByteBuffer(int i) {
         if (i >= 0) {
             long jNative_getFreeBuffer = native_getFreeBuffer(i);
             this.address = jNative_getFreeBuffer;

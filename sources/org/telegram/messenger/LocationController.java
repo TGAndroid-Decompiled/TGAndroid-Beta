@@ -459,7 +459,7 @@ public class LocationController extends BaseController implements NotificationCe
                             tL_messages_editMessage.media.flags |= 4;
                             int iSendRequest = getConnectionsManager().sendRequest(tL_messages_editMessage, new RequestDelegate() {
                                 @Override
-                                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                                     LocationController.$r8$lambda$wD2Qm9c6BI1nbRlzchlcol08hQg(this.f$0, sharingLocationInfo, iArr, tL_messages_editMessage, tLObject, tL_error);
                                 }
                             });
@@ -493,7 +493,7 @@ public class LocationController extends BaseController implements NotificationCe
                         tL_messages_editMessage2.media.flags |= 4;
                         int iSendRequest2 = getConnectionsManager().sendRequest(tL_messages_editMessage2, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                                 LocationController.$r8$lambda$wD2Qm9c6BI1nbRlzchlcol08hQg(this.f$0, sharingLocationInfo, iArr, tL_messages_editMessage2, tLObject, tL_error);
                             }
                         });
@@ -527,7 +527,7 @@ public class LocationController extends BaseController implements NotificationCe
                     tL_messages_editMessage3.media.flags |= 4;
                     int iSendRequest3 = getConnectionsManager().sendRequest(tL_messages_editMessage3, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             LocationController.$r8$lambda$wD2Qm9c6BI1nbRlzchlcol08hQg(this.f$0, sharingLocationInfo, iArr2, tL_messages_editMessage3, tLObject, tL_error);
                         }
                     });
@@ -542,7 +542,7 @@ public class LocationController extends BaseController implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$wD2Qm9c6BI1nbRlzchlcol08hQg(final LocationController locationController, final SharingLocationInfo sharingLocationInfo, int[] iArr, TLRPC.TL_messages_editMessage tL_messages_editMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$wD2Qm9c6BI1nbRlzchlcol08hQg(final LocationController locationController, final SharingLocationInfo sharingLocationInfo, int[] iArr, TLRPC.TL_messages_editMessage tL_messages_editMessage, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         locationController.getClass();
         if (tL_error != null) {
             if (tL_error.text.equals("MESSAGE_ID_INVALID")) {
@@ -952,7 +952,7 @@ public class LocationController extends BaseController implements NotificationCe
             tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
             locationController.getConnectionsManager().sendRequest(tL_messages_editMessage, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     LocationController.$r8$lambda$MKP7_mkjQPsoSXBedy8EW_dhcfM(this.f$0, tLObject, tL_error);
                 }
             });
@@ -970,7 +970,7 @@ public class LocationController extends BaseController implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$MKP7_mkjQPsoSXBedy8EW_dhcfM(LocationController locationController, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$MKP7_mkjQPsoSXBedy8EW_dhcfM(LocationController locationController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error != null) {
             locationController.getClass();
         } else {
@@ -1024,7 +1024,7 @@ public class LocationController extends BaseController implements NotificationCe
             tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
             locationController.getConnectionsManager().sendRequest(tL_messages_editMessage, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     LocationController.$r8$lambda$ggWCRmme1cBdxg9siYaFgmsWFOk(this.f$0, tLObject, tL_error);
                 }
             });
@@ -1041,7 +1041,7 @@ public class LocationController extends BaseController implements NotificationCe
         });
     }
 
-    public static void $r8$lambda$ggWCRmme1cBdxg9siYaFgmsWFOk(LocationController locationController, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$ggWCRmme1cBdxg9siYaFgmsWFOk(LocationController locationController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error != null) {
             locationController.getClass();
         } else {

@@ -3855,13 +3855,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         storyRecorder.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws InterruptedException {
                 StoryRecorder.m4621$r8$lambda$9YqGJ8HJD1B4P3nQaXAy89JagM(this.f$0, tLObject, tL_startLive, z, j, z2, tL_error, runnable);
             }
         });
     }
 
-    public static void m4621$r8$lambda$9YqGJ8HJD1B4P3nQaXAy89JagM(final StoryRecorder storyRecorder, TLObject tLObject, TL_stories.TL_startLive tL_startLive, final boolean z, final long j, final boolean z2, TLRPC.TL_error tL_error, Runnable runnable) {
+    public static void m4621$r8$lambda$9YqGJ8HJD1B4P3nQaXAy89JagM(final StoryRecorder storyRecorder, TLObject tLObject, TL_stories.TL_startLive tL_startLive, final boolean z, final long j, final boolean z2, TLRPC.TL_error tL_error, Runnable runnable) throws InterruptedException {
         int i;
         TL_stories.StoryItem storyItem;
         TLRPC.InputGroupCall inputGroupCall;

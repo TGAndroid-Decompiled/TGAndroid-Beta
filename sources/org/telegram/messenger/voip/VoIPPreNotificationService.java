@@ -576,14 +576,14 @@ public class VoIPPreNotificationService {
         FileLog.e("discardCall " + discardcall.reason);
         ConnectionsManager.getInstance(intExtra).sendRequest(discardcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 VoIPPreNotificationService.m1176$r8$lambda$xd9f9h0l8PWlBVsXRSKfIBo_k(intExtra, tLObject, tL_error);
             }
         }, 2);
         dismiss(context, false);
     }
 
-    public static void m1176$r8$lambda$xd9f9h0l8PWlBVsXRSKfIBo_k(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m1176$r8$lambda$xd9f9h0l8PWlBVsXRSKfIBo_k(int i, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error != null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("(VoIPPreNotification) error on phone.discardCall: " + tL_error);

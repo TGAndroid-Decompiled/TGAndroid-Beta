@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.zip.CRC32;
 import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
@@ -317,5 +318,39 @@ public abstract class TlUtils {
                 return Long.compare(((TLRPC.PollAnswer) obj).shuffle_hash ^ Long.MIN_VALUE, ((TLRPC.PollAnswer) obj2).shuffle_hash ^ Long.MIN_VALUE);
             }
         });
+    }
+
+    public static boolean tlEquals(TLObject tLObject, TLObject tLObject2) {
+        int objectSize;
+        int objectSize2;
+        if (tLObject == tLObject2) {
+            return true;
+        }
+        if (tLObject == null || tLObject2 == null || (objectSize = tLObject.getObjectSize()) != (objectSize2 = tLObject2.getObjectSize())) {
+            return false;
+        }
+        try {
+            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(objectSize);
+            tLObject.serializeToStream(nativeByteBuffer);
+            nativeByteBuffer.rewind();
+            NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(objectSize2);
+            tLObject2.serializeToStream(nativeByteBuffer2);
+            nativeByteBuffer2.rewind();
+            while (objectSize >= 8) {
+                if (nativeByteBuffer.readInt64(true) != nativeByteBuffer2.readInt64(true)) {
+                    return false;
+                }
+                objectSize -= 8;
+            }
+            while (objectSize > 0) {
+                if (nativeByteBuffer.readByte(true) != nativeByteBuffer2.readByte(true)) {
+                    return false;
+                }
+                objectSize--;
+            }
+            return true;
+        } catch (Throwable th) {
+            throw new RuntimeException(th);
+        }
     }
 }

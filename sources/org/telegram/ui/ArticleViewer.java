@@ -6989,13 +6989,13 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         tL_channels_joinChannel.channel = MessagesController.getInputChannel(chat);
         ConnectionsManager.getInstance(i).sendRequestTyped(tL_channels_joinChannel, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws InterruptedException {
                 ArticleViewer.$r8$lambda$aQ8sRKaQB_Wa760bRPk_fb89_P4(blockChannelCell, i, tL_channels_joinChannel, chat, (TLRPC.ChatInviteJoinResult) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void $r8$lambda$aQ8sRKaQB_Wa760bRPk_fb89_P4(final BlockChannelCell blockChannelCell, final int i, final TLRPC.TL_channels_joinChannel tL_channels_joinChannel, final TLRPC.Chat chat, TLRPC.ChatInviteJoinResult chatInviteJoinResult, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$aQ8sRKaQB_Wa760bRPk_fb89_P4(final BlockChannelCell blockChannelCell, final int i, final TLRPC.TL_channels_joinChannel tL_channels_joinChannel, final TLRPC.Chat chat, TLRPC.ChatInviteJoinResult chatInviteJoinResult, final TLRPC.TL_error tL_error) throws InterruptedException {
         boolean z;
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {

@@ -414,7 +414,7 @@ public class ConferenceCall {
         }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws InterruptedException {
                 MessagesController.getInstance(this.f$0.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             }
         });

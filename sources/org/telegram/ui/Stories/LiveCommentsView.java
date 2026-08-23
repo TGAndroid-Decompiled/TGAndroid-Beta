@@ -1338,7 +1338,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         sendgroupcallmessage.send_as = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(sendgroupcallmessage, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 LiveCommentsView.m4318$r8$lambda$lSdGGtafPtuSQxF2rsWdUEnUE(this.f$0, sendgroupcallmessage, newMessageId, j2, j, tL_textWithEntities, tLObject, tL_error);
             }
         });
@@ -1371,7 +1371,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         return newMessageId;
     }
 
-    public static void m4318$r8$lambda$lSdGGtafPtuSQxF2rsWdUEnUE(final LiveCommentsView liveCommentsView, TL_phone.sendGroupCallMessage sendgroupcallmessage, final int i, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4318$r8$lambda$lSdGGtafPtuSQxF2rsWdUEnUE(final LiveCommentsView liveCommentsView, TL_phone.sendGroupCallMessage sendgroupcallmessage, final int i, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         liveCommentsView.getClass();
         if (!(tLObject instanceof TLRPC.Updates)) {
             if (tL_error != null) {

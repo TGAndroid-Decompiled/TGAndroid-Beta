@@ -12613,7 +12613,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                         tL_payments_assignPlayMarketTransaction.purpose = tL_inputStorePaymentAuthCode;
                         LoginActivity.this.getConnectionsManager().sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                                 LoginActivity.LoginPayView.$r8$lambda$7I87C6O_AXqlifR9Bboj0Hr9Rls(this.f$0, tL_inputStorePaymentAuthCode, purchase, tL_payments_canPurchaseStore, runnable, tLObject, tL_error);
                             }
                         }, 74);
@@ -12624,7 +12624,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             runnable.run();
         }
 
-        public static void $r8$lambda$7I87C6O_AXqlifR9Bboj0Hr9Rls(final LoginPayView loginPayView, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, Purchase purchase, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void $r8$lambda$7I87C6O_AXqlifR9Bboj0Hr9Rls(final LoginPayView loginPayView, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, Purchase purchase, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
             loginPayView.getClass();
             if (!(tLObject instanceof TLRPC.Updates)) {
                 if (tL_error != null) {

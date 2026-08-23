@@ -278,13 +278,13 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         tL_inputPeerUser.user_id = AccountInstance.getInstance(livePlayer.currentAccount).getUserConfig().getClientUserId();
         ConnectionsManager.getInstance(livePlayer.currentAccount).sendRequest(joingroupcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 LivePlayer.m4326$r8$lambda$HYtfOfJLZx7y7b5eweQhCgynP0(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4326$r8$lambda$HYtfOfJLZx7y7b5eweQhCgynP0(final LivePlayer livePlayer, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4326$r8$lambda$HYtfOfJLZx7y7b5eweQhCgynP0(final LivePlayer livePlayer, final TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         livePlayer.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -343,7 +343,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 leavegroupcall.call = livePlayer.inputCall;
                 ConnectionsManager.getInstance(livePlayer.currentAccount).sendRequest(leavegroupcall, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) throws InterruptedException {
                         LivePlayer.m4336$r8$lambda$rzdQ0klCzqwUVZzE1SDZwXjlU(this.f$0, tLObject, tLObject2, tL_error2);
                     }
                 });
@@ -419,7 +419,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public static void m4336$r8$lambda$rzdQ0klCzqwUVZzE1SDZwXjlU(LivePlayer livePlayer, TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error) {
+    public static void m4336$r8$lambda$rzdQ0klCzqwUVZzE1SDZwXjlU(LivePlayer livePlayer, TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
         livePlayer.getClass();
         if (tLObject2 instanceof TLRPC.Updates) {
             MessagesController.getInstance(livePlayer.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
@@ -921,7 +921,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             leavegroupcall.call = this.inputCall;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(leavegroupcall, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     LivePlayer.$r8$lambda$kiiKsVT3bDPIr3LlwjxGc9rlArE(this.f$0, tLObject, tL_error);
                 }
             });
@@ -952,7 +952,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public static void $r8$lambda$kiiKsVT3bDPIr3LlwjxGc9rlArE(LivePlayer livePlayer, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$kiiKsVT3bDPIr3LlwjxGc9rlArE(LivePlayer livePlayer, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         livePlayer.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(livePlayer.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
@@ -1278,14 +1278,14 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         discardgroupcall.call = this.inputCall;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(discardgroupcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 LivePlayer.$r8$lambda$ClLu_78fhyD8HpTRuggsPM5Xh80(this.f$0, tLObject, tL_error);
             }
         });
         destroy();
     }
 
-    public static void $r8$lambda$ClLu_78fhyD8HpTRuggsPM5Xh80(LivePlayer livePlayer, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$ClLu_78fhyD8HpTRuggsPM5Xh80(LivePlayer livePlayer, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         livePlayer.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;

@@ -363,14 +363,14 @@ public class ChatThemeController extends BaseController {
             tL_messages_setChatTheme.peer = getMessagesController().getInputPeer(j);
             getConnectionsManager().sendRequestTyped(tL_messages_setChatTheme, null, new Utilities.Callback2() {
                 @Override
-                public final void run(Object obj, Object obj2) {
+                public final void run(Object obj, Object obj2) throws InterruptedException {
                     ChatThemeController.$r8$lambda$c7iT1GqF1XNW26FfnceC3pBfemo(this.f$0, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
     }
 
-    public static void $r8$lambda$c7iT1GqF1XNW26FfnceC3pBfemo(ChatThemeController chatThemeController, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$c7iT1GqF1XNW26FfnceC3pBfemo(ChatThemeController chatThemeController, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
         if (updates != null) {
             chatThemeController.getMessagesController().processUpdates(updates, false);
         } else {
@@ -1009,13 +1009,13 @@ public class ChatThemeController extends BaseController {
         chatThemeController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws InterruptedException {
                 ChatThemeController.$r8$lambda$Sf3aClVUeRUgN5dzQz7zMbAztUw(this.f$0, tLObject, j, z, str, runnable);
             }
         });
     }
 
-    public static void $r8$lambda$Sf3aClVUeRUgN5dzQz7zMbAztUw(ChatThemeController chatThemeController, TLObject tLObject, long j, boolean z, String str, Runnable runnable) {
+    public static void $r8$lambda$Sf3aClVUeRUgN5dzQz7zMbAztUw(ChatThemeController chatThemeController, TLObject tLObject, long j, boolean z, String str, Runnable runnable) throws InterruptedException {
         TLRPC.ChatFull chatFull;
         TLRPC.UserFull userFull;
         String str2;

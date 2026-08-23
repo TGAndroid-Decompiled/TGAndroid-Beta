@@ -2983,7 +2983,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             runnable = null;
                             ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_importChatInvite, null, new Utilities.Callback2() {
                                 @Override
-                                public final void run(Object obj, Object obj2) {
+                                public final void run(Object obj, Object obj2) throws InterruptedException {
                                     LaunchActivity.$r8$lambda$divvYjw3YmYwb2XnSTDy5__LR64(this.f$0, runnable3, i, (TLRPC.ChatInviteJoinResult) obj, (TLRPC.TL_error) obj2);
                                 }
                             }, 2);
@@ -4471,7 +4471,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void $r8$lambda$divvYjw3YmYwb2XnSTDy5__LR64(final LaunchActivity launchActivity, final Runnable runnable, final int i, TLRPC.ChatInviteJoinResult chatInviteJoinResult, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$divvYjw3YmYwb2XnSTDy5__LR64(final LaunchActivity launchActivity, final Runnable runnable, final int i, TLRPC.ChatInviteJoinResult chatInviteJoinResult, final TLRPC.TL_error tL_error) throws InterruptedException {
         final TLRPC.Updates updates;
         launchActivity.getClass();
         if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {

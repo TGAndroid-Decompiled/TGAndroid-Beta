@@ -1087,13 +1087,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
         ConnectionsManager.getInstance(starGiftSheet.currentAccount).sendRequestTyped(craftstargift, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj2, Object obj3) {
+            public final void run(Object obj2, Object obj3) throws InterruptedException {
                 StarGiftSheet.$r8$lambda$8zzA4QoxH8mF3dYvDpOisL32Lw0(this.f$0, callback2, arrayList, runnable, (TLRPC.Updates) obj2, (TLRPC.TL_error) obj3);
             }
         });
     }
 
-    public static void $r8$lambda$8zzA4QoxH8mF3dYvDpOisL32Lw0(final StarGiftSheet starGiftSheet, Utilities.Callback2 callback2, final ArrayList arrayList, Runnable runnable, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$8zzA4QoxH8mF3dYvDpOisL32Lw0(final StarGiftSheet starGiftSheet, Utilities.Callback2 callback2, final ArrayList arrayList, Runnable runnable, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
         final MessageObject messageObject;
         starGiftSheet.getClass();
         if (updates == null) {
@@ -1713,13 +1713,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         updatestargiftprice.resell_amount = tl;
         ConnectionsManager.getInstance(starGiftSheet.currentAccount).sendRequest(updatestargiftprice, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 StarGiftSheet.$r8$lambda$dBBH2QgDkfjgfRD34XoR0q_3BZ4(this.f$0, tL_starGiftUnique, amountUtils$Amount, runnable, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$dBBH2QgDkfjgfRD34XoR0q_3BZ4(final StarGiftSheet starGiftSheet, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$dBBH2QgDkfjgfRD34XoR0q_3BZ4(final StarGiftSheet starGiftSheet, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         starGiftSheet.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(starGiftSheet.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
@@ -1808,13 +1808,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         updatestargiftprice.resell_amount = TL_stars.StarsAmount.ofStars(0L);
         ConnectionsManager.getInstance(starGiftSheet.currentAccount).sendRequest(updatestargiftprice, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 StarGiftSheet.$r8$lambda$LZZuJUaVq71z11nGE8Hhv5MCm5I(this.f$0, progressMakeButtonLoading, tL_starGiftUnique, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$LZZuJUaVq71z11nGE8Hhv5MCm5I(final StarGiftSheet starGiftSheet, final Browser.Progress progress, final TL_stars.TL_starGiftUnique tL_starGiftUnique, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$LZZuJUaVq71z11nGE8Hhv5MCm5I(final StarGiftSheet starGiftSheet, final Browser.Progress progress, final TL_stars.TL_starGiftUnique tL_starGiftUnique, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         starGiftSheet.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(starGiftSheet.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
@@ -1876,13 +1876,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         updatestargiftprice.resell_amount = tl;
         ConnectionsManager.getInstance(starGiftSheet.currentAccount).sendRequest(updatestargiftprice, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 StarGiftSheet.$r8$lambda$Mj0Dn7OlmD4iCFzk1wfCkS9twrE(this.f$0, tL_starGiftUnique, amountUtils$Amount, runnable, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$Mj0Dn7OlmD4iCFzk1wfCkS9twrE(final StarGiftSheet starGiftSheet, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$Mj0Dn7OlmD4iCFzk1wfCkS9twrE(final StarGiftSheet starGiftSheet, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         starGiftSheet.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(starGiftSheet.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
@@ -8588,7 +8588,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 });
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws InterruptedException {
                         MessagesController.getInstance(this.f$0.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
                     }
                 });
@@ -8646,7 +8646,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             });
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     MessagesController.getInstance(this.f$0.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
                 }
             });
@@ -9408,7 +9408,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             transferstargift.to_id = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(transferstargift, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     StarGiftSheet.$r8$lambda$Z9VYNZ1GzcpnI2UZ6b5t74WVrIM(this.f$0, callback, j, peerDialogId, tLObject, tL_error);
                 }
             });
@@ -9444,7 +9444,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         });
     }
 
-    public static void $r8$lambda$Z9VYNZ1GzcpnI2UZ6b5t74WVrIM(final StarGiftSheet starGiftSheet, final Utilities.Callback callback, final long j, final long j2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void $r8$lambda$Z9VYNZ1GzcpnI2UZ6b5t74WVrIM(final StarGiftSheet starGiftSheet, final Utilities.Callback callback, final long j, final long j2, final TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         starGiftSheet.getClass();
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(starGiftSheet.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
@@ -9578,7 +9578,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     MessagesController.getInstance(this.f$0.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
                 }
             });
