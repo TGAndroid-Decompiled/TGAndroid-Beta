@@ -881,13 +881,13 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             tL_messages_sendWebViewData.data = str;
             ConnectionsManager.getInstance(BotWebViewSheet.this.currentAccount).sendRequest(tL_messages_sendWebViewData, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     BotWebViewSheet.AnonymousClass3.$r8$lambda$myU7bI2Kw3CgIowXiy6nFWy6FAo(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void $r8$lambda$myU7bI2Kw3CgIowXiy6nFWy6FAo(AnonymousClass3 anonymousClass3, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+        public static void $r8$lambda$myU7bI2Kw3CgIowXiy6nFWy6FAo(AnonymousClass3 anonymousClass3, TLObject tLObject, TLRPC.TL_error tL_error) {
             anonymousClass3.getClass();
             if (tLObject instanceof TLRPC.TL_updates) {
                 MessagesController.getInstance(BotWebViewSheet.this.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);

@@ -367,13 +367,13 @@ public abstract class BoostRepository {
         tL_payments_launchPrepaidGiveaway.purpose = tL_inputStorePaymentStarsGiveaway;
         connectionsManager.sendRequest(tL_payments_launchPrepaidGiveaway, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
                 BoostRepository.$r8$lambda$g_xySM0hQlLkMqWy7Mg2ggZA0YA(callback2, messagesController, callback, tLObject3, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$g_xySM0hQlLkMqWy7Mg2ggZA0YA(final Utilities.Callback callback, MessagesController messagesController, final Utilities.Callback callback2, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$g_xySM0hQlLkMqWy7Mg2ggZA0YA(final Utilities.Callback callback, MessagesController messagesController, final Utilities.Callback callback2, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

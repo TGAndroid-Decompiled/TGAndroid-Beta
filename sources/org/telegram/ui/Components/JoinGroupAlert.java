@@ -301,7 +301,7 @@ public class JoinGroupAlert extends BottomSheet {
         tL_messages_importChatInvite.hash = joinGroupAlert.hash;
         ConnectionsManager.getInstance(joinGroupAlert.currentAccount).sendRequest(tL_messages_importChatInvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 JoinGroupAlert.$r8$lambda$SFKxwIwEYdyj2ZGBaLhYJdfx5WU(this.f$0, j, z, tL_messages_importChatInvite, tLObject, tL_error);
             }
         }, 2);
@@ -332,7 +332,7 @@ public class JoinGroupAlert extends BottomSheet {
         return false;
     }
 
-    public static void $r8$lambda$SFKxwIwEYdyj2ZGBaLhYJdfx5WU(final JoinGroupAlert joinGroupAlert, final long j, final boolean z, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$SFKxwIwEYdyj2ZGBaLhYJdfx5WU(final JoinGroupAlert joinGroupAlert, final long j, final boolean z, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLObject tLObject, final TLRPC.TL_error tL_error) {
         joinGroupAlert.getClass();
         if (tLObject instanceof TLRPC.TL_chatInviteJoinResultOk) {
             MessagesController.getInstance(joinGroupAlert.currentAccount).processUpdates(((TLRPC.TL_chatInviteJoinResultOk) tLObject).updates, false);
@@ -385,13 +385,13 @@ public class JoinGroupAlert extends BottomSheet {
         tL_messages_importChatInvite.hash = joinGroupAlert.hash;
         ConnectionsManager.getInstance(joinGroupAlert.currentAccount).sendRequestTyped(tL_messages_importChatInvite, null, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 JoinGroupAlert.$r8$lambda$7KF5lRZIKHaskZKVgwi_muIcWNc(this.f$0, j, i, tL_messages_importChatInvite, (TLRPC.ChatInviteJoinResult) obj, (TLRPC.TL_error) obj2);
             }
         }, 2);
     }
 
-    public static void $r8$lambda$7KF5lRZIKHaskZKVgwi_muIcWNc(final JoinGroupAlert joinGroupAlert, final long j, final int i, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLRPC.ChatInviteJoinResult chatInviteJoinResult, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$7KF5lRZIKHaskZKVgwi_muIcWNc(final JoinGroupAlert joinGroupAlert, final long j, final int i, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLRPC.ChatInviteJoinResult chatInviteJoinResult, final TLRPC.TL_error tL_error) {
         final TLRPC.Updates updates;
         joinGroupAlert.getClass();
         if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {

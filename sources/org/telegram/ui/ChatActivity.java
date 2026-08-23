@@ -17487,7 +17487,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             tL_contacts_acceptContact.id = chatActivity.getMessagesController().getInputUser(chatActivity.currentUser);
             chatActivity.getConnectionsManager().sendRequest(tL_contacts_acceptContact, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     ChatActivity.m1646$r8$lambda$IVdgpsVVPs2YNLqvTeHAjo8OPY(this.f$0, tLObject, tL_error);
                 }
             });
@@ -17502,7 +17502,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         chatActivity.hideFieldPanel(false);
     }
 
-    public static void m1646$r8$lambda$IVdgpsVVPs2YNLqvTeHAjo8OPY(ChatActivity chatActivity, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m1646$r8$lambda$IVdgpsVVPs2YNLqvTeHAjo8OPY(ChatActivity chatActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             chatActivity.getClass();
         } else {
@@ -69248,7 +69248,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         tL_messages_editMessage.flags |= 16384;
         final int iSendRequest = chatActivity.getConnectionsManager().sendRequest(tL_messages_editMessage, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 ChatActivity.$r8$lambda$TsjOo6qFXu6ptRR0vZeBAKc3c8I(this.f$0, alertDialogArr, tL_messages_editMessage, tLObject, tL_error);
             }
         });
@@ -69260,7 +69260,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }, 500L);
     }
 
-    public static void $r8$lambda$TsjOo6qFXu6ptRR0vZeBAKc3c8I(final ChatActivity chatActivity, final AlertDialog[] alertDialogArr, final TLRPC.TL_messages_editMessage tL_messages_editMessage, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$TsjOo6qFXu6ptRR0vZeBAKc3c8I(final ChatActivity chatActivity, final AlertDialog[] alertDialogArr, final TLRPC.TL_messages_editMessage tL_messages_editMessage, TLObject tLObject, final TLRPC.TL_error tL_error) {
         chatActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -69322,13 +69322,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         ConnectionsManager.getInstance(chatActivity.currentAccount).sendRequest(tL_messages_sendScheduledMessages, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 ChatActivity.$r8$lambda$IU3eePLtZmmMna3RYUTv6Q0C4uU(this.f$0, tL_messages_sendScheduledMessages, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$IU3eePLtZmmMna3RYUTv6Q0C4uU(final ChatActivity chatActivity, final TLRPC.TL_messages_sendScheduledMessages tL_messages_sendScheduledMessages, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$IU3eePLtZmmMna3RYUTv6Q0C4uU(final ChatActivity chatActivity, final TLRPC.TL_messages_sendScheduledMessages tL_messages_sendScheduledMessages, TLObject tLObject, final TLRPC.TL_error tL_error) {
         chatActivity.getClass();
         if (tL_error == null) {
             chatActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);

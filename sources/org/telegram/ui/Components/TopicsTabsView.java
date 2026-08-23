@@ -1157,13 +1157,13 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
         ConnectionsManager.getInstance(topicsTabsView.currentAccount).sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 TopicsTabsView.$r8$lambda$CqwX8pfku09eHuRDy6_JO9_d5QM(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$CqwX8pfku09eHuRDy6_JO9_d5QM(final TopicsTabsView topicsTabsView, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$CqwX8pfku09eHuRDy6_JO9_d5QM(final TopicsTabsView topicsTabsView, TLObject tLObject, TLRPC.TL_error tL_error) {
         topicsTabsView.getClass();
         if (tLObject != null) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;

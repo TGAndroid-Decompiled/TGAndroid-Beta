@@ -430,13 +430,13 @@ public class ConnectionsManager extends BaseController {
     public int sendRequestTypedAndProcessUpdates(TLMethod<TLRPC.Updates> tLMethod, final Executor executor, final Utilities.Callback2<TLRPC.Updates, TLRPC.TL_error> callback2, int i, int i2) {
         return sendRequestTyped(tLMethod, null, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 ConnectionsManager.m1219$r8$lambda$InieosX9XRClyBHOcL2r2o8yjQ(this.f$0, executor, callback2, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         }, i, i2);
     }
 
-    public static void m1219$r8$lambda$InieosX9XRClyBHOcL2r2o8yjQ(ConnectionsManager connectionsManager, Executor executor, final Utilities.Callback2 callback2, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m1219$r8$lambda$InieosX9XRClyBHOcL2r2o8yjQ(ConnectionsManager connectionsManager, Executor executor, final Utilities.Callback2 callback2, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
         if (updates != null) {
             connectionsManager.getMessagesController().processUpdates(updates, false);
         } else {
@@ -595,7 +595,7 @@ public class ConnectionsManager extends BaseController {
             final TLRPC.TL_error tL_error4 = tL_error;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     ConnectionsManager.$r8$lambda$rdQQUJWjqeXVW_v9eHjTaRU63HU(this.f$0, requestDelegate, tLObject2, tL_error4, requestDelegateTimestamp, j3);
                 }
             });
@@ -604,7 +604,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void $r8$lambda$rdQQUJWjqeXVW_v9eHjTaRU63HU(ConnectionsManager connectionsManager, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) throws InterruptedException {
+    public static void $r8$lambda$rdQQUJWjqeXVW_v9eHjTaRU63HU(ConnectionsManager connectionsManager, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
         connectionsManager.getClass();
         if (requestDelegate != null) {
             requestDelegate.run(tLObject, tL_error);
@@ -953,7 +953,7 @@ public class ConnectionsManager extends BaseController {
                 KeepAliveJob.finishJob();
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws InterruptedException {
+                    public final void run() {
                         AccountInstance.getInstance(i).getMessagesController().processUpdates((TLRPC.Updates) tLObjectTLdeserialize, false);
                     }
                 });
@@ -970,7 +970,7 @@ public class ConnectionsManager extends BaseController {
     public static void onUpdate(final int i) {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 AccountInstance.getInstance(i).getMessagesController().updateTimerProc();
             }
         });

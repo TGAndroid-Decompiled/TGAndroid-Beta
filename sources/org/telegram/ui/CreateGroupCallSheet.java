@@ -235,7 +235,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
             }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     MessagesController.getInstance(this.f$0.currentAccount).processUpdates(updates, false);
                 }
             });

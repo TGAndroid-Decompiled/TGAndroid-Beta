@@ -2096,7 +2096,7 @@ public class StarsController {
             final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     MessagesController.getInstance(this.f$0.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
                 }
             });
@@ -2268,7 +2268,7 @@ public class StarsController {
             final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     MessagesController.getInstance(this.f$0.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
                 }
             });
@@ -2420,7 +2420,7 @@ public class StarsController {
         if (tLObject instanceof TLRPC.Updates) {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     MessagesController.getInstance(this.f$0.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
                 }
             });
@@ -2812,7 +2812,7 @@ public class StarsController {
             if (tLObject != null) {
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws InterruptedException {
+                    public final void run() {
                         messagesController.processUpdates((TLRPC.Updates) tLObject, false);
                     }
                 });
@@ -3608,7 +3608,7 @@ public class StarsController {
         final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 MessagesController.getInstance(this.f$0.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
             }
         });
@@ -3800,7 +3800,7 @@ public class StarsController {
         final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 MessagesController.getInstance(this.f$0.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
             }
         });
@@ -4170,7 +4170,7 @@ public class StarsController {
         final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 MessagesController.getInstance(this.f$0.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
             }
         });

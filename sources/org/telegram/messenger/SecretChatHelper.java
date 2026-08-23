@@ -2059,7 +2059,7 @@ public class SecretChatHelper extends BaseController {
         sendRequestKeyMessage(encryptedChat, null);
     }
 
-    public void processAcceptedSecretChat(final TLRPC.EncryptedChat encryptedChat) throws InterruptedException {
+    public void processAcceptedSecretChat(final TLRPC.EncryptedChat encryptedChat) {
         byte[] bArr;
         byte[] bArr2;
         ArrayList<TLRPC.Update> arrayList;
@@ -2499,13 +2499,13 @@ public class SecretChatHelper extends BaseController {
         secretChatHelper.getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatCreated, encryptedChat);
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 SecretChatHelper.m986$r8$lambda$HCizDH_TaDqYc_MCnFFPyCrfe4(this.f$0);
             }
         });
     }
 
-    public static void m986$r8$lambda$HCizDH_TaDqYc_MCnFFPyCrfe4(SecretChatHelper secretChatHelper) throws InterruptedException {
+    public static void m986$r8$lambda$HCizDH_TaDqYc_MCnFFPyCrfe4(SecretChatHelper secretChatHelper) {
         if (secretChatHelper.delayedEncryptedChatUpdates.isEmpty()) {
             return;
         }

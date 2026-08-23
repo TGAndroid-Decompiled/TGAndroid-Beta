@@ -5380,7 +5380,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         tL_messages_editMessage.flags |= 16384;
         final int iSendRequest = ConnectionsManager.getInstance(i).sendRequest(tL_messages_editMessage, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 SharedMediaLayout.$r8$lambda$DoM2uBjFZ95wWNO8oQuuKlH_FBc(this.f$0, alertDialogArr, i, tL_messages_editMessage, tLObject, tL_error);
             }
         });
@@ -5392,7 +5392,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }, 500L);
     }
 
-    public static void $r8$lambda$DoM2uBjFZ95wWNO8oQuuKlH_FBc(final SharedMediaLayout sharedMediaLayout, final AlertDialog[] alertDialogArr, final int i, final TLRPC.TL_messages_editMessage tL_messages_editMessage, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$DoM2uBjFZ95wWNO8oQuuKlH_FBc(final SharedMediaLayout sharedMediaLayout, final AlertDialog[] alertDialogArr, final int i, final TLRPC.TL_messages_editMessage tL_messages_editMessage, TLObject tLObject, final TLRPC.TL_error tL_error) {
         sharedMediaLayout.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

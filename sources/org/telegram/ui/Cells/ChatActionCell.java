@@ -8520,13 +8520,13 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         tL_resolveStarGiftOffer.decline = true;
         ConnectionsManager.getInstance(chatActionCell.currentAccount).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 ChatActionCell.$r8$lambda$fNOzERVbA3_Y9cA6qsZ5gSaCsfM(this.f$0, baseFragment, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void $r8$lambda$fNOzERVbA3_Y9cA6qsZ5gSaCsfM(ChatActionCell chatActionCell, final BaseFragment baseFragment, TLRPC.Updates updates, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$fNOzERVbA3_Y9cA6qsZ5gSaCsfM(ChatActionCell chatActionCell, final BaseFragment baseFragment, TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
         if (updates != null) {
             MessagesController.getInstance(chatActionCell.currentAccount).processUpdates(updates, false);
         } else {

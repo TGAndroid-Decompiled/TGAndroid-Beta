@@ -515,13 +515,13 @@ public class UnconfirmedAuthController {
             unconfirmedAuth.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     UnconfirmedAuthController.UnconfirmedAuth.$r8$lambda$iJBf5pjJS0KPbwQ7GQUuKOHk98I(this.f$0, tLObject, callback, tL_error);
                 }
             });
         }
 
-        public static void $r8$lambda$iJBf5pjJS0KPbwQ7GQUuKOHk98I(UnconfirmedAuth unconfirmedAuth, TLObject tLObject, Utilities.Callback callback, TLRPC.TL_error tL_error) throws InterruptedException {
+        public static void $r8$lambda$iJBf5pjJS0KPbwQ7GQUuKOHk98I(UnconfirmedAuth unconfirmedAuth, TLObject tLObject, Utilities.Callback callback, TLRPC.TL_error tL_error) {
             unconfirmedAuth.getClass();
             boolean z = tLObject instanceof TLRPC.Updates;
             if (z) {

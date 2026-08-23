@@ -21008,7 +21008,7 @@ public class MessagesStorage extends BaseController {
                                                     tL_updates.updates.add(tL_updateDeleteScheduledMessages);
                                                     Utilities.stageQueue.postRunnable(new Runnable() {
                                                         @Override
-                                                        public final void run() throws InterruptedException {
+                                                        public final void run() {
                                                             this.f$0.getMessagesController().processUpdates(tL_updates, false);
                                                         }
                                                     });
@@ -21042,7 +21042,7 @@ public class MessagesStorage extends BaseController {
                                             tL_updates2.updates.add(tL_updateDeleteScheduledMessages);
                                             Utilities.stageQueue.postRunnable(new Runnable() {
                                                 @Override
-                                                public final void run() throws InterruptedException {
+                                                public final void run() {
                                                     this.f$0.getMessagesController().processUpdates(tL_updates2, false);
                                                 }
                                             });
@@ -21438,7 +21438,7 @@ public class MessagesStorage extends BaseController {
                                 tL_updates3.updates.add(tL_updateDeleteScheduledMessages);
                                 Utilities.stageQueue.postRunnable(new Runnable() {
                                     @Override
-                                    public final void run() throws InterruptedException {
+                                    public final void run() {
                                         this.f$0.getMessagesController().processUpdates(tL_updates3, false);
                                     }
                                 });
@@ -21474,7 +21474,7 @@ public class MessagesStorage extends BaseController {
                                 tL_updates4.updates.add(tL_updateDeleteScheduledMessages);
                                 Utilities.stageQueue.postRunnable(new Runnable() {
                                     @Override
-                                    public final void run() throws InterruptedException {
+                                    public final void run() {
                                         this.f$0.getMessagesController().processUpdates(tL_updates4, false);
                                     }
                                 });
@@ -21787,7 +21787,7 @@ public class MessagesStorage extends BaseController {
                     tL_updates5.updates.add(tL_updateDeleteScheduledMessages);
                     Utilities.stageQueue.postRunnable(new Runnable() {
                         @Override
-                        public final void run() throws InterruptedException {
+                        public final void run() {
                             this.f$0.getMessagesController().processUpdates(tL_updates5, false);
                         }
                     });
@@ -21823,7 +21823,7 @@ public class MessagesStorage extends BaseController {
                     tL_updates6.updates.add(tL_updateDeleteScheduledMessages);
                     Utilities.stageQueue.postRunnable(new Runnable() {
                         @Override
-                        public final void run() throws InterruptedException {
+                        public final void run() {
                             this.f$0.getMessagesController().processUpdates(tL_updates6, false);
                         }
                     });

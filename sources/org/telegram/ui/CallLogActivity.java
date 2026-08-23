@@ -1478,13 +1478,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         tL_messages_deletePhoneCallHistory.revoke = z;
         getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 CallLogActivity.$r8$lambda$xb7f3CTGxpchsGCIGSnxeNcCsks(this.f$0, z, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$xb7f3CTGxpchsGCIGSnxeNcCsks(CallLogActivity callLogActivity, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$xb7f3CTGxpchsGCIGSnxeNcCsks(CallLogActivity callLogActivity, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         callLogActivity.getClass();
         if (tLObject != null) {
             TLRPC.TL_messages_affectedFoundMessages tL_messages_affectedFoundMessages = (TLRPC.TL_messages_affectedFoundMessages) tLObject;
@@ -2252,13 +2252,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         togglegroupcallsettings.reset_invite_hash = true;
         ConnectionsManager.getInstance(i).sendRequest(togglegroupcallsettings, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 CallLogActivity.$r8$lambda$GHC6S6IidW7fVoaBk9qPej04rH0(i, inputGroupCall, strArr, frameLayout, linksTextView, bottomSheet, resourcesProvider, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$GHC6S6IidW7fVoaBk9qPej04rH0(int i, TLRPC.InputGroupCall inputGroupCall, final String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$GHC6S6IidW7fVoaBk9qPej04rH0(int i, TLRPC.InputGroupCall inputGroupCall, final String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
         }

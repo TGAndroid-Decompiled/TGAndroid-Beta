@@ -12463,7 +12463,7 @@ public class MessagesController extends BaseController implements NotificationCe
         return this.encryptedChats.get(num);
     }
 
-    public TLRPC.EncryptedChat getEncryptedChatDB(int i, boolean z) throws InterruptedException {
+    public TLRPC.EncryptedChat getEncryptedChatDB(int i, boolean z) {
         TLRPC.EncryptedChat encryptedChat = this.encryptedChats.get(Integer.valueOf(i));
         if (encryptedChat != null) {
             if (!z) {
@@ -13194,13 +13194,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.m804$r8$lambda$ptJ28TLFRd4NXSS5h8kkp0HkY(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m804$r8$lambda$ptJ28TLFRd4NXSS5h8kkp0HkY(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m804$r8$lambda$ptJ28TLFRd4NXSS5h8kkp0HkY(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
@@ -13481,7 +13481,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tLObject = tL_messages_getFullChat;
             int iSendRequest = getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
                     MessagesController.$r8$lambda$w8VXvioFExcP3orHCnGpNsIKKz0(this.f$0, j2, j, chat, i, tLObject2, tL_error);
                 }
             });
@@ -13491,7 +13491,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$w8VXvioFExcP3orHCnGpNsIKKz0(final MessagesController messagesController, final long j, final long j2, TLRPC.Chat chat, final int i, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$w8VXvioFExcP3orHCnGpNsIKKz0(final MessagesController messagesController, final long j, final long j2, TLRPC.Chat chat, final int i, TLObject tLObject, final TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error == null) {
             final TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject;
@@ -14780,13 +14780,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_editBanned.banned_rights = tL_chatBannedRights;
         getConnectionsManager().sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$XzMAN_K1wOSUi4f_TPOH6qzWoA0(this.f$0, j, runnable, baseFragment, tL_channels_editBanned, z, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$XzMAN_K1wOSUi4f_TPOH6qzWoA0(final MessagesController messagesController, final long j, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_channels_editBanned tL_channels_editBanned, final boolean z, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$XzMAN_K1wOSUi4f_TPOH6qzWoA0(final MessagesController messagesController, final long j, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_channels_editBanned tL_channels_editBanned, final boolean z, TLObject tLObject, final TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error == null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -14816,13 +14816,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_toggleSlowMode.channel = getInputChannel(j);
         getConnectionsManager().sendRequest(tL_channels_toggleSlowMode, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.m644$r8$lambda$Ixcu35wnOM_q27RtDWjAFgvH5A(this.f$0, j, tLObject, tL_error);
             }
         });
     }
 
-    public static void m644$r8$lambda$Ixcu35wnOM_q27RtDWjAFgvH5A(final MessagesController messagesController, final long j, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m644$r8$lambda$Ixcu35wnOM_q27RtDWjAFgvH5A(final MessagesController messagesController, final long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             messagesController.getClass();
         } else {
@@ -14842,13 +14842,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_setBoostsToUnblockRestrictions.channel = getInputChannel(j);
         getConnectionsManager().sendRequest(tL_channels_setBoostsToUnblockRestrictions, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$JiS_He_4VTZ2dGmTVdapH8epjc8(this.f$0, j, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$JiS_He_4VTZ2dGmTVdapH8epjc8(final MessagesController messagesController, final long j, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$JiS_He_4VTZ2dGmTVdapH8epjc8(final MessagesController messagesController, final long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             messagesController.getClass();
         } else {
@@ -14913,7 +14913,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             final RequestDelegate requestDelegate = new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     MessagesController.$r8$lambda$Y7BzUF8yao01uGo4da7x6NWLmmA(this.f$0, j, runnable, chat, user, errorDelegate, baseFragment, tL_channels_editAdmin, z, zIsCommunity, tLObject, tL_error);
                 }
             };
@@ -14955,7 +14955,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$Y7BzUF8yao01uGo4da7x6NWLmmA(final MessagesController messagesController, final long j, final Runnable runnable, final TLRPC.Chat chat, final TLRPC.User user, final ErrorDelegate errorDelegate, final BaseFragment baseFragment, final TLRPC.TL_channels_editAdmin tL_channels_editAdmin, final boolean z, final boolean z2, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$Y7BzUF8yao01uGo4da7x6NWLmmA(final MessagesController messagesController, final long j, final Runnable runnable, final TLRPC.Chat chat, final TLRPC.User user, final ErrorDelegate errorDelegate, final BaseFragment baseFragment, final TLRPC.TL_channels_editAdmin tL_channels_editAdmin, final boolean z, final boolean z2, TLObject tLObject, final TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error == null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -15684,7 +15684,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             getConnectionsManager().sendRequest(tL_messages_deleteScheduledMessages, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
                     MessagesController.$r8$lambda$jsJxTumn2dBIUtxWQI6IuMrEOwE(this.f$0, jCreatePendingTask4, tLObject2, tL_error);
                 }
             });
@@ -15718,7 +15718,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             getConnectionsManager().sendRequest(tL_messages_deleteQuickReplyMessages, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
                     MessagesController.$r8$lambda$O8IpOu8j1yUoKh6vCAqKvL8vcrI(this.f$0, jCreatePendingTask3, tLObject2, tL_error);
                 }
             });
@@ -15797,7 +15797,7 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public static void $r8$lambda$jsJxTumn2dBIUtxWQI6IuMrEOwE(MessagesController messagesController, long j, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$jsJxTumn2dBIUtxWQI6IuMrEOwE(MessagesController messagesController, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error == null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -15807,7 +15807,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$O8IpOu8j1yUoKh6vCAqKvL8vcrI(MessagesController messagesController, long j, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$O8IpOu8j1yUoKh6vCAqKvL8vcrI(MessagesController messagesController, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error == null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -15940,13 +15940,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_updatePinnedMessage.pm_oneside = z2;
         getConnectionsManager().sendRequest(tL_messages_updatePinnedMessage, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.m664$r8$lambda$33cpFLEAyxXZRDJCDAABubBmOM(this.f$0, i, chat, user, z, tLObject, tL_error);
             }
         });
     }
 
-    public static void m664$r8$lambda$33cpFLEAyxXZRDJCDAABubBmOM(MessagesController messagesController, int i, TLRPC.Chat chat, TLRPC.User user, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m664$r8$lambda$33cpFLEAyxXZRDJCDAABubBmOM(MessagesController messagesController, int i, TLRPC.Chat chat, TLRPC.User user, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error == null) {
             ArrayList<Integer> arrayList = new ArrayList<>();
@@ -15977,13 +15977,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_deleteParticipantReaction.msg_id = i;
         getConnectionsManager().sendRequestTyped(tL_messages_deleteParticipantReaction, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 MessagesController.$r8$lambda$orqviNdMiwvo_3hs9sNraN1axgQ(this.f$0, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void $r8$lambda$orqviNdMiwvo_3hs9sNraN1axgQ(MessagesController messagesController, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$orqviNdMiwvo_3hs9sNraN1axgQ(MessagesController messagesController, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (updates != null) {
             messagesController.processUpdates(updates, false);
         } else {
@@ -16392,7 +16392,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_setHistoryTTL.period = i;
         getConnectionsManager().sendRequest(tL_messages_setHistoryTTL, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.m724$r8$lambda$QVMYxY35QrraE1MR4IFTxAHHfw(this.f$0, tLObject, tL_error);
             }
         });
@@ -16433,7 +16433,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void m724$r8$lambda$QVMYxY35QrraE1MR4IFTxAHHfw(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m724$r8$lambda$QVMYxY35QrraE1MR4IFTxAHHfw(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -16701,7 +16701,7 @@ public class MessagesController extends BaseController implements NotificationCe
                             tL_channels_deleteHistory.max_id = i4;
                             getConnectionsManager().sendRequest(tL_channels_deleteHistory, new RequestDelegate() {
                                 @Override
-                                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                     MessagesController.$r8$lambda$ewMBn47pNlD43hcDdgS5fzqawd0(this.f$0, jCreatePendingTask, tLObject, tL_error);
                                 }
                             }, 64);
@@ -16744,7 +16744,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         tL_channels_deleteHistory2.max_id = i4;
                         getConnectionsManager().sendRequest(tL_channels_deleteHistory2, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 MessagesController.$r8$lambda$ewMBn47pNlD43hcDdgS5fzqawd0(this.f$0, jCreatePendingTask, tLObject, tL_error);
                             }
                         }, 64);
@@ -16781,7 +16781,7 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public static void $r8$lambda$ewMBn47pNlD43hcDdgS5fzqawd0(MessagesController messagesController, long j, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$ewMBn47pNlD43hcDdgS5fzqawd0(MessagesController messagesController, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (j != 0) {
             messagesController.getMessagesStorage().removePendingTask(j);
         } else {
@@ -17102,7 +17102,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void updateTimerProc() throws InterruptedException {
+    public void updateTimerProc() {
         long j;
         long j2;
         long jCurrentTimeMillis = System.currentTimeMillis();
@@ -17464,7 +17464,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         tL_messages_getPollResults.poll_hash = messageObject.getPollHash();
                         messagesController.getConnectionsManager().sendRequest(tL_messages_getPollResults, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 MessagesController.$r8$lambda$EsUpvRDcBAwT2ZtmkV38FNRjGO0(this.f$0, z, tLObject, tL_error);
                             }
                         });
@@ -17492,7 +17492,7 @@ public class MessagesController extends BaseController implements NotificationCe
         messagesController.pollsToCheckSize = messagesController.pollsToCheck.size();
     }
 
-    public static void $r8$lambda$EsUpvRDcBAwT2ZtmkV38FNRjGO0(MessagesController messagesController, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$EsUpvRDcBAwT2ZtmkV38FNRjGO0(MessagesController messagesController, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.Poll poll;
         messagesController.getClass();
         if (tL_error == null) {
@@ -19364,7 +19364,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (!tL_folders_editPeerFolders.folder_peers.isEmpty()) {
             getConnectionsManager().sendRequest(tL_folders_editPeerFolders, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     MessagesController.m775$r8$lambda$gkHPF3Ws5zUrqD8ppcMy3UH6lw(this.f$0, jCreatePendingTask, tLObject, tL_error);
                 }
             });
@@ -19376,7 +19376,7 @@ public class MessagesController extends BaseController implements NotificationCe
         return zArr[0] ? 2 : 1;
     }
 
-    public static void m775$r8$lambda$gkHPF3Ws5zUrqD8ppcMy3UH6lw(MessagesController messagesController, long j, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m775$r8$lambda$gkHPF3Ws5zUrqD8ppcMy3UH6lw(MessagesController messagesController, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error == null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -22743,7 +22743,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             return getConnectionsManager().sendRequest(tL_messages_createChat, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     MessagesController.$r8$lambda$IvHbfb0FCxnO8k91i4PtWo9M89I(this.f$0, baseFragment, tL_messages_createChat, tLObject, tL_error);
                 }
             }, 2);
@@ -22774,13 +22774,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         return getConnectionsManager().sendRequest(tL_channels_createChannel, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.m769$r8$lambda$eTFpcTu8M094tWIEmLimrsZBno(this.f$0, baseFragment, tL_channels_createChannel, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public static void $r8$lambda$IvHbfb0FCxnO8k91i4PtWo9M89I(final MessagesController messagesController, final BaseFragment baseFragment, final TLRPC.TL_messages_createChat tL_messages_createChat, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$IvHbfb0FCxnO8k91i4PtWo9M89I(final MessagesController messagesController, final BaseFragment baseFragment, final TLRPC.TL_messages_createChat tL_messages_createChat, TLObject tLObject, final TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -22819,7 +22819,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void m769$r8$lambda$eTFpcTu8M094tWIEmLimrsZBno(final MessagesController messagesController, final BaseFragment baseFragment, final TLRPC.TL_channels_createChannel tL_channels_createChannel, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m769$r8$lambda$eTFpcTu8M094tWIEmLimrsZBno(final MessagesController messagesController, final BaseFragment baseFragment, final TLRPC.TL_channels_createChannel tL_channels_createChannel, TLObject tLObject, final TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -22867,7 +22867,7 @@ public class MessagesController extends BaseController implements NotificationCe
         final AlertDialog alertDialog = context != null ? new AlertDialog(context, 3) : null;
         final int iSendRequest = getConnectionsManager().sendRequest(tL_messages_migrateChat, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$U4CswyaSfybIbCFo_hguULfgff0(this.f$0, context, alertDialog, longCallback, j, runnable, baseFragment, tL_messages_migrateChat, tLObject, tL_error);
             }
         });
@@ -22885,7 +22885,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$U4CswyaSfybIbCFo_hguULfgff0(final MessagesController messagesController, final Context context, final AlertDialog alertDialog, final MessagesStorage.LongCallback longCallback, final long j, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_messages_migrateChat tL_messages_migrateChat, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$U4CswyaSfybIbCFo_hguULfgff0(final MessagesController messagesController, final Context context, final AlertDialog alertDialog, final MessagesStorage.LongCallback longCallback, final long j, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_messages_migrateChat tL_messages_migrateChat, TLObject tLObject, final TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error == null) {
             if (context != null) {
@@ -22986,7 +22986,7 @@ public class MessagesController extends BaseController implements NotificationCe
         final AlertDialog alertDialog = context != null ? new AlertDialog(context, 3) : null;
         final int iSendRequest = getConnectionsManager().sendRequest(tL_channels_convertToGigagroup, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.m707$r8$lambda$LGjWgIJtU3kXjRgE5r1xpXZHJg(this.f$0, context, alertDialog, booleanCallback, baseFragment, tL_channels_convertToGigagroup, tLObject, tL_error);
             }
         });
@@ -23004,7 +23004,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void m707$r8$lambda$LGjWgIJtU3kXjRgE5r1xpXZHJg(final MessagesController messagesController, final Context context, final AlertDialog alertDialog, final MessagesStorage.BooleanCallback booleanCallback, final BaseFragment baseFragment, final TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m707$r8$lambda$LGjWgIJtU3kXjRgE5r1xpXZHJg(final MessagesController messagesController, final Context context, final AlertDialog alertDialog, final MessagesStorage.BooleanCallback booleanCallback, final BaseFragment baseFragment, final TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup, TLObject tLObject, final TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error == null) {
             if (context != null) {
@@ -23074,13 +23074,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_inviteToChannel.users = arrayList;
         getConnectionsManager().sendRequest(tL_channels_inviteToChannel, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$5jzhOpfa4Uk88oMGJB5F_kL1l_8(this.f$0, baseFragment, tL_channels_inviteToChannel, j, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$5jzhOpfa4Uk88oMGJB5F_kL1l_8(final MessagesController messagesController, final BaseFragment baseFragment, final TLRPC.TL_channels_inviteToChannel tL_channels_inviteToChannel, final long j, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$5jzhOpfa4Uk88oMGJB5F_kL1l_8(final MessagesController messagesController, final BaseFragment baseFragment, final TLRPC.TL_channels_inviteToChannel tL_channels_inviteToChannel, final long j, TLObject tLObject, final TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -23156,13 +23156,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         getConnectionsManager().sendRequestTyped(tL_messages_toggleNoForwards, null, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 MessagesController.$r8$lambda$xcchyNgP9HPbrcchfh7l8G2u9Nw(this.f$0, callback2, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         }, 64);
     }
 
-    public static void $r8$lambda$xcchyNgP9HPbrcchfh7l8G2u9Nw(final MessagesController messagesController, final Utilities.Callback2 callback2, TLRPC.Updates updates, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$xcchyNgP9HPbrcchfh7l8G2u9Nw(final MessagesController messagesController, final Utilities.Callback2 callback2, TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
         final int i;
         messagesController.getClass();
         if (updates == null) {
@@ -23224,13 +23224,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_toggleJoinToSend.enabled = z;
         getConnectionsManager().sendRequest(tL_channels_toggleJoinToSend, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$O912TftNT2Jj7zjjGHUbWideTGg(this.f$0, runnable, runnable2, tLObject, tL_error);
             }
         }, 64);
     }
 
-    public static void $r8$lambda$O912TftNT2Jj7zjjGHUbWideTGg(final MessagesController messagesController, Runnable runnable, Runnable runnable2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$O912TftNT2Jj7zjjGHUbWideTGg(final MessagesController messagesController, Runnable runnable, Runnable runnable2, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -23275,13 +23275,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         getConnectionsManager().sendRequest(tL_channels_toggleJoinRequest, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$oIDN8QeZqqYJ8piX8C8YVkrBLKA(this.f$0, z3, j, j2, runnable, runnable2, tLObject, tL_error);
             }
         }, 64);
     }
 
-    public static void $r8$lambda$oIDN8QeZqqYJ8piX8C8YVkrBLKA(final MessagesController messagesController, final boolean z, final long j, final long j2, Runnable runnable, Runnable runnable2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$oIDN8QeZqqYJ8piX8C8YVkrBLKA(final MessagesController messagesController, final boolean z, final long j, final long j2, Runnable runnable, Runnable runnable2, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -23333,14 +23333,14 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_toggleSignatures.profiles_enabled = z2;
         getConnectionsManager().sendRequest(tL_channels_toggleSignatures, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$4IGlDEe284mnCqG_KskMaNmZiXA(this.f$0, tLObject, tL_error);
             }
         }, 64);
         getNotificationCenter().postNotificationName(NotificationCenter.updateAllMessages, Long.valueOf(-j));
     }
 
-    public static void $r8$lambda$4IGlDEe284mnCqG_KskMaNmZiXA(final MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$4IGlDEe284mnCqG_KskMaNmZiXA(final MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -23360,14 +23360,14 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_toggleForum.tabs = z2;
         getConnectionsManager().sendRequest(tL_channels_toggleForum, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$M1YGo0UEZzQd8idstPbHTTJCzjI(this.f$0, tLObject, tL_error);
             }
         }, 64);
         getNotificationCenter().postNotificationName(NotificationCenter.chatSwitchedForum, Long.valueOf(j), Boolean.valueOf(z), Boolean.valueOf(z2));
     }
 
-    public static void $r8$lambda$M1YGo0UEZzQd8idstPbHTTJCzjI(final MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$M1YGo0UEZzQd8idstPbHTTJCzjI(final MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -23386,13 +23386,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_togglePreHistoryHidden.enabled = z;
         getConnectionsManager().sendRequest(tL_channels_togglePreHistoryHidden, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$PtCYbaqaPOxf0OszLnk6rvckq4M(this.f$0, tLObject, tL_error);
             }
         }, 64);
     }
 
-    public static void $r8$lambda$PtCYbaqaPOxf0OszLnk6rvckq4M(final MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$PtCYbaqaPOxf0OszLnk6rvckq4M(final MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -23540,13 +23540,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_startBot.random_id = Utilities.random.nextLong();
         getConnectionsManager().sendRequest(tL_messages_startBot, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$Gt8U6BarwzEWefB8SHuMcAfhB4k(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$Gt8U6BarwzEWefB8SHuMcAfhB4k(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$Gt8U6BarwzEWefB8SHuMcAfhB4k(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error != null) {
             return;
@@ -23690,13 +23690,13 @@ public class MessagesController extends BaseController implements NotificationCe
         final TLObject tLObject2 = tLObject;
         getConnectionsManager().sendRequest(tLObject2, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$TbcIq8DOBWVA3zyNMYrKQw2ftNg(this.f$0, zIsChannel, inputUser, j, callback, runnable, user, z, errorDelegate, baseFragment, tLObject2, z2, chat, tLObject3, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$TbcIq8DOBWVA3zyNMYrKQw2ftNg(final MessagesController messagesController, final boolean z, final TLRPC.InputUser inputUser, final long j, final Utilities.Callback callback, final Runnable runnable, TLRPC.User user, boolean z2, final ErrorDelegate errorDelegate, final BaseFragment baseFragment, final TLObject tLObject, final boolean z3, TLRPC.Chat chat, TLObject tLObject2, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$TbcIq8DOBWVA3zyNMYrKQw2ftNg(final MessagesController messagesController, final boolean z, final TLRPC.InputUser inputUser, final long j, final Utilities.Callback callback, final Runnable runnable, TLRPC.User user, boolean z2, final ErrorDelegate errorDelegate, final BaseFragment baseFragment, final TLObject tLObject, final boolean z3, TLRPC.Chat chat, TLObject tLObject2, final TLRPC.TL_error tL_error) {
         TLRPC.Updates updates;
         boolean z4;
         final long j2;
@@ -24000,13 +24000,13 @@ public class MessagesController extends BaseController implements NotificationCe
         tLObject = tL_channels_deleteChannel;
         getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
                 MessagesController.m783$r8$lambda$jYAHJTp3j0jiNM0nlPor5AXzvY(this.f$0, zIsChannel, z3, j, runnable, tLObject2, tL_error);
             }
         }, 64);
     }
 
-    public static void m783$r8$lambda$jYAHJTp3j0jiNM0nlPor5AXzvY(final MessagesController messagesController, boolean z, boolean z2, final long j, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m783$r8$lambda$jYAHJTp3j0jiNM0nlPor5AXzvY(final MessagesController messagesController, boolean z, boolean z2, final long j, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error != null) {
             return;
@@ -24102,13 +24102,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
                 MessagesController.m679$r8$lambda$9UGWmJmZYnYsa9CKZqoyGiTaFs(this.f$0, zIsChannel, user, j, tLObject3, tL_error);
             }
         }, 64);
     }
 
-    public static void m679$r8$lambda$9UGWmJmZYnYsa9CKZqoyGiTaFs(final MessagesController messagesController, boolean z, TLRPC.User user, final long j, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m679$r8$lambda$9UGWmJmZYnYsa9CKZqoyGiTaFs(final MessagesController messagesController, boolean z, TLRPC.User user, final long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error != null) {
             return;
@@ -24146,13 +24146,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$ZQLaqGEa_CwuzeA1FtwAeHc4VN8(this.f$0, runnable, tLObject2, tL_error);
             }
         }, 64);
     }
 
-    public static void $r8$lambda$ZQLaqGEa_CwuzeA1FtwAeHc4VN8(MessagesController messagesController, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$ZQLaqGEa_CwuzeA1FtwAeHc4VN8(MessagesController messagesController, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tL_error != null) {
             return;
@@ -24201,13 +24201,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
                 MessagesController.m643$r8$lambda$HG6zZPTPO0nNgEOm7VOhsWMrc(this.f$0, tL_inputChatPhoto, fileLocation, fileLocation2, str, j, runnable, tLObject2, tL_error);
             }
         }, 64);
     }
 
-    public static void m643$r8$lambda$HG6zZPTPO0nNgEOm7VOhsWMrc(final MessagesController messagesController, TLRPC.TL_inputChatPhoto tL_inputChatPhoto, TLRPC.FileLocation fileLocation, TLRPC.FileLocation fileLocation2, String str, long j, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m643$r8$lambda$HG6zZPTPO0nNgEOm7VOhsWMrc(final MessagesController messagesController, TLRPC.TL_inputChatPhoto tL_inputChatPhoto, TLRPC.FileLocation fileLocation, TLRPC.FileLocation fileLocation2, String str, long j, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.Photo photo;
         messagesController.getClass();
         if (tL_error != null) {
@@ -24461,13 +24461,13 @@ public class MessagesController extends BaseController implements NotificationCe
         this.updatingState = true;
         getConnectionsManager().sendRequest(new TLRPC.TL_updates_getState(), new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$lhIBBB5tpV4YYRa0ZGaetHrIX_A(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$lhIBBB5tpV4YYRa0ZGaetHrIX_A(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$lhIBBB5tpV4YYRa0ZGaetHrIX_A(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.updatingState = false;
         if (tL_error == null) {
             TLRPC.TL_updates_state tL_updates_state = (TLRPC.TL_updates_state) tLObject;
@@ -24539,7 +24539,7 @@ public class MessagesController extends BaseController implements NotificationCe
         return getMessagesStorage().getLastQtsValue() + updates.updates.size() == updates.pts ? 0 : 1;
     }
 
-    private void processChannelsUpdatesQueue(long j, int i) throws InterruptedException {
+    private void processChannelsUpdatesQueue(long j, int i) {
         char c;
         ArrayList arrayList = (ArrayList) this.updatesQueueChannels.get(j);
         if (arrayList == null) {
@@ -24610,7 +24610,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    private void processUpdatesQueue(int i, int i2) throws InterruptedException {
+    private void processUpdatesQueue(int i, int i2) {
         ArrayList<TLRPC.Updates> arrayList;
         if (i == 0) {
             arrayList = this.updatesQueueSeq;
@@ -25075,7 +25075,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 MessagesController.$r8$lambda$wa4hTDFqrfuztjVRoQfDDMex6Y8(this.f$0, updates_channeldifference, j, chat, longSparseArray, i, j2);
             }
         });
@@ -25110,7 +25110,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$wa4hTDFqrfuztjVRoQfDDMex6Y8(final MessagesController messagesController, final TLRPC.updates_ChannelDifference updates_channeldifference, final long j, TLRPC.Chat chat, LongSparseArray longSparseArray, int i, long j2) throws InterruptedException {
+    public static void $r8$lambda$wa4hTDFqrfuztjVRoQfDDMex6Y8(final MessagesController messagesController, final TLRPC.updates_ChannelDifference updates_channeldifference, final long j, TLRPC.Chat chat, LongSparseArray longSparseArray, int i, long j2) {
         boolean z;
         boolean z2;
         boolean z3;
@@ -25461,7 +25461,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 MessagesController.m726$r8$lambda$Qib0lmjWe64Z_r_qkRVeKhIj4(this.f$0, updates_difference, longSparseArray, longSparseArray2);
             }
         });
@@ -25496,7 +25496,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void m726$r8$lambda$Qib0lmjWe64Z_r_qkRVeKhIj4(final MessagesController messagesController, final TLRPC.updates_Difference updates_difference, LongSparseArray longSparseArray, LongSparseArray longSparseArray2) throws InterruptedException {
+    public static void m726$r8$lambda$Qib0lmjWe64Z_r_qkRVeKhIj4(final MessagesController messagesController, final TLRPC.updates_Difference updates_difference, LongSparseArray longSparseArray, LongSparseArray longSparseArray2) {
         LongSparseArray longSparseArray3;
         messagesController.getClass();
         int i = 0;
@@ -26583,7 +26583,7 @@ public class MessagesController extends BaseController implements NotificationCe
         return 0L;
     }
 
-    public void processUpdates(final TLRPC.Updates updates, boolean z) throws InterruptedException {
+    public void processUpdates(final TLRPC.Updates updates, boolean z) {
         final MessagesController messagesController;
         boolean z2;
         TLRPC.User user;
@@ -27379,7 +27379,7 @@ public class MessagesController extends BaseController implements NotificationCe
         return z;
     }
 
-    public boolean processUpdateArray(java.util.ArrayList<org.telegram.tgnet.TLRPC.Update> r83, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r84, java.util.ArrayList<org.telegram.tgnet.TLRPC.Chat> r85, boolean r86, int r87) throws java.lang.InterruptedException {
+    public boolean processUpdateArray(java.util.ArrayList<org.telegram.tgnet.TLRPC.Update> r83, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r84, java.util.ArrayList<org.telegram.tgnet.TLRPC.Chat> r85, boolean r86, int r87) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.processUpdateArray(java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, boolean, int):boolean");
     }
 
@@ -27509,7 +27509,7 @@ public class MessagesController extends BaseController implements NotificationCe
         messagesController.getChannelDifference(tL_updateChannel.channel_id, 1, 0L, null);
     }
 
-    public static void m717$r8$lambda$OBlM4kJ0kUTfFsB2HP1Q6j1i5E(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m717$r8$lambda$OBlM4kJ0kUTfFsB2HP1Q6j1i5E(MessagesController messagesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -28256,7 +28256,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                                         FileLog.e("discardCall " + discardcall.reason);
                                                         getConnectionsManager().sendRequest(discardcall, new RequestDelegate() {
                                                             @Override
-                                                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                                                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                                                 MessagesController.m717$r8$lambda$OBlM4kJ0kUTfFsB2HP1Q6j1i5E(this.f$0, tLObject, tL_error);
                                                             }
                                                         });
@@ -31744,7 +31744,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_setChatAvailableReactions.reactions_limit = i2;
         getConnectionsManager().sendRequest(tL_messages_setChatAvailableReactions, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$2_kh6VC38qdvpi261R6cLKvpSGc(this.f$0, j, tL_messages_setChatAvailableReactions, runnable, callback, tLObject, tL_error);
             }
         });
@@ -31763,7 +31763,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void $r8$lambda$2_kh6VC38qdvpi261R6cLKvpSGc(final MessagesController messagesController, final long j, TLRPC.TL_messages_setChatAvailableReactions tL_messages_setChatAvailableReactions, final Runnable runnable, final Utilities.Callback callback, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$2_kh6VC38qdvpi261R6cLKvpSGc(final MessagesController messagesController, final long j, TLRPC.TL_messages_setChatAvailableReactions tL_messages_setChatAvailableReactions, final Runnable runnable, final Utilities.Callback callback, TLObject tLObject, final TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -31826,13 +31826,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         getConnectionsManager().sendRequest(tL_messages_setChatAvailableReactions, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$ttMa7K58PBEHg0Okor6VUVzm8bI(this.f$0, j, tL_messages_setChatAvailableReactions, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$ttMa7K58PBEHg0Okor6VUVzm8bI(final MessagesController messagesController, final long j, TLRPC.TL_messages_setChatAvailableReactions tL_messages_setChatAvailableReactions, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$ttMa7K58PBEHg0Okor6VUVzm8bI(final MessagesController messagesController, final long j, TLRPC.TL_messages_setChatAvailableReactions tL_messages_setChatAvailableReactions, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.getClass();
         if (tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -34215,13 +34215,13 @@ public class MessagesController extends BaseController implements NotificationCe
         this.sendingSuggestedMessageApprovalMap.put(j + "_" + i, Boolean.valueOf(!z));
         getConnectionsManager().sendRequest(tL_messages_toggleSuggestedPostApproval, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 MessagesController.$r8$lambda$M5g1ETBEdVK0WVtdgAHpdzs6YK4(this.f$0, j, i, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$M5g1ETBEdVK0WVtdgAHpdzs6YK4(MessagesController messagesController, long j, int i, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$M5g1ETBEdVK0WVtdgAHpdzs6YK4(MessagesController messagesController, long j, int i, TLObject tLObject, TLRPC.TL_error tL_error) {
         messagesController.sendingSuggestedMessageApprovalMap.remove(j + "_" + i);
         if (tL_error == null && tLObject != null) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -34619,13 +34619,13 @@ public class MessagesController extends BaseController implements NotificationCe
         togglewebbrowsersettingsexception.url = str;
         getConnectionsManager().sendRequestTyped(togglewebbrowsersettingsexception, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 MessagesController.$r8$lambda$Gw94gp0DhbCMRAZqbiM1jM0pSZc(this.f$0, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void $r8$lambda$Gw94gp0DhbCMRAZqbiM1jM0pSZc(final MessagesController messagesController, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$Gw94gp0DhbCMRAZqbiM1jM0pSZc(final MessagesController messagesController, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (updates != null) {
             messagesController.processUpdates(updates, false);
         } else {
@@ -34645,13 +34645,13 @@ public class MessagesController extends BaseController implements NotificationCe
         togglewebbrowsersettingsexception.delete = true;
         getConnectionsManager().sendRequestTyped(togglewebbrowsersettingsexception, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 MessagesController.m802$r8$lambda$ovGm7_B1DkrakfaO1G0CCrM8SE(this.f$0, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m802$r8$lambda$ovGm7_B1DkrakfaO1G0CCrM8SE(final MessagesController messagesController, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m802$r8$lambda$ovGm7_B1DkrakfaO1G0CCrM8SE(final MessagesController messagesController, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (updates != null) {
             messagesController.processUpdates(updates, false);
         } else {

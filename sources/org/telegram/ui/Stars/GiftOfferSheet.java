@@ -674,13 +674,13 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         }
         ConnectionsManager.getInstance(giftOfferSheet.currentAccount).sendRequestTyped(tL_sendStarGiftOffer, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 GiftOfferSheet.$r8$lambda$f7mUkJRdgyqjpQ3i_IWaSh5Hy3M(this.f$0, progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void $r8$lambda$f7mUkJRdgyqjpQ3i_IWaSh5Hy3M(final GiftOfferSheet giftOfferSheet, final Browser.Progress progress, final AlertDialog alertDialog, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$f7mUkJRdgyqjpQ3i_IWaSh5Hy3M(final GiftOfferSheet giftOfferSheet, final Browser.Progress progress, final AlertDialog alertDialog, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
         giftOfferSheet.getClass();
         if (updates != null && tL_error == null) {
             MessagesController.getInstance(giftOfferSheet.currentAccount).processUpdates(updates, false);
@@ -805,13 +805,13 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         tL_resolveStarGiftOffer.offer_msg_id = i;
         ConnectionsManager.getInstance(i2).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 GiftOfferSheet.m4096$r8$lambda$IzHiAyep2_oXhadHlpCz1iaQM(i2, baseFragment, progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m4096$r8$lambda$IzHiAyep2_oXhadHlpCz1iaQM(int i, final BaseFragment baseFragment, final Browser.Progress progress, final AlertDialog alertDialog, TLRPC.Updates updates, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m4096$r8$lambda$IzHiAyep2_oXhadHlpCz1iaQM(int i, final BaseFragment baseFragment, final Browser.Progress progress, final AlertDialog alertDialog, TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
         if (updates != null && tL_error == null) {
             MessagesController.getInstance(i).processUpdates(updates, false);
         }

@@ -484,13 +484,13 @@ public class BotForumHelper extends BaseController {
         tL_messages_createForumTopic.random_id = j;
         getConnectionsManager().sendRequestTyped(tL_messages_createForumTopic, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 BotForumHelper.$r8$lambda$BNFiiZDUX9EcxYRrHTTH6ljSovk(this.f$0, peerDialogId, str, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void $r8$lambda$BNFiiZDUX9EcxYRrHTTH6ljSovk(BotForumHelper botForumHelper, long j, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$BNFiiZDUX9EcxYRrHTTH6ljSovk(BotForumHelper botForumHelper, long j, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         TL_update.TL_updateMessageID tL_updateMessageID;
         if (updates == null) {
             botForumHelper.performSendBotTopicCreateComplete(j, -1);

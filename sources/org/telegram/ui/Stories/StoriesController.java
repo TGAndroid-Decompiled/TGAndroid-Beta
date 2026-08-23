@@ -236,13 +236,13 @@ public class StoriesController {
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_stories.TL_stories_getAllReadPeerStories(), new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 StoriesController.$r8$lambda$5WWQkfSflcxPDcX3212jFEbxhiU(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void $r8$lambda$5WWQkfSflcxPDcX3212jFEbxhiU(final StoriesController storiesController, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$5WWQkfSflcxPDcX3212jFEbxhiU(final StoriesController storiesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         storiesController.getClass();
         TLRPC.Updates updates = (TLRPC.Updates) tLObject;
         if (updates == null) {
@@ -2720,7 +2720,7 @@ public class StoriesController {
             }
             RequestDelegate requestDelegate = new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
                     StoriesController.UploadingStory.m4431$r8$lambda$IafFfR_l2LMoVw69bV3rF_QOfI(this.f$0, tLObject2, tL_error);
                 }
             };
@@ -2734,7 +2734,7 @@ public class StoriesController {
             requestDelegate.run(null, tL_error);
         }
 
-        public static void m4431$r8$lambda$IafFfR_l2LMoVw69bV3rF_QOfI(final UploadingStory uploadingStory, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+        public static void m4431$r8$lambda$IafFfR_l2LMoVw69bV3rF_QOfI(final UploadingStory uploadingStory, TLObject tLObject, final TLRPC.TL_error tL_error) {
             Utilities.Callback callback;
             uploadingStory.getClass();
             if (tLObject instanceof TLRPC.Updates) {

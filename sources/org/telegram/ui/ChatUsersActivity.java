@@ -1262,7 +1262,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     checkBox.setIcon(i2);
                     chatUsersActivity.getConnectionsManager().sendRequest(tL_channels_toggleAntiSpam, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             ChatUsersActivity.$r8$lambda$FMDz99wLYAEBzfoMdx9Oxdn7aC4(this.f$0, textCell, z8, tLObject, tL_error);
                         }
                     });
@@ -1293,7 +1293,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     checkBox2.setIcon(i2);
                     chatUsersActivity.getConnectionsManager().sendRequest(tL_channels_toggleParticipantsHidden, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             ChatUsersActivity.m1893$r8$lambda$GYiLiri25TgY2wQUwuUn55es(this.f$0, textCell2, z10, tLObject, tL_error);
                         }
                     });
@@ -1317,7 +1317,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     tL_chatBannedRights12.edit_rank = !textCell3.isChecked();
                     chatUsersActivity.getConnectionsManager().sendRequestTyped(tL_messages_editChatDefaultBannedRights, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                         @Override
-                        public final void run(Object obj, Object obj2) throws InterruptedException {
+                        public final void run(Object obj, Object obj2) {
                             ChatUsersActivity.m1895$r8$lambda$TaqiG38Ob2M3XDoqeLWpynC6Y(this.f$0, textCell3, zIsChecked, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                         }
                     });
@@ -1786,7 +1786,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public static void $r8$lambda$FMDz99wLYAEBzfoMdx9Oxdn7aC4(final ChatUsersActivity chatUsersActivity, final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$FMDz99wLYAEBzfoMdx9Oxdn7aC4(final ChatUsersActivity chatUsersActivity, final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             chatUsersActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             chatUsersActivity.getMessagesController().putChatFull(chatUsersActivity.info);
@@ -1816,7 +1816,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         BulletinFactory.of(chatUsersActivity).createSimpleBulletin(R.raw.error, LocaleController.getString("UnknownError", R.string.UnknownError)).show();
     }
 
-    public static void m1893$r8$lambda$GYiLiri25TgY2wQUwuUn55es(final ChatUsersActivity chatUsersActivity, final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m1893$r8$lambda$GYiLiri25TgY2wQUwuUn55es(final ChatUsersActivity chatUsersActivity, final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             chatUsersActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             chatUsersActivity.getMessagesController().putChatFull(chatUsersActivity.info);
@@ -1846,7 +1846,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         BulletinFactory.of(chatUsersActivity).createSimpleBulletin(R.raw.error, LocaleController.getString("UnknownError", R.string.UnknownError)).show();
     }
 
-    public static void m1895$r8$lambda$TaqiG38Ob2M3XDoqeLWpynC6Y(ChatUsersActivity chatUsersActivity, TextCell textCell, boolean z, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void m1895$r8$lambda$TaqiG38Ob2M3XDoqeLWpynC6Y(ChatUsersActivity chatUsersActivity, TextCell textCell, boolean z, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (updates != null) {
             chatUsersActivity.getMessagesController().processUpdates(updates, false);
             return;
@@ -2611,7 +2611,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
         getConnectionsManager().sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 ChatUsersActivity.$r8$lambda$Dbf9jSkYNGtnIc1E5FdEqv65uCY(this.f$0, tLObject, tL_error);
             }
         });
@@ -2628,7 +2628,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }, 1000L);
     }
 
-    public static void $r8$lambda$Dbf9jSkYNGtnIc1E5FdEqv65uCY(final ChatUsersActivity chatUsersActivity, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void $r8$lambda$Dbf9jSkYNGtnIc1E5FdEqv65uCY(final ChatUsersActivity chatUsersActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
         chatUsersActivity.getClass();
         if (tLObject != null) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
