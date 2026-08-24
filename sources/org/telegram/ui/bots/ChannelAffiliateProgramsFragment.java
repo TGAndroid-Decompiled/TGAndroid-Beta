@@ -129,7 +129,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i) {
-                ChannelAffiliateProgramsFragment.m4851$r8$lambda$S6DQSZrLbOM8anVGh_wYjW9Hi4(this.f$0, context, view2, i);
+                ChannelAffiliateProgramsFragment.m4850$r8$lambda$S6DQSZrLbOM8anVGh_wYjW9Hi4(this.f$0, context, view2, i);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -156,7 +156,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         return this.fragmentView;
     }
 
-    public static void m4851$r8$lambda$S6DQSZrLbOM8anVGh_wYjW9Hi4(ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment, Context context, View view, int i) {
+    public static void m4850$r8$lambda$S6DQSZrLbOM8anVGh_wYjW9Hi4(ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment, Context context, View view, int i) {
         UniversalAdapter universalAdapter = channelAffiliateProgramsFragment.adapter;
         if (universalAdapter == null) {
             return;
@@ -903,7 +903,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChannelAffiliateProgramsFragment.m4853$r8$lambda$XpRUTWcD8Qf60LYRYKywfdbQTg(buttonWithCounterView, jArr, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user, view);
+                    ChannelAffiliateProgramsFragment.m4852$r8$lambda$XpRUTWcD8Qf60LYRYKywfdbQTg(buttonWithCounterView, jArr, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user, view);
                 }
             });
             bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -929,7 +929,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                 linearLayout5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        ChannelAffiliateProgramsFragment.m4852$r8$lambda$XgA49I2JQGHCeLKN4jezb1aQ(i, bottomSheetCreate, resourcesProvider, linearLayout5, jArr, runnable, view);
+                        ChannelAffiliateProgramsFragment.m4851$r8$lambda$XgA49I2JQGHCeLKN4jezb1aQ(i, bottomSheetCreate, resourcesProvider, linearLayout5, jArr, runnable, view);
                     }
                 });
             } else {
@@ -1010,7 +1010,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChannelAffiliateProgramsFragment.m4853$r8$lambda$XpRUTWcD8Qf60LYRYKywfdbQTg(buttonWithCounterView2, jArr, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user, view);
+                ChannelAffiliateProgramsFragment.m4852$r8$lambda$XpRUTWcD8Qf60LYRYKywfdbQTg(buttonWithCounterView2, jArr, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user, view);
             }
         });
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -1036,7 +1036,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             linearLayout7.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChannelAffiliateProgramsFragment.m4852$r8$lambda$XgA49I2JQGHCeLKN4jezb1aQ(i, bottomSheetCreate, resourcesProvider, linearLayout7, jArr, runnable, view);
+                    ChannelAffiliateProgramsFragment.m4851$r8$lambda$XgA49I2JQGHCeLKN4jezb1aQ(i, bottomSheetCreate, resourcesProvider, linearLayout7, jArr, runnable, view);
                 }
             });
         } else {
@@ -1060,7 +1060,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         }
     }
 
-    public static void m4853$r8$lambda$XpRUTWcD8Qf60LYRYKywfdbQTg(final ButtonWithCounterView buttonWithCounterView, long[] jArr, final int i, final TL_payments.starRefProgram starrefprogram, final BottomSheet bottomSheet, final long j, final boolean z, final Context context, final Theme.ResourcesProvider resourcesProvider, final TLRPC.User user, View view) {
+    public static void m4852$r8$lambda$XpRUTWcD8Qf60LYRYKywfdbQTg(final ButtonWithCounterView buttonWithCounterView, long[] jArr, final int i, final TL_payments.starRefProgram starrefprogram, final BottomSheet bottomSheet, final long j, final boolean z, final Context context, final Theme.ResourcesProvider resourcesProvider, final TLRPC.User user, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -1155,7 +1155,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         }
     }
 
-    public static void m4852$r8$lambda$XgA49I2JQGHCeLKN4jezb1aQ(int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view, final long[] jArr, final Runnable runnable, View view2) {
+    public static void m4851$r8$lambda$XgA49I2JQGHCeLKN4jezb1aQ(int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view, final long[] jArr, final Runnable runnable, View view2) {
         final long j;
         ArrayList admined = BotStarsController.getInstance(i).getAdmined();
         admined.add(0, UserConfig.getInstance(i).getCurrentUser());
@@ -1177,14 +1177,14 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             itemOptionsMakeOptions.addChat(tLObject, j == jArr[0], new Runnable() {
                 @Override
                 public final void run() {
-                    ChannelAffiliateProgramsFragment.m4854$r8$lambda$myZWo4kuTQPqu_UZiRZ7NiFhCg(jArr, j, runnable);
+                    ChannelAffiliateProgramsFragment.m4853$r8$lambda$myZWo4kuTQPqu_UZiRZ7NiFhCg(jArr, j, runnable);
                 }
             });
         }
         itemOptionsMakeOptions.setDrawScrim(false).setDimAlpha(0).setGravity(5).translate(AndroidUtilities.dp(24.0f), 0.0f).show();
     }
 
-    public static void m4854$r8$lambda$myZWo4kuTQPqu_UZiRZ7NiFhCg(long[] jArr, long j, Runnable runnable) {
+    public static void m4853$r8$lambda$myZWo4kuTQPqu_UZiRZ7NiFhCg(long[] jArr, long j, Runnable runnable) {
         jArr[0] = j;
         runnable.run();
     }
@@ -1474,7 +1474,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             r4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ChannelAffiliateProgramsFragment.m4855$r8$lambda$rkFAKYigEpM2vOin2Pe0z1jB8Q(i, bottomSheetCreate, resourcesProvider2, r4, j, context, connectedbotstarref, view2);
+                    ChannelAffiliateProgramsFragment.m4854$r8$lambda$rkFAKYigEpM2vOin2Pe0z1jB8Q(i, bottomSheetCreate, resourcesProvider2, r4, j, context, connectedbotstarref, view2);
                 }
             });
         } else {
@@ -1484,7 +1484,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChannelAffiliateProgramsFragment.m4848$r8$lambda$DA_jYfNNWEocIbgyGZeSJnRhK8(bottomSheetCreate, connectedbotstarref2, view2);
+                ChannelAffiliateProgramsFragment.m4847$r8$lambda$DA_jYfNNWEocIbgyGZeSJnRhK8(bottomSheetCreate, connectedbotstarref2, view2);
             }
         });
         bottomSheetCreate.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider2));
@@ -1511,7 +1511,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                ChannelAffiliateProgramsFragment.m4849$r8$lambda$GfWtO3GPRLf2Utb4HcFxHVUeXo(userFull, bottomSheet, context, i, j, resourcesProvider);
+                                ChannelAffiliateProgramsFragment.m4848$r8$lambda$GfWtO3GPRLf2Utb4HcFxHVUeXo(userFull, bottomSheet, context, i, j, resourcesProvider);
                             }
                         });
                     }
@@ -1523,7 +1523,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         runnable.run();
     }
 
-    public static void m4849$r8$lambda$GfWtO3GPRLf2Utb4HcFxHVUeXo(TLRPC.UserFull userFull, BottomSheet bottomSheet, Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
+    public static void m4848$r8$lambda$GfWtO3GPRLf2Utb4HcFxHVUeXo(TLRPC.UserFull userFull, BottomSheet bottomSheet, Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
         if (userFull == null || userFull.starref_program == null) {
             return;
         }
@@ -1531,7 +1531,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         showConnectAffiliateAlert(context, i, userFull.starref_program, j, resourcesProvider, true);
     }
 
-    public static void m4855$r8$lambda$rkFAKYigEpM2vOin2Pe0z1jB8Q(final int i, final BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view, long j, final Context context, final TL_payments.connectedBotStarRef connectedbotstarref, View view2) {
+    public static void m4854$r8$lambda$rkFAKYigEpM2vOin2Pe0z1jB8Q(final int i, final BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view, long j, final Context context, final TL_payments.connectedBotStarRef connectedbotstarref, View view2) {
         long j2;
         ArrayList admined = BotStarsController.getInstance(i).getAdmined();
         admined.add(0, UserConfig.getInstance(i).getCurrentUser());
@@ -1607,7 +1607,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         showConnectAffiliateAlert(context, i, userFull.starref_program, j, resourcesProvider, true);
     }
 
-    public static void m4848$r8$lambda$DA_jYfNNWEocIbgyGZeSJnRhK8(BottomSheet bottomSheet, TL_payments.connectedBotStarRef connectedbotstarref, View view) {
+    public static void m4847$r8$lambda$DA_jYfNNWEocIbgyGZeSJnRhK8(BottomSheet bottomSheet, TL_payments.connectedBotStarRef connectedbotstarref, View view) {
         bottomSheet.dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {

@@ -223,7 +223,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
-                SelfStoryViewsPage.m4388$r8$lambda$rmw2Un7md3so28po8aPF9oEZus(this.f$0, storyViewer, view, i);
+                SelfStoryViewsPage.m4387$r8$lambda$rmw2Un7md3so28po8aPF9oEZus(this.f$0, storyViewer, view, i);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new AnonymousClass4(storyViewer));
@@ -249,7 +249,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         addView(frameLayout);
     }
 
-    public static void m4388$r8$lambda$rmw2Un7md3so28po8aPF9oEZus(SelfStoryViewsPage selfStoryViewsPage, StoryViewer storyViewer, View view, int i) {
+    public static void m4387$r8$lambda$rmw2Un7md3so28po8aPF9oEZus(SelfStoryViewsPage selfStoryViewsPage, StoryViewer storyViewer, View view, int i) {
         ArrayList arrayList;
         TL_stories.TL_storyReactionPublicRepost tL_storyReactionPublicRepost;
         TL_stories.StoryItem storyItem;
@@ -377,7 +377,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             ItemOptions itemOptionsCutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(133).addIf((!zIsStoryShownToUser || zIsBlocked || z2 || zIsUserSelf) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, strSubstring), new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.AnonymousClass4.m4389$r8$lambda$P5mFIATbrOZ6IMz9hL6v8vbtsM(this.f$0, messagesController, user, str, reactedUserHolderView, storyView);
+                    SelfStoryViewsPage.AnonymousClass4.m4388$r8$lambda$P5mFIATbrOZ6IMz9hL6v8vbtsM(this.f$0, messagesController, user, str, reactedUserHolderView, storyView);
                 }
             }).makeMultiline(false).cutTextInFancyHalf().addIf((!zIsBlocked || z2 || zIsUserSelf) ? false : true, R.drawable.msg_menu_stories, LocaleController.formatString(R.string.StoryShowBackTo, str), new Runnable() {
                 @Override
@@ -432,7 +432,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             return true;
         }
 
-        public static void m4389$r8$lambda$P5mFIATbrOZ6IMz9hL6v8vbtsM(AnonymousClass4 anonymousClass4, MessagesController messagesController, TLRPC.User user, String str, ReactedUserHolderView reactedUserHolderView, TL_stories.StoryView storyView) {
+        public static void m4388$r8$lambda$P5mFIATbrOZ6IMz9hL6v8vbtsM(AnonymousClass4 anonymousClass4, MessagesController messagesController, TLRPC.User user, String str, ReactedUserHolderView reactedUserHolderView, TL_stories.StoryView storyView) {
             anonymousClass4.getClass();
             messagesController.getStoriesController().updateBlockUser(user.id, true);
             SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
@@ -513,7 +513,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             this.runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.AnonymousClass5.m4390$r8$lambda$j9E3Ge0NIBwjm6H_1J7xWnyd4E(this.f$0, str);
+                    SelfStoryViewsPage.AnonymousClass5.m4389$r8$lambda$j9E3Ge0NIBwjm6H_1J7xWnyd4E(this.f$0, str);
                 }
             };
             if (!TextUtils.isEmpty(str)) {
@@ -533,7 +533,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             }
         }
 
-        public static void m4390$r8$lambda$j9E3Ge0NIBwjm6H_1J7xWnyd4E(AnonymousClass5 anonymousClass5, String str) {
+        public static void m4389$r8$lambda$j9E3Ge0NIBwjm6H_1J7xWnyd4E(AnonymousClass5 anonymousClass5, String str) {
             anonymousClass5.runnable = null;
             SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
             selfStoryViewsPage.isSearchDebounce = false;
@@ -1527,7 +1527,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             int iSendRequest2 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoryViewsList, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    SelfStoryViewsPage.ViewsModel.m4394$r8$lambda$xYa9qoxbCnqPa1cWR01KJrOMkM(this.f$0, iArr, tLObject, tL_error);
+                    SelfStoryViewsPage.ViewsModel.m4393$r8$lambda$xYa9qoxbCnqPa1cWR01KJrOMkM(this.f$0, iArr, tLObject, tL_error);
                 }
             });
             this.reqId = iSendRequest2;
@@ -1539,12 +1539,12 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SelfStoryViewsPage.ViewsModel.m4393$r8$lambda$0vPhcFDsVZ7x0rvXatDJWkao10(this.f$0, iArr, tLObject, tL_error);
+                    SelfStoryViewsPage.ViewsModel.m4392$r8$lambda$0vPhcFDsVZ7x0rvXatDJWkao10(this.f$0, iArr, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m4393$r8$lambda$0vPhcFDsVZ7x0rvXatDJWkao10(ViewsModel viewsModel, int[] iArr, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4392$r8$lambda$0vPhcFDsVZ7x0rvXatDJWkao10(ViewsModel viewsModel, int[] iArr, TLObject tLObject, TLRPC.TL_error tL_error) {
             viewsModel.getClass();
             if (iArr[0] != viewsModel.reqId) {
                 FileLog.d("SelfStoryViewsPage reactions " + viewsModel.storyItem.id + " localId != reqId");
@@ -1603,7 +1603,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             viewsModel.loadNext();
         }
 
-        public static void m4394$r8$lambda$xYa9qoxbCnqPa1cWR01KJrOMkM(final ViewsModel viewsModel, final int[] iArr, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m4393$r8$lambda$xYa9qoxbCnqPa1cWR01KJrOMkM(final ViewsModel viewsModel, final int[] iArr, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             viewsModel.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -1742,12 +1742,12 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             Collections.sort(this.views, Comparator$CC.comparingInt(new ToIntFunction() {
                 @Override
                 public final int applyAsInt(Object obj) {
-                    return SelfStoryViewsPage.ViewsModel.m4395$r8$lambda$keJViVULdsq7Tmm19unD9O4elA((TL_stories.StoryView) obj);
+                    return SelfStoryViewsPage.ViewsModel.m4394$r8$lambda$keJViVULdsq7Tmm19unD9O4elA((TL_stories.StoryView) obj);
                 }
             }));
         }
 
-        public static int m4395$r8$lambda$keJViVULdsq7Tmm19unD9O4elA(TL_stories.StoryView storyView) {
+        public static int m4394$r8$lambda$keJViVULdsq7Tmm19unD9O4elA(TL_stories.StoryView storyView) {
             return -storyView.date;
         }
 
@@ -1944,7 +1944,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        SelfStoryViewsPage.HeaderView.AnonymousClass1.m4391$r8$lambda$o_T_lwhkJ1t8qNLae63KGjnyw(this.f$0, view);
+                        SelfStoryViewsPage.HeaderView.AnonymousClass1.m4390$r8$lambda$o_T_lwhkJ1t8qNLae63KGjnyw(this.f$0, view);
                     }
                 });
                 ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(HeaderView.this.getContext(), SelfStoryViewsPage.this.resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
@@ -1974,7 +1974,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 }
             }
 
-            public static void m4391$r8$lambda$o_T_lwhkJ1t8qNLae63KGjnyw(AnonymousClass1 anonymousClass1, View view) {
+            public static void m4390$r8$lambda$o_T_lwhkJ1t8qNLae63KGjnyw(AnonymousClass1 anonymousClass1, View view) {
                 SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
                 FiltersState filtersState = selfStoryViewsPage.state;
                 if (filtersState.sortByReactions) {

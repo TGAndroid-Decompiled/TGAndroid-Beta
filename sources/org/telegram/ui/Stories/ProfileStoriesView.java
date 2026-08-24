@@ -593,7 +593,7 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
                     Collections.sort(profileStoriesView2.circles, new Comparator() {
                         @Override
                         public final int compare(Object obj, Object obj2) {
-                            return ProfileStoriesView.m4386$r8$lambda$JQNPIPP51ie698WIdXQXlPmQs((ProfileStoriesView.StoryCircle) obj, (ProfileStoriesView.StoryCircle) obj2);
+                            return ProfileStoriesView.m4385$r8$lambda$JQNPIPP51ie698WIdXQXlPmQs((ProfileStoriesView.StoryCircle) obj, (ProfileStoriesView.StoryCircle) obj2);
                         }
                     });
                     break;
@@ -910,7 +910,7 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
         }
     }
 
-    public static int m4386$r8$lambda$JQNPIPP51ie698WIdXQXlPmQs(StoryCircle storyCircle, StoryCircle storyCircle2) {
+    public static int m4385$r8$lambda$JQNPIPP51ie698WIdXQXlPmQs(StoryCircle storyCircle, StoryCircle storyCircle2) {
         return (int) (storyCircle2.cachedIndex - storyCircle.cachedIndex);
     }
 
@@ -1203,7 +1203,7 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
                 transitionViewHolder.drawClip = new StoryViewer.HolderClip() {
                     @Override
                     public final void clip(Canvas canvas, RectF rectF3, float f, boolean z) {
-                        ProfileStoriesView.AnonymousClass3.m4387$r8$lambda$THKxWddNCIebL9eDb50cle7J1U(this.f$0, rectF, storyCircle, rectF2, storyCircle2, canvas, rectF3, f, z);
+                        ProfileStoriesView.AnonymousClass3.m4386$r8$lambda$THKxWddNCIebL9eDb50cle7J1U(this.f$0, rectF, storyCircle, rectF2, storyCircle2, canvas, rectF3, f, z);
                     }
                 };
             } else {
@@ -1212,7 +1212,7 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
             return true;
         }
 
-        public static void m4387$r8$lambda$THKxWddNCIebL9eDb50cle7J1U(AnonymousClass3 anonymousClass3, RectF rectF, StoryCircle storyCircle, RectF rectF2, StoryCircle storyCircle2, Canvas canvas, RectF rectF3, float f, boolean z) {
+        public static void m4386$r8$lambda$THKxWddNCIebL9eDb50cle7J1U(AnonymousClass3 anonymousClass3, RectF rectF, StoryCircle storyCircle, RectF rectF2, StoryCircle storyCircle2, Canvas canvas, RectF rectF3, float f, boolean z) {
             anonymousClass3.getClass();
             rectF.set(storyCircle.cachedRect);
             rectF2.set(storyCircle2.cachedRect);

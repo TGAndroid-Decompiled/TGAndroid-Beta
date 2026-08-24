@@ -92,7 +92,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     private final AlertDialog[] progressDialog;
     private PhotoViewer.PhotoViewerProvider provider;
 
-    public static void m4874$r8$lambda$SYeLWGXfsCkP6IaLtIuBS31nXk(DialogInterface dialogInterface) {
+    public static void m4873$r8$lambda$SYeLWGXfsCkP6IaLtIuBS31nXk(DialogInterface dialogInterface) {
     }
 
     @Override
@@ -579,7 +579,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         itemOptionsMakeOptions.addIf(z3, R.drawable.msg_cancel, (CharSequence) LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), true, new Runnable() {
             @Override
             public final void run() {
-                CommunityEditActivity.m4872$r8$lambda$0Rg8aCGQXrTtvknqYIblyOZGok(this.f$0, z, z2, j2);
+                CommunityEditActivity.m4871$r8$lambda$0Rg8aCGQXrTtvknqYIblyOZGok(this.f$0, z, z2, j2);
             }
         });
         itemOptionsMakeOptions.setScrimViewBackground(this.listView.getClipBackground(view, true));
@@ -592,7 +592,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         communityEditActivity.presentFragment(ChatActivity.of(j));
     }
 
-    public static void m4872$r8$lambda$0Rg8aCGQXrTtvknqYIblyOZGok(final CommunityEditActivity communityEditActivity, boolean z, boolean z2, final long j) {
+    public static void m4871$r8$lambda$0Rg8aCGQXrTtvknqYIblyOZGok(final CommunityEditActivity communityEditActivity, boolean z, boolean z2, final long j) {
         int i;
         communityEditActivity.getClass();
         String string = LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity);
@@ -730,7 +730,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                CommunityEditActivity.m4874$r8$lambda$SYeLWGXfsCkP6IaLtIuBS31nXk(dialogInterface);
+                CommunityEditActivity.m4873$r8$lambda$SYeLWGXfsCkP6IaLtIuBS31nXk(dialogInterface);
             }
         }, 0);
     }

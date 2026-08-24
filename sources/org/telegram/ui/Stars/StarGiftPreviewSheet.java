@@ -114,7 +114,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         SELECTED
     }
 
-    public static void m4104$r8$lambda$4FWGrWE3omtJROED_SUH0Jjw8(View view) {
+    public static void m4103$r8$lambda$4FWGrWE3omtJROED_SUH0Jjw8(View view) {
     }
 
     public static void $r8$lambda$6dDAB4oCjfBKUgjWLOcaEjDuSkE(View view) {
@@ -328,7 +328,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         }, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftPreviewSheet.m4104$r8$lambda$4FWGrWE3omtJROED_SUH0Jjw8(view);
+                StarGiftPreviewSheet.m4103$r8$lambda$4FWGrWE3omtJROED_SUH0Jjw8(view);
             }
         }, new View.OnClickListener() {
             @Override
@@ -434,7 +434,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftPreviewSheet.m4103$r8$lambda$2kH6_qyfMTIz4Tva5xalY78F6A(this.f$0, arrayList, view);
+                StarGiftPreviewSheet.m4102$r8$lambda$2kH6_qyfMTIz4Tva5xalY78F6A(this.f$0, arrayList, view);
             }
         });
         ScaleStateListAnimator.apply(imageView2);
@@ -462,7 +462,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         this.tabsSelectorView = new TabsSelectorView(context, resourcesProvider, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarGiftPreviewSheet.m4105$r8$lambda$gqE2otbWzJmsUuOECWCvtKXdSU(this.f$0, (Integer) obj);
+                StarGiftPreviewSheet.m4104$r8$lambda$gqE2otbWzJmsUuOECWCvtKXdSU(this.f$0, (Integer) obj);
             }
         });
         final int i4 = 0;
@@ -515,7 +515,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void m4103$r8$lambda$2kH6_qyfMTIz4Tva5xalY78F6A(StarGiftPreviewSheet starGiftPreviewSheet, ArrayList arrayList, View view) {
+    public static void m4102$r8$lambda$2kH6_qyfMTIz4Tva5xalY78F6A(StarGiftPreviewSheet starGiftPreviewSheet, ArrayList arrayList, View view) {
         Mode mode = starGiftPreviewSheet.mode;
         Mode mode2 = Mode.SELECTED;
         if (mode == mode2) {
@@ -529,7 +529,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void m4105$r8$lambda$gqE2otbWzJmsUuOECWCvtKXdSU(StarGiftPreviewSheet starGiftPreviewSheet, Integer num) {
+    public static void m4104$r8$lambda$gqE2otbWzJmsUuOECWCvtKXdSU(StarGiftPreviewSheet starGiftPreviewSheet, Integer num) {
         starGiftPreviewSheet.itemAnimator.endAnimations();
         starGiftPreviewSheet.adapter.update(true);
     }
@@ -626,7 +626,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                 this.gradientTop.animate().alpha(z2 ? 1.0f : 0.0f).setDuration(200L).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        StarGiftPreviewSheet.m4108$r8$lambda$woo__beTC8g7j3CXnwM35BwJGg(this.f$0, z2);
+                        StarGiftPreviewSheet.m4107$r8$lambda$woo__beTC8g7j3CXnwM35BwJGg(this.f$0, z2);
                     }
                 }).start();
             }
@@ -637,7 +637,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void m4108$r8$lambda$woo__beTC8g7j3CXnwM35BwJGg(StarGiftPreviewSheet starGiftPreviewSheet, boolean z) {
+    public static void m4107$r8$lambda$woo__beTC8g7j3CXnwM35BwJGg(StarGiftPreviewSheet starGiftPreviewSheet, boolean z) {
         if (z) {
             starGiftPreviewSheet.getClass();
         } else {

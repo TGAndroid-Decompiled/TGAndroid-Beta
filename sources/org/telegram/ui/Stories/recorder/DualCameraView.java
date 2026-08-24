@@ -251,7 +251,7 @@ public abstract class DualCameraView extends CameraView {
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    DualCameraView.m4490$r8$lambda$BVKDUQXELF7GxPh8hRHzliyVWc(this.f$0);
+                    DualCameraView.m4489$r8$lambda$BVKDUQXELF7GxPh8hRHzliyVWc(this.f$0);
                 }
             };
             this.longpressRunnable = runnable2;
@@ -296,7 +296,7 @@ public abstract class DualCameraView extends CameraView {
         return false;
     }
 
-    public static void m4490$r8$lambda$BVKDUQXELF7GxPh8hRHzliyVWc(DualCameraView dualCameraView) {
+    public static void m4489$r8$lambda$BVKDUQXELF7GxPh8hRHzliyVWc(DualCameraView dualCameraView) {
         if (dualCameraView.tapTime > 0) {
             dualCameraView.dualToggleShape();
             try {

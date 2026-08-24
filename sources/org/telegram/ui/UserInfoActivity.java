@@ -455,7 +455,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                 arrayList.add(UItem.asShadow(TextUtils.concat(iMax > 0 ? LocaleController.formatPluralStringComma("AddAccountInfo1", iMax) + " " : "", AndroidUtilities.replaceSingleTag(LocaleController.formatPluralStringComma("AddAccountInfo2", UserConfig.getMaxAccountCount()), new Runnable() {
                     @Override
                     public final void run() {
-                        UserInfoActivity.m4765$r8$lambda$9P1XM2yCyvo0QJql6vBhPHEXpY(this.f$0);
+                        UserInfoActivity.m4764$r8$lambda$9P1XM2yCyvo0QJql6vBhPHEXpY(this.f$0);
                     }
                 }))));
             } else {
@@ -472,7 +472,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         userInfoActivity.presentFragment(new PrivacyControlActivity(11));
     }
 
-    public static void m4765$r8$lambda$9P1XM2yCyvo0QJql6vBhPHEXpY(UserInfoActivity userInfoActivity) {
+    public static void m4764$r8$lambda$9P1XM2yCyvo0QJql6vBhPHEXpY(UserInfoActivity userInfoActivity) {
         userInfoActivity.getClass();
         userInfoActivity.presentFragment(new PremiumPreviewFragment("add_account"));
     }
@@ -924,12 +924,12 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getAdminedPublicChannels, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    UserInfoActivity.AdminedChannelsFetcher.m4767$r8$lambda$3rILY7YQmsg_g5DzVPsEoekMHg(this.f$0, tLObject, tL_error);
+                    UserInfoActivity.AdminedChannelsFetcher.m4766$r8$lambda$3rILY7YQmsg_g5DzVPsEoekMHg(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m4767$r8$lambda$3rILY7YQmsg_g5DzVPsEoekMHg(final AdminedChannelsFetcher adminedChannelsFetcher, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4766$r8$lambda$3rILY7YQmsg_g5DzVPsEoekMHg(final AdminedChannelsFetcher adminedChannelsFetcher, final TLObject tLObject, TLRPC.TL_error tL_error) {
             adminedChannelsFetcher.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -1113,12 +1113,12 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             adminedChannelsFetcher.subscribe(new Runnable() {
                 @Override
                 public final void run() {
-                    UserInfoActivity.ChooseChannelFragment.m4769$r8$lambda$jdrg1RRMtDS9gSPdE6x81lkTu4(this.f$0);
+                    UserInfoActivity.ChooseChannelFragment.m4768$r8$lambda$jdrg1RRMtDS9gSPdE6x81lkTu4(this.f$0);
                 }
             });
         }
 
-        public static void m4769$r8$lambda$jdrg1RRMtDS9gSPdE6x81lkTu4(ChooseChannelFragment chooseChannelFragment) {
+        public static void m4768$r8$lambda$jdrg1RRMtDS9gSPdE6x81lkTu4(ChooseChannelFragment chooseChannelFragment) {
             UniversalRecyclerView universalRecyclerView = chooseChannelFragment.listView;
             if (universalRecyclerView != null) {
                 universalRecyclerView.adapter.update(true);
@@ -1218,14 +1218,14 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                 this.channels.subscribe(new Runnable() {
                     @Override
                     public final void run() {
-                        UserInfoActivity.ChooseChannelFragment.m4768$r8$lambda$fYCRaEXAathwO5f8eSBb_Ah7U(this.f$0);
+                        UserInfoActivity.ChooseChannelFragment.m4767$r8$lambda$fYCRaEXAathwO5f8eSBb_Ah7U(this.f$0);
                     }
                 });
                 this.invalidateAfterPause = false;
             }
         }
 
-        public static void m4768$r8$lambda$fYCRaEXAathwO5f8eSBb_Ah7U(ChooseChannelFragment chooseChannelFragment) {
+        public static void m4767$r8$lambda$fYCRaEXAathwO5f8eSBb_Ah7U(ChooseChannelFragment chooseChannelFragment) {
             UniversalRecyclerView universalRecyclerView = chooseChannelFragment.listView;
             if (universalRecyclerView != null) {
                 universalRecyclerView.adapter.update(true);

@@ -138,7 +138,7 @@ public class MuteButton extends FrameLayout {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                MuteButton.m4342$r8$lambda$slVReqTgRBlp2qRiEYjaysTAGU(this.f$0, valueAnimator2);
+                MuteButton.m4341$r8$lambda$slVReqTgRBlp2qRiEYjaysTAGU(this.f$0, valueAnimator2);
             }
         });
         this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -146,7 +146,7 @@ public class MuteButton extends FrameLayout {
         this.animator.start();
     }
 
-    public static void m4342$r8$lambda$slVReqTgRBlp2qRiEYjaysTAGU(MuteButton muteButton, ValueAnimator valueAnimator) {
+    public static void m4341$r8$lambda$slVReqTgRBlp2qRiEYjaysTAGU(MuteButton muteButton, ValueAnimator valueAnimator) {
         muteButton.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         muteButton.mutedT = fFloatValue;

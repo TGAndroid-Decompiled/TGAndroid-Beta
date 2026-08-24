@@ -520,7 +520,7 @@ public class EglRenderer implements VideoSink {
                     this.renderThreadHandler.postAtFrontOfQueue(new Runnable() {
                         @Override
                         public final void run() {
-                            EglRenderer.m5094$r8$lambda$dxplJoayrWiYtrBlBosBiUbiV0(this.f$0, z, runnable);
+                            EglRenderer.m5093$r8$lambda$dxplJoayrWiYtrBlBosBiUbiV0(this.f$0, z, runnable);
                         }
                     });
                 } else if (runnable != null) {
@@ -532,7 +532,7 @@ public class EglRenderer implements VideoSink {
         }
     }
 
-    public static void m5094$r8$lambda$dxplJoayrWiYtrBlBosBiUbiV0(EglRenderer eglRenderer, boolean z, Runnable runnable) {
+    public static void m5093$r8$lambda$dxplJoayrWiYtrBlBosBiUbiV0(EglRenderer eglRenderer, boolean z, Runnable runnable) {
         EglBase eglBase = eglRenderer.eglBase;
         if (eglBase != null) {
             eglBase.detachCurrent();

@@ -139,7 +139,7 @@ public class StoriesController {
     private final Comparator peerStoriesComparator = new Comparator() {
         @Override
         public final int compare(Object obj, Object obj2) {
-            return StoriesController.m4404$r8$lambda$C1EmZbptoqPQWy_BTlzKzaBBY(this.f$0, (TL_stories.PeerStories) obj, (TL_stories.PeerStories) obj2);
+            return StoriesController.m4403$r8$lambda$C1EmZbptoqPQWy_BTlzKzaBBY(this.f$0, (TL_stories.PeerStories) obj, (TL_stories.PeerStories) obj2);
         }
     };
     public HashSet blocklist = new HashSet();
@@ -149,7 +149,7 @@ public class StoriesController {
     private boolean blocklistLoading = false;
     private long lastBlocklistRequested = 0;
 
-    public static void m4402$r8$lambda$5K2JLy0hG6eCW4OXirUJjmxFtA(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4401$r8$lambda$5K2JLy0hG6eCW4OXirUJjmxFtA(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public static void $r8$lambda$FDReLXvkuVMpZP1ESK9p3bSxCTk() {
@@ -1204,12 +1204,12 @@ public class StoriesController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.m4403$r8$lambda$BiBW_G8QxZ8C5PFSuqGh_SPRak(this.f$0, j, tLObject);
+                StoriesController.m4402$r8$lambda$BiBW_G8QxZ8C5PFSuqGh_SPRak(this.f$0, j, tLObject);
             }
         });
     }
 
-    public static void m4403$r8$lambda$BiBW_G8QxZ8C5PFSuqGh_SPRak(StoriesController storiesController, long j, TLObject tLObject) {
+    public static void m4402$r8$lambda$BiBW_G8QxZ8C5PFSuqGh_SPRak(StoriesController storiesController, long j, TLObject tLObject) {
         storiesController.allStoriesLoading.remove(Long.valueOf(j));
         if (tLObject == null) {
             return;
@@ -1377,7 +1377,7 @@ public class StoriesController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_deleteStories, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoriesController.m4411$r8$lambda$iOnOJjm5GkqnEPwpGVjUpkhY4w(this.f$0, tLObject, tL_error);
+                StoriesController.m4410$r8$lambda$iOnOJjm5GkqnEPwpGVjUpkhY4w(this.f$0, tLObject, tL_error);
             }
         });
         updateDeletedStoriesInLists(j, arrayList);
@@ -1385,7 +1385,7 @@ public class StoriesController {
         NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.storiesUpdated, new Object[0]);
     }
 
-    public static void m4411$r8$lambda$iOnOJjm5GkqnEPwpGVjUpkhY4w(StoriesController storiesController, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4410$r8$lambda$iOnOJjm5GkqnEPwpGVjUpkhY4w(StoriesController storiesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         storiesController.getClass();
         AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda31(storiesController));
     }
@@ -1419,14 +1419,14 @@ public class StoriesController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StoriesController.m4408$r8$lambda$b7OkWgFOuLvuxCAhP7cdmXUtw8(callback, tL_error);
+                        StoriesController.m4407$r8$lambda$b7OkWgFOuLvuxCAhP7cdmXUtw8(callback, tL_error);
                     }
                 });
             }
         });
     }
 
-    public static void m4408$r8$lambda$b7OkWgFOuLvuxCAhP7cdmXUtw8(Utilities.Callback callback, TLRPC.TL_error tL_error) {
+    public static void m4407$r8$lambda$b7OkWgFOuLvuxCAhP7cdmXUtw8(Utilities.Callback callback, TLRPC.TL_error tL_error) {
         if (callback != null) {
             callback.run(Boolean.valueOf(tL_error == null));
         }
@@ -1507,12 +1507,12 @@ public class StoriesController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.m4406$r8$lambda$aJyKHuk1ZpMsOydvNgHsZIia2w(this.f$0, j, i);
+                StoriesController.m4405$r8$lambda$aJyKHuk1ZpMsOydvNgHsZIia2w(this.f$0, j, i);
             }
         });
     }
 
-    public static void m4406$r8$lambda$aJyKHuk1ZpMsOydvNgHsZIia2w(StoriesController storiesController, long j, int i) {
+    public static void m4405$r8$lambda$aJyKHuk1ZpMsOydvNgHsZIia2w(StoriesController storiesController, long j, int i) {
         int iMax = Math.max(storiesController.dialogIdToMaxReadId.get(j, 0), i);
         storiesController.dialogIdToMaxReadId.put(j, iMax);
         storiesController.storiesStorage.updateMaxReadId(j, iMax);
@@ -1715,12 +1715,12 @@ public class StoriesController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.m4412$r8$lambda$pado3A6gZmaWG5WuyMwx4bVIJA(this.f$0, j, z, peerStories, j2, tLObject);
+                StoriesController.m4411$r8$lambda$pado3A6gZmaWG5WuyMwx4bVIJA(this.f$0, j, z, peerStories, j2, tLObject);
             }
         });
     }
 
-    public static void m4412$r8$lambda$pado3A6gZmaWG5WuyMwx4bVIJA(StoriesController storiesController, long j, boolean z, TL_stories.PeerStories peerStories, long j2, TLObject tLObject) {
+    public static void m4411$r8$lambda$pado3A6gZmaWG5WuyMwx4bVIJA(StoriesController storiesController, long j, boolean z, TL_stories.PeerStories peerStories, long j2, TLObject tLObject) {
         storiesController.loadingAllStories.remove(Long.valueOf(j));
         if (!z) {
             peerStories = storiesController.getStories(j2);
@@ -1912,12 +1912,12 @@ public class StoriesController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.AnonymousClass2.m4415$r8$lambda$fA3qY1YsKxkwGpC_5CQNf5Njc(this.f$0, tLObject, j, consumer);
+                    StoriesController.AnonymousClass2.m4414$r8$lambda$fA3qY1YsKxkwGpC_5CQNf5Njc(this.f$0, tLObject, j, consumer);
                 }
             });
         }
 
-        public static void m4415$r8$lambda$fA3qY1YsKxkwGpC_5CQNf5Njc(AnonymousClass2 anonymousClass2, TLObject tLObject, long j, Consumer consumer) {
+        public static void m4414$r8$lambda$fA3qY1YsKxkwGpC_5CQNf5Njc(AnonymousClass2 anonymousClass2, TLObject tLObject, long j, Consumer consumer) {
             TL_stories.StoryItem storyItem;
             anonymousClass2.getClass();
             if (tLObject != null) {
@@ -2109,7 +2109,7 @@ public class StoriesController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_sendReaction, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoriesController.m4402$r8$lambda$5K2JLy0hG6eCW4OXirUJjmxFtA(tLObject, tL_error);
+                StoriesController.m4401$r8$lambda$5K2JLy0hG6eCW4OXirUJjmxFtA(tLObject, tL_error);
             }
         });
     }
@@ -2253,7 +2253,7 @@ public class StoriesController {
                 Utilities.themeQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        StoriesController.UploadingStory.m4433$r8$lambda$OX4grbIbv81epEI_JCtFOuBaa8(this.f$0, fileMakeCacheFile);
+                        StoriesController.UploadingStory.m4432$r8$lambda$OX4grbIbv81epEI_JCtFOuBaa8(this.f$0, fileMakeCacheFile);
                     }
                 });
             } else {
@@ -2266,14 +2266,14 @@ public class StoriesController {
                 this.entry.getVideoEditedInfo(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        StoriesController.UploadingStory.m4435$r8$lambda$uTpomscd7BfTynfVqpzGN08dEU(this.f$0, (VideoEditedInfo) obj);
+                        StoriesController.UploadingStory.m4434$r8$lambda$uTpomscd7BfTynfVqpzGN08dEU(this.f$0, (VideoEditedInfo) obj);
                     }
                 });
             }
             startForeground();
         }
 
-        public static void m4435$r8$lambda$uTpomscd7BfTynfVqpzGN08dEU(UploadingStory uploadingStory, VideoEditedInfo videoEditedInfo) {
+        public static void m4434$r8$lambda$uTpomscd7BfTynfVqpzGN08dEU(UploadingStory uploadingStory, VideoEditedInfo videoEditedInfo) {
             uploadingStory.info = videoEditedInfo;
             uploadingStory.messageObject.videoEditedInfo = videoEditedInfo;
             uploadingStory.duration = videoEditedInfo.estimatedDuration / 1000;
@@ -2284,17 +2284,17 @@ public class StoriesController {
             }
         }
 
-        public static void m4433$r8$lambda$OX4grbIbv81epEI_JCtFOuBaa8(final UploadingStory uploadingStory, File file) {
+        public static void m4432$r8$lambda$OX4grbIbv81epEI_JCtFOuBaa8(final UploadingStory uploadingStory, File file) {
             uploadingStory.entry.buildPhoto(file);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.UploadingStory.m4432$r8$lambda$KBav6hcRMHtwuzQIp8putyg_UE(this.f$0);
+                    StoriesController.UploadingStory.m4431$r8$lambda$KBav6hcRMHtwuzQIp8putyg_UE(this.f$0);
                 }
             });
         }
 
-        public static void m4432$r8$lambda$KBav6hcRMHtwuzQIp8putyg_UE(UploadingStory uploadingStory) {
+        public static void m4431$r8$lambda$KBav6hcRMHtwuzQIp8putyg_UE(UploadingStory uploadingStory) {
             uploadingStory.ready = true;
             uploadingStory.upload();
         }
@@ -2721,7 +2721,7 @@ public class StoriesController {
             RequestDelegate requestDelegate = new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    StoriesController.UploadingStory.m4431$r8$lambda$IafFfR_l2LMoVw69bV3rF_QOfI(this.f$0, tLObject2, tL_error);
+                    StoriesController.UploadingStory.m4430$r8$lambda$IafFfR_l2LMoVw69bV3rF_QOfI(this.f$0, tLObject2, tL_error);
                 }
             };
             if (!BuildVars.DEBUG_PRIVATE_VERSION || this.edit || (charSequence = this.entry.caption) == null || !charSequence.toString().contains("#failtest") || this.hadFailed) {
@@ -2734,7 +2734,7 @@ public class StoriesController {
             requestDelegate.run(null, tL_error);
         }
 
-        public static void m4431$r8$lambda$IafFfR_l2LMoVw69bV3rF_QOfI(final UploadingStory uploadingStory, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void m4430$r8$lambda$IafFfR_l2LMoVw69bV3rF_QOfI(final UploadingStory uploadingStory, TLObject tLObject, final TLRPC.TL_error tL_error) {
             Utilities.Callback callback;
             uploadingStory.getClass();
             if (tLObject instanceof TLRPC.Updates) {
@@ -2829,7 +2829,7 @@ public class StoriesController {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            StoriesController.UploadingStory.m4430$r8$lambda$7Z8jxAox56gy7p7EFzOrg6Vjw(this.f$0, j, tL_storyItem);
+                            StoriesController.UploadingStory.m4429$r8$lambda$7Z8jxAox56gy7p7EFzOrg6Vjw(this.f$0, j, tL_storyItem);
                         }
                     });
                     MessagesController.getInstance(StoriesController.this.currentAccount).processUpdateArray(updates.updates, updates.users, updates.chats, false, updates.date);
@@ -2854,7 +2854,7 @@ public class StoriesController {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            StoriesController.UploadingStory.m4434$r8$lambda$oQ6zzh5n3WypuEmRfWcCzaFis(this.f$0, tL_error);
+                            StoriesController.UploadingStory.m4433$r8$lambda$oQ6zzh5n3WypuEmRfWcCzaFis(this.f$0, tL_error);
                         }
                     });
                 }
@@ -2867,7 +2867,7 @@ public class StoriesController {
             });
         }
 
-        public static void m4430$r8$lambda$7Z8jxAox56gy7p7EFzOrg6Vjw(UploadingStory uploadingStory, long j, TL_stories.StoryItem storyItem) {
+        public static void m4429$r8$lambda$7Z8jxAox56gy7p7EFzOrg6Vjw(UploadingStory uploadingStory, long j, TL_stories.StoryItem storyItem) {
             uploadingStory.entryDestroyed = true;
             if (uploadingStory.entry.isError) {
                 StoriesController.this.getDraftsController().delete(uploadingStory.entry);
@@ -2891,7 +2891,7 @@ public class StoriesController {
             uploadingStory.sendUploadedRequest(tL_inputFileStoryDocument);
         }
 
-        public static void m4434$r8$lambda$oQ6zzh5n3WypuEmRfWcCzaFis(UploadingStory uploadingStory, TLRPC.TL_error tL_error) {
+        public static void m4433$r8$lambda$oQ6zzh5n3WypuEmRfWcCzaFis(UploadingStory uploadingStory, TLRPC.TL_error tL_error) {
             uploadingStory.entry.isError = true;
             if (StoriesController.this.checkStoryError(tL_error)) {
                 uploadingStory.entry.error = null;
@@ -3260,12 +3260,12 @@ public class StoriesController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.BotPreviewsList.m4416$r8$lambda$EHUlG18qTWDtUsWIZM9iNlxOEE(this.f$0, tLObject, runnable);
+                    StoriesController.BotPreviewsList.m4415$r8$lambda$EHUlG18qTWDtUsWIZM9iNlxOEE(this.f$0, tLObject, runnable);
                 }
             });
         }
 
-        public static void m4416$r8$lambda$EHUlG18qTWDtUsWIZM9iNlxOEE(BotPreviewsList botPreviewsList, TLObject tLObject, Runnable runnable) {
+        public static void m4415$r8$lambda$EHUlG18qTWDtUsWIZM9iNlxOEE(BotPreviewsList botPreviewsList, TLObject tLObject, Runnable runnable) {
             MessageObject messageObject;
             int id;
             botPreviewsList.reqId = 0;
@@ -3652,7 +3652,7 @@ public class StoriesController {
                     MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(this.username, new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            StoriesController.SearchStoriesList.m4417$r8$lambda$IO3bqlxrMrYAcEXzZw18nR5Y7o(this.f$0, z, i, list, (Long) obj);
+                            StoriesController.SearchStoriesList.m4416$r8$lambda$IO3bqlxrMrYAcEXzZw18nR5Y7o(this.f$0, z, i, list, (Long) obj);
                         }
                     });
                     return true;
@@ -3665,13 +3665,13 @@ public class StoriesController {
             this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_searchPosts, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StoriesController.SearchStoriesList.m4418$r8$lambda$YvByloQGoDwS4TX80j4fdXbCVQ(this.f$0, tLObject, tL_error);
+                    StoriesController.SearchStoriesList.m4417$r8$lambda$YvByloQGoDwS4TX80j4fdXbCVQ(this.f$0, tLObject, tL_error);
                 }
             });
             return true;
         }
 
-        public static void m4417$r8$lambda$IO3bqlxrMrYAcEXzZw18nR5Y7o(SearchStoriesList searchStoriesList, boolean z, int i, List list, Long l) {
+        public static void m4416$r8$lambda$IO3bqlxrMrYAcEXzZw18nR5Y7o(SearchStoriesList searchStoriesList, boolean z, int i, List list, Long l) {
             TLObject userOrChat = MessagesController.getInstance(searchStoriesList.currentAccount).getUserOrChat(searchStoriesList.username);
             searchStoriesList.loading = false;
             if (userOrChat != null) {
@@ -3684,7 +3684,7 @@ public class StoriesController {
             AndroidUtilities.runOnUIThread(((StoriesList) searchStoriesList).notify);
         }
 
-        public static void m4418$r8$lambda$YvByloQGoDwS4TX80j4fdXbCVQ(final SearchStoriesList searchStoriesList, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4417$r8$lambda$YvByloQGoDwS4TX80j4fdXbCVQ(final SearchStoriesList searchStoriesList, final TLObject tLObject, TLRPC.TL_error tL_error) {
             searchStoriesList.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -3882,7 +3882,7 @@ public class StoriesController {
         public static void $r8$lambda$gJ3kJ5LzpL6UzbdwoosGHx6lf3E() {
         }
 
-        public static void m4429$r8$lambda$wPVWlmQxR7FeaHAIEf7YfYwlM(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4428$r8$lambda$wPVWlmQxR7FeaHAIEf7YfYwlM(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         StoriesList(int i, long j, int i2, int i3, Utilities.Callback callback, AnonymousClass1 anonymousClass1) {
@@ -4022,7 +4022,7 @@ public class StoriesController {
             this.destroyRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.StoriesList.m4423$r8$lambda$JA_fVTBVMIcY5AU96ne5zKVbs(this.f$0, callback);
+                    StoriesController.StoriesList.m4422$r8$lambda$JA_fVTBVMIcY5AU96ne5zKVbs(this.f$0, callback);
                 }
             };
             if (i2 == 0 && i3 > 0) {
@@ -4035,7 +4035,7 @@ public class StoriesController {
             preloadCache();
         }
 
-        public static void m4423$r8$lambda$JA_fVTBVMIcY5AU96ne5zKVbs(StoriesList storiesList, Utilities.Callback callback) {
+        public static void m4422$r8$lambda$JA_fVTBVMIcY5AU96ne5zKVbs(StoriesList storiesList, Utilities.Callback callback) {
             storiesList.getClass();
             callback.run(storiesList);
         }
@@ -4049,12 +4049,12 @@ public class StoriesController {
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.StoriesList.m4428$r8$lambda$sltJojAx9M9o1O0Vy1GEBXIgZM(this.f$0, messagesStorage);
+                    StoriesController.StoriesList.m4427$r8$lambda$sltJojAx9M9o1O0Vy1GEBXIgZM(this.f$0, messagesStorage);
                 }
             });
         }
 
-        public static void m4428$r8$lambda$sltJojAx9M9o1O0Vy1GEBXIgZM(final StoriesList storiesList, MessagesStorage messagesStorage) {
+        public static void m4427$r8$lambda$sltJojAx9M9o1O0Vy1GEBXIgZM(final StoriesList storiesList, MessagesStorage messagesStorage) {
             NativeByteBuffer nativeByteBuffer;
             TLRPC.Peer peer;
             StoriesList storiesList2 = storiesList;
@@ -4248,7 +4248,7 @@ public class StoriesController {
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    return StoriesController.StoriesList.m4426$r8$lambda$p509TyV4xK3Z7Fg5n4CU4UIas8((Long) obj, (Long) obj2);
+                    return StoriesController.StoriesList.m4425$r8$lambda$p509TyV4xK3Z7Fg5n4CU4UIas8((Long) obj, (Long) obj2);
                 }
             });
             ArrayList arrayList2 = new ArrayList();
@@ -4297,7 +4297,7 @@ public class StoriesController {
             return arrayList2;
         }
 
-        public static int m4426$r8$lambda$p509TyV4xK3Z7Fg5n4CU4UIas8(Long l, Long l2) {
+        public static int m4425$r8$lambda$p509TyV4xK3Z7Fg5n4CU4UIas8(Long l, Long l2) {
             return (int) (l2.longValue() - l.longValue());
         }
 
@@ -4311,12 +4311,12 @@ public class StoriesController {
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.StoriesList.m4424$r8$lambda$OvFE7xvB7HKZttVOpHveMD5vw(this.f$0, messagesStorage);
+                    StoriesController.StoriesList.m4423$r8$lambda$OvFE7xvB7HKZttVOpHveMD5vw(this.f$0, messagesStorage);
                 }
             });
         }
 
-        public static void m4424$r8$lambda$OvFE7xvB7HKZttVOpHveMD5vw(final StoriesList storiesList, MessagesStorage messagesStorage) {
+        public static void m4423$r8$lambda$OvFE7xvB7HKZttVOpHveMD5vw(final StoriesList storiesList, MessagesStorage messagesStorage) {
             storiesList.getClass();
             try {
                 messagesStorage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM profile_stories WHERE dialog_id = %d AND type = %d", Long.valueOf(storiesList.dialogId), Integer.valueOf(storiesList.type))).stepThis().dispose();
@@ -4440,7 +4440,7 @@ public class StoriesController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_incrementStoryViews, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StoriesController.StoriesList.m4429$r8$lambda$wPVWlmQxR7FeaHAIEf7YfYwlM(tLObject, tL_error);
+                    StoriesController.StoriesList.m4428$r8$lambda$wPVWlmQxR7FeaHAIEf7YfYwlM(tLObject, tL_error);
                 }
             });
             NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.storiesReadUpdated, new Object[0]);
@@ -4573,7 +4573,7 @@ public class StoriesController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StoriesController.StoriesList.m4425$r8$lambda$gg3fS5soI23BB07hvagAM63VVA(this.f$0, arrayList, tL_stories_stories, i);
+                        StoriesController.StoriesList.m4424$r8$lambda$gg3fS5soI23BB07hvagAM63VVA(this.f$0, arrayList, tL_stories_stories, i);
                     }
                 });
                 return;
@@ -4586,7 +4586,7 @@ public class StoriesController {
             });
         }
 
-        public static void m4425$r8$lambda$gg3fS5soI23BB07hvagAM63VVA(StoriesList storiesList, ArrayList arrayList, TL_stories.TL_stories_stories tL_stories_stories, int i) {
+        public static void m4424$r8$lambda$gg3fS5soI23BB07hvagAM63VVA(StoriesList storiesList, ArrayList arrayList, TL_stories.TL_stories_stories tL_stories_stories, int i) {
             storiesList.reqId = -1;
             FileLog.d("StoriesList " + storiesList.type + "{" + storiesList.dialogId + "} loaded {" + StoriesController.storyItemMessageIds(arrayList) + "}");
             storiesList.pinnedIds.clear();
@@ -4960,7 +4960,7 @@ public class StoriesController {
         }
     }
 
-    public static int m4404$r8$lambda$C1EmZbptoqPQWy_BTlzKzaBBY(StoriesController storiesController, TL_stories.PeerStories peerStories, TL_stories.PeerStories peerStories2) {
+    public static int m4403$r8$lambda$C1EmZbptoqPQWy_BTlzKzaBBY(StoriesController storiesController, TL_stories.PeerStories peerStories, TL_stories.PeerStories peerStories2) {
         int i;
         storiesController.getClass();
         long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
@@ -5071,12 +5071,12 @@ public class StoriesController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.m4410$r8$lambda$d48mKrezimTHTR1vvl55EHLL20(this.f$0, tLObject);
+                StoriesController.m4409$r8$lambda$d48mKrezimTHTR1vvl55EHLL20(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m4410$r8$lambda$d48mKrezimTHTR1vvl55EHLL20(StoriesController storiesController, TLObject tLObject) {
+    public static void m4409$r8$lambda$d48mKrezimTHTR1vvl55EHLL20(StoriesController storiesController, TLObject tLObject) {
         storiesController.getClass();
         if (tLObject instanceof TLRPC.TL_contacts_blocked) {
             TLRPC.TL_contacts_blocked tL_contacts_blocked = (TLRPC.TL_contacts_blocked) tLObject;
@@ -5147,14 +5147,14 @@ public class StoriesController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StoriesController.m4405$r8$lambda$G2O6l9Hr4Go5O9xxhY9RL6YO_0(runnable);
+                        StoriesController.m4404$r8$lambda$G2O6l9Hr4Go5O9xxhY9RL6YO_0(runnable);
                     }
                 });
             }
         });
     }
 
-    public static void m4405$r8$lambda$G2O6l9Hr4Go5O9xxhY9RL6YO_0(Runnable runnable) {
+    public static void m4404$r8$lambda$G2O6l9Hr4Go5O9xxhY9RL6YO_0(Runnable runnable) {
         if (runnable != null) {
             runnable.run();
         }
@@ -5240,23 +5240,23 @@ public class StoriesController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_canSendStory, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoriesController.m4401$r8$lambda$3jZisqIyh8Wlalkc5VPCvdGOkA(this.f$0, tLObject, tL_error);
+                StoriesController.m4400$r8$lambda$3jZisqIyh8Wlalkc5VPCvdGOkA(this.f$0, tLObject, tL_error);
             }
         }, 1024);
         return null;
     }
 
-    public static void m4401$r8$lambda$3jZisqIyh8Wlalkc5VPCvdGOkA(final StoriesController storiesController, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4400$r8$lambda$3jZisqIyh8Wlalkc5VPCvdGOkA(final StoriesController storiesController, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         storiesController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.m4413$r8$lambda$qtgHouqbURBg6jOGHNEMvBSyMs(this.f$0, tLObject, tL_error);
+                StoriesController.m4412$r8$lambda$qtgHouqbURBg6jOGHNEMvBSyMs(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4413$r8$lambda$qtgHouqbURBg6jOGHNEMvBSyMs(StoriesController storiesController, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4412$r8$lambda$qtgHouqbURBg6jOGHNEMvBSyMs(StoriesController storiesController, TLObject tLObject, TLRPC.TL_error tL_error) {
         storiesController.storyLimitFetched = true;
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             storiesController.storyLimitCached = null;
@@ -5275,12 +5275,12 @@ public class StoriesController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_canSendStory, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoriesController.m4398$r8$lambda$0zpGbyYvQKe8LDNQ7zv1Bf_v4(this.f$0, z, j, consumer, resourcesProvider, tLObject, tL_error);
+                StoriesController.m4397$r8$lambda$0zpGbyYvQKe8LDNQ7zv1Bf_v4(this.f$0, z, j, consumer, resourcesProvider, tLObject, tL_error);
             }
         }, 1024);
     }
 
-    public static void m4398$r8$lambda$0zpGbyYvQKe8LDNQ7zv1Bf_v4(final StoriesController storiesController, final boolean z, final long j, final Consumer consumer, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4397$r8$lambda$0zpGbyYvQKe8LDNQ7zv1Bf_v4(final StoriesController storiesController, final boolean z, final long j, final Consumer consumer, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, final TLRPC.TL_error tL_error) {
         storiesController.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -5299,7 +5299,7 @@ public class StoriesController {
                     messagesController.getBoostsController().getBoostsStats(j, new Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            StoriesController.m4409$r8$lambda$c6npND0iz5bk2UKhboUXMb2Tw(this.f$0, consumer, messagesController, j, (TL_stories.TL_premium_boostsStatus) obj);
+                            StoriesController.m4408$r8$lambda$c6npND0iz5bk2UKhboUXMb2Tw(this.f$0, consumer, messagesController, j, (TL_stories.TL_premium_boostsStatus) obj);
                         }
                     });
                     return;
@@ -5334,7 +5334,7 @@ public class StoriesController {
         consumer.accept(Boolean.TRUE);
     }
 
-    public static void m4409$r8$lambda$c6npND0iz5bk2UKhboUXMb2Tw(final StoriesController storiesController, final Consumer consumer, MessagesController messagesController, final long j, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public static void m4408$r8$lambda$c6npND0iz5bk2UKhboUXMb2Tw(final StoriesController storiesController, final Consumer consumer, MessagesController messagesController, final long j, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         storiesController.getClass();
         if (tL_premium_boostsStatus == null) {
             consumer.accept(Boolean.FALSE);
@@ -5342,14 +5342,14 @@ public class StoriesController {
             messagesController.getBoostsController().userCanBoostChannel(j, tL_premium_boostsStatus, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    StoriesController.m4399$r8$lambda$11xl5G2Isp4GdXj5bUzcnOCMb0(this.f$0, consumer, j, tL_premium_boostsStatus, (ChannelBoostsController.CanApplyBoost) obj);
+                    StoriesController.m4398$r8$lambda$11xl5G2Isp4GdXj5bUzcnOCMb0(this.f$0, consumer, j, tL_premium_boostsStatus, (ChannelBoostsController.CanApplyBoost) obj);
                 }
             });
             consumer.accept(Boolean.FALSE);
         }
     }
 
-    public static void m4399$r8$lambda$11xl5G2Isp4GdXj5bUzcnOCMb0(final StoriesController storiesController, Consumer consumer, final long j, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public static void m4398$r8$lambda$11xl5G2Isp4GdXj5bUzcnOCMb0(final StoriesController storiesController, Consumer consumer, final long j, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, ChannelBoostsController.CanApplyBoost canApplyBoost) {
         storiesController.getClass();
         if (canApplyBoost == null) {
             consumer.accept(Boolean.FALSE);
@@ -5478,12 +5478,12 @@ public class StoriesController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.m4407$r8$lambda$aSbJZoSnlULx3POhV404ooQc68(this.f$0, tLObject);
+                StoriesController.m4406$r8$lambda$aSbJZoSnlULx3POhV404ooQc68(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m4407$r8$lambda$aSbJZoSnlULx3POhV404ooQc68(StoriesController storiesController, TLObject tLObject) {
+    public static void m4406$r8$lambda$aSbJZoSnlULx3POhV404ooQc68(StoriesController storiesController, TLObject tLObject) {
         storiesController.sendAs.clear();
         storiesController.sendAs.add(new TLRPC.TL_inputPeerSelf());
         if (tLObject instanceof TLRPC.TL_messages_chats) {
@@ -5720,7 +5720,7 @@ public class StoriesController {
                 MessagesStorage.getInstance(this.currentAccount).loadStoryAlbumsCache(this.dialogId, new java.util.function.Consumer() {
                     @Override
                     public final void s(Object obj) {
-                        StoriesController.StoriesCollections.m4419$r8$lambda$SzXeHmut5Nnt8mHlln6iilYlRE(this.f$0, (List) obj);
+                        StoriesController.StoriesCollections.m4418$r8$lambda$SzXeHmut5Nnt8mHlln6iilYlRE(this.f$0, (List) obj);
                     }
 
                     public java.util.function.Consumer andThen(java.util.function.Consumer consumer) {
@@ -5734,12 +5734,12 @@ public class StoriesController {
             this.currentRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getAlbums, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StoriesController.StoriesCollections.m4420$r8$lambda$Y4nOFI7eL9xccqH55_GYBFtQ0E(this.f$0, tLObject, tL_error);
+                    StoriesController.StoriesCollections.m4419$r8$lambda$Y4nOFI7eL9xccqH55_GYBFtQ0E(this.f$0, tLObject, tL_error);
                 }
             });
         }
 
-        public static void m4419$r8$lambda$SzXeHmut5Nnt8mHlln6iilYlRE(final StoriesCollections storiesCollections, final List list) {
+        public static void m4418$r8$lambda$SzXeHmut5Nnt8mHlln6iilYlRE(final StoriesCollections storiesCollections, final List list) {
             storiesCollections.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -5758,17 +5758,17 @@ public class StoriesController {
             NotificationCenter.getInstance(storiesCollections.currentAccount).postNotificationName(NotificationCenter.storyAlbumsCollectionsUpdate, Long.valueOf(storiesCollections.dialogId), storiesCollections);
         }
 
-        public static void m4420$r8$lambda$Y4nOFI7eL9xccqH55_GYBFtQ0E(final StoriesCollections storiesCollections, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4419$r8$lambda$Y4nOFI7eL9xccqH55_GYBFtQ0E(final StoriesCollections storiesCollections, final TLObject tLObject, TLRPC.TL_error tL_error) {
             storiesCollections.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesController.StoriesCollections.m4421$r8$lambda$YPJ4AXPsuzozL_k3EWcELHHeRc(this.f$0, tLObject);
+                    StoriesController.StoriesCollections.m4420$r8$lambda$YPJ4AXPsuzozL_k3EWcELHHeRc(this.f$0, tLObject);
                 }
             });
         }
 
-        public static void m4421$r8$lambda$YPJ4AXPsuzozL_k3EWcELHHeRc(StoriesCollections storiesCollections, TLObject tLObject) {
+        public static void m4420$r8$lambda$YPJ4AXPsuzozL_k3EWcELHHeRc(StoriesCollections storiesCollections, TLObject tLObject) {
             storiesCollections.getClass();
             if (tLObject instanceof TL_stories.TL_albums) {
                 TL_stories.TL_albums tL_albums = (TL_stories.TL_albums) tLObject;

@@ -93,12 +93,12 @@ public class VideoFileRenderer implements VideoSink {
         this.fileThreadHandler.post(new Runnable() {
             @Override
             public final void run() {
-                VideoFileRenderer.m5106$r8$lambda$5AeH6EyAYq6gGVjpb9QdZFYeeQ(this.f$0, i420, videoFrame);
+                VideoFileRenderer.m5105$r8$lambda$5AeH6EyAYq6gGVjpb9QdZFYeeQ(this.f$0, i420, videoFrame);
             }
         });
     }
 
-    public static void m5106$r8$lambda$5AeH6EyAYq6gGVjpb9QdZFYeeQ(VideoFileRenderer videoFileRenderer, VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) {
+    public static void m5105$r8$lambda$5AeH6EyAYq6gGVjpb9QdZFYeeQ(VideoFileRenderer videoFileRenderer, VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) {
         videoFileRenderer.getClass();
         YuvHelper.I420Rotate(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), videoFileRenderer.outputFrameBuffer, i420Buffer.getWidth(), i420Buffer.getHeight(), videoFrame.getRotation());
         i420Buffer.release();
@@ -123,7 +123,7 @@ public class VideoFileRenderer implements VideoSink {
         this.fileThreadHandler.post(new Runnable() {
             @Override
             public final void run() {
-                VideoFileRenderer.m5107$r8$lambda$g_uDy1qWJtlsDvdzZb4faX4yk4(this.f$0);
+                VideoFileRenderer.m5106$r8$lambda$g_uDy1qWJtlsDvdzZb4faX4yk4(this.f$0);
             }
         });
         try {
@@ -141,7 +141,7 @@ public class VideoFileRenderer implements VideoSink {
         countDownLatch.countDown();
     }
 
-    public static void m5107$r8$lambda$g_uDy1qWJtlsDvdzZb4faX4yk4(VideoFileRenderer videoFileRenderer) {
+    public static void m5106$r8$lambda$g_uDy1qWJtlsDvdzZb4faX4yk4(VideoFileRenderer videoFileRenderer) {
         videoFileRenderer.getClass();
         try {
             videoFileRenderer.videoOutFile.close();

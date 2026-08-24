@@ -450,12 +450,12 @@ public class RecordControl extends View implements FlashViews.Invertable {
         recordControl.delegate.onVideoRecordStart(true, new Runnable() {
             @Override
             public final void run() {
-                RecordControl.m4571$r8$lambda$vLRxi8b5MZNVd_5yw7cj0A9EqI(this.f$0);
+                RecordControl.m4570$r8$lambda$vLRxi8b5MZNVd_5yw7cj0A9EqI(this.f$0);
             }
         });
     }
 
-    public static void m4571$r8$lambda$vLRxi8b5MZNVd_5yw7cj0A9EqI(RecordControl recordControl) {
+    public static void m4570$r8$lambda$vLRxi8b5MZNVd_5yw7cj0A9EqI(RecordControl recordControl) {
         recordControl.getClass();
         recordControl.recordingStart = System.currentTimeMillis();
         recordControl.recording = true;
@@ -1163,7 +1163,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
                         RecordControl.this.delegate.onVideoRecordStart(false, new Runnable() {
                             @Override
                             public final void run() {
-                                RecordControl.RecordControlAccessibilityHelper.m4572$r8$lambda$RgdhS8HrZHroteVQTdF1hRRJHI(this.f$0);
+                                RecordControl.RecordControlAccessibilityHelper.m4571$r8$lambda$RgdhS8HrZHroteVQTdF1hRRJHI(this.f$0);
                             }
                         });
                     }
@@ -1180,7 +1180,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
             return true;
         }
 
-        public static void m4572$r8$lambda$RgdhS8HrZHroteVQTdF1hRRJHI(RecordControlAccessibilityHelper recordControlAccessibilityHelper) {
+        public static void m4571$r8$lambda$RgdhS8HrZHroteVQTdF1hRRJHI(RecordControlAccessibilityHelper recordControlAccessibilityHelper) {
             RecordControl.this.recordingStart = System.currentTimeMillis();
             RecordControl.this.lastDuration = 0L;
             RecordControl.this.recording = true;

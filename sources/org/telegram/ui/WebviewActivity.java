@@ -336,22 +336,22 @@ public class WebviewActivity extends BaseFragment {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getStatsURL, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                WebviewActivity.m4806$r8$lambda$OAvnWQ8TG8ZLrqQKn6GweqMOA4(this.f$0, tLObject, tL_error);
+                WebviewActivity.m4805$r8$lambda$OAvnWQ8TG8ZLrqQKn6GweqMOA4(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4806$r8$lambda$OAvnWQ8TG8ZLrqQKn6GweqMOA4(final WebviewActivity webviewActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4805$r8$lambda$OAvnWQ8TG8ZLrqQKn6GweqMOA4(final WebviewActivity webviewActivity, final TLObject tLObject, TLRPC.TL_error tL_error) {
         webviewActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebviewActivity.m4807$r8$lambda$SXtu5EkA3KGuh0mtJivpiDnjEA(this.f$0, tLObject);
+                WebviewActivity.m4806$r8$lambda$SXtu5EkA3KGuh0mtJivpiDnjEA(this.f$0, tLObject);
             }
         });
     }
 
-    public static void m4807$r8$lambda$SXtu5EkA3KGuh0mtJivpiDnjEA(WebviewActivity webviewActivity, TLObject tLObject) {
+    public static void m4806$r8$lambda$SXtu5EkA3KGuh0mtJivpiDnjEA(WebviewActivity webviewActivity, TLObject tLObject) {
         webviewActivity.loadStats = false;
         if (tLObject != null) {
             WebView webView = webviewActivity.webView;

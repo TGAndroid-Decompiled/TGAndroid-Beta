@@ -1362,14 +1362,14 @@ public abstract class StoriesUtilities {
         ensureStoryFileLoadedObject.runnable = new Runnable() {
             @Override
             public final void run() {
-                StoriesUtilities.m4445$r8$lambda$vj5KJCnxfshabut8bbOCF844fQ(ensureStoryFileLoadedObject, runnable);
+                StoriesUtilities.m4444$r8$lambda$vj5KJCnxfshabut8bbOCF844fQ(ensureStoryFileLoadedObject, runnable);
             }
         };
         final Runnable[] runnableArr = {runnable};
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                StoriesUtilities.m4444$r8$lambda$kfHW3kZyQMzq2sFs9GFKip6YvU(runnableArr, ensureStoryFileLoadedObject);
+                StoriesUtilities.m4443$r8$lambda$kfHW3kZyQMzq2sFs9GFKip6YvU(runnableArr, ensureStoryFileLoadedObject);
             }
         };
         AndroidUtilities.runOnUIThread(runnable2, 3000L);
@@ -1410,14 +1410,14 @@ public abstract class StoriesUtilities {
         return ensureStoryFileLoadedObject;
     }
 
-    public static void m4445$r8$lambda$vj5KJCnxfshabut8bbOCF844fQ(EnsureStoryFileLoadedObject ensureStoryFileLoadedObject, Runnable runnable) {
+    public static void m4444$r8$lambda$vj5KJCnxfshabut8bbOCF844fQ(EnsureStoryFileLoadedObject ensureStoryFileLoadedObject, Runnable runnable) {
         if (ensureStoryFileLoadedObject.cancelled) {
             return;
         }
         runnable.run();
     }
 
-    public static void m4444$r8$lambda$kfHW3kZyQMzq2sFs9GFKip6YvU(Runnable[] runnableArr, EnsureStoryFileLoadedObject ensureStoryFileLoadedObject) {
+    public static void m4443$r8$lambda$kfHW3kZyQMzq2sFs9GFKip6YvU(Runnable[] runnableArr, EnsureStoryFileLoadedObject ensureStoryFileLoadedObject) {
         runnableArr[0] = null;
         ensureStoryFileLoadedObject.runnable.run();
         ImageReceiver imageReceiver = ensureStoryFileLoadedObject.imageReceiver;
@@ -1732,12 +1732,12 @@ public abstract class StoriesUtilities {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoriesUtilities.UserStoriesLoadOperation.m4446$r8$lambda$qhT2XRmDn5TPVmximJlbpw7f5M(this.f$0, tLObject, j, view, avatarStoryParams, messagesController);
+                    StoriesUtilities.UserStoriesLoadOperation.m4445$r8$lambda$qhT2XRmDn5TPVmximJlbpw7f5M(this.f$0, tLObject, j, view, avatarStoryParams, messagesController);
                 }
             });
         }
 
-        public static void m4446$r8$lambda$qhT2XRmDn5TPVmximJlbpw7f5M(UserStoriesLoadOperation userStoriesLoadOperation, TLObject tLObject, long j, View view, final AvatarStoryParams avatarStoryParams, MessagesController messagesController) {
+        public static void m4445$r8$lambda$qhT2XRmDn5TPVmximJlbpw7f5M(UserStoriesLoadOperation userStoriesLoadOperation, TLObject tLObject, long j, View view, final AvatarStoryParams avatarStoryParams, MessagesController messagesController) {
             final UserStoriesLoadOperation userStoriesLoadOperation2;
             final long j2;
             final View view2;
@@ -1763,7 +1763,7 @@ public abstract class StoriesUtilities {
                     StoriesUtilities.ensureStoryFileLoaded(peerStories, new Runnable() {
                         @Override
                         public final void run() {
-                            StoriesUtilities.UserStoriesLoadOperation.m4447$r8$lambda$wc2gIjODncCXT3ensLLJQ5LDOE(this.f$0, view2, j2, avatarStoryParams);
+                            StoriesUtilities.UserStoriesLoadOperation.m4446$r8$lambda$wc2gIjODncCXT3ensLLJQ5LDOE(this.f$0, view2, j2, avatarStoryParams);
                         }
                     });
                     z = false;
@@ -1790,7 +1790,7 @@ public abstract class StoriesUtilities {
             }
         }
 
-        public static void m4447$r8$lambda$wc2gIjODncCXT3ensLLJQ5LDOE(final UserStoriesLoadOperation userStoriesLoadOperation, final View view, final long j, AvatarStoryParams avatarStoryParams) {
+        public static void m4446$r8$lambda$wc2gIjODncCXT3ensLLJQ5LDOE(final UserStoriesLoadOperation userStoriesLoadOperation, final View view, final long j, AvatarStoryParams avatarStoryParams) {
             userStoriesLoadOperation.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

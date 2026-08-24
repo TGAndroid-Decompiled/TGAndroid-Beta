@@ -35,7 +35,7 @@ class RichBlockInset {
             valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    RichBlockInset.m4921$r8$lambda$KfrOuEFUlBLg4raSGcYPQEdYY(this.f$0, applier, valueAnimator2);
+                    RichBlockInset.m4920$r8$lambda$KfrOuEFUlBLg4raSGcYPQEdYY(this.f$0, applier, valueAnimator2);
                 }
             });
             valueAnimatorOfInt.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -48,7 +48,7 @@ class RichBlockInset {
         applier.apply(iInsetFor);
     }
 
-    public static void m4921$r8$lambda$KfrOuEFUlBLg4raSGcYPQEdYY(RichBlockInset richBlockInset, Applier applier, ValueAnimator valueAnimator) {
+    public static void m4920$r8$lambda$KfrOuEFUlBLg4raSGcYPQEdYY(RichBlockInset richBlockInset, Applier applier, ValueAnimator valueAnimator) {
         richBlockInset.getClass();
         int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         richBlockInset.currentPx = iIntValue;

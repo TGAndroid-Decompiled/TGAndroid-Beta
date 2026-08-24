@@ -246,7 +246,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     Runnable stopAnimatingBgRunnable = new Runnable() {
         @Override
         public final void run() {
-            VoIPFragment.m4788$r8$lambda$oWrXuDhBna1iJGUjcS6aCWqUbM(this.f$0);
+            VoIPFragment.m4787$r8$lambda$oWrXuDhBna1iJGUjcS6aCWqUbM(this.f$0);
         }
     };
     float pinchScale = 1.0f;
@@ -289,7 +289,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         voIPFragment.updateViewState();
     }
 
-    public static void m4788$r8$lambda$oWrXuDhBna1iJGUjcS6aCWqUbM(VoIPFragment voIPFragment) {
+    public static void m4787$r8$lambda$oWrXuDhBna1iJGUjcS6aCWqUbM(VoIPFragment voIPFragment) {
         if (voIPFragment.currentState == 3) {
             voIPFragment.callingUserPhotoViewMini.setMute(true, false);
             voIPFragment.gradientLayout.pause();
@@ -878,7 +878,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.currentUserCameraFloatingLayout.setOnTapListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                VoIPFragment.m4787$r8$lambda$m26_EMteOIyK2UPJdQ_8Y8MSX4(this.f$0, view);
+                VoIPFragment.m4786$r8$lambda$m26_EMteOIyK2UPJdQ_8Y8MSX4(this.f$0, view);
             }
         });
         this.currentUserTextureView.renderer.setMirror(true);
@@ -1118,13 +1118,13 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.speakerPhoneIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                VoIPFragment.m4785$r8$lambda$gbuEypYYAU0t0UogDGAgWMyvJ4(this.f$0, view3);
+                VoIPFragment.m4784$r8$lambda$gbuEypYYAU0t0UogDGAgWMyvJ4(this.f$0, view3);
             }
         });
         this.backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                VoIPFragment.m4777$r8$lambda$IqzUEWKfevR7zrNHB2DWJW6E8(this.f$0, view3);
+                VoIPFragment.m4776$r8$lambda$IqzUEWKfevR7zrNHB2DWJW6E8(this.f$0, view3);
             }
         });
         this.addIcon.setOnClickListener(new View.OnClickListener() {
@@ -1143,7 +1143,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.notificationsLayout.setOnViewsUpdated(new Runnable() {
             @Override
             public final void run() {
-                VoIPFragment.m4780$r8$lambda$KXrMBoyoueAe3NROwy0ikSsGs(this.f$0);
+                VoIPFragment.m4779$r8$lambda$KXrMBoyoueAe3NROwy0ikSsGs(this.f$0);
             }
         });
         frameLayout.addView(this.notificationsLayout, LayoutHelper.createFrame(-1, 200.0f, 80, 16.0f, 0.0f, 16.0f, 0.0f));
@@ -1174,7 +1174,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         return frameLayout;
     }
 
-    public static void m4787$r8$lambda$m26_EMteOIyK2UPJdQ_8Y8MSX4(VoIPFragment voIPFragment, View view) {
+    public static void m4786$r8$lambda$m26_EMteOIyK2UPJdQ_8Y8MSX4(VoIPFragment voIPFragment, View view) {
         if (voIPFragment.currentUserIsVideo && voIPFragment.callingUserIsVideo && System.currentTimeMillis() - voIPFragment.lastContentTapTime > 500) {
             AndroidUtilities.cancelRunOnUIThread(voIPFragment.hideUIRunnable);
             voIPFragment.hideUiRunnableWaiting = false;
@@ -1252,13 +1252,13 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                 VoIPFragment.this.runAcceptCallAnimation(new Runnable() {
                     @Override
                     public final void run() {
-                        VoIPFragment.AnonymousClass8.m4791$r8$lambda$VrJumBZpKO93YIbYEmffXM5Roo(this.f$0);
+                        VoIPFragment.AnonymousClass8.m4790$r8$lambda$VrJumBZpKO93YIbYEmffXM5Roo(this.f$0);
                     }
                 });
             }
         }
 
-        public static void m4791$r8$lambda$VrJumBZpKO93YIbYEmffXM5Roo(AnonymousClass8 anonymousClass8) {
+        public static void m4790$r8$lambda$VrJumBZpKO93YIbYEmffXM5Roo(AnonymousClass8 anonymousClass8) {
             anonymousClass8.getClass();
             if (VoIPService.getSharedState() != null) {
                 VoIPService.getSharedState().acceptIncomingCall();
@@ -1281,7 +1281,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
     }
 
-    public static void m4785$r8$lambda$gbuEypYYAU0t0UogDGAgWMyvJ4(VoIPFragment voIPFragment, View view) {
+    public static void m4784$r8$lambda$gbuEypYYAU0t0UogDGAgWMyvJ4(VoIPFragment voIPFragment, View view) {
         VoIPService sharedInstance;
         int i;
         if (voIPFragment.speakerPhoneIcon.getTag() == null || (sharedInstance = VoIPService.getSharedInstance()) == null) {
@@ -1296,7 +1296,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         sharedInstance.toggleSpeakerphoneOrShowRouteSheet(voIPFragment.activity, false, Integer.valueOf(i));
     }
 
-    public static void m4777$r8$lambda$IqzUEWKfevR7zrNHB2DWJW6E8(VoIPFragment voIPFragment, View view) {
+    public static void m4776$r8$lambda$IqzUEWKfevR7zrNHB2DWJW6E8(VoIPFragment voIPFragment, View view) {
         if (voIPFragment.lockOnScreen) {
             return;
         }
@@ -1333,7 +1333,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
     }
 
-    public static void m4780$r8$lambda$KXrMBoyoueAe3NROwy0ikSsGs(VoIPFragment voIPFragment) {
+    public static void m4779$r8$lambda$KXrMBoyoueAe3NROwy0ikSsGs(VoIPFragment voIPFragment) {
         voIPFragment.previousState = voIPFragment.currentState;
         voIPFragment.updateViewState();
     }
@@ -1400,7 +1400,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPFragment.m4786$r8$lambda$i6MkrLElncMOpcwzWmG0ImLCto(this.f$0);
+                VoIPFragment.m4785$r8$lambda$i6MkrLElncMOpcwzWmG0ImLCto(this.f$0);
             }
         }, 133L);
     }
@@ -1415,7 +1415,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         voIPFragment.acceptDeclineView.requestLayout();
     }
 
-    public static void m4786$r8$lambda$i6MkrLElncMOpcwzWmG0ImLCto(VoIPFragment voIPFragment) {
+    public static void m4785$r8$lambda$i6MkrLElncMOpcwzWmG0ImLCto(VoIPFragment voIPFragment) {
         int[] iArr = new int[2];
         voIPFragment.acceptDeclineView.getLocationOnScreen(iArr);
         int i = iArr[0];
@@ -1658,12 +1658,12 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VoIPFragment.m4775$r8$lambda$BQr4YGhkmmgSl6BNRzNBl5526k(this.f$0, animatorCreatePiPTransition);
+                VoIPFragment.m4774$r8$lambda$BQr4YGhkmmgSl6BNRzNBl5526k(this.f$0, animatorCreatePiPTransition);
             }
         }, 32L);
     }
 
-    public static void m4775$r8$lambda$BQr4YGhkmmgSl6BNRzNBl5526k(VoIPFragment voIPFragment, Animator animator) {
+    public static void m4774$r8$lambda$BQr4YGhkmmgSl6BNRzNBl5526k(VoIPFragment voIPFragment, Animator animator) {
         voIPFragment.getClass();
         VoIPPiPView.switchingToPip = false;
         VoIPPiPView.finish();
@@ -2058,7 +2058,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                                 alertDialogShow.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                     @Override
                                     public final void onDismiss(DialogInterface dialogInterface) {
-                                        VoIPFragment.m4774$r8$lambda$8A4qFzWrIXSq174p1B90xp4NHY(this.f$0, zArr, dialogInterface);
+                                        VoIPFragment.m4773$r8$lambda$8A4qFzWrIXSq174p1B90xp4NHY(this.f$0, zArr, dialogInterface);
                                     }
                                 });
                             } else {
@@ -3505,7 +3505,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
     }
 
-    public static void m4774$r8$lambda$8A4qFzWrIXSq174p1B90xp4NHY(VoIPFragment voIPFragment, boolean[] zArr, DialogInterface dialogInterface) {
+    public static void m4773$r8$lambda$8A4qFzWrIXSq174p1B90xp4NHY(VoIPFragment voIPFragment, boolean[] zArr, DialogInterface dialogInterface) {
         voIPFragment.getClass();
         if (zArr[0]) {
             return;
@@ -3786,13 +3786,13 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             this.encryptionTooltip.postDelayed(new Runnable() {
                 @Override
                 public final void run() {
-                    VoIPFragment.m4776$r8$lambda$DhwHL90HXdBQ8Cd6ysTg9UH4Ow(this.f$0);
+                    VoIPFragment.m4775$r8$lambda$DhwHL90HXdBQ8Cd6ysTg9UH4Ow(this.f$0);
                 }
             }, 1000L);
         }
     }
 
-    public static void m4776$r8$lambda$DhwHL90HXdBQ8Cd6ysTg9UH4Ow(VoIPFragment voIPFragment) {
+    public static void m4775$r8$lambda$DhwHL90HXdBQ8Cd6ysTg9UH4Ow(VoIPFragment voIPFragment) {
         voIPFragment.getClass();
         if (SharedConfig.callEncryptionHintDisplayedCount < 2) {
             SharedConfig.incrementCallEncryptionHintDisplayed(1);
@@ -4077,13 +4077,13 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             voIpSwitchLayout.setOnBtnClickedListener(new VoIpSwitchLayout.VoIpButtonView.OnBtnClickedListener() {
                 @Override
                 public final void onClicked(View view) {
-                    VoIPFragment.m4779$r8$lambda$J7GK0bIYSNwHhaL9QhWwhoZ67Y(this.f$0, voIPService, voIpSwitchLayout, view);
+                    VoIPFragment.m4778$r8$lambda$J7GK0bIYSNwHhaL9QhWwhoZ67Y(this.f$0, voIPService, voIpSwitchLayout, view);
                 }
             });
         }
     }
 
-    public static void m4779$r8$lambda$J7GK0bIYSNwHhaL9QhWwhoZ67Y(VoIPFragment voIPFragment, VoIPService voIPService, VoIpSwitchLayout voIpSwitchLayout, View view) {
+    public static void m4778$r8$lambda$J7GK0bIYSNwHhaL9QhWwhoZ67Y(VoIPFragment voIPFragment, VoIPService voIPService, VoIpSwitchLayout voIpSwitchLayout, View view) {
         String string;
         voIPFragment.getClass();
         VoIPService sharedInstance = VoIPService.getSharedInstance();

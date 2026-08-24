@@ -67,13 +67,13 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         this.refCountDelegate = new RefCountDelegate(new Runnable() {
             @Override
             public final void run() {
-                TextureBufferImpl.m5101$r8$lambda$H35TZ4MlCTttXlwV_K3ZnKf910(this.f$0, refCountMonitor);
+                TextureBufferImpl.m5100$r8$lambda$H35TZ4MlCTttXlwV_K3ZnKf910(this.f$0, refCountMonitor);
             }
         });
         this.refCountMonitor = refCountMonitor;
     }
 
-    public static void m5101$r8$lambda$H35TZ4MlCTttXlwV_K3ZnKf910(TextureBufferImpl textureBufferImpl, RefCountMonitor refCountMonitor) {
+    public static void m5100$r8$lambda$H35TZ4MlCTttXlwV_K3ZnKf910(TextureBufferImpl textureBufferImpl, RefCountMonitor refCountMonitor) {
         textureBufferImpl.getClass();
         refCountMonitor.onDestroy(textureBufferImpl);
     }

@@ -184,7 +184,7 @@ public abstract class CropInlineEditor extends FrameLayout {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropInlineEditor.m4486$r8$lambda$qJX8RxU0Lrm6P1q7BYN6tO1wCE(this.f$0, view);
+                CropInlineEditor.m4485$r8$lambda$qJX8RxU0Lrm6P1q7BYN6tO1wCE(this.f$0, view);
             }
         });
         TextView textView3 = new TextView(context);
@@ -199,20 +199,20 @@ public abstract class CropInlineEditor extends FrameLayout {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CropInlineEditor.m4485$r8$lambda$mLhTaRudlM7ytsoxAbv8R86FZQ(this.f$0, view);
+                CropInlineEditor.m4484$r8$lambda$mLhTaRudlM7ytsoxAbv8R86FZQ(this.f$0, view);
             }
         });
         this.shapesLayout = new LinearLayout(context);
     }
 
-    public static void m4486$r8$lambda$qJX8RxU0Lrm6P1q7BYN6tO1wCE(CropInlineEditor cropInlineEditor, View view) {
+    public static void m4485$r8$lambda$qJX8RxU0Lrm6P1q7BYN6tO1wCE(CropInlineEditor cropInlineEditor, View view) {
         cropInlineEditor.cropView.reset(true);
         cropInlineEditor.wheel.setRotated(false);
         cropInlineEditor.wheel.setMirrored(false);
         cropInlineEditor.wheel.setRotation(0.0f, true);
     }
 
-    public static void m4485$r8$lambda$mLhTaRudlM7ytsoxAbv8R86FZQ(CropInlineEditor cropInlineEditor, View view) {
+    public static void m4484$r8$lambda$mLhTaRudlM7ytsoxAbv8R86FZQ(CropInlineEditor cropInlineEditor, View view) {
         cropInlineEditor.apply();
         cropInlineEditor.close();
     }

@@ -658,7 +658,7 @@ public class RichEditorToolbar extends FrameLayout {
             duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    RichEditorToolbar.m4994$r8$lambda$04MvWf45i0zGmHK8uXnBrFH1w(this.f$0);
+                    RichEditorToolbar.m4993$r8$lambda$04MvWf45i0zGmHK8uXnBrFH1w(this.f$0);
                 }
             }).start();
             this.formattingPanel.setVisibility(0);
@@ -693,7 +693,7 @@ public class RichEditorToolbar extends FrameLayout {
         this.trashPanel.setScaleY(i == 2 ? 1.0f : 0.8f);
     }
 
-    public static void m4994$r8$lambda$04MvWf45i0zGmHK8uXnBrFH1w(RichEditorToolbar richEditorToolbar) {
+    public static void m4993$r8$lambda$04MvWf45i0zGmHK8uXnBrFH1w(RichEditorToolbar richEditorToolbar) {
         if (richEditorToolbar.panelType != 0) {
             richEditorToolbar.bottomPanel.setVisibility(8);
         }

@@ -208,7 +208,7 @@ public class StoryContainsEmojiButton extends View {
             final RequestDelegate requestDelegate = new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    StoryContainsEmojiButton.m4451$r8$lambda$87HihDYSe2EIvcu1bRLnd2jt24(this.f$0, obj, arrayList, zArr, i, tLObject2, tL_error);
+                    StoryContainsEmojiButton.m4450$r8$lambda$87HihDYSe2EIvcu1bRLnd2jt24(this.f$0, obj, arrayList, zArr, i, tLObject2, tL_error);
                 }
             };
             if (lastRequestParentObject == obj && (vector = lastResponse) != null) {
@@ -243,17 +243,17 @@ public class StoryContainsEmojiButton extends View {
         }
     }
 
-    public static void m4451$r8$lambda$87HihDYSe2EIvcu1bRLnd2jt24(final StoryContainsEmojiButton storyContainsEmojiButton, final Object obj, final ArrayList arrayList, final boolean[] zArr, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4450$r8$lambda$87HihDYSe2EIvcu1bRLnd2jt24(final StoryContainsEmojiButton storyContainsEmojiButton, final Object obj, final ArrayList arrayList, final boolean[] zArr, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
         storyContainsEmojiButton.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryContainsEmojiButton.m4452$r8$lambda$9eO2tRmeb7i53bzmV4Tf52YgVM(this.f$0, tLObject, obj, arrayList, zArr, i);
+                StoryContainsEmojiButton.m4451$r8$lambda$9eO2tRmeb7i53bzmV4Tf52YgVM(this.f$0, tLObject, obj, arrayList, zArr, i);
             }
         });
     }
 
-    public static void m4452$r8$lambda$9eO2tRmeb7i53bzmV4Tf52YgVM(final StoryContainsEmojiButton storyContainsEmojiButton, TLObject tLObject, Object obj, ArrayList arrayList, boolean[] zArr, int i) {
+    public static void m4451$r8$lambda$9eO2tRmeb7i53bzmV4Tf52YgVM(final StoryContainsEmojiButton storyContainsEmojiButton, TLObject tLObject, Object obj, ArrayList arrayList, boolean[] zArr, int i) {
         storyContainsEmojiButton.getClass();
         if (tLObject instanceof Vector) {
             Vector vector = (Vector) tLObject;
@@ -305,7 +305,7 @@ public class StoryContainsEmojiButton extends View {
                         MediaDataController.getInstance(i).getStickerSet((TLRPC.InputStickerSet) arrayList.get(0), 0, false, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj2) {
-                                StoryContainsEmojiButton.m4453$r8$lambda$aX9jife5KAG3TGApf9__hENI9w(this.f$0, (TLRPC.TL_messages_stickerSet) obj2);
+                                StoryContainsEmojiButton.m4452$r8$lambda$aX9jife5KAG3TGApf9__hENI9w(this.f$0, (TLRPC.TL_messages_stickerSet) obj2);
                             }
                         });
                         return;
@@ -319,7 +319,7 @@ public class StoryContainsEmojiButton extends View {
         }
     }
 
-    public static void m4453$r8$lambda$aX9jife5KAG3TGApf9__hENI9w(StoryContainsEmojiButton storyContainsEmojiButton, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public static void m4452$r8$lambda$aX9jife5KAG3TGApf9__hENI9w(StoryContainsEmojiButton storyContainsEmojiButton, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         storyContainsEmojiButton.set(tL_messages_stickerSet);
         storyContainsEmojiButton.animateLoad(false);
     }

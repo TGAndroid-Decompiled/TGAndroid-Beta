@@ -161,7 +161,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view3, int i) {
-                AffiliateProgramFragment.m4810$r8$lambda$tRT_uCGe0akKqxgh9OALA8wtuM(this.f$0, view3, i);
+                AffiliateProgramFragment.m4809$r8$lambda$tRT_uCGe0akKqxgh9OALA8wtuM(this.f$0, view3, i);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -258,7 +258,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         affiliateProgramFragment.closeToProfile(false);
     }
 
-    public static void m4810$r8$lambda$tRT_uCGe0akKqxgh9OALA8wtuM(AffiliateProgramFragment affiliateProgramFragment, View view, int i) {
+    public static void m4809$r8$lambda$tRT_uCGe0akKqxgh9OALA8wtuM(AffiliateProgramFragment affiliateProgramFragment, View view, int i) {
         UniversalAdapter universalAdapter = affiliateProgramFragment.adapter;
         if (universalAdapter == null) {
             return;

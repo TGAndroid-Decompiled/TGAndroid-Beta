@@ -122,12 +122,12 @@ public class DraftsController {
         loadInternal(false, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                DraftsController.m4489$r8$lambda$j3wTQbGdd0HWEyy7GVZqMLcbDE(this.f$0, (ArrayList) obj);
+                DraftsController.m4488$r8$lambda$j3wTQbGdd0HWEyy7GVZqMLcbDE(this.f$0, (ArrayList) obj);
             }
         });
     }
 
-    public static void m4489$r8$lambda$j3wTQbGdd0HWEyy7GVZqMLcbDE(DraftsController draftsController, ArrayList arrayList) {
+    public static void m4488$r8$lambda$j3wTQbGdd0HWEyy7GVZqMLcbDE(DraftsController draftsController, ArrayList arrayList) {
         File file;
         draftsController.getClass();
         long jCurrentTimeMillis = System.currentTimeMillis();

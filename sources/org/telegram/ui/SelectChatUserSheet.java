@@ -231,7 +231,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                SelectChatUserSheet.m4039$r8$lambda$ST_YPWFLsJpd0zM5wAXp8FOROI(this.f$0, view2);
+                SelectChatUserSheet.m4038$r8$lambda$ST_YPWFLsJpd0zM5wAXp8FOROI(this.f$0, view2);
             }
         });
         UniversalAdapter universalAdapter = this.adapter;
@@ -306,7 +306,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void m4039$r8$lambda$ST_YPWFLsJpd0zM5wAXp8FOROI(SelectChatUserSheet selectChatUserSheet, View view) {
+    public static void m4038$r8$lambda$ST_YPWFLsJpd0zM5wAXp8FOROI(SelectChatUserSheet selectChatUserSheet, View view) {
         if ((selectChatUserSheet.selectedOwner instanceof TLRPC.User) && !selectChatUserSheet.button.isLoading()) {
             selectChatUserSheet.button.setLoading(true);
             selectChatUserSheet.initTransfer((TLRPC.User) selectChatUserSheet.selectedOwner, null, null);
@@ -557,13 +557,13 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_channels_getParticipants, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        SelectChatUserSheet.ParticipantsList.m4045$r8$lambda$vunGDU99sxSUIOIsiDMywI41Y(this.f$0, (TLRPC.channels_ChannelParticipants) obj, (TLRPC.TL_error) obj2);
+                        SelectChatUserSheet.ParticipantsList.m4044$r8$lambda$vunGDU99sxSUIOIsiDMywI41Y(this.f$0, (TLRPC.channels_ChannelParticipants) obj, (TLRPC.TL_error) obj2);
                     }
                 });
             }
         }
 
-        public static void m4045$r8$lambda$vunGDU99sxSUIOIsiDMywI41Y(ParticipantsList participantsList, TLRPC.channels_ChannelParticipants channels_channelparticipants, TLRPC.TL_error tL_error) {
+        public static void m4044$r8$lambda$vunGDU99sxSUIOIsiDMywI41Y(ParticipantsList participantsList, TLRPC.channels_ChannelParticipants channels_channelparticipants, TLRPC.TL_error tL_error) {
             if (tL_error != null) {
                 if (participantsList.clearOnLoad) {
                     participantsList.users.clear();
@@ -676,7 +676,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_editCreator, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SelectChatUserSheet.m4043$r8$lambda$ts719iyW9rJGzqPBoRLixZGHUw(this.f$0, inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator, tLObject, tL_error);
+                SelectChatUserSheet.m4042$r8$lambda$ts719iyW9rJGzqPBoRLixZGHUw(this.f$0, inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator, tLObject, tL_error);
             }
         });
     }
@@ -690,17 +690,17 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void m4043$r8$lambda$ts719iyW9rJGzqPBoRLixZGHUw(final SelectChatUserSheet selectChatUserSheet, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, final TLRPC.TL_channels_editCreator tL_channels_editCreator, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4042$r8$lambda$ts719iyW9rJGzqPBoRLixZGHUw(final SelectChatUserSheet selectChatUserSheet, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, final TLRPC.TL_channels_editCreator tL_channels_editCreator, TLObject tLObject, final TLRPC.TL_error tL_error) {
         selectChatUserSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SelectChatUserSheet.m4040$r8$lambda$TAinPVKhWCvK77EVwOTCus1GCg(this.f$0, tL_error, inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator);
+                SelectChatUserSheet.m4039$r8$lambda$TAinPVKhWCvK77EVwOTCus1GCg(this.f$0, tL_error, inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator);
             }
         });
     }
 
-    public static void m4040$r8$lambda$TAinPVKhWCvK77EVwOTCus1GCg(final SelectChatUserSheet selectChatUserSheet, TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
+    public static void m4039$r8$lambda$TAinPVKhWCvK77EVwOTCus1GCg(final SelectChatUserSheet selectChatUserSheet, TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
         if (tL_error == null) {
             if (inputCheckPasswordSRP == null) {
                 selectChatUserSheet.getClass();
@@ -726,7 +726,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
                 builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferChangeOwner), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        SelectChatUserSheet.m4044$r8$lambda$zOPtzdJbSxvin3IiCurxo81UQ(this.f$0, user, alertDialog, i);
+                        SelectChatUserSheet.m4043$r8$lambda$zOPtzdJbSxvin3IiCurxo81UQ(this.f$0, user, alertDialog, i);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -869,7 +869,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         builder2.show();
     }
 
-    public static void m4044$r8$lambda$zOPtzdJbSxvin3IiCurxo81UQ(final SelectChatUserSheet selectChatUserSheet, final TLRPC.User user, AlertDialog alertDialog, int i) {
+    public static void m4043$r8$lambda$zOPtzdJbSxvin3IiCurxo81UQ(final SelectChatUserSheet selectChatUserSheet, final TLRPC.User user, AlertDialog alertDialog, int i) {
         selectChatUserSheet.getClass();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
@@ -901,12 +901,12 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SelectChatUserSheet.m4037$r8$lambda$0pVaPRupvXV8DV7i3mFmoSfEV8(this.f$0, tL_error, tLObject, twoStepVerificationActivity, user);
+                SelectChatUserSheet.m4036$r8$lambda$0pVaPRupvXV8DV7i3mFmoSfEV8(this.f$0, tL_error, tLObject, twoStepVerificationActivity, user);
             }
         });
     }
 
-    public static void m4037$r8$lambda$0pVaPRupvXV8DV7i3mFmoSfEV8(SelectChatUserSheet selectChatUserSheet, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.User user) {
+    public static void m4036$r8$lambda$0pVaPRupvXV8DV7i3mFmoSfEV8(SelectChatUserSheet selectChatUserSheet, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.User user) {
         selectChatUserSheet.getClass();
         if (tL_error == null) {
             TL_account.Password password = (TL_account.Password) tLObject;

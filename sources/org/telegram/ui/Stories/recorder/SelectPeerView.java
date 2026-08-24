@@ -84,7 +84,7 @@ public class SelectPeerView extends FrameLayout {
             ViewPropertyAnimator duration = animate().alpha(z ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    SelectPeerView.m4580$r8$lambda$nOc4qzgWHvJHDdoEuWqUi2HQM(this.f$0, z);
+                    SelectPeerView.m4579$r8$lambda$nOc4qzgWHvJHDdoEuWqUi2HQM(this.f$0, z);
                 }
             }).setDuration(320L);
             this.showAnimator = duration;
@@ -95,7 +95,7 @@ public class SelectPeerView extends FrameLayout {
         setAlpha(z ? 1.0f : 0.0f);
     }
 
-    public static void m4580$r8$lambda$nOc4qzgWHvJHDdoEuWqUi2HQM(SelectPeerView selectPeerView, boolean z) {
+    public static void m4579$r8$lambda$nOc4qzgWHvJHDdoEuWqUi2HQM(SelectPeerView selectPeerView, boolean z) {
         if (z) {
             selectPeerView.getClass();
         } else {

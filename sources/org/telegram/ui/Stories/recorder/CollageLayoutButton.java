@@ -138,13 +138,13 @@ public class CollageLayoutButton extends ToggleButton2 {
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(View view, int i) {
-                    CollageLayoutButton.CollageLayoutListView.m4479$r8$lambda$RXEKyEE9da3xj1oSzU_3fBV6HM(this.f$0, view, i);
+                    CollageLayoutButton.CollageLayoutListView.m4478$r8$lambda$RXEKyEE9da3xj1oSzU_3fBV6HM(this.f$0, view, i);
                 }
             });
             addView(recyclerListView, LayoutHelper.createFrame(-1, 56.0f));
         }
 
-        public static void m4479$r8$lambda$RXEKyEE9da3xj1oSzU_3fBV6HM(CollageLayoutListView collageLayoutListView, View view, int i) {
+        public static void m4478$r8$lambda$RXEKyEE9da3xj1oSzU_3fBV6HM(CollageLayoutListView collageLayoutListView, View view, int i) {
             Utilities.Callback callback = collageLayoutListView.onLayoutClick;
             if (callback != null) {
                 callback.run((CollageLayout) CollageLayout.getLayouts().get(i));
@@ -188,7 +188,7 @@ public class CollageLayoutButton extends ToggleButton2 {
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        CollageLayoutButton.CollageLayoutListView.m4480$r8$lambda$_GBIt8Plj4l0VSEWFSXYpMd9Hc(this.f$0, valueAnimator2);
+                        CollageLayoutButton.CollageLayoutListView.m4479$r8$lambda$_GBIt8Plj4l0VSEWFSXYpMd9Hc(this.f$0, valueAnimator2);
                     }
                 });
                 this.visibleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -209,7 +209,7 @@ public class CollageLayoutButton extends ToggleButton2 {
             this.listView.setVisibility(z ? 0 : 8);
         }
 
-        public static void m4480$r8$lambda$_GBIt8Plj4l0VSEWFSXYpMd9Hc(CollageLayoutListView collageLayoutListView, ValueAnimator valueAnimator) {
+        public static void m4479$r8$lambda$_GBIt8Plj4l0VSEWFSXYpMd9Hc(CollageLayoutListView collageLayoutListView, ValueAnimator valueAnimator) {
             collageLayoutListView.getClass();
             collageLayoutListView.visibleProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             collageLayoutListView.listView.invalidate();

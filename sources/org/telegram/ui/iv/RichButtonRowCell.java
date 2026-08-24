@@ -70,7 +70,7 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
         roundRadius.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                RichButtonRowCell.m4922$r8$lambda$sweDzUk5wK9QxbZkD2jEfSKnmk(this.f$0, view);
+                RichButtonRowCell.m4921$r8$lambda$sweDzUk5wK9QxbZkD2jEfSKnmk(this.f$0, view);
             }
         });
         addView(roundRadius, LayoutHelper.createFrame(38, 38, 21));
@@ -92,7 +92,7 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
         updateAddButtonColors();
     }
 
-    public static void m4922$r8$lambda$sweDzUk5wK9QxbZkD2jEfSKnmk(RichButtonRowCell richButtonRowCell, View view) {
+    public static void m4921$r8$lambda$sweDzUk5wK9QxbZkD2jEfSKnmk(RichButtonRowCell richButtonRowCell, View view) {
         BlockRow blockRow;
         Delegate delegate = richButtonRowCell.delegate;
         if (delegate == null || (blockRow = richButtonRowCell.currentRow) == null) {

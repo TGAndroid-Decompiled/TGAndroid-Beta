@@ -466,7 +466,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    StoryCaptionView.m4448$r8$lambda$dyqUxoSVXEf1n0VolORrvk10U(this.f$0, scrollY, f, f2, valueAnimator);
+                    StoryCaptionView.m4447$r8$lambda$dyqUxoSVXEf1n0VolORrvk10U(this.f$0, scrollY, f, f2, valueAnimator);
                 }
             });
             valueAnimatorOfFloat.setDuration(250L);
@@ -475,7 +475,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
         }
     }
 
-    public static void m4448$r8$lambda$dyqUxoSVXEf1n0VolORrvk10U(StoryCaptionView storyCaptionView, float f, float f2, float f3, ValueAnimator valueAnimator) {
+    public static void m4447$r8$lambda$dyqUxoSVXEf1n0VolORrvk10U(StoryCaptionView storyCaptionView, float f, float f2, float f3, ValueAnimator valueAnimator) {
         storyCaptionView.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         storyCaptionView.setScrollY((int) AndroidUtilities.lerp(f, Math.min((storyCaptionView.getMeasuredHeight() - storyCaptionView.blackoutBottomOffset) - AndroidUtilities.dp(64.0f), storyCaptionView.captionContainer.getBottom() - storyCaptionView.getMeasuredHeight()), fFloatValue));
@@ -989,7 +989,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                     panel.listen(StoryCaptionTextView.this, new Runnable() {
                         @Override
                         public final void run() {
-                            StoryCaptionView.StoryCaptionTextView.TextState.m4450$r8$lambda$sDzncH1g_gmTshtGC0Vpzm5Jao(this.f$0);
+                            StoryCaptionView.StoryCaptionTextView.TextState.m4449$r8$lambda$sDzncH1g_gmTshtGC0Vpzm5Jao(this.f$0);
                         }
                     });
                 }
@@ -1007,7 +1007,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
                 storyCaptionTextView.requestLayout();
             }
 
-            public static void m4450$r8$lambda$sDzncH1g_gmTshtGC0Vpzm5Jao(TextState textState) {
+            public static void m4449$r8$lambda$sDzncH1g_gmTshtGC0Vpzm5Jao(TextState textState) {
                 StoryCaptionTextView storyCaptionTextView = StoryCaptionTextView.this;
                 storyCaptionTextView.sizeCached = 0;
                 storyCaptionTextView.requestLayout();
@@ -1602,7 +1602,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    StoryCaptionView.StoryCaptionTextView.m4449$r8$lambda$jHRPhq9GuxOaOgO6rHZUHgXBEg(this.f$0, valueAnimator2);
+                    StoryCaptionView.StoryCaptionTextView.m4448$r8$lambda$jHRPhq9GuxOaOgO6rHZUHgXBEg(this.f$0, valueAnimator2);
                 }
             });
             this.updateAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1621,7 +1621,7 @@ public class StoryCaptionView extends NestedScrollView implements ItemOptions.Sc
             this.updateAnimator.start();
         }
 
-        public static void m4449$r8$lambda$jHRPhq9GuxOaOgO6rHZUHgXBEg(StoryCaptionTextView storyCaptionTextView, ValueAnimator valueAnimator) {
+        public static void m4448$r8$lambda$jHRPhq9GuxOaOgO6rHZUHgXBEg(StoryCaptionTextView storyCaptionTextView, ValueAnimator valueAnimator) {
             storyCaptionTextView.getClass();
             storyCaptionTextView.updateT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             storyCaptionTextView.invalidate();

@@ -2439,7 +2439,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         if (this.glassDrawable == null || this.glassOnlyBack) {
             f = 1.0f;
         } else {
-            if (this.hasForcedMenuWidth) {
+            if (this.hasForcedMenuWidth || this.hasForcedMenuMinWidth) {
                 floatValue = factor > 0 ? iDp : 0;
             } else {
                 floatValue = (int) (iDp * this.animatorHasMenuItems.getFloatValue());

@@ -1891,12 +1891,12 @@ public class StoryEntry {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoryEntry.m4584$r8$lambda$TSN5EM8OSuSgWHtNytlut3uso(this.f$0, callback);
+                StoryEntry.m4583$r8$lambda$TSN5EM8OSuSgWHtNytlut3uso(this.f$0, callback);
             }
         });
     }
 
-    public static void m4584$r8$lambda$TSN5EM8OSuSgWHtNytlut3uso(final StoryEntry storyEntry, final Utilities.Callback callback) {
+    public static void m4583$r8$lambda$TSN5EM8OSuSgWHtNytlut3uso(final StoryEntry storyEntry, final Utilities.Callback callback) {
         storyEntry.getClass();
         try {
             HDRInfo hDRInfo = storyEntry.hdrInfo;
@@ -1975,18 +1975,18 @@ public class StoryEntry {
         final RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoryEntry.m4582$r8$lambda$LXUfdVqgqjkn3OPlMUMJMISSM(this.f$0, tLObject, tL_error);
+                StoryEntry.m4581$r8$lambda$LXUfdVqgqjkn3OPlMUMJMISSM(this.f$0, tLObject, tL_error);
             }
         };
         this.checkStickersReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoryEntry.m4583$r8$lambda$AefTtakoYm6_umoVGWyXi9PQI(this.f$0, storyItem, tL_messages_getAttachedStickers, requestDelegate, tLObject, tL_error);
+                StoryEntry.m4582$r8$lambda$AefTtakoYm6_umoVGWyXi9PQI(this.f$0, storyItem, tL_messages_getAttachedStickers, requestDelegate, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4582$r8$lambda$LXUfdVqgqjkn3OPlMUMJMISSM(final StoryEntry storyEntry, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4581$r8$lambda$LXUfdVqgqjkn3OPlMUMJMISSM(final StoryEntry storyEntry, final TLObject tLObject, TLRPC.TL_error tL_error) {
         storyEntry.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -2024,7 +2024,7 @@ public class StoryEntry {
         }
     }
 
-    public static void m4583$r8$lambda$AefTtakoYm6_umoVGWyXi9PQI(StoryEntry storyEntry, TL_stories.StoryItem storyItem, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4582$r8$lambda$AefTtakoYm6_umoVGWyXi9PQI(StoryEntry storyEntry, TL_stories.StoryItem storyItem, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error) {
         storyEntry.getClass();
         if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && storyItem != null) {
             FileRefController.getInstance(storyEntry.currentAccount).requestReference(storyItem, tL_messages_getAttachedStickers, requestDelegate);

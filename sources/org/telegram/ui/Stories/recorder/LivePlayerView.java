@@ -523,7 +523,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         public final LinearLayout layout;
         public final TextView textView;
 
-        public static void m4520$r8$lambda$hSJLXY4uSxrNh54uMzLml8e9oY(View view) {
+        public static void m4519$r8$lambda$hSJLXY4uSxrNh54uMzLml8e9oY(View view) {
         }
 
         public EmptyView(Context context) {
@@ -549,7 +549,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    LivePlayerView.EmptyView.m4520$r8$lambda$hSJLXY4uSxrNh54uMzLml8e9oY(view);
+                    LivePlayerView.EmptyView.m4519$r8$lambda$hSJLXY4uSxrNh54uMzLml8e9oY(view);
                 }
             });
             setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-16777216, -11184811}));

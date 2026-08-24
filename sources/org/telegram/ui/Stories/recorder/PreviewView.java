@@ -177,7 +177,7 @@ public abstract class PreviewView extends FrameLayout {
         this.updateRoundProgressRunnable = new Runnable() {
             @Override
             public final void run() {
-                PreviewView.m4563$r8$lambda$CxvBV3dFONwihCq5bSofngACbo(this.f$0);
+                PreviewView.m4562$r8$lambda$CxvBV3dFONwihCq5bSofngACbo(this.f$0);
             }
         };
         this.wallpaperDrawableCrossfade = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -794,12 +794,12 @@ public abstract class PreviewView extends FrameLayout {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PreviewView.m4568$r8$lambda$jQudLc4HYUyzgSw_VphDvRmb78(this.f$0, storyEntry);
+                PreviewView.m4567$r8$lambda$jQudLc4HYUyzgSw_VphDvRmb78(this.f$0, storyEntry);
             }
         });
     }
 
-    public static void m4568$r8$lambda$jQudLc4HYUyzgSw_VphDvRmb78(final PreviewView previewView, final StoryEntry storyEntry) {
+    public static void m4567$r8$lambda$jQudLc4HYUyzgSw_VphDvRmb78(final PreviewView previewView, final StoryEntry storyEntry) {
         long j;
         String str;
         Uri uriWithAppendedId;
@@ -847,7 +847,7 @@ public abstract class PreviewView extends FrameLayout {
                 StoryEntry.DecodeBitmap decodeBitmap = new StoryEntry.DecodeBitmap() {
                     @Override
                     public final Bitmap decode(BitmapFactory.Options options) {
-                        return PreviewView.m4562$r8$lambda$2kpkNKXknCFiM3yMPiPYaQSS3U(this.f$0, storyEntry, j2, path, options);
+                        return PreviewView.m4561$r8$lambda$2kpkNKXknCFiM3yMPiPYaQSS3U(this.f$0, storyEntry, j2, path, options);
                     }
                 };
                 boolean z = storyEntry.isVideo;
@@ -863,7 +863,7 @@ public abstract class PreviewView extends FrameLayout {
         });
     }
 
-    public static Bitmap m4562$r8$lambda$2kpkNKXknCFiM3yMPiPYaQSS3U(PreviewView previewView, StoryEntry storyEntry, long j, String str, BitmapFactory.Options options) {
+    public static Bitmap m4561$r8$lambda$2kpkNKXknCFiM3yMPiPYaQSS3U(PreviewView previewView, StoryEntry storyEntry, long j, String str, BitmapFactory.Options options) {
         previewView.getClass();
         if (storyEntry.isVideo) {
             String str2 = storyEntry.thumbPath;
@@ -924,7 +924,7 @@ public abstract class PreviewView extends FrameLayout {
                 DominantColors.getColors(true, bitmap, true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        PreviewView.m4564$r8$lambda$MVTr9TWLgKtcZwpWdE4hXMAVwI(this.f$0, measuredHeight, (int[]) obj);
+                        PreviewView.m4563$r8$lambda$MVTr9TWLgKtcZwpWdE4hXMAVwI(this.f$0, measuredHeight, (int[]) obj);
                     }
                 });
             } else {
@@ -933,7 +933,7 @@ public abstract class PreviewView extends FrameLayout {
                     DominantColors.getColors(true, bitmap2, true, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            PreviewView.m4565$r8$lambda$NUtN6UZyT8eMGfagUPyrwaYpEA(this.f$0, measuredHeight, (int[]) obj);
+                            PreviewView.m4564$r8$lambda$NUtN6UZyT8eMGfagUPyrwaYpEA(this.f$0, measuredHeight, (int[]) obj);
                         }
                     });
                 } else {
@@ -961,7 +961,7 @@ public abstract class PreviewView extends FrameLayout {
         invalidate();
     }
 
-    public static void m4564$r8$lambda$MVTr9TWLgKtcZwpWdE4hXMAVwI(PreviewView previewView, int i, int[] iArr) {
+    public static void m4563$r8$lambda$MVTr9TWLgKtcZwpWdE4hXMAVwI(PreviewView previewView, int i, int[] iArr) {
         StoryEntry storyEntry = previewView.entry;
         int i2 = iArr[0];
         previewView.gradientTop = i2;
@@ -981,7 +981,7 @@ public abstract class PreviewView extends FrameLayout {
         }
     }
 
-    public static void m4565$r8$lambda$NUtN6UZyT8eMGfagUPyrwaYpEA(PreviewView previewView, int i, int[] iArr) {
+    public static void m4564$r8$lambda$NUtN6UZyT8eMGfagUPyrwaYpEA(PreviewView previewView, int i, int[] iArr) {
         StoryEntry storyEntry = previewView.entry;
         int i2 = iArr[0];
         previewView.gradientTop = i2;
@@ -1020,7 +1020,7 @@ public abstract class PreviewView extends FrameLayout {
                     this.textureView.animate().alpha(0.0f).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            PreviewView.m4567$r8$lambda$gcmx4tJ_q80XzT55TXXqAt5vI(this.f$0);
+                            PreviewView.m4566$r8$lambda$gcmx4tJ_q80XzT55TXXqAt5vI(this.f$0);
                         }
                     }).start();
                 }
@@ -1091,7 +1091,7 @@ public abstract class PreviewView extends FrameLayout {
         timelineView2.setProgress(j);
     }
 
-    public static void m4567$r8$lambda$gcmx4tJ_q80XzT55TXXqAt5vI(PreviewView previewView) {
+    public static void m4566$r8$lambda$gcmx4tJ_q80XzT55TXXqAt5vI(PreviewView previewView) {
         VideoEditTextureView videoEditTextureView = previewView.textureView;
         if (videoEditTextureView != null) {
             videoEditTextureView.release();
@@ -1539,7 +1539,7 @@ public abstract class PreviewView extends FrameLayout {
         }
     }
 
-    public static void m4563$r8$lambda$CxvBV3dFONwihCq5bSofngACbo(PreviewView previewView) {
+    public static void m4562$r8$lambda$CxvBV3dFONwihCq5bSofngACbo(PreviewView previewView) {
         if (previewView.roundPlayer == null || previewView.videoPlayer != null || previewView.isCollage() || previewView.timelineView == null) {
             return;
         }
@@ -2415,7 +2415,7 @@ public abstract class PreviewView extends FrameLayout {
         emojiThemes.loadWallpaper(z ? 1 : 0, new ResultCallback() {
             @Override
             public final void onComplete(Object obj) {
-                PreviewView.m4566$r8$lambda$YvX6qPvkc_kWlwMcyzkaJt4bas(emojiThemes, z, z, motionBackgroundDrawable, patternColor, (Pair) obj);
+                PreviewView.m4565$r8$lambda$YvX6qPvkc_kWlwMcyzkaJt4bas(emojiThemes, z, z, motionBackgroundDrawable, patternColor, (Pair) obj);
             }
 
             @Override
@@ -2431,7 +2431,7 @@ public abstract class PreviewView extends FrameLayout {
         return motionBackgroundDrawable;
     }
 
-    public static void m4566$r8$lambda$YvX6qPvkc_kWlwMcyzkaJt4bas(EmojiThemes emojiThemes, boolean z, boolean z2, MotionBackgroundDrawable motionBackgroundDrawable, int i, Pair pair) {
+    public static void m4565$r8$lambda$YvX6qPvkc_kWlwMcyzkaJt4bas(EmojiThemes emojiThemes, boolean z, boolean z2, MotionBackgroundDrawable motionBackgroundDrawable, int i, Pair pair) {
         if (pair == null) {
             return;
         }

@@ -346,7 +346,7 @@ public class ScannedLinkPreview extends View {
                 return messagesController.getUserNameResolver().resolve(str3, queryParameter, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        ScannedLinkPreview.ResolvedLink.m4575$r8$lambda$ZU95PTWNIUggcw96yv0AFkIIfE(callback, messagesController, str, (Long) obj);
+                        ScannedLinkPreview.ResolvedLink.m4574$r8$lambda$ZU95PTWNIUggcw96yv0AFkIIfE(callback, messagesController, str, (Long) obj);
                     }
                 });
             } catch (Exception e) {
@@ -356,7 +356,7 @@ public class ScannedLinkPreview extends View {
             }
         }
 
-        public static void m4575$r8$lambda$ZU95PTWNIUggcw96yv0AFkIIfE(Utilities.Callback callback, MessagesController messagesController, String str, Long l) {
+        public static void m4574$r8$lambda$ZU95PTWNIUggcw96yv0AFkIIfE(Utilities.Callback callback, MessagesController messagesController, String str, Long l) {
             if (l == null) {
                 callback.run(null);
                 return;

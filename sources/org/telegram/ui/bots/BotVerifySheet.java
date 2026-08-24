@@ -85,13 +85,13 @@ public abstract class BotVerifySheet {
         openSheet(dialogsActivity.getContext(), i, j, j2, botverifiersettings, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                BotVerifySheet.m4827$r8$lambda$luL9KTGpW2Y5hY9SWCy3mBdECk(topicsFragment, dialogsActivity, j2, i, (Boolean) obj);
+                BotVerifySheet.m4826$r8$lambda$luL9KTGpW2Y5hY9SWCy3mBdECk(topicsFragment, dialogsActivity, j2, i, (Boolean) obj);
             }
         });
         return true;
     }
 
-    public static void m4827$r8$lambda$luL9KTGpW2Y5hY9SWCy3mBdECk(TopicsFragment topicsFragment, DialogsActivity dialogsActivity, long j, int i, Boolean bool) {
+    public static void m4826$r8$lambda$luL9KTGpW2Y5hY9SWCy3mBdECk(TopicsFragment topicsFragment, DialogsActivity dialogsActivity, long j, int i, Boolean bool) {
         String forcedFirstName;
         TLObject tLObject;
         if (topicsFragment != null) {
@@ -408,14 +408,14 @@ public abstract class BotVerifySheet {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        BotVerifySheet.m4828$r8$lambda$mwSmAbZqB325NgxstpKnTL1mhs(zArr, tLObject, callback);
+                        BotVerifySheet.m4827$r8$lambda$mwSmAbZqB325NgxstpKnTL1mhs(zArr, tLObject, callback);
                     }
                 });
             }
         });
     }
 
-    public static void m4828$r8$lambda$mwSmAbZqB325NgxstpKnTL1mhs(boolean[] zArr, TLObject tLObject, Utilities.Callback callback) {
+    public static void m4827$r8$lambda$mwSmAbZqB325NgxstpKnTL1mhs(boolean[] zArr, TLObject tLObject, Utilities.Callback callback) {
         zArr[0] = false;
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             callback.run(Boolean.TRUE);

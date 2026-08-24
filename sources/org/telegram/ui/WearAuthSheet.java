@@ -306,7 +306,7 @@ public abstract class WearAuthSheet {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    WearAuthSheet.m4802$r8$lambda$XwbqUKYwf0Syqvg0qWMLNf6Tw(buttonWithCounterView, exc);
+                    WearAuthSheet.m4801$r8$lambda$XwbqUKYwf0Syqvg0qWMLNf6Tw(buttonWithCounterView, exc);
                 }
             });
         } catch (Exception e) {
@@ -321,7 +321,7 @@ public abstract class WearAuthSheet {
         showEmojis(iArr[0], authSession.emojis);
     }
 
-    public static void m4802$r8$lambda$XwbqUKYwf0Syqvg0qWMLNf6Tw(ButtonWithCounterView buttonWithCounterView, Exception exc) {
+    public static void m4801$r8$lambda$XwbqUKYwf0Syqvg0qWMLNf6Tw(ButtonWithCounterView buttonWithCounterView, Exception exc) {
         FileLog.e("wear-auth: /answer send failed: " + exc.getMessage());
         buttonWithCounterView.setLoading(false);
     }
@@ -375,12 +375,12 @@ public abstract class WearAuthSheet {
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WearAuthSheet.m4803$r8$lambda$xdTM_WaemPMfWHPpaSnoOgZsnM(round, i, bottomSheetCreate, view);
+                WearAuthSheet.m4802$r8$lambda$xdTM_WaemPMfWHPpaSnoOgZsnM(round, i, bottomSheetCreate, view);
             }
         });
     }
 
-    public static void m4803$r8$lambda$xdTM_WaemPMfWHPpaSnoOgZsnM(final ButtonWithCounterView buttonWithCounterView, final int i, final BottomSheet bottomSheet, final View view) {
+    public static void m4802$r8$lambda$xdTM_WaemPMfWHPpaSnoOgZsnM(final ButtonWithCounterView buttonWithCounterView, final int i, final BottomSheet bottomSheet, final View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }

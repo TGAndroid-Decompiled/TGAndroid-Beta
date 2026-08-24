@@ -53,7 +53,7 @@ public class BookmarksFragment extends UniversalFragment {
     public HashSet selected = new HashSet();
     private final HashSet addedUrls = new HashSet();
 
-    public static boolean m5034$r8$lambda$0Ef0Z7zGzug8jwvT6D_zo0aJ0(View view, MotionEvent motionEvent) {
+    public static boolean m5033$r8$lambda$0Ef0Z7zGzug8jwvT6D_zo0aJ0(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -192,7 +192,7 @@ public class BookmarksFragment extends UniversalFragment {
         this.selectedCount.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return BookmarksFragment.m5034$r8$lambda$0Ef0Z7zGzug8jwvT6D_zo0aJ0(view, motionEvent);
+                return BookmarksFragment.m5033$r8$lambda$0Ef0Z7zGzug8jwvT6D_zo0aJ0(view, motionEvent);
             }
         });
         actionBarMenuCreateActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
@@ -275,7 +275,7 @@ public class BookmarksFragment extends UniversalFragment {
         private Runnable applySearch = new Runnable() {
             @Override
             public final void run() {
-                BookmarksFragment.AnonymousClass2.m5036$r8$lambda$22sKrybv2fQ38iu4YIXC2RA8Xw(this.f$0);
+                BookmarksFragment.AnonymousClass2.m5035$r8$lambda$22sKrybv2fQ38iu4YIXC2RA8Xw(this.f$0);
             }
         };
 
@@ -338,7 +338,7 @@ public class BookmarksFragment extends UniversalFragment {
             AndroidUtilities.runOnUIThread(this.applySearch, 500L);
         }
 
-        public static void m5036$r8$lambda$22sKrybv2fQ38iu4YIXC2RA8Xw(AnonymousClass2 anonymousClass2) {
+        public static void m5035$r8$lambda$22sKrybv2fQ38iu4YIXC2RA8Xw(AnonymousClass2 anonymousClass2) {
             AddressBarList.BookmarksList bookmarksList = BookmarksFragment.this.searchList;
             if (bookmarksList != null) {
                 bookmarksList.load();

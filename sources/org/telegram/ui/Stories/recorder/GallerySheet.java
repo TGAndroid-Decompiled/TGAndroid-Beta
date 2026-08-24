@@ -46,7 +46,7 @@ public class GallerySheet extends BottomSheet {
         galleryListView.setOnSelectListener(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GallerySheet.m4517$r8$lambda$boleV3p_swaWSlzgvrOP5qHLLs(this.f$0, obj, (Bitmap) obj2);
+                GallerySheet.m4516$r8$lambda$boleV3p_swaWSlzgvrOP5qHLLs(this.f$0, obj, (Bitmap) obj2);
             }
         });
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context);
@@ -56,7 +56,7 @@ public class GallerySheet extends BottomSheet {
         this.containerView.addView(galleryListView);
     }
 
-    public static void m4517$r8$lambda$boleV3p_swaWSlzgvrOP5qHLLs(GallerySheet gallerySheet, Object obj, Bitmap bitmap) {
+    public static void m4516$r8$lambda$boleV3p_swaWSlzgvrOP5qHLLs(GallerySheet gallerySheet, Object obj, Bitmap bitmap) {
         Utilities.Callback callback;
         if (obj == null) {
             gallerySheet.getClass();

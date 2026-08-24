@@ -77,7 +77,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.requestPreview = new Runnable() {
             @Override
             public final void run() {
-                StoryLinkSheet.m4589$r8$lambda$TFhJVauuAvysAoyO1YAHMgfn70(this.f$0);
+                StoryLinkSheet.m4588$r8$lambda$TFhJVauuAvysAoyO1YAHMgfn70(this.f$0);
             }
         };
         this.whenDone = callback;
@@ -404,19 +404,19 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         this.button.setEnabled(zContainsURL);
     }
 
-    public static void m4589$r8$lambda$TFhJVauuAvysAoyO1YAHMgfn70(final StoryLinkSheet storyLinkSheet) {
+    public static void m4588$r8$lambda$TFhJVauuAvysAoyO1YAHMgfn70(final StoryLinkSheet storyLinkSheet) {
         storyLinkSheet.getClass();
         TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
         getwebpagepreview.message = storyLinkSheet.urlEditText.editText.getText().toString();
         storyLinkSheet.reqId = ConnectionsManager.getInstance(storyLinkSheet.currentAccount).sendRequest(getwebpagepreview, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoryLinkSheet.m4587$r8$lambda$oVy1tiKl5OTXZVuOtczggGXN_M(this.f$0, tLObject, tL_error);
+                StoryLinkSheet.m4586$r8$lambda$oVy1tiKl5OTXZVuOtczggGXN_M(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4587$r8$lambda$oVy1tiKl5OTXZVuOtczggGXN_M(final StoryLinkSheet storyLinkSheet, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void m4586$r8$lambda$oVy1tiKl5OTXZVuOtczggGXN_M(final StoryLinkSheet storyLinkSheet, final TLObject tLObject, TLRPC.TL_error tL_error) {
         storyLinkSheet.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -657,12 +657,12 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryLinkSheet.m4588$r8$lambda$S3KrucBAHa9RZ7odv03RayBOSA(this.f$0);
+                StoryLinkSheet.m4587$r8$lambda$S3KrucBAHa9RZ7odv03RayBOSA(this.f$0);
             }
         }, 150L);
     }
 
-    public static void m4588$r8$lambda$S3KrucBAHa9RZ7odv03RayBOSA(StoryLinkSheet storyLinkSheet) {
+    public static void m4587$r8$lambda$S3KrucBAHa9RZ7odv03RayBOSA(StoryLinkSheet storyLinkSheet) {
         if (storyLinkSheet.isShowing()) {
             storyLinkSheet.urlEditText.editText.requestFocus();
             AndroidUtilities.showKeyboard(storyLinkSheet.urlEditText.editText);

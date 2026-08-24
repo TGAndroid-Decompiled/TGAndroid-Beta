@@ -301,13 +301,13 @@ public class SessionBottomSheet extends BottomSheet {
         builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                SessionBottomSheet.m4048$r8$lambda$XhaS2mAfCidXA5zSoAZS5EfI(this.f$0, str, dialogInterface, i);
+                SessionBottomSheet.m4047$r8$lambda$XhaS2mAfCidXA5zSoAZS5EfI(this.f$0, str, dialogInterface, i);
             }
         });
         builder.show();
     }
 
-    public static void m4048$r8$lambda$XhaS2mAfCidXA5zSoAZS5EfI(SessionBottomSheet sessionBottomSheet, String str, DialogInterface dialogInterface, int i) {
+    public static void m4047$r8$lambda$XhaS2mAfCidXA5zSoAZS5EfI(SessionBottomSheet sessionBottomSheet, String str, DialogInterface dialogInterface, int i) {
         sessionBottomSheet.getClass();
         ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", str));
         BulletinFactory.of(sessionBottomSheet.getContainer(), null).createCopyBulletin(LocaleController.getString(R.string.TextCopied)).show();

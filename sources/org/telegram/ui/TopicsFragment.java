@@ -264,7 +264,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         void onTopicSelected(TLRPC.TL_forumTopic tL_forumTopic);
     }
 
-    public static boolean m4718$r8$lambda$B9FQdM7bbI9iAujIrU2_EznkL8(View view, MotionEvent motionEvent) {
+    public static boolean m4717$r8$lambda$B9FQdM7bbI9iAujIrU2_EznkL8(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -1002,7 +1002,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.closeReportSpam.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TopicsFragment.m4723$r8$lambda$pb22A5HFBaW9vBbpqS1_J7Hhe4(this.f$0, view);
+                TopicsFragment.m4722$r8$lambda$pb22A5HFBaW9vBbpqS1_J7Hhe4(this.f$0, view);
             }
         });
         this.closeReportSpam.setVisibility(8);
@@ -1760,13 +1760,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 AlertsCreator.showBlockReportSpamAlert(topicsFragment, -topicsFragment.chatId, null, topicsFragment.getCurrentChat(), null, false, TopicsFragment.this.chatFull, new MessagesStorage.IntCallback() {
                     @Override
                     public final void run(int i) {
-                        TopicsFragment.AnonymousClass15.m4724$r8$lambda$6JnyDAez3HvSahR66LSvJVnllM(this.f$0, i);
+                        TopicsFragment.AnonymousClass15.m4723$r8$lambda$6JnyDAez3HvSahR66LSvJVnllM(this.f$0, i);
                     }
                 }, TopicsFragment.this.getResourceProvider());
             }
         }
 
-        public static void m4724$r8$lambda$6JnyDAez3HvSahR66LSvJVnllM(AnonymousClass15 anonymousClass15, int i) {
+        public static void m4723$r8$lambda$6JnyDAez3HvSahR66LSvJVnllM(AnonymousClass15 anonymousClass15, int i) {
             if (i == 0) {
                 TopicsFragment.this.updateChatInfo();
             } else {
@@ -1775,7 +1775,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public static void m4723$r8$lambda$pb22A5HFBaW9vBbpqS1_J7Hhe4(TopicsFragment topicsFragment, View view) {
+    public static void m4722$r8$lambda$pb22A5HFBaW9vBbpqS1_J7Hhe4(TopicsFragment topicsFragment, View view) {
         topicsFragment.getMessagesController().hidePeerSettingsBar(-topicsFragment.chatId, null, topicsFragment.getCurrentChat());
         topicsFragment.updateChatInfo();
     }
@@ -2234,7 +2234,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }, new Runnable() {
             @Override
             public final void run() {
-                TopicsFragment.m4722$r8$lambda$mXzQLUD3Wyi0RKcvyxfgUj_n4(this.f$0, arrayList, runnable);
+                TopicsFragment.m4721$r8$lambda$mXzQLUD3Wyi0RKcvyxfgUj_n4(this.f$0, arrayList, runnable);
             }
         }).show();
         topicsFragment.clearSelectedTopics();
@@ -2246,7 +2246,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         topicsFragment.updateTopicsList(true, false);
     }
 
-    public static void m4722$r8$lambda$mXzQLUD3Wyi0RKcvyxfgUj_n4(TopicsFragment topicsFragment, ArrayList arrayList, Runnable runnable) {
+    public static void m4721$r8$lambda$mXzQLUD3Wyi0RKcvyxfgUj_n4(TopicsFragment topicsFragment, ArrayList arrayList, Runnable runnable) {
         topicsFragment.topicsController.deleteTopics(topicsFragment.chatId, arrayList);
         runnable.run();
     }
@@ -2273,7 +2273,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    TopicsFragment.m4721$r8$lambda$TQ77CltlaViQKgCjScddtwpe4Y(this.f$0, tL_forumTopic, view);
+                    TopicsFragment.m4720$r8$lambda$TQ77CltlaViQKgCjScddtwpe4Y(this.f$0, tL_forumTopic, view);
                 }
             });
             actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem);
@@ -2288,7 +2288,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TopicsFragment.m4720$r8$lambda$St_2sxa7nlOL1jZ_rAd5C5pyIQ(this.f$0, tL_forumTopic, actionBarPopupWindowLayoutArr, iAddViewToSwipeBack, view);
+                TopicsFragment.m4719$r8$lambda$St_2sxa7nlOL1jZ_rAd5C5pyIQ(this.f$0, tL_forumTopic, actionBarPopupWindowLayoutArr, iAddViewToSwipeBack, view);
             }
         });
         actionBarPopupWindowLayoutArr[0].addView(actionBarMenuSubItem2);
@@ -2392,12 +2392,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    TopicsFragment.AnonymousClass19.m4725$r8$lambda$b0cESwStEUbiwVePcR1zFz5PM(this.f$0, tL_forumTopic);
+                    TopicsFragment.AnonymousClass19.m4724$r8$lambda$b0cESwStEUbiwVePcR1zFz5PM(this.f$0, tL_forumTopic);
                 }
             }, 500L);
         }
 
-        public static void m4725$r8$lambda$b0cESwStEUbiwVePcR1zFz5PM(AnonymousClass19 anonymousClass19, TLRPC.TL_forumTopic tL_forumTopic) {
+        public static void m4724$r8$lambda$b0cESwStEUbiwVePcR1zFz5PM(AnonymousClass19 anonymousClass19, TLRPC.TL_forumTopic tL_forumTopic) {
             anonymousClass19.getClass();
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", -TopicsFragment.this.chatId);
@@ -2418,14 +2418,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public static void m4721$r8$lambda$TQ77CltlaViQKgCjScddtwpe4Y(TopicsFragment topicsFragment, TLRPC.TL_forumTopic tL_forumTopic, View view) {
+    public static void m4720$r8$lambda$TQ77CltlaViQKgCjScddtwpe4Y(TopicsFragment topicsFragment, TLRPC.TL_forumTopic tL_forumTopic, View view) {
         topicsFragment.scrollToTop = true;
         topicsFragment.updateAnimated = true;
         topicsFragment.topicsController.pinTopic(topicsFragment.chatId, tL_forumTopic.id, !tL_forumTopic.pinned, topicsFragment);
         topicsFragment.finishPreviewFragment();
     }
 
-    public static void m4720$r8$lambda$St_2sxa7nlOL1jZ_rAd5C5pyIQ(TopicsFragment topicsFragment, TLRPC.TL_forumTopic tL_forumTopic, ActionBarPopupWindow.ActionBarPopupWindowLayout[] actionBarPopupWindowLayoutArr, int i, View view) {
+    public static void m4719$r8$lambda$St_2sxa7nlOL1jZ_rAd5C5pyIQ(TopicsFragment topicsFragment, TLRPC.TL_forumTopic tL_forumTopic, ActionBarPopupWindow.ActionBarPopupWindowLayout[] actionBarPopupWindowLayoutArr, int i, View view) {
         if (topicsFragment.getMessagesController().isDialogMuted(-topicsFragment.chatId, tL_forumTopic.id)) {
             topicsFragment.getNotificationsController().muteDialog(-topicsFragment.chatId, tL_forumTopic.id, false);
             topicsFragment.finishPreviewFragment();
@@ -2494,7 +2494,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.searchAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                TopicsFragment.m4719$r8$lambda$Swwa1EtsQjUi88bNwtORNRBrg(this.f$0, valueAnimator2);
+                TopicsFragment.m4718$r8$lambda$Swwa1EtsQjUi88bNwtORNRBrg(this.f$0, valueAnimator2);
             }
         });
         this.searchContainer.setVisibility(0);
@@ -2524,7 +2524,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, Boolean.TRUE);
     }
 
-    public static void m4719$r8$lambda$Swwa1EtsQjUi88bNwtORNRBrg(TopicsFragment topicsFragment, ValueAnimator valueAnimator) {
+    public static void m4718$r8$lambda$Swwa1EtsQjUi88bNwtORNRBrg(TopicsFragment topicsFragment, ValueAnimator valueAnimator) {
         topicsFragment.getClass();
         topicsFragment.updateSearchProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
@@ -2581,7 +2581,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }, new MessagesController.ErrorDelegate() {
             @Override
             public final boolean run(TLRPC.TL_error tL_error) {
-                return TopicsFragment.m4717$r8$lambda$4vMQ7Il3iclNMqdUdT4RRbPHeM(this.f$0, tL_error);
+                return TopicsFragment.m4716$r8$lambda$4vMQ7Il3iclNMqdUdT4RRbPHeM(this.f$0, tL_error);
             }
         });
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.closeSearchByActiveAction, new Object[0]);
@@ -2593,7 +2593,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         topicsFragment.updateChatInfo(true);
     }
 
-    public static boolean m4717$r8$lambda$4vMQ7Il3iclNMqdUdT4RRbPHeM(TopicsFragment topicsFragment, TLRPC.TL_error tL_error) {
+    public static boolean m4716$r8$lambda$4vMQ7Il3iclNMqdUdT4RRbPHeM(TopicsFragment topicsFragment, TLRPC.TL_error tL_error) {
         topicsFragment.getClass();
         if (tL_error == null || !"INVITE_REQUEST_SENT".equals(tL_error.text)) {
             return true;
@@ -2762,7 +2762,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.selectedDialogsCountTextView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return TopicsFragment.m4718$r8$lambda$B9FQdM7bbI9iAujIrU2_EznkL8(view, motionEvent);
+                return TopicsFragment.m4717$r8$lambda$B9FQdM7bbI9iAujIrU2_EznkL8(view, motionEvent);
             }
         });
         this.pinItem = actionBarMenuCreateActionMode.addItemWithWidth(4, R.drawable.msg_pin, AndroidUtilities.dp(54.0f));

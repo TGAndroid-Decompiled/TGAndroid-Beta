@@ -178,7 +178,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         recyclerListView.setItemSelectorColorProvider(new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                return GalleryListView.m4507$r8$lambda$hAV_pIipD4Pa7H1B5IHRHUEIM((Integer) obj);
+                return GalleryListView.m4506$r8$lambda$hAV_pIipD4Pa7H1B5IHRHUEIM((Integer) obj);
             }
         });
         Adapter adapter = new Adapter();
@@ -219,13 +219,13 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                GalleryListView.m4505$r8$lambda$a3WsMhdqvAigkNfonHvbBHPiqI(this.f$0, view, i2);
+                GalleryListView.m4504$r8$lambda$a3WsMhdqvAigkNfonHvbBHPiqI(this.f$0, view, i2);
             }
         });
         recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
-                return GalleryListView.m4506$r8$lambda$apkF4A67bFIt27trYh_odJudp4(this.f$0, view, i2);
+                return GalleryListView.m4505$r8$lambda$apkF4A67bFIt27trYh_odJudp4(this.f$0, view, i2);
             }
         });
         recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -380,7 +380,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         recyclerListView2.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                GalleryListView.m4503$r8$lambda$CGTSaKpFTocqzb4mNOYkeFAM2E(this.f$0, view, i2);
+                GalleryListView.m4502$r8$lambda$CGTSaKpFTocqzb4mNOYkeFAM2E(this.f$0, view, i2);
             }
         });
         arrayList.clear();
@@ -432,7 +432,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             round2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    GalleryListView.m4508$r8$lambda$xwcTpau67eJieG40XCykcSsCxA(this.f$0, view);
+                    GalleryListView.m4507$r8$lambda$xwcTpau67eJieG40XCykcSsCxA(this.f$0, view);
                 }
             });
         } else {
@@ -479,11 +479,11 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         }
     }
 
-    public static Integer m4507$r8$lambda$hAV_pIipD4Pa7H1B5IHRHUEIM(Integer num) {
+    public static Integer m4506$r8$lambda$hAV_pIipD4Pa7H1B5IHRHUEIM(Integer num) {
         return 0;
     }
 
-    public static void m4505$r8$lambda$a3WsMhdqvAigkNfonHvbBHPiqI(GalleryListView galleryListView, View view, int i) {
+    public static void m4504$r8$lambda$a3WsMhdqvAigkNfonHvbBHPiqI(GalleryListView galleryListView, View view, int i) {
         if (i < 2) {
             galleryListView.getClass();
             return;
@@ -536,7 +536,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         galleryListView.updateSelectButtonVisible();
     }
 
-    public static boolean m4506$r8$lambda$apkF4A67bFIt27trYh_odJudp4(GalleryListView galleryListView, View view, int i) {
+    public static boolean m4505$r8$lambda$apkF4A67bFIt27trYh_odJudp4(GalleryListView galleryListView, View view, int i) {
         MediaController.PhotoEntry photoEntry;
         boolean z = false;
         if (i < 2) {
@@ -734,7 +734,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         }
     }
 
-    public static void m4503$r8$lambda$CGTSaKpFTocqzb4mNOYkeFAM2E(GalleryListView galleryListView, View view, int i) {
+    public static void m4502$r8$lambda$CGTSaKpFTocqzb4mNOYkeFAM2E(GalleryListView galleryListView, View view, int i) {
         Utilities.Callback2 callback2;
         ActionBarMenuItem actionBarMenuItem = galleryListView.searchItem;
         if (actionBarMenuItem != null) {
@@ -753,7 +753,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         galleryListView.selectMultiple(false);
     }
 
-    public static void m4508$r8$lambda$xwcTpau67eJieG40XCykcSsCxA(GalleryListView galleryListView, View view) {
+    public static void m4507$r8$lambda$xwcTpau67eJieG40XCykcSsCxA(GalleryListView galleryListView, View view) {
         if (galleryListView.buttonsLayout.getAlpha() < 0.25f) {
             return;
         }
@@ -1009,7 +1009,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             albumButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    GalleryListView.m4504$r8$lambda$DeqbRmWZXqyf8_QICAVqgYKYM(this.f$0, albumEntry, view);
+                    GalleryListView.m4503$r8$lambda$DeqbRmWZXqyf8_QICAVqgYKYM(this.f$0, albumEntry, view);
                 }
             });
         }
@@ -1028,7 +1028,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         return 1;
     }
 
-    public static void m4504$r8$lambda$DeqbRmWZXqyf8_QICAVqgYKYM(GalleryListView galleryListView, MediaController.AlbumEntry albumEntry, View view) {
+    public static void m4503$r8$lambda$DeqbRmWZXqyf8_QICAVqgYKYM(GalleryListView galleryListView, MediaController.AlbumEntry albumEntry, View view) {
         galleryListView.selectAlbum(albumEntry, false);
         galleryListView.dropDownContainer.closeSubMenu();
     }
@@ -1487,12 +1487,12 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GalleryListView.Cell.m4512$r8$lambda$TCRvr1gvx9HPeuwmGvtXOUcKvQ(this.f$0, str, thumbnail);
+                    GalleryListView.Cell.m4511$r8$lambda$TCRvr1gvx9HPeuwmGvtXOUcKvQ(this.f$0, str, thumbnail);
                 }
             });
         }
 
-        public static void m4512$r8$lambda$TCRvr1gvx9HPeuwmGvtXOUcKvQ(Cell cell, String str, Pair pair) {
+        public static void m4511$r8$lambda$TCRvr1gvx9HPeuwmGvtXOUcKvQ(Cell cell, String str, Pair pair) {
             cell.getClass();
             cell.afterLoad(str, (Bitmap) pair.first, (int[]) pair.second);
         }
@@ -1771,7 +1771,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 cell.accessibilityClick = new Runnable() {
                     @Override
                     public final void run() {
-                        GalleryListView.Adapter.m4510$r8$lambda$hbmyvvmFyTNXCfIAv27hg0IUK4(this.f$0, cell);
+                        GalleryListView.Adapter.m4509$r8$lambda$hbmyvvmFyTNXCfIAv27hg0IUK4(this.f$0, cell);
                     }
                 };
                 cell.accessibilityLongClick = new Runnable() {
@@ -1815,7 +1815,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             }
         }
 
-        public static void m4510$r8$lambda$hbmyvvmFyTNXCfIAv27hg0IUK4(Adapter adapter, Cell cell) {
+        public static void m4509$r8$lambda$hbmyvvmFyTNXCfIAv27hg0IUK4(Adapter adapter, Cell cell) {
             int childAdapterPosition = GalleryListView.this.listView.getChildAdapterPosition(cell);
             if (childAdapterPosition != -1) {
                 GalleryListView.this.listView.clickItem(cell, childAdapterPosition);
@@ -2154,7 +2154,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 this.currentReqId = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        GalleryListView.SearchAdapter.m4514$r8$lambda$WPR6tKYcnM8008bBkCaGEGnL9Y(this.f$0, messagesController, tLObject, tL_error);
+                        GalleryListView.SearchAdapter.m4513$r8$lambda$WPR6tKYcnM8008bBkCaGEGnL9Y(this.f$0, messagesController, tLObject, tL_error);
                     }
                 });
             } else {
@@ -2176,13 +2176,13 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 this.currentReqId = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tL_messages_getInlineBotResults, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        GalleryListView.SearchAdapter.m4513$r8$lambda$BM4SAfJY7pLCeWc9RBL59E2DWQ(this.f$0, zIsEmpty, tLObject, tL_error);
+                        GalleryListView.SearchAdapter.m4512$r8$lambda$BM4SAfJY7pLCeWc9RBL59E2DWQ(this.f$0, zIsEmpty, tLObject, tL_error);
                     }
                 });
             }
         }
 
-        public static void m4514$r8$lambda$WPR6tKYcnM8008bBkCaGEGnL9Y(final SearchAdapter searchAdapter, final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4513$r8$lambda$WPR6tKYcnM8008bBkCaGEGnL9Y(final SearchAdapter searchAdapter, final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
             searchAdapter.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2204,7 +2204,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             }
         }
 
-        public static void m4513$r8$lambda$BM4SAfJY7pLCeWc9RBL59E2DWQ(final SearchAdapter searchAdapter, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4512$r8$lambda$BM4SAfJY7pLCeWc9RBL59E2DWQ(final SearchAdapter searchAdapter, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
             searchAdapter.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

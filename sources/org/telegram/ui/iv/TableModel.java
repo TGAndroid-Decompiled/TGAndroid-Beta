@@ -407,7 +407,7 @@ public class TableModel {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return TableModel.m5026$r8$lambda$nsghQ5EWw1RgCwnb60vfEJKF0(this.f$0, (TL_iv.pageTableCell) obj, (TL_iv.pageTableCell) obj2);
+                return TableModel.m5025$r8$lambda$nsghQ5EWw1RgCwnb60vfEJKF0(this.f$0, (TL_iv.pageTableCell) obj, (TL_iv.pageTableCell) obj2);
             }
         });
         int size = arrayList.size();
@@ -444,7 +444,7 @@ public class TableModel {
         return true;
     }
 
-    public static int m5026$r8$lambda$nsghQ5EWw1RgCwnb60vfEJKF0(TableModel tableModel, TL_iv.pageTableCell pagetablecell, TL_iv.pageTableCell pagetablecell2) {
+    public static int m5025$r8$lambda$nsghQ5EWw1RgCwnb60vfEJKF0(TableModel tableModel, TL_iv.pageTableCell pagetablecell, TL_iv.pageTableCell pagetablecell2) {
         int iAnchorRowOf = tableModel.anchorRowOf(pagetablecell);
         int iAnchorRowOf2 = tableModel.anchorRowOf(pagetablecell2);
         if (iAnchorRowOf != iAnchorRowOf2) {

@@ -222,12 +222,12 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         communityCreateActivity.showDialog(new CommunityAddOptionsSheet(communityCreateActivity.getContext(), null, communityCreateActivity.dialogId, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                CommunityCreateActivity.m4868$r8$lambda$8AKimRmoDNGY8VgGR5Np72m8l4(this.f$0, str, (Boolean) obj);
+                CommunityCreateActivity.m4867$r8$lambda$8AKimRmoDNGY8VgGR5Np72m8l4(this.f$0, str, (Boolean) obj);
             }
         }));
     }
 
-    public static void m4868$r8$lambda$8AKimRmoDNGY8VgGR5Np72m8l4(CommunityCreateActivity communityCreateActivity, String str, Boolean bool) {
+    public static void m4867$r8$lambda$8AKimRmoDNGY8VgGR5Np72m8l4(CommunityCreateActivity communityCreateActivity, String str, Boolean bool) {
         communityCreateActivity.getClass();
         communityCreateActivity.createNewCommunity(str, bool.booleanValue());
     }
@@ -244,7 +244,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
             getMessagesController().convertToMegaGroup(getParentActivity(), -this.dialogId, this, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j) {
-                    CommunityCreateActivity.m4869$r8$lambda$SxllwebjK9no8nlH4Gm7rpsAi8(this.f$0, alertDialog, str, z, j);
+                    CommunityCreateActivity.m4868$r8$lambda$SxllwebjK9no8nlH4Gm7rpsAi8(this.f$0, alertDialog, str, z, j);
                 }
             });
             return;
@@ -252,12 +252,12 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         getMessagesController().createCommunity(str, this.dialogId, z, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CommunityCreateActivity.m4871$r8$lambda$v923dn0izPmJr450BaI3jYSkkk(this.f$0, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                CommunityCreateActivity.m4870$r8$lambda$v923dn0izPmJr450BaI3jYSkkk(this.f$0, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m4869$r8$lambda$SxllwebjK9no8nlH4Gm7rpsAi8(CommunityCreateActivity communityCreateActivity, AlertDialog alertDialog, String str, boolean z, long j) {
+    public static void m4868$r8$lambda$SxllwebjK9no8nlH4Gm7rpsAi8(CommunityCreateActivity communityCreateActivity, AlertDialog alertDialog, String str, boolean z, long j) {
         communityCreateActivity.getClass();
         alertDialog.dismiss();
         if (j == 0) {
@@ -268,7 +268,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         communityCreateActivity.createNewCommunity(str, z);
     }
 
-    public static void m4871$r8$lambda$v923dn0izPmJr450BaI3jYSkkk(CommunityCreateActivity communityCreateActivity, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void m4870$r8$lambda$v923dn0izPmJr450BaI3jYSkkk(CommunityCreateActivity communityCreateActivity, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             communityCreateActivity.getClass();
             BulletinFactory.of(communityCreateActivity).showForError(tL_error);

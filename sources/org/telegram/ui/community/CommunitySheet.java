@@ -344,7 +344,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         fragmentSearchField.setCloseButtonOnClickListener(new Runnable() {
             @Override
             public final void run() {
-                CommunitySheet.m4882$r8$lambda$WvdyAYi8jqcUyJM1b3tX6K0ka0(this.f$0);
+                CommunitySheet.m4881$r8$lambda$WvdyAYi8jqcUyJM1b3tX6K0ka0(this.f$0);
             }
         });
         fragmentSearchField2.setCloseButtonOnClickListener(new Runnable() {
@@ -404,7 +404,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         });
     }
 
-    public static void m4882$r8$lambda$WvdyAYi8jqcUyJM1b3tX6K0ka0(CommunitySheet communitySheet) {
+    public static void m4881$r8$lambda$WvdyAYi8jqcUyJM1b3tX6K0ka0(CommunitySheet communitySheet) {
         communitySheet.communityPage.listView.layoutManager.scrollToPositionWithOffset(1, communitySheet.systemInsets.top);
         communitySheet.animatorSearchMessagesVisible.setValue(false, true);
         communitySheet.setAllowNestedScroll(true);
@@ -453,7 +453,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             arrayList.add(UItem.asShadow(1, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CommunityPendingRequestsInfo), new Runnable() {
                 @Override
                 public final void run() {
-                    CommunitySheet.m4883$r8$lambda$ieBlMxOAwQFrTGMoOzqVdPqRoA(this.f$0);
+                    CommunitySheet.m4882$r8$lambda$ieBlMxOAwQFrTGMoOzqVdPqRoA(this.f$0);
                 }
             }), true)));
         } else {
@@ -464,7 +464,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         this.pendingRequestsList.fillItems(arrayList);
     }
 
-    public static void m4883$r8$lambda$ieBlMxOAwQFrTGMoOzqVdPqRoA(CommunitySheet communitySheet) {
+    public static void m4882$r8$lambda$ieBlMxOAwQFrTGMoOzqVdPqRoA(CommunitySheet communitySheet) {
         communitySheet.getClass();
         Bundle bundle = new Bundle();
         bundle.putLong("community_id", communitySheet.communityId);
@@ -643,7 +643,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         itemOptionsMakeOptions.add(R.drawable.msg_cancel, (CharSequence) LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), true, new Runnable() {
             @Override
             public final void run() {
-                CommunitySheet.m4881$r8$lambda$NwvIrXTwjQ5JQIHS8WyfgDE18c(this.f$0, z, z2, j2);
+                CommunitySheet.m4880$r8$lambda$NwvIrXTwjQ5JQIHS8WyfgDE18c(this.f$0, z, z2, j2);
             }
         });
         itemOptionsMakeOptions.setScrimViewBackground(this.communityPage.listView.getClipBackground(view, true));
@@ -651,7 +651,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         return true;
     }
 
-    public static void m4881$r8$lambda$NwvIrXTwjQ5JQIHS8WyfgDE18c(final CommunitySheet communitySheet, boolean z, boolean z2, final long j) {
+    public static void m4880$r8$lambda$NwvIrXTwjQ5JQIHS8WyfgDE18c(final CommunitySheet communitySheet, boolean z, boolean z2, final long j) {
         int i;
         Context context = communitySheet.getContext();
         Theme.ResourcesProvider resourcesProvider = communitySheet.resourcesProvider;
@@ -670,14 +670,14 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
                 MessagesController.getInstance(communitySheet2.currentAccount).unlinkCommunity(j, communitySheet2.communityId, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        CommunitySheet.m4880$r8$lambda$H2QIdSSp9VlgAhqn6a9ncCVFqc(communitySheet2, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                        CommunitySheet.m4879$r8$lambda$H2QIdSSp9VlgAhqn6a9ncCVFqc(communitySheet2, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                     }
                 });
             }
         });
     }
 
-    public static void m4880$r8$lambda$H2QIdSSp9VlgAhqn6a9ncCVFqc(CommunitySheet communitySheet, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void m4879$r8$lambda$H2QIdSSp9VlgAhqn6a9ncCVFqc(CommunitySheet communitySheet, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             BulletinFactory.of((FrameLayout) communitySheet.containerView, communitySheet.resourcesProvider).showForError(tL_error);
         } else {

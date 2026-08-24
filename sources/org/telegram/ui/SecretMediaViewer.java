@@ -208,7 +208,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
     private final Runnable updateProgressRunnable = new Runnable() {
         @Override
         public final void run() {
-            SecretMediaViewer.m3994$r8$lambda$Ffut9PT6DjtyuuAhLsbYn9OOQg(this.f$0);
+            SecretMediaViewer.m3993$r8$lambda$Ffut9PT6DjtyuuAhLsbYn9OOQg(this.f$0);
         }
     };
     private final int[] videoPlayerCurrentTime = new int[2];
@@ -729,7 +729,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
     }
 
-    public static void m3994$r8$lambda$Ffut9PT6DjtyuuAhLsbYn9OOQg(SecretMediaViewer secretMediaViewer) {
+    public static void m3993$r8$lambda$Ffut9PT6DjtyuuAhLsbYn9OOQg(SecretMediaViewer secretMediaViewer) {
         VideoPlayer videoPlayer = secretMediaViewer.videoPlayer;
         if (videoPlayer == null) {
             return;
@@ -916,7 +916,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.containerView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsets onApplyWindowInsets(View view2, WindowInsets windowInsets) {
-                return SecretMediaViewer.m3993$r8$lambda$EB1SUjXe1RdWIVAqiOX8YbzSrY(this.f$0, view2, windowInsets);
+                return SecretMediaViewer.m3992$r8$lambda$EB1SUjXe1RdWIVAqiOX8YbzSrY(this.f$0, view2, windowInsets);
             }
         });
         this.containerView.setSystemUiVisibility(1792);
@@ -1059,7 +1059,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.textSelectionHelper.setInvalidateParent();
     }
 
-    public static WindowInsets m3993$r8$lambda$EB1SUjXe1RdWIVAqiOX8YbzSrY(SecretMediaViewer secretMediaViewer, View view, WindowInsets windowInsets) {
+    public static WindowInsets m3992$r8$lambda$EB1SUjXe1RdWIVAqiOX8YbzSrY(SecretMediaViewer secretMediaViewer, View view, WindowInsets windowInsets) {
         WindowInsets windowInsets2 = (WindowInsets) secretMediaViewer.lastInsets;
         secretMediaViewer.lastInsets = windowInsets;
         if (windowInsets2 == null || !windowInsets2.toString().equals(windowInsets.toString())) {
@@ -1553,7 +1553,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             this.secretDeleteTimer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    SecretMediaViewer.m3997$r8$lambda$aiD_rYmPKxGQ1dCHwLJFpjQS4(this.f$0, view);
+                    SecretMediaViewer.m3996$r8$lambda$aiD_rYmPKxGQ1dCHwLJFpjQS4(this.f$0, view);
                 }
             });
         } else {
@@ -1623,13 +1623,13 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.photoBackgroundDrawable.drawRunnable = new Runnable() {
             @Override
             public final void run() {
-                SecretMediaViewer.m3995$r8$lambda$GodSndelY6Qo7NwED9kIMUhYGo(this.f$0, placeProviderObject);
+                SecretMediaViewer.m3994$r8$lambda$GodSndelY6Qo7NwED9kIMUhYGo(this.f$0, placeProviderObject);
             }
         };
         this.imageMoveAnimation.start();
     }
 
-    public static void m3997$r8$lambda$aiD_rYmPKxGQ1dCHwLJFpjQS4(SecretMediaViewer secretMediaViewer, View view) {
+    public static void m3996$r8$lambda$aiD_rYmPKxGQ1dCHwLJFpjQS4(SecretMediaViewer secretMediaViewer, View view) {
         MessageObject messageObject = secretMediaViewer.currentMessageObject;
         if (messageObject != null) {
             TLRPC.Message message = messageObject.messageOwner;
@@ -1668,7 +1668,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
     }
 
-    public static void m3995$r8$lambda$GodSndelY6Qo7NwED9kIMUhYGo(SecretMediaViewer secretMediaViewer, PhotoViewer.PlaceProviderObject placeProviderObject) {
+    public static void m3994$r8$lambda$GodSndelY6Qo7NwED9kIMUhYGo(SecretMediaViewer secretMediaViewer, PhotoViewer.PlaceProviderObject placeProviderObject) {
         secretMediaViewer.disableShowCheck = false;
         placeProviderObject.imageReceiver.setVisible(false, true);
     }
@@ -2187,7 +2187,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             this.photoAnimationEndRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    SecretMediaViewer.m3992$r8$lambda$1FmEGjwHHrohhdxS2ZZAkEtiVo(this.f$0, placeForPhoto);
+                    SecretMediaViewer.m3991$r8$lambda$1FmEGjwHHrohhdxS2ZZAkEtiVo(this.f$0, placeForPhoto);
                 }
             };
             this.imageMoveAnimation.setInterpolator(new DecelerateInterpolator());
@@ -2214,7 +2214,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             this.photoAnimationEndRunnable = new Runnable() {
                 @Override
                 public final void run() {
-                    SecretMediaViewer.m3996$r8$lambda$Y0cscvIFNAqQ07bMLJdyu_i3w(this.f$0, placeForPhoto);
+                    SecretMediaViewer.m3995$r8$lambda$Y0cscvIFNAqQ07bMLJdyu_i3w(this.f$0, placeForPhoto);
                 }
             };
             animatorSet3.setDuration(200L);
@@ -2240,7 +2240,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         return true;
     }
 
-    public static void m3992$r8$lambda$1FmEGjwHHrohhdxS2ZZAkEtiVo(SecretMediaViewer secretMediaViewer, PhotoViewer.PlaceProviderObject placeProviderObject) {
+    public static void m3991$r8$lambda$1FmEGjwHHrohhdxS2ZZAkEtiVo(SecretMediaViewer secretMediaViewer, PhotoViewer.PlaceProviderObject placeProviderObject) {
         secretMediaViewer.imageMoveAnimation = null;
         secretMediaViewer.photoAnimationInProgress = 0;
         secretMediaViewer.containerView.setLayerType(0, null);
@@ -2278,7 +2278,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
     }
 
-    public static void m3996$r8$lambda$Y0cscvIFNAqQ07bMLJdyu_i3w(SecretMediaViewer secretMediaViewer, PhotoViewer.PlaceProviderObject placeProviderObject) {
+    public static void m3995$r8$lambda$Y0cscvIFNAqQ07bMLJdyu_i3w(SecretMediaViewer secretMediaViewer, PhotoViewer.PlaceProviderObject placeProviderObject) {
         FrameLayoutDrawer frameLayoutDrawer = secretMediaViewer.containerView;
         if (frameLayoutDrawer == null) {
             return;

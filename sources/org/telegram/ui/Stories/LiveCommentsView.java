@@ -922,12 +922,12 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(getgroupcallstars, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                LiveCommentsView.m4313$r8$lambda$4FlqpcWUUGhBSJpIwjyHqjZxs8(this.f$0, getgroupcallstars, (TL_phone.groupCallStars) obj, (TLRPC.TL_error) obj2);
+                LiveCommentsView.m4312$r8$lambda$4FlqpcWUUGhBSJpIwjyHqjZxs8(this.f$0, getgroupcallstars, (TL_phone.groupCallStars) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m4313$r8$lambda$4FlqpcWUUGhBSJpIwjyHqjZxs8(LiveCommentsView liveCommentsView, TL_phone.getGroupCallStars getgroupcallstars, TL_phone.groupCallStars groupcallstars, TLRPC.TL_error tL_error) {
+    public static void m4312$r8$lambda$4FlqpcWUUGhBSJpIwjyHqjZxs8(LiveCommentsView liveCommentsView, TL_phone.getGroupCallStars getgroupcallstars, TL_phone.groupCallStars groupcallstars, TLRPC.TL_error tL_error) {
         boolean z;
         liveCommentsView.polling = false;
         TLRPC.InputGroupCall inputGroupCall = liveCommentsView.inputCall;
@@ -1339,7 +1339,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(sendgroupcallmessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LiveCommentsView.m4318$r8$lambda$lSdGGtafPtuSQxF2rsWdUEnUE(this.f$0, sendgroupcallmessage, newMessageId, j2, j, tL_textWithEntities, tLObject, tL_error);
+                LiveCommentsView.m4317$r8$lambda$lSdGGtafPtuSQxF2rsWdUEnUE(this.f$0, sendgroupcallmessage, newMessageId, j2, j, tL_textWithEntities, tLObject, tL_error);
             }
         });
         if (this.topDonors != null && j2 > 0) {
@@ -1371,14 +1371,14 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         return newMessageId;
     }
 
-    public static void m4318$r8$lambda$lSdGGtafPtuSQxF2rsWdUEnUE(final LiveCommentsView liveCommentsView, TL_phone.sendGroupCallMessage sendgroupcallmessage, final int i, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4317$r8$lambda$lSdGGtafPtuSQxF2rsWdUEnUE(final LiveCommentsView liveCommentsView, TL_phone.sendGroupCallMessage sendgroupcallmessage, final int i, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities, TLObject tLObject, final TLRPC.TL_error tL_error) {
         liveCommentsView.getClass();
         if (!(tLObject instanceof TLRPC.Updates)) {
             if (tL_error != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LiveCommentsView.m4315$r8$lambda$IIOcKqe5JvC3ci5xzOIi8BmUXo(this.f$0, i, tL_error, j, j2, tL_textWithEntities);
+                        LiveCommentsView.m4314$r8$lambda$IIOcKqe5JvC3ci5xzOIi8BmUXo(this.f$0, i, tL_error, j, j2, tL_textWithEntities);
                     }
                 });
                 return;
@@ -1400,7 +1400,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         MessagesController.getInstance(liveCommentsView.currentAccount).processUpdates(updates, false);
     }
 
-    public static void m4315$r8$lambda$IIOcKqe5JvC3ci5xzOIi8BmUXo(final LiveCommentsView liveCommentsView, int i, TLRPC.TL_error tL_error, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities) {
+    public static void m4314$r8$lambda$IIOcKqe5JvC3ci5xzOIi8BmUXo(final LiveCommentsView liveCommentsView, int i, TLRPC.TL_error tL_error, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities) {
         liveCommentsView.delete(i);
         if ("BALANCE_TOO_LOW".equalsIgnoreCase(tL_error.text)) {
             new StarsIntroActivity.StarsNeededSheet(liveCommentsView.getContext(), new DarkThemeResourceProvider(), j, 17, "", new Runnable() {
@@ -1623,7 +1623,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return LiveCommentsView.m4321$r8$lambda$y3Wo3CjgU70cCc3MVU1TZwWVTU((TL_phone.groupCallDonor) obj, (TL_phone.groupCallDonor) obj2);
+                return LiveCommentsView.m4320$r8$lambda$y3Wo3CjgU70cCc3MVU1TZwWVTU((TL_phone.groupCallDonor) obj, (TL_phone.groupCallDonor) obj2);
             }
         });
         int size = arrayList.size();
@@ -1681,7 +1681,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
     }
 
-    public static int m4321$r8$lambda$y3Wo3CjgU70cCc3MVU1TZwWVTU(TL_phone.groupCallDonor groupcalldonor, TL_phone.groupCallDonor groupcalldonor2) {
+    public static int m4320$r8$lambda$y3Wo3CjgU70cCc3MVU1TZwWVTU(TL_phone.groupCallDonor groupcalldonor, TL_phone.groupCallDonor groupcalldonor2) {
         return (int) (groupcalldonor2.stars - groupcalldonor.stars);
     }
 
@@ -1850,7 +1850,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    LiveCommentsView.LiveCommentView.m4322$r8$lambda$AGdM57zhij2P3s7zbmbKPSAYm4(this.f$0, valueAnimator2);
+                    LiveCommentsView.LiveCommentView.m4321$r8$lambda$AGdM57zhij2P3s7zbmbKPSAYm4(this.f$0, valueAnimator2);
                 }
             });
             this.highlightAnimator.addListener(new AnonymousClass2());
@@ -1859,7 +1859,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             this.highlightAnimator.start();
         }
 
-        public static void m4322$r8$lambda$AGdM57zhij2P3s7zbmbKPSAYm4(LiveCommentView liveCommentView, ValueAnimator valueAnimator) {
+        public static void m4321$r8$lambda$AGdM57zhij2P3s7zbmbKPSAYm4(LiveCommentView liveCommentView, ValueAnimator valueAnimator) {
             liveCommentView.getClass();
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             Drawable drawable = liveCommentView.background;
@@ -1977,7 +1977,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                         Collections.sort(arrayList, new Comparator() {
                             @Override
                             public final int compare(Object obj, Object obj2) {
-                                return LiveCommentsView.LiveCommentView.m4323$r8$lambda$F7X9DwFaQsZa6QS3jF4kyw0G_o((Pair) obj, (Pair) obj2);
+                                return LiveCommentsView.LiveCommentView.m4322$r8$lambda$F7X9DwFaQsZa6QS3jF4kyw0G_o((Pair) obj, (Pair) obj2);
                             }
                         });
                         if (!(this.text instanceof SpannableStringBuilder)) {
@@ -2087,7 +2087,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             this.layout.invalidate();
         }
 
-        public static int m4323$r8$lambda$F7X9DwFaQsZa6QS3jF4kyw0G_o(Pair pair, Pair pair2) {
+        public static int m4322$r8$lambda$F7X9DwFaQsZa6QS3jF4kyw0G_o(Pair pair, Pair pair2) {
             return ((Integer) pair.first).intValue() - ((Integer) pair2.first).intValue();
         }
 

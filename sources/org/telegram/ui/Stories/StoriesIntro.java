@@ -146,14 +146,14 @@ public class StoriesIntro extends FrameLayout {
         this.valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StoriesIntro.m4436$r8$lambda$8BgGDpsr7PHLAxyIGPGm2CMeo(this.f$0, valueAnimator2);
+                StoriesIntro.m4435$r8$lambda$8BgGDpsr7PHLAxyIGPGm2CMeo(this.f$0, valueAnimator2);
             }
         });
         this.valueAnimator.start();
         AndroidUtilities.runOnUIThread(this.startItemAnimationRunnable, ((StoriesIntroItemView) this.items.get(this.current)).getLottieAnimationDuration() + 100);
     }
 
-    public static void m4436$r8$lambda$8BgGDpsr7PHLAxyIGPGm2CMeo(StoriesIntro storiesIntro, ValueAnimator valueAnimator) {
+    public static void m4435$r8$lambda$8BgGDpsr7PHLAxyIGPGm2CMeo(StoriesIntro storiesIntro, ValueAnimator valueAnimator) {
         storiesIntro.getClass();
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         ((StoriesIntroItemView) storiesIntro.items.get(storiesIntro.current)).setProgress(fFloatValue);

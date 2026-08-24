@@ -178,7 +178,7 @@ public class SecretVoicePlayer extends Dialog {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                SecretVoicePlayer.m4001$r8$lambda$LeF4wIGXatYvPasvsipyHHniC8(this.f$0, view);
+                SecretVoicePlayer.m4000$r8$lambda$LeF4wIGXatYvPasvsipyHHniC8(this.f$0, view);
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(context) {
@@ -223,7 +223,7 @@ public class SecretVoicePlayer extends Dialog {
         }
     }
 
-    public static void m4001$r8$lambda$LeF4wIGXatYvPasvsipyHHniC8(SecretVoicePlayer secretVoicePlayer, View view) {
+    public static void m4000$r8$lambda$LeF4wIGXatYvPasvsipyHHniC8(SecretVoicePlayer secretVoicePlayer, View view) {
         if (secretVoicePlayer.closeAction == null) {
             secretVoicePlayer.dismiss();
         }
@@ -245,12 +245,12 @@ public class SecretVoicePlayer extends Dialog {
         AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                SecretVoicePlayer.m4002$r8$lambda$RsyRmTAcJKWZBeOcrZYnYy5pas(this.f$0, view, (Bitmap) obj);
+                SecretVoicePlayer.m4001$r8$lambda$RsyRmTAcJKWZBeOcrZYnYy5pas(this.f$0, view, (Bitmap) obj);
             }
         }, 14.0f);
     }
 
-    public static void m4002$r8$lambda$RsyRmTAcJKWZBeOcrZYnYy5pas(SecretVoicePlayer secretVoicePlayer, View view, Bitmap bitmap) {
+    public static void m4001$r8$lambda$RsyRmTAcJKWZBeOcrZYnYy5pas(SecretVoicePlayer secretVoicePlayer, View view, Bitmap bitmap) {
         if (view != null) {
             secretVoicePlayer.getClass();
             view.setVisibility(0);
@@ -1254,12 +1254,12 @@ public class SecretVoicePlayer extends Dialog {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretVoicePlayer.AnonymousClass5.m4007$r8$lambda$pqKvCZgsToISh77meG8KWXRdc(this.f$0);
+                    SecretVoicePlayer.AnonymousClass5.m4006$r8$lambda$pqKvCZgsToISh77meG8KWXRdc(this.f$0);
                 }
             });
         }
 
-        public static void m4007$r8$lambda$pqKvCZgsToISh77meG8KWXRdc(AnonymousClass5 anonymousClass5) {
+        public static void m4006$r8$lambda$pqKvCZgsToISh77meG8KWXRdc(AnonymousClass5 anonymousClass5) {
             SecretVoicePlayer.this.renderedFirstFrame = true;
             SecretVoicePlayer.this.myCell.invalidate();
         }
@@ -1328,7 +1328,7 @@ public class SecretVoicePlayer extends Dialog {
             }).setNegativeButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog2, int i) {
-                    SecretVoicePlayer.m4004$r8$lambda$l1puDsHIvlT0hcExnAVKlRXVic(this.f$0, alertDialog2, i);
+                    SecretVoicePlayer.m4003$r8$lambda$l1puDsHIvlT0hcExnAVKlRXVic(this.f$0, alertDialog2, i);
                 }
             }).create();
             this.backDialog = alertDialogCreate;
@@ -1350,7 +1350,7 @@ public class SecretVoicePlayer extends Dialog {
         }
     }
 
-    public static void m4004$r8$lambda$l1puDsHIvlT0hcExnAVKlRXVic(SecretVoicePlayer secretVoicePlayer, AlertDialog alertDialog, int i) {
+    public static void m4003$r8$lambda$l1puDsHIvlT0hcExnAVKlRXVic(SecretVoicePlayer secretVoicePlayer, AlertDialog alertDialog, int i) {
         AlertDialog alertDialog2 = secretVoicePlayer.backDialog;
         if (alertDialog2 != null) {
             alertDialog2.dismiss();
@@ -1390,7 +1390,7 @@ public class SecretVoicePlayer extends Dialog {
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                SecretVoicePlayer.m4000$r8$lambda$GrEIy_oOLoY8yBhY2AG0Np6xpI(this.f$0);
+                SecretVoicePlayer.m3999$r8$lambda$GrEIy_oOLoY8yBhY2AG0Np6xpI(this.f$0);
             }
         });
         this.windowView.invalidate();
@@ -1421,7 +1421,7 @@ public class SecretVoicePlayer extends Dialog {
         }
     }
 
-    public static void m4000$r8$lambda$GrEIy_oOLoY8yBhY2AG0Np6xpI(final SecretVoicePlayer secretVoicePlayer) {
+    public static void m3999$r8$lambda$GrEIy_oOLoY8yBhY2AG0Np6xpI(final SecretVoicePlayer secretVoicePlayer) {
         if (secretVoicePlayer.thanosEffect == null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -1489,7 +1489,7 @@ public class SecretVoicePlayer extends Dialog {
         valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                SecretVoicePlayer.m4005$r8$lambda$qNEYvQh4pCHZyDIEAhrI7UsV8o(this.f$0, valueAnimator4);
+                SecretVoicePlayer.m4004$r8$lambda$qNEYvQh4pCHZyDIEAhrI7UsV8o(this.f$0, valueAnimator4);
             }
         });
         this.open2Animator.addListener(new AnimatorListenerAdapter() {
@@ -1526,7 +1526,7 @@ public class SecretVoicePlayer extends Dialog {
         secretVoicePlayer.myCell.getSeekBarWaveform().setExplosionRate((z ? CubicBezierInterpolator.EASE_OUT : CubicBezierInterpolator.EASE_IN).getInterpolation(Utilities.clamp(secretVoicePlayer.openProgress * 1.25f, 1.0f, 0.0f)));
     }
 
-    public static void m4005$r8$lambda$qNEYvQh4pCHZyDIEAhrI7UsV8o(SecretVoicePlayer secretVoicePlayer, ValueAnimator valueAnimator) {
+    public static void m4004$r8$lambda$qNEYvQh4pCHZyDIEAhrI7UsV8o(SecretVoicePlayer secretVoicePlayer, ValueAnimator valueAnimator) {
         secretVoicePlayer.getClass();
         secretVoicePlayer.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         if (secretVoicePlayer.isRound) {

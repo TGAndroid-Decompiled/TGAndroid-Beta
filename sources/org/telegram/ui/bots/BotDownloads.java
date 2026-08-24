@@ -454,7 +454,7 @@ public class BotDownloads {
         builder.setPositiveButton(LocaleController.getString(R.string.BotDownloadFileDownload), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                BotDownloads.m4814$r8$lambda$0V5vVA5p02uOzaqNbeUDVEoiqw(zArr, callback, alertDialog, i2);
+                BotDownloads.m4813$r8$lambda$0V5vVA5p02uOzaqNbeUDVEoiqw(zArr, callback, alertDialog, i2);
             }
         });
         AlertDialog alertDialogCreate = builder.create();
@@ -495,7 +495,7 @@ public class BotDownloads {
         zArr[0] = true;
     }
 
-    public static void m4814$r8$lambda$0V5vVA5p02uOzaqNbeUDVEoiqw(boolean[] zArr, Utilities.Callback callback, AlertDialog alertDialog, int i) {
+    public static void m4813$r8$lambda$0V5vVA5p02uOzaqNbeUDVEoiqw(boolean[] zArr, Utilities.Callback callback, AlertDialog alertDialog, int i) {
         if (zArr[0]) {
             return;
         }

@@ -332,7 +332,7 @@ public class BotStorage {
 
                 @Override
                 public final boolean test(Object obj) {
-                    return BotStorage.m4824$r8$lambda$2TrejV4DZFTKINv8zN0Fm9UNc(hashSet, (BotStorage.StorageConfig) obj);
+                    return BotStorage.m4823$r8$lambda$2TrejV4DZFTKINv8zN0Fm9UNc(hashSet, (BotStorage.StorageConfig) obj);
                 }
             }).collect(Collectors.toSet())).iterator();
             while (it.hasNext()) {
@@ -350,7 +350,7 @@ public class BotStorage {
         return new Pair(strOptString, Boolean.valueOf(z));
     }
 
-    public static boolean m4824$r8$lambda$2TrejV4DZFTKINv8zN0Fm9UNc(HashSet hashSet, StorageConfig storageConfig) {
+    public static boolean m4823$r8$lambda$2TrejV4DZFTKINv8zN0Fm9UNc(HashSet hashSet, StorageConfig storageConfig) {
         return !hashSet.contains(Long.valueOf(storageConfig.user_id));
     }
 
@@ -385,7 +385,7 @@ public class BotStorage {
 
             @Override
             public final boolean test(Object obj) {
-                return BotStorage.m4825$r8$lambda$WR9erIHrU4gsykerJmxzH3I8b0(hashSet, (BotStorage.StorageConfig) obj);
+                return BotStorage.m4824$r8$lambda$WR9erIHrU4gsykerJmxzH3I8b0(hashSet, (BotStorage.StorageConfig) obj);
             }
         }).collect(Collectors.toSet())) {
             try {
@@ -400,7 +400,7 @@ public class BotStorage {
         return arrayList;
     }
 
-    public static boolean m4825$r8$lambda$WR9erIHrU4gsykerJmxzH3I8b0(HashSet hashSet, StorageConfig storageConfig) {
+    public static boolean m4824$r8$lambda$WR9erIHrU4gsykerJmxzH3I8b0(HashSet hashSet, StorageConfig storageConfig) {
         return !hashSet.contains(Long.valueOf(storageConfig.user_id));
     }
 
@@ -554,7 +554,7 @@ public class BotStorage {
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                BotStorage.m4826$r8$lambda$_XiV6ygf3hnFTc2t7ybF1GjLJQ(zArr, callback, dialogInterface);
+                BotStorage.m4825$r8$lambda$_XiV6ygf3hnFTc2t7ybF1GjLJQ(zArr, callback, dialogInterface);
             }
         });
         bottomSheetCreate.show();
@@ -618,7 +618,7 @@ public class BotStorage {
         bottomSheet.dismiss();
     }
 
-    public static void m4826$r8$lambda$_XiV6ygf3hnFTc2t7ybF1GjLJQ(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+    public static void m4825$r8$lambda$_XiV6ygf3hnFTc2t7ybF1GjLJQ(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
         if (zArr[0] || callback == null) {
             return;
         }

@@ -62,7 +62,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         void onClickGroupOwner(long j);
     }
 
-    public static void m4895$r8$lambda$iKAnBjVDjZkfG3zWlAGUhGTF0() {
+    public static void m4894$r8$lambda$iKAnBjVDjZkfG3zWlAGUhGTF0() {
     }
 
     public int[] getColorKeys() {
@@ -168,7 +168,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CommunityPendingRequestCell.m4897$r8$lambda$lcOxsW5NAQvrDANF7AeSQcNj7g(this.f$0, view);
+                CommunityPendingRequestCell.m4896$r8$lambda$lcOxsW5NAQvrDANF7AeSQcNj7g(this.f$0, view);
             }
         });
         linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 30, 0.0f, 16, 0, 0, 4, 0));
@@ -181,7 +181,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CommunityPendingRequestCell.m4896$r8$lambda$3YrE6nLsEz1kpJGlMYqdv3H21k(this.f$0, view);
+                CommunityPendingRequestCell.m4895$r8$lambda$3YrE6nLsEz1kpJGlMYqdv3H21k(this.f$0, view);
             }
         });
         linearLayout2.addView(buttonWithCounterView2, LayoutHelper.createLinear(-2, 30, 0.0f, 16, 4, 0, 0, 0));
@@ -204,14 +204,14 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         }
     }
 
-    public static void m4897$r8$lambda$lcOxsW5NAQvrDANF7AeSQcNj7g(CommunityPendingRequestCell communityPendingRequestCell, View view) {
+    public static void m4896$r8$lambda$lcOxsW5NAQvrDANF7AeSQcNj7g(CommunityPendingRequestCell communityPendingRequestCell, View view) {
         ClickDelegate clickDelegate = communityPendingRequestCell.delegate;
         if (clickDelegate != null) {
             clickDelegate.onClickDecline(communityPendingRequestCell.groupDialogId);
         }
     }
 
-    public static void m4896$r8$lambda$3YrE6nLsEz1kpJGlMYqdv3H21k(CommunityPendingRequestCell communityPendingRequestCell, View view) {
+    public static void m4895$r8$lambda$3YrE6nLsEz1kpJGlMYqdv3H21k(CommunityPendingRequestCell communityPendingRequestCell, View view) {
         ClickDelegate clickDelegate = communityPendingRequestCell.delegate;
         if (clickDelegate != null) {
             clickDelegate.onClickApprove(communityPendingRequestCell.groupDialogId);
@@ -276,7 +276,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         textView.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i, DialogObject.getShortName(user)), Theme.getColor(Theme.key_telegram_color_text), new Runnable() {
             @Override
             public final void run() {
-                CommunityPendingRequestCell.m4895$r8$lambda$iKAnBjVDjZkfG3zWlAGUhGTF0();
+                CommunityPendingRequestCell.m4894$r8$lambda$iKAnBjVDjZkfG3zWlAGUhGTF0();
             }
         }));
         if (user2 == null && chat != null && chat.participants_count > 0) {

@@ -354,7 +354,7 @@ public class TopicCreateFragment extends BaseFragment {
                 ConnectionsManager.getInstance(((BaseFragment) topicCreateFragment).currentAccount).sendRequest(tL_messages_createForumTopic, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        TopicCreateFragment.AnonymousClass1.m4713$r8$lambda$PwIO4Da7WdhSX33G__7E4krU8w(this.f$0, string, alertDialog, tLObject, tL_error);
+                        TopicCreateFragment.AnonymousClass1.m4712$r8$lambda$PwIO4Da7WdhSX33G__7E4krU8w(this.f$0, string, alertDialog, tLObject, tL_error);
                     }
                 });
                 return;
@@ -454,7 +454,7 @@ public class TopicCreateFragment extends BaseFragment {
             }
         }
 
-        public static void m4713$r8$lambda$PwIO4Da7WdhSX33G__7E4krU8w(final AnonymousClass1 anonymousClass1, final String str, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void m4712$r8$lambda$PwIO4Da7WdhSX33G__7E4krU8w(final AnonymousClass1 anonymousClass1, final String str, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
             anonymousClass1.getClass();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -577,7 +577,7 @@ public class TopicCreateFragment extends BaseFragment {
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            TopicCreateFragment.AnonymousClass4.m4714$r8$lambda$2_nAxGvF0zBLtqa9kS8rv7TxVE(this.f$0, valueAnimator2);
+                            TopicCreateFragment.AnonymousClass4.m4713$r8$lambda$2_nAxGvF0zBLtqa9kS8rv7TxVE(this.f$0, valueAnimator2);
                         }
                     });
                     this.backAnimator.addListener(new AnimatorListenerAdapter() {
@@ -594,7 +594,7 @@ public class TopicCreateFragment extends BaseFragment {
             }
         }
 
-        public static void m4714$r8$lambda$2_nAxGvF0zBLtqa9kS8rv7TxVE(AnonymousClass4 anonymousClass4, ValueAnimator valueAnimator) {
+        public static void m4713$r8$lambda$2_nAxGvF0zBLtqa9kS8rv7TxVE(AnonymousClass4 anonymousClass4, ValueAnimator valueAnimator) {
             anonymousClass4.getClass();
             anonymousClass4.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             anonymousClass4.invalidate();

@@ -81,7 +81,7 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
     private boolean showCommandBackground;
     private final ArrayList tmpBlocks;
 
-    public static boolean m5023$r8$lambda$WlQ74KoGXP_hHDx2kZV7wXg4E(View view) {
+    public static boolean m5022$r8$lambda$WlQ74KoGXP_hHDx2kZV7wXg4E(View view) {
         return true;
     }
 
@@ -195,13 +195,13 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         richEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
             public final void onSpansChanged() {
-                RichTextCell.m5021$r8$lambda$1qBBSSV3_qXnIgzIL2cb3Mc29A(this.f$0);
+                RichTextCell.m5020$r8$lambda$1qBBSSV3_qXnIgzIL2cb3Mc29A(this.f$0);
             }
         });
         richEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public final void onFocusChange(View view2, boolean z) {
-                RichTextCell.m5020$r8$lambda$1TBRaFPPPdYKleX2ap9DhIQwMA(this.f$0, view2, z);
+                RichTextCell.m5019$r8$lambda$1TBRaFPPPdYKleX2ap9DhIQwMA(this.f$0, view2, z);
             }
         });
         linearLayout.addView(richEditText, LayoutHelper.createLinear(0, -2, 1.0f));
@@ -215,7 +215,7 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         richEditText2.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
             public final void onSpansChanged() {
-                RichTextCell.m5019$r8$lambda$1P8uujXIyJbbJWccL0VJp2Sb0Q(this.f$0);
+                RichTextCell.m5018$r8$lambda$1P8uujXIyJbbJWccL0VJp2Sb0Q(this.f$0);
             }
         });
         richEditText2.setVisibility(8);
@@ -401,12 +401,12 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
             RichTextCell.this.post(new Runnable() {
                 @Override
                 public final void run() {
-                    RichTextCell.AnonymousClass2.m5025$r8$lambda$7fSgMRis17tacghQ4AXXetFGrQ(this.f$0, richEditText, i2, selectionHelper, i);
+                    RichTextCell.AnonymousClass2.m5024$r8$lambda$7fSgMRis17tacghQ4AXXetFGrQ(this.f$0, richEditText, i2, selectionHelper, i);
                 }
             });
         }
 
-        public static void m5025$r8$lambda$7fSgMRis17tacghQ4AXXetFGrQ(AnonymousClass2 anonymousClass2, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2) {
+        public static void m5024$r8$lambda$7fSgMRis17tacghQ4AXXetFGrQ(AnonymousClass2 anonymousClass2, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2) {
             anonymousClass2.getClass();
             if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd()) {
                 return;
@@ -423,7 +423,7 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         }
     }
 
-    public static void m5021$r8$lambda$1qBBSSV3_qXnIgzIL2cb3Mc29A(RichTextCell richTextCell) {
+    public static void m5020$r8$lambda$1qBBSSV3_qXnIgzIL2cb3Mc29A(RichTextCell richTextCell) {
         if (richTextCell.applyingCollapsedDecoration || richTextCell.currentRow == null) {
             return;
         }
@@ -435,7 +435,7 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         }
     }
 
-    public static void m5020$r8$lambda$1TBRaFPPPdYKleX2ap9DhIQwMA(RichTextCell richTextCell, View view, boolean z) {
+    public static void m5019$r8$lambda$1TBRaFPPPdYKleX2ap9DhIQwMA(RichTextCell richTextCell, View view, boolean z) {
         Delegate delegate;
         richTextCell.editText.setHint(richTextCell.getHint());
         if (z || (delegate = richTextCell.delegate) == null) {
@@ -561,7 +561,7 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         }
     }
 
-    public static void m5019$r8$lambda$1P8uujXIyJbbJWccL0VJp2Sb0Q(RichTextCell richTextCell) {
+    public static void m5018$r8$lambda$1P8uujXIyJbbJWccL0VJp2Sb0Q(RichTextCell richTextCell) {
         if (richTextCell.currentRow == null) {
             return;
         }
@@ -606,13 +606,13 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
             this.languageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    RichTextCell.m5022$r8$lambda$2QlZutym7cGe1oz0jmQj5jFuM(this.f$0, view);
+                    RichTextCell.m5021$r8$lambda$2QlZutym7cGe1oz0jmQj5jFuM(this.f$0, view);
                 }
             });
             this.languageButton.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    return RichTextCell.m5023$r8$lambda$WlQ74KoGXP_hHDx2kZV7wXg4E(view);
+                    return RichTextCell.m5022$r8$lambda$WlQ74KoGXP_hHDx2kZV7wXg4E(view);
                 }
             });
         }
@@ -628,7 +628,7 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         this.languageButton.setVisibility(0);
     }
 
-    public static void m5022$r8$lambda$2QlZutym7cGe1oz0jmQj5jFuM(RichTextCell richTextCell, View view) {
+    public static void m5021$r8$lambda$2QlZutym7cGe1oz0jmQj5jFuM(RichTextCell richTextCell, View view) {
         Delegate delegate = richTextCell.delegate;
         if (delegate != null) {
             delegate.onLanguageClick(richTextCell.currentRow, view);
@@ -820,13 +820,13 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
             CodeHighlighting.highlightEditable(string, str, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    RichTextCell.m5024$r8$lambda$fV9Ed2lV2VkAyDNniN_pHhE9Ok(this.f$0, i, blockRow, string, (SpannableString) obj);
+                    RichTextCell.m5023$r8$lambda$fV9Ed2lV2VkAyDNniN_pHhE9Ok(this.f$0, i, blockRow, string, (SpannableString) obj);
                 }
             });
         }
     }
 
-    public static void m5024$r8$lambda$fV9Ed2lV2VkAyDNniN_pHhE9Ok(RichTextCell richTextCell, int i, BlockRow blockRow, String str, SpannableString spannableString) {
+    public static void m5023$r8$lambda$fV9Ed2lV2VkAyDNniN_pHhE9Ok(RichTextCell richTextCell, int i, BlockRow blockRow, String str, SpannableString spannableString) {
         if (i == richTextCell.highlightGeneration && richTextCell.currentRow == blockRow) {
             Editable text = richTextCell.editText.getText();
             if (TextUtils.equals(str, text)) {

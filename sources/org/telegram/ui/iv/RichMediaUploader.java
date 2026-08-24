@@ -138,7 +138,7 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    RichMediaUploader.m5012$r8$lambda$T8Lrh8Hjipdhzh1PC4hx0Hh2yU(this.f$0);
+                    RichMediaUploader.m5011$r8$lambda$T8Lrh8Hjipdhzh1PC4hx0Hh2yU(this.f$0);
                 }
             });
         } else if (this.isAudio) {
@@ -154,7 +154,7 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
         }
     }
 
-    public static void m5012$r8$lambda$T8Lrh8Hjipdhzh1PC4hx0Hh2yU(final RichMediaUploader richMediaUploader) {
+    public static void m5011$r8$lambda$T8Lrh8Hjipdhzh1PC4hx0Hh2yU(final RichMediaUploader richMediaUploader) {
         richMediaUploader.documentThumbPath = richMediaUploader.generateDocumentThumb();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -176,12 +176,12 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                RichMediaUploader.m5013$r8$lambda$_FOlRap55R31m5jZJEDTmXEPZU(this.f$0, strEnsureJpegPath);
+                RichMediaUploader.m5012$r8$lambda$_FOlRap55R31m5jZJEDTmXEPZU(this.f$0, strEnsureJpegPath);
             }
         });
     }
 
-    public static void m5013$r8$lambda$_FOlRap55R31m5jZJEDTmXEPZU(RichMediaUploader richMediaUploader, String str) {
+    public static void m5012$r8$lambda$_FOlRap55R31m5jZJEDTmXEPZU(RichMediaUploader richMediaUploader, String str) {
         if (richMediaUploader.cancelled || richMediaUploader.finished) {
             return;
         }

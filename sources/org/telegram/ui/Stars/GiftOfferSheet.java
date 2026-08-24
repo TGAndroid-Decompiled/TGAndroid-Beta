@@ -137,7 +137,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         balanceCloud.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                GiftOfferSheet.m4098$r8$lambda$_g1lhGoznL16p2rdsrn8e0Yzhw(this.f$0, context, resourcesProvider, view);
+                GiftOfferSheet.m4097$r8$lambda$_g1lhGoznL16p2rdsrn8e0Yzhw(this.f$0, context, resourcesProvider, view);
             }
         });
         fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
@@ -156,7 +156,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             horizontalRoundTabsLayout.setTabs(arrayList, new MessagesStorage.IntCallback() {
                 @Override
                 public final void run(int i2) {
-                    GiftOfferSheet.m4094$r8$lambda$B9apyVlnlU4FZl2GR1kWoJ2Cc(this.f$0, i2);
+                    GiftOfferSheet.m4093$r8$lambda$B9apyVlnlU4FZl2GR1kWoJ2Cc(this.f$0, i2);
                 }
             });
             linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(-1, -2, 18.0f, 0.0f, 18.0f, 18.0f));
@@ -294,13 +294,13 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         this.adapter.update(false);
     }
 
-    public static void m4098$r8$lambda$_g1lhGoznL16p2rdsrn8e0Yzhw(GiftOfferSheet giftOfferSheet, Context context, Theme.ResourcesProvider resourcesProvider, View view) {
+    public static void m4097$r8$lambda$_g1lhGoznL16p2rdsrn8e0Yzhw(GiftOfferSheet giftOfferSheet, Context context, Theme.ResourcesProvider resourcesProvider, View view) {
         if (giftOfferSheet.inputAmount.currency == AmountUtils$Currency.STARS) {
             new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
         }
     }
 
-    public static void m4094$r8$lambda$B9apyVlnlU4FZl2GR1kWoJ2Cc(GiftOfferSheet giftOfferSheet, int i) {
+    public static void m4093$r8$lambda$B9apyVlnlU4FZl2GR1kWoJ2Cc(GiftOfferSheet giftOfferSheet, int i) {
         AmountUtils$Currency amountUtils$Currency;
         giftOfferSheet.getClass();
         if (i == 0) {
@@ -329,7 +329,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
                 AlertsCreator.createCustomPicker(context, LocaleController.getString(R.string.GiftOfferDuration), i2, strArr, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        GiftOfferSheet.m4097$r8$lambda$VH8csTRCIidk7ns0ZoC5CUhkbY(this.f$0, (Integer) obj);
+                        GiftOfferSheet.m4096$r8$lambda$VH8csTRCIidk7ns0ZoC5CUhkbY(this.f$0, (Integer) obj);
                     }
                 });
                 return;
@@ -337,7 +337,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void m4097$r8$lambda$VH8csTRCIidk7ns0ZoC5CUhkbY(GiftOfferSheet giftOfferSheet, Integer num) {
+    public static void m4096$r8$lambda$VH8csTRCIidk7ns0ZoC5CUhkbY(GiftOfferSheet giftOfferSheet, Integer num) {
         giftOfferSheet.getClass();
         giftOfferSheet.setSelectedDuration(ALLOWED_DURATIONS[num.intValue()], true);
     }
@@ -641,12 +641,12 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setView(linearLayout).setPositiveButton(spannableStringBuilder, new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i4) {
-                GiftOfferSheet.m4093$r8$lambda$6cSM4IWlYkA69aAfqSlGW1IOEo(this.f$0, sendPaidMessagesStars, z, amountUtils$AmountFromDecimal, nextRandomId, alertDialog, i4);
+                GiftOfferSheet.m4092$r8$lambda$6cSM4IWlYkA69aAfqSlGW1IOEo(this.f$0, sendPaidMessagesStars, z, amountUtils$AmountFromDecimal, nextRandomId, alertDialog, i4);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create().setShowStarsBalance(true).show();
     }
 
-    public static void m4093$r8$lambda$6cSM4IWlYkA69aAfqSlGW1IOEo(final GiftOfferSheet giftOfferSheet, long j, boolean z, AmountUtils$Amount amountUtils$Amount, long j2, final AlertDialog alertDialog, int i) {
+    public static void m4092$r8$lambda$6cSM4IWlYkA69aAfqSlGW1IOEo(final GiftOfferSheet giftOfferSheet, long j, boolean z, AmountUtils$Amount amountUtils$Amount, long j2, final AlertDialog alertDialog, int i) {
         if (j > 0) {
             int i2 = giftOfferSheet.currentAccount;
             AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.STARS;
@@ -806,12 +806,12 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         ConnectionsManager.getInstance(i2).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                GiftOfferSheet.m4096$r8$lambda$IzHiAyep2_oXhadHlpCz1iaQM(i2, baseFragment, progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                GiftOfferSheet.m4095$r8$lambda$IzHiAyep2_oXhadHlpCz1iaQM(i2, baseFragment, progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void m4096$r8$lambda$IzHiAyep2_oXhadHlpCz1iaQM(int i, final BaseFragment baseFragment, final Browser.Progress progress, final AlertDialog alertDialog, TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
+    public static void m4095$r8$lambda$IzHiAyep2_oXhadHlpCz1iaQM(int i, final BaseFragment baseFragment, final Browser.Progress progress, final AlertDialog alertDialog, TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
         if (updates != null && tL_error == null) {
             MessagesController.getInstance(i).processUpdates(updates, false);
         }

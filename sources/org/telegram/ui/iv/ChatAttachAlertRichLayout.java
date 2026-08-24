@@ -414,13 +414,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }).setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                ChatAttachAlertRichLayout.m4915$r8$lambda$s7NYAxG7xyGe18QPldoLjE0MlE(this.f$0, alertDialog, i);
+                ChatAttachAlertRichLayout.m4914$r8$lambda$s7NYAxG7xyGe18QPldoLjE0MlE(this.f$0, alertDialog, i);
             }
         }).makeRed(-2).show();
         return false;
     }
 
-    public static void m4915$r8$lambda$s7NYAxG7xyGe18QPldoLjE0MlE(ChatAttachAlertRichLayout chatAttachAlertRichLayout, AlertDialog alertDialog, int i) {
+    public static void m4914$r8$lambda$s7NYAxG7xyGe18QPldoLjE0MlE(ChatAttachAlertRichLayout chatAttachAlertRichLayout, AlertDialog alertDialog, int i) {
         chatAttachAlertRichLayout.persistDraft();
         chatAttachAlertRichLayout.parentAlert.dismiss();
     }
@@ -586,7 +586,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         this.menu = itemOptionsDontFocus.show();
     }
 
-    public static void m4909$r8$lambda$iAz3SLOHY6iui3pwYkpUkoa6uQ(ChatAttachAlertRichLayout chatAttachAlertRichLayout, BlockRow blockRow, TL_iv.PageBlock pageBlock, ItemOptions itemOptions) {
+    public static void m4908$r8$lambda$iAz3SLOHY6iui3pwYkpUkoa6uQ(ChatAttachAlertRichLayout chatAttachAlertRichLayout, BlockRow blockRow, TL_iv.PageBlock pageBlock, ItemOptions itemOptions) {
         chatAttachAlertRichLayout.listView.turnIntoKeepList(blockRow, pageBlock);
         itemOptions.dismiss();
     }
@@ -595,7 +595,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         itemOptions.addChecked(blockRow != null && blockRow.block.getClass() == pageBlock.getClass(), i, str, new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.m4909$r8$lambda$iAz3SLOHY6iui3pwYkpUkoa6uQ(this.f$0, blockRow, pageBlock, itemOptions2);
+                ChatAttachAlertRichLayout.m4908$r8$lambda$iAz3SLOHY6iui3pwYkpUkoa6uQ(this.f$0, blockRow, pageBlock, itemOptions2);
             }
         });
         itemOptions.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
@@ -654,7 +654,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 itemOptionsDontFocus.add(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
                     @Override
                     public final void run() {
-                        ChatAttachAlertRichLayout.m4901$r8$lambda$M3k1YD6H5FGvPOMkNJEQjKaTw(this.f$0, itemOptionsDontFocus);
+                        ChatAttachAlertRichLayout.m4900$r8$lambda$M3k1YD6H5FGvPOMkNJEQjKaTw(this.f$0, itemOptionsDontFocus);
                     }
                 });
             }
@@ -667,7 +667,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         itemOptions.dismiss();
     }
 
-    public static void m4901$r8$lambda$M3k1YD6H5FGvPOMkNJEQjKaTw(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ItemOptions itemOptions) {
+    public static void m4900$r8$lambda$M3k1YD6H5FGvPOMkNJEQjKaTw(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ItemOptions itemOptions) {
         chatAttachAlertRichLayout.listView.indentSelection(true);
         itemOptions.dismiss();
     }
@@ -1257,7 +1257,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         ChatActivityEnterView.SendButton sendButton2 = this.messageSendPreview.setSendButton(sendButton, true, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChatAttachAlertRichLayout.m4906$r8$lambda$f7QJXiD9UeGha4RUPtfO5L6h4k(this.f$0, view2);
+                ChatAttachAlertRichLayout.m4905$r8$lambda$f7QJXiD9UeGha4RUPtfO5L6h4k(this.f$0, view2);
             }
         });
         if (sendButton2 != null) {
@@ -1279,7 +1279,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 itemOptionsMakeOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new Runnable() {
                     @Override
                     public final void run() {
-                        ChatAttachAlertRichLayout.m4911$r8$lambda$ob25m3sc67irTGUji_fo9TGTAU(this.f$0);
+                        ChatAttachAlertRichLayout.m4910$r8$lambda$ob25m3sc67irTGUji_fo9TGTAU(this.f$0);
                     }
                 });
             }
@@ -1288,7 +1288,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             itemOptionsMakeOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatAttachAlertRichLayout.m4910$r8$lambda$ik1NHVuJc7cKM6PJuHXlSsclYw(this.f$0);
+                    ChatAttachAlertRichLayout.m4909$r8$lambda$ik1NHVuJc7cKM6PJuHXlSsclYw(this.f$0);
                 }
             });
         }
@@ -1302,7 +1302,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         return true;
     }
 
-    public static void m4906$r8$lambda$f7QJXiD9UeGha4RUPtfO5L6h4k(ChatAttachAlertRichLayout chatAttachAlertRichLayout, View view) {
+    public static void m4905$r8$lambda$f7QJXiD9UeGha4RUPtfO5L6h4k(ChatAttachAlertRichLayout chatAttachAlertRichLayout, View view) {
         chatAttachAlertRichLayout.sendSelectedItems(true, 0, 0, 0L, false);
         MessageSendPreview messageSendPreview = chatAttachAlertRichLayout.messageSendPreview;
         if (messageSendPreview != null) {
@@ -1324,7 +1324,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }, this.resourcesProvider);
     }
 
-    public static void m4911$r8$lambda$ob25m3sc67irTGUji_fo9TGTAU(ChatAttachAlertRichLayout chatAttachAlertRichLayout) {
+    public static void m4910$r8$lambda$ob25m3sc67irTGUji_fo9TGTAU(ChatAttachAlertRichLayout chatAttachAlertRichLayout) {
         chatAttachAlertRichLayout.sendSelectedItems(true, 2147483646, 0, 0L, false);
         MessageSendPreview messageSendPreview = chatAttachAlertRichLayout.messageSendPreview;
         if (messageSendPreview != null) {
@@ -1333,7 +1333,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void m4910$r8$lambda$ik1NHVuJc7cKM6PJuHXlSsclYw(ChatAttachAlertRichLayout chatAttachAlertRichLayout) {
+    public static void m4909$r8$lambda$ik1NHVuJc7cKM6PJuHXlSsclYw(ChatAttachAlertRichLayout chatAttachAlertRichLayout) {
         chatAttachAlertRichLayout.sendSelectedItems(false, 0, 0, 0L, false);
         MessageSendPreview messageSendPreview = chatAttachAlertRichLayout.messageSendPreview;
         if (messageSendPreview != null) {
@@ -1428,12 +1428,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         chatAttachAlertRichLayout.listView.post(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.m4907$r8$lambda$fjEAiuvDz_ViPJwWBRNt6jze1M(this.f$0, blockRow);
+                ChatAttachAlertRichLayout.m4906$r8$lambda$fjEAiuvDz_ViPJwWBRNt6jze1M(this.f$0, blockRow);
             }
         });
     }
 
-    public static void m4907$r8$lambda$fjEAiuvDz_ViPJwWBRNt6jze1M(ChatAttachAlertRichLayout chatAttachAlertRichLayout, BlockRow blockRow) {
+    public static void m4906$r8$lambda$fjEAiuvDz_ViPJwWBRNt6jze1M(ChatAttachAlertRichLayout chatAttachAlertRichLayout, BlockRow blockRow) {
         View viewFindViewByItemObject = chatAttachAlertRichLayout.listView.findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichMapCell) {
             ((RichMapCell) viewFindViewByItemObject).bind(blockRow, chatAttachAlertRichLayout.listView.getMapDelegate());
@@ -1516,13 +1516,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
             @Override
             public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z, int i4, long j) {
-                ChatAttachAlertRichLayout.m4914$r8$lambda$rQGU9Iem5yMyB0gkt1Kt2PiPgA(this.f$0, chatAttachAlert, messageMedia, i3, z, i4, j);
+                ChatAttachAlertRichLayout.m4913$r8$lambda$rQGU9Iem5yMyB0gkt1Kt2PiPgA(this.f$0, chatAttachAlert, messageMedia, i3, z, i4, j);
             }
         });
         chatAttachAlert.setAudioSelectDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
             @Override
             public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i3, int i4, long j, boolean z2, long j2) {
-                ChatAttachAlertRichLayout.m4913$r8$lambda$q9JYunuxpmvwVb58j7TRaf4O0(this.f$0, chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
+                ChatAttachAlertRichLayout.m4912$r8$lambda$q9JYunuxpmvwVb58j7TRaf4O0(this.f$0, chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
             }
         });
         chatAttachAlert.setDocumentsDelegate(new ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate() {
@@ -1565,7 +1565,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         chatAttachAlert.show();
     }
 
-    public static void m4914$r8$lambda$rQGU9Iem5yMyB0gkt1Kt2PiPgA(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public static void m4913$r8$lambda$rQGU9Iem5yMyB0gkt1Kt2PiPgA(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         chatAttachAlertRichLayout.getClass();
         if (messageMedia == null || messageMedia.geo == null) {
             chatAttachAlert.dismiss(true);
@@ -1581,7 +1581,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         chatAttachAlert.dismiss(true);
     }
 
-    public static void m4913$r8$lambda$q9JYunuxpmvwVb58j7TRaf4O0(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public static void m4912$r8$lambda$q9JYunuxpmvwVb58j7TRaf4O0(ChatAttachAlertRichLayout chatAttachAlertRichLayout, ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
         chatAttachAlertRichLayout.getClass();
         if (arrayList != null && !arrayList.isEmpty()) {
             chatAttachAlertRichLayout.listView.attachAudio((MessageObject) arrayList.get(0));
@@ -1647,12 +1647,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         RichEditor.openConversionSheet(context, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda1(richEditorListView), new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.m4912$r8$lambda$piAGnuIwXGyrxr3T1sStWEVtMQ(this.f$0);
+                ChatAttachAlertRichLayout.m4911$r8$lambda$piAGnuIwXGyrxr3T1sStWEVtMQ(this.f$0);
             }
         }, this.resourcesProvider);
     }
 
-    public static void m4912$r8$lambda$piAGnuIwXGyrxr3T1sStWEVtMQ(ChatAttachAlertRichLayout chatAttachAlertRichLayout) {
+    public static void m4911$r8$lambda$piAGnuIwXGyrxr3T1sStWEVtMQ(ChatAttachAlertRichLayout chatAttachAlertRichLayout) {
         if (UserConfig.getInstance(chatAttachAlertRichLayout.currentAccount).isPremium()) {
             return;
         }
@@ -2085,13 +2085,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlertRichLayout.m4904$r8$lambda$Zjled5bofGN3SKK241Q7f6xf4U(round, zArr, callback, strArr, bottomSheetShow, view);
+                ChatAttachAlertRichLayout.m4903$r8$lambda$Zjled5bofGN3SKK241Q7f6xf4U(round, zArr, callback, strArr, bottomSheetShow, view);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.m4903$r8$lambda$XmCv70BUTvSf0IPHKEfsKbsWTE(editTextCell);
+                ChatAttachAlertRichLayout.m4902$r8$lambda$XmCv70BUTvSf0IPHKEfsKbsWTE(editTextCell);
             }
         }, 200L);
     }
@@ -2122,13 +2122,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             callback2.run(str, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatAttachAlertRichLayout.m4917$r8$lambda$zp9lBohig9Yn8FGLzmyhbJ2dBw(str, strArr, imageView, resourcesProvider, z, iArr, buttonWithCounterView, horizontalScrollView, zArr, (Bitmap) obj, (Boolean) obj2);
+                    ChatAttachAlertRichLayout.m4916$r8$lambda$zp9lBohig9Yn8FGLzmyhbJ2dBw(str, strArr, imageView, resourcesProvider, z, iArr, buttonWithCounterView, horizontalScrollView, zArr, (Bitmap) obj, (Boolean) obj2);
                 }
             });
         }
     }
 
-    public static void m4917$r8$lambda$zp9lBohig9Yn8FGLzmyhbJ2dBw(String str, String[] strArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, ButtonWithCounterView buttonWithCounterView, HorizontalScrollView horizontalScrollView, boolean[] zArr, Bitmap bitmap, Boolean bool) {
+    public static void m4916$r8$lambda$zp9lBohig9Yn8FGLzmyhbJ2dBw(String str, String[] strArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, ButtonWithCounterView buttonWithCounterView, HorizontalScrollView horizontalScrollView, boolean[] zArr, Bitmap bitmap, Boolean bool) {
         if (TextUtils.equals(str, strArr[0])) {
             if (bool.booleanValue()) {
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_text_RedBold, resourcesProvider), PorterDuff.Mode.SRC_IN));
@@ -2159,7 +2159,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         callback.run(strArr[0]);
     }
 
-    public static void m4904$r8$lambda$Zjled5bofGN3SKK241Q7f6xf4U(ButtonWithCounterView buttonWithCounterView, boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
+    public static void m4903$r8$lambda$Zjled5bofGN3SKK241Q7f6xf4U(ButtonWithCounterView buttonWithCounterView, boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
         if (buttonWithCounterView.isEnabled()) {
             if (!zArr[0]) {
                 zArr[0] = true;
@@ -2169,7 +2169,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void m4903$r8$lambda$XmCv70BUTvSf0IPHKEfsKbsWTE(EditTextCell editTextCell) {
+    public static void m4902$r8$lambda$XmCv70BUTvSf0IPHKEfsKbsWTE(EditTextCell editTextCell) {
         editTextCell.editText.requestFocus();
         AndroidUtilities.showKeyboard(editTextCell.editText);
     }

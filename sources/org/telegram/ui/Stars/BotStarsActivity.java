@@ -383,7 +383,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.tonBalanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BotStarsActivity.m4085$r8$lambda$zoy72loB1mtK1Ra72BHoeqpV6w(this.f$0, view);
+                BotStarsActivity.m4084$r8$lambda$zoy72loB1mtK1Ra72BHoeqpV6w(this.f$0, view);
             }
         });
         this.tonBalanceLayout.addView(this.tonBalanceButton, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
@@ -471,7 +471,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         }, 1000L);
     }
 
-    public static void m4085$r8$lambda$zoy72loB1mtK1Ra72BHoeqpV6w(final BotStarsActivity botStarsActivity, View view) {
+    public static void m4084$r8$lambda$zoy72loB1mtK1Ra72BHoeqpV6w(final BotStarsActivity botStarsActivity, View view) {
         botStarsActivity.getClass();
         if (!view.isEnabled() || botStarsActivity.tonBalanceButton.isLoading()) {
             return;
@@ -487,12 +487,12 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         twoStepVerificationActivity.preload(new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.m4084$r8$lambda$yTqqbfMEQTxr9ZgLT7NS5bW9Bo(this.f$0, twoStepVerificationActivity);
+                BotStarsActivity.m4083$r8$lambda$yTqqbfMEQTxr9ZgLT7NS5bW9Bo(this.f$0, twoStepVerificationActivity);
             }
         });
     }
 
-    public static void m4084$r8$lambda$yTqqbfMEQTxr9ZgLT7NS5bW9Bo(BotStarsActivity botStarsActivity, TwoStepVerificationActivity twoStepVerificationActivity) {
+    public static void m4083$r8$lambda$yTqqbfMEQTxr9ZgLT7NS5bW9Bo(BotStarsActivity botStarsActivity, TwoStepVerificationActivity twoStepVerificationActivity) {
         botStarsActivity.tonBalanceButton.setLoading(false);
         botStarsActivity.presentFragment(twoStepVerificationActivity);
     }
@@ -737,12 +737,12 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsActivity.m4082$r8$lambda$lx_cV7a38AUvXjAeB8LRu6Hn30(this.f$0, tLObject, tL_error);
+                BotStarsActivity.m4081$r8$lambda$lx_cV7a38AUvXjAeB8LRu6Hn30(this.f$0, tLObject, tL_error);
             }
         });
     }
 
-    public static void m4082$r8$lambda$lx_cV7a38AUvXjAeB8LRu6Hn30(final BotStarsActivity botStarsActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4081$r8$lambda$lx_cV7a38AUvXjAeB8LRu6Hn30(final BotStarsActivity botStarsActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         botStarsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -1110,12 +1110,12 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotStarsActivity.m4081$r8$lambda$jwn3xkUpk13Ytj95g2sHJTaxNE(this.f$0, tL_error, twoStepVerificationActivity, activity, z, j, tLObject);
+                BotStarsActivity.m4080$r8$lambda$jwn3xkUpk13Ytj95g2sHJTaxNE(this.f$0, tL_error, twoStepVerificationActivity, activity, z, j, tLObject);
             }
         });
     }
 
-    public static void m4081$r8$lambda$jwn3xkUpk13Ytj95g2sHJTaxNE(final BotStarsActivity botStarsActivity, TLRPC.TL_error tL_error, final TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, final boolean z, final long j, TLObject tLObject) {
+    public static void m4080$r8$lambda$jwn3xkUpk13Ytj95g2sHJTaxNE(final BotStarsActivity botStarsActivity, TLRPC.TL_error tL_error, final TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, final boolean z, final long j, TLObject tLObject) {
         int i;
         botStarsActivity.getClass();
         if (tL_error != null) {
@@ -1183,7 +1183,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i4) {
-                            BotStarsActivity.m4078$r8$lambda$EcDj1aO1wThXOvQuajYs60owM0(this.f$0, alertDialog, i4);
+                            BotStarsActivity.m4077$r8$lambda$EcDj1aO1wThXOvQuajYs60owM0(this.f$0, alertDialog, i4);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1211,7 +1211,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 ConnectionsManager.getInstance(botStarsActivity.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        BotStarsActivity.m4077$r8$lambda$3vdPgClO37J70nwLi1n4GwXBCo(this.f$0, twoStepVerificationActivity, z, j, tLObject2, tL_error2);
+                        BotStarsActivity.m4076$r8$lambda$3vdPgClO37J70nwLi1n4GwXBCo(this.f$0, twoStepVerificationActivity, z, j, tLObject2, tL_error2);
                     }
                 }, 8);
                 return;
@@ -1233,12 +1233,12 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public static void m4078$r8$lambda$EcDj1aO1wThXOvQuajYs60owM0(BotStarsActivity botStarsActivity, AlertDialog alertDialog, int i) {
+    public static void m4077$r8$lambda$EcDj1aO1wThXOvQuajYs60owM0(BotStarsActivity botStarsActivity, AlertDialog alertDialog, int i) {
         botStarsActivity.getClass();
         botStarsActivity.presentFragment(new TwoStepVerificationSetupActivity(6, null));
     }
 
-    public static void m4077$r8$lambda$3vdPgClO37J70nwLi1n4GwXBCo(final BotStarsActivity botStarsActivity, final TwoStepVerificationActivity twoStepVerificationActivity, final boolean z, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void m4076$r8$lambda$3vdPgClO37J70nwLi1n4GwXBCo(final BotStarsActivity botStarsActivity, final TwoStepVerificationActivity twoStepVerificationActivity, final boolean z, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         botStarsActivity.getClass();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

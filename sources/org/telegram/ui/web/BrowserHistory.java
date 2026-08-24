@@ -63,12 +63,12 @@ public abstract class BrowserHistory {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                BrowserHistory.m5071$r8$lambda$XLggRB9xRVBOZxQbci8KT9Gp2I();
+                BrowserHistory.m5070$r8$lambda$XLggRB9xRVBOZxQbci8KT9Gp2I();
             }
         });
     }
 
-    public static void m5071$r8$lambda$XLggRB9xRVBOZxQbci8KT9Gp2I() {
+    public static void m5070$r8$lambda$XLggRB9xRVBOZxQbci8KT9Gp2I() {
         final ArrayList arrayList = new ArrayList();
         final LongSparseArray longSparseArray = new LongSparseArray();
         try {

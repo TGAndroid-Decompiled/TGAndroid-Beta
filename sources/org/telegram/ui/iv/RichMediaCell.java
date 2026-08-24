@@ -255,7 +255,7 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         imageViewCreateCircleButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                RichMediaCell.m5011$r8$lambda$aktfNM_mFaBj37umbqys92duXw(this.f$0, view);
+                RichMediaCell.m5010$r8$lambda$aktfNM_mFaBj37umbqys92duXw(this.f$0, view);
             }
         });
         updateColors();
@@ -270,7 +270,7 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         delegate.onAddMedia(blockRow);
     }
 
-    public static void m5011$r8$lambda$aktfNM_mFaBj37umbqys92duXw(RichMediaCell richMediaCell, View view) {
+    public static void m5010$r8$lambda$aktfNM_mFaBj37umbqys92duXw(RichMediaCell richMediaCell, View view) {
         BlockRow blockRow;
         Delegate delegate = richMediaCell.delegate;
         if (delegate == null || (blockRow = richMediaCell.currentRow) == null) {

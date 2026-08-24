@@ -123,12 +123,12 @@ public class BotBiometry {
         prompt(str, true, null, new Utilities.Callback3() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3) {
-                BotBiometry.m4812$r8$lambda$EUiNC6veRuZ30C5i6xyfQO7WVk(this.f$0, callback2, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2, (BiometricPrompt.CryptoObject) obj3);
+                BotBiometry.m4811$r8$lambda$EUiNC6veRuZ30C5i6xyfQO7WVk(this.f$0, callback2, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2, (BiometricPrompt.CryptoObject) obj3);
             }
         });
     }
 
-    public static void m4812$r8$lambda$EUiNC6veRuZ30C5i6xyfQO7WVk(BotBiometry botBiometry, Utilities.Callback2 callback2, Boolean bool, BiometricPrompt.AuthenticationResult authenticationResult, BiometricPrompt.CryptoObject cryptoObject) {
+    public static void m4811$r8$lambda$EUiNC6veRuZ30C5i6xyfQO7WVk(BotBiometry botBiometry, Utilities.Callback2 callback2, Boolean bool, BiometricPrompt.AuthenticationResult authenticationResult, BiometricPrompt.CryptoObject cryptoObject) {
         String str;
         botBiometry.getClass();
         String str2 = null;
@@ -440,13 +440,13 @@ public class BotBiometry {
             MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    BotBiometry.m4813$r8$lambda$RJKoBZmwFpKggQ70qGwMAC69F4(i, arrayList, map, callback);
+                    BotBiometry.m4812$r8$lambda$RJKoBZmwFpKggQ70qGwMAC69F4(i, arrayList, map, callback);
                 }
             });
         }
     }
 
-    public static void m4813$r8$lambda$RJKoBZmwFpKggQ70qGwMAC69F4(int i, ArrayList arrayList, final HashMap map, final Utilities.Callback callback) {
+    public static void m4812$r8$lambda$RJKoBZmwFpKggQ70qGwMAC69F4(int i, ArrayList arrayList, final HashMap map, final Utilities.Callback callback) {
         final ArrayList<TLRPC.User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

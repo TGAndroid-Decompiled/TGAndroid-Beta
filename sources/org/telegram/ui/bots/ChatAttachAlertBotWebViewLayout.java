@@ -294,7 +294,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         this.webViewContainer.setWebViewProgressListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChatAttachAlertBotWebViewLayout.m4860$r8$lambda$y1Y_eVs0sEScJhLXoWfR4fsy8Y(this.f$0, (Float) obj);
+                ChatAttachAlertBotWebViewLayout.m4859$r8$lambda$y1Y_eVs0sEScJhLXoWfR4fsy8Y(this.f$0, (Float) obj);
             }
         });
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
@@ -313,7 +313,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         chatAttachAlertBotWebViewLayout.swipeContainer.stickTo(0.0f);
     }
 
-    public static void m4860$r8$lambda$y1Y_eVs0sEScJhLXoWfR4fsy8Y(final ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout, Float f) {
+    public static void m4859$r8$lambda$y1Y_eVs0sEScJhLXoWfR4fsy8Y(final ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout, Float f) {
         chatAttachAlertBotWebViewLayout.progressView.setLoadProgressAnimated(f.floatValue());
         if (f.floatValue() == 1.0f) {
             ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
@@ -1506,14 +1506,14 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             SpringAnimation springAnimation4 = (SpringAnimation) new SpringAnimation(this, SWIPE_OFFSET_Y, f).setSpring(new SpringForce(f).setStiffness(1200.0f).setDampingRatio(1.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f2, float f3) {
-                    ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.m4863$r8$lambda$RFLKsJBn6QUcFP7fK2NFPdORog(this.f$0, runnable, dynamicAnimation, z2, f2, f3);
+                    ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.m4862$r8$lambda$RFLKsJBn6QUcFP7fK2NFPdORog(this.f$0, runnable, dynamicAnimation, z2, f2, f3);
                 }
             });
             this.scrollAnimator = springAnimation4;
             springAnimation4.start();
         }
 
-        public static void m4863$r8$lambda$RFLKsJBn6QUcFP7fK2NFPdORog(WebViewSwipeContainer webViewSwipeContainer, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        public static void m4862$r8$lambda$RFLKsJBn6QUcFP7fK2NFPdORog(WebViewSwipeContainer webViewSwipeContainer, Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
             if (dynamicAnimation == webViewSwipeContainer.scrollAnimator) {
                 webViewSwipeContainer.scrollAnimator = null;
                 if (runnable != null) {

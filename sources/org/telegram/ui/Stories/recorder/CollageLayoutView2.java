@@ -126,7 +126,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         this.resetReordering = new Runnable() {
             @Override
             public final void run() {
-                CollageLayoutView2.m4481$r8$lambda$P7qOu7nozUq6fnqFdYd1EmnXjk(this.f$0);
+                CollageLayoutView2.m4480$r8$lambda$P7qOu7nozUq6fnqFdYd1EmnXjk(this.f$0);
             }
         };
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -179,7 +179,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         return this.nextPart;
     }
 
-    public static void m4481$r8$lambda$P7qOu7nozUq6fnqFdYd1EmnXjk(CollageLayoutView2 collageLayoutView2) {
+    public static void m4480$r8$lambda$P7qOu7nozUq6fnqFdYd1EmnXjk(CollageLayoutView2 collageLayoutView2) {
         if (collageLayoutView2.reordering) {
             collageLayoutView2.reordering = false;
             collageLayoutView2.invalidate();

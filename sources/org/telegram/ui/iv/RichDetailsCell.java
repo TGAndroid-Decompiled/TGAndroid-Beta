@@ -217,12 +217,12 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
             RichDetailsCell.this.post(new Runnable() {
                 @Override
                 public final void run() {
-                    RichDetailsCell.AnonymousClass3.m4923$r8$lambda$NQEIFl3aWVH0lhGZEPxnTsjUk(this.f$0, richEditText, i2, selectionHelper, i);
+                    RichDetailsCell.AnonymousClass3.m4922$r8$lambda$NQEIFl3aWVH0lhGZEPxnTsjUk(this.f$0, richEditText, i2, selectionHelper, i);
                 }
             });
         }
 
-        public static void m4923$r8$lambda$NQEIFl3aWVH0lhGZEPxnTsjUk(AnonymousClass3 anonymousClass3, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2) {
+        public static void m4922$r8$lambda$NQEIFl3aWVH0lhGZEPxnTsjUk(AnonymousClass3 anonymousClass3, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2) {
             anonymousClass3.getClass();
             if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd() || !articleTextSelectionHelper.selectRangeOf(RichDetailsCell.this, i2, i)) {
                 return;
