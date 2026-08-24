@@ -20046,7 +20046,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             int i5 = this.currentIndex;
             this.currentIndex = i;
             setIsAboutToSwitchToIndex(i, z, z2);
-            CropTransform cropTransformClone = this.cropTransform.clone();
+            CropTransform cropTransformM2258clone = this.cropTransform.clone();
             EditState editState = this.editState;
             MediaController.CropState cropStateM543clone = (editState == null || (cropState = editState.cropState) == null) ? null : cropState.clone();
             boolean z17 = this.centerImageIsVideo;
@@ -20594,7 +20594,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                     c3 = 0;
                                 }
                                 this.rightImageIsVideo = z17;
-                                this.rightCropTransform = cropTransformClone;
+                                this.rightCropTransform = cropTransformM2258clone;
                                 this.rightCropState = cropStateM543clone;
                                 PhotoProgressView[] photoProgressViewArr = this.photoProgressViews;
                                 PhotoProgressView photoProgressView = photoProgressViewArr[c3];
@@ -20637,7 +20637,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                     c = 0;
                                 }
                                 this.leftImageIsVideo = z17;
-                                this.leftCropTransform = cropTransformClone;
+                                this.leftCropTransform = cropTransformM2258clone;
                                 this.leftCropState = cropStateM543clone;
                                 PhotoProgressView[] photoProgressViewArr2 = this.photoProgressViews;
                                 PhotoProgressView photoProgressView2 = photoProgressViewArr2[c];

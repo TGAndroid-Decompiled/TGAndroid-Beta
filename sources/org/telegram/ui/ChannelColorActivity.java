@@ -274,7 +274,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
 
         @Override
         public ColorFilter getAnimatedEmojiColorFilter() {
-            return Theme.chat_animatedEmojiTextColorFilter;
+            return Theme.ResourcesProvider.CC.$default$getAnimatedEmojiColorFilter(this);
         }
 
         @Override
@@ -345,7 +345,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             if (str.equals("paintDivider")) {
                 return ChannelColorActivity.this.dividerPaint;
             }
-            return Theme.getThemePaint(str);
+            return Theme.ResourcesProvider.CC.$default$getPaint(this, str);
         }
 
         @Override

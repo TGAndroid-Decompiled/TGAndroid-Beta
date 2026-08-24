@@ -9620,7 +9620,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 ChatMessageCell chatMessageCell = new ChatMessageCell(this.mContext, ((BaseFragment) ThemePreviewActivity.this).currentAccount, false, null, new Theme.ResourcesProvider() {
                     @Override
                     public ColorFilter getAnimatedEmojiColorFilter() {
-                        return Theme.chat_animatedEmojiTextColorFilter;
+                        return Theme.ResourcesProvider.CC.$default$getAnimatedEmojiColorFilter(this);
                     }
 
                     @Override
@@ -10985,7 +10985,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
         @Override
         public ColorFilter getAnimatedEmojiColorFilter() {
-            return Theme.chat_animatedEmojiTextColorFilter;
+            return Theme.ResourcesProvider.CC.$default$getAnimatedEmojiColorFilter(this);
         }
 
         @Override
@@ -11059,10 +11059,10 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     return this.chat_actionTextPaint;
                 default:
                     Theme.ResourcesProvider resourcesProvider = this.parentProvider;
-                    if (resourcesProvider == null) {
-                        return Theme.getThemePaint(str);
+                    if (resourcesProvider != null) {
+                        return resourcesProvider.getPaint(str);
                     }
-                    return resourcesProvider.getPaint(str);
+                    return Theme.ResourcesProvider.CC.$default$getPaint(this, str);
             }
         }
 

@@ -126,7 +126,7 @@ public class BetaUpdaterController {
             public final void run(Object obj) {
                 BetaUpdaterController.$r8$lambda$zmJCbdiPRh9mZUyBhIkpFLCyoBs(this.f$0, runnable, (String) obj);
             }
-        }).execute("https://telegram.org/dl/android/apk-public-beta.json");
+        }).execute("null");
     }
 
     public static void $r8$lambda$zmJCbdiPRh9mZUyBhIkpFLCyoBs(final BetaUpdaterController betaUpdaterController, final Runnable runnable, final String str) {
@@ -251,7 +251,7 @@ public class BetaUpdaterController {
             }
             ApplicationLoader.applicationLoaderInstance.showCustomUpdateAppPopup(context, update, UserConfig.selectedAccount);
         } catch (Exception e3) {
-            FileLog.e("Failed to check for beta update at https://telegram.org/dl/android/apk-public-beta.json received: " + str, e3);
+            FileLog.e("Failed to check for beta update at null received: " + str, e3);
         }
     }
 

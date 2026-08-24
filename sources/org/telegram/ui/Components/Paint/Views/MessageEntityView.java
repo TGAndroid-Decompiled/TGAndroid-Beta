@@ -105,7 +105,7 @@ public abstract class MessageEntityView extends EntityView {
 
             @Override
             public ColorFilter getAnimatedEmojiColorFilter() {
-                return Theme.chat_animatedEmojiTextColorFilter;
+                return Theme.ResourcesProvider.CC.$default$getAnimatedEmojiColorFilter(this);
             }
 
             @Override
@@ -166,7 +166,7 @@ public abstract class MessageEntityView extends EntityView {
                     case "paintChatActionText":
                         return this.chat_actionTextPaint;
                     default:
-                        return Theme.getThemePaint(str);
+                        return Theme.ResourcesProvider.CC.$default$getPaint(this, str);
                 }
             }
 

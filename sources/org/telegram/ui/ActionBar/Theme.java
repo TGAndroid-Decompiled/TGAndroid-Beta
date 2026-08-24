@@ -6924,6 +6924,18 @@ public abstract class Theme {
 
             public static void $default$setAnimatedColor(ResourcesProvider resourcesProvider, int i, int i2) {
             }
+
+            public static Paint $default$getPaint(ResourcesProvider resourcesProvider, String str) {
+                return Theme.getThemePaint(str);
+            }
+
+            public static boolean $default$isDark(ResourcesProvider resourcesProvider) {
+                return Theme.isCurrentThemeDark();
+            }
+
+            public static ColorFilter $default$getAnimatedEmojiColorFilter(ResourcesProvider resourcesProvider) {
+                return Theme.chat_animatedEmojiTextColorFilter;
+            }
         }
     }
 

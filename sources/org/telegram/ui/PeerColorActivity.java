@@ -1697,7 +1697,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
             @Override
             public ColorFilter getAnimatedEmojiColorFilter() {
-                return Theme.chat_animatedEmojiTextColorFilter;
+                return Theme.ResourcesProvider.CC.$default$getAnimatedEmojiColorFilter(this);
             }
 
             @Override
@@ -1748,7 +1748,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
             @Override
             public Paint getPaint(String str) {
-                return Theme.getThemePaint(str);
+                return Theme.ResourcesProvider.CC.$default$getPaint(this, str);
             }
 
             @Override

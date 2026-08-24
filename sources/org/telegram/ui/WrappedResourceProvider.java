@@ -15,7 +15,7 @@ public class WrappedResourceProvider implements Theme.ResourcesProvider {
 
     @Override
     public boolean isDark() {
-        return Theme.isCurrentThemeDark();
+        return Theme.ResourcesProvider.CC.$default$isDark(this);
     }
 
     public WrappedResourceProvider(Theme.ResourcesProvider resourcesProvider) {

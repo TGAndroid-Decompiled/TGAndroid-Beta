@@ -124,6 +124,8 @@ public class ConnectionsManager extends BaseController {
         boolean test(long j);
     }
 
+    public static native byte[] nativeTestGenerateClientHello(String str);
+
     public static native void native_applyDatacenterAddress(int i, int i2, String str, int i3);
 
     public static native void native_applyDnsConfig(int i, long j, String str, int i2);
