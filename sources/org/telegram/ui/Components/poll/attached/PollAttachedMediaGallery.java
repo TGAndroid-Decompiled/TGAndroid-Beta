@@ -8,21 +8,19 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.Components.poll.PollAttachedMedia;
 
-public class PollAttachedMediaGallery extends PollAttachedMedia {
+public final class PollAttachedMediaGallery extends PollAttachedMedia {
     public final MediaController.PhotoEntry photoEntry;
     public final SendMessagesHelper.SendingMediaInfo sendingMediaInfo;
 
     public PollAttachedMediaGallery(SendMessagesHelper.SendingMediaInfo sendingMediaInfo) {
-        this.sendingMediaInfo = sendingMediaInfo;
-        this.photoEntry = sendingMediaInfo.originalPhotoEntry;
-        this.imageReceiver.setRoundRadius(AndroidUtilities.dp(7.0f));
-        setupImageReceiver(this.imageReceiver);
-    }
-
-    private void setupImageReceiver(ImageReceiver imageReceiver) {
         ImageLocation forPath;
+        ImageLocation imageLocation;
+        this.sendingMediaInfo = sendingMediaInfo;
+        MediaController.PhotoEntry photoEntry = sendingMediaInfo.originalPhotoEntry;
+        this.photoEntry = photoEntry;
+        this.imageReceiver.setRoundRadius(AndroidUtilities.dp(7.0f));
+        ImageReceiver imageReceiver = this.imageReceiver;
         imageReceiver.setOrientation(0, true);
-        MediaController.PhotoEntry photoEntry = this.photoEntry;
         String str = photoEntry.coverPath;
         if (str != null) {
             forPath = ImageLocation.getForPath(str);
@@ -30,20 +28,26 @@ public class PollAttachedMediaGallery extends PollAttachedMedia {
             String str2 = photoEntry.thumbPath;
             if (str2 != null) {
                 forPath = ImageLocation.getForPath(str2);
-            } else if (photoEntry.path != null) {
-                if (photoEntry.isVideo && !photoEntry.isLivePhoto()) {
-                    forPath = ImageLocation.getForPath("vthumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path);
-                } else {
-                    forPath = ImageLocation.getForPath("thumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path);
-                    MediaController.PhotoEntry photoEntry2 = this.photoEntry;
-                    imageReceiver.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
-                }
             } else {
+                if (photoEntry.path != null) {
+                    if (!photoEntry.isVideo || photoEntry.isLivePhoto()) {
+                        ImageLocation forPath2 = ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path);
+                        imageReceiver.setOrientation(photoEntry.orientation, photoEntry.invert, true);
+                        imageLocation = forPath2;
+                    } else {
+                        forPath = ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path);
+                    }
+                    if (imageLocation != null) {
+                        imageReceiver.setImage(imageLocation, null, null, null, null, 0);
+                    } else {
+                        imageReceiver.clearImage();
+                    }
+                }
                 imageReceiver.clearImage();
                 forPath = null;
             }
         }
-        ImageLocation imageLocation = forPath;
+        imageLocation = forPath;
         if (imageLocation != null) {
             imageReceiver.setImage(imageLocation, null, null, null, null, 0);
         } else {
@@ -52,8 +56,9 @@ public class PollAttachedMediaGallery extends PollAttachedMedia {
     }
 
     @Override
-    protected void draw(Canvas canvas, int i, int i2) {
-        this.imageReceiver.setImageCoords(0.0f, 0.0f, i, i2);
-        this.imageReceiver.draw(canvas);
+    public final void draw(Canvas canvas, int i, int i2) {
+        ImageReceiver imageReceiver = this.imageReceiver;
+        imageReceiver.setImageCoords(0.0f, 0.0f, i, i2);
+        imageReceiver.draw(canvas);
     }
 }

@@ -10,7 +10,7 @@ public class BringAppForegroundService extends IntentService {
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
+    public void onHandleIntent(Intent intent) {
         Intent intent2 = new Intent(this, (Class<?>) LaunchActivity.class);
         intent2.setFlags(268435456);
         intent2.setAction("android.intent.action.MAIN");

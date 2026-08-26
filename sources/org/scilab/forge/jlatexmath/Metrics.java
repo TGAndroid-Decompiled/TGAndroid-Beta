@@ -15,16 +15,12 @@ public class Metrics {
         this.s = f6;
     }
 
-    public float getWidth() {
-        return this.w;
+    public float getDepth() {
+        return this.d;
     }
 
     public float getHeight() {
         return this.h;
-    }
-
-    public float getDepth() {
-        return this.d;
     }
 
     public float getItalic() {
@@ -33,5 +29,9 @@ public class Metrics {
 
     public float getSize() {
         return this.s;
+    }
+
+    public float getWidth() {
+        return this.w;
     }
 }

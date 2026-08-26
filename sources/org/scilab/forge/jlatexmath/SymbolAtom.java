@@ -38,24 +38,6 @@ public class SymbolAtom extends CharSymbol {
         this.delimiter = symbolAtom.delimiter;
     }
 
-    public SymbolAtom(String str, int i, boolean z) {
-        this.name = str;
-        this.type = i;
-        if (i == 1) {
-            this.type_limits = 0;
-        }
-        this.delimiter = z;
-    }
-
-    public SymbolAtom setUnicode(char c) {
-        this.unicode = c;
-        return this;
-    }
-
-    public char getUnicode() {
-        return this.unicode;
-    }
-
     public static void addSymbolAtom(String str) {
         try {
             addSymbolAtom(new FileInputStream(str), str);
@@ -64,28 +46,12 @@ public class SymbolAtom extends CharSymbol {
         }
     }
 
-    public static void addSymbolAtom(InputStream inputStream, String str) {
-        symbols.putAll(new TeXSymbolParser(inputStream, str).readSymbols());
-    }
-
-    public static void addSymbolAtom(SymbolAtom symbolAtom) {
-        symbols.put(symbolAtom.name, symbolAtom);
-    }
-
     public static SymbolAtom get(String str) {
         SymbolAtom symbolAtom = symbols.get(str);
-        if (symbolAtom == null) {
-            throw new SymbolNotFoundException(str);
+        if (symbolAtom != null) {
+            return symbolAtom;
         }
-        return symbolAtom;
-    }
-
-    public boolean isDelimiter() {
-        return this.delimiter;
-    }
-
-    public String getName() {
-        return this.name;
+        throw new SymbolNotFoundException(str);
     }
 
     @Override
@@ -108,7 +74,7 @@ public class SymbolAtom extends CharSymbol {
             nextLarger = teXFont.getNextLarger(nextLarger, style);
         }
         CharBox charBox2 = new CharBox(nextLarger);
-        charBox2.setShift(((-(charBox2.getHeight() + charBox2.getDepth())) / 2.0f) - teXEnvironment.getTeXFont().getAxisHeight(teXEnvironment.getStyle()));
+        charBox2.setShift(((-(charBox2.getDepth() + charBox2.getHeight())) / 2.0f) - teXEnvironment.getTeXFont().getAxisHeight(teXEnvironment.getStyle()));
         float italic = nextLarger.getItalic();
         HorizontalBox horizontalBox = new HorizontalBox(charBox2);
         if (italic > 1.0E-7f) {
@@ -120,5 +86,39 @@ public class SymbolAtom extends CharSymbol {
     @Override
     public CharFont getCharFont(TeXFont teXFont) {
         return teXFont.getChar(this.name, 0).getCharFont();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public char getUnicode() {
+        return this.unicode;
+    }
+
+    public boolean isDelimiter() {
+        return this.delimiter;
+    }
+
+    public SymbolAtom setUnicode(char c) {
+        this.unicode = c;
+        return this;
+    }
+
+    public static void addSymbolAtom(InputStream inputStream, String str) {
+        symbols.putAll(new TeXSymbolParser(inputStream, str).readSymbols());
+    }
+
+    public static void addSymbolAtom(SymbolAtom symbolAtom) {
+        symbols.put(symbolAtom.name, symbolAtom);
+    }
+
+    public SymbolAtom(String str, int i, boolean z) {
+        this.name = str;
+        this.type = i;
+        if (i == 1) {
+            this.type_limits = 0;
+        }
+        this.delimiter = z;
     }
 }

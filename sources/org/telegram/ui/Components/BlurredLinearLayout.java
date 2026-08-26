@@ -8,15 +8,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.SharedConfig;
 
-public class BlurredLinearLayout extends LinearLayout {
+public final class BlurredLinearLayout extends LinearLayout {
     public int backgroundColor;
-    public int backgroundPaddingBottom;
-    public int backgroundPaddingTop;
-    protected Paint backgroundPaint;
-    private Rect blurBounds;
-    public boolean drawBlur;
-    public boolean isTopView;
-    private final SizeNotifierFrameLayout sizeNotifierFrameLayout;
+    public Paint backgroundPaint;
+    public final Rect blurBounds;
+    public final boolean drawBlur;
+    public final boolean isTopView;
+    public final SizeNotifierFrameLayout sizeNotifierFrameLayout;
 
     public BlurredLinearLayout(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
         super(context);
@@ -28,7 +26,7 @@ public class BlurredLinearLayout extends LinearLayout {
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
         if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null || !this.drawBlur || this.backgroundColor == 0) {
@@ -38,7 +36,7 @@ public class BlurredLinearLayout extends LinearLayout {
                 this.backgroundPaint = new Paint();
             }
             this.backgroundPaint.setColor(this.backgroundColor);
-            this.blurBounds.set(0, this.backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight() - this.backgroundPaddingBottom);
+            this.blurBounds.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
             float y = 0.0f;
             View view = this;
             while (true) {
@@ -56,16 +54,7 @@ public class BlurredLinearLayout extends LinearLayout {
     }
 
     @Override
-    public void setBackgroundColor(int i) {
-        if (SharedConfig.chatBlurEnabled() && this.sizeNotifierFrameLayout != null) {
-            this.backgroundColor = i;
-        } else {
-            super.setBackgroundColor(i);
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
         if (SharedConfig.chatBlurEnabled() && (sizeNotifierFrameLayout = this.sizeNotifierFrameLayout) != null) {
             sizeNotifierFrameLayout.blurBehindViews.add(this);
@@ -74,11 +63,20 @@ public class BlurredLinearLayout extends LinearLayout {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
         if (sizeNotifierFrameLayout != null) {
             sizeNotifierFrameLayout.blurBehindViews.remove(this);
         }
         super.onDetachedFromWindow();
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null) {
+            super.setBackgroundColor(i);
+        } else {
+            this.backgroundColor = i;
+        }
     }
 }

@@ -10,11 +10,6 @@ public class JavaFontRenderingBox extends Box {
     private float size;
     private TextLayout text;
 
-    @Override
-    public int getLastFontId() {
-        return 0;
-    }
-
     public JavaFontRenderingBox(String str, int i, float f, Font font2, boolean z) {
         this.size = f;
         TextLayout textLayout = new TextLayout(str, font2.deriveFont(i), null);
@@ -22,11 +17,7 @@ public class JavaFontRenderingBox extends Box {
         Rectangle2D bounds = textLayout.getBounds();
         this.height = ((-bounds.getY()) * f) / 10.0f;
         this.depth = ((bounds.getHeight() * f) / 10.0f) - this.height;
-        this.width = (((bounds.getWidth() + bounds.getX()) + 0.4f) * f) / 10.0f;
-    }
-
-    public JavaFontRenderingBox(String str, int i, float f) {
-        this(str, i, f, font, true);
+        this.width = (((bounds.getX() + bounds.getWidth()) + 0.4f) * f) / 10.0f;
     }
 
     public static void setFont(String str) {
@@ -43,5 +34,14 @@ public class JavaFontRenderingBox extends Box {
         float f4 = this.size;
         graphics2D.scale(10.0f / f4, 10.0f / f4);
         graphics2D.translate(-f, -f2);
+    }
+
+    @Override
+    public int getLastFontId() {
+        return 0;
+    }
+
+    public JavaFontRenderingBox(String str, int i, float f) {
+        this(str, i, f, font, true);
     }
 }

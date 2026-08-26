@@ -5,23 +5,76 @@ import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
 
 public final class CombinedContext implements CoroutineContext, Serializable {
-    private final CoroutineContext.Element element;
-    private final CoroutineContext left;
+    public final CoroutineContext.Element element;
+    public final CoroutineContext left;
 
-    @Override
-    public CoroutineContext plus(CoroutineContext coroutineContext) {
-        return CoroutineContext.DefaultImpls.plus(this, coroutineContext);
-    }
-
-    public CombinedContext(CoroutineContext left, CoroutineContext.Element element) {
+    public CombinedContext(CoroutineContext.Element element, CoroutineContext left) {
         Intrinsics.checkNotNullParameter(left, "left");
         Intrinsics.checkNotNullParameter(element, "element");
         this.left = left;
         this.element = element;
     }
 
+    public final boolean equals(Object obj) {
+        boolean zAreEqual;
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof CombinedContext) {
+            CombinedContext combinedContext = (CombinedContext) obj;
+            combinedContext.getClass();
+            int i = 2;
+            CombinedContext combinedContext2 = combinedContext;
+            int i2 = 2;
+            while (true) {
+                CoroutineContext coroutineContext = combinedContext2.left;
+                combinedContext2 = coroutineContext instanceof CombinedContext ? (CombinedContext) coroutineContext : null;
+                if (combinedContext2 == null) {
+                    break;
+                }
+                i2++;
+            }
+            CombinedContext combinedContext3 = this;
+            while (true) {
+                CoroutineContext coroutineContext2 = combinedContext3.left;
+                combinedContext3 = coroutineContext2 instanceof CombinedContext ? (CombinedContext) coroutineContext2 : null;
+                if (combinedContext3 == null) {
+                    break;
+                }
+                i++;
+            }
+            if (i2 == i) {
+                CombinedContext combinedContext4 = this;
+                while (true) {
+                    CoroutineContext.Element element = combinedContext4.element;
+                    if (!Intrinsics.areEqual(combinedContext.get(element.getKey()), element)) {
+                        zAreEqual = false;
+                        break;
+                    }
+                    CoroutineContext coroutineContext3 = combinedContext4.left;
+                    if (!(coroutineContext3 instanceof CombinedContext)) {
+                        Intrinsics.checkNotNull(coroutineContext3, "null cannot be cast to non-null type kotlin.coroutines.CoroutineContext.Element");
+                        CoroutineContext.Element element2 = (CoroutineContext.Element) coroutineContext3;
+                        zAreEqual = Intrinsics.areEqual(combinedContext.get(element2.getKey()), element2);
+                        break;
+                    }
+                    combinedContext4 = (CombinedContext) coroutineContext3;
+                }
+                if (zAreEqual) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
-    public CoroutineContext.Element get(CoroutineContext.Key key) {
+    public final Object fold(Object obj, Function2 function2) {
+        return function2.invoke(this.left.fold(obj, function2), this.element);
+    }
+
+    @Override
+    public final CoroutineContext.Element get(CoroutineContext.Key key) {
         Intrinsics.checkNotNullParameter(key, "key");
         CombinedContext combinedContext = this;
         while (true) {
@@ -30,93 +83,40 @@ public final class CombinedContext implements CoroutineContext, Serializable {
                 return element;
             }
             CoroutineContext coroutineContext = combinedContext.left;
-            if (coroutineContext instanceof CombinedContext) {
-                combinedContext = (CombinedContext) coroutineContext;
-            } else {
+            if (!(coroutineContext instanceof CombinedContext)) {
                 return coroutineContext.get(key);
             }
+            combinedContext = (CombinedContext) coroutineContext;
         }
     }
 
-    @Override
-    public Object fold(Object obj, Function2 operation) {
-        Intrinsics.checkNotNullParameter(operation, "operation");
-        return operation.invoke(this.left.fold(obj, operation), this.element);
+    public final int hashCode() {
+        return this.element.hashCode() + this.left.hashCode();
     }
 
     @Override
-    public CoroutineContext minusKey(CoroutineContext.Key key) {
+    public final CoroutineContext minusKey(CoroutineContext.Key key) {
         Intrinsics.checkNotNullParameter(key, "key");
-        if (this.element.get(key) != null) {
-            return this.left;
+        CoroutineContext.Element element = this.element;
+        CoroutineContext.Element element2 = element.get(key);
+        CoroutineContext coroutineContext = this.left;
+        if (element2 != null) {
+            return coroutineContext;
         }
-        CoroutineContext coroutineContextMinusKey = this.left.minusKey(key);
-        if (coroutineContextMinusKey == this.left) {
+        CoroutineContext coroutineContextMinusKey = coroutineContext.minusKey(key);
+        if (coroutineContextMinusKey == coroutineContext) {
             return this;
         }
-        return coroutineContextMinusKey == EmptyCoroutineContext.INSTANCE ? this.element : new CombinedContext(coroutineContextMinusKey, this.element);
+        return coroutineContextMinusKey == EmptyCoroutineContext.INSTANCE ? element : new CombinedContext(element, coroutineContextMinusKey);
     }
 
-    private final int size() {
-        int i = 2;
-        CombinedContext combinedContext = this;
-        while (true) {
-            CoroutineContext coroutineContext = combinedContext.left;
-            combinedContext = coroutineContext instanceof CombinedContext ? (CombinedContext) coroutineContext : null;
-            if (combinedContext == null) {
-                return i;
-            }
-            i++;
-        }
+    @Override
+    public final CoroutineContext plus(CoroutineContext context) {
+        Intrinsics.checkNotNullParameter(context, "context");
+        return context == EmptyCoroutineContext.INSTANCE ? this : (CoroutineContext) context.fold(this, new CombinedContext$$ExternalSyntheticLambda0(5));
     }
 
-    private final boolean contains(CoroutineContext.Element element) {
-        return Intrinsics.areEqual(get(element.getKey()), element);
-    }
-
-    private final boolean containsAll(CombinedContext combinedContext) {
-        while (contains(combinedContext.element)) {
-            CoroutineContext coroutineContext = combinedContext.left;
-            if (coroutineContext instanceof CombinedContext) {
-                combinedContext = (CombinedContext) coroutineContext;
-            } else {
-                Intrinsics.checkNotNull(coroutineContext, "null cannot be cast to non-null type kotlin.coroutines.CoroutineContext.Element");
-                return contains((CoroutineContext.Element) coroutineContext);
-            }
-        }
-        return false;
-    }
-
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof CombinedContext)) {
-            return false;
-        }
-        CombinedContext combinedContext = (CombinedContext) obj;
-        return combinedContext.size() == size() && combinedContext.containsAll(this);
-    }
-
-    public int hashCode() {
-        return this.left.hashCode() + this.element.hashCode();
-    }
-
-    public String toString() {
-        return '[' + ((String) fold("", new Function2() {
-            @Override
-            public final Object invoke(Object obj, Object obj2) {
-                return CombinedContext.toString$lambda$2((String) obj, (CoroutineContext.Element) obj2);
-            }
-        })) + ']';
-    }
-
-    public static final String toString$lambda$2(String acc, CoroutineContext.Element element) {
-        Intrinsics.checkNotNullParameter(acc, "acc");
-        Intrinsics.checkNotNullParameter(element, "element");
-        if (acc.length() == 0) {
-            return element.toString();
-        }
-        return acc + ", " + element;
+    public final String toString() {
+        return "[" + ((String) fold("", new CombinedContext$$ExternalSyntheticLambda0(0))) + ']';
     }
 }

@@ -1,25 +1,33 @@
 package org.telegram.ui.Components.Crop;
 
-public class CropTransform {
-    private float cropAreaX;
-    private float cropAreaY;
-    private int cropOrientation;
-    private float cropPh;
-    private float cropPw;
-    private float cropPx;
-    private float cropPy;
-    private float cropRotation;
-    private float cropScale;
-    private boolean hasTransform;
-    private boolean isMirrored;
-    private float minScale;
-    private float trueCropScale;
+public final class CropTransform {
+    public float cropAreaX;
+    public float cropAreaY;
+    public int cropOrientation;
+    public float cropPh;
+    public float cropPw;
+    public float cropPx;
+    public float cropPy;
+    public float cropRotation;
+    public float cropScale;
+    public boolean hasTransform;
+    public boolean isMirrored;
+    public float minScale;
+    public float trueCropScale;
 
-    public void setViewTransform(boolean z) {
-        this.hasTransform = z;
+    public final int getOrientation() {
+        return this.cropOrientation;
     }
 
-    public void setViewTransform(boolean z, float f, float f2, float f3, int i, float f4, float f5, float f6, float f7, float f8, float f9, float f10, boolean z2) {
+    public final boolean hasViewTransform() {
+        return this.hasTransform;
+    }
+
+    public final boolean isMirrored() {
+        return this.isMirrored;
+    }
+
+    public final void setViewTransform(boolean z, float f, float f2, float f3, int i, float f4, float f5, float f6, float f7, float f8, float f9, float f10, boolean z2) {
         this.hasTransform = z;
         this.cropPx = f;
         this.cropPy = f2;
@@ -36,9 +44,7 @@ public class CropTransform {
         }
         while (true) {
             int i3 = this.cropOrientation;
-            if (i3 >= 360) {
-                this.cropOrientation = i3 - 360;
-            } else {
+            if (i3 < 360) {
                 this.cropPw = f7;
                 this.cropPh = f8;
                 this.cropAreaX = f9;
@@ -48,62 +54,11 @@ public class CropTransform {
                 this.isMirrored = z2;
                 return;
             }
+            this.cropOrientation = i3 - 360;
         }
     }
 
-    public boolean hasViewTransform() {
-        return this.hasTransform;
-    }
-
-    public float getCropAreaX() {
-        return this.cropAreaX;
-    }
-
-    public float getCropAreaY() {
-        return this.cropAreaY;
-    }
-
-    public float getCropPx() {
-        return this.cropPx;
-    }
-
-    public float getCropPy() {
-        return this.cropPy;
-    }
-
-    public float getScale() {
-        return this.cropScale;
-    }
-
-    public float getRotation() {
-        return this.cropRotation;
-    }
-
-    public int getOrientation() {
-        return this.cropOrientation;
-    }
-
-    public float getTrueCropScale() {
-        return this.trueCropScale;
-    }
-
-    public float getMinScale() {
-        return this.minScale;
-    }
-
-    public float getCropPw() {
-        return this.cropPw;
-    }
-
-    public float getCropPh() {
-        return this.cropPh;
-    }
-
-    public boolean isMirrored() {
-        return this.isMirrored;
-    }
-
-    public CropTransform clone() {
+    public final CropTransform clone() {
         CropTransform cropTransform = new CropTransform();
         cropTransform.hasTransform = this.hasTransform;
         cropTransform.cropPx = this.cropPx;

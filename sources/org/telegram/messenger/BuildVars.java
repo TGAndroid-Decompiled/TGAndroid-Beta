@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import com.android.billingclient.api.ProductDetails;
 import j$.util.Objects;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class BuildVars {
@@ -50,37 +51,39 @@ public class BuildVars {
                 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                     @Override
                     public final void uncaughtException(Thread thread, Throwable th) {
-                        BuildVars.$r8$lambda$8fLp805Q7pNFu8Bc11LDPpNHh7A(defaultUncaughtExceptionHandler, thread, th);
+                        BuildVars.lambda$static$0(defaultUncaughtExceptionHandler, thread, th);
                     }
                 });
             }
         }
     }
 
-    public static void $r8$lambda$8fLp805Q7pNFu8Bc11LDPpNHh7A(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) {
-        FileLog.fatal(th, false);
-        if (uncaughtExceptionHandler != null) {
-            uncaughtExceptionHandler.uncaughtException(thread, th);
+    public static String getSmsHash() {
+        if (ApplicationLoader.isStandaloneBuild()) {
+            return "w0lkcmTZkKh";
         }
-    }
-
-    public static boolean useInvoiceBilling() {
-        if (BillingController.billingClientEmpty || ApplicationLoader.isStandaloneBuild()) {
-            return true;
-        }
-        isBetaApp();
-        return isHuaweiStoreApp() || hasDirectCurrency();
+        return DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
     }
 
     private static boolean hasDirectCurrency() {
         ProductDetails productDetails;
         if (BillingController.getInstance().isReady() && (productDetails = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
-            Iterator it = productDetails.getSubscriptionOfferDetails().iterator();
-            while (it.hasNext()) {
-                for (ProductDetails.PricingPhase pricingPhase : ((ProductDetails.SubscriptionOfferDetails) it.next()).getPricingPhases().getPricingPhaseList()) {
-                    Iterator<String> it2 = MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency.iterator();
-                    while (it2.hasNext()) {
-                        if (Objects.equals(pricingPhase.getPriceCurrencyCode(), it2.next())) {
+            ArrayList arrayList = productDetails.zzj;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ArrayList arrayList2 = ((ProductDetails.SubscriptionOfferDetails) obj).zzd.mControlCategories;
+                int size2 = arrayList2.size();
+                int i2 = 0;
+                while (i2 < size2) {
+                    Object obj2 = arrayList2.get(i2);
+                    i2++;
+                    ProductDetails.PricingPhase pricingPhase = (ProductDetails.PricingPhase) obj2;
+                    Iterator<String> it = MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency.iterator();
+                    while (it.hasNext()) {
+                        if (Objects.equals(pricingPhase.zzc, it.next())) {
                             return true;
                         }
                     }
@@ -101,10 +104,18 @@ public class BuildVars {
         return ApplicationLoader.isHuaweiStoreBuild();
     }
 
-    public static String getSmsHash() {
-        if (ApplicationLoader.isStandaloneBuild()) {
-            return "w0lkcmTZkKh";
+    public static void lambda$static$0(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) {
+        FileLog.fatal(th, false);
+        if (uncaughtExceptionHandler != null) {
+            uncaughtExceptionHandler.uncaughtException(thread, th);
         }
-        return DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
+    }
+
+    public static boolean useInvoiceBilling() {
+        if (BillingController.billingClientEmpty || ApplicationLoader.isStandaloneBuild()) {
+            return true;
+        }
+        isBetaApp();
+        return isHuaweiStoreApp() || hasDirectCurrency();
     }
 }

@@ -9,107 +9,75 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.ActionBar.Theme;
 
-public class ImageReceiverSpan extends ReplacementSpan {
-    private final int currentAccount;
+public final class ImageReceiverSpan extends ReplacementSpan {
     public final ImageReceiver imageReceiver;
-    private View parent;
-    private float radius;
-    private final Paint shadowPaint;
-    private float sz;
-    private float translateX;
-    private float translateY;
-    private final View.OnAttachStateChangeListener parentAttachListener = new View.OnAttachStateChangeListener() {
-        @Override
-        public void onViewAttachedToWindow(View view) {
-            ImageReceiverSpan.this.imageReceiver.onAttachedToWindow();
-        }
+    public final View parent;
+    public float radius;
+    public boolean shadowEnabled;
+    public final Paint shadowPaint;
+    public int shadowPaintAlpha;
+    public final float sz;
+    public float translateX;
 
-        @Override
-        public void onViewDetachedFromWindow(View view) {
-            ImageReceiverSpan.this.imageReceiver.onDetachedFromWindow();
-        }
-    };
-    private boolean shadowEnabled = true;
-    private int shadowPaintAlpha = 255;
-
-    public ImageReceiverSpan(View view, int i, float f) {
-        this.currentAccount = i;
+    public ImageReceiverSpan(View view, float f, int i) {
+        AvatarSpan.AnonymousClass1 anonymousClass1 = new AvatarSpan.AnonymousClass1(this, 13);
+        this.shadowEnabled = true;
+        this.shadowPaintAlpha = 255;
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.imageReceiver = imageReceiver;
         imageReceiver.setCurrentAccount(i);
-        setSize(f);
+        this.sz = f;
         Paint paint = new Paint(1);
         this.shadowPaint = paint;
         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), 855638016);
-        setParent(view);
-    }
-
-    public void setSize(float f) {
-        this.sz = f;
-    }
-
-    public void setRoundRadius(float f) {
-        ImageReceiver imageReceiver = this.imageReceiver;
-        float fDp = AndroidUtilities.dp(f);
-        this.radius = fDp;
-        imageReceiver.setRoundRadius((int) fDp);
-    }
-
-    public void setParent(View view) {
         View view2 = this.parent;
         if (view2 == view) {
             return;
         }
         if (view2 != null) {
-            view2.removeOnAttachStateChangeListener(this.parentAttachListener);
+            view2.removeOnAttachStateChangeListener(anonymousClass1);
             if (this.parent.isAttachedToWindow() && !view.isAttachedToWindow()) {
-                this.imageReceiver.onDetachedFromWindow();
+                imageReceiver.onDetachedFromWindow();
             }
         }
         View view3 = this.parent;
         if ((view3 == null || !view3.isAttachedToWindow()) && view != null && view.isAttachedToWindow()) {
-            this.imageReceiver.onAttachedToWindow();
+            imageReceiver.onAttachedToWindow();
         }
         this.parent = view;
-        this.imageReceiver.setParentView(view);
+        imageReceiver.setParentView(view);
         if (view != null) {
-            view.addOnAttachStateChangeListener(this.parentAttachListener);
+            view.addOnAttachStateChangeListener(anonymousClass1);
         }
     }
 
     @Override
-    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.sz);
-    }
-
-    @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        if (this.shadowEnabled && this.shadowPaintAlpha != paint.getAlpha()) {
-            Paint paint2 = this.shadowPaint;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        boolean z = this.shadowEnabled;
+        Paint paint2 = this.shadowPaint;
+        if (z && this.shadowPaintAlpha != paint.getAlpha()) {
             int alpha = paint.getAlpha();
             this.shadowPaintAlpha = alpha;
             paint2.setAlpha(alpha);
-            this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(855638016, this.shadowPaintAlpha / 255.0f));
+            paint2.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(this.shadowPaintAlpha / 255.0f, 855638016));
         }
         float f2 = this.translateX + f;
-        float fDp = (this.translateY + ((i3 + i5) / 2.0f)) - (AndroidUtilities.dp(this.sz) / 2.0f);
+        float f3 = this.sz;
+        float fDp = (((i3 + i5) / 2.0f) + 0.0f) - (AndroidUtilities.dp(f3) / 2.0f);
         if (this.shadowEnabled) {
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f2, fDp, AndroidUtilities.dp(this.sz) + f2, AndroidUtilities.dp(this.sz) + fDp);
-            float f3 = this.radius;
-            canvas.drawRoundRect(rectF, f3, f3, this.shadowPaint);
+            rectF.set(f2, fDp, AndroidUtilities.dp(f3) + f2, AndroidUtilities.dp(f3) + fDp);
+            float f4 = this.radius;
+            canvas.drawRoundRect(rectF, f4, f4, paint2);
         }
-        this.imageReceiver.setImageCoords(f2, fDp, AndroidUtilities.dp(this.sz), AndroidUtilities.dp(this.sz));
-        this.imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
-        this.imageReceiver.draw(canvas);
+        ImageReceiver imageReceiver = this.imageReceiver;
+        imageReceiver.setImageCoords(f2, fDp, AndroidUtilities.dp(f3), AndroidUtilities.dp(f3));
+        imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
+        imageReceiver.draw(canvas);
     }
 
-    public void enableShadow(boolean z) {
-        this.shadowEnabled = z;
-    }
-
-    public void translate(float f, float f2) {
-        this.translateX = f;
-        this.translateY = f2;
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(this.sz);
     }
 }

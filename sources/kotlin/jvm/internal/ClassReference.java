@@ -1,7 +1,5 @@
 package kotlin.jvm.internal;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,9 +7,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import kotlin.Pair;
-import kotlin.TuplesKt;
-import kotlin.collections.CollectionsKt;
-import kotlin.collections.MapsKt;
+import kotlin.collections.CollectionsKt__CollectionsKt;
+import kotlin.collections.CollectionsKt__IterablesKt;
+import kotlin.collections.MapsKt__MapsKt;
 import kotlin.jvm.JvmClassMappingKt;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -37,102 +35,26 @@ import kotlin.jvm.functions.Function7;
 import kotlin.jvm.functions.Function8;
 import kotlin.jvm.functions.Function9;
 import kotlin.reflect.KClass;
-import kotlin.text.StringsKt;
+import kotlin.text.StringsKt__StringsKt;
 
 public final class ClassReference implements KClass, ClassBasedDeclarationContainer {
-    public static final Companion Companion = new Companion(null);
-    private static final Map FUNCTION_CLASSES;
-    private static final HashMap classFqNames;
-    private static final HashMap primitiveFqNames;
-    private static final HashMap primitiveWrapperFqNames;
-    private static final Map simpleNames;
-    private final Class jClass;
-
-    public ClassReference(Class jClass) {
-        Intrinsics.checkNotNullParameter(jClass, "jClass");
-        this.jClass = jClass;
-    }
-
-    @Override
-    public Class getJClass() {
-        return this.jClass;
-    }
-
-    @Override
-    public String getSimpleName() {
-        return Companion.getClassSimpleName(getJClass());
-    }
-
-    public boolean equals(Object obj) {
-        return (obj instanceof ClassReference) && Intrinsics.areEqual(JvmClassMappingKt.getJavaObjectType(this), JvmClassMappingKt.getJavaObjectType((KClass) obj));
-    }
-
-    public int hashCode() {
-        return JvmClassMappingKt.getJavaObjectType(this).hashCode();
-    }
-
-    public String toString() {
-        return getJClass() + " (Kotlin reflection is not available)";
-    }
-
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
-
-        public final String getClassSimpleName(Class jClass) {
-            String str;
-            Intrinsics.checkNotNullParameter(jClass, "jClass");
-            String str2 = null;
-            if (jClass.isAnonymousClass()) {
-                return null;
-            }
-            if (jClass.isLocalClass()) {
-                String simpleName = jClass.getSimpleName();
-                Method enclosingMethod = jClass.getEnclosingMethod();
-                if (enclosingMethod != null) {
-                    Intrinsics.checkNotNull(simpleName);
-                    String strSubstringAfter$default = StringsKt.substringAfter$default(simpleName, enclosingMethod.getName() + '$', (String) null, 2, (Object) null);
-                    if (strSubstringAfter$default != null) {
-                        return strSubstringAfter$default;
-                    }
-                }
-                Constructor<?> enclosingConstructor = jClass.getEnclosingConstructor();
-                if (enclosingConstructor == null) {
-                    Intrinsics.checkNotNull(simpleName);
-                    return StringsKt.substringAfter$default(simpleName, '$', (String) null, 2, (Object) null);
-                }
-                Intrinsics.checkNotNull(simpleName);
-                return StringsKt.substringAfter$default(simpleName, enclosingConstructor.getName() + '$', (String) null, 2, (Object) null);
-            }
-            if (!jClass.isArray()) {
-                String str3 = (String) ClassReference.simpleNames.get(jClass.getName());
-                return str3 == null ? jClass.getSimpleName() : str3;
-            }
-            Class<?> componentType = jClass.getComponentType();
-            if (componentType.isPrimitive() && (str = (String) ClassReference.simpleNames.get(componentType.getName())) != null) {
-                str2 = str + "Array";
-            }
-            return str2 == null ? "Array" : str2;
-        }
-    }
+    public static final Map FUNCTION_CLASSES;
+    public static final LinkedHashMap simpleNames;
+    public final Class jClass;
 
     static {
         int i = 0;
-        List listListOf = CollectionsKt.listOf((Object[]) new Class[]{Function0.class, Function1.class, Function2.class, Function3.class, Function4.class, Function5.class, Function6.class, Function7.class, Function8.class, Function9.class, Function10.class, Function11.class, Function12.class, Function13.class, Function14.class, Function15.class, Function16.class, Function17.class, Function18.class, Function19.class, Function20.class, Function21.class, Function22.class});
-        ArrayList arrayList = new ArrayList(CollectionsKt.collectionSizeOrDefault(listListOf, 10));
+        List listListOf = CollectionsKt__CollectionsKt.listOf((Object[]) new Class[]{Function0.class, Function1.class, Function2.class, Function3.class, Function4.class, Function5.class, Function6.class, Function7.class, Function8.class, Function9.class, Function10.class, Function11.class, Function12.class, Function13.class, Function14.class, Function15.class, Function16.class, Function17.class, Function18.class, Function19.class, Function20.class, Function21.class, Function22.class});
+        ArrayList arrayList = new ArrayList(CollectionsKt__IterablesKt.collectionSizeOrDefault(listListOf));
         for (Object obj : listListOf) {
             int i2 = i + 1;
             if (i < 0) {
-                CollectionsKt.throwIndexOverflow();
+                throw new ArithmeticException("Index overflow has happened.");
             }
-            arrayList.add(TuplesKt.to((Class) obj, Integer.valueOf(i)));
+            arrayList.add(new Pair((Class) obj, Integer.valueOf(i)));
             i = i2;
         }
-        FUNCTION_CLASSES = MapsKt.toMap(arrayList);
+        FUNCTION_CLASSES = MapsKt__MapsKt.toMap(arrayList);
         HashMap map = new HashMap();
         map.put("boolean", "kotlin.Boolean");
         map.put("char", "kotlin.Char");
@@ -142,7 +64,6 @@ public final class ClassReference implements KClass, ClassBasedDeclarationContai
         map.put("float", "kotlin.Float");
         map.put("long", "kotlin.Long");
         map.put("double", "kotlin.Double");
-        primitiveFqNames = map;
         HashMap map2 = new HashMap();
         map2.put("java.lang.Boolean", "kotlin.Boolean");
         map2.put("java.lang.Character", "kotlin.Char");
@@ -152,7 +73,6 @@ public final class ClassReference implements KClass, ClassBasedDeclarationContai
         map2.put("java.lang.Float", "kotlin.Float");
         map2.put("java.lang.Long", "kotlin.Long");
         map2.put("java.lang.Double", "kotlin.Double");
-        primitiveWrapperFqNames = map2;
         HashMap map3 = new HashMap();
         map3.put("java.lang.Object", "kotlin.Any");
         map3.put("java.lang.String", "kotlin.String");
@@ -178,25 +98,46 @@ public final class ClassReference implements KClass, ClassBasedDeclarationContai
         Collection<String> collectionValues = map.values();
         Intrinsics.checkNotNullExpressionValue(collectionValues, "<get-values>(...)");
         for (String str : collectionValues) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("kotlin.jvm.internal.");
+            StringBuilder sb = new StringBuilder("kotlin.jvm.internal.");
             Intrinsics.checkNotNull(str);
-            sb.append(StringsKt.substringAfterLast$default(str, '.', null, 2, null));
+            sb.append(StringsKt__StringsKt.substringAfterLast(str, str));
             sb.append("CompanionObject");
-            Pair pair = TuplesKt.to(sb.toString(), str + ".Companion");
-            map3.put(pair.getFirst(), pair.getSecond());
+            map3.put(sb.toString(), str.concat(".Companion"));
         }
         for (Map.Entry entry : FUNCTION_CLASSES.entrySet()) {
-            map3.put(((Class) entry.getKey()).getName(), "kotlin.Function" + ((Number) entry.getValue()).intValue());
+            Class cls = (Class) entry.getKey();
+            int iIntValue = ((Number) entry.getValue()).intValue();
+            map3.put(cls.getName(), "kotlin.Function" + iIntValue);
         }
-        classFqNames = map3;
-        LinkedHashMap linkedHashMap = new LinkedHashMap(MapsKt.mapCapacity(map3.size()));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(MapsKt__MapsKt.mapCapacity(map3.size()));
         for (Map.Entry entry2 : map3.entrySet()) {
             Object key = entry2.getKey();
             String str2 = (String) entry2.getValue();
             Intrinsics.checkNotNull(str2);
-            linkedHashMap.put(key, StringsKt.substringAfterLast$default(str2, '.', null, 2, null));
+            linkedHashMap.put(key, StringsKt__StringsKt.substringAfterLast(str2, str2));
         }
         simpleNames = linkedHashMap;
+    }
+
+    public ClassReference(Class jClass) {
+        Intrinsics.checkNotNullParameter(jClass, "jClass");
+        this.jClass = jClass;
+    }
+
+    public final boolean equals(Object obj) {
+        return (obj instanceof ClassReference) && JvmClassMappingKt.getJavaObjectType(this).equals(JvmClassMappingKt.getJavaObjectType((KClass) obj));
+    }
+
+    @Override
+    public final Class getJClass() {
+        return this.jClass;
+    }
+
+    public final int hashCode() {
+        return JvmClassMappingKt.getJavaObjectType(this).hashCode();
+    }
+
+    public final String toString() {
+        return this.jClass + " (Kotlin reflection is not available)";
     }
 }

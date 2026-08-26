@@ -1,8 +1,8 @@
 package org.commonmark.node;
 
-public class Document extends Block {
+public final class Document extends Block {
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
+    public final void accept(AbstractVisitor abstractVisitor) {
+        abstractVisitor.visitChildren(this);
     }
 }

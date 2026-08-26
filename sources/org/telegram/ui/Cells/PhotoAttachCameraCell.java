@@ -1,21 +1,14 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import com.google.android.gms.internal.mlkit_vision_common.zzkm;
 
-public class PhotoAttachCameraCell extends View {
-    private int itemSize;
-
-    public PhotoAttachCameraCell(Context context) {
-        super(context);
-        setFocusable(true);
-        this.itemSize = AndroidUtilities.dp(0.0f);
-    }
+public final class PhotoAttachCameraCell extends View {
+    public int itemSize;
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(2.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(2.0f), 1073741824));
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(zzkm.m(2.0f, this.itemSize), zzkm.m(2.0f, this.itemSize));
     }
 
     public void setItemSize(int i) {

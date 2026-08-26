@@ -15,23 +15,52 @@ public class FileLoaderPriorityQueue {
     public ArrayList<FileLoadOperation> allOperations = new ArrayList<>();
     public ArrayList<FileLoadOperation> tmpListOperations = new ArrayList<>();
     boolean checkOperationsScheduled = false;
-    Runnable checkOperationsRunnable = new Runnable() {
-        @Override
-        public final void run() {
-            FileLoaderPriorityQueue.$r8$lambda$CqAM6dapKe9aCYZCS4iNuptLnQg(this.f$0);
-        }
-    };
+    Runnable checkOperationsRunnable = new ANRDetector$$ExternalSyntheticLambda0(this, 20);
 
-    public static void $r8$lambda$CqAM6dapKe9aCYZCS4iNuptLnQg(FileLoaderPriorityQueue fileLoaderPriorityQueue) {
-        fileLoaderPriorityQueue.checkLoadingOperationInternal();
-        fileLoaderPriorityQueue.checkOperationsScheduled = false;
-    }
-
-    FileLoaderPriorityQueue(int i, String str, int i2, DispatchQueue dispatchQueue) {
+    public FileLoaderPriorityQueue(int i, String str, int i2, DispatchQueue dispatchQueue) {
         this.currentAccount = i;
         this.name = str;
         this.type = i2;
         this.workerQueue = dispatchQueue;
+    }
+
+    private void checkLoadingOperationInternal() {
+        int i = this.type == 1 ? MessagesController.getInstance(this.currentAccount).largeQueueMaxActiveOperations : MessagesController.getInstance(this.currentAccount).smallQueueMaxActiveOperations;
+        this.tmpListOperations.clear();
+        int i2 = 0;
+        boolean z = false;
+        int priority = 0;
+        while (i2 < this.allOperations.size()) {
+            FileLoadOperation fileLoadOperation = i2 > 0 ? this.allOperations.get(i2 - 1) : null;
+            FileLoadOperation fileLoadOperation2 = this.allOperations.get(i2);
+            if (i2 > 0 && !z) {
+                if (this.type == 1 && fileLoadOperation != null && fileLoadOperation.isStory && fileLoadOperation.getPriority() >= 1048576 && fileLoadOperation2.getPriority() <= 0) {
+                    z = true;
+                }
+                if (priority > 0 && fileLoadOperation2.getPriority() == 0) {
+                    z = true;
+                }
+            }
+            if (fileLoadOperation2.preFinished) {
+                i++;
+            } else {
+                if (!z && i2 < i) {
+                    this.tmpListOperations.add(fileLoadOperation2);
+                } else if (fileLoadOperation2.wasStarted()) {
+                    fileLoadOperation2.pause();
+                }
+                priority = fileLoadOperation2.getPriority();
+            }
+            i2++;
+        }
+        for (int i3 = 0; i3 < this.tmpListOperations.size(); i3++) {
+            this.tmpListOperations.get(i3).start();
+        }
+    }
+
+    public void lambda$new$0() {
+        checkLoadingOperationInternal();
+        this.checkOperationsScheduled = false;
     }
 
     public void add(FileLoadOperation fileLoadOperation) {
@@ -74,6 +103,21 @@ public class FileLoaderPriorityQueue {
         checkLoadingOperations(false);
     }
 
+    public int getCount() {
+        return this.allOperations.size();
+    }
+
+    public int getPosition(FileLoadOperation fileLoadOperation) {
+        return this.allOperations.indexOf(fileLoadOperation);
+    }
+
+    public boolean remove(FileLoadOperation fileLoadOperation) {
+        if (fileLoadOperation == null) {
+            return false;
+        }
+        return this.allOperations.remove(fileLoadOperation);
+    }
+
     public void checkLoadingOperations(boolean z) {
         if (z) {
             this.workerQueue.cancelRunnable(this.checkOperationsRunnable);
@@ -86,54 +130,5 @@ public class FileLoaderPriorityQueue {
             this.workerQueue.cancelRunnable(this.checkOperationsRunnable);
             this.workerQueue.postRunnable(this.checkOperationsRunnable, 20L);
         }
-    }
-
-    private void checkLoadingOperationInternal() {
-        int i = this.type == 1 ? MessagesController.getInstance(this.currentAccount).largeQueueMaxActiveOperations : MessagesController.getInstance(this.currentAccount).smallQueueMaxActiveOperations;
-        this.tmpListOperations.clear();
-        int i2 = 0;
-        boolean z = false;
-        int priority = 0;
-        while (i2 < this.allOperations.size()) {
-            FileLoadOperation fileLoadOperation = i2 > 0 ? this.allOperations.get(i2 - 1) : null;
-            FileLoadOperation fileLoadOperation2 = this.allOperations.get(i2);
-            if (i2 > 0 && !z) {
-                if (this.type == 1 && fileLoadOperation != null && fileLoadOperation.isStory && fileLoadOperation.getPriority() >= 1048576 && fileLoadOperation2.getPriority() <= 0) {
-                    z = true;
-                }
-                if (priority > 0 && fileLoadOperation2.getPriority() == 0) {
-                    z = true;
-                }
-            }
-            if (fileLoadOperation2.preFinished) {
-                i++;
-            } else {
-                if (!z && i2 < i) {
-                    this.tmpListOperations.add(fileLoadOperation2);
-                } else if (fileLoadOperation2.wasStarted()) {
-                    fileLoadOperation2.pause();
-                }
-                priority = fileLoadOperation2.getPriority();
-            }
-            i2++;
-        }
-        for (int i3 = 0; i3 < this.tmpListOperations.size(); i3++) {
-            this.tmpListOperations.get(i3).start();
-        }
-    }
-
-    public boolean remove(FileLoadOperation fileLoadOperation) {
-        if (fileLoadOperation == null) {
-            return false;
-        }
-        return this.allOperations.remove(fileLoadOperation);
-    }
-
-    public int getCount() {
-        return this.allOperations.size();
-    }
-
-    public int getPosition(FileLoadOperation fileLoadOperation) {
-        return this.allOperations.indexOf(fileLoadOperation);
     }
 }

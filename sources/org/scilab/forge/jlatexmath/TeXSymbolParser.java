@@ -1,5 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,34 +20,12 @@ public class TeXSymbolParser {
         this(JLatexMathAndroid.getResourceAsStream("TeXSymbols.xml"), "TeXSymbols.xml");
     }
 
-    public TeXSymbolParser(InputStream inputStream, String str) {
-        try {
-            DocumentBuilderFactory documentBuilderFactoryNewInstance = DocumentBuilderFactory.newInstance();
-            documentBuilderFactoryNewInstance.setIgnoringElementContentWhitespace(true);
-            documentBuilderFactoryNewInstance.setIgnoringComments(true);
-            this.root = documentBuilderFactoryNewInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
-            setTypeMappings();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+    private static String getAttrValueAndCheckIfNotNull(String str, Element element) {
+        String attribute = element.getAttribute(str);
+        if (attribute.equals("")) {
+            throw new XMLResourceParseException("TeXSymbols.xml", element.getTagName(), str, null);
         }
-    }
-
-    public Map<String, SymbolAtom> readSymbols() {
-        HashMap map = new HashMap();
-        NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
-        for (int i = 0; i < elementsByTagName.getLength(); i++) {
-            Element element = (Element) elementsByTagName.item(i);
-            String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
-            String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
-            String attribute = element.getAttribute("del");
-            boolean z = attribute != null && attribute.equals("true");
-            Integer num = typeMappings.get(attrValueAndCheckIfNotNull2);
-            if (num == null) {
-                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", "has an unknown value '" + attrValueAndCheckIfNotNull2 + "'!");
-            }
-            map.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z));
-        }
-        return map;
+        return attribute;
     }
 
     private void setTypeMappings() {
@@ -60,11 +39,33 @@ public class TeXSymbolParser {
         typeMappings.put("acc", 10);
     }
 
-    private static String getAttrValueAndCheckIfNotNull(String str, Element element) {
-        String attribute = element.getAttribute(str);
-        if (attribute.equals("")) {
-            throw new XMLResourceParseException("TeXSymbols.xml", element.getTagName(), str, null);
+    public Map<String, SymbolAtom> readSymbols() {
+        HashMap map = new HashMap();
+        NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
+        for (int i = 0; i < elementsByTagName.getLength(); i++) {
+            Element element = (Element) elementsByTagName.item(i);
+            String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
+            String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
+            String attribute = element.getAttribute("del");
+            boolean z = attribute != null && attribute.equals("true");
+            Integer num = typeMappings.get(attrValueAndCheckIfNotNull2);
+            if (num == null) {
+                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", SurfaceContainer$$ExternalSyntheticOutline0.m("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+            }
+            map.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z));
         }
-        return attribute;
+        return map;
+    }
+
+    public TeXSymbolParser(InputStream inputStream, String str) {
+        try {
+            DocumentBuilderFactory documentBuilderFactoryNewInstance = DocumentBuilderFactory.newInstance();
+            documentBuilderFactoryNewInstance.setIgnoringElementContentWhitespace(true);
+            documentBuilderFactoryNewInstance.setIgnoringComments(true);
+            this.root = documentBuilderFactoryNewInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
+            setTypeMappings();
+        } catch (Exception e) {
+            throw new XMLResourceParseException(str, e);
+        }
     }
 }

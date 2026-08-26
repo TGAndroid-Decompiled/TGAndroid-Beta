@@ -13,16 +13,43 @@ public class Mp4Movie {
     private ArrayList<Track> tracks = new ArrayList<>();
     private int width;
 
-    public Matrix getMatrix() {
-        return this.matrix;
+    public void addSample(int i, long j, MediaCodec.BufferInfo bufferInfo) {
+        if (i < 0 || i >= this.tracks.size()) {
+            return;
+        }
+        this.tracks.get(i).addSample(j, bufferInfo);
     }
 
-    public int getWidth() {
-        return this.width;
+    public int addTrack(MediaFormat mediaFormat, boolean z) {
+        this.tracks.add(new Track(this.tracks.size(), mediaFormat, z));
+        return this.tracks.size() - 1;
+    }
+
+    public File getCacheFile() {
+        return this.cacheFile;
     }
 
     public int getHeight() {
         return this.height;
+    }
+
+    public long getLastFrameTimestamp(int i) {
+        if (i < 0 || i >= this.tracks.size()) {
+            return 0L;
+        }
+        return this.tracks.get(i).getLastFrameTimestamp();
+    }
+
+    public Matrix getMatrix() {
+        return this.matrix;
+    }
+
+    public ArrayList<Track> getTracks() {
+        return this.tracks;
+    }
+
+    public int getWidth() {
+        return this.width;
     }
 
     public void setCacheFile(File file) {
@@ -46,32 +73,5 @@ public class Mp4Movie {
     public void setSize(int i, int i2) {
         this.width = i;
         this.height = i2;
-    }
-
-    public ArrayList<Track> getTracks() {
-        return this.tracks;
-    }
-
-    public File getCacheFile() {
-        return this.cacheFile;
-    }
-
-    public void addSample(int i, long j, MediaCodec.BufferInfo bufferInfo) {
-        if (i < 0 || i >= this.tracks.size()) {
-            return;
-        }
-        this.tracks.get(i).addSample(j, bufferInfo);
-    }
-
-    public int addTrack(MediaFormat mediaFormat, boolean z) {
-        this.tracks.add(new Track(this.tracks.size(), mediaFormat, z));
-        return this.tracks.size() - 1;
-    }
-
-    public long getLastFrameTimestamp(int i) {
-        if (i < 0 || i >= this.tracks.size()) {
-            return 0L;
-        }
-        return this.tracks.get(i).getLastFrameTimestamp();
     }
 }

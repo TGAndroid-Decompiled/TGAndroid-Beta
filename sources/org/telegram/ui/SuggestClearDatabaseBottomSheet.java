@@ -1,118 +1,81 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.StickerImageView;
 
-public class SuggestClearDatabaseBottomSheet extends BottomSheet {
-    private static SuggestClearDatabaseBottomSheet dialog;
-    BaseFragment fragment;
+public final class SuggestClearDatabaseBottomSheet extends BottomSheet {
+    public static SuggestClearDatabaseBottomSheet dialog;
 
-    public static void show(BaseFragment baseFragment) {
-        if (dialog == null) {
-            SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet = new SuggestClearDatabaseBottomSheet(baseFragment);
-            dialog = suggestClearDatabaseBottomSheet;
-            suggestClearDatabaseBottomSheet.show();
-        }
-    }
-
-    private SuggestClearDatabaseBottomSheet(final BaseFragment baseFragment) {
-        super(baseFragment.getParentActivity(), false);
-        this.fragment = baseFragment;
-        Activity parentActivity = baseFragment.getParentActivity();
-        LinearLayout linearLayout = new LinearLayout(parentActivity);
-        linearLayout.setOrientation(1);
+    public SuggestClearDatabaseBottomSheet(DialogsActivity dialogsActivity) {
+        super(dialogsActivity.getParentActivity(), null, false, false);
+        Activity parentActivity = dialogsActivity.getParentActivity();
+        LinearLayout linearLayoutM = FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(parentActivity, 1);
         StickerImageView stickerImageView = new StickerImageView(parentActivity, this.currentAccount);
         stickerImageView.setStickerNum(7);
         stickerImageView.getImageReceiver().setAutoRepeat(1);
-        linearLayout.addView(stickerImageView, LayoutHelper.createLinear(144, 144, 1, 0, 16, 0, 0));
+        linearLayoutM.addView(stickerImageView, LayoutHelper.createLinear(144, 144, 1, 0, 16, 0, 0));
         TextView textView = new TextView(parentActivity);
         textView.setGravity(8388611);
         int i = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(20.0f, Theme.getColor(null, i, false), 1, textView);
         textView.setText(LocaleController.getString(R.string.SuggestClearDatabaseTitle));
-        linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
+        linearLayoutM.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(parentActivity);
         textView2.setGravity(8388611);
         textView2.setTextSize(1, 15.0f);
-        textView2.setTextColor(Theme.getColor(i));
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(baseFragment.getMessagesStorage().getDatabaseSize()))));
-        linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+        textView2.setTextColor(Theme.getColor(null, i, false));
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(dialogsActivity.getMessagesStorage().getDatabaseSize()))));
+        linearLayoutM.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
         TextView textView3 = new TextView(parentActivity);
         textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         textView3.setGravity(17);
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString(R.string.ClearLocalDatabase));
-        textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_featuredStickers_addButton), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
-        linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                SuggestClearDatabaseBottomSheet.$r8$lambda$nYsqJ1RXmHGX4Nf_7a3E266jF0o(this.f$0, baseFragment, view);
-            }
-        });
+        textView3.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
+        int iDp = AndroidUtilities.dp(6.0f);
+        int color = Theme.getColor(null, Theme.key_featuredStickers_addButton, false);
+        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(null, Theme.key_windowBackgroundWhite, false), 120);
+        textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, color, alphaComponent, alphaComponent));
+        linearLayoutM.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
+        textView3.setOnClickListener(new VoIPFragment$$ExternalSyntheticLambda28(1, this, dialogsActivity));
         ScrollView scrollView = new ScrollView(parentActivity);
-        scrollView.addView(linearLayout);
+        scrollView.addView(linearLayoutM);
         setCustomView(scrollView);
-    }
-
-    public static void $r8$lambda$nYsqJ1RXmHGX4Nf_7a3E266jF0o(final SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet, final BaseFragment baseFragment, View view) {
-        suggestClearDatabaseBottomSheet.getClass();
-        AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getParentActivity());
-        builder.setTitle(LocaleController.getString(R.string.LocalDatabaseClearTextTitle));
-        builder.setMessage(LocaleController.getString(R.string.LocalDatabaseClearText));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        builder.setPositiveButton(LocaleController.getString(R.string.CacheClear), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                SuggestClearDatabaseBottomSheet.$r8$lambda$mTqBTGq3KzrFVzvYRtiCazGxjOc(this.f$0, baseFragment, alertDialog, i);
-            }
-        });
-        AlertDialog alertDialogCreate = builder.create();
-        baseFragment.showDialog(alertDialogCreate);
-        TextView textView = (TextView) alertDialogCreate.getButton(-1);
-        if (textView != null) {
-            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
-        }
-    }
-
-    public static void $r8$lambda$mTqBTGq3KzrFVzvYRtiCazGxjOc(SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet, BaseFragment baseFragment, AlertDialog alertDialog, int i) {
-        suggestClearDatabaseBottomSheet.getClass();
-        if (baseFragment.getParentActivity() == null) {
-            return;
-        }
-        MessagesController.getInstance(suggestClearDatabaseBottomSheet.currentAccount).clearQueryTime();
-        baseFragment.getMessagesStorage().clearLocalDatabase();
-    }
-
-    @Override
-    public void dismiss() {
-        super.dismiss();
-        dialog = null;
     }
 
     public static void dismissDialog() {
         SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet = dialog;
         if (suggestClearDatabaseBottomSheet != null) {
-            suggestClearDatabaseBottomSheet.dismiss();
+            super.lambda$showGiftOfferSheet$15();
             dialog = null;
         }
+    }
+
+    @Override
+    public final void lambda$showGiftOfferSheet$15() {
+        super.lambda$showGiftOfferSheet$15();
+        dialog = null;
+    }
+
+    public final void lambda$new$0(DialogsActivity dialogsActivity) {
+        if (dialogsActivity.getParentActivity() == null) {
+            return;
+        }
+        MessagesController.getInstance(this.currentAccount).clearQueryTime();
+        dialogsActivity.getMessagesStorage().clearLocalDatabase();
     }
 }

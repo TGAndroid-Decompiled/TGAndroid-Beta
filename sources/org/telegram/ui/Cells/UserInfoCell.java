@@ -17,7 +17,9 @@ import java.util.Calendar;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -35,100 +37,306 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 
-public class UserInfoCell extends View implements NotificationCenter.NotificationCenterDelegate {
-    private boolean animating;
-    private int backgroundHeight;
-    private MessagesController.CommonChatsList commonChats;
-    private final int currentAccount;
-    private long dialogId;
-    private Text footer;
-    private final ButtonBounce fullBounce;
-    private final RectF fullBounds;
-    private final Drawable groupsArrow;
-    private final AvatarsDrawable groupsAvatars;
-    private final ButtonBounce groupsBounce;
-    private final RectF groupsBounds;
-    private final Drawable groupsRipple;
-    private Row groupsRow;
-    private float height;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private final ArrayList rows;
-    private float rowsKeysWidth;
-    private float rowsValuesWidth;
-    private float rowsWidth;
-    private Text subtitle;
-    private Text title;
-    private float viewTop;
-    private float width;
+public final class UserInfoCell extends View implements NotificationCenter.NotificationCenterDelegate {
+    public static final int $r8$clinit = 0;
+    public boolean animating;
+    public int backgroundHeight;
+    public MessagesController.CommonChatsList commonChats;
+    public final int currentAccount;
+    public long dialogId;
+    public Text footer;
+    public final ButtonBounce fullBounce;
+    public final RectF fullBounds;
+    public final Drawable groupsArrow;
+    public final AvatarsDrawable groupsAvatars;
+    public final ButtonBounce groupsBounce;
+    public final RectF groupsBounds;
+    public final BaseCell.RippleDrawableSafe groupsRipple;
+    public Row groupsRow;
+    public float height;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final ArrayList rows;
+    public float rowsKeysWidth;
+    public float rowsValuesWidth;
+    public float rowsWidth;
+    public Text subtitle;
+    public Text title;
+    public float viewTop;
+    public float width;
 
-    private class Row {
-        public boolean avatars;
+    public final class Row {
+        public final boolean avatars;
         public final RectF bounds = new RectF();
-        public Text key;
+        public final Text key;
         public Text value;
 
-        public Row(CharSequence charSequence, CharSequence charSequence2, boolean z) {
-            this.key = new Text(charSequence, 12.0f);
-            this.value = new Text(charSequence2, 12.0f, AndroidUtilities.bold());
+        public Row(CharSequence charSequence, String str, boolean z) {
+            this.key = new Text(str, 12.0f, null);
+            this.value = new Text(charSequence, 12.0f, AndroidUtilities.bold());
             this.avatars = z;
         }
-    }
-
-    private Row addRow(CharSequence charSequence, CharSequence charSequence2, boolean z) {
-        if (!this.rows.isEmpty()) {
-            this.height += AndroidUtilities.dp(7.0f);
-        }
-        Row row = new Row(charSequence, charSequence2, z);
-        this.rows.add(row);
-        this.height += AndroidUtilities.dp(14.0f);
-        this.rowsKeysWidth = Math.max(this.rowsKeysWidth, row.key.getCurrentWidth());
-        this.rowsValuesWidth = Math.max(this.rowsValuesWidth, row.value.getCurrentWidth() + (z ? AndroidUtilities.dp(38.0f) : 0));
-        return row;
-    }
-
-    public static String displayDate(String str) {
-        String[] strArrSplit = str.split("\\.");
-        if (strArrSplit.length != 2) {
-            return str;
-        }
-        int i = Integer.parseInt(strArrSplit[0]);
-        int i2 = Integer.parseInt(strArrSplit[1]);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(i2, i - 1, 1, 0, 0, 0);
-        calendar.set(14, 0);
-        return LocaleController.formatYearMont(calendar.getTimeInMillis() / 1000, true);
     }
 
     public UserInfoCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.rows = new ArrayList();
         this.fullBounds = new RectF();
-        this.fullBounce = new ButtonBounce(this);
+        this.fullBounce = new ButtonBounce(this, 1.0f, 5.0f);
         this.groupsBounds = new RectF();
-        this.groupsBounce = new ButtonBounce(this);
+        this.groupsBounce = new ButtonBounce(this, 1.0f, 5.0f);
         AvatarsDrawable avatarsDrawable = new AvatarsDrawable(this, false);
         this.groupsAvatars = avatarsDrawable;
         this.currentAccount = i;
         this.resourcesProvider = resourcesProvider;
-        Drawable drawableCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(822083583, 8, 8);
-        this.groupsRipple = drawableCreateRadSelectorDrawable;
-        drawableCreateRadSelectorDrawable.setCallback(this);
+        BaseCell.RippleDrawableSafe rippleDrawableSafeCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(822083583, 8, 8);
+        this.groupsRipple = rippleDrawableSafeCreateRadSelectorDrawable;
+        rippleDrawableSafeCreateRadSelectorDrawable.setCallback(this);
         avatarsDrawable.width = AndroidUtilities.dp(50.0f);
         avatarsDrawable.height = AndroidUtilities.dp(13.0f);
         avatarsDrawable.drawStoriesCircle = false;
-        avatarsDrawable.setSize(AndroidUtilities.dp(13.0f));
+        avatarsDrawable.overrideSize = AndroidUtilities.dp(13.0f);
         avatarsDrawable.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.msg_mini_forumarrow).mutate();
         this.groupsArrow = drawableMutate;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
     }
 
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.groupsRipple || super.verifyDrawable(drawable);
+    public final Row addRow(CharSequence charSequence, String str, boolean z) {
+        ArrayList arrayList = this.rows;
+        if (!arrayList.isEmpty()) {
+            this.height += AndroidUtilities.dp(7.0f);
+        }
+        Row row = new Row(charSequence, str, z);
+        arrayList.add(row);
+        this.height += AndroidUtilities.dp(14.0f);
+        this.rowsKeysWidth = Math.max(this.rowsKeysWidth, row.key.width);
+        this.rowsValuesWidth = Math.max(this.rowsValuesWidth, row.value.width + (z ? AndroidUtilities.dp(38.0f) : 0));
+        return row;
     }
 
-    public void set(long j, TLRPC.PeerSettings peerSettings) {
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        int i3 = NotificationCenter.userInfoDidLoad;
+        int i4 = this.currentAccount;
+        if (i == i3) {
+            long jLongValue = ((Long) objArr[0]).longValue();
+            long j = this.dialogId;
+            if (jLongValue == j) {
+                set(j, MessagesController.getInstance(i4).getPeerSettings(this.dialogId));
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.commonChatsLoaded && ((Long) objArr[0]).longValue() == this.dialogId) {
+            MessagesController.CommonChatsList commonChats = MessagesController.getInstance(i4).getCommonChats(this.dialogId);
+            this.commonChats = commonChats;
+            int count = commonChats.getCount();
+            Row row = this.groupsRow;
+            if (row == null || count <= 0) {
+                set(this.dialogId, MessagesController.getInstance(i4).getPeerSettings(this.dialogId));
+                requestLayout();
+            } else {
+                row.value = new Text(LocaleController.formatPluralString("Groups", count, new Object[0]), 12.0f, AndroidUtilities.bold());
+                int iMin = Math.min(3, this.commonChats.chats.size());
+                AvatarsDrawable avatarsDrawable = this.groupsAvatars;
+                avatarsDrawable.setCount(iMin);
+                for (int i5 = 0; i5 < Math.min(3, this.commonChats.chats.size()); i5++) {
+                    avatarsDrawable.setObject(i5, this.commonChats.chats.get(i5), i4);
+                }
+                avatarsDrawable.commitTransition(true, true);
+            }
+            invalidate();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        int i = this.currentAccount;
+        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.userInfoDidLoad);
+        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.commonChatsLoaded);
+        this.groupsAvatars.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        int i = this.currentAccount;
+        NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.userInfoDidLoad);
+        NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.commonChatsLoaded);
+        this.groupsAvatars.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float intrinsicWidth;
+        super.onDraw(canvas);
+        canvas.save();
+        float f = 2.0f;
+        float width = getWidth() / 2.0f;
+        RectF rectF = this.fullBounds;
+        rectF.set((getWidth() - this.width) / 2.0f, (getHeight() - this.height) / 2.0f, (getWidth() + this.width) / 2.0f, (getHeight() + this.height) / 2.0f);
+        float f2 = 0.025f;
+        float scale = this.fullBounce.getScale(0.025f);
+        canvas.scale(scale, scale, rectF.centerX(), rectF.centerY());
+        int measuredWidth = getMeasuredWidth();
+        int i = this.backgroundHeight;
+        float x = getX();
+        float f3 = this.viewTop;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider != null) {
+            resourcesProvider.applyServiceShaderMatrix(x, f3, measuredWidth, i);
+        } else {
+            Theme.applyServiceShaderMatrix(Theme.serviceBitmap, Theme.serviceBitmapShader, Theme.serviceBitmapMatrix, measuredWidth, i, x, f3);
+        }
+        float f4 = 16.0f;
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackground", resourcesProvider));
+        if (resourcesProvider != null ? resourcesProvider.hasGradientService() : Theme.hasGradientService()) {
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackgroundDarken", resourcesProvider));
+        }
+        float f5 = 0.0f;
+        canvas.translate(0.0f, (getHeight() - this.height) / 2.0f);
+        float fM = ImageReceiver$$ExternalSyntheticOutline0.m(getHeight(), this.height, 2.0f, 0.0f);
+        canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
+        float fDp = fM + AndroidUtilities.dp(14.0f);
+        Text text = this.title;
+        text.ellipsizeWidth = this.width - AndroidUtilities.dp(32.0f);
+        text.draw(width - (this.title.getWidth() / 2.0f), this.title.layout.getHeight() / 2.0f, 1.0f, -1, canvas);
+        canvas.translate(0.0f, this.title.layout.getHeight() + AndroidUtilities.dp(3.0f));
+        float height = fDp + this.title.layout.getHeight() + AndroidUtilities.dp(3.0f);
+        Text text2 = this.subtitle;
+        text2.ellipsizeWidth = this.width - AndroidUtilities.dp(32.0f);
+        text2.draw(width - (this.subtitle.getWidth() / 2.0f), this.subtitle.layout.getHeight() / 2.0f, 0.7f, -1, canvas);
+        canvas.translate(0.0f, this.subtitle.layout.getHeight() + AndroidUtilities.dp(11.0f));
+        float height2 = this.subtitle.layout.getHeight() + AndroidUtilities.dp(11.0f) + height;
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.rows;
+            if (i2 >= arrayList.size()) {
+                break;
+            }
+            if (i2 > 0) {
+                canvas.translate(f5, AndroidUtilities.dp(7.0f));
+                height2 += AndroidUtilities.dp(7.0f);
+            }
+            canvas.save();
+            Row row = (Row) arrayList.get(i2);
+            float fDp2 = (((width - (this.width / f)) + AndroidUtilities.dp(f4)) + this.rowsKeysWidth) - row.key.width;
+            float fDp3 = (width - (this.width / f)) + AndroidUtilities.dp(f4) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f);
+            float fDp4 = (fDp3 - fDp2) - AndroidUtilities.dp(7.66f);
+            float f6 = height2;
+            Text text3 = row.key;
+            text3.ellipsizeWidth = fDp4;
+            text3.draw(fDp2, text3.layout.getHeight() / f, 0.7f, -1, canvas);
+            RectF rectF2 = row.bounds;
+            float fDp5 = (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f);
+            float fDp6 = (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.width;
+            AvatarsDrawable avatarsDrawable = this.groupsAvatars;
+            Drawable drawable = this.groupsArrow;
+            boolean z = row.avatars;
+            if (z) {
+                intrinsicWidth = (drawable.getIntrinsicWidth() * 0.8f) + AndroidUtilities.dp(5.0f) + avatarsDrawable.maxX;
+            } else {
+                intrinsicWidth = 0.0f;
+            }
+            rectF2.set(fDp5, f6, fDp6 + intrinsicWidth, row.value.layout.getHeight() + f6);
+            if (this.groupsRow == row) {
+                RectF rectF3 = this.groupsBounds;
+                rectF3.set(rectF2);
+                rectF3.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(2.0f));
+                float scale2 = this.groupsBounce.getScale(f2);
+                canvas.scale(scale2, scale2, rectF3.centerX(), row.value.layout.getHeight() / 2.0f);
+                BaseCell.RippleDrawableSafe rippleDrawableSafe = this.groupsRipple;
+                if (rippleDrawableSafe != null) {
+                    rippleDrawableSafe.setBounds((int) rectF3.left, (int) (rectF3.top - f6), (int) rectF3.right, (int) (rectF3.bottom - f6));
+                    rippleDrawableSafe.draw(canvas);
+                }
+            }
+            Text text4 = row.value;
+            text4.ellipsizeWidth = (((this.width / 2.0f) + width) - AndroidUtilities.dp(8.0f)) - fDp3;
+            text4.draw(fDp3, row.value.layout.getHeight() / 2.0f, 1.0f, -1, canvas);
+            if (z) {
+                canvas.save();
+                canvas.translate((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.width + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f));
+                avatarsDrawable.onDraw(canvas);
+                canvas.translate(avatarsDrawable.maxX + AndroidUtilities.dp(1.0f), AndroidUtilities.dp(13.0f) / 2.0f);
+                drawable.setBounds(0, (int) (((-drawable.getIntrinsicHeight()) * 0.8f) / 2.0f), (int) (drawable.getIntrinsicWidth() * 0.8f), (int) ((drawable.getIntrinsicHeight() * 0.8f) / 2.0f));
+                drawable.draw(canvas);
+                canvas.restore();
+            }
+            canvas.restore();
+            canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
+            height2 = AndroidUtilities.dp(14.0f) + f6;
+            i2++;
+            f = 2.0f;
+            f2 = 0.025f;
+            f4 = 16.0f;
+            f5 = 0.0f;
+        }
+        if (this.footer != null) {
+            canvas.translate(0.0f, AndroidUtilities.dp(12.0f));
+            Text text5 = this.footer;
+            if (text5.maxLines > 1) {
+                text5.draw(width - (text5.getWidth() / 2.0f), 0.0f, 0.7f, -1, canvas);
+            } else {
+                text5.ellipsizeWidth = this.width - AndroidUtilities.dp(32.0f);
+                text5.draw(width - (this.footer.getWidth() / 2.0f), this.footer.layout.getHeight() / 2.0f, 0.7f, -1, canvas);
+            }
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i), MessageObject$$ExternalSyntheticOutline0.m((int) this.height, 16.0f, 0));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ChatActivity.AnonymousClass18 anonymousClass18;
+        boolean z = this.groupsRow != null && this.groupsBounds.contains(motionEvent.getX(), motionEvent.getY());
+        boolean z2 = !z && this.fullBounds.contains(motionEvent.getX(), motionEvent.getY());
+        int action = motionEvent.getAction();
+        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.groupsRipple;
+        ButtonBounce buttonBounce = this.groupsBounce;
+        ButtonBounce buttonBounce2 = this.fullBounce;
+        if (action == 0) {
+            buttonBounce2.setPressed(z2);
+            buttonBounce.setPressed(z);
+            rippleDrawableSafe.setState(z ? new int[]{16842919, 16842910} : new int[0]);
+        } else if (motionEvent.getAction() == 1) {
+            if (buttonBounce2.isPressed) {
+                BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                if ((safeLastFragment instanceof ChatActivity) && (anonymousClass18 = ((ChatActivity) safeLastFragment).avatarContainer) != null) {
+                    anonymousClass18.openProfile(true, false);
+                }
+            } else if (buttonBounce.isPressed) {
+                BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
+                if (safeLastFragment2 != null) {
+                    Bundle bundle = new Bundle();
+                    long j = this.dialogId;
+                    if (j >= 0) {
+                        bundle.putLong("user_id", j);
+                    } else {
+                        bundle.putLong("chat_id", -j);
+                    }
+                    bundle.putBoolean("open_common", true);
+                    safeLastFragment2.presentFragment(new ProfileActivity(bundle, null));
+                }
+                invalidate();
+            }
+            buttonBounce.setPressed(false);
+            buttonBounce2.setPressed(false);
+            rippleDrawableSafe.setState(new int[0]);
+        } else if (motionEvent.getAction() == 3) {
+            buttonBounce.setPressed(false);
+            buttonBounce2.setPressed(false);
+            rippleDrawableSafe.setState(new int[0]);
+        }
+        return buttonBounce.isPressed || buttonBounce2.isPressed;
+    }
+
+    public final void set(long j, TLRPC.PeerSettings peerSettings) {
         TL_bots.botVerification botverification;
         this.dialogId = j;
         this.width = 0.0f;
@@ -140,32 +348,46 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         this.height += AndroidUtilities.dp(14.0f);
         Text text = new Text(DialogObject.getName(j), 14.0f, AndroidUtilities.bold());
         this.title = text;
-        this.height += text.getHeight() + AndroidUtilities.dp(3.0f);
-        Text text2 = new Text(LocaleController.getString(ContactsController.getInstance(this.currentAccount).isContact(j) ? R.string.ContactInfoIsContact : R.string.ContactInfoIsNotContact), 14.0f);
+        this.height = text.layout.getHeight() + AndroidUtilities.dp(3.0f) + this.height;
+        int i2 = this.currentAccount;
+        Text text2 = new Text(LocaleController.getString(ContactsController.getInstance(i2).isContact(j) ? R.string.ContactInfoIsContact : R.string.ContactInfoIsNotContact), 14.0f, null);
         this.subtitle = text2;
-        this.height += text2.getHeight() + AndroidUtilities.dp(11.0f);
+        this.height = text2.layout.getHeight() + AndroidUtilities.dp(11.0f) + this.height;
         if (peerSettings != null && peerSettings.phone_country != null) {
-            addRow(LocaleController.getString(R.string.ContactInfoPhone), LocaleController.getCountryWithFlag(peerSettings.phone_country, 12, R.string.ContactInfoPhoneFragment), false);
+            addRow(LocaleController.getCountryWithFlag(peerSettings.phone_country, 12, R.string.ContactInfoPhoneFragment), LocaleController.getString(R.string.ContactInfoPhone), false);
         }
         if (peerSettings != null && peerSettings.registration_month != null) {
-            addRow(LocaleController.getString(R.string.ContactInfoRegistration), displayDate(peerSettings.registration_month), false);
+            String string = LocaleController.getString(R.string.ContactInfoRegistration);
+            String yearMont = peerSettings.registration_month;
+            String[] strArrSplit = yearMont.split("\\.");
+            if (strArrSplit.length == 2) {
+                int i3 = Integer.parseInt(strArrSplit[0]);
+                int i4 = Integer.parseInt(strArrSplit[1]);
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(i4, i3 - 1, 1, 0, 0, 0);
+                calendar.set(14, 0);
+                yearMont = LocaleController.formatYearMont(calendar.getTimeInMillis() / 1000, true);
+            }
+            addRow(yearMont, string, false);
         }
-        TLRPC.User user = j < 0 ? null : MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
-        TLRPC.UserFull userFull = j < 0 ? null : MessagesController.getInstance(this.currentAccount).getUserFull(j);
+        TLRPC.User user = j < 0 ? null : MessagesController.getInstance(i2).getUser(Long.valueOf(j));
+        TLRPC.UserFull userFull = j < 0 ? null : MessagesController.getInstance(i2).getUserFull(j);
         if (userFull == null && j > 0) {
-            MessagesController.getInstance(this.currentAccount).loadUserInfo(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)), true, 0);
+            MessagesController.getInstance(i2).loadUserInfo(MessagesController.getInstance(i2).getUser(Long.valueOf(j)), true, 0);
         }
         if (userFull != null) {
-            MessagesController.CommonChatsList commonChats = MessagesController.getInstance(this.currentAccount).getCommonChats(j);
+            MessagesController.CommonChatsList commonChats = MessagesController.getInstance(i2).getCommonChats(j);
             this.commonChats = commonChats;
             int iMax = Math.max(userFull.common_chats_count, commonChats.getCount());
             if (iMax > 0) {
-                this.groupsRow = addRow(LocaleController.getString(R.string.ContactInfoCommonGroups), LocaleController.formatPluralString("Groups", iMax, new Object[0]), true);
-                this.groupsAvatars.setCount(Math.min(3, this.commonChats.chats.size()));
-                for (int i2 = 0; i2 < Math.min(3, this.commonChats.chats.size()); i2++) {
-                    this.groupsAvatars.setObject(i2, this.currentAccount, this.commonChats.chats.get(i2));
+                this.groupsRow = addRow(LocaleController.formatPluralString("Groups", iMax, new Object[0]), LocaleController.getString(R.string.ContactInfoCommonGroups), true);
+                int iMin = Math.min(3, this.commonChats.chats.size());
+                AvatarsDrawable avatarsDrawable = this.groupsAvatars;
+                avatarsDrawable.setCount(iMin);
+                for (int i5 = 0; i5 < Math.min(3, this.commonChats.chats.size()); i5++) {
+                    avatarsDrawable.setObject(i5, this.commonChats.chats.get(i5), i2);
                 }
-                this.groupsAvatars.commitTransition(true);
+                avatarsDrawable.commitTransition(true, true);
             } else {
                 this.commonChats = null;
                 this.groupsRow = null;
@@ -185,20 +407,27 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
             coloredImageSpan.translate(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(-1.0f));
             spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ContactInfoNotVerified));
-            this.footer = new Text(spannableStringBuilder, 12.0f);
-            this.height += AndroidUtilities.dp(12.0f) + this.footer.getHeight() + AndroidUtilities.dp(15.33f);
-        } else if (userFull != null && (botverification = userFull.bot_verification) != null) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("i  ");
-            this.footer = new Text(spannableStringBuilder2, 12.0f);
-            spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(botverification.icon, this.footer.getFontMetricsInt()), 0, 1, 33);
-            spannableStringBuilder2.append((CharSequence) botverification.description);
-            Text textMultiline = new Text(spannableStringBuilder2, 12.0f).align(Layout.Alignment.ALIGN_CENTER).multiline(5);
-            Point point = AndroidUtilities.displaySize;
-            this.footer = textMultiline.setMaxWidth(Math.min(point.x, point.y) * 0.5f).supportAnimatedEmojis(this);
-            this.height += AndroidUtilities.dp(12.0f) + this.footer.getHeight() + AndroidUtilities.dp(15.33f);
-        } else {
+            this.footer = new Text(spannableStringBuilder, 12.0f, null);
+            this.height = AndroidUtilities.dp(12.0f) + this.footer.layout.getHeight() + AndroidUtilities.dp(15.33f) + this.height;
+        } else if (userFull == null || (botverification = userFull.bot_verification) == null) {
             this.footer = null;
             this.height += AndroidUtilities.dp(14.0f);
+        } else {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("i  ");
+            this.footer = new Text(spannableStringBuilder2, 12.0f, null);
+            spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(botverification.icon, 1.2f, this.footer.paint.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder2.append((CharSequence) botverification.description);
+            Text text3 = new Text(spannableStringBuilder2, 12.0f, null);
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+            text3.align();
+            text3.maxLines = 5;
+            text3.setText(text3.layout.getText());
+            Point point = AndroidUtilities.displaySize;
+            text3.maxWidth = Math.min(point.x, point.y) * 0.5f;
+            text3.setText(text3.layout.getText());
+            text3.supportAnimatedEmojis(this);
+            this.footer = text3;
+            this.height = AndroidUtilities.dp(12.0f) + this.footer.layout.getHeight() + AndroidUtilities.dp(15.33f) + this.height;
         }
         float fMax = Math.max(this.width, this.title.getWidth());
         this.width = fMax;
@@ -209,146 +438,11 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         this.width = Math.min(fMax3 + AndroidUtilities.dp(32.0f), i);
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.userInfoDidLoad) {
-            long jLongValue = ((Long) objArr[0]).longValue();
-            long j = this.dialogId;
-            if (jLongValue == j) {
-                set(j, MessagesController.getInstance(this.currentAccount).getPeerSettings(this.dialogId));
-                return;
-            }
-            return;
-        }
-        if (i == NotificationCenter.commonChatsLoaded && ((Long) objArr[0]).longValue() == this.dialogId) {
-            MessagesController.CommonChatsList commonChats = MessagesController.getInstance(this.currentAccount).getCommonChats(this.dialogId);
-            this.commonChats = commonChats;
-            int count = commonChats.getCount();
-            Row row = this.groupsRow;
-            if (row == null || count <= 0) {
-                set(this.dialogId, MessagesController.getInstance(this.currentAccount).getPeerSettings(this.dialogId));
-                requestLayout();
-            } else {
-                row.value = new Text(LocaleController.formatPluralString("Groups", count, new Object[0]), 12.0f, AndroidUtilities.bold());
-                this.groupsAvatars.setCount(Math.min(3, this.commonChats.chats.size()));
-                for (int i3 = 0; i3 < Math.min(3, this.commonChats.chats.size()); i3++) {
-                    this.groupsAvatars.setObject(i3, this.currentAccount, this.commonChats.chats.get(i3));
-                }
-                this.groupsAvatars.commitTransition(true);
-            }
-            invalidate();
-        }
+    public void setAnimating(boolean z) {
+        this.animating = z;
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.userInfoDidLoad);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.commonChatsLoaded);
-        this.groupsAvatars.onAttachedToWindow();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.userInfoDidLoad);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.commonChatsLoaded);
-        this.groupsAvatars.onDetachedFromWindow();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), Math.max(0, ((int) this.height) + AndroidUtilities.dp(16.0f)));
-    }
-
-    public static boolean isEmpty(TLRPC.PeerSettings peerSettings) {
-        if (peerSettings != null) {
-            return peerSettings.phone_country == null && peerSettings.registration_month == null;
-        }
-        return true;
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.save();
-        float f = 2.0f;
-        float width = getWidth() / 2.0f;
-        this.fullBounds.set((getWidth() - this.width) / 2.0f, (getHeight() - this.height) / 2.0f, (getWidth() + this.width) / 2.0f, (getHeight() + this.height) / 2.0f);
-        float scale = this.fullBounce.getScale(0.025f);
-        canvas.scale(scale, scale, this.fullBounds.centerX(), this.fullBounds.centerY());
-        applyServiceShaderMatrix();
-        float f2 = 16.0f;
-        canvas.drawRoundRect(this.fullBounds, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackground", this.resourcesProvider));
-        if (hasGradientService()) {
-            canvas.drawRoundRect(this.fullBounds, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.getThemePaint("paintChatActionBackgroundDarken", this.resourcesProvider));
-        }
-        canvas.translate(0.0f, (getHeight() - this.height) / 2.0f);
-        float height = ((getHeight() - this.height) / 2.0f) + 0.0f;
-        canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
-        float fDp = height + AndroidUtilities.dp(14.0f);
-        this.title.ellipsize(this.width - AndroidUtilities.dp(32.0f)).draw(canvas, width - (this.title.getWidth() / 2.0f), this.title.getHeight() / 2.0f, -1, 1.0f);
-        canvas.translate(0.0f, this.title.getHeight() + AndroidUtilities.dp(3.0f));
-        float height2 = fDp + this.title.getHeight() + AndroidUtilities.dp(3.0f);
-        this.subtitle.ellipsize(this.width - AndroidUtilities.dp(32.0f)).draw(canvas, width - (this.subtitle.getWidth() / 2.0f), this.subtitle.getHeight() / 2.0f, -1, 0.7f);
-        canvas.translate(0.0f, this.subtitle.getHeight() + AndroidUtilities.dp(11.0f));
-        float height3 = height2 + this.subtitle.getHeight() + AndroidUtilities.dp(11.0f);
-        int i = 0;
-        while (i < this.rows.size()) {
-            if (i > 0) {
-                canvas.translate(0.0f, AndroidUtilities.dp(7.0f));
-                height3 += AndroidUtilities.dp(7.0f);
-            }
-            canvas.save();
-            Row row = (Row) this.rows.get(i);
-            float fDp2 = (((width - (this.width / f)) + AndroidUtilities.dp(f2)) + this.rowsKeysWidth) - row.key.getCurrentWidth();
-            float fDp3 = (width - (this.width / f)) + AndroidUtilities.dp(f2) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f);
-            int i2 = i;
-            row.key.ellipsize((fDp3 - fDp2) - AndroidUtilities.dp(7.66f)).draw(canvas, fDp2, row.key.getHeight() / 2.0f, -1, 0.7f);
-            row.bounds.set((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f), height3, (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + (row.avatars ? AndroidUtilities.dp(5.0f) + (this.groupsArrow.getIntrinsicWidth() * 0.8f) + this.groupsAvatars.getMaxX() : 0.0f), row.value.getHeight() + height3);
-            if (this.groupsRow == row) {
-                this.groupsBounds.set(row.bounds);
-                this.groupsBounds.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(2.0f));
-                float scale2 = this.groupsBounce.getScale(0.025f);
-                canvas.scale(scale2, scale2, this.groupsBounds.centerX(), row.value.getHeight() / 2.0f);
-                Drawable drawable = this.groupsRipple;
-                if (drawable != null) {
-                    RectF rectF = this.groupsBounds;
-                    drawable.setBounds((int) rectF.left, (int) (rectF.top - height3), (int) rectF.right, (int) (rectF.bottom - height3));
-                    this.groupsRipple.draw(canvas);
-                }
-            }
-            row.value.ellipsize((((this.width / 2.0f) + width) - AndroidUtilities.dp(8.0f)) - fDp3).draw(canvas, fDp3, row.value.getHeight() / 2.0f, -1, 1.0f);
-            if (row.avatars) {
-                canvas.save();
-                canvas.translate((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f));
-                this.groupsAvatars.onDraw(canvas);
-                canvas.translate(this.groupsAvatars.getMaxX() + AndroidUtilities.dp(1.0f), AndroidUtilities.dp(13.0f) / 2.0f);
-                Drawable drawable2 = this.groupsArrow;
-                drawable2.setBounds(0, (int) (((-drawable2.getIntrinsicHeight()) * 0.8f) / 2.0f), (int) (this.groupsArrow.getIntrinsicWidth() * 0.8f), (int) ((this.groupsArrow.getIntrinsicHeight() * 0.8f) / 2.0f));
-                this.groupsArrow.draw(canvas);
-                canvas.restore();
-            }
-            canvas.restore();
-            canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
-            height3 += AndroidUtilities.dp(14.0f);
-            i = i2 + 1;
-            f = 2.0f;
-            f2 = 16.0f;
-        }
-        if (this.footer != null) {
-            canvas.translate(0.0f, AndroidUtilities.dp(12.0f));
-            if (this.footer.isMultiline()) {
-                Text text = this.footer;
-                text.draw(canvas, width - (text.getWidth() / 2.0f), 0.0f, -1, 0.7f);
-            } else {
-                this.footer.ellipsize(this.width - AndroidUtilities.dp(32.0f)).draw(canvas, width - (this.footer.getWidth() / 2.0f), this.footer.getHeight() / 2.0f, -1, 0.7f);
-            }
-        }
-        canvas.restore();
-    }
-
-    public void setVisiblePart(float f, int i) {
+    public final void setVisiblePart(float f, int i) {
         if (Math.abs(this.viewTop - f) > 0.01f || i != this.backgroundHeight) {
             invalidate();
         }
@@ -356,69 +450,8 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         this.viewTop = f;
     }
 
-    public void applyServiceShaderMatrix() {
-        applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, getX(), this.viewTop);
-    }
-
-    public void applyServiceShaderMatrix(int i, int i2, float f, float f2) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        if (resourcesProvider != null) {
-            resourcesProvider.applyServiceShaderMatrix(i, i2, f, f2);
-        } else {
-            Theme.applyServiceShaderMatrix(i, i2, f, f2);
-        }
-    }
-
-    public boolean hasGradientService() {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider != null ? resourcesProvider.hasGradientService() : Theme.hasGradientService();
-    }
-
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z = this.groupsRow != null && this.groupsBounds.contains(motionEvent.getX(), motionEvent.getY());
-        boolean z2 = !z && this.fullBounds.contains(motionEvent.getX(), motionEvent.getY());
-        if (motionEvent.getAction() == 0) {
-            this.fullBounce.setPressed(z2);
-            this.groupsBounce.setPressed(z);
-            this.groupsRipple.setState(z ? new int[]{16842919, 16842910} : new int[0]);
-        } else if (motionEvent.getAction() == 1) {
-            if (this.fullBounce.isPressed()) {
-                BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-                if (safeLastFragment instanceof ChatActivity) {
-                    ((ChatActivity) safeLastFragment).openThisProfile();
-                }
-            } else if (this.groupsBounce.isPressed()) {
-                BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
-                if (safeLastFragment2 != null) {
-                    Bundle bundle = new Bundle();
-                    long j = this.dialogId;
-                    if (j >= 0) {
-                        bundle.putLong("user_id", j);
-                    } else {
-                        bundle.putLong("chat_id", -j);
-                    }
-                    bundle.putBoolean("open_common", true);
-                    safeLastFragment2.presentFragment(new ProfileActivity(bundle));
-                }
-                invalidate();
-            }
-            this.groupsBounce.setPressed(false);
-            this.fullBounce.setPressed(false);
-            this.groupsRipple.setState(new int[0]);
-        } else if (motionEvent.getAction() == 3) {
-            this.groupsBounce.setPressed(false);
-            this.fullBounce.setPressed(false);
-            this.groupsRipple.setState(new int[0]);
-        }
-        return this.groupsBounce.isPressed() || this.fullBounce.isPressed();
-    }
-
-    public boolean animating() {
-        return this.animating;
-    }
-
-    public void setAnimating(boolean z) {
-        this.animating = z;
+    public final boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.groupsRipple || super.verifyDrawable(drawable);
     }
 }

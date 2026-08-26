@@ -5,7 +5,7 @@ import java.io.Serializable;
 public final class Ref$BooleanRef implements Serializable {
     public boolean element;
 
-    public String toString() {
+    public final String toString() {
         return String.valueOf(this.element);
     }
 }

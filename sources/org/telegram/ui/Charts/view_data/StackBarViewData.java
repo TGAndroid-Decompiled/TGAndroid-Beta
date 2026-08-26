@@ -6,19 +6,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Charts.data.ChartData;
 
-public class StackBarViewData extends LineViewData {
+public final class StackBarViewData extends LineViewData {
     public int blendColor;
-    private Theme.ResourcesProvider resourcesProvider;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final Paint unselectedPaint;
 
-    @Override
-    public void updateColors() {
-        super.updateColors();
-        this.blendColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), this.lineColor, 0.3f);
-    }
-
     public StackBarViewData(ChartData.Line line, Theme.ResourcesProvider resourcesProvider) {
-        super(line, false);
+        super(line, false, null);
         Paint paint = new Paint();
         this.unselectedPaint = paint;
         this.blendColor = 0;
@@ -29,5 +23,11 @@ public class StackBarViewData extends LineViewData {
         paint2.setStyle(style);
         paint.setStyle(style);
         this.paint.setAntiAlias(false);
+    }
+
+    @Override
+    public final void updateColors() {
+        super.updateColors();
+        this.blendColor = ColorUtils.blendARGB(0.3f, Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), this.lineColor);
     }
 }

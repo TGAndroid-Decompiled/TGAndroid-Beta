@@ -16,34 +16,28 @@ public abstract class FourierTransform {
     protected int timeSize;
     protected int whichAverage;
 
-    protected abstract void allocateArrays();
-
-    public abstract void forward(float[] fArr);
-
-    public abstract void inverse(float[] fArr);
-
-    public abstract void scaleBand(int i, float f);
-
-    public abstract void setBand(int i, float f);
-
-    FourierTransform(int i, float f) {
+    public FourierTransform(int i, float f) {
         this.timeSize = i;
         int i2 = (int) f;
         this.sampleRate = i2;
-        this.bandWidth = (2.0f / i) * (i2 / 2.0f);
+        this.bandWidth = (i2 / 2.0f) * (2.0f / i);
         noAverages();
         allocateArrays();
     }
 
-    protected void setComplex(float[] fArr, float[] fArr2) {
-        float[] fArr3 = this.real;
-        if (fArr3.length == fArr.length || this.imag.length == fArr2.length) {
-            System.arraycopy(fArr, 0, fArr3, 0, fArr.length);
-            System.arraycopy(fArr2, 0, this.imag, 0, fArr2.length);
+    public abstract void allocateArrays();
+
+    public float calcAvg(float f, float f2) {
+        int iFreqToIndex = freqToIndex(f);
+        int iFreqToIndex2 = freqToIndex(f2);
+        float f3 = 0.0f;
+        for (int i = iFreqToIndex; i <= iFreqToIndex2; i++) {
+            f3 += this.spectrum[i];
         }
+        return f3 / ((iFreqToIndex2 - iFreqToIndex) + 1);
     }
 
-    protected void fillSpectrum() {
+    public void fillSpectrum() {
         float[] fArr;
         int i = 0;
         while (true) {
@@ -53,7 +47,7 @@ public abstract class FourierTransform {
             }
             float f = this.real[i];
             float f2 = this.imag[i];
-            fArr[i] = (float) Math.sqrt((f * f) + (f2 * f2));
+            fArr[i] = (float) Math.sqrt((f2 * f2) + (f * f));
             i++;
         }
         int i2 = this.whichAverage;
@@ -100,41 +94,27 @@ public abstract class FourierTransform {
         }
     }
 
-    public void noAverages() {
-        this.averages = new float[0];
-        this.whichAverage = 3;
-    }
+    public abstract void forward(float[] fArr);
 
-    public void linAverages(int i) {
-        if (i > this.spectrum.length / 2) {
+    public void forward(float[] fArr, int i) {
+        int length = fArr.length - i;
+        int i2 = this.timeSize;
+        if (length < i2) {
             return;
         }
-        this.averages = new float[i];
-        this.whichAverage = 1;
+        float[] fArr2 = new float[i2];
+        System.arraycopy(fArr, i, fArr2, 0, i2);
+        forward(fArr2);
     }
 
-    public void logAverages(int i, int i2) {
-        float f = this.sampleRate / 2.0f;
-        this.octaves = 1;
-        while (true) {
-            f /= 2.0f;
-            if (f > i) {
-                this.octaves++;
-            } else {
-                this.avgPerOctave = i2;
-                this.averages = new float[this.octaves * i2];
-                this.whichAverage = 2;
-                return;
-            }
+    public int freqToIndex(float f) {
+        if (f < getBandWidth() / 2.0f) {
+            return 0;
         }
-    }
-
-    public int timeSize() {
-        return this.timeSize;
-    }
-
-    public int specSize() {
-        return this.spectrum.length;
+        if (f > (this.sampleRate / 2) - (getBandWidth() / 2.0f)) {
+            return this.spectrum.length - 1;
+        }
+        return Math.round(this.timeSize * (f / this.sampleRate));
     }
 
     public float getBand(int i) {
@@ -152,14 +132,12 @@ public abstract class FourierTransform {
         return this.bandWidth;
     }
 
-    public int freqToIndex(float f) {
-        if (f < getBandWidth() / 2.0f) {
-            return 0;
-        }
-        if (f > (this.sampleRate / 2) - (getBandWidth() / 2.0f)) {
-            return this.spectrum.length - 1;
-        }
-        return Math.round(this.timeSize * (f / this.sampleRate));
+    public float[] getSpectrumImaginary() {
+        return this.imag;
+    }
+
+    public float[] getSpectrumReal() {
+        return this.real;
     }
 
     public float indexToFreq(int i) {
@@ -167,41 +145,65 @@ public abstract class FourierTransform {
         if (i == 0) {
             return bandWidth * 0.25f;
         }
-        return i == this.spectrum.length + (-1) ? ((this.sampleRate / 2) - (bandWidth / 2.0f)) + (bandWidth * 0.25f) : i * bandWidth;
-    }
-
-    public float calcAvg(float f, float f2) {
-        int iFreqToIndex = freqToIndex(f);
-        int iFreqToIndex2 = freqToIndex(f2);
-        float f3 = 0.0f;
-        for (int i = iFreqToIndex; i <= iFreqToIndex2; i++) {
-            f3 += this.spectrum[i];
+        if (i != this.spectrum.length - 1) {
+            return i * bandWidth;
         }
-        return f3 / ((iFreqToIndex2 - iFreqToIndex) + 1);
+        return (bandWidth * 0.25f) + ((this.sampleRate / 2) - (bandWidth / 2.0f));
     }
 
-    public float[] getSpectrumReal() {
-        return this.real;
-    }
-
-    public float[] getSpectrumImaginary() {
-        return this.imag;
-    }
-
-    public void forward(float[] fArr, int i) {
-        int length = fArr.length - i;
-        int i2 = this.timeSize;
-        if (length < i2) {
-            return;
-        }
-        float[] fArr2 = new float[i2];
-        System.arraycopy(fArr, i, fArr2, 0, i2);
-        forward(fArr2);
-    }
+    public abstract void inverse(float[] fArr);
 
     public void inverse(float[] fArr, float[] fArr2, float[] fArr3) {
         setComplex(fArr, fArr2);
         inverse(fArr3);
+    }
+
+    public void linAverages(int i) {
+        if (i > this.spectrum.length / 2) {
+            return;
+        }
+        this.averages = new float[i];
+        this.whichAverage = 1;
+    }
+
+    public void logAverages(int i, int i2) {
+        float f = this.sampleRate / 2.0f;
+        this.octaves = 1;
+        while (true) {
+            f /= 2.0f;
+            if (f <= i) {
+                this.avgPerOctave = i2;
+                this.averages = new float[this.octaves * i2];
+                this.whichAverage = 2;
+                return;
+            }
+            this.octaves++;
+        }
+    }
+
+    public void noAverages() {
+        this.averages = new float[0];
+        this.whichAverage = 3;
+    }
+
+    public abstract void scaleBand(int i, float f);
+
+    public abstract void setBand(int i, float f);
+
+    public void setComplex(float[] fArr, float[] fArr2) {
+        float[] fArr3 = this.real;
+        if (fArr3.length == fArr.length || this.imag.length == fArr2.length) {
+            System.arraycopy(fArr, 0, fArr3, 0, fArr.length);
+            System.arraycopy(fArr2, 0, this.imag, 0, fArr2.length);
+        }
+    }
+
+    public int specSize() {
+        return this.spectrum.length;
+    }
+
+    public int timeSize() {
+        return this.timeSize;
     }
 
     public static class FFT extends FourierTransform {
@@ -218,12 +220,134 @@ public abstract class FourierTransform {
             buildTrigTables();
         }
 
+        private void bitReverseComplex() {
+            float[] fArr = new float[this.real.length];
+            float[] fArr2 = new float[this.imag.length];
+            int i = 0;
+            while (true) {
+                float[] fArr3 = this.real;
+                if (i >= fArr3.length) {
+                    this.real = fArr;
+                    this.imag = fArr2;
+                    return;
+                } else {
+                    int i2 = this.reverse[i];
+                    fArr[i] = fArr3[i2];
+                    fArr2[i] = this.imag[i2];
+                    i++;
+                }
+            }
+        }
+
+        private void bitReverseSamples(float[] fArr, int i) {
+            for (int i2 = 0; i2 < this.timeSize; i2++) {
+                this.real[i2] = fArr[this.reverse[i2] + i];
+                this.imag[i2] = 0.0f;
+            }
+        }
+
+        private void buildReverseTable() {
+            int i = this.timeSize;
+            int[] iArr = new int[i];
+            this.reverse = iArr;
+            iArr[0] = 0;
+            int i2 = i / 2;
+            int i3 = 1;
+            while (i3 < i) {
+                for (int i4 = 0; i4 < i3; i4++) {
+                    int[] iArr2 = this.reverse;
+                    iArr2[i4 + i3] = iArr2[i4] + i2;
+                }
+                i3 <<= 1;
+                i2 >>= 1;
+            }
+        }
+
+        private void buildTrigTables() {
+            int i = this.timeSize;
+            this.sinlookup = new float[i];
+            this.coslookup = new float[i];
+            for (int i2 = 0; i2 < i; i2++) {
+                double d = (-3.1415927f) / i2;
+                this.sinlookup[i2] = (float) Math.sin(d);
+                this.coslookup[i2] = (float) Math.cos(d);
+            }
+        }
+
+        private float cos(int i) {
+            return this.coslookup[i];
+        }
+
+        private void fft() {
+            for (int i = 1; i < this.real.length; i *= 2) {
+                float fCos = cos(i);
+                float fSin = sin(i);
+                float f = 1.0f;
+                float f2 = 0.0f;
+                int i2 = 0;
+                while (i2 < i) {
+                    int i3 = i2;
+                    while (true) {
+                        float[] fArr = this.real;
+                        if (i3 < fArr.length) {
+                            int i4 = i3 + i;
+                            float f3 = fArr[i4];
+                            float[] fArr2 = this.imag;
+                            float f4 = fArr2[i4];
+                            float f5 = (f * f3) - (f2 * f4);
+                            float f6 = (f3 * f2) + (f4 * f);
+                            fArr[i4] = fArr[i3] - f5;
+                            fArr2[i4] = fArr2[i3] - f6;
+                            fArr[i3] = fArr[i3] + f5;
+                            fArr2[i3] = fArr2[i3] + f6;
+                            i3 += i * 2;
+                        }
+                    }
+                    float f7 = (f * fCos) - (f2 * fSin);
+                    f2 = (f2 * fCos) + (f * fSin);
+                    i2++;
+                    f = f7;
+                }
+            }
+        }
+
+        private float sin(int i) {
+            return this.sinlookup[i];
+        }
+
         @Override
-        protected void allocateArrays() {
+        public void allocateArrays() {
             int i = this.timeSize;
             this.spectrum = new float[(i / 2) + 1];
             this.real = new float[i];
             this.imag = new float[i];
+        }
+
+        @Override
+        public void forward(float[] fArr) {
+            if (fArr.length != this.timeSize) {
+                return;
+            }
+            bitReverseSamples(fArr, 0);
+            fft();
+            fillSpectrum();
+        }
+
+        @Override
+        public void inverse(float[] fArr) {
+            if (fArr.length > this.real.length) {
+                return;
+            }
+            for (int i = 0; i < this.timeSize; i++) {
+                float[] fArr2 = this.imag;
+                fArr2[i] = fArr2[i] * (-1.0f);
+            }
+            bitReverseComplex();
+            fft();
+            for (int i2 = 0; i2 < fArr.length; i2++) {
+                float[] fArr3 = this.real;
+                fArr[i2] = fArr3[i2] / fArr3.length;
+            }
         }
 
         @Override
@@ -277,49 +401,6 @@ public abstract class FourierTransform {
             }
         }
 
-        private void fft() {
-            for (int i = 1; i < this.real.length; i *= 2) {
-                float fCos = cos(i);
-                float fSin = sin(i);
-                float f = 1.0f;
-                float f2 = 0.0f;
-                int i2 = 0;
-                while (i2 < i) {
-                    int i3 = i2;
-                    while (true) {
-                        float[] fArr = this.real;
-                        if (i3 < fArr.length) {
-                            int i4 = i3 + i;
-                            float f3 = fArr[i4];
-                            float[] fArr2 = this.imag;
-                            float f4 = fArr2[i4];
-                            float f5 = (f * f3) - (f2 * f4);
-                            float f6 = (f4 * f) + (f3 * f2);
-                            fArr[i4] = fArr[i3] - f5;
-                            fArr2[i4] = fArr2[i3] - f6;
-                            fArr[i3] = fArr[i3] + f5;
-                            fArr2[i3] = fArr2[i3] + f6;
-                            i3 += i * 2;
-                        }
-                    }
-                    float f7 = (f * fCos) - (f2 * fSin);
-                    f2 = (f2 * fCos) + (f * fSin);
-                    i2++;
-                    f = f7;
-                }
-            }
-        }
-
-        @Override
-        public void forward(float[] fArr) {
-            if (fArr.length != this.timeSize) {
-                return;
-            }
-            bitReverseSamples(fArr, 0);
-            fft();
-            fillSpectrum();
-        }
-
         @Override
         public void forward(float[] fArr, int i) {
             if (fArr.length - i < this.timeSize) {
@@ -338,85 +419,6 @@ public abstract class FourierTransform {
                 bitReverseComplex();
                 fft();
                 fillSpectrum();
-            }
-        }
-
-        @Override
-        public void inverse(float[] fArr) {
-            if (fArr.length > this.real.length) {
-                return;
-            }
-            for (int i = 0; i < this.timeSize; i++) {
-                float[] fArr2 = this.imag;
-                fArr2[i] = fArr2[i] * (-1.0f);
-            }
-            bitReverseComplex();
-            fft();
-            for (int i2 = 0; i2 < fArr.length; i2++) {
-                float[] fArr3 = this.real;
-                fArr[i2] = fArr3[i2] / fArr3.length;
-            }
-        }
-
-        private void buildReverseTable() {
-            int i = this.timeSize;
-            int[] iArr = new int[i];
-            this.reverse = iArr;
-            iArr[0] = 0;
-            int i2 = i / 2;
-            int i3 = 1;
-            while (i3 < i) {
-                for (int i4 = 0; i4 < i3; i4++) {
-                    int[] iArr2 = this.reverse;
-                    iArr2[i4 + i3] = iArr2[i4] + i2;
-                }
-                i3 <<= 1;
-                i2 >>= 1;
-            }
-        }
-
-        private void bitReverseSamples(float[] fArr, int i) {
-            for (int i2 = 0; i2 < this.timeSize; i2++) {
-                this.real[i2] = fArr[this.reverse[i2] + i];
-                this.imag[i2] = 0.0f;
-            }
-        }
-
-        private void bitReverseComplex() {
-            float[] fArr = new float[this.real.length];
-            float[] fArr2 = new float[this.imag.length];
-            int i = 0;
-            while (true) {
-                float[] fArr3 = this.real;
-                if (i < fArr3.length) {
-                    int i2 = this.reverse[i];
-                    fArr[i] = fArr3[i2];
-                    fArr2[i] = this.imag[i2];
-                    i++;
-                } else {
-                    this.real = fArr;
-                    this.imag = fArr2;
-                    return;
-                }
-            }
-        }
-
-        private float sin(int i) {
-            return this.sinlookup[i];
-        }
-
-        private float cos(int i) {
-            return this.coslookup[i];
-        }
-
-        private void buildTrigTables() {
-            int i = this.timeSize;
-            this.sinlookup = new float[i];
-            this.coslookup = new float[i];
-            for (int i2 = 0; i2 < i; i2++) {
-                double d = (-3.1415927f) / i2;
-                this.sinlookup[i2] = (float) Math.sin(d);
-                this.coslookup[i2] = (float) Math.cos(d);
             }
         }
     }

@@ -11,10 +11,6 @@ public class Line2D {
         public Float() {
         }
 
-        public Float(float f, float f2, float f3, float f4) {
-            setLine(f, f2, f3, f4);
-        }
-
         public void setLine(double d, double d2, double d3, double d4) {
             this.x1 = d;
             this.y1 = d2;
@@ -24,6 +20,10 @@ public class Line2D {
 
         public String toString() {
             return "Float{x1=" + this.x1 + ", y1=" + this.y1 + ", x2=" + this.x2 + ", y2=" + this.y2 + '}';
+        }
+
+        public Float(float f, float f2, float f3, float f4) {
+            setLine(f, f2, f3, f4);
         }
     }
 }

@@ -1,10 +1,9 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -12,13 +11,8 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
-import android.transition.TransitionManager;
 import android.transition.TransitionSet;
-import android.transition.TransitionValues;
-import android.transition.Visibility;
-import android.util.Property;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,67 +20,112 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.messenger.RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.StaticLayoutEx;
+import org.telegram.ui.VoIPFragment;
 
-public class VoIPNotificationsLayout extends LinearLayout {
-    VoIPBackgroundProvider backgroundProvider;
-    boolean lockAnimation;
-    Runnable onViewsUpdated;
-    TextPaint textPaint;
-    TransitionSet transitionSet;
-    ArrayList viewToAdd;
-    ArrayList viewToRemove;
-    HashMap viewsByTag;
-    boolean wasChanged;
+public final class VoIPNotificationsLayout extends LinearLayout {
+    public final VoIPBackgroundProvider backgroundProvider;
+    public boolean lockAnimation;
+    public Runnable onViewsUpdated;
+    public final TextPaint textPaint;
+    public final TransitionSet transitionSet;
+    public final ArrayList viewToAdd;
+    public final ArrayList viewToRemove;
+    public final HashMap viewsByTag;
+    public boolean wasChanged;
 
-    public VoIPNotificationsLayout(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(context);
+    public final class NotificationView extends FrameLayout {
+        public final VoIPBackgroundProvider backgroundProvider;
+        public final RectF bgRect;
+        public final ImageView iconView;
+        public boolean ignoreShader;
+        public String tag;
+        public final TextView textView;
+
+        public NotificationView(Context context, VoIPBackgroundProvider voIPBackgroundProvider, int i) {
+            super(context);
+            this.bgRect = new RectF();
+            setFocusable(true);
+            setFocusableInTouchMode(true);
+            this.backgroundProvider = voIPBackgroundProvider;
+            voIPBackgroundProvider.views.add(this);
+            ImageView imageView = new ImageView(context);
+            this.iconView = imageView;
+            addView(imageView, LayoutHelper.createFrame(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
+            TextView textView = new TextView(context);
+            this.textView = textView;
+            textView.setTextColor(-1);
+            textView.setTextSize(1, 14.0f);
+            addView(textView, LayoutHelper.createFrame(-2, -2.0f, 16, i == 0 ? 14.0f : 36.0f, 2.0f, 14.0f, 2.0f));
+        }
+
+        @Override
+        public final void dispatchDraw(Canvas canvas) {
+            RectF rectF = this.bgRect;
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            float x = ((View) getParent()).getX() + getX();
+            float y = ((View) getParent()).getY() + getY();
+            VoIPBackgroundProvider voIPBackgroundProvider = this.backgroundProvider;
+            voIPBackgroundProvider.setDarkTranslation(x, y);
+            boolean z = this.ignoreShader;
+            Paint darkPaint = voIPBackgroundProvider.darkPaint;
+            int alpha = (z ? darkPaint : voIPBackgroundProvider.getDarkPaint()).getAlpha();
+            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), alpha, 31);
+            (this.ignoreShader ? darkPaint : voIPBackgroundProvider.getDarkPaint()).setAlpha(255);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.ignoreShader ? darkPaint : voIPBackgroundProvider.getDarkPaint());
+            if (!this.ignoreShader) {
+                darkPaint = voIPBackgroundProvider.getDarkPaint();
+            }
+            darkPaint.setAlpha(alpha);
+            if (voIPBackgroundProvider.isReveal) {
+                int alpha2 = ((Paint) voIPBackgroundProvider.revealDarkShaderTools.app).getAlpha();
+                ((Paint) voIPBackgroundProvider.revealDarkShaderTools.app).setAlpha(255);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), (Paint) voIPBackgroundProvider.revealDarkShaderTools.app);
+                ((Paint) voIPBackgroundProvider.revealDarkShaderTools.app).setAlpha(alpha2);
+            }
+            canvas.restore();
+            super.dispatchDraw(canvas);
+        }
+    }
+
+    public VoIPNotificationsLayout(Activity activity, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(activity);
         this.viewsByTag = new HashMap();
         this.viewToAdd = new ArrayList();
         this.viewToRemove = new ArrayList();
-        this.textPaint = new TextPaint();
+        TextPaint textPaint = new TextPaint();
+        this.textPaint = textPaint;
         setOrientation(1);
         this.backgroundProvider = voIPBackgroundProvider;
         TransitionSet transitionSet = new TransitionSet();
         this.transitionSet = transitionSet;
-        transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(200L)).addTransition(new Visibility() {
-            @Override
-            public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                view.setAlpha(0.0f);
-                view.setScaleY(0.6f);
-                view.setScaleX(0.6f);
-                animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 0.6f, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 0.6f, 1.0f));
-                animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_BACK);
-                return animatorSet;
-            }
-
-            @Override
-            public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                if (view instanceof NotificationView) {
-                    ((NotificationView) view).ignoreShader = true;
-                }
-                animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, 0.7f, 0.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 1.0f, 0.6f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 1.0f, 0.6f));
-                animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
-                return animatorSet;
-            }
-        }.setDuration(200L));
-        this.transitionSet.setOrdering(0);
-        this.textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(200L)).addTransition(new VoIPFragment.AnonymousClass23(5).setDuration(200L));
+        transitionSet.setOrdering(0);
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
     }
 
-    public void addNotification(int i, String str, String str2, boolean z) {
-        if (this.viewsByTag.get(str2) != null) {
+    public final void addNotification(int i, String str, String str2) {
+        HashMap map = this.viewsByTag;
+        if (map.get(str2) != null) {
             return;
         }
         NotificationView notificationView = new NotificationView(getContext(), this.backgroundProvider, i);
         notificationView.tag = str2;
-        notificationView.setText(str);
+        int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
+        TextView textView = notificationView.textView;
+        StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(str, textView.getPaint(), iDp, Layout.Alignment.ALIGN_NORMAL, 0.0f, false, TextUtils.TruncateAt.END, iDp, 10, true);
+        if (staticLayoutCreateStaticLayout != null) {
+            iDp = 0;
+            for (int i2 = 0; i2 < staticLayoutCreateStaticLayout.getLineCount(); i2++) {
+                iDp = (int) Math.max(iDp, Math.ceil(staticLayoutCreateStaticLayout.getLineWidth(i2)));
+            }
+        }
+        textView.setMaxWidth(iDp);
+        textView.setText(str);
         notificationView.iconView.setImageResource(i);
-        this.viewsByTag.put(str2, notificationView);
+        map.put(str2, notificationView);
         if (this.lockAnimation) {
             this.viewToAdd.add(notificationView);
         } else {
@@ -95,159 +134,24 @@ public class VoIPNotificationsLayout extends LinearLayout {
         }
     }
 
-    public CharSequence ellipsize(CharSequence charSequence) {
-        if (charSequence == null) {
-            return "";
-        }
-        return TextUtils.ellipsize(charSequence, this.textPaint, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
+    public int getChildsHight() {
+        int childCount = getChildCount();
+        return RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(childCount, 32.0f, childCount > 0 ? AndroidUtilities.dp(16.0f) : 0);
     }
 
-    public void removeNotification(String str) {
+    public final void removeNotification(String str) {
         NotificationView notificationView = (NotificationView) this.viewsByTag.remove(str);
-        this.backgroundProvider.detach(notificationView);
+        this.backgroundProvider.views.remove(notificationView);
         if (notificationView != null) {
-            if (this.lockAnimation) {
+            if (!this.lockAnimation) {
+                this.wasChanged = true;
+                removeView(notificationView);
+            } else {
                 if (this.viewToAdd.remove(notificationView)) {
                     return;
                 }
                 this.viewToRemove.add(notificationView);
-            } else {
-                this.wasChanged = true;
-                removeView(notificationView);
             }
-        }
-    }
-
-    private void lock() {
-        this.lockAnimation = true;
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VoIPNotificationsLayout.$r8$lambda$K3bAGjGz_7hB2Zs1XgSqVXMNDcc(this.f$0);
-            }
-        }, 700L);
-    }
-
-    public static void $r8$lambda$K3bAGjGz_7hB2Zs1XgSqVXMNDcc(VoIPNotificationsLayout voIPNotificationsLayout) {
-        voIPNotificationsLayout.lockAnimation = false;
-        voIPNotificationsLayout.runDelayed();
-    }
-
-    private void runDelayed() {
-        if (this.viewToAdd.isEmpty() && this.viewToRemove.isEmpty()) {
-            return;
-        }
-        if (getParent() != null) {
-            TransitionManager.beginDelayedTransition(this, this.transitionSet);
-        }
-        int i = 0;
-        while (i < this.viewToAdd.size()) {
-            NotificationView notificationView = (NotificationView) this.viewToAdd.get(i);
-            for (int i2 = 0; i2 < this.viewToRemove.size(); i2++) {
-                if (notificationView.tag.equals(((NotificationView) this.viewToRemove.get(i2)).tag)) {
-                    this.viewToAdd.remove(i);
-                    this.viewToRemove.remove(i2);
-                    i--;
-                    break;
-                }
-            }
-            i++;
-        }
-        for (int i3 = 0; i3 < this.viewToAdd.size(); i3++) {
-            addView((View) this.viewToAdd.get(i3), LayoutHelper.createLinear(-2, -2, 1, 4, 0, 0, 4));
-        }
-        for (int i4 = 0; i4 < this.viewToRemove.size(); i4++) {
-            removeView((View) this.viewToRemove.get(i4));
-        }
-        this.viewsByTag.clear();
-        for (int i5 = 0; i5 < getChildCount(); i5++) {
-            NotificationView notificationView2 = (NotificationView) getChildAt(i5);
-            this.viewsByTag.put(notificationView2.tag, notificationView2);
-        }
-        this.viewToAdd.clear();
-        this.viewToRemove.clear();
-        lock();
-        Runnable runnable = this.onViewsUpdated;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public void beforeLayoutChanges() {
-        this.wasChanged = false;
-        if (this.lockAnimation || getParent() == null) {
-            return;
-        }
-        TransitionManager.beginDelayedTransition(this, this.transitionSet);
-    }
-
-    public void animateLayoutChanges() {
-        if (this.wasChanged) {
-            lock();
-        }
-        this.wasChanged = false;
-    }
-
-    public int getChildsHight() {
-        int childCount = getChildCount();
-        return (childCount > 0 ? AndroidUtilities.dp(16.0f) : 0) + (childCount * AndroidUtilities.dp(32.0f));
-    }
-
-    private static class NotificationView extends FrameLayout {
-        private final VoIPBackgroundProvider backgroundProvider;
-        private final RectF bgRect;
-        ImageView iconView;
-        boolean ignoreShader;
-        public String tag;
-        TextView textView;
-
-        public NotificationView(Context context, VoIPBackgroundProvider voIPBackgroundProvider, int i) {
-            super(context);
-            this.bgRect = new RectF();
-            setFocusable(true);
-            setFocusableInTouchMode(true);
-            this.backgroundProvider = voIPBackgroundProvider;
-            voIPBackgroundProvider.attach(this);
-            ImageView imageView = new ImageView(context);
-            this.iconView = imageView;
-            addView(imageView, LayoutHelper.createFrame(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
-            TextView textView = new TextView(context);
-            this.textView = textView;
-            textView.setTextColor(-1);
-            this.textView.setTextSize(1, 14.0f);
-            addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 16, i == 0 ? 14.0f : 36.0f, 2.0f, 14.0f, 2.0f));
-        }
-
-        public void setText(CharSequence charSequence) {
-            int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
-            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(charSequence, this.textView.getPaint(), iDp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, iDp, 10);
-            if (staticLayoutCreateStaticLayout != null) {
-                iDp = 0;
-                for (int i = 0; i < staticLayoutCreateStaticLayout.getLineCount(); i++) {
-                    iDp = (int) Math.max(iDp, Math.ceil(staticLayoutCreateStaticLayout.getLineWidth(i)));
-                }
-            }
-            this.textView.setMaxWidth(iDp);
-            this.textView.setText(charSequence);
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            this.bgRect.set(0.0f, 0.0f, getWidth(), getHeight());
-            this.backgroundProvider.setDarkTranslation(getX() + ((View) getParent()).getX(), getY() + ((View) getParent()).getY());
-            int alpha = this.backgroundProvider.getDarkPaint(this.ignoreShader).getAlpha();
-            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), alpha, 31);
-            this.backgroundProvider.getDarkPaint(this.ignoreShader).setAlpha(255);
-            canvas.drawRoundRect(this.bgRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.backgroundProvider.getDarkPaint(this.ignoreShader));
-            this.backgroundProvider.getDarkPaint(this.ignoreShader).setAlpha(alpha);
-            if (this.backgroundProvider.isReveal()) {
-                int alpha2 = this.backgroundProvider.getRevealDarkPaint().getAlpha();
-                this.backgroundProvider.getRevealDarkPaint().setAlpha(255);
-                canvas.drawRoundRect(this.bgRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.backgroundProvider.getRevealDarkPaint());
-                this.backgroundProvider.getRevealDarkPaint().setAlpha(alpha2);
-            }
-            canvas.restore();
-            super.dispatchDraw(canvas);
         }
     }
 

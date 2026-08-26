@@ -4,14 +4,6 @@ public class HlineAtom extends Atom {
     private float shift;
     private float width;
 
-    public void setWidth(float f) {
-        this.width = f;
-    }
-
-    public void setShift(float f) {
-        this.shift = f;
-    }
-
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         HorizontalRule horizontalRule = new HorizontalRule(teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle()), this.width, this.shift, false);
@@ -19,5 +11,13 @@ public class HlineAtom extends Atom {
         verticalBox.add(horizontalRule);
         verticalBox.type = 13;
         return verticalBox;
+    }
+
+    public void setShift(float f) {
+        this.shift = f;
+    }
+
+    public void setWidth(float f) {
+        this.width = f;
     }
 }

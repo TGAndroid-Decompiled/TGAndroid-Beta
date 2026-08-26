@@ -29,24 +29,64 @@ public class JLatexMathDrawable extends Drawable {
     public @interface Align {
     }
 
-    @Override
-    public int getOpacity() {
-        return -1;
+    public static class Builder {
+        private int align;
+        private Drawable background;
+        private int color = -16777216;
+        private Insets insets;
+        private final String latex;
+        private float textSize;
+
+        public Builder(String str) {
+            this.latex = str;
+        }
+
+        public Builder align(int i) {
+            this.align = i;
+            return this;
+        }
+
+        public Builder background(Drawable drawable) {
+            this.background = drawable;
+            return this;
+        }
+
+        public JLatexMathDrawable build() {
+            return new JLatexMathDrawable(this);
+        }
+
+        public Builder color(int i) {
+            this.color = i;
+            return this;
+        }
+
+        @Deprecated
+        public Builder fitCanvas(boolean z) {
+            return this;
+        }
+
+        public Builder padding(int i) {
+            this.insets = new Insets(i, i, i, i);
+            return this;
+        }
+
+        public Builder textSize(float f) {
+            this.textSize = f;
+            return this;
+        }
+
+        public Builder background(int i) {
+            this.background = new ColorDrawable(i);
+            return this;
+        }
+
+        public Builder padding(int i, int i2, int i3, int i4) {
+            this.insets = new Insets(i2, i, i4, i3);
+            return this;
+        }
     }
 
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public static Builder builder(String str) {
-        return new Builder(str);
-    }
-
-    JLatexMathDrawable(Builder builder) {
+    public JLatexMathDrawable(Builder builder) {
         TeXIcon teXIconBuild = new TeXFormula(builder.latex).new TeXIconBuilder().setFGColor(new Color(builder.color)).setSize(builder.textSize).setStyle(0).build();
         this.icon = teXIconBuild;
         if (builder.insets != null) {
@@ -62,13 +102,8 @@ public class JLatexMathDrawable extends Drawable {
         setBounds(0, 0, iconWidth, iconHeight);
     }
 
-    @Override
-    protected void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        Drawable drawable = this.background;
-        if (drawable != null) {
-            drawable.setBounds(rect);
-        }
+    public static Builder builder(String str) {
+        return new Builder(str);
     }
 
     @Override
@@ -107,73 +142,38 @@ public class JLatexMathDrawable extends Drawable {
     }
 
     @Override
+    public int getIntrinsicHeight() {
+        return this.iconHeight;
+    }
+
+    @Override
     public int getIntrinsicWidth() {
         return this.iconWidth;
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return this.iconHeight;
+    public int getOpacity() {
+        return -1;
     }
 
     public TeXIcon icon() {
         return this.icon;
     }
 
-    public static class Builder {
-        private int align;
-        private Drawable background;
-        private int color = -16777216;
-        private Insets insets;
-        private final String latex;
-        private float textSize;
-
-        @Deprecated
-        public Builder fitCanvas(boolean z) {
-            return this;
+    @Override
+    public void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        Drawable drawable = this.background;
+        if (drawable != null) {
+            drawable.setBounds(rect);
         }
+    }
 
-        public Builder(String str) {
-            this.latex = str;
-        }
+    @Override
+    public void setAlpha(int i) {
+    }
 
-        public Builder textSize(float f) {
-            this.textSize = f;
-            return this;
-        }
-
-        public Builder color(int i) {
-            this.color = i;
-            return this;
-        }
-
-        public Builder align(int i) {
-            this.align = i;
-            return this;
-        }
-
-        public Builder background(Drawable drawable) {
-            this.background = drawable;
-            return this;
-        }
-
-        public Builder background(int i) {
-            this.background = new ColorDrawable(i);
-            return this;
-        }
-
-        public Builder padding(int i) {
-            this.insets = new Insets(i, i, i, i);
-            return this;
-        }
-
-        public Builder padding(int i, int i2, int i3, int i4) {
-            this.insets = new Insets(i2, i, i4, i3);
-            return this;
-        }
-
-        public JLatexMathDrawable build() {
-            return new JLatexMathDrawable(this);
-        }
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
     }
 }

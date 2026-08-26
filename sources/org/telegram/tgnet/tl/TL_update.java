@@ -2,39 +2,56 @@ package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda115;
+import org.telegram.messenger.SharedConfig$$ExternalSyntheticLambda5;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.TLRPC$TL_channel$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.TLRPC$TL_config$$ExternalSyntheticLambda0;
-import org.telegram.tgnet.TLRPC$TL_messageMediaPaidMedia$$ExternalSyntheticLambda0;
-import org.telegram.tgnet.TLRPC$TL_messages_getDialogUnreadMarks$$ExternalSyntheticLambda0;
-import org.telegram.tgnet.TLRPC$TL_messages_quickReplies$$ExternalSyntheticLambda0;
+import org.telegram.tgnet.TLRPC$TL_invoice$$ExternalSyntheticLambda0;
+import org.telegram.tgnet.TLRPC$TL_messages_dialogs$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.Vector$$ExternalSyntheticLambda7;
+import org.telegram.tgnet.Vector$$ExternalSyntheticLambda2;
 
 public class TL_update {
-    private TL_update() {
+
+    public static class TL_updateAiComposeTones extends TLRPC.Update {
+        public static final int constructor = -1945136645;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1945136645);
+        }
     }
 
-    public static class TL_updateStarsRevenueStatus extends TLRPC.Update {
-        public static final int constructor = -1518030823;
+    public static class TL_updateAttachMenuBots extends TLRPC.Update {
+        public static final int constructor = 397910539;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(397910539);
+        }
+    }
+
+    public static class TL_updateBotCommands extends TLRPC.Update {
+        public static final int constructor = 1299263278;
+        public long bot_id;
+        public ArrayList<TLRPC.BotCommand> commands = new ArrayList<>();
         public TLRPC.Peer peer;
-        public TLRPC.TL_starsRevenueStatus status;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.status = TLRPC.TL_starsRevenueStatus.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.bot_id = inputSerializedData.readInt64(z);
+            this.commands = Vector.deserialize(inputSerializedData, new TL_iv$RichMessage$$ExternalSyntheticLambda0(19), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1518030823);
+            outputSerializedData.writeInt32(1299263278);
             this.peer.serializeToStream(outputSerializedData);
-            this.status.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt64(this.bot_id);
+            Vector.serialize(outputSerializedData, this.commands);
         }
     }
 
@@ -57,22 +74,6 @@ public class TL_update {
             outputSerializedData.writeInt64(this.user_id);
             outputSerializedData.writeString(this.payload);
             outputSerializedData.writeInt32(this.qts);
-        }
-    }
-
-    public static class TL_updatePaidReactionPrivacy extends TLRPC.Update {
-        public static final int constructor = -1955438642;
-        public TL_stars.PaidReactionPrivacy privacy;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.privacy = TL_stars.PaidReactionPrivacy.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1955438642);
-            this.privacy.serializeToStream(outputSerializedData);
         }
     }
 
@@ -101,782 +102,200 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateSentPhoneCode extends TLRPC.Update {
-        public static final int constructor = 1347068303;
-        public TLRPC.auth_SentCode sent_code;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.sent_code = TLRPC.auth_SentCode.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1347068303);
-            this.sent_code.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateGroupCallChainBlocks extends TLRPC.Update {
-        public static final int constructor = -1535694705;
-        public ArrayList<byte[]> blocks = new ArrayList<>();
-        public TLRPC.InputGroupCall call;
-        public int next_offset;
-        public int sub_chain_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.sub_chain_id = inputSerializedData.readInt32(z);
-            this.blocks = Vector.deserializeByteArray(inputSerializedData, z);
-            this.next_offset = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1535694705);
-            this.call.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.sub_chain_id);
-            Vector.serialize(outputSerializedData, new Vector$$ExternalSyntheticLambda7(outputSerializedData), this.blocks);
-            outputSerializedData.writeInt32(this.next_offset);
-        }
-    }
-
-    public static class TL_updateSavedDialogPinned extends TLRPC.Update {
-        public static final int constructor = -1364222348;
-        public int flags;
-        public TLRPC.DialogPeer peer;
-        public boolean pinned;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.pinned = TLObject.hasFlag(int32, 1);
-            this.peer = TLRPC.DialogPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1364222348);
-            int flag = TLObject.setFlag(this.flags, 1, this.pinned);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            this.peer.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updatePeerWallpaper extends TLRPC.Update {
-        public static final int constructor = -1371598819;
-        public int flags;
-        public TLRPC.Peer peer;
-        public TLRPC.WallPaper wallpaper;
-        public boolean wallpaper_overridden;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.wallpaper_overridden = TLObject.hasFlag(int32, 2);
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.wallpaper = TLRPC.WallPaper.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1371598819);
-            int flag = TLObject.setFlag(this.flags, 2, this.wallpaper_overridden);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            this.peer.serializeToStream(outputSerializedData);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.wallpaper.serializeToStream(outputSerializedData);
-            }
-        }
-    }
-
-    public static class TL_updateMonoForumNoPaidException extends TLRPC.Update {
-        public static final int constructor = -1618924792;
+    public static class TL_updateChannel extends TLRPC.Update {
+        public static final int constructor = 1666927625;
         public long channel_id;
-        public boolean exception;
-        public int flags;
-        public TLRPC.Peer saved_peer_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.exception = TLObject.hasFlag(int32, 1);
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1618924792);
-            int flag = TLObject.setFlag(this.flags, 1, this.exception);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.channel_id);
-            this.saved_peer_id.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateJoinChatWebViewDecision extends TLRPC.Update {
-        public static final int constructor = -1112768912;
-        public TLRPC.Peer peer;
-        public long query_id;
-        public TLRPC.JoinChatBotResult result;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.query_id = inputSerializedData.readInt64(z);
-            this.result = TLRPC.JoinChatBotResult.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1112768912);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt64(this.query_id);
-            this.result.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateStarGiftAuctionState extends TLRPC.Update {
-        public static final int constructor = 1222788802;
-        public long gift_id;
-        public TL_stars.StarGiftAuctionState state;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.gift_id = inputSerializedData.readInt64(z);
-            this.state = TL_stars.StarGiftAuctionState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1222788802);
-            outputSerializedData.writeInt64(this.gift_id);
-            this.state.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateStarGiftAuctionUserState extends TLRPC.Update {
-        public static final int constructor = -598150370;
-        public long gift_id;
-        public TL_stars.TL_StarGiftAuctionUserState user_state;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.gift_id = inputSerializedData.readInt64(z);
-            this.user_state = TL_stars.TL_StarGiftAuctionUserState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-598150370);
-            outputSerializedData.writeInt64(this.gift_id);
-            this.user_state.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateEmojiGameInfo extends TLRPC.Update {
-        public static final int constructor = -73640838;
-        public TLRPC.EmojiGameInfo info;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.info = TLRPC.EmojiGameInfo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-73640838);
-            this.info.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateStarGiftCraftFail extends TLRPC.Update {
-        public static final int constructor = -1408818108;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1408818108);
-        }
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            super.readParams(inputSerializedData, z);
-        }
-    }
-
-    public static class TL_updateReadMonoForumInbox extends TLRPC.Update {
-        public static final int constructor = 2008081266;
-        public long channel_id;
-        public int read_max_id;
-        public TLRPC.Peer saved_peer_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.channel_id = inputSerializedData.readInt64(z);
-            this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.read_max_id = inputSerializedData.readInt32(z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(2008081266);
+            outputSerializedData.writeInt32(1666927625);
             outputSerializedData.writeInt64(this.channel_id);
-            this.saved_peer_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.read_max_id);
         }
     }
 
-    public static class TL_updateReadMonoForumOutbox extends TLRPC.Update {
-        public static final int constructor = -1532521610;
+    public static class TL_updateChannelAvailableMessages extends TLRPC.Update {
+        public static final int constructor = -1304443240;
+        public int available_min_id;
         public long channel_id;
-        public int read_max_id;
-        public TLRPC.Peer saved_peer_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.channel_id = inputSerializedData.readInt64(z);
-            this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.read_max_id = inputSerializedData.readInt32(z);
+            this.available_min_id = inputSerializedData.readInt32(z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1532521610);
+            outputSerializedData.writeInt32(-1304443240);
             outputSerializedData.writeInt64(this.channel_id);
-            this.saved_peer_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.read_max_id);
+            outputSerializedData.writeInt32(this.available_min_id);
         }
     }
 
-    public static class TL_updateMessagePollVote extends TLRPC.Update {
-        public static final int constructor = 1989799956;
-        public TLRPC.Peer peer;
-        public long poll_id;
+    public static class TL_updateChannelMessageForwards extends TLRPC.Update {
+        public static final int constructor = -761649164;
+        public long channel_id;
+        public int forwards;
+        public int id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.id = inputSerializedData.readInt32(z);
+            this.forwards = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-761649164);
+            outputSerializedData.writeInt64(this.channel_id);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.forwards);
+        }
+    }
+
+    public static class TL_updateChannelMessageViews extends TLRPC.Update {
+        public static final int constructor = -232346616;
+        public long channel_id;
+        public int id;
+        public int views;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.id = inputSerializedData.readInt32(z);
+            this.views = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-232346616);
+            outputSerializedData.writeInt64(this.channel_id);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.views);
+        }
+    }
+
+    public static class TL_updateChannelParticipant extends TLRPC.Update {
+        public static final int constructor = -1738720581;
+        public long actor_id;
+        public long channel_id;
+        public int date;
+        public int flags;
+        public TLRPC.ExportedChatInvite invite;
+        public TLRPC.ChannelParticipant new_participant;
+        public TLRPC.ChannelParticipant prev_participant;
         public int qts;
-        public ArrayList<byte[]> options = new ArrayList<>();
-        public ArrayList<Integer> positions = new ArrayList<>();
+        public long user_id;
+        public boolean via_chatlist;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.poll_id = inputSerializedData.readInt64(z);
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.options = Vector.deserializeByteArray(inputSerializedData, z);
-            this.positions = Vector.deserializeInt(inputSerializedData, z);
+            this.flags = inputSerializedData.readInt32(z);
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.date = inputSerializedData.readInt32(z);
+            this.actor_id = inputSerializedData.readInt64(z);
+            this.user_id = inputSerializedData.readInt64(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.prev_participant = TLRPC.ChannelParticipant.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.new_participant = TLRPC.ChannelParticipant.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if (TLObject.hasFlag(this.flags, 4)) {
+                this.invite = TLRPC.ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            this.via_chatlist = TLObject.hasFlag(this.flags, 8);
             this.qts = inputSerializedData.readInt32(z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1989799956);
-            outputSerializedData.writeInt64(this.poll_id);
-            this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeByteArray(outputSerializedData, this.options);
-            Vector.serializeInt(outputSerializedData, this.positions);
+            outputSerializedData.writeInt32(-1738720581);
+            int flag = TLObject.setFlag(this.flags, 8, this.via_chatlist);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt64(this.channel_id);
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeInt64(this.actor_id);
+            outputSerializedData.writeInt64(this.user_id);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.prev_participant.serializeToStream(outputSerializedData);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.new_participant.serializeToStream(outputSerializedData);
+            }
+            if (TLObject.hasFlag(this.flags, 4)) {
+                this.invite.serializeToStream(outputSerializedData);
+            }
             outputSerializedData.writeInt32(this.qts);
         }
     }
 
-    public static class TL_updateMoveStickerSetToTop extends TLRPC.Update {
-        public static final int constructor = -2030252155;
-        public boolean emojis;
+    public static class TL_updateChannelReadMessagesContents extends TLRPC.Update {
+        public static final int constructor = 636691703;
+        public long channel_id;
         public int flags;
-        public boolean masks;
-        public long stickerset;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.masks = TLObject.hasFlag(int32, 1);
-            this.emojis = TLObject.hasFlag(this.flags, 2);
-            this.stickerset = inputSerializedData.readInt64(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-2030252155);
-            int flag = TLObject.setFlag(this.flags, 1, this.masks);
-            this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.emojis);
-            this.flags = flag2;
-            outputSerializedData.writeInt32(flag2);
-            outputSerializedData.writeInt64(this.stickerset);
-        }
-    }
-
-    public static class TL_updateMessageExtendedMedia extends TLRPC.Update {
-        public static final int constructor = -710666460;
-        public ArrayList<TLRPC.MessageExtendedMedia> extended_media = new ArrayList<>();
-        public int msg_id;
-        public TLRPC.Peer peer;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.msg_id = inputSerializedData.readInt32(z);
-            this.extended_media = Vector.deserialize(inputSerializedData, new TLRPC$TL_messageMediaPaidMedia$$ExternalSyntheticLambda0(), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-710666460);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.msg_id);
-            Vector.serialize(outputSerializedData, this.extended_media);
-        }
-    }
-
-    public static class TL_updatePeerHistoryTTL extends TLRPC.Update {
-        public static final int constructor = -1147422299;
-        public int flags;
-        public TLRPC.Peer peer;
-        public int ttl_period;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.ttl_period = inputSerializedData.readInt32(z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1147422299);
-            outputSerializedData.writeInt32(this.flags);
-            this.peer.serializeToStream(outputSerializedData);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt32(this.ttl_period);
-            }
-        }
-    }
-
-    public static class TL_updateMessagePoll extends TLRPC.Update {
-        public static final int constructor = -699641301;
-        public int flags;
-        public int msg_id;
-        public TLRPC.Peer peer;
-        public TLRPC.Poll poll;
-        public long poll_id;
-        public TLRPC.PollResults results;
+        public ArrayList<Integer> messages = new ArrayList<>();
+        public TLRPC.Peer saved_peer_id;
         public int top_msg_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 2)) {
-                this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-                this.msg_id = inputSerializedData.readInt32(z);
-            }
-            if (TLObject.hasFlag(this.flags, 4)) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.channel_id = inputSerializedData.readInt64(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.top_msg_id = inputSerializedData.readInt32(z);
             }
-            this.poll_id = inputSerializedData.readInt64(z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.poll = TLRPC.Poll.TLdeserialize(inputSerializedData, z);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            this.results = TLRPC.PollResults.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.messages = Vector.deserializeInt(inputSerializedData, z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-699641301);
-            int flag = TLObject.setFlag(this.flags, 1, this.poll != null);
-            this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.peer != null);
-            this.flags = flag2;
-            outputSerializedData.writeInt32(flag2);
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.peer.serializeToStream(outputSerializedData);
-                outputSerializedData.writeInt32(this.msg_id);
-            }
-            if (TLObject.hasFlag(this.flags, 4)) {
+            outputSerializedData.writeInt32(636691703);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt64(this.channel_id);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.top_msg_id);
             }
-            outputSerializedData.writeInt64(this.poll_id);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.poll.serializeToStream(outputSerializedData);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.saved_peer_id.serializeToStream(outputSerializedData);
             }
-            this.results.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateChat extends TLRPC.Update {
-        public static final int constructor = -124097970;
-        public long chat_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.chat_id = inputSerializedData.readInt64(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-124097970);
-            outputSerializedData.writeInt64(this.chat_id);
-        }
-    }
-
-    public static class TL_updateDeleteMessages extends TLRPC.Update {
-        public static final int constructor = -1576161051;
-        public ArrayList<Integer> messages = new ArrayList<>();
-        public int pts;
-        public int pts_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.messages = Vector.deserializeInt(inputSerializedData, z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1576161051);
             Vector.serializeInt(outputSerializedData, this.messages);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
         }
     }
 
-    public static class TL_updatePinnedChannelMessages extends TLRPC.Update {
-        public static final int constructor = 1538885128;
+    public static class TL_updateChannelTooLong extends TLRPC.Update {
+        public static final int constructor = 277713951;
         public long channel_id;
         public int flags;
-        public ArrayList<Integer> messages = new ArrayList<>();
-        public boolean pinned;
         public int pts;
-        public int pts_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.pinned = TLObject.hasFlag(int32, 1);
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.messages = Vector.deserializeInt(inputSerializedData, z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1538885128);
-            int flag = TLObject.setFlag(this.flags, 1, this.pinned);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.channel_id);
-            Vector.serializeInt(outputSerializedData, this.messages);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
-        }
-    }
-
-    public static class TL_updateGroupCallParticipants extends TLRPC.Update {
-        public static final int constructor = -219423922;
-        public TLRPC.InputGroupCall call;
-        public ArrayList<TLRPC.GroupCallParticipant> participants = new ArrayList<>();
-        public int version;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.participants = Vector.deserialize(inputSerializedData, new TL_phone$groupCall$$ExternalSyntheticLambda0(), z);
-            this.version = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-219423922);
-            this.call.serializeToStream(outputSerializedData);
-            Vector.serialize(outputSerializedData, this.participants);
-            outputSerializedData.writeInt32(this.version);
-        }
-    }
-
-    public static class TL_updateReadFeaturedStickers extends TLRPC.Update {
-        public static final int constructor = 1461528386;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1461528386);
-        }
-    }
-
-    public static class TL_updateEncryptedChatTyping extends TLRPC.Update {
-        public static final int constructor = 386986326;
-        public int chat_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.chat_id = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(386986326);
-            outputSerializedData.writeInt32(this.chat_id);
-        }
-    }
-
-    public static class TL_updateReadChannelDiscussionInbox extends TLRPC.Update {
-        public static final int constructor = -693004986;
-        public long broadcast_id;
-        public int broadcast_post;
-        public long channel_id;
-        public int flags;
-        public int read_max_id;
-        public int top_msg_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.channel_id = inputSerializedData.readInt64(z);
-            this.top_msg_id = inputSerializedData.readInt32(z);
-            this.read_max_id = inputSerializedData.readInt32(z);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.broadcast_id = inputSerializedData.readInt64(z);
-            }
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.broadcast_post = inputSerializedData.readInt32(z);
+                this.pts = inputSerializedData.readInt32(z);
             }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-693004986);
+            outputSerializedData.writeInt32(277713951);
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.top_msg_id);
-            outputSerializedData.writeInt32(this.read_max_id);
             if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt64(this.broadcast_id);
+                outputSerializedData.writeInt32(this.pts);
             }
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt32(this.broadcast_post);
-            }
-        }
-    }
-
-    public static class TL_updateReadHistoryOutbox extends TLRPC.Update {
-        public static final int constructor = 791617983;
-        public int max_id;
-        public TLRPC.Peer peer;
-        public int pts;
-        public int pts_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.max_id = inputSerializedData.readInt32(z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(791617983);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.max_id);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
-        }
-    }
-
-    public static class TL_updateNewChannelMessage extends TLRPC.Update {
-        public static final int constructor = 1656358105;
-        public TLRPC.Message message;
-        public int pts;
-        public int pts_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1656358105);
-            this.message.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
-        }
-    }
-
-    public static class TL_updateChatParticipantRank extends TLRPC.Update {
-        public static final int constructor = -1115461703;
-        public long chat_id;
-        public String rank;
-        public long user_id;
-        public int version;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.chat_id = inputSerializedData.readInt64(z);
-            this.user_id = inputSerializedData.readInt64(z);
-            this.rank = inputSerializedData.readString(z);
-            this.version = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1115461703);
-            outputSerializedData.writeInt64(this.chat_id);
-            outputSerializedData.writeInt64(this.user_id);
-            outputSerializedData.writeString(this.rank);
-            outputSerializedData.writeInt32(this.version);
-        }
-    }
-
-    public static class TL_updateManagedBot extends TLRPC.Update {
-        public static final int constructor = 1216408986;
-        public long bot_id;
-        public int qts;
-        public long user_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.user_id = inputSerializedData.readInt64(z);
-            this.bot_id = inputSerializedData.readInt64(z);
-            this.qts = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1216408986);
-            outputSerializedData.writeInt64(this.user_id);
-            outputSerializedData.writeInt64(this.bot_id);
-            outputSerializedData.writeInt32(this.qts);
-        }
-    }
-
-    public static class TL_updateAiComposeTones extends TLRPC.Update {
-        public static final int constructor = -1945136645;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1945136645);
-        }
-    }
-
-    public static class TL_updateDialogPinned extends TLRPC.Update {
-        public static final int constructor = 1852826908;
-        public int flags;
-        public int folder_id;
-        public TLRPC.DialogPeer peer;
-        public boolean pinned;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.pinned = TLObject.hasFlag(int32, 1);
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.folder_id = inputSerializedData.readInt32(z);
-            }
-            this.peer = TLRPC.DialogPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1852826908);
-            int flag = TLObject.setFlag(this.flags, 1, this.pinned);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            if (TLObject.hasFlag(this.flags, 2)) {
-                outputSerializedData.writeInt32(this.folder_id);
-            }
-            this.peer.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updatePeerSettings extends TLRPC.Update {
-        public static final int constructor = 1786671974;
-        public TLRPC.Peer peer;
-        public TLRPC.PeerSettings settings;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.settings = TLRPC.PeerSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1786671974);
-            this.peer.serializeToStream(outputSerializedData);
-            this.settings.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateUserPhone extends TLRPC.Update {
-        public static final int constructor = 88680979;
-        public String phone;
-        public long user_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.user_id = inputSerializedData.readInt64(z);
-            this.phone = inputSerializedData.readString(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(88680979);
-            outputSerializedData.writeInt64(this.user_id);
-            outputSerializedData.writeString(this.phone);
-        }
-    }
-
-    public static class TL_updateMessageID extends TLRPC.Update {
-        public static final int constructor = 1318109142;
-        public int id;
-        public long random_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.id = inputSerializedData.readInt32(z);
-            this.random_id = inputSerializedData.readInt64(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1318109142);
-            outputSerializedData.writeInt32(this.id);
-            outputSerializedData.writeInt64(this.random_id);
-        }
-    }
-
-    public static class TL_updateReadChannelOutbox extends TLRPC.Update {
-        public static final int constructor = -1218471511;
-        public long channel_id;
-        public int max_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.max_id = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1218471511);
-            outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.max_id);
         }
     }
 
@@ -912,50 +331,6 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateStoryID extends TLRPC.Update {
-        public static final int constructor = 468923833;
-        public int id;
-        public long random_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.id = inputSerializedData.readInt32(z);
-            this.random_id = inputSerializedData.readInt64(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(468923833);
-            outputSerializedData.writeInt32(this.id);
-            outputSerializedData.writeInt64(this.random_id);
-        }
-    }
-
-    public static class TL_updateStickerSets extends TLRPC.Update {
-        public static final int constructor = 834816008;
-        public boolean emojis;
-        public int flags;
-        public boolean masks;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.masks = TLObject.hasFlag(int32, 1);
-            this.emojis = TLObject.hasFlag(this.flags, 2);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(834816008);
-            int flag = TLObject.setFlag(this.flags, 1, this.masks);
-            this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.emojis);
-            this.flags = flag2;
-            outputSerializedData.writeInt32(flag2);
-        }
-    }
-
     public static class TL_updateChannelViewForumAsMessages extends TLRPC.Update {
         public static final int constructor = 129403168;
         public long channel_id;
@@ -972,465 +347,6 @@ public class TL_update {
             outputSerializedData.writeInt32(129403168);
             outputSerializedData.writeInt64(this.channel_id);
             outputSerializedData.writeBool(this.enabled);
-        }
-    }
-
-    public static class TL_updatePinnedSavedDialogs extends TLRPC.Update {
-        public static final int constructor = 1751942566;
-        public int flags;
-        public ArrayList<TLRPC.DialogPeer> order = new ArrayList<>();
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1)) {
-                this.order = Vector.deserialize(inputSerializedData, new TLRPC$TL_messages_getDialogUnreadMarks$$ExternalSyntheticLambda0(), z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1751942566);
-            outputSerializedData.writeInt32(this.flags);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                Vector.serialize(outputSerializedData, this.order);
-            }
-        }
-    }
-
-    public static class TL_updateQuickReplies extends TLRPC.Update {
-        public static final int constructor = -112784718;
-        public ArrayList<TLRPC.TL_quickReply> quick_replies = new ArrayList<>();
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.quick_replies = Vector.deserialize(inputSerializedData, new TLRPC$TL_messages_quickReplies$$ExternalSyntheticLambda0(), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-112784718);
-            Vector.serialize(outputSerializedData, this.quick_replies);
-        }
-    }
-
-    public static class TL_updateNewQuickReply extends TLRPC.Update {
-        public static final int constructor = -180508905;
-        public TLRPC.TL_quickReply quick_reply;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.quick_reply = TLRPC.TL_quickReply.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-180508905);
-            this.quick_reply.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateDeleteQuickReply extends TLRPC.Update {
-        public static final int constructor = 1407644140;
-        public int shortcut_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.shortcut_id = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1407644140);
-            outputSerializedData.writeInt32(this.shortcut_id);
-        }
-    }
-
-    public static class TL_updateQuickReplyMessage extends TLRPC.Update {
-        public static final int constructor = 1040518415;
-        public TLRPC.Message message;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1040518415);
-            this.message.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateGroupCallMessage extends TLRPC.Update {
-        public static final int constructor = -667783411;
-        public TLRPC.InputGroupCall call;
-        public TLRPC.GroupCallMessage message;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.message = TLRPC.GroupCallMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-667783411);
-            this.call.serializeToStream(outputSerializedData);
-            this.message.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateDeleteGroupCallMessages extends TLRPC.Update {
-        public static final int constructor = 1048963372;
-        public TLRPC.InputGroupCall call;
-        public ArrayList<Integer> messages = new ArrayList<>();
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.messages = Vector.deserializeInt(inputSerializedData, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1048963372);
-            this.call.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.messages);
-        }
-    }
-
-    public static class TL_updateGroupCallEncryptedMessage extends TLRPC.Update {
-        public static final int constructor = -917002394;
-        public TLRPC.InputGroupCall call;
-        public byte[] encrypted_message;
-        public TLRPC.Peer from_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.encrypted_message = inputSerializedData.readByteArray(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-917002394);
-            this.call.serializeToStream(outputSerializedData);
-            this.from_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeByteArray(this.encrypted_message);
-        }
-    }
-
-    public static class TL_updateDeleteQuickReplyMessages extends TLRPC.Update {
-        public static final int constructor = 1450174413;
-        public ArrayList<Integer> messages = new ArrayList<>();
-        public int shortcut_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.shortcut_id = inputSerializedData.readInt32(z);
-            this.messages = Vector.deserializeInt(inputSerializedData, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1450174413);
-            outputSerializedData.writeInt32(this.shortcut_id);
-            Vector.serializeInt(outputSerializedData, this.messages);
-        }
-    }
-
-    public static class TL_updateNewStoryReaction extends TLRPC.Update {
-        public static final int constructor = 405070859;
-        public TLRPC.Peer peer;
-        public TLRPC.Reaction reaction;
-        public int story_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.story_id = inputSerializedData.readInt32(z);
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(405070859);
-            outputSerializedData.writeInt32(this.story_id);
-            this.peer.serializeToStream(outputSerializedData);
-            this.reaction.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateStarsBalance extends TLRPC.Update {
-        public static final int constructor = 1317053305;
-        public TL_stars.StarsAmount balance;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.balance = TL_stars.StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1317053305);
-            this.balance.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateWebViewResultSent extends TLRPC.Update {
-        public static final int constructor = 361936797;
-        public long query_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.query_id = inputSerializedData.readInt64(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(361936797);
-            outputSerializedData.writeInt64(this.query_id);
-        }
-    }
-
-    public static class TL_updateEncryptedMessagesRead extends TLRPC.Update {
-        public static final int constructor = 956179895;
-        public int chat_id;
-        public int date;
-        public int max_date;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.chat_id = inputSerializedData.readInt32(z);
-            this.max_date = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(956179895);
-            outputSerializedData.writeInt32(this.chat_id);
-            outputSerializedData.writeInt32(this.max_date);
-            outputSerializedData.writeInt32(this.date);
-        }
-    }
-
-    public static class TL_updateStickerSetsOrder extends TLRPC.Update {
-        public static final int constructor = 196268545;
-        public boolean emojis;
-        public int flags;
-        public boolean masks;
-        public ArrayList<Long> order = new ArrayList<>();
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.masks = TLObject.hasFlag(int32, 1);
-            this.emojis = TLObject.hasFlag(this.flags, 2);
-            this.order = Vector.deserializeLong(inputSerializedData, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(196268545);
-            int flag = TLObject.setFlag(this.flags, 1, this.masks);
-            this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.emojis);
-            this.flags = flag2;
-            outputSerializedData.writeInt32(flag2);
-            Vector.serializeLong(outputSerializedData, this.order);
-        }
-    }
-
-    public static class TL_updateReadFeaturedEmojiStickers extends TLRPC.Update {
-        public static final int constructor = -78886548;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-78886548);
-        }
-    }
-
-    public static class TL_updateReadChannelInbox extends TLRPC.Update {
-        public static final int constructor = -1842450928;
-        public long channel_id;
-        public int flags;
-        public int folder_id;
-        public int max_id;
-        public int pts;
-        public int still_unread_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1)) {
-                this.folder_id = inputSerializedData.readInt32(z);
-            }
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.max_id = inputSerializedData.readInt32(z);
-            this.still_unread_count = inputSerializedData.readInt32(z);
-            this.pts = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1842450928);
-            outputSerializedData.writeInt32(this.flags);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt32(this.folder_id);
-            }
-            outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.max_id);
-            outputSerializedData.writeInt32(this.still_unread_count);
-            outputSerializedData.writeInt32(this.pts);
-        }
-    }
-
-    public static class TL_updateReadMessagesContents extends TLRPC.Update {
-        public static final int constructor = -131960447;
-        public int date;
-        public int flags;
-        public ArrayList<Integer> messages = new ArrayList<>();
-        public int pts;
-        public int pts_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.messages = Vector.deserializeInt(inputSerializedData, z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.date = inputSerializedData.readInt32(z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-131960447);
-            outputSerializedData.writeInt32(this.flags);
-            Vector.serializeInt(outputSerializedData, this.messages);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt32(this.date);
-            }
-        }
-    }
-
-    public static class TL_updateChatParticipants extends TLRPC.Update {
-        public static final int constructor = 125178264;
-        public TLRPC.ChatParticipants participants;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.participants = TLRPC.ChatParticipants.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(125178264);
-            this.participants.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateChatDefaultBannedRights extends TLRPC.Update {
-        public static final int constructor = 1421875280;
-        public TLRPC.TL_chatBannedRights default_banned_rights;
-        public TLRPC.Peer peer;
-        public int version;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.default_banned_rights = TLRPC.TL_chatBannedRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.version = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1421875280);
-            this.peer.serializeToStream(outputSerializedData);
-            this.default_banned_rights.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.version);
-        }
-    }
-
-    public static class TL_updatePinnedForumTopics extends TLRPC.Update {
-        public static final int constructor = -554613808;
-        public int flags;
-        public ArrayList<Integer> order = new ArrayList<>();
-        public TLRPC.Peer peer;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.order = Vector.deserializeInt(inputSerializedData, z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-554613808);
-            outputSerializedData.writeInt32(this.flags);
-            this.peer.serializeToStream(outputSerializedData);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                Vector.serializeInt(outputSerializedData, this.order);
-            }
-        }
-    }
-
-    public static class TL_updatePinnedForumTopic extends TLRPC.Update {
-        public static final int constructor = 1748708434;
-        public TLRPC.Peer peer;
-        public boolean pinned;
-        public int topic_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.pinned = TLObject.hasFlag(inputSerializedData.readInt32(z), 1);
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.topic_id = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1748708434);
-            outputSerializedData.writeInt32(TLObject.setFlag(0, 1, this.pinned));
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.topic_id);
-        }
-    }
-
-    public static class TL_updateAttachMenuBots extends TLRPC.Update {
-        public static final int constructor = 397910539;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(397910539);
-        }
-    }
-
-    public static class TL_updateChannel extends TLRPC.Update {
-        public static final int constructor = 1666927625;
-        public long channel_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.channel_id = inputSerializedData.readInt64(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1666927625);
-            outputSerializedData.writeInt64(this.channel_id);
         }
     }
 
@@ -1456,6 +372,336 @@ public class TL_update {
             this.webpage.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.pts);
             outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updateChat extends TLRPC.Update {
+        public static final int constructor = -124097970;
+        public long chat_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.chat_id = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-124097970);
+            outputSerializedData.writeInt64(this.chat_id);
+        }
+    }
+
+    public static class TL_updateChatDefaultBannedRights extends TLRPC.Update {
+        public static final int constructor = 1421875280;
+        public TLRPC.TL_chatBannedRights default_banned_rights;
+        public TLRPC.Peer peer;
+        public int version;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.default_banned_rights = TLRPC.TL_chatBannedRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.version = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1421875280);
+            this.peer.serializeToStream(outputSerializedData);
+            this.default_banned_rights.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.version);
+        }
+    }
+
+    public static class TL_updateChatParticipantAdd extends TLRPC.Update {
+        public static final int constructor = 1037718609;
+        public long chat_id;
+        public int date;
+        public long inviter_id;
+        public long user_id;
+        public int version;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.chat_id = inputSerializedData.readInt64(z);
+            this.user_id = inputSerializedData.readInt64(z);
+            this.inviter_id = inputSerializedData.readInt64(z);
+            this.date = inputSerializedData.readInt32(z);
+            this.version = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1037718609);
+            outputSerializedData.writeInt64(this.chat_id);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeInt64(this.inviter_id);
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeInt32(this.version);
+        }
+    }
+
+    public static class TL_updateChatParticipantAdmin extends TLRPC.Update {
+        public static final int constructor = -674602590;
+        public long chat_id;
+        public boolean is_admin;
+        public long user_id;
+        public int version;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.chat_id = inputSerializedData.readInt64(z);
+            this.user_id = inputSerializedData.readInt64(z);
+            this.is_admin = inputSerializedData.readBool(z);
+            this.version = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-674602590);
+            outputSerializedData.writeInt64(this.chat_id);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeBool(this.is_admin);
+            outputSerializedData.writeInt32(this.version);
+        }
+    }
+
+    public static class TL_updateChatParticipantDelete extends TLRPC.Update {
+        public static final int constructor = -483443337;
+        public long chat_id;
+        public long user_id;
+        public int version;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.chat_id = inputSerializedData.readInt64(z);
+            this.user_id = inputSerializedData.readInt64(z);
+            this.version = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-483443337);
+            outputSerializedData.writeInt64(this.chat_id);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeInt32(this.version);
+        }
+    }
+
+    public static class TL_updateChatParticipantRank extends TLRPC.Update {
+        public static final int constructor = -1115461703;
+        public long chat_id;
+        public String rank;
+        public long user_id;
+        public int version;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.chat_id = inputSerializedData.readInt64(z);
+            this.user_id = inputSerializedData.readInt64(z);
+            this.rank = inputSerializedData.readString(z);
+            this.version = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1115461703);
+            outputSerializedData.writeInt64(this.chat_id);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeString(this.rank);
+            outputSerializedData.writeInt32(this.version);
+        }
+    }
+
+    public static class TL_updateChatParticipants extends TLRPC.Update {
+        public static final int constructor = 125178264;
+        public TLRPC.ChatParticipants participants;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.participants = TLRPC.ChatParticipants.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(125178264);
+            this.participants.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateChatUserTyping extends TLRPC.Update {
+        public static final int constructor = -2092401936;
+        public TLRPC.SendMessageAction action;
+        public long chat_id;
+        public TLRPC.Peer from_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.chat_id = inputSerializedData.readInt64(z);
+            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.action = TLRPC.SendMessageAction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2092401936);
+            outputSerializedData.writeInt64(this.chat_id);
+            this.from_id.serializeToStream(outputSerializedData);
+            this.action.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateConfig extends TLRPC.Update {
+        public static final int constructor = -1574314746;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1574314746);
+        }
+    }
+
+    public static class TL_updateContactsReset extends TLRPC.Update {
+        public static final int constructor = 1887741886;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1887741886);
+        }
+    }
+
+    public static class TL_updateDcOptions extends TLRPC.Update {
+        public static final int constructor = -1906403213;
+        public ArrayList<TLRPC.TL_dcOption> dc_options = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.dc_options = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(0), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1906403213);
+            Vector.serialize(outputSerializedData, this.dc_options);
+        }
+    }
+
+    public static class TL_updateDeleteChannelMessages extends TLRPC.Update {
+        public static final int constructor = -1020437742;
+        public long channel_id;
+        public ArrayList<Integer> messages = new ArrayList<>();
+        public int pts;
+        public int pts_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.messages = Vector.deserializeInt(inputSerializedData, z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1020437742);
+            outputSerializedData.writeInt64(this.channel_id);
+            Vector.serializeInt(outputSerializedData, this.messages);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updateDeleteEphemeralMessages extends TLRPC.Update {
+        public static final int constructor = 1457257720;
+        public ArrayList<Integer> ids = new ArrayList<>();
+        public TLRPC.Peer peer;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.ids = Vector.deserializeInt(inputSerializedData, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1457257720);
+            this.peer.serializeToStream(outputSerializedData);
+            Vector.serializeInt(outputSerializedData, this.ids);
+        }
+    }
+
+    public static class TL_updateDeleteGroupCallMessages extends TLRPC.Update {
+        public static final int constructor = 1048963372;
+        public TLRPC.InputGroupCall call;
+        public ArrayList<Integer> messages = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.messages = Vector.deserializeInt(inputSerializedData, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1048963372);
+            this.call.serializeToStream(outputSerializedData);
+            Vector.serializeInt(outputSerializedData, this.messages);
+        }
+    }
+
+    public static class TL_updateDeleteMessages extends TLRPC.Update {
+        public static final int constructor = -1576161051;
+        public ArrayList<Integer> messages = new ArrayList<>();
+        public int pts;
+        public int pts_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.messages = Vector.deserializeInt(inputSerializedData, z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1576161051);
+            Vector.serializeInt(outputSerializedData, this.messages);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updateDeleteQuickReply extends TLRPC.Update {
+        public static final int constructor = 1407644140;
+        public int shortcut_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.shortcut_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1407644140);
+            outputSerializedData.writeInt32(this.shortcut_id);
+        }
+    }
+
+    public static class TL_updateDeleteQuickReplyMessages extends TLRPC.Update {
+        public static final int constructor = 1450174413;
+        public ArrayList<Integer> messages = new ArrayList<>();
+        public int shortcut_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.shortcut_id = inputSerializedData.readInt32(z);
+            this.messages = Vector.deserializeInt(inputSerializedData, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1450174413);
+            outputSerializedData.writeInt32(this.shortcut_id);
+            Vector.serializeInt(outputSerializedData, this.messages);
         }
     }
 
@@ -1488,113 +734,45 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateSentStoryReaction extends TLRPC.Update {
-        public static final int constructor = 2103604867;
-        public TLRPC.Peer peer;
-        public TLRPC.Reaction reaction;
-        public int story_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.story_id = inputSerializedData.readInt32(z);
-            this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(2103604867);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.story_id);
-            this.reaction.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateChannelMessageForwards extends TLRPC.Update {
-        public static final int constructor = -761649164;
-        public long channel_id;
-        public int forwards;
+    public static class TL_updateDialogFilter extends TLRPC.Update {
+        public static final int constructor = 654302845;
+        public TLRPC.DialogFilter filter;
+        public int flags;
         public int id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.channel_id = inputSerializedData.readInt64(z);
+            this.flags = inputSerializedData.readInt32(z);
             this.id = inputSerializedData.readInt32(z);
-            this.forwards = inputSerializedData.readInt32(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.filter = TLRPC.DialogFilter.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-761649164);
-            outputSerializedData.writeInt64(this.channel_id);
+            outputSerializedData.writeInt32(654302845);
+            outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt32(this.id);
-            outputSerializedData.writeInt32(this.forwards);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.filter.serializeToStream(outputSerializedData);
+            }
         }
     }
 
-    public static class TL_updateDeleteChannelMessages extends TLRPC.Update {
-        public static final int constructor = -1020437742;
-        public long channel_id;
-        public ArrayList<Integer> messages = new ArrayList<>();
-        public int pts;
-        public int pts_count;
+    public static class TL_updateDialogFilterOrder extends TLRPC.Update {
+        public static final int constructor = -1512627963;
+        public ArrayList<Integer> order = new ArrayList<>();
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.messages = Vector.deserializeInt(inputSerializedData, z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
+            this.order = Vector.deserializeInt(inputSerializedData, z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1020437742);
-            outputSerializedData.writeInt64(this.channel_id);
-            Vector.serializeInt(outputSerializedData, this.messages);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
-        }
-    }
-
-    public static class TL_updateUserPhoto extends TLRPC.Update {
-        public static final int constructor = -232290676;
-        public int date;
-        public TLRPC.UserProfilePhoto photo;
-        public boolean previous;
-        public long user_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.user_id = inputSerializedData.readInt64(z);
-            this.date = inputSerializedData.readInt32(z);
-            this.photo = TLRPC.UserProfilePhoto.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.previous = inputSerializedData.readBool(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-232290676);
-            outputSerializedData.writeInt64(this.user_id);
-            outputSerializedData.writeInt32(this.date);
-            this.photo.serializeToStream(outputSerializedData);
-            outputSerializedData.writeBool(this.previous);
-        }
-    }
-
-    public static class TL_updateUser extends TLRPC.Update {
-        public static final int constructor = 542282808;
-        public long user_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.user_id = inputSerializedData.readInt64(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(542282808);
-            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeInt32(-1512627963);
+            Vector.serializeInt(outputSerializedData, this.order);
         }
     }
 
@@ -1607,120 +785,34 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateRecentEmojiStatuses extends TLRPC.Update {
-        public static final int constructor = 821314523;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(821314523);
-        }
-    }
-
-    public static class TL_updatePendingJoinRequests extends TLRPC.Update {
-        public static final int constructor = 1885586395;
-        public TLRPC.Peer peer;
-        public ArrayList<Long> recent_requesters = new ArrayList<>();
-        public int requests_pending;
+    public static class TL_updateDialogPinned extends TLRPC.Update {
+        public static final int constructor = 1852826908;
+        public int flags;
+        public int folder_id;
+        public TLRPC.DialogPeer peer;
+        public boolean pinned;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.requests_pending = inputSerializedData.readInt32(z);
-            this.recent_requesters = Vector.deserializeLong(inputSerializedData, z);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.pinned = TLObject.hasFlag(int32, 1);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.folder_id = inputSerializedData.readInt32(z);
+            }
+            this.peer = TLRPC.DialogPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1885586395);
+            outputSerializedData.writeInt32(1852826908);
+            int flag = TLObject.setFlag(this.flags, 1, this.pinned);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt32(this.folder_id);
+            }
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.requests_pending);
-            Vector.serializeLong(outputSerializedData, this.recent_requesters);
-        }
-    }
-
-    public static class TL_updateDcOptions extends TLRPC.Update {
-        public static final int constructor = -1906403213;
-        public ArrayList<TLRPC.TL_dcOption> dc_options = new ArrayList<>();
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.dc_options = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1906403213);
-            Vector.serialize(outputSerializedData, this.dc_options);
-        }
-    }
-
-    public static class TL_updateEditChannelMessage extends TLRPC.Update {
-        public static final int constructor = 457133559;
-        public TLRPC.Message message;
-        public int pts;
-        public int pts_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(457133559);
-            this.message.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
-        }
-    }
-
-    public static class TL_updateNewStickerSet extends TLRPC.Update {
-        public static final int constructor = 1753886890;
-        public TLRPC.TL_messages_stickerSet stickerset;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.stickerset = TLRPC.messages_StickerSet.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1753886890);
-            this.stickerset.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateTheme extends TLRPC.Update {
-        public static final int constructor = -2112423005;
-        public TLRPC.Theme theme;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.theme = TLRPC.Theme.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-2112423005);
-            this.theme.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateLangPackTooLong extends TLRPC.Update {
-        public static final int constructor = 1180041828;
-        public String lang_code;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.lang_code = inputSerializedData.readString(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1180041828);
-            outputSerializedData.writeString(this.lang_code);
         }
     }
 
@@ -1788,6 +880,711 @@ public class TL_update {
                 this.saved_peer_id.serializeToStream(outputSerializedData);
             }
             this.draft.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateEditChannelMessage extends TLRPC.Update {
+        public static final int constructor = 457133559;
+        public TLRPC.Message message;
+        public int pts;
+        public int pts_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(457133559);
+            this.message.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updateEditEphemeralMessage extends TLRPC.Update {
+        public static final int constructor = 1270583041;
+        public TL_ephemeral.EphemeralMessage message;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1270583041);
+            this.message.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateEditMessage extends TLRPC.Update {
+        public static final int constructor = -469536605;
+        public TLRPC.Message message;
+        public int pts;
+        public int pts_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-469536605);
+            this.message.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updateEmojiGameInfo extends TLRPC.Update {
+        public static final int constructor = -73640838;
+        public TLRPC.EmojiGameInfo info;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.info = TLRPC.EmojiGameInfo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-73640838);
+            this.info.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateEncryptedChatTyping extends TLRPC.Update {
+        public static final int constructor = 386986326;
+        public int chat_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.chat_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(386986326);
+            outputSerializedData.writeInt32(this.chat_id);
+        }
+    }
+
+    public static class TL_updateEncryptedMessagesRead extends TLRPC.Update {
+        public static final int constructor = 956179895;
+        public int chat_id;
+        public int date;
+        public int max_date;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.chat_id = inputSerializedData.readInt32(z);
+            this.max_date = inputSerializedData.readInt32(z);
+            this.date = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(956179895);
+            outputSerializedData.writeInt32(this.chat_id);
+            outputSerializedData.writeInt32(this.max_date);
+            outputSerializedData.writeInt32(this.date);
+        }
+    }
+
+    public static class TL_updateEncryption extends TLRPC.Update {
+        public static final int constructor = -1264392051;
+        public TLRPC.EncryptedChat chat;
+        public int date;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.chat = TLRPC.EncryptedChat.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.date = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1264392051);
+            this.chat.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.date);
+        }
+    }
+
+    public static class TL_updateEphemeralBotCallbackQuery extends TLRPC.Update {
+        public static final int constructor = 2081454550;
+        public long chat_instance;
+        public byte[] data;
+        public int flags;
+        public TL_ephemeral.EphemeralMessage message;
+        public int msg_id;
+        public TLRPC.Peer peer;
+        public long query_id;
+        public long user_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.query_id = inputSerializedData.readInt64(z);
+            this.user_id = inputSerializedData.readInt64(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            this.msg_id = inputSerializedData.readInt32(z);
+            this.data = inputSerializedData.readByteArray(z);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.chat_instance = inputSerializedData.readInt64(z);
+            }
+            this.message = TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(2081454550);
+            int flag = TLObject.setFlag(this.flags, 1, this.peer != null);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.chat_instance != 0);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
+            outputSerializedData.writeInt64(this.query_id);
+            outputSerializedData.writeInt64(this.user_id);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.peer.serializeToStream(outputSerializedData);
+            }
+            outputSerializedData.writeInt32(this.msg_id);
+            outputSerializedData.writeByteArray(this.data);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt64(this.chat_instance);
+            }
+            this.message.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateFavedStickers extends TLRPC.Update {
+        public static final int constructor = -451831443;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-451831443);
+        }
+    }
+
+    public static class TL_updateFolderPeers extends TLRPC.Update {
+        public static final int constructor = 422972864;
+        public ArrayList<TLRPC.TL_folderPeer> folder_peers = new ArrayList<>();
+        public int pts;
+        public int pts_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.folder_peers = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(15), z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(422972864);
+            Vector.serialize(outputSerializedData, this.folder_peers);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updateGeoLiveViewed extends TLRPC.Update {
+        public static final int constructor = -2027964103;
+        public int msg_id;
+        public TLRPC.Peer peer;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.msg_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2027964103);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.msg_id);
+        }
+    }
+
+    public static class TL_updateGroupCall extends TLRPC.Update {
+        public static final int constructor = -1658710304;
+        public TLRPC.GroupCall call;
+        public int flags;
+        public boolean live_story;
+        public TLRPC.Peer peer;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.live_story = TLObject.hasFlag(int32, 4);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            this.call = TLRPC.GroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1658710304);
+            int flag = TLObject.setFlag(this.flags, 4, this.live_story);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.peer.serializeToStream(outputSerializedData);
+            }
+            this.call.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateGroupCallChainBlocks extends TLRPC.Update {
+        public static final int constructor = -1535694705;
+        public ArrayList<byte[]> blocks = new ArrayList<>();
+        public TLRPC.InputGroupCall call;
+        public int next_offset;
+        public int sub_chain_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.sub_chain_id = inputSerializedData.readInt32(z);
+            this.blocks = Vector.deserializeByteArray(inputSerializedData, z);
+            this.next_offset = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1535694705);
+            this.call.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.sub_chain_id);
+            Vector.serialize(outputSerializedData, new Vector$$ExternalSyntheticLambda2(outputSerializedData, 2), this.blocks);
+            outputSerializedData.writeInt32(this.next_offset);
+        }
+    }
+
+    public static class TL_updateGroupCallConnection extends TLRPC.Update {
+        public static final int constructor = 192428418;
+        public int flags;
+        public TLRPC.TL_dataJSON params;
+        public boolean presentation;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.presentation = TLObject.hasFlag(int32, 1);
+            this.params = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(192428418);
+            int flag = TLObject.setFlag(this.flags, 1, this.presentation);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            this.params.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateGroupCallEncryptedMessage extends TLRPC.Update {
+        public static final int constructor = -917002394;
+        public TLRPC.InputGroupCall call;
+        public byte[] encrypted_message;
+        public TLRPC.Peer from_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.encrypted_message = inputSerializedData.readByteArray(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-917002394);
+            this.call.serializeToStream(outputSerializedData);
+            this.from_id.serializeToStream(outputSerializedData);
+            outputSerializedData.writeByteArray(this.encrypted_message);
+        }
+    }
+
+    public static class TL_updateGroupCallMessage extends TLRPC.Update {
+        public static final int constructor = -667783411;
+        public TLRPC.InputGroupCall call;
+        public TLRPC.GroupCallMessage message;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.message = TLRPC.GroupCallMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-667783411);
+            this.call.serializeToStream(outputSerializedData);
+            this.message.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateGroupCallParticipants extends TLRPC.Update {
+        public static final int constructor = -219423922;
+        public TLRPC.InputGroupCall call;
+        public ArrayList<TLRPC.GroupCallParticipant> participants = new ArrayList<>();
+        public int version;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.call = TLRPC.InputGroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.participants = Vector.deserialize(inputSerializedData, new TL_iv$pageTableRow$$ExternalSyntheticLambda0(8), z);
+            this.version = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-219423922);
+            this.call.serializeToStream(outputSerializedData);
+            Vector.serialize(outputSerializedData, this.participants);
+            outputSerializedData.writeInt32(this.version);
+        }
+    }
+
+    public static class TL_updateGroupCall_layer216 extends TL_updateGroupCall {
+        public static final int constructor = -1747565759;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.live_story = TLObject.hasFlag(int32, 4);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                long int64 = inputSerializedData.readInt64(z);
+                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
+                this.peer = tL_peerChannel;
+                tL_peerChannel.channel_id = -int64;
+            }
+            this.call = TLRPC.GroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1747565759);
+            int flag = TLObject.setFlag(this.flags, 4, this.live_story);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt64(-DialogObject.getPeerDialogId(this.peer));
+            }
+            this.call.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateJoinChatWebViewDecision extends TLRPC.Update {
+        public static final int constructor = -1112768912;
+        public TLRPC.Peer peer;
+        public long query_id;
+        public TLRPC.JoinChatBotResult result;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.query_id = inputSerializedData.readInt64(z);
+            this.result = TLRPC.JoinChatBotResult.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1112768912);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt64(this.query_id);
+            this.result.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateLangPack extends TLRPC.Update {
+        public static final int constructor = 1442983757;
+        public TLRPC.TL_langPackDifference difference;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.difference = TLRPC.TL_langPackDifference.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1442983757);
+            this.difference.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateLangPackTooLong extends TLRPC.Update {
+        public static final int constructor = 1180041828;
+        public String lang_code;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.lang_code = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1180041828);
+            outputSerializedData.writeString(this.lang_code);
+        }
+    }
+
+    public static class TL_updateLoginToken extends TLRPC.Update {
+        public static final int constructor = 1448076945;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1448076945);
+        }
+    }
+
+    public static class TL_updateManagedBot extends TLRPC.Update {
+        public static final int constructor = 1216408986;
+        public long bot_id;
+        public int qts;
+        public long user_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.user_id = inputSerializedData.readInt64(z);
+            this.bot_id = inputSerializedData.readInt64(z);
+            this.qts = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1216408986);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeInt64(this.bot_id);
+            outputSerializedData.writeInt32(this.qts);
+        }
+    }
+
+    public static class TL_updateMessageExtendedMedia extends TLRPC.Update {
+        public static final int constructor = -710666460;
+        public ArrayList<TLRPC.MessageExtendedMedia> extended_media = new ArrayList<>();
+        public int msg_id;
+        public TLRPC.Peer peer;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.msg_id = inputSerializedData.readInt32(z);
+            this.extended_media = Vector.deserialize(inputSerializedData, new TLRPC$TL_invoice$$ExternalSyntheticLambda0(20), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-710666460);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.msg_id);
+            Vector.serialize(outputSerializedData, this.extended_media);
+        }
+    }
+
+    public static class TL_updateMessageID extends TLRPC.Update {
+        public static final int constructor = 1318109142;
+        public int id;
+        public long random_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.id = inputSerializedData.readInt32(z);
+            this.random_id = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1318109142);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt64(this.random_id);
+        }
+    }
+
+    public static class TL_updateMessagePoll extends TLRPC.Update {
+        public static final int constructor = -699641301;
+        public int flags;
+        public int msg_id;
+        public TLRPC.Peer peer;
+        public TLRPC.Poll poll;
+        public long poll_id;
+        public TLRPC.PollResults results;
+        public int top_msg_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if (TLObject.hasFlag(int32, 2)) {
+                this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.msg_id = inputSerializedData.readInt32(z);
+            }
+            if (TLObject.hasFlag(this.flags, 4)) {
+                this.top_msg_id = inputSerializedData.readInt32(z);
+            }
+            this.poll_id = inputSerializedData.readInt64(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.poll = TLRPC.Poll.TLdeserialize(inputSerializedData, z);
+            }
+            this.results = TLRPC.PollResults.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-699641301);
+            int flag = TLObject.setFlag(this.flags, 1, this.poll != null);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.peer != null);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.peer.serializeToStream(outputSerializedData);
+                outputSerializedData.writeInt32(this.msg_id);
+            }
+            if (TLObject.hasFlag(this.flags, 4)) {
+                outputSerializedData.writeInt32(this.top_msg_id);
+            }
+            outputSerializedData.writeInt64(this.poll_id);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.poll.serializeToStream(outputSerializedData);
+            }
+            this.results.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateMessagePollVote extends TLRPC.Update {
+        public static final int constructor = 1989799956;
+        public TLRPC.Peer peer;
+        public long poll_id;
+        public int qts;
+        public ArrayList<byte[]> options = new ArrayList<>();
+        public ArrayList<Integer> positions = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.poll_id = inputSerializedData.readInt64(z);
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.options = Vector.deserializeByteArray(inputSerializedData, z);
+            this.positions = Vector.deserializeInt(inputSerializedData, z);
+            this.qts = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1989799956);
+            outputSerializedData.writeInt64(this.poll_id);
+            this.peer.serializeToStream(outputSerializedData);
+            Vector.serializeByteArray(outputSerializedData, this.options);
+            Vector.serializeInt(outputSerializedData, this.positions);
+            outputSerializedData.writeInt32(this.qts);
+        }
+    }
+
+    public static class TL_updateMessageReactions extends TLRPC.Update {
+        public static final int constructor = 506035194;
+        public int flags;
+        public int msg_id;
+        public TLRPC.Peer peer;
+        public TLRPC.TL_messageReactions reactions;
+        public TLRPC.Peer saved_peer_id;
+        public int top_msg_id;
+        public boolean updateUnreadState = true;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.msg_id = inputSerializedData.readInt32(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.top_msg_id = inputSerializedData.readInt32(z);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(506035194);
+            outputSerializedData.writeInt32(this.flags);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.msg_id);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt32(this.top_msg_id);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.saved_peer_id.serializeToStream(outputSerializedData);
+            }
+            this.reactions.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateMonoForumNoPaidException extends TLRPC.Update {
+        public static final int constructor = -1618924792;
+        public long channel_id;
+        public boolean exception;
+        public int flags;
+        public TLRPC.Peer saved_peer_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.exception = TLObject.hasFlag(int32, 1);
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1618924792);
+            int flag = TLObject.setFlag(this.flags, 1, this.exception);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt64(this.channel_id);
+            this.saved_peer_id.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateMoveStickerSetToTop extends TLRPC.Update {
+        public static final int constructor = -2030252155;
+        public boolean emojis;
+        public int flags;
+        public boolean masks;
+        public long stickerset;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.masks = TLObject.hasFlag(int32, 1);
+            this.emojis = TLObject.hasFlag(this.flags, 2);
+            this.stickerset = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2030252155);
+            int flag = TLObject.setFlag(this.flags, 1, this.masks);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.emojis);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
+            outputSerializedData.writeInt64(this.stickerset);
         }
     }
 
@@ -1863,110 +1660,187 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateUserName extends TLRPC.Update {
-        public static final int constructor = -1484486364;
-        public String first_name;
-        public String last_name;
-        public long user_id;
-        public ArrayList<TLRPC.TL_username> usernames = new ArrayList<>();
+    public static class TL_updateNewChannelMessage extends TLRPC.Update {
+        public static final int constructor = 1656358105;
+        public TLRPC.Message message;
+        public int pts;
+        public int pts_count;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.user_id = inputSerializedData.readInt64(z);
-            this.first_name = inputSerializedData.readString(z);
-            this.last_name = inputSerializedData.readString(z);
-            this.usernames = Vector.deserialize(inputSerializedData, new TLRPC$TL_channel$$ExternalSyntheticLambda1(), z);
+            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1484486364);
-            outputSerializedData.writeInt64(this.user_id);
-            outputSerializedData.writeString(this.first_name);
-            outputSerializedData.writeString(this.last_name);
-            Vector.serialize(outputSerializedData, this.usernames);
+            outputSerializedData.writeInt32(1656358105);
+            this.message.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
         }
     }
 
-    public static class TL_updateMessageReactions extends TLRPC.Update {
-        public static final int constructor = 506035194;
-        public int flags;
-        public int msg_id;
+    public static class TL_updateNewEncryptedMessage extends TLRPC.Update {
+        public static final int constructor = 314359194;
+        public TLRPC.EncryptedMessage message;
+        public int qts;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TLRPC.EncryptedMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.qts = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(314359194);
+            this.message.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.qts);
+        }
+    }
+
+    public static class TL_updateNewEphemeralMessage extends TLRPC.Update {
+        public static final int constructor = 549239713;
+        public TL_ephemeral.EphemeralMessage message;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(549239713);
+            this.message.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateNewMessage extends TLRPC.Update {
+        public static final int constructor = 522914557;
+        public TLRPC.Message message;
+        public int pts;
+        public int pts_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(522914557);
+            this.message.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updateNewQuickReply extends TLRPC.Update {
+        public static final int constructor = -180508905;
+        public TLRPC.TL_quickReply quick_reply;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.quick_reply = TLRPC.TL_quickReply.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-180508905);
+            this.quick_reply.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateNewScheduledMessage extends TLRPC.Update {
+        public static final int constructor = 967122427;
+        public TLRPC.Message message;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(967122427);
+            this.message.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateNewStickerSet extends TLRPC.Update {
+        public static final int constructor = 1753886890;
+        public TLRPC.TL_messages_stickerSet stickerset;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.stickerset = TLRPC.messages_StickerSet.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1753886890);
+            this.stickerset.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateNewStoryReaction extends TLRPC.Update {
+        public static final int constructor = 405070859;
         public TLRPC.Peer peer;
-        public TLRPC.TL_messageReactions reactions;
-        public TLRPC.Peer saved_peer_id;
-        public int top_msg_id;
-        public boolean updateUnreadState = true;
+        public TLRPC.Reaction reaction;
+        public int story_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
+            this.story_id = inputSerializedData.readInt32(z);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.msg_id = inputSerializedData.readInt32(z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.top_msg_id = inputSerializedData.readInt32(z);
-            }
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            this.reactions = TLRPC.MessageReactions.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(506035194);
-            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt32(405070859);
+            outputSerializedData.writeInt32(this.story_id);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.msg_id);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt32(this.top_msg_id);
-            }
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.saved_peer_id.serializeToStream(outputSerializedData);
-            }
-            this.reactions.serializeToStream(outputSerializedData);
+            this.reaction.serializeToStream(outputSerializedData);
         }
     }
 
-    public static class TL_updatePhoneCall extends TLRPC.Update {
-        public static final int constructor = -1425052898;
-        public TL_phone.PhoneCall phone_call;
+    public static class TL_updateNotifySettings extends TLRPC.Update {
+        public static final int constructor = -1094555409;
+        public TLRPC.PeerNotifySettings notify_settings;
+        public TLRPC.NotifyPeer peer;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.phone_call = TL_phone.PhoneCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.peer = TLRPC.NotifyPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.notify_settings = TLRPC.PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1425052898);
-            this.phone_call.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(-1094555409);
+            this.peer.serializeToStream(outputSerializedData);
+            this.notify_settings.serializeToStream(outputSerializedData);
         }
     }
 
-    public static class TL_updateDialogFilter extends TLRPC.Update {
-        public static final int constructor = 654302845;
-        public TLRPC.DialogFilter filter;
-        public int flags;
-        public int id;
+    public static class TL_updatePaidReactionPrivacy extends TLRPC.Update {
+        public static final int constructor = -1955438642;
+        public TL_stars.PaidReactionPrivacy privacy;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.id = inputSerializedData.readInt32(z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.filter = TLRPC.DialogFilter.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
+            this.privacy = TL_stars.PaidReactionPrivacy.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(654302845);
-            outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeInt32(this.id);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.filter.serializeToStream(outputSerializedData);
-            }
+            outputSerializedData.writeInt32(-1955438642);
+            this.privacy.serializeToStream(outputSerializedData);
         }
     }
 
@@ -1995,6 +1869,267 @@ public class TL_update {
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
             this.peer_id.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updatePeerHistoryTTL extends TLRPC.Update {
+        public static final int constructor = -1147422299;
+        public int flags;
+        public TLRPC.Peer peer;
+        public int ttl_period;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.ttl_period = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1147422299);
+            outputSerializedData.writeInt32(this.flags);
+            this.peer.serializeToStream(outputSerializedData);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt32(this.ttl_period);
+            }
+        }
+    }
+
+    public static class TL_updatePeerLocated extends TLRPC.Update {
+        public static final int constructor = -1263546448;
+        public ArrayList<TLRPC.PeerLocated> peers = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peers = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(16), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1263546448);
+            Vector.serialize(outputSerializedData, this.peers);
+        }
+    }
+
+    public static class TL_updatePeerSettings extends TLRPC.Update {
+        public static final int constructor = 1786671974;
+        public TLRPC.Peer peer;
+        public TLRPC.PeerSettings settings;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.settings = TLRPC.PeerSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1786671974);
+            this.peer.serializeToStream(outputSerializedData);
+            this.settings.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updatePeerWallpaper extends TLRPC.Update {
+        public static final int constructor = -1371598819;
+        public int flags;
+        public TLRPC.Peer peer;
+        public TLRPC.WallPaper wallpaper;
+        public boolean wallpaper_overridden;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.wallpaper_overridden = TLObject.hasFlag(int32, 2);
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.wallpaper = TLRPC.WallPaper.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1371598819);
+            int flag = TLObject.setFlag(this.flags, 2, this.wallpaper_overridden);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            this.peer.serializeToStream(outputSerializedData);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.wallpaper.serializeToStream(outputSerializedData);
+            }
+        }
+    }
+
+    public static class TL_updatePendingJoinRequests extends TLRPC.Update {
+        public static final int constructor = 1885586395;
+        public TLRPC.Peer peer;
+        public ArrayList<Long> recent_requesters = new ArrayList<>();
+        public int requests_pending;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.requests_pending = inputSerializedData.readInt32(z);
+            this.recent_requesters = Vector.deserializeLong(inputSerializedData, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1885586395);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.requests_pending);
+            Vector.serializeLong(outputSerializedData, this.recent_requesters);
+        }
+    }
+
+    public static class TL_updatePhoneCall extends TLRPC.Update {
+        public static final int constructor = -1425052898;
+        public TL_phone.PhoneCall phone_call;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.phone_call = TL_phone.PhoneCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1425052898);
+            this.phone_call.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updatePhoneCallSignalingData extends TLRPC.Update {
+        public static final int constructor = 643940105;
+        public byte[] data;
+        public long phone_call_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.phone_call_id = inputSerializedData.readInt64(z);
+            this.data = inputSerializedData.readByteArray(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(643940105);
+            outputSerializedData.writeInt64(this.phone_call_id);
+            outputSerializedData.writeByteArray(this.data);
+        }
+    }
+
+    public static class TL_updatePinnedChannelMessages extends TLRPC.Update {
+        public static final int constructor = 1538885128;
+        public long channel_id;
+        public int flags;
+        public ArrayList<Integer> messages = new ArrayList<>();
+        public boolean pinned;
+        public int pts;
+        public int pts_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.pinned = TLObject.hasFlag(int32, 1);
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.messages = Vector.deserializeInt(inputSerializedData, z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1538885128);
+            int flag = TLObject.setFlag(this.flags, 1, this.pinned);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt64(this.channel_id);
+            Vector.serializeInt(outputSerializedData, this.messages);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updatePinnedDialogs extends TLRPC.Update {
+        public static final int constructor = -99664734;
+        public int flags;
+        public int folder_id;
+        public ArrayList<TLRPC.DialogPeer> order = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if (TLObject.hasFlag(int32, 2)) {
+                this.folder_id = inputSerializedData.readInt32(z);
+            }
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.order = Vector.deserialize(inputSerializedData, new TLRPC$TL_messages_dialogs$$ExternalSyntheticLambda0(9), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-99664734);
+            outputSerializedData.writeInt32(this.flags);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt32(this.folder_id);
+            }
+            if (TLObject.hasFlag(this.flags, 1)) {
+                Vector.serialize(outputSerializedData, this.order);
+            }
+        }
+    }
+
+    public static class TL_updatePinnedForumTopic extends TLRPC.Update {
+        public static final int constructor = 1748708434;
+        public TLRPC.Peer peer;
+        public boolean pinned;
+        public int topic_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.pinned = TLObject.hasFlag(inputSerializedData.readInt32(z), 1);
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.topic_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1748708434);
+            outputSerializedData.writeInt32(TLObject.setFlag(0, 1, this.pinned));
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.topic_id);
+        }
+    }
+
+    public static class TL_updatePinnedForumTopics extends TLRPC.Update {
+        public static final int constructor = -554613808;
+        public int flags;
+        public ArrayList<Integer> order = new ArrayList<>();
+        public TLRPC.Peer peer;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.order = Vector.deserializeInt(inputSerializedData, z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-554613808);
+            outputSerializedData.writeInt32(this.flags);
+            this.peer.serializeToStream(outputSerializedData);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                Vector.serializeInt(outputSerializedData, this.order);
+            }
         }
     }
 
@@ -2031,110 +2166,212 @@ public class TL_update {
         }
     }
 
-    public static class TL_updatePhoneCallSignalingData extends TLRPC.Update {
-        public static final int constructor = 643940105;
-        public byte[] data;
-        public long phone_call_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.phone_call_id = inputSerializedData.readInt64(z);
-            this.data = inputSerializedData.readByteArray(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(643940105);
-            outputSerializedData.writeInt64(this.phone_call_id);
-            outputSerializedData.writeByteArray(this.data);
-        }
-    }
-
-    public static class TL_updateTranscribeAudio extends TLRPC.Update {
-        public static final int constructor = -2006880112;
+    public static class TL_updatePinnedSavedDialogs extends TLRPC.Update {
+        public static final int constructor = 1751942566;
         public int flags;
-        public boolean isFinal;
-        public String text;
-        public long transcription_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.isFinal = TLObject.hasFlag(int32, 1);
-            this.transcription_id = inputSerializedData.readInt64(z);
-            this.text = inputSerializedData.readString(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-2006880112);
-            int flag = TLObject.setFlag(this.flags, 1, this.isFinal);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.transcription_id);
-            outputSerializedData.writeString(this.text);
-        }
-    }
-
-    public static class TL_updatePinnedDialogs extends TLRPC.Update {
-        public static final int constructor = -99664734;
-        public int flags;
-        public int folder_id;
         public ArrayList<TLRPC.DialogPeer> order = new ArrayList<>();
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            if (TLObject.hasFlag(int32, 2)) {
-                this.folder_id = inputSerializedData.readInt32(z);
-            }
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.order = Vector.deserialize(inputSerializedData, new TLRPC$TL_messages_getDialogUnreadMarks$$ExternalSyntheticLambda0(), z);
+            if (TLObject.hasFlag(int32, 1)) {
+                this.order = Vector.deserialize(inputSerializedData, new TLRPC$TL_messages_dialogs$$ExternalSyntheticLambda0(9), z);
             }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-99664734);
+            outputSerializedData.writeInt32(1751942566);
             outputSerializedData.writeInt32(this.flags);
-            if (TLObject.hasFlag(this.flags, 2)) {
-                outputSerializedData.writeInt32(this.folder_id);
-            }
             if (TLObject.hasFlag(this.flags, 1)) {
                 Vector.serialize(outputSerializedData, this.order);
             }
         }
     }
 
-    public static class TL_updatePeerLocated extends TLRPC.Update {
-        public static final int constructor = -1263546448;
-        public ArrayList<TLRPC.PeerLocated> peers = new ArrayList<>();
+    public static class TL_updatePrivacy extends TLRPC.Update {
+        public static final int constructor = -298113238;
+        public TLRPC.PrivacyKey key;
+        public ArrayList<TLRPC.PrivacyRule> rules = new ArrayList<>();
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peers = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
-                @Override
-                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                    return TLRPC.PeerLocated.TLdeserialize(inputSerializedData2, i, z2);
-                }
-            }, z);
+            this.key = TLRPC.PrivacyKey.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.rules = Vector.deserialize(inputSerializedData, new TL_iv$RichMessage$$ExternalSyntheticLambda0(16), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1263546448);
-            Vector.serialize(outputSerializedData, this.peers);
+            outputSerializedData.writeInt32(-298113238);
+            this.key.serializeToStream(outputSerializedData);
+            Vector.serialize(outputSerializedData, this.rules);
         }
     }
 
-    public static class TL_updateRecentStickers extends TLRPC.Update {
-        public static final int constructor = -1706939360;
+    public static class TL_updateQuickReplies extends TLRPC.Update {
+        public static final int constructor = -112784718;
+        public ArrayList<TLRPC.TL_quickReply> quick_replies = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.quick_replies = Vector.deserialize(inputSerializedData, new TLRPC$TL_messages_dialogs$$ExternalSyntheticLambda0(18), z);
+        }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1706939360);
+            outputSerializedData.writeInt32(-112784718);
+            Vector.serialize(outputSerializedData, this.quick_replies);
+        }
+    }
+
+    public static class TL_updateQuickReplyMessage extends TLRPC.Update {
+        public static final int constructor = 1040518415;
+        public TLRPC.Message message;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1040518415);
+            this.message.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateReadChannelDiscussionInbox extends TLRPC.Update {
+        public static final int constructor = -693004986;
+        public long broadcast_id;
+        public int broadcast_post;
+        public long channel_id;
+        public int flags;
+        public int read_max_id;
+        public int top_msg_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.top_msg_id = inputSerializedData.readInt32(z);
+            this.read_max_id = inputSerializedData.readInt32(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.broadcast_id = inputSerializedData.readInt64(z);
+            }
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.broadcast_post = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-693004986);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt64(this.channel_id);
+            outputSerializedData.writeInt32(this.top_msg_id);
+            outputSerializedData.writeInt32(this.read_max_id);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt64(this.broadcast_id);
+            }
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt32(this.broadcast_post);
+            }
+        }
+    }
+
+    public static class TL_updateReadChannelDiscussionOutbox extends TLRPC.Update {
+        public static final int constructor = 1767677564;
+        public long channel_id;
+        public int read_max_id;
+        public int top_msg_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.top_msg_id = inputSerializedData.readInt32(z);
+            this.read_max_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1767677564);
+            outputSerializedData.writeInt64(this.channel_id);
+            outputSerializedData.writeInt32(this.top_msg_id);
+            outputSerializedData.writeInt32(this.read_max_id);
+        }
+    }
+
+    public static class TL_updateReadChannelInbox extends TLRPC.Update {
+        public static final int constructor = -1842450928;
+        public long channel_id;
+        public int flags;
+        public int folder_id;
+        public int max_id;
+        public int pts;
+        public int still_unread_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            if (TLObject.hasFlag(int32, 1)) {
+                this.folder_id = inputSerializedData.readInt32(z);
+            }
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.max_id = inputSerializedData.readInt32(z);
+            this.still_unread_count = inputSerializedData.readInt32(z);
+            this.pts = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1842450928);
+            outputSerializedData.writeInt32(this.flags);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt32(this.folder_id);
+            }
+            outputSerializedData.writeInt64(this.channel_id);
+            outputSerializedData.writeInt32(this.max_id);
+            outputSerializedData.writeInt32(this.still_unread_count);
+            outputSerializedData.writeInt32(this.pts);
+        }
+    }
+
+    public static class TL_updateReadChannelOutbox extends TLRPC.Update {
+        public static final int constructor = -1218471511;
+        public long channel_id;
+        public int max_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.max_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1218471511);
+            outputSerializedData.writeInt64(this.channel_id);
+            outputSerializedData.writeInt32(this.max_id);
+        }
+    }
+
+    public static class TL_updateReadFeaturedEmojiStickers extends TLRPC.Update {
+        public static final int constructor = -78886548;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-78886548);
+        }
+    }
+
+    public static class TL_updateReadFeaturedStickers extends TLRPC.Update {
+        public static final int constructor = 1461528386;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1461528386);
         }
     }
 
@@ -2184,19 +2421,155 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateDialogFilterOrder extends TLRPC.Update {
-        public static final int constructor = -1512627963;
-        public ArrayList<Integer> order = new ArrayList<>();
+    public static class TL_updateReadHistoryOutbox extends TLRPC.Update {
+        public static final int constructor = 791617983;
+        public int max_id;
+        public TLRPC.Peer peer;
+        public int pts;
+        public int pts_count;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.order = Vector.deserializeInt(inputSerializedData, z);
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.max_id = inputSerializedData.readInt32(z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1512627963);
-            Vector.serializeInt(outputSerializedData, this.order);
+            outputSerializedData.writeInt32(791617983);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.max_id);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updateReadMessagesContents extends TLRPC.Update {
+        public static final int constructor = -131960447;
+        public int date;
+        public int flags;
+        public ArrayList<Integer> messages = new ArrayList<>();
+        public int pts;
+        public int pts_count;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.messages = Vector.deserializeInt(inputSerializedData, z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.date = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-131960447);
+            outputSerializedData.writeInt32(this.flags);
+            Vector.serializeInt(outputSerializedData, this.messages);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt32(this.date);
+            }
+        }
+    }
+
+    public static class TL_updateReadMonoForumInbox extends TLRPC.Update {
+        public static final int constructor = 2008081266;
+        public long channel_id;
+        public int read_max_id;
+        public TLRPC.Peer saved_peer_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.read_max_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(2008081266);
+            outputSerializedData.writeInt64(this.channel_id);
+            this.saved_peer_id.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.read_max_id);
+        }
+    }
+
+    public static class TL_updateReadMonoForumOutbox extends TLRPC.Update {
+        public static final int constructor = -1532521610;
+        public long channel_id;
+        public int read_max_id;
+        public TLRPC.Peer saved_peer_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.channel_id = inputSerializedData.readInt64(z);
+            this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.read_max_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1532521610);
+            outputSerializedData.writeInt64(this.channel_id);
+            this.saved_peer_id.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.read_max_id);
+        }
+    }
+
+    public static class TL_updateRecentEmojiStatuses extends TLRPC.Update {
+        public static final int constructor = 821314523;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(821314523);
+        }
+    }
+
+    public static class TL_updateRecentReactions extends TLRPC.Update {
+        public static final int constructor = 1870160884;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1870160884);
+        }
+    }
+
+    public static class TL_updateRecentStickers extends TLRPC.Update {
+        public static final int constructor = -1706939360;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1706939360);
+        }
+    }
+
+    public static class TL_updateSavedDialogPinned extends TLRPC.Update {
+        public static final int constructor = -1364222348;
+        public int flags;
+        public TLRPC.DialogPeer peer;
+        public boolean pinned;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.pinned = TLObject.hasFlag(int32, 1);
+            this.peer = TLRPC.DialogPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1364222348);
+            int flag = TLObject.setFlag(this.flags, 1, this.pinned);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            this.peer.serializeToStream(outputSerializedData);
         }
     }
 
@@ -2209,237 +2582,59 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateContactsReset extends TLRPC.Update {
-        public static final int constructor = 1887741886;
+    public static class TL_updateSavedReactionTags extends TLRPC.Update {
+        public static final int constructor = 969307186;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1887741886);
+            outputSerializedData.writeInt32(969307186);
         }
     }
 
-    public static class TL_updateWebPage extends TLRPC.Update {
-        public static final int constructor = 2139689491;
-        public int pts;
-        public int pts_count;
-        public TLRPC.WebPage webpage;
+    public static class TL_updateSavedRingtones extends TLRPC.Update {
+        public static final int constructor = 1960361625;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1960361625);
+        }
+    }
+
+    public static class TL_updateSentPhoneCode extends TLRPC.Update {
+        public static final int constructor = 1347068303;
+        public TLRPC.auth_SentCode sent_code;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.webpage = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
+            this.sent_code = TLRPC.auth_SentCode.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(2139689491);
-            this.webpage.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
+            outputSerializedData.writeInt32(1347068303);
+            this.sent_code.serializeToStream(outputSerializedData);
         }
     }
 
-    public static class TL_updateFavedStickers extends TLRPC.Update {
-        public static final int constructor = -451831443;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-451831443);
-        }
-    }
-
-    public static class TL_updateChatParticipantAdd extends TLRPC.Update {
-        public static final int constructor = 1037718609;
-        public long chat_id;
-        public int date;
-        public long inviter_id;
-        public long user_id;
-        public int version;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.chat_id = inputSerializedData.readInt64(z);
-            this.user_id = inputSerializedData.readInt64(z);
-            this.inviter_id = inputSerializedData.readInt64(z);
-            this.date = inputSerializedData.readInt32(z);
-            this.version = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1037718609);
-            outputSerializedData.writeInt64(this.chat_id);
-            outputSerializedData.writeInt64(this.user_id);
-            outputSerializedData.writeInt64(this.inviter_id);
-            outputSerializedData.writeInt32(this.date);
-            outputSerializedData.writeInt32(this.version);
-        }
-    }
-
-    public static class TL_updateChatUserTyping extends TLRPC.Update {
-        public static final int constructor = -2092401936;
-        public TLRPC.SendMessageAction action;
-        public long chat_id;
-        public TLRPC.Peer from_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.chat_id = inputSerializedData.readInt64(z);
-            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.action = TLRPC.SendMessageAction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-2092401936);
-            outputSerializedData.writeInt64(this.chat_id);
-            this.from_id.serializeToStream(outputSerializedData);
-            this.action.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateLoginToken extends TLRPC.Update {
-        public static final int constructor = 1448076945;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1448076945);
-        }
-    }
-
-    public static class TL_updateEncryption extends TLRPC.Update {
-        public static final int constructor = -1264392051;
-        public TLRPC.EncryptedChat chat;
-        public int date;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.chat = TLRPC.EncryptedChat.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.date = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1264392051);
-            this.chat.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.date);
-        }
-    }
-
-    public static class TL_updateGroupCall extends TLRPC.Update {
-        public static final int constructor = -1658710304;
-        public TLRPC.GroupCall call;
-        public int flags;
-        public boolean live_story;
+    public static class TL_updateSentStoryReaction extends TLRPC.Update {
+        public static final int constructor = 2103604867;
         public TLRPC.Peer peer;
+        public TLRPC.Reaction reaction;
+        public int story_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.live_story = TLObject.hasFlag(int32, 4);
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            this.call = TLRPC.GroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.story_id = inputSerializedData.readInt32(z);
+            this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1658710304);
-            int flag = TLObject.setFlag(this.flags, 4, this.live_story);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.peer.serializeToStream(outputSerializedData);
-            }
-            this.call.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateGroupCall_layer216 extends TL_updateGroupCall {
-        public static final int constructor = -1747565759;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.live_story = TLObject.hasFlag(int32, 4);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                long int64 = inputSerializedData.readInt64(z);
-                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                this.peer = tL_peerChannel;
-                tL_peerChannel.channel_id = -int64;
-            }
-            this.call = TLRPC.GroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1747565759);
-            int flag = TLObject.setFlag(this.flags, 4, this.live_story);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt64(-DialogObject.getPeerDialogId(this.peer));
-            }
-            this.call.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateChannelTooLong extends TLRPC.Update {
-        public static final int constructor = 277713951;
-        public long channel_id;
-        public int flags;
-        public int pts;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.channel_id = inputSerializedData.readInt64(z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.pts = inputSerializedData.readInt32(z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(277713951);
-            outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeInt64(this.channel_id);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt32(this.pts);
-            }
-        }
-    }
-
-    public static class TL_updateUserTyping extends TLRPC.Update {
-        public static final int constructor = 706199388;
-        public TLRPC.SendMessageAction action;
-        public int flags;
-        public int top_msg_id;
-        public long user_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.user_id = inputSerializedData.readInt64(z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.top_msg_id = inputSerializedData.readInt32(z);
-            }
-            this.action = TLRPC.SendMessageAction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(706199388);
-            outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeInt64(this.user_id);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt32(this.top_msg_id);
-            }
-            this.action.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(2103604867);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.story_id);
+            this.reaction.serializeToStream(outputSerializedData);
         }
     }
 
@@ -2466,7 +2661,7 @@ public class TL_update {
             this.type = inputSerializedData.readString(z);
             this.message = inputSerializedData.readString(z);
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda115(), z);
+            this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
         }
 
         @Override
@@ -2487,12 +2682,205 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateSavedRingtones extends TLRPC.Update {
-        public static final int constructor = 1960361625;
+    public static class TL_updateStarGiftAuctionState extends TLRPC.Update {
+        public static final int constructor = 1222788802;
+        public long gift_id;
+        public TL_stars.StarGiftAuctionState state;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.gift_id = inputSerializedData.readInt64(z);
+            this.state = TL_stars.StarGiftAuctionState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1960361625);
+            outputSerializedData.writeInt32(1222788802);
+            outputSerializedData.writeInt64(this.gift_id);
+            this.state.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateStarGiftAuctionUserState extends TLRPC.Update {
+        public static final int constructor = -598150370;
+        public long gift_id;
+        public TL_stars.TL_StarGiftAuctionUserState user_state;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.gift_id = inputSerializedData.readInt64(z);
+            this.user_state = TL_stars.TL_StarGiftAuctionUserState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-598150370);
+            outputSerializedData.writeInt64(this.gift_id);
+            this.user_state.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateStarGiftCraftFail extends TLRPC.Update {
+        public static final int constructor = -1408818108;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            super.readParams(inputSerializedData, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1408818108);
+        }
+    }
+
+    public static class TL_updateStarsBalance extends TLRPC.Update {
+        public static final int constructor = 1317053305;
+        public TL_stars.StarsAmount balance;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.balance = TL_stars.StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1317053305);
+            this.balance.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateStarsRevenueStatus extends TLRPC.Update {
+        public static final int constructor = -1518030823;
+        public TLRPC.Peer peer;
+        public TLRPC.TL_starsRevenueStatus status;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.status = TLRPC.TL_starsRevenueStatus.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1518030823);
+            this.peer.serializeToStream(outputSerializedData);
+            this.status.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateStickerSets extends TLRPC.Update {
+        public static final int constructor = 834816008;
+        public boolean emojis;
+        public int flags;
+        public boolean masks;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.masks = TLObject.hasFlag(int32, 1);
+            this.emojis = TLObject.hasFlag(this.flags, 2);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(834816008);
+            int flag = TLObject.setFlag(this.flags, 1, this.masks);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.emojis);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
+        }
+    }
+
+    public static class TL_updateStickerSetsOrder extends TLRPC.Update {
+        public static final int constructor = 196268545;
+        public boolean emojis;
+        public int flags;
+        public boolean masks;
+        public ArrayList<Long> order = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.masks = TLObject.hasFlag(int32, 1);
+            this.emojis = TLObject.hasFlag(this.flags, 2);
+            this.order = Vector.deserializeLong(inputSerializedData, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(196268545);
+            int flag = TLObject.setFlag(this.flags, 1, this.masks);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.emojis);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
+            Vector.serializeLong(outputSerializedData, this.order);
+        }
+    }
+
+    public static class TL_updateStoryID extends TLRPC.Update {
+        public static final int constructor = 468923833;
+        public int id;
+        public long random_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.id = inputSerializedData.readInt32(z);
+            this.random_id = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(468923833);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt64(this.random_id);
+        }
+    }
+
+    public static class TL_updateTheme extends TLRPC.Update {
+        public static final int constructor = -2112423005;
+        public TLRPC.Theme theme;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.theme = TLRPC.Theme.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2112423005);
+            this.theme.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateTranscribeAudio extends TLRPC.Update {
+        public static final int constructor = -2006880112;
+        public int flags;
+        public boolean isFinal;
+        public String text;
+        public long transcription_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.isFinal = TLObject.hasFlag(int32, 1);
+            this.transcription_id = inputSerializedData.readInt64(z);
+            this.text = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2006880112);
+            int flag = TLObject.setFlag(this.flags, 1, this.isFinal);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt64(this.transcription_id);
+            outputSerializedData.writeString(this.text);
         }
     }
 
@@ -2529,6 +2917,22 @@ public class TL_update {
         }
     }
 
+    public static class TL_updateUser extends TLRPC.Update {
+        public static final int constructor = 542282808;
+        public long user_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.user_id = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(542282808);
+            outputSerializedData.writeInt64(this.user_id);
+        }
+    }
+
     public static class TL_updateUserEmojiStatus extends TLRPC.Update {
         public static final int constructor = 674706841;
         public TLRPC.EmojiStatus emoji_status;
@@ -2548,211 +2952,72 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateLangPack extends TLRPC.Update {
-        public static final int constructor = 1442983757;
-        public TLRPC.TL_langPackDifference difference;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.difference = TLRPC.TL_langPackDifference.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1442983757);
-            this.difference.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateChannelAvailableMessages extends TLRPC.Update {
-        public static final int constructor = -1304443240;
-        public int available_min_id;
-        public long channel_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.available_min_id = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1304443240);
-            outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.available_min_id);
-        }
-    }
-
-    public static class TL_updateChatParticipantAdmin extends TLRPC.Update {
-        public static final int constructor = -674602590;
-        public long chat_id;
-        public boolean is_admin;
+    public static class TL_updateUserName extends TLRPC.Update {
+        public static final int constructor = -1484486364;
+        public String first_name;
+        public String last_name;
         public long user_id;
-        public int version;
+        public ArrayList<TLRPC.TL_username> usernames = new ArrayList<>();
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.chat_id = inputSerializedData.readInt64(z);
             this.user_id = inputSerializedData.readInt64(z);
-            this.is_admin = inputSerializedData.readBool(z);
-            this.version = inputSerializedData.readInt32(z);
+            this.first_name = inputSerializedData.readString(z);
+            this.last_name = inputSerializedData.readString(z);
+            this.usernames = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(7), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-674602590);
-            outputSerializedData.writeInt64(this.chat_id);
+            outputSerializedData.writeInt32(-1484486364);
             outputSerializedData.writeInt64(this.user_id);
-            outputSerializedData.writeBool(this.is_admin);
-            outputSerializedData.writeInt32(this.version);
+            outputSerializedData.writeString(this.first_name);
+            outputSerializedData.writeString(this.last_name);
+            Vector.serialize(outputSerializedData, this.usernames);
         }
     }
 
-    public static class TL_updateChannelReadMessagesContents extends TLRPC.Update {
-        public static final int constructor = 636691703;
-        public long channel_id;
-        public int flags;
-        public ArrayList<Integer> messages = new ArrayList<>();
-        public TLRPC.Peer saved_peer_id;
-        public int top_msg_id;
+    public static class TL_updateUserPhone extends TLRPC.Update {
+        public static final int constructor = 88680979;
+        public String phone;
+        public long user_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.channel_id = inputSerializedData.readInt64(z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.top_msg_id = inputSerializedData.readInt32(z);
-            }
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.saved_peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            this.messages = Vector.deserializeInt(inputSerializedData, z);
+            this.user_id = inputSerializedData.readInt64(z);
+            this.phone = inputSerializedData.readString(z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(636691703);
-            outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeInt64(this.channel_id);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt32(this.top_msg_id);
-            }
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.saved_peer_id.serializeToStream(outputSerializedData);
-            }
-            Vector.serializeInt(outputSerializedData, this.messages);
+            outputSerializedData.writeInt32(88680979);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeString(this.phone);
         }
     }
 
-    public static class TL_updatePrivacy extends TLRPC.Update {
-        public static final int constructor = -298113238;
-        public TLRPC.PrivacyKey key;
-        public ArrayList<TLRPC.PrivacyRule> rules = new ArrayList<>();
+    public static class TL_updateUserPhoto extends TLRPC.Update {
+        public static final int constructor = -232290676;
+        public int date;
+        public TLRPC.UserProfilePhoto photo;
+        public boolean previous;
+        public long user_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.key = TLRPC.PrivacyKey.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.rules = Vector.deserialize(inputSerializedData, new TL_account$privacyRules$$ExternalSyntheticLambda0(), z);
+            this.user_id = inputSerializedData.readInt64(z);
+            this.date = inputSerializedData.readInt32(z);
+            this.photo = TLRPC.UserProfilePhoto.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.previous = inputSerializedData.readBool(z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-298113238);
-            this.key.serializeToStream(outputSerializedData);
-            Vector.serialize(outputSerializedData, this.rules);
-        }
-    }
-
-    public static class TL_updateConfig extends TLRPC.Update {
-        public static final int constructor = -1574314746;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1574314746);
-        }
-    }
-
-    public static class TL_updateFolderPeers extends TLRPC.Update {
-        public static final int constructor = 422972864;
-        public ArrayList<TLRPC.TL_folderPeer> folder_peers = new ArrayList<>();
-        public int pts;
-        public int pts_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.folder_peers = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
-                @Override
-                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                    return TLRPC.TL_folderPeer.TLdeserialize(inputSerializedData2, i, z2);
-                }
-            }, z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(422972864);
-            Vector.serialize(outputSerializedData, this.folder_peers);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
-        }
-    }
-
-    public static class TL_updateNewMessage extends TLRPC.Update {
-        public static final int constructor = 522914557;
-        public TLRPC.Message message;
-        public int pts;
-        public int pts_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(522914557);
-            this.message.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
-        }
-    }
-
-    public static class TL_updateNewScheduledMessage extends TLRPC.Update {
-        public static final int constructor = 967122427;
-        public TLRPC.Message message;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(967122427);
-            this.message.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateNewEncryptedMessage extends TLRPC.Update {
-        public static final int constructor = 314359194;
-        public TLRPC.EncryptedMessage message;
-        public int qts;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.EncryptedMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.qts = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(314359194);
-            this.message.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.qts);
+            outputSerializedData.writeInt32(-232290676);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeInt32(this.date);
+            this.photo.serializeToStream(outputSerializedData);
+            outputSerializedData.writeBool(this.previous);
         }
     }
 
@@ -2775,274 +3040,32 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateChannelMessageViews extends TLRPC.Update {
-        public static final int constructor = -232346616;
-        public long channel_id;
-        public int id;
-        public int views;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.id = inputSerializedData.readInt32(z);
-            this.views = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-232346616);
-            outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.id);
-            outputSerializedData.writeInt32(this.views);
-        }
-    }
-
-    public static class TL_updateGroupCallConnection extends TLRPC.Update {
-        public static final int constructor = 192428418;
+    public static class TL_updateUserTyping extends TLRPC.Update {
+        public static final int constructor = 706199388;
+        public TLRPC.SendMessageAction action;
         public int flags;
-        public TLRPC.TL_dataJSON params;
-        public boolean presentation;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.presentation = TLObject.hasFlag(int32, 1);
-            this.params = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(192428418);
-            int flag = TLObject.setFlag(this.flags, 1, this.presentation);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            this.params.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateBotCommands extends TLRPC.Update {
-        public static final int constructor = 1299263278;
-        public long bot_id;
-        public ArrayList<TLRPC.BotCommand> commands = new ArrayList<>();
-        public TLRPC.Peer peer;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.bot_id = inputSerializedData.readInt64(z);
-            this.commands = Vector.deserialize(inputSerializedData, new TL_bots$TL_botInfo$$ExternalSyntheticLambda0(), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1299263278);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt64(this.bot_id);
-            Vector.serialize(outputSerializedData, this.commands);
-        }
-    }
-
-    public static class TL_updateGeoLiveViewed extends TLRPC.Update {
-        public static final int constructor = -2027964103;
-        public int msg_id;
-        public TLRPC.Peer peer;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.msg_id = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-2027964103);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.msg_id);
-        }
-    }
-
-    public static class TL_updateNotifySettings extends TLRPC.Update {
-        public static final int constructor = -1094555409;
-        public TLRPC.PeerNotifySettings notify_settings;
-        public TLRPC.NotifyPeer peer;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.NotifyPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.notify_settings = TLRPC.PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1094555409);
-            this.peer.serializeToStream(outputSerializedData);
-            this.notify_settings.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateChannelParticipant extends TLRPC.Update {
-        public static final int constructor = -1738720581;
-        public long actor_id;
-        public long channel_id;
-        public int date;
-        public int flags;
-        public TLRPC.ExportedChatInvite invite;
-        public TLRPC.ChannelParticipant new_participant;
-        public TLRPC.ChannelParticipant prev_participant;
-        public int qts;
+        public int top_msg_id;
         public long user_id;
-        public boolean via_chatlist;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.date = inputSerializedData.readInt32(z);
-            this.actor_id = inputSerializedData.readInt64(z);
             this.user_id = inputSerializedData.readInt64(z);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.prev_participant = TLRPC.ChannelParticipant.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.top_msg_id = inputSerializedData.readInt32(z);
             }
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.new_participant = TLRPC.ChannelParticipant.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if (TLObject.hasFlag(this.flags, 4)) {
-                this.invite = TLRPC.ExportedChatInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            this.via_chatlist = TLObject.hasFlag(this.flags, 8);
-            this.qts = inputSerializedData.readInt32(z);
+            this.action = TLRPC.SendMessageAction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1738720581);
-            int flag = TLObject.setFlag(this.flags, 8, this.via_chatlist);
-            this.flags = flag;
-            outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.date);
-            outputSerializedData.writeInt64(this.actor_id);
+            outputSerializedData.writeInt32(706199388);
+            outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt64(this.user_id);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.prev_participant.serializeToStream(outputSerializedData);
+                outputSerializedData.writeInt32(this.top_msg_id);
             }
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.new_participant.serializeToStream(outputSerializedData);
-            }
-            if (TLObject.hasFlag(this.flags, 4)) {
-                this.invite.serializeToStream(outputSerializedData);
-            }
-            outputSerializedData.writeInt32(this.qts);
-        }
-    }
-
-    public static class TL_updateReadChannelDiscussionOutbox extends TLRPC.Update {
-        public static final int constructor = 1767677564;
-        public long channel_id;
-        public int read_max_id;
-        public int top_msg_id;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.top_msg_id = inputSerializedData.readInt32(z);
-            this.read_max_id = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1767677564);
-            outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.top_msg_id);
-            outputSerializedData.writeInt32(this.read_max_id);
-        }
-    }
-
-    public static class TL_updateChatParticipantDelete extends TLRPC.Update {
-        public static final int constructor = -483443337;
-        public long chat_id;
-        public long user_id;
-        public int version;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.chat_id = inputSerializedData.readInt64(z);
-            this.user_id = inputSerializedData.readInt64(z);
-            this.version = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-483443337);
-            outputSerializedData.writeInt64(this.chat_id);
-            outputSerializedData.writeInt64(this.user_id);
-            outputSerializedData.writeInt32(this.version);
-        }
-    }
-
-    public static class TL_updateEditMessage extends TLRPC.Update {
-        public static final int constructor = -469536605;
-        public TLRPC.Message message;
-        public int pts;
-        public int pts_count;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.pts = inputSerializedData.readInt32(z);
-            this.pts_count = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-469536605);
-            this.message.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.pts);
-            outputSerializedData.writeInt32(this.pts_count);
-        }
-    }
-
-    public static class TL_updateRecentReactions extends TLRPC.Update {
-        public static final int constructor = 1870160884;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1870160884);
-        }
-    }
-
-    public static class TL_updateSavedReactionTags extends TLRPC.Update {
-        public static final int constructor = 969307186;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(969307186);
-        }
-    }
-
-    public static class TL_updateWebBrowserSettings extends TLRPC.Update {
-        public static final int constructor = -1013306658;
-        public boolean display_close_button;
-        public int flags;
-        public boolean open_external_browser;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.open_external_browser = TLObject.hasFlag(int32, 1);
-            this.display_close_button = TLObject.hasFlag(this.flags, 2);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1013306658);
-            int flag = TLObject.setFlag(this.flags, 1, this.open_external_browser);
-            this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.display_close_button);
-            this.flags = flag2;
-            outputSerializedData.writeInt32(flag2);
+            this.action.serializeToStream(outputSerializedData);
         }
     }
 
@@ -3077,103 +3100,69 @@ public class TL_update {
         }
     }
 
-    public static class TL_updateNewEphemeralMessage extends TLRPC.Update {
-        public static final int constructor = 549239713;
-        public TL_ephemeral.EphemeralMessage message;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(549239713);
-            this.message.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateDeleteEphemeralMessages extends TLRPC.Update {
-        public static final int constructor = 1457257720;
-        public ArrayList<Integer> ids = new ArrayList<>();
-        public TLRPC.Peer peer;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.ids = Vector.deserializeInt(inputSerializedData, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1457257720);
-            this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.ids);
-        }
-    }
-
-    public static class TL_updateEditEphemeralMessage extends TLRPC.Update {
-        public static final int constructor = 1270583041;
-        public TL_ephemeral.EphemeralMessage message;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1270583041);
-            this.message.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_updateEphemeralBotCallbackQuery extends TLRPC.Update {
-        public static final int constructor = 2081454550;
-        public long chat_instance;
-        public byte[] data;
+    public static class TL_updateWebBrowserSettings extends TLRPC.Update {
+        public static final int constructor = -1013306658;
+        public boolean display_close_button;
         public int flags;
-        public TL_ephemeral.EphemeralMessage message;
-        public int msg_id;
-        public TLRPC.Peer peer;
-        public long query_id;
-        public long user_id;
+        public boolean open_external_browser;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.query_id = inputSerializedData.readInt64(z);
-            this.user_id = inputSerializedData.readInt64(z);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            this.msg_id = inputSerializedData.readInt32(z);
-            this.data = inputSerializedData.readByteArray(z);
-            if (TLObject.hasFlag(this.flags, 2)) {
-                this.chat_instance = inputSerializedData.readInt64(z);
-            }
-            this.message = TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.open_external_browser = TLObject.hasFlag(int32, 1);
+            this.display_close_button = TLObject.hasFlag(this.flags, 2);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(2081454550);
-            int flag = TLObject.setFlag(this.flags, 1, this.peer != null);
+            outputSerializedData.writeInt32(-1013306658);
+            int flag = TLObject.setFlag(this.flags, 1, this.open_external_browser);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.chat_instance != 0);
+            int flag2 = TLObject.setFlag(flag, 2, this.display_close_button);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
-            outputSerializedData.writeInt64(this.query_id);
-            outputSerializedData.writeInt64(this.user_id);
-            if (TLObject.hasFlag(this.flags, 1)) {
-                this.peer.serializeToStream(outputSerializedData);
-            }
-            outputSerializedData.writeInt32(this.msg_id);
-            outputSerializedData.writeByteArray(this.data);
-            if (TLObject.hasFlag(this.flags, 2)) {
-                outputSerializedData.writeInt64(this.chat_instance);
-            }
-            this.message.serializeToStream(outputSerializedData);
         }
+    }
+
+    public static class TL_updateWebPage extends TLRPC.Update {
+        public static final int constructor = 2139689491;
+        public int pts;
+        public int pts_count;
+        public TLRPC.WebPage webpage;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.webpage = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.pts = inputSerializedData.readInt32(z);
+            this.pts_count = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(2139689491);
+            this.webpage.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.pts);
+            outputSerializedData.writeInt32(this.pts_count);
+        }
+    }
+
+    public static class TL_updateWebViewResultSent extends TLRPC.Update {
+        public static final int constructor = 361936797;
+        public long query_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.query_id = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(361936797);
+            outputSerializedData.writeInt64(this.query_id);
+        }
+    }
+
+    private TL_update() {
     }
 }

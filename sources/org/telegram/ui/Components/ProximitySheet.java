@@ -4,275 +4,319 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.util.Locale;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
+import org.telegram.messenger.IMapsProvider;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
+import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda8;
+import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda89;
+import org.telegram.ui.LocationActivity;
+import org.telegram.ui.LocationActivity$$ExternalSyntheticLambda3;
+import org.telegram.ui.LocationActivity$$ExternalSyntheticLambda6;
 
-public class ProximitySheet extends FrameLayout {
-    private int backgroundPaddingLeft;
-    private Paint backgroundPaint;
-    private TextView buttonTextView;
-    private ViewGroup containerView;
-    private AnimatorSet currentAnimation;
-    private AnimatorSet currentSheetAnimation;
-    private int currentSheetAnimationType;
-    private TLRPC.User currentUser;
-    private LinearLayout customView;
-    private boolean dismissed;
-    private TextView infoTextView;
-    private NumberPicker kmPicker;
-    private NumberPicker mPicker;
-    private boolean maybeStartTracking;
-    private Runnable onDismissCallback;
-    private onRadiusPickerChange onRadiusChange;
-    private Interpolator openInterpolator;
-    private boolean radiusSet;
-    private Rect rect;
-    private boolean startedTracking;
-    private int startedTrackingPointerId;
-    private int startedTrackingX;
-    private int startedTrackingY;
-    private int totalWidth;
-    private int touchSlop;
-    private boolean useFastDismiss;
-    private boolean useHardwareLayer;
-    private boolean useImperialSystem;
-    private VelocityTracker velocityTracker;
+public final class ProximitySheet extends FrameLayout {
+    public static final int $r8$clinit = 0;
+    public final int backgroundPaddingLeft;
+    public final AnonymousClass3 buttonTextView;
+    public final AnonymousClass1 containerView;
+    public AnimatorSet currentAnimation;
+    public AnimatorSet currentSheetAnimation;
+    public final TLRPC.User currentUser;
+    public final AnonymousClass2 customView;
+    public boolean dismissed;
+    public final TextView infoTextView;
+    public final NumberPicker kmPicker;
+    public final NumberPicker mPicker;
+    public boolean maybeStartTracking;
+    public final LocationActivity$$ExternalSyntheticLambda6 onDismissCallback;
+    public final LocationActivity$$ExternalSyntheticLambda3 onRadiusChange;
+    public final CubicBezierInterpolator openInterpolator;
+    public boolean radiusSet;
+    public final Rect rect;
+    public boolean startedTracking;
+    public int startedTrackingPointerId;
+    public int startedTrackingX;
+    public int startedTrackingY;
+    public int totalWidth;
+    public final int touchSlop;
+    public boolean useFastDismiss;
+    public final boolean useHardwareLayer;
+    public final boolean useImperialSystem;
+    public VelocityTracker velocityTracker;
 
-    public interface onRadiusPickerChange {
-        boolean run(boolean z, int i);
+    public final class AnonymousClass1 extends FrameLayout {
+        @Override
+        public final boolean hasOverlappingRendering() {
+            return false;
+        }
     }
 
-    public static boolean $r8$lambda$PRHImrHr_Zeyhb6grvjVFDIYOKc(View view, MotionEvent motionEvent) {
-        return true;
+    public final class AnonymousClass3 extends TextView {
+        @Override
+        public final CharSequence getAccessibilityClassName() {
+            return Button.class.getName();
+        }
     }
 
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
+    public final class AnonymousClass4 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final ProximitySheet this$0;
+
+        public AnonymousClass4(ProximitySheet proximitySheet, int i) {
+            this.$r8$classId = i;
+            this.this$0 = proximitySheet;
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animator) {
+            switch (this.$r8$classId) {
+                case 1:
+                    ProximitySheet proximitySheet = this.this$0;
+                    AnimatorSet animatorSet = proximitySheet.currentSheetAnimation;
+                    if (animatorSet != null && animatorSet.equals(animator)) {
+                        proximitySheet.currentSheetAnimation = null;
+                        break;
+                    }
+                    break;
+                case 2:
+                    ProximitySheet proximitySheet2 = this.this$0;
+                    AnimatorSet animatorSet2 = proximitySheet2.currentSheetAnimation;
+                    if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                        proximitySheet2.currentSheetAnimation = null;
+                        break;
+                    }
+                    break;
+                default:
+                    super.onAnimationCancel(animator);
+                    break;
+            }
+        }
+
+        @Override
+        public final void onAnimationEnd(Animator animator) {
+            ProximitySheet proximitySheet = this.this$0;
+            switch (this.$r8$classId) {
+                case 0:
+                    AnimatorSet animatorSet = proximitySheet.currentAnimation;
+                    if (animatorSet != null && animatorSet.equals(animator)) {
+                        proximitySheet.currentAnimation = null;
+                    }
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                    break;
+                case 1:
+                    AnimatorSet animatorSet2 = proximitySheet.currentSheetAnimation;
+                    if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                        proximitySheet.currentSheetAnimation = null;
+                        if (proximitySheet.useHardwareLayer) {
+                            proximitySheet.setLayerType(0, null);
+                        }
+                    }
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                    break;
+                default:
+                    AnimatorSet animatorSet3 = proximitySheet.currentSheetAnimation;
+                    if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                        proximitySheet.currentSheetAnimation = null;
+                        AndroidUtilities.runOnUIThread(new PasscodeView$9$$ExternalSyntheticLambda0(this, 26));
+                    }
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                    break;
+            }
+        }
     }
 
-    public ProximitySheet(Context context, TLRPC.User user, onRadiusPickerChange onradiuspickerchange, final onRadiusPickerChange onradiuspickerchange2, Runnable runnable) {
-        super(context);
+    public ProximitySheet(Activity activity, TLRPC.User user, LocationActivity$$ExternalSyntheticLambda3 locationActivity$$ExternalSyntheticLambda3, DialogsActivity$$ExternalSyntheticLambda89 dialogsActivity$$ExternalSyntheticLambda89, LocationActivity$$ExternalSyntheticLambda6 locationActivity$$ExternalSyntheticLambda6) {
+        super(activity);
         this.velocityTracker = null;
         this.startedTrackingPointerId = -1;
         this.maybeStartTracking = false;
         this.startedTracking = false;
         this.currentAnimation = null;
         this.rect = new Rect();
-        this.backgroundPaint = new Paint();
+        new Paint();
         this.useHardwareLayer = true;
         this.openInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         setWillNotDraw(false);
-        this.onDismissCallback = runnable;
-        this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.onDismissCallback = locationActivity$$ExternalSyntheticLambda6;
+        this.touchSlop = ViewConfiguration.get(activity).getScaledTouchSlop();
         Rect rect = new Rect();
-        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
+        Drawable drawableMutate = activity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_dialogBackground, false), PorterDuff.Mode.MULTIPLY));
         drawableMutate.getPadding(rect);
-        this.backgroundPaddingLeft = rect.left;
-        FrameLayout frameLayout = new FrameLayout(getContext()) {
-            @Override
-            public boolean hasOverlappingRendering() {
-                return false;
-            }
-        };
-        this.containerView = frameLayout;
-        frameLayout.setBackgroundDrawable(drawableMutate);
-        this.containerView.setPadding(this.backgroundPaddingLeft, (AndroidUtilities.dp(8.0f) + rect.top) - 1, this.backgroundPaddingLeft, 0);
-        this.containerView.setVisibility(4);
-        addView(this.containerView, 0, LayoutHelper.createFrame(-1, -2, 80));
+        int i = rect.left;
+        this.backgroundPaddingLeft = i;
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(getContext());
+        this.containerView = anonymousClass1;
+        anonymousClass1.setBackgroundDrawable(drawableMutate);
+        anonymousClass1.setPadding(i, (AndroidUtilities.dp(8.0f) + rect.top) - 1, i, 0);
+        anonymousClass1.setVisibility(4);
+        addView(anonymousClass1, 0, LayoutHelper.createFrame(-1, -2, 80));
         this.useImperialSystem = LocaleController.getUseImperialSystemType();
         this.currentUser = user;
-        this.onRadiusChange = onradiuspickerchange;
-        NumberPicker numberPicker = new NumberPicker(context);
+        this.onRadiusChange = locationActivity$$ExternalSyntheticLambda3;
+        NumberPicker numberPicker = new NumberPicker(activity, 18, null);
         this.kmPicker = numberPicker;
         numberPicker.setTextOffset(AndroidUtilities.dp(10.0f));
-        this.kmPicker.setItemCount(5);
-        NumberPicker numberPicker2 = new NumberPicker(context);
+        numberPicker.setItemCount(5);
+        NumberPicker numberPicker2 = new NumberPicker(activity, 18, null);
         this.mPicker = numberPicker2;
         numberPicker2.setItemCount(5);
-        this.mPicker.setTextOffset(-AndroidUtilities.dp(10.0f));
-        LinearLayout linearLayout = new LinearLayout(context) {
-            boolean ignoreLayout = false;
+        numberPicker2.setTextOffset(-AndroidUtilities.dp(10.0f));
+        ?? r9 = new LinearLayout(activity) {
+            public boolean ignoreLayout = false;
 
             @Override
-            protected void onMeasure(int i, int i2) {
+            public final void onMeasure(int i2, int i3) {
                 this.ignoreLayout = true;
                 Point point = AndroidUtilities.displaySize;
-                int i3 = point.x > point.y ? 3 : 5;
-                ProximitySheet.this.kmPicker.setItemCount(i3);
-                ProximitySheet.this.mPicker.setItemCount(i3);
-                ProximitySheet.this.kmPicker.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i3;
-                ProximitySheet.this.mPicker.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i3;
+                int i4 = point.x > point.y ? 3 : 5;
+                ProximitySheet proximitySheet = ProximitySheet.this;
+                proximitySheet.kmPicker.setItemCount(i4);
+                proximitySheet.mPicker.setItemCount(i4);
+                proximitySheet.kmPicker.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i4;
+                proximitySheet.mPicker.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i4;
                 this.ignoreLayout = false;
-                ProximitySheet.this.totalWidth = View.MeasureSpec.getSize(i);
-                if (ProximitySheet.this.totalWidth != 0) {
-                    ProximitySheet.this.updateText(false, false);
+                proximitySheet.totalWidth = View.MeasureSpec.getSize(i2);
+                if (proximitySheet.totalWidth != 0) {
+                    proximitySheet.updateText(false);
                 }
-                super.onMeasure(i, i2);
+                super.onMeasure(i2, i3);
             }
 
             @Override
-            public void requestLayout() {
+            public final void requestLayout() {
                 if (this.ignoreLayout) {
                     return;
                 }
                 super.requestLayout();
             }
         };
-        this.customView = linearLayout;
-        linearLayout.setOrientation(1);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.customView.addView(frameLayout2, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
-        TextView textView = new TextView(context);
+        this.customView = r9;
+        r9.setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(activity);
+        r9.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
+        TextView textView = new TextView(activity);
         textView.setText(LocaleController.getString(R.string.LocationNotifiation));
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
-        textView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return ProximitySheet.$r8$lambda$PRHImrHr_Zeyhb6grvjVFDIYOKc(view, motionEvent);
-            }
-        });
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setOrientation(0);
-        linearLayout2.setWeightSum(1.0f);
-        this.customView.addView(linearLayout2, LayoutHelper.createLinear(-1, -2));
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(20.0f, Theme.getColor(null, Theme.key_dialogTextBlack, false), 1, textView);
+        frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
+        textView.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(19));
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(0);
+        linearLayout.setWeightSum(1.0f);
+        r9.addView(linearLayout, LayoutHelper.createLinear(-1, -2));
         System.currentTimeMillis();
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.infoTextView = new TextView(context);
-        this.buttonTextView = new TextView(context) {
-            @Override
-            public CharSequence getAccessibilityClassName() {
-                return Button.class.getName();
-            }
-        };
-        linearLayout2.addView(this.kmPicker, LayoutHelper.createLinear(0, 270, 0.5f));
-        this.kmPicker.setFormatter(new NumberPicker.Formatter() {
-            @Override
-            public final String format(int i) {
-                return ProximitySheet.m2679$r8$lambda$vaBtl43X7tr72GGTyl6V9hROOs(this.f$0, i);
-            }
-        });
-        this.kmPicker.setMinValue(0);
-        this.kmPicker.setMaxValue(10);
-        this.kmPicker.setWrapSelectorWheel(false);
-        this.kmPicker.setTextOffset(AndroidUtilities.dp(20.0f));
-        NumberPicker.OnValueChangeListener onValueChangeListener = new NumberPicker.OnValueChangeListener() {
-            @Override
-            public final void onValueChange(NumberPicker numberPicker3, int i, int i2) {
-                ProximitySheet.m2680$r8$lambda$wPdvT0rDpRyWg9bXdSZ3Fc7t0(this.f$0, numberPicker3, i, i2);
-            }
-        };
-        this.kmPicker.setOnValueChangedListener(onValueChangeListener);
-        this.mPicker.setMinValue(0);
-        this.mPicker.setMaxValue(10);
-        this.mPicker.setWrapSelectorWheel(false);
-        this.mPicker.setTextOffset(-AndroidUtilities.dp(20.0f));
-        linearLayout2.addView(this.mPicker, LayoutHelper.createLinear(0, 270, 0.5f));
-        this.mPicker.setFormatter(new NumberPicker.Formatter() {
-            @Override
-            public final String format(int i) {
-                return ProximitySheet.$r8$lambda$LqzUzoXN6c_ZgxM8jXFtWxgM2Gg(this.f$0, i);
-            }
-        });
-        this.mPicker.setOnValueChangedListener(onValueChangeListener);
-        this.kmPicker.setValue(0);
-        this.mPicker.setValue(6);
-        this.customView.addView(frameLayout3, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
-        this.buttonTextView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        this.buttonTextView.setGravity(17);
-        this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        this.buttonTextView.setTextSize(1, 14.0f);
-        this.buttonTextView.setMaxLines(2);
-        this.buttonTextView.setTypeface(AndroidUtilities.bold());
-        this.buttonTextView.setBackgroundDrawable(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
-        frameLayout3.addView(this.buttonTextView, LayoutHelper.createFrame(-1, 48.0f));
-        this.buttonTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ProximitySheet.$r8$lambda$aCDHWzHyaYWDzxi4c_wlDoelEjU(this.f$0, onradiuspickerchange2, view);
-            }
-        });
-        this.infoTextView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        this.infoTextView.setGravity(17);
-        this.infoTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray2));
-        this.infoTextView.setTextSize(1, 14.0f);
-        this.infoTextView.setAlpha(0.0f);
-        this.infoTextView.setScaleX(0.5f);
-        this.infoTextView.setScaleY(0.5f);
-        frameLayout3.addView(this.infoTextView, LayoutHelper.createFrame(-1, 48.0f));
-        this.containerView.addView(this.customView, LayoutHelper.createFrame(-1, -2, 51));
+        FrameLayout frameLayout2 = new FrameLayout(activity);
+        TextView textView2 = new TextView(activity);
+        this.infoTextView = textView2;
+        AnonymousClass3 anonymousClass3 = new AnonymousClass3(activity);
+        this.buttonTextView = anonymousClass3;
+        linearLayout.addView(numberPicker, LayoutHelper.createLinear(0.5f, 0, 270));
+        numberPicker.setFormatter(new ProximitySheet$$ExternalSyntheticLambda1(this, 0));
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(10);
+        numberPicker.setWrapSelectorWheel(false);
+        numberPicker.setTextOffset(AndroidUtilities.dp(20.0f));
+        ProximitySheet$$ExternalSyntheticLambda1 proximitySheet$$ExternalSyntheticLambda1 = new ProximitySheet$$ExternalSyntheticLambda1(this, 1);
+        numberPicker.setOnValueChangedListener(proximitySheet$$ExternalSyntheticLambda1);
+        numberPicker2.setMinValue(0);
+        numberPicker2.setMaxValue(10);
+        numberPicker2.setWrapSelectorWheel(false);
+        numberPicker2.setTextOffset(-AndroidUtilities.dp(20.0f));
+        linearLayout.addView(numberPicker2, LayoutHelper.createLinear(0.5f, 0, 270));
+        numberPicker2.setFormatter(new ProximitySheet$$ExternalSyntheticLambda1(this, 2));
+        numberPicker2.setOnValueChangedListener(proximitySheet$$ExternalSyntheticLambda1);
+        numberPicker.setValue(0);
+        numberPicker2.setValue(6);
+        r9.addView(frameLayout2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
+        anonymousClass3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        anonymousClass3.setGravity(17);
+        anonymousClass3.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
+        anonymousClass3.setTextSize(1, 14.0f);
+        anonymousClass3.setMaxLines(2);
+        anonymousClass3.setTypeface(AndroidUtilities.bold());
+        anonymousClass3.setBackgroundDrawable(Theme.AdaptiveRipple.filledRectByKey(new float[]{4.0f}, Theme.key_featuredStickers_addButton));
+        frameLayout2.addView(anonymousClass3, LayoutHelper.createFrame(48.0f, -1));
+        anonymousClass3.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(13, this, dialogsActivity$$ExternalSyntheticLambda89));
+        textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        textView2.setGravity(17);
+        textView2.setTextColor(Theme.getColor(null, Theme.key_dialogTextGray2, false));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setAlpha(0.0f);
+        textView2.setScaleX(0.5f);
+        textView2.setScaleY(0.5f);
+        frameLayout2.addView(textView2, LayoutHelper.createFrame(48.0f, -1));
+        anonymousClass1.addView((View) r9, LayoutHelper.createFrame(-1, -2, 51));
     }
 
-    public static String m2679$r8$lambda$vaBtl43X7tr72GGTyl6V9hROOs(ProximitySheet proximitySheet, int i) {
-        return proximitySheet.useImperialSystem ? LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i)) : LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i));
+    public final void dismiss() {
+        if (this.dismissed) {
+            return;
+        }
+        this.dismissed = true;
+        AnimatorSet animatorSet = this.currentSheetAnimation;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.currentSheetAnimation = null;
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.currentSheetAnimation = animatorSet2;
+        AnonymousClass1 anonymousClass1 = this.containerView;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(anonymousClass1, (Property<AnonymousClass1, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(10.0f) + anonymousClass1.getMeasuredHeight()));
+        if (this.useFastDismiss) {
+            float measuredHeight = anonymousClass1.getMeasuredHeight();
+            this.currentSheetAnimation.setDuration(Math.max(60, (int) (((measuredHeight - anonymousClass1.getTranslationY()) * 250.0f) / measuredHeight)));
+            this.useFastDismiss = false;
+        } else {
+            this.currentSheetAnimation.setDuration(250L);
+        }
+        this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        this.currentSheetAnimation.addListener(new AnonymousClass4(this, 2));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+        this.currentSheetAnimation.start();
     }
 
-    public static void m2680$r8$lambda$wPdvT0rDpRyWg9bXdSZ3Fc7t0(ProximitySheet proximitySheet, NumberPicker numberPicker, int i, int i2) {
-        proximitySheet.getClass();
-        try {
-            proximitySheet.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.dismissed) {
+            return true;
         }
-        proximitySheet.updateText(true, true);
-    }
-
-    public static String $r8$lambda$LqzUzoXN6c_ZgxM8jXFtWxgM2Gg(ProximitySheet proximitySheet, int i) {
-        if (proximitySheet.useImperialSystem) {
-            if (i == 1) {
-                return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
-            }
-            if (i > 1) {
-                i--;
-            }
-            return String.format(Locale.US, ".%d", Integer.valueOf(i));
-        }
-        if (i == 1) {
-            return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
-        }
-        if (i > 1) {
-            i--;
-        }
-        return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i * 100));
-    }
-
-    public static void $r8$lambda$aCDHWzHyaYWDzxi4c_wlDoelEjU(ProximitySheet proximitySheet, onRadiusPickerChange onradiuspickerchange, View view) {
-        if (proximitySheet.buttonTextView.getTag() == null && onradiuspickerchange.run(true, (int) Math.max(1.0f, proximitySheet.getValue()))) {
-            proximitySheet.dismiss();
-        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     public View getCustomView() {
         return this.customView;
+    }
+
+    public boolean getRadiusSet() {
+        return this.radiusSet;
     }
 
     public float getValue() {
@@ -301,159 +345,18 @@ public class ProximitySheet extends FrameLayout {
         return z ? f2 * 1.60934f : f2;
     }
 
-    public boolean getRadiusSet() {
-        return this.radiusSet;
-    }
-
-    public void setRadiusSet() {
-        this.radiusSet = true;
-    }
-
-    public void updateText(boolean z, boolean z2) {
-        float value = getValue();
-        String distance = LocaleController.formatDistance(value, 2, Boolean.valueOf(this.useImperialSystem));
-        if (this.onRadiusChange.run(z, (int) value) || this.currentUser == null) {
-            if (this.currentUser == null) {
-                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonGroup", R.string.LocationNotifiationButtonGroup, distance));
-            } else {
-                int i = R.string.LocationNotifiationButtonUser;
-                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", i, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString(i)))))), TextUtils.TruncateAt.END), distance));
-            }
-            if (this.buttonTextView.getTag() != null) {
-                this.buttonTextView.setTag(null);
-                this.buttonTextView.animate().setDuration(180L).alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
-                this.infoTextView.animate().setDuration(180L).alpha(0.0f).scaleX(0.5f).scaleY(0.5f).start();
-                return;
-            }
-            return;
-        }
-        this.infoTextView.setText(LocaleController.formatString("LocationNotifiationCloser", R.string.LocationNotifiationCloser, distance));
-        if (this.buttonTextView.getTag() == null) {
-            this.buttonTextView.setTag(1);
-            this.buttonTextView.animate().setDuration(180L).alpha(0.0f).scaleX(0.5f).scaleY(0.5f).start();
-            this.infoTextView.animate().setDuration(180L).alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
-        }
-    }
-
-    private void checkDismiss(float f, float f2) {
-        float translationY = this.containerView.getTranslationY();
-        if ((translationY >= AndroidUtilities.getPixelsInCM(0.8f, false) || (f2 >= 3500.0f && Math.abs(f2) >= Math.abs(f))) && (f2 >= 0.0f || Math.abs(f2) < 3500.0f)) {
-            this.useFastDismiss = true;
-            dismiss();
-            return;
-        }
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.currentAnimation = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, 0.0f));
-        this.currentAnimation.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 150.0f));
-        this.currentAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        this.currentAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (ProximitySheet.this.currentAnimation != null && ProximitySheet.this.currentAnimation.equals(animator)) {
-                    ProximitySheet.this.currentAnimation = null;
-                }
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
-            }
-        });
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
-        this.currentAnimation.start();
-    }
-
-    private void cancelCurrentAnimation() {
-        AnimatorSet animatorSet = this.currentAnimation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.currentAnimation = null;
-        }
-    }
-
-    boolean processTouchEvent(MotionEvent motionEvent, boolean z) {
-        if (this.dismissed) {
-            return false;
-        }
-        if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.startedTracking && !this.maybeStartTracking && motionEvent.getPointerCount() == 1)) {
-            this.startedTrackingX = (int) motionEvent.getX();
-            int y = (int) motionEvent.getY();
-            this.startedTrackingY = y;
-            if (y < this.containerView.getTop() || this.startedTrackingX < this.containerView.getLeft() || this.startedTrackingX > this.containerView.getRight()) {
-                requestDisallowInterceptTouchEvent(true);
-                dismiss();
-                return true;
-            }
-            this.startedTrackingPointerId = motionEvent.getPointerId(0);
-            this.maybeStartTracking = true;
-            cancelCurrentAnimation();
-            VelocityTracker velocityTracker = this.velocityTracker;
-            if (velocityTracker != null) {
-                velocityTracker.clear();
-            }
-        } else {
-            if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.startedTrackingPointerId) {
-                if (this.velocityTracker == null) {
-                    this.velocityTracker = VelocityTracker.obtain();
-                }
-                float fAbs = Math.abs((int) (motionEvent.getX() - this.startedTrackingX));
-                float y2 = ((int) motionEvent.getY()) - this.startedTrackingY;
-                this.velocityTracker.addMovement(motionEvent);
-                if (this.maybeStartTracking && !this.startedTracking && y2 > 0.0f && y2 / 3.0f > Math.abs(fAbs) && Math.abs(y2) >= this.touchSlop) {
-                    this.startedTrackingY = (int) motionEvent.getY();
-                    this.maybeStartTracking = false;
-                    this.startedTracking = true;
-                    requestDisallowInterceptTouchEvent(true);
-                } else if (this.startedTracking) {
-                    float translationY = this.containerView.getTranslationY() + y2;
-                    this.containerView.setTranslationY(translationY >= 0.0f ? translationY : 0.0f);
-                    this.startedTrackingY = (int) motionEvent.getY();
-                }
-            } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.startedTrackingPointerId && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                if (this.velocityTracker == null) {
-                    this.velocityTracker = VelocityTracker.obtain();
-                }
-                this.velocityTracker.computeCurrentVelocity(1000);
-                float translationY2 = this.containerView.getTranslationY();
-                if (this.startedTracking || translationY2 != 0.0f) {
-                    checkDismiss(this.velocityTracker.getXVelocity(), this.velocityTracker.getYVelocity());
-                    this.startedTracking = false;
-                } else {
-                    this.maybeStartTracking = false;
-                    this.startedTracking = false;
-                }
-                VelocityTracker velocityTracker2 = this.velocityTracker;
-                if (velocityTracker2 != null) {
-                    velocityTracker2.recycle();
-                    this.velocityTracker = null;
-                }
-                this.startedTrackingPointerId = -1;
-            }
-        }
-        return (!z && this.maybeStartTracking) || this.startedTracking;
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.dismissed || processTouchEvent(motionEvent, false);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return this.dismissed || processTouchEvent(motionEvent, true);
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        int size2 = View.MeasureSpec.getSize(i2);
-        getRootView();
-        getWindowVisibleDisplayFrame(this.rect);
-        setMeasuredDimension(size, size2);
-        this.containerView.measure(View.MeasureSpec.makeMeasureSpec((this.backgroundPaddingLeft * 2) + size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-        int childCount = getChildCount();
-        for (int i3 = 0; i3 < childCount; i3++) {
-            View childAt = getChildAt(i3);
-            if (childAt.getVisibility() != 8 && childAt != this.containerView) {
-                measureChildWithMargins(childAt, View.MeasureSpec.makeMeasureSpec(size, 1073741824), 0, View.MeasureSpec.makeMeasureSpec(size2, 1073741824), 0);
-            }
-        }
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int i5;
         int i6;
         int i7;
@@ -461,15 +364,15 @@ public class ProximitySheet extends FrameLayout {
         int i9;
         int i10;
         int i11 = i4 - i2;
-        int measuredHeight = i11 - this.containerView.getMeasuredHeight();
+        AnonymousClass1 anonymousClass1 = this.containerView;
+        int measuredHeight = i11 - anonymousClass1.getMeasuredHeight();
         int i12 = i3 - i;
-        int measuredWidth = (i12 - this.containerView.getMeasuredWidth()) / 2;
-        ViewGroup viewGroup = this.containerView;
-        viewGroup.layout(measuredWidth, measuredHeight, viewGroup.getMeasuredWidth() + measuredWidth, this.containerView.getMeasuredHeight() + measuredHeight);
+        int measuredWidth = (i12 - anonymousClass1.getMeasuredWidth()) / 2;
+        anonymousClass1.layout(measuredWidth, measuredHeight, anonymousClass1.getMeasuredWidth() + measuredWidth, anonymousClass1.getMeasuredHeight() + measuredHeight);
         int childCount = getChildCount();
         for (int i13 = 0; i13 < childCount; i13++) {
             View childAt = getChildAt(i13);
-            if (childAt.getVisibility() != 8 && childAt != this.containerView) {
+            if (childAt.getVisibility() != 8 && childAt != anonymousClass1) {
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
                 int measuredWidth2 = childAt.getMeasuredWidth();
                 int measuredHeight2 = childAt.getMeasuredHeight();
@@ -479,43 +382,43 @@ public class ProximitySheet extends FrameLayout {
                 }
                 int i15 = i14 & 112;
                 int i16 = i14 & 7;
-                if (i16 == 1) {
-                    i5 = ((i12 - measuredWidth2) / 2) + layoutParams.leftMargin;
-                    i6 = layoutParams.rightMargin;
-                } else {
-                    if (i16 == 5) {
+                if (i16 != 1) {
+                    if (i16 != 5) {
+                        i7 = layoutParams.leftMargin;
+                    } else {
                         i5 = i3 - measuredWidth2;
                         i6 = layoutParams.rightMargin;
-                    } else {
-                        i7 = layoutParams.leftMargin;
                     }
                     if (i15 != 16) {
-                        i8 = ((i11 - measuredHeight2) / 2) + layoutParams.topMargin;
-                        i9 = layoutParams.bottomMargin;
-                    } else {
                         if (i15 != 80) {
+                            i10 = layoutParams.topMargin;
+                        } else {
                             i8 = i11 - measuredHeight2;
                             i9 = layoutParams.bottomMargin;
-                        } else {
-                            i10 = layoutParams.topMargin;
                         }
                         childAt.layout(i7, i10, measuredWidth2 + i7, measuredHeight2 + i10);
+                    } else {
+                        i8 = ((i11 - measuredHeight2) / 2) + layoutParams.topMargin;
+                        i9 = layoutParams.bottomMargin;
                     }
                     i10 = i8 - i9;
                     childAt.layout(i7, i10, measuredWidth2 + i7, measuredHeight2 + i10);
+                } else {
+                    i5 = ((i12 - measuredWidth2) / 2) + layoutParams.leftMargin;
+                    i6 = layoutParams.rightMargin;
                 }
                 i7 = i5 - i6;
                 if (i15 != 16) {
-                    i8 = ((i11 - measuredHeight2) / 2) + layoutParams.topMargin;
-                    i9 = layoutParams.bottomMargin;
-                } else {
                     if (i15 != 80) {
+                        i10 = layoutParams.topMargin;
+                    } else {
                         i8 = i11 - measuredHeight2;
                         i9 = layoutParams.bottomMargin;
-                    } else {
-                        i10 = layoutParams.topMargin;
                     }
                     childAt.layout(i7, i10, measuredWidth2 + i7, measuredHeight2 + i10);
+                } else {
+                    i8 = ((i11 - measuredHeight2) / 2) + layoutParams.topMargin;
+                    i9 = layoutParams.bottomMargin;
                 }
                 i10 = i8 - i9;
                 childAt.layout(i7, i10, measuredWidth2 + i7, measuredHeight2 + i10);
@@ -524,152 +427,203 @@ public class ProximitySheet extends FrameLayout {
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return this.dismissed || processTouchEvent(motionEvent, true);
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        getRootView();
+        getWindowVisibleDisplayFrame(this.rect);
+        setMeasuredDimension(size, size2);
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec((this.backgroundPaddingLeft * 2) + size, 1073741824);
+        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE);
+        AnonymousClass1 anonymousClass1 = this.containerView;
+        anonymousClass1.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
+        int childCount = getChildCount();
+        for (int i3 = 0; i3 < childCount; i3++) {
+            View childAt = getChildAt(i3);
+            if (childAt.getVisibility() != 8 && childAt != anonymousClass1) {
+                measureChildWithMargins(childAt, View.MeasureSpec.makeMeasureSpec(size, 1073741824), 0, View.MeasureSpec.makeMeasureSpec(size2, 1073741824), 0);
+            }
+        }
     }
 
     @Override
-    public void requestDisallowInterceptTouchEvent(boolean z) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return this.dismissed || processTouchEvent(motionEvent, false);
+    }
+
+    public final boolean processTouchEvent(MotionEvent motionEvent, boolean z) {
+        int i = 0;
+        if (!this.dismissed) {
+            AnonymousClass1 anonymousClass1 = this.containerView;
+            if (motionEvent == null || (!(motionEvent.getAction() == 0 || motionEvent.getAction() == 2) || this.startedTracking || this.maybeStartTracking || motionEvent.getPointerCount() != 1)) {
+                if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.startedTrackingPointerId) {
+                    if (this.velocityTracker == null) {
+                        this.velocityTracker = VelocityTracker.obtain();
+                    }
+                    float fAbs = Math.abs((int) (motionEvent.getX() - this.startedTrackingX));
+                    float y = ((int) motionEvent.getY()) - this.startedTrackingY;
+                    this.velocityTracker.addMovement(motionEvent);
+                    if (this.maybeStartTracking && !this.startedTracking && y > 0.0f && y / 3.0f > Math.abs(fAbs) && Math.abs(y) >= this.touchSlop) {
+                        this.startedTrackingY = (int) motionEvent.getY();
+                        this.maybeStartTracking = false;
+                        this.startedTracking = true;
+                        requestDisallowInterceptTouchEvent(true);
+                    } else if (this.startedTracking) {
+                        float translationY = anonymousClass1.getTranslationY() + y;
+                        anonymousClass1.setTranslationY(translationY >= 0.0f ? translationY : 0.0f);
+                        this.startedTrackingY = (int) motionEvent.getY();
+                    }
+                } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.startedTrackingPointerId && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+                    if (this.velocityTracker == null) {
+                        this.velocityTracker = VelocityTracker.obtain();
+                    }
+                    this.velocityTracker.computeCurrentVelocity(1000);
+                    float translationY2 = anonymousClass1.getTranslationY();
+                    if (this.startedTracking || translationY2 != 0.0f) {
+                        float xVelocity = this.velocityTracker.getXVelocity();
+                        float yVelocity = this.velocityTracker.getYVelocity();
+                        float translationY3 = anonymousClass1.getTranslationY();
+                        if ((translationY3 >= AndroidUtilities.getPixelsInCM(0.8f, false) || (yVelocity >= 3500.0f && Math.abs(yVelocity) >= Math.abs(xVelocity))) && (yVelocity >= 0.0f || Math.abs(yVelocity) < 3500.0f)) {
+                            this.useFastDismiss = true;
+                            dismiss();
+                        } else {
+                            AnimatorSet animatorSet = new AnimatorSet();
+                            this.currentAnimation = animatorSet;
+                            animatorSet.playTogether(ObjectAnimator.ofFloat(anonymousClass1, (Property<AnonymousClass1, Float>) View.TRANSLATION_Y, 0.0f));
+                            this.currentAnimation.setDuration((int) ((Math.max(0.0f, translationY3) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 150.0f));
+                            this.currentAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                            this.currentAnimation.addListener(new AnonymousClass4(this, i));
+                            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+                            this.currentAnimation.start();
+                        }
+                        this.startedTracking = false;
+                    } else {
+                        this.maybeStartTracking = false;
+                        this.startedTracking = false;
+                    }
+                    VelocityTracker velocityTracker = this.velocityTracker;
+                    if (velocityTracker != null) {
+                        velocityTracker.recycle();
+                        this.velocityTracker = null;
+                    }
+                    this.startedTrackingPointerId = -1;
+                }
+            } else {
+                this.startedTrackingX = (int) motionEvent.getX();
+                int y2 = (int) motionEvent.getY();
+                this.startedTrackingY = y2;
+                if (y2 < anonymousClass1.getTop() || this.startedTrackingX < anonymousClass1.getLeft() || this.startedTrackingX > anonymousClass1.getRight()) {
+                    requestDisallowInterceptTouchEvent(true);
+                    dismiss();
+                    return true;
+                }
+                this.startedTrackingPointerId = motionEvent.getPointerId(0);
+                this.maybeStartTracking = true;
+                AnimatorSet animatorSet2 = this.currentAnimation;
+                if (animatorSet2 != null) {
+                    animatorSet2.cancel();
+                    this.currentAnimation = null;
+                }
+                VelocityTracker velocityTracker2 = this.velocityTracker;
+                if (velocityTracker2 != null) {
+                    velocityTracker2.clear();
+                }
+            }
+            if ((!z && this.maybeStartTracking) || this.startedTracking) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestDisallowInterceptTouchEvent(boolean z) {
         if (this.maybeStartTracking && !this.startedTracking) {
             onTouchEvent(null);
         }
         super.requestDisallowInterceptTouchEvent(z);
     }
 
-    public void show() {
-        this.dismissed = false;
-        cancelSheetAnimation();
-        this.containerView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x + (this.backgroundPaddingLeft * 2), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
-        startOpenAnimation();
-        updateText(true, false);
-    }
-
-    private void cancelSheetAnimation() {
-        AnimatorSet animatorSet = this.currentSheetAnimation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.currentSheetAnimation = null;
-            this.currentSheetAnimationType = 0;
+    public final void updateText(boolean z) {
+        boolean z2;
+        float value = getValue();
+        String distance = LocaleController.formatDistance(value, 2, Boolean.valueOf(this.useImperialSystem));
+        int i = (int) value;
+        LocationActivity locationActivity = this.onRadiusChange.f$0;
+        IMapsProvider.ICircle iCircle = locationActivity.proximityCircle;
+        if (iCircle != null) {
+            iCircle.setRadius(i);
+            if (z) {
+                IMapsProvider.ILatLngBoundsBuilder iLatLngBoundsBuilderOnCreateLatLngBoundsBuilder = ApplicationLoader.getMapsProvider().onCreateLatLngBoundsBuilder();
+                iLatLngBoundsBuilderOnCreateLatLngBoundsBuilder.include(new IMapsProvider.LatLng(locationActivity.myLocation.getLatitude(), locationActivity.myLocation.getLongitude()));
+                try {
+                    int iMax = Math.max(i, 250);
+                    IMapsProvider.LatLng center = iLatLngBoundsBuilderOnCreateLatLngBoundsBuilder.build().getCenter();
+                    double d = iMax;
+                    IMapsProvider.LatLng latLngMove = LocationActivity.move(center, d, d);
+                    double d2 = -iMax;
+                    iLatLngBoundsBuilderOnCreateLatLngBoundsBuilder.include(LocationActivity.move(center, d2, d2));
+                    iLatLngBoundsBuilderOnCreateLatLngBoundsBuilder.include(latLngMove);
+                    IMapsProvider.ILatLngBounds iLatLngBoundsBuild = iLatLngBoundsBuilderOnCreateLatLngBoundsBuilder.build();
+                    try {
+                        locationActivity.map.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), (int) ((locationActivity.proximitySheet.getCustomView().getMeasuredHeight() - AndroidUtilities.dp(40.0f)) + locationActivity.mapViewClip.getTranslationY()));
+                        locationActivity.map.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngBounds(iLatLngBoundsBuild, 0), 500, null);
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                } catch (Exception unused) {
+                }
+            }
         }
-    }
-
-    private void startOpenAnimation() {
-        if (this.dismissed) {
-            return;
-        }
-        this.containerView.setVisibility(0);
-        if (this.useHardwareLayer) {
-            setLayerType(2, null);
-        }
-        ViewGroup viewGroup = this.containerView;
-        viewGroup.setTranslationY(viewGroup.getMeasuredHeight());
-        this.currentSheetAnimationType = 1;
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.currentSheetAnimation = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, 0.0f));
-        this.currentSheetAnimation.setDuration(400L);
-        this.currentSheetAnimation.setStartDelay(20L);
-        this.currentSheetAnimation.setInterpolator(this.openInterpolator);
-        this.currentSheetAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (ProximitySheet.this.currentSheetAnimation != null && ProximitySheet.this.currentSheetAnimation.equals(animator)) {
-                    ProximitySheet.this.currentSheetAnimation = null;
-                    ProximitySheet.this.currentSheetAnimationType = 0;
-                    if (ProximitySheet.this.useHardwareLayer) {
-                        ProximitySheet.this.setLayerType(0, null);
+        if (!DialogObject.isChatDialog(locationActivity.dialogId)) {
+            ArrayList arrayList = locationActivity.markers;
+            int size = arrayList.size();
+            int i2 = 0;
+            while (true) {
+                if (i2 >= size) {
+                    z2 = false;
+                    break;
+                }
+                LocationActivity.LiveLocation liveLocation = (LocationActivity.LiveLocation) arrayList.get(i2);
+                if (liveLocation.object != null && !UserObject.isUserSelf(liveLocation.user)) {
+                    TLRPC.GeoPoint geoPoint = liveLocation.object.media.geo;
+                    Location location = new Location("network");
+                    location.setLatitude(geoPoint.lat);
+                    location.setLongitude(geoPoint._long);
+                    if (locationActivity.myLocation.distanceTo(location) > i) {
+                        z2 = true;
+                        break;
                     }
                 }
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
+                i2++;
             }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                if (ProximitySheet.this.currentSheetAnimation == null || !ProximitySheet.this.currentSheetAnimation.equals(animator)) {
-                    return;
-                }
-                ProximitySheet.this.currentSheetAnimation = null;
-                ProximitySheet.this.currentSheetAnimationType = 0;
-            }
-        });
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
-        this.currentSheetAnimation.start();
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.dismissed) {
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public void dismiss() {
-        if (this.dismissed) {
-            return;
-        }
-        this.dismissed = true;
-        cancelSheetAnimation();
-        this.currentSheetAnimationType = 2;
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.currentSheetAnimation = animatorSet;
-        ViewGroup viewGroup = this.containerView;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) View.TRANSLATION_Y, viewGroup.getMeasuredHeight() + AndroidUtilities.dp(10.0f)));
-        if (this.useFastDismiss) {
-            float measuredHeight = this.containerView.getMeasuredHeight();
-            this.currentSheetAnimation.setDuration(Math.max(60, (int) (((measuredHeight - this.containerView.getTranslationY()) * 250.0f) / measuredHeight)));
-            this.useFastDismiss = false;
         } else {
-            this.currentSheetAnimation.setDuration(250L);
+            z2 = true;
+            break;
         }
-        this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.currentSheetAnimation.addListener(new AnonymousClass6());
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
-        this.currentSheetAnimation.start();
-    }
-
-    class AnonymousClass6 extends AnimatorListenerAdapter {
-        AnonymousClass6() {
-        }
-
-        @Override
-        public void onAnimationEnd(Animator animator) {
-            if (ProximitySheet.this.currentSheetAnimation != null && ProximitySheet.this.currentSheetAnimation.equals(animator)) {
-                ProximitySheet.this.currentSheetAnimation = null;
-                ProximitySheet.this.currentSheetAnimationType = 0;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ProximitySheet.AnonymousClass6.m2681$r8$lambda$j8w1UjXHqA9fqvMaTIeip71P_s(this.f$0);
-                    }
-                });
-            }
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
-        }
-
-        public static void m2681$r8$lambda$j8w1UjXHqA9fqvMaTIeip71P_s(AnonymousClass6 anonymousClass6) {
-            anonymousClass6.getClass();
-            try {
-                ProximitySheet.this.dismissInternal();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-
-        @Override
-        public void onAnimationCancel(Animator animator) {
-            if (ProximitySheet.this.currentSheetAnimation == null || !ProximitySheet.this.currentSheetAnimation.equals(animator)) {
+        TextView textView = this.infoTextView;
+        TLRPC.User user = this.currentUser;
+        AnonymousClass3 anonymousClass3 = this.buttonTextView;
+        if (!z2 && user != null) {
+            textView.setText(LocaleController.formatString("LocationNotifiationCloser", R.string.LocationNotifiationCloser, distance));
+            if (anonymousClass3.getTag() == null) {
+                anonymousClass3.setTag(1);
+                anonymousClass3.animate().setDuration(180L).alpha(0.0f).scaleX(0.5f).scaleY(0.5f).start();
+                textView.animate().setDuration(180L).alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
                 return;
             }
-            ProximitySheet.this.currentSheetAnimation = null;
-            ProximitySheet.this.currentSheetAnimationType = 0;
+            return;
         }
-    }
-
-    public void dismissInternal() {
-        if (getParent() instanceof ViewGroup) {
-            ((ViewGroup) getParent()).removeView(this);
+        if (user == null) {
+            anonymousClass3.setText(LocaleController.formatString("LocationNotifiationButtonGroup", R.string.LocationNotifiationButtonGroup, distance));
+        } else {
+            int i3 = R.string.LocationNotifiationButtonUser;
+            anonymousClass3.setText(LocaleController.formatString("LocationNotifiationButtonUser", i3, TextUtils.ellipsize(UserObject.getFirstName(user), anonymousClass3.getPaint(), Math.max(AndroidUtilities.dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.dp(94.0f)) * 1.5f) - ((int) Math.ceil(anonymousClass3.getPaint().measureText(LocaleController.getString(i3)))))), TextUtils.TruncateAt.END), distance));
         }
-        this.onDismissCallback.run();
+        if (anonymousClass3.getTag() != null) {
+            anonymousClass3.setTag(null);
+            anonymousClass3.animate().setDuration(180L).alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
+            textView.animate().setDuration(180L).alpha(0.0f).scaleX(0.5f).scaleY(0.5f).start();
+        }
     }
 }

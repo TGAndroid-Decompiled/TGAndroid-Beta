@@ -20,128 +20,22 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 
 public class TextInfoPrivacyCell extends FrameLayout {
-    private int bottomPadding;
-    private int fixedSize;
-    private boolean isRTL;
-    private int linkTextColorKey;
-    private Integer linkTextRippleColor;
-    private LinkSpanDrawable.LinkCollector links;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private CharSequence text;
-    private LinkSpanDrawable.LinksTextView textView;
-    private int topPadding;
-
-    protected void afterTextDraw() {
-    }
-
-    protected void onTextDraw() {
-    }
-
-    public TextInfoPrivacyCell(Context context) {
-        this(context, 24, null);
-    }
+    public int bottomPadding;
+    public int fixedSize;
+    public boolean isRTL;
+    public int linkTextColorKey;
+    public Integer linkTextRippleColor;
+    public final LinkSpanDrawable.LinkCollector links;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public CharSequence text;
+    public final CheckBoxCell.AnonymousClass2 textView;
+    public int topPadding;
 
     public TextInfoPrivacyCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         this(context, 24, resourcesProvider);
     }
 
-    public TextInfoPrivacyCell(Context context, int i) {
-        this(context, i, null);
-    }
-
-    public TextInfoPrivacyCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
-        this.linkTextColorKey = Theme.key_windowBackgroundWhiteLinkText;
-        this.topPadding = 10;
-        this.bottomPadding = 17;
-        this.resourcesProvider = resourcesProvider;
-        LinkSpanDrawable.LinkCollector linkCollector = new LinkSpanDrawable.LinkCollector(this);
-        this.links = linkCollector;
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, linkCollector, resourcesProvider) {
-            @Override
-            protected void onDraw(Canvas canvas) {
-                TextInfoPrivacyCell.this.onTextDraw();
-                super.onDraw(canvas);
-                TextInfoPrivacyCell.this.afterTextDraw();
-            }
-
-            @Override
-            public int overrideColor() {
-                if (TextInfoPrivacyCell.this.linkTextRippleColor != null) {
-                    return TextInfoPrivacyCell.this.linkTextRippleColor.intValue();
-                }
-                return super.overrideColor();
-            }
-        };
-        this.textView = linksTextView;
-        linksTextView.setTextSize(1, 14.0f);
-        this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        this.textView.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(17.0f));
-        this.textView.setMovementMethod(LinkMovementMethod.getInstance());
-        LinkSpanDrawable.LinksTextView linksTextView2 = this.textView;
-        int i2 = Theme.key_windowBackgroundWhiteGrayText4;
-        linksTextView2.setTextColor(getThemedColor(i2));
-        this.textView.setEmojiColor(getThemedColor(i2));
-        this.textView.setLinkTextColor(getThemedColor(this.linkTextColorKey));
-        this.textView.setImportantForAccessibility(2);
-        float f = i;
-        addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, 0.0f, f, 0.0f));
-        this.isRTL = LocaleController.isRTL;
-        setWillNotDraw(false);
-    }
-
-    public void updateRTL() {
-        boolean z = this.isRTL;
-        boolean z2 = LocaleController.isRTL;
-        if (z == z2) {
-            return;
-        }
-        this.isRTL = z2;
-        this.textView.setGravity(z2 ? 5 : 3);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
-        layoutParams.gravity = (LocaleController.isRTL ? 5 : 3) | 48;
-        this.textView.setLayoutParams(layoutParams);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.links != null) {
-            canvas.save();
-            canvas.translate(this.textView.getLeft(), this.textView.getTop());
-            if (this.links.draw(canvas)) {
-                invalidate();
-            }
-            canvas.restore();
-        }
-        super.onDraw(canvas);
-    }
-
-    public void setLinkTextColorKey(int i) {
-        this.linkTextColorKey = i;
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int i3 = this.fixedSize;
-        if (i3 == -1) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 1073741824));
-        } else if (i3 != 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.fixedSize), 1073741824));
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        }
-    }
-
-    public void setTopPadding(int i) {
-        this.topPadding = i;
-    }
-
-    public void setBottomPadding(int i) {
-        this.bottomPadding = i;
-    }
-
-    public void setFixedSize(int i) {
-        this.fixedSize = i;
+    public void afterTextDraw() {
     }
 
     public int getFixedSize() {
@@ -152,15 +46,82 @@ public class TextInfoPrivacyCell extends FrameLayout {
         return this.textView.getText();
     }
 
+    public LinkSpanDrawable.LinksTextView getTextView() {
+        return this.textView;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        LinkSpanDrawable.LinkCollector linkCollector = this.links;
+        if (linkCollector != null) {
+            canvas.save();
+            CheckBoxCell.AnonymousClass2 anonymousClass2 = this.textView;
+            canvas.translate(anonymousClass2.getLeft(), anonymousClass2.getTop());
+            if (linkCollector.draw(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
+        }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName(TextView.class.getName());
+        accessibilityNodeInfo.setText(this.text);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int i3 = this.fixedSize;
+        if (i3 == -1) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 1073741824));
+        } else if (i3 != 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.fixedSize), 1073741824));
+        } else {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        }
+    }
+
+    public void onTextDraw() {
+    }
+
+    public void setBottomPadding(int i) {
+        this.bottomPadding = i;
+    }
+
+    public final void setEnabled(ArrayList arrayList, boolean z) {
+        CheckBoxCell.AnonymousClass2 anonymousClass2 = this.textView;
+        if (arrayList != null) {
+            arrayList.add(ObjectAnimator.ofFloat(anonymousClass2, (Property<CheckBoxCell.AnonymousClass2, Float>) View.ALPHA, z ? 1.0f : 0.5f));
+        } else {
+            anonymousClass2.setAlpha(z ? 1.0f : 0.5f);
+        }
+    }
+
+    public void setFixedSize(int i) {
+        this.fixedSize = i;
+    }
+
+    public void setLinkTextColorKey(int i) {
+        this.linkTextColorKey = i;
+    }
+
+    public void setLinkTextRippleColor(Integer num) {
+        this.linkTextRippleColor = num;
+    }
+
     public void setText(CharSequence charSequence) {
         if (TextUtils.equals(charSequence, this.text)) {
             return;
         }
         this.text = charSequence;
+        CheckBoxCell.AnonymousClass2 anonymousClass2 = this.textView;
         if (charSequence == null) {
-            this.textView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
+            anonymousClass2.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
         } else {
-            this.textView.setPadding(0, AndroidUtilities.dp(this.topPadding), 0, AndroidUtilities.dp(this.bottomPadding));
+            anonymousClass2.setPadding(0, AndroidUtilities.dp(this.topPadding), 0, AndroidUtilities.dp(this.bottomPadding));
         }
         SpannableString spannableString = null;
         if (charSequence != null) {
@@ -177,11 +138,10 @@ public class TextInfoPrivacyCell extends FrameLayout {
                 }
             }
         }
-        LinkSpanDrawable.LinksTextView linksTextView = this.textView;
         if (spannableString != null) {
             charSequence = spannableString;
         }
-        linksTextView.setText(charSequence);
+        anonymousClass2.setText(charSequence);
     }
 
     public void setTextColor(int i) {
@@ -189,42 +149,42 @@ public class TextInfoPrivacyCell extends FrameLayout {
     }
 
     public void setTextColorByKey(int i) {
-        this.textView.setTextColor(getThemedColor(i));
-        this.textView.setTag(Integer.valueOf(i));
-    }
-
-    public LinkSpanDrawable.LinksTextView getTextView() {
-        return this.textView;
-    }
-
-    public void setLinkTextRippleColor(Integer num) {
-        this.linkTextRippleColor = num;
-    }
-
-    public int length() {
-        return this.textView.length();
-    }
-
-    public void setEnabled(boolean z, ArrayList arrayList) {
-        if (arrayList != null) {
-            arrayList.add(ObjectAnimator.ofFloat(this.textView, (Property<LinkSpanDrawable.LinksTextView, Float>) View.ALPHA, z ? 1.0f : 0.5f));
-        } else {
-            this.textView.setAlpha(z ? 1.0f : 0.5f);
-        }
+        int color = Theme.getColor(i, this.resourcesProvider);
+        CheckBoxCell.AnonymousClass2 anonymousClass2 = this.textView;
+        anonymousClass2.setTextColor(color);
+        anonymousClass2.setTag(Integer.valueOf(i));
     }
 
     public void setTextGravity(int i) {
         this.textView.setGravity(i);
     }
 
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName(TextView.class.getName());
-        accessibilityNodeInfo.setText(this.text);
+    public void setTopPadding(int i) {
+        this.topPadding = i;
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public TextInfoPrivacyCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
+        this.linkTextColorKey = Theme.key_windowBackgroundWhiteLinkText;
+        this.topPadding = 10;
+        this.bottomPadding = 17;
+        this.resourcesProvider = resourcesProvider;
+        LinkSpanDrawable.LinkCollector linkCollector = new LinkSpanDrawable.LinkCollector(this);
+        this.links = linkCollector;
+        CheckBoxCell.AnonymousClass2 anonymousClass2 = new CheckBoxCell.AnonymousClass2(this, context, linkCollector, resourcesProvider);
+        this.textView = anonymousClass2;
+        anonymousClass2.setTextSize(1, 14.0f);
+        anonymousClass2.setGravity(LocaleController.isRTL ? 5 : 3);
+        anonymousClass2.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(17.0f));
+        anonymousClass2.setMovementMethod(LinkMovementMethod.getInstance());
+        int i2 = Theme.key_windowBackgroundWhiteGrayText4;
+        anonymousClass2.setTextColor(Theme.getColor(i2, resourcesProvider));
+        anonymousClass2.setEmojiColor(Theme.getColor(i2, resourcesProvider));
+        anonymousClass2.setLinkTextColor(Theme.getColor(this.linkTextColorKey, resourcesProvider));
+        anonymousClass2.setImportantForAccessibility(2);
+        float f = i;
+        addView(anonymousClass2, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, 0.0f, f, 0.0f));
+        this.isRTL = LocaleController.isRTL;
+        setWillNotDraw(false);
     }
 }

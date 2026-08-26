@@ -5,20 +5,9 @@ import android.graphics.Color;
 import org.telegram.messenger.Utilities;
 
 public abstract class DominantColors {
-    private static float[] tempHsv;
+    public static float[] tempHsv;
 
-    public static void getColors(boolean z, Bitmap bitmap, boolean z2, Utilities.Callback callback) {
-        if (callback == null) {
-            return;
-        }
-        if (bitmap == null) {
-            callback.run(new int[]{0, 0});
-        } else {
-            callback.run(getColorsSync(false, bitmap, z2));
-        }
-    }
-
-    private static int adapt(int i, boolean z) {
+    public static int adapt(int i, boolean z) {
         if (tempHsv == null) {
             tempHsv = new float[3];
         }
@@ -37,7 +26,7 @@ public abstract class DominantColors {
         return Color.HSVToColor(tempHsv);
     }
 
-    public static int[] getColorsSync(boolean z, Bitmap bitmap, boolean z2) {
-        return new int[]{adapt(bitmap.getPixel(bitmap.getWidth() / 2, (int) (bitmap.getHeight() * 0.1f)), z2), adapt(bitmap.getPixel(bitmap.getWidth() / 2, (int) (bitmap.getHeight() * 0.9f)), z2)};
+    public static int[] getColorsSync(Bitmap bitmap, boolean z) {
+        return new int[]{adapt(bitmap.getPixel(bitmap.getWidth() / 2, (int) (bitmap.getHeight() * 0.1f)), z), adapt(bitmap.getPixel(bitmap.getWidth() / 2, (int) (bitmap.getHeight() * 0.9f)), z)};
     }
 }

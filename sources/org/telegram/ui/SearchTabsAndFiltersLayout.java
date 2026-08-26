@@ -1,6 +1,6 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.widget.FrameLayout;
@@ -8,32 +8,33 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 
-public class SearchTabsAndFiltersLayout extends FrameLayout implements Theme.Colorable {
-    private BlurredBackgroundDrawable blurredBackgroundDrawable;
-    private final Path clipPath;
+public final class SearchTabsAndFiltersLayout extends FrameLayout implements Theme.Colorable {
+    public BlurredBackgroundDrawable blurredBackgroundDrawable;
+    public final Path clipPath;
 
-    public int[] getColorKeys() {
-        return Theme.Colorable.CC.$default$getColorKeys(this);
-    }
-
-    public SearchTabsAndFiltersLayout(Context context) {
-        super(context);
+    public SearchTabsAndFiltersLayout(Activity activity) {
+        super(activity);
         this.clipPath = new Path();
     }
 
     @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        this.clipPath.rewind();
-        this.clipPath.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i - AndroidUtilities.dp(9.0f), i2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         canvas.save();
         canvas.clipPath(this.clipPath);
         super.dispatchDraw(canvas);
         canvas.restore();
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        super.onSizeChanged(i, i2, i3, i4);
+        Path path = this.clipPath;
+        path.rewind();
+        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i - AndroidUtilities.dp(9.0f), i2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
     }
 
     public void setBlurredBackground(BlurredBackgroundDrawable blurredBackgroundDrawable) {
@@ -42,7 +43,7 @@ public class SearchTabsAndFiltersLayout extends FrameLayout implements Theme.Col
     }
 
     @Override
-    public void updateColors() {
+    public final void updateColors$1() {
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
         if (blurredBackgroundDrawable != null) {
             blurredBackgroundDrawable.updateColors();

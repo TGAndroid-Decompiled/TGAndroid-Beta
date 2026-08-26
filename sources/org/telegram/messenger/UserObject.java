@@ -11,296 +11,6 @@ public class UserObject {
     public static final long REPLY_BOT = 1271266957;
     public static final long VERIFY = 489000;
 
-    public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC.User user) {
-        return null;
-    }
-
-    public static boolean isReplyUser(long j) {
-        return j == 708513 || j == 1271266957;
-    }
-
-    public static boolean isService(long j) {
-        return j == 333000 || j == 777000 || j == 42777;
-    }
-
-    public static boolean isDeleted(TLRPC.User user) {
-        return user == null || (user instanceof TLRPC.TL_userDeleted_old2) || (user instanceof TLRPC.TL_userEmpty) || user.deleted;
-    }
-
-    public static boolean isContact(TLRPC.User user) {
-        if (user != null) {
-            return (user instanceof TLRPC.TL_userContact_old2) || user.contact || user.mutual_contact;
-        }
-        return false;
-    }
-
-    public static boolean isUserSelf(TLRPC.User user) {
-        if (user != null) {
-            return (user instanceof TLRPC.TL_userSelf_old3) || user.self;
-        }
-        return false;
-    }
-
-    public static boolean isReplyUser(TLRPC.User user) {
-        if (user == null) {
-            return false;
-        }
-        long j = user.id;
-        return j == 708513 || j == 1271266957;
-    }
-
-    public static boolean isAnonymous(TLRPC.User user) {
-        return user != null && user.id == 2666000;
-    }
-
-    public static boolean isBot(TLRPC.User user) {
-        return user != null && user.bot;
-    }
-
-    public static String getUserName(TLRPC.User user) {
-        if (user == null || isDeleted(user)) {
-            return LocaleController.getString(R.string.HiddenName);
-        }
-        String strRemoveRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
-        if (strRemoveRTL.length() != 0 || TextUtils.isEmpty(user.phone)) {
-            return strRemoveRTL;
-        }
-        return PhoneFormat.getInstance().format("+" + user.phone);
-    }
-
-    public static String getPublicUsername(TLRPC.User user, boolean z) {
-        if (user == null) {
-            return null;
-        }
-        if (!TextUtils.isEmpty(user.username)) {
-            return user.username;
-        }
-        if (user.usernames != null) {
-            for (int i = 0; i < user.usernames.size(); i++) {
-                TLRPC.TL_username tL_username = user.usernames.get(i);
-                if (tL_username != null && (((tL_username.active && !z) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
-                    return tL_username.username;
-                }
-            }
-        }
-        return null;
-    }
-
-    public static String getPublicUsername(TLRPC.User user) {
-        return getPublicUsername(user, false);
-    }
-
-    public static boolean hasPublicUsername(TLRPC.User user, String str) {
-        if (user != null && str != null) {
-            if (str.equalsIgnoreCase(user.username)) {
-                return true;
-            }
-            if (user.usernames != null) {
-                for (int i = 0; i < user.usernames.size(); i++) {
-                    TLRPC.TL_username tL_username = user.usernames.get(i);
-                    if (tL_username != null && tL_username.active && str.equalsIgnoreCase(tL_username.username)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    public static String getFirstName(TLRPC.User user) {
-        return getFirstName(user, true);
-    }
-
-    public static String getFirstName(TLRPC.User user, boolean z) {
-        if (user == null || isDeleted(user)) {
-            return "DELETED";
-        }
-        String str = user.first_name;
-        if (TextUtils.isEmpty(str)) {
-            str = user.last_name;
-        } else if (!z && str.length() <= 2) {
-            return ContactsController.formatName(user.first_name, user.last_name);
-        }
-        return !TextUtils.isEmpty(str) ? str : LocaleController.getString(R.string.HiddenName);
-    }
-
-    public static String getForcedFirstName(TLRPC.User user) {
-        if (user == null || isDeleted(user)) {
-            return LocaleController.getString(R.string.HiddenName);
-        }
-        String str = user.first_name;
-        if (TextUtils.isEmpty(str)) {
-            str = user.last_name;
-        }
-        if (str == null) {
-            return LocaleController.getString(R.string.HiddenName);
-        }
-        int iIndexOf = str.indexOf(" ", 2);
-        return iIndexOf >= 0 ? str.substring(0, iIndexOf) : str;
-    }
-
-    public static boolean hasPhoto(TLRPC.User user) {
-        TLRPC.UserProfilePhoto userProfilePhoto;
-        return (user == null || (userProfilePhoto = user.photo) == null || (userProfilePhoto instanceof TLRPC.TL_userProfilePhotoEmpty)) ? false : true;
-    }
-
-    public static TLRPC.UserProfilePhoto getPhoto(TLRPC.User user) {
-        if (hasPhoto(user)) {
-            return user.photo;
-        }
-        return null;
-    }
-
-    public static boolean hasFallbackPhoto(TLRPC.UserFull userFull) {
-        TLRPC.Photo photo;
-        return (userFull == null || (photo = userFull.fallback_photo) == null || (photo instanceof TLRPC.TL_photoEmpty)) ? false : true;
-    }
-
-    public static Long getEmojiStatusDocumentId(TLRPC.User user) {
-        if (user == null) {
-            return null;
-        }
-        return getEmojiStatusDocumentId(user.emoji_status);
-    }
-
-    public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
-        if (emojiStatus == null) {
-            return null;
-        }
-        if (emojiStatus instanceof TLRPC.TL_emojiStatus) {
-            TLRPC.TL_emojiStatus tL_emojiStatus = (TLRPC.TL_emojiStatus) emojiStatus;
-            if ((tL_emojiStatus.flags & 1) == 0 || tL_emojiStatus.until > ((int) (System.currentTimeMillis() / 1000))) {
-                return Long.valueOf(tL_emojiStatus.document_id);
-            }
-            return null;
-        }
-        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
-            return null;
-        }
-        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-        if ((tL_emojiStatusCollectible.flags & 1) == 0 || tL_emojiStatusCollectible.until > ((int) (System.currentTimeMillis() / 1000))) {
-            return Long.valueOf(tL_emojiStatusCollectible.document_id);
-        }
-        return null;
-    }
-
-    public static int getColorId(TLRPC.User user) {
-        if (user == null) {
-            return 0;
-        }
-        TLRPC.PeerColor peerColor = user.color;
-        return (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 1) == 0) ? (int) (user.id % 7) : peerColor.color;
-    }
-
-    public static long getEmojiId(TLRPC.User user) {
-        if (user == null) {
-            return 0L;
-        }
-        TLRPC.PeerColor peerColor = user.color;
-        if (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 2) == 0) {
-            return 0L;
-        }
-        return peerColor.background_emoji_id;
-    }
-
-    public static int getProfileColorId(TLRPC.User user) {
-        if (user == null) {
-            return 0;
-        }
-        TLRPC.PeerColor peerColor = user.profile_color;
-        if (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 1) == 0) {
-            return -1;
-        }
-        return peerColor.color;
-    }
-
-    public static long getProfileEmojiId(TLRPC.User user) {
-        TLRPC.PeerColor peerColor;
-        if (user != null) {
-            TLRPC.EmojiStatus emojiStatus = user.emoji_status;
-            if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
-                return ((TLRPC.TL_emojiStatusCollectible) emojiStatus).pattern_document_id;
-            }
-        }
-        if (user == null || (peerColor = user.profile_color) == null || (peerColor.flags & 2) == 0) {
-            return 0L;
-        }
-        return peerColor.background_emoji_id;
-    }
-
-    public static long getOnlyProfileEmojiId(TLRPC.User user) {
-        if (user == null) {
-            return 0L;
-        }
-        TLRPC.PeerColor peerColor = user.profile_color;
-        if (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 2) == 0) {
-            return 0L;
-        }
-        return peerColor.background_emoji_id;
-    }
-
-    public static long getProfileCollectibleId(TLRPC.User user) {
-        if (user == null) {
-            return 0L;
-        }
-        TLRPC.EmojiStatus emojiStatus = user.emoji_status;
-        if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
-            return ((TLRPC.TL_emojiStatusCollectible) emojiStatus).collectible_id;
-        }
-        return 0L;
-    }
-
-    public static TL_account.RequirementToContact getRequirementToContact(TLRPC.User user) {
-        if (user == null) {
-            return null;
-        }
-        if (user.send_paid_messages_stars != 0) {
-            TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = new TL_account.requirementToContactPaidMessages();
-            requirementtocontactpaidmessages.stars_amount = user.send_paid_messages_stars;
-            return requirementtocontactpaidmessages;
-        }
-        if (user.contact_require_premium) {
-            return new TL_account.requirementToContactPremium();
-        }
-        return null;
-    }
-
-    public static TL_account.RequirementToContact getRequirementToContact(TLRPC.UserFull userFull) {
-        if (userFull == null) {
-            return null;
-        }
-        if (userFull.send_paid_messages_stars != 0) {
-            TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = new TL_account.requirementToContactPaidMessages();
-            requirementtocontactpaidmessages.stars_amount = userFull.send_paid_messages_stars;
-            return requirementtocontactpaidmessages;
-        }
-        if (userFull.contact_require_premium) {
-            return new TL_account.requirementToContactPremium();
-        }
-        return null;
-    }
-
-    public static boolean eq(TL_account.RequirementToContact requirementToContact, TL_account.RequirementToContact requirementToContact2) {
-        if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
-            requirementToContact = null;
-        }
-        if (requirementToContact2 instanceof TL_account.requirementToContactEmpty) {
-            requirementToContact2 = null;
-        }
-        if (requirementToContact == null && requirementToContact2 == null) {
-            return true;
-        }
-        if (requirementToContact != null && requirementToContact2 != null) {
-            if ((requirementToContact instanceof TL_account.requirementToContactPremium) && (requirementToContact2 instanceof TL_account.requirementToContactPremium)) {
-                return true;
-            }
-            if ((requirementToContact instanceof TL_account.requirementToContactPaidMessages) && (requirementToContact2 instanceof TL_account.requirementToContactPaidMessages) && ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount == ((TL_account.requirementToContactPaidMessages) requirementToContact2).stars_amount) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static boolean applyRequirementToContact(TLRPC.User user, TL_account.RequirementToContact requirementToContact) {
         if (user == null) {
             return false;
@@ -334,6 +44,321 @@ public class UserObject {
         return true;
     }
 
+    public static boolean areGiftsDisabled(long j) {
+        return areGiftsDisabled(MessagesController.getInstance(UserConfig.selectedAccount).getUserFull(j));
+    }
+
+    public static boolean eq(TL_account.RequirementToContact requirementToContact, TL_account.RequirementToContact requirementToContact2) {
+        if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
+            requirementToContact = null;
+        }
+        if (requirementToContact2 instanceof TL_account.requirementToContactEmpty) {
+            requirementToContact2 = null;
+        }
+        if (requirementToContact == null && requirementToContact2 == null) {
+            return true;
+        }
+        if (requirementToContact != null && requirementToContact2 != null) {
+            if ((requirementToContact instanceof TL_account.requirementToContactPremium) && (requirementToContact2 instanceof TL_account.requirementToContactPremium)) {
+                return true;
+            }
+            if ((requirementToContact instanceof TL_account.requirementToContactPaidMessages) && (requirementToContact2 instanceof TL_account.requirementToContactPaidMessages) && ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount == ((TL_account.requirementToContactPaidMessages) requirementToContact2).stars_amount) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int getColorId(TLRPC.User user) {
+        if (user == null) {
+            return 0;
+        }
+        TLRPC.PeerColor peerColor = user.color;
+        return (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 1) == 0) ? (int) (user.id % 7) : peerColor.color;
+    }
+
+    public static long getEmojiId(TLRPC.User user) {
+        if (user == null) {
+            return 0L;
+        }
+        TLRPC.PeerColor peerColor = user.color;
+        if (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 2) == 0) {
+            return 0L;
+        }
+        return peerColor.background_emoji_id;
+    }
+
+    public static Long getEmojiStatusDocumentId(TLRPC.User user) {
+        if (user == null) {
+            return null;
+        }
+        return getEmojiStatusDocumentId(user.emoji_status);
+    }
+
+    public static String getFirstName(TLRPC.User user) {
+        return getFirstName(user, true);
+    }
+
+    public static String getForcedFirstName(TLRPC.User user) {
+        if (user == null || isDeleted(user)) {
+            return LocaleController.getString(R.string.HiddenName);
+        }
+        String str = user.first_name;
+        if (TextUtils.isEmpty(str)) {
+            str = user.last_name;
+        }
+        if (str == null) {
+            return LocaleController.getString(R.string.HiddenName);
+        }
+        int iIndexOf = str.indexOf(" ", 2);
+        return iIndexOf >= 0 ? str.substring(0, iIndexOf) : str;
+    }
+
+    public static long getOnlyProfileEmojiId(TLRPC.User user) {
+        if (user == null) {
+            return 0L;
+        }
+        TLRPC.PeerColor peerColor = user.profile_color;
+        if (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 2) == 0) {
+            return 0L;
+        }
+        return peerColor.background_emoji_id;
+    }
+
+    public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC.User user) {
+        return null;
+    }
+
+    public static TLRPC.UserProfilePhoto getPhoto(TLRPC.User user) {
+        if (hasPhoto(user)) {
+            return user.photo;
+        }
+        return null;
+    }
+
+    public static long getProfileCollectibleId(TLRPC.User user) {
+        if (user == null) {
+            return 0L;
+        }
+        TLRPC.EmojiStatus emojiStatus = user.emoji_status;
+        if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
+            return ((TLRPC.TL_emojiStatusCollectible) emojiStatus).collectible_id;
+        }
+        return 0L;
+    }
+
+    public static int getProfileColorId(TLRPC.User user) {
+        if (user == null) {
+            return 0;
+        }
+        TLRPC.PeerColor peerColor = user.profile_color;
+        if (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 1) == 0) {
+            return -1;
+        }
+        return peerColor.color;
+    }
+
+    public static long getProfileEmojiId(TLRPC.User user) {
+        TLRPC.PeerColor peerColor;
+        if (user != null) {
+            TLRPC.EmojiStatus emojiStatus = user.emoji_status;
+            if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
+                return ((TLRPC.TL_emojiStatusCollectible) emojiStatus).pattern_document_id;
+            }
+        }
+        if (user == null || (peerColor = user.profile_color) == null || (peerColor.flags & 2) == 0) {
+            return 0L;
+        }
+        return peerColor.background_emoji_id;
+    }
+
+    public static String getPublicUsername(TLRPC.User user, boolean z) {
+        if (user == null) {
+            return null;
+        }
+        if (!TextUtils.isEmpty(user.username)) {
+            return user.username;
+        }
+        if (user.usernames != null) {
+            for (int i = 0; i < user.usernames.size(); i++) {
+                TLRPC.TL_username tL_username = user.usernames.get(i);
+                if (tL_username != null && (((tL_username.active && !z) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
+                    return tL_username.username;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static TL_account.RequirementToContact getRequirementToContact(TLRPC.User user) {
+        if (user == null) {
+            return null;
+        }
+        if (user.send_paid_messages_stars != 0) {
+            TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = new TL_account.requirementToContactPaidMessages();
+            requirementtocontactpaidmessages.stars_amount = user.send_paid_messages_stars;
+            return requirementtocontactpaidmessages;
+        }
+        if (user.contact_require_premium) {
+            return new TL_account.requirementToContactPremium();
+        }
+        return null;
+    }
+
+    public static String getUserName(TLRPC.User user) {
+        if (user == null || isDeleted(user)) {
+            return LocaleController.getString(R.string.HiddenName);
+        }
+        String strRemoveRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
+        if (strRemoveRTL.length() != 0 || TextUtils.isEmpty(user.phone)) {
+            return strRemoveRTL;
+        }
+        return UserObject$$ExternalSyntheticOutline0.m(new StringBuilder("+"), user.phone, PhoneFormat.getInstance());
+    }
+
+    public static boolean hasFallbackPhoto(TLRPC.UserFull userFull) {
+        TLRPC.Photo photo;
+        return (userFull == null || (photo = userFull.fallback_photo) == null || (photo instanceof TLRPC.TL_photoEmpty)) ? false : true;
+    }
+
+    public static boolean hasPhoto(TLRPC.User user) {
+        TLRPC.UserProfilePhoto userProfilePhoto;
+        return (user == null || (userProfilePhoto = user.photo) == null || (userProfilePhoto instanceof TLRPC.TL_userProfilePhotoEmpty)) ? false : true;
+    }
+
+    public static boolean hasPublicUsername(TLRPC.User user, String str) {
+        if (user != null && str != null) {
+            if (str.equalsIgnoreCase(user.username)) {
+                return true;
+            }
+            if (user.usernames != null) {
+                for (int i = 0; i < user.usernames.size(); i++) {
+                    TLRPC.TL_username tL_username = user.usernames.get(i);
+                    if (tL_username != null && tL_username.active && str.equalsIgnoreCase(tL_username.username)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean isAnonymous(TLRPC.User user) {
+        return user != null && user.id == 2666000;
+    }
+
+    public static boolean isBot(TLRPC.User user) {
+        return user != null && user.bot;
+    }
+
+    public static boolean isBotForum(int i, long j) {
+        return isBotForum(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+    }
+
+    public static boolean isBotForumWithEditableTopics(int i, long j) {
+        return isBotForumWithEditableTopics(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+    }
+
+    public static boolean isContact(TLRPC.User user) {
+        if (user != null) {
+            return (user instanceof TLRPC.TL_userContact_old2) || user.contact || user.mutual_contact;
+        }
+        return false;
+    }
+
+    public static boolean isDeleted(TLRPC.User user) {
+        return user == null || (user instanceof TLRPC.TL_userDeleted_old2) || (user instanceof TLRPC.TL_userEmpty) || user.deleted;
+    }
+
+    public static boolean isReplyUser(long j) {
+        return j == 708513 || j == 1271266957;
+    }
+
+    public static boolean isService(long j) {
+        return j == 333000 || j == 777000 || j == 42777;
+    }
+
+    public static boolean isUserSelf(TLRPC.User user) {
+        if (user != null) {
+            return (user instanceof TLRPC.TL_userSelf_old3) || user.self;
+        }
+        return false;
+    }
+
+    public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
+        return (userFull == null || userFull.id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+    }
+
+    public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
+        if (emojiStatus == null) {
+            return null;
+        }
+        if (emojiStatus instanceof TLRPC.TL_emojiStatus) {
+            TLRPC.TL_emojiStatus tL_emojiStatus = (TLRPC.TL_emojiStatus) emojiStatus;
+            if ((tL_emojiStatus.flags & 1) == 0 || tL_emojiStatus.until > ((int) (System.currentTimeMillis() / 1000))) {
+                return Long.valueOf(tL_emojiStatus.document_id);
+            }
+            return null;
+        }
+        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
+            return null;
+        }
+        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
+        if ((tL_emojiStatusCollectible.flags & 1) == 0 || tL_emojiStatusCollectible.until > ((int) (System.currentTimeMillis() / 1000))) {
+            return Long.valueOf(tL_emojiStatusCollectible.document_id);
+        }
+        return null;
+    }
+
+    public static String getFirstName(TLRPC.User user, boolean z) {
+        if (user == null || isDeleted(user)) {
+            return "DELETED";
+        }
+        String str = user.first_name;
+        if (TextUtils.isEmpty(str)) {
+            str = user.last_name;
+        } else if (!z && str.length() <= 2) {
+            return ContactsController.formatName(user.first_name, user.last_name);
+        }
+        return !TextUtils.isEmpty(str) ? str : LocaleController.getString(R.string.HiddenName);
+    }
+
+    public static boolean isReplyUser(TLRPC.User user) {
+        if (user == null) {
+            return false;
+        }
+        long j = user.id;
+        return j == 708513 || j == 1271266957;
+    }
+
+    public static boolean isBotForum(TLRPC.User user) {
+        return user != null && user.bot_forum_view;
+    }
+
+    public static boolean isBotForumWithEditableTopics(TLRPC.User user) {
+        return user != null && user.bot_forum_view && user.bot_forum_can_manage_topics;
+    }
+
+    public static TL_account.RequirementToContact getRequirementToContact(TLRPC.UserFull userFull) {
+        if (userFull == null) {
+            return null;
+        }
+        if (userFull.send_paid_messages_stars != 0) {
+            TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = new TL_account.requirementToContactPaidMessages();
+            requirementtocontactpaidmessages.stars_amount = userFull.send_paid_messages_stars;
+            return requirementtocontactpaidmessages;
+        }
+        if (userFull.contact_require_premium) {
+            return new TL_account.requirementToContactPremium();
+        }
+        return null;
+    }
+
+    public static String getPublicUsername(TLRPC.User user) {
+        return getPublicUsername(user, false);
+    }
+
     public static boolean applyRequirementToContact(TLRPC.UserFull userFull, TL_account.RequirementToContact requirementToContact) {
         if (userFull == null) {
             return false;
@@ -365,30 +390,5 @@ public class UserObject {
             userFull.send_paid_messages_stars = j;
         }
         return true;
-    }
-
-    public static boolean areGiftsDisabled(long j) {
-        return areGiftsDisabled(MessagesController.getInstance(UserConfig.selectedAccount).getUserFull(j));
-    }
-
-    public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        return (userFull == null || userFull.id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
-    }
-
-    public static boolean isBotForum(int i, long j) {
-        return isBotForum(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
-    }
-
-    public static boolean isBotForum(TLRPC.User user) {
-        return user != null && user.bot_forum_view;
-    }
-
-    public static boolean isBotForumWithEditableTopics(int i, long j) {
-        return isBotForumWithEditableTopics(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
-    }
-
-    public static boolean isBotForumWithEditableTopics(TLRPC.User user) {
-        return user != null && user.bot_forum_view && user.bot_forum_can_manage_topics;
     }
 }

@@ -1,46 +1,20 @@
 package kotlin.ranges;
 
-import kotlin.collections.CharIterator;
+import java.util.Iterator;
 import kotlin.internal.ProgressionUtilKt;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 
 public abstract class CharProgression implements Iterable {
-    public static final Companion Companion = new Companion(null);
-    private final char first;
-    private final char last;
-    private final int step;
+    public final char first;
+    public final char last;
+    public final int step = 1;
 
-    public CharProgression(char c, char c2, int i) {
-        if (i == 0) {
-            throw new IllegalArgumentException("Step must be non-zero.");
-        }
-        if (i == Integer.MIN_VALUE) {
-            throw new IllegalArgumentException("Step must be greater than Int.MIN_VALUE to avoid overflow on negation.");
-        }
+    public CharProgression(char c, char c2) {
         this.first = c;
-        this.last = (char) ProgressionUtilKt.getProgressionLastElement(c, c2, i);
-        this.step = i;
-    }
-
-    public final char getFirst() {
-        return this.first;
-    }
-
-    public final char getLast() {
-        return this.last;
+        this.last = (char) ProgressionUtilKt.getProgressionLastElement(c, c2, 1);
     }
 
     @Override
-    public CharIterator iterator() {
+    public final Iterator iterator() {
         return new CharProgressionIterator(this.first, this.last, this.step);
-    }
-
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
     }
 }

@@ -32,12 +32,13 @@ public class OverUnderBox extends Box {
         this.base.draw(graphics2D, f, f2);
         float width = (f2 - this.base.height) - this.del.getWidth();
         Box box = this.del;
-        box.setDepth(box.getHeight() + this.del.getDepth());
+        box.setDepth(this.del.getDepth() + box.getHeight());
         this.del.setHeight(0.0f);
         if (this.over) {
             Box box2 = this.del;
+            double d = ((double) (box2.height + box2.depth)) * 0.75d;
             AffineTransform transform = graphics2D.getTransform();
-            graphics2D.translate(((double) f) + (((double) (box2.height + box2.depth)) * 0.75d), width);
+            graphics2D.translate(d + ((double) f), width);
             graphics2D.rotate(1.5707963267948966d);
             this.del.draw(graphics2D, 0.0f, 0.0f);
             graphics2D.setTransform(transform);
@@ -50,12 +51,13 @@ public class OverUnderBox extends Box {
         if (this.over) {
             return;
         }
+        double height = ((double) (this.del.getHeight() + this.del.depth)) * 0.75d;
         AffineTransform transform2 = graphics2D.getTransform();
-        graphics2D.translate(((double) f) + (((double) (this.del.getHeight() + this.del.depth)) * 0.75d), f3);
+        graphics2D.translate(height + ((double) f), f3);
         graphics2D.rotate(1.5707963267948966d);
         this.del.draw(graphics2D, 0.0f, 0.0f);
         graphics2D.setTransform(transform2);
-        float width2 = f3 + this.del.getWidth();
+        float width2 = this.del.getWidth() + f3;
         Box box4 = this.script;
         if (box4 != null) {
             box4.draw(graphics2D, f, width2 + this.kern + box4.height);

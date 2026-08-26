@@ -22,15 +22,119 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.poll.PollAttachedMedia;
 
-public class PollAttachedMediaFile extends PollAttachedMedia {
+public final class PollAttachedMediaFile extends PollAttachedMedia {
     public final String ext;
     public final String name;
     public final String path;
     public final long size;
-    private final StaticLayout staticLayout;
-    private final Drawable thumb;
-    private final TextPaint tp;
+    public final StaticLayout staticLayout;
+    public final Drawable thumb;
     public final Uri uri;
+
+    public final class FileInfoDrawable extends Drawable {
+        public RadialProgress2 radialProgress;
+        public StaticLayout subtitleLayout;
+        public final TextPaint subtitlePaint;
+        public StaticLayout titleLayout;
+        public final TextPaint titlePaint;
+        public String title = "";
+        public String subtitle = "";
+        public int lastLayoutWidth = -1;
+        public final int paddingStart = AndroidUtilities.dp(64.0f);
+        public final int paddingTop = AndroidUtilities.dp(10.66f);
+        public final int paddingEnd = AndroidUtilities.dp(12.0f);
+        public final int lineSpacing = AndroidUtilities.dp(4.0f);
+
+        public FileInfoDrawable() {
+            TextPaint textPaint = new TextPaint(1);
+            this.titlePaint = textPaint;
+            textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+            textPaint.setTypeface(AndroidUtilities.bold());
+            TextPaint textPaint2 = new TextPaint(1);
+            this.subtitlePaint = textPaint2;
+            textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
+        }
+
+        @Override
+        public final void draw(Canvas canvas) {
+            int iWidth = getBounds().width();
+            int i = this.paddingStart;
+            if (iWidth > 0 && (iWidth != this.lastLayoutWidth || this.titleLayout == null || this.subtitleLayout == null)) {
+                this.lastLayoutWidth = iWidth;
+                int i2 = (iWidth - i) - this.paddingEnd;
+                if (i2 <= 0) {
+                    this.titleLayout = null;
+                    this.subtitleLayout = null;
+                } else {
+                    String str = this.title;
+                    TextPaint textPaint = this.titlePaint;
+                    float f = i2;
+                    CharSequence charSequenceEllipsize = TextUtils.ellipsize(str, textPaint, f, TextUtils.TruncateAt.MIDDLE);
+                    String str2 = this.subtitle;
+                    TextPaint textPaint2 = this.subtitlePaint;
+                    CharSequence charSequenceEllipsize2 = TextUtils.ellipsize(str2, textPaint2, f, TextUtils.TruncateAt.END);
+                    Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+                    this.titleLayout = new StaticLayout(charSequenceEllipsize, textPaint, i2, alignment, 1.0f, 0.0f, false);
+                    this.subtitleLayout = new StaticLayout(charSequenceEllipsize2, textPaint2, i2, alignment, 1.0f, 0.0f, false);
+                }
+            }
+            if (this.titleLayout == null || this.subtitleLayout == null) {
+                return;
+            }
+            Rect bounds = getBounds();
+            float f2 = bounds.left + i;
+            float f3 = bounds.top + this.paddingTop;
+            float height = this.titleLayout.getHeight() + f3 + this.lineSpacing;
+            this.radialProgress.setProgressRect(AndroidUtilities.dp(10.0f) + bounds.left, AndroidUtilities.dp(9.0f) + bounds.top, AndroidUtilities.dp(42.0f) + AndroidUtilities.dp(10.0f) + bounds.left, AndroidUtilities.dp(42.0f) + AndroidUtilities.dp(9.0f) + bounds.top);
+            canvas.save();
+            canvas.translate(f2, f3);
+            this.titleLayout.draw(canvas);
+            canvas.restore();
+            canvas.save();
+            canvas.translate(f2, height);
+            this.subtitleLayout.draw(canvas);
+            canvas.restore();
+            this.radialProgress.draw(canvas);
+        }
+
+        @Override
+        public final int getIntrinsicHeight() {
+            Paint.FontMetricsInt fontMetricsInt = this.titlePaint.getFontMetricsInt();
+            int i = fontMetricsInt.descent - fontMetricsInt.ascent;
+            int i2 = this.paddingTop;
+            int i3 = i + i2 + this.lineSpacing;
+            Paint.FontMetricsInt fontMetricsInt2 = this.subtitlePaint.getFontMetricsInt();
+            return (fontMetricsInt2.descent - fontMetricsInt2.ascent) + i3 + i2;
+        }
+
+        @Override
+        public final int getOpacity() {
+            return -3;
+        }
+
+        @Override
+        public final void onBoundsChange(Rect rect) {
+            super.onBoundsChange(rect);
+            this.lastLayoutWidth = -1;
+            this.titleLayout = null;
+            this.subtitleLayout = null;
+        }
+
+        @Override
+        public final void setAlpha(int i) {
+            this.radialProgress.overrideAlpha = i / 255.0f;
+            this.titlePaint.setAlpha(i);
+            this.subtitlePaint.setAlpha(i);
+            invalidateSelf();
+        }
+
+        @Override
+        public final void setColorFilter(ColorFilter colorFilter) {
+            this.titlePaint.setColorFilter(colorFilter);
+            this.subtitlePaint.setColorFilter(colorFilter);
+            invalidateSelf();
+        }
+    }
 
     public PollAttachedMediaFile(String str) {
         long length;
@@ -54,17 +158,86 @@ public class PollAttachedMediaFile extends PollAttachedMedia {
         } else {
             this.thumb = null;
         }
-        if (!TextUtils.isEmpty(str2)) {
-            TextPaint textPaint = new TextPaint(1);
-            this.tp = textPaint;
-            textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-            textPaint.setTypeface(AndroidUtilities.bold());
-            textPaint.setColor(Theme.getColor(Theme.key_files_iconText));
-            this.staticLayout = new StaticLayout(TextUtils.ellipsize(str2, textPaint, AndroidUtilities.dp(34.0f), TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        if (TextUtils.isEmpty(str2)) {
+            this.staticLayout = null;
             return;
         }
-        this.tp = null;
-        this.staticLayout = null;
+        TextPaint textPaint = new TextPaint(1);
+        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint.setColor(Theme.getColor(null, Theme.key_files_iconText, false));
+        this.staticLayout = new StaticLayout(TextUtils.ellipsize(str2, textPaint, AndroidUtilities.dp(34.0f), TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+    }
+
+    public static FileInfoDrawable createMessagePreviewDrawable(View view, String str, String str2, TLRPC.Document document, MessageObject messageObject) {
+        final FileInfoDrawable fileInfoDrawable = new FileInfoDrawable();
+        fileInfoDrawable.titlePaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+        fileInfoDrawable.subtitlePaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false));
+        RadialProgress2 radialProgress2 = new RadialProgress2(null, view);
+        fileInfoDrawable.radialProgress = radialProgress2;
+        radialProgress2.setCircleRadius(AndroidUtilities.dp(21.0f));
+        RadialProgress2 radialProgress3 = fileInfoDrawable.radialProgress;
+        int i = Theme.key_chat_inLoader;
+        int i2 = Theme.key_chat_inLoaderSelected;
+        int i3 = Theme.key_chat_inMediaIcon;
+        int i4 = Theme.key_chat_inMediaIconSelected;
+        radialProgress3.circleColorKey = i;
+        radialProgress3.circlePressedColorKey = i2;
+        radialProgress3.iconColorKey = i3;
+        radialProgress3.iconPressedColorKey = i4;
+        if (MessageObject.isMusicDocument(document)) {
+            if (MessageObject.isDocumentHasThumb(document)) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(22.0f), true, null, false);
+                fileInfoDrawable.radialProgress.setImageOverlay(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(44.0f), true, closestPhotoSizeWithSize, true), closestPhotoSizeWithSize, document, messageObject);
+            } else {
+                String artworkUrl = MessageObject.getArtworkUrl(document, true);
+                if (TextUtils.isEmpty(artworkUrl)) {
+                    fileInfoDrawable.radialProgress.setImageOverlay(null, null, null);
+                } else {
+                    fileInfoDrawable.radialProgress.setImageOverlay(artworkUrl);
+                }
+            }
+            fileInfoDrawable.radialProgress.setIcon(0, false, false);
+        } else {
+            fileInfoDrawable.radialProgress.setIcon(5, false, false);
+        }
+        if (str == null) {
+            str = "";
+        }
+        fileInfoDrawable.title = str;
+        if (str2 == null) {
+            str2 = "";
+        }
+        fileInfoDrawable.subtitle = str2;
+        fileInfoDrawable.lastLayoutWidth = -1;
+        fileInfoDrawable.titleLayout = null;
+        fileInfoDrawable.subtitleLayout = null;
+        fileInfoDrawable.invalidateSelf();
+        view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public final void onViewAttachedToWindow(View view2) {
+                fileInfoDrawable.radialProgress.overlayImageView.onAttachedToWindow();
+            }
+
+            @Override
+            public final void onViewDetachedFromWindow(View view2) {
+                fileInfoDrawable.radialProgress.overlayImageView.onDetachedFromWindow();
+            }
+        });
+        return fileInfoDrawable;
+    }
+
+    @Override
+    public final void draw(Canvas canvas, int i, int i2) {
+        Drawable drawable = this.thumb;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, i, i2);
+            drawable.draw(canvas);
+            canvas.save();
+            canvas.translate((i - AndroidUtilities.dp(34.0f)) / 2.0f, AndroidUtilities.dp(15.0f));
+            this.staticLayout.draw(canvas);
+            canvas.restore();
+        }
     }
 
     public PollAttachedMediaFile(Uri uri) {
@@ -85,189 +258,12 @@ public class PollAttachedMediaFile extends PollAttachedMedia {
         }
         if (!TextUtils.isEmpty(str)) {
             TextPaint textPaint = new TextPaint(1);
-            this.tp = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(13.0f));
             textPaint.setTypeface(AndroidUtilities.bold());
-            textPaint.setColor(Theme.getColor(Theme.key_files_iconText));
+            textPaint.setColor(Theme.getColor(null, Theme.key_files_iconText, false));
             this.staticLayout = new StaticLayout(TextUtils.ellipsize(str, textPaint, AndroidUtilities.dp(34.0f), TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             return;
         }
-        this.tp = null;
         this.staticLayout = null;
-    }
-
-    @Override
-    protected void draw(Canvas canvas, int i, int i2) {
-        Drawable drawable = this.thumb;
-        if (drawable != null) {
-            drawable.setBounds(0, 0, i, i2);
-            this.thumb.draw(canvas);
-            canvas.save();
-            canvas.translate((i - AndroidUtilities.dp(34.0f)) / 2.0f, AndroidUtilities.dp(15.0f));
-            this.staticLayout.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    public static Drawable createMessagePreviewDrawable(View view, String str, String str2, TLRPC.Document document, MessageObject messageObject) {
-        final FileInfoDrawable fileInfoDrawable = new FileInfoDrawable();
-        fileInfoDrawable.titlePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        fileInfoDrawable.subtitlePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
-        RadialProgress2 radialProgress2 = new RadialProgress2(view);
-        fileInfoDrawable.radialProgress = radialProgress2;
-        radialProgress2.setCircleRadius(AndroidUtilities.dp(21.0f));
-        fileInfoDrawable.radialProgress.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
-        if (MessageObject.isMusicDocument(document)) {
-            if (MessageObject.isDocumentHasThumb(document)) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(22.0f), true, null, false);
-                fileInfoDrawable.radialProgress.setImageOverlay(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(44.0f), true, closestPhotoSizeWithSize, true), closestPhotoSizeWithSize, document, messageObject);
-            } else {
-                String artworkUrl = MessageObject.getArtworkUrl(document, true);
-                if (!TextUtils.isEmpty(artworkUrl)) {
-                    fileInfoDrawable.radialProgress.setImageOverlay(artworkUrl);
-                } else {
-                    fileInfoDrawable.radialProgress.setImageOverlay(null, null, null);
-                }
-            }
-            fileInfoDrawable.radialProgress.setIcon(0, false, false);
-        } else {
-            fileInfoDrawable.radialProgress.setIcon(5, false, false);
-        }
-        fileInfoDrawable.setText(str, str2);
-        view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-            @Override
-            public void onViewAttachedToWindow(View view2) {
-                fileInfoDrawable.radialProgress.onAttachedToWindow();
-            }
-
-            @Override
-            public void onViewDetachedFromWindow(View view2) {
-                fileInfoDrawable.radialProgress.onDetachedFromWindow();
-            }
-        });
-        return fileInfoDrawable;
-    }
-
-    public static class FileInfoDrawable extends Drawable {
-        public RadialProgress2 radialProgress;
-        private StaticLayout subtitleLayout;
-        private final TextPaint subtitlePaint;
-        private StaticLayout titleLayout;
-        private final TextPaint titlePaint;
-        private CharSequence title = "";
-        private CharSequence subtitle = "";
-        private int lastLayoutWidth = -1;
-        private final int paddingStart = AndroidUtilities.dp(64.0f);
-        private final int paddingTop = AndroidUtilities.dp(10.66f);
-        private final int paddingEnd = AndroidUtilities.dp(12.0f);
-        private final int lineSpacing = AndroidUtilities.dp(4.0f);
-
-        @Override
-        public int getOpacity() {
-            return -3;
-        }
-
-        public FileInfoDrawable() {
-            TextPaint textPaint = new TextPaint(1);
-            this.titlePaint = textPaint;
-            textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-            textPaint.setTypeface(AndroidUtilities.bold());
-            TextPaint textPaint2 = new TextPaint(1);
-            this.subtitlePaint = textPaint2;
-            textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
-        }
-
-        public void setText(CharSequence charSequence, CharSequence charSequence2) {
-            if (charSequence == null) {
-                charSequence = "";
-            }
-            this.title = charSequence;
-            if (charSequence2 == null) {
-                charSequence2 = "";
-            }
-            this.subtitle = charSequence2;
-            this.lastLayoutWidth = -1;
-            this.titleLayout = null;
-            this.subtitleLayout = null;
-            invalidateSelf();
-        }
-
-        @Override
-        protected void onBoundsChange(Rect rect) {
-            super.onBoundsChange(rect);
-            this.lastLayoutWidth = -1;
-            this.titleLayout = null;
-            this.subtitleLayout = null;
-        }
-
-        private void ensureLayout() {
-            int iWidth = getBounds().width();
-            if (iWidth <= 0) {
-                return;
-            }
-            if (iWidth != this.lastLayoutWidth || this.titleLayout == null || this.subtitleLayout == null) {
-                this.lastLayoutWidth = iWidth;
-                int i = (iWidth - this.paddingStart) - this.paddingEnd;
-                if (i <= 0) {
-                    this.titleLayout = null;
-                    this.subtitleLayout = null;
-                    return;
-                }
-                float f = i;
-                CharSequence charSequenceEllipsize = TextUtils.ellipsize(this.title, this.titlePaint, f, TextUtils.TruncateAt.MIDDLE);
-                CharSequence charSequenceEllipsize2 = TextUtils.ellipsize(this.subtitle, this.subtitlePaint, f, TextUtils.TruncateAt.END);
-                TextPaint textPaint = this.titlePaint;
-                Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                this.titleLayout = new StaticLayout(charSequenceEllipsize, textPaint, i, alignment, 1.0f, 0.0f, false);
-                this.subtitleLayout = new StaticLayout(charSequenceEllipsize2, this.subtitlePaint, i, alignment, 1.0f, 0.0f, false);
-            }
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            ensureLayout();
-            if (this.titleLayout == null || this.subtitleLayout == null) {
-                return;
-            }
-            Rect bounds = getBounds();
-            float f = bounds.left + this.paddingStart;
-            float f2 = bounds.top + this.paddingTop;
-            float height = this.titleLayout.getHeight() + f2 + this.lineSpacing;
-            this.radialProgress.setProgressRect(bounds.left + AndroidUtilities.dp(10.0f), bounds.top + AndroidUtilities.dp(9.0f), bounds.left + AndroidUtilities.dp(10.0f) + AndroidUtilities.dp(42.0f), bounds.top + AndroidUtilities.dp(9.0f) + AndroidUtilities.dp(42.0f));
-            canvas.save();
-            canvas.translate(f, f2);
-            this.titleLayout.draw(canvas);
-            canvas.restore();
-            canvas.save();
-            canvas.translate(f, height);
-            this.subtitleLayout.draw(canvas);
-            canvas.restore();
-            this.radialProgress.draw(canvas);
-        }
-
-        @Override
-        public void setAlpha(int i) {
-            this.radialProgress.setOverrideAlpha(i / 255.0f);
-            this.titlePaint.setAlpha(i);
-            this.subtitlePaint.setAlpha(i);
-            invalidateSelf();
-        }
-
-        @Override
-        public void setColorFilter(ColorFilter colorFilter) {
-            this.titlePaint.setColorFilter(colorFilter);
-            this.subtitlePaint.setColorFilter(colorFilter);
-            invalidateSelf();
-        }
-
-        @Override
-        public int getIntrinsicHeight() {
-            return this.paddingTop + getLineHeight(this.titlePaint) + this.lineSpacing + getLineHeight(this.subtitlePaint) + this.paddingTop;
-        }
-
-        private static int getLineHeight(TextPaint textPaint) {
-            Paint.FontMetricsInt fontMetricsInt = textPaint.getFontMetricsInt();
-            return fontMetricsInt.descent - fontMetricsInt.ascent;
-        }
     }
 }

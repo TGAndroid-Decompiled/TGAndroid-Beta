@@ -2,16 +2,12 @@ package org.telegram.ui.Components.Premium.boosts;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Outline;
 import android.graphics.Paint;
 import android.text.TextPaint;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import java.util.ArrayList;
-import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -23,128 +19,60 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.cells.ActionBtnCell;
-import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.SearchField$$ExternalSyntheticLambda0;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.iv.RichEditor;
 
-public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet {
-    private final List selectedUsers;
+public final class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet {
+    public final ArrayList selectedUsers;
 
-    @Override
-    protected boolean needDefaultPremiumBtn() {
-        return false;
-    }
+    public final class AdditionalCounterView extends View {
+        public int count;
+        public final TextPaint paint;
 
-    public static void show(List list) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment == null) {
-            return;
+        public AdditionalCounterView(Context context) {
+            super(context);
+            TextPaint textPaint = new TextPaint(1);
+            this.paint = textPaint;
+            textPaint.setTextAlign(Paint.Align.CENTER);
+            textPaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
+            textPaint.setTextSize(AndroidUtilities.dp(11.5f));
+            textPaint.setTypeface(AndroidUtilities.bold());
         }
-        PremiumPreviewGiftSentBottomSheet premiumPreviewGiftSentBottomSheet = new PremiumPreviewGiftSentBottomSheet(lastFragment, UserConfig.selectedAccount, list, lastFragment.getResourceProvider());
-        premiumPreviewGiftSentBottomSheet.setAnimateConfetti(true);
-        premiumPreviewGiftSentBottomSheet.setAnimateConfettiWithStars(true);
-        premiumPreviewGiftSentBottomSheet.show();
-    }
 
-    public PremiumPreviewGiftSentBottomSheet(BaseFragment baseFragment, int i, List list, Theme.ResourcesProvider resourcesProvider) {
-        super(baseFragment, i, null, null, null, resourcesProvider);
-        ArrayList arrayList = new ArrayList();
-        this.selectedUsers = arrayList;
-        arrayList.addAll(list);
-        init();
-    }
-
-    @Override
-    protected void updateRows() {
-        this.rowCount = 1;
-        this.paddingRow = 0;
-        this.featuresStartRow = 1;
-        int size = this.premiumFeatures.size();
-        int i = size + 1;
-        this.featuresEndRow = i;
-        this.rowCount = size + 2;
-        this.termsRow = i;
-    }
-
-    @Override
-    public void setTitle(boolean z) {
-        String string;
-        ((PremiumPreviewBottomSheet) this).titleView[0].setTextSize(1, 20.0f);
-        this.subtitleView.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
-        this.subtitleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        ((PremiumPreviewBottomSheet) this).titleView[0].setText(LocaleController.getPluralString("GiftPremiumGiftsSent", this.selectedUsers.size()));
-        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
-        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).topMargin = AndroidUtilities.dp(4.0f);
-        int size = this.selectedUsers.size();
-        if (size == 1) {
-            string = LocaleController.formatString(R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString(R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0))));
-        } else if (size == 2) {
-            string = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1))));
-        } else if (size == 3) {
-            string = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
-        } else {
-            string = LocaleController.formatPluralString("GiftPremiumUsersPurchasedMany", this.selectedUsers.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(1)), UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(2))));
-        }
-        this.subtitleView.setText(AndroidUtilities.replaceTags(string));
-        this.subtitleView.append("\n");
-        this.subtitleView.append("\n");
-        if (this.selectedUsers.size() == 1) {
-            this.subtitleView.append(AndroidUtilities.replaceTags(LocaleController.formatString("GiftPremiumGiftsSentStatusForUser", R.string.GiftPremiumGiftsSentStatusForUser, UserObject.getFirstName((TLRPC.User) this.selectedUsers.get(0)))));
-        } else {
-            this.subtitleView.append(AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumGiftsSentStatus", R.string.GiftPremiumGiftsSentStatus)));
+        @Override
+        public final void onDraw(Canvas canvas) {
+            float measuredWidth = getMeasuredWidth() / 2.0f;
+            float measuredHeight = getMeasuredHeight() / 2.0f;
+            float measuredWidth2 = getMeasuredWidth() / 2.0f;
+            TextPaint textPaint = this.paint;
+            canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth2, textPaint);
+            PremiumGradient premiumGradient = PremiumGradient.getInstance();
+            premiumGradient.mainGradient.gradientMatrix(0, -AndroidUtilities.dp(10.0f), 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
+            canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(1.5f), PremiumGradient.getInstance().getMainGradientPaint());
+            canvas.drawText("+" + this.count, measuredWidth, (int) (measuredHeight - ((textPaint.ascent() + textPaint.descent()) / 2.0f)), textPaint);
         }
     }
 
-    static class AvatarHolderView extends FrameLayout {
-        private final Paint bgPaint;
+    public final class AvatarHolderView extends FrameLayout {
+        public static final int $r8$clinit = 0;
+        public final Paint bgPaint;
         public boolean drawCycle;
-        AvatarDrawable fromAvatarDrawable;
-        protected final AdditionalCounterView iconView;
-        private final BackupImageView imageView;
-        public TLRPC.User user;
-
-        public static View createAvatarsContainer(Context context, List list) {
-            FrameLayout frameLayout = new FrameLayout(context);
-            frameLayout.setClipChildren(false);
-            FrameLayout frameLayout2 = new FrameLayout(context);
-            frameLayout2.setClipChildren(false);
-            if (list.size() == 1) {
-                frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 94.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
-                AvatarHolderView avatarHolderView = new AvatarHolderView(context, 47.0f);
-                avatarHolderView.drawCycle = false;
-                avatarHolderView.setUser((TLRPC.User) list.get(0));
-                frameLayout2.addView(avatarHolderView, 0, LayoutHelper.createFrame(94, 94, 17));
-                return frameLayout;
-            }
-            frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
-            int i = 0;
-            for (int i2 = 0; i2 < list.size(); i2++) {
-                TLRPC.User user = (TLRPC.User) list.get(i2);
-                AvatarHolderView avatarHolderView2 = new AvatarHolderView(context, 41.5f);
-                avatarHolderView2.setUser(user);
-                frameLayout2.addView(avatarHolderView2, 0, LayoutHelper.createFrame(83, 83, 17));
-                avatarHolderView2.setTranslationX((-i2) * AndroidUtilities.dp(29.0f));
-                if (i2 == 0 && list.size() > 3) {
-                    avatarHolderView2.iconView.setAlpha(1.0f);
-                    avatarHolderView2.iconView.count = list.size() - 3;
-                }
-                i++;
-                if (i2 == 2) {
-                    break;
-                }
-            }
-            frameLayout.setTranslationX(AndroidUtilities.dp(14.5f) * (i - 1));
-            return frameLayout;
-        }
+        public final AvatarDrawable fromAvatarDrawable;
+        public final AdditionalCounterView iconView;
+        public final BackupImageView imageView;
 
         public AvatarHolderView(Context context, float f) {
             super(context);
             Paint paint = new Paint(1);
             this.bgPaint = paint;
             this.drawCycle = true;
-            this.fromAvatarDrawable = new AvatarDrawable();
+            this.fromAvatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
             BackupImageView backupImageView = new BackupImageView(getContext());
             this.imageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(f));
@@ -153,17 +81,11 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
             additionalCounterView.setAlpha(0.0f);
             addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
             addView(additionalCounterView, LayoutHelper.createFrame(26, 26.0f, 85, 0.0f, 0.0f, 1.0f, 3.0f));
-            paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        }
-
-        public void setUser(TLRPC.User user) {
-            this.user = user;
-            this.fromAvatarDrawable.setInfo(user);
-            this.imageView.setForUserOrChat(user, this.fromAvatarDrawable);
+            paint.setColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
         }
 
         @Override
-        protected void dispatchDraw(Canvas canvas) {
+        public final void dispatchDraw(Canvas canvas) {
             if (this.drawCycle) {
                 canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.bgPaint);
             }
@@ -171,62 +93,82 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
         }
     }
 
-    static class AdditionalCounterView extends View {
-        int count;
-        TextPaint paint;
-
-        public AdditionalCounterView(Context context) {
-            super(context);
-            TextPaint textPaint = new TextPaint(1);
-            this.paint = textPaint;
-            textPaint.setTextAlign(Paint.Align.CENTER);
-            this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
-            this.paint.setTextSize(AndroidUtilities.dp(11.5f));
-            this.paint.setTypeface(AndroidUtilities.bold());
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            float measuredWidth = getMeasuredWidth() / 2.0f;
-            float measuredHeight = getMeasuredHeight() / 2.0f;
-            canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, this.paint);
-            PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.dp(10.0f), 0.0f);
-            canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(1.5f), PremiumGradient.getInstance().getMainGradientPaint());
-            canvas.drawText("+" + this.count, measuredWidth, (int) (measuredHeight - ((this.paint.descent() + this.paint.ascent()) / 2.0f)), this.paint);
-        }
-    }
-
-    private void init() {
-        updateRows();
+    public PremiumPreviewGiftSentBottomSheet(BaseFragment baseFragment, int i, ArrayList arrayList, Theme.ResourcesProvider resourcesProvider) {
+        super(baseFragment, i, null, null, null, resourcesProvider);
+        ArrayList arrayList2 = new ArrayList();
+        this.selectedUsers = arrayList2;
+        arrayList2.addAll(arrayList);
+        updateRows$2();
         this.useBackgroundTopPadding = false;
         setApplyTopPadding(false);
         this.backgroundPaddingTop = 0;
         ActionBtnCell actionBtnCell = new ActionBtnCell(getContext(), this.resourcesProvider);
-        actionBtnCell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.dismiss();
-            }
-        });
+        actionBtnCell.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 19));
         actionBtnCell.setCloseStyle(true);
         this.containerView.addView(actionBtnCell, LayoutHelper.createFrame(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        RecyclerListView recyclerListView = this.recyclerListView;
-        int i = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(64.0f));
-        this.overrideTitleIcon = AvatarHolderView.createAvatarsContainer(getContext(), this.selectedUsers);
+        int i2 = this.backgroundPaddingLeft;
+        this.recyclerListView.setPadding(i2, 0, i2, AndroidUtilities.dp(64.0f));
+        Context context = getContext();
+        int i3 = AvatarHolderView.$r8$clinit;
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setClipChildren(false);
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        frameLayout2.setClipChildren(false);
+        if (arrayList2.size() == 1) {
+            frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 94.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+            AvatarHolderView avatarHolderView = new AvatarHolderView(context, 47.0f);
+            avatarHolderView.drawCycle = false;
+            TLRPC.User user = (TLRPC.User) arrayList2.get(0);
+            AvatarDrawable avatarDrawable = avatarHolderView.fromAvatarDrawable;
+            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+            BackupImageView backupImageView = avatarHolderView.imageView;
+            backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
+            backupImageView.onNewImageSet();
+            frameLayout2.addView(avatarHolderView, 0, LayoutHelper.createFrame(94, 94, 17));
+        } else {
+            frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+            int i4 = 0;
+            for (int i5 = 0; i5 < arrayList2.size(); i5++) {
+                TLRPC.User user2 = (TLRPC.User) arrayList2.get(i5);
+                AvatarHolderView avatarHolderView2 = new AvatarHolderView(context, 41.5f);
+                AvatarDrawable avatarDrawable2 = avatarHolderView2.fromAvatarDrawable;
+                avatarDrawable2.setInfo(UserConfig.selectedAccount, user2);
+                BackupImageView backupImageView2 = avatarHolderView2.imageView;
+                backupImageView2.imageReceiver.setForUserOrChat(user2, avatarDrawable2);
+                backupImageView2.onNewImageSet();
+                frameLayout2.addView(avatarHolderView2, 0, LayoutHelper.createFrame(83, 83, 17));
+                avatarHolderView2.setTranslationX(AndroidUtilities.dp(29.0f) * (-i5));
+                if (i5 == 0 && arrayList2.size() > 3) {
+                    AdditionalCounterView additionalCounterView = avatarHolderView2.iconView;
+                    additionalCounterView.setAlpha(1.0f);
+                    additionalCounterView.count = arrayList2.size() - 3;
+                }
+                i4++;
+                if (i5 == 2) {
+                    break;
+                }
+            }
+            frameLayout.setTranslationX((i4 - 1) * AndroidUtilities.dp(14.5f));
+        }
+        this.overrideTitleIcon = frameLayout;
         fixNavigationBar();
     }
 
+    public static void show(ArrayList arrayList) {
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment == null) {
+            return;
+        }
+        PremiumPreviewGiftSentBottomSheet premiumPreviewGiftSentBottomSheet = new PremiumPreviewGiftSentBottomSheet(lastFragment, UserConfig.selectedAccount, arrayList, lastFragment.getResourceProvider());
+        premiumPreviewGiftSentBottomSheet.animateConfetti = true;
+        premiumPreviewGiftSentBottomSheet.animateConfettiWithStars = true;
+        premiumPreviewGiftSentBottomSheet.show();
+    }
+
     @Override
-    protected void afterCellCreated(int i, View view) {
+    public final void afterCellCreated(int i, View view) {
         if (i == 0) {
-            view.setOutlineProvider(new ViewOutlineProvider() {
-                @Override
-                public void getOutline(View view2, Outline outline) {
-                    float fDp = AndroidUtilities.dp(12.0f);
-                    outline.setRoundRect(0, 0, view2.getWidth(), (int) (view2.getHeight() + fDp), fDp);
-                }
-            });
+            view.setOutlineProvider(new RichEditor.AnonymousClass5(9));
             view.setClipToOutline(true);
             view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -AndroidUtilities.dp(6.0f);
@@ -234,7 +176,52 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
     }
 
     @Override
-    protected void attachIconContainer(LinearLayout linearLayout) {
-        linearLayout.addView(this.overrideTitleIcon, LayoutHelper.createLinear(-1, this.selectedUsers.size() == 1 ? 94 : 83, 0.0f, this.selectedUsers.size() == 1 ? 28.0f : 34.0f, 0.0f, this.selectedUsers.size() == 1 ? 9.0f : 14.0f));
+    public final void attachIconContainer(PhotoViewer.AnonymousClass35 anonymousClass35) {
+        View view = this.overrideTitleIcon;
+        ArrayList arrayList = this.selectedUsers;
+        anonymousClass35.addView(view, LayoutHelper.createLinear(0.0f, arrayList.size() == 1 ? 28.0f : 34.0f, 0.0f, arrayList.size() == 1 ? 9.0f : 14.0f, -1, arrayList.size() == 1 ? 94 : 83));
+    }
+
+    @Override
+    public final void setTitle(boolean z) {
+        String string;
+        ((PremiumPreviewBottomSheet) this).titleView[0].setTextSize(1, 20.0f);
+        this.subtitleView.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
+        this.subtitleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        LinkSpanDrawable.LinksTextView linksTextView = ((PremiumPreviewBottomSheet) this).titleView[0];
+        ArrayList arrayList = this.selectedUsers;
+        linksTextView.setText(LocaleController.getPluralString("GiftPremiumGiftsSent", arrayList.size()));
+        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
+        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).topMargin = AndroidUtilities.dp(4.0f);
+        int size = arrayList.size();
+        if (size == 1) {
+            string = LocaleController.formatString(R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString(R.string.GiftPremiumUsersOne, UserObject.getFirstName((TLRPC.User) arrayList.get(0))));
+        } else if (size == 2) {
+            string = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersTwo", R.string.GiftPremiumUsersTwo, UserObject.getFirstName((TLRPC.User) arrayList.get(0)), UserObject.getFirstName((TLRPC.User) arrayList.get(1))));
+        } else if (size != 3) {
+            string = LocaleController.formatPluralString("GiftPremiumUsersPurchasedMany", arrayList.size() - 3, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) arrayList.get(0)), UserObject.getFirstName((TLRPC.User) arrayList.get(1)), UserObject.getFirstName((TLRPC.User) arrayList.get(2))));
+        } else {
+            string = LocaleController.formatString("GiftPremiumUsersPurchasedManyZero", R.string.GiftPremiumUsersPurchasedManyZero, LocaleController.formatString("GiftPremiumUsersThree", R.string.GiftPremiumUsersThree, UserObject.getFirstName((TLRPC.User) arrayList.get(0)), UserObject.getFirstName((TLRPC.User) arrayList.get(1)), UserObject.getFirstName((TLRPC.User) arrayList.get(2))));
+        }
+        this.subtitleView.setText(AndroidUtilities.replaceTags(string));
+        this.subtitleView.append("\n");
+        this.subtitleView.append("\n");
+        if (arrayList.size() == 1) {
+            this.subtitleView.append(AndroidUtilities.replaceTags(LocaleController.formatString("GiftPremiumGiftsSentStatusForUser", R.string.GiftPremiumGiftsSentStatusForUser, UserObject.getFirstName((TLRPC.User) arrayList.get(0)))));
+        } else {
+            this.subtitleView.append(AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumGiftsSentStatus", R.string.GiftPremiumGiftsSentStatus)));
+        }
+    }
+
+    @Override
+    public final void updateRows$2() {
+        this.rowCount = 1;
+        this.paddingRow = 0;
+        this.featuresStartRow = 1;
+        int size = this.premiumFeatures.size();
+        int i = size + 1;
+        this.featuresEndRow = i;
+        this.rowCount = size + 2;
+        this.termsRow = i;
     }
 }

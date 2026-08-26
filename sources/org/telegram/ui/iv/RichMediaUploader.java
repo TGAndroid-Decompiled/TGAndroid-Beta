@@ -1,62 +1,35 @@
 package org.telegram.ui.iv;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 
-public class RichMediaUploader implements NotificationCenter.NotificationCenterDelegate {
-    private final TLRPC.Document audioDocument;
-    private boolean cancelled;
-    private final int currentAccount;
-    private TLRPC.InputFile documentInputFile;
-    private String documentThumbPath;
-    private boolean finished;
-    private final boolean isAudio;
-    private final boolean isDocument;
-    private final boolean isVideo;
-    private final Listener listener;
-    private final String path;
-    private int requestToken;
-    private boolean started;
-    private volatile String uploadPath;
-    private boolean uploadingDocumentThumb;
-    private final int videoDurationSec;
-    private final int videoHeight;
-    private final int videoWidth;
+public final class RichMediaUploader implements NotificationCenter.NotificationCenterDelegate {
+    public final TLRPC.Document audioDocument;
+    public boolean cancelled;
+    public final int currentAccount;
+    public TLRPC.InputFile documentInputFile;
+    public String documentThumbPath;
+    public boolean finished;
+    public final boolean isAudio;
+    public final boolean isDocument;
+    public final boolean isVideo;
+    public final Listener listener;
+    public final String path;
+    public int requestToken;
+    public boolean started;
+    public volatile String uploadPath;
+    public boolean uploadingDocumentThumb;
+    public final int videoDurationSec;
+    public final int videoHeight;
+    public final int videoWidth;
 
     public interface Listener {
-
-        public abstract class CC {
-            public static void $default$onAudioUploaded(Listener listener, TLRPC.Document document) {
-            }
-
-            public static void $default$onDocumentUploaded(Listener listener, TLRPC.Document document) {
-            }
-
-            public static void $default$onPhotoUploaded(Listener listener, TLRPC.Photo photo) {
-            }
-
-            public static void $default$onVideoUploaded(Listener listener, TLRPC.Document document) {
-            }
-
-            public static void $default$onWidthHeightResolved(Listener listener, int i, int i2) {
-            }
-        }
-
         void onAudioUploaded(TLRPC.Document document);
 
         void onDocumentUploaded(TLRPC.Document document);
@@ -72,7 +45,7 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
         void onWidthHeightResolved(int i, int i2);
     }
 
-    public RichMediaUploader(int i, String str, boolean z, int i2, int i3, int i4, Listener listener) {
+    public RichMediaUploader(int i, String str, boolean z, int i2, int i3, int i4, RichEditorListView.AnonymousClass19 anonymousClass19) {
         this.currentAccount = i;
         this.path = str;
         this.isVideo = z;
@@ -82,113 +55,10 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
         this.videoHeight = i3;
         this.videoDurationSec = i4;
         this.audioDocument = null;
-        this.listener = listener;
+        this.listener = anonymousClass19;
     }
 
-    private RichMediaUploader(int i, String str, TLRPC.Document document, Listener listener) {
-        this.currentAccount = i;
-        this.path = str;
-        this.isVideo = false;
-        this.isAudio = true;
-        this.isDocument = false;
-        this.videoWidth = 0;
-        this.videoHeight = 0;
-        this.videoDurationSec = 0;
-        this.audioDocument = document;
-        this.listener = listener;
-    }
-
-    public static RichMediaUploader forAudio(int i, String str, TLRPC.Document document, Listener listener) {
-        return new RichMediaUploader(i, str, document, listener);
-    }
-
-    private RichMediaUploader(int i, String str, TLRPC.Document document, boolean z, Listener listener) {
-        this.currentAccount = i;
-        this.path = str;
-        this.isVideo = false;
-        this.isAudio = false;
-        this.isDocument = z;
-        this.videoWidth = 0;
-        this.videoHeight = 0;
-        this.videoDurationSec = 0;
-        this.audioDocument = document;
-        this.listener = listener;
-    }
-
-    public static RichMediaUploader forDocument(int i, String str, TLRPC.Document document, Listener listener) {
-        return new RichMediaUploader(i, str, document, true, listener);
-    }
-
-    public void start() {
-        int i;
-        int i2;
-        if (this.started || this.cancelled || this.finished) {
-            return;
-        }
-        this.started = true;
-        if (this.isVideo) {
-            Listener listener = this.listener;
-            if (listener != null && (i = this.videoWidth) > 0 && (i2 = this.videoHeight) > 0) {
-                listener.onWidthHeightResolved(i, i2);
-            }
-            beginUpload(this.path);
-            return;
-        }
-        if (this.isDocument) {
-            Utilities.globalQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    RichMediaUploader.m5011$r8$lambda$T8Lrh8Hjipdhzh1PC4hx0Hh2yU(this.f$0);
-                }
-            });
-        } else if (this.isAudio) {
-            beginUpload(this.path);
-        } else {
-            resolvePhotoDimensions();
-            Utilities.globalQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    RichMediaUploader.$r8$lambda$dAsOLEeRI1es0HLb2W9C14Qmlfs(this.f$0);
-                }
-            });
-        }
-    }
-
-    public static void m5011$r8$lambda$T8Lrh8Hjipdhzh1PC4hx0Hh2yU(final RichMediaUploader richMediaUploader) {
-        richMediaUploader.documentThumbPath = richMediaUploader.generateDocumentThumb();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                RichMediaUploader.$r8$lambda$ThZZTnhsAbALa7PseucvmzJis7o(this.f$0);
-            }
-        });
-    }
-
-    public static void $r8$lambda$ThZZTnhsAbALa7PseucvmzJis7o(RichMediaUploader richMediaUploader) {
-        if (richMediaUploader.cancelled || richMediaUploader.finished) {
-            return;
-        }
-        richMediaUploader.beginUpload(richMediaUploader.path);
-    }
-
-    public static void $r8$lambda$dAsOLEeRI1es0HLb2W9C14Qmlfs(final RichMediaUploader richMediaUploader) {
-        final String strEnsureJpegPath = richMediaUploader.ensureJpegPath(richMediaUploader.path);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                RichMediaUploader.m5012$r8$lambda$_FOlRap55R31m5jZJEDTmXEPZU(this.f$0, strEnsureJpegPath);
-            }
-        });
-    }
-
-    public static void m5012$r8$lambda$_FOlRap55R31m5jZJEDTmXEPZU(RichMediaUploader richMediaUploader, String str) {
-        if (richMediaUploader.cancelled || richMediaUploader.finished) {
-            return;
-        }
-        richMediaUploader.beginUpload(str);
-    }
-
-    private void beginUpload(String str) {
+    public final void beginUpload(String str) {
         int i;
         if (this.cancelled || this.finished) {
             return;
@@ -208,55 +78,7 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
         FileLoader.getInstance(this.currentAccount).uploadFile(this.uploadPath, false, (this.isVideo || this.isAudio || this.isDocument) ? false : true, i);
     }
 
-    private String ensureJpegPath(String str) {
-        try {
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeFile(str, options);
-            String str2 = options.outMimeType;
-            boolean z = str2 != null && (str2.equalsIgnoreCase("image/jpeg") || str2.equalsIgnoreCase("image/jpg"));
-            float photoSize = AndroidUtilities.getPhotoSize();
-            Bitmap bitmapLoadBitmap = ImageLoader.loadBitmap(str, null, photoSize, photoSize, true);
-            if (bitmapLoadBitmap == null) {
-                bitmapLoadBitmap = ImageLoader.loadBitmap(str, null, 800.0f, 800.0f, true);
-            }
-            if (bitmapLoadBitmap == null) {
-                return str;
-            }
-            File file = new File(FileLoader.getDirectory(4), "rich_jpeg_" + Math.abs(str.hashCode()) + ".jpg");
-            try {
-                FileOutputStream fileOutputStream = new FileOutputStream(file);
-                try {
-                    boolean zCompress = bitmapLoadBitmap.compress(Bitmap.CompressFormat.JPEG, 89, fileOutputStream);
-                    fileOutputStream.close();
-                    bitmapLoadBitmap.recycle();
-                    if (zCompress && file.length() > 0) {
-                        if (z) {
-                            long length = new File(str).length();
-                            if (length > 0 && file.length() >= length) {
-                                return str;
-                            }
-                        }
-                        return file.getAbsolutePath();
-                    }
-                    return str;
-                } catch (Throwable th) {
-                    try {
-                        fileOutputStream.close();
-                    } catch (Throwable th2) {
-                        th.addSuppressed(th2);
-                    }
-                    throw th;
-                }
-            } catch (Throwable th3) {
-                bitmapLoadBitmap.recycle();
-                throw th3;
-            }
-        } catch (Throwable unused) {
-        }
-    }
-
-    public void cancel() {
+    public final void cancel() {
         if (this.finished || this.cancelled) {
             return;
         }
@@ -271,34 +93,11 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.requestToken, true);
             this.requestToken = 0;
         }
-        teardown();
-    }
-
-    private void teardown() {
-        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
-        notificationCenter.removeObserver(this, NotificationCenter.fileUploaded);
-        notificationCenter.removeObserver(this, NotificationCenter.fileUploadFailed);
-        notificationCenter.removeObserver(this, NotificationCenter.fileUploadProgressChanged);
-    }
-
-    private void resolvePhotoDimensions() {
-        int i;
-        Listener listener;
-        try {
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeFile(this.path, options);
-            int i2 = options.outWidth;
-            if (i2 <= 0 || (i = options.outHeight) <= 0 || (listener = this.listener) == null) {
-                return;
-            }
-            listener.onWidthHeightResolved(i2, i);
-        } catch (Exception unused) {
-        }
+        teardown$1();
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
         TLRPC.InputFile inputFile;
         if (i2 != this.currentAccount || this.cancelled || this.finished) {
             return;
@@ -328,23 +127,24 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
             if (this.isDocument && this.uploadingDocumentThumb && (inputFile = this.documentInputFile) != null) {
                 sendUploadMediaRequest(inputFile, null);
                 return;
-            } else {
-                finishWithError();
-                return;
             }
+            this.finished = true;
+            teardown$1();
+            this.listener.onError();
+            return;
         }
         if (i == NotificationCenter.fileUploadProgressChanged) {
             long jLongValue = ((Long) objArr[1]).longValue();
             long jLongValue2 = ((Long) objArr[2]).longValue();
             Listener listener = this.listener;
-            if (listener == null || this.uploadingDocumentThumb) {
+            if (this.uploadingDocumentThumb) {
                 return;
             }
             listener.onProgress(jLongValue2 > 0 ? jLongValue / jLongValue2 : 0.0f);
         }
     }
 
-    private void sendUploadMediaRequest(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2) {
+    public final void sendUploadMediaRequest(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2) {
         String str;
         TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
         tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
@@ -359,211 +159,120 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
             tL_documentAttributeVideo.h = this.videoHeight;
             tL_inputMediaUploadedDocument.attributes.add(tL_documentAttributeVideo);
             tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
-        } else if (this.isAudio || this.isDocument) {
-            TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument2 = new TLRPC.TL_inputMediaUploadedDocument();
-            tL_inputMediaUploadedDocument2.file = inputFile;
-            boolean z = this.isDocument;
-            if (z) {
-                str = "application/octet-stream";
-            } else {
+        } else {
+            boolean z = this.isAudio;
+            boolean z2 = this.isDocument;
+            if (z || z2) {
+                TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument2 = new TLRPC.TL_inputMediaUploadedDocument();
+                tL_inputMediaUploadedDocument2.file = inputFile;
                 TLRPC.Document document = this.audioDocument;
-                if (document == null || (str = document.mime_type) == null) {
+                if (z2) {
+                    str = "application/octet-stream";
+                } else if (document == null || (str = document.mime_type) == null) {
                     str = "audio/mpeg";
                 }
-            }
-            tL_inputMediaUploadedDocument2.mime_type = str;
-            TLRPC.Document document2 = this.audioDocument;
-            if (document2 != null) {
-                if (z) {
-                    ArrayList<TLRPC.DocumentAttribute> arrayList = document2.attributes;
-                    int size = arrayList.size();
-                    int i = 0;
-                    while (i < size) {
-                        TLRPC.DocumentAttribute documentAttribute = arrayList.get(i);
-                        i++;
-                        TLRPC.DocumentAttribute documentAttribute2 = documentAttribute;
-                        if (documentAttribute2 instanceof TLRPC.TL_documentAttributeFilename) {
-                            tL_inputMediaUploadedDocument2.attributes.add(documentAttribute2);
-                        }
-                    }
-                } else {
-                    tL_inputMediaUploadedDocument2.attributes.addAll(document2.attributes);
-                }
-            }
-            if (this.isDocument) {
-                tL_inputMediaUploadedDocument2.force_file = true;
-                if (inputFile2 != null) {
-                    tL_inputMediaUploadedDocument2.thumb = inputFile2;
-                    tL_inputMediaUploadedDocument2.flags |= 4;
-                }
-            }
-            tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument2;
-        } else {
-            TLRPC.TL_inputMediaUploadedPhoto tL_inputMediaUploadedPhoto = new TLRPC.TL_inputMediaUploadedPhoto();
-            tL_inputMediaUploadedPhoto.file = inputFile;
-            tL_messages_uploadMedia.media = tL_inputMediaUploadedPhoto;
-        }
-        this.requestToken = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_uploadMedia, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                RichMediaUploader.$r8$lambda$JQO2YzXMTcFusbYRf7PBB4tIXCc(this.f$0, tLObject, tL_error);
-            }
-        });
-    }
-
-    public static void $r8$lambda$JQO2YzXMTcFusbYRf7PBB4tIXCc(final RichMediaUploader richMediaUploader, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        richMediaUploader.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                RichMediaUploader.$r8$lambda$lN7smHeata8hQi0KrtqS8eucxKc(this.f$0, tLObject);
-            }
-        });
-    }
-
-    public static void $r8$lambda$lN7smHeata8hQi0KrtqS8eucxKc(RichMediaUploader richMediaUploader, TLObject tLObject) {
-        TLRPC.Document document;
-        TLRPC.Photo photo;
-        if (richMediaUploader.cancelled) {
-            return;
-        }
-        richMediaUploader.requestToken = 0;
-        if (richMediaUploader.isVideo || richMediaUploader.isAudio || richMediaUploader.isDocument) {
-            if ((tLObject instanceof TLRPC.TL_messageMediaDocument) && (document = ((TLRPC.TL_messageMediaDocument) tLObject).document) != null) {
-                if (richMediaUploader.isDocument) {
-                    richMediaUploader.finishWithDocument(document);
-                    return;
-                } else if (richMediaUploader.isAudio) {
-                    richMediaUploader.finishWithAudio(document);
-                    return;
-                } else {
-                    richMediaUploader.finishWithVideo(document);
-                    return;
-                }
-            }
-        } else if ((tLObject instanceof TLRPC.TL_messageMediaPhoto) && (photo = ((TLRPC.TL_messageMediaPhoto) tLObject).photo) != null) {
-            richMediaUploader.finishWithPhoto(photo);
-            return;
-        }
-        richMediaUploader.finishWithError();
-    }
-
-    private void finishWithPhoto(TLRPC.Photo photo) {
-        this.finished = true;
-        teardown();
-        Listener listener = this.listener;
-        if (listener != null) {
-            listener.onPhotoUploaded(photo);
-        }
-    }
-
-    private void finishWithVideo(TLRPC.Document document) {
-        this.finished = true;
-        teardown();
-        Listener listener = this.listener;
-        if (listener != null) {
-            listener.onVideoUploaded(document);
-        }
-    }
-
-    private void finishWithAudio(TLRPC.Document document) {
-        this.finished = true;
-        teardown();
-        Listener listener = this.listener;
-        if (listener != null) {
-            listener.onAudioUploaded(document);
-        }
-    }
-
-    private void finishWithDocument(TLRPC.Document document) {
-        TLRPC.PhotoSize closestPhotoSizeWithSize;
-        if (document == null || document.id == 0 || document.access_hash == 0) {
-            finishWithError();
-            return;
-        }
-        this.finished = true;
-        teardown();
-        if (!TextUtils.isEmpty(this.documentThumbPath) && MessageObject.isDocumentHasThumb(document) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320)) != null) {
-            FileLoader.getInstance(this.currentAccount).setLocalPathTo(closestPhotoSizeWithSize, this.documentThumbPath);
-            AndroidUtilities.copyFileSafe(new File(this.documentThumbPath), FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
-        }
-        Listener listener = this.listener;
-        if (listener != null) {
-            listener.onDocumentUploaded(document);
-        }
-    }
-
-    private void finishWithError() {
-        this.finished = true;
-        teardown();
-        Listener listener = this.listener;
-        if (listener != null) {
-            listener.onError();
-        }
-    }
-
-    private String generateDocumentThumb() {
-        Bitmap bitmapCreateVideoThumbnail;
-        TLRPC.DocumentAttribute documentAttribute;
-        String absolutePath = null;
-        if (this.audioDocument != null && !TextUtils.isEmpty(this.path)) {
-            try {
-                String str = this.audioDocument.mime_type;
-                String lowerCase = str == null ? "" : str.toLowerCase();
-                if (lowerCase.startsWith("image/")) {
-                    bitmapCreateVideoThumbnail = ImageLoader.loadBitmap(this.path, null, 320.0f, 320.0f, true);
-                } else {
-                    bitmapCreateVideoThumbnail = lowerCase.equals("video/mp4") ? SendMessagesHelper.createVideoThumbnail(this.path, 1) : null;
-                }
-                if (bitmapCreateVideoThumbnail != null) {
-                    try {
-                        ArrayList<TLRPC.DocumentAttribute> arrayList = this.audioDocument.attributes;
+                tL_inputMediaUploadedDocument2.mime_type = str;
+                if (document != null) {
+                    if (z2) {
+                        ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
                         int size = arrayList.size();
                         int i = 0;
-                        do {
-                            if (i >= size) {
-                                TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
-                                tL_documentAttributeImageSize.w = bitmapCreateVideoThumbnail.getWidth();
-                                tL_documentAttributeImageSize.h = bitmapCreateVideoThumbnail.getHeight();
-                                this.audioDocument.attributes.add(tL_documentAttributeImageSize);
-                                break;
-                            }
-                            documentAttribute = arrayList.get(i);
+                        while (i < size) {
+                            TLRPC.DocumentAttribute documentAttribute = arrayList.get(i);
                             i++;
-                        } while (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize));
-                        TLRPC.PhotoSize photoSizeScaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmapCreateVideoThumbnail, 320.0f, 320.0f, 80, false);
-                        if (photoSizeScaleAndSaveImage != null) {
-                            this.audioDocument.thumbs.clear();
-                            this.audioDocument.thumbs.add(photoSizeScaleAndSaveImage);
-                            this.audioDocument.flags |= 1;
-                            File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(photoSizeScaleAndSaveImage, true);
-                            if (pathToAttach != null && pathToAttach.exists()) {
-                                absolutePath = pathToAttach.getAbsolutePath();
+                            TLRPC.DocumentAttribute documentAttribute2 = documentAttribute;
+                            if (documentAttribute2 instanceof TLRPC.TL_documentAttributeFilename) {
+                                tL_inputMediaUploadedDocument2.attributes.add(documentAttribute2);
                             }
-                            if (!bitmapCreateVideoThumbnail.isRecycled()) {
-                                bitmapCreateVideoThumbnail.recycle();
-                            }
-                            return absolutePath;
                         }
-                        if (!bitmapCreateVideoThumbnail.isRecycled()) {
-                            bitmapCreateVideoThumbnail.recycle();
-                        }
-                        return null;
-                    } catch (Throwable unused) {
-                        if (bitmapCreateVideoThumbnail != null && !bitmapCreateVideoThumbnail.isRecycled()) {
-                            bitmapCreateVideoThumbnail.recycle();
-                        }
-                        return null;
+                    } else {
+                        tL_inputMediaUploadedDocument2.attributes.addAll(document.attributes);
                     }
                 }
-                if (bitmapCreateVideoThumbnail != null && !bitmapCreateVideoThumbnail.isRecycled()) {
-                    bitmapCreateVideoThumbnail.recycle();
+                if (z2) {
+                    tL_inputMediaUploadedDocument2.force_file = true;
+                    if (inputFile2 != null) {
+                        tL_inputMediaUploadedDocument2.thumb = inputFile2;
+                        tL_inputMediaUploadedDocument2.flags |= 4;
+                    }
                 }
-                return null;
-            } catch (Throwable unused2) {
-                bitmapCreateVideoThumbnail = null;
+                tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument2;
+            } else {
+                TLRPC.TL_inputMediaUploadedPhoto tL_inputMediaUploadedPhoto = new TLRPC.TL_inputMediaUploadedPhoto();
+                tL_inputMediaUploadedPhoto.file = inputFile;
+                tL_messages_uploadMedia.media = tL_inputMediaUploadedPhoto;
             }
         }
-        return null;
+        this.requestToken = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_uploadMedia, new RichMediaUploader$$ExternalSyntheticLambda0(this, 0));
+    }
+
+    public final void start() {
+        int i;
+        int i2;
+        if (this.started || this.cancelled || this.finished) {
+            return;
+        }
+        this.started = true;
+        if (this.isVideo) {
+            Listener listener = this.listener;
+            int i3 = this.videoWidth;
+            if (i3 > 0 && (i2 = this.videoHeight) > 0) {
+                listener.onWidthHeightResolved(i3, i2);
+            }
+            beginUpload(this.path);
+            return;
+        }
+        if (this.isDocument) {
+            Utilities.globalQueue.postRunnable(new RichMediaUploader$$ExternalSyntheticLambda1(this, 0));
+            return;
+        }
+        if (this.isAudio) {
+            beginUpload(this.path);
+            return;
+        }
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(this.path, options);
+            int i4 = options.outWidth;
+            if (i4 > 0 && (i = options.outHeight) > 0) {
+                this.listener.onWidthHeightResolved(i4, i);
+            }
+        } catch (Exception unused) {
+        }
+        Utilities.globalQueue.postRunnable(new RichMediaUploader$$ExternalSyntheticLambda1(this, 1));
+    }
+
+    public final void teardown$1() {
+        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
+        notificationCenter.removeObserver(this, NotificationCenter.fileUploaded);
+        notificationCenter.removeObserver(this, NotificationCenter.fileUploadFailed);
+        notificationCenter.removeObserver(this, NotificationCenter.fileUploadProgressChanged);
+    }
+
+    public RichMediaUploader(int i, String str, TLRPC.Document document, RichEditorListView.AnonymousClass17 anonymousClass17) {
+        this.currentAccount = i;
+        this.path = str;
+        this.isVideo = false;
+        this.isAudio = true;
+        this.isDocument = false;
+        this.videoWidth = 0;
+        this.videoHeight = 0;
+        this.videoDurationSec = 0;
+        this.audioDocument = document;
+        this.listener = anonymousClass17;
+    }
+
+    public RichMediaUploader(int i, String str, TLRPC.Document document, RichEditorListView.AnonymousClass16 anonymousClass16) {
+        this.currentAccount = i;
+        this.path = str;
+        this.isVideo = false;
+        this.isAudio = false;
+        this.isDocument = true;
+        this.videoWidth = 0;
+        this.videoHeight = 0;
+        this.videoDurationSec = 0;
+        this.audioDocument = document;
+        this.listener = anonymousClass16;
     }
 }

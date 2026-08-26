@@ -16,12 +16,6 @@ public class SmashedAtom extends Atom {
         }
     }
 
-    public SmashedAtom(Atom atom) {
-        this.h = true;
-        this.d = true;
-        this.at = atom;
-    }
-
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box boxCreateBox = this.at.createBox(teXEnvironment);
@@ -32,5 +26,11 @@ public class SmashedAtom extends Atom {
             boxCreateBox.setDepth(0.0f);
         }
         return boxCreateBox;
+    }
+
+    public SmashedAtom(Atom atom) {
+        this.h = true;
+        this.d = true;
+        this.at = atom;
     }
 }

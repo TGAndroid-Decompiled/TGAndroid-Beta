@@ -1,385 +1,709 @@
 package org.telegram.ui.Components.Paint;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.util.Log;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda24;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda71;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 
-public class ShapeDetector {
-    private static final double diagonal;
-    private static final double halfDiagonal;
-    private static DispatchQueue queue = new DispatchQueue("ShapeDetector");
-    Context context;
-    private boolean isLearning;
-    private Utilities.Callback onShapeDetected;
-    SharedPreferences preferences;
-    private boolean shapeDetected;
-    private int templatesUsageScore;
-    private final int MIN_POINTS = 8;
-    private final long TIMEOUT = 150;
-    private ArrayList points = new ArrayList();
-    private ArrayList templates = new ArrayList();
-    private ArrayList toSave = null;
-    private AtomicBoolean busy = new AtomicBoolean(false);
-    private AtomicBoolean scheduled = new AtomicBoolean(false);
-    private Runnable detect = new Runnable() {
-        @Override
-        public final void run() {
-            ShapeDetector.m2493$r8$lambda$nqveIXGn67co06Ms1Bb_Os5JfM(this.f$0);
-        }
-    };
+public final class ShapeDetector {
+    public final Context context;
+    public final ShapeDetector$$ExternalSyntheticLambda0 detect;
+    public final boolean isLearning;
+    public final DialogCell$$ExternalSyntheticLambda6 onShapeDetected;
+    public final SharedPreferences preferences;
+    public boolean shapeDetected;
+    public int templatesUsageScore;
+    public static final DispatchQueue queue = new DispatchQueue("ShapeDetector");
+    public static final double halfDiagonal = Math.sqrt(125000.0d) / 2.0d;
+    public final ArrayList points = new ArrayList();
+    public final ArrayList templates = new ArrayList();
+    public ArrayList toSave = null;
+    public final AtomicBoolean busy = new AtomicBoolean(false);
+    public final AtomicBoolean scheduled = new AtomicBoolean(false);
 
-    static {
-        double dSqrt = Math.sqrt(125000.0d);
-        diagonal = dSqrt;
-        halfDiagonal = dSqrt / 2.0d;
-    }
-
-    static class Point {
+    public final class Point {
         public double x;
         public double y;
 
         public Point(double d, double d2) {
-            set(d, d2);
-        }
-
-        public void set(double d, double d2) {
             this.x = d;
             this.y = d2;
         }
 
-        public double distance(double d, double d2) {
-            return Math.sqrt(Math.pow(d - this.x, 2.0d) + Math.pow(d2 - this.y, 2.0d));
-        }
-
-        public double distance(Point point) {
-            return distance(point.x, point.y);
+        public final double distance(double d, double d2) {
+            return Math.sqrt(Math.pow(d2 - this.y, 2.0d) + Math.pow(d - this.x, 2.0d));
         }
     }
 
-    private static class RectD {
+    public final class RectD {
         public double bottom;
         public double left;
         public double right;
         public double top;
 
-        public RectD(double d, double d2, double d3, double d4) {
-            this.left = d;
-            this.top = d2;
-            this.right = d3;
-            this.bottom = d4;
-        }
-
-        public void union(double d, double d2) {
-            if (this.left >= d) {
-                this.left = d;
-            }
-            if (this.top >= d2) {
-                this.top = d2;
-            }
-            if (this.right <= d) {
-                this.right = d;
-            }
-            if (this.bottom <= d2) {
-                this.bottom = d2;
-            }
-        }
-
-        public String toString() {
+        public final String toString() {
             return "RectD{left=" + this.left + ", top=" + this.top + ", right=" + this.right + ", bottom=" + this.bottom + '}';
         }
     }
 
-    static class Template {
-        public ArrayList points;
+    public final class Template {
+        public ArrayList points = new ArrayList();
         public int score;
         public int shapeType;
-
-        private Template() {
-            this.points = new ArrayList();
-        }
     }
 
-    public ShapeDetector(Context context, Utilities.Callback callback) {
+    public ShapeDetector(Context context, DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda6) {
+        final int i = 0;
+        this.detect = new Runnable(this) {
+            public final ShapeDetector f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run() {
+                Shape shape;
+                int iFindAnglePoint;
+                double d;
+                int i2;
+                char c;
+                String string;
+                int i3;
+                switch (i) {
+                    case 0:
+                        ShapeDetector shapeDetector = this.f$0;
+                        if (shapeDetector.busy.get()) {
+                            return;
+                        }
+                        shapeDetector.scheduled.set(false);
+                        shapeDetector.busy.set(true);
+                        long jCurrentTimeMillis = System.currentTimeMillis();
+                        synchronized (shapeDetector) {
+                            try {
+                                if (shapeDetector.points.size() < 8) {
+                                    shapeDetector.busy.set(false);
+                                    return;
+                                }
+                                ArrayList arrayList = shapeDetector.points;
+                                ArrayList arrayList2 = new ArrayList();
+                                for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                                    ShapeDetector.Point point = (ShapeDetector.Point) arrayList.get(i4);
+                                    arrayList2.add(new ShapeDetector.Point(point.x, point.y));
+                                }
+                                ArrayList arrayList3 = new ArrayList();
+                                arrayList3.add((ShapeDetector.Point) arrayList2.get(0));
+                                int i5 = 1;
+                                double dDistance = 0.0d;
+                                while (i5 < arrayList2.size()) {
+                                    ShapeDetector.Point point2 = (ShapeDetector.Point) arrayList2.get(i5 - 1);
+                                    ShapeDetector.Point point3 = (ShapeDetector.Point) arrayList2.get(i5);
+                                    point2.getClass();
+                                    dDistance += point2.distance(point3.x, point3.y);
+                                    i5++;
+                                    shapeDetector = shapeDetector;
+                                }
+                                ShapeDetector shapeDetector2 = shapeDetector;
+                                double d2 = dDistance / ((double) 47);
+                                int i6 = 1;
+                                double d3 = 0.0d;
+                                while (i6 < arrayList2.size()) {
+                                    int i7 = i6 - 1;
+                                    ShapeDetector.Point point4 = (ShapeDetector.Point) arrayList2.get(i7);
+                                    ShapeDetector.Point point5 = (ShapeDetector.Point) arrayList2.get(i6);
+                                    point4.getClass();
+                                    double d4 = d3;
+                                    int i8 = i6;
+                                    double dDistance2 = point4.distance(point5.x, point5.y);
+                                    double d5 = d4 + dDistance2;
+                                    if (d5 >= d2) {
+                                        double d6 = (d2 - d4) / dDistance2;
+                                        i2 = i8;
+                                        ShapeDetector.Point point6 = new ShapeDetector.Point(((((ShapeDetector.Point) arrayList2.get(i2)).x - ((ShapeDetector.Point) arrayList2.get(i7)).x) * d6) + ((ShapeDetector.Point) arrayList2.get(i7)).x, ((((ShapeDetector.Point) arrayList2.get(i2)).y - ((ShapeDetector.Point) arrayList2.get(i7)).y) * d6) + ((ShapeDetector.Point) arrayList2.get(i7)).y);
+                                        arrayList3.add(point6);
+                                        arrayList2.add(i2, point6);
+                                        d3 = 0.0d;
+                                    } else {
+                                        i2 = i8;
+                                        d3 = d5;
+                                    }
+                                    i6 = i2 + 1;
+                                    d2 = d2;
+                                    jCurrentTimeMillis = jCurrentTimeMillis;
+                                }
+                                long j = jCurrentTimeMillis;
+                                if (arrayList3.size() == 47) {
+                                    arrayList3.add((ShapeDetector.Point) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList2));
+                                }
+                                ArrayList arrayList4 = new ArrayList();
+                                for (int i9 = 0; i9 < arrayList3.size(); i9++) {
+                                    ShapeDetector.Point point7 = (ShapeDetector.Point) arrayList3.get(i9);
+                                    arrayList4.add(new ShapeDetector.Point(point7.x, point7.y));
+                                }
+                                ShapeDetector.Point pointCentroid = ShapeDetector.centroid(arrayList4);
+                                double dAtan2 = Math.atan2(pointCentroid.y - ((ShapeDetector.Point) arrayList4.get(0)).y, pointCentroid.x - ((ShapeDetector.Point) arrayList4.get(0)).x);
+                                ShapeDetector.Point pointCentroid2 = ShapeDetector.centroid(arrayList4);
+                                double dCos = Math.cos(dAtan2);
+                                double dSin = Math.sin(dAtan2);
+                                int i10 = 0;
+                                while (i10 < arrayList4.size()) {
+                                    ShapeDetector.Point point8 = (ShapeDetector.Point) arrayList4.get(i10);
+                                    double d7 = point8.x;
+                                    double d8 = pointCentroid2.x;
+                                    double d9 = d7 - d8;
+                                    double d10 = dSin;
+                                    double d11 = point8.y;
+                                    double d12 = pointCentroid2.y;
+                                    double d13 = d11 - d12;
+                                    point8.y = (d13 * dCos) + (d9 * d10) + d12;
+                                    point8.x = ((d9 * dCos) - (d13 * d10)) + d8;
+                                    i10++;
+                                    dSin = d10;
+                                }
+                                ShapeDetector.Point pointCentroid3 = ShapeDetector.centroid(arrayList4);
+                                double d14 = -pointCentroid3.x;
+                                double d15 = -pointCentroid3.y;
+                                for (int i11 = 0; i11 < arrayList4.size(); i11++) {
+                                    ShapeDetector.Point point9 = (ShapeDetector.Point) arrayList4.get(i11);
+                                    point9.x += d14;
+                                    point9.y += d15;
+                                }
+                                ShapeDetector.RectD rectDBoundingBox = ShapeDetector.boundingBox(arrayList4);
+                                double d16 = rectDBoundingBox.right - rectDBoundingBox.left;
+                                double d17 = rectDBoundingBox.bottom - rectDBoundingBox.top;
+                                for (int i12 = 0; i12 < arrayList4.size(); i12++) {
+                                    ShapeDetector.Point point10 = (ShapeDetector.Point) arrayList4.get(i12);
+                                    point10.x = (250.0d / d16) * point10.x;
+                                    point10.y = (250.0d / d17) * point10.y;
+                                }
+                                ShapeDetector.Point pointCentroid4 = ShapeDetector.centroid(arrayList4);
+                                double d18 = Double.MAX_VALUE;
+                                int i13 = -1;
+                                int i14 = -1;
+                                for (int i15 = 0; i15 < shapeDetector2.templates.size(); i15++) {
+                                    ArrayList arrayList5 = ((ShapeDetector.Template) shapeDetector2.templates.get(i15)).points;
+                                    double dSqrt = (Math.sqrt(5.0d) - 1.0d) * 0.5d;
+                                    double d19 = -1.5707963267948966d;
+                                    double d20 = 1.0d - dSqrt;
+                                    double d21 = 1.5707963267948966d;
+                                    double d22 = d18;
+                                    double d23 = (d20 * 1.5707963267948966d) + (dSqrt * (-1.5707963267948966d));
+                                    double dDistanceAtAngle = ShapeDetector.distanceAtAngle(arrayList4, pointCentroid4, arrayList5, d23);
+                                    double d24 = d23;
+                                    double d25 = (dSqrt * 1.5707963267948966d) + (d20 * (-1.5707963267948966d));
+                                    double dDistanceAtAngle2 = ShapeDetector.distanceAtAngle(arrayList4, pointCentroid4, arrayList5, d25);
+                                    double d26 = d25;
+                                    double d27 = dDistanceAtAngle;
+                                    double d28 = dDistanceAtAngle2;
+                                    while (Math.abs(d21 - d19) > 0.06981317007977318d) {
+                                        if (d27 < d28) {
+                                            double d29 = (d20 * d26) + (dSqrt * d19);
+                                            double dDistanceAtAngle3 = ShapeDetector.distanceAtAngle(arrayList4, pointCentroid4, arrayList5, d29);
+                                            d = d29;
+                                            d28 = d27;
+                                            d27 = dDistanceAtAngle3;
+                                            d21 = d26;
+                                            d26 = d24;
+                                        } else {
+                                            double d30 = (d20 * d24) + (dSqrt * d21);
+                                            double dDistanceAtAngle4 = ShapeDetector.distanceAtAngle(arrayList4, pointCentroid4, arrayList5, d30);
+                                            d = d26;
+                                            d26 = d30;
+                                            d27 = d28;
+                                            d28 = dDistanceAtAngle4;
+                                            d19 = d24;
+                                        }
+                                        d24 = d;
+                                    }
+                                    double dMin = Math.min(d27, d28);
+                                    if (dMin < d22) {
+                                        i13 = ((ShapeDetector.Template) shapeDetector2.templates.get(i15)).shapeType;
+                                        d18 = dMin;
+                                        i14 = i15;
+                                    } else {
+                                        d18 = d22;
+                                    }
+                                }
+                                int i16 = 1.0d - (d18 / ShapeDetector.halfDiagonal) < 0.8d ? -1 : i13;
+                                if (i16 >= 0) {
+                                    List list = Brush.Shape.SHAPES_LIST;
+                                    if (i16 >= list.size() || arrayList3.size() < 1) {
+                                        shape = null;
+                                    } else {
+                                        if (i16 < 0 || i16 > list.size()) {
+                                            StringBuilder sb = new StringBuilder("Shape type must be in range from 0 to ");
+                                            sb.append(list.size() - 1);
+                                            sb.append(", but got ");
+                                            sb.append(i16);
+                                            throw new IndexOutOfBoundsException(sb.toString());
+                                        }
+                                        shape = new Shape((Brush.Shape) list.get(i16));
+                                        if (i16 == 4) {
+                                            int iFindAnglePoint2 = ShapeDetector.findAnglePoint(0, arrayList3);
+                                            if (iFindAnglePoint2 > 0) {
+                                                if (iFindAnglePoint2 > 10) {
+                                                    iFindAnglePoint2 -= 2;
+                                                }
+                                                ShapeDetector.Point point11 = (ShapeDetector.Point) arrayList3.get(iFindAnglePoint2);
+                                                ShapeDetector.Point point12 = (ShapeDetector.Point) arrayList3.get(iFindAnglePoint2 / 2);
+                                                ShapeDetector.Point point13 = (ShapeDetector.Point) arrayList3.get(0);
+                                                shape.centerX = (float) point11.x;
+                                                shape.centerY = (float) point11.y;
+                                                shape.middleX = (float) point12.x;
+                                                shape.middleY = (float) point12.y;
+                                                shape.radiusX = (float) point13.x;
+                                                shape.radiusY = (float) point13.y;
+                                                shape.arrowTriangleLength = 16.0f;
+                                            } else {
+                                                shape = null;
+                                            }
+                                        } else {
+                                            ShapeDetector.Point pointCentroid5 = ShapeDetector.centroid(arrayList3);
+                                            shape.centerX = (float) pointCentroid5.x;
+                                            shape.centerY = (float) pointCentroid5.y;
+                                            ShapeDetector.RectD rectDBoundingBox2 = ShapeDetector.boundingBox(arrayList3);
+                                            shape.radiusX = ((float) (rectDBoundingBox2.right - rectDBoundingBox2.left)) / 2.0f;
+                                            shape.radiusY = ((float) (rectDBoundingBox2.bottom - rectDBoundingBox2.top)) / 2.0f;
+                                            if (i16 == 2 && (iFindAnglePoint = ShapeDetector.findAnglePoint(1, arrayList3)) > 0) {
+                                                ShapeDetector.Point point14 = (ShapeDetector.Point) arrayList3.get(iFindAnglePoint);
+                                                shape.rotation = (float) Math.atan2(point14.y - ((double) shape.centerY), point14.x - ((double) shape.centerX));
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    shape = null;
+                                }
+                                Shape shape2 = shape;
+                                if (BuildVars.LOGS_ENABLED) {
+                                    StringBuilder sb2 = new StringBuilder("took ");
+                                    sb2.append(System.currentTimeMillis() - j);
+                                    sb2.append("ms to ");
+                                    sb2.append(shape2 != null ? "" : "not ");
+                                    sb2.append("detect a shape");
+                                    sb2.append(shape2 != null ? " (template#" + i14 + " shape#" + i16 + ")" : "");
+                                    Log.i("shapedetector", sb2.toString());
+                                }
+                                AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda71(shapeDetector2, shape2, i14, arrayList4, 18));
+                                shapeDetector2.busy.set(false);
+                                return;
+                            } catch (Throwable th) {
+                                throw th;
+                            }
+                        }
+                    default:
+                        ShapeDetector shapeDetector3 = this.f$0;
+                        shapeDetector3.getClass();
+                        try {
+                            InputStream inputStreamOpen = ApplicationLoader.applicationContext.getAssets().open("shapes.dat");
+                            while (true) {
+                                c = 0;
+                                if (inputStreamOpen.available() > 5) {
+                                    ShapeDetector.Template template = new ShapeDetector.Template();
+                                    template.shapeType = inputStreamOpen.read();
+                                    int i17 = inputStreamOpen.read();
+                                    int i18 = inputStreamOpen.read() - 64;
+                                    int i19 = inputStreamOpen.read() - 64;
+                                    if (inputStreamOpen.available() >= i17 * 2) {
+                                        for (int i20 = 0; i20 < i17; i20++) {
+                                            template.points.add(new ShapeDetector.Point((inputStreamOpen.read() - i18) - 127, (inputStreamOpen.read() - i19) - 127));
+                                        }
+                                        template.score = shapeDetector3.preferences.getInt("score" + shapeDetector3.templates.size(), 0);
+                                        shapeDetector3.templates.add(template);
+                                    }
+                                }
+                            }
+                            if (shapeDetector3.isLearning && (string = shapeDetector3.preferences.getString("moretemplates", null)) != null) {
+                                String[] strArrSplit = string.split("\\|");
+                                int size = shapeDetector3.templates.size();
+                                int i21 = 0;
+                                while (i21 < strArrSplit.length) {
+                                    ShapeDetector.Template template2 = new ShapeDetector.Template();
+                                    String[] strArrSplit2 = strArrSplit[i21].split(",");
+                                    int i22 = 1;
+                                    if (strArrSplit2.length <= 1) {
+                                        i3 = i21;
+                                    } else {
+                                        template2.shapeType = Integer.parseInt(strArrSplit2[c]);
+                                        while (i22 < strArrSplit2.length) {
+                                            template2.points.add(new ShapeDetector.Point(Double.parseDouble(strArrSplit2[i22]), Double.parseDouble(strArrSplit2[i22 + 1])));
+                                            i22 += 2;
+                                            i21 = i21;
+                                        }
+                                        i3 = i21;
+                                        template2.score = shapeDetector3.preferences.getInt("score" + (size + i3), 0);
+                                        shapeDetector3.templates.add(template2);
+                                    }
+                                    i21 = i3 + 1;
+                                    c = 0;
+                                }
+                            }
+                            inputStreamOpen.close();
+                            return;
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            return;
+                        }
+                }
+            }
+        };
         this.context = context;
-        this.onShapeDetected = callback;
+        this.onShapeDetected = dialogCell$$ExternalSyntheticLambda6;
         SharedPreferences sharedPreferences = context.getSharedPreferences("shapedetector_conf", 0);
         this.preferences = sharedPreferences;
         this.isLearning = sharedPreferences.getBoolean("learning", false);
-        this.templatesUsageScore = this.preferences.getInt("scoreall", 0);
-        parseTemplates();
-    }
+        this.templatesUsageScore = sharedPreferences.getInt("scoreall", 0);
+        final int i2 = 1;
+        queue.postRunnable(new Runnable(this) {
+            public final ShapeDetector f$0;
 
-    public static boolean isLearning(Context context) {
-        return context.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false);
-    }
+            {
+                this.f$0 = this;
+            }
 
-    public static void setLearning(Context context, boolean z) {
-        SharedPreferences.Editor editorEdit = context.getSharedPreferences("shapedetector_conf", 0).edit();
-        if (!z) {
-            editorEdit.clear();
-        } else {
-            editorEdit.putBoolean("learning", true);
-        }
-        editorEdit.apply();
-    }
-
-    public void scheduleDetect(boolean z) {
-        if (this.busy.get()) {
-            return;
-        }
-        if (this.scheduled.get() && !this.shapeDetected && z) {
-            queue.cancelRunnable(this.detect);
-            queue.postRunnable(this.detect, 150L);
-        }
-        if (this.scheduled.get()) {
-            return;
-        }
-        this.scheduled.set(true);
-        queue.postRunnable(this.detect, 150L);
-    }
-
-    public void append(double d, double d2, boolean z) {
-        boolean z2;
-        synchronized (this) {
-            this.points.add(new Point(d, d2));
-            z2 = this.points.size() >= 8;
-        }
-        if (z2) {
-            scheduleDetect(z);
-        }
-    }
-
-    public void clear() {
-        synchronized (this) {
-            this.points.clear();
-        }
-        queue.cancelRunnable(this.detect);
-        this.scheduled.set(false);
-        this.shapeDetected = false;
-        if (!this.isLearning || this.toSave == null) {
-            return;
-        }
-        showSaveLearnDialog();
-    }
-
-    private void parseTemplates() {
-        queue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ShapeDetector.m2492$r8$lambda$OTSSOXXz1D93SF52xzh08SvNKk(this.f$0);
+                Shape shape;
+                int iFindAnglePoint;
+                double d;
+                int i3;
+                char c;
+                String string;
+                int i4;
+                switch (i2) {
+                    case 0:
+                        ShapeDetector shapeDetector = this.f$0;
+                        if (shapeDetector.busy.get()) {
+                            return;
+                        }
+                        shapeDetector.scheduled.set(false);
+                        shapeDetector.busy.set(true);
+                        long jCurrentTimeMillis = System.currentTimeMillis();
+                        synchronized (shapeDetector) {
+                            try {
+                                if (shapeDetector.points.size() < 8) {
+                                    shapeDetector.busy.set(false);
+                                    return;
+                                }
+                                ArrayList arrayList = shapeDetector.points;
+                                ArrayList arrayList2 = new ArrayList();
+                                for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                                    ShapeDetector.Point point = (ShapeDetector.Point) arrayList.get(i5);
+                                    arrayList2.add(new ShapeDetector.Point(point.x, point.y));
+                                }
+                                ArrayList arrayList3 = new ArrayList();
+                                arrayList3.add((ShapeDetector.Point) arrayList2.get(0));
+                                int i6 = 1;
+                                double dDistance = 0.0d;
+                                while (i6 < arrayList2.size()) {
+                                    ShapeDetector.Point point2 = (ShapeDetector.Point) arrayList2.get(i6 - 1);
+                                    ShapeDetector.Point point3 = (ShapeDetector.Point) arrayList2.get(i6);
+                                    point2.getClass();
+                                    dDistance += point2.distance(point3.x, point3.y);
+                                    i6++;
+                                    shapeDetector = shapeDetector;
+                                }
+                                ShapeDetector shapeDetector2 = shapeDetector;
+                                double d2 = dDistance / ((double) 47);
+                                int i7 = 1;
+                                double d3 = 0.0d;
+                                while (i7 < arrayList2.size()) {
+                                    int i8 = i7 - 1;
+                                    ShapeDetector.Point point4 = (ShapeDetector.Point) arrayList2.get(i8);
+                                    ShapeDetector.Point point5 = (ShapeDetector.Point) arrayList2.get(i7);
+                                    point4.getClass();
+                                    double d4 = d3;
+                                    int i9 = i7;
+                                    double dDistance2 = point4.distance(point5.x, point5.y);
+                                    double d5 = d4 + dDistance2;
+                                    if (d5 >= d2) {
+                                        double d6 = (d2 - d4) / dDistance2;
+                                        i3 = i9;
+                                        ShapeDetector.Point point6 = new ShapeDetector.Point(((((ShapeDetector.Point) arrayList2.get(i3)).x - ((ShapeDetector.Point) arrayList2.get(i8)).x) * d6) + ((ShapeDetector.Point) arrayList2.get(i8)).x, ((((ShapeDetector.Point) arrayList2.get(i3)).y - ((ShapeDetector.Point) arrayList2.get(i8)).y) * d6) + ((ShapeDetector.Point) arrayList2.get(i8)).y);
+                                        arrayList3.add(point6);
+                                        arrayList2.add(i3, point6);
+                                        d3 = 0.0d;
+                                    } else {
+                                        i3 = i9;
+                                        d3 = d5;
+                                    }
+                                    i7 = i3 + 1;
+                                    d2 = d2;
+                                    jCurrentTimeMillis = jCurrentTimeMillis;
+                                }
+                                long j = jCurrentTimeMillis;
+                                if (arrayList3.size() == 47) {
+                                    arrayList3.add((ShapeDetector.Point) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList2));
+                                }
+                                ArrayList arrayList4 = new ArrayList();
+                                for (int i10 = 0; i10 < arrayList3.size(); i10++) {
+                                    ShapeDetector.Point point7 = (ShapeDetector.Point) arrayList3.get(i10);
+                                    arrayList4.add(new ShapeDetector.Point(point7.x, point7.y));
+                                }
+                                ShapeDetector.Point pointCentroid = ShapeDetector.centroid(arrayList4);
+                                double dAtan2 = Math.atan2(pointCentroid.y - ((ShapeDetector.Point) arrayList4.get(0)).y, pointCentroid.x - ((ShapeDetector.Point) arrayList4.get(0)).x);
+                                ShapeDetector.Point pointCentroid2 = ShapeDetector.centroid(arrayList4);
+                                double dCos = Math.cos(dAtan2);
+                                double dSin = Math.sin(dAtan2);
+                                int i11 = 0;
+                                while (i11 < arrayList4.size()) {
+                                    ShapeDetector.Point point8 = (ShapeDetector.Point) arrayList4.get(i11);
+                                    double d7 = point8.x;
+                                    double d8 = pointCentroid2.x;
+                                    double d9 = d7 - d8;
+                                    double d10 = dSin;
+                                    double d11 = point8.y;
+                                    double d12 = pointCentroid2.y;
+                                    double d13 = d11 - d12;
+                                    point8.y = (d13 * dCos) + (d9 * d10) + d12;
+                                    point8.x = ((d9 * dCos) - (d13 * d10)) + d8;
+                                    i11++;
+                                    dSin = d10;
+                                }
+                                ShapeDetector.Point pointCentroid3 = ShapeDetector.centroid(arrayList4);
+                                double d14 = -pointCentroid3.x;
+                                double d15 = -pointCentroid3.y;
+                                for (int i12 = 0; i12 < arrayList4.size(); i12++) {
+                                    ShapeDetector.Point point9 = (ShapeDetector.Point) arrayList4.get(i12);
+                                    point9.x += d14;
+                                    point9.y += d15;
+                                }
+                                ShapeDetector.RectD rectDBoundingBox = ShapeDetector.boundingBox(arrayList4);
+                                double d16 = rectDBoundingBox.right - rectDBoundingBox.left;
+                                double d17 = rectDBoundingBox.bottom - rectDBoundingBox.top;
+                                for (int i13 = 0; i13 < arrayList4.size(); i13++) {
+                                    ShapeDetector.Point point10 = (ShapeDetector.Point) arrayList4.get(i13);
+                                    point10.x = (250.0d / d16) * point10.x;
+                                    point10.y = (250.0d / d17) * point10.y;
+                                }
+                                ShapeDetector.Point pointCentroid4 = ShapeDetector.centroid(arrayList4);
+                                double d18 = Double.MAX_VALUE;
+                                int i14 = -1;
+                                int i15 = -1;
+                                for (int i16 = 0; i16 < shapeDetector2.templates.size(); i16++) {
+                                    ArrayList arrayList5 = ((ShapeDetector.Template) shapeDetector2.templates.get(i16)).points;
+                                    double dSqrt = (Math.sqrt(5.0d) - 1.0d) * 0.5d;
+                                    double d19 = -1.5707963267948966d;
+                                    double d20 = 1.0d - dSqrt;
+                                    double d21 = 1.5707963267948966d;
+                                    double d22 = d18;
+                                    double d23 = (d20 * 1.5707963267948966d) + (dSqrt * (-1.5707963267948966d));
+                                    double dDistanceAtAngle = ShapeDetector.distanceAtAngle(arrayList4, pointCentroid4, arrayList5, d23);
+                                    double d24 = d23;
+                                    double d25 = (dSqrt * 1.5707963267948966d) + (d20 * (-1.5707963267948966d));
+                                    double dDistanceAtAngle2 = ShapeDetector.distanceAtAngle(arrayList4, pointCentroid4, arrayList5, d25);
+                                    double d26 = d25;
+                                    double d27 = dDistanceAtAngle;
+                                    double d28 = dDistanceAtAngle2;
+                                    while (Math.abs(d21 - d19) > 0.06981317007977318d) {
+                                        if (d27 < d28) {
+                                            double d29 = (d20 * d26) + (dSqrt * d19);
+                                            double dDistanceAtAngle3 = ShapeDetector.distanceAtAngle(arrayList4, pointCentroid4, arrayList5, d29);
+                                            d = d29;
+                                            d28 = d27;
+                                            d27 = dDistanceAtAngle3;
+                                            d21 = d26;
+                                            d26 = d24;
+                                        } else {
+                                            double d30 = (d20 * d24) + (dSqrt * d21);
+                                            double dDistanceAtAngle4 = ShapeDetector.distanceAtAngle(arrayList4, pointCentroid4, arrayList5, d30);
+                                            d = d26;
+                                            d26 = d30;
+                                            d27 = d28;
+                                            d28 = dDistanceAtAngle4;
+                                            d19 = d24;
+                                        }
+                                        d24 = d;
+                                    }
+                                    double dMin = Math.min(d27, d28);
+                                    if (dMin < d22) {
+                                        i14 = ((ShapeDetector.Template) shapeDetector2.templates.get(i16)).shapeType;
+                                        d18 = dMin;
+                                        i15 = i16;
+                                    } else {
+                                        d18 = d22;
+                                    }
+                                }
+                                int i17 = 1.0d - (d18 / ShapeDetector.halfDiagonal) < 0.8d ? -1 : i14;
+                                if (i17 >= 0) {
+                                    List list = Brush.Shape.SHAPES_LIST;
+                                    if (i17 >= list.size() || arrayList3.size() < 1) {
+                                        shape = null;
+                                    } else {
+                                        if (i17 < 0 || i17 > list.size()) {
+                                            StringBuilder sb = new StringBuilder("Shape type must be in range from 0 to ");
+                                            sb.append(list.size() - 1);
+                                            sb.append(", but got ");
+                                            sb.append(i17);
+                                            throw new IndexOutOfBoundsException(sb.toString());
+                                        }
+                                        shape = new Shape((Brush.Shape) list.get(i17));
+                                        if (i17 == 4) {
+                                            int iFindAnglePoint2 = ShapeDetector.findAnglePoint(0, arrayList3);
+                                            if (iFindAnglePoint2 > 0) {
+                                                if (iFindAnglePoint2 > 10) {
+                                                    iFindAnglePoint2 -= 2;
+                                                }
+                                                ShapeDetector.Point point11 = (ShapeDetector.Point) arrayList3.get(iFindAnglePoint2);
+                                                ShapeDetector.Point point12 = (ShapeDetector.Point) arrayList3.get(iFindAnglePoint2 / 2);
+                                                ShapeDetector.Point point13 = (ShapeDetector.Point) arrayList3.get(0);
+                                                shape.centerX = (float) point11.x;
+                                                shape.centerY = (float) point11.y;
+                                                shape.middleX = (float) point12.x;
+                                                shape.middleY = (float) point12.y;
+                                                shape.radiusX = (float) point13.x;
+                                                shape.radiusY = (float) point13.y;
+                                                shape.arrowTriangleLength = 16.0f;
+                                            } else {
+                                                shape = null;
+                                            }
+                                        } else {
+                                            ShapeDetector.Point pointCentroid5 = ShapeDetector.centroid(arrayList3);
+                                            shape.centerX = (float) pointCentroid5.x;
+                                            shape.centerY = (float) pointCentroid5.y;
+                                            ShapeDetector.RectD rectDBoundingBox2 = ShapeDetector.boundingBox(arrayList3);
+                                            shape.radiusX = ((float) (rectDBoundingBox2.right - rectDBoundingBox2.left)) / 2.0f;
+                                            shape.radiusY = ((float) (rectDBoundingBox2.bottom - rectDBoundingBox2.top)) / 2.0f;
+                                            if (i17 == 2 && (iFindAnglePoint = ShapeDetector.findAnglePoint(1, arrayList3)) > 0) {
+                                                ShapeDetector.Point point14 = (ShapeDetector.Point) arrayList3.get(iFindAnglePoint);
+                                                shape.rotation = (float) Math.atan2(point14.y - ((double) shape.centerY), point14.x - ((double) shape.centerX));
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    shape = null;
+                                }
+                                Shape shape2 = shape;
+                                if (BuildVars.LOGS_ENABLED) {
+                                    StringBuilder sb2 = new StringBuilder("took ");
+                                    sb2.append(System.currentTimeMillis() - j);
+                                    sb2.append("ms to ");
+                                    sb2.append(shape2 != null ? "" : "not ");
+                                    sb2.append("detect a shape");
+                                    sb2.append(shape2 != null ? " (template#" + i15 + " shape#" + i17 + ")" : "");
+                                    Log.i("shapedetector", sb2.toString());
+                                }
+                                AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda71(shapeDetector2, shape2, i15, arrayList4, 18));
+                                shapeDetector2.busy.set(false);
+                                return;
+                            } catch (Throwable th) {
+                                throw th;
+                            }
+                        }
+                    default:
+                        ShapeDetector shapeDetector3 = this.f$0;
+                        shapeDetector3.getClass();
+                        try {
+                            InputStream inputStreamOpen = ApplicationLoader.applicationContext.getAssets().open("shapes.dat");
+                            while (true) {
+                                c = 0;
+                                if (inputStreamOpen.available() > 5) {
+                                    ShapeDetector.Template template = new ShapeDetector.Template();
+                                    template.shapeType = inputStreamOpen.read();
+                                    int i18 = inputStreamOpen.read();
+                                    int i19 = inputStreamOpen.read() - 64;
+                                    int i110 = inputStreamOpen.read() - 64;
+                                    if (inputStreamOpen.available() >= i18 * 2) {
+                                        for (int i20 = 0; i20 < i18; i20++) {
+                                            template.points.add(new ShapeDetector.Point((inputStreamOpen.read() - i19) - 127, (inputStreamOpen.read() - i110) - 127));
+                                        }
+                                        template.score = shapeDetector3.preferences.getInt("score" + shapeDetector3.templates.size(), 0);
+                                        shapeDetector3.templates.add(template);
+                                    }
+                                }
+                            }
+                            if (shapeDetector3.isLearning && (string = shapeDetector3.preferences.getString("moretemplates", null)) != null) {
+                                String[] strArrSplit = string.split("\\|");
+                                int size = shapeDetector3.templates.size();
+                                int i21 = 0;
+                                while (i21 < strArrSplit.length) {
+                                    ShapeDetector.Template template2 = new ShapeDetector.Template();
+                                    String[] strArrSplit2 = strArrSplit[i21].split(",");
+                                    int i22 = 1;
+                                    if (strArrSplit2.length <= 1) {
+                                        i4 = i21;
+                                    } else {
+                                        template2.shapeType = Integer.parseInt(strArrSplit2[c]);
+                                        while (i22 < strArrSplit2.length) {
+                                            template2.points.add(new ShapeDetector.Point(Double.parseDouble(strArrSplit2[i22]), Double.parseDouble(strArrSplit2[i22 + 1])));
+                                            i22 += 2;
+                                            i21 = i21;
+                                        }
+                                        i4 = i21;
+                                        template2.score = shapeDetector3.preferences.getInt("score" + (size + i4), 0);
+                                        shapeDetector3.templates.add(template2);
+                                    }
+                                    i21 = i4 + 1;
+                                    c = 0;
+                                }
+                            }
+                            inputStreamOpen.close();
+                            return;
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            return;
+                        }
+                }
             }
         });
     }
 
-    public static void m2492$r8$lambda$OTSSOXXz1D93SF52xzh08SvNKk(ShapeDetector shapeDetector) {
-        AnonymousClass1 anonymousClass1;
-        char c;
-        String string;
-        shapeDetector.getClass();
-        try {
-            InputStream inputStreamOpen = ApplicationLoader.applicationContext.getAssets().open("shapes.dat");
-            while (true) {
-                anonymousClass1 = null;
-                c = 0;
-                if (inputStreamOpen.available() <= 5) {
-                    break;
-                }
-                Template template = new Template();
-                template.shapeType = inputStreamOpen.read();
-                int i = inputStreamOpen.read();
-                int i2 = inputStreamOpen.read() - 64;
-                int i3 = inputStreamOpen.read() - 64;
-                if (inputStreamOpen.available() < i * 2) {
-                    break;
-                }
-                for (int i4 = 0; i4 < i; i4++) {
-                    template.points.add(new Point((inputStreamOpen.read() - i2) - 127, (inputStreamOpen.read() - i3) - 127));
-                }
-                template.score = shapeDetector.preferences.getInt("score" + shapeDetector.templates.size(), 0);
-                shapeDetector.templates.add(template);
-            }
-            if (shapeDetector.isLearning && (string = shapeDetector.preferences.getString("moretemplates", null)) != null) {
-                String[] strArrSplit = string.split("\\|");
-                int size = shapeDetector.templates.size();
-                int i5 = 0;
-                while (i5 < strArrSplit.length) {
-                    Template template2 = new Template();
-                    String[] strArrSplit2 = strArrSplit[i5].split(",");
-                    if (strArrSplit2.length > 1) {
-                        template2.shapeType = Integer.parseInt(strArrSplit2[c]);
-                        for (int i6 = 1; i6 < strArrSplit2.length; i6 += 2) {
-                            template2.points.add(new Point(Double.parseDouble(strArrSplit2[i6]), Double.parseDouble(strArrSplit2[i6 + 1])));
-                        }
-                        template2.score = shapeDetector.preferences.getInt("score" + (size + i5), 0);
-                        shapeDetector.templates.add(template2);
-                    }
-                    i5++;
-                    anonymousClass1 = null;
-                    c = 0;
-                }
-            }
-            inputStreamOpen.close();
-        } catch (Exception e) {
-            FileLog.e(e);
+    public static RectD boundingBox(ArrayList arrayList) {
+        if (arrayList.size() <= 0) {
+            return null;
         }
-    }
-
-    public static void m2493$r8$lambda$nqveIXGn67co06Ms1Bb_Os5JfM(final ShapeDetector shapeDetector) {
-        String str;
-        if (shapeDetector.busy.get()) {
-            return;
-        }
-        shapeDetector.scheduled.set(false);
-        shapeDetector.busy.set(true);
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        synchronized (shapeDetector) {
-            try {
-                if (shapeDetector.points.size() < 8) {
-                    shapeDetector.busy.set(false);
-                    return;
-                }
-                ArrayList arrayListResample = shapeDetector.resample(shapeDetector.fullClone(shapeDetector.points), 48);
-                final ArrayList arrayListFullClone = shapeDetector.fullClone(arrayListResample);
-                shapeDetector.rotate(arrayListFullClone, shapeDetector.indicativeAngle(arrayListFullClone));
-                Point pointCentroid = shapeDetector.centroid(arrayListFullClone);
-                shapeDetector.translate(arrayListFullClone, -pointCentroid.x, -pointCentroid.y);
-                shapeDetector.scale(arrayListFullClone, 250.0d);
-                Point pointCentroid2 = shapeDetector.centroid(arrayListFullClone);
-                double d = Double.MAX_VALUE;
-                int i = 0;
-                int i2 = -1;
-                int i3 = -1;
-                while (i < shapeDetector.templates.size()) {
-                    int i4 = i;
-                    int i5 = i2;
-                    double dDistanceAtBestAngle = shapeDetector.distanceAtBestAngle(arrayListFullClone, pointCentroid2, ((Template) shapeDetector.templates.get(i)).points, -1.5707963267948966d, 1.5707963267948966d, 0.06981317007977318d);
-                    if (dDistanceAtBestAngle < d) {
-                        d = dDistanceAtBestAngle;
-                        i3 = ((Template) shapeDetector.templates.get(i4)).shapeType;
-                        i2 = i4;
-                    } else {
-                        i2 = i5;
-                    }
-                    i = i4 + 1;
-                }
-                final int i6 = i2;
-                int i7 = 1.0d - (d / halfDiagonal) < 0.8d ? -1 : i3;
-                final Shape shapeConstructShape = shapeDetector.constructShape(i7, arrayListResample);
-                if (BuildVars.LOGS_ENABLED) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("took ");
-                    sb.append(System.currentTimeMillis() - jCurrentTimeMillis);
-                    sb.append("ms to ");
-                    sb.append(shapeConstructShape != null ? "" : "not ");
-                    sb.append("detect a shape");
-                    if (shapeConstructShape != null) {
-                        str = " (template#" + i6 + " shape#" + i7 + ")";
-                    } else {
-                        str = "";
-                    }
-                    sb.append(str);
-                    Log.i("shapedetector", sb.toString());
-                }
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ShapeDetector.$r8$lambda$L8dkv00z7PHHUqzDgLQDZ6VVPts(this.f$0, shapeConstructShape, i6, arrayListFullClone);
-                    }
-                });
-                shapeDetector.busy.set(false);
-            } catch (Throwable th) {
-                throw th;
+        double d = ((Point) arrayList.get(0)).x;
+        double d2 = ((Point) arrayList.get(0)).y;
+        RectD rectD = new RectD();
+        rectD.left = d;
+        rectD.top = d2;
+        rectD.right = d;
+        rectD.bottom = d2;
+        for (int i = 1; i < arrayList.size(); i++) {
+            Point point = (Point) arrayList.get(i);
+            double d3 = point.x;
+            double d4 = point.y;
+            if (rectD.left >= d3) {
+                rectD.left = d3;
+            }
+            if (rectD.top >= d4) {
+                rectD.top = d4;
+            }
+            if (rectD.right <= d3) {
+                rectD.right = d3;
+            }
+            if (rectD.bottom <= d4) {
+                rectD.bottom = d4;
             }
         }
+        return rectD;
     }
 
-    public static void $r8$lambda$L8dkv00z7PHHUqzDgLQDZ6VVPts(ShapeDetector shapeDetector, Shape shape, int i, ArrayList arrayList) {
-        shapeDetector.getClass();
-        boolean z = shape != null;
-        shapeDetector.shapeDetected = z;
-        if (z && i >= 0 && i < shapeDetector.templates.size()) {
-            shapeDetector.templatesUsageScore++;
-            ((Template) shapeDetector.templates.get(i)).score++;
-            shapeDetector.preferences.edit().putInt("score" + i, ((Template) shapeDetector.templates.get(i)).score).putInt("scoreall", shapeDetector.templatesUsageScore).apply();
-            shapeDetector.toSave = null;
-        } else {
-            shapeDetector.toSave = arrayList;
+    public static Point centroid(ArrayList arrayList) {
+        Point point = new Point(0.0d, 0.0d);
+        for (int i = 0; i < arrayList.size(); i++) {
+            Point point2 = (Point) arrayList.get(i);
+            point.x += point2.x;
+            point.y += point2.y;
         }
-        shapeDetector.onShapeDetected.run(shape);
+        point.x /= (double) arrayList.size();
+        point.y /= (double) arrayList.size();
+        return point;
     }
 
-    private ArrayList resample(ArrayList arrayList, int i) {
-        ArrayList arrayList2 = new ArrayList();
-        arrayList2.add((Point) arrayList.get(0));
-        int i2 = i - 1;
-        double dPathLength = pathLength(arrayList) / ((double) i2);
-        int i3 = 1;
-        double d = 0.0d;
-        while (i3 < arrayList.size()) {
-            int i4 = i3 - 1;
-            double dDistance = ((Point) arrayList.get(i4)).distance((Point) arrayList.get(i3));
-            double d2 = d + dDistance;
-            if (d2 >= dPathLength) {
-                double d3 = (dPathLength - d) / dDistance;
-                Point point = new Point(((Point) arrayList.get(i4)).x + ((((Point) arrayList.get(i3)).x - ((Point) arrayList.get(i4)).x) * d3), ((Point) arrayList.get(i4)).y + (d3 * (((Point) arrayList.get(i3)).y - ((Point) arrayList.get(i4)).y)));
-                arrayList2.add(point);
-                arrayList.add(i3, point);
-                d = 0.0d;
-            } else {
-                d = d2;
-            }
-            i3++;
-            i2 = i2;
-            dPathLength = dPathLength;
-        }
-        if (arrayList2.size() == i2) {
-            arrayList2.add((Point) arrayList.get(arrayList.size() - 1));
-        }
-        return arrayList2;
-    }
-
-    private double distanceAtBestAngle(ArrayList arrayList, Point point, ArrayList arrayList2, double d, double d2, double d3) {
-        double dSqrt = (Math.sqrt(5.0d) - 1.0d) * 0.5d;
-        double d4 = 1.0d - dSqrt;
-        double d5 = (dSqrt * d) + (d4 * d2);
-        double d6 = (d4 * d) + (dSqrt * d2);
-        double dDistanceAtAngle = distanceAtAngle(arrayList, point, arrayList2, d5);
-        double d7 = d6;
-        double dDistanceAtAngle2 = distanceAtAngle(arrayList, point, arrayList2, d6);
-        double d8 = d;
-        double d9 = d2;
-        while (Math.abs(d9 - d8) > d3) {
-            if (dDistanceAtAngle < dDistanceAtAngle2) {
-                double d10 = (d4 * d7) + (dSqrt * d8);
-                dDistanceAtAngle2 = dDistanceAtAngle;
-                d9 = d7;
-                dDistanceAtAngle = distanceAtAngle(arrayList, point, arrayList2, d10);
-                d7 = d5;
-                d5 = d10;
-            } else {
-                double d11 = (d4 * d5) + (dSqrt * d9);
-                dDistanceAtAngle = dDistanceAtAngle2;
-                d8 = d5;
-                d5 = d7;
-                dDistanceAtAngle2 = distanceAtAngle(arrayList, point, arrayList2, d11);
-                d7 = d11;
-            }
-        }
-        return Math.min(dDistanceAtAngle, dDistanceAtAngle2);
-    }
-
-    private double distanceAtAngle(ArrayList arrayList, Point point, ArrayList arrayList2, double d) {
+    public static double distanceAtAngle(ArrayList arrayList, Point point, ArrayList arrayList2, double d) {
         double dCos = Math.cos(d);
         double dSin = Math.sin(d);
         int iMin = Math.min(arrayList.size(), arrayList2.size());
@@ -395,222 +719,50 @@ public class ShapeDetector {
             double d6 = point2.y;
             double d7 = point.y;
             double d8 = d6 - d7;
-            dDistance += point3.distance(((d5 * d3) - (d8 * dSin)) + d4, (d5 * dSin) + (d8 * d3) + d7);
+            dDistance += point3.distance(((d5 * d3) - (d8 * dSin)) + d4, (d8 * d3) + (d5 * dSin) + d7);
             i++;
             dCos = d3;
         }
         return dDistance / ((double) arrayList.size());
     }
 
-    private ArrayList fullClone(ArrayList arrayList) {
-        ArrayList arrayList2 = new ArrayList();
-        for (int i = 0; i < arrayList.size(); i++) {
-            Point point = (Point) arrayList.get(i);
-            arrayList2.add(new Point(point.x, point.y));
-        }
-        return arrayList2;
-    }
-
-    private void translate(ArrayList arrayList, double d, double d2) {
-        for (int i = 0; i < arrayList.size(); i++) {
-            Point point = (Point) arrayList.get(i);
-            point.x += d;
-            point.y += d2;
-        }
-    }
-
-    private void scale(ArrayList arrayList, double d) {
-        RectD rectDBoundingBox = boundingBox(arrayList);
-        double d2 = rectDBoundingBox.right - rectDBoundingBox.left;
-        double d3 = rectDBoundingBox.bottom - rectDBoundingBox.top;
-        for (int i = 0; i < arrayList.size(); i++) {
-            Point point = (Point) arrayList.get(i);
-            point.x *= d / d2;
-            point.y *= d / d3;
-        }
-    }
-
-    private void rotate(ArrayList arrayList, double d) {
-        rotate(arrayList, d, centroid(arrayList));
-    }
-
-    private void rotate(ArrayList arrayList, double d, Point point) {
-        double dCos = Math.cos(d);
-        double dSin = Math.sin(d);
-        int i = 0;
-        while (i < arrayList.size()) {
-            Point point2 = (Point) arrayList.get(i);
-            double d2 = point2.x;
-            double d3 = point.x;
-            double d4 = d2 - d3;
-            double d5 = d4 * dCos;
-            double d6 = point2.y;
-            double d7 = dCos;
-            double d8 = point.y;
-            double d9 = d6 - d8;
-            point2.y = (d4 * dSin) + (d9 * d7) + d8;
-            point2.x = (d5 - (d9 * dSin)) + d3;
-            i++;
-            dCos = d7;
-        }
-    }
-
-    private RectD boundingBox(ArrayList arrayList) {
-        if (arrayList.size() <= 0) {
-            return null;
-        }
-        double d = ((Point) arrayList.get(0)).x;
-        double d2 = ((Point) arrayList.get(0)).y;
-        RectD rectD = new RectD(d, d2, d, d2);
-        for (int i = 1; i < arrayList.size(); i++) {
-            Point point = (Point) arrayList.get(i);
-            rectD.union(point.x, point.y);
-        }
-        return rectD;
-    }
-
-    private Point centroid(ArrayList arrayList) {
-        Point point = new Point(0.0d, 0.0d);
-        for (int i = 0; i < arrayList.size(); i++) {
-            Point point2 = (Point) arrayList.get(i);
-            point.x += point2.x;
-            point.y += point2.y;
-        }
-        point.x /= (double) arrayList.size();
-        point.y /= (double) arrayList.size();
-        return point;
-    }
-
-    private double indicativeAngle(ArrayList arrayList) {
-        Point pointCentroid = centroid(arrayList);
-        return Math.atan2(pointCentroid.y - ((Point) arrayList.get(0)).y, pointCentroid.x - ((Point) arrayList.get(0)).x);
-    }
-
-    private double pathLength(ArrayList arrayList) {
-        double dDistance = 0.0d;
-        for (int i = 1; i < arrayList.size(); i++) {
-            dDistance += ((Point) arrayList.get(i - 1)).distance((Point) arrayList.get(i));
-        }
-        return dDistance;
-    }
-
-    private int findAnglePoint(ArrayList arrayList) {
-        return findAnglePoint(arrayList, 0);
-    }
-
-    private int findAnglePoint(ArrayList arrayList, int i) {
+    public static int findAnglePoint(int i, ArrayList arrayList) {
         int iMax = Math.max(1, arrayList.size() / 4);
-        int i2 = i;
         while (iMax < arrayList.size() - 1) {
             Point point = (Point) arrayList.get(iMax - 1);
             Point point2 = (Point) arrayList.get(iMax);
-            int i3 = iMax + 1;
-            Point point3 = (Point) arrayList.get(i3);
-            double dDistance = point.distance(point2);
-            double dDistance2 = point.distance(point3);
-            double dDistance3 = point2.distance(point3);
-            if ((Math.acos((((dDistance * dDistance) + (dDistance2 * dDistance2)) - (dDistance3 * dDistance3)) / ((dDistance * 2.0d) * dDistance2)) / 3.141592653589793d) * 180.0d > 18.0d) {
-                if (i2 <= 0) {
+            int i2 = iMax + 1;
+            Point point3 = (Point) arrayList.get(i2);
+            point.getClass();
+            double dDistance = point.distance(point2.x, point2.y);
+            double dDistance2 = point.distance(point3.x, point3.y);
+            double dDistance3 = point2.distance(point3.x, point3.y);
+            if ((Math.acos((((dDistance2 * dDistance2) + (dDistance * dDistance)) - (dDistance3 * dDistance3)) / ((dDistance * 2.0d) * dDistance2)) / 3.141592653589793d) * 180.0d > 18.0d) {
+                if (i <= 0) {
                     return iMax;
                 }
-                i2--;
+                i--;
             }
-            iMax = i3;
+            iMax = i2;
         }
         return -1;
     }
 
-    private Shape constructShape(int i, ArrayList arrayList) {
-        int iFindAnglePoint;
-        if (i < 0 || i >= Brush.Shape.SHAPES_LIST.size() || arrayList.size() < 1) {
-            return null;
+    public final void clear() {
+        ArrayList arrayList;
+        synchronized (this) {
+            this.points.clear();
         }
-        Shape shape = new Shape(Brush.Shape.make(i));
-        if (i == 4) {
-            int iFindAnglePoint2 = findAnglePoint(arrayList);
-            if (iFindAnglePoint2 <= 0) {
-                return null;
-            }
-            if (iFindAnglePoint2 > 10) {
-                iFindAnglePoint2 -= 2;
-            }
-            Point point = (Point) arrayList.get(iFindAnglePoint2);
-            Point point2 = (Point) arrayList.get(iFindAnglePoint2 / 2);
-            Point point3 = (Point) arrayList.get(0);
-            shape.centerX = (float) point.x;
-            shape.centerY = (float) point.y;
-            shape.middleX = (float) point2.x;
-            shape.middleY = (float) point2.y;
-            shape.radiusX = (float) point3.x;
-            shape.radiusY = (float) point3.y;
-            shape.arrowTriangleLength = 16.0f;
-            return shape;
-        }
-        Point pointCentroid = centroid(arrayList);
-        shape.centerX = (float) pointCentroid.x;
-        shape.centerY = (float) pointCentroid.y;
-        RectD rectDBoundingBox = boundingBox(arrayList);
-        shape.radiusX = ((float) (rectDBoundingBox.right - rectDBoundingBox.left)) / 2.0f;
-        shape.radiusY = ((float) (rectDBoundingBox.bottom - rectDBoundingBox.top)) / 2.0f;
-        if (i == 2 && (iFindAnglePoint = findAnglePoint(arrayList, 1)) > 0) {
-            Point point4 = (Point) arrayList.get(iFindAnglePoint);
-            shape.rotation = (float) Math.atan2(point4.y - ((double) shape.centerY), point4.x - ((double) shape.centerX));
-        }
-        return shape;
-    }
-
-    private void showSaveLearnDialog() {
-        final ArrayList arrayList = this.toSave;
-        new AlertDialog.Builder(this.context).setTitle("Shape?").setItems(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i) {
-                ShapeDetector.$r8$lambda$l0wNvQdW2E2Yd3fJ9CctlH7Sq8U(this.f$0, arrayList, dialogInterface, i);
-            }
-        }).show();
-        this.toSave = null;
-    }
-
-    public static void $r8$lambda$l0wNvQdW2E2Yd3fJ9CctlH7Sq8U(ShapeDetector shapeDetector, ArrayList arrayList, DialogInterface dialogInterface, int i) {
-        shapeDetector.getClass();
-        if (i != 0) {
-            Template template = new Template();
-            template.shapeType = i - 1;
-            template.points = arrayList;
-            shapeDetector.templates.add(template);
-            String string = shapeDetector.preferences.getString("moretemplates", null);
-            String str = string == null ? "" + template.shapeType : string + "|" + template.shapeType;
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                str = str + "," + Math.round(((Point) arrayList.get(i2)).x) + "," + Math.round(((Point) arrayList.get(i2)).y);
-            }
-            shapeDetector.preferences.edit().putString("moretemplates", str).apply();
+        queue.cancelRunnable(this.detect);
+        this.scheduled.set(false);
+        this.shapeDetected = false;
+        if (!this.isLearning || (arrayList = this.toSave) == null) {
             return;
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        for (int i3 = 0; i3 < shapeDetector.templates.size(); i3++) {
-            Template template2 = (Template) shapeDetector.templates.get(i3);
-            if (i3 > 0) {
-                sb.append(",\n");
-            }
-            sb.append("\t{\n\t\t\"shape\": ");
-            sb.append(template2.shapeType);
-            sb.append(",\n\t\t\"points\": [");
-            for (int i4 = 0; i4 < template2.points.size(); i4++) {
-                if (i4 > 0) {
-                    sb.append(",");
-                }
-                Point point = (Point) template2.points.get(i4);
-                sb.append("[");
-                sb.append(Math.round(point.x));
-                sb.append(",");
-                sb.append(Math.round(point.y));
-                sb.append("]");
-            }
-            sb.append("],\n\t\t\"freq\": ");
-            sb.append(Math.round(((template2.score / shapeDetector.templatesUsageScore) * 100.0f) * 100.0f) / 100.0f);
-            sb.append("\n\t}");
-        }
-        sb.append("\n]");
-        Log.i("shapedetector", sb.toString());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.context, 0, null);
+        builder.alertDialog.title = "Shape?";
+        builder.setItems(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new ArticleViewer$$ExternalSyntheticLambda24(5, this, arrayList));
+        builder.show();
+        this.toSave = null;
     }
 }

@@ -7,17 +7,21 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.CombinedDrawable;
 
-public class TextInfoCell extends TextInfoPrivacyCell {
-    private final Theme.ResourcesProvider resourcesProvider;
+public final class TextInfoCell extends TextInfoPrivacyCell {
+    public final Theme.ResourcesProvider resourcesProvider;
 
     public TextInfoCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider);
+        super(context, 24, resourcesProvider);
         this.resourcesProvider = resourcesProvider;
     }
 
     public void setBackground(boolean z) {
-        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider)), Theme.getThemedDrawable(getContext(), z ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.getColor(Theme.key_windowBackgroundGrayShadow, this.resourcesProvider)), 0, 0);
-        combinedDrawable.setFullsize(true);
+        Context context = getContext();
+        int i = z ? R.drawable.greydivider_bottom : R.drawable.greydivider;
+        int i2 = Theme.key_windowBackgroundGrayShadow;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider)), Theme.getThemedDrawable(context, i, Theme.getColor(i2, resourcesProvider)), 0, 0);
+        combinedDrawable.fullSize = true;
         setBackground(combinedDrawable);
     }
 }

@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import androidx.recyclerview.widget.DiffUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,6 +9,82 @@ public class RtpTransceiver {
     private RtpReceiver cachedReceiver;
     private RtpSender cachedSender;
     private long nativeRtpTransceiver;
+
+    public enum RtpTransceiverDirection {
+        SEND_RECV(0),
+        SEND_ONLY(1),
+        RECV_ONLY(2),
+        INACTIVE(3),
+        STOPPED(4);
+
+        private final int nativeIndex;
+
+        RtpTransceiverDirection(int i) {
+            this.nativeIndex = i;
+        }
+
+        public static RtpTransceiverDirection fromNativeIndex(int i) {
+            for (RtpTransceiverDirection rtpTransceiverDirection : values()) {
+                if (rtpTransceiverDirection.getNativeIndex() == i) {
+                    return rtpTransceiverDirection;
+                }
+            }
+            throw new IllegalArgumentException(DiffUtil.m(i, "Uknown native RtpTransceiverDirection type"));
+        }
+
+        public int getNativeIndex() {
+            return this.nativeIndex;
+        }
+    }
+
+    public static final class RtpTransceiverInit {
+        private final RtpTransceiverDirection direction;
+        private final List<RtpParameters.Encoding> sendEncodings;
+        private final List<String> streamIds;
+
+        public RtpTransceiverInit() {
+            this(RtpTransceiverDirection.SEND_RECV);
+        }
+
+        public int getDirectionNativeIndex() {
+            return this.direction.getNativeIndex();
+        }
+
+        public List<RtpParameters.Encoding> getSendEncodings() {
+            return new ArrayList(this.sendEncodings);
+        }
+
+        public List<String> getStreamIds() {
+            return new ArrayList(this.streamIds);
+        }
+
+        public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection) {
+            List list = Collections.EMPTY_LIST;
+            this(rtpTransceiverDirection, list, list);
+        }
+
+        public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection, List<String> list) {
+            this(rtpTransceiverDirection, list, Collections.EMPTY_LIST);
+        }
+
+        public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection, List<String> list, List<RtpParameters.Encoding> list2) {
+            this.direction = rtpTransceiverDirection;
+            this.streamIds = new ArrayList(list);
+            this.sendEncodings = new ArrayList(list2);
+        }
+    }
+
+    public RtpTransceiver(long j) {
+        this.nativeRtpTransceiver = j;
+        this.cachedSender = nativeGetSender(j);
+        this.cachedReceiver = nativeGetReceiver(j);
+    }
+
+    private void checkRtpTransceiverExists() {
+        if (this.nativeRtpTransceiver == 0) {
+            throw new IllegalStateException("RtpTransceiver has been disposed.");
+        }
+    }
 
     private static native RtpTransceiverDirection nativeCurrentDirection(long j);
 
@@ -31,74 +108,22 @@ public class RtpTransceiver {
 
     private static native boolean nativeStopped(long j);
 
-    public enum RtpTransceiverDirection {
-        SEND_RECV(0),
-        SEND_ONLY(1),
-        RECV_ONLY(2),
-        INACTIVE(3),
-        STOPPED(4);
-
-        private final int nativeIndex;
-
-        RtpTransceiverDirection(int i) {
-            this.nativeIndex = i;
-        }
-
-        int getNativeIndex() {
-            return this.nativeIndex;
-        }
-
-        static RtpTransceiverDirection fromNativeIndex(int i) {
-            for (RtpTransceiverDirection rtpTransceiverDirection : values()) {
-                if (rtpTransceiverDirection.getNativeIndex() == i) {
-                    return rtpTransceiverDirection;
-                }
-            }
-            throw new IllegalArgumentException("Uknown native RtpTransceiverDirection type" + i);
-        }
+    public void dispose() {
+        checkRtpTransceiverExists();
+        this.cachedSender.dispose();
+        this.cachedReceiver.dispose();
+        JniCommon.nativeReleaseRef(this.nativeRtpTransceiver);
+        this.nativeRtpTransceiver = 0L;
     }
 
-    public static final class RtpTransceiverInit {
-        private final RtpTransceiverDirection direction;
-        private final List<RtpParameters.Encoding> sendEncodings;
-        private final List<String> streamIds;
-
-        public RtpTransceiverInit() {
-            this(RtpTransceiverDirection.SEND_RECV);
-        }
-
-        public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection) {
-            List list = Collections.EMPTY_LIST;
-            this(rtpTransceiverDirection, list, list);
-        }
-
-        public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection, List<String> list) {
-            this(rtpTransceiverDirection, list, Collections.EMPTY_LIST);
-        }
-
-        public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection, List<String> list, List<RtpParameters.Encoding> list2) {
-            this.direction = rtpTransceiverDirection;
-            this.streamIds = new ArrayList(list);
-            this.sendEncodings = new ArrayList(list2);
-        }
-
-        int getDirectionNativeIndex() {
-            return this.direction.getNativeIndex();
-        }
-
-        List<String> getStreamIds() {
-            return new ArrayList(this.streamIds);
-        }
-
-        List<RtpParameters.Encoding> getSendEncodings() {
-            return new ArrayList(this.sendEncodings);
-        }
+    public RtpTransceiverDirection getCurrentDirection() {
+        checkRtpTransceiverExists();
+        return nativeCurrentDirection(this.nativeRtpTransceiver);
     }
 
-    protected RtpTransceiver(long j) {
-        this.nativeRtpTransceiver = j;
-        this.cachedSender = nativeGetSender(j);
-        this.cachedReceiver = nativeGetReceiver(j);
+    public RtpTransceiverDirection getDirection() {
+        checkRtpTransceiverExists();
+        return nativeDirection(this.nativeRtpTransceiver);
     }
 
     public MediaStreamTrack.MediaType getMediaType() {
@@ -111,12 +136,12 @@ public class RtpTransceiver {
         return nativeGetMid(this.nativeRtpTransceiver);
     }
 
-    public RtpSender getSender() {
-        return this.cachedSender;
-    }
-
     public RtpReceiver getReceiver() {
         return this.cachedReceiver;
+    }
+
+    public RtpSender getSender() {
+        return this.cachedSender;
     }
 
     public boolean isStopped() {
@@ -124,14 +149,9 @@ public class RtpTransceiver {
         return nativeStopped(this.nativeRtpTransceiver);
     }
 
-    public RtpTransceiverDirection getDirection() {
+    public void setCodecPreferences(List<RtpCapabilities.CodecCapability> list) {
         checkRtpTransceiverExists();
-        return nativeDirection(this.nativeRtpTransceiver);
-    }
-
-    public RtpTransceiverDirection getCurrentDirection() {
-        checkRtpTransceiverExists();
-        return nativeCurrentDirection(this.nativeRtpTransceiver);
+        nativeSetCodecPreferences(this.nativeRtpTransceiver, list);
     }
 
     public boolean setDirection(RtpTransceiverDirection rtpTransceiverDirection) {
@@ -144,11 +164,6 @@ public class RtpTransceiver {
         nativeStopInternal(this.nativeRtpTransceiver);
     }
 
-    public void setCodecPreferences(List<RtpCapabilities.CodecCapability> list) {
-        checkRtpTransceiverExists();
-        nativeSetCodecPreferences(this.nativeRtpTransceiver, list);
-    }
-
     public void stopInternal() {
         checkRtpTransceiverExists();
         nativeStopInternal(this.nativeRtpTransceiver);
@@ -157,19 +172,5 @@ public class RtpTransceiver {
     public void stopStandard() {
         checkRtpTransceiverExists();
         nativeStopStandard(this.nativeRtpTransceiver);
-    }
-
-    public void dispose() {
-        checkRtpTransceiverExists();
-        this.cachedSender.dispose();
-        this.cachedReceiver.dispose();
-        JniCommon.nativeReleaseRef(this.nativeRtpTransceiver);
-        this.nativeRtpTransceiver = 0L;
-    }
-
-    private void checkRtpTransceiverExists() {
-        if (this.nativeRtpTransceiver == 0) {
-            throw new IllegalStateException("RtpTransceiver has been disposed.");
-        }
     }
 }

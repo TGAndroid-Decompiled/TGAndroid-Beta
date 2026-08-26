@@ -7,6 +7,9 @@ public class BufferedImage extends Image {
     public static final int TYPE_INT_ARGB = 2;
     public static final int TYPE_INT_RGB = 1;
 
+    public BufferedImage(int i, int i2, int i3) {
+    }
+
     public Graphics2D createGraphics() {
         return null;
     }
@@ -21,8 +24,5 @@ public class BufferedImage extends Image {
 
     public int getWidth() {
         return 0;
-    }
-
-    public BufferedImage(int i, int i2, int i3) {
     }
 }

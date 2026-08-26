@@ -3,111 +3,159 @@ package kotlinx.coroutines.internal;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import kotlin.jvm.internal.Intrinsics;
+import kotlinx.coroutines.EventLoopImplBase;
 
 public class ThreadSafeHeap {
-    private static final AtomicIntegerFieldUpdater _size$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(ThreadSafeHeap.class, "_size$volatile");
+    public static final AtomicIntegerFieldUpdater _size$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(ThreadSafeHeap.class, "_size$volatile");
     private volatile int _size$volatile;
-    private ThreadSafeHeapNode[] a;
+    public EventLoopImplBase.DelayedTask[] a;
 
-    public final ThreadSafeHeapNode peek() {
-        ThreadSafeHeapNode threadSafeHeapNodeFirstImpl;
-        synchronized (this) {
-            threadSafeHeapNodeFirstImpl = firstImpl();
+    public final void addImpl(EventLoopImplBase.DelayedTask delayedTask) {
+        delayedTask.setHeap((EventLoopImplBase.DelayedTaskQueue) this);
+        EventLoopImplBase.DelayedTask[] delayedTaskArr = this.a;
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = _size$volatile$FU;
+        if (delayedTaskArr == null) {
+            delayedTaskArr = new EventLoopImplBase.DelayedTask[4];
+            this.a = delayedTaskArr;
+        } else if (atomicIntegerFieldUpdater.get(this) >= delayedTaskArr.length) {
+            Object[] objArrCopyOf = Arrays.copyOf(delayedTaskArr, atomicIntegerFieldUpdater.get(this) * 2);
+            Intrinsics.checkNotNullExpressionValue(objArrCopyOf, "copyOf(...)");
+            delayedTaskArr = (EventLoopImplBase.DelayedTask[]) objArrCopyOf;
+            this.a = delayedTaskArr;
         }
-        return threadSafeHeapNodeFirstImpl;
+        int i = atomicIntegerFieldUpdater.get(this);
+        atomicIntegerFieldUpdater.set(this, i + 1);
+        delayedTaskArr[i] = delayedTask;
+        delayedTask.index = i;
+        siftUpFrom(i);
     }
 
-    public final boolean remove(ThreadSafeHeapNode threadSafeHeapNode) {
-        boolean z;
+    public final EventLoopImplBase.DelayedTask peek() {
+        EventLoopImplBase.DelayedTask delayedTask;
         synchronized (this) {
-            if (threadSafeHeapNode.getHeap() == null) {
-                z = false;
-            } else {
-                removeAtImpl(threadSafeHeapNode.getIndex());
-                z = true;
+            EventLoopImplBase.DelayedTask[] delayedTaskArr = this.a;
+            delayedTask = delayedTaskArr != null ? delayedTaskArr[0] : null;
+        }
+        return delayedTask;
+    }
+
+    public final void remove(EventLoopImplBase.DelayedTask delayedTask) {
+        synchronized (this) {
+            if (delayedTask.getHeap() != null) {
+                removeAtImpl(delayedTask.index);
             }
         }
-        return z;
     }
 
-    public final ThreadSafeHeapNode removeFirstOrNull() {
-        ThreadSafeHeapNode threadSafeHeapNodeRemoveAtImpl;
-        synchronized (this) {
-            threadSafeHeapNodeRemoveAtImpl = getSize() > 0 ? removeAtImpl(0) : null;
-        }
-        return threadSafeHeapNodeRemoveAtImpl;
-    }
-
-    public final int getSize() {
-        return _size$volatile$FU.get(this);
-    }
-
-    private final void setSize(int i) {
-        _size$volatile$FU.set(this, i);
-    }
-
-    public final boolean isEmpty() {
-        return getSize() == 0;
-    }
-
-    public final ThreadSafeHeapNode firstImpl() {
-        ThreadSafeHeapNode[] threadSafeHeapNodeArr = this.a;
-        if (threadSafeHeapNodeArr != null) {
-            return threadSafeHeapNodeArr[0];
-        }
-        return null;
-    }
-
-    public final ThreadSafeHeapNode removeAtImpl(int i) {
-        ThreadSafeHeapNode[] threadSafeHeapNodeArr = this.a;
-        Intrinsics.checkNotNull(threadSafeHeapNodeArr);
-        setSize(getSize() - 1);
-        if (i < getSize()) {
-            swap(i, getSize());
-            int i2 = (i - 1) / 2;
+    public final EventLoopImplBase.DelayedTask removeAtImpl(int i) {
+        int i2;
+        int i3;
+        Object[] objArr;
+        int i4;
+        Comparable comparable;
+        Comparable comparable2;
+        Comparable comparable3;
+        Object obj;
+        Object[] objArr2 = this.a;
+        Intrinsics.checkNotNull(objArr2);
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = _size$volatile$FU;
+        atomicIntegerFieldUpdater.set(this, atomicIntegerFieldUpdater.get(this) - 1);
+        if (i < atomicIntegerFieldUpdater.get(this)) {
+            swap(i, atomicIntegerFieldUpdater.get(this));
+            int i5 = (i - 1) / 2;
             if (i > 0) {
-                ThreadSafeHeapNode threadSafeHeapNode = threadSafeHeapNodeArr[i];
-                Intrinsics.checkNotNull(threadSafeHeapNode);
-                ThreadSafeHeapNode threadSafeHeapNode2 = threadSafeHeapNodeArr[i2];
-                Intrinsics.checkNotNull(threadSafeHeapNode2);
-                if (((Comparable) threadSafeHeapNode).compareTo(threadSafeHeapNode2) < 0) {
-                    swap(i, i2);
-                    siftUpFrom(i2);
+                EventLoopImplBase.DelayedTask delayedTask = objArr2[i];
+                Intrinsics.checkNotNull(delayedTask);
+                Object obj2 = objArr2[i5];
+                Intrinsics.checkNotNull(obj2);
+                if (delayedTask.compareTo(obj2) < 0) {
+                    swap(i, i5);
+                    siftUpFrom(i5);
                 } else {
-                    siftDownFrom(i);
+                    while (true) {
+                        i2 = i * 2;
+                        i3 = i2 + 1;
+                        if (i3 >= atomicIntegerFieldUpdater.get(this)) {
+                            break;
+                        }
+                        objArr = this.a;
+                        Intrinsics.checkNotNull(objArr);
+                        i4 = i2 + 2;
+                        if (i4 < atomicIntegerFieldUpdater.get(this)) {
+                            comparable3 = objArr[i4];
+                            Intrinsics.checkNotNull(comparable3);
+                            obj = objArr[i3];
+                            Intrinsics.checkNotNull(obj);
+                            if (comparable3.compareTo(obj) >= 0) {
+                                i4 = i3;
+                            }
+                        } else {
+                            i4 = i3;
+                        }
+                        comparable = objArr[i];
+                        Intrinsics.checkNotNull(comparable);
+                        comparable2 = objArr[i4];
+                        Intrinsics.checkNotNull(comparable2);
+                        if (comparable.compareTo(comparable2) <= 0) {
+                            break;
+                        }
+                        swap(i, i4);
+                        i = i4;
+                    }
                 }
             } else {
-                siftDownFrom(i);
+                while (true) {
+                    i2 = i * 2;
+                    i3 = i2 + 1;
+                    if (i3 >= atomicIntegerFieldUpdater.get(this)) {
+                        break;
+                        break;
+                    }
+                    objArr = this.a;
+                    Intrinsics.checkNotNull(objArr);
+                    i4 = i2 + 2;
+                    if (i4 < atomicIntegerFieldUpdater.get(this)) {
+                        comparable3 = objArr[i4];
+                        Intrinsics.checkNotNull(comparable3);
+                        obj = objArr[i3];
+                        Intrinsics.checkNotNull(obj);
+                        if (comparable3.compareTo(obj) >= 0) {
+                            i4 = i3;
+                        }
+                    } else {
+                        i4 = i3;
+                    }
+                    comparable = objArr[i];
+                    Intrinsics.checkNotNull(comparable);
+                    comparable2 = objArr[i4];
+                    Intrinsics.checkNotNull(comparable2);
+                    if (comparable.compareTo(comparable2) <= 0) {
+                        break;
+                        break;
+                    }
+                    swap(i, i4);
+                    i = i4;
+                }
             }
         }
-        ThreadSafeHeapNode threadSafeHeapNode3 = threadSafeHeapNodeArr[getSize()];
-        Intrinsics.checkNotNull(threadSafeHeapNode3);
-        threadSafeHeapNode3.setHeap(null);
-        threadSafeHeapNode3.setIndex(-1);
-        threadSafeHeapNodeArr[getSize()] = null;
-        return threadSafeHeapNode3;
+        EventLoopImplBase.DelayedTask delayedTask2 = objArr2[atomicIntegerFieldUpdater.get(this)];
+        Intrinsics.checkNotNull(delayedTask2);
+        delayedTask2.setHeap(null);
+        delayedTask2.index = -1;
+        objArr2[atomicIntegerFieldUpdater.get(this)] = null;
+        return delayedTask2;
     }
 
-    public final void addImpl(ThreadSafeHeapNode threadSafeHeapNode) {
-        threadSafeHeapNode.setHeap(this);
-        ThreadSafeHeapNode[] threadSafeHeapNodeArrRealloc = realloc();
-        int size = getSize();
-        setSize(size + 1);
-        threadSafeHeapNodeArrRealloc[size] = threadSafeHeapNode;
-        threadSafeHeapNode.setIndex(size);
-        siftUpFrom(size);
-    }
-
-    private final void siftUpFrom(int i) {
+    public final void siftUpFrom(int i) {
         while (i > 0) {
-            ThreadSafeHeapNode[] threadSafeHeapNodeArr = this.a;
-            Intrinsics.checkNotNull(threadSafeHeapNodeArr);
+            EventLoopImplBase.DelayedTask[] delayedTaskArr = this.a;
+            Intrinsics.checkNotNull(delayedTaskArr);
             int i2 = (i - 1) / 2;
-            ThreadSafeHeapNode threadSafeHeapNode = threadSafeHeapNodeArr[i2];
-            Intrinsics.checkNotNull(threadSafeHeapNode);
-            ThreadSafeHeapNode threadSafeHeapNode2 = threadSafeHeapNodeArr[i];
-            Intrinsics.checkNotNull(threadSafeHeapNode2);
-            if (((Comparable) threadSafeHeapNode).compareTo(threadSafeHeapNode2) <= 0) {
+            EventLoopImplBase.DelayedTask delayedTask = delayedTaskArr[i2];
+            Intrinsics.checkNotNull(delayedTask);
+            EventLoopImplBase.DelayedTask delayedTask2 = delayedTaskArr[i];
+            Intrinsics.checkNotNull(delayedTask2);
+            if (delayedTask.compareTo(delayedTask2) <= 0) {
                 return;
             }
             swap(i, i2);
@@ -115,66 +163,16 @@ public class ThreadSafeHeap {
         }
     }
 
-    private final void siftDownFrom(int i) {
-        while (true) {
-            int i2 = i * 2;
-            int i3 = i2 + 1;
-            if (i3 >= getSize()) {
-                return;
-            }
-            ThreadSafeHeapNode[] threadSafeHeapNodeArr = this.a;
-            Intrinsics.checkNotNull(threadSafeHeapNodeArr);
-            int i4 = i2 + 2;
-            if (i4 < getSize()) {
-                ThreadSafeHeapNode threadSafeHeapNode = threadSafeHeapNodeArr[i4];
-                Intrinsics.checkNotNull(threadSafeHeapNode);
-                ThreadSafeHeapNode threadSafeHeapNode2 = threadSafeHeapNodeArr[i3];
-                Intrinsics.checkNotNull(threadSafeHeapNode2);
-                if (((Comparable) threadSafeHeapNode).compareTo(threadSafeHeapNode2) >= 0) {
-                    i4 = i3;
-                }
-            } else {
-                i4 = i3;
-            }
-            ThreadSafeHeapNode threadSafeHeapNode3 = threadSafeHeapNodeArr[i];
-            Intrinsics.checkNotNull(threadSafeHeapNode3);
-            ThreadSafeHeapNode threadSafeHeapNode4 = threadSafeHeapNodeArr[i4];
-            Intrinsics.checkNotNull(threadSafeHeapNode4);
-            if (((Comparable) threadSafeHeapNode3).compareTo(threadSafeHeapNode4) <= 0) {
-                return;
-            }
-            swap(i, i4);
-            i = i4;
-        }
-    }
-
-    private final ThreadSafeHeapNode[] realloc() {
-        ThreadSafeHeapNode[] threadSafeHeapNodeArr = this.a;
-        if (threadSafeHeapNodeArr == null) {
-            ThreadSafeHeapNode[] threadSafeHeapNodeArr2 = new ThreadSafeHeapNode[4];
-            this.a = threadSafeHeapNodeArr2;
-            return threadSafeHeapNodeArr2;
-        }
-        if (getSize() < threadSafeHeapNodeArr.length) {
-            return threadSafeHeapNodeArr;
-        }
-        Object[] objArrCopyOf = Arrays.copyOf(threadSafeHeapNodeArr, getSize() * 2);
-        Intrinsics.checkNotNullExpressionValue(objArrCopyOf, "copyOf(...)");
-        ThreadSafeHeapNode[] threadSafeHeapNodeArr3 = (ThreadSafeHeapNode[]) objArrCopyOf;
-        this.a = threadSafeHeapNodeArr3;
-        return threadSafeHeapNodeArr3;
-    }
-
-    private final void swap(int i, int i2) {
-        ThreadSafeHeapNode[] threadSafeHeapNodeArr = this.a;
-        Intrinsics.checkNotNull(threadSafeHeapNodeArr);
-        ThreadSafeHeapNode threadSafeHeapNode = threadSafeHeapNodeArr[i2];
-        Intrinsics.checkNotNull(threadSafeHeapNode);
-        ThreadSafeHeapNode threadSafeHeapNode2 = threadSafeHeapNodeArr[i];
-        Intrinsics.checkNotNull(threadSafeHeapNode2);
-        threadSafeHeapNodeArr[i] = threadSafeHeapNode;
-        threadSafeHeapNodeArr[i2] = threadSafeHeapNode2;
-        threadSafeHeapNode.setIndex(i);
-        threadSafeHeapNode2.setIndex(i2);
+    public final void swap(int i, int i2) {
+        EventLoopImplBase.DelayedTask[] delayedTaskArr = this.a;
+        Intrinsics.checkNotNull(delayedTaskArr);
+        EventLoopImplBase.DelayedTask delayedTask = delayedTaskArr[i2];
+        Intrinsics.checkNotNull(delayedTask);
+        EventLoopImplBase.DelayedTask delayedTask2 = delayedTaskArr[i];
+        Intrinsics.checkNotNull(delayedTask2);
+        delayedTaskArr[i] = delayedTask;
+        delayedTaskArr[i2] = delayedTask2;
+        delayedTask.index = i;
+        delayedTask2.index = i2;
     }
 }

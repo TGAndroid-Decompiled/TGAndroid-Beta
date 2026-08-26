@@ -1,72 +1,58 @@
 package org.telegram.ui.Components.inset;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
+import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
 
-class KeyboardState {
-    private final Utilities.Callback onUpdateListener;
-    private State state = State.STATE_FULLY_HIDDEN;
-    private final Runnable applyPendingStateR = new Runnable() {
-        @Override
-        public final void run() {
-            this.f$0.applyPendingState();
+public final class KeyboardState {
+    public final PollItemMenu$$ExternalSyntheticLambda14 onUpdateListener;
+    public State state = State.STATE_FULLY_HIDDEN;
+    public final Tooltip$$ExternalSyntheticLambda0 applyPendingStateR = new Tooltip$$ExternalSyntheticLambda0(this, 19);
+    public final long keyboardDuration = (long) ((AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f);
+
+    public final class State {
+        public static final State[] $VALUES;
+        public static final State STATE_ANIMATING_TO_FULLY_HIDDEN;
+        public static final State STATE_ANIMATING_TO_FULLY_VISIBLE;
+        public static final State STATE_FULLY_HIDDEN;
+        public static final State STATE_FULLY_VISIBLE;
+
+        static {
+            State state = new State("STATE_FULLY_HIDDEN", 0);
+            STATE_FULLY_HIDDEN = state;
+            State state2 = new State("STATE_ANIMATING_TO_FULLY_HIDDEN", 1);
+            STATE_ANIMATING_TO_FULLY_HIDDEN = state2;
+            State state3 = new State("STATE_ANIMATING_TO_FULLY_VISIBLE", 2);
+            STATE_ANIMATING_TO_FULLY_VISIBLE = state3;
+            State state4 = new State("STATE_FULLY_VISIBLE", 3);
+            STATE_FULLY_VISIBLE = state4;
+            $VALUES = new State[]{state, state2, state3, state4};
         }
-    };
-    private final long keyboardDuration = (long) ((AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f);
 
-    public enum State {
-        STATE_FULLY_HIDDEN,
-        STATE_ANIMATING_TO_FULLY_HIDDEN,
-        STATE_ANIMATING_TO_FULLY_VISIBLE,
-        STATE_FULLY_VISIBLE
+        public static State valueOf(String str) {
+            return (State) Enum.valueOf(State.class, str);
+        }
+
+        public static State[] values() {
+            return (State[]) $VALUES.clone();
+        }
     }
 
-    KeyboardState(Utilities.Callback callback) {
-        this.onUpdateListener = callback;
+    public KeyboardState(PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14) {
+        this.onUpdateListener = pollItemMenu$$ExternalSyntheticLambda14;
     }
 
-    public State setKeyboardVisibility(boolean z, boolean z2, boolean z3) {
-        State state;
-        if (z2) {
-            if (z) {
-                state = State.STATE_FULLY_VISIBLE;
-            } else {
-                state = State.STATE_FULLY_HIDDEN;
-            }
-        } else if (z) {
-            state = State.STATE_ANIMATING_TO_FULLY_VISIBLE;
-        } else {
-            state = State.STATE_ANIMATING_TO_FULLY_HIDDEN;
-        }
+    public final void setState(State state, boolean z) {
         if (this.state != state) {
-            setState(state, z3);
-        }
-        return state;
-    }
-
-    public State getState() {
-        return this.state;
-    }
-
-    private void setState(State state, boolean z) {
-        if (this.state != state) {
-            AndroidUtilities.cancelRunOnUIThread(this.applyPendingStateR);
+            Tooltip$$ExternalSyntheticLambda0 tooltip$$ExternalSyntheticLambda0 = this.applyPendingStateR;
+            AndroidUtilities.cancelRunOnUIThread(tooltip$$ExternalSyntheticLambda0);
             this.state = state;
             if (z) {
                 this.onUpdateListener.run(state);
             }
             if (state == State.STATE_ANIMATING_TO_FULLY_HIDDEN || state == State.STATE_ANIMATING_TO_FULLY_VISIBLE) {
-                AndroidUtilities.runOnUIThread(this.applyPendingStateR, this.keyboardDuration);
+                AndroidUtilities.runOnUIThread(tooltip$$ExternalSyntheticLambda0, this.keyboardDuration);
             }
-        }
-    }
-
-    public void applyPendingState() {
-        State state = this.state;
-        if (state == State.STATE_ANIMATING_TO_FULLY_HIDDEN) {
-            setState(State.STATE_FULLY_HIDDEN, true);
-        } else if (state == State.STATE_ANIMATING_TO_FULLY_VISIBLE) {
-            setState(State.STATE_FULLY_VISIBLE, true);
         }
     }
 }

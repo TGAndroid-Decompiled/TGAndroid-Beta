@@ -2,7 +2,7 @@ package org.telegram.ui.Components.Paint;
 
 import android.graphics.RectF;
 
-public class Shape {
+public final class Shape {
     public float arrowTriangleLength;
     public final Brush.Shape brush;
     public float centerX;
@@ -20,12 +20,9 @@ public class Shape {
         this.brush = shape;
     }
 
-    public int getType() {
-        return this.brush.getShapeShaderType();
-    }
-
-    public void getBounds(RectF rectF) {
-        if (getType() == 4) {
+    public final void getBounds(RectF rectF) {
+        Brush.Shape shape = this.brush;
+        if (shape.getShapeShaderType() == 4) {
             float f = this.centerX;
             float f2 = this.arrowTriangleLength;
             float f3 = this.centerY;
@@ -38,7 +35,7 @@ public class Shape {
             float f5 = fMax * 1.42f;
             float f6 = this.centerY;
             rectF.set(f4 - f5, f6 - f5, f4 + f5, f6 + f5);
-            if (getType() == 3) {
+            if (shape.getShapeShaderType() == 3) {
                 rectF.union(this.middleX, this.middleY);
             }
         }

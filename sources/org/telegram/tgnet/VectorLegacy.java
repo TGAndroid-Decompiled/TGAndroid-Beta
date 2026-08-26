@@ -19,18 +19,6 @@ public class VectorLegacy {
         return arrayList;
     }
 
-    public static void serialize_LongAsInt(OutputSerializedData outputSerializedData, ArrayList<Long> arrayList) {
-        ArrayList arrayList2 = new ArrayList(arrayList.size());
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Long l = arrayList.get(i);
-            i++;
-            arrayList2.add(Integer.valueOf((int) l.longValue()));
-        }
-        Vector.serializeInt(outputSerializedData, arrayList2);
-    }
-
     public static ArrayList<TLRPC.Peer> deserialize_IntUserIdAsPeer(InputSerializedData inputSerializedData, boolean z) {
         ArrayList<Integer> arrayListDeserializeInt = Vector.deserializeInt(inputSerializedData, z);
         ArrayList<TLRPC.Peer> arrayList = new ArrayList<>(arrayListDeserializeInt.size());
@@ -47,15 +35,6 @@ public class VectorLegacy {
         return arrayList;
     }
 
-    public static void serialize_PeerAsIntUserId(OutputSerializedData outputSerializedData, ArrayList<TLRPC.Peer> arrayList) {
-        outputSerializedData.writeInt32(481674261);
-        int size = arrayList.size();
-        outputSerializedData.writeInt32(size);
-        for (int i = 0; i < size; i++) {
-            outputSerializedData.writeInt32((int) arrayList.get(i).user_id);
-        }
-    }
-
     public static ArrayList<TLRPC.Peer> deserialize_LongUserIdAsPeer(InputSerializedData inputSerializedData, boolean z) {
         ArrayList<Long> arrayListDeserializeLong = Vector.deserializeLong(inputSerializedData, z);
         ArrayList<TLRPC.Peer> arrayList = new ArrayList<>(arrayListDeserializeLong.size());
@@ -70,6 +49,27 @@ public class VectorLegacy {
             arrayList.add(tL_peerUser);
         }
         return arrayList;
+    }
+
+    public static void serialize_LongAsInt(OutputSerializedData outputSerializedData, ArrayList<Long> arrayList) {
+        ArrayList arrayList2 = new ArrayList(arrayList.size());
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Long l = arrayList.get(i);
+            i++;
+            arrayList2.add(Integer.valueOf((int) l.longValue()));
+        }
+        Vector.serializeInt(outputSerializedData, arrayList2);
+    }
+
+    public static void serialize_PeerAsIntUserId(OutputSerializedData outputSerializedData, ArrayList<TLRPC.Peer> arrayList) {
+        outputSerializedData.writeInt32(481674261);
+        int size = arrayList.size();
+        outputSerializedData.writeInt32(size);
+        for (int i = 0; i < size; i++) {
+            outputSerializedData.writeInt32((int) arrayList.get(i).user_id);
+        }
     }
 
     public static void serialize_PeerAsLongUserId(OutputSerializedData outputSerializedData, ArrayList<TLRPC.Peer> arrayList) {

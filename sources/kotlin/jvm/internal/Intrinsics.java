@@ -1,85 +1,15 @@
 package kotlin.jvm.internal;
 
+import androidx.car.app.HostException;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import com.google.android.exoplayer2.RendererCapabilities;
+import java.lang.reflect.Array;
 import java.util.Arrays;
-import kotlin.UninitializedPropertyAccessException;
+import java.util.Collection;
+import java.util.Iterator;
 
 public abstract class Intrinsics {
-    public static int compare(int i, int i2) {
-        if (i < i2) {
-            return -1;
-        }
-        return i == i2 ? 0 : 1;
-    }
-
-    public static int compare(long j, long j2) {
-        if (j < j2) {
-            return -1;
-        }
-        return j == j2 ? 0 : 1;
-    }
-
-    public static String stringPlus(String str, Object obj) {
-        return str + obj;
-    }
-
-    public static void checkNotNull(Object obj) {
-        if (obj == null) {
-            throwJavaNpe();
-        }
-    }
-
-    public static void checkNotNull(Object obj, String str) {
-        if (obj == null) {
-            throwJavaNpe(str);
-        }
-    }
-
-    public static void throwJavaNpe() {
-        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException()));
-    }
-
-    public static void throwJavaNpe(String str) {
-        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException(str)));
-    }
-
-    public static void throwUninitializedProperty(String str) {
-        throw ((UninitializedPropertyAccessException) sanitizeStackTrace(new UninitializedPropertyAccessException(str)));
-    }
-
-    public static void throwUninitializedPropertyAccessException(String str) {
-        throwUninitializedProperty("lateinit property " + str + " has not been initialized");
-    }
-
-    public static void checkNotNullExpressionValue(Object obj, String str) {
-        if (obj != null) {
-            return;
-        }
-        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException(str + " must not be null")));
-    }
-
-    public static void checkNotNullParameter(Object obj, String str) {
-        if (obj == null) {
-            throwParameterIsNullNPE(str);
-        }
-    }
-
-    private static void throwParameterIsNullNPE(String str) {
-        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException(createParameterIsNullExceptionMessage(str))));
-    }
-
-    private static String createParameterIsNullExceptionMessage(String str) {
-        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        String name = Intrinsics.class.getName();
-        int i = 0;
-        while (!stackTrace[i].getClassName().equals(name)) {
-            i++;
-        }
-        while (stackTrace[i].getClassName().equals(name)) {
-            i++;
-        }
-        StackTraceElement stackTraceElement = stackTrace[i];
-        return "Parameter specified as non-null is null: method " + stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName() + ", parameter " + str;
-    }
+    public static final Object[] EMPTY = new Object[0];
 
     public static boolean areEqual(Object obj, Object obj2) {
         if (obj == null) {
@@ -88,12 +18,46 @@ public abstract class Intrinsics {
         return obj.equals(obj2);
     }
 
-    private static Throwable sanitizeStackTrace(Throwable th) {
-        return sanitizeStackTrace(th, Intrinsics.class.getName());
+    public static void checkNotNull(Object obj) {
+        if (obj != null) {
+            return;
+        }
+        NullPointerException nullPointerException = new NullPointerException();
+        sanitizeStackTrace(nullPointerException, Intrinsics.class.getName());
+        throw nullPointerException;
     }
 
-    static Throwable sanitizeStackTrace(Throwable th, String str) {
-        StackTraceElement[] stackTrace = th.getStackTrace();
+    public static void checkNotNullExpressionValue(Object obj, String str) {
+        if (obj != null) {
+            return;
+        }
+        NullPointerException nullPointerException = new NullPointerException(str.concat(" must not be null"));
+        sanitizeStackTrace(nullPointerException, Intrinsics.class.getName());
+        throw nullPointerException;
+    }
+
+    public static void checkNotNullParameter(Object obj, String str) {
+        if (obj == null) {
+            StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+            String name = Intrinsics.class.getName();
+            int i = 0;
+            while (!stackTrace[i].getClassName().equals(name)) {
+                i++;
+            }
+            while (stackTrace[i].getClassName().equals(name)) {
+                i++;
+            }
+            StackTraceElement stackTraceElement = stackTrace[i];
+            StringBuilder sbM = RendererCapabilities.CC.m("Parameter specified as non-null is null: method ", stackTraceElement.getClassName(), ".", stackTraceElement.getMethodName(), ", parameter ");
+            sbM.append(str);
+            NullPointerException nullPointerException = new NullPointerException(sbM.toString());
+            sanitizeStackTrace(nullPointerException, Intrinsics.class.getName());
+            throw nullPointerException;
+        }
+    }
+
+    public static void sanitizeStackTrace(RuntimeException runtimeException, String str) {
+        StackTraceElement[] stackTrace = runtimeException.getStackTrace();
         int length = stackTrace.length;
         int i = -1;
         for (int i2 = 0; i2 < length; i2++) {
@@ -101,7 +65,116 @@ public abstract class Intrinsics {
                 i = i2;
             }
         }
-        th.setStackTrace((StackTraceElement[]) Arrays.copyOfRange(stackTrace, i + 1, length));
-        return th;
+        runtimeException.setStackTrace((StackTraceElement[]) Arrays.copyOfRange(stackTrace, i + 1, length));
+    }
+
+    public static String stringPlus(Object obj, String str) {
+        return str + obj;
+    }
+
+    public static void throwUninitializedPropertyAccessException(String str) {
+        HostException hostException = new HostException(SurfaceContainer$$ExternalSyntheticOutline0.m("lateinit property ", str, " has not been initialized"));
+        sanitizeStackTrace(hostException, Intrinsics.class.getName());
+        throw hostException;
+    }
+
+    public static final Object[] toArray(Collection collection) {
+        int size = collection.size();
+        Object[] objArr = EMPTY;
+        if (size != 0) {
+            Iterator it = collection.iterator();
+            if (it.hasNext()) {
+                Object[] objArrCopyOf = new Object[size];
+                int i = 0;
+                while (true) {
+                    int i2 = i + 1;
+                    objArrCopyOf[i] = it.next();
+                    if (i2 >= objArrCopyOf.length) {
+                        if (!it.hasNext()) {
+                            return objArrCopyOf;
+                        }
+                        int i3 = ((i2 * 3) + 1) >>> 1;
+                        if (i3 <= i2) {
+                            i3 = 2147483645;
+                            if (i2 >= 2147483645) {
+                                throw new OutOfMemoryError();
+                            }
+                        }
+                        objArrCopyOf = Arrays.copyOf(objArrCopyOf, i3);
+                        checkNotNullExpressionValue(objArrCopyOf, "copyOf(...)");
+                    } else if (!it.hasNext()) {
+                        Object[] objArrCopyOf2 = Arrays.copyOf(objArrCopyOf, i2);
+                        checkNotNullExpressionValue(objArrCopyOf2, "copyOf(...)");
+                        return objArrCopyOf2;
+                    }
+                    i = i2;
+                }
+            }
+        }
+        return objArr;
+    }
+
+    public static void checkNotNull(Object obj, String str) {
+        if (obj != null) {
+            return;
+        }
+        NullPointerException nullPointerException = new NullPointerException(str);
+        sanitizeStackTrace(nullPointerException, Intrinsics.class.getName());
+        throw nullPointerException;
+    }
+
+    public static final Object[] toArray(Collection collection, Object[] objArr) {
+        Object[] objArrCopyOf;
+        int size = collection.size();
+        int i = 0;
+        if (size == 0) {
+            if (objArr.length > 0) {
+                objArr[0] = null;
+                return objArr;
+            }
+        } else {
+            Iterator it = collection.iterator();
+            if (!it.hasNext()) {
+                if (objArr.length > 0) {
+                    objArr[0] = null;
+                }
+            } else {
+                if (size <= objArr.length) {
+                    objArrCopyOf = objArr;
+                } else {
+                    Object objNewInstance = Array.newInstance(objArr.getClass().getComponentType(), size);
+                    checkNotNull(objNewInstance, "null cannot be cast to non-null type kotlin.Array<kotlin.Any?>");
+                    objArrCopyOf = (Object[]) objNewInstance;
+                }
+                while (true) {
+                    int i2 = i + 1;
+                    objArrCopyOf[i] = it.next();
+                    if (i2 >= objArrCopyOf.length) {
+                        if (!it.hasNext()) {
+                            return objArrCopyOf;
+                        }
+                        int i3 = ((i2 * 3) + 1) >>> 1;
+                        if (i3 <= i2) {
+                            i3 = 2147483645;
+                            if (i2 >= 2147483645) {
+                                throw new OutOfMemoryError();
+                            }
+                        }
+                        objArrCopyOf = Arrays.copyOf(objArrCopyOf, i3);
+                        checkNotNullExpressionValue(objArrCopyOf, "copyOf(...)");
+                    } else if (!it.hasNext()) {
+                        if (objArrCopyOf == objArr) {
+                            objArr[i2] = null;
+                            return objArr;
+                        }
+                        Object[] objArrCopyOf2 = Arrays.copyOf(objArrCopyOf, i2);
+                        checkNotNullExpressionValue(objArrCopyOf2, "copyOf(...)");
+                        return objArrCopyOf2;
+                    }
+                    i = i2;
+                }
+            }
+        }
+        return objArr;
     }
 }

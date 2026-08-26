@@ -23,9 +23,9 @@ public class CedillaAtom extends Atom {
         HorizontalBox horizontalBox2 = new HorizontalBox(charBox, boxCreateBox.getWidth(), 2);
         verticalBox.add(new StrutBox(0.0f, -(SpaceAtom.getFactor(5, teXEnvironment) * 0.4f), 0.0f, 0.0f));
         verticalBox.add(horizontalBox2);
-        float height = verticalBox.getHeight() + verticalBox.getDepth();
+        float depth = verticalBox.getDepth() + verticalBox.getHeight();
         verticalBox.setHeight(boxCreateBox.getHeight());
-        verticalBox.setDepth(height - boxCreateBox.getHeight());
+        verticalBox.setDepth(depth - boxCreateBox.getHeight());
         return verticalBox;
     }
 }

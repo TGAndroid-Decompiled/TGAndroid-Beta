@@ -2,18 +2,17 @@ package org.telegram.ui.Components.blur3;
 
 import android.graphics.Canvas;
 import android.graphics.RenderNode;
-import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 
-public class RenderNodeWithHash {
-    private final Blur3HashImpl hashBuilder = new Blur3HashImpl();
-    private long lastHash = 0;
-    private int lastHeight;
-    private int lastWidth;
+public final class RenderNodeWithHash {
+    public final Blur3HashImpl hashBuilder = new Blur3HashImpl();
+    public long lastHash = 0;
+    public int lastHeight;
+    public int lastWidth;
     public final RenderNode renderNode;
-    private final Renderer renderer;
+    public final Renderer renderer;
 
     public interface Renderer {
-        void renderNodeCalculateHash(IBlur3Hash iBlur3Hash);
+        void renderNodeCalculateHash(Blur3HashImpl blur3HashImpl);
 
         void renderNodeUpdateDisplayList(Canvas canvas);
     }
@@ -23,18 +22,21 @@ public class RenderNodeWithHash {
         this.renderer = renderer;
     }
 
-    public void updateDisplayListIfNeeded() {
+    public final void updateDisplayListIfNeeded() {
         int width = this.renderNode.getWidth();
         int height = this.renderNode.getHeight();
-        this.hashBuilder.start();
-        this.renderer.renderNodeCalculateHash(this.hashBuilder);
-        long j = this.hashBuilder.get();
+        Blur3HashImpl blur3HashImpl = this.hashBuilder;
+        blur3HashImpl.hash = 0L;
+        blur3HashImpl.unsupported = false;
+        Renderer renderer = this.renderer;
+        renderer.renderNodeCalculateHash(blur3HashImpl);
+        long j = blur3HashImpl.unsupported ? -1L : blur3HashImpl.hash;
         boolean z = (this.renderNode.hasDisplayList() && width == this.lastWidth && height == this.lastHeight && j == this.lastHash && j != -1) ? false : true;
         this.lastWidth = width;
         this.lastHeight = height;
         this.lastHash = j;
         if (z) {
-            this.renderer.renderNodeUpdateDisplayList(this.renderNode.beginRecording());
+            renderer.renderNodeUpdateDisplayList(this.renderNode.beginRecording());
             this.renderNode.endRecording();
         }
     }

@@ -1,98 +1,37 @@
 package kotlinx.coroutines;
 
+import com.google.android.gms.wearable.zzy;
+import java.lang.reflect.Method;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.internal.ConcurrentKt;
 
 public final class ExecutorCoroutineDispatcherImpl extends ExecutorCoroutineDispatcher implements Delay {
-    private final Executor executor;
+    public final Executor executor;
 
     public ExecutorCoroutineDispatcherImpl(Executor executor) {
+        Method method;
         this.executor = executor;
-        ConcurrentKt.removeFutureOnCancel(getExecutor());
-    }
-
-    public Executor getExecutor() {
-        return this.executor;
-    }
-
-    @Override
-    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+        Method method2 = ConcurrentKt.REMOVE_FUTURE_ON_CANCEL;
         try {
-            Executor executor = getExecutor();
-            AbstractTimeSourceKt.access$getTimeSource$p();
-            executor.execute(runnable);
-        } catch (RejectedExecutionException e) {
-            AbstractTimeSourceKt.access$getTimeSource$p();
-            cancelJobOnRejection(coroutineContext, e);
-            Dispatchers.getIO().dispatch(coroutineContext, runnable);
+            ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = executor instanceof ScheduledThreadPoolExecutor ? (ScheduledThreadPoolExecutor) executor : null;
+            if (scheduledThreadPoolExecutor != null && (method = ConcurrentKt.REMOVE_FUTURE_ON_CANCEL) != null) {
+                method.invoke(scheduledThreadPoolExecutor, Boolean.TRUE);
+            }
+        } catch (Throwable unused) {
         }
     }
 
     @Override
-    public void scheduleResumeAfterDelay(long j, CancellableContinuation cancellableContinuation) {
-        long j2;
-        Executor executor = getExecutor();
-        ScheduledFuture scheduledFutureScheduleBlock = null;
-        ScheduledExecutorService scheduledExecutorService = executor instanceof ScheduledExecutorService ? (ScheduledExecutorService) executor : null;
-        if (scheduledExecutorService != null) {
-            j2 = j;
-            scheduledFutureScheduleBlock = scheduleBlock(scheduledExecutorService, new ResumeUndispatchedRunnable(this, cancellableContinuation), cancellableContinuation.getContext(), j2);
-        } else {
-            j2 = j;
-        }
-        if (scheduledFutureScheduleBlock != null) {
-            JobKt.cancelFutureOnCancellation(cancellableContinuation, scheduledFutureScheduleBlock);
-        } else {
-            DefaultExecutor.INSTANCE.scheduleResumeAfterDelay(j2, cancellableContinuation);
-        }
-    }
-
-    @Override
-    public DisposableHandle invokeOnTimeout(long j, Runnable runnable, CoroutineContext coroutineContext) {
-        long j2;
-        Runnable runnable2;
-        CoroutineContext coroutineContext2;
-        Executor executor = getExecutor();
-        ScheduledFuture scheduledFutureScheduleBlock = null;
-        ScheduledExecutorService scheduledExecutorService = executor instanceof ScheduledExecutorService ? (ScheduledExecutorService) executor : null;
-        if (scheduledExecutorService != null) {
-            j2 = j;
-            runnable2 = runnable;
-            coroutineContext2 = coroutineContext;
-            scheduledFutureScheduleBlock = scheduleBlock(scheduledExecutorService, runnable2, coroutineContext2, j2);
-        } else {
-            j2 = j;
-            runnable2 = runnable;
-            coroutineContext2 = coroutineContext;
-        }
-        if (scheduledFutureScheduleBlock != null) {
-            return new DisposableFutureHandle(scheduledFutureScheduleBlock);
-        }
-        return DefaultExecutor.INSTANCE.invokeOnTimeout(j2, runnable2, coroutineContext2);
-    }
-
-    private final ScheduledFuture scheduleBlock(ScheduledExecutorService scheduledExecutorService, Runnable runnable, CoroutineContext coroutineContext, long j) {
-        try {
-            return scheduledExecutorService.schedule(runnable, j, TimeUnit.MILLISECONDS);
-        } catch (RejectedExecutionException e) {
-            cancelJobOnRejection(coroutineContext, e);
-            return null;
-        }
-    }
-
-    private final void cancelJobOnRejection(CoroutineContext coroutineContext, RejectedExecutionException rejectedExecutionException) {
-        JobKt.cancel(coroutineContext, ExceptionsKt.CancellationException("The task was rejected", rejectedExecutionException));
-    }
-
-    @Override
-    public void close() {
-        Executor executor = getExecutor();
+    public final void close() {
+        Executor executor = this.executor;
         ExecutorService executorService = executor instanceof ExecutorService ? (ExecutorService) executor : null;
         if (executorService != null) {
             executorService.shutdown();
@@ -100,15 +39,65 @@ public final class ExecutorCoroutineDispatcherImpl extends ExecutorCoroutineDisp
     }
 
     @Override
-    public String toString() {
-        return getExecutor().toString();
+    public final void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+        try {
+            this.executor.execute(runnable);
+        } catch (RejectedExecutionException e) {
+            CancellationException cancellationException = new CancellationException("The task was rejected");
+            cancellationException.initCause(e);
+            JobKt.cancel(coroutineContext, cancellationException);
+            Dispatchers.IO.dispatch(coroutineContext, runnable);
+        }
     }
 
-    public boolean equals(Object obj) {
-        return (obj instanceof ExecutorCoroutineDispatcherImpl) && ((ExecutorCoroutineDispatcherImpl) obj).getExecutor() == getExecutor();
+    public final boolean equals(Object obj) {
+        return (obj instanceof ExecutorCoroutineDispatcherImpl) && ((ExecutorCoroutineDispatcherImpl) obj).executor == this.executor;
     }
 
-    public int hashCode() {
-        return System.identityHashCode(getExecutor());
+    public final int hashCode() {
+        return System.identityHashCode(this.executor);
+    }
+
+    @Override
+    public final DisposableHandle invokeOnTimeout(long j, TimeoutCoroutine timeoutCoroutine, CoroutineContext coroutineContext) {
+        Executor executor = this.executor;
+        ScheduledFuture<?> scheduledFutureSchedule = null;
+        ScheduledExecutorService scheduledExecutorService = executor instanceof ScheduledExecutorService ? (ScheduledExecutorService) executor : null;
+        if (scheduledExecutorService != null) {
+            try {
+                scheduledFutureSchedule = scheduledExecutorService.schedule(timeoutCoroutine, j, TimeUnit.MILLISECONDS);
+            } catch (RejectedExecutionException e) {
+                CancellationException cancellationException = new CancellationException("The task was rejected");
+                cancellationException.initCause(e);
+                JobKt.cancel(coroutineContext, cancellationException);
+            }
+        }
+        return scheduledFutureSchedule != null ? new DisposableFutureHandle(scheduledFutureSchedule) : DefaultExecutor.INSTANCE.invokeOnTimeout(j, timeoutCoroutine, coroutineContext);
+    }
+
+    @Override
+    public final void scheduleResumeAfterDelay(long j, CancellableContinuationImpl cancellableContinuationImpl) {
+        Executor executor = this.executor;
+        ScheduledFuture<?> scheduledFutureSchedule = null;
+        ScheduledExecutorService scheduledExecutorService = executor instanceof ScheduledExecutorService ? (ScheduledExecutorService) executor : null;
+        if (scheduledExecutorService != null) {
+            try {
+                scheduledFutureSchedule = scheduledExecutorService.schedule(new zzy(this, cancellableContinuationImpl, false, 7), j, TimeUnit.MILLISECONDS);
+            } catch (RejectedExecutionException e) {
+                CancellationException cancellationException = new CancellationException("The task was rejected");
+                cancellationException.initCause(e);
+                JobKt.cancel(cancellableContinuationImpl.context, cancellationException);
+            }
+        }
+        if (scheduledFutureSchedule != null) {
+            cancellableContinuationImpl.invokeOnCancellationImpl(new DisposeOnCancel(scheduledFutureSchedule, 1));
+        } else {
+            DefaultExecutor.INSTANCE.scheduleResumeAfterDelay(j, cancellableContinuationImpl);
+        }
+    }
+
+    @Override
+    public final String toString() {
+        return this.executor.toString();
     }
 }

@@ -4,23 +4,20 @@ public final class NonDisposableHandle implements DisposableHandle, ChildHandle 
     public static final NonDisposableHandle INSTANCE = new NonDisposableHandle();
 
     @Override
-    public boolean childCancelled(Throwable th) {
+    public final boolean childCancelled(Throwable th) {
         return false;
     }
 
     @Override
-    public void dispose() {
+    public final void dispose() {
     }
 
     @Override
-    public Job getParent() {
+    public final Job getParent() {
         return null;
     }
 
-    private NonDisposableHandle() {
-    }
-
-    public String toString() {
+    public final String toString() {
         return "NonDisposableHandle";
     }
 }

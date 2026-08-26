@@ -13,6 +13,56 @@ class VerticalBox extends Box {
         this.rightMostPos = -3.4028235E38f;
     }
 
+    private void recalculateWidth(Box box) {
+        this.leftMostPos = Math.min(this.leftMostPos, box.shift);
+        float f = this.rightMostPos;
+        float f2 = box.shift;
+        float f3 = box.width;
+        if (f3 <= 0.0f) {
+            f3 = 0.0f;
+        }
+        float fMax = Math.max(f, f2 + f3);
+        this.rightMostPos = fMax;
+        this.width = fMax - this.leftMostPos;
+    }
+
+    @Override
+    public final void add(Box box) {
+        super.add(box);
+        if (this.children.size() == 1) {
+            this.height = box.height;
+            this.depth = box.depth;
+        } else {
+            this.depth = box.height + box.depth + this.depth;
+        }
+        recalculateWidth(box);
+    }
+
+    @Override
+    public void draw(Graphics2D graphics2D, float f, float f2) {
+        float depth = f2 - this.height;
+        for (Box box : this.children) {
+            float height = box.getHeight() + depth;
+            box.draw(graphics2D, (box.getShift() + f) - this.leftMostPos, height);
+            depth = box.getDepth() + height;
+        }
+    }
+
+    @Override
+    public int getLastFontId() {
+        LinkedList<Box> linkedList = this.children;
+        ListIterator<Box> listIterator = linkedList.listIterator(linkedList.size());
+        int lastFontId = -1;
+        while (lastFontId == -1 && listIterator.hasPrevious()) {
+            lastFontId = listIterator.previous().getLastFontId();
+        }
+        return lastFontId;
+    }
+
+    public int getSize() {
+        return this.children.size();
+    }
+
     public VerticalBox(Box box, float f, int i) {
         this();
         add(box);
@@ -34,18 +84,6 @@ class VerticalBox extends Box {
         }
     }
 
-    @Override
-    public final void add(Box box) {
-        super.add(box);
-        if (this.children.size() == 1) {
-            this.height = box.height;
-            this.depth = box.depth;
-        } else {
-            this.depth += box.height + box.depth;
-        }
-        recalculateWidth(box);
-    }
-
     public final void add(Box box, float f) {
         if (this.children.size() >= 1) {
             add(new StrutBox(0.0f, f, 0.0f, 0.0f));
@@ -53,53 +91,15 @@ class VerticalBox extends Box {
         add(box);
     }
 
-    private void recalculateWidth(Box box) {
-        this.leftMostPos = Math.min(this.leftMostPos, box.shift);
-        float f = this.rightMostPos;
-        float f2 = box.shift;
-        float f3 = box.width;
-        if (f3 <= 0.0f) {
-            f3 = 0.0f;
-        }
-        float fMax = Math.max(f, f2 + f3);
-        this.rightMostPos = fMax;
-        this.width = fMax - this.leftMostPos;
-    }
-
     @Override
     public void add(int i, Box box) {
         super.add(i, box);
         if (i == 0) {
-            this.depth += box.depth + this.height;
+            this.depth = box.depth + this.height + this.depth;
             this.height = box.height;
         } else {
-            this.depth += box.height + box.depth;
+            this.depth = box.height + box.depth + this.depth;
         }
         recalculateWidth(box);
-    }
-
-    @Override
-    public void draw(Graphics2D graphics2D, float f, float f2) {
-        float depth = f2 - this.height;
-        for (Box box : this.children) {
-            float height = depth + box.getHeight();
-            box.draw(graphics2D, (box.getShift() + f) - this.leftMostPos, height);
-            depth = height + box.getDepth();
-        }
-    }
-
-    public int getSize() {
-        return this.children.size();
-    }
-
-    @Override
-    public int getLastFontId() {
-        LinkedList<Box> linkedList = this.children;
-        ListIterator<Box> listIterator = linkedList.listIterator(linkedList.size());
-        int lastFontId = -1;
-        while (lastFontId == -1 && listIterator.hasPrevious()) {
-            lastFontId = listIterator.previous().getLastFontId();
-        }
-        return lastFontId;
     }
 }

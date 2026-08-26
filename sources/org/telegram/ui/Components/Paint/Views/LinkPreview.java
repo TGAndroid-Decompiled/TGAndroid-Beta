@@ -14,8 +14,11 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline0;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
@@ -23,12 +26,14 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper$SvgDrawable$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -36,65 +41,109 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
 
 public class LinkPreview extends View {
-    private boolean animated;
+    public boolean animated;
     public int backgroundColor;
-    private final RectF bounds;
-    private final AnimatedFloat captionAbove;
-    private int currentAccount;
+    public final RectF bounds;
+    public final AnimatedFloat captionAbove;
+    public int currentAccount;
     public final float density;
-    private StaticLayout descriptionLayout;
-    private float descriptionLayoutLeft;
-    private float descriptionLayoutWidth;
-    private final TextPaint descriptionPaint;
-    private final float flagIconPadding;
+    public StaticLayout descriptionLayout;
+    public float descriptionLayoutLeft;
+    public float descriptionLayoutWidth;
+    public final TextPaint descriptionPaint;
     public float h;
-    private boolean hasDescription;
+    public boolean hasDescription;
     public boolean hasPhoto;
-    private boolean hasSiteName;
-    private boolean hasTitle;
-    private final AnimatedFloat height;
-    private final Drawable icon;
-    private final float iconPadding;
-    private final float iconSize;
-    private StaticLayout layout;
-    private float layoutLeft;
-    private final TextPaint layoutPaint;
-    private float layoutWidth;
+    public boolean hasSiteName;
+    public boolean hasTitle;
+    public final AnimatedFloat height;
+    public final Drawable icon;
+    public StaticLayout layout;
+    public float layoutLeft;
+    public final TextPaint layoutPaint;
+    public float layoutWidth;
     public int maxWidth;
-    private boolean messageAbove;
-    private Text messageText;
-    private final Paint outlinePaint;
-    private final RectF padding;
+    public boolean messageAbove;
+    public Text messageText;
+    public final Paint outlinePaint;
+    public final RectF padding;
     public final int padx;
     public final int pady;
-    private final Path path;
-    private final Path path2;
-    private final AnimatedFloat photoAlphaProgress;
-    private float photoHeight;
-    private final ImageReceiver photoImage;
-    private final AnimatedFloat photoSmallProgress;
-    private float previewHeight;
-    private final AnimatedFloat previewHeightProgress;
-    private Paint previewPaint;
-    private final AnimatedFloat previewProgress;
-    private final AnimatedFloat previewTheme;
+    public final Path path;
+    public final Path path2;
+    public final AnimatedFloat photoAlphaProgress;
+    public float photoHeight;
+    public final ImageReceiver photoImage;
+    public final AnimatedFloat photoSmallProgress;
+    public float previewHeight;
+    public final AnimatedFloat previewHeightProgress;
+    public final Paint previewPaint;
+    public final AnimatedFloat previewProgress;
+    public final AnimatedFloat previewTheme;
     public int previewType;
-    private final RectF rect;
-    private final RectF rect1;
-    private final RectF rect2;
-    private boolean relayout;
-    private Text siteNameText;
-    private boolean smallPhoto;
-    private float textScale;
-    private Text titleText;
-    public int type;
-    private boolean video;
+    public final RectF rect;
+    public final RectF rect1;
+    public final RectF rect2;
+    public boolean relayout;
+    public Text siteNameText;
+    public boolean smallPhoto;
+    public float textScale;
+    public Text titleText;
+    public boolean video;
     public float w;
-    private WebPagePreview webpage;
-    private final AnimatedFloat width;
+    public WebPagePreview webpage;
+    public final AnimatedFloat width;
 
-    public static String fromUrl(String str) {
-        return str;
+    public final class WebPagePreview extends TLObject {
+        public static final int $r8$clinit = 0;
+        public boolean captionAbove = true;
+        public int flags;
+        public boolean largePhoto;
+        public String name;
+        public int photoSize;
+        public String url;
+        public TLRPC.WebPage webpage;
+
+        @Override
+        public final void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.largePhoto = (int32 & 8) != 0;
+            this.captionAbove = (int32 & 16) != 0;
+            this.url = inputSerializedData.readString(z);
+            if ((this.flags & 1) != 0) {
+                this.webpage = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 2) != 0) {
+                this.name = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 4) != 0) {
+                this.photoSize = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public final void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-625858389);
+            this.flags = this.webpage != null ? this.flags | 1 : this.flags & (-2);
+            int i = !TextUtils.isEmpty(this.name) ? this.flags | 2 : this.flags & (-3);
+            this.flags = i;
+            int i2 = this.largePhoto ? i | 8 : i & (-9);
+            this.flags = i2;
+            int i3 = this.captionAbove ? i2 | 16 : i2 & (-17);
+            this.flags = i3;
+            outputSerializedData.writeInt32(i3);
+            outputSerializedData.writeString(this.url);
+            if ((this.flags & 1) != 0) {
+                this.webpage.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 2) != 0) {
+                outputSerializedData.writeString(this.name);
+            }
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeInt32(this.photoSize);
+            }
+        }
     }
 
     public LinkPreview(Context context, float f) {
@@ -104,9 +153,6 @@ public class LinkPreview extends View {
         TextPaint textPaint = new TextPaint(1);
         this.layoutPaint = textPaint;
         this.padding = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
-        this.iconPadding = 3.25f;
-        this.flagIconPadding = 2.25f;
-        this.iconSize = 30.0f;
         this.outlinePaint = new Paint(1);
         this.previewPaint = new Paint(1);
         this.descriptionPaint = new TextPaint(1);
@@ -136,201 +182,151 @@ public class LinkPreview extends View {
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
     }
 
-    public void setMaxWidth(int i) {
-        this.maxWidth = i;
-        this.relayout = true;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        drawInternal(canvas);
     }
 
-    public void setVideoTexture() {
-        this.video = true;
-    }
-
-    public void setupLayout() {
-        int color1;
+    public final void drawInternal(Canvas canvas) {
         float f;
         float f2;
         float f3;
-        int i;
-        int i2;
-        int lineCount;
+        float fM;
         float f4;
-        if (!this.relayout || this.webpage == null) {
-            return;
-        }
-        if (withPreview()) {
-            String strFromUrl = TextUtils.isEmpty(this.webpage.name) ? fromUrl(this.webpage.url) : this.webpage.name;
-            TLRPC.WebPage webPage = this.webpage.webpage;
-            int i3 = this.maxWidth;
-            int i4 = this.padx;
-            float f5 = (i3 - i4) - i4;
-            this.h = 0.0f;
-            this.w = 0.0f;
-            this.previewHeight = 0.0f;
-            int colorId = UserObject.getColorId(UserConfig.getInstance(this.currentAccount).getCurrentUser());
-            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
-            MessagesController.PeerColor color = (peerColors == null || colorId < 7) ? null : peerColors.getColor(colorId);
-            Paint paint = this.previewPaint;
-            if (color == null) {
-                int[] iArr = Theme.keys_avatar_nameInMessage;
-                color1 = Theme.getColor(iArr[colorId % iArr.length]);
+        float f5;
+        Text text;
+        Text text2;
+        Canvas canvas2 = canvas;
+        setupLayout();
+        float f6 = this.width.set(this.w, false);
+        float f7 = this.height.set(this.h, false);
+        float f8 = this.previewTheme.set(this.previewType == 0);
+        float f9 = this.previewProgress.set(withPreview());
+        float f10 = this.density;
+        float fLerp = AndroidUtilities.lerp(0.2f * f7, 16.66f * f10, f9);
+        RectF rectF = this.bounds;
+        int i = this.padx;
+        float f11 = i;
+        int i2 = this.pady;
+        float f12 = i2;
+        rectF.set(f11, f12, f11 + f6, f12 + f7);
+        Paint paint = this.outlinePaint;
+        paint.setColor(ColorUtils.blendARGB(f9, this.backgroundColor, ColorUtils.blendARGB(f8, -1, -14670807)));
+        Path path = this.path2;
+        path.rewind();
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF, fLerp, fLerp, direction);
+        canvas2.drawPath(path, paint);
+        if (f9 > 0.0f) {
+            canvas2.save();
+            canvas2.clipPath(path);
+            canvas2.translate(i, i2);
+            float f13 = this.captionAbove.set(this.messageAbove);
+            float height = (7.33f * f10) + 0.0f;
+            Text text3 = this.messageText;
+            if (text3 == null || f13 <= 0.0f) {
+                f2 = f13;
+                f3 = 2.0f;
             } else {
-                color1 = color.getColor1();
+                f2 = f13;
+                f3 = 2.0f;
+                text3.draw(f10 * 10.0f, BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, f13, (f10 * 15.0f) + this.messageText.layout.getHeight(), (text3.layout.getHeight() / 2.0f) + height), f9, -15033089, canvas2);
+                height = (((f10 * 7.0f) + this.messageText.layout.getHeight()) * f2) + height;
             }
-            paint.setColor(color1);
-            this.h += this.density * 7.33f;
-            this.messageAbove = this.webpage.captionAbove;
-            Text maxWidth = new Text(strFromUrl, 16.0f).setTextSizePx(this.density * 16.0f).setMaxWidth(f5 - (this.density * 20.0f));
-            this.messageText = maxWidth;
-            this.w = Math.max(this.w, Math.min(maxWidth.getCurrentWidth() + (this.density * 20.0f), f5));
-            this.h = this.h + this.messageText.getHeight() + (this.density * 7.0f);
-            this.hasPhoto = webPage.photo != null || MessageObject.isVideoDocument(webPage.document);
-            WebPagePreview webPagePreview = this.webpage;
-            boolean z = webPagePreview.largePhoto;
-            this.smallPhoto = !z;
-            int i5 = (!this.video || (webPagePreview.flags & 4) == 0) ? ((int) (!z ? 48.0f : (f5 / this.density) - 40.0f)) * 2 : webPagePreview.photoSize;
-            this.photoImage.setRoundRadius((int) (this.density * 4.0f));
-            TLRPC.Photo photo = webPage.photo;
-            if (photo != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 1, false, null, false);
-                f = 7.0f;
-                f2 = 48.0f;
-                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, (int) (i5 * this.density), false, closestPhotoSizeWithSize, false);
-                if (closestPhotoSizeWithSize2 != null) {
-                    i = closestPhotoSizeWithSize2.w;
-                    i2 = closestPhotoSizeWithSize2.h;
-                } else {
-                    i = 0;
-                    i2 = 0;
-                }
-                f3 = 40.0f;
-                this.photoImage.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize2, webPage.photo), i5 + "_" + i5, this.video ? null : ImageLocation.getForPhoto(closestPhotoSizeWithSize, webPage.photo), this.video ? null : i5 + "_" + i5, 0L, null, null, 0);
+            float f14 = height;
+            float f15 = this.previewHeightProgress.set(this.previewHeight, false);
+            Paint paint2 = this.previewPaint;
+            paint2.setAlpha(25);
+            RectF rectF2 = this.rect;
+            float f16 = f10 * 10.0f;
+            f = 1.0f;
+            float f17 = f15 + f14;
+            rectF2.set(f16, f14, f6 - f16, f17);
+            Path path2 = this.path;
+            path2.rewind();
+            float f18 = 5.0f * f10;
+            path2.addRoundRect(rectF2, f18, f18, direction);
+            canvas2.drawPath(path2, paint2);
+            canvas2.save();
+            canvas2.clipPath(path2);
+            paint2.setAlpha(255);
+            canvas.drawRect(f10 * 10.0f, f14, 13.0f * f10, f17, paint2);
+            canvas.restore();
+            float f19 = (5.66f * f10) + f14;
+            if (!this.hasSiteName || (text2 = this.siteNameText) == null) {
+                fM = f19;
+                f9 = f9;
+                f4 = 2.0f;
+                f5 = 2.66f;
             } else {
-                f = 7.0f;
-                f2 = 48.0f;
-                f3 = 40.0f;
-                TLRPC.Document document = webPage.document;
-                if (document != null) {
-                    TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 1, false, null, false);
-                    TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(webPage.document.thumbs, (int) (i5 * this.density), false, closestPhotoSizeWithSize3, false);
-                    if (closestPhotoSizeWithSize4 != null) {
-                        int i6 = closestPhotoSizeWithSize4.w;
-                        i2 = closestPhotoSizeWithSize4.h;
-                        i = i6;
-                    } else {
-                        i = 0;
-                        i2 = 0;
-                    }
-                    this.photoImage.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize4, webPage.document), i5 + "_" + i5, this.video ? null : ImageLocation.getForDocument(closestPhotoSizeWithSize3, webPage.document), this.video ? null : i5 + "_" + i5, 0L, null, null, 0);
-                } else {
-                    i = 0;
-                    i2 = 0;
-                }
+                f9 = f9;
+                f4 = 2.0f;
+                f5 = 2.66f;
+                text2.draw(f10 * 20.0f, (text2.layout.getHeight() / f3) + f19, f9, paint2.getColor(), canvas);
+                fM = OKLCH.m(f10, 2.66f, this.siteNameText.layout.getHeight(), f19);
             }
-            this.previewHeight += this.density * 5.66f;
-            boolean zIsEmpty = TextUtils.isEmpty(webPage.site_name);
-            this.hasSiteName = !zIsEmpty;
-            if (zIsEmpty) {
-                lineCount = 0;
+            if (!this.hasTitle || (text = this.titleText) == null) {
+                canvas2 = canvas;
             } else {
-                Text textSizePx = new Text(webPage.site_name, 14.0f, AndroidUtilities.bold()).setTextSizePx(this.density * 14.0f);
-                float f6 = this.density;
-                Text maxWidth2 = textSizePx.setMaxWidth((int) Math.ceil((f5 - (f6 * f3)) - ((this.hasPhoto && this.smallPhoto) ? f6 * 60.0f : 0.0f)));
-                this.siteNameText = maxWidth2;
-                float f7 = this.w;
-                float currentWidth = maxWidth2.getCurrentWidth();
-                float f8 = this.density;
-                this.w = Math.max(f7, Math.min(currentWidth + (f8 * f3) + ((this.hasPhoto && this.smallPhoto) ? f8 * 60.0f : 0.0f), f5));
-                this.previewHeight = this.previewHeight + this.siteNameText.getHeight() + (this.density * 2.66f);
-                lineCount = this.siteNameText.getLineCount();
+                canvas2 = canvas;
+                text.draw(f10 * 20.0f, (text.layout.getHeight() / f4) + fM, f9, ColorUtils.blendARGB(f8, -13421773, -1), canvas2);
+                fM = OKLCH.m(f10, f5, this.titleText.layout.getHeight(), fM);
             }
-            boolean zIsEmpty2 = TextUtils.isEmpty(webPage.title);
-            this.hasTitle = !zIsEmpty2;
-            if (zIsEmpty2) {
-                f4 = 2.66f;
-            } else {
-                Text textSizePx2 = new Text(webPage.title, 14.0f, AndroidUtilities.bold()).setTextSizePx(this.density * 14.0f);
-                float f9 = this.density;
-                f4 = 2.66f;
-                Text maxWidth3 = textSizePx2.setMaxWidth((int) Math.ceil((f5 - (f9 * f3)) - ((this.hasPhoto && this.smallPhoto) ? f9 * 60.0f : 0.0f)));
-                this.titleText = maxWidth3;
-                float f10 = this.w;
-                float currentWidth2 = maxWidth3.getCurrentWidth();
-                float f11 = this.density;
-                this.w = Math.max(f10, Math.min(currentWidth2 + (f11 * f3) + ((this.hasPhoto && this.smallPhoto) ? f11 * 60.0f : 0.0f), f5));
-                this.previewHeight = this.previewHeight + this.titleText.getHeight() + (this.density * 2.66f);
-                lineCount += this.titleText.getLineCount();
+            if (this.hasDescription && this.descriptionLayout != null) {
+                canvas2.save();
+                canvas2.translate((f10 * 20.0f) - this.descriptionLayoutLeft, fM);
+                this.descriptionPaint.setColor(ColorUtils.blendARGB(f8, -13421773, -1));
+                this.descriptionPaint.setAlpha((int) (255.0f * f9));
+                this.descriptionLayout.draw(canvas2);
+                canvas2.restore();
+                fM = OKLCH.m(f10, f5, this.descriptionLayout.getHeight(), fM);
             }
-            boolean zIsEmpty3 = TextUtils.isEmpty(webPage.description);
-            this.hasDescription = !zIsEmpty3;
-            if (!zIsEmpty3) {
-                this.descriptionPaint.setTextSize(this.density * 14.0f);
-                int i7 = 3 - lineCount;
-                this.descriptionLayout = ChatMessageCell.generateStaticLayout(webPage.description, this.descriptionPaint, (int) Math.ceil(Math.max(1.0f, f5 - (this.density * f3))), (int) Math.ceil(Math.max(1.0f, f5 - ((40 + ((this.hasPhoto && this.smallPhoto) ? 60 : 0)) * this.density))), i7, 4);
-                this.descriptionLayoutWidth = 0.0f;
-                this.descriptionLayoutLeft = Float.MAX_VALUE;
-                int i8 = 0;
-                while (i8 < this.descriptionLayout.getLineCount()) {
-                    this.descriptionLayoutWidth = Math.max(this.descriptionLayoutWidth, this.descriptionLayout.getLineWidth(i8) + (this.hasPhoto && this.smallPhoto && i8 < i7 ? this.density * f2 : 0.0f));
-                    this.descriptionLayoutLeft = Math.min(this.descriptionLayoutLeft, this.descriptionLayout.getLineLeft(i8));
-                    i8++;
-                }
-                this.w = Math.max(this.w, Math.min(this.descriptionLayoutWidth + (this.density * f3), f5));
-                this.previewHeight = this.previewHeight + this.descriptionLayout.getHeight() + (this.density * f4);
+            float f20 = this.photoAlphaProgress.set(this.hasPhoto);
+            if (f20 > 0.0f) {
+                float f21 = this.photoSmallProgress.set(this.smallPhoto);
+                float f22 = f10 * 20.0f;
+                float f23 = (f10 * f5) + fM;
+                this.rect1.set(f22, f23, f6 - f22, this.photoHeight + f23);
+                float f24 = 6.0f * f10;
+                float f25 = (f6 - (f10 * 10.0f)) - f24;
+                float f26 = 48.0f * f10;
+                float f27 = f24 + f14;
+                this.rect2.set(f25 - f26, f27, f25, f26 + f27);
+                AndroidUtilities.lerp(this.rect1, this.rect2, f21, rectF2);
+                ImageReceiver imageReceiver = this.photoImage;
+                imageReceiver.setImageCoords(rectF2.left, rectF2.top, rectF2.width(), rectF2.height());
+                imageReceiver.setAlpha(f20 * f9);
+                imageReceiver.draw(canvas2);
+                fM += ((f10 * 2.66f) + this.photoHeight) * (1.0f - f21);
             }
-            if (this.hasPhoto && !this.smallPhoto) {
-                if (i <= 0 || i2 <= 0) {
-                    this.photoHeight = this.density * 120.0f;
-                } else {
-                    this.photoHeight = Math.min((Math.max(0.0f, this.w - (this.density * f3)) / i) * i2, this.density * 200.0f);
-                }
-                this.previewHeight = this.previewHeight + this.photoHeight + (this.density * f4);
+            float f28 = (5.0f * f10) + (7.0f * f10) + fM;
+            Text text4 = this.messageText;
+            if (text4 != null && 1.0f - f2 > 0.0f) {
+                text4.draw(10.0f * f10, (((15.0f * f10) + this.messageText.layout.getHeight()) * f2) + (text4.layout.getHeight() / f4) + f28, f9, -15033089, canvas2);
+                this.messageText.layout.getHeight();
             }
-            float f12 = this.previewHeight;
-            float f13 = this.density;
-            float f14 = f12 + (f13 * f);
-            this.previewHeight = f14;
-            this.h = this.h + f14 + (f13 * 11.0f);
+            canvas2.restore();
         } else {
-            String upperCase = TextUtils.isEmpty(this.webpage.name) ? fromUrlWithoutSchema(this.webpage.url).toUpperCase() : this.webpage.name;
-            int i9 = this.maxWidth;
-            int i10 = this.padx;
-            float f15 = (i9 - i10) - i10;
-            RectF rectF = this.padding;
-            float f16 = f15 - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
-            this.textScale = 1.0f;
-            double d = f16;
-            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, this.layoutPaint, (int) Math.ceil(d), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(d), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.layoutWidth = 0.0f;
-            this.layoutLeft = Float.MAX_VALUE;
-            for (int i11 = 0; i11 < this.layout.getLineCount(); i11++) {
-                this.layoutWidth = Math.max(this.layoutWidth, this.layout.getLineWidth(i11));
-                this.layoutLeft = Math.min(this.layoutLeft, this.layout.getLineLeft(i11));
-            }
-            if (this.layout.getLineCount() > 2) {
-                this.textScale = 0.3f;
-            } else {
-                this.textScale = Math.min(1.0f, f16 / this.layoutWidth);
-            }
-            RectF rectF2 = this.padding;
-            float f17 = rectF2.left + 30.0f + 3.25f + rectF2.right;
-            float f18 = this.density;
-            this.w = (f17 * f18) + (this.layoutWidth * this.textScale);
-            this.h = ((rectF2.top + rectF2.bottom) * f18) + Math.max(f18 * 30.0f, this.layout.getHeight() * this.textScale);
+            f = 1.0f;
         }
-        if (!this.animated) {
-            this.captionAbove.set(this.messageAbove, true);
-            this.photoSmallProgress.set(this.smallPhoto, true);
-            this.photoAlphaProgress.set(this.hasPhoto, true);
-            this.previewHeightProgress.set(this.previewHeight, true);
-        } else {
-            invalidate();
-        }
-        this.relayout = false;
-    }
-
-    public void pushPhotoToCache() {
-        if (this.hasPhoto && this.photoImage.hasImageLoaded() && this.photoImage.getBitmap() != null) {
-            ImageLoader.getInstance().putImageToCache(new BitmapDrawable(this.photoImage.getBitmap()), this.photoImage.getImageKey(), false);
+        if (f9 < f) {
+            float f29 = this.padding.left;
+            int iM$1 = ((int) SurfaceContainer$$ExternalSyntheticOutline0.m$1(f10, 30.0f, f7, 2.0f)) + i2;
+            Drawable drawable = this.icon;
+            drawable.setBounds(((int) (f29 * f10)) + i, ((int) SvgHelper$SvgDrawable$$ExternalSyntheticOutline0.m(f10, 30.0f, f7, 2.0f)) + i2, ((int) ((f29 + 30.0f) * f10)) + i, iM$1);
+            int i3 = (int) ((f - f9) * 255.0f);
+            drawable.setAlpha(i3);
+            drawable.draw(canvas2);
+            if (this.layout != null) {
+                canvas2.save();
+                canvas2.translate(((this.padding.left + 30.0f + 3.25f) * f10) + i, (f7 / 2.0f) + i2);
+                float f30 = this.textScale;
+                canvas2.scale(f30, f30);
+                canvas2.translate(-this.layoutLeft, (-this.layout.getHeight()) / 2.0f);
+                this.layoutPaint.setAlpha(i3);
+                this.layout.draw(canvas2);
+                canvas2.restore();
+            }
         }
     }
 
@@ -346,66 +342,8 @@ public class LinkPreview extends View {
         return ((int) f) * 2;
     }
 
-    public boolean withPreview() {
-        WebPagePreview webPagePreview = this.webpage;
-        return (webPagePreview == null || webPagePreview.webpage == null) ? false : true;
-    }
-
-    public void setType(int i, int i2) {
-        if (this.type == 1) {
-            return;
-        }
-        if (i == 0) {
-            this.backgroundColor = i2;
-            int i3 = AndroidUtilities.computePerceivedBrightness(i2) < 0.721f ? -1 : -16777216;
-            this.layoutPaint.setColor(i3);
-            this.icon.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN));
-        } else if (i == 1) {
-            this.backgroundColor = -16777216;
-            this.layoutPaint.setColor(-1);
-            this.icon.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        } else if (i == 2) {
-            this.backgroundColor = 1275068416;
-            this.layoutPaint.setColor(-1);
-            this.icon.setColorFilter(null);
-        } else {
-            this.backgroundColor = -1;
-            this.layoutPaint.setColor(-13397548);
-            this.icon.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
-    }
-
-    public void setPreviewType(int i) {
-        this.previewType = i;
-        invalidate();
-    }
-
     public int getPreviewType() {
         return this.previewType;
-    }
-
-    public void set(int i, WebPagePreview webPagePreview) {
-        set(i, webPagePreview, false);
-    }
-
-    public void set(int i, WebPagePreview webPagePreview, boolean z) {
-        this.currentAccount = i;
-        if (this.webpage != webPagePreview || z) {
-            this.webpage = webPagePreview;
-            this.relayout = true;
-            this.animated = z;
-            requestLayout();
-        }
-    }
-
-    public static String fromUrlWithoutSchema(String str) {
-        return str.startsWith("https://") ? str.substring(8) : str;
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        drawInternal(canvas);
     }
 
     public float getRadius() {
@@ -421,221 +359,275 @@ public class LinkPreview extends View {
         return f * f2;
     }
 
-    public void drawInternal(Canvas canvas) {
-        float f;
-        float f2;
-        Text text;
-        Text text2;
-        Canvas canvas2 = canvas;
-        setupLayout();
-        float f3 = this.width.set(this.w);
-        float f4 = this.height.set(this.h);
-        float f5 = this.previewTheme.set(this.previewType == 0);
-        float f6 = this.previewProgress.set(withPreview());
-        float fLerp = AndroidUtilities.lerp(0.2f * f4, this.density * 16.66f, f6);
-        RectF rectF = this.bounds;
-        float f7 = this.padx;
-        float f8 = this.pady;
-        rectF.set(f7, f8, f7 + f3, f8 + f4);
-        this.outlinePaint.setColor(ColorUtils.blendARGB(this.backgroundColor, ColorUtils.blendARGB(-1, -14670807, f5), f6));
-        this.path2.rewind();
-        Path path = this.path2;
-        RectF rectF2 = this.bounds;
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF2, fLerp, fLerp, direction);
-        canvas2.drawPath(this.path2, this.outlinePaint);
-        if (f6 > 0.0f) {
-            canvas2.save();
-            canvas2.clipPath(this.path2);
-            canvas2.translate(this.padx, this.pady);
-            float f9 = this.captionAbove.set(this.messageAbove);
-            float f10 = this.density;
-            float height = (7.33f * f10) + 0.0f;
-            Text text3 = this.messageText;
-            if (text3 == null || f9 <= 0.0f) {
-                f = 255.0f;
-            } else {
-                f = 255.0f;
-                text3.draw(canvas2, f10 * 10.0f, (height + (text3.getHeight() / 2.0f)) - ((this.messageText.getHeight() + (this.density * 15.0f)) * (1.0f - f9)), -15033089, f6);
-                height += (this.messageText.getHeight() + (this.density * 7.0f)) * f9;
-            }
-            float f11 = height;
-            float f12 = this.previewHeightProgress.set(this.previewHeight);
-            this.previewPaint.setAlpha(25);
-            RectF rectF3 = this.rect;
-            float f13 = this.density * 10.0f;
-            float f14 = f12 + f11;
-            rectF3.set(f13, f11, f3 - f13, f14);
-            this.path.rewind();
-            Path path2 = this.path;
-            RectF rectF4 = this.rect;
-            float f15 = this.density * 5.0f;
-            path2.addRoundRect(rectF4, f15, f15, direction);
-            canvas2.drawPath(this.path, this.previewPaint);
-            canvas2.save();
-            canvas2.clipPath(this.path);
-            this.previewPaint.setAlpha(255);
-            float f16 = this.density;
-            canvas.drawRect(f16 * 10.0f, f11, f16 * 13.0f, f14, this.previewPaint);
-            canvas.restore();
-            float f17 = this.density;
-            float height2 = f11 + (5.66f * f17);
-            if (!this.hasSiteName || (text2 = this.siteNameText) == null) {
-                f6 = f6;
-            } else {
-                f6 = f6;
-                text2.draw(canvas, f17 * 20.0f, height2 + (text2.getHeight() / 2.0f), this.previewPaint.getColor(), f6);
-                height2 += this.siteNameText.getHeight() + (this.density * 2.66f);
-            }
-            if (!this.hasTitle || (text = this.titleText) == null) {
-                canvas2 = canvas;
-            } else {
-                canvas2 = canvas;
-                text.draw(canvas2, this.density * 20.0f, height2 + (text.getHeight() / 2.0f), ColorUtils.blendARGB(-13421773, -1, f5), f6);
-                height2 += this.titleText.getHeight() + (this.density * 2.66f);
-            }
-            float height3 = height2;
-            if (this.hasDescription && this.descriptionLayout != null) {
-                canvas2.save();
-                canvas2.translate((this.density * 20.0f) - this.descriptionLayoutLeft, height3);
-                this.descriptionPaint.setColor(ColorUtils.blendARGB(-13421773, -1, f5));
-                this.descriptionPaint.setAlpha((int) (f6 * f));
-                this.descriptionLayout.draw(canvas2);
-                canvas2.restore();
-                height3 += this.descriptionLayout.getHeight() + (this.density * 2.66f);
-            }
-            float f18 = this.photoAlphaProgress.set(this.hasPhoto);
-            if (f18 > 0.0f) {
-                float f19 = this.photoSmallProgress.set(this.smallPhoto);
-                RectF rectF5 = this.rect1;
-                float f20 = this.density;
-                float f21 = f20 * 20.0f;
-                float f22 = (f20 * 2.66f) + height3;
-                f2 = 1.0f;
-                rectF5.set(f21, f22, f3 - f21, this.photoHeight + f22);
-                RectF rectF6 = this.rect2;
-                float f23 = this.density;
-                float f24 = 6.0f * f23;
-                float f25 = (f3 - (f23 * 10.0f)) - f24;
-                float f26 = f23 * 48.0f;
-                float f27 = f24 + f11;
-                rectF6.set(f25 - f26, f27, f25, f26 + f27);
-                AndroidUtilities.lerp(this.rect1, this.rect2, f19, this.rect);
-                ImageReceiver imageReceiver = this.photoImage;
-                RectF rectF7 = this.rect;
-                imageReceiver.setImageCoords(rectF7.left, rectF7.top, rectF7.width(), this.rect.height());
-                this.photoImage.setAlpha(f18 * f6);
-                this.photoImage.draw(canvas2);
-                height3 += (1.0f - f19) * ((this.density * 2.66f) + this.photoHeight);
-            } else {
-                f2 = 1.0f;
-            }
-            float f28 = this.density;
-            float f29 = height3 + (7.0f * f28) + (5.0f * f28);
-            Text text4 = this.messageText;
-            if (text4 != null && f2 - f9 > 0.0f) {
-                text4.draw(canvas2, f28 * 10.0f, f29 + (text4.getHeight() / 2.0f) + ((this.messageText.getHeight() + (this.density * 15.0f)) * f9), -15033089, f6);
-                this.messageText.getHeight();
-            }
-            canvas2.restore();
-        } else {
-            f = 255.0f;
-            f2 = 1.0f;
-        }
-        if (f6 < f2) {
-            Drawable drawable = this.icon;
-            int i = this.padx;
-            float f30 = this.padding.left;
-            float f31 = this.density;
-            int i2 = this.pady;
-            float f32 = f31 * 30.0f;
-            drawable.setBounds(((int) (f30 * f31)) + i, ((int) ((f4 - f32) / 2.0f)) + i2, i + ((int) ((f30 + 30.0f) * f31)), i2 + ((int) ((f32 + f4) / 2.0f)));
-            int i3 = (int) ((f2 - f6) * f);
-            this.icon.setAlpha(i3);
-            this.icon.draw(canvas2);
-            if (this.layout != null) {
-                canvas2.save();
-                canvas2.translate(this.padx + ((this.padding.left + 30.0f + 3.25f) * this.density), this.pady + (f4 / 2.0f));
-                float f33 = this.textScale;
-                canvas2.scale(f33, f33);
-                canvas2.translate(-this.layoutLeft, (-this.layout.getHeight()) / 2.0f);
-                this.layoutPaint.setAlpha(i3);
-                this.layout.draw(canvas2);
-                canvas2.restore();
-            }
-        }
-    }
-
     @Override
-    protected void onMeasure(int i, int i2) {
-        setupLayout();
-        setMeasuredDimension(this.padx + ((int) Math.ceil(this.w)) + this.padx, this.pady + ((int) Math.ceil(this.h)) + this.pady);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.photoImage.onAttachedToWindow();
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.photoImage.onDetachedFromWindow();
     }
 
-    public static class WebPagePreview extends TLObject {
-        public boolean captionAbove = true;
-        public int flags;
-        public boolean largePhoto;
-        public String name;
-        public int photoSize;
-        public String url;
-        public TLRPC.WebPage webpage;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        setupLayout();
+        int iCeil = (int) Math.ceil(this.w);
+        int i3 = this.padx;
+        int i4 = iCeil + i3 + i3;
+        int iCeil2 = (int) Math.ceil(this.h);
+        int i5 = this.pady;
+        setMeasuredDimension(i4, iCeil2 + i5 + i5);
+    }
 
-        public static WebPagePreview TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (WebPagePreview) TLObject.TLdeserialize(WebPagePreview.class, -625858389 != i ? null : new WebPagePreview(), inputSerializedData, i, z);
+    public final void pushPhotoToCache() {
+        if (this.hasPhoto) {
+            ImageReceiver imageReceiver = this.photoImage;
+            if (!imageReceiver.hasImageLoaded() || imageReceiver.getBitmap() == null) {
+                return;
+            }
+            ImageLoader.getInstance().putImageToCache(new BitmapDrawable(imageReceiver.getBitmap()), imageReceiver.getImageKey(), false);
         }
+    }
 
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-625858389);
-            this.flags = this.webpage != null ? this.flags | 1 : this.flags & (-2);
-            int i = !TextUtils.isEmpty(this.name) ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            int i2 = this.largePhoto ? i | 8 : i & (-9);
-            this.flags = i2;
-            int i3 = this.captionAbove ? i2 | 16 : i2 & (-17);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
-            outputSerializedData.writeString(this.url);
-            if ((this.flags & 1) != 0) {
-                this.webpage.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 2) != 0) {
-                outputSerializedData.writeString(this.name);
-            }
-            if ((this.flags & 4) != 0) {
-                outputSerializedData.writeInt32(this.photoSize);
-            }
+    public final void set(int i, WebPagePreview webPagePreview, boolean z) {
+        this.currentAccount = i;
+        if (this.webpage != webPagePreview || z) {
+            this.webpage = webPagePreview;
+            this.relayout = true;
+            this.animated = z;
+            requestLayout();
         }
+    }
 
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.flags = int32;
-            this.largePhoto = (int32 & 8) != 0;
-            this.captionAbove = (int32 & 16) != 0;
-            this.url = inputSerializedData.readString(z);
-            if ((this.flags & 1) != 0) {
-                this.webpage = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 2) != 0) {
-                this.name = inputSerializedData.readString(z);
-            }
-            if ((this.flags & 4) != 0) {
-                this.photoSize = inputSerializedData.readInt32(z);
-            }
+    public void setMaxWidth(int i) {
+        this.maxWidth = i;
+        this.relayout = true;
+    }
+
+    public void setPreviewType(int i) {
+        this.previewType = i;
+        invalidate();
+    }
+
+    public final void setType(int i, int i2) {
+        Drawable drawable = this.icon;
+        TextPaint textPaint = this.layoutPaint;
+        if (i == 0) {
+            this.backgroundColor = i2;
+            int i3 = AndroidUtilities.computePerceivedBrightness(i2) < 0.721f ? -1 : -16777216;
+            textPaint.setColor(i3);
+            drawable.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN));
+        } else if (i == 1) {
+            this.backgroundColor = -16777216;
+            textPaint.setColor(-1);
+            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        } else if (i == 2) {
+            this.backgroundColor = 1275068416;
+            textPaint.setColor(-1);
+            drawable.setColorFilter(null);
+        } else {
+            this.backgroundColor = -1;
+            textPaint.setColor(-13397548);
+            drawable.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.SRC_IN));
         }
+        invalidate();
+    }
+
+    public final void setupLayout() {
+        String upperCase;
+        int color1;
+        float f;
+        int i;
+        int i2;
+        int lineCount;
+        float f2;
+        float f3;
+        if (!this.relayout || this.webpage == null) {
+            return;
+        }
+        boolean zWithPreview = withPreview();
+        int i3 = this.padx;
+        float f4 = this.density;
+        if (zWithPreview) {
+            String str = TextUtils.isEmpty(this.webpage.name) ? this.webpage.url : this.webpage.name;
+            TLRPC.WebPage webPage = this.webpage.webpage;
+            float f5 = (this.maxWidth - i3) - i3;
+            this.h = 0.0f;
+            this.w = 0.0f;
+            this.previewHeight = 0.0f;
+            int colorId = UserObject.getColorId(UserConfig.getInstance(this.currentAccount).getCurrentUser());
+            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
+            MessagesController.PeerColor color = (peerColors == null || colorId < 7) ? null : peerColors.getColor(colorId);
+            Paint paint = this.previewPaint;
+            if (color == null) {
+                int[] iArr = Theme.keys_avatar_nameInMessage;
+                color1 = Theme.getColor(null, iArr[colorId % iArr.length], false);
+            } else {
+                color1 = color.getColor1();
+            }
+            paint.setColor(color1);
+            this.h = (7.33f * f4) + this.h;
+            this.messageAbove = this.webpage.captionAbove;
+            Text text = new Text(str, 16.0f, null);
+            text.paint.setTextSize(16.0f * f4);
+            float f6 = 20.0f * f4;
+            text.maxWidth = f5 - f6;
+            text.setText(text.layout.getText());
+            this.messageText = text;
+            this.w = Math.max(this.w, Math.min(f6 + text.width, f5));
+            float f7 = 7.0f * f4;
+            this.h = this.h + this.messageText.layout.getHeight() + f7;
+            this.hasPhoto = webPage.photo != null || MessageObject.isVideoDocument(webPage.document);
+            WebPagePreview webPagePreview = this.webpage;
+            boolean z = webPagePreview.largePhoto;
+            this.smallPhoto = !z;
+            int i4 = (!this.video || (webPagePreview.flags & 4) == 0) ? ((int) (!z ? 48.0f : (f5 / f4) - 40.0f)) * 2 : webPagePreview.photoSize;
+            ImageReceiver imageReceiver = this.photoImage;
+            imageReceiver.setRoundRadius((int) (4.0f * f4));
+            TLRPC.Photo photo = webPage.photo;
+            if (photo != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 1, false, null, false);
+                f = 48.0f;
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, (int) (i4 * f4), false, closestPhotoSizeWithSize, false);
+                if (closestPhotoSizeWithSize2 != null) {
+                    i2 = closestPhotoSizeWithSize2.w;
+                    i = closestPhotoSizeWithSize2.h;
+                } else {
+                    i = 0;
+                    i2 = 0;
+                }
+                imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize2, webPage.photo), DiffUtil.m(i4, i4, "_"), this.video ? null : ImageLocation.getForPhoto(closestPhotoSizeWithSize, webPage.photo), this.video ? null : DiffUtil.m(i4, i4, "_"), 0L, null, null, 0);
+            } else {
+                f = 48.0f;
+                TLRPC.Document document = webPage.document;
+                if (document != null) {
+                    TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 1, false, null, false);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(webPage.document.thumbs, (int) (i4 * f4), false, closestPhotoSizeWithSize3, false);
+                    if (closestPhotoSizeWithSize4 != null) {
+                        int i5 = closestPhotoSizeWithSize4.w;
+                        i = closestPhotoSizeWithSize4.h;
+                        i2 = i5;
+                    } else {
+                        i = 0;
+                        i2 = 0;
+                    }
+                    imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize4, webPage.document), DiffUtil.m(i4, i4, "_"), this.video ? null : ImageLocation.getForDocument(closestPhotoSizeWithSize3, webPage.document), this.video ? null : DiffUtil.m(i4, i4, "_"), 0L, null, null, 0);
+                } else {
+                    i = 0;
+                    i2 = 0;
+                }
+            }
+            this.previewHeight = (5.66f * f4) + this.previewHeight;
+            boolean zIsEmpty = TextUtils.isEmpty(webPage.site_name);
+            this.hasSiteName = !zIsEmpty;
+            if (zIsEmpty) {
+                lineCount = 0;
+            } else {
+                Text text2 = new Text(webPage.site_name, 14.0f, AndroidUtilities.bold());
+                text2.paint.setTextSize(f4 * 14.0f);
+                float f8 = f4 * 40.0f;
+                text2.maxWidth = (int) Math.ceil((f5 - f8) - ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f));
+                text2.setText(text2.layout.getText());
+                this.siteNameText = text2;
+                this.w = Math.max(this.w, Math.min(f8 + text2.width + ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f), f5));
+                this.previewHeight = (f4 * 2.66f) + this.previewHeight + this.siteNameText.layout.getHeight();
+                lineCount = this.siteNameText.layout.getLineCount();
+            }
+            boolean zIsEmpty2 = TextUtils.isEmpty(webPage.title);
+            this.hasTitle = !zIsEmpty2;
+            if (zIsEmpty2) {
+                f2 = f4;
+                f3 = 2.66f;
+            } else {
+                Text text3 = new Text(webPage.title, 14.0f, AndroidUtilities.bold());
+                text3.paint.setTextSize(f4 * 14.0f);
+                float f9 = f4 * 40.0f;
+                f3 = 2.66f;
+                f2 = f4;
+                text3.maxWidth = (int) Math.ceil((f5 - f9) - ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f));
+                text3.setText(text3.layout.getText());
+                this.titleText = text3;
+                this.w = Math.max(this.w, Math.min(f9 + text3.width + ((this.hasPhoto && this.smallPhoto) ? 60.0f * f2 : 0.0f), f5));
+                this.previewHeight = (f2 * 2.66f) + this.previewHeight + this.titleText.layout.getHeight();
+                lineCount += this.titleText.layout.getLineCount();
+            }
+            boolean zIsEmpty3 = TextUtils.isEmpty(webPage.description);
+            this.hasDescription = !zIsEmpty3;
+            if (!zIsEmpty3) {
+                TextPaint textPaint = this.descriptionPaint;
+                textPaint.setTextSize(f2 * 14.0f);
+                float f10 = f2 * 40.0f;
+                int i6 = 3 - lineCount;
+                this.descriptionLayout = ChatMessageCell.generateStaticLayout(webPage.description, textPaint, (int) Math.ceil(Math.max(1.0f, f5 - f10)), (int) Math.ceil(Math.max(1.0f, f5 - ((40 + ((this.hasPhoto && this.smallPhoto) ? 60 : 0)) * f2))), i6, 4);
+                this.descriptionLayoutWidth = 0.0f;
+                this.descriptionLayoutLeft = Float.MAX_VALUE;
+                int i7 = 0;
+                while (i7 < this.descriptionLayout.getLineCount()) {
+                    this.descriptionLayoutWidth = Math.max(this.descriptionLayoutWidth, this.descriptionLayout.getLineWidth(i7) + (this.hasPhoto && this.smallPhoto && i7 < i6 ? f2 * f : 0.0f));
+                    this.descriptionLayoutLeft = Math.min(this.descriptionLayoutLeft, this.descriptionLayout.getLineLeft(i7));
+                    i7++;
+                }
+                this.w = Math.max(this.w, Math.min(f10 + this.descriptionLayoutWidth, f5));
+                this.previewHeight = (f2 * f3) + this.previewHeight + this.descriptionLayout.getHeight();
+            }
+            if (this.hasPhoto && !this.smallPhoto) {
+                if (i2 <= 0 || i <= 0) {
+                    this.photoHeight = f2 * 120.0f;
+                } else {
+                    this.photoHeight = Math.min((Math.max(0.0f, this.w - (f2 * 40.0f)) / i2) * i, f2 * 200.0f);
+                }
+                this.previewHeight = (f2 * f3) + this.previewHeight + this.photoHeight;
+            }
+            float f11 = f7 + this.previewHeight;
+            this.previewHeight = f11;
+            this.h = (f2 * 11.0f) + this.h + f11;
+        } else {
+            if (TextUtils.isEmpty(this.webpage.name)) {
+                String strSubstring = this.webpage.url;
+                if (strSubstring.startsWith("https://")) {
+                    strSubstring = strSubstring.substring(8);
+                }
+                upperCase = strSubstring.toUpperCase();
+            } else {
+                upperCase = this.webpage.name;
+            }
+            float f12 = (this.maxWidth - i3) - i3;
+            RectF rectF = this.padding;
+            float f13 = f12 - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * f4);
+            this.textScale = 1.0f;
+            TextPaint textPaint2 = this.layoutPaint;
+            double d = f13;
+            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, textPaint2, (int) Math.ceil(d), TextUtils.TruncateAt.END), textPaint2, (int) Math.ceil(d), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.layoutWidth = 0.0f;
+            this.layoutLeft = Float.MAX_VALUE;
+            for (int i8 = 0; i8 < this.layout.getLineCount(); i8++) {
+                this.layoutWidth = Math.max(this.layoutWidth, this.layout.getLineWidth(i8));
+                this.layoutLeft = Math.min(this.layoutLeft, this.layout.getLineLeft(i8));
+            }
+            if (this.layout.getLineCount() > 2) {
+                this.textScale = 0.3f;
+            } else {
+                this.textScale = Math.min(1.0f, f13 / this.layoutWidth);
+            }
+            this.w = (this.layoutWidth * this.textScale) + ((rectF.left + 30.0f + 3.25f + rectF.right) * f4);
+            this.h = Math.max(f4 * 30.0f, this.layout.getHeight() * this.textScale) + ((rectF.top + rectF.bottom) * f4);
+        }
+        if (this.animated) {
+            invalidate();
+        } else {
+            this.captionAbove.set(this.messageAbove, true);
+            this.photoSmallProgress.set(this.smallPhoto, true);
+            this.photoAlphaProgress.set(this.hasPhoto, true);
+            this.previewHeightProgress.set(this.previewHeight, true);
+        }
+        this.relayout = false;
+    }
+
+    public final boolean withPreview() {
+        WebPagePreview webPagePreview = this.webpage;
+        return (webPagePreview == null || webPagePreview.webpage == null) ? false : true;
     }
 }

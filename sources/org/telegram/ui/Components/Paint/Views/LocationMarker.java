@@ -2,12 +2,10 @@ package org.telegram.ui.Components.Paint.Views;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.Layout;
@@ -20,60 +18,49 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class LocationMarker extends View {
-    private AnimatedFloat animatedVideo;
-    private boolean attachedToWindow;
-    private final RectF bounds;
+    public final AnimatedFloat animatedVideo;
+    public boolean attachedToWindow;
+    public final RectF bounds;
     public final float density;
-    private TLRPC.Document flagAnimatedDocument;
-    private final ImageReceiver flagAnimatedImageReceiver;
-    private TLRPC.Document flagDocument;
-    private final float flagIconPadding;
-    private final ImageReceiver flagImageReceiver;
-    private boolean forceEmoji;
-    private float h;
-    private boolean hasFlag;
-    private final Drawable icon;
-    private final float iconPadding;
-    private final float iconSize;
-    private boolean isVideo;
-    private StaticLayout layout;
-    private float layoutLeft;
-    private float layoutWidth;
-    private int maxWidth;
+    public TLRPC.Document flagAnimatedDocument;
+    public final ImageReceiver flagAnimatedImageReceiver;
+    public TLRPC.Document flagDocument;
+    public final ImageReceiver flagImageReceiver;
+    public boolean forceEmoji;
+    public float h;
+    public boolean hasFlag;
+    public final Drawable icon;
+    public boolean isVideo;
+    public StaticLayout layout;
+    public float layoutLeft;
+    public float layoutWidth;
+    public int maxWidth;
     public final Paint outlinePaint;
-    private final RectF padding;
+    public final RectF padding;
     public final int padx;
     public final int pady;
-    private final Path path;
-    private boolean relayout;
-    private String text;
-    private final TextPaint textPaint;
-    private float textScale;
-    public final int type;
-    public final int variant;
-    private float w;
+    public boolean relayout;
+    public String text;
+    public final TextPaint textPaint;
+    public float textScale;
+    public float w;
 
-    public int getTypesCount() {
-        return 4;
-    }
-
-    public LocationMarker(Context context, int i, float f, int i2) {
+    public LocationMarker(Context context, float f) {
         super(context);
         this.text = "";
         this.padding = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
-        this.iconPadding = 3.25f;
-        this.flagIconPadding = 2.25f;
-        this.iconSize = 21.33f;
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         this.outlinePaint = new Paint(1);
@@ -83,142 +70,43 @@ public class LocationMarker extends View {
         this.flagAnimatedImageReceiver = imageReceiver2;
         this.textScale = 1.0f;
         this.bounds = new RectF();
-        this.path = new Path();
-        this.animatedVideo = new AnimatedFloat(this, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.variant = i;
+        new Path();
+        this.animatedVideo = new AnimatedFloat(350L, this, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.density = f;
         imageReceiver.setCrossfadeWithOldImage(true);
         imageReceiver.setInvalidateAll(true);
         imageReceiver2.setCrossfadeWithOldImage(true);
         imageReceiver2.setInvalidateAll(true);
-        int i3 = (int) (3.0f * f);
-        this.padx = i3;
-        int i4 = (int) (1.0f * f);
-        this.pady = i4;
-        setPadding(i3, i4, i3, i4);
-        this.type = i2;
+        int i = (int) (3.0f * f);
+        this.padx = i;
+        int i2 = (int) (1.0f * f);
+        this.pady = i2;
+        setPadding(i, i2, i, i2);
         this.icon = context.getResources().getDrawable(R.drawable.map_pin3).mutate();
         textPaint.setTextSize(f * 24.0f);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         NotificationCenter.listenEmojiLoading(this);
     }
 
-    public void setMaxWidth(int i) {
-        this.maxWidth = i;
-        this.relayout = true;
-    }
-
-    public void forceEmoji() {
-        this.forceEmoji = true;
-        this.relayout = true;
-        requestLayout();
-    }
-
-    private Drawable getEmojiThumb(String str) {
-        final Drawable emojiBigDrawable = Emoji.getEmojiBigDrawable(str);
-        if (emojiBigDrawable instanceof Emoji.SimpleEmojiDrawable) {
-            ((Emoji.SimpleEmojiDrawable) emojiBigDrawable).fullSize = false;
-        }
-        if (emojiBigDrawable == null) {
-            return null;
-        }
-        return new Drawable() {
-            @Override
-            public void draw(Canvas canvas) {
-                canvas.save();
-                if (emojiBigDrawable.getBounds() != null) {
-                    canvas.scale(0.8333333f, 0.8333333f, emojiBigDrawable.getBounds().centerX(), emojiBigDrawable.getBounds().centerY());
-                }
-                emojiBigDrawable.draw(canvas);
-                canvas.restore();
-            }
-
-            @Override
-            public void setAlpha(int i) {
-                emojiBigDrawable.setAlpha(i);
-            }
-
-            @Override
-            public void setColorFilter(ColorFilter colorFilter) {
-                emojiBigDrawable.setColorFilter(colorFilter);
-            }
-
-            @Override
-            public void setBounds(Rect rect) {
-                emojiBigDrawable.setBounds(rect);
-            }
-
-            @Override
-            public void setBounds(int i, int i2, int i3, int i4) {
-                emojiBigDrawable.setBounds(i, i2, i3, i4);
-            }
-
-            @Override
-            public int getOpacity() {
-                return emojiBigDrawable.getOpacity();
-            }
-        };
-    }
-
-    public void setCodeEmoji(int i, final String str) {
-        if (TextUtils.isEmpty(str)) {
-            this.hasFlag = false;
-            this.flagDocument = null;
-            this.flagAnimatedDocument = null;
-            this.flagImageReceiver.clearImage();
-            this.flagAnimatedImageReceiver.clearImage();
-        } else {
-            this.hasFlag = true;
-            this.flagDocument = null;
-            this.flagAnimatedDocument = null;
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            tL_inputStickerSetShortName.short_name = "StaticEmoji";
-            MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName, 0, false, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    LocationMarker.$r8$lambda$kA9WVTNWvMZV_E_Uxm7XroalC4s(this.f$0, str, (TLRPC.TL_messages_stickerSet) obj);
-                }
-            });
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
-            tL_inputStickerSetShortName2.short_name = "RestrictedEmoji";
-            MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    LocationMarker.m2523$r8$lambda$NnUrPcxtH70pLxzfRxskgyUioA(this.f$0, str, (TLRPC.TL_messages_stickerSet) obj);
-                }
-            });
-            this.flagImageReceiver.setImage(ImageLocation.getForDocument(this.flagDocument), "80_80", getEmojiThumb(str), null, null, 0);
-            this.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(this.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(this.flagDocument), "80_80", null, null, getEmojiThumb(str), 0L, null, null, 0);
-        }
-        this.relayout = true;
-        requestLayout();
-    }
-
-    public static void $r8$lambda$kA9WVTNWvMZV_E_Uxm7XroalC4s(LocationMarker locationMarker, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-        TLRPC.Document documentFindDocument = locationMarker.findDocument(tL_messages_stickerSet, str);
-        locationMarker.flagDocument = documentFindDocument;
-        locationMarker.flagImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument), "80_80", locationMarker.getEmojiThumb(str), null, null, 0);
-        locationMarker.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(locationMarker.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(locationMarker.flagDocument), "80_80", null, null, locationMarker.getEmojiThumb(str), 0L, null, null, 0);
-    }
-
-    public static void m2523$r8$lambda$NnUrPcxtH70pLxzfRxskgyUioA(LocationMarker locationMarker, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-        TLRPC.Document documentFindDocument = locationMarker.findDocument(tL_messages_stickerSet, str);
-        locationMarker.flagAnimatedDocument = documentFindDocument;
-        if (documentFindDocument == null) {
-            return;
-        }
-        locationMarker.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument), "80_80", ImageLocation.getForDocument(locationMarker.flagDocument), "80_80", null, null, locationMarker.getEmojiThumb(str), 0L, null, null, 0);
-    }
-
-    private TLRPC.Document findDocument(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str) {
+    public static TLRPC.Document findDocument(String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         if (tL_messages_stickerSet != null && tL_messages_stickerSet.packs != null && tL_messages_stickerSet.documents != null) {
             for (int i = 0; i < tL_messages_stickerSet.packs.size(); i++) {
                 TLRPC.TL_stickerPack tL_stickerPack = tL_messages_stickerSet.packs.get(i);
-                if (containsEmoji(tL_stickerPack.emoticon, str) && !tL_stickerPack.documents.isEmpty()) {
-                    long jLongValue = tL_stickerPack.documents.get(0).longValue();
-                    for (int i2 = 0; i2 < tL_messages_stickerSet.documents.size(); i2++) {
-                        if (tL_messages_stickerSet.documents.get(i2).id == jLongValue) {
-                            return tL_messages_stickerSet.documents.get(i2);
+                String str2 = tL_stickerPack.emoticon;
+                if (str2 != null && str != null) {
+                    ArrayList<Emoji.EmojiSpanRange> emojis = Emoji.parseEmojis(str2);
+                    for (int i2 = 0; i2 < emojis.size(); i2++) {
+                        if (TextUtils.equals(emojis.get(i2).code, str)) {
+                            if (!tL_stickerPack.documents.isEmpty()) {
+                                long jLongValue = tL_stickerPack.documents.get(0).longValue();
+                                for (int i3 = 0; i3 < tL_messages_stickerSet.documents.size(); i3++) {
+                                    if (tL_messages_stickerSet.documents.get(i3).id == jLongValue) {
+                                        return tL_messages_stickerSet.documents.get(i3);
+                                    }
+                                }
+                                break;
+                            }
+                            break;
                         }
                     }
                 }
@@ -227,16 +115,75 @@ public class LocationMarker extends View {
         return null;
     }
 
-    private boolean containsEmoji(String str, String str2) {
-        if (str != null && str2 != null) {
-            ArrayList<Emoji.EmojiSpanRange> emojis = Emoji.parseEmojis(str);
-            for (int i = 0; i < emojis.size(); i++) {
-                if (TextUtils.equals(emojis.get(i).code, str2)) {
-                    return true;
-                }
-            }
+    public static TextCell.AnonymousClass2 getEmojiThumb(String str) {
+        Drawable emojiBigDrawable = Emoji.getEmojiBigDrawable(str);
+        if (emojiBigDrawable instanceof Emoji.SimpleEmojiDrawable) {
+            ((Emoji.SimpleEmojiDrawable) emojiBigDrawable).fullSize = false;
         }
-        return false;
+        if (emojiBigDrawable == null) {
+            return null;
+        }
+        return new TextCell.AnonymousClass2(emojiBigDrawable, 3);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        drawInternal(canvas);
+    }
+
+    public final void drawInternal(Canvas canvas) {
+        setupLayout();
+        if (this.layout == null) {
+            return;
+        }
+        RectF rectF = this.bounds;
+        int i = this.padx;
+        float f = i;
+        int i2 = this.pady;
+        float f2 = i2;
+        rectF.set(f, f2, this.w + f, this.h + f2);
+        float f3 = this.h * 0.2f;
+        canvas.drawRoundRect(rectF, f3, f3, this.outlinePaint);
+        boolean z = this.hasFlag;
+        RectF rectF2 = this.padding;
+        float f4 = this.density;
+        if (z) {
+            float f5 = this.animatedVideo.set(this.isVideo);
+            if (f5 > 0.0f) {
+                ImageReceiver imageReceiver = this.flagAnimatedImageReceiver;
+                float f6 = f4 * 21.33f;
+                imageReceiver.setImageCoords(((rectF2.left + 2.25f) * f4) + f, ImageReceiver$$ExternalSyntheticOutline0.m(this.h, f6, 2.0f, f2), f6, f6);
+                canvas.save();
+                canvas.scale(1.2f, 1.2f, imageReceiver.getCenterX(), imageReceiver.getCenterY());
+                imageReceiver.setAlpha(f5);
+                imageReceiver.draw(canvas);
+                canvas.restore();
+            }
+            if (f5 < 1.0f) {
+                ImageReceiver imageReceiver2 = this.flagImageReceiver;
+                float f7 = f4 * 21.33f;
+                imageReceiver2.setImageCoords(((rectF2.left + 2.25f) * f4) + f, ImageReceiver$$ExternalSyntheticOutline0.m(this.h, f7, 2.0f, f2), f7, f7);
+                canvas.save();
+                canvas.scale(1.2f, 1.2f, imageReceiver2.getCenterX(), imageReceiver2.getCenterY());
+                imageReceiver2.setAlpha(1.0f - f5);
+                imageReceiver2.draw(canvas);
+                canvas.restore();
+            }
+        } else if (!this.forceEmoji) {
+            float f8 = rectF2.left;
+            float f9 = this.h;
+            float f10 = f4 * 21.33f;
+            Drawable drawable = this.icon;
+            drawable.setBounds(((int) (f8 * f4)) + i, ((int) ((f9 - f10) / 2.0f)) + i2, i + ((int) ((f8 + 21.33f) * f4)), i2 + ((int) ((f10 + f9) / 2.0f)));
+            drawable.draw(canvas);
+        }
+        canvas.save();
+        canvas.translate(((rectF2.left + ((this.hasFlag || this.forceEmoji) ? 2.25f : 0.0f) + 21.33f + 3.25f) * f4) + f, (this.h / 2.0f) + f2);
+        float f11 = this.textScale;
+        canvas.scale(f11, f11);
+        canvas.translate(-this.layoutLeft, (-this.layout.getHeight()) / 2.0f);
+        this.layout.draw(canvas);
+        canvas.restore();
     }
 
     public TLRPC.Document getCodeEmojiDocument() {
@@ -244,19 +191,33 @@ public class LocationMarker extends View {
         return (!this.isVideo || (document = this.flagAnimatedDocument) == null) ? this.flagDocument : document;
     }
 
+    public int getHeightInternal() {
+        int iRound = Math.round(this.h);
+        int i = this.pady;
+        return iRound + i + i;
+    }
+
+    public float getRadius() {
+        return this.h * 0.2f;
+    }
+
+    public String getText() {
+        return this.text;
+    }
+
+    public int getTypesCount() {
+        return 4;
+    }
+
+    public int getWidthInternal() {
+        int iRound = Math.round(this.w);
+        int i = this.padx;
+        return iRound + i + i;
+    }
+
     @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        attachInternal();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        detachInternal();
-    }
-
-    public void attachInternal() {
         this.attachedToWindow = true;
         if (this.isVideo) {
             this.flagAnimatedImageReceiver.onAttachedToWindow();
@@ -265,10 +226,135 @@ public class LocationMarker extends View {
         }
     }
 
-    public void detachInternal() {
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
         this.attachedToWindow = false;
         this.flagImageReceiver.onDetachedFromWindow();
         this.flagAnimatedImageReceiver.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        setupLayout();
+        setMeasuredDimension(getWidthInternal(), getHeightInternal());
+    }
+
+    public final void setCodeEmoji(int i, final String str) {
+        boolean z;
+        boolean zIsEmpty = TextUtils.isEmpty(str);
+        ImageReceiver imageReceiver = this.flagAnimatedImageReceiver;
+        ImageReceiver imageReceiver2 = this.flagImageReceiver;
+        if (zIsEmpty) {
+            this.hasFlag = false;
+            this.flagDocument = null;
+            this.flagAnimatedDocument = null;
+            imageReceiver2.clearImage();
+            imageReceiver.clearImage();
+            z = true;
+        } else {
+            this.hasFlag = true;
+            this.flagDocument = null;
+            this.flagAnimatedDocument = null;
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
+            tL_inputStickerSetShortName.short_name = "StaticEmoji";
+            final int i2 = 0;
+            MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName, 0, false, new Utilities.Callback(this) {
+                public final LocationMarker f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void run(Object obj) {
+                    switch (i2) {
+                        case 0:
+                            LocationMarker locationMarker = this.f$0;
+                            locationMarker.getClass();
+                            String str2 = str;
+                            TLRPC.Document documentFindDocument = LocationMarker.findDocument(str2, (TLRPC.TL_messages_stickerSet) obj);
+                            locationMarker.flagDocument = documentFindDocument;
+                            locationMarker.flagImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument), "80_80", LocationMarker.getEmojiThumb(str2), null, null, 0);
+                            locationMarker.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(locationMarker.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(locationMarker.flagDocument), "80_80", null, null, LocationMarker.getEmojiThumb(str2), 0L, null, null, 0);
+                            break;
+                        default:
+                            LocationMarker locationMarker2 = this.f$0;
+                            locationMarker2.getClass();
+                            String str3 = str;
+                            TLRPC.Document documentFindDocument2 = LocationMarker.findDocument(str3, (TLRPC.TL_messages_stickerSet) obj);
+                            locationMarker2.flagAnimatedDocument = documentFindDocument2;
+                            if (documentFindDocument2 != null) {
+                                locationMarker2.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument2), "80_80", ImageLocation.getForDocument(locationMarker2.flagDocument), "80_80", null, null, LocationMarker.getEmojiThumb(str3), 0L, null, null, 0);
+                                break;
+                            }
+                            break;
+                    }
+                }
+            });
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
+            tL_inputStickerSetShortName2.short_name = "RestrictedEmoji";
+            final int i3 = 1;
+            MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new Utilities.Callback(this) {
+                public final LocationMarker f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void run(Object obj) {
+                    switch (i3) {
+                        case 0:
+                            LocationMarker locationMarker = this.f$0;
+                            locationMarker.getClass();
+                            String str2 = str;
+                            TLRPC.Document documentFindDocument = LocationMarker.findDocument(str2, (TLRPC.TL_messages_stickerSet) obj);
+                            locationMarker.flagDocument = documentFindDocument;
+                            locationMarker.flagImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument), "80_80", LocationMarker.getEmojiThumb(str2), null, null, 0);
+                            locationMarker.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(locationMarker.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(locationMarker.flagDocument), "80_80", null, null, LocationMarker.getEmojiThumb(str2), 0L, null, null, 0);
+                            break;
+                        default:
+                            LocationMarker locationMarker2 = this.f$0;
+                            locationMarker2.getClass();
+                            String str3 = str;
+                            TLRPC.Document documentFindDocument2 = LocationMarker.findDocument(str3, (TLRPC.TL_messages_stickerSet) obj);
+                            locationMarker2.flagAnimatedDocument = documentFindDocument2;
+                            if (documentFindDocument2 != null) {
+                                locationMarker2.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument2), "80_80", ImageLocation.getForDocument(locationMarker2.flagDocument), "80_80", null, null, LocationMarker.getEmojiThumb(str3), 0L, null, null, 0);
+                                break;
+                            }
+                            break;
+                    }
+                }
+            });
+            imageReceiver2.setImage(ImageLocation.getForDocument(this.flagDocument), "80_80", getEmojiThumb(str), null, null, 0);
+            z = true;
+            imageReceiver.setImage(ImageLocation.getForDocument(this.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(this.flagDocument), "80_80", null, null, getEmojiThumb(str), 0L, null, null, 0);
+        }
+        this.relayout = z;
+        requestLayout();
+    }
+
+    public void setIsVideo(boolean z) {
+        if (this.isVideo != z && this.attachedToWindow) {
+            ImageReceiver imageReceiver = this.flagAnimatedImageReceiver;
+            ImageReceiver imageReceiver2 = this.flagImageReceiver;
+            if (z) {
+                imageReceiver2.onDetachedFromWindow();
+                imageReceiver.onAttachedToWindow();
+            } else {
+                imageReceiver2.onAttachedToWindow();
+                imageReceiver.onDetachedFromWindow();
+            }
+        }
+        this.isVideo = z;
+        invalidate();
+    }
+
+    public void setMaxWidth(int i) {
+        this.maxWidth = i;
+        this.relayout = true;
     }
 
     public void setText(String str) {
@@ -277,63 +363,53 @@ public class LocationMarker extends View {
         requestLayout();
     }
 
-    public String getText() {
-        return this.text;
-    }
-
-    public void setType(int i, int i2) {
+    public final void setType(int i, int i2) {
+        Drawable drawable = this.icon;
+        TextPaint textPaint = this.textPaint;
+        Paint paint = this.outlinePaint;
         if (i == 0) {
-            this.outlinePaint.setColor(-16777216);
-            this.textPaint.setColor(-1);
-            this.icon.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            paint.setColor(-16777216);
+            textPaint.setColor(-1);
+            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         } else if (i == 1) {
-            this.outlinePaint.setColor(1275068416);
-            this.textPaint.setColor(-1);
-            this.icon.setColorFilter(null);
+            paint.setColor(1275068416);
+            textPaint.setColor(-1);
+            drawable.setColorFilter(null);
         } else if (i == 2) {
-            this.outlinePaint.setColor(-1);
-            this.textPaint.setColor(-16777216);
-            this.icon.setColorFilter(null);
+            paint.setColor(-1);
+            textPaint.setColor(-16777216);
+            drawable.setColorFilter(null);
         } else {
-            this.outlinePaint.setColor(i2);
+            paint.setColor(i2);
             int i3 = AndroidUtilities.computePerceivedBrightness(i2) < 0.721f ? -1 : -16777216;
-            this.textPaint.setColor(i3);
-            this.icon.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN));
+            textPaint.setColor(i3);
+            drawable.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN));
         }
         invalidate();
     }
 
-    public void setIsVideo(boolean z) {
-        if (this.isVideo != z && this.attachedToWindow) {
-            if (z) {
-                this.flagImageReceiver.onDetachedFromWindow();
-                this.flagAnimatedImageReceiver.onAttachedToWindow();
-            } else {
-                this.flagImageReceiver.onAttachedToWindow();
-                this.flagAnimatedImageReceiver.onDetachedFromWindow();
-            }
-        }
-        this.isVideo = z;
-        invalidate();
-    }
-
-    public void setupLayout() {
+    public final void setupLayout() {
+        float f;
         if (this.relayout) {
-            float fMeasureText = this.textPaint.measureText(this.text);
+            TextPaint textPaint = this.textPaint;
+            float fMeasureText = textPaint.measureText(this.text);
             int i = this.maxWidth;
             int i2 = this.padx;
-            float f = (i - i2) - i2;
+            float f2 = (i - i2) - i2;
             RectF rectF = this.padding;
-            float f2 = 2.25f;
-            float f3 = f - (((((rectF.left + ((this.hasFlag || this.forceEmoji) ? 2.25f : 0.0f)) + 21.33f) + 3.25f) + rectF.right) * this.density);
-            float fMin = Math.min(1.0f, f3 / fMeasureText);
+            float f3 = 2.25f;
+            float f4 = rectF.left + ((this.hasFlag || this.forceEmoji) ? 2.25f : 0.0f) + 21.33f + 3.25f + rectF.right;
+            float f5 = this.density;
+            float f6 = f2 - (f4 * f5);
+            float fMin = Math.min(1.0f, f6 / fMeasureText);
             this.textScale = fMin;
             if (fMin < 0.4f) {
+                f = 1.0f;
                 String str = this.text;
-                TextPaint textPaint = this.textPaint;
                 this.layout = new StaticLayout(str, textPaint, HintView2.cutInFancyHalf(str, textPaint), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             } else {
-                this.layout = new StaticLayout(this.text, this.textPaint, (int) Math.ceil(fMeasureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                f = 1.0f;
+                this.layout = new StaticLayout(this.text, textPaint, (int) Math.ceil(fMeasureText), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             this.layoutWidth = 0.0f;
             this.layoutLeft = Float.MAX_VALUE;
@@ -344,113 +420,15 @@ public class LocationMarker extends View {
             if (this.layout.getLineCount() > 2) {
                 this.textScale = 0.3f;
             } else {
-                this.textScale = Math.min(1.0f, f3 / this.layoutWidth);
+                this.textScale = Math.min(f, f6 / this.layoutWidth);
             }
-            RectF rectF2 = this.padding;
-            float f4 = rectF2.left;
+            float f7 = rectF.left;
             if (!this.hasFlag && !this.forceEmoji) {
-                f2 = 0.0f;
+                f3 = 0.0f;
             }
-            float f5 = f4 + f2 + 21.33f + 3.25f + rectF2.right;
-            float f6 = this.density;
-            this.w = (f5 * f6) + (this.layoutWidth * this.textScale);
-            this.h = ((rectF2.top + rectF2.bottom) * f6) + Math.max(f6 * 21.33f, this.layout.getHeight() * this.textScale);
+            this.w = (this.layoutWidth * this.textScale) + ((f7 + f3 + 21.33f + 3.25f + rectF.right) * f5);
+            this.h = Math.max(f5 * 21.33f, this.layout.getHeight() * this.textScale) + ((rectF.top + rectF.bottom) * f5);
             this.relayout = false;
         }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        setupLayout();
-        setMeasuredDimension(getWidthInternal(), getHeightInternal());
-    }
-
-    public int getWidthInternal() {
-        return this.padx + Math.round(this.w) + this.padx;
-    }
-
-    public int getHeightInternal() {
-        return this.pady + Math.round(this.h) + this.pady;
-    }
-
-    public float getRadius() {
-        return this.h * 0.2f;
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        drawInternal(canvas);
-    }
-
-    public void drawInternal(Canvas canvas) {
-        setupLayout();
-        if (this.layout == null) {
-            return;
-        }
-        RectF rectF = this.bounds;
-        float f = this.padx;
-        float f2 = this.pady;
-        rectF.set(f, f2, this.w + f, this.h + f2);
-        RectF rectF2 = this.bounds;
-        float f3 = this.h * 0.2f;
-        canvas.drawRoundRect(rectF2, f3, f3, this.outlinePaint);
-        if (this.hasFlag) {
-            float f4 = this.animatedVideo.set(this.isVideo);
-            if (f4 > 0.0f) {
-                ImageReceiver imageReceiver = this.flagAnimatedImageReceiver;
-                float f5 = this.padx;
-                float f6 = this.padding.left + 2.25f;
-                float f7 = this.density;
-                float f8 = f5 + (f6 * f7);
-                float f9 = f7 * 21.33f;
-                imageReceiver.setImageCoords(f8, this.pady + ((this.h - f9) / 2.0f), f9, f9);
-                canvas.save();
-                canvas.scale(1.2f, 1.2f, this.flagAnimatedImageReceiver.getCenterX(), this.flagAnimatedImageReceiver.getCenterY());
-                this.flagAnimatedImageReceiver.setAlpha(f4);
-                this.flagAnimatedImageReceiver.draw(canvas);
-                canvas.restore();
-            }
-            if (f4 < 1.0f) {
-                ImageReceiver imageReceiver2 = this.flagImageReceiver;
-                float f10 = this.padx;
-                float f11 = this.padding.left + 2.25f;
-                float f12 = this.density;
-                float f13 = f10 + (f11 * f12);
-                float f14 = f12 * 21.33f;
-                imageReceiver2.setImageCoords(f13, this.pady + ((this.h - f14) / 2.0f), f14, f14);
-                canvas.save();
-                canvas.scale(1.2f, 1.2f, this.flagImageReceiver.getCenterX(), this.flagImageReceiver.getCenterY());
-                this.flagImageReceiver.setAlpha(1.0f - f4);
-                this.flagImageReceiver.draw(canvas);
-                canvas.restore();
-            }
-        } else if (!this.forceEmoji) {
-            Drawable drawable = this.icon;
-            int i = this.padx;
-            float f15 = this.padding.left;
-            float f16 = this.density;
-            int i2 = this.pady;
-            float f17 = this.h;
-            float f18 = f16 * 21.33f;
-            drawable.setBounds(((int) (f15 * f16)) + i, ((int) ((f17 - f18) / 2.0f)) + i2, i + ((int) ((f15 + 21.33f) * f16)), i2 + ((int) ((f17 + f18) / 2.0f)));
-            this.icon.draw(canvas);
-        }
-        canvas.save();
-        canvas.translate(this.padx + ((this.padding.left + ((this.hasFlag || this.forceEmoji) ? 2.25f : 0.0f) + 21.33f + 3.25f) * this.density), this.pady + (this.h / 2.0f));
-        float f19 = this.textScale;
-        canvas.scale(f19, f19);
-        canvas.translate(-this.layoutLeft, (-this.layout.getHeight()) / 2.0f);
-        this.layout.draw(canvas);
-        canvas.restore();
-    }
-
-    public void getEmojiBounds(RectF rectF) {
-        float f = this.padx;
-        float f2 = this.padding.left + 2.25f;
-        float f3 = this.density;
-        float f4 = this.pady;
-        float f5 = this.h;
-        float f6 = f3 * 21.33f;
-        rectF.set((f2 * f3) + f, ((f5 - f6) / 2.0f) + f4, f + ((f2 + 21.33f) * f3), f4 + ((f5 + f6) / 2.0f));
     }
 }

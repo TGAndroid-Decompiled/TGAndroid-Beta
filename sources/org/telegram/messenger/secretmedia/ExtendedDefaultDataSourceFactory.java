@@ -17,15 +17,12 @@ public final class ExtendedDefaultDataSourceFactory implements DataSource.Factor
         this(context, str, (TransferListener) null);
     }
 
-    public ExtendedDefaultDataSourceFactory(Context context, String str, TransferListener transferListener) {
-        this(context, transferListener, new DefaultHttpDataSourceFactory(str, transferListener));
+    public void putDocumentUri(long j, Uri uri) {
+        this.mtprotoUris.put(j, uri);
     }
 
-    public ExtendedDefaultDataSourceFactory(Context context, TransferListener transferListener, DataSource.Factory factory) {
-        this.mtprotoUris = new LongSparseArray<>();
-        this.context = context.getApplicationContext();
-        this.listener = transferListener;
-        this.baseDataSourceFactory = factory;
+    public ExtendedDefaultDataSourceFactory(Context context, String str, TransferListener transferListener) {
+        this(context, transferListener, new DefaultHttpDataSourceFactory(str, transferListener));
     }
 
     @Override
@@ -33,7 +30,10 @@ public final class ExtendedDefaultDataSourceFactory implements DataSource.Factor
         return new ExtendedDefaultDataSource(this.context, this.listener, this.baseDataSourceFactory.createDataSource(), this.mtprotoUris);
     }
 
-    public void putDocumentUri(long j, Uri uri) {
-        this.mtprotoUris.put(j, uri);
+    public ExtendedDefaultDataSourceFactory(Context context, TransferListener transferListener, DataSource.Factory factory) {
+        this.mtprotoUris = new LongSparseArray<>();
+        this.context = context.getApplicationContext();
+        this.listener = transferListener;
+        this.baseDataSourceFactory = factory;
     }
 }

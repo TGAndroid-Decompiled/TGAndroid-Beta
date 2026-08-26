@@ -7,25 +7,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
 
-public class LoadingCell extends FrameLayout {
-    private int height;
-    private RadialProgressView progressBar;
+public final class LoadingCell extends FrameLayout {
+    public final int height;
 
     public LoadingCell(Context context) {
         this(context, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(54.0f));
     }
 
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.height, 1073741824));
+    }
+
     public LoadingCell(Context context, int i, int i2) {
         super(context);
         this.height = i2;
-        RadialProgressView radialProgressView = new RadialProgressView(context);
-        this.progressBar = radialProgressView;
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
         radialProgressView.setSize(i);
-        addView(this.progressBar, LayoutHelper.createFrame(-2, -2, 17));
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.height, 1073741824));
+        addView(radialProgressView, LayoutHelper.createFrame(-2, -2, 17));
     }
 }

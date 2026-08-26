@@ -1,120 +1,49 @@
 package io.noties.markwon.html;
 
-import j$.util.DesugarCollections;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
-abstract class HtmlTagImpl implements HtmlTag {
-    final Map attributes;
-    int end = -1;
-    final String name;
-    final int start;
+public abstract class HtmlTagImpl {
+    public final Map attributes;
+    public int end = -1;
+    public final String name;
+    public final int start;
 
-    protected HtmlTagImpl(String str, int i, Map map) {
-        this.name = str;
-        this.start = i;
-        this.attributes = map;
-    }
+    public final class BlockImpl extends HtmlTagImpl {
+        public ArrayList children;
+        public final BlockImpl parent;
 
-    @Override
-    public String name() {
-        return this.name;
-    }
-
-    @Override
-    public int start() {
-        return this.start;
-    }
-
-    @Override
-    public int end() {
-        return this.end;
-    }
-
-    public boolean isEmpty() {
-        return this.start == this.end;
-    }
-
-    @Override
-    public Map attributes() {
-        return this.attributes;
-    }
-
-    @Override
-    public boolean isClosed() {
-        return this.end > -1;
-    }
-
-    static class InlineImpl extends HtmlTagImpl implements HtmlTag {
-        InlineImpl(String str, int i, Map map) {
-            super(str, i, map);
-        }
-
-        void closeAt(int i) {
-            if (isClosed()) {
-                return;
-            }
-            this.end = i;
-        }
-
-        public String toString() {
-            return "InlineImpl{name='" + this.name + "', start=" + this.start + ", end=" + this.end + ", attributes=" + this.attributes + '}';
-        }
-    }
-
-    static class BlockImpl extends HtmlTagImpl implements HtmlTag.Block {
-        List children;
-        final BlockImpl parent;
-
-        static BlockImpl root() {
-            return new BlockImpl("", 0, Collections.EMPTY_MAP, null);
-        }
-
-        static BlockImpl create(String str, int i, Map map, BlockImpl blockImpl) {
-            return new BlockImpl(str, i, map, blockImpl);
-        }
-
-        BlockImpl(String str, int i, Map map, BlockImpl blockImpl) {
-            super(str, i, map);
+        public BlockImpl(String str, int i, Map map, BlockImpl blockImpl) {
+            super(i, str, map);
             this.parent = blockImpl;
         }
 
-        void closeAt(int i) {
-            if (isClosed()) {
+        @Override
+        public final Map attributes() {
+            return this.attributes;
+        }
+
+        public final void closeAt(int i) {
+            if (this.end > -1) {
                 return;
             }
             this.end = i;
-            List list = this.children;
-            if (list != null) {
-                Iterator it = list.iterator();
-                while (it.hasNext()) {
-                    ((BlockImpl) it.next()).closeAt(i);
+            ArrayList arrayList = this.children;
+            if (arrayList != null) {
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    ((BlockImpl) obj).closeAt(i);
                 }
             }
         }
 
-        @Override
-        public List children() {
-            List list = this.children;
-            if (list == null) {
-                return Collections.EMPTY_LIST;
-            }
-            return DesugarCollections.unmodifiableList(list);
-        }
-
-        @Override
-        public Map attributes() {
-            return this.attributes;
-        }
-
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append("BlockImpl{name='");
+        public final String toString() {
+            StringBuilder sb = new StringBuilder("BlockImpl{name='");
             sb.append(this.name);
-            sb.append('\'');
-            sb.append(", start=");
+            sb.append("', start=");
             sb.append(this.start);
             sb.append(", end=");
             sb.append(this.end);
@@ -128,5 +57,21 @@ abstract class HtmlTagImpl implements HtmlTag {
             sb.append('}');
             return sb.toString();
         }
+    }
+
+    public final class InlineImpl extends HtmlTagImpl {
+        public final String toString() {
+            return "InlineImpl{name='" + this.name + "', start=" + this.start + ", end=" + this.end + ", attributes=" + this.attributes + '}';
+        }
+    }
+
+    public HtmlTagImpl(int i, String str, Map map) {
+        this.name = str;
+        this.start = i;
+        this.attributes = map;
+    }
+
+    public Map attributes() {
+        return this.attributes;
     }
 }

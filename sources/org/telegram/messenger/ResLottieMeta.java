@@ -5,34 +5,14 @@ import java.util.Arrays;
 public final class ResLottieMeta {
     public static final long NOT_FOUND = -1;
 
-    public static int fpsOf(long j) {
-        return (int) ((j >>> 24) & 255);
-    }
-
-    public static int frameCountOf(long j) {
-        return (int) (j & 8388607);
-    }
-
-    public static boolean isMonoColorOf(long j) {
-        return (j & 8388608) != 0;
-    }
-
-    private static long pack(int i, int i2, int i3, boolean z) {
-        return (((long) (i2 & 255)) << 24) | (((long) i) << 32) | (z ? 8388608L : 0L) | ((long) (i3 & 8388607));
-    }
-
-    public static int resIdOf(long j) {
-        return (int) (j >>> 32);
-    }
-
-    private ResLottieMeta() {
-    }
-
-    private static final class Holder {
+    public static final class Holder {
         private static final long[] DATA = ResLottieMeta.build();
 
         private Holder() {
         }
+    }
+
+    private ResLottieMeta() {
     }
 
     public static long[] build() {
@@ -61,6 +41,14 @@ public final class ResLottieMeta {
         return -1L;
     }
 
+    public static int fpsOf(long j) {
+        return (int) ((j >>> 24) & 255);
+    }
+
+    public static int frameCountOf(long j) {
+        return (int) (j & 8388607);
+    }
+
     public static boolean isLottie(int i) {
         return find(i) != -1;
     }
@@ -68,5 +56,17 @@ public final class ResLottieMeta {
     public static boolean isMonoColor(int i) {
         long jFind = find(i);
         return jFind != -1 && isMonoColorOf(jFind);
+    }
+
+    public static boolean isMonoColorOf(long j) {
+        return (j & 8388608) != 0;
+    }
+
+    private static long pack(int i, int i2, int i3, boolean z) {
+        return (((long) (i2 & 255)) << 24) | (((long) i) << 32) | (z ? 8388608L : 0L) | ((long) (i3 & 8388607));
+    }
+
+    public static int resIdOf(long j) {
+        return (int) (j >>> 32);
     }
 }

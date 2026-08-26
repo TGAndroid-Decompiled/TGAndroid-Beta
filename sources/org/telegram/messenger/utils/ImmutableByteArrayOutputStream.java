@@ -3,44 +3,37 @@ package org.telegram.messenger.utils;
 import java.io.OutputStream;
 import java.util.Arrays;
 
-public class ImmutableByteArrayOutputStream extends OutputStream {
+public final class ImmutableByteArrayOutputStream extends OutputStream {
     public byte[] buf;
-    protected int count;
-
-    public ImmutableByteArrayOutputStream() {
-        this(32);
-    }
+    public int count;
 
     public ImmutableByteArrayOutputStream(int i) {
         this.buf = new byte[i];
     }
 
-    private void ensureCapacity(int i) {
-        if (i - this.buf.length > 0) {
-            grow(i);
+    public final void ensureCapacity(int i) {
+        byte[] bArr = this.buf;
+        if (i - bArr.length > 0) {
+            int length = bArr.length << 1;
+            if (length - i < 0) {
+                length = i;
+            }
+            if (length - 2147483639 > 0) {
+                if (i < 0) {
+                    throw new OutOfMemoryError();
+                }
+                length = i > 2147483639 ? Integer.MAX_VALUE : 2147483639;
+            }
+            this.buf = Arrays.copyOf(bArr, length);
         }
     }
 
-    private void grow(int i) {
-        int length = this.buf.length << 1;
-        if (length - i < 0) {
-            length = i;
-        }
-        if (length - 2147483639 > 0) {
-            length = hugeCapacity(i);
-        }
-        this.buf = Arrays.copyOf(this.buf, length);
-    }
-
-    private static int hugeCapacity(int i) {
-        if (i >= 0) {
-            return i > 2147483639 ? Integer.MAX_VALUE : 2147483639;
-        }
-        throw new OutOfMemoryError();
+    public final synchronized void reset() {
+        this.count = 0;
     }
 
     @Override
-    public synchronized void write(int i) {
+    public final synchronized void write(int i) {
         ensureCapacity(this.count + 1);
         byte[] bArr = this.buf;
         int i2 = this.count;
@@ -48,7 +41,7 @@ public class ImmutableByteArrayOutputStream extends OutputStream {
         this.count = i2 + 1;
     }
 
-    public void writeInt(int i) {
+    public final void writeInt(int i) {
         ensureCapacity(this.count + 4);
         byte[] bArr = this.buf;
         int i2 = this.count;
@@ -59,7 +52,7 @@ public class ImmutableByteArrayOutputStream extends OutputStream {
         this.count = i2 + 4;
     }
 
-    public void writeLong(long j) {
+    public final void writeLong(long j) {
         ensureCapacity(this.count + 8);
         byte[] bArr = this.buf;
         int i = this.count;
@@ -75,7 +68,7 @@ public class ImmutableByteArrayOutputStream extends OutputStream {
     }
 
     @Override
-    public synchronized void write(byte[] bArr, int i, int i2) {
+    public final synchronized void write(byte[] bArr, int i, int i2) {
         if (i >= 0) {
             if (i <= bArr.length && i2 >= 0 && (i + i2) - bArr.length <= 0) {
                 ensureCapacity(this.count + i2);
@@ -84,13 +77,5 @@ public class ImmutableByteArrayOutputStream extends OutputStream {
             }
         }
         throw new IndexOutOfBoundsException();
-    }
-
-    public synchronized void reset() {
-        this.count = 0;
-    }
-
-    public int count() {
-        return this.count;
     }
 }

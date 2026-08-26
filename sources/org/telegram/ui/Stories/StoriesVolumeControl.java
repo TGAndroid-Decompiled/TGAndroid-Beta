@@ -5,71 +5,31 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.media.AudioManager;
-import android.os.Build;
 import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.LaunchActivity;
 
-public class StoriesVolumeControl extends View {
-    float currentProgress;
-    Runnable hideRunnable;
-    boolean isVisible;
-    Paint paint;
-    AnimatedFloat progressToVisible;
-    AnimatedFloat volumeProgress;
+public final class StoriesVolumeControl extends View {
+    public float currentProgress;
+    public final LaunchActivity.AnonymousClass18 hideRunnable;
+    public boolean isVisible;
+    public final Paint paint;
+    public final AnimatedFloat progressToVisible;
+    public final AnimatedFloat volumeProgress;
 
     public StoriesVolumeControl(Context context) {
         super(context);
-        this.paint = new Paint(1);
-        this.hideRunnable = new Runnable() {
-            @Override
-            public void run() {
-                StoriesVolumeControl storiesVolumeControl = StoriesVolumeControl.this;
-                storiesVolumeControl.isVisible = false;
-                storiesVolumeControl.invalidate();
-            }
-        };
+        Paint paint = new Paint(1);
+        this.paint = paint;
+        this.hideRunnable = new LaunchActivity.AnonymousClass18(this, 21);
         this.progressToVisible = new AnimatedFloat(this);
         this.volumeProgress = new AnimatedFloat(this);
-        this.paint.setColor(-1);
+        paint.setColor(-1);
     }
 
-    @Override
-    public boolean onKeyDown(int i, KeyEvent keyEvent) {
-        if (keyEvent.getAction() == 0 && i == 24) {
-            adjustVolume(true);
-            return true;
-        }
-        if (keyEvent.getAction() == 0 && i == 25) {
-            adjustVolume(false);
-            return true;
-        }
-        return super.onKeyDown(i, keyEvent);
-    }
-
-    public void unmute() {
-        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
-        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
-        int streamMinVolume = Build.VERSION.SDK_INT >= 28 ? audioManager.getStreamMinVolume(3) : 0;
-        int streamVolume = audioManager.getStreamVolume(3);
-        if (streamVolume <= streamMinVolume) {
-            adjustVolume(true);
-            return;
-        }
-        if (this.isVisible) {
-            return;
-        }
-        float f = streamVolume / streamMaxVolume;
-        this.currentProgress = f;
-        this.volumeProgress.set(f, true);
-        this.isVisible = true;
-        invalidate();
-        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
-        AndroidUtilities.runOnUIThread(this.hideRunnable, 2000L);
-    }
-
-    private void adjustVolume(boolean z) {
+    public final void adjustVolume(boolean z) {
         AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         int streamVolume = audioManager.getStreamVolume(3);
@@ -94,26 +54,40 @@ public class StoriesVolumeControl extends View {
         }
         invalidate();
         this.isVisible = true;
-        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
-        AndroidUtilities.runOnUIThread(this.hideRunnable, 2000L);
+        LaunchActivity.AnonymousClass18 anonymousClass18 = this.hideRunnable;
+        AndroidUtilities.cancelRunOnUIThread(anonymousClass18);
+        AndroidUtilities.runOnUIThread(anonymousClass18, 2000L);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.volumeProgress.set(this.currentProgress);
-        this.progressToVisible.set(this.isVisible ? 1.0f : 0.0f);
-        if (this.progressToVisible.get() != 0.0f) {
+        float f = this.currentProgress;
+        AnimatedFloat animatedFloat = this.volumeProgress;
+        animatedFloat.set(f, false);
+        float f2 = this.isVisible ? 1.0f : 0.0f;
+        AnimatedFloat animatedFloat2 = this.progressToVisible;
+        animatedFloat2.set(f2, false);
+        if (animatedFloat2.value != 0.0f) {
             float measuredHeight = getMeasuredHeight() / 2.0f;
-            this.paint.setAlpha((int) (this.progressToVisible.get() * 255.0f));
+            Paint paint = this.paint;
+            paint.setAlpha((int) (animatedFloat2.value * 255.0f));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * this.volumeProgress.get(), getMeasuredHeight());
-            canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, this.paint);
+            rectF.set(0.0f, 0.0f, getMeasuredWidth() * animatedFloat.value, getMeasuredHeight());
+            canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
         }
     }
 
-    public void hide() {
-        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
-        this.hideRunnable.run();
+    @Override
+    public final boolean onKeyDown(int i, KeyEvent keyEvent) {
+        if (keyEvent.getAction() == 0 && i == 24) {
+            adjustVolume(true);
+            return true;
+        }
+        if (keyEvent.getAction() != 0 || i != 25) {
+            return super.onKeyDown(i, keyEvent);
+        }
+        adjustVolume(false);
+        return true;
     }
 }

@@ -3,272 +3,156 @@ package me.vkryl.android.animator;
 import android.graphics.RectF;
 import android.view.animation.Interpolator;
 import androidx.core.math.MathUtils;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import me.vkryl.core.ArrayUtils;
 import me.vkryl.core.lambda.Destroyable;
 
 public final class ListAnimator implements Iterable {
-    private final FactorAnimator animator;
-    private final Callback callback;
-    private boolean foundListChanges;
-    private final Metadata metadata;
-    private final ArrayList entries = new ArrayList();
-    private final ArrayList actualList = new ArrayList();
+    public final FactorAnimator animator;
+    public final Callback callback;
+    public boolean foundListChanges;
+    public final Metadata metadata;
+    public final ArrayList entries = new ArrayList();
+    public final ArrayList actualList = new ArrayList();
 
-    public interface Callback extends MetadataCallback {
-        void onItemsChanged(ListAnimator listAnimator);
+    public interface Callback {
+        boolean hasChanges();
+
+        boolean onApplyMetadataAnimation(float f);
+
+        void onFinishMetadataAnimation(boolean z);
+
+        void onForceApplyChanges();
+
+        void onItemsChanged();
+
+        void onPrepareMetadataAnimation();
     }
 
-    public interface Measurable {
+    public final class Entry implements Comparable {
+        public int index;
+        public boolean isBeingRemoved = false;
+        public final Object item;
+        public final VariableRect measuredPositionRect;
+        public final VariableFloat measuredSpacingStart;
+        public final VariableFloat position;
+        public final VariableFloat visibility;
 
-        public abstract class CC {
-            public static int $default$getSpacingEnd(Measurable measurable, boolean z) {
-                return 0;
-            }
-
-            public static int $default$getSpacingStart(Measurable measurable, boolean z) {
-                return 0;
+        public Entry(int i, Object obj, boolean z) {
+            this.item = obj;
+            this.index = i;
+            VariableFloat variableFloat = new VariableFloat(z ? 1.0f : 0.0f);
+            this.visibility = variableFloat;
+            VariableFloat variableFloat2 = new VariableFloat(i);
+            this.position = variableFloat2;
+            VariableRect variableRect = new VariableRect();
+            this.measuredPositionRect = variableRect;
+            VariableFloat variableFloat3 = new VariableFloat(0.0f);
+            this.measuredSpacingStart = variableFloat3;
+            variableFloat2.finishAnimation(false);
+            variableFloat.finishAnimation(false);
+            variableRect.left.finishAnimation(false);
+            variableRect.top.finishAnimation(false);
+            variableRect.right.finishAnimation(false);
+            variableRect.bottom.finishAnimation(false);
+            variableFloat3.finishAnimation(false);
+            if (obj instanceof VariableRect) {
+                VariableRect variableRect2 = (VariableRect) obj;
+                variableRect2.left.finishAnimation(false);
+                variableRect2.top.finishAnimation(false);
+                variableRect2.right.finishAnimation(false);
+                variableRect2.bottom.finishAnimation(false);
             }
         }
 
-        int getHeight();
+        @Override
+        public final int compareTo(Object obj) {
+            return Integer.compare(this.index, ((Entry) obj).index);
+        }
 
-        int getSpacingEnd(boolean z);
+        public final RectF getRectF() {
+            VariableRect variableRect = this.measuredPositionRect;
+            variableRect.rectF.set(variableRect.left.now, variableRect.top.now, variableRect.right.now, variableRect.bottom.now);
+            return variableRect.rectF;
+        }
+
+        public final float getVisibility() {
+            return MathUtils.clamp(this.visibility.now, 0.0f, 1.0f);
+        }
+    }
+
+    public interface Measurable {
+        int getHeight();
 
         int getSpacingStart(boolean z);
 
         int getWidth();
     }
 
-    public interface MetadataCallback {
+    public final class Metadata {
+        public final Callback metadataCallback;
+        public final VariableFloat size = new VariableFloat(0.0f);
+        public final VariableFloat totalVisibility = new VariableFloat(0.0f);
+        public final VariableFloat maxItemWidth = new VariableFloat(0.0f);
+        public final VariableFloat maxItemHeight = new VariableFloat(0.0f);
+        public final VariableFloat totalWidth = new VariableFloat(0.0f);
+        public final VariableFloat totalHeight = new VariableFloat(0.0f);
 
-        public abstract class CC {
-            public static boolean $default$hasChanges(MetadataCallback metadataCallback, ListAnimator listAnimator) {
-                return false;
-            }
-
-            public static boolean $default$onApplyMetadataAnimation(MetadataCallback metadataCallback, ListAnimator listAnimator, float f) {
-                return false;
-            }
-
-            public static void $default$onFinishMetadataAnimation(MetadataCallback metadataCallback, ListAnimator listAnimator, boolean z) {
-            }
-
-            public static void $default$onForceApplyChanges(MetadataCallback metadataCallback, ListAnimator listAnimator) {
-            }
-
-            public static void $default$onPrepareMetadataAnimation(MetadataCallback metadataCallback, ListAnimator listAnimator) {
-            }
+        public Metadata(ListAnimator listAnimator, Callback callback) {
+            this.metadataCallback = callback;
         }
 
-        boolean hasChanges(ListAnimator listAnimator);
-
-        boolean onApplyMetadataAnimation(ListAnimator listAnimator, float f);
-
-        void onFinishMetadataAnimation(ListAnimator listAnimator, boolean z);
-
-        void onForceApplyChanges(ListAnimator listAnimator);
-
-        void onPrepareMetadataAnimation(ListAnimator listAnimator);
-    }
-
-    public interface ResetCallback {
-        void onItemAdded(Object obj, boolean z);
-
-        void onItemRemoved(Object obj);
-    }
-
-    public static class Entry implements Comparable {
-        private int index;
-        private boolean isBeingRemoved = false;
-        public final Object item;
-        private final VariableRect measuredPositionRect;
-        private final VariableFloat measuredSpacingStart;
-        private final VariableFloat position;
-        private final VariableFloat visibility;
-
-        public Entry(Object obj, int i, boolean z) {
-            this.item = obj;
-            this.index = i;
-            this.visibility = new VariableFloat(z ? 1.0f : 0.0f);
-            this.position = new VariableFloat(i);
-            this.measuredPositionRect = new VariableRect();
-            this.measuredSpacingStart = new VariableFloat(0.0f);
-            finishAnimation(false);
-        }
-
-        public boolean isJunk() {
-            return getVisibility() == 0.0f && !isAffectingList();
-        }
-
-        public void onPrepareRemove() {
-            this.visibility.setTo(0.0f);
-            this.isBeingRemoved = true;
-        }
-
-        public void onPrepareAppear() {
-            this.visibility.setTo(1.0f);
-            this.isBeingRemoved = false;
-        }
-
-        @Override
-        public int compareTo(Entry entry) {
-            return Integer.compare(this.index, entry.index);
-        }
-
-        public float getPosition() {
-            return this.position.get();
-        }
-
-        public float getVisibility() {
-            return MathUtils.clamp(this.visibility.get(), 0.0f, 1.0f);
-        }
-
-        public boolean isAffectingList() {
-            return !this.isBeingRemoved;
-        }
-
-        public void onRecycled() {
-            Object obj = this.item;
-            if (obj instanceof Destroyable) {
-                ((Destroyable) obj).performDestroy();
-            }
-        }
-
-        public RectF getRectF() {
-            return this.measuredPositionRect.toRectF();
-        }
-
-        public float getSpacingStart() {
-            return this.measuredSpacingStart.get();
-        }
-
-        public void finishAnimation(boolean z) {
-            this.position.finishAnimation(z);
-            this.visibility.finishAnimation(z);
-            this.measuredPositionRect.finishAnimation(z);
-            this.measuredSpacingStart.finishAnimation(z);
-            Object obj = this.item;
-            if (obj instanceof Animatable) {
-                ((Animatable) obj).finishAnimation(z);
-            }
-        }
-
-        public boolean applyAnimation(float f) {
-            boolean z = this.measuredSpacingStart.applyAnimation(f) || (this.measuredPositionRect.applyAnimation(f) || (this.visibility.applyAnimation(f) || this.position.applyAnimation(f)));
-            Object obj = this.item;
-            if (obj instanceof Animatable) {
-                return ((Animatable) obj).applyAnimation(f) || z;
-            }
-            return z;
-        }
-    }
-
-    public static class Metadata {
-        private final ListAnimator context;
-        private final VariableFloat maxItemHeight;
-        private final VariableFloat maxItemWidth;
-        private final MetadataCallback metadataCallback;
-        private final VariableFloat size;
-        private final VariableFloat totalHeight;
-        private final VariableFloat totalVisibility;
-        private final VariableFloat totalWidth;
-
-        private Metadata(ListAnimator listAnimator, MetadataCallback metadataCallback) {
-            this.size = new VariableFloat(0.0f);
-            this.totalVisibility = new VariableFloat(0.0f);
-            this.maxItemWidth = new VariableFloat(0.0f);
-            this.maxItemHeight = new VariableFloat(0.0f);
-            this.totalWidth = new VariableFloat(0.0f);
-            this.totalHeight = new VariableFloat(0.0f);
-            this.context = listAnimator;
-            this.metadataCallback = metadataCallback;
-        }
-
-        public boolean applyAnimation(float f) {
-            return this.metadataCallback.onApplyMetadataAnimation(this.context, f) || (this.totalVisibility.applyAnimation(f) || (this.totalHeight.applyAnimation(f) || (this.totalWidth.applyAnimation(f) || (this.maxItemHeight.applyAnimation(f) || (this.maxItemWidth.applyAnimation(f) || this.size.applyAnimation(f))))));
-        }
-
-        public void finishAnimation(boolean z) {
-            this.size.finishAnimation(z);
-            this.maxItemWidth.finishAnimation(z);
-            this.maxItemHeight.finishAnimation(z);
-            this.totalWidth.finishAnimation(z);
-            this.totalHeight.finishAnimation(z);
-            this.totalVisibility.finishAnimation(z);
-            this.metadataCallback.onFinishMetadataAnimation(this.context, z);
-        }
-
-        public void setSize(int i, boolean z) {
+        public static void access$1400(Metadata metadata, int i, boolean z) {
             if (z) {
-                this.size.setTo(i);
-                this.totalVisibility.setTo(i > 0 ? 1.0f : 0.0f);
-            } else {
-                this.size.set(i);
-                this.totalVisibility.set(i > 0 ? 1.0f : 0.0f);
+                metadata.size.to = i;
+                metadata.totalVisibility.to = i > 0 ? 1.0f : 0.0f;
+                return;
             }
-        }
-
-        public float getTotalWidth() {
-            return this.totalWidth.get();
-        }
-
-        public float getTotalHeight() {
-            return this.totalHeight.get();
-        }
-
-        public float getTotalVisibility() {
-            return this.totalVisibility.get();
+            VariableFloat variableFloat = metadata.size;
+            float f = i;
+            variableFloat.from = f;
+            variableFloat.to = f;
+            variableFloat.now = f;
+            float f2 = i > 0 ? 1.0f : 0.0f;
+            VariableFloat variableFloat2 = metadata.totalVisibility;
+            variableFloat2.from = f2;
+            variableFloat2.to = f2;
+            variableFloat2.now = f2;
         }
     }
 
     public ListAnimator(Callback callback, Interpolator interpolator, long j) {
         this.callback = callback;
-        this.metadata = new Metadata(callback);
-        if (interpolator != null && j > 0) {
-            this.animator = new FactorAnimator(0, new FactorAnimator.Target() {
-                @Override
-                public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                    ListAnimator.this.applyAnimation(f);
-                }
-
-                @Override
-                public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-                    ListAnimator.this.applyAnimation(f);
-                }
-            }, interpolator, j);
-        } else {
+        this.metadata = new Metadata(this, callback);
+        if (interpolator == null || j <= 0) {
             this.animator = null;
+        } else {
+            this.animator = new FactorAnimator(0, new Stripe(this, 11), interpolator, j);
         }
     }
 
-    public int size() {
-        return this.entries.size();
-    }
-
-    public Entry getEntry(int i) {
-        return (Entry) this.entries.get(i);
-    }
-
-    public Metadata getMetadata() {
-        return this.metadata;
-    }
-
-    public void applyAnimation(float f) {
-        boolean zApplyAnimation = this.metadata.applyAnimation(f);
+    public final void applyAnimation(float f) {
+        Metadata metadata = this.metadata;
+        boolean z = metadata.metadataCallback.onApplyMetadataAnimation(f) || (metadata.totalVisibility.applyAnimation(f) || (metadata.totalHeight.applyAnimation(f) || (metadata.totalWidth.applyAnimation(f) || (metadata.maxItemHeight.applyAnimation(f) || (metadata.maxItemWidth.applyAnimation(f) || metadata.size.applyAnimation(f))))));
         ArrayList arrayList = this.entries;
         int size = arrayList.size();
         int i = 0;
         while (i < size) {
             Object obj = arrayList.get(i);
             i++;
-            zApplyAnimation = ((Entry) obj).applyAnimation(f) || zApplyAnimation;
+            Entry entry = (Entry) obj;
+            boolean z2 = entry.measuredSpacingStart.applyAnimation(f) || (entry.measuredPositionRect.applyAnimation(f) || (entry.visibility.applyAnimation(f) || entry.position.applyAnimation(f)));
+            Object obj2 = entry.item;
+            if (obj2 instanceof VariableRect) {
+                z2 = ((VariableRect) obj2).applyAnimation(f) || z2;
+            }
+            z = z2 || z;
         }
-        if (zApplyAnimation) {
-            this.callback.onItemsChanged(this);
+        if (z) {
+            this.callback.onItemsChanged();
             if (f == 1.0f) {
                 removeJunk(true);
             }
@@ -276,105 +160,11 @@ public final class ListAnimator implements Iterable {
     }
 
     @Override
-    public Iterator iterator() {
+    public final Iterator iterator() {
         return this.entries.iterator();
     }
 
-    private void removeJunk(boolean z) {
-        boolean z2 = false;
-        for (int size = this.entries.size() - 1; size >= 0; size--) {
-            Entry entry = (Entry) this.entries.get(size);
-            entry.finishAnimation(z);
-            if (entry.isJunk()) {
-                this.entries.remove(size);
-                entry.onRecycled();
-                z2 = true;
-            }
-        }
-        if (z2) {
-            this.entries.trimToSize();
-        }
-        this.metadata.finishAnimation(z);
-    }
-
-    public void stopAnimation(boolean z) {
-        FactorAnimator factorAnimator = this.animator;
-        if (factorAnimator != null) {
-            factorAnimator.cancel();
-            removeJunk(z);
-            this.animator.forceFactor(0.0f);
-            return;
-        }
-        removeJunk(z);
-    }
-
-    private int indexOfItem(Object obj) {
-        int i = 0;
-        if (obj == null) {
-            ArrayList arrayList = this.entries;
-            int size = arrayList.size();
-            int i2 = 0;
-            while (i < size) {
-                Object obj2 = arrayList.get(i);
-                i++;
-                if (((Entry) obj2).item == null) {
-                    return i2;
-                }
-                i2++;
-            }
-            return -1;
-        }
-        ArrayList arrayList2 = this.entries;
-        int size2 = arrayList2.size();
-        int i3 = 0;
-        while (i < size2) {
-            Object obj3 = arrayList2.get(i);
-            i++;
-            if (obj.equals(((Entry) obj3).item)) {
-                return i3;
-            }
-            i3++;
-        }
-        return -1;
-    }
-
-    public void clear(boolean z) {
-        reset(null, z);
-    }
-
-    private void onBeforeListChanged() {
-        if (this.foundListChanges) {
-            return;
-        }
-        this.foundListChanges = true;
-        stopAnimation(false);
-    }
-
-    private void onApplyListChanges() {
-        int i = 0;
-        if (this.foundListChanges) {
-            this.foundListChanges = false;
-            FactorAnimator factorAnimator = this.animator;
-            if (factorAnimator != null) {
-                factorAnimator.animateTo(1.0f);
-                return;
-            }
-            return;
-        }
-        if (this.animator == null) {
-            ArrayList arrayList = this.entries;
-            int size = arrayList.size();
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                Entry entry = (Entry) obj;
-                entry.visibility.setFrom(entry.visibility.get());
-                entry.position.setFrom(entry.position.get());
-            }
-        }
-    }
-
-    public void measureImpl(boolean z) {
+    public final void measureImpl(boolean z) {
         ArrayList arrayList;
         ArrayList arrayList2 = this.actualList;
         int size = arrayList2.size();
@@ -391,31 +181,39 @@ public final class ListAnimator implements Iterable {
             if (obj2 instanceof Measurable) {
                 Measurable measurable = (Measurable) obj2;
                 boolean z2 = entry.index == 0;
-                boolean z3 = entry.index + 1 == this.actualList.size();
+                arrayList2.size();
                 int spacingStart = measurable.getSpacingStart(z2);
-                int spacingEnd = measurable.getSpacingEnd(z3);
                 int width = measurable.getWidth();
                 int height = measurable.getHeight();
-                int i4 = spacingStart + width + spacingEnd + i3;
-                int i5 = spacingStart + height + spacingEnd + i2;
+                int i4 = spacingStart + width + i3;
+                int i5 = spacingStart + height + i2;
+                VariableFloat variableFloat = entry.measuredSpacingStart;
+                VariableRect variableRect = entry.measuredPositionRect;
                 if (!z || entry.getVisibility() <= 0.0f) {
                     arrayList = arrayList2;
-                    entry.measuredPositionRect.set(i3, i2, i4, i5);
-                    entry.measuredSpacingStart.set(spacingStart);
+                    size = size;
+                    variableRect.set(i3, i2, i4, i5);
+                    float f = spacingStart;
+                    variableFloat.from = f;
+                    variableFloat.to = f;
+                    variableFloat.now = f;
                 } else {
-                    float f = i3;
-                    float f2 = i2;
-                    float f3 = i4;
+                    float f2 = i3;
+                    float f3 = i2;
+                    float f4 = i4;
                     arrayList = arrayList2;
-                    float f4 = i5;
-                    if (entry.measuredPositionRect.differs(f, f2, f3, f4)) {
+                    float f5 = i5;
+                    if (variableRect.differs(f2, f3, f4, f5)) {
                         onBeforeListChanged();
-                        entry.measuredPositionRect.setTo(f, f2, f3, f4);
+                        variableRect.left.to = f2;
+                        variableRect.top.to = f3;
+                        variableRect.right.to = f4;
+                        variableRect.bottom.to = f5;
                     }
-                    float f5 = spacingStart;
-                    if (entry.measuredSpacingStart.differs(f5)) {
+                    float f6 = spacingStart;
+                    if (variableFloat.differs(f6)) {
                         onBeforeListChanged();
-                        entry.measuredSpacingStart.setTo(f5);
+                        variableFloat.to = f6;
                     }
                 }
                 iMax = Math.max(iMax, width);
@@ -423,203 +221,225 @@ public final class ListAnimator implements Iterable {
                 i3 = i4;
                 i2 = i5;
                 arrayList2 = arrayList;
+                size = size;
             }
         }
+        ArrayList arrayList3 = this.entries;
         if (z) {
-            ArrayList arrayList3 = this.entries;
             int size2 = arrayList3.size();
             int i6 = 0;
             while (i6 < size2) {
                 Object obj3 = arrayList3.get(i6);
                 i6++;
                 Object obj4 = ((Entry) obj3).item;
-                if ((obj4 instanceof Animatable) && ((Animatable) obj4).hasChanges()) {
-                    onBeforeListChanged();
-                    break;
+                if (obj4 instanceof VariableRect) {
+                    ((VariableRect) obj4).getClass();
                 }
             }
         }
-        ArrayList arrayList4 = this.entries;
-        int size3 = arrayList4.size();
+        int size3 = arrayList3.size();
         int i7 = 0;
         while (i7 < size3) {
-            Object obj5 = arrayList4.get(i7);
+            Object obj5 = arrayList3.get(i7);
             i7++;
             Object obj6 = ((Entry) obj5).item;
-            if (obj6 instanceof Animatable) {
-                Animatable animatable = (Animatable) obj6;
+            if (obj6 instanceof VariableRect) {
+                VariableRect variableRect2 = (VariableRect) obj6;
                 if (z) {
-                    if (animatable.hasChanges()) {
-                        animatable.prepareChanges();
-                    }
+                    variableRect2.getClass();
                 } else {
-                    animatable.applyChanges();
+                    variableRect2.getClass();
                 }
             }
         }
-        if (z) {
-            float f6 = i3;
-            if (this.metadata.totalWidth.differs(f6)) {
-                onBeforeListChanged();
-                this.metadata.totalWidth.setTo(f6);
-            }
-            float f7 = i2;
-            if (this.metadata.totalHeight.differs(f7)) {
-                onBeforeListChanged();
-                this.metadata.totalHeight.setTo(f7);
-            }
-            float f8 = iMax;
-            if (this.metadata.maxItemWidth.differs(f8)) {
-                onBeforeListChanged();
-                this.metadata.maxItemWidth.setTo(f8);
-            }
-            float f9 = iMax2;
-            if (this.metadata.maxItemHeight.differs(f9)) {
-                onBeforeListChanged();
-                this.metadata.maxItemHeight.setTo(f9);
-            }
-            if (this.metadata.metadataCallback.hasChanges(this)) {
-                onBeforeListChanged();
-                this.metadata.metadataCallback.onPrepareMetadataAnimation(this);
-                return;
-            }
+        Metadata metadata = this.metadata;
+        if (!z) {
+            VariableFloat variableFloat2 = metadata.totalWidth;
+            float f7 = i3;
+            variableFloat2.from = f7;
+            variableFloat2.to = f7;
+            variableFloat2.now = f7;
+            float f8 = i2;
+            VariableFloat variableFloat3 = metadata.totalHeight;
+            variableFloat3.from = f8;
+            variableFloat3.to = f8;
+            variableFloat3.now = f8;
+            float f9 = iMax;
+            VariableFloat variableFloat4 = metadata.maxItemWidth;
+            variableFloat4.from = f9;
+            variableFloat4.to = f9;
+            variableFloat4.now = f9;
+            float f10 = iMax2;
+            VariableFloat variableFloat5 = metadata.maxItemHeight;
+            variableFloat5.from = f10;
+            variableFloat5.to = f10;
+            variableFloat5.now = f10;
+            metadata.metadataCallback.onForceApplyChanges();
             return;
         }
-        this.metadata.totalWidth.set(i3);
-        this.metadata.totalHeight.set(i2);
-        this.metadata.maxItemWidth.set(iMax);
-        this.metadata.maxItemHeight.set(iMax2);
-        this.metadata.metadataCallback.onForceApplyChanges(this);
+        float f11 = i3;
+        if (metadata.totalWidth.differs(f11)) {
+            onBeforeListChanged();
+            metadata.totalWidth.to = f11;
+        }
+        VariableFloat variableFloat6 = metadata.totalHeight;
+        float f12 = i2;
+        if (variableFloat6.differs(f12)) {
+            onBeforeListChanged();
+            variableFloat6.to = f12;
+        }
+        VariableFloat variableFloat7 = metadata.maxItemWidth;
+        float f13 = iMax;
+        if (variableFloat7.differs(f13)) {
+            onBeforeListChanged();
+            variableFloat7.to = f13;
+        }
+        VariableFloat variableFloat8 = metadata.maxItemHeight;
+        float f14 = iMax2;
+        if (variableFloat8.differs(f14)) {
+            onBeforeListChanged();
+            variableFloat8.to = f14;
+        }
+        Callback callback = metadata.metadataCallback;
+        if (callback.hasChanges()) {
+            onBeforeListChanged();
+            callback.onPrepareMetadataAnimation();
+        }
     }
 
-    public void reset(List list, boolean z) {
-        reset(list, z, null);
+    public final void onBeforeListChanged() {
+        if (this.foundListChanges) {
+            return;
+        }
+        this.foundListChanges = true;
+        FactorAnimator factorAnimator = this.animator;
+        if (factorAnimator == null) {
+            removeJunk(false);
+            return;
+        }
+        factorAnimator.cancel();
+        removeJunk(false);
+        factorAnimator.forceFactor(0.0f);
     }
 
-    public boolean compareContents(List list) {
-        if (list == null || list.isEmpty()) {
-            return this.actualList.isEmpty();
-        }
-        if (this.actualList.size() != list.size()) {
-            return false;
-        }
-        for (int i = 0; i < list.size(); i++) {
-            if (!((Entry) this.actualList.get(i)).equals(list.get(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void reset(List list, boolean z, ResetCallback resetCallback) {
+    public final void removeJunk(boolean z) {
+        ArrayList arrayList = this.entries;
         boolean z2 = false;
-        if (!z) {
-            stopAnimation(false);
-            for (int size = this.entries.size() - 1; size >= 0; size--) {
-                ((Entry) this.entries.get(size)).onRecycled();
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            Entry entry = (Entry) arrayList.get(size);
+            entry.position.finishAnimation(z);
+            entry.visibility.finishAnimation(z);
+            VariableRect variableRect = entry.measuredPositionRect;
+            variableRect.left.finishAnimation(z);
+            variableRect.top.finishAnimation(z);
+            variableRect.right.finishAnimation(z);
+            variableRect.bottom.finishAnimation(z);
+            entry.measuredSpacingStart.finishAnimation(z);
+            Object obj = entry.item;
+            if (obj instanceof VariableRect) {
+                VariableRect variableRect2 = (VariableRect) obj;
+                variableRect2.left.finishAnimation(z);
+                variableRect2.top.finishAnimation(z);
+                variableRect2.right.finishAnimation(z);
+                variableRect2.bottom.finishAnimation(z);
             }
-            this.entries.clear();
-            this.actualList.clear();
+            if (entry.getVisibility() == 0.0f && entry.isBeingRemoved) {
+                arrayList.remove(size);
+                if (obj instanceof Destroyable) {
+                    ((Destroyable) obj).performDestroy();
+                }
+                z2 = true;
+            }
+        }
+        if (z2) {
+            arrayList.trimToSize();
+        }
+        Metadata metadata = this.metadata;
+        metadata.size.finishAnimation(z);
+        metadata.maxItemWidth.finishAnimation(z);
+        metadata.maxItemHeight.finishAnimation(z);
+        metadata.totalWidth.finishAnimation(z);
+        metadata.totalHeight.finishAnimation(z);
+        metadata.totalVisibility.finishAnimation(z);
+        metadata.metadataCallback.onFinishMetadataAnimation(z);
+    }
+
+    public final void reset(List list, boolean z) {
+        boolean zIsEmpty;
+        boolean z2;
+        boolean z3;
+        int i;
+        boolean zRemove;
+        ArrayList arrayList = this.entries;
+        ArrayList arrayList2 = this.actualList;
+        FactorAnimator factorAnimator = this.animator;
+        Metadata metadata = this.metadata;
+        if (!z) {
+            if (factorAnimator != null) {
+                factorAnimator.cancel();
+                removeJunk(false);
+                factorAnimator.forceFactor(0.0f);
+            } else {
+                removeJunk(false);
+            }
+            for (int size = arrayList.size() - 1; size >= 0; size--) {
+                Object obj = ((Entry) arrayList.get(size)).item;
+                if (obj instanceof Destroyable) {
+                    ((Destroyable) obj).performDestroy();
+                }
+            }
+            arrayList.clear();
+            arrayList2.clear();
             int size2 = list != null ? list.size() : 0;
             if (size2 > 0) {
-                this.entries.ensureCapacity(size2);
-                this.actualList.ensureCapacity(size2);
+                arrayList.ensureCapacity(size2);
+                arrayList2.ensureCapacity(size2);
                 Iterator it = list.iterator();
                 while (it.hasNext()) {
-                    Entry entry = new Entry(it.next(), this.actualList.size(), true);
-                    this.entries.add(entry);
-                    this.actualList.add(entry);
+                    Entry entry = new Entry(arrayList2.size(), it.next(), true);
+                    arrayList.add(entry);
+                    arrayList2.add(entry);
                 }
-                this.entries.trimToSize();
-                this.actualList.trimToSize();
+                arrayList.trimToSize();
+                arrayList2.trimToSize();
             }
-            this.metadata.setSize(size2, false);
+            Metadata.access$1400(metadata, size2, false);
             measureImpl(false);
-            this.callback.onItemsChanged(this);
+            this.callback.onItemsChanged();
             return;
         }
-        if (compareContents(list)) {
+        if (list != null && !list.isEmpty()) {
+            if (arrayList2.size() != list.size()) {
+                zIsEmpty = false;
+                break;
+            }
+            int i2 = 0;
+            while (true) {
+                if (i2 >= list.size()) {
+                    zIsEmpty = true;
+                    break;
+                } else {
+                    if (!((Entry) arrayList2.get(i2)).equals(list.get(i2))) {
+                        zIsEmpty = false;
+                        break;
+                    }
+                    i2++;
+                }
+            }
+        } else {
+            zIsEmpty = arrayList2.isEmpty();
+        }
+        if (zIsEmpty) {
             return;
         }
         onBeforeListChanged();
-        if (list != null && !list.isEmpty()) {
-            boolean z3 = false;
-            int i = 0;
-            boolean z4 = false;
-            for (int i2 = 0; i2 < this.entries.size(); i2++) {
-                Entry entry2 = (Entry) this.entries.get(i2);
-                int iIndexOf = list.indexOf(entry2.item);
-                if (iIndexOf != -1) {
-                    i++;
-                    float f = iIndexOf;
-                    if (entry2.position.differs(f)) {
-                        onBeforeListChanged();
-                        entry2.position.setTo(f);
-                    }
-                    if (entry2.index != iIndexOf) {
-                        entry2.index = iIndexOf;
-                        z3 = z3 || entry2.isAffectingList();
-                        z4 = true;
-                    }
-                    if (entry2.visibility.differs(1.0f)) {
-                        onBeforeListChanged();
-                        entry2.onPrepareAppear();
-                        this.actualList.add(entry2);
-                        this.metadata.setSize(this.actualList.size(), true);
-                        if (resetCallback != null) {
-                            resetCallback.onItemAdded(entry2.item, true);
-                        }
-                        z3 = true;
-                    }
-                } else if (entry2.visibility.differs(0.0f)) {
-                    onBeforeListChanged();
-                    entry2.onPrepareRemove();
-                    if (z3 ? this.actualList.remove(entry2) : ArrayUtils.removeSorted(this.actualList, entry2)) {
-                        this.metadata.setSize(this.actualList.size(), true);
-                        if (resetCallback != null) {
-                            resetCallback.onItemRemoved(entry2.item);
-                        }
-                    } else {
-                        throw new IllegalArgumentException();
-                    }
-                } else {
-                    continue;
-                }
-            }
-            if (z3) {
-                Collections.sort(this.actualList);
-            }
-            if (i < list.size()) {
-                ArrayList arrayList = this.entries;
-                arrayList.ensureCapacity(arrayList.size() + (list.size() - i));
-                int i3 = 0;
-                for (Object obj : list) {
-                    if (indexOfItem(obj) == -1) {
-                        if (i3 != this.entries.size()) {
-                            z4 = true;
-                        }
-                        onBeforeListChanged();
-                        Entry entry3 = new Entry(obj, i3, false);
-                        entry3.onPrepareAppear();
-                        this.entries.add(entry3);
-                        ArrayUtils.addSorted(this.actualList, entry3);
-                        this.metadata.setSize(this.actualList.size(), true);
-                        if (resetCallback != null) {
-                            resetCallback.onItemAdded(entry3.item, false);
-                        }
-                    }
-                    i3++;
-                }
-            }
-            z2 = z4;
-        } else {
+        if (list == null || list.isEmpty()) {
             if (!this.foundListChanges) {
-                ArrayList arrayList2 = this.entries;
-                int size3 = arrayList2.size();
-                int i4 = 0;
-                while (i4 < size3) {
-                    Object obj2 = arrayList2.get(i4);
-                    i4++;
+                int size3 = arrayList.size();
+                int i3 = 0;
+                while (i3 < size3) {
+                    Object obj2 = arrayList.get(i3);
+                    i3++;
                     if (((Entry) obj2).visibility.differs(0.0f)) {
                         onBeforeListChanged();
                         break;
@@ -627,29 +447,165 @@ public final class ListAnimator implements Iterable {
                 }
             }
             if (this.foundListChanges) {
-                ArrayList arrayList3 = this.entries;
-                int size4 = arrayList3.size();
-                int i5 = 0;
-                while (i5 < size4) {
-                    Object obj3 = arrayList3.get(i5);
-                    i5++;
-                    Entry entry4 = (Entry) obj3;
-                    if (entry4.visibility.differs(0.0f)) {
+                int size4 = arrayList.size();
+                int i4 = 0;
+                while (i4 < size4) {
+                    Object obj3 = arrayList.get(i4);
+                    i4++;
+                    Entry entry2 = (Entry) obj3;
+                    if (entry2.visibility.differs(0.0f)) {
                         onBeforeListChanged();
-                        entry4.onPrepareRemove();
-                        ArrayUtils.removeSorted(this.actualList, entry4);
-                        this.metadata.setSize(this.actualList.size(), true);
-                        if (resetCallback != null) {
-                            resetCallback.onItemRemoved(entry4.item);
+                        entry2.visibility.to = 0.0f;
+                        entry2.isBeingRemoved = true;
+                        int iBinarySearch = Collections.binarySearch(arrayList2, entry2);
+                        if (iBinarySearch >= 0) {
+                            arrayList2.remove(iBinarySearch);
                         }
+                        Metadata.access$1400(metadata, arrayList2.size(), true);
                     }
                 }
             }
+            z2 = true;
+            z3 = false;
+        } else {
+            boolean z4 = false;
+            int i5 = 0;
+            z3 = false;
+            for (int i6 = 0; i6 < arrayList.size(); i6++) {
+                Entry entry3 = (Entry) arrayList.get(i6);
+                int iIndexOf = list.indexOf(entry3.item);
+                VariableFloat variableFloat = entry3.visibility;
+                if (iIndexOf != -1) {
+                    i5++;
+                    float f = iIndexOf;
+                    VariableFloat variableFloat2 = entry3.position;
+                    if (variableFloat2.differs(f)) {
+                        onBeforeListChanged();
+                        variableFloat2.to = f;
+                    }
+                    if (entry3.index != iIndexOf) {
+                        entry3.index = iIndexOf;
+                        z4 = z4 || !entry3.isBeingRemoved;
+                        z3 = true;
+                    }
+                    if (variableFloat.differs(1.0f)) {
+                        onBeforeListChanged();
+                        variableFloat.to = 1.0f;
+                        entry3.isBeingRemoved = false;
+                        arrayList2.add(entry3);
+                        Metadata.access$1400(metadata, arrayList2.size(), true);
+                        z4 = true;
+                    }
+                } else if (variableFloat.differs(0.0f)) {
+                    onBeforeListChanged();
+                    variableFloat.to = 0.0f;
+                    entry3.isBeingRemoved = true;
+                    if (z4) {
+                        zRemove = arrayList2.remove(entry3);
+                    } else {
+                        int iBinarySearch2 = Collections.binarySearch(arrayList2, entry3);
+                        if (iBinarySearch2 >= 0) {
+                            arrayList2.remove(iBinarySearch2);
+                            zRemove = true;
+                        } else {
+                            zRemove = false;
+                        }
+                    }
+                    if (!zRemove) {
+                        throw new IllegalArgumentException();
+                    }
+                    Metadata.access$1400(metadata, arrayList2.size(), true);
+                } else {
+                    continue;
+                }
+            }
+            if (z4) {
+                Collections.sort(arrayList2);
+            }
+            if (i5 < list.size()) {
+                arrayList.ensureCapacity((list.size() - i5) + arrayList.size());
+                int i7 = 0;
+                for (Object obj4 : list) {
+                    if (obj4 != null) {
+                        int size5 = arrayList.size();
+                        int i8 = 0;
+                        i = 0;
+                        while (true) {
+                            if (i8 >= size5) {
+                                i = -1;
+                                break;
+                            }
+                            Object obj5 = arrayList.get(i8);
+                            i8++;
+                            if (obj4.equals(((Entry) obj5).item)) {
+                                break;
+                            } else {
+                                i++;
+                            }
+                        }
+                    } else {
+                        int size6 = arrayList.size();
+                        int i9 = 0;
+                        i = 0;
+                        while (true) {
+                            if (i9 >= size6) {
+                                i = -1;
+                                break;
+                            }
+                            Object obj6 = arrayList.get(i9);
+                            i9++;
+                            if (((Entry) obj6).item == null) {
+                                break;
+                            } else {
+                                i++;
+                            }
+                        }
+                    }
+                    if (i == -1) {
+                        if (i7 != arrayList.size()) {
+                            z3 = true;
+                        }
+                        onBeforeListChanged();
+                        Entry entry4 = new Entry(i7, obj4, false);
+                        entry4.visibility.to = 1.0f;
+                        entry4.isBeingRemoved = false;
+                        arrayList.add(entry4);
+                        int iBinarySearch3 = Collections.binarySearch(arrayList2, entry4);
+                        if (iBinarySearch3 >= 0) {
+                            throw new IllegalArgumentException("Element already exists in list");
+                        }
+                        arrayList2.add((-iBinarySearch3) - 1, entry4);
+                        Metadata.access$1400(metadata, arrayList2.size(), true);
+                    }
+                    i7++;
+                }
+            }
+            z2 = true;
         }
-        if (z2) {
-            Collections.sort(this.entries);
+        if (z3) {
+            Collections.sort(arrayList);
         }
-        measureImpl(true);
-        onApplyListChanges();
+        measureImpl(z2);
+        if (this.foundListChanges) {
+            this.foundListChanges = false;
+            if (factorAnimator != null) {
+                factorAnimator.animateTo(1.0f);
+                return;
+            }
+            return;
+        }
+        if (factorAnimator == null) {
+            int size7 = arrayList.size();
+            int i10 = 0;
+            while (i10 < size7) {
+                Object obj7 = arrayList.get(i10);
+                i10++;
+                Entry entry5 = (Entry) obj7;
+                VariableFloat variableFloat3 = entry5.visibility;
+                variableFloat3.from = variableFloat3.now;
+                VariableFloat variableFloat4 = entry5.position;
+                variableFloat4.from = variableFloat4.now;
+            }
+        }
     }
 }

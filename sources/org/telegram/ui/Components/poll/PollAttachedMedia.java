@@ -5,16 +5,17 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 
 public abstract class PollAttachedMedia {
-    protected final ImageReceiver imageReceiver = new ImageReceiver();
-
-    protected abstract void draw(Canvas canvas, int i, int i2);
+    public final ImageReceiver imageReceiver = new ImageReceiver();
 
     public void attach(View view) {
-        this.imageReceiver.setParentView(view);
-        this.imageReceiver.onAttachedToWindow();
+        ImageReceiver imageReceiver = this.imageReceiver;
+        imageReceiver.setParentView(view);
+        imageReceiver.onAttachedToWindow();
     }
 
     public void detach() {
         this.imageReceiver.onDetachedFromWindow();
     }
+
+    public abstract void draw(Canvas canvas, int i, int i2);
 }

@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class ShaderSet {
-    private static final Map AVAILABLE_SHADERS = createMap();
+    public static final Map AVAILABLE_SHADERS;
 
-    private static Map createMap() {
+    static {
         HashMap map = new HashMap();
         HashMap map2 = new HashMap();
         map2.put("vertex", "precision highp float;uniform mat4 mvpMatrix;attribute vec4 inPosition;attribute vec2 inTexcoord;attribute float alpha;varying vec2 varTexcoord;varying float varIntensity;void main (void) {   gl_Position = mvpMatrix * inPosition;   varTexcoord = inTexcoord;   varIntensity = alpha;}");
@@ -111,15 +111,6 @@ public abstract class ShaderSet {
         map18.put("attributes", new String[]{"inPosition", "inTexcoord"});
         map18.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "clear", "color", "type", "color", "resolution", "center", "radius", "thickness", "rounding", "fill", "rotation", "middle", "arrowTriangleLength", "composite"});
         map.put("shape", DesugarCollections.unmodifiableMap(map18));
-        return DesugarCollections.unmodifiableMap(map);
-    }
-
-    public static Map setup() {
-        HashMap map = new HashMap();
-        for (Map.Entry entry : AVAILABLE_SHADERS.entrySet()) {
-            Map map2 = (Map) entry.getValue();
-            map.put((String) entry.getKey(), new Shader((String) map2.get("vertex"), (String) map2.get("fragment"), (String[]) map2.get("attributes"), (String[]) map2.get("uniforms")));
-        }
-        return DesugarCollections.unmodifiableMap(map);
+        AVAILABLE_SHADERS = DesugarCollections.unmodifiableMap(map);
     }
 }

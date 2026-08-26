@@ -3,6 +3,7 @@ package org.telegram.ui.community.cells;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -21,16 +22,12 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class CommunityLinkView2 extends FrameLayout implements Theme.Colorable {
-    private final ImageView arrowView;
+public final class CommunityLinkView2 extends FrameLayout implements Theme.Colorable {
+    public final ImageView arrowView;
     public final BackupImageView avatarView;
     public final Theme.ResourcesProvider resourcesProvider;
     public final TextView subtitleView;
     public final TextView titleView;
-
-    public int[] getColorKeys() {
-        return Theme.Colorable.CC.$default$getColorKeys(this);
-    }
 
     public CommunityLinkView2(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -54,24 +51,21 @@ public class CommunityLinkView2 extends FrameLayout implements Theme.Colorable {
         textView2.setTextSize(1, 13.0f);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 2.0f, 0.0f, 0.0f));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 19, 58.0f, 0.0f, 48.0f, 1.0f));
         ImageView imageView = new ImageView(context);
         this.arrowView = imageView;
         imageView.setImageResource(R.drawable.msg_inputarrow);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        updateColors();
+        updateColors$1();
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        DrawableUtils.drawCommunityCardDrawable(canvas, Theme.dialogs_communityCardsDrawable, this.avatarView.getLeft() + (this.avatarView.getWidth() / 2.0f), this.avatarView.getTop() + (this.avatarView.getHeight() / 2.0f), this.avatarView.getHeight());
+    public final void dispatchDraw(Canvas canvas) {
+        Drawable drawable = Theme.dialogs_communityCardsDrawable;
+        BackupImageView backupImageView = this.avatarView;
+        DrawableUtils.drawCommunityCardDrawable(canvas, drawable, (backupImageView.getWidth() / 2.0f) + backupImageView.getLeft(), (backupImageView.getHeight() / 2.0f) + backupImageView.getTop(), backupImageView.getHeight());
         super.dispatchDraw(canvas);
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : null;
@@ -81,30 +75,41 @@ public class CommunityLinkView2 extends FrameLayout implements Theme.Colorable {
         canvas.drawLine(AndroidUtilities.dp(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
     }
 
-    public void setTitle(CharSequence charSequence) {
-        this.titleView.setText(charSequence);
+    public int[] getColorKeys() {
+        return null;
     }
 
-    public void setSubtitle(CharSequence charSequence) {
-        this.subtitleView.setText(charSequence);
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 
-    public void setChat(int i, TLRPC.Chat chat) {
+    public final void setChat(int i, TLRPC.Chat chat) {
         if (chat == null) {
             return;
         }
         TLRPC.ChatFull chatFull = MessagesController.getInstance(i).getChatFull(chat.id);
         setTitle(DialogObject.getShortName(chat));
         setSubtitle(LocaleController.formatPluralString("CommunityWithChats", chatFull != null ? chatFull.linked_peers.size() : 0, new Object[0]));
-        this.avatarView.setForUserOrChat(chat, new AvatarDrawable(chat));
+        BackupImageView backupImageView = this.avatarView;
+        backupImageView.imageReceiver.setForUserOrChat(chat, new AvatarDrawable(chat));
+        backupImageView.onNewImageSet();
+    }
+
+    public void setSubtitle(CharSequence charSequence) {
+        this.subtitleView.setText(charSequence);
+    }
+
+    public void setTitle(CharSequence charSequence) {
+        this.titleView.setText(charSequence);
     }
 
     @Override
-    public void updateColors() {
-        ImageView imageView = this.arrowView;
+    public final void updateColors$1() {
         int i = Theme.key_windowBackgroundWhiteGrayText2;
-        imageView.setColorFilter(Theme.getColor(i, this.resourcesProvider));
-        this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-        this.subtitleView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        this.arrowView.setColorFilter(Theme.getColor(i, resourcesProvider));
+        this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        this.subtitleView.setTextColor(Theme.getColor(i, resourcesProvider));
     }
 }

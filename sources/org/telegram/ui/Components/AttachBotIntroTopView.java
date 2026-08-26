@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -9,7 +8,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
@@ -19,56 +17,62 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
-public class AttachBotIntroTopView extends View {
-    private Drawable attachDrawable;
-    private Paint backgroundPaint;
-    private ImageReceiver imageReceiver;
-    private Paint paint;
+public final class AttachBotIntroTopView extends View {
+    public final Drawable attachDrawable;
+    public final Paint backgroundPaint;
+    public final ImageReceiver imageReceiver;
+    public final Paint paint;
 
-    public AttachBotIntroTopView(Context context) {
-        super(context);
-        this.paint = new Paint(1);
+    public AttachBotIntroTopView(Activity activity) {
+        super(activity);
+        Paint paint = new Paint(1);
+        this.paint = paint;
         this.backgroundPaint = new Paint(1);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.imageReceiver = imageReceiver;
         imageReceiver.setAlpha(0.0f);
-        this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
-            @Override
-            public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                AttachBotIntroTopView.m2021$r8$lambda$9E3iq6y937AHcDGuDGtpyutUaQ(this.f$0, imageReceiver2, z, z2, z3);
-            }
-
-            @Override
-            public void didSetImageBitmap(int i, String str, Drawable drawable) {
-                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
-            }
-
-            @Override
-            public void onAnimationReady(ImageReceiver imageReceiver2) {
-                ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
-            }
-        });
-        this.attachDrawable = ContextCompat.getDrawable(context, R.drawable.input_attach).mutate().getConstantState().newDrawable();
-        this.paint.setStyle(Paint.Style.STROKE);
-        this.paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        this.paint.setStrokeCap(Paint.Cap.ROUND);
+        imageReceiver.setDelegate(new ColorPicker$$ExternalSyntheticLambda6(this, 6));
+        this.attachDrawable = activity.getDrawable(R.drawable.input_attach).mutate().getConstantState().newDrawable();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
-    public static void m2021$r8$lambda$9E3iq6y937AHcDGuDGtpyutUaQ(final AttachBotIntroTopView attachBotIntroTopView, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        attachBotIntroTopView.getClass();
-        ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-        duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AttachBotIntroTopView.$r8$lambda$r7NoZe1dOlXoqnpgquNHkrgXyLs(this.f$0, valueAnimator);
-            }
-        });
-        duration.start();
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.imageReceiver.onAttachedToWindow();
     }
 
-    public static void $r8$lambda$r7NoZe1dOlXoqnpgquNHkrgXyLs(AttachBotIntroTopView attachBotIntroTopView, ValueAnimator valueAnimator) {
-        attachBotIntroTopView.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-        attachBotIntroTopView.invalidate();
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.imageReceiver.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(10.0f) + getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.backgroundPaint);
+        ImageReceiver imageReceiver = this.imageReceiver;
+        imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.dp(42.0f) / 2.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
+        imageReceiver.draw(canvas);
+        float width = (getWidth() / 2.0f) - AndroidUtilities.dp(8.0f);
+        float height = getHeight() / 2.0f;
+        float width2 = (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f);
+        float height2 = getHeight() / 2.0f;
+        Paint paint = this.paint;
+        canvas.drawLine(width, height, width2, height2, paint);
+        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, AndroidUtilities.dp(8.0f) + (getHeight() / 2.0f), paint);
+        int iDp = AndroidUtilities.dp(24.0f) + (getWidth() / 2);
+        int height3 = (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2);
+        int iDp2 = AndroidUtilities.dp(66.0f) + (getWidth() / 2);
+        int iDp3 = (AndroidUtilities.dp(42.0f) / 2) + (getHeight() / 2);
+        Drawable drawable = this.attachDrawable;
+        drawable.setBounds(iDp, height3, iDp2, iDp3);
+        drawable.draw(canvas);
     }
 
     public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
@@ -84,36 +88,9 @@ public class AttachBotIntroTopView extends View {
     }
 
     public void setColor(int i) {
-        Drawable drawable = this.attachDrawable;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        drawable.setColorFilter(i, mode);
+        this.attachDrawable.setColorFilter(i, mode);
         this.paint.setColor(i);
         this.imageReceiver.setColorFilter(new PorterDuffColorFilter(i, mode));
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.imageReceiver.onAttachedToWindow();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.imageReceiver.onDetachedFromWindow();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight() + AndroidUtilities.dp(10.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.backgroundPaint);
-        this.imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.dp(42.0f) / 2.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
-        this.imageReceiver.draw(canvas);
-        canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, this.paint);
-        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, AndroidUtilities.dp(8.0f) + (getHeight() / 2.0f), this.paint);
-        this.attachDrawable.setBounds((getWidth() / 2) + AndroidUtilities.dp(24.0f), (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2), (getWidth() / 2) + AndroidUtilities.dp(66.0f), (getHeight() / 2) + (AndroidUtilities.dp(42.0f) / 2));
-        this.attachDrawable.draw(canvas);
     }
 }

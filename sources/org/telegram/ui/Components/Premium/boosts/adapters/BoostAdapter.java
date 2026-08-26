@@ -4,22 +4,37 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ShadowSectionCell;
+import org.telegram.ui.Cells.TextCell;
+import org.telegram.ui.Cells.UserCell2;
+import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository;
+import org.telegram.ui.Components.Premium.boosts.BoostViaGiftsBottomSheet$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.Premium.boosts.cells.AddChannelCell;
 import org.telegram.ui.Components.Premium.boosts.cells.BoostTypeCell;
 import org.telegram.ui.Components.Premium.boosts.cells.BoostTypeSingleCell;
@@ -35,299 +50,40 @@ import org.telegram.ui.Components.Premium.boosts.cells.SubtitleWithCounterCell;
 import org.telegram.ui.Components.Premium.boosts.cells.SwitcherCell;
 import org.telegram.ui.Components.Premium.boosts.cells.TextInfoCell;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.SlideChooseView;
+import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
 import org.telegram.ui.Stars.StarsIntroActivity;
 
-public class BoostAdapter extends AdapterWithDiffUtils {
-    private EnterPrizeCell.AfterTextChangedListener afterTextChangedListener;
-    private ChatCell.ChatDeleteListener chatDeleteListener;
-    private TLRPC.Chat currentChat;
-    private HeaderCell headerCell;
-    private RecyclerListView recyclerListView;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private SlideChooseView.Callback sliderCallback;
-    private List items = new ArrayList();
-    private HashMap chatsParticipantsCount = new HashMap();
+public final class BoostAdapter extends AdapterWithDiffUtils {
+    public BoostViaGiftsBottomSheet$$ExternalSyntheticLambda2 afterTextChangedListener;
+    public BoostViaGiftsBottomSheet$$ExternalSyntheticLambda2 chatDeleteListener;
+    public TLRPC.Chat currentChat;
+    public HeaderCell headerCell;
+    public RecyclerListView recyclerListView;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public BoostViaGiftsBottomSheet$$ExternalSyntheticLambda2 sliderCallback;
+    public ArrayList items = new ArrayList();
+    public final HashMap chatsParticipantsCount = new HashMap();
 
-    public BoostAdapter(Theme.ResourcesProvider resourcesProvider) {
-        this.resourcesProvider = resourcesProvider;
-        BoostRepository.loadParticipantsCount(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                BoostAdapter.m2669$r8$lambda$lcFDLfyq3_4twOSLqgXFGbGA5o(this.f$0, (HashMap) obj);
-            }
-        });
-    }
-
-    public static void m2669$r8$lambda$lcFDLfyq3_4twOSLqgXFGbGA5o(BoostAdapter boostAdapter, HashMap map) {
-        boostAdapter.chatsParticipantsCount.clear();
-        boostAdapter.chatsParticipantsCount.putAll(map);
-    }
-
-    public void setItems(TLRPC.Chat chat, List list, RecyclerListView recyclerListView, SlideChooseView.Callback callback, ChatCell.ChatDeleteListener chatDeleteListener, EnterPrizeCell.AfterTextChangedListener afterTextChangedListener) {
-        this.items = list;
-        this.currentChat = chat;
-        this.recyclerListView = recyclerListView;
-        this.sliderCallback = callback;
-        this.chatDeleteListener = chatDeleteListener;
-        this.afterTextChangedListener = afterTextChangedListener;
-    }
-
-    private int getParticipantsCount(TLRPC.Chat chat) {
-        Integer num;
-        int i;
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(chat.id);
-        if (chatFull != null && (i = chatFull.participants_count) > 0) {
-            return i;
-        }
-        if (!this.chatsParticipantsCount.isEmpty() && (num = (Integer) this.chatsParticipantsCount.get(Long.valueOf(chat.id))) != null) {
-            return num.intValue();
-        }
-        return chat.participants_count;
-    }
-
-    public void updateBoostCounter(int i) {
-        for (int i2 = 0; i2 < this.recyclerListView.getChildCount(); i2++) {
-            View childAt = this.recyclerListView.getChildAt(i2);
-            if (childAt instanceof SubtitleWithCounterCell) {
-                ((SubtitleWithCounterCell) childAt).updateCounter(true, i);
-            }
-            if (childAt instanceof ChatCell) {
-                ChatCell chatCell = (ChatCell) childAt;
-                chatCell.setCounter(i, getParticipantsCount(chatCell.getChat()));
-            }
-        }
-        notifyItemChanged(8);
-        notifyItemRangeChanged(this.items.size() - 12, 12);
-    }
-
-    public void notifyAllVisibleTextDividers() {
-        for (int i = 0; i < this.items.size(); i++) {
-            if (((Item) this.items.get(i)).viewType == 7) {
-                notifyItemChanged(i);
-            }
-        }
-    }
-
-    public void notifyAdditionalPrizeItem(boolean z) {
-        for (int i = 0; i < this.items.size(); i++) {
-            Item item = (Item) this.items.get(i);
-            if (item.viewType == 15 && item.subType == SwitcherCell.TYPE_ADDITION_PRIZE) {
-                if (z) {
-                    notifyItemInserted(i + 1);
-                    return;
-                } else {
-                    notifyItemRemoved(i + 1);
-                    return;
-                }
-            }
-        }
-    }
-
-    public void setPausedStars(boolean z) {
-        HeaderCell headerCell = this.headerCell;
-        if (headerCell != null) {
-            headerCell.setPaused(z);
-        }
-    }
-
-    @Override
-    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        int itemViewType = viewHolder.getItemViewType();
-        return itemViewType == 2 || itemViewType == 11 || itemViewType == 8 || itemViewType == 10 || itemViewType == 15 || itemViewType == 12 || itemViewType == 17 || itemViewType == 18;
-    }
-
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View boostTypeCell;
-        Context context = viewGroup.getContext();
-        switch (i) {
-            case 2:
-                boostTypeCell = new BoostTypeCell(context, this.resourcesProvider);
-                break;
-            case 3:
-                boostTypeCell = new View(context);
-                break;
-            case 4:
-                boostTypeCell = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
-                break;
-            case 5:
-                boostTypeCell = new SliderCell(context, this.resourcesProvider);
-                break;
-            case 6:
-                org.telegram.ui.Cells.HeaderCell headerCell = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, this.resourcesProvider);
-                headerCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-                boostTypeCell = headerCell;
-                break;
-            case 7:
-                boostTypeCell = new TextInfoCell(context, this.resourcesProvider);
-                break;
-            case 8:
-                boostTypeCell = new AddChannelCell(context, this.resourcesProvider);
-                break;
-            case 9:
-                boostTypeCell = new ChatCell(context, this.resourcesProvider);
-                break;
-            case 10:
-                boostTypeCell = new DateEndCell(context, this.resourcesProvider);
-                break;
-            case 11:
-                boostTypeCell = new ParticipantsTypeCell(context, this.resourcesProvider);
-                break;
-            case 12:
-                boostTypeCell = new DurationCell(context, this.resourcesProvider);
-                break;
-            case 13:
-                SubtitleWithCounterCell subtitleWithCounterCell = new SubtitleWithCounterCell(context, this.resourcesProvider);
-                subtitleWithCounterCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-                boostTypeCell = subtitleWithCounterCell;
-                break;
-            case 14:
-                boostTypeCell = new BoostTypeSingleCell(context, this.resourcesProvider);
-                break;
-            case 15:
-                SwitcherCell switcherCell = new SwitcherCell(context, this.resourcesProvider);
-                switcherCell.setHeight(50);
-                boostTypeCell = switcherCell;
-                break;
-            case 16:
-                boostTypeCell = new EnterPrizeCell(context, this.resourcesProvider);
-                break;
-            case 17:
-                boostTypeCell = new StarGiveawayOptionCell(context, this.resourcesProvider);
-                break;
-            case 18:
-                StarsIntroActivity.ExpandView expandView = new StarsIntroActivity.ExpandView(context, this.resourcesProvider);
-                expandView.set(LocaleController.getString(R.string.NotifyMoreOptions), true, true, false);
-                boostTypeCell = expandView;
-                break;
-            default:
-                boostTypeCell = new HeaderCell(context, this.resourcesProvider);
-                break;
-        }
-        boostTypeCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-        return new RecyclerListView.Holder(boostTypeCell);
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        int itemViewType = viewHolder.getItemViewType();
-        Item item = (Item) this.items.get(i);
-        if (itemViewType == 0) {
-            HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
-            this.headerCell = headerCell;
-            headerCell.setBoostViaGifsText(this.currentChat);
-            this.headerCell.setStars(item.boolValue);
-            return;
-        }
-        if (itemViewType == 2) {
-            ((BoostTypeCell) viewHolder.itemView).setType(item.subType, item.intValue, (TLRPC.User) item.user, item.selectable);
-            return;
-        }
-        if (itemViewType == 5) {
-            SliderCell sliderCell = (SliderCell) viewHolder.itemView;
-            sliderCell.setValues(item.values, item.intValue);
-            sliderCell.setCallBack(this.sliderCallback);
-            return;
-        }
-        if (itemViewType == 6) {
-            ((org.telegram.ui.Cells.HeaderCell) viewHolder.itemView).setText(item.text);
-            return;
-        }
-        if (itemViewType == 7) {
-            TextInfoCell textInfoCell = (TextInfoCell) viewHolder.itemView;
-            textInfoCell.setText(item.text);
-            textInfoCell.setBackground(item.boolValue);
-            return;
-        }
-        switch (itemViewType) {
-            case 9:
-                ChatCell chatCell = (ChatCell) viewHolder.itemView;
-                TLRPC.InputPeer inputPeer = item.peer;
-                if (inputPeer != null) {
-                    if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
-                        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(inputPeer.chat_id));
-                        chatCell.setChat(chat, item.intValue, item.boolValue, getParticipantsCount(chat));
-                    } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
-                        TLRPC.Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(inputPeer.channel_id));
-                        chatCell.setChat(chat2, item.intValue, item.boolValue, getParticipantsCount(chat2));
-                    }
-                } else {
-                    TLRPC.Chat chat3 = item.chat;
-                    chatCell.setChat(chat3, item.intValue, item.boolValue, getParticipantsCount(chat3));
-                }
-                chatCell.setChatDeleteListener(this.chatDeleteListener);
-                break;
-            case 10:
-                ((DateEndCell) viewHolder.itemView).setDate(item.longValue);
-                break;
-            case 11:
-                ((ParticipantsTypeCell) viewHolder.itemView).setType(item.subType, item.selectable, item.boolValue, (List) item.user, this.currentChat);
-                break;
-            case 12:
-                ((DurationCell) viewHolder.itemView).setDuration(item.object, item.intValue, item.intValue2, item.longValue, item.text, item.boolValue, item.selectable);
-                break;
-            case 13:
-                SubtitleWithCounterCell subtitleWithCounterCell = (SubtitleWithCounterCell) viewHolder.itemView;
-                subtitleWithCounterCell.setText(item.text);
-                subtitleWithCounterCell.updateCounter(true, item.intValue);
-                break;
-            case 14:
-                ((BoostTypeSingleCell) viewHolder.itemView).setGiveaway((TL_stories.PrepaidGiveaway) item.user);
-                break;
-            case 15:
-                ((SwitcherCell) viewHolder.itemView).setData(item.text, item.selectable, item.boolValue, item.subType);
-                break;
-            case 16:
-                EnterPrizeCell enterPrizeCell = (EnterPrizeCell) viewHolder.itemView;
-                enterPrizeCell.setCount(item.intValue);
-                enterPrizeCell.setAfterTextChangedListener(this.afterTextChangedListener);
-                break;
-            case 17:
-                StarGiveawayOptionCell starGiveawayOptionCell = (StarGiveawayOptionCell) viewHolder.itemView;
-                Object obj = item.object;
-                starGiveawayOptionCell.setOption(obj == null ? null : (TL_stars.TL_starsGiveawayOption) obj, item.intValue, item.longValue, item.selectable, item.boolValue);
-                break;
-        }
-    }
-
-    @Override
-    public int getItemViewType(int i) {
-        return ((Item) this.items.get(i)).viewType;
-    }
-
-    @Override
-    public int getItemCount() {
-        return this.items.size();
-    }
-
-    public static class Item extends AdapterWithDiffUtils.Item {
+    public final class Item extends AdapterWithDiffUtils.Item {
         public boolean boolValue;
         public TLRPC.Chat chat;
-        public float floatValue;
         public int intValue;
         public int intValue2;
-        public int intValue3;
         public long longValue;
-        public Object object;
+        public TLObject object;
         public TLRPC.InputPeer peer;
         public int subType;
         public CharSequence text;
         public Object user;
         public List values;
 
-        private Item(int i, boolean z) {
-            super(i, z);
-        }
-
-        public static Item asHeader(boolean z) {
-            Item item = new Item(0, false);
+        public static Item asChat(TLRPC.Chat chat, int i, boolean z) {
+            Item item = new Item(9, false);
+            item.chat = chat;
+            item.peer = null;
             item.boolValue = z;
+            item.intValue = i;
             return item;
-        }
-
-        public static Item asDivider() {
-            return new Item(4, false);
         }
 
         public static Item asDivider(CharSequence charSequence, boolean z) {
@@ -337,141 +93,18 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             return item;
         }
 
-        public static Item asChat(TLRPC.Chat chat, boolean z, int i) {
-            Item item = new Item(9, false);
-            item.chat = chat;
-            item.peer = null;
-            item.boolValue = z;
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asPeer(TLRPC.InputPeer inputPeer, boolean z, int i) {
-            Item item = new Item(9, false);
-            item.peer = inputPeer;
-            item.chat = null;
-            item.boolValue = z;
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asEnterPrize(int i) {
-            Item item = new Item(16, false);
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asSwitcher(CharSequence charSequence, boolean z, boolean z2, int i) {
-            Item item = new Item(15, z);
-            item.text = charSequence;
-            item.boolValue = z2;
-            item.subType = i;
-            return item;
-        }
-
-        public static Item asSingleBoost(Object obj) {
-            Item item = new Item(14, false);
-            item.user = obj;
-            return item;
-        }
-
-        public static Item asBoost(int i, int i2, Object obj, int i3) {
-            Item item = new Item(2, i3 == i);
-            item.subType = i;
-            item.intValue = i2;
-            item.user = obj;
-            return item;
-        }
-
-        public static Item asDateEnd(long j) {
-            Item item = new Item(10, false);
-            item.longValue = j;
-            return item;
-        }
-
-        public static Item asSlider(List list, int i) {
-            Item item = new Item(5, false);
-            item.values = list;
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asAddChannel() {
-            return new Item(8, false);
-        }
-
-        public static Item asExpandOptions() {
-            return new Item(18, false);
-        }
-
-        public static Item asSubTitle(CharSequence charSequence) {
-            Item item = new Item(6, false);
-            item.text = charSequence;
-            return item;
-        }
-
-        public static Item asSubTitleWithCounter(CharSequence charSequence, int i) {
-            Item item = new Item(13, false);
-            item.text = charSequence;
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asDuration(Object obj, int i, int i2, long j, int i3, String str, boolean z) {
-            Item item = new Item(12, i == i3);
-            item.intValue = i;
-            item.intValue2 = i2;
-            item.longValue = j;
-            item.boolValue = z;
-            item.text = str;
-            item.object = obj;
-            return item;
-        }
-
-        public static Item asOption(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i, long j, boolean z, boolean z2) {
-            Item item = new Item(17, z);
-            item.intValue = i;
-            item.longValue = j;
-            item.object = tL_starsGiveawayOption;
-            item.boolValue = z2;
-            return item;
-        }
-
-        public static Item asParticipants(int i, int i2, boolean z, List list) {
+        public static Item asParticipants(int i, int i2, boolean z, ArrayList arrayList) {
             Item item = new Item(11, i2 == i);
             item.subType = i;
             item.boolValue = z;
-            item.user = list;
+            item.user = arrayList;
             return item;
         }
 
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj != null && getClass() == obj.getClass()) {
-                Item item = (Item) obj;
-                int i = this.viewType;
-                if (i != item.viewType) {
-                    return false;
-                }
-                if (i == 0) {
-                    return true;
-                }
-                if (i == 17) {
-                    return this.intValue == item.intValue && this.object == item.object;
-                }
-                if (i == 5) {
-                    return eq(this.values, item.values);
-                }
-                if (i == 13) {
-                    return TextUtils.equals(this.text, item.text);
-                }
-                if (this.chat == item.chat && this.user == item.user && this.peer == item.peer && this.object == item.object && this.boolValue == item.boolValue && this.intValue == item.intValue && this.intValue2 == item.intValue2 && this.intValue3 == item.intValue3 && this.longValue == item.longValue && this.subType == item.subType && this.floatValue == item.floatValue && TextUtils.equals(this.text, item.text)) {
-                    return true;
-                }
-            }
-            return false;
+        public static Item asSubTitle(String str) {
+            Item item = new Item(6, false);
+            item.text = str;
+            return item;
         }
 
         public static boolean eq(List list, List list2) {
@@ -490,14 +123,14 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         }
 
         @Override
-        protected boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+        public final boolean contentsEquals(AdapterWithDiffUtils.Item item) {
             Item item2;
             int i;
             int i2;
             if (this == item) {
                 return true;
             }
-            if (item == null || getClass() != item.getClass() || (i = (item2 = (Item) item).viewType) != (i2 = this.viewType)) {
+            if (Item.class != item.getClass() || (i = (item2 = (Item) item).viewType) != (i2 = this.viewType)) {
                 return false;
             }
             if (i2 == 0) {
@@ -511,5 +144,380 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             }
             return i2 == 13 && this.intValue == item2.intValue && TextUtils.equals(this.text, item2.text);
         }
+
+        public final boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || Item.class != obj.getClass()) {
+                return false;
+            }
+            Item item = (Item) obj;
+            int i = this.viewType;
+            if (i != item.viewType) {
+                return false;
+            }
+            if (i == 0) {
+                return true;
+            }
+            if (i == 17) {
+                return this.intValue == item.intValue && this.object == item.object;
+            }
+            if (i == 5) {
+                return eq(this.values, item.values);
+            }
+            if (i == 13) {
+                return TextUtils.equals(this.text, item.text);
+            }
+            return this.chat == item.chat && this.user == item.user && this.peer == item.peer && this.object == item.object && this.boolValue == item.boolValue && this.intValue == item.intValue && this.intValue2 == item.intValue2 && this.longValue == item.longValue && this.subType == item.subType && TextUtils.equals(this.text, item.text);
+        }
+    }
+
+    public BoostAdapter(Theme.ResourcesProvider resourcesProvider) {
+        this.resourcesProvider = resourcesProvider;
+        PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14 = new PollItemMenu$$ExternalSyntheticLambda14(this, 1);
+        MessagesStorage messagesStorage = MessagesStorage.getInstance(UserConfig.selectedAccount);
+        messagesStorage.getStorageQueue().postRunnable(new ImageUpdater$$ExternalSyntheticLambda2(25, messagesStorage, pollItemMenu$$ExternalSyntheticLambda14));
+    }
+
+    @Override
+    public final int getItemCount() {
+        return this.items.size();
+    }
+
+    @Override
+    public final int getItemViewType(int i) {
+        return ((Item) this.items.get(i)).viewType;
+    }
+
+    public final int getParticipantsCount$1(TLRPC.Chat chat) {
+        Integer num;
+        int i;
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(chat.id);
+        if (chatFull != null && (i = chatFull.participants_count) > 0) {
+            return i;
+        }
+        HashMap map = this.chatsParticipantsCount;
+        return (map.isEmpty() || (num = (Integer) map.get(Long.valueOf(chat.id))) == null) ? chat.participants_count : num.intValue();
+    }
+
+    @Override
+    public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+        int i = viewHolder.mItemViewType;
+        return i == 2 || i == 11 || i == 8 || i == 10 || i == 15 || i == 12 || i == 17 || i == 18;
+    }
+
+    @Override
+    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        int i2 = viewHolder.mItemViewType;
+        Item item = (Item) this.items.get(i);
+        View view = viewHolder.itemView;
+        if (i2 == 0) {
+            HeaderCell headerCell = (HeaderCell) view;
+            this.headerCell = headerCell;
+            headerCell.setBoostViaGifsText(this.currentChat);
+            this.headerCell.setStars(item.boolValue);
+            return;
+        }
+        if (i2 == 2) {
+            BoostTypeCell boostTypeCell = (BoostTypeCell) view;
+            int i3 = item.subType;
+            int i4 = item.intValue;
+            TLRPC.User user = (TLRPC.User) item.user;
+            boolean z = item.selectable;
+            boolean z2 = boostTypeCell.selectedType == i3;
+            boostTypeCell.selectedType = i3;
+            SimpleTextView simpleTextView = boostTypeCell.subtitleTextView;
+            AvatarDrawable avatarDrawable = boostTypeCell.avatarDrawable;
+            Theme.ResourcesProvider resourcesProvider = boostTypeCell.resourcesProvider;
+            UserCell2.AnonymousClass1 anonymousClass1 = boostTypeCell.titleTextView;
+            if (i3 == 0) {
+                anonymousClass1.setText(LocaleController.getString(R.string.BoostingCreateGiveaway));
+                boostTypeCell.setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
+                simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, resourcesProvider));
+                avatarDrawable.setAvatarType(16);
+                avatarDrawable.setColor(-15292942, -15630089);
+                boostTypeCell.setDivider(true);
+                boostTypeCell.setBackground(Theme.getThemedDrawableByKey(boostTypeCell.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+            } else if (i3 == 1) {
+                anonymousClass1.setText(LocaleController.getString(R.string.BoostingAwardSpecificUsers));
+                if (i4 == 1 && user != null) {
+                    boostTypeCell.setSubtitle(boostTypeCell.withArrow(Emoji.replaceEmoji(UserObject.getUserName(user), simpleTextView.getPaint().getFontMetricsInt(), false)));
+                } else if (i4 > 0) {
+                    boostTypeCell.setSubtitle(boostTypeCell.withArrow(LocaleController.formatPluralString("Recipient", i4, new Object[0])));
+                } else {
+                    boostTypeCell.setSubtitle(boostTypeCell.withArrow(LocaleController.getString(R.string.BoostingSelectRecipients)));
+                }
+                simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, resourcesProvider));
+                avatarDrawable.setAvatarType(6);
+                avatarDrawable.setColor(-3905294, -6923014);
+                boostTypeCell.setDivider(false);
+                boostTypeCell.setBackground(Theme.getThemedDrawableByKey(boostTypeCell.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
+            } else if (i3 == 2) {
+                anonymousClass1.setText(LocaleController.getString(R.string.BoostingPremium));
+                if (i4 == 1 && user != null) {
+                    boostTypeCell.setSubtitle(boostTypeCell.withArrow(Emoji.replaceEmoji(UserObject.getUserName(user), simpleTextView.getPaint().getFontMetricsInt(), false)));
+                } else if (i4 > 0) {
+                    boostTypeCell.setSubtitle(boostTypeCell.withArrow(LocaleController.formatPluralString("Recipient", i4, new Object[0])));
+                } else {
+                    boostTypeCell.setSubtitle(boostTypeCell.withArrow(LocaleController.getString(R.string.BoostingWinnersRandomly)));
+                }
+                simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, resourcesProvider));
+                avatarDrawable.setAvatarType(25);
+                avatarDrawable.setColor(-3905294, -6923014);
+                boostTypeCell.setDivider(true);
+                boostTypeCell.setBackground(Theme.getThemedDrawableByKey(boostTypeCell.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+            } else if (i3 == 3) {
+                anonymousClass1.setText(TextCell.applyNewSpan(LocaleController.getString(R.string.BoostingStars)));
+                boostTypeCell.setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
+                simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, resourcesProvider));
+                avatarDrawable.setAvatarType(26);
+                avatarDrawable.setColor(-146917, -625593);
+                boostTypeCell.setDivider(false);
+                boostTypeCell.setBackground(Theme.getThemedDrawableByKey(boostTypeCell.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
+            }
+            boostTypeCell.radioButton.setChecked(z, z2);
+            BackupImageView backupImageView = boostTypeCell.imageView;
+            backupImageView.setImageDrawable(avatarDrawable);
+            backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
+            return;
+        }
+        if (i2 == 5) {
+            SliderCell sliderCell = (SliderCell) view;
+            List list = item.values;
+            int i5 = item.intValue;
+            sliderCell.getClass();
+            String[] strArr = new String[list.size()];
+            for (int i6 = 0; i6 < list.size(); i6++) {
+                strArr[i6] = String.valueOf((Integer) list.get(i6));
+            }
+            sliderCell.slideChooseView.setOptions(i5, null, strArr);
+            sliderCell.setCallBack(this.sliderCallback);
+            return;
+        }
+        if (i2 == 6) {
+            ((org.telegram.ui.Cells.HeaderCell) view).setText(item.text);
+            return;
+        }
+        if (i2 == 7) {
+            TextInfoCell textInfoCell = (TextInfoCell) view;
+            textInfoCell.setText(item.text);
+            textInfoCell.setBackground(item.boolValue);
+            return;
+        }
+        switch (i2) {
+            case 9:
+                ChatCell chatCell = (ChatCell) view;
+                TLRPC.InputPeer inputPeer = item.peer;
+                if (inputPeer == null) {
+                    TLRPC.Chat chat = item.chat;
+                    chatCell.setChat(chat, item.intValue, item.boolValue, getParticipantsCount$1(chat));
+                } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
+                    TLRPC.Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(inputPeer.chat_id));
+                    chatCell.setChat(chat2, item.intValue, item.boolValue, getParticipantsCount$1(chat2));
+                } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
+                    TLRPC.Chat chat3 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(inputPeer.channel_id));
+                    chatCell.setChat(chat3, item.intValue, item.boolValue, getParticipantsCount$1(chat3));
+                }
+                chatCell.setChatDeleteListener(this.chatDeleteListener);
+                break;
+            case 10:
+                ((DateEndCell) view).setDate(item.longValue);
+                break;
+            case 11:
+                ParticipantsTypeCell participantsTypeCell = (ParticipantsTypeCell) view;
+                int i7 = item.subType;
+                boolean z3 = item.selectable;
+                boolean z4 = item.boolValue;
+                List list2 = (List) item.user;
+                TLRPC.Chat chat4 = this.currentChat;
+                participantsTypeCell.selectedType = i7;
+                boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat4);
+                UserCell2.AnonymousClass1 anonymousClass2 = participantsTypeCell.titleTextView;
+                if (i7 == 0) {
+                    anonymousClass2.setText(LocaleController.formatString(zIsChannelAndNotMegaGroup ? R.string.BoostingAllSubscribers : R.string.BoostingAllMembers, new Object[0]));
+                } else if (i7 == 1) {
+                    anonymousClass2.setText(LocaleController.formatString(zIsChannelAndNotMegaGroup ? R.string.BoostingNewSubscribers : R.string.BoostingNewMembers, new Object[0]));
+                }
+                participantsTypeCell.radioButton.setChecked(z3, false);
+                participantsTypeCell.setDivider(z4);
+                participantsTypeCell.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, participantsTypeCell.resourcesProvider));
+                if (list2.size() == 0) {
+                    participantsTypeCell.setSubtitle(participantsTypeCell.withArrow(LocaleController.getString(R.string.BoostingFromAllCountries)));
+                } else if (list2.size() > 3) {
+                    participantsTypeCell.setSubtitle(participantsTypeCell.withArrow(LocaleController.formatPluralString("BoostingFromCountriesCount", list2.size(), new Object[0])));
+                } else if (list2.size() == 1) {
+                    participantsTypeCell.setSubtitle(participantsTypeCell.withArrow(LocaleController.formatString("BoostingFromAllCountries1", R.string.BoostingFromAllCountries1, ((TLRPC.TL_help_country) list2.get(0)).default_name)));
+                } else if (list2.size() == 2) {
+                    participantsTypeCell.setSubtitle(participantsTypeCell.withArrow(LocaleController.formatString("BoostingFromAllCountries2", R.string.BoostingFromAllCountries2, ((TLRPC.TL_help_country) list2.get(0)).default_name, ((TLRPC.TL_help_country) list2.get(1)).default_name)));
+                } else {
+                    participantsTypeCell.setSubtitle(participantsTypeCell.withArrow(LocaleController.formatString("BoostingFromAllCountries3", R.string.BoostingFromAllCountries3, ((TLRPC.TL_help_country) list2.get(0)).default_name, ((TLRPC.TL_help_country) list2.get(1)).default_name, ((TLRPC.TL_help_country) list2.get(2)).default_name)));
+                }
+                break;
+            case 12:
+                DurationCell durationCell = (DurationCell) view;
+                TLObject tLObject = item.object;
+                int i8 = item.intValue;
+                int i9 = item.intValue2;
+                long j = item.longValue;
+                CharSequence charSequence = item.text;
+                boolean z5 = item.boolValue;
+                boolean z6 = item.selectable;
+                durationCell.code = tLObject;
+                UserCell2.AnonymousClass1 anonymousClass3 = durationCell.titleTextView;
+                if (i8 >= 12) {
+                    anonymousClass3.setText(LocaleController.formatPluralString("Years", 1, new Object[0]));
+                } else {
+                    anonymousClass3.setText(LocaleController.formatPluralString("Months", i8, new Object[0]));
+                }
+                StringBuilder sb = new StringBuilder();
+                sb.append(BillingController.getInstance().formatCurrency(i9 > 0 ? j / ((long) i9) : j, charSequence.toString()));
+                sb.append(" x ");
+                sb.append(i9);
+                durationCell.setSubtitle(sb.toString());
+                SimpleTextView simpleTextView2 = durationCell.totalTextView;
+                BillingController billingController = BillingController.getInstance();
+                if (i9 <= 0) {
+                    j = 0;
+                }
+                simpleTextView2.setText(billingController.formatCurrency(j, charSequence.toString()), false);
+                durationCell.setDivider(z5);
+                durationCell.radioButton.setChecked(z6, false);
+                break;
+            case 13:
+                SubtitleWithCounterCell subtitleWithCounterCell = (SubtitleWithCounterCell) view;
+                subtitleWithCounterCell.setText(item.text);
+                int i10 = item.intValue;
+                String pluralString = i10 > 0 ? LocaleController.formatPluralString("BoostingBoostsCountTitle", i10, Integer.valueOf(i10)) : "";
+                AnimatedTextView animatedTextView = subtitleWithCounterCell.counterTextView;
+                animatedTextView.drawable.cancelAnimation();
+                animatedTextView.setText(pluralString, true, true);
+                break;
+            case 14:
+                ((BoostTypeSingleCell) view).setGiveaway((TL_stories.PrepaidGiveaway) item.user);
+                break;
+            case 15:
+                SwitcherCell switcherCell = (SwitcherCell) view;
+                CharSequence charSequence2 = item.text;
+                boolean z7 = item.selectable;
+                boolean z8 = item.boolValue;
+                switcherCell.type = item.subType;
+                switcherCell.setTextAndCheck(charSequence2, z7, z8);
+                break;
+            case 16:
+                EnterPrizeCell enterPrizeCell = (EnterPrizeCell) view;
+                enterPrizeCell.setCount(item.intValue);
+                enterPrizeCell.setAfterTextChangedListener(this.afterTextChangedListener);
+                break;
+            case 17:
+                StarGiveawayOptionCell starGiveawayOptionCell = (StarGiveawayOptionCell) view;
+                TLObject tLObject2 = item.object;
+                TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = tLObject2 != null ? (TL_stars.TL_starsGiveawayOption) tLObject2 : null;
+                int i11 = item.intValue;
+                long j2 = item.longValue;
+                boolean z9 = item.selectable;
+                boolean z10 = starGiveawayOptionCell.currentOption == tL_starsGiveawayOption;
+                starGiveawayOptionCell.radioButton.setChecked(z9, z10);
+                starGiveawayOptionCell.currentOption = tL_starsGiveawayOption;
+                AnimatedTextView animatedTextView2 = starGiveawayOptionCell.subtitleView;
+                if (z10) {
+                    animatedTextView2.drawable.cancelAnimation();
+                }
+                TextView textView = starGiveawayOptionCell.priceView;
+                AnimatedTextView animatedTextView3 = starGiveawayOptionCell.titleView;
+                if (tL_starsGiveawayOption == null) {
+                    animatedTextView3.setText(starGiveawayOptionCell.loading1, false, true);
+                    animatedTextView2.setText(starGiveawayOptionCell.loading2, z10, true);
+                    textView.setText("");
+                } else {
+                    animatedTextView3.setText(LocaleController.formatPluralStringComma("GiveawayStars", (int) tL_starsGiveawayOption.stars, ' '), false, true);
+                    animatedTextView2.setText(LocaleController.formatPluralStringComma("BoostingStarOptionPerUser", (int) j2, ','), z10, true);
+                    textView.setText(BillingController.getInstance().formatCurrency(tL_starsGiveawayOption.amount, tL_starsGiveawayOption.currency));
+                }
+                int i12 = i11 + 1;
+                starGiveawayOptionCell.starsCount = i12;
+                if (!z10) {
+                    starGiveawayOptionCell.animatedStarsCount.set(i12, true);
+                }
+                starGiveawayOptionCell.invalidate();
+                break;
+        }
+    }
+
+    @Override
+    public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View boostTypeCell;
+        View shadowSectionCell;
+        Context context = viewGroup.getContext();
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        switch (i) {
+            case 2:
+                boostTypeCell = new BoostTypeCell(context, resourcesProvider);
+                break;
+            case 3:
+                boostTypeCell = new View(context);
+                break;
+            case 4:
+                shadowSectionCell = new ShadowSectionCell(context, Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider), 0);
+                boostTypeCell = shadowSectionCell;
+                break;
+            case 5:
+                boostTypeCell = new SliderCell(context, resourcesProvider);
+                break;
+            case 6:
+                org.telegram.ui.Cells.HeaderCell headerCell = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, false, this.resourcesProvider);
+                headerCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+                boostTypeCell = headerCell;
+                break;
+            case 7:
+                boostTypeCell = new TextInfoCell(context, resourcesProvider);
+                break;
+            case 8:
+                boostTypeCell = new AddChannelCell(context, resourcesProvider);
+                break;
+            case 9:
+                boostTypeCell = new ChatCell(context, resourcesProvider);
+                break;
+            case 10:
+                boostTypeCell = new DateEndCell(context, resourcesProvider);
+                break;
+            case 11:
+                ParticipantsTypeCell participantsTypeCell = new ParticipantsTypeCell(context, resourcesProvider);
+                participantsTypeCell.imageView.setVisibility(8);
+                boostTypeCell = participantsTypeCell;
+                break;
+            case 12:
+                boostTypeCell = new DurationCell(context, resourcesProvider);
+                break;
+            case 13:
+                SubtitleWithCounterCell subtitleWithCounterCell = new SubtitleWithCounterCell(context, resourcesProvider);
+                subtitleWithCounterCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+                boostTypeCell = subtitleWithCounterCell;
+                break;
+            case 14:
+                boostTypeCell = new BoostTypeSingleCell(context, resourcesProvider);
+                break;
+            case 15:
+                SwitcherCell switcherCell = new SwitcherCell(21, context, resourcesProvider, false);
+                switcherCell.setHeight(50);
+                shadowSectionCell = switcherCell;
+                boostTypeCell = shadowSectionCell;
+                break;
+            case 16:
+                boostTypeCell = new EnterPrizeCell(context, resourcesProvider);
+                break;
+            case 17:
+                boostTypeCell = new StarGiveawayOptionCell(context, resourcesProvider);
+                break;
+            case 18:
+                StarsIntroActivity.ExpandView expandView = new StarsIntroActivity.ExpandView(context);
+                expandView.set(LocaleController.getString(R.string.NotifyMoreOptions));
+                boostTypeCell = expandView;
+                break;
+            default:
+                boostTypeCell = new HeaderCell(context, resourcesProvider);
+                break;
+        }
+        return zzkl.m(boostTypeCell, boostTypeCell);
     }
 }

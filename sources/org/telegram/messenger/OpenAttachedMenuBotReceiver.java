@@ -9,7 +9,7 @@ public class OpenAttachedMenuBotReceiver extends Activity {
     public static String ACTION = "com.tmessages.openshortcutbot";
 
     @Override
-    protected void onCreate(Bundle bundle) {
+    public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         Intent intent = getIntent();
         if (intent == null) {

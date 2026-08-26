@@ -1,19 +1,25 @@
 package kotlinx.coroutines.internal;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.ServiceLoader;
+import java.util.Iterator;
+import java.util.ServiceConfigurationError;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.sequences.ConstrainedOnceSequence;
 import kotlin.sequences.SequencesKt;
-import kotlinx.coroutines.CoroutineExceptionHandler;
+import kotlin.text.StringsKt__StringsKt$lineSequence$$inlined$Sequence$1;
+import kotlinx.coroutines.android.AndroidExceptionPreHandler;
 
 public abstract class CoroutineExceptionHandlerImplKt {
-    private static final Collection platformExceptionHandlers = SequencesKt.toList(SequencesKt.asSequence(ServiceLoader.load(CoroutineExceptionHandler.class, CoroutineExceptionHandler.class.getClassLoader()).iterator()));
+    public static final Collection platformExceptionHandlers;
 
-    public static final Collection getPlatformExceptionHandlers() {
-        return platformExceptionHandlers;
-    }
-
-    public static final void propagateExceptionFinalResort(Throwable th) {
-        Thread threadCurrentThread = Thread.currentThread();
-        threadCurrentThread.getUncaughtExceptionHandler().uncaughtException(threadCurrentThread, th);
+    static {
+        try {
+            Iterator it = Arrays.asList(new AndroidExceptionPreHandler()).iterator();
+            Intrinsics.checkNotNullParameter(it, "<this>");
+            platformExceptionHandlers = SequencesKt.toList(new ConstrainedOnceSequence(new StringsKt__StringsKt$lineSequence$$inlined$Sequence$1(it, 2)));
+        } catch (Throwable th) {
+            throw new ServiceConfigurationError(th.getMessage(), th);
+        }
     }
 }

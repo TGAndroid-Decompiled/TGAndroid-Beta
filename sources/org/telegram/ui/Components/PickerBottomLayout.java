@@ -4,62 +4,54 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkh;
+import com.google.android.gms.internal.mlkit_vision_common.zzkr;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer;
 
-public class PickerBottomLayout extends FrameLayout {
-    public TextView cancelButton;
-    public LinearLayout doneButton;
-    public TextView doneButtonBadgeTextView;
-    public TextView doneButtonTextView;
-    private Theme.ResourcesProvider resourcesProvider;
+public final class PickerBottomLayout extends FrameLayout {
+    public final TextView cancelButton;
+    public final LinearLayout doneButton;
+    public final TextView doneButtonBadgeTextView;
+    public final TextView doneButtonTextView;
 
-    public PickerBottomLayout(Context context, boolean z) {
-        this(context, z, null);
-    }
-
-    public PickerBottomLayout(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
+    public PickerBottomLayout(Context context) {
         super(context);
-        this.resourcesProvider = resourcesProvider;
-        setBackgroundColor(Theme.getColor(z ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite, resourcesProvider));
+        setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
         TextView textView = new TextView(context);
         this.cancelButton = textView;
         textView.setTextSize(1, 14.0f);
-        TextView textView2 = this.cancelButton;
         int i = Theme.key_picker_enabledButton;
-        textView2.setTextColor(Theme.getColor(i, resourcesProvider));
-        this.cancelButton.setGravity(17);
-        this.cancelButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(i, resourcesProvider) & 268435455, 0));
-        this.cancelButton.setPadding(AndroidUtilities.dp(33.0f), 0, AndroidUtilities.dp(33.0f), 0);
-        this.cancelButton.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
-        this.cancelButton.setTypeface(AndroidUtilities.bold());
-        addView(this.cancelButton, LayoutHelper.createFrame(-2, -1, 51));
+        zzkr.m(i, textView, 17);
+        textView.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, i, false) & 268435455, 0, -1));
+        textView.setPadding(AndroidUtilities.dp(33.0f), 0, AndroidUtilities.dp(33.0f), 0);
+        textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
+        textView.setTypeface(AndroidUtilities.bold());
+        addView(textView, LayoutHelper.createFrame(-2, -1, 51));
         LinearLayout linearLayout = new LinearLayout(context);
         this.doneButton = linearLayout;
         linearLayout.setOrientation(0);
-        this.doneButton.setBackground(Theme.createSelectorDrawable(268435455 & Theme.getColor(i, resourcesProvider), 0));
-        this.doneButton.setPadding(AndroidUtilities.dp(33.0f), 0, AndroidUtilities.dp(33.0f), 0);
-        addView(this.doneButton, LayoutHelper.createFrame(-2, -1, 53));
-        TextView textView3 = new TextView(context);
-        this.doneButtonBadgeTextView = textView3;
-        textView3.setTypeface(AndroidUtilities.bold());
-        this.doneButtonBadgeTextView.setTextSize(1, 13.0f);
-        this.doneButtonBadgeTextView.setTextColor(Theme.getColor(Theme.key_picker_badgeText, resourcesProvider));
-        this.doneButtonBadgeTextView.setGravity(17);
-        this.doneButtonBadgeTextView.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(11.0f), Theme.getColor(Theme.key_picker_badge, resourcesProvider)));
-        this.doneButtonBadgeTextView.setMinWidth(AndroidUtilities.dp(23.0f));
-        this.doneButtonBadgeTextView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
-        this.doneButton.addView(this.doneButtonBadgeTextView, LayoutHelper.createLinear(-2, 23, 16, 0, 0, 10, 0));
-        TextView textView4 = new TextView(context);
-        this.doneButtonTextView = textView4;
-        textView4.setTextSize(1, 14.0f);
-        this.doneButtonTextView.setTextColor(Theme.getColor(i, resourcesProvider));
-        this.doneButtonTextView.setGravity(17);
-        this.doneButtonTextView.setCompoundDrawablePadding(AndroidUtilities.dp(8.0f));
-        this.doneButtonTextView.setText(LocaleController.getString(R.string.Send).toUpperCase());
-        this.doneButtonTextView.setTypeface(AndroidUtilities.bold());
-        this.doneButton.addView(this.doneButtonTextView, LayoutHelper.createLinear(-2, -2, 16));
+        linearLayout.setBackground(Theme.createSelectorDrawable(268435455 & Theme.getColor(null, i, false), 0, -1));
+        linearLayout.setPadding(AndroidUtilities.dp(33.0f), 0, AndroidUtilities.dp(33.0f), 0);
+        addView(linearLayout, LayoutHelper.createFrame(-2, -1, 53));
+        TextView textView2 = new TextView(context);
+        this.doneButtonBadgeTextView = textView2;
+        zzkh.m(13.0f, textView2);
+        zzkr.m(Theme.key_picker_badgeText, textView2, 17);
+        textView2.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(11.0f), Theme.getColor(null, Theme.key_picker_badge, false)));
+        textView2.setMinWidth(AndroidUtilities.dp(23.0f));
+        textView2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
+        TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView2, LayoutHelper.createLinear(-2, 23, 16, 0, 0, 10, 0), context);
+        this.doneButtonTextView = textViewM;
+        textViewM.setTextSize(1, 14.0f);
+        textViewM.setTextColor(Theme.getColor(null, i, false));
+        textViewM.setGravity(17);
+        textViewM.setCompoundDrawablePadding(AndroidUtilities.dp(8.0f));
+        textViewM.setText(LocaleController.getString(R.string.Send).toUpperCase());
+        textViewM.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(textViewM, LayoutHelper.createLinear(-2, -2, 16));
     }
 }

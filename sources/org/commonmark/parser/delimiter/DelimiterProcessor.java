@@ -1,11 +1,12 @@
 package org.commonmark.parser.delimiter;
 
+import org.commonmark.internal.Delimiter;
 import org.commonmark.node.Text;
 
 public interface DelimiterProcessor {
     char getClosingCharacter();
 
-    int getDelimiterUse(DelimiterRun delimiterRun, DelimiterRun delimiterRun2);
+    int getDelimiterUse(Delimiter delimiter, Delimiter delimiter2);
 
     int getMinLength();
 

@@ -1,30 +1,30 @@
 package kotlin.jvm.internal;
 
 public final class PackageReference implements ClassBasedDeclarationContainer {
-    private final Class jClass;
-    private final String moduleName;
+    public final Class jClass;
 
-    public PackageReference(Class jClass, String moduleName) {
+    public PackageReference(Class jClass) {
         Intrinsics.checkNotNullParameter(jClass, "jClass");
-        Intrinsics.checkNotNullParameter(moduleName, "moduleName");
         this.jClass = jClass;
-        this.moduleName = moduleName;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof PackageReference) {
+            return Intrinsics.areEqual(this.jClass, ((PackageReference) obj).jClass);
+        }
+        return false;
     }
 
     @Override
-    public Class getJClass() {
+    public final Class getJClass() {
         return this.jClass;
     }
 
-    public boolean equals(Object obj) {
-        return (obj instanceof PackageReference) && Intrinsics.areEqual(getJClass(), ((PackageReference) obj).getJClass());
+    public final int hashCode() {
+        return this.jClass.hashCode();
     }
 
-    public int hashCode() {
-        return getJClass().hashCode();
-    }
-
-    public String toString() {
-        return getJClass() + " (Kotlin reflection is not available)";
+    public final String toString() {
+        return this.jClass + " (Kotlin reflection is not available)";
     }
 }

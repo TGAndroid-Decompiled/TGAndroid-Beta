@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda7;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 import org.telegram.ui.LaunchActivity;
@@ -22,94 +22,6 @@ public class ChannelBoostsController {
     private final ConnectionsManager connectionsManager;
     private final int currentAccount;
     private final MessagesController messagesController;
-
-    public ChannelBoostsController(int i) {
-        this.currentAccount = i;
-        this.messagesController = MessagesController.getInstance(i);
-        this.connectionsManager = ConnectionsManager.getInstance(i);
-    }
-
-    public void getBoostsStats(long j, final Consumer consumer) {
-        TL_stories.TL_premium_getBoostsStatus tL_premium_getBoostsStatus = new TL_stories.TL_premium_getBoostsStatus();
-        tL_premium_getBoostsStatus.peer = this.messagesController.getInputPeer(j);
-        this.connectionsManager.sendRequest(tL_premium_getBoostsStatus, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChannelBoostsController.$r8$lambda$4kR6chzkmjvJRhfUBkGHu8w7IOM(tLObject, consumer, tL_error);
-                    }
-                });
-            }
-        });
-    }
-
-    public static void $r8$lambda$4kR6chzkmjvJRhfUBkGHu8w7IOM(TLObject tLObject, Consumer consumer, TLRPC.TL_error tL_error) {
-        if (tLObject != null) {
-            consumer.accept((TL_stories.TL_premium_boostsStatus) tLObject);
-            return;
-        }
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (tL_error != null && lastFragment != null && "CHANNEL_PRIVATE".equals(tL_error.text)) {
-            LaunchActivity launchActivity = LaunchActivity.instance;
-            if (launchActivity == null || !launchActivity.isFinishing()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), lastFragment.getResourceProvider());
-                builder.setTitle(LocaleController.getString(R.string.AppName));
-                HashMap map = new HashMap();
-                int i = Theme.key_dialogTopBackground;
-                map.put("info1", Integer.valueOf(Theme.getColor(i)));
-                map.put("info2", Integer.valueOf(Theme.getColor(i)));
-                builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(i), map);
-                builder.setTopAnimationIsNew(true);
-                builder.setTitle(LocaleController.getString(R.string.ChannelPrivate));
-                builder.setMessage(LocaleController.getString(R.string.ChannelCantOpenPrivate2));
-                builder.setPositiveButton(LocaleController.getString(R.string.Close), null);
-                builder.show();
-            }
-        } else {
-            BulletinFactory.global().showForError(tL_error);
-        }
-        consumer.accept(null);
-    }
-
-    public void userCanBoostChannel(long j, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, final Consumer consumer) {
-        final CanApplyBoost canApplyBoost = new CanApplyBoost();
-        canApplyBoost.currentPeer = this.messagesController.getPeer(j);
-        canApplyBoost.currentDialogId = j;
-        canApplyBoost.currentChat = this.messagesController.getChat(Long.valueOf(-j));
-        BoostRepository.getMyBoosts(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChannelBoostsController.m375$r8$lambda$QUjpU3jxTyAfx8XRNTCZyEH0Y(canApplyBoost, tL_premium_boostsStatus, consumer, (TL_stories.TL_premium_myBoosts) obj);
-            }
-        }, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChannelBoostsController.$r8$lambda$oW_gfsAhJrrtLw4E3Qd76I9WHRs(canApplyBoost, consumer, (TLRPC.TL_error) obj);
-            }
-        });
-    }
-
-    public static void m375$r8$lambda$QUjpU3jxTyAfx8XRNTCZyEH0Y(CanApplyBoost canApplyBoost, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, Consumer consumer, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
-        canApplyBoost.isMaxLvl = tL_premium_boostsStatus.next_level_boosts <= 0;
-        canApplyBoost.setMyBoosts(tL_premium_myBoosts);
-        consumer.accept(canApplyBoost);
-    }
-
-    public static void $r8$lambda$oW_gfsAhJrrtLw4E3Qd76I9WHRs(CanApplyBoost canApplyBoost, Consumer consumer, TLRPC.TL_error tL_error) {
-        if (tL_error.text.startsWith("FLOOD_WAIT")) {
-            canApplyBoost.floodWait = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-        } else if (tL_error.text.startsWith("BOOSTS_EMPTY")) {
-            canApplyBoost.empty = true;
-        }
-        canApplyBoost.canApply = false;
-        consumer.accept(canApplyBoost);
-    }
-
-    public void applyBoost(long j, int i, Utilities.Callback<TL_stories.TL_premium_myBoosts> callback, Utilities.Callback<TLRPC.TL_error> callback2) {
-        BoostRepository.applyBoost(-j, Arrays.asList(Integer.valueOf(i)), callback, callback2);
-    }
 
     public static class CanApplyBoost {
         public boolean alreadyActive;
@@ -217,5 +129,81 @@ public class ChannelBoostsController {
                 this.canApply = false;
             }
         }
+    }
+
+    public ChannelBoostsController(int i) {
+        this.currentAccount = i;
+        this.messagesController = MessagesController.getInstance(i);
+        this.connectionsManager = ConnectionsManager.getInstance(i);
+    }
+
+    public static void lambda$getBoostsStats$0(TLObject tLObject, Consumer consumer, TLRPC.TL_error tL_error) {
+        if (tLObject != null) {
+            consumer.accept((TL_stories.TL_premium_boostsStatus) tLObject);
+            return;
+        }
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (tL_error == null || lastFragment == null || !"CHANNEL_PRIVATE".equals(tL_error.text)) {
+            BulletinFactory.global().showForError(false, tL_error);
+        } else {
+            LaunchActivity launchActivity = LaunchActivity.instance;
+            if (launchActivity == null || !launchActivity.isFinishing()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), 0, lastFragment.getResourceProvider());
+                String string = LocaleController.getString(R.string.AppName);
+                AlertDialog alertDialog = builder.alertDialog;
+                alertDialog.title = string;
+                HashMap map = new HashMap();
+                int i = Theme.key_dialogTopBackground;
+                map.put("info1", Integer.valueOf(Theme.getColor(null, i, false)));
+                map.put("info2", Integer.valueOf(Theme.getColor(null, i, false)));
+                builder.setTopAnimation(R.raw.not_available, 52, Theme.getColor(null, i, false), map);
+                alertDialog.topAnimationIsNew = true;
+                alertDialog.title = LocaleController.getString(R.string.ChannelPrivate);
+                alertDialog.message = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
+                builder.setPositiveButton(LocaleController.getString(R.string.Close), null);
+                builder.show();
+            }
+        }
+        consumer.accept(null);
+    }
+
+    public static void lambda$getBoostsStats$1(Consumer consumer, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda0(tLObject, consumer, tL_error, 11));
+    }
+
+    public static void lambda$userCanBoostChannel$2(CanApplyBoost canApplyBoost, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, Consumer consumer, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
+        canApplyBoost.isMaxLvl = tL_premium_boostsStatus.next_level_boosts <= 0;
+        canApplyBoost.setMyBoosts(tL_premium_myBoosts);
+        consumer.accept(canApplyBoost);
+    }
+
+    public static void lambda$userCanBoostChannel$3(CanApplyBoost canApplyBoost, Consumer consumer, TLRPC.TL_error tL_error) {
+        if (tL_error.text.startsWith("FLOOD_WAIT")) {
+            canApplyBoost.floodWait = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+        } else if (tL_error.text.startsWith("BOOSTS_EMPTY")) {
+            canApplyBoost.empty = true;
+        }
+        canApplyBoost.canApply = false;
+        consumer.accept(canApplyBoost);
+    }
+
+    public void applyBoost(long j, int i, Utilities.Callback<TL_stories.TL_premium_myBoosts> callback, Utilities.Callback<TLRPC.TL_error> callback2) {
+        BoostRepository.applyBoost(-j, Arrays.asList(Integer.valueOf(i)), callback, callback2);
+    }
+
+    public void getBoostsStats(long j, Consumer consumer) {
+        TL_stories.TL_premium_getBoostsStatus tL_premium_getBoostsStatus = new TL_stories.TL_premium_getBoostsStatus();
+        tL_premium_getBoostsStatus.peer = this.messagesController.getInputPeer(j);
+        this.connectionsManager.sendRequest(tL_premium_getBoostsStatus, new UserConfig$$ExternalSyntheticLambda0(consumer, 2));
+    }
+
+    public void userCanBoostChannel(long j, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, Consumer consumer) {
+        CanApplyBoost canApplyBoost = new CanApplyBoost();
+        canApplyBoost.currentPeer = this.messagesController.getPeer(j);
+        canApplyBoost.currentDialogId = j;
+        canApplyBoost.currentChat = this.messagesController.getChat(Long.valueOf(-j));
+        FileRefController$$ExternalSyntheticLambda21 fileRefController$$ExternalSyntheticLambda21 = new FileRefController$$ExternalSyntheticLambda21(canApplyBoost, tL_premium_boostsStatus, consumer, 2);
+        SendMessagesHelper$$ExternalSyntheticLambda17 sendMessagesHelper$$ExternalSyntheticLambda17 = new SendMessagesHelper$$ExternalSyntheticLambda17(2, canApplyBoost, consumer);
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new BoostsActivity$$ExternalSyntheticLambda7(sendMessagesHelper$$ExternalSyntheticLambda17, MessagesController.getInstance(UserConfig.selectedAccount), fileRefController$$ExternalSyntheticLambda21, 19));
     }
 }

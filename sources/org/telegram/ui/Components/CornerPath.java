@@ -3,41 +3,24 @@ package org.telegram.ui.Components;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Build;
+import com.google.android.gms.internal.mlkit_language_id_common.zziq;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CornerPath extends Path {
-    private static ArrayList recycled;
-    private boolean isPathCreated;
-    private int paddingX;
-    private int paddingY;
-    private final ArrayList rects;
-    private float rectsUnionDiffDelta;
-    protected boolean useCornerPathImplementation;
+    public static ArrayList recycled;
+    public int paddingX;
+    public int paddingY;
+    public boolean isPathCreated = false;
+    public boolean useCornerPathImplementation = true;
+    public float rectsUnionDiffDelta = 0.0f;
+    public final ArrayList rects = new ArrayList(1);
 
     public CornerPath() {
-        this.isPathCreated = false;
-        this.useCornerPathImplementation = true;
-        this.rectsUnionDiffDelta = 0.0f;
-        this.rects = new ArrayList(1);
-    }
-
-    public CornerPath(int i) {
-        this.isPathCreated = false;
-        this.useCornerPathImplementation = true;
-        this.rectsUnionDiffDelta = 0.0f;
-        this.rects = new ArrayList(i);
-    }
-
-    public void setPadding(int i, int i2) {
-        this.paddingX = i;
-        this.paddingY = i2;
     }
 
     @Override
-    public void addRect(RectF rectF, Path.Direction direction) {
-        ArrayList arrayList;
-        RectF rectF2;
+    public final void addRect(RectF rectF, Path.Direction direction) {
         if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
             float f = rectF.left;
             float f2 = this.paddingX;
@@ -47,139 +30,21 @@ public class CornerPath extends Path {
             super.addRect(f3, f4 - f5, rectF.right + f2, rectF.bottom + f5, direction);
             return;
         }
-        if (this.rects.size() > 0) {
-            ArrayList arrayList2 = this.rects;
-            if (((RectF) arrayList2.get(arrayList2.size() - 1)).contains(rectF)) {
-                return;
-            }
-        }
-        if (this.rects.size() > 0) {
-            float f6 = rectF.top;
-            ArrayList arrayList3 = this.rects;
-            if (Math.abs(f6 - ((RectF) arrayList3.get(arrayList3.size() - 1)).top) <= this.rectsUnionDiffDelta) {
-                float f7 = rectF.bottom;
-                ArrayList arrayList4 = this.rects;
-                if (Math.abs(f7 - ((RectF) arrayList4.get(arrayList4.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
-                    ArrayList arrayList5 = this.rects;
-                    ((RectF) arrayList5.get(arrayList5.size() - 1)).union(rectF);
-                } else {
-                    arrayList = recycled;
-                    if (arrayList == null && arrayList.size() > 0) {
-                        rectF2 = (RectF) recycled.remove(0);
-                    } else {
-                        rectF2 = new RectF();
-                    }
-                    rectF2.set(rectF);
-                    this.rects.add(rectF2);
-                }
-            } else {
-                arrayList = recycled;
-                if (arrayList == null) {
-                    rectF2 = new RectF();
-                } else {
-                    rectF2 = new RectF();
-                }
+        ArrayList arrayList = this.rects;
+        if (arrayList.size() <= 0 || !((RectF) zziq.m(1, arrayList)).contains(rectF)) {
+            if (arrayList.size() <= 0 || Math.abs(rectF.top - ((RectF) zziq.m(1, arrayList)).top) > this.rectsUnionDiffDelta || Math.abs(rectF.bottom - ((RectF) zziq.m(1, arrayList)).bottom) > this.rectsUnionDiffDelta) {
+                ArrayList arrayList2 = recycled;
+                RectF rectF2 = (arrayList2 == null || arrayList2.size() <= 0) ? new RectF() : (RectF) recycled.remove(0);
                 rectF2.set(rectF);
-                this.rects.add(rectF2);
-            }
-        } else {
-            arrayList = recycled;
-            if (arrayList == null) {
-                rectF2 = new RectF();
+                arrayList.add(rectF2);
             } else {
-                rectF2 = new RectF();
+                ((RectF) zziq.m(1, arrayList)).union(rectF);
             }
-            rectF2.set(rectF);
-            this.rects.add(rectF2);
+            this.isPathCreated = false;
         }
-        this.isPathCreated = false;
     }
 
-    @Override
-    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-        ArrayList arrayList;
-        RectF rectF;
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            float f5 = this.paddingX;
-            float f6 = f - f5;
-            float f7 = this.paddingY;
-            super.addRect(f6, f2 - f7, f3 + f5, f4 + f7, direction);
-            return;
-        }
-        if (this.rects.size() > 0) {
-            ArrayList arrayList2 = this.rects;
-            if (((RectF) arrayList2.get(arrayList2.size() - 1)).contains(f, f2, f3, f4)) {
-                return;
-            }
-        }
-        if (this.rects.size() > 0) {
-            ArrayList arrayList3 = this.rects;
-            if (Math.abs(f2 - ((RectF) arrayList3.get(arrayList3.size() - 1)).top) <= this.rectsUnionDiffDelta) {
-                ArrayList arrayList4 = this.rects;
-                if (Math.abs(f4 - ((RectF) arrayList4.get(arrayList4.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
-                    ArrayList arrayList5 = this.rects;
-                    ((RectF) arrayList5.get(arrayList5.size() - 1)).union(f, f2, f3, f4);
-                } else {
-                    arrayList = recycled;
-                    if (arrayList == null && arrayList.size() > 0) {
-                        rectF = (RectF) recycled.remove(0);
-                    } else {
-                        rectF = new RectF();
-                    }
-                    rectF.set(f, f2, f3, f4);
-                    this.rects.add(rectF);
-                }
-            } else {
-                arrayList = recycled;
-                if (arrayList == null) {
-                    rectF = new RectF();
-                } else {
-                    rectF = new RectF();
-                }
-                rectF.set(f, f2, f3, f4);
-                this.rects.add(rectF);
-            }
-        } else {
-            arrayList = recycled;
-            if (arrayList == null) {
-                rectF = new RectF();
-            } else {
-                rectF = new RectF();
-            }
-            rectF.set(f, f2, f3, f4);
-            this.rects.add(rectF);
-        }
-        this.isPathCreated = false;
-    }
-
-    @Override
-    public void reset() {
-        super.reset();
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            return;
-        }
-        resetRects();
-    }
-
-    @Override
-    public void rewind() {
-        super.rewind();
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            return;
-        }
-        resetRects();
-    }
-
-    private void resetRects() {
-        if (recycled == null) {
-            recycled = new ArrayList(this.rects.size());
-        }
-        recycled.addAll(this.rects);
-        this.rects.clear();
-        this.isPathCreated = false;
-    }
-
-    public void closeRects() {
+    public final void closeRects() {
         if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation || this.isPathCreated) {
             return;
         }
@@ -187,15 +52,7 @@ public class CornerPath extends Path {
         this.isPathCreated = true;
     }
 
-    public void setUseCornerPathImplementation(boolean z) {
-        this.useCornerPathImplementation = z;
-    }
-
-    public void setRectsUnionDiffDelta(float f) {
-        this.rectsUnionDiffDelta = f;
-    }
-
-    private void createClosedPathsFromRects(List list) {
+    public final void createClosedPathsFromRects(List list) {
         if (list.isEmpty()) {
             return;
         }
@@ -251,5 +108,69 @@ public class CornerPath extends Path {
         if (z) {
             createClosedPathsFromRects(list.subList(size, list.size()));
         }
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
+            return;
+        }
+        ArrayList arrayList = recycled;
+        ArrayList arrayList2 = this.rects;
+        if (arrayList == null) {
+            recycled = new ArrayList(arrayList2.size());
+        }
+        recycled.addAll(arrayList2);
+        arrayList2.clear();
+        this.isPathCreated = false;
+    }
+
+    @Override
+    public final void rewind() {
+        super.rewind();
+        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
+            return;
+        }
+        ArrayList arrayList = recycled;
+        ArrayList arrayList2 = this.rects;
+        if (arrayList == null) {
+            recycled = new ArrayList(arrayList2.size());
+        }
+        recycled.addAll(arrayList2);
+        arrayList2.clear();
+        this.isPathCreated = false;
+    }
+
+    public CornerPath(int i) {
+    }
+
+    @Override
+    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+        RectF rectF;
+        if (Build.VERSION.SDK_INT >= 34 && this.useCornerPathImplementation) {
+            ArrayList arrayList = this.rects;
+            if (arrayList.size() <= 0 || !((RectF) zziq.m(1, arrayList)).contains(f, f2, f3, f4)) {
+                if (arrayList.size() > 0 && Math.abs(f2 - ((RectF) zziq.m(1, arrayList)).top) <= this.rectsUnionDiffDelta && Math.abs(f4 - ((RectF) zziq.m(1, arrayList)).bottom) <= this.rectsUnionDiffDelta) {
+                    ((RectF) zziq.m(1, arrayList)).union(f, f2, f3, f4);
+                } else {
+                    ArrayList arrayList2 = recycled;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF = (RectF) recycled.remove(0);
+                    } else {
+                        rectF = new RectF();
+                    }
+                    rectF.set(f, f2, f3, f4);
+                    arrayList.add(rectF);
+                }
+                this.isPathCreated = false;
+                return;
+            }
+            return;
+        }
+        float f5 = this.paddingX;
+        float f6 = f - f5;
+        float f7 = this.paddingY;
+        super.addRect(f6, f2 - f7, f3 + f5, f4 + f7, direction);
     }
 }

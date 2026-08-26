@@ -44,36 +44,7 @@ public class TLObject {
     public boolean disableFree = false;
     public int networkType;
 
-    public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-        return null;
-    }
-
-    public void freeResources() {
-    }
-
-    public void readParams(InputSerializedData inputSerializedData, boolean z) {
-    }
-
-    public void serializeToStream(OutputSerializedData outputSerializedData) {
-    }
-
-    public static int setFlag(int i, int i2, boolean z) {
-        return BitwiseUtils.setFlag(i, i2, z);
-    }
-
-    public static boolean hasFlag(int i, int i2) {
-        return BitwiseUtils.hasFlag(i, i2);
-    }
-
-    public int getObjectSize() {
-        ThreadLocal<NativeByteBuffer> threadLocal = sizeCalculator;
-        NativeByteBuffer nativeByteBuffer = threadLocal.get();
-        nativeByteBuffer.rewind();
-        serializeToStream(threadLocal.get());
-        return nativeByteBuffer.length();
-    }
-
-    protected static <T extends TLObject> T TLdeserialize(Class<T> cls, T t, InputSerializedData inputSerializedData, int i, boolean z) {
+    public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t, InputSerializedData inputSerializedData, int i, boolean z) {
         if (t == null) {
             TLParseException.doThrowOrLog(inputSerializedData, cls.getName(), i, z);
             return null;
@@ -90,5 +61,34 @@ public class TLObject {
         t.serializeToStream(serializedData);
         SerializedData serializedData2 = new SerializedData(serializedData.toByteArray());
         return (T) tLDeserializer.deserialize(serializedData2, serializedData2.readInt32(false), false);
+    }
+
+    public static boolean hasFlag(int i, int i2) {
+        return BitwiseUtils.hasFlag(i, i2);
+    }
+
+    public static int setFlag(int i, int i2, boolean z) {
+        return BitwiseUtils.setFlag(i, i2, z);
+    }
+
+    public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+        return null;
+    }
+
+    public void freeResources() {
+    }
+
+    public int getObjectSize() {
+        ThreadLocal<NativeByteBuffer> threadLocal = sizeCalculator;
+        NativeByteBuffer nativeByteBuffer = threadLocal.get();
+        nativeByteBuffer.rewind();
+        serializeToStream(threadLocal.get());
+        return nativeByteBuffer.length();
+    }
+
+    public void readParams(InputSerializedData inputSerializedData, boolean z) {
+    }
+
+    public void serializeToStream(OutputSerializedData outputSerializedData) {
     }
 }

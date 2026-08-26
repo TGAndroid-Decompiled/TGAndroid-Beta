@@ -1,71 +1,52 @@
 package org.telegram.ui.Components.Premium;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class PremiumNotAvailableBottomSheet extends BottomSheet {
+public final class PremiumNotAvailableBottomSheet extends BottomSheet {
     public PremiumNotAvailableBottomSheet(BaseFragment baseFragment) {
-        super(baseFragment.getParentActivity(), false);
+        super(baseFragment.getParentActivity(), null, false, false);
         Activity parentActivity = baseFragment.getParentActivity();
-        LinearLayout linearLayout = new LinearLayout(parentActivity);
-        linearLayout.setOrientation(1);
+        LinearLayout linearLayoutM = FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(parentActivity, 1);
         TextView textView = new TextView(parentActivity);
         textView.setGravity(8388611);
         int i = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 16.0f, 21.0f, 0.0f));
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(20.0f, Theme.getColor(null, i, false), 1, textView);
+        linearLayoutM.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 16.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(parentActivity);
         textView2.setGravity(8388611);
         textView2.setTextSize(1, 16.0f);
-        textView2.setTextColor(Theme.getColor(i));
-        linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+        textView2.setTextColor(Theme.getColor(null, i, false));
+        linearLayoutM.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
         TextView textView3 = new TextView(parentActivity);
         textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         textView3.setGravity(17);
-        textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 8.0f));
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(14.0f, Theme.getColor(null, Theme.key_featuredStickers_buttonText, false), 1, textView3);
+        textView3.setBackground(Theme.AdaptiveRipple.filledRectByKey(new float[]{8.0f}, Theme.key_featuredStickers_addButton));
         textView3.setText(LocaleController.getString(R.string.InstallOfficialApp));
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                PremiumNotAvailableBottomSheet.$r8$lambda$txcDGP6h515KnUS4SmifJGMaQKM(view);
-            }
-        });
+        textView3.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(8));
         FrameLayout frameLayout = new FrameLayout(parentActivity);
         frameLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
         frameLayout.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 68, 80));
-        textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SubscribeToPremiumOfficialAppNeeded)));
+        linearLayoutM.addView(frameLayout, LayoutHelper.createLinear(-1, 68, 80));
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(R.string.SubscribeToPremiumOfficialAppNeeded, textView);
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SubscribeToPremiumOfficialAppNeededDescription)));
         ScrollView scrollView = new ScrollView(parentActivity);
-        scrollView.addView(linearLayout);
+        scrollView.addView(linearLayoutM);
         setCustomView(scrollView);
-    }
-
-    public static void $r8$lambda$txcDGP6h515KnUS4SmifJGMaQKM(View view) {
-        try {
-            view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=org.telegram.messenger")));
-        } catch (ActivityNotFoundException e) {
-            FileLog.e(e);
-        }
     }
 }

@@ -1,26 +1,25 @@
 package kotlinx.coroutines;
 
-final class Empty implements Incomplete {
-    private final boolean isActive;
-
-    @Override
-    public NodeList getList() {
-        return null;
-    }
+public final class Empty implements Incomplete {
+    public final boolean isActive;
 
     public Empty(boolean z) {
         this.isActive = z;
     }
 
     @Override
-    public boolean isActive() {
+    public final NodeList getList() {
+        return null;
+    }
+
+    @Override
+    public final boolean isActive() {
         return this.isActive;
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Empty{");
-        sb.append(isActive() ? "Active" : "New");
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("Empty{");
+        sb.append(this.isActive ? "Active" : "New");
         sb.append('}');
         return sb.toString();
     }

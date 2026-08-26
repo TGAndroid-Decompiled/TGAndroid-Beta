@@ -6,13 +6,13 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 
-public class FileState {
-    private final String attachFileName;
+public final class FileState {
+    public final String attachFileName;
     public final String attachPath;
     public final int currentAccount;
     public final TLRPC.Document document;
-    private boolean isExists;
-    private boolean isLoading;
+    public boolean isExists;
+    public boolean isLoading;
     public final MessageObject messageObject;
 
     public FileState(int i, MessageObject messageObject, TLRPC.Document document, String str) {
@@ -24,34 +24,19 @@ public class FileState {
         checkState();
     }
 
-    public void checkState() {
+    public final void checkState() {
         boolean z = false;
-        boolean zExists = this.attachPath != null ? new File(this.attachPath).exists() : false;
+        String str = this.attachPath;
+        boolean zExists = str != null ? new File(str).exists() : false;
+        int i = this.currentAccount;
         if (!zExists) {
-            zExists = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.document).exists();
+            zExists = FileLoader.getInstance(i).getPathToAttach(this.document).exists();
         }
         this.isExists = zExists;
-        if (!TextUtils.isEmpty(this.attachFileName) && FileLoader.getInstance(this.currentAccount).isLoadingFile(this.attachFileName)) {
+        String str2 = this.attachFileName;
+        if (!TextUtils.isEmpty(str2) && FileLoader.getInstance(i).isLoadingFile(str2)) {
             z = true;
         }
         this.isLoading = z;
-    }
-
-    public void downloadStart() {
-        FileLoader.getInstance(this.currentAccount).loadFile(this.document, this.messageObject, 2, 0);
-        checkState();
-    }
-
-    public void downloadCancel() {
-        FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.document);
-        checkState();
-    }
-
-    public boolean isLoading() {
-        return this.isLoading;
-    }
-
-    public boolean isExists() {
-        return this.isExists;
     }
 }

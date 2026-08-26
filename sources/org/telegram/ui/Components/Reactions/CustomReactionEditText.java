@@ -1,5 +1,6 @@
 package org.telegram.ui.Components.Reactions;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Build;
@@ -9,36 +10,33 @@ import android.view.ActionMode;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MotionEvent;
-import android.view.View;
-import androidx.core.view.GestureDetectorCompat;
+import com.android.billingclient.api.zzcv;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextCaption;
+import org.telegram.ui.Components.ItemOptions;
+import org.telegram.ui.Components.ShareAlert$$ExternalSyntheticLambda29;
+import org.telegram.ui.iv.RichTextCell$$ExternalSyntheticLambda3;
 
 public abstract class CustomReactionEditText extends EditTextCaption {
-    private final GestureDetectorCompat gestureDetector;
-    private int maxLength;
-    private Runnable onFocused;
-    private final Theme.ResourcesProvider resourcesProvider;
+    public final zzcv gestureDetector;
+    public int maxLength;
+    public Runnable onFocused;
+    public final Theme.ResourcesProvider resourcesProvider;
 
-    public void setMaxLength(int i) {
-        if (this.maxLength != i) {
-            this.maxLength = i;
-            setFilters(new InputFilter[]{new InputFilter.LengthFilter(i)});
+    public final class AnonymousClass1 extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public final boolean onDoubleTap(MotionEvent motionEvent) {
+            return true;
         }
     }
 
-    public CustomReactionEditText(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
+    public CustomReactionEditText(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
         this.resourcesProvider = resourcesProvider;
-        this.gestureDetector = new GestureDetectorCompat(getContext(), new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDoubleTap(MotionEvent motionEvent) {
-                return true;
-            }
-        });
+        this.gestureDetector = new zzcv(getContext(), new AnonymousClass1());
         setBackground(null);
         setIncludeFontPadding(true);
         int i2 = Build.VERSION.SDK_INT;
@@ -50,103 +48,51 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         setTextSize(1, 22.0f);
         setGravity(80);
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
-        setTextColor(getThemedColor(Theme.key_chat_messagePanelText));
-        setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkOut));
-        setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
+        setTextColor(Theme.getColor(Theme.key_chat_messagePanelText, resourcesProvider));
+        setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkOut, resourcesProvider));
+        setHighlightColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, resourcesProvider));
         int i3 = Theme.key_chat_messagePanelHint;
-        setHintColor(getThemedColor(i3));
-        setHintTextColor(getThemedColor(i3));
-        setCursorColor(getThemedColor(Theme.key_chat_messagePanelCursor));
-        setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
+        setHintColor(Theme.getColor(i3, resourcesProvider));
+        setHintTextColor(Theme.getColor(i3, resourcesProvider));
+        setCursorColor(Theme.getColor(Theme.key_chat_messagePanelCursor, resourcesProvider));
+        setHandlesColor(Theme.getColor(Theme.key_chat_TextSelectionCursor, resourcesProvider));
         if (i2 >= 28) {
             setFallbackLineSpacing(false);
         }
-        setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public final void onFocusChange(View view, boolean z) {
-                CustomReactionEditText.m2714$r8$lambda$4SFGA_l2jkfOeF1MjYJK1KjlQM(this.f$0, view, z);
-            }
-        });
+        setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3((ChatCustomReactionsEditActivity.AnonymousClass3) this, 4));
         setTextIsSelectable(true);
         setLongClickable(false);
         setFocusableInTouchMode(false);
     }
 
-    public static void m2714$r8$lambda$4SFGA_l2jkfOeF1MjYJK1KjlQM(CustomReactionEditText customReactionEditText, View view, boolean z) {
-        if (z) {
-            customReactionEditText.removeReactionsSpan(true);
-            Runnable runnable = customReactionEditText.onFocused;
-            if (runnable != null) {
-                runnable.run();
-                return;
-            }
-            return;
+    public final void addReactionsSpan() {
+        setLongClickable(false);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
+        if (((AddReactionsSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AddReactionsSpan.class)).length == 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
+            AddReactionsSpan addReactionsSpan = new AddReactionsSpan(this.resourcesProvider);
+            ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(addReactionsSpan.alpha, 255);
+            valueAnimatorOfInt.addUpdateListener(new AddReactionsSpan$$ExternalSyntheticLambda0(addReactionsSpan, this, 0));
+            valueAnimatorOfInt.setDuration(200L);
+            valueAnimatorOfInt.start();
+            spannableStringBuilder2.setSpan(addReactionsSpan, 0, spannableStringBuilder2.length(), 33);
+            setText(getText().append((CharSequence) spannableStringBuilder2));
         }
-        customReactionEditText.addReactionsSpan();
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.gestureDetector.onTouchEvent(motionEvent) || isLongClickable()) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!((GestureDetector) this.gestureDetector.zza).onTouchEvent(motionEvent) || isLongClickable()) {
             return super.dispatchTouchEvent(motionEvent);
         }
         return false;
     }
 
     @Override
-    protected void onSelectionChanged(int i, int i2) {
-        super.onSelectionChanged(i, i2);
-        if (!hasSelection() || ((AddReactionsSpan[]) getText().getSpans(i, i2, AddReactionsSpan.class)).length == 0) {
-            return;
-        }
-        setSelection(i, i2 - 1);
-    }
-
-    @Override
-    protected void extendActionMode(ActionMode actionMode, Menu menu) {
+    public final void extendActionMode(ActionMode actionMode, Menu menu) {
         menu.clear();
         int i = R.id.menu_delete;
         menu.add(i, i, 0, LocaleController.getString(R.string.Delete));
-    }
-
-    public void setOnFocused(Runnable runnable) {
-        this.onFocused = runnable;
-    }
-
-    public void addReactionsSpan() {
-        setLongClickable(false);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
-        if (((AddReactionsSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AddReactionsSpan.class)).length == 0) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
-            AddReactionsSpan addReactionsSpan = new AddReactionsSpan(15.0f, this.resourcesProvider);
-            addReactionsSpan.show(this);
-            spannableStringBuilder2.setSpan(addReactionsSpan, 0, spannableStringBuilder2.length(), 33);
-            setText(getText().append((CharSequence) spannableStringBuilder2));
-        }
-    }
-
-    public void removeReactionsSpan(boolean z) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
-        for (final AddReactionsSpan addReactionsSpan : (AddReactionsSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AddReactionsSpan.class)) {
-            Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    CustomReactionEditText.m2715$r8$lambda$ChVxSDasvJ0LQlf1VdZZq1bzww(this.f$0, addReactionsSpan);
-                }
-            };
-            if (z) {
-                setCursorVisible(false);
-                addReactionsSpan.hide(this, runnable);
-            } else {
-                runnable.run();
-            }
-        }
-    }
-
-    public static void m2715$r8$lambda$ChVxSDasvJ0LQlf1VdZZq1bzww(CustomReactionEditText customReactionEditText, AddReactionsSpan addReactionsSpan) {
-        customReactionEditText.getText().delete(customReactionEditText.getText().getSpanStart(addReactionsSpan), customReactionEditText.getText().getSpanEnd(addReactionsSpan));
-        customReactionEditText.setCursorVisible(true);
-        customReactionEditText.setLongClickable(true);
     }
 
     public int getEditTextSelectionEnd() {
@@ -165,11 +111,44 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         return selectionStart;
     }
 
-    public int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
     public Paint.FontMetricsInt getFontMetricsInt() {
         return getPaint().getFontMetricsInt();
+    }
+
+    @Override
+    public final void onSelectionChanged(int i, int i2) {
+        super.onSelectionChanged(i, i2);
+        if (!hasSelection() || ((AddReactionsSpan[]) getText().getSpans(i, i2, AddReactionsSpan.class)).length == 0) {
+            return;
+        }
+        setSelection(i, i2 - 1);
+    }
+
+    public final void removeReactionsSpan(boolean z) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
+        for (AddReactionsSpan addReactionsSpan : (AddReactionsSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AddReactionsSpan.class)) {
+            ShareAlert$$ExternalSyntheticLambda29 shareAlert$$ExternalSyntheticLambda29 = new ShareAlert$$ExternalSyntheticLambda29(10, this, addReactionsSpan);
+            if (z) {
+                setCursorVisible(false);
+                ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(addReactionsSpan.alpha, 0);
+                valueAnimatorOfInt.addUpdateListener(new AddReactionsSpan$$ExternalSyntheticLambda0(addReactionsSpan, this, 1));
+                valueAnimatorOfInt.addListener(new ItemOptions.AnonymousClass3(shareAlert$$ExternalSyntheticLambda29, 23));
+                valueAnimatorOfInt.setDuration(200L);
+                valueAnimatorOfInt.start();
+            } else {
+                shareAlert$$ExternalSyntheticLambda29.run();
+            }
+        }
+    }
+
+    public void setMaxLength(int i) {
+        if (this.maxLength != i) {
+            this.maxLength = i;
+            setFilters(new InputFilter[]{new InputFilter.LengthFilter(i)});
+        }
+    }
+
+    public void setOnFocused(Runnable runnable) {
+        this.onFocused = runnable;
     }
 }

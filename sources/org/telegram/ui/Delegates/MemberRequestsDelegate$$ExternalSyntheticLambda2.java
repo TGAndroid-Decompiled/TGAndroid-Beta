@@ -1,13 +1,26 @@
 package org.telegram.ui.Delegates;
 
-import android.view.View;
-import org.telegram.ui.Components.RecyclerListView;
-
-public final class MemberRequestsDelegate$$ExternalSyntheticLambda2 implements RecyclerListView.OnItemClickListener {
+public final class MemberRequestsDelegate$$ExternalSyntheticLambda2 implements Runnable {
+    public final int $r8$classId;
     public final MemberRequestsDelegate f$0;
 
+    public MemberRequestsDelegate$$ExternalSyntheticLambda2(MemberRequestsDelegate memberRequestsDelegate, int i) {
+        this.$r8$classId = i;
+        this.f$0 = memberRequestsDelegate;
+    }
+
     @Override
-    public final void onItemClick(View view, int i) {
-        this.f$0.onItemClick(view, i);
+    public final void run() {
+        switch (this.$r8$classId) {
+            case 0:
+                this.f$0.loadMembers();
+                break;
+            case 1:
+                MemberRequestsDelegate.setViewVisible(this.f$0.loadingView, true, true);
+                break;
+            default:
+                this.f$0.loadMembers();
+                break;
+        }
     }
 }

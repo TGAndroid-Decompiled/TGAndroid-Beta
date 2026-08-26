@@ -1,13 +1,13 @@
 package kotlin.ranges;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
-import kotlin.collections.IntIterator;
 
-public final class IntProgressionIterator extends IntIterator {
-    private final int finalElement;
-    private boolean hasNext;
-    private int next;
-    private final int step;
+public final class IntProgressionIterator implements Iterator {
+    public final int finalElement;
+    public boolean hasNext;
+    public int next;
+    public final int step;
 
     public IntProgressionIterator(int i, int i2, int i3) {
         this.step = i3;
@@ -21,21 +21,30 @@ public final class IntProgressionIterator extends IntIterator {
     }
 
     @Override
-    public boolean hasNext() {
+    public final boolean hasNext() {
         return this.hasNext;
     }
 
     @Override
-    public int nextInt() {
+    public final Object next() {
+        return Integer.valueOf(nextInt());
+    }
+
+    public final int nextInt() {
         int i = this.next;
-        if (i == this.finalElement) {
-            if (!this.hasNext) {
-                throw new NoSuchElementException();
-            }
-            this.hasNext = false;
+        if (i != this.finalElement) {
+            this.next = this.step + i;
             return i;
         }
-        this.next = this.step + i;
+        if (!this.hasNext) {
+            throw new NoSuchElementException();
+        }
+        this.hasNext = false;
         return i;
+    }
+
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

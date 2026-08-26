@@ -1,40 +1,40 @@
 package kotlin.time;
 
 import kotlin.jvm.internal.Intrinsics;
-import kotlin.ranges.RangesKt;
 
 public abstract class DurationKt {
-    public static final long millisToNanos(long j) {
-        return j * ((long) 1000000);
-    }
-
     public static final long toDuration(int i, DurationUnit unit) {
         Intrinsics.checkNotNullParameter(unit, "unit");
         if (unit.compareTo(DurationUnit.SECONDS) <= 0) {
-            return durationOfNanos(DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(i, unit, DurationUnit.NANOSECONDS));
+            long jConvertDurationUnitOverflow = DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(i, unit, DurationUnit.NANOSECONDS) << 1;
+            int i2 = Duration.$r8$clinit;
+            int i3 = DurationJvmKt.$r8$clinit;
+            return jConvertDurationUnitOverflow;
         }
-        return toDuration(i, unit);
-    }
-
-    public static final long toDuration(long j, DurationUnit unit) {
-        Intrinsics.checkNotNullParameter(unit, "unit");
+        long j = i;
         DurationUnit durationUnit = DurationUnit.NANOSECONDS;
-        long jConvertDurationUnitOverflow = DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(4611686018426999999L, durationUnit, unit);
-        if ((-jConvertDurationUnitOverflow) <= j && j <= jConvertDurationUnitOverflow) {
-            return durationOfNanos(DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(j, unit, durationUnit));
+        long jConvertDurationUnitOverflow2 = DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(4611686018426999999L, durationUnit, unit);
+        if ((-jConvertDurationUnitOverflow2) <= j && j <= jConvertDurationUnitOverflow2) {
+            long jConvertDurationUnitOverflow3 = DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(j, unit, durationUnit) << 1;
+            int i4 = Duration.$r8$clinit;
+            int i5 = DurationJvmKt.$r8$clinit;
+            return jConvertDurationUnitOverflow3;
         }
-        return durationOfMillis(RangesKt.coerceIn(DurationUnitKt__DurationUnitJvmKt.convertDurationUnit(j, unit, DurationUnit.MILLISECONDS), -4611686018427387903L, 4611686018427387903L));
-    }
-
-    private static final long durationOfNanos(long j) {
-        return Duration.m296constructorimpl(j << 1);
-    }
-
-    public static final long durationOfMillis(long j) {
-        return Duration.m296constructorimpl((j << 1) + 1);
-    }
-
-    public static final long durationOf(long j, int i) {
-        return Duration.m296constructorimpl((j << 1) + ((long) i));
+        DurationUnit targetUnit = DurationUnit.MILLISECONDS;
+        Intrinsics.checkNotNullParameter(targetUnit, "targetUnit");
+        long jConvert = targetUnit.timeUnit.convert(j, unit.timeUnit);
+        long j2 = -4611686018427387903L;
+        if (jConvert < -4611686018427387903L) {
+            jConvert = j2;
+        } else {
+            j2 = 4611686018427387903L;
+            if (jConvert > 4611686018427387903L) {
+                jConvert = j2;
+            }
+        }
+        long j3 = (jConvert << 1) + 1;
+        int i6 = Duration.$r8$clinit;
+        int i7 = DurationJvmKt.$r8$clinit;
+        return j3;
     }
 }

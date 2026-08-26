@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -13,146 +14,205 @@ import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.BaseCell;
 
 public class UnreadCounterTextView extends View {
-    boolean animatedFromBottom;
-    private int circleWidth;
-    int counterColor;
-    private int currentCounter;
-    private String currentCounterString;
-    private Drawable icon;
-    private Drawable iconOut;
-    CharSequence lastText;
-    private TextPaint layoutPaint;
-    private int layoutTextWidth;
-    private Paint paint;
-    int panelBackgroundColor;
-    private RectF rect;
-    ValueAnimator replaceAnimator;
-    float replaceProgress;
-    private int rippleColor;
-    Drawable selectableBackground;
-    int textColor;
-    int textColorKey;
-    private StaticLayout textLayout;
-    private StaticLayout textLayoutOut;
-    private TextPaint textPaint;
-    private int textWidth;
-
-    protected Theme.ResourcesProvider getResourceProvider() {
-        return null;
-    }
-
-    protected float getTopOffset() {
-        return 0.0f;
-    }
+    public boolean animatedFromBottom;
+    public int circleWidth;
+    public int counterColor;
+    public int currentCounter;
+    public String currentCounterString;
+    public Drawable icon;
+    public Drawable iconOut;
+    public String lastText;
+    public final TextPaint layoutPaint;
+    public int layoutTextWidth;
+    public final Paint paint;
+    public int panelBackgroundColor;
+    public final RectF rect;
+    public ValueAnimator replaceAnimator;
+    public float replaceProgress;
+    public int rippleColor;
+    public BaseCell.RippleDrawableSafe selectableBackground;
+    public int textColor;
+    public int textColorKey;
+    public StaticLayout textLayout;
+    public StaticLayout textLayoutOut;
+    public final TextPaint textPaint;
+    public int textWidth;
 
     public UnreadCounterTextView(Context context) {
         super(context);
-        this.textPaint = new TextPaint(1);
+        TextPaint textPaint = new TextPaint(1);
+        this.textPaint = textPaint;
         this.paint = new Paint(1);
         this.rect = new RectF();
-        this.layoutPaint = new TextPaint(1);
+        TextPaint textPaint2 = new TextPaint(1);
+        this.layoutPaint = textPaint2;
         this.replaceProgress = 1.0f;
         this.textColorKey = Theme.key_chat_fieldOverlayText;
-        this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        this.textPaint.setTypeface(AndroidUtilities.bold());
-        this.layoutPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        this.layoutPaint.setTypeface(AndroidUtilities.bold());
-    }
-
-    public void setText(CharSequence charSequence, boolean z) {
-        if (this.lastText == charSequence) {
-            return;
-        }
-        this.lastText = charSequence;
-        this.animatedFromBottom = z;
-        this.textLayoutOut = this.textLayout;
-        this.iconOut = this.icon;
-        this.layoutPaint.setTypeface(AndroidUtilities.bold());
-        this.layoutTextWidth = (int) Math.ceil(this.layoutPaint.measureText(charSequence, 0, charSequence.length()));
-        this.icon = null;
-        this.textLayout = new StaticLayout(charSequence, this.layoutPaint, this.layoutTextWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
-        setContentDescription(charSequence);
-        invalidate();
-        if (this.textLayoutOut == null && this.iconOut == null) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.replaceAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        this.replaceProgress = 0.0f;
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.replaceAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                UnreadCounterTextView.$r8$lambda$0PgUyTg62xsDBqWmLIFjviNbzEg(this.f$0, valueAnimator2);
-            }
-        });
-        this.replaceAnimator.setDuration(150L);
-        this.replaceAnimator.start();
-    }
-
-    public static void $r8$lambda$0PgUyTg62xsDBqWmLIFjviNbzEg(UnreadCounterTextView unreadCounterTextView, ValueAnimator valueAnimator) {
-        unreadCounterTextView.getClass();
-        unreadCounterTextView.replaceProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        unreadCounterTextView.invalidate();
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.layoutPaint.setTypeface(AndroidUtilities.bold());
-        this.layoutTextWidth = (int) Math.ceil(this.layoutPaint.measureText(charSequence, 0, charSequence.length()));
-        this.icon = null;
-        this.textLayout = new StaticLayout(charSequence, this.layoutPaint, this.layoutTextWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
-        setContentDescription(charSequence);
-        invalidate();
-    }
-
-    public void setTextInfo(CharSequence charSequence) {
-        this.layoutPaint.setTypeface(null);
-        this.layoutTextWidth = (int) Math.ceil(this.layoutPaint.measureText(charSequence, 0, charSequence.length()));
-        this.icon = null;
-        this.textLayout = new StaticLayout(charSequence, this.layoutPaint, this.layoutTextWidth + 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
-        setContentDescription(charSequence);
-        invalidate();
-    }
-
-    public void setTextInfo(Drawable drawable, CharSequence charSequence) {
-        this.layoutPaint.setTypeface(null);
-        this.layoutTextWidth = (int) Math.ceil(this.layoutPaint.measureText(charSequence, 0, charSequence.length()));
-        this.icon = drawable;
-        this.textLayout = new StaticLayout(charSequence, this.layoutPaint, this.layoutTextWidth + 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
-        setContentDescription(charSequence);
-        invalidate();
+        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint2.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint2.setTypeface(AndroidUtilities.bold());
     }
 
     @Override
-    protected void drawableStateChanged() {
+    public final void drawableStateChanged() {
         super.drawableStateChanged();
-        Drawable drawable = this.selectableBackground;
-        if (drawable != null) {
-            drawable.setState(getDrawableState());
+        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.selectableBackground;
+        if (rippleDrawableSafe != null) {
+            rippleDrawableSafe.setState(getDrawableState());
         }
     }
 
-    @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        Drawable drawable2 = this.selectableBackground;
-        if (drawable2 != null) {
-            return drawable2 == drawable || super.verifyDrawable(drawable);
-        }
-        return super.verifyDrawable(drawable);
+    public Theme.ResourcesProvider getResourceProvider() {
+        return null;
+    }
+
+    public float getTopOffset() {
+        return 0.0f;
     }
 
     @Override
-    public void jumpDrawablesToCurrentState() {
+    public final void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        Drawable drawable = this.selectableBackground;
-        if (drawable != null) {
-            drawable.jumpToCurrentState();
+        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.selectableBackground;
+        if (rippleDrawableSafe != null) {
+            rippleDrawableSafe.jumpToCurrentState();
         }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
+        int iDp;
+        int iDp2;
+        float f2;
+        float f3;
+        int iDp3;
+        StaticLayout staticLayout = this.textLayout;
+        int color = Theme.getColor(isEnabled() ? this.textColorKey : Theme.key_windowBackgroundWhiteGrayText, getResourceProvider());
+        int i = this.textColor;
+        TextPaint textPaint = this.layoutPaint;
+        if (i != color) {
+            this.textColor = color;
+            textPaint.setColor(color);
+        }
+        int color2 = Theme.getColor(Theme.key_chat_messagePanelBackground, getResourceProvider());
+        int i2 = this.panelBackgroundColor;
+        TextPaint textPaint2 = this.textPaint;
+        if (i2 != color2) {
+            this.panelBackgroundColor = color2;
+            textPaint2.setColor(color2);
+        }
+        int color3 = Theme.getColor(Theme.key_chat_goDownButtonCounterBackground, getResourceProvider());
+        int i3 = this.counterColor;
+        Paint paint = this.paint;
+        if (i3 != color3) {
+            this.counterColor = color3;
+            paint.setColor(color3);
+        }
+        if (getParent() != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredWidth2 = (getMeasuredWidth() - measuredWidth) / 2;
+            if (this.rippleColor != Theme.getColor(this.textColorKey, getResourceProvider()) || this.selectableBackground == null) {
+                int iDp4 = AndroidUtilities.dp(60.0f);
+                int color4 = Theme.getColor(this.textColorKey, getResourceProvider());
+                this.rippleColor = color4;
+                BaseCell.RippleDrawableSafe rippleDrawableSafeCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(iDp4, 0, ColorUtils.setAlphaComponent(color4, 26));
+                this.selectableBackground = rippleDrawableSafeCreateSimpleSelectorCircleDrawable;
+                rippleDrawableSafeCreateSimpleSelectorCircleDrawable.setCallback(this);
+            }
+            int iDp5 = getLeft() + measuredWidth2 <= 0 ? measuredWidth2 - AndroidUtilities.dp(20.0f) : measuredWidth2;
+            int iDp6 = measuredWidth2 + measuredWidth;
+            if (iDp6 > ((View) getParent()).getMeasuredWidth()) {
+                iDp6 += AndroidUtilities.dp(20.0f);
+            }
+            int i4 = measuredWidth / 2;
+            this.selectableBackground.setBounds(iDp5, (getMeasuredHeight() / 2) - i4, iDp6, (getMeasuredHeight() / 2) + i4);
+            this.selectableBackground.draw(canvas);
+        }
+        if (this.textLayout != null) {
+            canvas.save();
+            if (this.replaceProgress == 1.0f || this.textLayoutOut == null) {
+                f = 6.0f;
+                int measuredWidth3 = ((getMeasuredWidth() - this.layoutTextWidth) / 2) - (this.circleWidth / 2);
+                Drawable drawable = this.icon;
+                if (drawable != null) {
+                    iDp = AndroidUtilities.dp(3.0f) + (drawable.getIntrinsicWidth() / 2);
+                } else {
+                    iDp = 0;
+                }
+                canvas.translate(measuredWidth3 + iDp, getTopOffset() + ((getMeasuredHeight() - this.textLayout.getHeight()) / 2));
+                Drawable drawable2 = this.icon;
+                if (drawable2 != null) {
+                    drawable2.setBounds((-drawable2.getIntrinsicWidth()) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.textLayout.getHeight() - this.icon.getIntrinsicHeight()) / 2), -AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.icon.getIntrinsicHeight() + this.textLayout.getHeight()) / 2));
+                    this.icon.setAlpha(255);
+                    this.icon.draw(canvas);
+                }
+                this.textLayout.draw(canvas);
+            } else {
+                int alpha = textPaint.getAlpha();
+                canvas.save();
+                canvas.translate(((getMeasuredWidth() - this.textLayoutOut.getWidth()) / 2) - (this.circleWidth / 2), getTopOffset() + ((getMeasuredHeight() - this.textLayout.getHeight()) / 2));
+                Drawable drawable3 = this.iconOut;
+                if (drawable3 != null) {
+                    iDp2 = AndroidUtilities.dp(3.0f) + (drawable3.getIntrinsicWidth() / 2);
+                } else {
+                    iDp2 = 0;
+                }
+                canvas.translate(iDp2, (this.animatedFromBottom ? -1.0f : 1.0f) * AndroidUtilities.dp(18.0f) * this.replaceProgress);
+                Drawable drawable4 = this.iconOut;
+                if (drawable4 != null) {
+                    f = 6.0f;
+                    f2 = 3.0f;
+                    f3 = 1.0f;
+                    drawable4.setBounds((-drawable4.getIntrinsicWidth()) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.textLayout.getHeight() - this.iconOut.getIntrinsicHeight()) / 2), -AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + ((this.iconOut.getIntrinsicHeight() + this.textLayout.getHeight()) / 2));
+                    this.iconOut.setAlpha((int) ((1.0f - this.replaceProgress) * alpha));
+                    this.iconOut.draw(canvas);
+                } else {
+                    f = 6.0f;
+                    f2 = 3.0f;
+                    f3 = 1.0f;
+                }
+                float f4 = alpha;
+                textPaint.setAlpha((int) ((f3 - this.replaceProgress) * f4));
+                this.textLayoutOut.draw(canvas);
+                canvas.restore();
+                canvas.save();
+                canvas.translate(((getMeasuredWidth() - this.layoutTextWidth) / 2) - (this.circleWidth / 2), getTopOffset() + ((getMeasuredHeight() - this.textLayout.getHeight()) / 2));
+                Drawable drawable5 = this.icon;
+                if (drawable5 != null) {
+                    iDp3 = AndroidUtilities.dp(f2) + (drawable5.getIntrinsicWidth() / 2);
+                } else {
+                    iDp3 = 0;
+                }
+                canvas.translate(iDp3, (f3 - this.replaceProgress) * (this.animatedFromBottom ? 1.0f : -1.0f) * AndroidUtilities.dp(18.0f));
+                Drawable drawable6 = this.icon;
+                if (drawable6 != null) {
+                    drawable6.setBounds((-drawable6.getIntrinsicWidth()) - AndroidUtilities.dp(f), AndroidUtilities.dp(f3) + ((this.textLayout.getHeight() - this.icon.getIntrinsicHeight()) / 2), -AndroidUtilities.dp(f), AndroidUtilities.dp(f3) + ((this.icon.getIntrinsicHeight() + this.textLayout.getHeight()) / 2));
+                    this.icon.setAlpha((int) (this.replaceProgress * f4));
+                    this.icon.draw(canvas);
+                }
+                textPaint.setAlpha((int) (f4 * this.replaceProgress));
+                this.textLayout.draw(canvas);
+                canvas.restore();
+                textPaint.setAlpha(alpha);
+            }
+            canvas.restore();
+        } else {
+            f = 6.0f;
+        }
+        if (this.currentCounterString == null || staticLayout == null) {
+            return;
+        }
+        int iCeil = (int) Math.ceil(staticLayout.getLineWidth(0));
+        int iDp7 = AndroidUtilities.dp(f) + ((((getMeasuredWidth() - iCeil) / 2) + iCeil) - (this.circleWidth / 2));
+        RectF rectF = this.rect;
+        rectF.set(iDp7, (getMeasuredHeight() / 2) - AndroidUtilities.dp(10.0f), iDp7 + this.circleWidth, AndroidUtilities.dp(10.0f) + (getMeasuredHeight() / 2));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
+        canvas.drawText(this.currentCounterString, rectF.centerX() - (this.textWidth / 2.0f), rectF.top + AndroidUtilities.dp(14.5f), textPaint2);
     }
 
     public void setCounter(int i) {
@@ -174,105 +234,68 @@ public class UnreadCounterTextView extends View {
         }
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        StaticLayout staticLayout = this.textLayout;
-        int color = Theme.getColor(isEnabled() ? this.textColorKey : Theme.key_windowBackgroundWhiteGrayText, getResourceProvider());
-        if (this.textColor != color) {
-            TextPaint textPaint = this.layoutPaint;
-            this.textColor = color;
-            textPaint.setColor(color);
-        }
-        int color2 = Theme.getColor(Theme.key_chat_messagePanelBackground, getResourceProvider());
-        if (this.panelBackgroundColor != color2) {
-            TextPaint textPaint2 = this.textPaint;
-            this.panelBackgroundColor = color2;
-            textPaint2.setColor(color2);
-        }
-        int color3 = Theme.getColor(Theme.key_chat_goDownButtonCounterBackground, getResourceProvider());
-        if (this.counterColor != color3) {
-            Paint paint = this.paint;
-            this.counterColor = color3;
-            paint.setColor(color3);
-        }
-        if (getParent() != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredWidth2 = (getMeasuredWidth() - measuredWidth) / 2;
-            if (this.rippleColor != Theme.getColor(this.textColorKey, getResourceProvider()) || this.selectableBackground == null) {
-                int iDp = AndroidUtilities.dp(60.0f);
-                int color4 = Theme.getColor(this.textColorKey, getResourceProvider());
-                this.rippleColor = color4;
-                Drawable drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(iDp, 0, ColorUtils.setAlphaComponent(color4, 26));
-                this.selectableBackground = drawableCreateSimpleSelectorCircleDrawable;
-                drawableCreateSimpleSelectorCircleDrawable.setCallback(this);
-            }
-            int iDp2 = getLeft() + measuredWidth2 <= 0 ? measuredWidth2 - AndroidUtilities.dp(20.0f) : measuredWidth2;
-            int iDp3 = measuredWidth2 + measuredWidth;
-            if (iDp3 > ((View) getParent()).getMeasuredWidth()) {
-                iDp3 += AndroidUtilities.dp(20.0f);
-            }
-            int i = measuredWidth / 2;
-            this.selectableBackground.setBounds(iDp2, (getMeasuredHeight() / 2) - i, iDp3, (getMeasuredHeight() / 2) + i);
-            this.selectableBackground.draw(canvas);
-        }
-        if (this.textLayout != null) {
-            canvas.save();
-            if (this.replaceProgress != 1.0f && this.textLayoutOut != null) {
-                int alpha = this.layoutPaint.getAlpha();
-                canvas.save();
-                canvas.translate(((getMeasuredWidth() - this.textLayoutOut.getWidth()) / 2) - (this.circleWidth / 2), ((getMeasuredHeight() - this.textLayout.getHeight()) / 2) + getTopOffset());
-                Drawable drawable = this.iconOut;
-                canvas.translate(drawable != null ? (drawable.getIntrinsicWidth() / 2) + AndroidUtilities.dp(3.0f) : 0, (this.animatedFromBottom ? -1.0f : 1.0f) * AndroidUtilities.dp(18.0f) * this.replaceProgress);
-                Drawable drawable2 = this.iconOut;
-                if (drawable2 != null) {
-                    drawable2.setBounds((-drawable2.getIntrinsicWidth()) - AndroidUtilities.dp(6.0f), ((this.textLayout.getHeight() - this.iconOut.getIntrinsicHeight()) / 2) + AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(6.0f), ((this.textLayout.getHeight() + this.iconOut.getIntrinsicHeight()) / 2) + AndroidUtilities.dp(1.0f));
-                    this.iconOut.setAlpha((int) (alpha * (1.0f - this.replaceProgress)));
-                    this.iconOut.draw(canvas);
-                }
-                float f = alpha;
-                this.layoutPaint.setAlpha((int) ((1.0f - this.replaceProgress) * f));
-                this.textLayoutOut.draw(canvas);
-                canvas.restore();
-                canvas.save();
-                canvas.translate(((getMeasuredWidth() - this.layoutTextWidth) / 2) - (this.circleWidth / 2), ((getMeasuredHeight() - this.textLayout.getHeight()) / 2) + getTopOffset());
-                Drawable drawable3 = this.icon;
-                canvas.translate(drawable3 != null ? (drawable3.getIntrinsicWidth() / 2) + AndroidUtilities.dp(3.0f) : 0, (this.animatedFromBottom ? 1.0f : -1.0f) * AndroidUtilities.dp(18.0f) * (1.0f - this.replaceProgress));
-                Drawable drawable4 = this.icon;
-                if (drawable4 != null) {
-                    drawable4.setBounds((-drawable4.getIntrinsicWidth()) - AndroidUtilities.dp(6.0f), ((this.textLayout.getHeight() - this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(6.0f), ((this.textLayout.getHeight() + this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.dp(1.0f));
-                    this.icon.setAlpha((int) (this.replaceProgress * f));
-                    this.icon.draw(canvas);
-                }
-                this.layoutPaint.setAlpha((int) (f * this.replaceProgress));
-                this.textLayout.draw(canvas);
-                canvas.restore();
-                this.layoutPaint.setAlpha(alpha);
-            } else {
-                int measuredWidth3 = ((getMeasuredWidth() - this.layoutTextWidth) / 2) - (this.circleWidth / 2);
-                Drawable drawable5 = this.icon;
-                canvas.translate(measuredWidth3 + (drawable5 != null ? (drawable5.getIntrinsicWidth() / 2) + AndroidUtilities.dp(3.0f) : 0), ((getMeasuredHeight() - this.textLayout.getHeight()) / 2) + getTopOffset());
-                Drawable drawable6 = this.icon;
-                if (drawable6 != null) {
-                    drawable6.setBounds((-drawable6.getIntrinsicWidth()) - AndroidUtilities.dp(6.0f), ((this.textLayout.getHeight() - this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(6.0f), ((this.textLayout.getHeight() + this.icon.getIntrinsicHeight()) / 2) + AndroidUtilities.dp(1.0f));
-                    this.icon.setAlpha(255);
-                    this.icon.draw(canvas);
-                }
-                this.textLayout.draw(canvas);
-            }
-            canvas.restore();
-        }
-        if (this.currentCounterString == null || staticLayout == null) {
+    public final void setText(String str, boolean z) {
+        if (this.lastText == str) {
             return;
         }
-        int iCeil = (int) Math.ceil(staticLayout.getLineWidth(0));
-        int measuredWidth4 = ((((getMeasuredWidth() - iCeil) / 2) + iCeil) - (this.circleWidth / 2)) + AndroidUtilities.dp(6.0f);
-        this.rect.set(measuredWidth4, (getMeasuredHeight() / 2) - AndroidUtilities.dp(10.0f), measuredWidth4 + this.circleWidth, (getMeasuredHeight() / 2) + AndroidUtilities.dp(10.0f));
-        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
-        canvas.drawText(this.currentCounterString, this.rect.centerX() - (this.textWidth / 2.0f), this.rect.top + AndroidUtilities.dp(14.5f), this.textPaint);
+        this.lastText = str;
+        this.animatedFromBottom = z;
+        this.textLayoutOut = this.textLayout;
+        this.iconOut = this.icon;
+        Typeface typefaceBold = AndroidUtilities.bold();
+        TextPaint textPaint = this.layoutPaint;
+        textPaint.setTypeface(typefaceBold);
+        this.layoutTextWidth = (int) Math.ceil(textPaint.measureText((CharSequence) str, 0, str.length()));
+        this.icon = null;
+        this.textLayout = new StaticLayout(str, textPaint, this.layoutTextWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+        setContentDescription(str);
+        invalidate();
+        if (this.textLayoutOut == null && this.iconOut == null) {
+            return;
+        }
+        ValueAnimator valueAnimator = this.replaceAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        this.replaceProgress = 0.0f;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.replaceAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 29));
+        this.replaceAnimator.setDuration(150L);
+        this.replaceAnimator.start();
     }
 
     public void setTextColorKey(int i) {
         this.textColorKey = i;
+        invalidate();
+    }
+
+    public void setTextInfo(CharSequence charSequence) {
+        TextPaint textPaint = this.layoutPaint;
+        textPaint.setTypeface(null);
+        this.layoutTextWidth = (int) Math.ceil(textPaint.measureText(charSequence, 0, charSequence.length()));
+        this.icon = null;
+        this.textLayout = new StaticLayout(charSequence, textPaint, this.layoutTextWidth + 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+        setContentDescription(charSequence);
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.selectableBackground;
+        if (rippleDrawableSafe != null) {
+            return rippleDrawableSafe == drawable || super.verifyDrawable(drawable);
+        }
+        return super.verifyDrawable(drawable);
+    }
+
+    public void setText(CharSequence charSequence) {
+        TextPaint textPaint = this.layoutPaint;
+        textPaint.setTypeface(AndroidUtilities.bold());
+        this.layoutTextWidth = (int) Math.ceil(textPaint.measureText(charSequence, 0, charSequence.length()));
+        this.icon = null;
+        this.textLayout = new StaticLayout(charSequence, textPaint, this.layoutTextWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+        setContentDescription(charSequence);
         invalidate();
     }
 }

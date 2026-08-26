@@ -1,15 +1,10 @@
 package org.telegram.ui.Charts;
 
-import android.animation.Animator;
-import org.telegram.ui.Charts.data.ChartData;
+import android.animation.ValueAnimator;
 import org.telegram.ui.Charts.view_data.StackLinearViewData;
 
-public class PieChartViewData extends StackLinearViewData {
-    Animator animator;
-    float drawingPart;
-    float selectionA;
-
-    public PieChartViewData(ChartData.Line line) {
-        super(line);
-    }
+public final class PieChartViewData extends StackLinearViewData {
+    public ValueAnimator animator;
+    public float drawingPart;
+    public float selectionA;
 }

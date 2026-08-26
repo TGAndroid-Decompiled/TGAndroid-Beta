@@ -1,19 +1,13 @@
 package org.telegram.PhoneFormat;
 
-public class PhoneRule {
-    public int byte8;
+public final class PhoneRule {
     public int flag12;
-    public int flag13;
     public String format;
-    public boolean hasIntlPrefix;
-    public boolean hasTrunkPrefix;
     public int maxLen;
     public int maxVal;
     public int minVal;
-    public int otherFlag;
-    public int prefixLen;
 
-    String format(String str, String str2, String str3) {
+    public final String format(String str, String str2, String str3) {
         StringBuilder sb = new StringBuilder(20);
         boolean z = false;
         int i = 0;
@@ -67,7 +61,7 @@ public class PhoneRule {
             }
         }
         if (str2 != null && !z) {
-            sb.insert(0, str2 + " ");
+            sb.insert(0, str2.concat(" "));
         } else if (str3 != null && !z2) {
             sb.insert(0, str3);
         }

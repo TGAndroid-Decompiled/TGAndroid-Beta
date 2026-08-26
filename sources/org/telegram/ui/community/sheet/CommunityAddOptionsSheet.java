@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -21,27 +20,25 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda12;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
+import org.telegram.ui.TopicsFragment$$ExternalSyntheticLambda9;
+import org.webrtc.EglRenderer$$ExternalSyntheticLambda8;
 
-public class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
-    private UniversalAdapter adapter;
-    private final FrameLayout cell;
-    private final TLRPC.Chat chat;
-    private final boolean isBot;
-    private final boolean isChannel;
-    private boolean isHidden;
-    private final ProfileSearchCell searchCell;
-    private final TLRPC.User user;
-    private int visibleRow;
+public final class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
+    public UniversalAdapter adapter;
+    public final FrameLayout cell;
+    public final boolean isBot;
+    public final boolean isChannel;
+    public boolean isHidden;
+    public int visibleRow;
 
-    public CommunityAddOptionsSheet(Context context, final TLRPC.Chat chat, long j, final Utilities.Callback callback) {
-        super(context, null, false, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
+    public CommunityAddOptionsSheet(Context context, TLRPC.Chat chat, long j, Utilities.Callback callback) {
+        super(context, null, false, true, false, false, false, 2, null);
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
-        this.user = user;
         TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
-        this.chat = chat2;
         this.isBot = UserObject.isBot(user);
         this.isChannel = ChatObject.isChannelAndNotMegaGroup(chat2);
         this.ignoreTouchActionBar = false;
@@ -52,127 +49,76 @@ public class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
         this.cell = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
         frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-        ProfileSearchCell profileSearchCell = new ProfileSearchCell(context);
-        this.searchCell = profileSearchCell;
+        ProfileSearchCell profileSearchCell = new ProfileSearchCell(context, null);
         if (chat2 != null) {
             profileSearchCell.setData(chat2, null, chat2.title, LocaleController.formatPluralStringSpaced("Members", chat2.participants_count), false, false);
         } else if (user != null) {
             profileSearchCell.setData(user, null, DialogObject.getName(user), LocaleController.getString(R.string.Bot), false, false);
         }
-        frameLayout.addView(profileSearchCell, LayoutHelper.createFrame(-1, -2.0f));
+        frameLayout.addView(profileSearchCell, LayoutHelper.createFrame(-2.0f, -1));
         RecyclerListView recyclerListView = this.recyclerListView;
         int i = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i, 0, i, AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(64.0f));
+        recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
         this.recyclerListView.setSections();
         this.recyclerListView.setClipToPadding(false);
-        this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-            @Override
-            public final void onItemClick(View view, int i2) {
-                CommunityAddOptionsSheet.$r8$lambda$5I4072zpG4h0w9jc55gDnH1fGzQ(this.f$0, view, i2);
-            }
-        });
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider);
+        this.recyclerListView.setOnItemClickListener(new TopicsFragment$$ExternalSyntheticLambda9(this, 28));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider, true);
         if (chat != null) {
             buttonWithCounterView.setText(LocaleController.getString(ChatObject.canAddChatToCommunity(chat) ? R.string.CommunityAddToCommunityButton : R.string.CommunityAddToCommunityRequestButton));
         } else {
             buttonWithCounterView.setText(LocaleController.getString(R.string.CommunityCreateCommunity));
         }
-        buttonWithCounterView.setRound();
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                CommunityAddOptionsSheet communityAddOptionsSheet = this.f$0;
-                Utilities.Callback callback2 = callback;
-                TLRPC.Chat chat3 = chat;
-                communityAddOptionsSheet.apply(callback2, communityAddOptionsSheet.isHidden, (chat3 == null || ChatObject.canAddChatToCommunity(chat3)) ? false : true);
-            }
-        });
-        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        buttonWithCounterView.setRoundRadius(24);
+        buttonWithCounterView.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(this, callback, chat, 22));
+        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
         this.adapter.update(false);
     }
 
-    public static void $r8$lambda$5I4072zpG4h0w9jc55gDnH1fGzQ(CommunityAddOptionsSheet communityAddOptionsSheet, View view, int i) {
-        int i2 = communityAddOptionsSheet.adapter.getItem(i - 1).id;
-        if (i2 == 151) {
-            communityAddOptionsSheet.setIsHidden(false);
-        } else if (i2 == 150) {
-            communityAddOptionsSheet.setIsHidden(true);
-        }
-    }
-
-    public void apply(final Utilities.Callback callback, final boolean z, boolean z2) {
-        int i;
+    public final void apply(Utilities.Callback callback, boolean z, boolean z2) {
         if (z2 && !z && !this.isBot) {
-            Context context = getContext();
-            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            String string = LocaleController.getString(R.string.CommunityAddToCommunityTitle);
-            if (this.isChannel) {
-                i = R.string.CommunityAddToCommunityChannelMessage;
-            } else {
-                i = R.string.CommunityAddToCommunityGroupMessage;
-            }
-            AlertsCreator.showSimpleConfirmAlert(context, resourcesProvider, string, LocaleController.getString(i), LocaleController.getString(R.string.Add), false, new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.apply(callback, z, false);
-                }
-            });
-            return;
+            AlertsCreator.createSimpleConfirmAlert(getContext(), this.resourcesProvider, LocaleController.getString(R.string.CommunityAddToCommunityTitle), LocaleController.getString(this.isChannel ? R.string.CommunityAddToCommunityChannelMessage : R.string.CommunityAddToCommunityGroupMessage), LocaleController.getString(R.string.Add), new EglRenderer$$ExternalSyntheticLambda8(this, callback, z, 11)).show();
+        } else {
+            callback.run(Boolean.valueOf(z));
+            lambda$showGiftOfferSheet$15();
         }
-        callback.run(Boolean.valueOf(z));
-        dismiss();
     }
 
-    private void setIsHidden(boolean z) {
+    @Override
+    public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, false, new TodoItemMenu$$ExternalSyntheticLambda17(this, 16), this.resourcesProvider);
+        this.adapter = universalAdapter;
+        universalAdapter.applyBackground = false;
+        return universalAdapter;
+    }
+
+    @Override
+    public final CharSequence getTitle() {
+        return LocaleController.getString(this.isBot ? R.string.CommunityAddBotTitle : R.string.CommunityAddChatTitle);
+    }
+
+    public final void setIsHidden(boolean z) {
         boolean z2;
         if (this.isHidden == z) {
             return;
         }
         this.isHidden = z;
-        View viewFindViewByPosition = this.recyclerListView.findViewByPosition(this.visibleRow + 1);
+        int i = this.visibleRow + 1;
+        RecyclerListView recyclerListView = this.recyclerListView;
+        View viewFindViewByPosition = recyclerListView.findViewByPosition(i);
         if (viewFindViewByPosition instanceof RadioButtonCell) {
-            ((RadioButtonCell) viewFindViewByPosition).setChecked(!z, true);
+            ((RadioButtonCell) viewFindViewByPosition).radioButton.setChecked(!z, true);
             z2 = false;
         } else {
             z2 = true;
         }
-        View viewFindViewByPosition2 = this.recyclerListView.findViewByPosition(this.visibleRow + 2);
+        View viewFindViewByPosition2 = recyclerListView.findViewByPosition(this.visibleRow + 2);
         if (viewFindViewByPosition2 instanceof RadioButtonCell) {
-            ((RadioButtonCell) viewFindViewByPosition2).setChecked(z, true);
+            ((RadioButtonCell) viewFindViewByPosition2).radioButton.setChecked(z, true);
         } else {
             z2 = true;
         }
         if (z2) {
             this.adapter.update(true);
         }
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(this.isBot ? R.string.CommunityAddBotTitle : R.string.CommunityAddChatTitle);
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, false, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, this.resourcesProvider);
-        this.adapter = universalAdapter;
-        universalAdapter.setApplyBackground(false);
-        return this.adapter;
-    }
-
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asSpace(0, AndroidUtilities.dp(12.0f)));
-        arrayList.add(UItem.asCustom(1, this.cell));
-        arrayList.add(UItem.asSpace(2, AndroidUtilities.dp(12.0f)));
-        arrayList.add(UItem.asHeader(3, LocaleController.getString(R.string.CommunityChatVisibilitySection)));
-        this.visibleRow = arrayList.size();
-        arrayList.add(UItem.asRadio2(151, LocaleController.getString(R.string.CommunityChatVisibilityVisible), LocaleController.getString(this.isBot ? R.string.CommunityChatVisibilityVisibleBotInfo : R.string.CommunityChatVisibilityVisibleInfo)).setChecked(!this.isHidden));
-        arrayList.add(UItem.asRadio2(150, LocaleController.getString(R.string.CommunityChatVisibilityHidden), LocaleController.getString(this.isBot ? R.string.CommunityChatVisibilityHiddenBotInfo : R.string.CommunityChatVisibilityHiddenInfo)).setChecked(this.isHidden));
-        arrayList.add(UItem.asShadow(6, LocaleController.getString(R.string.CommunityChatVisibilityCannotChange)));
     }
 }

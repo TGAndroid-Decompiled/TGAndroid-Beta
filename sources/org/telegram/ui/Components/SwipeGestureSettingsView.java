@@ -11,192 +11,142 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 
-public class SwipeGestureSettingsView extends FrameLayout {
-    int[] backgroundKeys;
-    float colorProgress;
-    int currentColorKey;
-    int currentIconIndex;
-    int currentIconValue;
-    Paint filledPaint;
-    int fromColor;
-    boolean hasTabs;
-    RLottieImageView[] iconViews;
-    RLottieDrawable[] icons;
-    Paint linePaint;
-    Paint outlinePaint;
-    private NumberPicker picker;
-    Paint pickerDividersPaint;
-    float progressToSwipeFolders;
-    RectF rect;
-    String[] strings;
-    Runnable swapIconRunnable;
+public final class SwipeGestureSettingsView extends FrameLayout {
+    public final int[] backgroundKeys;
+    public float colorProgress;
+    public int currentColorKey;
+    public int currentIconIndex;
+    public int currentIconValue;
+    public final Paint filledPaint;
+    public int fromColor;
+    public final RLottieImageView[] iconViews;
+    public final RLottieDrawable[] icons;
+    public final Paint linePaint;
+    public final Paint outlinePaint;
+    public final AnonymousClass1 picker;
+    public final Paint pickerDividersPaint;
+    public float progressToSwipeFolders;
+    public final RectF rect;
+    public final String[] strings;
+    public SeekBarView$$ExternalSyntheticLambda1 swapIconRunnable;
 
     public SwipeGestureSettingsView(Context context, int i) {
         super(context);
-        this.outlinePaint = new Paint(1);
+        Paint paint = new Paint(1);
+        this.outlinePaint = paint;
         this.filledPaint = new Paint(1);
-        this.linePaint = new Paint(1);
-        this.pickerDividersPaint = new Paint(1);
+        Paint paint2 = new Paint(1);
+        this.linePaint = paint2;
+        Paint paint3 = new Paint(1);
+        this.pickerDividersPaint = paint3;
         this.rect = new RectF();
-        String[] strArr = new String[6];
-        this.strings = strArr;
-        this.backgroundKeys = new int[6];
+        this.strings = new String[]{LocaleController.getString(R.string.SwipeSettingsPin), LocaleController.getString(R.string.SwipeSettingsRead), LocaleController.getString(R.string.SwipeSettingsArchive), LocaleController.getString(R.string.SwipeSettingsMute), LocaleController.getString(R.string.SwipeSettingsDelete), LocaleController.getString(R.string.SwipeSettingsFolders)};
+        this.backgroundKeys = new int[]{i, i, i, i, Theme.key_dialogSwipeRemove, Theme.key_chats_archivePinBackground};
         this.icons = new RLottieDrawable[6];
         this.iconViews = new RLottieImageView[2];
         this.colorProgress = 1.0f;
-        strArr[0] = LocaleController.getString(R.string.SwipeSettingsPin);
-        this.strings[1] = LocaleController.getString(R.string.SwipeSettingsRead);
-        this.strings[2] = LocaleController.getString(R.string.SwipeSettingsArchive);
-        this.strings[3] = LocaleController.getString(R.string.SwipeSettingsMute);
-        this.strings[4] = LocaleController.getString(R.string.SwipeSettingsDelete);
-        this.strings[5] = LocaleController.getString(R.string.SwipeSettingsFolders);
-        int[] iArr = this.backgroundKeys;
         int i2 = Theme.key_chats_archiveBackground;
-        iArr[0] = i2;
-        iArr[1] = i2;
-        iArr[2] = i2;
-        iArr[3] = i2;
-        iArr[4] = Theme.key_dialogSwipeRemove;
-        iArr[5] = Theme.key_chats_archivePinBackground;
-        Paint paint = this.outlinePaint;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
-        this.outlinePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.linePaint.setStyle(style);
-        Paint paint2 = this.linePaint;
+        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        paint2.setStyle(style);
         Paint.Cap cap = Paint.Cap.ROUND;
         paint2.setStrokeCap(cap);
-        this.linePaint.setStrokeWidth(AndroidUtilities.dp(5.0f));
-        this.pickerDividersPaint.setStyle(style);
-        this.pickerDividersPaint.setStrokeCap(cap);
-        this.pickerDividersPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        NumberPicker numberPicker = new NumberPicker(context, 13) {
+        paint2.setStrokeWidth(AndroidUtilities.dp(5.0f));
+        paint3.setStyle(style);
+        paint3.setStrokeCap(cap);
+        paint3.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        ?? r2 = new NumberPicker(context) {
             @Override
-            protected void onDraw(Canvas canvas) {
+            public final void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
                 float fDp = AndroidUtilities.dp(31.0f);
-                SwipeGestureSettingsView.this.pickerDividersPaint.setColor(Theme.getColor(Theme.key_radioBackgroundChecked));
-                canvas.drawLine(AndroidUtilities.dp(2.0f), fDp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), fDp, SwipeGestureSettingsView.this.pickerDividersPaint);
+                SwipeGestureSettingsView swipeGestureSettingsView = SwipeGestureSettingsView.this;
+                swipeGestureSettingsView.pickerDividersPaint.setColor(Theme.getColor(null, Theme.key_radioBackgroundChecked, false));
+                canvas.drawLine(AndroidUtilities.dp(2.0f), fDp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), fDp, swipeGestureSettingsView.pickerDividersPaint);
                 float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
-                canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, SwipeGestureSettingsView.this.pickerDividersPaint);
+                canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, swipeGestureSettingsView.pickerDividersPaint);
             }
         };
-        this.picker = numberPicker;
-        numberPicker.setMinValue(0);
-        this.picker.setDrawDividers(false);
+        this.picker = r2;
+        r2.setMinValue(0);
+        r2.setDrawDividers(false);
         boolean zIsEmpty = MessagesController.getInstance(i).dialogFilters.isEmpty();
-        this.hasTabs = !zIsEmpty;
-        this.picker.setMaxValue(!zIsEmpty ? this.strings.length - 1 : this.strings.length - 2);
-        this.picker.setAllItemsCount(this.hasTabs ? this.strings.length : this.strings.length - 1);
-        this.picker.setWrapSelectorWheel(true);
-        this.picker.setFormatter(new NumberPicker.Formatter() {
-            @Override
-            public final String format(int i3) {
-                return SwipeGestureSettingsView.m2872$r8$lambda$wmjRpPKY79yrqKxg2ozJCgEyaA(this.f$0, i3);
-            }
-        });
-        this.picker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public final void onValueChange(NumberPicker numberPicker2, int i3, int i4) {
-                SwipeGestureSettingsView.$r8$lambda$NlDmQiN0aDbkcQrUsXScxNXMR9E(this.f$0, numberPicker2, i3, i4);
-            }
-        });
-        this.picker.setImportantForAccessibility(2);
-        this.picker.setValue(SharedConfig.getChatSwipeAction(i));
-        addView(this.picker, LayoutHelper.createFrame(132, -1.0f, 5, 21.0f, 0.0f, 21.0f, 0.0f));
+        r2.setMaxValue(zIsEmpty ? 4 : 5);
+        r2.setAllItemsCount(zIsEmpty ? 5 : 6);
+        r2.setWrapSelectorWheel(true);
+        r2.setFormatter(new SwipeGestureSettingsView$$ExternalSyntheticLambda0(this));
+        r2.setOnValueChangedListener(new SwipeGestureSettingsView$$ExternalSyntheticLambda0(this));
+        r2.setImportantForAccessibility(2);
+        r2.setValue(SharedConfig.getChatSwipeAction(i));
+        addView((View) r2, LayoutHelper.createFrame(132, -1.0f, 5, 21.0f, 0.0f, 21.0f, 0.0f));
         setWillNotDraw(false);
         this.currentIconIndex = 0;
         for (int i3 = 0; i3 < 2; i3++) {
             this.iconViews[i3] = new RLottieImageView(context);
             addView(this.iconViews[i3], LayoutHelper.createFrame(28, 28.0f, 21, 0.0f, 0.0f, 184.0f, 0.0f));
         }
-        RLottieDrawable icon = getIcon(this.picker.getValue());
+        RLottieDrawable icon = getIcon(getValue());
         if (icon != null) {
             this.iconViews[0].setImageDrawable(icon);
-            icon.setCurrentFrame(icon.getFramesCount() - 1);
+            icon.setCurrentFrame(icon.metaData[0] - 1, true, false);
         }
         AndroidUtilities.updateViewVisibilityAnimated(this.iconViews[0], true, 0.5f, false);
         AndroidUtilities.updateViewVisibilityAnimated(this.iconViews[1], false, 0.5f, false);
-        this.progressToSwipeFolders = this.picker.getValue() != 5 ? 0.0f : 1.0f;
-        this.currentIconValue = this.picker.getValue();
+        this.progressToSwipeFolders = getValue() != 5 ? 0.0f : 1.0f;
+        this.currentIconValue = getValue();
     }
 
-    public static String m2872$r8$lambda$wmjRpPKY79yrqKxg2ozJCgEyaA(SwipeGestureSettingsView swipeGestureSettingsView, int i) {
-        return swipeGestureSettingsView.strings[i];
-    }
-
-    public static void $r8$lambda$NlDmQiN0aDbkcQrUsXScxNXMR9E(SwipeGestureSettingsView swipeGestureSettingsView, NumberPicker numberPicker, int i, int i2) {
-        swipeGestureSettingsView.swapIcons();
-        SharedConfig.updateChatListSwipeSetting(i2);
-        swipeGestureSettingsView.invalidate();
-        try {
-            numberPicker.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-    }
-
-    private void swapIcons() {
-        int value;
-        if (this.swapIconRunnable == null && this.currentIconValue != (value = this.picker.getValue())) {
-            this.currentIconValue = value;
-            int i = (this.currentIconIndex + 1) % 2;
-            RLottieDrawable icon = getIcon(value);
-            if (icon != null) {
-                if (this.iconViews[i].getVisibility() != 0) {
-                    icon.setCurrentFrame(0, false);
-                }
-                this.iconViews[i].setAnimation(icon);
-                this.iconViews[i].playAnimation();
+    public final RLottieDrawable getIcon(int i) {
+        int i2;
+        RLottieDrawable[] rLottieDrawableArr = this.icons;
+        if (rLottieDrawableArr[i] == null) {
+            if (i == 1) {
+                i2 = R.raw.swipe_read;
+            } else if (i == 2) {
+                i2 = R.raw.chats_archive;
+            } else if (i == 3) {
+                i2 = R.raw.swipe_mute;
+            } else if (i != 4) {
+                i2 = i != 5 ? R.raw.swipe_pin : R.raw.swipe_disabled;
             } else {
-                this.iconViews[i].clearAnimationDrawable();
+                i2 = R.raw.swipe_delete;
             }
-            AndroidUtilities.updateViewVisibilityAnimated(this.iconViews[this.currentIconIndex], false, 0.5f, true);
-            AndroidUtilities.updateViewVisibilityAnimated(this.iconViews[i], true, 0.5f, true);
-            this.currentIconIndex = i;
-            Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    SwipeGestureSettingsView.m2871$r8$lambda$YgpkfuTuKiC_0DdKcX7KXwRWws(this.f$0);
-                }
-            };
-            this.swapIconRunnable = runnable;
-            AndroidUtilities.runOnUIThread(runnable, 150L);
+            int i3 = i2;
+            rLottieDrawableArr[i] = new RLottieDrawable(i3, DiffUtil.m(i3, ""), AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            updateIconColor(i);
         }
-    }
-
-    public static void m2871$r8$lambda$YgpkfuTuKiC_0DdKcX7KXwRWws(SwipeGestureSettingsView swipeGestureSettingsView) {
-        swipeGestureSettingsView.swapIconRunnable = null;
-        swipeGestureSettingsView.swapIcons();
+        return rLottieDrawableArr[i];
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         float f;
         float f2;
+        float f3;
         super.onDraw(canvas);
-        boolean z = this.picker.getValue() == 5;
+        AnonymousClass1 anonymousClass1 = this.picker;
+        boolean z = anonymousClass1.getValue() == 5;
+        RLottieImageView[] rLottieImageViewArr = this.iconViews;
         if (z) {
-            float f3 = this.progressToSwipeFolders;
-            if (f3 != 1.0f) {
-                float f4 = f3 + 0.053333335f;
-                this.progressToSwipeFolders = f4;
-                if (f4 > 1.0f) {
+            float f4 = this.progressToSwipeFolders;
+            if (f4 != 1.0f) {
+                float f5 = f4 + 0.053333335f;
+                this.progressToSwipeFolders = f5;
+                if (f5 > 1.0f) {
                     this.progressToSwipeFolders = 1.0f;
                 } else {
-                    this.iconViews[0].invalidate();
-                    this.iconViews[1].invalidate();
+                    rLottieImageViewArr[0].invalidate();
+                    rLottieImageViewArr[1].invalidate();
                     invalidate();
                 }
             } else if (!z) {
@@ -207,8 +157,8 @@ public class SwipeGestureSettingsView extends FrameLayout {
                     if (f2 < 0.0f) {
                         this.progressToSwipeFolders = 0.0f;
                     } else {
-                        this.iconViews[0].invalidate();
-                        this.iconViews[1].invalidate();
+                        rLottieImageViewArr[0].invalidate();
+                        rLottieImageViewArr[1].invalidate();
                         invalidate();
                     }
                 }
@@ -221,136 +171,154 @@ public class SwipeGestureSettingsView extends FrameLayout {
                 if (f2 < 0.0f) {
                     this.progressToSwipeFolders = 0.0f;
                 } else {
-                    this.iconViews[0].invalidate();
-                    this.iconViews[1].invalidate();
+                    rLottieImageViewArr[0].invalidate();
+                    rLottieImageViewArr[1].invalidate();
                     invalidate();
                 }
             }
         }
         Paint paint = this.outlinePaint;
         int i = Theme.key_switchTrack;
-        paint.setColor(Theme.getColor(i));
-        this.linePaint.setColor(Theme.getColor(i));
-        int measuredWidth = getMeasuredWidth() - ((AndroidUtilities.dp(132.0f) + AndroidUtilities.dp(21.0f)) + AndroidUtilities.dp(16.0f));
+        paint.setColor(Theme.getColor(null, i, false));
+        Paint paint2 = this.linePaint;
+        paint2.setColor(Theme.getColor(null, i, false));
+        int iM$1 = OKLCH.m$1(16.0f, AndroidUtilities.dp(21.0f) + AndroidUtilities.dp(132.0f), getMeasuredWidth());
         int iDp = AndroidUtilities.dp(21.0f);
-        int measuredHeight = (getMeasuredHeight() - AndroidUtilities.dp(48.0f)) / 2;
-        float f5 = iDp;
-        float f6 = measuredHeight;
-        this.rect.set(f5, f6, measuredWidth, getMeasuredHeight() - measuredHeight);
-        if (this.currentColorKey < 0) {
-            this.currentColorKey = this.backgroundKeys[this.picker.getValue()];
+        int iM$2 = OKLCH.m$2(48.0f, getMeasuredHeight(), 2);
+        RectF rectF = this.rect;
+        float f6 = iDp;
+        float f7 = iM$2;
+        rectF.set(f6, f7, iM$1, getMeasuredHeight() - iM$2);
+        int i2 = this.currentColorKey;
+        int[] iArr = this.backgroundKeys;
+        if (i2 < 0) {
+            this.currentColorKey = iArr[anonymousClass1.getValue()];
             this.colorProgress = 1.0f;
-            this.fromColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(this.currentColorKey), 0.9f);
-        } else if (this.backgroundKeys[this.picker.getValue()] != this.currentColorKey) {
-            this.fromColor = ColorUtils.blendARGB(this.fromColor, ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(this.currentColorKey), 0.9f), this.colorProgress);
-            this.colorProgress = 0.0f;
-            this.currentColorKey = this.backgroundKeys[this.picker.getValue()];
+            this.fromColor = ColorUtils.blendARGB(0.9f, Theme.getColor(null, Theme.key_windowBackgroundWhite, false), Theme.getColor(null, this.currentColorKey, false));
+            f3 = 1.0f;
+        } else {
+            f3 = 1.0f;
+            if (iArr[anonymousClass1.getValue()] != this.currentColorKey) {
+                this.fromColor = ColorUtils.blendARGB(this.colorProgress, this.fromColor, ColorUtils.blendARGB(0.9f, Theme.getColor(null, Theme.key_windowBackgroundWhite, false), Theme.getColor(null, this.currentColorKey, false)));
+                this.colorProgress = 0.0f;
+                this.currentColorKey = iArr[anonymousClass1.getValue()];
+            }
         }
-        float f7 = this.colorProgress;
-        if (f7 != 1.0f) {
-            float f8 = f7 + 0.16f;
-            this.colorProgress = f8;
-            if (f8 > 1.0f) {
+        float f8 = this.colorProgress;
+        if (f8 != f3) {
+            float f9 = f8 + 0.16f;
+            this.colorProgress = f9;
+            if (f9 > f3) {
                 this.colorProgress = 1.0f;
             } else {
                 invalidate();
             }
         }
-        int i2 = this.fromColor;
-        int i3 = Theme.key_windowBackgroundWhite;
-        this.filledPaint.setColor(ColorUtils.blendARGB(i2, ColorUtils.blendARGB(Theme.getColor(i3), Theme.getColor(this.currentColorKey), 0.9f), this.colorProgress));
-        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.filledPaint);
-        this.filledPaint.setColor(Theme.getColor(i3));
-        this.filledPaint.setAlpha(255);
-        this.rect.set(f5, f6, measuredWidth - AndroidUtilities.dp(58.0f), getMeasuredHeight() - measuredHeight);
-        this.rect.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
-        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.filledPaint);
-        this.outlinePaint.setAlpha(31);
-        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.outlinePaint);
+        int i3 = this.fromColor;
+        int i4 = Theme.key_windowBackgroundWhite;
+        int iBlendARGB = ColorUtils.blendARGB(this.colorProgress, i3, ColorUtils.blendARGB(0.9f, Theme.getColor(null, i4, false), Theme.getColor(null, this.currentColorKey, false)));
+        Paint paint3 = this.filledPaint;
+        paint3.setColor(iBlendARGB);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint3);
+        paint3.setColor(Theme.getColor(null, i4, false));
+        paint3.setAlpha(255);
+        rectF.set(f6, f7, iM$1 - AndroidUtilities.dp(58.0f), getMeasuredHeight() - iM$2);
+        rectF.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint3);
+        paint.setAlpha(31);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
         canvas.save();
-        canvas.clipRect(this.rect);
-        this.filledPaint.setColor(Theme.getColor(i));
-        this.filledPaint.setAlpha(60);
-        RectF rectF = this.rect;
-        canvas.drawCircle(rectF.left + 0.0f, rectF.centerY(), AndroidUtilities.dp(15.0f), this.filledPaint);
-        float fCenterY = this.rect.centerY() - AndroidUtilities.dp(6.0f);
-        this.linePaint.setAlpha(57);
-        canvas.drawLine(this.rect.left + AndroidUtilities.dp(23.0f) + 0.0f, fCenterY, this.rect.right - AndroidUtilities.dp(68.0f), fCenterY, this.linePaint);
-        float fCenterY2 = this.rect.centerY() + AndroidUtilities.dp(6.0f);
-        canvas.drawLine(this.rect.left + AndroidUtilities.dp(23.0f) + 0.0f, fCenterY2, this.rect.right - AndroidUtilities.dp(23.0f), fCenterY2, this.linePaint);
+        canvas.clipRect(rectF);
+        paint3.setColor(Theme.getColor(null, i, false));
+        paint3.setAlpha(60);
+        canvas.drawCircle(rectF.left + 0.0f, rectF.centerY(), AndroidUtilities.dp(15.0f), paint3);
+        float fCenterY = rectF.centerY() - AndroidUtilities.dp(6.0f);
+        paint2.setAlpha(57);
+        canvas.drawLine(rectF.left + AndroidUtilities.dp(23.0f) + 0.0f, fCenterY, rectF.right - AndroidUtilities.dp(68.0f), fCenterY, paint2);
+        float fCenterY2 = rectF.centerY() + AndroidUtilities.dp(6.0f);
+        canvas.drawLine(rectF.left + AndroidUtilities.dp(23.0f) + 0.0f, fCenterY2, rectF.right - AndroidUtilities.dp(23.0f), fCenterY2, paint2);
         canvas.restore();
     }
 
-    public RLottieDrawable getIcon(int i) {
-        int i2;
-        RLottieDrawable[] rLottieDrawableArr = this.icons;
-        if (rLottieDrawableArr[i] == null) {
-            if (i == 1) {
-                i2 = R.raw.swipe_read;
-            } else if (i == 2) {
-                i2 = R.raw.chats_archive;
-            } else if (i == 3) {
-                i2 = R.raw.swipe_mute;
-            } else if (i == 4) {
-                i2 = R.raw.swipe_delete;
-            } else if (i != 5) {
-                i2 = R.raw.swipe_pin;
-            } else {
-                i2 = R.raw.swipe_disabled;
+    @Override
+    public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        super.onInitializeAccessibilityEvent(accessibilityEvent);
+        if (accessibilityEvent.getEventType() == 1) {
+            AnonymousClass1 anonymousClass1 = this.picker;
+            int value = anonymousClass1.getValue() + 1;
+            if (value > anonymousClass1.getMaxValue() || value < 0) {
+                value = 0;
             }
-            int i3 = i2;
-            rLottieDrawableArr[i] = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-            updateIconColor(i);
-        }
-        return this.icons[i];
-    }
-
-    public void updateIconColor(int i) {
-        if (this.icons[i] != null) {
-            int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_chats_archiveBackground), 0.9f);
-            int color = Theme.getColor(Theme.key_chats_archiveIcon);
-            if (i == 2) {
-                this.icons[i].setLayerColor("Arrow", iBlendARGB);
-                this.icons[i].setLayerColor("Box2", color);
-                this.icons[i].setLayerColor("Box1", color);
-                return;
-            }
-            this.icons[i].setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+            setContentDescription(this.strings[value]);
+            anonymousClass1.changeValueByOne(true);
         }
     }
 
-    public void updateColors() {
-        for (int i = 0; i < this.icons.length; i++) {
-            updateIconColor(i);
-        }
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+        accessibilityNodeInfo.setContentDescription(this.strings[getValue()]);
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, null));
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
     }
 
     @Override
     public void setBackgroundColor(int i) {
         super.setBackgroundColor(i);
-        updateColors();
-        this.picker.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        this.picker.invalidate();
+        for (int i2 = 0; i2 < this.icons.length; i2++) {
+            updateIconColor(i2);
+        }
+        int color = Theme.getColor(null, Theme.key_dialogTextBlack, false);
+        AnonymousClass1 anonymousClass1 = this.picker;
+        anonymousClass1.setTextColor(color);
+        anonymousClass1.invalidate();
     }
 
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setContentDescription(this.strings[this.picker.getValue()]);
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, null));
-    }
-
-    @Override
-    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        super.onInitializeAccessibilityEvent(accessibilityEvent);
-        if (accessibilityEvent.getEventType() == 1) {
-            int value = this.picker.getValue() + 1;
-            if (value > this.picker.getMaxValue() || value < 0) {
-                value = 0;
+    public final void swapIcons() {
+        int value;
+        if (this.swapIconRunnable == null && this.currentIconValue != (value = getValue())) {
+            this.currentIconValue = value;
+            int i = (this.currentIconIndex + 1) % 2;
+            RLottieDrawable icon = getIcon(value);
+            RLottieImageView[] rLottieImageViewArr = this.iconViews;
+            if (icon != null) {
+                if (rLottieImageViewArr[i].getVisibility() != 0) {
+                    icon.setCurrentFrame(0, false, false);
+                }
+                rLottieImageViewArr[i].setAnimation(icon);
+                rLottieImageViewArr[i].playAnimation();
+            } else {
+                rLottieImageViewArr[i].clearAnimationDrawable();
             }
-            setContentDescription(this.strings[value]);
-            this.picker.changeValueByOne(true);
+            AndroidUtilities.updateViewVisibilityAnimated(rLottieImageViewArr[this.currentIconIndex], false, 0.5f, true);
+            AndroidUtilities.updateViewVisibilityAnimated(rLottieImageViewArr[i], true, 0.5f, true);
+            this.currentIconIndex = i;
+            SeekBarView$$ExternalSyntheticLambda1 seekBarView$$ExternalSyntheticLambda1 = new SeekBarView$$ExternalSyntheticLambda1(this, 27);
+            this.swapIconRunnable = seekBarView$$ExternalSyntheticLambda1;
+            AndroidUtilities.runOnUIThread(seekBarView$$ExternalSyntheticLambda1, 150L);
+        }
+    }
+
+    public final void updateIconColor(int i) {
+        RLottieDrawable[] rLottieDrawableArr = this.icons;
+        if (rLottieDrawableArr[i] != null) {
+            int iBlendARGB = ColorUtils.blendARGB(0.9f, Theme.getColor(null, Theme.key_windowBackgroundWhite, false), Theme.getColor(null, Theme.key_chats_archiveBackground, false));
+            int color = Theme.getColor(null, Theme.key_chats_archiveIcon, false);
+            if (i != 2) {
+                rLottieDrawableArr[i].setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+                return;
+            }
+            RLottieDrawable rLottieDrawable = rLottieDrawableArr[i];
+            OKLCH.m(iBlendARGB, rLottieDrawable.newColorUpdates, "Arrow", rLottieDrawable);
+            RLottieDrawable rLottieDrawable2 = rLottieDrawableArr[i];
+            OKLCH.m(color, rLottieDrawable2.newColorUpdates, "Box2", rLottieDrawable2);
+            RLottieDrawable rLottieDrawable3 = rLottieDrawableArr[i];
+            OKLCH.m(color, rLottieDrawable3.newColorUpdates, "Box1", rLottieDrawable3);
         }
     }
 }

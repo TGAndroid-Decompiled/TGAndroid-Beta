@@ -2,6 +2,7 @@ package org.telegram.messenger;
 
 import android.text.TextUtils;
 import android.util.LongSparseArray;
+import androidx.recyclerview.widget.DiffUtil;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -24,43 +25,29 @@ public class CacheByChatsController {
     private boolean gotKeepMediaByTypes = false;
     private final int[] keepMediaByTypes = {-1, -1, -1, -1};
 
+    public static class KeepMediaException {
+        public final long dialogId;
+        public int keepMedia;
+
+        public KeepMediaException(long j, int i) {
+            this.dialogId = j;
+            this.keepMedia = i;
+        }
+    }
+
+    public static class KeepMediaFile {
+        final File file;
+        boolean isStory;
+        int keepMedia = -1;
+        int dialogType = 2;
+
+        public KeepMediaFile(File file) {
+            this.file = file;
+        }
+    }
+
     public CacheByChatsController(int i) {
         this.currentAccount = i;
-    }
-
-    public static int getDefault(int i) {
-        if (i == 0) {
-            return KEEP_MEDIA_FOREVER;
-        }
-        if (i == 1) {
-            return KEEP_MEDIA_ONE_MONTH;
-        }
-        if (i == 2) {
-            return KEEP_MEDIA_ONE_WEEK;
-        }
-        if (i == 3) {
-            return KEEP_MEDIA_TWO_DAY;
-        }
-        return SharedConfig.keepMedia;
-    }
-
-    public static String getKeepMediaString(int i) {
-        if (i == KEEP_MEDIA_ONE_MINUTE) {
-            return LocaleController.formatPluralString("Minutes", 1, new Object[0]);
-        }
-        if (i == KEEP_MEDIA_ONE_DAY) {
-            return LocaleController.formatPluralString("Days", 1, new Object[0]);
-        }
-        if (i == KEEP_MEDIA_TWO_DAY) {
-            return LocaleController.formatPluralString("Days", 2, new Object[0]);
-        }
-        if (i == KEEP_MEDIA_ONE_WEEK) {
-            return LocaleController.formatPluralString("Weeks", 1, new Object[0]);
-        }
-        if (i == KEEP_MEDIA_ONE_MONTH) {
-            return LocaleController.formatPluralString("Months", 1, new Object[0]);
-        }
-        return LocaleController.getString(R.string.AutoDeleteMediaNever);
     }
 
     public static long getDaysInSeconds(int i) {
@@ -77,6 +64,46 @@ public class CacheByChatsController {
             return 172800L;
         }
         return (i == KEEP_MEDIA_ONE_MINUTE && BuildVars.DEBUG_PRIVATE_VERSION) ? 60L : Long.MAX_VALUE;
+    }
+
+    public static int getDefault(int i) {
+        if (i == 0) {
+            return KEEP_MEDIA_FOREVER;
+        }
+        if (i == 1) {
+            return KEEP_MEDIA_ONE_MONTH;
+        }
+        if (i == 2) {
+            return KEEP_MEDIA_ONE_WEEK;
+        }
+        return i == 3 ? KEEP_MEDIA_TWO_DAY : SharedConfig.keepMedia;
+    }
+
+    public static String getKeepMediaString(int i) {
+        if (i == KEEP_MEDIA_ONE_MINUTE) {
+            return LocaleController.formatPluralString("Minutes", 1, new Object[0]);
+        }
+        if (i == KEEP_MEDIA_ONE_DAY) {
+            return LocaleController.formatPluralString("Days", 1, new Object[0]);
+        }
+        if (i == KEEP_MEDIA_TWO_DAY) {
+            return LocaleController.formatPluralString("Days", 2, new Object[0]);
+        }
+        if (i == KEEP_MEDIA_ONE_WEEK) {
+            return LocaleController.formatPluralString("Weeks", 1, new Object[0]);
+        }
+        return i == KEEP_MEDIA_ONE_MONTH ? LocaleController.formatPluralString("Months", 1, new Object[0]) : LocaleController.getString(R.string.AutoDeleteMediaNever);
+    }
+
+    public int getKeepMedia(int i) {
+        if (!this.gotKeepMediaByTypes) {
+            this.gotKeepMediaByTypes = true;
+            for (int i2 = 0; i2 < 4; i2++) {
+                this.keepMediaByTypes[i2] = SharedConfig.getPreferences().getInt(DiffUtil.m(i2, "keep_media_type_"), getDefault(i2));
+            }
+        }
+        int i3 = this.keepMediaByTypes[i];
+        return i3 == -1 ? SharedConfig.keepMedia : i3;
     }
 
     public ArrayList<KeepMediaException> getKeepMediaExceptions(int i) {
@@ -99,43 +126,17 @@ public class CacheByChatsController {
         return arrayList;
     }
 
-    public void saveKeepMediaExceptions(int i, ArrayList<KeepMediaException> arrayList) {
-        String str = "keep_media_exceptions_" + i;
-        if (arrayList.isEmpty()) {
-            UserConfig.getInstance(this.currentAccount).getPreferences().edit().remove(str).apply();
-            return;
-        }
-        int size = arrayList.size();
-        ByteBuffer byteBufferAllocate = ByteBuffer.allocate((size * 12) + 4);
-        byteBufferAllocate.putInt(size);
-        for (int i2 = 0; i2 < size; i2++) {
-            byteBufferAllocate.putLong(arrayList.get(i2).dialogId);
-            byteBufferAllocate.putInt(arrayList.get(i2).keepMedia);
-        }
-        UserConfig.getInstance(this.currentAccount).getPreferences().edit().putString(str, Utilities.bytesToHex(byteBufferAllocate.array())).apply();
-        byteBufferAllocate.clear();
-    }
-
-    public int getKeepMedia(int i) {
-        if (!this.gotKeepMediaByTypes) {
-            this.gotKeepMediaByTypes = true;
-            for (int i2 = 0; i2 < 4; i2++) {
-                this.keepMediaByTypes[i2] = SharedConfig.getPreferences().getInt("keep_media_type_" + i2, getDefault(i2));
+    public LongSparseArray<KeepMediaException> getKeepMediaExceptionsByDialogs() {
+        LongSparseArray<KeepMediaException> longSparseArray = new LongSparseArray<>();
+        for (int i = 0; i < 3; i++) {
+            ArrayList<KeepMediaException> keepMediaExceptions = getKeepMediaExceptions(i);
+            if (keepMediaExceptions != null) {
+                for (int i2 = 0; i2 < keepMediaExceptions.size(); i2++) {
+                    longSparseArray.put(keepMediaExceptions.get(i2).dialogId, keepMediaExceptions.get(i2));
+                }
             }
         }
-        int i3 = this.keepMediaByTypes[i];
-        return i3 == -1 ? SharedConfig.keepMedia : i3;
-    }
-
-    public void setKeepMedia(int i, int i2) {
-        if (!this.gotKeepMediaByTypes) {
-            this.gotKeepMediaByTypes = true;
-            for (int i3 = 0; i3 < 4; i3++) {
-                this.keepMediaByTypes[i3] = SharedConfig.getPreferences().getInt("keep_media_type_" + i3, getDefault(i3));
-            }
-        }
-        this.keepMediaByTypes[i] = i2;
-        SharedConfig.getPreferences().edit().putInt("keep_media_type_" + i, i2).apply();
+        return longSparseArray;
     }
 
     public void lookupFiles(ArrayList<? extends KeepMediaFile> arrayList) {
@@ -153,11 +154,7 @@ public class CacheByChatsController {
                 if (chat == null) {
                     chat = MessagesStorage.getInstance(this.currentAccount).getChatSync(j);
                 }
-                if (chat == null) {
-                    i = -1;
-                } else {
-                    i = ChatObject.isChannel(chat) ? 2 : 1;
-                }
+                i = chat == null ? -1 : ChatObject.isChannel(chat) ? 2 : 1;
             }
             KeepMediaException keepMediaException = keepMediaExceptionsByDialogs.get(jKeyAt);
             for (int i3 = 0; i3 < arrayListValueAt.size(); i3++) {
@@ -172,37 +169,31 @@ public class CacheByChatsController {
         }
     }
 
-    public LongSparseArray<KeepMediaException> getKeepMediaExceptionsByDialogs() {
-        LongSparseArray<KeepMediaException> longSparseArray = new LongSparseArray<>();
-        for (int i = 0; i < 3; i++) {
-            ArrayList<KeepMediaException> keepMediaExceptions = getKeepMediaExceptions(i);
-            if (keepMediaExceptions != null) {
-                for (int i2 = 0; i2 < keepMediaExceptions.size(); i2++) {
-                    longSparseArray.put(keepMediaExceptions.get(i2).dialogId, keepMediaExceptions.get(i2));
-                }
+    public void saveKeepMediaExceptions(int i, ArrayList<KeepMediaException> arrayList) {
+        String strM = DiffUtil.m(i, "keep_media_exceptions_");
+        if (arrayList.isEmpty()) {
+            UserConfig.getInstance(this.currentAccount).getPreferences().edit().remove(strM).apply();
+            return;
+        }
+        int size = arrayList.size();
+        ByteBuffer byteBufferAllocate = ByteBuffer.allocate((size * 12) + 4);
+        byteBufferAllocate.putInt(size);
+        for (int i2 = 0; i2 < size; i2++) {
+            byteBufferAllocate.putLong(arrayList.get(i2).dialogId);
+            byteBufferAllocate.putInt(arrayList.get(i2).keepMedia);
+        }
+        UserConfig.getInstance(this.currentAccount).getPreferences().edit().putString(strM, Utilities.bytesToHex(byteBufferAllocate.array())).apply();
+        byteBufferAllocate.clear();
+    }
+
+    public void setKeepMedia(int i, int i2) {
+        if (!this.gotKeepMediaByTypes) {
+            this.gotKeepMediaByTypes = true;
+            for (int i3 = 0; i3 < 4; i3++) {
+                this.keepMediaByTypes[i3] = SharedConfig.getPreferences().getInt(DiffUtil.m(i3, "keep_media_type_"), getDefault(i3));
             }
         }
-        return longSparseArray;
-    }
-
-    public static class KeepMediaException {
-        public final long dialogId;
-        public int keepMedia;
-
-        public KeepMediaException(long j, int i) {
-            this.dialogId = j;
-            this.keepMedia = i;
-        }
-    }
-
-    public static class KeepMediaFile {
-        final File file;
-        boolean isStory;
-        int keepMedia = -1;
-        int dialogType = 2;
-
-        public KeepMediaFile(File file) {
-            this.file = file;
-        }
+        this.keepMediaByTypes[i] = i2;
+        SharedConfig.getPreferences().edit().putInt("keep_media_type_" + i, i2).apply();
     }
 }

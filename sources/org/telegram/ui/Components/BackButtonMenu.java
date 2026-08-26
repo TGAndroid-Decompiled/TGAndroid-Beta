@@ -6,15 +6,14 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
@@ -25,510 +24,44 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda18;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda6;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TopicsFragment;
 
 public abstract class BackButtonMenu {
 
-    public static class PulledDialog {
-        Class activity;
-        TLRPC.Chat chat;
-        long dialogId;
-        int filterId;
-        int folderId;
-        int stackIndex;
-        TLRPC.TL_forumTopic topic;
-        TLRPC.User user;
+    public final class PulledDialog {
+        public Class activity;
+        public TLRPC.Chat chat;
+        public long dialogId;
+        public int filterId;
+        public int folderId;
+        public int stackIndex;
+        public TLRPC.TL_forumTopic topic;
+        public TLRPC.User user;
     }
 
-    public static ActionBarPopupWindow show(final BaseFragment baseFragment, View view, long j, long j2, Theme.ResourcesProvider resourcesProvider) {
-        ArrayList stackedHistoryDialogs;
-        boolean z;
-        Drawable drawable;
-        String string;
-        BitmapDrawable bitmapDrawable;
-        Drawable drawable2;
-        BitmapDrawable bitmapDrawable2;
-        int i;
-        int i2;
-        if (baseFragment == null) {
-            return null;
-        }
-        INavigationLayout parentLayout = baseFragment.getParentLayout();
-        Activity parentActivity = baseFragment.getParentActivity();
-        View fragmentView = baseFragment.getFragmentView();
-        if (parentLayout == null || parentActivity == null || fragmentView == null) {
-            return null;
-        }
-        long j3 = 0;
-        if (j2 != 0 && !ChatObject.isMonoForum(baseFragment.getCurrentAccount(), j)) {
-            stackedHistoryDialogs = getStackedHistoryForTopic(baseFragment, j, j2);
-        } else {
-            stackedHistoryDialogs = getStackedHistoryDialogs(baseFragment, j);
-        }
-        ArrayList arrayList = stackedHistoryDialogs;
-        if (arrayList.size() <= 0) {
-            return null;
-        }
-        int i3 = R.drawable.popup_fixed_alert4;
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(parentActivity, i3, resourcesProvider);
-        Rect rect = new Rect();
-        baseFragment.getParentActivity().getResources().getDrawable(i3).mutate().getPadding(rect);
-        actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, resourcesProvider));
-        final AtomicReference atomicReference = new AtomicReference();
-        int size = arrayList.size();
-        int i4 = 0;
-        boolean z2 = false;
-        while (true) {
-            long j4 = j3;
-            if (i4 >= size) {
-                break;
-            }
-            boolean z3 = i4 == 0;
-            boolean z4 = i4 == size + (-1);
-            final PulledDialog pulledDialog = (PulledDialog) arrayList.get(i4);
-            TLRPC.Chat chat = pulledDialog.chat;
-            AtomicReference atomicReference2 = atomicReference;
-            TLRPC.User user = pulledDialog.user;
-            boolean z5 = z2;
-            final INavigationLayout iNavigationLayout = parentLayout;
-            TLRPC.TL_forumTopic tL_forumTopic = pulledDialog.topic;
-            boolean z6 = z4;
-            FrameLayout frameLayout = new FrameLayout(parentActivity);
-            int i5 = i4;
-            frameLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
-            BackupImageView backupImageView = new BackupImageView(parentActivity);
-            if (chat == null && user == null) {
-                backupImageView.setRoundRadius(0);
-            } else {
-                backupImageView.setRoundRadius((chat == null || !chat.forum) ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f));
-            }
-            frameLayout.addView(backupImageView, LayoutHelper.createFrameRelatively(32.0f, 32.0f, 8388627, 8.0f, 0.0f, 0.0f, 0.0f));
-            TextView textView = new TextView(parentActivity);
-            textView.setLines(1);
-            boolean z7 = z3;
-            textView.setTextSize(1, 16.0f);
-            textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
-            textView.setEllipsize(TextUtils.TruncateAt.END);
-            frameLayout.addView(textView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 52.0f, 0.0f, 8.0f, 0.0f));
-            AvatarDrawable avatarDrawable = new AvatarDrawable();
-            avatarDrawable.setScaleSize(0.8f);
-            if (tL_forumTopic != null) {
-                if (tL_forumTopic.id == 1) {
-                    backupImageView.setImageDrawable(ForumUtilities.createGeneralTopicDrawable(fragmentView.getContext(), 1.0f, Theme.getColor(Theme.key_chat_inMenu, resourcesProvider), false));
-                } else if (tL_forumTopic.icon_emoji_id != j4) {
-                    backupImageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(10, baseFragment.getCurrentAccount(), tL_forumTopic.icon_emoji_id));
-                } else {
-                    backupImageView.setImageDrawable(ForumUtilities.createTopicDrawable(tL_forumTopic, false));
-                }
-                textView.setText(tL_forumTopic.title);
-            } else {
-                arrayList = arrayList;
-                if (chat != null) {
-                    avatarDrawable.setInfo(baseFragment.getCurrentAccount(), chat);
-                    TLRPC.ChatPhoto chatPhoto = chat.photo;
-                    if (chatPhoto != null && (bitmapDrawable2 = chatPhoto.strippedBitmap) != null) {
-                        drawable2 = avatarDrawable;
-                        drawable2 = avatarDrawable;
-                        drawable2 = bitmapDrawable2;
-                    }
-                    drawable2 = avatarDrawable;
-                    drawable2 = avatarDrawable;
-                    drawable2 = avatarDrawable;
-                    backupImageView.setImage(ImageLocation.getForChat(baseFragment.getCurrentAccount(), chat, 1), "50_50", drawable2, chat);
-                    textView.setText(chat.title);
-                } else if (user != null) {
-                    TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
-                    if (userProfilePhoto == null || (bitmapDrawable = userProfilePhoto.strippedBitmap) == null) {
-                        drawable = bitmapDrawable;
-                        drawable = avatarDrawable;
-                    }
-                    drawable = bitmapDrawable;
-                    if (pulledDialog.activity == ChatActivity.class && UserObject.isUserSelf(user)) {
-                        string = LocaleController.getString(R.string.SavedMessages);
-                        avatarDrawable.setAvatarType(1);
-                        backupImageView.setImageDrawable(avatarDrawable);
-                    } else if (UserObject.isReplyUser(user)) {
-                        string = LocaleController.getString(R.string.RepliesTitle);
-                        avatarDrawable.setAvatarType(12);
-                        backupImageView.setImageDrawable(avatarDrawable);
-                    } else if (UserObject.isDeleted(user)) {
-                        string = LocaleController.getString(R.string.HiddenName);
-                        avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
-                        backupImageView.setImage(ImageLocation.getForUser(baseFragment.getCurrentAccount(), user, 1), "50_50", avatarDrawable, user);
-                    } else {
-                        String userName = UserObject.getUserName(user);
-                        avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
-                        backupImageView.setImage(ImageLocation.getForUser(baseFragment.getCurrentAccount(), user, 1), "50_50", drawable, user);
-                        string = userName;
-                    }
-                    textView.setText(string);
-                    z = false;
-                    z5 = true;
-                } else {
-                    tL_forumTopic = tL_forumTopic;
-                    backupImageView.setImageDrawable(ContextCompat.getDrawable(parentActivity, R.drawable.msg_viewchats).mutate());
-                    backupImageView.setSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-                    backupImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
-                    textView.setText(LocaleController.getString(R.string.AllChats));
-                    z = true;
-                }
-                frameLayout.setBackground(Theme.getSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), false));
-                atomicReference = atomicReference2;
-                final TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
-                frameLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        BackButtonMenu.$r8$lambda$LjwJnyIy4aTYeceLn6PSUidUlns(atomicReference, pulledDialog, iNavigationLayout, tL_forumTopic2, baseFragment, view2);
-                    }
-                });
-                if (z7) {
-                    i = 3;
-                } else {
-                    i = 0;
-                }
-                if (z6) {
-                    i2 = 3;
-                } else {
-                    i2 = 0;
-                }
-                actionBarPopupWindowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 44, 0.0f, 0, 0, i, 0, i2));
-                if (z) {
-                    View frameLayout2 = new FrameLayout(parentActivity);
-                    frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
-                    frameLayout2.setTag(R.id.fit_width_tag, 1);
-                    actionBarPopupWindowLayout.addView(frameLayout2, LayoutHelper.createLinear(-1, 8));
-                }
-                i4 = i5 + 1;
-                parentLayout = iNavigationLayout;
-                j3 = j4;
-                z2 = z5;
-                arrayList = arrayList;
-            }
-            z = false;
-            z5 = true;
-            frameLayout.setBackground(Theme.getSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), false));
-            atomicReference = atomicReference2;
-            final TLRPC.TL_forumTopic tL_forumTopic3 = tL_forumTopic;
-            frameLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    BackButtonMenu.$r8$lambda$LjwJnyIy4aTYeceLn6PSUidUlns(atomicReference, pulledDialog, iNavigationLayout, tL_forumTopic3, baseFragment, view2);
-                }
-            });
-            if (z7) {
-                i = 3;
-            } else {
-                i = 0;
-            }
-            if (z6) {
-                i2 = 3;
-            } else {
-                i2 = 0;
-            }
-            actionBarPopupWindowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 44, 0.0f, 0, 0, i, 0, i2));
-            if (z) {
-                View frameLayout3 = new FrameLayout(parentActivity);
-                frameLayout3.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
-                frameLayout3.setTag(R.id.fit_width_tag, 1);
-                actionBarPopupWindowLayout.addView(frameLayout3, LayoutHelper.createLinear(-1, 8));
-            }
-            i4 = i5 + 1;
-            parentLayout = iNavigationLayout;
-            j3 = j4;
-            z2 = z5;
-            arrayList = arrayList;
-        }
-        if (!z2) {
-            return null;
-        }
-        ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
-        atomicReference.set(actionBarPopupWindow);
-        actionBarPopupWindow.setPauseNotifications(true);
-        actionBarPopupWindow.setDismissAnimationDuration(220);
-        actionBarPopupWindow.setOutsideTouchable(true);
-        actionBarPopupWindow.setClippingEnabled(true);
-        actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
-        actionBarPopupWindow.setFocusable(true);
-        actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
-        actionBarPopupWindow.setInputMethodMode(2);
-        actionBarPopupWindow.setSoftInputMode(0);
-        actionBarPopupWindow.getContentView().setFocusableInTouchMode(true);
-        actionBarPopupWindowLayout.setFitItems(true);
-        int iDp = AndroidUtilities.dp(7.0f) - rect.left;
-        if (AndroidUtilities.isTablet()) {
-            int[] iArr = new int[2];
-            fragmentView.getLocationInWindow(iArr);
-            iDp += iArr[0];
-        }
-        actionBarPopupWindow.showAtLocation(fragmentView, 51, iDp, (view.getBottom() - rect.top) - AndroidUtilities.dp(1.0f));
-        return actionBarPopupWindow;
-    }
-
-    public static void $r8$lambda$LjwJnyIy4aTYeceLn6PSUidUlns(AtomicReference atomicReference, PulledDialog pulledDialog, INavigationLayout iNavigationLayout, TLRPC.TL_forumTopic tL_forumTopic, BaseFragment baseFragment, View view) {
-        Long lValueOf;
-        int i;
-        Long lValueOf2 = null;
-        if (atomicReference.get() != null) {
-            ((ActionBarPopupWindow) atomicReference.getAndSet(null)).dismiss();
-        }
-        if (pulledDialog.stackIndex >= 0) {
-            if (iNavigationLayout == null || iNavigationLayout.getFragmentStack() == null || pulledDialog.stackIndex >= iNavigationLayout.getFragmentStack().size()) {
-                lValueOf = null;
-            } else {
-                BaseFragment baseFragment2 = (BaseFragment) iNavigationLayout.getFragmentStack().get(pulledDialog.stackIndex);
-                if (baseFragment2 instanceof ChatActivity) {
-                    ChatActivity chatActivity = (ChatActivity) baseFragment2;
-                    lValueOf2 = Long.valueOf(chatActivity.getDialogId());
-                    lValueOf = Long.valueOf(chatActivity.getTopicId());
-                } else if (baseFragment2 instanceof ProfileActivity) {
-                    ProfileActivity profileActivity = (ProfileActivity) baseFragment2;
-                    lValueOf2 = Long.valueOf(profileActivity.getDialogId());
-                    lValueOf = Long.valueOf(profileActivity.getTopicId());
-                } else {
-                    lValueOf = null;
-                }
-            }
-            if ((lValueOf2 != null && lValueOf2.longValue() != pulledDialog.dialogId) || (tL_forumTopic != null && lValueOf != null && tL_forumTopic.id != lValueOf.longValue())) {
-                for (int size = iNavigationLayout.getFragmentStack().size() - 2; size > pulledDialog.stackIndex; size--) {
-                    iNavigationLayout.removeFragmentFromStack(size);
-                }
-            } else if (iNavigationLayout != null && iNavigationLayout.getFragmentStack() != null) {
-                ArrayList arrayList = new ArrayList(iNavigationLayout.getFragmentStack());
-                int size2 = arrayList.size() - 2;
-                while (true) {
-                    i = pulledDialog.stackIndex;
-                    if (size2 <= i) {
-                        break;
-                    }
-                    ((BaseFragment) arrayList.get(size2)).removeSelfFromStack();
-                    size2--;
-                }
-                if (i < iNavigationLayout.getFragmentStack().size()) {
-                    iNavigationLayout.closeLastFragment(true);
-                    return;
-                }
-            }
-        }
-        goToPulledDialog(baseFragment, pulledDialog);
-    }
-
-    private static ArrayList getStackedHistoryForTopic(BaseFragment baseFragment, long j, long j2) {
-        INavigationLayout parentLayout;
-        int i;
-        ArrayList arrayList = new ArrayList();
-        if (baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
-            return arrayList;
-        }
-        List pulledDialogs = parentLayout.getPulledDialogs();
-        if (pulledDialogs != null) {
-            i = -1;
-            for (int i2 = 0; i2 < pulledDialogs.size(); i2++) {
-                PulledDialog pulledDialog = (PulledDialog) pulledDialogs.get(i2);
-                TLRPC.TL_forumTopic tL_forumTopic = pulledDialog.topic;
-                if (tL_forumTopic != null && tL_forumTopic.id != j2) {
-                    int i3 = pulledDialog.stackIndex;
-                    if (i3 >= i) {
-                        i = i3;
-                    }
-                    arrayList.add(pulledDialog);
-                }
-            }
-        } else {
-            i = -1;
-        }
-        if (parentLayout.getFragmentStack().size() > 1 && (parentLayout.getFragmentStack().get(parentLayout.getFragmentStack().size() - 2) instanceof TopicsFragment)) {
-            PulledDialog pulledDialog2 = new PulledDialog();
-            arrayList.add(pulledDialog2);
-            pulledDialog2.stackIndex = i + 1;
-            pulledDialog2.activity = DialogsActivity.class;
-            PulledDialog pulledDialog3 = new PulledDialog();
-            arrayList.add(pulledDialog3);
-            pulledDialog3.stackIndex = -1;
-            pulledDialog3.activity = TopicsFragment.class;
-            pulledDialog3.chat = MessagesController.getInstance(baseFragment.getCurrentAccount()).getChat(Long.valueOf(-j));
-        } else {
-            PulledDialog pulledDialog4 = new PulledDialog();
-            arrayList.add(pulledDialog4);
-            pulledDialog4.stackIndex = -1;
-            pulledDialog4.activity = TopicsFragment.class;
-            pulledDialog4.chat = MessagesController.getInstance(baseFragment.getCurrentAccount()).getChat(Long.valueOf(-j));
-        }
-        Collections.sort(arrayList, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                return BackButtonMenu.$r8$lambda$zwJbf49aukFzohFh_mJM0GlNr8Q((BackButtonMenu.PulledDialog) obj, (BackButtonMenu.PulledDialog) obj2);
-            }
-        });
-        return arrayList;
-    }
-
-    public static int $r8$lambda$zwJbf49aukFzohFh_mJM0GlNr8Q(PulledDialog pulledDialog, PulledDialog pulledDialog2) {
-        return pulledDialog2.stackIndex - pulledDialog.stackIndex;
-    }
-
-    public static void goToPulledDialog(BaseFragment baseFragment, PulledDialog pulledDialog) {
-        BaseFragment baseFragment2;
-        if (pulledDialog == null) {
-            return;
-        }
-        Class cls = pulledDialog.activity;
-        if (cls == ChatActivity.class) {
-            Bundle bundle = new Bundle();
-            TLRPC.Chat chat = pulledDialog.chat;
-            if (chat != null) {
-                bundle.putLong("chat_id", chat.id);
-            } else {
-                TLRPC.User user = pulledDialog.user;
-                if (user != null) {
-                    bundle.putLong("user_id", user.id);
-                }
-            }
-            bundle.putInt("dialog_folder_id", pulledDialog.folderId);
-            bundle.putInt("dialog_filter_id", pulledDialog.filterId);
-            TLRPC.TL_forumTopic tL_forumTopic = pulledDialog.topic;
-            if (tL_forumTopic != null) {
-                baseFragment2 = baseFragment;
-                baseFragment2.presentFragment(ForumUtilities.getChatActivityForTopic(baseFragment2, pulledDialog.chat.id, tL_forumTopic, 0, bundle), true);
-            } else {
-                baseFragment2 = baseFragment;
-                baseFragment2.presentFragment(new ChatActivity(bundle), true);
-            }
-        } else {
-            baseFragment2 = baseFragment;
-            if (cls == ProfileActivity.class) {
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("dialog_id", pulledDialog.dialogId);
-                baseFragment2.presentFragment(new ProfileActivity(bundle2), true);
-            }
-        }
-        if (pulledDialog.activity == TopicsFragment.class) {
-            Bundle bundle3 = new Bundle();
-            bundle3.putLong("chat_id", pulledDialog.chat.id);
-            baseFragment2.presentFragment(new TopicsFragment(bundle3), true);
-        }
-        if (pulledDialog.activity == DialogsActivity.class) {
-            baseFragment2.presentFragment(new DialogsActivity(null), true);
-        }
-    }
-
-    public static ArrayList getStackedHistoryDialogs(BaseFragment baseFragment, long j) {
-        INavigationLayout parentLayout;
-        TLRPC.Chat currentChat;
-        TLRPC.User currentUser;
-        long dialogId;
-        Class cls;
-        int dialogFilterId;
-        int dialogFolderId;
-        ArrayList arrayList = new ArrayList();
-        if (baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
-            return arrayList;
-        }
-        List fragmentStack = parentLayout.getFragmentStack();
-        List pulledDialogs = parentLayout.getPulledDialogs();
-        if (fragmentStack != null) {
-            int size = fragmentStack.size();
-            for (int i = 0; i < size; i++) {
-                BaseFragment baseFragment2 = (BaseFragment) fragmentStack.get(i);
-                if (baseFragment2 instanceof ChatActivity) {
-                    ChatActivity chatActivity = (ChatActivity) baseFragment2;
-                    if (chatActivity.getChatMode() == 0 && !chatActivity.isReport()) {
-                        currentChat = chatActivity.getCurrentChat();
-                        currentUser = chatActivity.getCurrentUser();
-                        dialogId = chatActivity.getDialogId();
-                        dialogFolderId = chatActivity.getDialogFolderId();
-                        dialogFilterId = chatActivity.getDialogFilterId();
-                        cls = ChatActivity.class;
-                        if (dialogId == j && (j != 0 || !UserObject.isUserSelf(currentUser))) {
-                            int i2 = 0;
-                            while (true) {
-                                if (i2 >= arrayList.size()) {
-                                    PulledDialog pulledDialog = new PulledDialog();
-                                    pulledDialog.activity = cls;
-                                    pulledDialog.stackIndex = i;
-                                    pulledDialog.chat = currentChat;
-                                    pulledDialog.user = currentUser;
-                                    pulledDialog.dialogId = dialogId;
-                                    pulledDialog.folderId = dialogFolderId;
-                                    pulledDialog.filterId = dialogFilterId;
-                                    if (currentChat != null || currentUser != null) {
-                                        arrayList.add(pulledDialog);
-                                        break;
-                                    }
-                                    break;
-                                }
-                                if (((PulledDialog) arrayList.get(i2)).dialogId == dialogId) {
-                                    break;
-                                }
-                                i2++;
-                            }
-                        }
-                    }
-                } else if (baseFragment2 instanceof ProfileActivity) {
-                    ProfileActivity profileActivity = (ProfileActivity) baseFragment2;
-                    currentChat = profileActivity.getCurrentChat();
-                    try {
-                        currentUser = profileActivity.getUserInfo().user;
-                    } catch (Exception unused) {
-                        currentUser = null;
-                    }
-                    dialogId = profileActivity.getDialogId();
-                    cls = ProfileActivity.class;
-                    dialogFilterId = 0;
-                    dialogFolderId = 0;
-                    if (dialogId == j) {
-                    }
-                }
-            }
-        }
-        if (pulledDialogs != null) {
-            for (int size2 = pulledDialogs.size() - 1; size2 >= 0; size2--) {
-                PulledDialog pulledDialog2 = (PulledDialog) pulledDialogs.get(size2);
-                if (pulledDialog2.dialogId != j) {
-                    int i3 = 0;
-                    while (true) {
-                        if (i3 >= arrayList.size()) {
-                            arrayList.add(pulledDialog2);
-                            break;
-                        }
-                        if (((PulledDialog) arrayList.get(i3)).dialogId == pulledDialog2.dialogId) {
-                            break;
-                        }
-                        i3++;
-                    }
-                }
-            }
-        }
-        Collections.sort(arrayList, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                return BackButtonMenu.m2052$r8$lambda$sPUzo9otFwawnC1lMMb0CzYuf8((BackButtonMenu.PulledDialog) obj, (BackButtonMenu.PulledDialog) obj2);
-            }
-        });
-        return arrayList;
-    }
-
-    public static int m2052$r8$lambda$sPUzo9otFwawnC1lMMb0CzYuf8(PulledDialog pulledDialog, PulledDialog pulledDialog2) {
-        return pulledDialog2.stackIndex - pulledDialog.stackIndex;
-    }
-
-    public static void addToPulledDialogs(BaseFragment baseFragment, int i, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j, int i2, int i3) {
+    public static void addToPulledDialogs(ChatActivity chatActivity, int i, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j, int i2, int i3) {
         INavigationLayout parentLayout;
         TLRPC.TL_forumTopic tL_forumTopic2;
-        if ((chat == null && user == null) || baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
+        if ((chat == null && user == null) || (parentLayout = chatActivity.getParentLayout()) == null) {
             return;
         }
-        if (parentLayout.getPulledDialogs() == null) {
-            parentLayout.setPulledDialogs(new ArrayList());
+        ActionBarLayout actionBarLayout = (ActionBarLayout) parentLayout;
+        if (actionBarLayout.getPulledDialogs() == null) {
+            actionBarLayout.setPulledDialogs(new ArrayList());
         }
-        for (PulledDialog pulledDialog : parentLayout.getPulledDialogs()) {
+        for (PulledDialog pulledDialog : actionBarLayout.getPulledDialogs()) {
             if (tL_forumTopic == null && pulledDialog.dialogId == j) {
                 return;
             }
@@ -545,21 +78,662 @@ public abstract class BackButtonMenu {
         pulledDialog2.chat = chat;
         pulledDialog2.user = user;
         pulledDialog2.topic = tL_forumTopic;
-        parentLayout.getPulledDialogs().add(pulledDialog2);
+        actionBarLayout.getPulledDialogs().add(pulledDialog2);
     }
 
-    public static void clearPulledDialogs(BaseFragment baseFragment, int i) {
-        INavigationLayout parentLayout;
-        if (baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null || parentLayout.getPulledDialogs() == null) {
-            return;
+    public static ActionBarPopupWindow show(BaseFragment baseFragment, ImageView imageView, long j, long j2, Theme.ResourcesProvider resourcesProvider) {
+        Class<ChatActivity> cls;
+        ArrayList arrayList;
+        INavigationLayout iNavigationLayout;
+        TLRPC.Chat chat;
+        TLRPC.User currentUser;
+        long dialogId;
+        Class cls2;
+        int i;
+        int i2;
+        INavigationLayout iNavigationLayout2;
+        List<BaseFragment> list;
+        long j3;
+        ArrayList arrayList2;
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout;
+        Rect rect;
+        AtomicReference atomicReference;
+        int size;
+        boolean z;
+        int i3;
+        int iDp;
+        boolean z2;
+        boolean z3;
+        PulledDialog pulledDialog;
+        TLRPC.Chat chat2;
+        TLRPC.User user;
+        TLRPC.TL_forumTopic tL_forumTopic;
+        boolean z4;
+        BackupImageView backupImageView;
+        int iDp2;
+        TextView textView;
+        AvatarDrawable avatarDrawable;
+        Class<ChatActivity> cls3;
+        boolean z5;
+        boolean z6;
+        TLRPC.UserProfilePhoto userProfilePhoto;
+        Drawable drawable;
+        String string;
+        BitmapDrawable bitmapDrawable;
+        TLRPC.ChatPhoto chatPhoto;
+        Drawable drawable2;
+        BitmapDrawable bitmapDrawable2;
+        int i4;
+        int i5;
+        ActionBarPopupWindow.ActionBarPopupWindowLayout.AnonymousClass2 anonymousClass2;
+        int i6;
+        Class<ChatActivity> cls4;
+        INavigationLayout parentLayout = baseFragment.getParentLayout();
+        Activity parentActivity = baseFragment.getParentActivity();
+        View fragmentView = baseFragment.getFragmentView();
+        if (parentLayout == null || parentActivity == null || fragmentView == null) {
+            return null;
         }
-        int i2 = 0;
-        while (i2 < parentLayout.getPulledDialogs().size()) {
-            if (((PulledDialog) parentLayout.getPulledDialogs().get(i2)).stackIndex > i) {
-                parentLayout.getPulledDialogs().remove(i2);
-                i2--;
+        Class<ChatActivity> cls5 = ChatActivity.class;
+        if (j2 == 0 || ChatObject.isMonoForum(baseFragment.getCurrentAccount(), j)) {
+            cls = cls5;
+            arrayList = new ArrayList();
+            INavigationLayout parentLayout2 = baseFragment.getParentLayout();
+            if (parentLayout2 != null) {
+                ActionBarLayout actionBarLayout = (ActionBarLayout) parentLayout2;
+                List<BaseFragment> fragmentStack = actionBarLayout.getFragmentStack();
+                List<PulledDialog> pulledDialogs = actionBarLayout.getPulledDialogs();
+                if (fragmentStack != null) {
+                    int size2 = fragmentStack.size();
+                    int i7 = 0;
+                    while (i7 < size2) {
+                        BaseFragment baseFragment2 = fragmentStack.get(i7);
+                        if (baseFragment2 instanceof ChatActivity) {
+                            ChatActivity chatActivity = (ChatActivity) baseFragment2;
+                            if (chatActivity.chatMode == 0 && !chatActivity.isReport()) {
+                                chat = chatActivity.currentChat;
+                                currentUser = chatActivity.getCurrentUser();
+                                dialogId = chatActivity.getDialogId();
+                                i2 = chatActivity.dialogFolderId;
+                                i = chatActivity.dialogFilterId;
+                                cls2 = cls;
+                                j3 = dialogId;
+                                if (j3 == j && (j != 0 || !UserObject.isUserSelf(currentUser))) {
+                                    iNavigationLayout2 = parentLayout;
+                                    list = fragmentStack;
+                                    int i8 = 0;
+                                    while (true) {
+                                        if (i8 >= arrayList.size()) {
+                                            PulledDialog pulledDialog2 = new PulledDialog();
+                                            pulledDialog2.activity = cls2;
+                                            pulledDialog2.stackIndex = i7;
+                                            pulledDialog2.chat = chat;
+                                            pulledDialog2.user = currentUser;
+                                            pulledDialog2.dialogId = j3;
+                                            pulledDialog2.folderId = i2;
+                                            pulledDialog2.filterId = i;
+                                            if (chat != null || currentUser != null) {
+                                                arrayList.add(pulledDialog2);
+                                                break;
+                                            }
+                                            break;
+                                        }
+                                        int i9 = i8;
+                                        if (((PulledDialog) arrayList.get(i8)).dialogId == j3) {
+                                            break;
+                                        }
+                                        i8 = i9 + 1;
+                                    }
+                                }
+                            }
+                            i7++;
+                            fragmentStack = list;
+                            parentLayout = iNavigationLayout2;
+                        } else {
+                            if (baseFragment2 instanceof ProfileActivity) {
+                                ProfileActivity profileActivity = (ProfileActivity) baseFragment2;
+                                chat = profileActivity.currentChat;
+                                try {
+                                    currentUser = profileActivity.userInfo.user;
+                                } catch (Exception unused) {
+                                    currentUser = null;
+                                }
+                                dialogId = profileActivity.getDialogId();
+                                cls2 = ProfileActivity.class;
+                                i = 0;
+                                i2 = 0;
+                                j3 = dialogId;
+                                if (j3 == j) {
+                                }
+                            }
+                            i7++;
+                            fragmentStack = list;
+                            parentLayout = iNavigationLayout2;
+                        }
+                        iNavigationLayout2 = parentLayout;
+                        list = fragmentStack;
+                        i7++;
+                        fragmentStack = list;
+                        parentLayout = iNavigationLayout2;
+                    }
+                }
+                iNavigationLayout = parentLayout;
+                if (pulledDialogs != null) {
+                    for (int size3 = pulledDialogs.size() - 1; size3 >= 0; size3--) {
+                        PulledDialog pulledDialog3 = pulledDialogs.get(size3);
+                        if (pulledDialog3.dialogId != j) {
+                            int i10 = 0;
+                            while (true) {
+                                if (i10 >= arrayList.size()) {
+                                    arrayList.add(pulledDialog3);
+                                    break;
+                                }
+                                if (((PulledDialog) arrayList.get(i10)).dialogId == pulledDialog3.dialogId) {
+                                    break;
+                                }
+                                i10++;
+                            }
+                        }
+                    }
+                }
+                Collections.sort(arrayList, new ChatActivity$$ExternalSyntheticLambda18(10));
             }
-            i2++;
+            arrayList2 = arrayList;
+            if (arrayList2.size() <= 0) {
+                return null;
+            }
+            int i11 = R.drawable.popup_fixed_alert4;
+            actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(i11, 0, parentActivity, resourcesProvider);
+            rect = new Rect();
+            baseFragment.getParentActivity().getResources().getDrawable(i11).mutate().getPadding(rect);
+            actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, resourcesProvider));
+            atomicReference = new AtomicReference();
+            size = arrayList2.size();
+            z = false;
+            i3 = 0;
+            while (i3 < size) {
+                if (i3 == 0) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+                if (i3 == size - 1) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                pulledDialog = (PulledDialog) arrayList2.get(i3);
+                chat2 = pulledDialog.chat;
+                user = pulledDialog.user;
+                tL_forumTopic = pulledDialog.topic;
+                z4 = z;
+                FrameLayout frameLayout = new FrameLayout(parentActivity);
+                frameLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
+                backupImageView = new BackupImageView(parentActivity);
+                ArrayList arrayList3 = arrayList2;
+                if (chat2 == null || user != null) {
+                    if (chat2 == null && chat2.forum) {
+                        iDp2 = AndroidUtilities.dp(8.0f);
+                    } else {
+                        iDp2 = AndroidUtilities.dp(16.0f);
+                    }
+                    backupImageView.setRoundRadius(iDp2);
+                } else {
+                    backupImageView.setRoundRadius(0);
+                }
+                frameLayout.addView(backupImageView, LayoutHelper.createFrameRelatively(32.0f, 32.0f, 8388627, 8.0f, 0.0f, 0.0f, 0.0f));
+                textView = new TextView(parentActivity);
+                AtomicReference atomicReference2 = atomicReference;
+                textView.setLines(1);
+                int i12 = size;
+                textView.setTextSize(1, 16.0f);
+                textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
+                textView.setEllipsize(TextUtils.TruncateAt.END);
+                frameLayout.addView(textView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 52.0f, 0.0f, 8.0f, 0.0f));
+                avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+                avatarDrawable.scaleSize = 0.8f;
+                if (tL_forumTopic != null) {
+                    if (tL_forumTopic.id == 1) {
+                        backupImageView.setImageDrawable(ForumUtilities.createGeneralTopicDrawable(fragmentView.getContext(), 1.0f, Theme.getColor(Theme.key_chat_inMenu, resourcesProvider), false));
+                    } else if (tL_forumTopic.icon_emoji_id != 0) {
+                        backupImageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(10, baseFragment.getCurrentAccount(), tL_forumTopic.icon_emoji_id));
+                    } else {
+                        backupImageView.setImageDrawable(ForumUtilities.createTopicDrawable(tL_forumTopic));
+                    }
+                    textView.setText(tL_forumTopic.title);
+                } else {
+                    i3 = i3;
+                    if (chat2 != null) {
+                        avatarDrawable.setInfo(baseFragment.getCurrentAccount(), chat2);
+                        chatPhoto = chat2.photo;
+                        if (chatPhoto != null && (bitmapDrawable2 = chatPhoto.strippedBitmap) != null) {
+                            drawable2 = avatarDrawable;
+                            drawable2 = avatarDrawable;
+                            drawable2 = bitmapDrawable2;
+                        }
+                        drawable2 = avatarDrawable;
+                        drawable2 = avatarDrawable;
+                        drawable2 = avatarDrawable;
+                        backupImageView.setImage(ImageLocation.getForChat(baseFragment.getCurrentAccount(), chat2, 1), "50_50", drawable2, chat2);
+                        textView.setText(chat2.title);
+                    } else if (user != null) {
+                        userProfilePhoto = user.photo;
+                        if (userProfilePhoto != null || (bitmapDrawable = userProfilePhoto.strippedBitmap) == null) {
+                            drawable = bitmapDrawable;
+                            drawable = avatarDrawable;
+                        }
+                        drawable = bitmapDrawable;
+                        cls3 = cls;
+                        if (pulledDialog.activity == cls3 || !UserObject.isUserSelf(user)) {
+                            if (UserObject.isReplyUser(user)) {
+                                string = LocaleController.getString(R.string.RepliesTitle);
+                                avatarDrawable.setAvatarType(12);
+                                backupImageView.setImageDrawable(avatarDrawable);
+                            } else if (UserObject.isDeleted(user)) {
+                                string = LocaleController.getString(R.string.HiddenName);
+                                avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
+                                backupImageView.setImage(ImageLocation.getForUser(baseFragment.getCurrentAccount(), user, 1), "50_50", avatarDrawable, user);
+                            } else {
+                                String userName = UserObject.getUserName(user);
+                                avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
+                                backupImageView.setImage(ImageLocation.getForUser(baseFragment.getCurrentAccount(), user, 1), "50_50", drawable, user);
+                                string = userName;
+                            }
+                            textView.setText(string);
+                            z5 = true;
+                            z6 = false;
+                        } else {
+                            string = LocaleController.getString(R.string.SavedMessages);
+                            avatarDrawable.setAvatarType(1);
+                            backupImageView.setImageDrawable(avatarDrawable);
+                        }
+                        textView.setText(string);
+                        z5 = true;
+                        z6 = false;
+                    } else {
+                        pulledDialog = pulledDialog;
+                        z2 = z2;
+                        cls3 = cls;
+                        backupImageView.setImageDrawable(parentActivity.getDrawable(R.drawable.msg_viewchats).mutate());
+                        int iDp3 = AndroidUtilities.dp(24.0f);
+                        int iDp4 = AndroidUtilities.dp(24.0f);
+                        backupImageView.width = iDp3;
+                        backupImageView.height = iDp4;
+                        backupImageView.invalidate();
+                        backupImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+                        textView.setText(LocaleController.getString(R.string.AllChats));
+                        z5 = z4;
+                        z6 = true;
+                    }
+                    frameLayout.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 2, -1));
+                    INavigationLayout iNavigationLayout3 = iNavigationLayout;
+                    atomicReference = atomicReference2;
+                    frameLayout.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda6(atomicReference, pulledDialog, iNavigationLayout3, tL_forumTopic, baseFragment, 6));
+                    if (z2) {
+                        i4 = 3;
+                    } else {
+                        i4 = 0;
+                    }
+                    if (z3) {
+                        i5 = 3;
+                    } else {
+                        i5 = 0;
+                    }
+                    ViewGroup.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(-1, 44, 0.0f, 0, 0, i4, 0, i5);
+                    anonymousClass2 = actionBarPopupWindowLayout.linearLayout;
+                    anonymousClass2.addView(frameLayout, layoutParamsCreateLinear);
+                    if (z6) {
+                        View frameLayout2 = new FrameLayout(parentActivity);
+                        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
+                        frameLayout2.setTag(R.id.fit_width_tag, 1);
+                        anonymousClass2.addView(frameLayout2, LayoutHelper.createLinear(-1, 8));
+                    }
+                    i3++;
+                    z = z5;
+                    iNavigationLayout = iNavigationLayout3;
+                    cls = cls3;
+                    size = i12;
+                    arrayList2 = arrayList3;
+                }
+                pulledDialog = pulledDialog;
+                cls3 = cls;
+                z5 = true;
+                z6 = false;
+                frameLayout.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 2, -1));
+                INavigationLayout iNavigationLayout4 = iNavigationLayout;
+                atomicReference = atomicReference2;
+                frameLayout.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda6(atomicReference, pulledDialog, iNavigationLayout4, tL_forumTopic, baseFragment, 6));
+                if (z2) {
+                    i4 = 3;
+                } else {
+                    i4 = 0;
+                }
+                if (z3) {
+                    i5 = 3;
+                } else {
+                    i5 = 0;
+                }
+                ViewGroup.LayoutParams layoutParamsCreateLinear2 = LayoutHelper.createLinear(-1, 44, 0.0f, 0, 0, i4, 0, i5);
+                anonymousClass2 = actionBarPopupWindowLayout.linearLayout;
+                anonymousClass2.addView(frameLayout, layoutParamsCreateLinear2);
+                if (z6) {
+                    View frameLayout3 = new FrameLayout(parentActivity);
+                    frameLayout3.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
+                    frameLayout3.setTag(R.id.fit_width_tag, 1);
+                    anonymousClass2.addView(frameLayout3, LayoutHelper.createLinear(-1, 8));
+                }
+                i3++;
+                z = z5;
+                iNavigationLayout = iNavigationLayout4;
+                cls = cls3;
+                size = i12;
+                arrayList2 = arrayList3;
+            }
+            if (!z) {
+                return null;
+            }
+            ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout);
+            atomicReference.set(actionBarPopupWindow);
+            actionBarPopupWindow.pauseNotifications = true;
+            actionBarPopupWindow.dismissAnimationDuration = 220;
+            actionBarPopupWindow.setOutsideTouchable(true);
+            actionBarPopupWindow.setClippingEnabled(true);
+            actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
+            actionBarPopupWindow.setFocusable(true);
+            actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
+            actionBarPopupWindow.setInputMethodMode(2);
+            actionBarPopupWindow.setSoftInputMode(0);
+            actionBarPopupWindow.getContentView().setFocusableInTouchMode(true);
+            actionBarPopupWindowLayout.setFitItems(true);
+            iDp = AndroidUtilities.dp(7.0f) - rect.left;
+            if (AndroidUtilities.isTablet()) {
+                int[] iArr = new int[2];
+                fragmentView.getLocationInWindow(iArr);
+                iDp += iArr[0];
+            }
+            actionBarPopupWindow.showAtLocation(fragmentView, 51, iDp, (imageView.getBottom() - rect.top) - AndroidUtilities.dp(1.0f));
+            return actionBarPopupWindow;
         }
+        arrayList = new ArrayList();
+        INavigationLayout parentLayout3 = baseFragment.getParentLayout();
+        if (parentLayout3 == null) {
+            cls = cls5;
+        } else {
+            ActionBarLayout actionBarLayout2 = (ActionBarLayout) parentLayout3;
+            List<PulledDialog> pulledDialogs2 = actionBarLayout2.getPulledDialogs();
+            if (pulledDialogs2 != null) {
+                int i13 = 0;
+                i6 = -1;
+                while (i13 < pulledDialogs2.size()) {
+                    PulledDialog pulledDialog4 = pulledDialogs2.get(i13);
+                    TLRPC.TL_forumTopic tL_forumTopic2 = pulledDialog4.topic;
+                    if (tL_forumTopic2 != null) {
+                        cls4 = cls5;
+                        if (tL_forumTopic2.id != j2) {
+                            int i14 = pulledDialog4.stackIndex;
+                            if (i14 >= i6) {
+                                i6 = i14;
+                            }
+                            arrayList.add(pulledDialog4);
+                        }
+                    } else {
+                        cls4 = cls5;
+                    }
+                    i13++;
+                    cls5 = cls4;
+                }
+            } else {
+                i6 = -1;
+            }
+            cls = cls5;
+            if (actionBarLayout2.getFragmentStack().size() <= 1 || !(ArticleViewer.IBlock.CC.m(actionBarLayout2, 2, actionBarLayout2.getFragmentStack()) instanceof TopicsFragment)) {
+                PulledDialog pulledDialog5 = new PulledDialog();
+                arrayList.add(pulledDialog5);
+                pulledDialog5.stackIndex = -1;
+                pulledDialog5.activity = TopicsFragment.class;
+                pulledDialog5.chat = MessagesController.getInstance(baseFragment.getCurrentAccount()).getChat(Long.valueOf(-j));
+            } else {
+                PulledDialog pulledDialog6 = new PulledDialog();
+                arrayList.add(pulledDialog6);
+                pulledDialog6.stackIndex = i6 + 1;
+                pulledDialog6.activity = DialogsActivity.class;
+                PulledDialog pulledDialog7 = new PulledDialog();
+                arrayList.add(pulledDialog7);
+                pulledDialog7.stackIndex = -1;
+                pulledDialog7.activity = TopicsFragment.class;
+                pulledDialog7.chat = MessagesController.getInstance(baseFragment.getCurrentAccount()).getChat(Long.valueOf(-j));
+            }
+            Collections.sort(arrayList, new ChatActivity$$ExternalSyntheticLambda18(11));
+        }
+        iNavigationLayout = parentLayout;
+        arrayList2 = arrayList;
+        if (arrayList2.size() <= 0) {
+            return null;
+        }
+        int i15 = R.drawable.popup_fixed_alert4;
+        actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(i15, 0, parentActivity, resourcesProvider);
+        rect = new Rect();
+        baseFragment.getParentActivity().getResources().getDrawable(i15).mutate().getPadding(rect);
+        actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, resourcesProvider));
+        atomicReference = new AtomicReference();
+        size = arrayList2.size();
+        z = false;
+        i3 = 0;
+        while (i3 < size) {
+            if (i3 == 0) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            if (i3 == size - 1) {
+                z3 = true;
+            } else {
+                z3 = false;
+            }
+            pulledDialog = (PulledDialog) arrayList2.get(i3);
+            chat2 = pulledDialog.chat;
+            user = pulledDialog.user;
+            tL_forumTopic = pulledDialog.topic;
+            z4 = z;
+            FrameLayout frameLayout4 = new FrameLayout(parentActivity);
+            frameLayout4.setMinimumWidth(AndroidUtilities.dp(200.0f));
+            backupImageView = new BackupImageView(parentActivity);
+            ArrayList arrayList4 = arrayList2;
+            if (chat2 == null) {
+                if (chat2 == null) {
+                    iDp2 = AndroidUtilities.dp(16.0f);
+                } else {
+                    iDp2 = AndroidUtilities.dp(16.0f);
+                }
+                backupImageView.setRoundRadius(iDp2);
+            } else {
+                if (chat2 == null) {
+                    iDp2 = AndroidUtilities.dp(16.0f);
+                } else {
+                    iDp2 = AndroidUtilities.dp(16.0f);
+                }
+                backupImageView.setRoundRadius(iDp2);
+            }
+            frameLayout4.addView(backupImageView, LayoutHelper.createFrameRelatively(32.0f, 32.0f, 8388627, 8.0f, 0.0f, 0.0f, 0.0f));
+            textView = new TextView(parentActivity);
+            AtomicReference atomicReference3 = atomicReference;
+            textView.setLines(1);
+            int i16 = size;
+            textView.setTextSize(1, 16.0f);
+            textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            frameLayout4.addView(textView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 52.0f, 0.0f, 8.0f, 0.0f));
+            avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            avatarDrawable.scaleSize = 0.8f;
+            if (tL_forumTopic != null) {
+                if (tL_forumTopic.id == 1) {
+                    backupImageView.setImageDrawable(ForumUtilities.createGeneralTopicDrawable(fragmentView.getContext(), 1.0f, Theme.getColor(Theme.key_chat_inMenu, resourcesProvider), false));
+                } else if (tL_forumTopic.icon_emoji_id != 0) {
+                    backupImageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(10, baseFragment.getCurrentAccount(), tL_forumTopic.icon_emoji_id));
+                } else {
+                    backupImageView.setImageDrawable(ForumUtilities.createTopicDrawable(tL_forumTopic));
+                }
+                textView.setText(tL_forumTopic.title);
+            } else {
+                i3 = i3;
+                if (chat2 != null) {
+                    avatarDrawable.setInfo(baseFragment.getCurrentAccount(), chat2);
+                    chatPhoto = chat2.photo;
+                    if (chatPhoto != null) {
+                        drawable2 = avatarDrawable;
+                        drawable2 = avatarDrawable;
+                        drawable2 = bitmapDrawable2;
+                    }
+                    drawable2 = avatarDrawable;
+                    drawable2 = avatarDrawable;
+                    drawable2 = avatarDrawable;
+                    backupImageView.setImage(ImageLocation.getForChat(baseFragment.getCurrentAccount(), chat2, 1), "50_50", drawable2, chat2);
+                    textView.setText(chat2.title);
+                } else if (user != null) {
+                    userProfilePhoto = user.photo;
+                    if (userProfilePhoto != null) {
+                        drawable = bitmapDrawable;
+                        drawable = avatarDrawable;
+                    } else {
+                        drawable = bitmapDrawable;
+                        drawable = avatarDrawable;
+                    }
+                    drawable = bitmapDrawable;
+                    cls3 = cls;
+                    if (pulledDialog.activity == cls3) {
+                        if (UserObject.isReplyUser(user)) {
+                            string = LocaleController.getString(R.string.RepliesTitle);
+                            avatarDrawable.setAvatarType(12);
+                            backupImageView.setImageDrawable(avatarDrawable);
+                        } else if (UserObject.isDeleted(user)) {
+                            string = LocaleController.getString(R.string.HiddenName);
+                            avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
+                            backupImageView.setImage(ImageLocation.getForUser(baseFragment.getCurrentAccount(), user, 1), "50_50", avatarDrawable, user);
+                        } else {
+                            String userName2 = UserObject.getUserName(user);
+                            avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
+                            backupImageView.setImage(ImageLocation.getForUser(baseFragment.getCurrentAccount(), user, 1), "50_50", drawable, user);
+                            string = userName2;
+                        }
+                    } else if (UserObject.isReplyUser(user)) {
+                        string = LocaleController.getString(R.string.RepliesTitle);
+                        avatarDrawable.setAvatarType(12);
+                        backupImageView.setImageDrawable(avatarDrawable);
+                    } else if (UserObject.isDeleted(user)) {
+                        string = LocaleController.getString(R.string.HiddenName);
+                        avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
+                        backupImageView.setImage(ImageLocation.getForUser(baseFragment.getCurrentAccount(), user, 1), "50_50", avatarDrawable, user);
+                    } else {
+                        String userName3 = UserObject.getUserName(user);
+                        avatarDrawable.setInfo(baseFragment.getCurrentAccount(), user);
+                        backupImageView.setImage(ImageLocation.getForUser(baseFragment.getCurrentAccount(), user, 1), "50_50", drawable, user);
+                        string = userName3;
+                    }
+                    textView.setText(string);
+                    z5 = true;
+                    z6 = false;
+                } else {
+                    pulledDialog = pulledDialog;
+                    z2 = z2;
+                    cls3 = cls;
+                    backupImageView.setImageDrawable(parentActivity.getDrawable(R.drawable.msg_viewchats).mutate());
+                    int iDp5 = AndroidUtilities.dp(24.0f);
+                    int iDp6 = AndroidUtilities.dp(24.0f);
+                    backupImageView.width = iDp5;
+                    backupImageView.height = iDp6;
+                    backupImageView.invalidate();
+                    backupImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+                    textView.setText(LocaleController.getString(R.string.AllChats));
+                    z5 = z4;
+                    z6 = true;
+                }
+                frameLayout4.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 2, -1));
+                INavigationLayout iNavigationLayout5 = iNavigationLayout;
+                atomicReference = atomicReference3;
+                frameLayout4.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda6(atomicReference, pulledDialog, iNavigationLayout5, tL_forumTopic, baseFragment, 6));
+                if (z2) {
+                    i4 = 3;
+                } else {
+                    i4 = 0;
+                }
+                if (z3) {
+                    i5 = 3;
+                } else {
+                    i5 = 0;
+                }
+                ViewGroup.LayoutParams layoutParamsCreateLinear3 = LayoutHelper.createLinear(-1, 44, 0.0f, 0, 0, i4, 0, i5);
+                anonymousClass2 = actionBarPopupWindowLayout.linearLayout;
+                anonymousClass2.addView(frameLayout4, layoutParamsCreateLinear3);
+                if (z6) {
+                    View frameLayout5 = new FrameLayout(parentActivity);
+                    frameLayout5.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
+                    frameLayout5.setTag(R.id.fit_width_tag, 1);
+                    anonymousClass2.addView(frameLayout5, LayoutHelper.createLinear(-1, 8));
+                }
+                i3++;
+                z = z5;
+                iNavigationLayout = iNavigationLayout5;
+                cls = cls3;
+                size = i16;
+                arrayList2 = arrayList4;
+            }
+            pulledDialog = pulledDialog;
+            cls3 = cls;
+            z5 = true;
+            z6 = false;
+            frameLayout4.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 2, -1));
+            INavigationLayout iNavigationLayout6 = iNavigationLayout;
+            atomicReference = atomicReference3;
+            frameLayout4.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda6(atomicReference, pulledDialog, iNavigationLayout6, tL_forumTopic, baseFragment, 6));
+            if (z2) {
+                i4 = 3;
+            } else {
+                i4 = 0;
+            }
+            if (z3) {
+                i5 = 3;
+            } else {
+                i5 = 0;
+            }
+            ViewGroup.LayoutParams layoutParamsCreateLinear4 = LayoutHelper.createLinear(-1, 44, 0.0f, 0, 0, i4, 0, i5);
+            anonymousClass2 = actionBarPopupWindowLayout.linearLayout;
+            anonymousClass2.addView(frameLayout4, layoutParamsCreateLinear4);
+            if (z6) {
+                View frameLayout6 = new FrameLayout(parentActivity);
+                frameLayout6.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
+                frameLayout6.setTag(R.id.fit_width_tag, 1);
+                anonymousClass2.addView(frameLayout6, LayoutHelper.createLinear(-1, 8));
+            }
+            i3++;
+            z = z5;
+            iNavigationLayout = iNavigationLayout6;
+            cls = cls3;
+            size = i16;
+            arrayList2 = arrayList4;
+        }
+        if (!z) {
+            return null;
+        }
+        ActionBarPopupWindow actionBarPopupWindow2 = new ActionBarPopupWindow(actionBarPopupWindowLayout);
+        atomicReference.set(actionBarPopupWindow2);
+        actionBarPopupWindow2.pauseNotifications = true;
+        actionBarPopupWindow2.dismissAnimationDuration = 220;
+        actionBarPopupWindow2.setOutsideTouchable(true);
+        actionBarPopupWindow2.setClippingEnabled(true);
+        actionBarPopupWindow2.setAnimationStyle(R.style.PopupContextAnimation);
+        actionBarPopupWindow2.setFocusable(true);
+        actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
+        actionBarPopupWindow2.setInputMethodMode(2);
+        actionBarPopupWindow2.setSoftInputMode(0);
+        actionBarPopupWindow2.getContentView().setFocusableInTouchMode(true);
+        actionBarPopupWindowLayout.setFitItems(true);
+        iDp = AndroidUtilities.dp(7.0f) - rect.left;
+        if (AndroidUtilities.isTablet()) {
+            int[] iArr2 = new int[2];
+            fragmentView.getLocationInWindow(iArr2);
+            iDp += iArr2[0];
+        }
+        actionBarPopupWindow2.showAtLocation(fragmentView, 51, iDp, (imageView.getBottom() - rect.top) - AndroidUtilities.dp(1.0f));
+        return actionBarPopupWindow2;
     }
 }

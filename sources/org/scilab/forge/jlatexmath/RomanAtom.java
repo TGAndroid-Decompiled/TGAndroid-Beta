@@ -9,11 +9,11 @@ public class RomanAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        if (this.base != null) {
-            TeXEnvironment teXEnvironmentCopy = teXEnvironment.copy(teXEnvironment.getTeXFont().copy());
-            teXEnvironmentCopy.getTeXFont().setRoman(true);
-            return this.base.createBox(teXEnvironmentCopy);
+        if (this.base == null) {
+            return new StrutBox(0.0f, 0.0f, 0.0f, 0.0f);
         }
-        return new StrutBox(0.0f, 0.0f, 0.0f, 0.0f);
+        TeXEnvironment teXEnvironmentCopy = teXEnvironment.copy(teXEnvironment.getTeXFont().copy());
+        teXEnvironmentCopy.getTeXFont().setRoman(true);
+        return this.base.createBox(teXEnvironmentCopy);
     }
 }

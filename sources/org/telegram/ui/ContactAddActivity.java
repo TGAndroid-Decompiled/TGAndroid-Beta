@@ -1,12 +1,10 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,8 +13,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import com.google.android.gms.internal.mlkit_vision_label.zzcv;
 import java.util.ArrayList;
+import java.util.List;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
@@ -29,152 +29,104 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.PhotoUtilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.EditTextCell;
 import org.telegram.ui.Cells.TextCell;
-import org.telegram.ui.Cells.TextCheckCell;
-import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.EditTextCaption;
+import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.UItem;
-import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.LNavigation.NavigationExt;
+import org.telegram.ui.Components.VideoEditTextureView$$ExternalSyntheticLambda1;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
 
-public class ContactAddActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
-    private boolean addContact;
-    private TLRPC.FileLocation avatar;
-    private AnimatorSet avatarAnimation;
-    private AvatarDrawable avatarDrawable;
-    private BackupImageView avatarImage;
-    private View avatarOverlay;
-    private RadialProgressView avatarProgressView;
-    private boolean checkShare;
-    private ContactAddActivityDelegate delegate;
-    private MessagesController.DialogPhotos dialogPhotos;
-    private View doneButton;
-    private EditTextCell firstNameField;
-    private String firstNameFromCard;
-    private boolean firstSet;
-    private boolean focusNotes;
-    private ImageUpdater imageUpdater;
-    private FrameLayout infoLayout;
-    private EditTextCell lastNameField;
-    private String lastNameFromCard;
-    private UniversalRecyclerView listView;
-    private TextView nameTextView;
-    private boolean needAddException;
-    private EditTextCell noteField;
-    private BackupImageView oldAvatarView;
-    private TextCell oldPhotoCell;
-    private TextView onlineTextView;
-    boolean paused;
-    private String phone;
-    private int photoSelectedType;
-    private int photoSelectedTypeFinal;
-    private TLRPC.Photo prevAvatar;
-    private Theme.ResourcesProvider resourcesProvider;
-    private TextCell setAvatarCell;
-    private TextCell suggestBirthday;
-    private TextCell suggestPhoto;
-    MessageObject suggestPhotoMessageFinal;
-    private long user_id;
+public final class ContactAddActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
+    public boolean addContact;
+    public TLRPC.FileLocation avatar;
+    public AnimatorSet avatarAnimation;
+    public AvatarDrawable avatarDrawable;
+    public BackupImageView avatarImage;
+    public ChatActivity.AnonymousClass27 avatarOverlay;
+    public RadialProgressView avatarProgressView;
+    public boolean checkShare;
+    public ContactAddActivityDelegate delegate;
+    public MessagesController.DialogPhotos dialogPhotos;
+    public ActionBarMenuItem doneButton;
+    public EditTextCell firstNameField;
+    public String firstNameFromCard;
+    public boolean firstSet;
+    public boolean focusNotes;
+    public final ImageUpdater imageUpdater;
+    public FrameLayout infoLayout;
+    public EditTextCell lastNameField;
+    public String lastNameFromCard;
+    public UniversalRecyclerView listView;
+    public TextView nameTextView;
+    public boolean needAddException;
+    public EditTextCell noteField;
+    public BackupImageView oldAvatarView;
+    public AnonymousClass4 oldPhotoCell;
+    public TextView onlineTextView;
+    public String phone;
+    public int photoSelectedType;
+    public int photoSelectedTypeFinal;
+    public TLRPC.Photo prevAvatar;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public TextCell setAvatarCell;
+    public TextCell suggestBirthday;
+    public TextCell suggestPhoto;
+    public MessageObject suggestPhotoMessageFinal;
+    public long user_id;
+
+    public final class AnonymousClass3 implements View.OnFocusChangeListener {
+        @Override
+        public final void onFocusChange(View view, boolean z) {
+        }
+    }
 
     public interface ContactAddActivityDelegate {
         void didAddToContacts();
-    }
-
-    public static void $r8$lambda$LPPvgrrSUfJi0dFhajZWoG7VFqg() {
-    }
-
-    public static void $r8$lambda$xBHCyOJY0xiiShPXNdsiY1Ru3IA() {
-    }
-
-    @Override
-    public PhotoViewer.PlaceProviderObject getCloseIntoObject() {
-        return ImageUpdater.ImageUpdaterDelegate.CC.$default$getCloseIntoObject(this);
-    }
-
-    @Override
-    public boolean supportsBulletin() {
-        return ImageUpdater.ImageUpdaterDelegate.CC.$default$supportsBulletin(this);
     }
 
     public ContactAddActivity(Bundle bundle) {
         super(bundle);
         this.checkShare = false;
         this.firstSet = true;
-        this.imageUpdater = new ImageUpdater(true, 0, true);
-    }
-
-    public ContactAddActivity(Bundle bundle, Theme.ResourcesProvider resourcesProvider) {
-        super(bundle);
-        this.checkShare = false;
-        this.firstSet = true;
-        this.resourcesProvider = resourcesProvider;
-        this.imageUpdater = new ImageUpdater(true, 0, true);
+        this.imageUpdater = new ImageUpdater(0, true, true);
     }
 
     @Override
-    public Theme.ResourcesProvider getResourceProvider() {
-        return this.resourcesProvider;
+    public final boolean canFinishFragment() {
+        return this.photoSelectedTypeFinal != 1;
     }
 
     @Override
-    public boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.updateInterfaces);
-        getNotificationCenter().addObserver(this, NotificationCenter.dialogPhotosUpdate);
-        this.user_id = getArguments().getLong("user_id", 0L);
-        this.phone = getArguments().getString("phone");
-        this.firstNameFromCard = getArguments().getString("first_name_card");
-        this.lastNameFromCard = getArguments().getString("last_name_card");
-        this.addContact = getArguments().getBoolean("addContact", false);
-        this.focusNotes = getArguments().getBoolean("focus_notes", false);
-        this.needAddException = MessagesController.getNotificationsSettings(this.currentAccount).getBoolean("dialog_bar_exception" + this.user_id, false);
-        TLRPC.User user = this.user_id != 0 ? getMessagesController().getUser(Long.valueOf(this.user_id)) : null;
-        ImageUpdater imageUpdater = this.imageUpdater;
-        if (imageUpdater != null) {
-            imageUpdater.parentFragment = this;
-            imageUpdater.setDelegate(this);
-        }
-        this.dialogPhotos = MessagesController.getInstance(this.currentAccount).getDialogPhotos(this.user_id);
-        return user != null && super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        getNotificationCenter().removeObserver(this, NotificationCenter.updateInterfaces);
-        getNotificationCenter().removeObserver(this, NotificationCenter.dialogPhotosUpdate);
-        ImageUpdater imageUpdater = this.imageUpdater;
-        if (imageUpdater != null) {
-            imageUpdater.clear();
-        }
-    }
-
-    @Override
-    public View createView(final Context context) {
-        this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_avatar_actionBarSelectorBlue, this.resourcesProvider), false);
-        this.actionBar.setItemsColor(Theme.getColor(Theme.key_actionBarDefaultIcon, this.resourcesProvider), false);
+    public final View createView(Context context) {
+        final int i = 2;
+        int i2 = 5;
+        ActionBar actionBar = this.actionBar;
+        int i3 = Theme.key_avatar_actionBarSelectorBlue;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        final int i4 = 0;
+        actionBar.setItemsBackgroundColor(Theme.getColor(i3, resourcesProvider), false);
+        this.actionBar.setItemsColor(Theme.getColor(Theme.key_actionBarDefaultIcon, resourcesProvider), false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        final int i5 = 1;
         this.actionBar.setAllowOverlayTitle(true);
         if (this.addContact) {
             this.actionBar.setTitle(LocaleController.getString(R.string.NewContact));
@@ -183,79 +135,71 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i != -1) {
-                    if (i != 1 || ContactAddActivity.this.firstNameField.getText().length() == 0) {
-                        return;
-                    }
-                    TLRPC.User user = ContactAddActivity.this.getMessagesController().getUser(Long.valueOf(ContactAddActivity.this.user_id));
-                    TLRPC.UserFull userFull = ContactAddActivity.this.getMessagesController().getUserFull(ContactAddActivity.this.user_id);
-                    user.first_name = ContactAddActivity.this.firstNameField.getText().toString();
-                    user.last_name = ContactAddActivity.this.lastNameField.getText().toString();
-                    user.contact = true;
-                    TLRPC.TL_textWithEntities textWithEntities = ContactAddActivity.this.noteField.getTextWithEntities();
-                    ContactAddActivity.this.getMessagesController().putUser(user, false);
-                    ContactAddActivity.this.getContactsController().addContact(user, textWithEntities, ContactAddActivity.this.needAddException && ContactAddActivity.this.checkShare);
-                    MessagesController.getNotificationsSettings(((BaseFragment) ContactAddActivity.this).currentAccount).edit().putInt("dialog_bar_vis3" + ContactAddActivity.this.user_id, 3).commit();
-                    ContactAddActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
-                    ContactAddActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ContactAddActivity.this.user_id));
-                    if (userFull != null) {
-                        if (textWithEntities != null && textWithEntities.text.length() > 0) {
-                            userFull.flags2 |= 4194304;
-                            userFull.note = textWithEntities;
-                        } else {
-                            userFull.flags2 &= -4194305;
-                            userFull.note = null;
-                        }
-                        MessagesStorage.getInstance(((BaseFragment) ContactAddActivity.this).currentAccount).updateUserInfo(userFull, true);
-                        ContactAddActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.id), userFull);
-                    }
-                    ContactAddActivity.this.finishFragment();
-                    if (ContactAddActivity.this.delegate != null) {
-                        ContactAddActivity.this.delegate.didAddToContacts();
-                        return;
-                    }
+            public final void onItemClick(int i6) {
+                ContactAddActivity contactAddActivity = ContactAddActivity.this;
+                if (i6 == -1) {
+                    contactAddActivity.finishFragment();
                     return;
                 }
-                ContactAddActivity.this.finishFragment();
+                if (i6 != 1 || contactAddActivity.firstNameField.getText().length() == 0) {
+                    return;
+                }
+                TLRPC.User user = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id));
+                TLRPC.UserFull userFull = contactAddActivity.getMessagesController().getUserFull(contactAddActivity.user_id);
+                user.first_name = contactAddActivity.firstNameField.getText().toString();
+                user.last_name = contactAddActivity.lastNameField.getText().toString();
+                user.contact = true;
+                TLRPC.TL_textWithEntities textWithEntities = contactAddActivity.noteField.getTextWithEntities();
+                contactAddActivity.getMessagesController().putUser(user, false);
+                contactAddActivity.getContactsController().addContact(user, textWithEntities, contactAddActivity.needAddException && contactAddActivity.checkShare);
+                MessagesController.getNotificationsSettings(((BaseFragment) contactAddActivity).currentAccount).edit().putInt("dialog_bar_vis3" + contactAddActivity.user_id, 3).commit();
+                contactAddActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+                contactAddActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(contactAddActivity.user_id));
+                if (userFull != null) {
+                    if (textWithEntities == null || textWithEntities.text.length() <= 0) {
+                        userFull.flags2 &= -4194305;
+                        userFull.note = null;
+                    } else {
+                        userFull.flags2 |= 4194304;
+                        userFull.note = textWithEntities;
+                    }
+                    MessagesStorage.getInstance(((BaseFragment) contactAddActivity).currentAccount).updateUserInfo(userFull, true);
+                    contactAddActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.id), userFull);
+                }
+                contactAddActivity.finishFragment();
+                ContactAddActivityDelegate contactAddActivityDelegate = contactAddActivity.delegate;
+                if (contactAddActivityDelegate != null) {
+                    contactAddActivityDelegate.didAddToContacts();
+                }
             }
         });
         this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString(R.string.Done).toUpperCase());
-        final FrameLayout frameLayout = new FrameLayout(context);
-        int i = Theme.key_windowBackgroundGray;
-        frameLayout.setBackgroundColor(getThemedColor(i));
+        FrameLayout frameLayout = new FrameLayout(context);
+        int i6 = Theme.key_windowBackgroundGray;
+        frameLayout.setBackgroundColor(getThemedColor(i6));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.infoLayout = frameLayout2;
-        int i2 = Theme.key_windowBackgroundWhite;
-        frameLayout2.setBackgroundColor(getThemedColor(i2));
+        int i7 = Theme.key_windowBackgroundWhite;
+        frameLayout2.setBackgroundColor(getThemedColor(i7));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImage = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(32.0f));
         this.infoLayout.addView(this.avatarImage, LayoutHelper.createFrame(64, 64.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 13.0f, 16.0f, 13.0f));
-        final Paint paint = new Paint(1);
+        Paint paint = new Paint(1);
         paint.setColor(1426063360);
-        View view = new View(context) {
-            @Override
-            protected void onDraw(Canvas canvas) {
-                if (ContactAddActivity.this.avatarImage == null || !ContactAddActivity.this.avatarImage.getImageReceiver().hasNotThumb()) {
-                    return;
-                }
-                paint.setAlpha((int) (ContactAddActivity.this.avatarImage.getImageReceiver().getCurrentAlpha() * 85.0f));
-                canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint);
-            }
-        };
-        this.avatarOverlay = view;
-        this.infoLayout.addView(view, LayoutHelper.createFrame(64, 64.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 13.0f, 16.0f, 13.0f));
-        RadialProgressView radialProgressView = new RadialProgressView(context);
+        ChatActivity.AnonymousClass27 anonymousClass27 = new ChatActivity.AnonymousClass27(this, context, paint, i2);
+        this.avatarOverlay = anonymousClass27;
+        this.infoLayout.addView(anonymousClass27, LayoutHelper.createFrame(64, 64.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 13.0f, 16.0f, 13.0f));
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
         this.avatarProgressView = radialProgressView;
         radialProgressView.setSize(AndroidUtilities.dp(30.0f));
         this.avatarProgressView.setProgressColor(-1);
         this.avatarProgressView.setNoProgress(false);
         this.infoLayout.addView(this.avatarProgressView, LayoutHelper.createFrame(64, 64.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 13.0f, 16.0f, 13.0f));
-        showAvatarProgress(false, false);
+        showAvatarProgress$2(false, false);
         TextView textView = new TextView(context);
         this.nameTextView = textView;
-        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         this.nameTextView.setTextSize(1, 18.0f);
         this.nameTextView.setLines(1);
         this.nameTextView.setMaxLines(1);
@@ -268,10 +212,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         FrameLayout frameLayout3 = this.infoLayout;
         TextView textView3 = this.nameTextView;
         boolean z = LocaleController.isRTL;
-        frameLayout3.addView(textView3, LayoutHelper.createFrame(-2, -2.0f, (z ? 5 : 3) | 48, z ? 0.0f : 94.0f, 25.66f, z ? 94.0f : 0.0f, 0.0f));
-        TextView textView4 = new TextView(context);
-        this.onlineTextView = textView4;
-        textView4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
+        TextView textViewM = zzcv.m(frameLayout3, textView3, LayoutHelper.createFrame(-2, -2.0f, (z ? 5 : 3) | 48, z ? 0.0f : 94.0f, 25.66f, z ? 94.0f : 0.0f, 0.0f), context);
+        this.onlineTextView = textViewM;
+        textViewM.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, resourcesProvider));
         this.onlineTextView.setTextSize(1, 14.0f);
         this.onlineTextView.setLines(1);
         this.onlineTextView.setMaxLines(1);
@@ -279,37 +222,106 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.onlineTextView.setEllipsize(truncateAt);
         this.onlineTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         FrameLayout frameLayout4 = this.infoLayout;
-        TextView textView5 = this.onlineTextView;
+        TextView textView4 = this.onlineTextView;
         boolean z2 = LocaleController.isRTL;
-        frameLayout4.addView(textView5, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 94.0f, 49.66f, z2 ? 94.0f : 0.0f, 0.0f));
+        frameLayout4.addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 94.0f, 49.66f, z2 ? 94.0f : 0.0f, 0.0f));
         EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.FirstName), false, false, -1, this.resourcesProvider);
         this.firstNameField = editTextCell;
         editTextCell.editText.setImeOptions(5);
-        this.firstNameField.setBackgroundColor(getThemedColor(i2));
+        this.firstNameField.setBackgroundColor(getThemedColor(i7));
         this.firstNameField.setDivider(true);
-        this.firstNameField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                return ContactAddActivity.m3022$r8$lambda$3Ke0YFOZiSmmGaLyyocYBbwso0(this.f$0, textView6, i3, keyEvent);
+        this.firstNameField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+            public final ContactAddActivity f$0;
+
+            {
+                this.f$0 = this;
             }
-        });
-        this.firstNameField.editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            boolean focused;
 
             @Override
-            public void onFocusChange(View view2, boolean z3) {
-                this.focused = z3;
+            public final boolean onEditorAction(TextView textView5, int i8, KeyEvent keyEvent) {
+                switch (i4) {
+                    case 0:
+                        ContactAddActivity contactAddActivity = this.f$0;
+                        if (i8 != 5) {
+                            contactAddActivity.getClass();
+                            return false;
+                        }
+                        contactAddActivity.lastNameField.editText.requestFocus();
+                        EditTextCell.AnonymousClass2 anonymousClass2 = contactAddActivity.lastNameField.editText;
+                        anonymousClass2.setSelection(anonymousClass2.length());
+                        return true;
+                    case 1:
+                        ContactAddActivity contactAddActivity2 = this.f$0;
+                        if (i8 == 6) {
+                            contactAddActivity2.doneButton.performClick();
+                            return true;
+                        }
+                        if (i8 != 5) {
+                            contactAddActivity2.getClass();
+                            return false;
+                        }
+                        contactAddActivity2.noteField.editText.requestFocus();
+                        contactAddActivity2.noteField.editText.setSelection(contactAddActivity2.lastNameField.editText.length());
+                        return true;
+                    default:
+                        ContactAddActivity contactAddActivity3 = this.f$0;
+                        if (i8 == 6) {
+                            contactAddActivity3.doneButton.performClick();
+                            return true;
+                        }
+                        contactAddActivity3.getClass();
+                        return false;
+                }
             }
         });
+        this.firstNameField.editText.setOnFocusChangeListener(new AnonymousClass3());
         this.firstNameField.setText(this.firstNameFromCard);
         EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.LastName), false, false, -1, this.resourcesProvider);
         this.lastNameField = editTextCell2;
         editTextCell2.editText.setImeOptions(5);
-        this.lastNameField.setBackgroundColor(getThemedColor(i2));
-        this.lastNameField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        this.lastNameField.setBackgroundColor(getThemedColor(i7));
+        this.lastNameField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+            public final ContactAddActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
-            public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                return ContactAddActivity.$r8$lambda$Yv3qDHbupvNsFO0WOskvRfEhOMU(this.f$0, textView6, i3, keyEvent);
+            public final boolean onEditorAction(TextView textView5, int i8, KeyEvent keyEvent) {
+                switch (i5) {
+                    case 0:
+                        ContactAddActivity contactAddActivity = this.f$0;
+                        if (i8 != 5) {
+                            contactAddActivity.getClass();
+                            return false;
+                        }
+                        contactAddActivity.lastNameField.editText.requestFocus();
+                        EditTextCell.AnonymousClass2 anonymousClass2 = contactAddActivity.lastNameField.editText;
+                        anonymousClass2.setSelection(anonymousClass2.length());
+                        return true;
+                    case 1:
+                        ContactAddActivity contactAddActivity2 = this.f$0;
+                        if (i8 == 6) {
+                            contactAddActivity2.doneButton.performClick();
+                            return true;
+                        }
+                        if (i8 != 5) {
+                            contactAddActivity2.getClass();
+                            return false;
+                        }
+                        contactAddActivity2.noteField.editText.requestFocus();
+                        contactAddActivity2.noteField.editText.setSelection(contactAddActivity2.lastNameField.editText.length());
+                        return true;
+                    default:
+                        ContactAddActivity contactAddActivity3 = this.f$0;
+                        if (i8 == 6) {
+                            contactAddActivity3.doneButton.performClick();
+                            return true;
+                        }
+                        contactAddActivity3.getClass();
+                        return false;
+                }
             }
         });
         this.lastNameField.setText(this.lastNameFromCard);
@@ -317,101 +329,300 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.noteField = editTextCell3;
         editTextCell3.editText.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkIn));
         this.noteField.editText.setImeOptions(6);
-        this.noteField.setBackgroundColor(getThemedColor(i2));
-        this.noteField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        this.noteField.setBackgroundColor(getThemedColor(i7));
+        this.noteField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+            public final ContactAddActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
-            public final boolean onEditorAction(TextView textView6, int i3, KeyEvent keyEvent) {
-                return ContactAddActivity.m3025$r8$lambda$R6Hd7gjnA3L0IzvXDmd_zGagyU(this.f$0, textView6, i3, keyEvent);
+            public final boolean onEditorAction(TextView textView5, int i8, KeyEvent keyEvent) {
+                switch (i) {
+                    case 0:
+                        ContactAddActivity contactAddActivity = this.f$0;
+                        if (i8 != 5) {
+                            contactAddActivity.getClass();
+                            return false;
+                        }
+                        contactAddActivity.lastNameField.editText.requestFocus();
+                        EditTextCell.AnonymousClass2 anonymousClass2 = contactAddActivity.lastNameField.editText;
+                        anonymousClass2.setSelection(anonymousClass2.length());
+                        return true;
+                    case 1:
+                        ContactAddActivity contactAddActivity2 = this.f$0;
+                        if (i8 == 6) {
+                            contactAddActivity2.doneButton.performClick();
+                            return true;
+                        }
+                        if (i8 != 5) {
+                            contactAddActivity2.getClass();
+                            return false;
+                        }
+                        contactAddActivity2.noteField.editText.requestFocus();
+                        contactAddActivity2.noteField.editText.setSelection(contactAddActivity2.lastNameField.editText.length());
+                        return true;
+                    default:
+                        ContactAddActivity contactAddActivity3 = this.f$0;
+                        if (i8 == 6) {
+                            contactAddActivity3.doneButton.performClick();
+                            return true;
+                        }
+                        contactAddActivity3.getClass();
+                        return false;
+                }
             }
         });
         if (!this.addContact) {
             final TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
-            TextCell textCell = new TextCell(context, this.resourcesProvider);
+            TextCell textCell = new TextCell(23, context, this.resourcesProvider, false, false);
             this.suggestPhoto = textCell;
             String string = LocaleController.formatString(R.string.SuggestUserPhoto, user.first_name);
-            int i3 = R.drawable.msg_addphoto;
-            textCell.setTextAndIcon((CharSequence) string, i3, true);
-            this.suggestPhoto.setBackground(Theme.getSelectorDrawable(true, this.resourcesProvider));
+            int i8 = R.drawable.msg_addphoto;
+            textCell.setTextAndIcon(i8, (CharSequence) string, true);
+            this.suggestPhoto.setBackground(Theme.getSelectorDrawable(resourcesProvider, true));
             TextCell textCell2 = this.suggestPhoto;
-            int i4 = Theme.key_windowBackgroundWhiteBlueIcon;
-            int i5 = Theme.key_windowBackgroundWhiteBlueButton;
-            textCell2.setColors(i4, i5);
-            int i6 = R.raw.photo_suggest_icon;
-            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i6, "" + i6, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
-            this.suggestPhoto.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
+            int i9 = Theme.key_windowBackgroundWhiteBlueIcon;
+            int i10 = Theme.key_windowBackgroundWhiteBlueButton;
+            textCell2.setColors(i9, i10);
+            int i11 = R.raw.photo_suggest_icon;
+            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i11, SurfaceContainer$$ExternalSyntheticOutline0.m(i11, ""), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            this.suggestPhoto.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
             this.suggestPhoto.imageView.setAnimation(rLottieDrawable);
-            this.suggestPhoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    ContactAddActivity.m3027$r8$lambda$_EzzeNPOlfXaByXkvKt2mLFsuM(this.f$0, user, rLottieDrawable, view2);
-                }
-            });
-            TextCell textCell3 = new TextCell(context, this.resourcesProvider);
-            this.setAvatarCell = textCell3;
-            textCell3.setTextAndIcon((CharSequence) LocaleController.formatString(R.string.UserSetPhoto, user.first_name), i3, false);
-            this.setAvatarCell.setBackground(Theme.getSelectorDrawable(true, this.resourcesProvider));
-            this.setAvatarCell.setColors(i4, i5);
-            int i7 = R.raw.camera_outline;
-            final RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i7, "" + i7, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
-            this.setAvatarCell.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
-            this.setAvatarCell.imageView.setAnimation(rLottieDrawable2);
-            this.setAvatarCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    ContactAddActivity.$r8$lambda$kpNUl29aiUAMS4rH4tm8ukJGJg0(this.f$0, user, rLottieDrawable2, view2);
-                }
-            });
-            this.oldAvatarView = new BackupImageView(context);
-            this.oldPhotoCell = new TextCell(context, this.resourcesProvider) {
-                @Override
-                protected void onMeasure(int i8, int i9) {
-                    super.onMeasure(i8, i9);
-                    ContactAddActivity.this.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                    ContactAddActivity.this.oldAvatarView.setRoundRadius(AndroidUtilities.dp(30.0f));
+            this.suggestPhoto.setOnClickListener(new View.OnClickListener(this) {
+                public final ContactAddActivity f$0;
+
+                {
+                    this.f$0 = this;
                 }
 
                 @Override
-                protected void onLayout(boolean z3, int i8, int i9, int i10, int i11) {
-                    super.onLayout(z3, i8, i9, i10, i11);
-                    int iDp = AndroidUtilities.dp(21.0f);
-                    int measuredHeight = (getMeasuredHeight() - ContactAddActivity.this.oldAvatarView.getMeasuredHeight()) / 2;
-                    ContactAddActivity.this.oldAvatarView.layout(iDp, measuredHeight, ContactAddActivity.this.oldAvatarView.getMeasuredWidth() + iDp, ContactAddActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight);
+                public final void onClick(View view) {
+                    switch (i4) {
+                        case 0:
+                            final ContactAddActivity contactAddActivity = this.f$0;
+                            contactAddActivity.photoSelectedType = 1;
+                            TLRPC.User user2 = user;
+                            ImageUpdater imageUpdater = contactAddActivity.imageUpdater;
+                            imageUpdater.user = user2;
+                            TLRPC.UserProfilePhoto userProfilePhoto = user2.photo;
+                            boolean z3 = (userProfilePhoto == null ? null : userProfilePhoto.photo_small) != null;
+                            ChatActivity$$ExternalSyntheticLambda470 chatActivity$$ExternalSyntheticLambda470 = new ChatActivity$$ExternalSyntheticLambda470(5);
+                            final RLottieDrawable rLottieDrawable2 = rLottieDrawable;
+                            final int i12 = 1;
+                            imageUpdater.openMenu(z3, chatActivity$$ExternalSyntheticLambda470, new DialogInterface.OnDismissListener() {
+                                @Override
+                                public final void onDismiss(DialogInterface dialogInterface) {
+                                    switch (i12) {
+                                        case 0:
+                                            ContactAddActivity contactAddActivity2 = contactAddActivity;
+                                            boolean zIsUploadingImage = contactAddActivity2.imageUpdater.isUploadingImage();
+                                            RLottieDrawable rLottieDrawable3 = rLottieDrawable2;
+                                            if (!zIsUploadingImage) {
+                                                rLottieDrawable3.setCustomEndFrame(86);
+                                                contactAddActivity2.setAvatarCell.imageView.playAnimation();
+                                            } else {
+                                                rLottieDrawable3.setCurrentFrame(0, false, false);
+                                            }
+                                            break;
+                                        default:
+                                            ContactAddActivity contactAddActivity3 = contactAddActivity;
+                                            boolean zIsUploadingImage2 = contactAddActivity3.imageUpdater.isUploadingImage();
+                                            RLottieDrawable rLottieDrawable4 = rLottieDrawable2;
+                                            if (!zIsUploadingImage2) {
+                                                rLottieDrawable4.setCustomEndFrame(85);
+                                                contactAddActivity3.suggestPhoto.imageView.playAnimation();
+                                            } else {
+                                                rLottieDrawable4.setCurrentFrame(0, false, false);
+                                            }
+                                            break;
+                                    }
+                                }
+                            }, 2);
+                            rLottieDrawable2.setCurrentFrame(0, true, false);
+                            rLottieDrawable2.setCustomEndFrame(43);
+                            contactAddActivity.suggestPhoto.imageView.playAnimation();
+                            break;
+                        default:
+                            final ContactAddActivity contactAddActivity2 = this.f$0;
+                            contactAddActivity2.photoSelectedType = 2;
+                            TLRPC.User user3 = user;
+                            ImageUpdater imageUpdater2 = contactAddActivity2.imageUpdater;
+                            imageUpdater2.user = user3;
+                            TLRPC.UserProfilePhoto userProfilePhoto2 = user3.photo;
+                            boolean z4 = (userProfilePhoto2 == null ? null : userProfilePhoto2.photo_small) != null;
+                            ChatActivity$$ExternalSyntheticLambda470 chatActivity$$ExternalSyntheticLambda471 = new ChatActivity$$ExternalSyntheticLambda470(5);
+                            final RLottieDrawable rLottieDrawable3 = rLottieDrawable;
+                            final int i13 = 0;
+                            imageUpdater2.openMenu(z4, chatActivity$$ExternalSyntheticLambda471, new DialogInterface.OnDismissListener() {
+                                @Override
+                                public final void onDismiss(DialogInterface dialogInterface) {
+                                    switch (i13) {
+                                        case 0:
+                                            ContactAddActivity contactAddActivity3 = contactAddActivity2;
+                                            boolean zIsUploadingImage = contactAddActivity3.imageUpdater.isUploadingImage();
+                                            RLottieDrawable rLottieDrawable4 = rLottieDrawable3;
+                                            if (!zIsUploadingImage) {
+                                                rLottieDrawable4.setCustomEndFrame(86);
+                                                contactAddActivity3.setAvatarCell.imageView.playAnimation();
+                                            } else {
+                                                rLottieDrawable4.setCurrentFrame(0, false, false);
+                                            }
+                                            break;
+                                        default:
+                                            ContactAddActivity contactAddActivity4 = contactAddActivity2;
+                                            boolean zIsUploadingImage2 = contactAddActivity4.imageUpdater.isUploadingImage();
+                                            RLottieDrawable rLottieDrawable5 = rLottieDrawable3;
+                                            if (!zIsUploadingImage2) {
+                                                rLottieDrawable5.setCustomEndFrame(85);
+                                                contactAddActivity4.suggestPhoto.imageView.playAnimation();
+                                            } else {
+                                                rLottieDrawable5.setCurrentFrame(0, false, false);
+                                            }
+                                            break;
+                                    }
+                                }
+                            }, 1);
+                            rLottieDrawable3.setCurrentFrame(0, true, false);
+                            rLottieDrawable3.setCustomEndFrame(43);
+                            contactAddActivity2.setAvatarCell.imageView.playAnimation();
+                            break;
+                    }
                 }
-            };
+            });
+            TextCell textCell3 = new TextCell(23, context, this.resourcesProvider, false, false);
+            this.setAvatarCell = textCell3;
+            textCell3.setTextAndIcon(i8, (CharSequence) LocaleController.formatString(R.string.UserSetPhoto, user.first_name), false);
+            this.setAvatarCell.setBackground(Theme.getSelectorDrawable(resourcesProvider, true));
+            this.setAvatarCell.setColors(i9, i10);
+            int i12 = R.raw.camera_outline;
+            final RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i12, SurfaceContainer$$ExternalSyntheticOutline0.m(i12, ""), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
+            this.setAvatarCell.imageView.setAnimation(rLottieDrawable2);
+            this.setAvatarCell.setOnClickListener(new View.OnClickListener(this) {
+                public final ContactAddActivity f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (i5) {
+                        case 0:
+                            final ContactAddActivity contactAddActivity = this.f$0;
+                            contactAddActivity.photoSelectedType = 1;
+                            TLRPC.User user2 = user;
+                            ImageUpdater imageUpdater = contactAddActivity.imageUpdater;
+                            imageUpdater.user = user2;
+                            TLRPC.UserProfilePhoto userProfilePhoto = user2.photo;
+                            boolean z3 = (userProfilePhoto == null ? null : userProfilePhoto.photo_small) != null;
+                            ChatActivity$$ExternalSyntheticLambda470 chatActivity$$ExternalSyntheticLambda470 = new ChatActivity$$ExternalSyntheticLambda470(5);
+                            final RLottieDrawable rLottieDrawable3 = rLottieDrawable2;
+                            final int i13 = 1;
+                            imageUpdater.openMenu(z3, chatActivity$$ExternalSyntheticLambda470, new DialogInterface.OnDismissListener() {
+                                @Override
+                                public final void onDismiss(DialogInterface dialogInterface) {
+                                    switch (i13) {
+                                        case 0:
+                                            ContactAddActivity contactAddActivity3 = contactAddActivity;
+                                            boolean zIsUploadingImage = contactAddActivity3.imageUpdater.isUploadingImage();
+                                            RLottieDrawable rLottieDrawable4 = rLottieDrawable3;
+                                            if (!zIsUploadingImage) {
+                                                rLottieDrawable4.setCustomEndFrame(86);
+                                                contactAddActivity3.setAvatarCell.imageView.playAnimation();
+                                            } else {
+                                                rLottieDrawable4.setCurrentFrame(0, false, false);
+                                            }
+                                            break;
+                                        default:
+                                            ContactAddActivity contactAddActivity4 = contactAddActivity;
+                                            boolean zIsUploadingImage2 = contactAddActivity4.imageUpdater.isUploadingImage();
+                                            RLottieDrawable rLottieDrawable5 = rLottieDrawable3;
+                                            if (!zIsUploadingImage2) {
+                                                rLottieDrawable5.setCustomEndFrame(85);
+                                                contactAddActivity4.suggestPhoto.imageView.playAnimation();
+                                            } else {
+                                                rLottieDrawable5.setCurrentFrame(0, false, false);
+                                            }
+                                            break;
+                                    }
+                                }
+                            }, 2);
+                            rLottieDrawable3.setCurrentFrame(0, true, false);
+                            rLottieDrawable3.setCustomEndFrame(43);
+                            contactAddActivity.suggestPhoto.imageView.playAnimation();
+                            break;
+                        default:
+                            final ContactAddActivity contactAddActivity2 = this.f$0;
+                            contactAddActivity2.photoSelectedType = 2;
+                            TLRPC.User user3 = user;
+                            ImageUpdater imageUpdater2 = contactAddActivity2.imageUpdater;
+                            imageUpdater2.user = user3;
+                            TLRPC.UserProfilePhoto userProfilePhoto2 = user3.photo;
+                            boolean z4 = (userProfilePhoto2 == null ? null : userProfilePhoto2.photo_small) != null;
+                            ChatActivity$$ExternalSyntheticLambda470 chatActivity$$ExternalSyntheticLambda471 = new ChatActivity$$ExternalSyntheticLambda470(5);
+                            final RLottieDrawable rLottieDrawable4 = rLottieDrawable2;
+                            final int i14 = 0;
+                            imageUpdater2.openMenu(z4, chatActivity$$ExternalSyntheticLambda471, new DialogInterface.OnDismissListener() {
+                                @Override
+                                public final void onDismiss(DialogInterface dialogInterface) {
+                                    switch (i14) {
+                                        case 0:
+                                            ContactAddActivity contactAddActivity3 = contactAddActivity2;
+                                            boolean zIsUploadingImage = contactAddActivity3.imageUpdater.isUploadingImage();
+                                            RLottieDrawable rLottieDrawable5 = rLottieDrawable4;
+                                            if (!zIsUploadingImage) {
+                                                rLottieDrawable5.setCustomEndFrame(86);
+                                                contactAddActivity3.setAvatarCell.imageView.playAnimation();
+                                            } else {
+                                                rLottieDrawable5.setCurrentFrame(0, false, false);
+                                            }
+                                            break;
+                                        default:
+                                            ContactAddActivity contactAddActivity4 = contactAddActivity2;
+                                            boolean zIsUploadingImage2 = contactAddActivity4.imageUpdater.isUploadingImage();
+                                            RLottieDrawable rLottieDrawable6 = rLottieDrawable4;
+                                            if (!zIsUploadingImage2) {
+                                                rLottieDrawable6.setCustomEndFrame(85);
+                                                contactAddActivity4.suggestPhoto.imageView.playAnimation();
+                                            } else {
+                                                rLottieDrawable6.setCurrentFrame(0, false, false);
+                                            }
+                                            break;
+                                    }
+                                }
+                            }, 1);
+                            rLottieDrawable4.setCurrentFrame(0, true, false);
+                            rLottieDrawable4.setCustomEndFrame(43);
+                            contactAddActivity2.setAvatarCell.imageView.playAnimation();
+                            break;
+                    }
+                }
+            });
+            this.oldAvatarView = new BackupImageView(context);
+            this.oldPhotoCell = new AnonymousClass4(this, context, resourcesProvider);
             if (this.avatarDrawable == null) {
                 this.avatarDrawable = new AvatarDrawable(user);
             }
-            this.oldAvatarView.setForUserOrChat(user.photo, this.avatarDrawable);
+            BackupImageView backupImageView2 = this.oldAvatarView;
+            backupImageView2.imageReceiver.setForUserOrChat(user.photo, this.avatarDrawable);
+            backupImageView2.onNewImageSet();
             this.oldPhotoCell.addView(this.oldAvatarView, LayoutHelper.createFrame(30, 30.0f, 16, 21.0f, 0.0f, 21.0f, 0.0f));
             this.oldPhotoCell.setText(LocaleController.getString(R.string.ResetToOriginalPhoto), false);
             this.oldPhotoCell.getImageView().setVisibility(0);
-            this.oldPhotoCell.setBackground(Theme.getSelectorDrawable(true, this.resourcesProvider));
-            this.oldPhotoCell.setColors(i4, i5);
-            this.oldPhotoCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    ContactAddActivity.$r8$lambda$qDO9pkHLNwldO3qCRYQWvfP7jKI(this.f$0, context, user, view2);
-                }
-            });
-            TextCell textCell4 = new TextCell(context, this.resourcesProvider);
+            this.oldPhotoCell.setBackground(Theme.getSelectorDrawable(resourcesProvider, true));
+            this.oldPhotoCell.setColors(i9, i10);
+            this.oldPhotoCell.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(this, context, user, 2));
+            TextCell textCell4 = new TextCell(23, context, this.resourcesProvider, false, false);
             this.suggestBirthday = textCell4;
-            textCell4.setTextAndIcon((CharSequence) LocaleController.formatString(R.string.UserSuggestBirthday, new Object[0]), R.drawable.menu_birthday, false);
-            this.suggestBirthday.setBackground(Theme.getSelectorDrawable(true, this.resourcesProvider));
-            this.suggestBirthday.setColors(i4, i5);
+            textCell4.setTextAndIcon(R.drawable.menu_birthday, (CharSequence) LocaleController.formatString(R.string.UserSuggestBirthday, new Object[0]), false);
+            this.suggestBirthday.setBackground(Theme.getSelectorDrawable(resourcesProvider, true));
+            this.suggestBirthday.setColors(i9, i10);
             this.suggestBirthday.setNeedDivider(true);
             this.suggestBirthday.imageView.setTranslationX(AndroidUtilities.dp(4.0f));
-            this.suggestBirthday.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    ContactAddActivity contactAddActivity = this.f$0;
-                    contactAddActivity.showDialog(AlertsCreator.createBirthdayPickerDialog(contactAddActivity.getContext(), LocaleController.formatString(R.string.UserSuggestBirthdayTitle, UserObject.getForcedFirstName(user)), LocaleController.getString(R.string.UserSuggestBirthdayButton), null, new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            ContactAddActivity.$r8$lambda$6fK64oJczWipKHj06X0ITORcu0A(this.f$0, (TL_account.TL_birthday) obj);
-                        }
-                    }, null, false, false, contactAddActivity.resourcesProvider).create());
-                }
-            });
+            this.suggestBirthday.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(i4, this, user));
             TLRPC.UserFull userFull = getMessagesController().getUserFull(this.user_id);
             if (userFull != null) {
                 TLRPC.Photo photo = userFull.profile_photo;
@@ -422,28 +633,11 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             }
             updateCustomPhotoInfo();
         }
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, new Utilities.Callback5() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-            }
-        }, null);
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new GiftSheet$$ExternalSyntheticLambda8(this, 15), new VideoEditTextureView$$ExternalSyntheticLambda1(this, 9), null, this.resourcesProvider);
         this.listView = universalRecyclerView;
         universalRecyclerView.setSections();
-        this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i8, int i9) {
-                if (ContactAddActivity.this.listView.scrollingByUser) {
-                    AndroidUtilities.hideKeyboard(frameLayout);
-                }
-            }
-        });
-        this.listView.setBackgroundColor(getThemedColor(i));
+        this.listView.setOnScrollListener(new ChatActivity.AnonymousClass35(3, this, frameLayout));
+        this.listView.setBackgroundColor(getThemedColor(i6));
         frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1, 119));
         this.actionBar.setAdaptiveBackground(this.listView);
         if (this.addContact && this.needAddException) {
@@ -454,120 +648,130 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         return frameLayout;
     }
 
-    public static boolean m3022$r8$lambda$3Ke0YFOZiSmmGaLyyocYBbwso0(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            contactAddActivity.getClass();
-            return false;
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        MessagesController.DialogPhotos dialogPhotos;
+        if (i == NotificationCenter.updateInterfaces) {
+            int iIntValue = ((Integer) objArr[0]).intValue();
+            if ((MessagesController.UPDATE_MASK_AVATAR & iIntValue) == 0 && (iIntValue & MessagesController.UPDATE_MASK_STATUS) == 0) {
+                return;
+            }
+            updateAvatarLayout();
+            return;
         }
-        contactAddActivity.lastNameField.editText.requestFocus();
-        EditTextCaption editTextCaption = contactAddActivity.lastNameField.editText;
-        editTextCaption.setSelection(editTextCaption.length());
-        return true;
+        if (i == NotificationCenter.dialogPhotosUpdate && (dialogPhotos = (MessagesController.DialogPhotos) objArr[0]) == this.dialogPhotos) {
+            ArrayList arrayList = new ArrayList(dialogPhotos.photos);
+            int i3 = 0;
+            while (i3 < arrayList.size()) {
+                if (arrayList.get(i3) == null) {
+                    arrayList.remove(i3);
+                    i3--;
+                }
+                i3++;
+            }
+            if (arrayList.size() > 0) {
+                this.prevAvatar = (TLRPC.Photo) arrayList.get(0);
+                updateCustomPhotoInfo();
+            }
+        }
     }
 
-    public static boolean $r8$lambda$Yv3qDHbupvNsFO0WOskvRfEhOMU(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 6) {
-            contactAddActivity.doneButton.performClick();
-            return true;
+    @Override
+    public final void didStartUpload(boolean z, boolean z2) {
+        RadialProgressView radialProgressView = this.avatarProgressView;
+        if (radialProgressView == null) {
+            return;
         }
-        if (i != 5) {
-            contactAddActivity.getClass();
-            return false;
-        }
-        contactAddActivity.noteField.editText.requestFocus();
-        contactAddActivity.noteField.editText.setSelection(contactAddActivity.lastNameField.editText.length());
-        return true;
+        this.photoSelectedTypeFinal = this.photoSelectedType;
+        radialProgressView.setProgress(0.0f);
     }
 
-    public static boolean m3025$r8$lambda$R6Hd7gjnA3L0IzvXDmd_zGagyU(ContactAddActivity contactAddActivity, TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 6) {
-            contactAddActivity.doneButton.performClick();
-            return true;
-        }
-        contactAddActivity.getClass();
-        return false;
+    @Override
+    public final void didUploadFailed() {
+        AndroidUtilities.runOnUIThread(new ContactAddActivity$$ExternalSyntheticLambda1(this, 0));
     }
 
-    public static void m3027$r8$lambda$_EzzeNPOlfXaByXkvKt2mLFsuM(final ContactAddActivity contactAddActivity, TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
-        TLRPC.UserProfilePhoto userProfilePhoto;
-        contactAddActivity.photoSelectedType = 1;
-        contactAddActivity.imageUpdater.setUser(user);
-        contactAddActivity.imageUpdater.openMenu(((user == null || (userProfilePhoto = user.photo) == null) ? null : userProfilePhoto.photo_small) != null, new Runnable() {
+    @Override
+    public final void didUploadPhoto(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, final boolean z, final TLRPC.VideoSize videoSize) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactAddActivity.$r8$lambda$LPPvgrrSUfJi0dFhajZWoG7VFqg();
+                this.f$0.lambda$didUploadPhoto$19(photoSize2, inputFile, inputFile2, photoSize, videoSize, d, z);
             }
-        }, new DialogInterface.OnDismissListener() {
-            @Override
-            public final void onDismiss(DialogInterface dialogInterface) {
-                ContactAddActivity.$r8$lambda$ad2UodIu9do5Pj3zEbveRtIvjZc(this.f$0, rLottieDrawable, dialogInterface);
-            }
-        }, 2);
-        rLottieDrawable.setCurrentFrame(0);
-        rLottieDrawable.setCustomEndFrame(43);
-        contactAddActivity.suggestPhoto.imageView.playAnimation();
+        });
     }
 
-    public static void $r8$lambda$ad2UodIu9do5Pj3zEbveRtIvjZc(ContactAddActivity contactAddActivity, RLottieDrawable rLottieDrawable, DialogInterface dialogInterface) {
-        if (!contactAddActivity.imageUpdater.isUploadingImage()) {
-            rLottieDrawable.setCustomEndFrame(85);
-            contactAddActivity.suggestPhoto.imageView.playAnimation();
-        } else {
-            rLottieDrawable.setCurrentFrame(0, false);
-        }
+    @Override
+    public final PhotoViewer.PlaceProviderObject getCloseIntoObject() {
+        return null;
     }
 
-    public static void $r8$lambda$kpNUl29aiUAMS4rH4tm8ukJGJg0(final ContactAddActivity contactAddActivity, TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
-        TLRPC.UserProfilePhoto userProfilePhoto;
-        contactAddActivity.photoSelectedType = 2;
-        contactAddActivity.imageUpdater.setUser(user);
-        contactAddActivity.imageUpdater.openMenu(((user == null || (userProfilePhoto = user.photo) == null) ? null : userProfilePhoto.photo_small) != null, new Runnable() {
-            @Override
-            public final void run() {
-                ContactAddActivity.$r8$lambda$xBHCyOJY0xiiShPXNdsiY1Ru3IA();
-            }
-        }, new DialogInterface.OnDismissListener() {
-            @Override
-            public final void onDismiss(DialogInterface dialogInterface) {
-                ContactAddActivity.m3024$r8$lambda$EH0aC7TQw_tVreAqbFCIFNP6pg(this.f$0, rLottieDrawable, dialogInterface);
-            }
-        }, 1);
-        rLottieDrawable.setCurrentFrame(0);
-        rLottieDrawable.setCustomEndFrame(43);
-        contactAddActivity.setAvatarCell.imageView.playAnimation();
+    @Override
+    public final String getInitialSearchString() {
+        return null;
     }
 
-    public static void m3024$r8$lambda$EH0aC7TQw_tVreAqbFCIFNP6pg(ContactAddActivity contactAddActivity, RLottieDrawable rLottieDrawable, DialogInterface dialogInterface) {
-        if (!contactAddActivity.imageUpdater.isUploadingImage()) {
-            rLottieDrawable.setCustomEndFrame(86);
-            contactAddActivity.setAvatarCell.imageView.playAnimation();
-        } else {
-            rLottieDrawable.setCurrentFrame(0, false);
-        }
+    @Override
+    public final Theme.ResourcesProvider getResourceProvider() {
+        return this.resourcesProvider;
     }
 
-    public static void $r8$lambda$qDO9pkHLNwldO3qCRYQWvfP7jKI(final ContactAddActivity contactAddActivity, Context context, final TLRPC.User user, View view) {
-        contactAddActivity.getClass();
-        AlertsCreator.createSimpleAlert(context, LocaleController.getString(R.string.ResetToOriginalPhotoTitle), LocaleController.formatString(R.string.ResetToOriginalPhotoMessage, user.first_name), LocaleController.getString(R.string.Reset), new Runnable() {
-            @Override
-            public final void run() {
-                ContactAddActivity.$r8$lambda$A1D9DYZfHyXBJQijDCGXKICfiYY(this.f$0, user);
-            }
-        }, contactAddActivity.resourcesProvider).show();
+    @Override
+    public final ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        ChatActivity$$ExternalSyntheticLambda94 chatActivity$$ExternalSyntheticLambda94 = new ChatActivity$$ExternalSyntheticLambda94(this, 23);
+        arrayList.add(new ThemeDescription(this.fragmentView, 1, null, null, null, null, Theme.key_windowBackgroundWhite));
+        arrayList.add(new ThemeDescription(this.actionBar, 64, null, null, null, null, Theme.key_actionBarDefaultIcon));
+        arrayList.add(new ThemeDescription(this.actionBar, 128, null, null, null, null, Theme.key_actionBarDefaultTitle));
+        arrayList.add(new ThemeDescription(this.actionBar, 256, null, null, null, null, Theme.key_actionBarDefaultSelector));
+        TextView textView = this.nameTextView;
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        arrayList.add(new ThemeDescription(textView, 4, null, null, null, null, i));
+        arrayList.add(new ThemeDescription(this.onlineTextView, 4, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText3));
+        arrayList.add(new ThemeDescription(this.firstNameField, 4, null, null, null, null, i));
+        EditTextCell editTextCell = this.firstNameField;
+        int i2 = Theme.key_windowBackgroundWhiteHintText;
+        arrayList.add(new ThemeDescription(editTextCell, 8388608, null, null, null, null, i2));
+        EditTextCell editTextCell2 = this.firstNameField;
+        int i3 = Theme.key_windowBackgroundWhiteInputField;
+        arrayList.add(new ThemeDescription(editTextCell2, 32, null, null, null, null, i3));
+        EditTextCell editTextCell3 = this.firstNameField;
+        int i4 = Theme.key_windowBackgroundWhiteInputFieldActivated;
+        arrayList.add(new ThemeDescription(editTextCell3, 65568, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.lastNameField, 4, null, null, null, null, i));
+        arrayList.add(new ThemeDescription(this.lastNameField, 8388608, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.lastNameField, 32, null, null, null, null, i3));
+        arrayList.add(new ThemeDescription(this.lastNameField, 65568, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(null, 0, null, null, Theme.avatarDrawables, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_text));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundRed));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundOrange));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundViolet));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundGreen));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundCyan));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundBlue));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundPink));
+        return arrayList;
     }
 
-    public static void $r8$lambda$A1D9DYZfHyXBJQijDCGXKICfiYY(ContactAddActivity contactAddActivity, TLRPC.User user) {
-        contactAddActivity.avatar = null;
-        contactAddActivity.sendPhotoChangedRequest(null, null, null, null, null, 0.0d, 2);
-        TLRPC.User user2 = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id));
+    public final void lambda$createView$13(TL_account.TL_birthday tL_birthday) {
+        TLRPC.TL_users_suggestBirthday tL_users_suggestBirthday = new TLRPC.TL_users_suggestBirthday();
+        tL_users_suggestBirthday.id = getMessagesController().getInputUser(this.user_id);
+        tL_users_suggestBirthday.birthday = tL_birthday;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_users_suggestBirthday, new LinkManager$$ExternalSyntheticLambda3(this, 8));
+    }
+
+    public final void lambda$createView$9(TLRPC.User user) {
+        this.avatar = null;
+        sendPhotoChangedRequest(null, null, null, null, null, 0.0d, 2);
+        TLRPC.User user2 = getMessagesController().getUser(Long.valueOf(this.user_id));
         user2.photo.personal = false;
-        TLRPC.UserFull userFull = MessagesController.getInstance(contactAddActivity.currentAccount).getUserFull(contactAddActivity.user_id);
+        TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.user_id);
         if (userFull != null) {
             userFull.personal_photo = null;
             userFull.flags &= -2097153;
-            contactAddActivity.getMessagesStorage().updateUserInfo(userFull, true);
+            getMessagesStorage().updateUserInfo(userFull, true);
         }
-        TLRPC.Photo photo = contactAddActivity.prevAvatar;
+        TLRPC.Photo photo = this.prevAvatar;
         if (photo != null) {
             user2.photo.photo_id = photo.id;
             ArrayList<TLRPC.PhotoSize> arrayList = photo.sizes;
@@ -585,153 +789,271 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(user);
-        contactAddActivity.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
-        contactAddActivity.updateCustomPhotoInfo();
-        contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
-        contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
+        getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
+        updateCustomPhotoInfo();
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
     }
 
-    public static void $r8$lambda$6fK64oJczWipKHj06X0ITORcu0A(final ContactAddActivity contactAddActivity, TL_account.TL_birthday tL_birthday) {
-        contactAddActivity.getClass();
-        TLRPC.TL_users_suggestBirthday tL_users_suggestBirthday = new TLRPC.TL_users_suggestBirthday();
-        tL_users_suggestBirthday.id = contactAddActivity.getMessagesController().getInputUser(contactAddActivity.user_id);
-        tL_users_suggestBirthday.birthday = tL_birthday;
-        ConnectionsManager.getInstance(contactAddActivity.currentAccount).sendRequest(tL_users_suggestBirthday, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ContactAddActivity.$r8$lambda$onHRfweks0FkISKAl_O3ozbOX9A(this.f$0, tLObject, tL_error);
-            }
-        });
-    }
-
-    public static void $r8$lambda$onHRfweks0FkISKAl_O3ozbOX9A(final ContactAddActivity contactAddActivity, TLObject tLObject, TLRPC.TL_error tL_error) {
-        contactAddActivity.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ContactAddActivity contactAddActivity2 = this.f$0;
-                contactAddActivity2.presentFragment(ChatActivity.of(contactAddActivity2.user_id), true);
-            }
-        });
-    }
-
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        TLRPC.UserProfilePhoto userProfilePhoto;
-        final TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
-        arrayList.add(UItem.asCustom(this.infoLayout));
-        arrayList.add(UItem.asCustom(this.firstNameField));
-        arrayList.add(UItem.asCustom(this.lastNameField));
-        if (TextUtils.isEmpty(getPhone())) {
-            arrayList.add(UItem.asShadow(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.MobileHiddenExceptionInfo)), UserObject.getFirstName(user))));
-        } else if (this.needAddException) {
-            arrayList.add(UItem.asShadow(AndroidUtilities.replaceTags(LocaleController.formatString("MobileVisibleInfo", R.string.MobileVisibleInfo, UserObject.getFirstName(user)))));
-        } else {
-            arrayList.add(UItem.asShadow(null));
-        }
-        if (this.addContact && this.needAddException) {
-            arrayList.add(UItem.asCheck(2, LocaleController.getString(R.string.AddContactShareNumber)).setChecked(this.checkShare));
-            arrayList.add(UItem.asShadow(LocaleController.formatString(R.string.AddContactShareNumberInfo, UserObject.getFirstName(user))));
-        }
-        arrayList.add(UItem.asCustom(this.noteField));
-        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.AddNotesInfo)));
-        if (!this.addContact) {
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(this.user_id);
-            if (userFull != null && userFull.birthday == null) {
-                arrayList.add(UItem.asCustom(this.suggestBirthday));
-            }
-            arrayList.add(UItem.asCustom(this.suggestPhoto));
-            arrayList.add(UItem.asCustom(this.setAvatarCell));
-            if (user != null && (userProfilePhoto = user.photo) != null && userProfilePhoto.personal) {
-                arrayList.add(UItem.asCustom(this.oldPhotoCell));
-            }
-            arrayList.add(UItem.asShadow(null));
-            arrayList.add(UItem.asButton(1, LocaleController.getString(R.string.DeleteContact)).red());
-        }
-        arrayList.add(UItem.asShadow(null));
-        if (this.firstSet) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ContactAddActivity.$r8$lambda$xdKjEnTnfha47Imxskb0NLcS64k(this.f$0, user);
-                }
-            });
-            this.firstSet = false;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ContactAddActivity.$r8$lambda$zbhpFdZP3ohrp6wd36cgS_y1EzY(this.f$0);
-                }
-            }, 200L);
+    public final void lambda$didUploadFailed$20() {
+        if (this.suggestPhotoMessageFinal != null) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(Integer.valueOf(this.suggestPhotoMessageFinal.getId()));
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDeleted, arrayList, 0L, Boolean.FALSE);
         }
     }
 
-    public static void $r8$lambda$xdKjEnTnfha47Imxskb0NLcS64k(ContactAddActivity contactAddActivity, TLRPC.User user) {
-        String str;
-        if (user != null && contactAddActivity.firstNameFromCard == null && contactAddActivity.lastNameFromCard == null) {
-            if (user.phone == null && (str = contactAddActivity.phone) != null) {
-                user.phone = PhoneFormat.stripExceptNumbers(str);
-            }
-            contactAddActivity.firstNameField.setText(user.first_name);
-            EditTextCaption editTextCaption = contactAddActivity.firstNameField.editText;
-            editTextCaption.setSelection(editTextCaption.length());
-            contactAddActivity.lastNameField.setText(user.last_name);
-        }
-        TLRPC.UserFull userFull = contactAddActivity.getMessagesController().getUserFull(contactAddActivity.user_id);
-        if (userFull != null) {
-            TLRPC.TL_textWithEntities tL_textWithEntities = userFull.note;
-            if (tL_textWithEntities != null) {
-                contactAddActivity.noteField.setText(tL_textWithEntities);
-            } else {
-                contactAddActivity.noteField.setText("");
-            }
-        }
-        if (contactAddActivity.focusNotes) {
-            contactAddActivity.noteField.editText.requestFocus();
-            AndroidUtilities.showKeyboard(contactAddActivity.noteField.editText);
-        }
-    }
-
-    public static void $r8$lambda$zbhpFdZP3ohrp6wd36cgS_y1EzY(ContactAddActivity contactAddActivity) {
-        if (contactAddActivity.focusNotes) {
-            contactAddActivity.noteField.editText.requestFocus();
-            AndroidUtilities.showKeyboard(contactAddActivity.noteField.editText);
-        }
-    }
-
-    public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
-        int i2 = uItem.id;
-        if (i2 == 1) {
-            final TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
-            if (user == null || getParentActivity() == null) {
-                return;
-            }
-            new AlertDialog.Builder(getParentActivity(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.DeleteContact)).setMessage(LocaleController.getString(R.string.AreYouSureDeleteContact)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i3) {
-                    ContactAddActivity.m3021$r8$lambda$e3wlnV0R6aSXk3GYIRYW8Z9SQw(this.f$0, user, alertDialog, i3);
-                }
-            }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
+    public final void lambda$didUploadPhoto$19(TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.PhotoSize photoSize2, TLRPC.VideoSize videoSize, double d, boolean z) {
+        ImageUpdater imageUpdater = this.imageUpdater;
+        if (imageUpdater.canceled) {
             return;
         }
-        if (i2 == 2) {
-            boolean z = !this.checkShare;
-            this.checkShare = z;
-            ((TextCheckCell) view).setChecked(z);
+        int i = this.photoSelectedTypeFinal;
+        if (i == 2) {
+            this.avatar = photoSize.location;
+        } else if (i == 1 && getParentLayout() != null) {
+            INavigationLayout parentLayout = getParentLayout();
+            BaseFragment lastFragment = ((ActionBarLayout) getParentLayout()).getLastFragment();
+            List<BaseFragment> fragmentStack = ((ActionBarLayout) lastFragment.getParentLayout()).getFragmentStack();
+            ArrayList arrayList = new ArrayList();
+            for (int iM = ArticleViewer.IBlock.CC.m((ActionBarLayout) parentLayout, 1); iM >= 0; iM--) {
+                BaseFragment baseFragment = fragmentStack.get(iM);
+                if (baseFragment instanceof ChatActivity) {
+                    ChatActivity chatActivity = (ChatActivity) baseFragment;
+                    BaseFragment baseFragment2 = lastFragment;
+                    if (chatActivity.getDialogId() == this.user_id && chatActivity.chatMode == 0) {
+                        chatActivity.scrollToLastMessage(null, false);
+                        int size = arrayList.size() - 1;
+                        while (size >= 0) {
+                            BaseFragment baseFragment3 = baseFragment2;
+                            if (arrayList.get(size) != baseFragment3) {
+                                ((BaseFragment) arrayList.get(size)).removeSelfFromStack();
+                            }
+                            size--;
+                            baseFragment2 = baseFragment3;
+                        }
+                        baseFragment2.finishFragment();
+                        break;
+                    }
+                    lastFragment = baseFragment2;
+                }
+                arrayList.add(fragmentStack.get(iM));
+            }
         }
+        if (inputFile == null && inputFile2 == null) {
+            this.avatarImage.setImage(ImageLocation.getForLocal(this.avatar), "50_50", this.avatarDrawable, getMessagesController().getUser(Long.valueOf(this.user_id)));
+            if (this.photoSelectedTypeFinal == 2) {
+                showAvatarProgress$2(true, false);
+            } else {
+                TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
+                tL_messageService.random_id = SendMessagesHelper.getInstance(this.currentAccount).getNextRandomId();
+                tL_messageService.dialog_id = this.user_id;
+                tL_messageService.unread = true;
+                tL_messageService.out = true;
+                int newMessageId = getUserConfig().getNewMessageId();
+                tL_messageService.id = newMessageId;
+                tL_messageService.local_id = newMessageId;
+                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                tL_messageService.from_id = tL_peerUser;
+                tL_peerUser.user_id = getUserConfig().getClientUserId();
+                tL_messageService.flags |= 256;
+                TLRPC.TL_peerUser tL_peerUser2 = new TLRPC.TL_peerUser();
+                tL_messageService.peer_id = tL_peerUser2;
+                tL_peerUser2.user_id = this.user_id;
+                tL_messageService.date = getConnectionsManager().getCurrentTime();
+                TLRPC.TL_messageActionSuggestProfilePhoto tL_messageActionSuggestProfilePhoto = new TLRPC.TL_messageActionSuggestProfilePhoto();
+                tL_messageService.action = tL_messageActionSuggestProfilePhoto;
+                TLRPC.TL_photo tL_photo = new TLRPC.TL_photo();
+                tL_messageActionSuggestProfilePhoto.photo = tL_photo;
+                tL_photo.sizes.add(photoSize);
+                tL_messageActionSuggestProfilePhoto.photo.sizes.add(photoSize2);
+                tL_messageActionSuggestProfilePhoto.video = z;
+                tL_messageActionSuggestProfilePhoto.photo.file_reference = new byte[0];
+                ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+                MessageObject messageObject = new MessageObject(this.currentAccount, tL_messageService, false, false);
+                this.suggestPhotoMessageFinal = messageObject;
+                arrayList2.add(messageObject);
+                new ArrayList().add(tL_messageService);
+                MessagesController.getInstance(this.currentAccount).updateInterfaceWithMessages(this.user_id, arrayList2, 0);
+                getMessagesController().photoSuggestion.put(tL_messageService.local_id, imageUpdater);
+            }
+        } else {
+            TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
+            if (this.suggestPhotoMessageFinal == null && user != null) {
+                boolean z2 = inputFile2 != null;
+                user.flags |= 32;
+                TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
+                user.photo = tL_userProfilePhoto;
+                tL_userProfilePhoto.personal = true;
+                tL_userProfilePhoto.photo_id = 0L;
+                tL_userProfilePhoto.has_video = z2;
+                if (photoSize != null) {
+                    tL_userProfilePhoto.photo_small = photoSize.location;
+                }
+                if (photoSize2 != null) {
+                    tL_userProfilePhoto.photo_big = photoSize2.location;
+                }
+                ArrayList arrayList3 = new ArrayList();
+                arrayList3.add(user);
+                getMessagesStorage().putUsersAndChats(arrayList3, null, false, true);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
+            }
+            sendPhotoChangedRequest(this.avatar, photoSize2.location, inputFile, inputFile2, videoSize, d, this.photoSelectedTypeFinal);
+            showAvatarProgress$2(false, true);
+        }
+        updateCustomPhotoInfo();
     }
 
-    public static void m3021$r8$lambda$e3wlnV0R6aSXk3GYIRYW8Z9SQw(ContactAddActivity contactAddActivity, TLRPC.User user, AlertDialog alertDialog, int i) {
-        contactAddActivity.getClass();
-        ArrayList<TLRPC.User> arrayList = new ArrayList<>();
-        arrayList.add(user);
-        contactAddActivity.getContactsController().deleteContact(arrayList, true);
+    public final void lambda$getThemeDescriptions$23() {
+        TLRPC.User user;
+        if (this.avatarImage == null || (user = getMessagesController().getUser(Long.valueOf(this.user_id))) == null) {
+            return;
+        }
+        this.avatarDrawable.setInfo(this.currentAccount, user);
+        this.avatarImage.invalidate();
+    }
+
+    public final void lambda$sendPhotoChangedRequest$21(TLRPC.FileLocation fileLocation, TLRPC.InputFile inputFile, TLObject tLObject, TLRPC.FileLocation fileLocation2, int i) {
+        if (this.suggestPhotoMessageFinal != null) {
+            return;
+        }
+        if ((fileLocation == null && inputFile == null) || tLObject == null) {
+            return;
+        }
+        TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
+        ArrayList<TLRPC.PhotoSize> arrayList = tL_photos_photo.photo.sizes;
+        TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
+        TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.user_id);
+        if (userFull != null) {
+            userFull.personal_photo = tL_photos_photo.photo;
+            userFull.flags |= 2097152;
+            getMessagesStorage().updateUserInfo(userFull, true);
+        }
         if (user != null) {
-            user.contact = false;
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 100);
+            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000);
+            if (closestPhotoSizeWithSize != null && fileLocation != null) {
+                FileLoader.getInstance(this.currentAccount).getPathToAttach(fileLocation, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
+                StringBuilder sb = new StringBuilder();
+                sb.append(fileLocation.volume_id);
+                sb.append("_");
+                String strM = SurfaceContainer$$ExternalSyntheticOutline0.m(fileLocation.local_id, "@50_50", sb);
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append(closestPhotoSizeWithSize.location.volume_id);
+                sb2.append("_");
+                ImageLoader.getInstance().replaceImageInCache(strM, SurfaceContainer$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize.location.local_id, "@50_50", sb2), ImageLocation.getForUser(this.currentAccount, user, 1), false);
+            }
+            if (closestPhotoSizeWithSize2 != null && fileLocation2 != null) {
+                FileLoader.getInstance(this.currentAccount).getPathToAttach(fileLocation2, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
+            }
+            PhotoUtilities.applyPhotoToUser(tL_photos_photo.photo, user, true);
+            ArrayList arrayList2 = new ArrayList();
+            arrayList2.add(user);
+            getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
+            getMessagesController().getDialogPhotos(this.user_id).addPhotoAtStart(tL_photos_photo.photo);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
+            if (getParentActivity() != null) {
+                if (i == 2) {
+                    BulletinFactory.of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", R.string.UserCustomPhotoSeted, user.first_name)), null, null).show();
+                } else {
+                    BulletinFactory.of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", R.string.UserCustomPhotoSeted, user.first_name)), null, null).show();
+                }
+            }
         }
-        contactAddActivity.finishFragment();
+        this.avatar = null;
+        updateCustomPhotoInfo();
     }
 
-    private void showAvatarProgress(final boolean z, boolean z2) {
+    @Override
+    public final boolean onFragmentCreate() {
+        getNotificationCenter().addObserver(this, NotificationCenter.updateInterfaces);
+        getNotificationCenter().addObserver(this, NotificationCenter.dialogPhotosUpdate);
+        this.user_id = getArguments().getLong("user_id", 0L);
+        this.phone = getArguments().getString("phone");
+        this.firstNameFromCard = getArguments().getString("first_name_card");
+        this.lastNameFromCard = getArguments().getString("last_name_card");
+        this.addContact = getArguments().getBoolean("addContact", false);
+        this.focusNotes = getArguments().getBoolean("focus_notes", false);
+        this.needAddException = MessagesController.getNotificationsSettings(this.currentAccount).getBoolean("dialog_bar_exception" + this.user_id, false);
+        TLRPC.User user = this.user_id != 0 ? getMessagesController().getUser(Long.valueOf(this.user_id)) : null;
+        ImageUpdater imageUpdater = this.imageUpdater;
+        if (imageUpdater != null) {
+            imageUpdater.parentFragment = this;
+            imageUpdater.delegate = this;
+        }
+        this.dialogPhotos = MessagesController.getInstance(this.currentAccount).getDialogPhotos(this.user_id);
+        return user != null && super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        getNotificationCenter().removeObserver(this, NotificationCenter.updateInterfaces);
+        getNotificationCenter().removeObserver(this, NotificationCenter.dialogPhotosUpdate);
+        ImageUpdater imageUpdater = this.imageUpdater;
+        if (imageUpdater != null) {
+            imageUpdater.clear$1();
+        }
+    }
+
+    @Override
+    public final void onPause() {
+        super.onPause();
+        ChatAttachAlert chatAttachAlert = this.imageUpdater.chatAttachAlert;
+        if (chatAttachAlert != null) {
+            chatAttachAlert.onPause();
+        }
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        updateAvatarLayout();
+        ChatAttachAlert chatAttachAlert = this.imageUpdater.chatAttachAlert;
+        if (chatAttachAlert != null) {
+            chatAttachAlert.onResume();
+        }
+    }
+
+    @Override
+    public final void onUploadProgressChanged(float f) {
+        RadialProgressView radialProgressView = this.avatarProgressView;
+        if (radialProgressView == null) {
+            return;
+        }
+        radialProgressView.setProgress(f);
+    }
+
+    public final void sendPhotoChangedRequest(TLRPC.FileLocation fileLocation, TLRPC.FileLocation fileLocation2, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, int i) {
+        TLRPC.TL_photos_uploadContactProfilePhoto tL_photos_uploadContactProfilePhoto = new TLRPC.TL_photos_uploadContactProfilePhoto();
+        tL_photos_uploadContactProfilePhoto.user_id = getMessagesController().getInputUser(this.user_id);
+        if (inputFile != null) {
+            tL_photos_uploadContactProfilePhoto.file = inputFile;
+            tL_photos_uploadContactProfilePhoto.flags |= 1;
+        }
+        if (inputFile2 != null) {
+            tL_photos_uploadContactProfilePhoto.video = inputFile2;
+            int i2 = tL_photos_uploadContactProfilePhoto.flags;
+            tL_photos_uploadContactProfilePhoto.video_start_ts = d;
+            tL_photos_uploadContactProfilePhoto.flags = i2 | 6;
+        }
+        if (videoSize != null) {
+            tL_photos_uploadContactProfilePhoto.flags |= 32;
+            tL_photos_uploadContactProfilePhoto.video_emoji_markup = videoSize;
+        }
+        if (i == 1) {
+            tL_photos_uploadContactProfilePhoto.suggest = true;
+            tL_photos_uploadContactProfilePhoto.flags |= 8;
+        } else {
+            tL_photos_uploadContactProfilePhoto.save = true;
+            tL_photos_uploadContactProfilePhoto.flags |= 16;
+        }
+        getConnectionsManager().sendRequest(tL_photos_uploadContactProfilePhoto, new GroupCallSheet$$ExternalSyntheticLambda0(this, fileLocation, inputFile2, fileLocation2, i, 8));
+    }
+
+    public final void showAvatarProgress$2(boolean z, boolean z2) {
         if (this.avatarProgressView == null) {
             return;
         }
@@ -762,91 +1084,49 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             AnimatorSet animatorSet3 = this.avatarAnimation;
             RadialProgressView radialProgressView = this.avatarProgressView;
             Property property = View.ALPHA;
-            animatorSet3.playTogether(ObjectAnimator.ofFloat(radialProgressView, (Property<RadialProgressView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<View, Float>) property, 1.0f));
+            animatorSet3.playTogether(ObjectAnimator.ofFloat(radialProgressView, (Property<RadialProgressView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<ChatActivity.AnonymousClass27, Float>) property, 1.0f));
         } else {
             RadialProgressView radialProgressView2 = this.avatarProgressView;
             Property property2 = View.ALPHA;
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(radialProgressView2, (Property<RadialProgressView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<View, Float>) property2, 0.0f));
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(radialProgressView2, (Property<RadialProgressView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<ChatActivity.AnonymousClass27, Float>) property2, 0.0f));
         }
         this.avatarAnimation.setDuration(180L);
-        this.avatarAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (ContactAddActivity.this.avatarAnimation == null || ContactAddActivity.this.avatarProgressView == null) {
-                    return;
-                }
-                if (!z) {
-                    ContactAddActivity.this.avatarProgressView.setVisibility(4);
-                    ContactAddActivity.this.avatarOverlay.setVisibility(4);
-                }
-                ContactAddActivity.this.avatarAnimation = null;
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                ContactAddActivity.this.avatarAnimation = null;
-            }
-        });
+        this.avatarAnimation.addListener(new LoginActivity.AnonymousClass9(16, this, z));
         this.avatarAnimation.start();
     }
 
-    public void setDelegate(ContactAddActivityDelegate contactAddActivityDelegate) {
-        this.delegate = contactAddActivityDelegate;
+    @Override
+    public final boolean supportsBulletin() {
+        return false;
     }
 
-    private void updateAvatarLayout() {
+    public final void updateAvatarLayout() {
         TLRPC.User user;
         if (this.nameTextView == null || (user = getMessagesController().getUser(Long.valueOf(this.user_id))) == null) {
             return;
         }
-        if (TextUtils.isEmpty(getPhone())) {
+        TLRPC.User user2 = getMessagesController().getUser(Long.valueOf(this.user_id));
+        if (TextUtils.isEmpty((user2 == null || TextUtils.isEmpty(user2.phone)) ? this.phone : user2.phone)) {
             this.nameTextView.setText(LocaleController.getString(R.string.MobileHidden));
         } else {
-            this.nameTextView.setText(PhoneFormat.getInstance().format("+" + getPhone()));
+            TextView textView = this.nameTextView;
+            PhoneFormat phoneFormat = PhoneFormat.getInstance();
+            StringBuilder sb = new StringBuilder("+");
+            TLRPC.User user3 = getMessagesController().getUser(Long.valueOf(this.user_id));
+            sb.append((user3 == null || TextUtils.isEmpty(user3.phone)) ? this.phone : user3.phone);
+            textView.setText(phoneFormat.format(sb.toString()));
         }
         this.onlineTextView.setText(LocaleController.formatUserStatus(this.currentAccount, user));
         if (this.avatar == null) {
             BackupImageView backupImageView = this.avatarImage;
             AvatarDrawable avatarDrawable = new AvatarDrawable(user);
             this.avatarDrawable = avatarDrawable;
-            backupImageView.setForUserOrChat(user, avatarDrawable);
+            backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
+            backupImageView.onNewImageSet();
         }
     }
 
-    private String getPhone() {
-        TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
-        return (user == null || TextUtils.isEmpty(user.phone)) ? this.phone : user.phone;
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        MessagesController.DialogPhotos dialogPhotos;
-        if (i == NotificationCenter.updateInterfaces) {
-            int iIntValue = ((Integer) objArr[0]).intValue();
-            if ((MessagesController.UPDATE_MASK_AVATAR & iIntValue) == 0 && (iIntValue & MessagesController.UPDATE_MASK_STATUS) == 0) {
-                return;
-            }
-            updateAvatarLayout();
-            return;
-        }
-        if (i == NotificationCenter.dialogPhotosUpdate && (dialogPhotos = (MessagesController.DialogPhotos) objArr[0]) == this.dialogPhotos) {
-            ArrayList arrayList = new ArrayList(dialogPhotos.photos);
-            int i3 = 0;
-            while (i3 < arrayList.size()) {
-                if (arrayList.get(i3) == null) {
-                    arrayList.remove(i3);
-                    i3--;
-                }
-                i3++;
-            }
-            if (arrayList.size() > 0) {
-                this.prevAvatar = (TLRPC.Photo) arrayList.get(0);
-                updateCustomPhotoInfo();
-            }
-        }
-    }
-
-    private void updateCustomPhotoInfo() {
+    public final void updateCustomPhotoInfo() {
         TLRPC.Photo photo;
         if (this.addContact) {
             return;
@@ -854,320 +1134,104 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.user_id));
         TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
         if (userProfilePhoto != null && userProfilePhoto.personal && (photo = this.prevAvatar) != null) {
-            this.oldAvatarView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 1000), this.prevAvatar), "50_50", this.avatarDrawable, (Object) null);
+            this.oldAvatarView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 1000), this.prevAvatar), "50_50", this.avatarDrawable, null);
         }
         if (this.avatarDrawable == null) {
             this.avatarDrawable = new AvatarDrawable(user);
         }
         TLRPC.FileLocation fileLocation = this.avatar;
-        if (fileLocation == null) {
-            this.avatarImage.setForUserOrChat(user, this.avatarDrawable);
-        } else {
+        if (fileLocation != null) {
             this.avatarImage.setImage(ImageLocation.getForLocal(fileLocation), "50_50", this.avatarDrawable, getMessagesController().getUser(Long.valueOf(this.user_id)));
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        this.paused = true;
-        this.imageUpdater.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateAvatarLayout();
-        this.imageUpdater.onResume();
-    }
-
-    @Override
-    public boolean canFinishFragment() {
-        return this.photoSelectedTypeFinal != 1;
-    }
-
-    @Override
-    public void didUploadPhoto(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, final boolean z, final TLRPC.VideoSize videoSize) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ContactAddActivity.$r8$lambda$exa9PMiFxqkTsrAA0XoM_oa3ICY(this.f$0, photoSize2, inputFile, inputFile2, photoSize, videoSize, d, z);
-            }
-        });
-    }
-
-    public static void $r8$lambda$exa9PMiFxqkTsrAA0XoM_oa3ICY(final ContactAddActivity contactAddActivity, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.PhotoSize photoSize2, TLRPC.VideoSize videoSize, double d, boolean z) {
-        if (contactAddActivity.imageUpdater.isCanceled()) {
             return;
         }
-        int i = contactAddActivity.photoSelectedTypeFinal;
-        if (i == 2) {
-            contactAddActivity.avatar = photoSize.location;
-        } else if (i == 1) {
-            NavigationExt.backToFragment(contactAddActivity, new NavigationExt.FragmentConsumer() {
-                @Override
-                public final boolean consume(BaseFragment baseFragment) {
-                    return ContactAddActivity.$r8$lambda$WipdR54a5GE4KAyeowHETpSDC2w(this.f$0, baseFragment);
-                }
-            });
-        }
-        if (inputFile != null || inputFile2 != null) {
-            TLRPC.User user = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id));
-            if (contactAddActivity.suggestPhotoMessageFinal == null && user != null) {
-                PhotoUtilities.applyPhotoToUser(photoSize, photoSize2, inputFile2 != null, user, true);
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(user);
-                contactAddActivity.getMessagesStorage().putUsersAndChats(arrayList, null, false, true);
-                contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
-                contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
-            }
-            contactAddActivity.sendPhotoChangedRequest(contactAddActivity.avatar, photoSize2.location, inputFile, inputFile2, videoSize, d, contactAddActivity.photoSelectedTypeFinal);
-            contactAddActivity.showAvatarProgress(false, true);
-        } else {
-            contactAddActivity.avatarImage.setImage(ImageLocation.getForLocal(contactAddActivity.avatar), "50_50", contactAddActivity.avatarDrawable, contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id)));
-            if (contactAddActivity.photoSelectedTypeFinal == 2) {
-                contactAddActivity.showAvatarProgress(true, false);
-            } else {
-                contactAddActivity.createServiceMessageLocal(photoSize, photoSize2, z);
-            }
-        }
-        contactAddActivity.updateCustomPhotoInfo();
+        BackupImageView backupImageView = this.avatarImage;
+        backupImageView.imageReceiver.setForUserOrChat(user, this.avatarDrawable);
+        backupImageView.onNewImageSet();
     }
 
-    public static boolean $r8$lambda$WipdR54a5GE4KAyeowHETpSDC2w(ContactAddActivity contactAddActivity, BaseFragment baseFragment) {
-        contactAddActivity.getClass();
-        if (baseFragment instanceof ChatActivity) {
-            ChatActivity chatActivity = (ChatActivity) baseFragment;
-            if (chatActivity.getDialogId() == contactAddActivity.user_id && chatActivity.getChatMode() == 0) {
-                chatActivity.scrollToLastMessage(true, false);
-                return true;
+    public final class AnonymousClass4 extends TextCell {
+        public final int $r8$classId = 0;
+        public final Object this$0;
+
+        public AnonymousClass4(ContactAddActivity contactAddActivity, Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(23, context, resourcesProvider, false, false);
+            this.this$0 = contactAddActivity;
+        }
+
+        @Override
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            switch (this.$r8$classId) {
+                case 0:
+                    super.onLayout(z, i, i2, i3, i4);
+                    int iDp = AndroidUtilities.dp(21.0f);
+                    int measuredHeight = getMeasuredHeight();
+                    ContactAddActivity contactAddActivity = (ContactAddActivity) this.this$0;
+                    int measuredHeight2 = (measuredHeight - contactAddActivity.oldAvatarView.getMeasuredHeight()) / 2;
+                    BackupImageView backupImageView = contactAddActivity.oldAvatarView;
+                    backupImageView.layout(iDp, measuredHeight2, backupImageView.getMeasuredWidth() + iDp, contactAddActivity.oldAvatarView.getMeasuredHeight() + measuredHeight2);
+                    break;
+                case 1:
+                    super.onLayout(z, i, i2, i3, i4);
+                    int iDp2 = AndroidUtilities.dp(21.0f);
+                    int measuredHeight3 = getMeasuredHeight();
+                    PrivacyControlActivity.ListAdapter listAdapter = (PrivacyControlActivity.ListAdapter) this.this$0;
+                    int measuredHeight4 = (measuredHeight3 - PrivacyControlActivity.this.oldAvatarView.getMeasuredHeight()) / 2;
+                    BackupImageView backupImageView2 = PrivacyControlActivity.this.oldAvatarView;
+                    backupImageView2.layout(iDp2, measuredHeight4, backupImageView2.getMeasuredWidth() + iDp2, PrivacyControlActivity.this.oldAvatarView.getMeasuredHeight() + measuredHeight4);
+                    break;
+                default:
+                    super.onLayout(z, i, i2, i3, i4);
+                    break;
             }
         }
-        return false;
-    }
 
-    @Override
-    public void didUploadFailed() {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ContactAddActivity.m3029$r8$lambda$qYGxjBsWvau4rfOiPeoUNv2Vxo(this.f$0);
-            }
-        });
-    }
-
-    public static void m3029$r8$lambda$qYGxjBsWvau4rfOiPeoUNv2Vxo(ContactAddActivity contactAddActivity) {
-        contactAddActivity.getClass();
-        ImageUpdater.ImageUpdaterDelegate.CC.$default$didUploadFailed(contactAddActivity);
-        if (contactAddActivity.suggestPhotoMessageFinal != null) {
-            ArrayList arrayList = new ArrayList();
-            arrayList.add(Integer.valueOf(contactAddActivity.suggestPhotoMessageFinal.getId()));
-            NotificationCenter.getInstance(contactAddActivity.currentAccount).postNotificationName(NotificationCenter.messagesDeleted, arrayList, 0L, Boolean.FALSE);
-        }
-    }
-
-    private void createServiceMessageLocal(TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z) {
-        TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
-        tL_messageService.random_id = SendMessagesHelper.getInstance(this.currentAccount).getNextRandomId();
-        tL_messageService.dialog_id = this.user_id;
-        tL_messageService.unread = true;
-        tL_messageService.out = true;
-        int newMessageId = getUserConfig().getNewMessageId();
-        tL_messageService.id = newMessageId;
-        tL_messageService.local_id = newMessageId;
-        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-        tL_messageService.from_id = tL_peerUser;
-        tL_peerUser.user_id = getUserConfig().getClientUserId();
-        tL_messageService.flags |= 256;
-        TLRPC.TL_peerUser tL_peerUser2 = new TLRPC.TL_peerUser();
-        tL_messageService.peer_id = tL_peerUser2;
-        tL_peerUser2.user_id = this.user_id;
-        tL_messageService.date = getConnectionsManager().getCurrentTime();
-        TLRPC.TL_messageActionSuggestProfilePhoto tL_messageActionSuggestProfilePhoto = new TLRPC.TL_messageActionSuggestProfilePhoto();
-        tL_messageService.action = tL_messageActionSuggestProfilePhoto;
-        TLRPC.TL_photo tL_photo = new TLRPC.TL_photo();
-        tL_messageActionSuggestProfilePhoto.photo = tL_photo;
-        tL_photo.sizes.add(photoSize);
-        tL_messageActionSuggestProfilePhoto.photo.sizes.add(photoSize2);
-        tL_messageActionSuggestProfilePhoto.video = z;
-        tL_messageActionSuggestProfilePhoto.photo.file_reference = new byte[0];
-        ArrayList<MessageObject> arrayList = new ArrayList<>();
-        MessageObject messageObject = new MessageObject(this.currentAccount, tL_messageService, false, false);
-        this.suggestPhotoMessageFinal = messageObject;
-        arrayList.add(messageObject);
-        new ArrayList().add(tL_messageService);
-        MessagesController.getInstance(this.currentAccount).updateInterfaceWithMessages(this.user_id, arrayList, 0);
-        getMessagesController().photoSuggestion.put(tL_messageService.local_id, this.imageUpdater);
-    }
-
-    private void sendPhotoChangedRequest(final TLRPC.FileLocation fileLocation, final TLRPC.FileLocation fileLocation2, TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final int i) {
-        TLRPC.TL_photos_uploadContactProfilePhoto tL_photos_uploadContactProfilePhoto = new TLRPC.TL_photos_uploadContactProfilePhoto();
-        tL_photos_uploadContactProfilePhoto.user_id = getMessagesController().getInputUser(this.user_id);
-        if (inputFile != null) {
-            tL_photos_uploadContactProfilePhoto.file = inputFile;
-            tL_photos_uploadContactProfilePhoto.flags |= 1;
-        }
-        if (inputFile2 != null) {
-            tL_photos_uploadContactProfilePhoto.video = inputFile2;
-            int i2 = tL_photos_uploadContactProfilePhoto.flags;
-            tL_photos_uploadContactProfilePhoto.video_start_ts = d;
-            tL_photos_uploadContactProfilePhoto.flags = i2 | 6;
-        }
-        if (videoSize != null) {
-            tL_photos_uploadContactProfilePhoto.flags |= 32;
-            tL_photos_uploadContactProfilePhoto.video_emoji_markup = videoSize;
-        }
-        if (i == 1) {
-            tL_photos_uploadContactProfilePhoto.suggest = true;
-            tL_photos_uploadContactProfilePhoto.flags |= 8;
-        } else {
-            tL_photos_uploadContactProfilePhoto.save = true;
-            tL_photos_uploadContactProfilePhoto.flags |= 16;
-        }
-        getConnectionsManager().sendRequest(tL_photos_uploadContactProfilePhoto, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ContactAddActivity.$r8$lambda$eGkCh7LY_YtQXfGR1eAlRjBHfN8(this.f$0, fileLocation, inputFile2, fileLocation2, i, tLObject, tL_error);
-            }
-        });
-    }
-
-    public static void $r8$lambda$eGkCh7LY_YtQXfGR1eAlRjBHfN8(final ContactAddActivity contactAddActivity, final TLRPC.FileLocation fileLocation, final TLRPC.InputFile inputFile, final TLRPC.FileLocation fileLocation2, final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        contactAddActivity.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ContactAddActivity.$r8$lambda$kKVjjLtKJNSYaQon_nZfpucaUMo(this.f$0, fileLocation, inputFile, tLObject, fileLocation2, i);
-            }
-        });
-    }
-
-    public static void $r8$lambda$kKVjjLtKJNSYaQon_nZfpucaUMo(ContactAddActivity contactAddActivity, TLRPC.FileLocation fileLocation, TLRPC.InputFile inputFile, TLObject tLObject, TLRPC.FileLocation fileLocation2, int i) {
-        if (contactAddActivity.suggestPhotoMessageFinal != null) {
-            return;
-        }
-        if ((fileLocation == null && inputFile == null) || tLObject == null) {
-            return;
-        }
-        TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
-        ArrayList<TLRPC.PhotoSize> arrayList = tL_photos_photo.photo.sizes;
-        TLRPC.User user = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id));
-        TLRPC.UserFull userFull = MessagesController.getInstance(contactAddActivity.currentAccount).getUserFull(contactAddActivity.user_id);
-        if (userFull != null) {
-            userFull.personal_photo = tL_photos_photo.photo;
-            userFull.flags |= 2097152;
-            contactAddActivity.getMessagesStorage().updateUserInfo(userFull, true);
-        }
-        if (user != null) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 100);
-            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000);
-            if (closestPhotoSizeWithSize != null && fileLocation != null) {
-                FileLoader.getInstance(contactAddActivity.currentAccount).getPathToAttach(fileLocation, true).renameTo(FileLoader.getInstance(contactAddActivity.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
-                ImageLoader.getInstance().replaceImageInCache(fileLocation.volume_id + "_" + fileLocation.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(contactAddActivity.currentAccount, user, 1), false);
-            }
-            if (closestPhotoSizeWithSize2 != null && fileLocation2 != null) {
-                FileLoader.getInstance(contactAddActivity.currentAccount).getPathToAttach(fileLocation2, true).renameTo(FileLoader.getInstance(contactAddActivity.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
-            }
-            PhotoUtilities.applyPhotoToUser(tL_photos_photo.photo, user, true);
-            ArrayList arrayList2 = new ArrayList();
-            arrayList2.add(user);
-            contactAddActivity.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
-            contactAddActivity.getMessagesController().getDialogPhotos(contactAddActivity.user_id).addPhotoAtStart(tL_photos_photo.photo);
-            contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
-            contactAddActivity.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
-            if (contactAddActivity.getParentActivity() != null) {
-                if (i == 2) {
-                    BulletinFactory.of(contactAddActivity).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", R.string.UserCustomPhotoSeted, user.first_name))).show();
-                } else {
-                    BulletinFactory.of(contactAddActivity).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", R.string.UserCustomPhotoSeted, user.first_name))).show();
-                }
+        @Override
+        public void onMeasure(int i, int i2) {
+            switch (this.$r8$classId) {
+                case 0:
+                    super.onMeasure(i, i2);
+                    ContactAddActivity contactAddActivity = (ContactAddActivity) this.this$0;
+                    contactAddActivity.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+                    contactAddActivity.oldAvatarView.setRoundRadius(AndroidUtilities.dp(30.0f));
+                    break;
+                case 1:
+                    super.onMeasure(i, i2);
+                    PrivacyControlActivity.ListAdapter listAdapter = (PrivacyControlActivity.ListAdapter) this.this$0;
+                    PrivacyControlActivity.this.oldAvatarView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+                    PrivacyControlActivity.this.oldAvatarView.setRoundRadius(AndroidUtilities.dp(30.0f));
+                    break;
+                default:
+                    super.onMeasure(i, i2);
+                    break;
             }
         }
-        contactAddActivity.avatar = null;
-        contactAddActivity.updateCustomPhotoInfo();
-    }
 
-    @Override
-    public String getInitialSearchString() {
-        return ImageUpdater.ImageUpdaterDelegate.CC.$default$getInitialSearchString(this);
-    }
-
-    @Override
-    public void onUploadProgressChanged(float f) {
-        RadialProgressView radialProgressView = this.avatarProgressView;
-        if (radialProgressView == null) {
-            return;
-        }
-        radialProgressView.setProgress(f);
-    }
-
-    @Override
-    public void didStartUpload(boolean z, boolean z2) {
-        RadialProgressView radialProgressView = this.avatarProgressView;
-        if (radialProgressView == null) {
-            return;
-        }
-        this.photoSelectedTypeFinal = this.photoSelectedType;
-        radialProgressView.setProgress(0.0f);
-    }
-
-    @Override
-    public ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
-            @Override
-            public final void didSetColor() {
-                ContactAddActivity.m3026$r8$lambda$T_6M11wWMFrF7SslX27q5BlHQ(this.f$0);
+        @Override
+        public int processColor(int i) {
+            switch (this.$r8$classId) {
+                case 2:
+                    ProfileActivity.this.getClass();
+                    break;
             }
+            return i;
+        }
 
-            @Override
-            public void onAnimationProgress(float f) {
-                ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
-            }
-        };
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
-        TextView textView = this.nameTextView;
-        int i = ThemeDescription.FLAG_TEXTCOLOR;
-        int i2 = Theme.key_windowBackgroundWhiteBlackText;
-        arrayList.add(new ThemeDescription(textView, i, null, null, null, null, i2));
-        arrayList.add(new ThemeDescription(this.onlineTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText3));
-        arrayList.add(new ThemeDescription(this.firstNameField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
-        EditTextCell editTextCell = this.firstNameField;
-        int i3 = ThemeDescription.FLAG_HINTTEXTCOLOR;
-        int i4 = Theme.key_windowBackgroundWhiteHintText;
-        arrayList.add(new ThemeDescription(editTextCell, i3, null, null, null, null, i4));
-        EditTextCell editTextCell2 = this.firstNameField;
-        int i5 = ThemeDescription.FLAG_BACKGROUNDFILTER;
-        int i6 = Theme.key_windowBackgroundWhiteInputField;
-        arrayList.add(new ThemeDescription(editTextCell2, i5, null, null, null, null, i6));
-        EditTextCell editTextCell3 = this.firstNameField;
-        int i7 = ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE;
-        int i8 = Theme.key_windowBackgroundWhiteInputFieldActivated;
-        arrayList.add(new ThemeDescription(editTextCell3, i7, null, null, null, null, i8));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, i4));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i6));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i8));
-        arrayList.add(new ThemeDescription(null, 0, null, null, Theme.avatarDrawables, themeDescriptionDelegate, Theme.key_avatar_text));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundRed));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundOrange));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundViolet));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundGreen));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundCyan));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundBlue));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundPink));
-        return arrayList;
+        public AnonymousClass4(PrivacyControlActivity.ListAdapter listAdapter, Activity activity) {
+            super(activity);
+            this.this$0 = listAdapter;
+        }
+
+        public AnonymousClass4(ProfileActivity.ListAdapter listAdapter, Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(18, context, resourcesProvider, false, false);
+            this.this$0 = listAdapter;
+        }
     }
 
-    public static void m3026$r8$lambda$T_6M11wWMFrF7SslX27q5BlHQ(ContactAddActivity contactAddActivity) {
-        TLRPC.User user;
-        if (contactAddActivity.avatarImage == null || (user = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id))) == null) {
-            return;
-        }
-        contactAddActivity.avatarDrawable.setInfo(contactAddActivity.currentAccount, user);
-        contactAddActivity.avatarImage.invalidate();
+    public ContactAddActivity(Bundle bundle, Theme.ResourcesProvider resourcesProvider) {
+        super(bundle);
+        this.checkShare = false;
+        this.firstSet = true;
+        this.resourcesProvider = resourcesProvider;
+        this.imageUpdater = new ImageUpdater(0, true, true);
     }
 }

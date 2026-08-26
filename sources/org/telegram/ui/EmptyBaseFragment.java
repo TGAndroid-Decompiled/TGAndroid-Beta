@@ -7,8 +7,8 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
 public abstract class EmptyBaseFragment extends BaseFragment {
     @Override
-    public View createView(Context context) {
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context);
+    public final View createView(Context context) {
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context, null);
         this.fragmentView = sizeNotifierFrameLayout;
         return sizeNotifierFrameLayout;
     }

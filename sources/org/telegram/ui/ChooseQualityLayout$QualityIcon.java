@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -10,94 +10,70 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.view.ContextThemeWrapper;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.iv.RichDetailsCell;
 
-public class ChooseQualityLayout$QualityIcon extends Drawable {
+public final class ChooseQualityLayout$QualityIcon extends Drawable {
     public final AnimatedFloat animatedCast;
-    private final Drawable base;
-    private final Paint bgLinePaint;
-    private final Paint bgPaint = new Paint(1);
+    public final Drawable base;
+    public final Paint bgLinePaint;
+    public final Paint bgPaint = new Paint(1);
     public final AnimatedTextView.AnimatedTextDrawable bottomText;
-    private final Drawable.Callback callback;
     public boolean cast;
-    private final Paint castCutPaint;
-    private final Path castCutPath;
-    private final Drawable castFill;
-    private int castFillColor;
-    private final RectF rect;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private float rotation;
+    public final Paint castCutPaint;
+    public final Path castCutPath;
+    public final Drawable castFill;
+    public int castFillColor;
+    public final RectF rect;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final AnimatedTextView.AnimatedTextDrawable topText;
 
-    public void setCasting(boolean z, boolean z2) {
-        if (this.cast == z) {
-            return;
-        }
-        this.cast = z;
-        if (!z2) {
-            this.animatedCast.force(z);
-        }
-        invalidateSelf();
-    }
-
-    public ChooseQualityLayout$QualityIcon(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+    public ChooseQualityLayout$QualityIcon(ContextThemeWrapper contextThemeWrapper, int i, Theme.ResourcesProvider resourcesProvider) {
         Paint paint = new Paint(1);
         this.bgLinePaint = paint;
         this.rect = new RectF();
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, false, false);
         this.topText = animatedTextDrawable;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable();
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, false, false, false);
         this.bottomText = animatedTextDrawable2;
         Paint paint2 = new Paint(1);
         this.castCutPaint = paint2;
         Path path = new Path();
         this.castCutPath = path;
-        this.animatedCast = new AnimatedFloat(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.invalidateSelf();
-            }
-        }, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        Drawable.Callback callback = new Drawable.Callback() {
-            @Override
-            public void invalidateDrawable(Drawable drawable) {
-                ChooseQualityLayout$QualityIcon.this.invalidateSelf();
-            }
-
-            @Override
-            public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
-                ChooseQualityLayout$QualityIcon.this.scheduleSelf(runnable, j);
-            }
-
-            @Override
-            public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-                ChooseQualityLayout$QualityIcon.this.unscheduleSelf(runnable);
-            }
-        };
-        this.callback = callback;
+        this.animatedCast = new AnimatedFloat(new ChatActivity$$ExternalSyntheticLambda174(this, 24), 320L, CubicBezierInterpolator.EASE_OUT_QUINT, 0);
+        RichDetailsCell.AnonymousClass1 anonymousClass1 = new RichDetailsCell.AnonymousClass1(this, 3);
         this.resourcesProvider = resourcesProvider;
-        this.base = context.getResources().getDrawable(i).mutate();
-        this.castFill = context.getResources().getDrawable(R.drawable.mini_casting_fill).mutate();
+        this.base = contextThemeWrapper.getResources().getDrawable(i).mutate();
+        this.castFill = contextThemeWrapper.getResources().getDrawable(R.drawable.mini_casting_fill).mutate();
         paint.setColor(-1);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        animatedTextDrawable.setTextColor(-16777216);
+        Typeface typeface = AndroidUtilities.getTypeface("fonts/num.otf");
+        TextPaint textPaint = animatedTextDrawable.textPaint;
+        textPaint.setTypeface(typeface);
+        textPaint.setColor(-16777216);
+        animatedTextDrawable.alpha = Color.alpha(-16777216);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(7.0f));
-        animatedTextDrawable.setCallback(callback);
-        animatedTextDrawable.setGravity(17);
-        animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
-        animatedTextDrawable2.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        animatedTextDrawable2.setTextColor(-16777216);
+        animatedTextDrawable.setCallback(anonymousClass1);
+        animatedTextDrawable.gravity = 17;
+        animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
+        Typeface typeface2 = AndroidUtilities.getTypeface("fonts/num.otf");
+        TextPaint textPaint2 = animatedTextDrawable2.textPaint;
+        textPaint2.setTypeface(typeface2);
+        textPaint2.setColor(-16777216);
+        animatedTextDrawable2.alpha = Color.alpha(-16777216);
         animatedTextDrawable2.setTextSize(AndroidUtilities.dp(7.0f));
-        animatedTextDrawable2.setCallback(callback);
-        animatedTextDrawable2.setGravity(17);
-        animatedTextDrawable2.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+        animatedTextDrawable2.setCallback(anonymousClass1);
+        animatedTextDrawable2.gravity = 17;
+        animatedTextDrawable2.overrideFullWidth = AndroidUtilities.displaySize.x;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(AndroidUtilities.dp(0.66f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.33f));
         path.addRoundRect(rectF, AndroidUtilities.dp(2.66f), AndroidUtilities.dp(2.66f), Path.Direction.CW);
@@ -105,129 +81,139 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         Canvas canvas2;
         float f;
         float f2;
         float f3;
-        float f4;
-        float f5 = this.animatedCast.set(this.cast);
-        float fDp = (AndroidUtilities.dp(5.0f) * this.topText.isNotEmpty()) + this.topText.getCurrentWidth();
-        float fDp2 = (AndroidUtilities.dp(5.0f) * this.bottomText.isNotEmpty()) + this.bottomText.getCurrentWidth();
+        float f4 = this.animatedCast.set(this.cast);
+        float fDp = AndroidUtilities.dp(5.0f);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.topText;
+        float currentWidth = animatedTextDrawable.getCurrentWidth() + (animatedTextDrawable.isNotEmpty() * fDp);
+        float fDp2 = AndroidUtilities.dp(5.0f);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.bottomText;
+        float currentWidth2 = animatedTextDrawable2.getCurrentWidth() + (animatedTextDrawable2.isNotEmpty() * fDp2);
         int saveCount = canvas.getSaveCount();
         Rect bounds = getBounds();
-        if (fDp > 0.0f || fDp2 > 0.0f || f5 > 0.0f) {
+        if (currentWidth > 0.0f || currentWidth2 > 0.0f || f4 > 0.0f) {
             canvas2 = canvas;
             canvas2.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
         } else {
             canvas2 = canvas;
         }
         Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), (AndroidUtilities.dp(6.0f) + bounds.width()) - AndroidUtilities.dp(12.0f), (AndroidUtilities.dp(6.0f) + bounds.height()) - AndroidUtilities.dp(12.0f));
+        rect.set(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), (bounds.width() + AndroidUtilities.dp(6.0f)) - AndroidUtilities.dp(12.0f), (bounds.height() + AndroidUtilities.dp(6.0f)) - AndroidUtilities.dp(12.0f));
         rect.offset(bounds.left, bounds.top);
-        this.base.setBounds(rect);
+        Drawable drawable = this.base;
+        drawable.setBounds(rect);
         canvas2.save();
-        canvas2.rotate(this.rotation * (-180.0f), bounds.centerX(), bounds.centerY());
-        this.base.draw(canvas2);
+        canvas2.rotate(-0.0f, bounds.centerX(), bounds.centerY());
+        drawable.draw(canvas2);
         canvas2.restore();
-        this.bgPaint.setColor(-1);
-        float fWidth = bounds.left + (bounds.width() * 0.98f);
-        float fHeight = bounds.top + (bounds.height() * 0.18f);
-        float fHeight2 = bounds.top + (bounds.height() * 0.78f);
+        Paint paint = this.bgPaint;
+        paint.setColor(-1);
+        float fWidth = (bounds.width() * 0.98f) + bounds.left;
+        float fHeight = (bounds.height() * 0.18f) + bounds.top;
+        float fHeight2 = (bounds.height() * 0.78f) + bounds.top;
         float fDp3 = AndroidUtilities.dp(10.0f);
-        if (fDp > 0.0f) {
-            float f6 = fDp3 / 2.0f;
-            f = 2.0f;
-            f2 = 3.0f;
-            this.rect.set(fWidth - fDp, fHeight - f6, fWidth, fHeight + f6);
-            canvas2.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgLinePaint);
+        Paint paint2 = this.bgLinePaint;
+        RectF rectF = this.rect;
+        if (currentWidth > 0.0f) {
+            f = fDp3;
+            float f5 = f / 2.0f;
+            f2 = fHeight;
+            rectF.set(fWidth - currentWidth, f2 - f5, fWidth, f2 + f5);
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint2);
         } else {
-            f = 2.0f;
-            f2 = 3.0f;
+            f = fDp3;
+            f2 = fHeight;
         }
-        if (fDp2 > 0.0f) {
-            float f7 = fDp3 / f;
-            f3 = 0.0f;
-            this.rect.set(fWidth - fDp2, fHeight2 - f7, fWidth, f7 + fHeight2);
-            canvas2.drawRoundRect(this.rect, AndroidUtilities.dp(f2), AndroidUtilities.dp(f2), this.bgLinePaint);
-        } else {
-            f3 = 0.0f;
+        if (currentWidth2 > 0.0f) {
+            float f6 = f / 2.0f;
+            rectF.set(fWidth - currentWidth2, fHeight2 - f6, fWidth, fHeight2 + f6);
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint2);
         }
-        float f8 = 1.0f - f5;
-        if (fDp * f8 > f3) {
-            f4 = 255.0f;
-            this.bgPaint.setAlpha((int) (this.topText.isNotEmpty() * 255.0f * f8));
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.topText;
-            animatedTextDrawable.setAlpha((int) (animatedTextDrawable.isNotEmpty() * 255.0f * f8));
-            float f9 = fDp3 / f;
-            this.rect.set(fWidth - fDp, fHeight - f9, fWidth, fHeight + f9);
-            this.rect.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            canvas2.drawRoundRect(this.rect, AndroidUtilities.dp(f2), AndroidUtilities.dp(f2), this.bgPaint);
-            this.rect.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
-            this.topText.setBounds(this.rect);
-            this.topText.draw(canvas2);
-        } else {
-            f4 = 255.0f;
+        float f7 = 1.0f - f4;
+        if (currentWidth * f7 > 0.0f) {
+            paint.setAlpha((int) (animatedTextDrawable.isNotEmpty() * 255.0f * f7));
+            animatedTextDrawable.alpha = (int) (animatedTextDrawable.isNotEmpty() * 255.0f * f7);
+            float f8 = f / 2.0f;
+            rectF.set(fWidth - currentWidth, f2 - f8, fWidth, f2 + f8);
+            rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
+            rectF.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
+            animatedTextDrawable.setBounds(rectF);
+            animatedTextDrawable.draw(canvas2);
         }
-        if (f5 > f3) {
+        if (f4 > 0.0f) {
             canvas2.save();
             int color = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
-            if (this.castFillColor != color) {
-                Drawable drawable = this.castFill;
-                this.castFillColor = color;
-                drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
-            }
+            int i = this.castFillColor;
             Drawable drawable2 = this.castFill;
-            drawable2.setBounds((bounds.right - drawable2.getIntrinsicWidth()) - AndroidUtilities.dp(f2), bounds.top + AndroidUtilities.dp(0.66f), bounds.right - AndroidUtilities.dp(f2), bounds.top + AndroidUtilities.dp(0.66f) + this.castFill.getIntrinsicHeight());
-            this.castFill.setAlpha((int) (f5 * f4));
-            float fLerp = AndroidUtilities.lerp(0.8f, 1.0f, f5);
-            canvas2.scale(fLerp, fLerp, this.castFill.getBounds().centerX(), this.castFill.getBounds().centerY());
-            if (f5 > 0.5f) {
+            if (i != color) {
+                this.castFillColor = color;
+                drawable2.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+            }
+            f3 = 255.0f;
+            drawable2.setBounds((bounds.right - drawable2.getIntrinsicWidth()) - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(0.66f) + bounds.top, bounds.right - AndroidUtilities.dp(3.0f), drawable2.getIntrinsicHeight() + AndroidUtilities.dp(0.66f) + bounds.top);
+            drawable2.setAlpha((int) (f4 * 255.0f));
+            float fLerp = AndroidUtilities.lerp(0.8f, 1.0f, f4);
+            canvas2.scale(fLerp, fLerp, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
+            if (f4 > 0.5f) {
                 canvas2.save();
-                canvas2.translate(this.castFill.getBounds().left, this.castFill.getBounds().top);
+                canvas2.translate(drawable2.getBounds().left, drawable2.getBounds().top);
                 canvas2.drawPath(this.castCutPath, this.castCutPaint);
                 canvas2.restore();
             }
-            this.castFill.draw(canvas2);
+            drawable2.draw(canvas2);
             canvas2.restore();
+        } else {
+            f3 = 255.0f;
         }
-        if (fDp2 > 0.0f) {
-            this.bgPaint.setAlpha((int) (this.bottomText.isNotEmpty() * f4));
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.bottomText;
-            animatedTextDrawable2.setAlpha((int) (animatedTextDrawable2.isNotEmpty() * f4));
-            float f10 = fDp3 / f;
-            this.rect.set(fWidth - fDp2, fHeight2 - f10, fWidth, fHeight2 + f10);
-            this.rect.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            canvas2.drawRoundRect(this.rect, AndroidUtilities.dp(f2), AndroidUtilities.dp(f2), this.bgPaint);
-            this.rect.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
-            this.bottomText.setBounds(this.rect);
-            this.bottomText.draw(canvas2);
+        if (currentWidth2 > 0.0f) {
+            paint.setAlpha((int) (animatedTextDrawable2.isNotEmpty() * f3));
+            animatedTextDrawable2.alpha = (int) (animatedTextDrawable2.isNotEmpty() * f3);
+            float f9 = f / 2.0f;
+            rectF.set(fWidth - currentWidth2, fHeight2 - f9, fWidth, fHeight2 + f9);
+            rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
+            rectF.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
+            animatedTextDrawable2.setBounds(rectF);
+            animatedTextDrawable2.draw(canvas2);
         }
         canvas2.restoreToCount(saveCount);
     }
 
     @Override
-    public void setAlpha(int i) {
-        this.base.setAlpha(i);
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(12.0f) + this.base.getIntrinsicHeight();
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.base.setColorFilter(colorFilter);
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(12.0f) + this.base.getIntrinsicWidth();
     }
 
     @Override
-    public int getOpacity() {
+    public final int getOpacity() {
         return this.base.getOpacity();
     }
 
     @Override
-    public int getIntrinsicWidth() {
-        return this.base.getIntrinsicWidth() + AndroidUtilities.dp(12.0f);
+    public final void setAlpha(int i) {
+        this.base.setAlpha(i);
+    }
+
+    public final void setCasting(boolean z) {
+        if (this.cast == z) {
+            return;
+        }
+        this.cast = z;
+        invalidateSelf();
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return this.base.getIntrinsicHeight() + AndroidUtilities.dp(12.0f);
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.base.setColorFilter(colorFilter);
     }
 }

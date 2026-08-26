@@ -1,10 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.Layout;
@@ -15,159 +14,134 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.QrActivity$$ExternalSyntheticLambda14;
 import org.telegram.ui.Storage.CacheModel;
 
 public abstract class StorageDiagramView extends View implements NotificationCenter.NotificationCenterDelegate {
-    private float[] animateToPercentage;
-    private AvatarDrawable avatarDrawable;
-    private ImageReceiver avatarImageReceiver;
-    ValueAnimator backAnimator;
-    CacheModel cacheModel;
-    private ClearViewData[] data;
-    private Long dialogId;
-    CharSequence dialogText;
-    StaticLayout dialogTextLayout;
-    TextPaint dialogTextPaint;
-    private float[] drawingPercentage;
-    int enabledCount;
-    float pressedProgress;
-    private RectF rectF;
-    private float singleProgress;
-    private float[] startFromPercentage;
-    AnimatedTextView.AnimatedTextDrawable text1;
-    AnimatedTextView.AnimatedTextDrawable text2;
-    ValueAnimator valueAnimator;
+    public float[] animateToPercentage;
+    public ImageReceiver avatarImageReceiver;
+    public ValueAnimator backAnimator;
+    public CacheModel cacheModel;
+    public ClearViewData[] data;
+    public Long dialogId;
+    public CharSequence dialogText;
+    public StaticLayout dialogTextLayout;
+    public TextPaint dialogTextPaint;
+    public float[] drawingPercentage;
+    public int enabledCount;
+    public float pressedProgress;
+    public final RectF rectF;
+    public float singleProgress;
+    public float[] startFromPercentage;
+    public final AnimatedTextView.AnimatedTextDrawable text1;
+    public final AnimatedTextView.AnimatedTextDrawable text2;
+    public ValueAnimator valueAnimator;
 
-    protected abstract void onAvatarClick();
+    public final class ClearViewData {
+        public boolean clear;
+        public int colorKey;
+        public boolean firstDraw;
+        public final Paint paint;
+        public long size;
+
+        public ClearViewData() {
+            Paint paint = new Paint(1);
+            this.paint = paint;
+            this.clear = true;
+            this.firstDraw = false;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(AndroidUtilities.dp(5.0f));
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setStrokeJoin(Paint.Join.ROUND);
+        }
+    }
 
     public StorageDiagramView(Context context) {
         super(context);
         this.rectF = new RectF();
         this.singleProgress = 0.0f;
-        this.text1 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-        this.text2 = new AnimatedTextView.AnimatedTextDrawable(false, true, false);
-        this.text1.setCallback(this);
-        this.text2.setCallback(this);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+        this.text1 = animatedTextDrawable;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, true, false, false);
+        this.text2 = animatedTextDrawable2;
+        animatedTextDrawable.setCallback(this);
+        animatedTextDrawable2.setCallback(this);
     }
 
-    public void setCacheModel(CacheModel cacheModel) {
-        this.cacheModel = cacheModel;
+    public final long calculateSize() {
+        if (this.data == null) {
+            return 0L;
+        }
+        long j = 0;
+        for (int i = 0; i < this.data.length; i++) {
+            long selectedFilesSize = this.cacheModel.getSelectedFilesSize(i);
+            ClearViewData clearViewData = this.data[i];
+            if (clearViewData != null && (clearViewData.clear || selectedFilesSize > 0)) {
+                if (selectedFilesSize <= 0) {
+                    selectedFilesSize = clearViewData.size;
+                }
+                j += selectedFilesSize;
+            }
+        }
+        return j;
     }
 
-    public StorageDiagramView(Context context, long j) {
-        this(context);
-        this.dialogId = Long.valueOf(j);
-        AvatarDrawable avatarDrawable = new AvatarDrawable();
-        this.avatarDrawable = avatarDrawable;
-        avatarDrawable.setScaleSize(1.5f);
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.avatarImageReceiver = imageReceiver;
-        imageReceiver.setParentView(this);
-        if (j == Long.MAX_VALUE) {
-            this.dialogText = LocaleController.getString(R.string.CacheOtherChats);
-            this.avatarDrawable.setAvatarType(14);
-            this.avatarImageReceiver.setForUserOrChat(null, this.avatarDrawable);
-        } else {
-            String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(this.avatarImageReceiver, this.avatarDrawable, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j));
-            this.dialogText = dialogPhotoTitle;
-            this.dialogText = Emoji.replaceEmoji(dialogPhotoTitle, null, false);
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.emojiLoaded) {
+            invalidate();
         }
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        int size;
-        if (this.dialogId != null) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(166.0f), 1073741824));
-            size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(110.0f)) / 2;
-            this.rectF.set(AndroidUtilities.dp(3.0f) + size, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(107.0f) + size, AndroidUtilities.dp(107.0f));
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(110.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(110.0f), 1073741824));
-            this.rectF.set(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(107.0f), AndroidUtilities.dp(107.0f));
-            size = 0;
-        }
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text1;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        animatedTextDrawable.setAnimationProperties(0.18f, 0L, 300L, cubicBezierInterpolator);
-        this.text1.setTextSize(AndroidUtilities.dp(24.0f));
-        this.text1.setTypeface(AndroidUtilities.bold());
-        this.text2.setAnimationProperties(0.18f, 0L, 300L, cubicBezierInterpolator);
-        if (this.dialogId != null) {
-            this.text2.setTextSize(AndroidUtilities.dp(16.0f));
-            this.text1.setGravity(5);
-            this.text2.setGravity(3);
-        } else {
-            this.text2.setTextSize(AndroidUtilities.dp(13.0f));
-            int textSize = (int) this.text1.getTextSize();
-            int textSize2 = (int) this.text2.getTextSize();
-            int iDp = ((AndroidUtilities.dp(110.0f) - textSize) - textSize2) / 2;
-            int i3 = textSize + iDp;
-            this.text1.setBounds(0, iDp, getMeasuredWidth(), i3);
-            this.text2.setBounds(0, AndroidUtilities.dp(2.0f) + i3, getMeasuredWidth(), i3 + textSize2 + AndroidUtilities.dp(2.0f));
-            this.text1.setGravity(17);
-            this.text2.setGravity(17);
-        }
-        if (this.dialogText != null) {
-            if (this.dialogTextPaint == null) {
-                this.dialogTextPaint = new TextPaint(1);
-            }
-            this.dialogTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
-            int size2 = View.MeasureSpec.getSize(i) - AndroidUtilities.dp(60.0f);
-            this.dialogTextLayout = StaticLayoutEx.createStaticLayout2(this.dialogText, this.dialogTextPaint, size2, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, size2, 1);
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
         ImageReceiver imageReceiver = this.avatarImageReceiver;
         if (imageReceiver != null) {
-            imageReceiver.setImageCoords(size + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
-            this.avatarImageReceiver.setRoundRadius(AndroidUtilities.dp(45.0f));
+            imageReceiver.onAttachedToWindow();
         }
-        updateDescription();
-    }
-
-    public void setData(CacheModel cacheModel, ClearViewData[] clearViewDataArr) {
-        this.data = clearViewDataArr;
-        this.cacheModel = cacheModel;
-        invalidate();
-        this.drawingPercentage = new float[clearViewDataArr.length];
-        this.animateToPercentage = new float[clearViewDataArr.length];
-        this.startFromPercentage = new float[clearViewDataArr.length];
-        update(false);
-        if (this.enabledCount > 1) {
-            this.singleProgress = 0.0f;
-        } else {
-            this.singleProgress = 1.0f;
-        }
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ImageReceiver imageReceiver = this.avatarImageReceiver;
+        if (imageReceiver != null) {
+            imageReceiver.onDetachedFromWindow();
+        }
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        RectF rectF;
+        double d;
         int i;
+        float f;
         if (this.data == null) {
             return;
         }
         if (this.avatarImageReceiver != null) {
             canvas.save();
             if (isPressed()) {
-                float f = this.pressedProgress;
-                if (f != 1.0f) {
-                    float fMin = f + (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f);
+                float f2 = this.pressedProgress;
+                if (f2 != 1.0f) {
+                    float fMin = (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f) + f2;
                     this.pressedProgress = fMin;
                     this.pressedProgress = Utilities.clamp(fMin, 1.0f, 0.0f);
                     invalidate();
                 }
             }
-            float f2 = ((1.0f - this.pressedProgress) * 0.15f) + 0.85f;
-            canvas.scale(f2, f2, this.avatarImageReceiver.getCenterX(), this.avatarImageReceiver.getCenterY());
+            float fM = DiffUtil.m(1.0f, this.pressedProgress, 0.15f, 0.85f);
+            canvas.scale(fM, fM, this.avatarImageReceiver.getCenterX(), this.avatarImageReceiver.getCenterY());
         }
         if (this.enabledCount > 1) {
             float f3 = this.singleProgress;
@@ -192,8 +166,12 @@ public abstract class StorageDiagramView extends View implements NotificationCen
         float f7 = 0.0f;
         while (true) {
             ClearViewData[] clearViewDataArr = this.data;
+            int length = clearViewDataArr.length;
+            rectF = this.rectF;
+            d = 3.141592653589793d;
             i = 255;
-            if (i2 >= clearViewDataArr.length) {
+            f = 10.0f;
+            if (i2 >= length) {
                 break;
             }
             ClearViewData clearViewData = clearViewDataArr[i2];
@@ -201,17 +179,19 @@ public abstract class StorageDiagramView extends View implements NotificationCen
                 float f8 = this.drawingPercentage[i2];
                 if (f8 != 0.0f) {
                     if (clearViewData.firstDraw) {
-                        float f9 = ((-360.0f) * f8) + ((1.0f - this.singleProgress) * 10.0f);
-                        float f10 = f9 > 0.0f ? 0.0f : f9;
-                        clearViewData.paint.setColor(Theme.getColor(clearViewData.colorKey));
+                        float fM2 = DiffUtil.m(1.0f, this.singleProgress, 10.0f, f8 * (-360.0f));
+                        if (fM2 > 0.0f) {
+                            fM2 = 0.0f;
+                        }
+                        clearViewData.paint.setColor(Theme.getColor(null, clearViewData.colorKey, false));
                         this.data[i2].paint.setAlpha(255);
-                        double dWidth = this.rectF.width() / 2.0f;
-                        if (Math.abs((float) (((3.141592653589793d * dWidth) / 180.0d) * ((double) f10))) <= 1.0f) {
-                            double d = (-90.0f) - (360.0f * f7);
-                            canvas.drawPoint(this.rectF.centerX() + ((float) (Math.cos(Math.toRadians(d)) * dWidth)), this.rectF.centerY() + ((float) (dWidth * Math.sin(Math.toRadians(d)))), this.data[i2].paint);
+                        double dWidth = rectF.width() / 2.0f;
+                        if (Math.abs((float) (((3.141592653589793d * dWidth) / 180.0d) * ((double) fM2))) <= 1.0f) {
+                            double d2 = (-90.0f) - (360.0f * f7);
+                            canvas.drawPoint(rectF.centerX() + ((float) (Math.cos(Math.toRadians(d2)) * dWidth)), rectF.centerY() + ((float) (Math.sin(Math.toRadians(d2)) * dWidth)), this.data[i2].paint);
                         } else {
                             this.data[i2].paint.setStyle(Paint.Style.STROKE);
-                            canvas.drawArc(this.rectF, (-90.0f) - (360.0f * f7), f10, false, this.data[i2].paint);
+                            canvas.drawArc(rectF, (-90.0f) - (360.0f * f7), fM2, false, this.data[i2].paint);
                         }
                     }
                     f7 += f8;
@@ -220,7 +200,7 @@ public abstract class StorageDiagramView extends View implements NotificationCen
             i2++;
         }
         int i3 = 0;
-        float f11 = 0.0f;
+        float f9 = 0.0f;
         while (true) {
             ClearViewData[] clearViewDataArr2 = this.data;
             if (i3 >= clearViewDataArr2.length) {
@@ -228,29 +208,31 @@ public abstract class StorageDiagramView extends View implements NotificationCen
             }
             ClearViewData clearViewData2 = clearViewDataArr2[i3];
             if (clearViewData2 != null) {
-                float f12 = this.drawingPercentage[i3];
-                if (f12 != 0.0f) {
+                float f10 = this.drawingPercentage[i3];
+                if (f10 != 0.0f) {
                     if (!clearViewData2.firstDraw) {
-                        float f13 = (f12 * (-360.0f)) + ((1.0f - this.singleProgress) * 10.0f);
-                        if (f13 > 0.0f) {
-                            f13 = 0.0f;
+                        float fM3 = DiffUtil.m(1.0f, this.singleProgress, f, f10 * (-360.0f));
+                        if (fM3 > 0.0f) {
+                            fM3 = 0.0f;
                         }
-                        clearViewData2.paint.setColor(Theme.getColor(clearViewData2.colorKey));
+                        clearViewData2.paint.setColor(Theme.getColor(null, clearViewData2.colorKey, false));
                         this.data[i3].paint.setAlpha(i);
-                        double dWidth2 = this.rectF.width() / 2.0f;
-                        if (Math.abs((float) (((double) f13) * ((dWidth2 * 3.141592653589793d) / 180.0d))) <= 1.0f) {
-                            double d2 = (-90.0f) - (f11 * 360.0f);
-                            canvas.drawPoint(this.rectF.centerX() + ((float) (dWidth2 * Math.cos(Math.toRadians(d2)))), this.rectF.centerY() + ((float) (Math.sin(Math.toRadians(d2)) * dWidth2)), this.data[i3].paint);
+                        double dWidth2 = rectF.width() / 2.0f;
+                        if (Math.abs((float) (((double) fM3) * ((dWidth2 * d) / 180.0d))) <= 1.0f) {
+                            double d3 = (-90.0f) - (f9 * 360.0f);
+                            canvas.drawPoint(rectF.centerX() + ((float) (Math.cos(Math.toRadians(d3)) * dWidth2)), rectF.centerY() + ((float) (Math.sin(Math.toRadians(d3)) * dWidth2)), this.data[i3].paint);
                         } else {
                             this.data[i3].paint.setStyle(Paint.Style.STROKE);
-                            canvas.drawArc(this.rectF, (-90.0f) - (f11 * 360.0f), f13, false, this.data[i3].paint);
+                            canvas.drawArc(rectF, (-90.0f) - (f9 * 360.0f), fM3, false, this.data[i3].paint);
                         }
                     }
-                    f11 += f12;
+                    f9 += f10;
                 }
             }
             i3++;
             i = 255;
+            f = 10.0f;
+            d = 3.141592653589793d;
         }
         ImageReceiver imageReceiver = this.avatarImageReceiver;
         if (imageReceiver != null) {
@@ -260,58 +242,145 @@ public abstract class StorageDiagramView extends View implements NotificationCen
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text1;
         if (animatedTextDrawable != null) {
             int i4 = Theme.key_dialogTextBlack;
-            animatedTextDrawable.setTextColor(Theme.getColor(i4));
-            this.text2.setTextColor(Theme.getColor(i4));
+            int color = Theme.getColor(null, i4, false);
+            animatedTextDrawable.textPaint.setColor(color);
+            animatedTextDrawable.alpha = Color.alpha(color);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.text2;
+            int color2 = Theme.getColor(null, i4, false);
+            animatedTextDrawable2.textPaint.setColor(color2);
+            animatedTextDrawable2.alpha = Color.alpha(color2);
             if (this.dialogId != null) {
-                float currentWidth = this.text1.getCurrentWidth() + AndroidUtilities.dp(4.0f) + this.text2.getCurrentWidth();
+                float currentWidth = animatedTextDrawable2.getCurrentWidth() + animatedTextDrawable.getCurrentWidth() + AndroidUtilities.dp(4.0f);
                 float width = (getWidth() - currentWidth) / 2.0f;
-                this.text1.setBounds(0, AndroidUtilities.dp(115.0f), (int) (this.text1.getCurrentWidth() + width), AndroidUtilities.dp(145.0f));
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.text2;
+                animatedTextDrawable.setBounds(0, AndroidUtilities.dp(115.0f), (int) (animatedTextDrawable.getCurrentWidth() + width), AndroidUtilities.dp(145.0f));
                 animatedTextDrawable2.setBounds((int) ((width + currentWidth) - animatedTextDrawable2.getCurrentWidth()), AndroidUtilities.dp(118.0f), getWidth(), AndroidUtilities.dp(148.0f));
             }
-            this.text1.draw(canvas);
-            this.text2.draw(canvas);
+            animatedTextDrawable.draw(canvas);
+            animatedTextDrawable2.draw(canvas);
         }
         if (this.dialogTextLayout != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(148.0f) - ((this.dialogTextLayout.getHeight() - AndroidUtilities.dp(13.0f)) / 2.0f));
-            this.dialogTextPaint.setColor(Theme.getColor(Theme.key_dialogTextBlack));
+            this.dialogTextPaint.setColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
             this.dialogTextLayout.draw(canvas);
             canvas.restore();
         }
     }
 
-    public static class ClearViewData {
-        public boolean clear;
-        public int colorKey;
-        boolean firstDraw;
-        Paint paint;
-        private final StorageDiagramView parentView;
-        public long size;
-
-        public ClearViewData(StorageDiagramView storageDiagramView) {
-            Paint paint = new Paint(1);
-            this.paint = paint;
-            this.clear = true;
-            this.firstDraw = false;
-            this.parentView = storageDiagramView;
-            paint.setStyle(Paint.Style.STROKE);
-            this.paint.setStrokeWidth(AndroidUtilities.dp(5.0f));
-            this.paint.setStrokeCap(Paint.Cap.ROUND);
-            this.paint.setStrokeJoin(Paint.Join.ROUND);
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int iM$2;
+        Long l = this.dialogId;
+        RectF rectF = this.rectF;
+        if (l != null) {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(166.0f), 1073741824));
+            iM$2 = OKLCH.m$2(110.0f, View.MeasureSpec.getSize(i), 2);
+            rectF.set(AndroidUtilities.dp(3.0f) + iM$2, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(107.0f) + iM$2, AndroidUtilities.dp(107.0f));
+        } else {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(110.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(110.0f), 1073741824));
+            rectF.set(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(107.0f), AndroidUtilities.dp(107.0f));
+            iM$2 = 0;
         }
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text1;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        animatedTextDrawable.moveAmplitude = 0.18f;
+        animatedTextDrawable.animateDuration = 300L;
+        animatedTextDrawable.animateWave = 1.0f;
+        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextDrawable.setTextSize(AndroidUtilities.dp(24.0f));
+        animatedTextDrawable.textPaint.setTypeface(AndroidUtilities.bold());
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.text2;
+        animatedTextDrawable2.moveAmplitude = 0.18f;
+        animatedTextDrawable2.animateDuration = 300L;
+        animatedTextDrawable2.animateWave = 1.0f;
+        animatedTextDrawable2.animateInterpolator = cubicBezierInterpolator;
+        if (this.dialogId != null) {
+            animatedTextDrawable2.setTextSize(AndroidUtilities.dp(16.0f));
+            animatedTextDrawable.gravity = 5;
+            animatedTextDrawable2.gravity = 3;
+        } else {
+            animatedTextDrawable2.setTextSize(AndroidUtilities.dp(13.0f));
+            int textSize = (int) animatedTextDrawable.textPaint.getTextSize();
+            int textSize2 = (int) animatedTextDrawable2.textPaint.getTextSize();
+            int iDp = ((AndroidUtilities.dp(110.0f) - textSize) - textSize2) / 2;
+            int i3 = textSize + iDp;
+            animatedTextDrawable.setBounds(0, iDp, getMeasuredWidth(), i3);
+            animatedTextDrawable2.setBounds(0, AndroidUtilities.dp(2.0f) + i3, getMeasuredWidth(), AndroidUtilities.dp(2.0f) + i3 + textSize2);
+            animatedTextDrawable.gravity = 17;
+            animatedTextDrawable2.gravity = 17;
+        }
+        if (this.dialogText != null) {
+            if (this.dialogTextPaint == null) {
+                this.dialogTextPaint = new TextPaint(1);
+            }
+            this.dialogTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
+            int size = View.MeasureSpec.getSize(i) - AndroidUtilities.dp(60.0f);
+            CharSequence charSequence = this.dialogText;
+            TextPaint textPaint = this.dialogTextPaint;
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            this.dialogTextLayout = StaticLayoutEx.createStaticLayout2(charSequence, textPaint, size, false, size, 1);
+        }
+        ImageReceiver imageReceiver = this.avatarImageReceiver;
+        if (imageReceiver != null) {
+            imageReceiver.setImageCoords(AndroidUtilities.dp(10.0f) + iM$2, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
+            this.avatarImageReceiver.setRoundRadius(AndroidUtilities.dp(45.0f));
+        }
+        updateDescription();
+    }
 
-        public void setClear(boolean z) {
-            if (this.clear != z) {
-                this.clear = z;
-                this.firstDraw = true;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        Long l;
+        boolean z = this.avatarImageReceiver != null && (l = this.dialogId) != null && l.longValue() != Long.MAX_VALUE && motionEvent.getX() > this.avatarImageReceiver.getImageX() && motionEvent.getX() <= this.avatarImageReceiver.getImageX2() && motionEvent.getY() > this.avatarImageReceiver.getImageY() && motionEvent.getY() <= this.avatarImageReceiver.getImageY2();
+        if (motionEvent.getAction() == 0) {
+            if (z) {
+                setPressed(true);
+                return true;
+            }
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (z && motionEvent.getAction() != 3) {
+                AndroidUtilities.runOnUIThread(new SeekBarView$$ExternalSyntheticLambda1(this, 25), 80L);
+            }
+            setPressed(false);
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public void setCacheModel(CacheModel cacheModel) {
+        this.cacheModel = cacheModel;
+    }
+
+    @Override
+    public void setPressed(boolean z) {
+        ValueAnimator valueAnimator;
+        if (isPressed() != z) {
+            super.setPressed(z);
+            invalidate();
+            if (z && (valueAnimator = this.backAnimator) != null) {
+                valueAnimator.removeAllListeners();
+                this.backAnimator.cancel();
+            }
+            if (z) {
+                return;
+            }
+            float f = this.pressedProgress;
+            if (f != 0.0f) {
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
+                this.backAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 24));
+                this.backAnimator.addListener(new Tooltip.AnonymousClass1(this, 10));
+                this.backAnimator.setInterpolator(new OvershootInterpolator(2.0f));
+                this.backAnimator.setDuration(350L);
+                this.backAnimator.start();
             }
         }
     }
 
-    public void update(boolean z) {
+    public final void update(boolean z) {
         boolean z2;
-        final ClearViewData[] clearViewDataArr = this.data;
+        ClearViewData[] clearViewDataArr = this.data;
         if (clearViewDataArr == null) {
             return;
         }
@@ -373,111 +442,14 @@ public abstract class StorageDiagramView extends View implements NotificationCen
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.valueAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StorageDiagramView.$r8$lambda$aRBhXNGBD8hxfdPtEDiiKBOVXgA(this.f$0, clearViewDataArr, valueAnimator2);
-            }
-        });
-        this.valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                int i4 = 0;
-                while (true) {
-                    ClearViewData[] clearViewDataArr2 = clearViewDataArr;
-                    if (i4 >= clearViewDataArr2.length) {
-                        return;
-                    }
-                    ClearViewData clearViewData3 = clearViewDataArr2[i4];
-                    if (clearViewData3 != null) {
-                        clearViewData3.firstDraw = false;
-                    }
-                    i4++;
-                }
-            }
-        });
+        valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda14(17, this, clearViewDataArr));
+        this.valueAnimator.addListener(new Tooltip.AnonymousClass1(clearViewDataArr, 9));
         this.valueAnimator.setDuration(450L);
         this.valueAnimator.setInterpolator(new FastOutSlowInInterpolator());
         this.valueAnimator.start();
     }
 
-    public static void $r8$lambda$aRBhXNGBD8hxfdPtEDiiKBOVXgA(StorageDiagramView storageDiagramView, ClearViewData[] clearViewDataArr, ValueAnimator valueAnimator) {
-        storageDiagramView.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        for (int i = 0; i < clearViewDataArr.length; i++) {
-            storageDiagramView.drawingPercentage[i] = (storageDiagramView.startFromPercentage[i] * (1.0f - fFloatValue)) + (storageDiagramView.animateToPercentage[i] * fFloatValue);
-        }
-        storageDiagramView.invalidate();
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        Long l;
-        boolean z = this.avatarImageReceiver != null && (l = this.dialogId) != null && l.longValue() != Long.MAX_VALUE && motionEvent.getX() > this.avatarImageReceiver.getImageX() && motionEvent.getX() <= this.avatarImageReceiver.getImageX2() && motionEvent.getY() > this.avatarImageReceiver.getImageY() && motionEvent.getY() <= this.avatarImageReceiver.getImageY2();
-        if (motionEvent.getAction() == 0) {
-            if (z) {
-                setPressed(true);
-                return true;
-            }
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (z && motionEvent.getAction() != 3) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.onAvatarClick();
-                    }
-                }, 80L);
-            }
-            setPressed(false);
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public void setPressed(boolean z) {
-        ValueAnimator valueAnimator;
-        if (isPressed() != z) {
-            super.setPressed(z);
-            invalidate();
-            if (z && (valueAnimator = this.backAnimator) != null) {
-                valueAnimator.removeAllListeners();
-                this.backAnimator.cancel();
-            }
-            if (z) {
-                return;
-            }
-            float f = this.pressedProgress;
-            if (f != 0.0f) {
-                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
-                this.backAnimator = valueAnimatorOfFloat;
-                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StorageDiagramView.$r8$lambda$ATR54lDOgXOxCBVfgFDIbKuF3J8(this.f$0, valueAnimator2);
-                    }
-                });
-                this.backAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        super.onAnimationEnd(animator);
-                        StorageDiagramView.this.backAnimator = null;
-                    }
-                });
-                this.backAnimator.setInterpolator(new OvershootInterpolator(2.0f));
-                this.backAnimator.setDuration(350L);
-                this.backAnimator.start();
-            }
-        }
-    }
-
-    public static void $r8$lambda$ATR54lDOgXOxCBVfgFDIbKuF3J8(StorageDiagramView storageDiagramView, ValueAnimator valueAnimator) {
-        storageDiagramView.getClass();
-        storageDiagramView.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        storageDiagramView.invalidate();
-    }
-
-    public long updateDescription() {
+    public final long updateDescription() {
         long jCalculateSize = calculateSize();
         String[] strArrSplit = AndroidUtilities.formatFileSize(jCalculateSize).split(" ");
         if (strArrSplit.length > 1) {
@@ -485,50 +457,5 @@ public abstract class StorageDiagramView extends View implements NotificationCen
             this.text2.setText(jCalculateSize != 0 ? strArrSplit[1] : " ", true, false);
         }
         return jCalculateSize;
-    }
-
-    public long calculateSize() {
-        if (this.data == null) {
-            return 0L;
-        }
-        long j = 0;
-        for (int i = 0; i < this.data.length; i++) {
-            long selectedFilesSize = this.cacheModel.getSelectedFilesSize(i);
-            ClearViewData clearViewData = this.data[i];
-            if (clearViewData != null && (clearViewData.clear || selectedFilesSize > 0)) {
-                if (selectedFilesSize <= 0) {
-                    selectedFilesSize = clearViewData.size;
-                }
-                j += selectedFilesSize;
-            }
-        }
-        return j;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ImageReceiver imageReceiver = this.avatarImageReceiver;
-        if (imageReceiver != null) {
-            imageReceiver.onAttachedToWindow();
-        }
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ImageReceiver imageReceiver = this.avatarImageReceiver;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
-        }
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.emojiLoaded) {
-            invalidate();
-        }
     }
 }

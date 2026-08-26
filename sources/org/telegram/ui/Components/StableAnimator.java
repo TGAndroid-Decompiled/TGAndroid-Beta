@@ -4,76 +4,80 @@ import android.animation.TimeAnimator;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 
-public class StableAnimator extends TimeAnimator {
-    private Object animatedValue;
-    private float[] floatValues;
-    private int times = 0;
-    private int totalTimes = 0;
-    private ValueAnimator.AnimatorUpdateListener updateListener;
+public final class StableAnimator extends TimeAnimator {
+    public Float animatedValue;
+    public float[] floatValues;
+    public int times;
+    public int totalTimes;
+    public ValueAnimator.AnimatorUpdateListener updateListener;
 
     public static StableAnimator ofFloat(float... fArr) {
         StableAnimator stableAnimator = new StableAnimator();
-        stableAnimator.setFloatValues(fArr);
+        stableAnimator.times = 0;
+        stableAnimator.totalTimes = 0;
+        super.setFloatValues(fArr);
+        stableAnimator.floatValues = fArr;
         return stableAnimator;
     }
 
     @Override
-    public void setFloatValues(float[] fArr) {
-        super.setFloatValues(fArr);
-        this.floatValues = fArr;
-    }
-
-    @Override
-    public void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
+    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
         this.updateListener = animatorUpdateListener;
     }
 
     @Override
-    public Object getAnimatedValue() {
-        return this.animatedValue;
-    }
-
-    @Override
-    public void end() {
+    public final void end() {
         this.updateListener = null;
         super.end();
     }
 
     @Override
-    public void start() {
+    public final Object getAnimatedValue() {
+        return this.animatedValue;
+    }
+
+    public final void lambda$start$0() {
+        int i;
+        int i2 = this.times;
+        if (i2 <= 0 || (i = this.totalTimes) <= 0) {
+            this.updateListener = null;
+            super.end();
+            return;
+        }
+        int i3 = i2 - 1;
+        this.times = i3;
+        if (this.updateListener != null) {
+            float[] fArr = this.floatValues;
+            if (fArr == null || fArr.length != 2) {
+                this.updateListener = null;
+                super.end();
+                return;
+            }
+            float interpolation = getInterpolator().getInterpolation(1.0f - (i3 / i));
+            float[] fArr2 = this.floatValues;
+            float f = fArr2[0];
+            this.animatedValue = Float.valueOf(((fArr2[1] - f) * interpolation) + f);
+            this.updateListener.onAnimationUpdate(this);
+        }
+    }
+
+    @Override
+    public final void setFloatValues(float[] fArr) {
+        super.setFloatValues(fArr);
+        this.floatValues = fArr;
+    }
+
+    @Override
+    public final void start() {
         setTimeListener(new TimeAnimator.TimeListener() {
             @Override
             public final void onTimeUpdate(TimeAnimator timeAnimator, long j, long j2) {
-                StableAnimator.m2828$r8$lambda$JW24i3o97WzNdDy57JetywWaRA(this.f$0, timeAnimator, j, j2);
+                this.f$0.lambda$start$0();
             }
         });
         int duration = (int) (getDuration() / AndroidUtilities.screenRefreshTime);
         this.times = duration;
         this.totalTimes = duration;
         super.start();
-    }
-
-    public static void m2828$r8$lambda$JW24i3o97WzNdDy57JetywWaRA(StableAnimator stableAnimator, TimeAnimator timeAnimator, long j, long j2) {
-        int i;
-        int i2 = stableAnimator.times;
-        if (i2 > 0 && (i = stableAnimator.totalTimes) > 0) {
-            int i3 = i2 - 1;
-            stableAnimator.times = i3;
-            if (stableAnimator.updateListener != null) {
-                float[] fArr = stableAnimator.floatValues;
-                if (fArr != null && fArr.length == 2) {
-                    float interpolation = stableAnimator.getInterpolator().getInterpolation(1.0f - (i3 / i));
-                    float[] fArr2 = stableAnimator.floatValues;
-                    float f = fArr2[0];
-                    stableAnimator.animatedValue = Float.valueOf(f + ((fArr2[1] - f) * interpolation));
-                    stableAnimator.updateListener.onAnimationUpdate(stableAnimator);
-                    return;
-                }
-                stableAnimator.end();
-                return;
-            }
-            return;
-        }
-        stableAnimator.end();
     }
 }

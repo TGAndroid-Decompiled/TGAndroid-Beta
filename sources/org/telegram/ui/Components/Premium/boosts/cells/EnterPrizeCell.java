@@ -1,10 +1,8 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
 import android.content.Context;
-import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,30 +11,28 @@ import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class EnterPrizeCell extends LinearLayout {
-    private AfterTextChangedListener afterTextChangedListener;
-    private final EditTextCaption editText;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private final TextView textView;
+public final class EnterPrizeCell extends LinearLayout {
+    public AfterTextChangedListener afterTextChangedListener;
+    public final EditTextCaption editText;
+    public final TextView textView;
 
     public interface AfterTextChangedListener {
-        void afterTextChanged(String str);
     }
 
     public EnterPrizeCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.resourcesProvider = resourcesProvider;
         setOrientation(0);
         EditTextCaption editTextCaption = new EditTextCaption(context, resourcesProvider);
         this.editText = editTextCaption;
         editTextCaption.setLines(1);
         editTextCaption.setSingleLine(true);
-        InputFilter[] inputFilterArr = {new InputFilter.LengthFilter(128) {
+        InputFilter[] inputFilterArr = {new InputFilter.LengthFilter() {
             @Override
-            public CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+            public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
                 CharSequence charSequenceFilter = super.filter(charSequence, i, i2, spanned, i3, i4);
                 if (charSequenceFilter != null && charSequenceFilter.length() == 0) {
                     AndroidUtilities.shakeView(EnterPrizeCell.this.editText);
@@ -58,40 +54,25 @@ public class EnterPrizeCell extends LinearLayout {
         editTextCaption.setHandlesColor(Theme.getColor(Theme.key_chat_TextSelectionCursor, resourcesProvider));
         editTextCaption.setBackground(null);
         editTextCaption.setHint(LocaleController.getString(R.string.BoostingGiveawayEnterYourPrize));
-        editTextCaption.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (EnterPrizeCell.this.afterTextChangedListener != null) {
-                    EnterPrizeCell.this.afterTextChangedListener.afterTextChanged(editable.toString().trim());
-                }
-            }
-        });
+        editTextCaption.addTextChangedListener(new ArticleViewer.AnonymousClass16(this, 15));
         editTextCaption.setImeOptions(6);
         TextView textView = new TextView(context);
         this.textView = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
-        if (LocaleController.isRTL) {
+        if (!LocaleController.isRTL) {
+            addView(textView, LayoutHelper.createLinear(-2, -2, 16, 20, 0, 0, 0));
+            addView(editTextCaption, LayoutHelper.createLinear(-1, -2, 16, 36, 0, 20, 0));
+        } else {
             LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(-1, -2, 16, 20, 0, 36, 0);
             layoutParamsCreateLinear.weight = 1.0f;
             addView(editTextCaption, layoutParamsCreateLinear);
             addView(textView, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 20, 0));
-            return;
         }
-        addView(textView, LayoutHelper.createLinear(-2, -2, 16, 20, 0, 0, 0));
-        addView(editTextCaption, LayoutHelper.createLinear(-1, -2, 16, 36, 0, 20, 0));
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
     }
 

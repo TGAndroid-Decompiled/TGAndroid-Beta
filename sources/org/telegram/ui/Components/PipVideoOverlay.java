@@ -6,17 +6,13 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
-import android.graphics.SurfaceTexture;
+import android.graphics.Rect;
 import android.os.Build;
 import android.util.Property;
 import android.view.MotionEvent;
@@ -31,309 +27,402 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.math.MathUtils;
 import androidx.dynamicanimation.animation.DynamicAnimation;
-import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
+import com.google.firebase.messaging.Store;
+import com.stripe.android.Stripe;
 import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.Emoji$EmojiSpan$$ExternalSyntheticOutline0;
+import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline1;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.pip.PipSource;
 import org.telegram.messenger.pip.source.IPipSourceDelegate;
 import org.telegram.messenger.pip.utils.PipUtils;
+import org.telegram.messenger.pip.utils.Trigger;
 import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ActionIntroActivity;
+import org.telegram.ui.CalendarActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
+import org.telegram.ui.Components.Crop.CropAreaView;
+import org.telegram.ui.Components.Crop.CropGestureDetector;
+import org.telegram.ui.Components.Crop.CropView;
+import org.telegram.ui.Components.voip.RTMPStreamPipOverlay;
+import org.telegram.ui.LinkEditActivity$$ExternalSyntheticLambda5;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Stories.LivePlayer$1$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stories.LiveStoryPipOverlay;
+import org.telegram.ui.iv.RichEditor;
 
-public class PipVideoOverlay implements IPipSourceDelegate {
-    private static final FloatPropertyCompat PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", new SimpleFloatPropertyCompat.Getter() {
-        @Override
-        public final float get(Object obj) {
-            return ((PipVideoOverlay) obj).pipX;
-        }
-    }, new SimpleFloatPropertyCompat.Setter() {
-        @Override
-        public final void set(Object obj, float f) {
-            PipVideoOverlay.$r8$lambda$VozdQr6gdf9oTN1H0adHU7A3Pl8((PipVideoOverlay) obj, f);
-        }
-    });
-    private static final FloatPropertyCompat PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", new SimpleFloatPropertyCompat.Getter() {
-        @Override
-        public final float get(Object obj) {
-            return ((PipVideoOverlay) obj).pipY;
-        }
-    }, new SimpleFloatPropertyCompat.Setter() {
-        @Override
-        public final void set(Object obj, float f) {
-            PipVideoOverlay.$r8$lambda$T73iSTdJWKrqKwG4fHFr4MqbIKA((PipVideoOverlay) obj, f);
-        }
-    });
-    private static PipVideoOverlay instance = new PipVideoOverlay();
-    private Float aspectRatio;
-    private float bufferProgress;
-    private boolean canLongClick;
-    private View consumingChild;
-    private FrameLayout contentFrameLayout;
-    private ViewGroup contentView;
-    private ValueAnimator controlsAnimator;
-    private FrameLayout controlsView;
-    private GestureDetectorFixDoubleTap gestureDetector;
-    private View innerView;
-    private boolean isDismissing;
-    private boolean isScrollDisallowed;
-    private boolean isScrolling;
-    private boolean isShowingControls;
-    private boolean isVideoCompleted;
-    private boolean isVisible;
-    private boolean isWebView;
-    private int mVideoHeight;
-    private int mVideoWidth;
-    private boolean onSideToDismiss;
-    private EmbedBottomSheet parentSheet;
-    private PhotoViewer photoViewer;
-    private PhotoViewerWebView photoViewerWebView;
-    private PipConfig pipConfig;
-    private int pipHeight;
-    private PipSource pipSource;
+public final class PipVideoOverlay implements IPipSourceDelegate {
+    public static final SimpleFloatPropertyCompat PIP_X_PROPERTY = new SimpleFloatPropertyCompat(new ShareAlert$$ExternalSyntheticLambda15(15), new ShareAlert$$ExternalSyntheticLambda15(16));
+    public static final SimpleFloatPropertyCompat PIP_Y_PROPERTY = new SimpleFloatPropertyCompat(new ShareAlert$$ExternalSyntheticLambda15(17), new ShareAlert$$ExternalSyntheticLambda15(18));
+    public static final PipVideoOverlay instance = new PipVideoOverlay();
+    public Float aspectRatio;
+    public float bufferProgress;
+    public boolean canLongClick;
+    public View consumingChild;
+    public AnonymousClass5 contentFrameLayout;
+    public ActionIntroActivity.AnonymousClass2 contentView;
+    public ValueAnimator controlsAnimator;
+    public AnonymousClass5 controlsView;
+    public PhotoViewer.AnonymousClass18 gestureDetector;
+    public View innerView;
+    public boolean isDismissing;
+    public boolean isScrollDisallowed;
+    public boolean isScrolling;
+    public boolean isShowingControls;
+    public boolean isVideoCompleted;
+    public boolean isVisible;
+    public boolean isWebView;
+    public int mVideoHeight;
+    public int mVideoWidth;
+    public boolean onSideToDismiss;
+    public EmbedBottomSheet parentSheet;
+    public PhotoViewer photoViewer;
+    public PhotoViewerWebView photoViewerWebView;
+    public Store pipConfig;
+    public int pipHeight;
+    public PipSource pipSource;
     public TextureView pipTextureView;
-    private int pipWidth;
-    private float pipX;
-    private SpringAnimation pipXSpring;
-    private float pipY;
-    private SpringAnimation pipYSpring;
-    private View placeholderView;
-    private ImageView playPauseButton;
-    private boolean postedDismissControls;
-    private ScaleGestureDetector scaleGestureDetector;
-    private SeekSpeedDrawable seekSpeedDrawable;
-    private float videoProgress;
-    private VideoProgressView videoProgressView;
-    private WindowManager.LayoutParams windowLayoutParams;
-    private WindowManager windowManager;
-    private boolean windowViewSkipRender;
-    private float minScaleFactor = 0.75f;
-    private float maxScaleFactor = 1.4f;
-    private float scaleFactor = 1.0f;
-    private final VideoForwardDrawable videoForwardDrawable = new VideoForwardDrawable(false);
-    private final Runnable progressRunnable = new Runnable() {
+    public int pipWidth;
+    public float pipX;
+    public SpringAnimation pipXSpring;
+    public float pipY;
+    public SpringAnimation pipYSpring;
+    public View placeholderView;
+    public ImageView playPauseButton;
+    public boolean postedDismissControls;
+    public ScaleGestureDetector scaleGestureDetector;
+    public SeekSpeedDrawable seekSpeedDrawable;
+    public float videoProgress;
+    public CalendarActivity.AnonymousClass5 videoProgressView;
+    public WindowManager.LayoutParams windowLayoutParams;
+    public WindowManager windowManager;
+    public boolean windowViewSkipRender;
+    public float maxScaleFactor = 1.4f;
+    public float scaleFactor = 1.0f;
+    public final VideoForwardDrawable videoForwardDrawable = new VideoForwardDrawable(false);
+    public final PipVideoOverlay$$ExternalSyntheticLambda5 progressRunnable = new PipVideoOverlay$$ExternalSyntheticLambda5(this, 1);
+    public float[] longClickStartPoint = new float[2];
+    public final PipVideoOverlay$$ExternalSyntheticLambda5 longClickCallback = new PipVideoOverlay$$ExternalSyntheticLambda5(this, 2);
+    public final PipVideoOverlay$$ExternalSyntheticLambda5 dismissControlsCallback = new PipVideoOverlay$$ExternalSyntheticLambda5(this, 3);
+
+    public final class AnonymousClass1 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final PipVideoOverlay this$0;
+
+        public AnonymousClass1(PipVideoOverlay pipVideoOverlay, int i) {
+            this.$r8$classId = i;
+            this.this$0 = pipVideoOverlay;
+        }
+
         @Override
-        public final void run() {
-            PipVideoOverlay.$r8$lambda$wAsXC3J3HIWlFyBBjlkZj439oME(this.f$0);
+        public final void onAnimationEnd(Animator animator) {
+            switch (this.$r8$classId) {
+                case 0:
+                    this.this$0.controlsAnimator = null;
+                    break;
+                default:
+                    this.this$0.onDismissedInternal();
+                    break;
+            }
         }
-    };
-    private float[] longClickStartPoint = new float[2];
-    private final Runnable longClickCallback = new Runnable() {
+    }
+
+    public final class AnonymousClass4 extends GestureDetectorFixDoubleTap$OnGestureListener {
+        public float startPipX;
+        public float startPipY;
+        public final int val$touchSlop;
+
+        public AnonymousClass4(int i) {
+            this.val$touchSlop = i;
+        }
+
         @Override
-        public final void run() {
-            this.f$0.onLongClick();
+        public final boolean hasDoubleTap() {
+            PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
+            PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
+            if (photoViewer == null) {
+                return false;
+            }
+            if ((photoViewer.videoPlayer == null && pipVideoOverlay.photoViewerWebView == null) || pipVideoOverlay.isDismissing || pipVideoOverlay.isVideoCompleted || pipVideoOverlay.isScrolling || pipVideoOverlay.scaleGestureDetector.isInProgress() || !pipVideoOverlay.canLongClick) {
+                return false;
+            }
+            return pipVideoOverlay.getCurrentPosition$1() != -9223372036854775807L && pipVideoOverlay.getDuration$1() >= 15000;
         }
-    };
-    private final Runnable dismissControlsCallback = new Runnable() {
+
         @Override
-        public final void run() {
-            PipVideoOverlay.$r8$lambda$exMrW55sq0BGli7LLfKP95Vt6tg(this.f$0);
+        public final boolean onDoubleTap(MotionEvent motionEvent) {
+            boolean z;
+            PhotoViewerWebView photoViewerWebView;
+            VideoPlayer videoPlayer;
+            PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
+            PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
+            if (photoViewer != null && ((photoViewer.videoPlayer != null || pipVideoOverlay.photoViewerWebView != null) && !pipVideoOverlay.isDismissing && !pipVideoOverlay.isVideoCompleted && !pipVideoOverlay.isScrolling && !pipVideoOverlay.scaleGestureDetector.isInProgress() && pipVideoOverlay.canLongClick)) {
+                pipVideoOverlay.photoViewer.getClass();
+                boolean z2 = motionEvent.getX() >= (((float) PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2())) * pipVideoOverlay.scaleFactor) * 0.5f;
+                long currentPosition$1 = pipVideoOverlay.getCurrentPosition$1();
+                long duration$1 = pipVideoOverlay.getDuration$1();
+                if (currentPosition$1 != -9223372036854775807L && duration$1 >= 15000) {
+                    long j = z2 ? currentPosition$1 + 10000 : currentPosition$1 - 10000;
+                    if (currentPosition$1 != j) {
+                        if (j <= duration$1) {
+                            if (j < 0) {
+                                z = j >= -9000;
+                                j = 0;
+                            }
+                            if (z) {
+                                VideoForwardDrawable videoForwardDrawable = pipVideoOverlay.videoForwardDrawable;
+                                videoForwardDrawable.setOneShootAnimation(true);
+                                videoForwardDrawable.setLeftSide(!z2);
+                                long j2 = videoForwardDrawable.time + 10000;
+                                videoForwardDrawable.time = j2;
+                                videoForwardDrawable.timeStr = LocaleController.formatPluralString("Seconds", (int) (j2 / 1000), new Object[0]);
+                                photoViewerWebView = pipVideoOverlay.photoViewerWebView;
+                                if (photoViewerWebView != null) {
+                                    photoViewerWebView.seekTo(j);
+                                } else {
+                                    videoPlayer = pipVideoOverlay.photoViewer.videoPlayer;
+                                    if (videoPlayer != null) {
+                                        videoPlayer.seekTo(j);
+                                    }
+                                }
+                                pipVideoOverlay.onUpdateRewindProgressUiInternal(j / duration$1, true);
+                                if (!pipVideoOverlay.isShowingControls) {
+                                    pipVideoOverlay.isShowingControls = true;
+                                    pipVideoOverlay.toggleControls$2(true);
+                                    if (!pipVideoOverlay.postedDismissControls) {
+                                        pipVideoOverlay.postedDismissControls = true;
+                                        AndroidUtilities.runOnUIThread(pipVideoOverlay.dismissControlsCallback, 2500L);
+                                    }
+                                }
+                            }
+                            return true;
+                        }
+                        j = duration$1;
+                        z = true;
+                        if (z) {
+                            VideoForwardDrawable videoForwardDrawable2 = pipVideoOverlay.videoForwardDrawable;
+                            videoForwardDrawable2.setOneShootAnimation(true);
+                            videoForwardDrawable2.setLeftSide(!z2);
+                            long j3 = videoForwardDrawable2.time + 10000;
+                            videoForwardDrawable2.time = j3;
+                            videoForwardDrawable2.timeStr = LocaleController.formatPluralString("Seconds", (int) (j3 / 1000), new Object[0]);
+                            photoViewerWebView = pipVideoOverlay.photoViewerWebView;
+                            if (photoViewerWebView != null) {
+                                photoViewerWebView.seekTo(j);
+                            } else {
+                                videoPlayer = pipVideoOverlay.photoViewer.videoPlayer;
+                                if (videoPlayer != null) {
+                                    videoPlayer.seekTo(j);
+                                }
+                            }
+                            pipVideoOverlay.onUpdateRewindProgressUiInternal(j / duration$1, true);
+                            if (!pipVideoOverlay.isShowingControls) {
+                                pipVideoOverlay.isShowingControls = true;
+                                pipVideoOverlay.toggleControls$2(true);
+                                if (!pipVideoOverlay.postedDismissControls) {
+                                    pipVideoOverlay.postedDismissControls = true;
+                                    AndroidUtilities.runOnUIThread(pipVideoOverlay.dismissControlsCallback, 2500L);
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
-    };
 
-    @Override
-    public void pipRenderBackground(Canvas canvas) {
-        IPipSourceDelegate.CC.$default$pipRenderBackground(this, canvas);
+        @Override
+        public final boolean onDown(MotionEvent motionEvent) {
+            PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
+            if (pipVideoOverlay.isShowingControls) {
+                for (int i = 1; i < pipVideoOverlay.contentFrameLayout.getChildCount(); i++) {
+                    View childAt = pipVideoOverlay.contentFrameLayout.getChildAt(i);
+                    if (childAt.dispatchTouchEvent(motionEvent)) {
+                        pipVideoOverlay.consumingChild = childAt;
+                        return true;
+                    }
+                }
+            }
+            this.startPipX = pipVideoOverlay.pipX;
+            this.startPipY = pipVideoOverlay.pipY;
+            return true;
+        }
+
+        @Override
+        public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+            PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
+            if (!pipVideoOverlay.isScrolling || pipVideoOverlay.isScrollDisallowed) {
+                return false;
+            }
+            SpringAnimation springAnimation = pipVideoOverlay.pipXSpring;
+            springAnimation.mVelocity = f;
+            float f3 = pipVideoOverlay.pipX;
+            springAnimation.mValue = f3;
+            springAnimation.mStartValueIsSet = true;
+            SpringForce springForce = springAnimation.mSpring;
+            int i = pipVideoOverlay.pipWidth;
+            float f4 = (f / 7.0f) + (i / 2.0f) + f3;
+            int i2 = AndroidUtilities.displaySize.x;
+            springForce.mFinalPosition = f4 >= ((float) i2) / 2.0f ? (i2 - i) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+            pipVideoOverlay.pipXSpring.start();
+            SpringAnimation springAnimation2 = pipVideoOverlay.pipYSpring;
+            springAnimation2.mVelocity = f;
+            float f5 = pipVideoOverlay.pipY;
+            springAnimation2.mValue = f5;
+            springAnimation2.mStartValueIsSet = true;
+            springAnimation2.mSpring.mFinalPosition = MathUtils.clamp((f2 / 10.0f) + f5, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - pipVideoOverlay.pipHeight) - AndroidUtilities.dp(16.0f));
+            pipVideoOverlay.pipYSpring.start();
+            return true;
+        }
+
+        @Override
+        public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+            PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
+            if (!pipVideoOverlay.isScrolling && pipVideoOverlay.controlsAnimator == null && !pipVideoOverlay.isScrollDisallowed) {
+                float fAbs = Math.abs(f);
+                float f3 = this.val$touchSlop;
+                if (fAbs >= f3 || Math.abs(f2) >= f3) {
+                    pipVideoOverlay.isScrolling = true;
+                    pipVideoOverlay.pipXSpring.cancel();
+                    pipVideoOverlay.pipYSpring.cancel();
+                    pipVideoOverlay.canLongClick = false;
+                    pipVideoOverlay.cancelRewind();
+                    AndroidUtilities.cancelRunOnUIThread(pipVideoOverlay.longClickCallback);
+                }
+            }
+            if (pipVideoOverlay.isScrolling) {
+                float f4 = pipVideoOverlay.pipX;
+                float rawX = (motionEvent2.getRawX() + this.startPipX) - motionEvent.getRawX();
+                pipVideoOverlay.pipY = (motionEvent2.getRawY() + this.startPipY) - motionEvent.getRawY();
+                int i = pipVideoOverlay.pipWidth;
+                if (rawX > (-i) * 0.25f && rawX < AndroidUtilities.displaySize.x - (i * 0.75f)) {
+                    boolean z = pipVideoOverlay.onSideToDismiss;
+                    if (z) {
+                        if (z) {
+                            pipVideoOverlay.pipXSpring.addEndListener(new PipVideoOverlay$4$$ExternalSyntheticLambda0(this, rawX, 0));
+                            SpringAnimation springAnimation = pipVideoOverlay.pipXSpring;
+                            springAnimation.mValue = f4;
+                            springAnimation.mStartValueIsSet = true;
+                            springAnimation.mSpring.mFinalPosition = rawX;
+                            springAnimation.start();
+                        }
+                        pipVideoOverlay.onSideToDismiss = false;
+                        return true;
+                    }
+                    SpringAnimation springAnimation2 = pipVideoOverlay.pipXSpring;
+                    if (springAnimation2.mRunning) {
+                        springAnimation2.mSpring.mFinalPosition = rawX;
+                    } else {
+                        WindowManager.LayoutParams layoutParams = pipVideoOverlay.windowLayoutParams;
+                        pipVideoOverlay.pipX = rawX;
+                        layoutParams.x = (int) rawX;
+                        pipVideoOverlay.getPipConfig().store.edit().putFloat("x", rawX).apply();
+                    }
+                    pipVideoOverlay.windowLayoutParams.y = (int) pipVideoOverlay.pipY;
+                    pipVideoOverlay.getPipConfig().store.edit().putFloat("y", pipVideoOverlay.pipY).apply();
+                    AndroidUtilities.updateViewLayout(pipVideoOverlay.windowManager, pipVideoOverlay.contentView, pipVideoOverlay.windowLayoutParams);
+                    return true;
+                }
+                if (!pipVideoOverlay.onSideToDismiss) {
+                    SpringAnimation springAnimation3 = pipVideoOverlay.pipXSpring;
+                    springAnimation3.mValue = f4;
+                    springAnimation3.mStartValueIsSet = true;
+                    SpringForce springForce = springAnimation3.mSpring;
+                    float f5 = (i / 2.0f) + rawX;
+                    int i2 = AndroidUtilities.displaySize.x;
+                    springForce.mFinalPosition = f5 >= ((float) i2) / 2.0f ? i2 - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f) - pipVideoOverlay.pipWidth;
+                    pipVideoOverlay.pipXSpring.start();
+                }
+                pipVideoOverlay.onSideToDismiss = true;
+            }
+            return true;
+        }
+
+        @Override
+        public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
+            PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
+            if (pipVideoOverlay.controlsAnimator == null) {
+                boolean z = pipVideoOverlay.postedDismissControls;
+                PipVideoOverlay$$ExternalSyntheticLambda5 pipVideoOverlay$$ExternalSyntheticLambda5 = pipVideoOverlay.dismissControlsCallback;
+                if (z) {
+                    AndroidUtilities.cancelRunOnUIThread(pipVideoOverlay$$ExternalSyntheticLambda5);
+                    pipVideoOverlay.postedDismissControls = false;
+                }
+                boolean z2 = !pipVideoOverlay.isShowingControls;
+                pipVideoOverlay.isShowingControls = z2;
+                pipVideoOverlay.toggleControls$2(z2);
+                if (pipVideoOverlay.isShowingControls && !pipVideoOverlay.postedDismissControls) {
+                    AndroidUtilities.runOnUIThread(pipVideoOverlay$$ExternalSyntheticLambda5, 2500L);
+                    pipVideoOverlay.postedDismissControls = true;
+                }
+            }
+            return true;
+        }
+
+        @Override
+        public final boolean onSingleTapUp(MotionEvent motionEvent) {
+            if (hasDoubleTap()) {
+                return super.onSingleTapUp(motionEvent);
+            }
+            onSingleTapConfirmed(motionEvent);
+            return true;
+        }
     }
 
-    @Override
-    public void pipRenderForeground(Canvas canvas) {
-        IPipSourceDelegate.CC.$default$pipRenderForeground(this, canvas);
+    public static void dismiss() {
+        instance.dismissInternal(false, false);
     }
 
-    public static void $r8$lambda$VozdQr6gdf9oTN1H0adHU7A3Pl8(PipVideoOverlay pipVideoOverlay, float f) {
-        WindowManager.LayoutParams layoutParams = pipVideoOverlay.windowLayoutParams;
-        pipVideoOverlay.pipX = f;
-        layoutParams.x = (int) f;
-        try {
-            AndroidUtilities.updateViewLayout(pipVideoOverlay.windowManager, pipVideoOverlay.contentView, layoutParams);
-        } catch (IllegalArgumentException unused) {
-            pipVideoOverlay.pipXSpring.cancel();
+    public static RectOld getPipRect(float f, boolean z) {
+        RectOld rectOld = new RectOld();
+        float f2 = 1.0f / f;
+        PipVideoOverlay pipVideoOverlay = instance;
+        if (pipVideoOverlay.isVisible && !z) {
+            rectOld.x = pipVideoOverlay.pipX;
+            rectOld.y = pipVideoOverlay.pipY + AndroidUtilities.statusBarHeight;
+            rectOld.width = pipVideoOverlay.pipWidth;
+            rectOld.height = pipVideoOverlay.pipHeight;
+            return rectOld;
         }
-    }
-
-    public static void $r8$lambda$T73iSTdJWKrqKwG4fHFr4MqbIKA(PipVideoOverlay pipVideoOverlay, float f) {
-        WindowManager.LayoutParams layoutParams = pipVideoOverlay.windowLayoutParams;
-        pipVideoOverlay.pipY = f;
-        layoutParams.y = (int) f;
-        try {
-            AndroidUtilities.updateViewLayout(pipVideoOverlay.windowManager, pipVideoOverlay.contentView, layoutParams);
-        } catch (IllegalArgumentException unused) {
-            pipVideoOverlay.pipYSpring.cancel();
-        }
-    }
-
-    public static void $r8$lambda$wAsXC3J3HIWlFyBBjlkZj439oME(PipVideoOverlay pipVideoOverlay) {
-        PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
-        if (photoViewer == null) {
-            return;
-        }
-        PhotoViewerWebView photoViewerWebView = pipVideoOverlay.photoViewerWebView;
-        if (photoViewerWebView != null) {
-            pipVideoOverlay.videoProgress = photoViewerWebView.getCurrentPosition() / pipVideoOverlay.photoViewerWebView.getVideoDuration();
-            pipVideoOverlay.bufferProgress = pipVideoOverlay.photoViewerWebView.getBufferedPosition();
+        float f3 = pipVideoOverlay.getPipConfig().store.getFloat("x", -1.0f);
+        float f4 = pipVideoOverlay.getPipConfig().store.getFloat("y", -1.0f);
+        float f5 = pipVideoOverlay.getPipConfig().store.getFloat("scale_factor", 1.0f);
+        rectOld.width = getSuggestedWidth(f2) * f5;
+        rectOld.height = ((int) (getSuggestedWidth(f2) * f2)) * f5;
+        if (f3 != -1.0f) {
+            float f6 = rectOld.width;
+            float f7 = (f6 / 2.0f) + f3;
+            float f8 = AndroidUtilities.displaySize.x;
+            rectOld.x = f7 >= f8 / 2.0f ? (f8 - f6) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
         } else {
-            VideoPlayer videoPlayer = photoViewer.getVideoPlayer();
-            if (videoPlayer == null) {
-                return;
-            }
-            float duration = pipVideoOverlay.getDuration();
-            pipVideoOverlay.videoProgress = videoPlayer.getCurrentPosition() / duration;
-            pipVideoOverlay.bufferProgress = videoPlayer.getBufferedPosition() / duration;
+            rectOld.x = (AndroidUtilities.displaySize.x - rectOld.width) - AndroidUtilities.dp(16.0f);
         }
-        pipVideoOverlay.videoProgressView.invalidate();
-        AndroidUtilities.runOnUIThread(pipVideoOverlay.progressRunnable, 500L);
-    }
-
-    public static void $r8$lambda$exMrW55sq0BGli7LLfKP95Vt6tg(PipVideoOverlay pipVideoOverlay) {
-        PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
-        if (photoViewer != null && photoViewer.getVideoPlayerRewinder().rewinding) {
-            AndroidUtilities.runOnUIThread(pipVideoOverlay.dismissControlsCallback, 1500L);
-            return;
+        if (f4 != -1.0f) {
+            rectOld.y = MathUtils.clamp(f4, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.dp(16.0f)) - rectOld.height) + AndroidUtilities.statusBarHeight;
+            return rectOld;
         }
-        pipVideoOverlay.isShowingControls = false;
-        pipVideoOverlay.toggleControls(false);
-        pipVideoOverlay.postedDismissControls = false;
+        rectOld.y = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
+        return rectOld;
     }
 
-    public static void onRewindCanceled() {
-        instance.onRewindCanceledInternal();
-    }
-
-    private void onRewindCanceledInternal() {
-        this.videoForwardDrawable.setShowing(false);
-    }
-
-    public static void onUpdateRewindProgressUi(long j, float f, boolean z) {
-        instance.onUpdateRewindProgressUiInternal(j, f, z);
-    }
-
-    public void onUpdateRewindProgressUiInternal(long j, float f, boolean z) {
-        this.videoForwardDrawable.setTime(0L);
-        if (z) {
-            this.videoProgress = f;
-            VideoProgressView videoProgressView = this.videoProgressView;
-            if (videoProgressView != null) {
-                videoProgressView.invalidate();
-            }
-            FrameLayout frameLayout = this.controlsView;
-            if (frameLayout != null) {
-                frameLayout.invalidate();
-            }
+    public static PipSource getPipSource() {
+        PipVideoOverlay pipVideoOverlay = instance;
+        if (pipVideoOverlay != null) {
+            return pipVideoOverlay.pipSource;
         }
+        return null;
     }
 
-    public static void onRewindStart(boolean z) {
-        instance.onRewindStartInternal(z);
-    }
-
-    private void onRewindStartInternal(boolean z) {
-        this.videoForwardDrawable.setOneShootAnimation(false);
-        this.videoForwardDrawable.setLeftSide(!z);
-        this.videoForwardDrawable.setShowing(true);
-        VideoProgressView videoProgressView = this.videoProgressView;
-        if (videoProgressView != null) {
-            videoProgressView.invalidate();
-        }
-        FrameLayout frameLayout = this.controlsView;
-        if (frameLayout != null) {
-            frameLayout.invalidate();
-        }
-    }
-
-    public long getCurrentPosition() {
-        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
-        if (photoViewerWebView != null) {
-            return photoViewerWebView.getCurrentPosition();
-        }
-        VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
-        if (videoPlayer == null) {
-            return 0L;
-        }
-        return videoPlayer.getCurrentPosition();
-    }
-
-    public void seekTo(long j) {
-        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
-        if (photoViewerWebView != null) {
-            photoViewerWebView.seekTo(j);
-            return;
-        }
-        VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
-        if (videoPlayer == null) {
-            return;
-        }
-        videoPlayer.seekTo(j);
-    }
-
-    public long getDuration() {
-        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
-        if (photoViewerWebView != null) {
-            return photoViewerWebView.getVideoDuration();
-        }
-        VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
-        if (videoPlayer == null) {
-            return 0L;
-        }
-        return videoPlayer.getDuration();
-    }
-
-    protected void onLongClick() {
-        PhotoViewer photoViewer = this.photoViewer;
-        if (photoViewer != null) {
-            if ((photoViewer.getVideoPlayer() == null && this.photoViewerWebView == null) || this.isDismissing || this.isVideoCompleted || this.isScrolling || this.scaleGestureDetector.isInProgress() || !this.canLongClick) {
-                return;
-            }
-            VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
-            boolean z = this.longClickStartPoint[0] >= (((float) getSuggestedWidth()) * this.scaleFactor) * 0.5f;
-            long currentPosition = getCurrentPosition();
-            long duration = getDuration();
-            if (currentPosition == -9223372036854775807L || duration < 15000) {
-                return;
-            }
-            if (this.photoViewerWebView != null) {
-                this.photoViewer.getVideoPlayerRewinder().startRewind(this.photoViewerWebView, z, this.longClickStartPoint[0], this.photoViewer.getCurrentVideoSpeed(), this.seekSpeedDrawable);
-            } else {
-                this.photoViewer.getVideoPlayerRewinder().startRewind(videoPlayer, z, this.longClickStartPoint[0], this.photoViewer.getCurrentVideoSpeed(), this.seekSpeedDrawable);
-            }
-            if (this.isShowingControls) {
-                return;
-            }
-            this.isShowingControls = true;
-            toggleControls(true);
-            if (this.postedDismissControls) {
-                return;
-            }
-            AndroidUtilities.runOnUIThread(this.dismissControlsCallback, 1500L);
-            this.postedDismissControls = true;
-        }
-    }
-
-    public PipConfig getPipConfig() {
-        if (this.pipConfig == null) {
-            Point point = AndroidUtilities.displaySize;
-            this.pipConfig = new PipConfig(point.x, point.y);
-        }
-        return this.pipConfig;
-    }
-
-    public static boolean isVisible() {
-        return instance.isVisible;
-    }
-
-    public int getSuggestedWidth() {
-        return getSuggestedWidth(getRatio());
-    }
-
-    private static int getSuggestedWidth(float f) {
+    public static int getSuggestedWidth(float f) {
         float fMin;
         float f2;
         if (f >= 1.0f) {
@@ -348,76 +437,45 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         return (int) (fMin * f2);
     }
 
-    public int getSuggestedHeight() {
-        return getSuggestedHeight(getRatio());
-    }
-
-    private static int getSuggestedHeight(float f) {
-        return (int) (getSuggestedWidth(f) * f);
-    }
-
-    private float getRatio() {
-        if (this.aspectRatio == null) {
-            this.aspectRatio = Float.valueOf(this.mVideoHeight / this.mVideoWidth);
-            Point point = AndroidUtilities.displaySize;
-            this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / getSuggestedWidth();
-            this.videoForwardDrawable.setPlayScaleFactor(this.aspectRatio.floatValue() < 1.0f ? 0.6f : 0.45f);
-        }
-        return this.aspectRatio.floatValue();
-    }
-
-    public void toggleControls(boolean z) {
-        ValueAnimator duration = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f).setDuration(200L);
-        this.controlsAnimator = duration;
-        duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.controlsAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PipVideoOverlay.m2571$r8$lambda$sNtMJuM27rzGqFBqHFiiwHDe2w(this.f$0, valueAnimator);
-            }
-        });
-        this.controlsAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                PipVideoOverlay.this.controlsAnimator = null;
-            }
-        });
-        this.controlsAnimator.start();
-    }
-
-    public static void m2571$r8$lambda$sNtMJuM27rzGqFBqHFiiwHDe2w(PipVideoOverlay pipVideoOverlay, ValueAnimator valueAnimator) {
-        pipVideoOverlay.getClass();
-        pipVideoOverlay.controlsView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-    }
-
-    public static void dismissAndDestroy() {
+    public static void setPhotoViewer(PhotoViewer photoViewer) {
         PipVideoOverlay pipVideoOverlay = instance;
-        EmbedBottomSheet embedBottomSheet = pipVideoOverlay.parentSheet;
-        if (embedBottomSheet != null) {
-            embedBottomSheet.destroy();
-        } else {
-            PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
-            if (photoViewer != null) {
-                photoViewer.destroyPhotoViewer();
-                MediaController.getInstance().tryResumePausedAudio();
-            }
+        pipVideoOverlay.photoViewer = photoViewer;
+        VideoPlayer videoPlayer = photoViewer.videoPlayer;
+        PipSource pipSource = pipVideoOverlay.pipSource;
+        if (pipSource != null) {
+            pipSource.destroy();
+            pipVideoOverlay.pipSource = null;
         }
-        dismiss();
+        if (videoPlayer != null && PipUtils.checkPermissions(photoViewer.parentActivity) == 1) {
+            PipSource.Builder builder = new PipSource.Builder(photoViewer.parentActivity, pipVideoOverlay);
+            builder.tagPrefix = "photo-viewer-pip-" + videoPlayer.playerId;
+            builder.priority = 1;
+            builder.cornerRadius = AndroidUtilities.dp(10.0f);
+            builder.contentView = pipVideoOverlay.contentView;
+            builder.placeholderView = pipVideoOverlay.placeholderView;
+            int i = pipVideoOverlay.mVideoWidth;
+            int i2 = pipVideoOverlay.mVideoHeight;
+            builder.width = i;
+            builder.height = i2;
+            builder.player = videoPlayer.player;
+            builder.needMediaSession = true;
+            pipVideoOverlay.pipSource = builder.build();
+        }
+        pipVideoOverlay.updatePlayButtonInternal();
     }
 
-    public static void dismiss() {
-        dismiss(false);
+    public final void cancelRewind() {
+        PhotoViewer.AnonymousClass4 anonymousClass4;
+        PhotoViewer photoViewer = this.photoViewer;
+        if (photoViewer == null || (anonymousClass4 = photoViewer.videoPlayerRewinder) == null) {
+            return;
+        }
+        anonymousClass4.cancelRewind();
     }
 
-    public static void dismiss(boolean z) {
-        instance.dismissInternal(z, false);
-    }
-
-    public static void dismiss(boolean z, boolean z2) {
-        instance.dismissInternal(z, z2);
-    }
-
-    private void dismissInternal(boolean z, boolean z2) {
+    public final void dismissInternal(boolean z, boolean z2) {
+        int i = 0;
+        int i2 = 1;
         if (this.isDismissing) {
             return;
         }
@@ -440,39 +498,75 @@ public class PipVideoOverlay implements IPipSourceDelegate {
                 onDismissedInternal();
                 return;
             } else {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.onDismissedInternal();
-                    }
-                }, 100L);
+                AndroidUtilities.runOnUIThread(new PipVideoOverlay$$ExternalSyntheticLambda5(this, i), 100L);
                 return;
             }
         }
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(250L);
         animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<ViewGroup, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ViewGroup, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.contentView, (Property<ViewGroup, Float>) View.SCALE_Y, 0.1f));
-        animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                PipVideoOverlay.this.onDismissedInternal();
-            }
-        });
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_Y, 0.1f));
+        animatorSet.addListener(new AnonymousClass1(this, i2));
         animatorSet.start();
     }
 
-    public void onDismissedInternal() {
+    public final long getCurrentPosition$1() {
+        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
+        if (photoViewerWebView != null) {
+            return photoViewerWebView.getCurrentPosition();
+        }
+        VideoPlayer videoPlayer = this.photoViewer.videoPlayer;
+        if (videoPlayer == null) {
+            return 0L;
+        }
+        return videoPlayer.getCurrentPosition();
+    }
+
+    public final long getDuration$1() {
+        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
+        if (photoViewerWebView != null) {
+            return photoViewerWebView.getVideoDuration();
+        }
+        VideoPlayer videoPlayer = this.photoViewer.videoPlayer;
+        if (videoPlayer == null) {
+            return 0L;
+        }
+        return videoPlayer.getDuration();
+    }
+
+    public final Store getPipConfig() {
+        if (this.pipConfig == null) {
+            Point point = AndroidUtilities.displaySize;
+            this.pipConfig = new Store(point.x, point.y);
+        }
+        return this.pipConfig;
+    }
+
+    public final float getRatio$2() {
+        if (this.aspectRatio == null) {
+            this.aspectRatio = Float.valueOf(this.mVideoHeight / this.mVideoWidth);
+            Point point = AndroidUtilities.displaySize;
+            this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / getSuggestedWidth(getRatio$2());
+            float f = this.aspectRatio.floatValue() < 1.0f ? 0.6f : 0.45f;
+            VideoForwardDrawable videoForwardDrawable = this.videoForwardDrawable;
+            videoForwardDrawable.playScaleFactor = f;
+            videoForwardDrawable.invalidate();
+        }
+        return this.aspectRatio.floatValue();
+    }
+
+    public final int getSuggestedHeight$2() {
+        float ratio$2 = getRatio$2();
+        return (int) (getSuggestedWidth(ratio$2) * ratio$2);
+    }
+
+    public final void onDismissedInternal() {
         try {
-            ViewGroup viewGroup = this.contentView;
-            if (viewGroup != null && viewGroup.getParent() != null) {
+            ActionIntroActivity.AnonymousClass2 anonymousClass2 = this.contentView;
+            if (anonymousClass2 != null && anonymousClass2.getParent() != null) {
                 this.windowManager.removeViewImmediate(this.contentView);
             }
         } catch (Exception unused) {
-        }
-        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
-        if (photoViewerWebView != null) {
-            photoViewerWebView.showControls();
         }
         this.videoProgressView = null;
         this.innerView = null;
@@ -493,155 +587,104 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         AndroidUtilities.cancelRunOnUIThread(this.longClickCallback);
     }
 
-    public static View getInnerView() {
-        return instance.innerView;
+    public final void onUpdateRewindProgressUiInternal(float f, boolean z) {
+        this.videoForwardDrawable.setTime(0L);
+        if (z) {
+            this.videoProgress = f;
+            CalendarActivity.AnonymousClass5 anonymousClass5 = this.videoProgressView;
+            if (anonymousClass5 != null) {
+                anonymousClass5.invalidate();
+            }
+            AnonymousClass5 anonymousClass6 = this.controlsView;
+            if (anonymousClass6 != null) {
+                anonymousClass6.invalidate();
+            }
+        }
     }
 
-    public void cancelRewind() {
+    @Override
+    public final View pipCreatePictureInPictureView() {
+        TextureView textureView = new TextureView(this.contentView.getContext());
+        this.pipTextureView = textureView;
+        textureView.setVisibility(4);
+        this.pipTextureView.setOpaque(false);
+        this.pipTextureView.setSurfaceTextureListener(new PhotoViewer.AnonymousClass8(this, 2));
+        return this.pipTextureView;
+    }
+
+    @Override
+    public final Bitmap pipCreatePictureInPictureViewBitmap() {
+        TextureView textureView = this.pipTextureView;
+        if (textureView == null || !textureView.isAvailable()) {
+            return null;
+        }
+        return this.pipTextureView.getBitmap();
+    }
+
+    @Override
+    public final Bitmap pipCreatePrimaryWindowViewBitmap() {
+        TextureView textureView;
         PhotoViewer photoViewer = this.photoViewer;
-        if (photoViewer == null || photoViewer.getVideoPlayerRewinder() == null) {
-            return;
+        if (photoViewer == null || (textureView = photoViewer.changedTextureView) == null || !textureView.isAvailable()) {
+            return null;
         }
-        this.photoViewer.getVideoPlayerRewinder().cancelRewind();
+        return this.photoViewer.changedTextureView.getBitmap();
     }
 
-    public static void updatePlayButton() {
-        instance.updatePlayButtonInternal();
-    }
-
-    private void updatePlayButtonInternal() {
-        boolean zIsPlaying;
+    @Override
+    public final void pipHidePrimaryWindowView(Trigger trigger) {
         PhotoViewer photoViewer = this.photoViewer;
-        if (photoViewer == null || this.playPauseButton == null) {
+        if (photoViewer != null && photoViewer.videoPlayer != null) {
+            photoViewer.pipFirstFrameCallback = trigger;
+        }
+        this.windowManager.removeView(this.contentView);
+        this.windowViewSkipRender = true;
+        this.contentView.invalidate();
+    }
+
+    @Override
+    public final boolean pipIsAvailable() {
+        PhotoViewer photoViewer = this.photoViewer;
+        return photoViewer != null && photoViewer.pipIsAvailable();
+    }
+
+    @Override
+    public final void pipRenderBackground(Canvas canvas) {
+    }
+
+    @Override
+    public final void pipRenderForeground(Canvas canvas) {
+    }
+
+    @Override
+    public final void pipShowPrimaryWindowView(Trigger trigger) {
+        PipSource pipSource = this.pipSource;
+        if (pipSource != null && pipSource.params.isValid()) {
+            WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
+            int iWidth = ((Rect) this.pipSource.params.binarizer).width();
+            this.pipWidth = iWidth;
+            layoutParams.width = iWidth;
+            WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
+            int iHeight = ((Rect) this.pipSource.params.binarizer).height();
+            this.pipHeight = iHeight;
+            layoutParams2.height = iHeight;
+        }
+        this.windowManager.addView(this.contentView, this.windowLayoutParams);
+        this.windowViewSkipRender = false;
+        this.contentView.invalidate();
+        PhotoViewer photoViewer = this.photoViewer;
+        if ((photoViewer != null ? photoViewer.videoPlayer : null) == null) {
             return;
         }
-        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
-        if (photoViewerWebView != null) {
-            zIsPlaying = photoViewerWebView.isPlaying();
-        } else {
-            VideoPlayer videoPlayer = photoViewer.getVideoPlayer();
-            if (videoPlayer == null) {
-                return;
-            } else {
-                zIsPlaying = videoPlayer.isPlaying();
-            }
-        }
-        AndroidUtilities.cancelRunOnUIThread(this.progressRunnable);
-        if (!zIsPlaying) {
-            if (this.isVideoCompleted) {
-                this.playPauseButton.setImageResource(R.drawable.pip_replay_large);
-                return;
-            } else {
-                this.playPauseButton.setImageResource(R.drawable.pip_play_large);
-                return;
-            }
-        }
-        this.playPauseButton.setImageResource(R.drawable.pip_pause_large);
-        AndroidUtilities.runOnUIThread(this.progressRunnable, 500L);
+        photoViewer.pipFirstFrameCallback = trigger;
     }
 
-    public static void onVideoCompleted() {
-        instance.onVideoCompletedInternal();
-    }
-
-    private void onVideoCompletedInternal() {
-        VideoProgressView videoProgressView;
-        if (!this.isVisible || (videoProgressView = this.videoProgressView) == null) {
-            return;
-        }
-        this.isVideoCompleted = true;
-        this.videoProgress = 0.0f;
-        this.bufferProgress = 0.0f;
-        videoProgressView.invalidate();
-        updatePlayButtonInternal();
-        AndroidUtilities.cancelRunOnUIThread(this.progressRunnable);
-        if (this.isShowingControls) {
-            return;
-        }
-        toggleControls(true);
-        AndroidUtilities.cancelRunOnUIThread(this.dismissControlsCallback);
-    }
-
-    public static void setBufferedProgress(float f) {
-        PipVideoOverlay pipVideoOverlay = instance;
-        if (f > pipVideoOverlay.bufferProgress) {
-            pipVideoOverlay.bufferProgress = f;
-            VideoProgressView videoProgressView = pipVideoOverlay.videoProgressView;
-            if (videoProgressView != null) {
-                videoProgressView.invalidate();
-            }
-        }
-    }
-
-    public static void setParentSheet(EmbedBottomSheet embedBottomSheet) {
-        instance.parentSheet = embedBottomSheet;
-    }
-
-    public static void setPhotoViewer(PhotoViewer photoViewer) {
-        instance.photoViewer = photoViewer;
-        VideoPlayer videoPlayer = photoViewer.getVideoPlayer();
-        PipSource pipSource = instance.pipSource;
-        if (pipSource != null) {
-            pipSource.destroy();
-            instance.pipSource = null;
-        }
-        if (videoPlayer != null && PipUtils.checkPermissions(photoViewer.getParentActivity()) == 1) {
-            PipVideoOverlay pipVideoOverlay = instance;
-            PipSource.Builder placeholderView = new PipSource.Builder(photoViewer.getParentActivity(), instance).setTagPrefix("photo-viewer-pip-" + videoPlayer.playerId).setPriority(1).setCornerRadius(AndroidUtilities.dp(10.0f)).setContentView(instance.contentView).setPlaceholderView(instance.placeholderView);
-            PipVideoOverlay pipVideoOverlay2 = instance;
-            pipVideoOverlay.pipSource = placeholderView.setContentRatio(pipVideoOverlay2.mVideoWidth, pipVideoOverlay2.mVideoHeight).setPlayer(videoPlayer.player).setNeedMediaSession(true).build();
-        }
-        instance.updatePlayButtonInternal();
-    }
-
-    public static RectOld getPipRect(boolean z, float f) {
-        RectOld rectOld = new RectOld();
-        float f2 = 1.0f / f;
-        PipVideoOverlay pipVideoOverlay = instance;
-        if (pipVideoOverlay.isVisible && !z) {
-            rectOld.x = pipVideoOverlay.pipX;
-            rectOld.y = pipVideoOverlay.pipY + AndroidUtilities.statusBarHeight;
-            PipVideoOverlay pipVideoOverlay2 = instance;
-            rectOld.width = pipVideoOverlay2.pipWidth;
-            rectOld.height = pipVideoOverlay2.pipHeight;
-            return rectOld;
-        }
-        float pipX = pipVideoOverlay.getPipConfig().getPipX();
-        float pipY = instance.getPipConfig().getPipY();
-        float scaleFactor = instance.getPipConfig().getScaleFactor();
-        rectOld.width = getSuggestedWidth(f2) * scaleFactor;
-        rectOld.height = getSuggestedHeight(f2) * scaleFactor;
-        if (pipX != -1.0f) {
-            float f3 = rectOld.width;
-            float f4 = pipX + (f3 / 2.0f);
-            float f5 = AndroidUtilities.displaySize.x;
-            rectOld.x = f4 >= f5 / 2.0f ? (f5 - f3) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
-        } else {
-            rectOld.x = (AndroidUtilities.displaySize.x - rectOld.width) - AndroidUtilities.dp(16.0f);
-        }
-        if (pipY != -1.0f) {
-            rectOld.y = MathUtils.clamp(pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.dp(16.0f)) - rectOld.height) + AndroidUtilities.statusBarHeight;
-            return rectOld;
-        }
-        rectOld.y = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
-        return rectOld;
-    }
-
-    public static boolean show(boolean z, Activity activity, View view, int i, int i2) {
-        return show(z, activity, view, i, i2, false);
-    }
-
-    public static boolean show(boolean z, Activity activity, View view, int i, int i2, boolean z2) {
-        return show(z, activity, null, view, i, i2, z2);
-    }
-
-    public static boolean show(boolean z, Activity activity, PhotoViewerWebView photoViewerWebView, View view, int i, int i2, boolean z2) {
-        return instance.showInternal(z, activity, view, photoViewerWebView, i, i2, z2);
-    }
-
-    private boolean showInternal(boolean z, Activity activity, View view, PhotoViewerWebView photoViewerWebView, int i, int i2, boolean z2) {
+    public final boolean showInternal(boolean z, Activity activity, View view, PhotoViewerWebView photoViewerWebView, int i, int i2, boolean z2) {
         PhotoViewerWebView photoViewerWebView2;
-        final boolean z3 = z || PipUtils.checkPermissions(ApplicationLoader.applicationContext) == 1;
+        int i3 = 4;
+        final int i4 = 1;
+        final int i5 = 0;
+        boolean z3 = z || PipUtils.checkPermissions(ApplicationLoader.applicationContext) == 1;
         if (this.isVisible) {
             return false;
         }
@@ -649,287 +692,526 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         this.mVideoWidth = i;
         this.mVideoHeight = i2;
         this.aspectRatio = null;
-        if (photoViewerWebView != null && photoViewerWebView.isControllable()) {
-            this.photoViewerWebView = photoViewerWebView;
-            photoViewerWebView.hideControls();
-        } else {
+        if (photoViewerWebView == null || !photoViewerWebView.isYouTube) {
             this.photoViewerWebView = null;
+        } else {
+            this.photoViewerWebView = photoViewerWebView;
         }
-        float pipX = getPipConfig().getPipX();
-        float pipY = getPipConfig().getPipY();
-        this.scaleFactor = getPipConfig().getScaleFactor();
-        this.pipWidth = (int) (getSuggestedWidth() * this.scaleFactor);
-        this.pipHeight = (int) (getSuggestedHeight() * this.scaleFactor);
+        float f = getPipConfig().store.getFloat("x", -1.0f);
+        float f2 = getPipConfig().store.getFloat("y", -1.0f);
+        this.scaleFactor = getPipConfig().store.getFloat("scale_factor", 1.0f);
+        this.pipWidth = (int) (getSuggestedWidth(getRatio$2()) * this.scaleFactor);
+        this.pipHeight = (int) (getSuggestedHeight$2() * this.scaleFactor);
         this.isShowingControls = false;
-        this.pipXSpring = (SpringAnimation) new SpringAnimation(this, PIP_X_PROPERTY).setSpring(new SpringForce().setDampingRatio(0.75f).setStiffness(650.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+        SpringAnimation springAnimation = new SpringAnimation(this, PIP_X_PROPERTY);
+        SpringForce springForce = new SpringForce();
+        springForce.setDampingRatio(0.75f);
+        springForce.setStiffness(650.0f);
+        springAnimation.mSpring = springForce;
+        springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener(this) {
+            public final PipVideoOverlay f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
-            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z4, float f, float f2) {
-                this.f$0.getPipConfig().setPipX(f);
+            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z4, float f3, float f4) {
+                switch (i5) {
+                    case 0:
+                        this.f$0.getPipConfig().store.edit().putFloat("x", f3).apply();
+                        break;
+                    default:
+                        this.f$0.getPipConfig().store.edit().putFloat("y", f3).apply();
+                        break;
+                }
             }
         });
-        this.pipYSpring = (SpringAnimation) new SpringAnimation(this, PIP_Y_PROPERTY).setSpring(new SpringForce().setDampingRatio(0.75f).setStiffness(650.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+        this.pipXSpring = springAnimation;
+        SpringAnimation springAnimation2 = new SpringAnimation(this, PIP_Y_PROPERTY);
+        SpringForce springForce2 = new SpringForce();
+        springForce2.setDampingRatio(0.75f);
+        springForce2.setStiffness(650.0f);
+        springAnimation2.mSpring = springForce2;
+        springAnimation2.addEndListener(new DynamicAnimation.OnAnimationEndListener(this) {
+            public final PipVideoOverlay f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
-            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z4, float f, float f2) {
-                this.f$0.getPipConfig().setPipY(f);
+            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z4, float f3, float f4) {
+                switch (i4) {
+                    case 0:
+                        this.f$0.getPipConfig().store.edit().putFloat("x", f3).apply();
+                        break;
+                    default:
+                        this.f$0.getPipConfig().store.edit().putFloat("y", f3).apply();
+                        break;
+                }
             }
         });
+        this.pipYSpring = springAnimation2;
         Context context = z3 ? activity : ApplicationLoader.applicationContext;
         int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new AnonymousClass3());
+        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new AnonymousClass3(this, i5));
         this.scaleGestureDetector = scaleGestureDetector;
         scaleGestureDetector.setQuickScaleEnabled(false);
         if (Build.VERSION.SDK_INT >= 23) {
             this.scaleGestureDetector.setStylusScaleEnabled(false);
         }
-        this.gestureDetector = new GestureDetectorFixDoubleTap(context, new AnonymousClass4(scaledTouchSlop));
-        this.contentFrameLayout = new FrameLayout(context) {
+        this.gestureDetector = new PhotoViewer.AnonymousClass18(context, new AnonymousClass4(scaledTouchSlop));
+        this.contentFrameLayout = new FrameLayout(this, context) {
+            public final PipVideoOverlay this$0;
+
+            {
+                this.this$0 = this;
+            }
+
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                switch (i5) {
+                    case 1:
+                        super.dispatchDraw(canvas);
+                        PipVideoOverlay pipVideoOverlay = this.this$0;
+                        SeekSpeedDrawable seekSpeedDrawable = pipVideoOverlay.seekSpeedDrawable;
+                        if (seekSpeedDrawable != null && seekSpeedDrawable.isShown()) {
+                            pipVideoOverlay.seekSpeedDrawable.setBounds(getLeft(), getTop(), getRight(), getBottom());
+                            pipVideoOverlay.seekSpeedDrawable.draw(canvas);
+                            break;
+                        }
+                        break;
+                    default:
+                        super.dispatchDraw(canvas);
+                        break;
+                }
+            }
+
             @Override
             public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                int actionMasked = motionEvent.getActionMasked();
-                if (actionMasked == 0 || actionMasked == 5) {
-                    if (motionEvent.getPointerCount() == 1) {
-                        PipVideoOverlay.this.canLongClick = true;
-                        PipVideoOverlay.this.longClickStartPoint = new float[]{motionEvent.getX(), motionEvent.getY()};
-                        AndroidUtilities.runOnUIThread(PipVideoOverlay.this.longClickCallback, 500L);
-                    } else {
-                        PipVideoOverlay.this.canLongClick = false;
-                        PipVideoOverlay.this.cancelRewind();
-                        AndroidUtilities.cancelRunOnUIThread(PipVideoOverlay.this.longClickCallback);
-                    }
-                }
-                if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
-                    PipVideoOverlay.this.canLongClick = false;
-                    PipVideoOverlay.this.cancelRewind();
-                    AndroidUtilities.cancelRunOnUIThread(PipVideoOverlay.this.longClickCallback);
-                } else if (actionMasked == 2 && PipVideoOverlay.this.photoViewer != null && PipVideoOverlay.this.photoViewer.getVideoPlayerRewinder() != null && PipVideoOverlay.this.photoViewer.getVideoPlayerRewinder().rewinding) {
-                    PipVideoOverlay.this.photoViewer.getVideoPlayerRewinder().setX(motionEvent.getX());
-                }
-                if (PipVideoOverlay.this.consumingChild != null) {
-                    MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
-                    motionEventObtain.offsetLocation(PipVideoOverlay.this.consumingChild.getX(), PipVideoOverlay.this.consumingChild.getY());
-                    boolean zDispatchTouchEvent = PipVideoOverlay.this.consumingChild.dispatchTouchEvent(motionEvent);
-                    motionEventObtain.recycle();
-                    if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
-                        PipVideoOverlay.this.consumingChild = null;
-                    }
-                    if (zDispatchTouchEvent) {
-                        return true;
-                    }
-                }
-                MotionEvent motionEventObtain2 = MotionEvent.obtain(motionEvent);
-                motionEventObtain2.offsetLocation(motionEvent.getRawX() - motionEvent.getX(), motionEvent.getRawY() - motionEvent.getY());
-                boolean zOnTouchEvent = PipVideoOverlay.this.scaleGestureDetector.onTouchEvent(motionEventObtain2);
-                motionEventObtain2.recycle();
-                boolean z4 = !PipVideoOverlay.this.scaleGestureDetector.isInProgress() && PipVideoOverlay.this.gestureDetector.onTouchEvent(motionEvent);
-                if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
-                    PipVideoOverlay.this.isScrolling = false;
-                    PipVideoOverlay.this.isScrollDisallowed = false;
-                    if (PipVideoOverlay.this.onSideToDismiss) {
-                        PipVideoOverlay.this.onSideToDismiss = false;
-                        PipVideoOverlay.dismissAndDestroy();
-                    } else {
-                        if (!PipVideoOverlay.this.pipXSpring.isRunning()) {
-                            SpringForce spring = ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX)).getSpring();
-                            float f = PipVideoOverlay.this.pipX + (PipVideoOverlay.this.pipWidth / 2.0f);
-                            int i3 = AndroidUtilities.displaySize.x;
-                            spring.setFinalPosition(f >= ((float) i3) / 2.0f ? (i3 - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
-                            PipVideoOverlay.this.pipXSpring.start();
+                PhotoViewer photoViewer;
+                PhotoViewer.AnonymousClass4 anonymousClass4;
+                switch (i5) {
+                    case 0:
+                        int actionMasked = motionEvent.getActionMasked();
+                        PipVideoOverlay pipVideoOverlay = this.this$0;
+                        if (actionMasked == 0 || actionMasked == 5) {
+                            if (motionEvent.getPointerCount() == 1) {
+                                pipVideoOverlay.canLongClick = true;
+                                pipVideoOverlay.longClickStartPoint = new float[]{motionEvent.getX(), motionEvent.getY()};
+                                AndroidUtilities.runOnUIThread(pipVideoOverlay.longClickCallback, 500L);
+                            } else {
+                                pipVideoOverlay.canLongClick = false;
+                                pipVideoOverlay.cancelRewind();
+                                AndroidUtilities.cancelRunOnUIThread(pipVideoOverlay.longClickCallback);
+                            }
                         }
-                        if (!PipVideoOverlay.this.pipYSpring.isRunning()) {
-                            ((SpringAnimation) PipVideoOverlay.this.pipYSpring.setStartValue(PipVideoOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
-                            PipVideoOverlay.this.pipYSpring.start();
+                        if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
+                            pipVideoOverlay.canLongClick = false;
+                            pipVideoOverlay.cancelRewind();
+                            AndroidUtilities.cancelRunOnUIThread(pipVideoOverlay.longClickCallback);
+                        } else if (actionMasked == 2 && (photoViewer = pipVideoOverlay.photoViewer) != null && (anonymousClass4 = photoViewer.videoPlayerRewinder) != null && anonymousClass4.rewinding) {
+                            anonymousClass4.setX(motionEvent.getX());
                         }
-                    }
+                        if (pipVideoOverlay.consumingChild != null) {
+                            MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+                            motionEventObtain.offsetLocation(pipVideoOverlay.consumingChild.getX(), pipVideoOverlay.consumingChild.getY());
+                            boolean zDispatchTouchEvent = pipVideoOverlay.consumingChild.dispatchTouchEvent(motionEvent);
+                            motionEventObtain.recycle();
+                            if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
+                                pipVideoOverlay.consumingChild = null;
+                            }
+                            if (zDispatchTouchEvent) {
+                                return true;
+                            }
+                        }
+                        MotionEvent motionEventObtain2 = MotionEvent.obtain(motionEvent);
+                        motionEventObtain2.offsetLocation(motionEvent.getRawX() - motionEvent.getX(), motionEvent.getRawY() - motionEvent.getY());
+                        boolean zOnTouchEvent = pipVideoOverlay.scaleGestureDetector.onTouchEvent(motionEventObtain2);
+                        motionEventObtain2.recycle();
+                        boolean z4 = !pipVideoOverlay.scaleGestureDetector.isInProgress() && ((GestureDetectorFixDoubleTap$GestureDetectorCompatImplBase) pipVideoOverlay.gestureDetector.this$0).onTouchEvent(motionEvent);
+                        if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
+                            pipVideoOverlay.isScrolling = false;
+                            pipVideoOverlay.isScrollDisallowed = false;
+                            if (pipVideoOverlay.onSideToDismiss) {
+                                pipVideoOverlay.onSideToDismiss = false;
+                                PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.instance;
+                                EmbedBottomSheet embedBottomSheet = pipVideoOverlay2.parentSheet;
+                                if (embedBottomSheet != null) {
+                                    embedBottomSheet.destroy();
+                                } else {
+                                    PhotoViewer photoViewer2 = pipVideoOverlay2.photoViewer;
+                                    if (photoViewer2 != null) {
+                                        photoViewer2.destroyPhotoViewer();
+                                        MediaController.getInstance().tryResumePausedAudio();
+                                    }
+                                }
+                                PipVideoOverlay.dismiss();
+                            } else {
+                                SpringAnimation springAnimation3 = pipVideoOverlay.pipXSpring;
+                                if (!springAnimation3.mRunning) {
+                                    float f3 = pipVideoOverlay.pipX;
+                                    springAnimation3.mValue = f3;
+                                    springAnimation3.mStartValueIsSet = true;
+                                    SpringForce springForce3 = springAnimation3.mSpring;
+                                    int i6 = pipVideoOverlay.pipWidth;
+                                    float f4 = (i6 / 2.0f) + f3;
+                                    int i7 = AndroidUtilities.displaySize.x;
+                                    springForce3.mFinalPosition = f4 >= ((float) i7) / 2.0f ? (i7 - i6) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+                                    pipVideoOverlay.pipXSpring.start();
+                                }
+                                SpringAnimation springAnimation4 = pipVideoOverlay.pipYSpring;
+                                if (!springAnimation4.mRunning) {
+                                    float f5 = pipVideoOverlay.pipY;
+                                    springAnimation4.mValue = f5;
+                                    springAnimation4.mStartValueIsSet = true;
+                                    springAnimation4.mSpring.mFinalPosition = MathUtils.clamp(f5, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - pipVideoOverlay.pipHeight) - AndroidUtilities.dp(16.0f));
+                                    pipVideoOverlay.pipYSpring.start();
+                                }
+                            }
+                        }
+                        return zOnTouchEvent || z4;
+                    default:
+                        return super.dispatchTouchEvent(motionEvent);
                 }
-                return zOnTouchEvent || z4;
             }
 
             @Override
-            protected void onConfigurationChanged(Configuration configuration) {
-                AndroidUtilities.checkDisplaySize(getContext(), configuration);
-                PipVideoOverlay.this.pipConfig = null;
-                AndroidUtilities.setPreferredMaxRefreshRate(PipVideoOverlay.this.windowManager, PipVideoOverlay.this.contentView, PipVideoOverlay.this.windowLayoutParams);
-                if (PipVideoOverlay.this.pipWidth == PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor && PipVideoOverlay.this.pipHeight == PipVideoOverlay.this.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor) {
-                    return;
+            public void onConfigurationChanged(Configuration configuration) {
+                switch (i5) {
+                    case 0:
+                        AndroidUtilities.checkDisplaySize(getContext(), configuration);
+                        PipVideoOverlay pipVideoOverlay = this.this$0;
+                        pipVideoOverlay.pipConfig = null;
+                        AndroidUtilities.setPreferredMaxRefreshRate(pipVideoOverlay.windowManager, pipVideoOverlay.contentView, pipVideoOverlay.windowLayoutParams);
+                        if (pipVideoOverlay.pipWidth != PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()) * pipVideoOverlay.scaleFactor || pipVideoOverlay.pipHeight != pipVideoOverlay.getSuggestedHeight$2() * pipVideoOverlay.scaleFactor) {
+                            WindowManager.LayoutParams layoutParams = pipVideoOverlay.windowLayoutParams;
+                            int suggestedWidth = (int) (PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()) * pipVideoOverlay.scaleFactor);
+                            pipVideoOverlay.pipWidth = suggestedWidth;
+                            layoutParams.width = suggestedWidth;
+                            WindowManager.LayoutParams layoutParams2 = pipVideoOverlay.windowLayoutParams;
+                            int suggestedHeight$2 = (int) (pipVideoOverlay.getSuggestedHeight$2() * pipVideoOverlay.scaleFactor);
+                            pipVideoOverlay.pipHeight = suggestedHeight$2;
+                            layoutParams2.height = suggestedHeight$2;
+                            AndroidUtilities.updateViewLayout(pipVideoOverlay.windowManager, pipVideoOverlay.contentView, pipVideoOverlay.windowLayoutParams);
+                            SpringAnimation springAnimation3 = pipVideoOverlay.pipXSpring;
+                            float f3 = pipVideoOverlay.pipX;
+                            springAnimation3.mValue = f3;
+                            springAnimation3.mStartValueIsSet = true;
+                            SpringForce springForce3 = springAnimation3.mSpring;
+                            float fM = Emoji$EmojiSpan$$ExternalSyntheticOutline0.m(PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()), pipVideoOverlay.scaleFactor, 2.0f, f3);
+                            float f4 = AndroidUtilities.displaySize.x;
+                            springForce3.mFinalPosition = fM >= f4 / 2.0f ? (f4 - (PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()) * pipVideoOverlay.scaleFactor)) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+                            pipVideoOverlay.pipXSpring.start();
+                            SpringAnimation springAnimation4 = pipVideoOverlay.pipYSpring;
+                            float f5 = pipVideoOverlay.pipY;
+                            springAnimation4.mValue = f5;
+                            springAnimation4.mStartValueIsSet = true;
+                            springAnimation4.mSpring.mFinalPosition = MathUtils.clamp(f5, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (pipVideoOverlay.getSuggestedHeight$2() * pipVideoOverlay.scaleFactor)) - AndroidUtilities.dp(16.0f));
+                            pipVideoOverlay.pipYSpring.start();
+                        }
+                        break;
+                    default:
+                        super.onConfigurationChanged(configuration);
+                        break;
                 }
-                WindowManager.LayoutParams layoutParams = PipVideoOverlay.this.windowLayoutParams;
-                PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
-                layoutParams.width = pipVideoOverlay.pipWidth = (int) (pipVideoOverlay.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor);
-                WindowManager.LayoutParams layoutParams2 = PipVideoOverlay.this.windowLayoutParams;
-                PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.this;
-                layoutParams2.height = pipVideoOverlay2.pipHeight = (int) (pipVideoOverlay2.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor);
-                AndroidUtilities.updateViewLayout(PipVideoOverlay.this.windowManager, PipVideoOverlay.this.contentView, PipVideoOverlay.this.windowLayoutParams);
-                SpringForce spring = ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX)).getSpring();
-                float suggestedWidth = PipVideoOverlay.this.pipX + ((PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor) / 2.0f);
-                float f = AndroidUtilities.displaySize.x;
-                spring.setFinalPosition(suggestedWidth >= f / 2.0f ? (f - (PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
-                PipVideoOverlay.this.pipXSpring.start();
-                ((SpringAnimation) PipVideoOverlay.this.pipYSpring.setStartValue(PipVideoOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (PipVideoOverlay.this.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.dp(16.0f)));
-                PipVideoOverlay.this.pipYSpring.start();
+            }
+
+            @Override
+            public void onDraw(Canvas canvas) {
+                switch (i5) {
+                    case 1:
+                        PipVideoOverlay pipVideoOverlay = this.this$0;
+                        VideoForwardDrawable videoForwardDrawable = pipVideoOverlay.videoForwardDrawable;
+                        if (videoForwardDrawable.animating) {
+                            videoForwardDrawable.setBounds(getLeft(), getTop(), getRight(), getBottom());
+                            pipVideoOverlay.videoForwardDrawable.draw(canvas);
+                        }
+                        PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
+                        if (photoViewer != null && photoViewer.framesRewinder != null) {
+                            canvas.save();
+                            canvas.translate(getLeft(), getTop());
+                            pipVideoOverlay.photoViewer.framesRewinder.draw(canvas, getRight() - getLeft(), getBottom() - getTop());
+                            canvas.restore();
+                            break;
+                        }
+                        break;
+                    default:
+                        super.onDraw(canvas);
+                        break;
+                }
             }
         };
-        PipVideoViewGroup pipVideoViewGroup = new PipVideoViewGroup(context) {
-            @Override
-            protected void onLayout(boolean z4, int i3, int i4, int i5, int i6) {
-                PipVideoOverlay.this.contentFrameLayout.layout(0, 0, PipVideoOverlay.this.pipWidth, PipVideoOverlay.this.pipHeight);
-            }
-
-            @Override
-            protected void onMeasure(int i3, int i4) {
-                setMeasuredDimension(View.MeasureSpec.getSize(i3), View.MeasureSpec.getSize(i4));
-                PipVideoOverlay.this.contentFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(PipVideoOverlay.this.pipWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(PipVideoOverlay.this.pipHeight, 1073741824));
-            }
-
-            @Override
-            public void draw(Canvas canvas) {
-                if (PipVideoOverlay.this.windowViewSkipRender) {
-                    return;
-                }
-                canvas.save();
-                canvas.scale(PipVideoOverlay.this.pipWidth / PipVideoOverlay.this.contentFrameLayout.getWidth(), PipVideoOverlay.this.pipHeight / PipVideoOverlay.this.contentFrameLayout.getHeight());
-                super.draw(canvas);
-                canvas.restore();
-            }
-        };
-        this.contentView = pipVideoViewGroup;
-        pipVideoViewGroup.addView(this.contentFrameLayout, LayoutHelper.createFrame(-1, -1.0f));
-        this.contentFrameLayout.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(10.0f)));
-        this.contentFrameLayout.setClipToOutline(true);
-        this.contentFrameLayout.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_actionBar));
+        ActionIntroActivity.AnonymousClass2 anonymousClass2 = new ActionIntroActivity.AnonymousClass2(this, context, i4);
+        this.contentView = anonymousClass2;
+        anonymousClass2.addView(this.contentFrameLayout, LayoutHelper.createFrame(-1.0f, -1));
+        AnonymousClass5 anonymousClass5 = this.contentFrameLayout;
+        float fDp = AndroidUtilities.dp(10.0f);
+        RichEditor.AnonymousClass5 anonymousClass6 = ViewOutlineProviderImpl.BOUNDS_OVAL;
+        anonymousClass5.setOutlineProvider(new ViewOutlineProviderImpl.AnonymousClass5(0, fDp));
+        setClipToOutline(true);
+        setBackgroundColor(Theme.getColor(null, Theme.key_voipgroup_actionBar, false));
         this.innerView = view;
         if (view.getParent() != null) {
             ((ViewGroup) this.innerView.getParent()).removeView(this.innerView);
         }
-        this.contentFrameLayout.addView(this.innerView, LayoutHelper.createFrame(-1, -1.0f));
+        addView(this.innerView, LayoutHelper.createFrame(-1.0f, -1));
         View view2 = new View(context);
         this.placeholderView = view2;
-        this.contentFrameLayout.addView(view2, LayoutHelper.createFrame(-1, -1.0f));
-        this.videoForwardDrawable.setDelegate(new VideoForwardDrawable.VideoForwardDrawableDelegate() {
-            @Override
-            public void onAnimationEnd() {
+        addView(view2, LayoutHelper.createFrame(-1.0f, -1));
+        this.videoForwardDrawable.delegate = new Stripe(this, 24);
+        this.controlsView = new FrameLayout(this, context) {
+            public final PipVideoOverlay this$0;
+
+            {
+                this.this$0 = this;
             }
 
             @Override
-            public void invalidate() {
-                PipVideoOverlay.this.controlsView.invalidate();
-            }
-        });
-        this.controlsView = new FrameLayout(context) {
-            @Override
-            protected void onDraw(Canvas canvas) {
-                if (PipVideoOverlay.this.videoForwardDrawable.isAnimating()) {
-                    PipVideoOverlay.this.videoForwardDrawable.setBounds(getLeft(), getTop(), getRight(), getBottom());
-                    PipVideoOverlay.this.videoForwardDrawable.draw(canvas);
+            public void dispatchDraw(Canvas canvas) {
+                switch (i4) {
+                    case 1:
+                        super.dispatchDraw(canvas);
+                        PipVideoOverlay pipVideoOverlay = this.this$0;
+                        SeekSpeedDrawable seekSpeedDrawable = pipVideoOverlay.seekSpeedDrawable;
+                        if (seekSpeedDrawable != null && seekSpeedDrawable.isShown()) {
+                            pipVideoOverlay.seekSpeedDrawable.setBounds(getLeft(), getTop(), getRight(), getBottom());
+                            pipVideoOverlay.seekSpeedDrawable.draw(canvas);
+                            break;
+                        }
+                        break;
+                    default:
+                        super.dispatchDraw(canvas);
+                        break;
                 }
-                if (PipVideoOverlay.this.photoViewer == null || PipVideoOverlay.this.photoViewer.framesRewinder == null) {
-                    return;
-                }
-                canvas.save();
-                canvas.translate(getLeft(), getTop());
-                PipVideoOverlay.this.photoViewer.framesRewinder.draw(canvas, getRight() - getLeft(), getBottom() - getTop());
-                canvas.restore();
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                if (PipVideoOverlay.this.seekSpeedDrawable == null || !PipVideoOverlay.this.seekSpeedDrawable.isShown()) {
-                    return;
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                PhotoViewer photoViewer;
+                PhotoViewer.AnonymousClass4 anonymousClass4;
+                switch (i4) {
+                    case 0:
+                        int actionMasked = motionEvent.getActionMasked();
+                        PipVideoOverlay pipVideoOverlay = this.this$0;
+                        if (actionMasked == 0 || actionMasked == 5) {
+                            if (motionEvent.getPointerCount() == 1) {
+                                pipVideoOverlay.canLongClick = true;
+                                pipVideoOverlay.longClickStartPoint = new float[]{motionEvent.getX(), motionEvent.getY()};
+                                AndroidUtilities.runOnUIThread(pipVideoOverlay.longClickCallback, 500L);
+                            } else {
+                                pipVideoOverlay.canLongClick = false;
+                                pipVideoOverlay.cancelRewind();
+                                AndroidUtilities.cancelRunOnUIThread(pipVideoOverlay.longClickCallback);
+                            }
+                        }
+                        if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
+                            pipVideoOverlay.canLongClick = false;
+                            pipVideoOverlay.cancelRewind();
+                            AndroidUtilities.cancelRunOnUIThread(pipVideoOverlay.longClickCallback);
+                        } else if (actionMasked == 2 && (photoViewer = pipVideoOverlay.photoViewer) != null && (anonymousClass4 = photoViewer.videoPlayerRewinder) != null && anonymousClass4.rewinding) {
+                            anonymousClass4.setX(motionEvent.getX());
+                        }
+                        if (pipVideoOverlay.consumingChild != null) {
+                            MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+                            motionEventObtain.offsetLocation(pipVideoOverlay.consumingChild.getX(), pipVideoOverlay.consumingChild.getY());
+                            boolean zDispatchTouchEvent = pipVideoOverlay.consumingChild.dispatchTouchEvent(motionEvent);
+                            motionEventObtain.recycle();
+                            if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
+                                pipVideoOverlay.consumingChild = null;
+                            }
+                            if (zDispatchTouchEvent) {
+                                return true;
+                            }
+                        }
+                        MotionEvent motionEventObtain2 = MotionEvent.obtain(motionEvent);
+                        motionEventObtain2.offsetLocation(motionEvent.getRawX() - motionEvent.getX(), motionEvent.getRawY() - motionEvent.getY());
+                        boolean zOnTouchEvent = pipVideoOverlay.scaleGestureDetector.onTouchEvent(motionEventObtain2);
+                        motionEventObtain2.recycle();
+                        boolean z4 = !pipVideoOverlay.scaleGestureDetector.isInProgress() && ((GestureDetectorFixDoubleTap$GestureDetectorCompatImplBase) pipVideoOverlay.gestureDetector.this$0).onTouchEvent(motionEvent);
+                        if (actionMasked == 1 || actionMasked == 3 || actionMasked == 6) {
+                            pipVideoOverlay.isScrolling = false;
+                            pipVideoOverlay.isScrollDisallowed = false;
+                            if (pipVideoOverlay.onSideToDismiss) {
+                                pipVideoOverlay.onSideToDismiss = false;
+                                PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.instance;
+                                EmbedBottomSheet embedBottomSheet = pipVideoOverlay2.parentSheet;
+                                if (embedBottomSheet != null) {
+                                    embedBottomSheet.destroy();
+                                } else {
+                                    PhotoViewer photoViewer2 = pipVideoOverlay2.photoViewer;
+                                    if (photoViewer2 != null) {
+                                        photoViewer2.destroyPhotoViewer();
+                                        MediaController.getInstance().tryResumePausedAudio();
+                                    }
+                                }
+                                PipVideoOverlay.dismiss();
+                            } else {
+                                SpringAnimation springAnimation3 = pipVideoOverlay.pipXSpring;
+                                if (!springAnimation3.mRunning) {
+                                    float f3 = pipVideoOverlay.pipX;
+                                    springAnimation3.mValue = f3;
+                                    springAnimation3.mStartValueIsSet = true;
+                                    SpringForce springForce3 = springAnimation3.mSpring;
+                                    int i6 = pipVideoOverlay.pipWidth;
+                                    float f4 = (i6 / 2.0f) + f3;
+                                    int i7 = AndroidUtilities.displaySize.x;
+                                    springForce3.mFinalPosition = f4 >= ((float) i7) / 2.0f ? (i7 - i6) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+                                    pipVideoOverlay.pipXSpring.start();
+                                }
+                                SpringAnimation springAnimation4 = pipVideoOverlay.pipYSpring;
+                                if (!springAnimation4.mRunning) {
+                                    float f5 = pipVideoOverlay.pipY;
+                                    springAnimation4.mValue = f5;
+                                    springAnimation4.mStartValueIsSet = true;
+                                    springAnimation4.mSpring.mFinalPosition = MathUtils.clamp(f5, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - pipVideoOverlay.pipHeight) - AndroidUtilities.dp(16.0f));
+                                    pipVideoOverlay.pipYSpring.start();
+                                }
+                            }
+                        }
+                        return zOnTouchEvent || z4;
+                    default:
+                        return super.dispatchTouchEvent(motionEvent);
                 }
-                PipVideoOverlay.this.seekSpeedDrawable.setBounds(getLeft(), getTop(), getRight(), getBottom());
-                PipVideoOverlay.this.seekSpeedDrawable.draw(canvas);
+            }
+
+            @Override
+            public void onConfigurationChanged(Configuration configuration) {
+                switch (i4) {
+                    case 0:
+                        AndroidUtilities.checkDisplaySize(getContext(), configuration);
+                        PipVideoOverlay pipVideoOverlay = this.this$0;
+                        pipVideoOverlay.pipConfig = null;
+                        AndroidUtilities.setPreferredMaxRefreshRate(pipVideoOverlay.windowManager, pipVideoOverlay.contentView, pipVideoOverlay.windowLayoutParams);
+                        if (pipVideoOverlay.pipWidth != PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()) * pipVideoOverlay.scaleFactor || pipVideoOverlay.pipHeight != pipVideoOverlay.getSuggestedHeight$2() * pipVideoOverlay.scaleFactor) {
+                            WindowManager.LayoutParams layoutParams = pipVideoOverlay.windowLayoutParams;
+                            int suggestedWidth = (int) (PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()) * pipVideoOverlay.scaleFactor);
+                            pipVideoOverlay.pipWidth = suggestedWidth;
+                            layoutParams.width = suggestedWidth;
+                            WindowManager.LayoutParams layoutParams2 = pipVideoOverlay.windowLayoutParams;
+                            int suggestedHeight$2 = (int) (pipVideoOverlay.getSuggestedHeight$2() * pipVideoOverlay.scaleFactor);
+                            pipVideoOverlay.pipHeight = suggestedHeight$2;
+                            layoutParams2.height = suggestedHeight$2;
+                            AndroidUtilities.updateViewLayout(pipVideoOverlay.windowManager, pipVideoOverlay.contentView, pipVideoOverlay.windowLayoutParams);
+                            SpringAnimation springAnimation3 = pipVideoOverlay.pipXSpring;
+                            float f3 = pipVideoOverlay.pipX;
+                            springAnimation3.mValue = f3;
+                            springAnimation3.mStartValueIsSet = true;
+                            SpringForce springForce3 = springAnimation3.mSpring;
+                            float fM = Emoji$EmojiSpan$$ExternalSyntheticOutline0.m(PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()), pipVideoOverlay.scaleFactor, 2.0f, f3);
+                            float f4 = AndroidUtilities.displaySize.x;
+                            springForce3.mFinalPosition = fM >= f4 / 2.0f ? (f4 - (PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()) * pipVideoOverlay.scaleFactor)) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+                            pipVideoOverlay.pipXSpring.start();
+                            SpringAnimation springAnimation4 = pipVideoOverlay.pipYSpring;
+                            float f5 = pipVideoOverlay.pipY;
+                            springAnimation4.mValue = f5;
+                            springAnimation4.mStartValueIsSet = true;
+                            springAnimation4.mSpring.mFinalPosition = MathUtils.clamp(f5, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (pipVideoOverlay.getSuggestedHeight$2() * pipVideoOverlay.scaleFactor)) - AndroidUtilities.dp(16.0f));
+                            pipVideoOverlay.pipYSpring.start();
+                        }
+                        break;
+                    default:
+                        super.onConfigurationChanged(configuration);
+                        break;
+                }
+            }
+
+            @Override
+            public void onDraw(Canvas canvas) {
+                switch (i4) {
+                    case 1:
+                        PipVideoOverlay pipVideoOverlay = this.this$0;
+                        VideoForwardDrawable videoForwardDrawable = pipVideoOverlay.videoForwardDrawable;
+                        if (videoForwardDrawable.animating) {
+                            videoForwardDrawable.setBounds(getLeft(), getTop(), getRight(), getBottom());
+                            pipVideoOverlay.videoForwardDrawable.draw(canvas);
+                        }
+                        PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
+                        if (photoViewer != null && photoViewer.framesRewinder != null) {
+                            canvas.save();
+                            canvas.translate(getLeft(), getTop());
+                            pipVideoOverlay.photoViewer.framesRewinder.draw(canvas, getRight() - getLeft(), getBottom() - getTop());
+                            canvas.restore();
+                            break;
+                        }
+                        break;
+                    default:
+                        super.onDraw(canvas);
+                        break;
+                }
             }
         };
-        final FrameLayout frameLayout = this.controlsView;
-        Objects.requireNonNull(frameLayout);
-        this.seekSpeedDrawable = new SeekSpeedDrawable(new Runnable() {
-            @Override
-            public final void run() {
-                frameLayout.invalidate();
-            }
-        }, true, false);
-        this.controlsView.setWillNotDraw(false);
-        this.controlsView.setAlpha(0.0f);
+        AnonymousClass5 anonymousClass7 = this.controlsView;
+        Objects.requireNonNull(anonymousClass7);
+        this.seekSpeedDrawable = new SeekSpeedDrawable(new PasscodeView$9$$ExternalSyntheticLambda0(anonymousClass7, 10), true);
+        setWillNotDraw(false);
+        setAlpha(0.0f);
         View view3 = new View(context);
         view3.setBackgroundColor(1275068416);
-        this.controlsView.addView(view3, LayoutHelper.createFrame(-1, -1.0f));
+        addView(view3, LayoutHelper.createFrame(-1.0f, -1));
         int iDp = AndroidUtilities.dp(8.0f);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.pip_video_close);
-        int i3 = Theme.key_voipgroup_actionBarItems;
-        int color = Theme.getColor(i3);
+        int i6 = Theme.key_voipgroup_actionBarItems;
+        int color = Theme.getColor(null, i6, false);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView.setColorFilter(color, mode);
-        int i4 = Theme.key_listSelector;
-        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4)));
+        int i7 = Theme.key_listSelector;
+        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, i7, false), 1, -1));
         imageView.setPadding(iDp, iDp, iDp, iDp);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view4) {
-                PipVideoOverlay.dismissAndDestroy();
-            }
-        });
-        float f = 38;
-        float f2 = 4;
-        this.controlsView.addView(imageView, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, f2, 0.0f));
+        imageView.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(7));
+        float f3 = 38;
+        float f4 = 4;
+        addView(imageView, LayoutHelper.createFrame(38, f3, 5, 0.0f, f4, f4, 0.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.pip_video_expand);
-        imageView2.setColorFilter(Theme.getColor(i3), mode);
-        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4)));
+        imageView2.setColorFilter(Theme.getColor(null, i6, false), mode);
+        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, i7, false), 1, -1));
         imageView2.setPadding(iDp, iDp, iDp, iDp);
-        imageView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view4) {
-                PipVideoOverlay.$r8$lambda$gB1qwbwEvH42dhrArrH6CHV1wQA(this.f$0, z3, view4);
-            }
-        });
-        this.controlsView.addView(imageView2, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, 48, 0.0f));
+        imageView2.setOnClickListener(new LinkEditActivity$$ExternalSyntheticLambda5(i3, this, z3));
+        addView(imageView2, LayoutHelper.createFrame(38, f3, 5, 0.0f, f4, 48, 0.0f));
         ImageView imageView3 = new ImageView(context);
         this.playPauseButton = imageView3;
-        imageView3.setColorFilter(Theme.getColor(i3), mode);
-        this.playPauseButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4)));
-        this.playPauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view4) {
-                PipVideoOverlay.$r8$lambda$AHBvbxBgsOx58s2E3qsf2a47mfE(this.f$0, view4);
-            }
-        });
+        imageView3.setColorFilter(Theme.getColor(null, i6, false), mode);
+        this.playPauseButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, i7, false), 1, -1));
+        this.playPauseButton.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 14));
         View view4 = this.innerView;
         boolean z4 = (view4 instanceof WebView) || (view4 instanceof PhotoViewerWebView);
         this.isWebView = z4;
-        this.playPauseButton.setVisibility((!z4 || ((photoViewerWebView2 = this.photoViewerWebView) != null && photoViewerWebView2.isControllable())) ? 0 : 8);
-        this.controlsView.addView(this.playPauseButton, LayoutHelper.createFrame(38, 38, 17));
-        VideoProgressView videoProgressView = new VideoProgressView(context);
-        this.videoProgressView = videoProgressView;
-        this.controlsView.addView(videoProgressView, LayoutHelper.createFrame(-1, -1.0f));
-        this.contentFrameLayout.addView(this.controlsView, LayoutHelper.createFrame(-1, -1.0f));
+        this.playPauseButton.setVisibility((!z4 || ((photoViewerWebView2 = this.photoViewerWebView) != null && photoViewerWebView2.isYouTube)) ? 0 : 8);
+        addView(this.playPauseButton, LayoutHelper.createFrame(38, 38, 17));
+        CalendarActivity.AnonymousClass5 anonymousClass8 = new CalendarActivity.AnonymousClass5(this, context);
+        this.videoProgressView = anonymousClass8;
+        addView(anonymousClass8, LayoutHelper.createFrame(-1.0f, -1));
+        addView(this.controlsView, LayoutHelper.createFrame(-1.0f, -1));
         this.windowManager = (WindowManager) (z3 ? activity : ApplicationLoader.applicationContext).getSystemService("window");
         WindowManager.LayoutParams layoutParamsCreateWindowLayoutParams = PipUtils.createWindowLayoutParams(context, z3);
         this.windowLayoutParams = layoutParamsCreateWindowLayoutParams;
-        int i5 = this.pipWidth;
-        layoutParamsCreateWindowLayoutParams.width = i5;
+        int i8 = this.pipWidth;
+        layoutParamsCreateWindowLayoutParams.width = i8;
         layoutParamsCreateWindowLayoutParams.height = this.pipHeight;
-        if (pipX != -1.0f) {
-            float f3 = pipX + (i5 / 2.0f);
-            int i6 = AndroidUtilities.displaySize.x;
-            float fDp = f3 >= ((float) i6) / 2.0f ? (i6 - i5) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
-            this.pipX = fDp;
-            layoutParamsCreateWindowLayoutParams.x = (int) fDp;
-        } else {
-            float fDp2 = (AndroidUtilities.displaySize.x - i5) - AndroidUtilities.dp(16.0f);
+        if (f != -1.0f) {
+            float f5 = (i8 / 2.0f) + f;
+            int i9 = AndroidUtilities.displaySize.x;
+            float fDp2 = f5 >= ((float) i9) / 2.0f ? (i9 - i8) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
             this.pipX = fDp2;
             layoutParamsCreateWindowLayoutParams.x = (int) fDp2;
+        } else {
+            float fDp3 = (AndroidUtilities.displaySize.x - i8) - AndroidUtilities.dp(16.0f);
+            this.pipX = fDp3;
+            layoutParamsCreateWindowLayoutParams.x = (int) fDp3;
         }
-        if (pipY != -1.0f) {
+        if (f2 != -1.0f) {
             WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-            float fClamp = MathUtils.clamp(pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.dp(16.0f)) - this.pipHeight);
+            float fClamp = MathUtils.clamp(f2, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.dp(16.0f)) - this.pipHeight);
             this.pipY = fClamp;
             layoutParams.y = (int) fClamp;
         } else {
             WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
-            float fDp3 = AndroidUtilities.dp(16.0f);
-            this.pipY = fDp3;
-            layoutParams2.y = (int) fDp3;
+            float fDp4 = AndroidUtilities.dp(16.0f);
+            this.pipY = fDp4;
+            layoutParams2.y = (int) fDp4;
         }
         WindowManager.LayoutParams layoutParams3 = this.windowLayoutParams;
         layoutParams3.dimAmount = 0.0f;
@@ -946,553 +1228,461 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(250L);
         animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<ViewGroup, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ViewGroup, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ViewGroup, Float>) View.SCALE_Y, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_Y, 1.0f));
         animatorSet.start();
         return true;
     }
 
-    class AnonymousClass3 implements ScaleGestureDetector.OnScaleGestureListener {
-        AnonymousClass3() {
-        }
+    public final void toggleControls$2(boolean z) {
+        int i = 0;
+        ValueAnimator duration = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f).setDuration(200L);
+        this.controlsAnimator = duration;
+        duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        this.controlsAnimator.addUpdateListener(new ItemOptions$$ExternalSyntheticLambda4(this, 26));
+        this.controlsAnimator.addListener(new AnonymousClass1(this, i));
+        this.controlsAnimator.start();
+    }
 
-        @Override
-        public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
-            PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
-            pipVideoOverlay.scaleFactor = MathUtils.clamp(pipVideoOverlay.scaleFactor * scaleGestureDetector.getScaleFactor(), PipVideoOverlay.this.minScaleFactor, PipVideoOverlay.this.maxScaleFactor);
-            PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.this;
-            pipVideoOverlay2.pipWidth = (int) (pipVideoOverlay2.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor);
-            PipVideoOverlay pipVideoOverlay3 = PipVideoOverlay.this;
-            pipVideoOverlay3.pipHeight = (int) (pipVideoOverlay3.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    PipVideoOverlay.AnonymousClass3.$r8$lambda$sx2F1JrySr6EfjjzXXNHyNc8wPg(this.f$0);
-                }
-            });
-            float focusX = scaleGestureDetector.getFocusX();
-            int i = AndroidUtilities.displaySize.x;
-            float fDp = focusX >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
-            if (PipVideoOverlay.this.pipXSpring.isRunning()) {
-                PipVideoOverlay.this.pipXSpring.getSpring().setFinalPosition(fDp);
+    public final void updatePlayButtonInternal() {
+        boolean zIsPlaying;
+        PhotoViewer photoViewer = this.photoViewer;
+        if (photoViewer == null || this.playPauseButton == null) {
+            return;
+        }
+        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
+        if (photoViewerWebView != null) {
+            zIsPlaying = photoViewerWebView.isPlaying;
+        } else {
+            VideoPlayer videoPlayer = photoViewer.videoPlayer;
+            if (videoPlayer == null) {
+                return;
             } else {
-                ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX)).getSpring().setFinalPosition(fDp);
+                zIsPlaying = videoPlayer.isPlaying();
             }
-            PipVideoOverlay.this.pipXSpring.start();
-            float fClamp = MathUtils.clamp(scaleGestureDetector.getFocusY() - (PipVideoOverlay.this.pipHeight / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f));
-            if (PipVideoOverlay.this.pipYSpring.isRunning()) {
-                PipVideoOverlay.this.pipYSpring.getSpring().setFinalPosition(fClamp);
-            } else {
-                ((SpringAnimation) PipVideoOverlay.this.pipYSpring.setStartValue(PipVideoOverlay.this.pipY)).getSpring().setFinalPosition(fClamp);
-            }
-            PipVideoOverlay.this.pipYSpring.start();
-            return true;
         }
-
-        public static void $r8$lambda$sx2F1JrySr6EfjjzXXNHyNc8wPg(AnonymousClass3 anonymousClass3) {
-            PipVideoOverlay.this.contentView.invalidate();
-            PipVideoOverlay.this.contentFrameLayout.requestLayout();
+        PipVideoOverlay$$ExternalSyntheticLambda5 pipVideoOverlay$$ExternalSyntheticLambda5 = this.progressRunnable;
+        AndroidUtilities.cancelRunOnUIThread(pipVideoOverlay$$ExternalSyntheticLambda5);
+        if (zIsPlaying) {
+            this.playPauseButton.setImageResource(R.drawable.pip_pause_large);
+            AndroidUtilities.runOnUIThread(pipVideoOverlay$$ExternalSyntheticLambda5, 500L);
+        } else if (this.isVideoCompleted) {
+            this.playPauseButton.setImageResource(R.drawable.pip_replay_large);
+        } else {
+            this.playPauseButton.setImageResource(R.drawable.pip_play_large);
         }
+    }
 
-        @Override
-        public boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-            if (PipVideoOverlay.this.isScrolling) {
-                PipVideoOverlay.this.isScrolling = false;
-                PipVideoOverlay.this.canLongClick = false;
-                PipVideoOverlay.this.cancelRewind();
-                AndroidUtilities.cancelRunOnUIThread(PipVideoOverlay.this.longClickCallback);
-            }
-            PipVideoOverlay.this.isScrollDisallowed = true;
-            PipVideoOverlay.this.windowLayoutParams.width = (int) (PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.maxScaleFactor);
-            PipVideoOverlay.this.windowLayoutParams.height = (int) (PipVideoOverlay.this.getSuggestedHeight() * PipVideoOverlay.this.maxScaleFactor);
-            AndroidUtilities.updateViewLayout(PipVideoOverlay.this.windowManager, PipVideoOverlay.this.contentView, PipVideoOverlay.this.windowLayoutParams);
-            return true;
+    public final class AnonymousClass3 implements ScaleGestureDetector.OnScaleGestureListener {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass3(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
         }
 
         @Override
-        public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-            if (PipVideoOverlay.this.pipXSpring.isRunning() || PipVideoOverlay.this.pipYSpring.isRunning()) {
-                final ArrayList arrayList = new ArrayList();
-                DynamicAnimation.OnAnimationEndListener onAnimationEndListener = new DynamicAnimation.OnAnimationEndListener() {
-                    @Override
-                    public void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                        dynamicAnimation.removeEndListener(this);
-                        arrayList.add((SpringAnimation) dynamicAnimation);
-                        if (arrayList.size() == 2) {
-                            AnonymousClass3.this.updateLayout();
-                        }
+        public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+            switch (this.$r8$classId) {
+                case 0:
+                    PipVideoOverlay pipVideoOverlay = (PipVideoOverlay) this.this$0;
+                    pipVideoOverlay.scaleFactor = MathUtils.clamp(scaleGestureDetector.getScaleFactor() * pipVideoOverlay.scaleFactor, 0.75f, pipVideoOverlay.maxScaleFactor);
+                    pipVideoOverlay.pipWidth = (int) (PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()) * pipVideoOverlay.scaleFactor);
+                    pipVideoOverlay.pipHeight = (int) (pipVideoOverlay.getSuggestedHeight$2() * pipVideoOverlay.scaleFactor);
+                    AndroidUtilities.runOnUIThread(new PasscodeView$9$$ExternalSyntheticLambda0(this, 11));
+                    float focusX = scaleGestureDetector.getFocusX();
+                    int i = AndroidUtilities.displaySize.x;
+                    float fDp = focusX >= ((float) i) / 2.0f ? (i - pipVideoOverlay.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+                    SpringAnimation springAnimation = pipVideoOverlay.pipXSpring;
+                    if (springAnimation.mRunning) {
+                        springAnimation.mSpring.mFinalPosition = fDp;
+                    } else {
+                        springAnimation.mValue = pipVideoOverlay.pipX;
+                        springAnimation.mStartValueIsSet = true;
+                        springAnimation.mSpring.mFinalPosition = fDp;
                     }
-                };
-                if (!PipVideoOverlay.this.pipXSpring.isRunning()) {
-                    arrayList.add(PipVideoOverlay.this.pipXSpring);
-                } else {
-                    PipVideoOverlay.this.pipXSpring.addEndListener(onAnimationEndListener);
-                }
-                if (!PipVideoOverlay.this.pipYSpring.isRunning()) {
-                    arrayList.add(PipVideoOverlay.this.pipYSpring);
-                    return;
-                } else {
-                    PipVideoOverlay.this.pipYSpring.addEndListener(onAnimationEndListener);
-                    return;
-                }
+                    springAnimation.start();
+                    float fClamp = MathUtils.clamp(scaleGestureDetector.getFocusY() - (pipVideoOverlay.pipHeight / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - pipVideoOverlay.pipHeight) - AndroidUtilities.dp(16.0f));
+                    SpringAnimation springAnimation2 = pipVideoOverlay.pipYSpring;
+                    if (springAnimation2.mRunning) {
+                        springAnimation2.mSpring.mFinalPosition = fClamp;
+                    } else {
+                        springAnimation2.mValue = pipVideoOverlay.pipY;
+                        springAnimation2.mStartValueIsSet = true;
+                        springAnimation2.mSpring.mFinalPosition = fClamp;
+                    }
+                    springAnimation2.start();
+                    return true;
+                case 1:
+                    float scaleFactor = scaleGestureDetector.getScaleFactor();
+                    if (Float.isNaN(scaleFactor) || Float.isInfinite(scaleFactor)) {
+                        return false;
+                    }
+                    CropView cropView = ((CropGestureDetector) this.this$0).mListener;
+                    float focusX2 = scaleGestureDetector.getFocusX();
+                    float focusY = scaleGestureDetector.getFocusY();
+                    if (!cropView.animating) {
+                        float f = cropView.state.scale;
+                        if (f * scaleFactor > 30.0f) {
+                            scaleFactor = 30.0f / f;
+                        }
+                        float f2 = !cropView.inBubbleMode ? AndroidUtilities.statusBarHeight : 0;
+                        ImageView imageView = cropView.imageView;
+                        float width = focusX2 - (imageView.getWidth() / 2);
+                        CropAreaView cropAreaView = cropView.areaView;
+                        float cropWidth = width / cropAreaView.getCropWidth();
+                        CropView.CropState cropState = cropView.state;
+                        float f3 = ((cropState.orientation + cropState.baseRotation) % 180.0f != 0.0f ? cropState.height : cropState.width) * cropWidth;
+                        float fM = ImageReceiver$$ExternalSyntheticOutline1.m((imageView.getHeight() - cropView.bottomPadding) - f2, cropView.topPadding, 2.0f, focusY) / cropAreaView.getCropHeight();
+                        CropView.CropState cropState2 = cropView.state;
+                        CropView.CropState.access$700(cropState2, scaleFactor, f3, ((cropState2.orientation + cropState2.baseRotation) % 180.0f != 0.0f ? cropState2.width : cropState2.height) * fM);
+                        cropView.updateMatrix(false);
+                    }
+                    return true;
+                case 2:
+                    RTMPStreamPipOverlay rTMPStreamPipOverlay = (RTMPStreamPipOverlay) this.this$0;
+                    rTMPStreamPipOverlay.scaleFactor = MathUtils.clamp(scaleGestureDetector.getScaleFactor() * rTMPStreamPipOverlay.scaleFactor, 0.6f, rTMPStreamPipOverlay.maxScaleFactor);
+                    rTMPStreamPipOverlay.pipWidth = (int) (rTMPStreamPipOverlay.getSuggestedWidth() * rTMPStreamPipOverlay.scaleFactor);
+                    rTMPStreamPipOverlay.pipHeight = (int) (rTMPStreamPipOverlay.getSuggestedHeight() * rTMPStreamPipOverlay.scaleFactor);
+                    AndroidUtilities.runOnUIThread(new Tooltip$$ExternalSyntheticLambda0(this, 27));
+                    SpringAnimation springAnimation3 = rTMPStreamPipOverlay.pipXSpring;
+                    springAnimation3.mValue = rTMPStreamPipOverlay.pipX;
+                    springAnimation3.mStartValueIsSet = true;
+                    SpringForce springForce = springAnimation3.mSpring;
+                    float focusX3 = scaleGestureDetector.getFocusX();
+                    int i2 = AndroidUtilities.displaySize.x;
+                    springForce.mFinalPosition = focusX3 >= ((float) i2) / 2.0f ? (i2 - rTMPStreamPipOverlay.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+                    SpringAnimation springAnimation4 = rTMPStreamPipOverlay.pipXSpring;
+                    if (!springAnimation4.mRunning) {
+                        springAnimation4.start();
+                    }
+                    SpringAnimation springAnimation5 = rTMPStreamPipOverlay.pipYSpring;
+                    springAnimation5.mValue = rTMPStreamPipOverlay.pipY;
+                    springAnimation5.mStartValueIsSet = true;
+                    springAnimation5.mSpring.mFinalPosition = MathUtils.clamp(scaleGestureDetector.getFocusY() - (rTMPStreamPipOverlay.pipHeight / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - rTMPStreamPipOverlay.pipHeight) - AndroidUtilities.dp(16.0f));
+                    SpringAnimation springAnimation6 = rTMPStreamPipOverlay.pipYSpring;
+                    if (!springAnimation6.mRunning) {
+                        springAnimation6.start();
+                    }
+                    return true;
+                default:
+                    LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+                    liveStoryPipOverlay.scaleFactor = MathUtils.clamp(scaleGestureDetector.getScaleFactor() * liveStoryPipOverlay.scaleFactor, 0.6f, liveStoryPipOverlay.maxScaleFactor);
+                    liveStoryPipOverlay.pipWidth = (int) (liveStoryPipOverlay.getSuggestedWidth$1() * liveStoryPipOverlay.scaleFactor);
+                    liveStoryPipOverlay.pipHeight = (int) (liveStoryPipOverlay.getSuggestedHeight$1() * liveStoryPipOverlay.scaleFactor);
+                    AndroidUtilities.runOnUIThread(new LivePlayer$1$$ExternalSyntheticLambda0(this, 8));
+                    SpringAnimation springAnimation7 = liveStoryPipOverlay.pipXSpring;
+                    springAnimation7.mValue = liveStoryPipOverlay.pipX;
+                    springAnimation7.mStartValueIsSet = true;
+                    SpringForce springForce2 = springAnimation7.mSpring;
+                    float focusX4 = scaleGestureDetector.getFocusX();
+                    int i3 = AndroidUtilities.displaySize.x;
+                    springForce2.mFinalPosition = focusX4 >= ((float) i3) / 2.0f ? (i3 - liveStoryPipOverlay.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+                    SpringAnimation springAnimation8 = liveStoryPipOverlay.pipXSpring;
+                    if (!springAnimation8.mRunning) {
+                        springAnimation8.start();
+                    }
+                    SpringAnimation springAnimation9 = liveStoryPipOverlay.pipYSpring;
+                    springAnimation9.mValue = liveStoryPipOverlay.pipY;
+                    springAnimation9.mStartValueIsSet = true;
+                    springAnimation9.mSpring.mFinalPosition = MathUtils.clamp(scaleGestureDetector.getFocusY() - (liveStoryPipOverlay.pipHeight / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - liveStoryPipOverlay.pipHeight) - AndroidUtilities.dp(16.0f));
+                    SpringAnimation springAnimation10 = liveStoryPipOverlay.pipYSpring;
+                    if (!springAnimation10.mRunning) {
+                        springAnimation10.start();
+                    }
+                    return true;
             }
-            updateLayout();
+        }
+
+        @Override
+        public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+            switch (this.$r8$classId) {
+                case 0:
+                    PipVideoOverlay pipVideoOverlay = (PipVideoOverlay) this.this$0;
+                    if (pipVideoOverlay.isScrolling) {
+                        pipVideoOverlay.isScrolling = false;
+                        pipVideoOverlay.canLongClick = false;
+                        pipVideoOverlay.cancelRewind();
+                        AndroidUtilities.cancelRunOnUIThread(pipVideoOverlay.longClickCallback);
+                    }
+                    pipVideoOverlay.isScrollDisallowed = true;
+                    pipVideoOverlay.windowLayoutParams.width = (int) (PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()) * pipVideoOverlay.maxScaleFactor);
+                    pipVideoOverlay.windowLayoutParams.height = (int) (pipVideoOverlay.getSuggestedHeight$2() * pipVideoOverlay.maxScaleFactor);
+                    AndroidUtilities.updateViewLayout(pipVideoOverlay.windowManager, pipVideoOverlay.contentView, pipVideoOverlay.windowLayoutParams);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    RTMPStreamPipOverlay rTMPStreamPipOverlay = (RTMPStreamPipOverlay) this.this$0;
+                    if (rTMPStreamPipOverlay.isScrolling) {
+                        rTMPStreamPipOverlay.isScrolling = false;
+                    }
+                    rTMPStreamPipOverlay.isScrollDisallowed = true;
+                    rTMPStreamPipOverlay.windowLayoutParams.width = (int) (rTMPStreamPipOverlay.getSuggestedWidth() * rTMPStreamPipOverlay.maxScaleFactor);
+                    rTMPStreamPipOverlay.windowLayoutParams.height = (int) (rTMPStreamPipOverlay.getSuggestedHeight() * rTMPStreamPipOverlay.maxScaleFactor);
+                    AndroidUtilities.updateViewLayout(rTMPStreamPipOverlay.windowManager, rTMPStreamPipOverlay.contentView, rTMPStreamPipOverlay.windowLayoutParams);
+                    break;
+                default:
+                    LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+                    if (liveStoryPipOverlay.isScrolling) {
+                        liveStoryPipOverlay.isScrolling = false;
+                    }
+                    liveStoryPipOverlay.isScrollDisallowed = true;
+                    liveStoryPipOverlay.windowLayoutParams.width = (int) (liveStoryPipOverlay.getSuggestedWidth$1() * liveStoryPipOverlay.maxScaleFactor);
+                    liveStoryPipOverlay.windowLayoutParams.height = (int) (liveStoryPipOverlay.getSuggestedHeight$1() * liveStoryPipOverlay.maxScaleFactor);
+                    AndroidUtilities.updateViewLayout(liveStoryPipOverlay.windowManager, liveStoryPipOverlay.contentView, liveStoryPipOverlay.windowLayoutParams);
+                    break;
+            }
+            return true;
+        }
+
+        @Override
+        public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+            switch (this.$r8$classId) {
+                case 0:
+                    PipVideoOverlay pipVideoOverlay = (PipVideoOverlay) this.this$0;
+                    if (pipVideoOverlay.pipXSpring.mRunning || pipVideoOverlay.pipYSpring.mRunning) {
+                        final ArrayList arrayList = new ArrayList();
+                        final int i = 0;
+                        DynamicAnimation.OnAnimationEndListener onAnimationEndListener = new DynamicAnimation.OnAnimationEndListener() {
+                            @Override
+                            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+                                switch (i) {
+                                    case 0:
+                                        ArrayList arrayList2 = dynamicAnimation.mEndListeners;
+                                        int iIndexOf = arrayList2.indexOf(this);
+                                        if (iIndexOf >= 0) {
+                                            arrayList2.set(iIndexOf, null);
+                                        }
+                                        ArrayList arrayList3 = arrayList;
+                                        arrayList3.add((SpringAnimation) dynamicAnimation);
+                                        if (arrayList3.size() == 2) {
+                                            ((AnonymousClass3) this).updateLayout();
+                                        }
+                                        break;
+                                    case 1:
+                                        ArrayList arrayList4 = dynamicAnimation.mEndListeners;
+                                        int iIndexOf2 = arrayList4.indexOf(this);
+                                        if (iIndexOf2 >= 0) {
+                                            arrayList4.set(iIndexOf2, null);
+                                        }
+                                        ArrayList arrayList5 = arrayList;
+                                        arrayList5.add((SpringAnimation) dynamicAnimation);
+                                        if (arrayList5.size() == 2) {
+                                            ((AnonymousClass3) this).updateLayout();
+                                        }
+                                        break;
+                                    default:
+                                        ArrayList arrayList6 = dynamicAnimation.mEndListeners;
+                                        int iIndexOf3 = arrayList6.indexOf(this);
+                                        if (iIndexOf3 >= 0) {
+                                            arrayList6.set(iIndexOf3, null);
+                                        }
+                                        ArrayList arrayList7 = arrayList;
+                                        arrayList7.add((SpringAnimation) dynamicAnimation);
+                                        if (arrayList7.size() == 2) {
+                                            ((AnonymousClass3) this).updateLayout();
+                                        }
+                                        break;
+                                }
+                            }
+                        };
+                        SpringAnimation springAnimation = pipVideoOverlay.pipXSpring;
+                        if (springAnimation.mRunning) {
+                            springAnimation.addEndListener(onAnimationEndListener);
+                        } else {
+                            arrayList.add(springAnimation);
+                        }
+                        SpringAnimation springAnimation2 = pipVideoOverlay.pipYSpring;
+                        if (!springAnimation2.mRunning) {
+                            arrayList.add(springAnimation2);
+                        } else {
+                            springAnimation2.addEndListener(onAnimationEndListener);
+                        }
+                    } else {
+                        updateLayout();
+                    }
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    RTMPStreamPipOverlay rTMPStreamPipOverlay = (RTMPStreamPipOverlay) this.this$0;
+                    if (rTMPStreamPipOverlay.pipXSpring.mRunning || rTMPStreamPipOverlay.pipYSpring.mRunning) {
+                        final ArrayList arrayList2 = new ArrayList();
+                        final int i2 = 1;
+                        DynamicAnimation.OnAnimationEndListener onAnimationEndListener2 = new DynamicAnimation.OnAnimationEndListener() {
+                            @Override
+                            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+                                switch (i2) {
+                                    case 0:
+                                        ArrayList arrayList3 = dynamicAnimation.mEndListeners;
+                                        int iIndexOf = arrayList3.indexOf(this);
+                                        if (iIndexOf >= 0) {
+                                            arrayList3.set(iIndexOf, null);
+                                        }
+                                        ArrayList arrayList4 = arrayList2;
+                                        arrayList4.add((SpringAnimation) dynamicAnimation);
+                                        if (arrayList4.size() == 2) {
+                                            ((AnonymousClass3) this).updateLayout();
+                                        }
+                                        break;
+                                    case 1:
+                                        ArrayList arrayList5 = dynamicAnimation.mEndListeners;
+                                        int iIndexOf2 = arrayList5.indexOf(this);
+                                        if (iIndexOf2 >= 0) {
+                                            arrayList5.set(iIndexOf2, null);
+                                        }
+                                        ArrayList arrayList6 = arrayList2;
+                                        arrayList6.add((SpringAnimation) dynamicAnimation);
+                                        if (arrayList6.size() == 2) {
+                                            ((AnonymousClass3) this).updateLayout();
+                                        }
+                                        break;
+                                    default:
+                                        ArrayList arrayList7 = dynamicAnimation.mEndListeners;
+                                        int iIndexOf3 = arrayList7.indexOf(this);
+                                        if (iIndexOf3 >= 0) {
+                                            arrayList7.set(iIndexOf3, null);
+                                        }
+                                        ArrayList arrayList8 = arrayList2;
+                                        arrayList8.add((SpringAnimation) dynamicAnimation);
+                                        if (arrayList8.size() == 2) {
+                                            ((AnonymousClass3) this).updateLayout();
+                                        }
+                                        break;
+                                }
+                            }
+                        };
+                        SpringAnimation springAnimation3 = rTMPStreamPipOverlay.pipXSpring;
+                        if (springAnimation3.mRunning) {
+                            springAnimation3.addEndListener(onAnimationEndListener2);
+                        } else {
+                            arrayList2.add(springAnimation3);
+                        }
+                        SpringAnimation springAnimation4 = rTMPStreamPipOverlay.pipYSpring;
+                        if (!springAnimation4.mRunning) {
+                            arrayList2.add(springAnimation4);
+                        } else {
+                            springAnimation4.addEndListener(onAnimationEndListener2);
+                        }
+                    } else {
+                        updateLayout();
+                    }
+                    break;
+                default:
+                    LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+                    if (liveStoryPipOverlay.pipXSpring.mRunning || liveStoryPipOverlay.pipYSpring.mRunning) {
+                        final ArrayList arrayList3 = new ArrayList();
+                        final int i3 = 2;
+                        DynamicAnimation.OnAnimationEndListener onAnimationEndListener3 = new DynamicAnimation.OnAnimationEndListener() {
+                            @Override
+                            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+                                switch (i3) {
+                                    case 0:
+                                        ArrayList arrayList4 = dynamicAnimation.mEndListeners;
+                                        int iIndexOf = arrayList4.indexOf(this);
+                                        if (iIndexOf >= 0) {
+                                            arrayList4.set(iIndexOf, null);
+                                        }
+                                        ArrayList arrayList5 = arrayList3;
+                                        arrayList5.add((SpringAnimation) dynamicAnimation);
+                                        if (arrayList5.size() == 2) {
+                                            ((AnonymousClass3) this).updateLayout();
+                                        }
+                                        break;
+                                    case 1:
+                                        ArrayList arrayList6 = dynamicAnimation.mEndListeners;
+                                        int iIndexOf2 = arrayList6.indexOf(this);
+                                        if (iIndexOf2 >= 0) {
+                                            arrayList6.set(iIndexOf2, null);
+                                        }
+                                        ArrayList arrayList7 = arrayList3;
+                                        arrayList7.add((SpringAnimation) dynamicAnimation);
+                                        if (arrayList7.size() == 2) {
+                                            ((AnonymousClass3) this).updateLayout();
+                                        }
+                                        break;
+                                    default:
+                                        ArrayList arrayList8 = dynamicAnimation.mEndListeners;
+                                        int iIndexOf3 = arrayList8.indexOf(this);
+                                        if (iIndexOf3 >= 0) {
+                                            arrayList8.set(iIndexOf3, null);
+                                        }
+                                        ArrayList arrayList9 = arrayList3;
+                                        arrayList9.add((SpringAnimation) dynamicAnimation);
+                                        if (arrayList9.size() == 2) {
+                                            ((AnonymousClass3) this).updateLayout();
+                                        }
+                                        break;
+                                }
+                            }
+                        };
+                        SpringAnimation springAnimation5 = liveStoryPipOverlay.pipXSpring;
+                        if (springAnimation5.mRunning) {
+                            springAnimation5.addEndListener(onAnimationEndListener3);
+                        } else {
+                            arrayList3.add(springAnimation5);
+                        }
+                        SpringAnimation springAnimation6 = liveStoryPipOverlay.pipYSpring;
+                        if (!springAnimation6.mRunning) {
+                            arrayList3.add(springAnimation6);
+                        } else {
+                            springAnimation6.addEndListener(onAnimationEndListener3);
+                        }
+                    } else {
+                        updateLayout();
+                    }
+                    break;
+            }
         }
 
         public void updateLayout() {
-            PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
-            WindowManager.LayoutParams layoutParams = pipVideoOverlay.windowLayoutParams;
-            int suggestedWidth = (int) (PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor);
-            layoutParams.width = suggestedWidth;
-            pipVideoOverlay.pipWidth = suggestedWidth;
-            PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.this;
-            WindowManager.LayoutParams layoutParams2 = pipVideoOverlay2.windowLayoutParams;
-            int suggestedHeight = (int) (PipVideoOverlay.this.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor);
-            layoutParams2.height = suggestedHeight;
-            pipVideoOverlay2.pipHeight = suggestedHeight;
-            try {
-                AndroidUtilities.updateViewLayout(PipVideoOverlay.this.windowManager, PipVideoOverlay.this.contentView, PipVideoOverlay.this.windowLayoutParams);
-            } catch (IllegalArgumentException unused) {
-            }
-        }
-    }
-
-    class AnonymousClass4 extends GestureDetectorFixDoubleTap.OnGestureListener {
-        private float startPipX;
-        private float startPipY;
-        final int val$touchSlop;
-
-        AnonymousClass4(int i) {
-            this.val$touchSlop = i;
-        }
-
-        @Override
-        public boolean onDown(MotionEvent motionEvent) {
-            if (PipVideoOverlay.this.isShowingControls) {
-                for (int i = 1; i < PipVideoOverlay.this.contentFrameLayout.getChildCount(); i++) {
-                    View childAt = PipVideoOverlay.this.contentFrameLayout.getChildAt(i);
-                    if (childAt.dispatchTouchEvent(motionEvent)) {
-                        PipVideoOverlay.this.consumingChild = childAt;
-                        return true;
+            switch (this.$r8$classId) {
+                case 0:
+                    PipVideoOverlay pipVideoOverlay = (PipVideoOverlay) this.this$0;
+                    WindowManager.LayoutParams layoutParams = pipVideoOverlay.windowLayoutParams;
+                    int suggestedWidth = (int) (PipVideoOverlay.getSuggestedWidth(pipVideoOverlay.getRatio$2()) * pipVideoOverlay.scaleFactor);
+                    layoutParams.width = suggestedWidth;
+                    pipVideoOverlay.pipWidth = suggestedWidth;
+                    WindowManager.LayoutParams layoutParams2 = pipVideoOverlay.windowLayoutParams;
+                    int suggestedHeight$2 = (int) (pipVideoOverlay.getSuggestedHeight$2() * pipVideoOverlay.scaleFactor);
+                    layoutParams2.height = suggestedHeight$2;
+                    pipVideoOverlay.pipHeight = suggestedHeight$2;
+                    try {
+                        AndroidUtilities.updateViewLayout(pipVideoOverlay.windowManager, pipVideoOverlay.contentView, pipVideoOverlay.windowLayoutParams);
+                    } catch (IllegalArgumentException unused) {
+                        return;
                     }
-                }
-            }
-            this.startPipX = PipVideoOverlay.this.pipX;
-            this.startPipY = PipVideoOverlay.this.pipY;
-            return true;
-        }
-
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-            if (PipVideoOverlay.this.controlsAnimator != null) {
-                return true;
-            }
-            if (PipVideoOverlay.this.postedDismissControls) {
-                AndroidUtilities.cancelRunOnUIThread(PipVideoOverlay.this.dismissControlsCallback);
-                PipVideoOverlay.this.postedDismissControls = false;
-            }
-            PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
-            pipVideoOverlay.isShowingControls = !pipVideoOverlay.isShowingControls;
-            PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.this;
-            pipVideoOverlay2.toggleControls(pipVideoOverlay2.isShowingControls);
-            if (PipVideoOverlay.this.isShowingControls && !PipVideoOverlay.this.postedDismissControls) {
-                AndroidUtilities.runOnUIThread(PipVideoOverlay.this.dismissControlsCallback, 2500L);
-                PipVideoOverlay.this.postedDismissControls = true;
-            }
-            return true;
-        }
-
-        @Override
-        public boolean onDoubleTap(MotionEvent motionEvent) {
-            boolean z;
-            if (PipVideoOverlay.this.photoViewer != null && ((PipVideoOverlay.this.photoViewer.getVideoPlayer() != null || PipVideoOverlay.this.photoViewerWebView != null) && !PipVideoOverlay.this.isDismissing && !PipVideoOverlay.this.isVideoCompleted && !PipVideoOverlay.this.isScrolling && !PipVideoOverlay.this.scaleGestureDetector.isInProgress() && PipVideoOverlay.this.canLongClick)) {
-                PipVideoOverlay.this.photoViewer.getVideoPlayer();
-                boolean z2 = motionEvent.getX() >= (((float) PipVideoOverlay.this.getSuggestedWidth()) * PipVideoOverlay.this.scaleFactor) * 0.5f;
-                long currentPosition = PipVideoOverlay.this.getCurrentPosition();
-                long duration = PipVideoOverlay.this.getDuration();
-                if (currentPosition != -9223372036854775807L && duration >= 15000) {
-                    long j = z2 ? currentPosition + 10000 : currentPosition - 10000;
-                    if (currentPosition != j) {
-                        if (j <= duration) {
-                            if (j < 0) {
-                                z = j >= -9000;
-                                j = 0;
-                            }
-                            if (z) {
-                                PipVideoOverlay.this.videoForwardDrawable.setOneShootAnimation(true);
-                                PipVideoOverlay.this.videoForwardDrawable.setLeftSide(!z2);
-                                PipVideoOverlay.this.videoForwardDrawable.addTime(10000L);
-                                PipVideoOverlay.this.seekTo(j);
-                                PipVideoOverlay.this.onUpdateRewindProgressUiInternal(z2 ? 10000L : -10000L, j / duration, true);
-                                if (!PipVideoOverlay.this.isShowingControls) {
-                                    PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
-                                    pipVideoOverlay.toggleControls(pipVideoOverlay.isShowingControls = true);
-                                    if (!PipVideoOverlay.this.postedDismissControls) {
-                                        PipVideoOverlay.this.postedDismissControls = true;
-                                        AndroidUtilities.runOnUIThread(PipVideoOverlay.this.dismissControlsCallback, 2500L);
-                                    }
-                                }
-                            }
-                            return true;
-                        }
-                        j = duration;
-                        z = true;
-                        if (z) {
-                            PipVideoOverlay.this.videoForwardDrawable.setOneShootAnimation(true);
-                            PipVideoOverlay.this.videoForwardDrawable.setLeftSide(!z2);
-                            PipVideoOverlay.this.videoForwardDrawable.addTime(10000L);
-                            PipVideoOverlay.this.seekTo(j);
-                            PipVideoOverlay.this.onUpdateRewindProgressUiInternal(z2 ? 10000L : -10000L, j / duration, true);
-                            if (!PipVideoOverlay.this.isShowingControls) {
-                                PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.this;
-                                pipVideoOverlay2.toggleControls(pipVideoOverlay2.isShowingControls = true);
-                                if (!PipVideoOverlay.this.postedDismissControls) {
-                                    PipVideoOverlay.this.postedDismissControls = true;
-                                    AndroidUtilities.runOnUIThread(PipVideoOverlay.this.dismissControlsCallback, 2500L);
-                                }
-                            }
-                        }
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent motionEvent) {
-            if (!hasDoubleTap(motionEvent)) {
-                return onSingleTapConfirmed(motionEvent);
-            }
-            return super.onSingleTapUp(motionEvent);
-        }
-
-        @Override
-        public boolean hasDoubleTap(MotionEvent motionEvent) {
-            if (PipVideoOverlay.this.photoViewer != null && ((PipVideoOverlay.this.photoViewer.getVideoPlayer() != null || PipVideoOverlay.this.photoViewerWebView != null) && !PipVideoOverlay.this.isDismissing && !PipVideoOverlay.this.isVideoCompleted && !PipVideoOverlay.this.isScrolling && !PipVideoOverlay.this.scaleGestureDetector.isInProgress() && PipVideoOverlay.this.canLongClick)) {
-                long currentPosition = PipVideoOverlay.this.getCurrentPosition();
-                long duration = PipVideoOverlay.this.getDuration();
-                if (currentPosition != -9223372036854775807L && duration >= 15000) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        @Override
-        public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-            if (!PipVideoOverlay.this.isScrolling || PipVideoOverlay.this.isScrollDisallowed) {
-                return false;
-            }
-            SpringForce spring = ((SpringAnimation) ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartVelocity(f)).setStartValue(PipVideoOverlay.this.pipX)).getSpring();
-            float f3 = PipVideoOverlay.this.pipX + (PipVideoOverlay.this.pipWidth / 2.0f) + (f / 7.0f);
-            int i = AndroidUtilities.displaySize.x;
-            spring.setFinalPosition(f3 >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
-            PipVideoOverlay.this.pipXSpring.start();
-            ((SpringAnimation) ((SpringAnimation) PipVideoOverlay.this.pipYSpring.setStartVelocity(f)).setStartValue(PipVideoOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
-            PipVideoOverlay.this.pipYSpring.start();
-            return true;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-            int iDp;
-            if (!PipVideoOverlay.this.isScrolling && PipVideoOverlay.this.controlsAnimator == null && !PipVideoOverlay.this.isScrollDisallowed && (Math.abs(f) >= this.val$touchSlop || Math.abs(f2) >= this.val$touchSlop)) {
-                PipVideoOverlay.this.isScrolling = true;
-                PipVideoOverlay.this.pipXSpring.cancel();
-                PipVideoOverlay.this.pipYSpring.cancel();
-                PipVideoOverlay.this.canLongClick = false;
-                PipVideoOverlay.this.cancelRewind();
-                AndroidUtilities.cancelRunOnUIThread(PipVideoOverlay.this.longClickCallback);
-            }
-            if (PipVideoOverlay.this.isScrolling) {
-                float f3 = PipVideoOverlay.this.pipX;
-                final float rawX = (this.startPipX + motionEvent2.getRawX()) - motionEvent.getRawX();
-                PipVideoOverlay.this.pipY = (this.startPipY + motionEvent2.getRawY()) - motionEvent.getRawY();
-                if (rawX <= (-PipVideoOverlay.this.pipWidth) * 0.25f || rawX >= AndroidUtilities.displaySize.x - (PipVideoOverlay.this.pipWidth * 0.75f)) {
-                    if (!PipVideoOverlay.this.onSideToDismiss) {
-                        SpringForce spring = ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartValue(f3)).getSpring();
-                        float f4 = rawX + (PipVideoOverlay.this.pipWidth / 2.0f);
-                        int iDp2 = AndroidUtilities.displaySize.x;
-                        if (f4 >= iDp2 / 2.0f) {
-                            iDp = AndroidUtilities.dp(16.0f);
-                        } else {
-                            iDp2 = AndroidUtilities.dp(16.0f);
-                            iDp = PipVideoOverlay.this.pipWidth;
-                        }
-                        spring.setFinalPosition(iDp2 - iDp);
-                        PipVideoOverlay.this.pipXSpring.start();
-                    }
-                    PipVideoOverlay.this.onSideToDismiss = true;
-                } else if (PipVideoOverlay.this.onSideToDismiss) {
-                    if (PipVideoOverlay.this.onSideToDismiss) {
-                        PipVideoOverlay.this.pipXSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
-                            @Override
-                            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f5, float f6) {
-                                PipVideoOverlay.AnonymousClass4.$r8$lambda$Wv51r7SgnRYZvXDoCZy2W8W8UN4(this.f$0, rawX, dynamicAnimation, z, f5, f6);
-                            }
-                        });
-                        ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartValue(f3)).getSpring().setFinalPosition(rawX);
-                        PipVideoOverlay.this.pipXSpring.start();
-                    }
-                    PipVideoOverlay.this.onSideToDismiss = false;
-                } else {
-                    if (PipVideoOverlay.this.pipXSpring.isRunning()) {
-                        PipVideoOverlay.this.pipXSpring.getSpring().setFinalPosition(rawX);
-                    } else {
-                        PipVideoOverlay.this.windowLayoutParams.x = (int) PipVideoOverlay.this.pipX = rawX;
-                        PipVideoOverlay.this.getPipConfig().setPipX(rawX);
-                    }
-                    PipVideoOverlay.this.windowLayoutParams.y = (int) PipVideoOverlay.this.pipY;
-                    PipVideoOverlay.this.getPipConfig().setPipY(PipVideoOverlay.this.pipY);
-                    AndroidUtilities.updateViewLayout(PipVideoOverlay.this.windowManager, PipVideoOverlay.this.contentView, PipVideoOverlay.this.windowLayoutParams);
-                }
-            }
-            return true;
-        }
-
-        public static void $r8$lambda$Wv51r7SgnRYZvXDoCZy2W8W8UN4(AnonymousClass4 anonymousClass4, float f, DynamicAnimation dynamicAnimation, boolean z, float f2, float f3) {
-            if (z) {
-                anonymousClass4.getClass();
-                return;
-            }
-            SpringForce spring = PipVideoOverlay.this.pipXSpring.getSpring();
-            float f4 = f + (PipVideoOverlay.this.pipWidth / 2.0f);
-            int i = AndroidUtilities.displaySize.x;
-            spring.setFinalPosition(f4 >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
-        }
-    }
-
-    public static void $r8$lambda$gB1qwbwEvH42dhrArrH6CHV1wQA(PipVideoOverlay pipVideoOverlay, boolean z, View view) {
-        pipVideoOverlay.getClass();
-        List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) view.getContext().getSystemService("activity")).getRunningAppProcesses();
-        boolean z2 = true;
-        if (runningAppProcesses != null && !runningAppProcesses.isEmpty() && runningAppProcesses.get(0).importance != 100) {
-            z2 = false;
-        }
-        if (!z && (!z2 || !LaunchActivity.isResumed)) {
-            LaunchActivity.onResumeStaticCallback = new EmbedBottomSheet$$ExternalSyntheticLambda6(view);
-            Context context = ApplicationLoader.applicationContext;
-            Intent intent = new Intent(context, (Class<?>) LaunchActivity.class);
-            intent.addFlags(268435456);
-            context.startActivity(intent);
-            return;
-        }
-        EmbedBottomSheet embedBottomSheet = pipVideoOverlay.parentSheet;
-        if (embedBottomSheet != null) {
-            embedBottomSheet.exitFromPip();
-            return;
-        }
-        PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
-        if (photoViewer != null) {
-            photoViewer.exitFromPip();
-        }
-    }
-
-    public static void $r8$lambda$AHBvbxBgsOx58s2E3qsf2a47mfE(PipVideoOverlay pipVideoOverlay, View view) {
-        PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
-        if (photoViewer == null) {
-            return;
-        }
-        PhotoViewerWebView photoViewerWebView = pipVideoOverlay.photoViewerWebView;
-        if (photoViewerWebView != null) {
-            if (photoViewerWebView.isPlaying()) {
-                pipVideoOverlay.photoViewerWebView.pauseVideo();
-            } else {
-                pipVideoOverlay.photoViewerWebView.playVideo();
-            }
-        } else {
-            VideoPlayer videoPlayer = photoViewer.getVideoPlayer();
-            if (videoPlayer == null) {
-                return;
-            }
-            if (videoPlayer.isPlaying()) {
-                videoPlayer.pause();
-            } else {
-                videoPlayer.play();
+                    break;
+                case 1:
+                default:
+                    LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+                    WindowManager.LayoutParams layoutParams3 = liveStoryPipOverlay.windowLayoutParams;
+                    int suggestedWidth$1 = (int) (liveStoryPipOverlay.getSuggestedWidth$1() * liveStoryPipOverlay.scaleFactor);
+                    layoutParams3.width = suggestedWidth$1;
+                    liveStoryPipOverlay.pipWidth = suggestedWidth$1;
+                    WindowManager.LayoutParams layoutParams4 = liveStoryPipOverlay.windowLayoutParams;
+                    int suggestedHeight$1 = (int) (liveStoryPipOverlay.getSuggestedHeight$1() * liveStoryPipOverlay.scaleFactor);
+                    layoutParams4.height = suggestedHeight$1;
+                    liveStoryPipOverlay.pipHeight = suggestedHeight$1;
+                    AndroidUtilities.updateViewLayout(liveStoryPipOverlay.windowManager, liveStoryPipOverlay.contentView, liveStoryPipOverlay.windowLayoutParams);
+                    break;
+                case 2:
+                    RTMPStreamPipOverlay rTMPStreamPipOverlay = (RTMPStreamPipOverlay) this.this$0;
+                    WindowManager.LayoutParams layoutParams5 = rTMPStreamPipOverlay.windowLayoutParams;
+                    int suggestedWidth2 = (int) (rTMPStreamPipOverlay.getSuggestedWidth() * rTMPStreamPipOverlay.scaleFactor);
+                    layoutParams5.width = suggestedWidth2;
+                    rTMPStreamPipOverlay.pipWidth = suggestedWidth2;
+                    WindowManager.LayoutParams layoutParams6 = rTMPStreamPipOverlay.windowLayoutParams;
+                    int suggestedHeight = (int) (rTMPStreamPipOverlay.getSuggestedHeight() * rTMPStreamPipOverlay.scaleFactor);
+                    layoutParams6.height = suggestedHeight;
+                    rTMPStreamPipOverlay.pipHeight = suggestedHeight;
+                    AndroidUtilities.updateViewLayout(rTMPStreamPipOverlay.windowManager, rTMPStreamPipOverlay.contentView, rTMPStreamPipOverlay.windowLayoutParams);
+                    break;
             }
         }
-        updatePlayButton();
-    }
 
-    final class VideoProgressView extends View {
-        private final Paint bufferPaint;
-        private final Paint progressPaint;
-
-        public VideoProgressView(Context context) {
-            super(context);
-            Paint paint = new Paint();
-            this.progressPaint = paint;
-            Paint paint2 = new Paint();
-            this.bufferPaint = paint2;
-            paint.setColor(-1);
-            Paint.Style style = Paint.Style.STROKE;
-            paint.setStyle(style);
-            Paint.Cap cap = Paint.Cap.ROUND;
-            paint.setStrokeCap(cap);
-            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            paint2.setColor(paint.getColor());
-            paint2.setAlpha((int) (paint.getAlpha() * 0.3f));
-            paint2.setStyle(style);
-            paint2.setStrokeCap(cap);
-            paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        private final void onScaleEnd$org$telegram$ui$Components$Crop$CropGestureDetector$1(ScaleGestureDetector scaleGestureDetector) {
         }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            Canvas canvas2;
-            super.onDraw(canvas);
-            if (!PipVideoOverlay.this.isWebView || (PipVideoOverlay.this.photoViewerWebView != null && PipVideoOverlay.this.photoViewerWebView.isControllable())) {
-                int width = getWidth();
-                int iDp = AndroidUtilities.dp(10.0f);
-                float f = (width - iDp) - iDp;
-                int i = ((int) (PipVideoOverlay.this.videoProgress * f)) + iDp;
-                float height = getHeight() - AndroidUtilities.dp(8.0f);
-                if (PipVideoOverlay.this.bufferProgress != 0.0f) {
-                    float f2 = iDp;
-                    canvas2 = canvas;
-                    canvas2.drawLine(f2, height, f2 + (f * PipVideoOverlay.this.bufferProgress), height, this.bufferPaint);
-                } else {
-                    canvas2 = canvas;
-                }
-                canvas2.drawLine(iDp, height, i, height, this.progressPaint);
-            }
-        }
-    }
-
-    static final class PipConfig {
-        private final SharedPreferences mPrefs;
-
-        private PipConfig(int i, int i2) {
-            this.mPrefs = ApplicationLoader.applicationContext.getSharedPreferences("pip_layout_" + i + "_" + i2, 0);
-        }
-
-        public void setPipX(float f) {
-            this.mPrefs.edit().putFloat("x", f).apply();
-        }
-
-        public void setPipY(float f) {
-            this.mPrefs.edit().putFloat("y", f).apply();
-        }
-
-        public float getScaleFactor() {
-            return this.mPrefs.getFloat("scale_factor", 1.0f);
-        }
-
-        public float getPipX() {
-            return this.mPrefs.getFloat("x", -1.0f);
-        }
-
-        public float getPipY() {
-            return this.mPrefs.getFloat("y", -1.0f);
-        }
-    }
-
-    public static class PipVideoViewGroup extends ViewGroup {
-        public PipVideoViewGroup(Context context) {
-            super(context);
-        }
-    }
-
-    public static TextureView getPipTextureView() {
-        PipVideoOverlay pipVideoOverlay = instance;
-        if (pipVideoOverlay != null) {
-            return pipVideoOverlay.pipTextureView;
-        }
-        return null;
-    }
-
-    @Override
-    public boolean pipIsAvailable() {
-        PhotoViewer photoViewer = this.photoViewer;
-        return photoViewer != null && photoViewer.pipIsAvailable();
-    }
-
-    @Override
-    public Bitmap pipCreatePrimaryWindowViewBitmap() {
-        TextureView textureView;
-        PhotoViewer photoViewer = this.photoViewer;
-        if (photoViewer == null || (textureView = photoViewer.changedTextureView) == null || !textureView.isAvailable()) {
-            return null;
-        }
-        return this.photoViewer.changedTextureView.getBitmap();
-    }
-
-    @Override
-    public View pipCreatePictureInPictureView() {
-        TextureView textureView = new TextureView(this.contentView.getContext());
-        this.pipTextureView = textureView;
-        textureView.setVisibility(4);
-        this.pipTextureView.setOpaque(false);
-        this.pipTextureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
-            @Override
-            public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-            }
-
-            @Override
-            public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
-            }
-
-            @Override
-            public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-            }
-
-            @Override
-            public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-                PipVideoOverlay.this.photoViewer.changedTextureView.setSurfaceTexture(surfaceTexture);
-                return false;
-            }
-        });
-        return this.pipTextureView;
-    }
-
-    @Override
-    public void pipHidePrimaryWindowView(Runnable runnable) {
-        PhotoViewer photoViewer = this.photoViewer;
-        if (photoViewer != null && photoViewer.getVideoPlayer() != null) {
-            this.photoViewer.pipFirstFrameCallback = runnable;
-        }
-        this.windowManager.removeView(this.contentView);
-        this.windowViewSkipRender = true;
-        this.contentView.invalidate();
-    }
-
-    public static PipSource getPipSource() {
-        PipVideoOverlay pipVideoOverlay = instance;
-        if (pipVideoOverlay != null) {
-            return pipVideoOverlay.pipSource;
-        }
-        return null;
-    }
-
-    @Override
-    public Bitmap pipCreatePictureInPictureViewBitmap() {
-        TextureView textureView = this.pipTextureView;
-        if (textureView == null || !textureView.isAvailable()) {
-            return null;
-        }
-        return this.pipTextureView.getBitmap();
-    }
-
-    @Override
-    public void pipShowPrimaryWindowView(Runnable runnable) {
-        PipSource pipSource = this.pipSource;
-        if (pipSource != null && pipSource.params.isValid()) {
-            WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-            int width = this.pipSource.params.getWidth();
-            this.pipWidth = width;
-            layoutParams.width = width;
-            WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
-            int height = this.pipSource.params.getHeight();
-            this.pipHeight = height;
-            layoutParams2.height = height;
-        }
-        this.windowManager.addView(this.contentView, this.windowLayoutParams);
-        this.windowViewSkipRender = false;
-        this.contentView.invalidate();
-        PhotoViewer photoViewer = this.photoViewer;
-        if ((photoViewer != null ? photoViewer.getVideoPlayer() : null) == null) {
-            return;
-        }
-        this.photoViewer.pipFirstFrameCallback = runnable;
     }
 }

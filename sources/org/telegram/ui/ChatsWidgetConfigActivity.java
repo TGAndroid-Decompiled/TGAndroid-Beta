@@ -2,39 +2,37 @@ package org.telegram.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.TelegramMediaSession$$ExternalSyntheticOutline0;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 
 public class ChatsWidgetConfigActivity extends ExternalActionActivity {
-    private int creatingAppWidgetId = 0;
+    public int creatingAppWidgetId = 0;
 
     @Override
-    protected boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) {
-        if (!checkPasscode(intent, z, z2, z3, i, i2)) {
-            return false;
-        }
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            this.creatingAppWidgetId = extras.getInt("appWidgetId", 0);
-        }
-        if (this.creatingAppWidgetId != 0) {
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("onlySelect", true);
-            bundle.putInt("dialogsType", 10);
-            bundle.putBoolean("allowSwitchAccount", true);
+    public final void handleIntent$1(int i, Intent intent, boolean z, boolean z2, boolean z3, int i2) {
+        if (checkPasscode(i, intent, z, z2, z3, i2)) {
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                this.creatingAppWidgetId = extras.getInt("appWidgetId", 0);
+            }
+            if (this.creatingAppWidgetId == 0) {
+                finish();
+                return;
+            }
+            TelegramMediaSession$$ExternalSyntheticOutline0.m(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
             EditWidgetActivity editWidgetActivity = new EditWidgetActivity(0, this.creatingAppWidgetId);
-            editWidgetActivity.setDelegate(new EditWidgetActivity.EditWidgetActivityDelegate() {
-                @Override
-                public final void didSelectDialogs(ArrayList arrayList) {
-                    ChatsWidgetConfigActivity.$r8$lambda$IH_ijoZUobNZ39eXlP8Nn0MceNE(this.f$0, arrayList);
-                }
-            });
+            editWidgetActivity.delegate = new ChatActivity$$ExternalSyntheticLambda356(this, 21);
             if (AndroidUtilities.isTablet()) {
                 if (this.layersActionBarLayout.getFragmentStack().isEmpty()) {
-                    this.layersActionBarLayout.addFragmentToStack(editWidgetActivity);
+                    ActionBarLayout actionBarLayout = this.layersActionBarLayout;
+                    actionBarLayout.getClass();
+                    actionBarLayout.addFragmentToStack(-1, editWidgetActivity);
                 }
             } else if (this.actionBarLayout.getFragmentStack().isEmpty()) {
-                this.actionBarLayout.addFragmentToStack(editWidgetActivity);
+                ActionBarLayout actionBarLayout2 = this.actionBarLayout;
+                actionBarLayout2.getClass();
+                actionBarLayout2.addFragmentToStack(-1, editWidgetActivity);
             }
             if (!AndroidUtilities.isTablet()) {
                 this.backgroundTablet.setVisibility(8);
@@ -44,17 +42,6 @@ public class ChatsWidgetConfigActivity extends ExternalActionActivity {
                 this.layersActionBarLayout.showLastFragment();
             }
             intent.setAction(null);
-        } else {
-            finish();
         }
-        return true;
-    }
-
-    public static void $r8$lambda$IH_ijoZUobNZ39eXlP8Nn0MceNE(ChatsWidgetConfigActivity chatsWidgetConfigActivity, ArrayList arrayList) {
-        chatsWidgetConfigActivity.getClass();
-        Intent intent = new Intent();
-        intent.putExtra("appWidgetId", chatsWidgetConfigActivity.creatingAppWidgetId);
-        chatsWidgetConfigActivity.setResult(-1, intent);
-        chatsWidgetConfigActivity.finish();
     }
 }

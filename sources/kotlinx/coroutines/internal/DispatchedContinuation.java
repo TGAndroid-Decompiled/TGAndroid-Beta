@@ -1,194 +1,123 @@
 package kotlinx.coroutines.internal;
 
-import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import kotlin.Unit;
+import kotlin.Result;
+import kotlin.collections.ArrayDeque;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
+import kotlin.coroutines.jvm.internal.ContinuationImpl;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
 import kotlin.jvm.internal.Intrinsics;
-import kotlinx.coroutines.CancellableContinuation;
-import kotlinx.coroutines.CancellableContinuationImpl;
+import kotlinx.coroutines.CompletedExceptionally;
 import kotlinx.coroutines.CompletedWithCancellation;
-import kotlinx.coroutines.CompletionStateKt;
 import kotlinx.coroutines.CoroutineDispatcher;
-import kotlinx.coroutines.DebugStringsKt;
 import kotlinx.coroutines.DispatchedTask;
-import kotlinx.coroutines.EventLoop;
+import kotlinx.coroutines.EventLoopImplPlatform;
+import kotlinx.coroutines.JobKt;
 import kotlinx.coroutines.ThreadLocalEventLoop;
 
 public final class DispatchedContinuation extends DispatchedTask implements CoroutineStackFrame, Continuation {
-    private static final AtomicReferenceFieldUpdater _reusableCancellableContinuation$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(DispatchedContinuation.class, Object.class, "_reusableCancellableContinuation$volatile");
+    public static final AtomicReferenceFieldUpdater _reusableCancellableContinuation$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(DispatchedContinuation.class, Object.class, "_reusableCancellableContinuation$volatile");
     private volatile Object _reusableCancellableContinuation$volatile;
     public Object _state;
-    public final Continuation continuation;
+    public final ContinuationImpl continuation;
     public final Object countOrElement;
     public final CoroutineDispatcher dispatcher;
 
+    public DispatchedContinuation(CoroutineDispatcher coroutineDispatcher, ContinuationImpl continuationImpl) {
+        super(-1);
+        this.dispatcher = coroutineDispatcher;
+        this.continuation = continuationImpl;
+        this._state = AtomicKt.UNDEFINED;
+        Object objFold = continuationImpl.getContext().fold(0, ThreadContextKt$findOne$1.INSTANCE$1);
+        Intrinsics.checkNotNull(objFold);
+        this.countOrElement = objFold;
+    }
+
     @Override
-    public CoroutineContext getContext() {
+    public final void cancelCompletedResult$kotlinx_coroutines_core(Object obj, CancellationException cancellationException) {
+        if (obj instanceof CompletedWithCancellation) {
+            ((CompletedWithCancellation) obj).getClass();
+            throw null;
+        }
+    }
+
+    @Override
+    public final CoroutineStackFrame getCallerFrame() {
+        ContinuationImpl continuationImpl = this.continuation;
+        if (SurfaceContainer$$ExternalSyntheticOutline0.m6m((Object) continuationImpl)) {
+            return continuationImpl;
+        }
+        return null;
+    }
+
+    @Override
+    public final CoroutineContext getContext() {
         return this.continuation.getContext();
     }
 
     @Override
-    public Continuation getDelegate$kotlinx_coroutines_core() {
+    public final Continuation getDelegate$kotlinx_coroutines_core() {
         return this;
     }
 
-    public DispatchedContinuation(CoroutineDispatcher coroutineDispatcher, Continuation continuation) {
-        super(-1);
-        this.dispatcher = coroutineDispatcher;
-        this.continuation = continuation;
-        this._state = DispatchedContinuationKt.UNDEFINED;
-        this.countOrElement = ThreadContextKt.threadContextElements(getContext());
-    }
-
     @Override
-    public CoroutineStackFrame getCallerFrame() {
-        Continuation continuation = this.continuation;
-        if (continuation instanceof CoroutineStackFrame) {
-            return (CoroutineStackFrame) continuation;
+    public final void resumeWith(Object obj) {
+        ContinuationImpl continuationImpl = this.continuation;
+        CoroutineContext context = continuationImpl.getContext();
+        Throwable thM139exceptionOrNullimpl = Result.m139exceptionOrNullimpl(obj);
+        Object completedExceptionally = thM139exceptionOrNullimpl == null ? obj : new CompletedExceptionally(thM139exceptionOrNullimpl, false);
+        CoroutineDispatcher coroutineDispatcher = this.dispatcher;
+        if (coroutineDispatcher.isDispatchNeeded()) {
+            this._state = completedExceptionally;
+            this.resumeMode = 0;
+            coroutineDispatcher.dispatch(context, this);
+            return;
         }
-        return null;
-    }
-
-    private final CancellableContinuationImpl getReusableCancellableContinuation() {
-        Object obj = _reusableCancellableContinuation$volatile$FU.get(this);
-        if (obj instanceof CancellableContinuationImpl) {
-            return (CancellableContinuationImpl) obj;
-        }
-        return null;
-    }
-
-    public final boolean isReusable$kotlinx_coroutines_core() {
-        return _reusableCancellableContinuation$volatile$FU.get(this) != null;
-    }
-
-    public final void awaitReusability$kotlinx_coroutines_core() {
-        while (_reusableCancellableContinuation$volatile$FU.get(this) == DispatchedContinuationKt.REUSABLE_CLAIMED) {
-        }
-    }
-
-    public final void release$kotlinx_coroutines_core() {
-        awaitReusability$kotlinx_coroutines_core();
-        CancellableContinuationImpl reusableCancellableContinuation = getReusableCancellableContinuation();
-        if (reusableCancellableContinuation != null) {
-            reusableCancellableContinuation.detachChild$kotlinx_coroutines_core();
-        }
-    }
-
-    public final CancellableContinuationImpl claimReusableCancellableContinuation$kotlinx_coroutines_core() {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$volatile$FU;
-        while (true) {
-            Object obj = atomicReferenceFieldUpdater.get(this);
-            if (obj == null) {
-                _reusableCancellableContinuation$volatile$FU.set(this, DispatchedContinuationKt.REUSABLE_CLAIMED);
-                return null;
+        EventLoopImplPlatform eventLoop$kotlinx_coroutines_core = ThreadLocalEventLoop.getEventLoop$kotlinx_coroutines_core();
+        if (eventLoop$kotlinx_coroutines_core.useCount >= 4294967296L) {
+            this._state = completedExceptionally;
+            this.resumeMode = 0;
+            ArrayDeque arrayDeque = eventLoop$kotlinx_coroutines_core.unconfinedQueue;
+            if (arrayDeque == null) {
+                arrayDeque = new ArrayDeque();
+                eventLoop$kotlinx_coroutines_core.unconfinedQueue = arrayDeque;
             }
-            if (obj instanceof CancellableContinuationImpl) {
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, obj, DispatchedContinuationKt.REUSABLE_CLAIMED)) {
-                    return (CancellableContinuationImpl) obj;
-                }
-            } else if (obj != DispatchedContinuationKt.REUSABLE_CLAIMED && !(obj instanceof Throwable)) {
-                throw new IllegalStateException(("Inconsistent state " + obj).toString());
-            }
+            arrayDeque.addLast(this);
+            return;
         }
-    }
-
-    public final Throwable tryReleaseClaimedContinuation$kotlinx_coroutines_core(CancellableContinuation cancellableContinuation) {
-        Symbol symbol;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$volatile$FU;
-        do {
-            Object obj = atomicReferenceFieldUpdater.get(this);
-            symbol = DispatchedContinuationKt.REUSABLE_CLAIMED;
-            if (obj != symbol) {
-                if (obj instanceof Throwable) {
-                    if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, obj, null)) {
-                        throw new IllegalArgumentException("Failed requirement.");
-                    }
-                    return (Throwable) obj;
+        eventLoop$kotlinx_coroutines_core.incrementUseCount(true);
+        try {
+            CoroutineContext context2 = continuationImpl.getContext();
+            Object objUpdateThreadContext = AtomicKt.updateThreadContext(context2, this.countOrElement);
+            try {
+                continuationImpl.resumeWith(obj);
+                AtomicKt.restoreThreadContext(context2, objUpdateThreadContext);
+                while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent()) {
                 }
-                throw new IllegalStateException(("Inconsistent state " + obj).toString());
+            } catch (Throwable th) {
+                AtomicKt.restoreThreadContext(context2, objUpdateThreadContext);
+                throw th;
             }
-        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, symbol, cancellableContinuation));
-        return null;
-    }
-
-    public final boolean postponeCancellation$kotlinx_coroutines_core(Throwable th) {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$volatile$FU;
-        while (true) {
-            Object obj = atomicReferenceFieldUpdater.get(this);
-            Symbol symbol = DispatchedContinuationKt.REUSABLE_CLAIMED;
-            if (Intrinsics.areEqual(obj, symbol)) {
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, symbol, th)) {
-                    return true;
-                }
-            } else {
-                if (obj instanceof Throwable) {
-                    return true;
-                }
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, obj, null)) {
-                    return false;
-                }
+        } catch (Throwable th2) {
+            try {
+                handleFatalException$kotlinx_coroutines_core(th2, null);
+            } finally {
+                eventLoop$kotlinx_coroutines_core.decrementUseCount(true);
             }
         }
     }
 
     @Override
-    public Object takeState$kotlinx_coroutines_core() {
+    public final Object takeState$kotlinx_coroutines_core() {
         Object obj = this._state;
-        this._state = DispatchedContinuationKt.UNDEFINED;
+        this._state = AtomicKt.UNDEFINED;
         return obj;
     }
 
-    @Override
-    public void resumeWith(Object obj) {
-        CoroutineContext context = this.continuation.getContext();
-        Object state$default = CompletionStateKt.toState$default(obj, null, 1, null);
-        if (this.dispatcher.isDispatchNeeded(context)) {
-            this._state = state$default;
-            this.resumeMode = 0;
-            this.dispatcher.dispatch(context, this);
-            return;
-        }
-        EventLoop eventLoop$kotlinx_coroutines_core = ThreadLocalEventLoop.INSTANCE.getEventLoop$kotlinx_coroutines_core();
-        if (!eventLoop$kotlinx_coroutines_core.isUnconfinedLoopActive()) {
-            eventLoop$kotlinx_coroutines_core.incrementUseCount(true);
-            try {
-                CoroutineContext context2 = getContext();
-                Object objUpdateThreadContext = ThreadContextKt.updateThreadContext(context2, this.countOrElement);
-                try {
-                    this.continuation.resumeWith(obj);
-                    Unit unit = Unit.INSTANCE;
-                    ThreadContextKt.restoreThreadContext(context2, objUpdateThreadContext);
-                    while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent()) {
-                    }
-                } catch (Throwable th) {
-                    ThreadContextKt.restoreThreadContext(context2, objUpdateThreadContext);
-                    throw th;
-                }
-            } catch (Throwable th2) {
-                try {
-                    handleFatalException$kotlinx_coroutines_core(th2, null);
-                } finally {
-                    eventLoop$kotlinx_coroutines_core.decrementUseCount(true);
-                }
-            }
-            return;
-        }
-        this._state = state$default;
-        this.resumeMode = 0;
-        eventLoop$kotlinx_coroutines_core.dispatchUnconfined(this);
-    }
-
-    @Override
-    public void cancelCompletedResult$kotlinx_coroutines_core(Object obj, Throwable th) {
-        if (obj instanceof CompletedWithCancellation) {
-            ((CompletedWithCancellation) obj).onCancellation.invoke(th);
-        }
-    }
-
-    public String toString() {
-        return "DispatchedContinuation[" + this.dispatcher + ", " + DebugStringsKt.toDebugString(this.continuation) + ']';
+    public final String toString() {
+        return "DispatchedContinuation[" + this.dispatcher + ", " + JobKt.toDebugString(this.continuation) + ']';
     }
 }

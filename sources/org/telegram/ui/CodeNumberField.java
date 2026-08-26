@@ -8,117 +8,58 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.text.Editable;
 import android.text.Layout;
 import android.text.StaticLayout;
-import android.text.TextWatcher;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
 import androidx.core.content.ContextCompat;
-import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
+import org.telegram.ui.iv.RichEditText;
 
 public abstract class CodeNumberField extends EditTextBoldCursor {
-    float enterAnimation;
-    ValueAnimator enterAnimator;
-    private float errorProgress;
-    private SpringAnimation errorSpringAnimation;
-    float exitAnimation;
-    ValueAnimator exitAnimator;
-    Bitmap exitBitmap;
-    Canvas exitCanvas;
-    private float focusedProgress;
-    private SpringAnimation focusedSpringAnimation;
-    boolean pressed;
-    boolean replaceAnimation;
-    private boolean showSoftInputOnFocusInternal;
-    float startX;
-    float startY;
-    private float successProgress;
-    private float successScaleProgress;
-    private SpringAnimation successScaleSpringAnimation;
-    private SpringAnimation successSpringAnimation;
-    private static final FloatPropertyCompat FOCUSED_PROGRESS = new SimpleFloatPropertyCompat("focusedProgress", new SimpleFloatPropertyCompat.Getter() {
-        @Override
-        public final float get(Object obj) {
-            return ((CodeNumberField) obj).focusedProgress;
-        }
-    }, new SimpleFloatPropertyCompat.Setter() {
-        @Override
-        public final void set(Object obj, float f) {
-            CodeNumberField.$r8$lambda$HpXuBv82yoAS76t8pi9KS1yL5o0((CodeNumberField) obj, f);
-        }
-    }).setMultiplier(100.0f);
-    private static final FloatPropertyCompat ERROR_PROGRESS = new SimpleFloatPropertyCompat("errorProgress", new SimpleFloatPropertyCompat.Getter() {
-        @Override
-        public final float get(Object obj) {
-            return ((CodeNumberField) obj).errorProgress;
-        }
-    }, new SimpleFloatPropertyCompat.Setter() {
-        @Override
-        public final void set(Object obj, float f) {
-            CodeNumberField.m1908$r8$lambda$5g0GVwwllzQjIXFZT8itpR3Y64((CodeNumberField) obj, f);
-        }
-    }).setMultiplier(100.0f);
-    private static final FloatPropertyCompat SUCCESS_PROGRESS = new SimpleFloatPropertyCompat("successProgress", new SimpleFloatPropertyCompat.Getter() {
-        @Override
-        public final float get(Object obj) {
-            return ((CodeNumberField) obj).successProgress;
-        }
-    }, new SimpleFloatPropertyCompat.Setter() {
-        @Override
-        public final void set(Object obj, float f) {
-            CodeNumberField.m1910$r8$lambda$UomGlqr4jGpJcdvkMj7Ervg9P4((CodeNumberField) obj, f);
-        }
-    }).setMultiplier(100.0f);
-    private static final FloatPropertyCompat SUCCESS_SCALE_PROGRESS = new SimpleFloatPropertyCompat("successScaleProgress", new SimpleFloatPropertyCompat.Getter() {
-        @Override
-        public final float get(Object obj) {
-            return ((CodeNumberField) obj).successScaleProgress;
-        }
-    }, new SimpleFloatPropertyCompat.Setter() {
-        @Override
-        public final void set(Object obj, float f) {
-            CodeNumberField.m1911$r8$lambda$XQm0Un1gXrJzRog9t989rgHlYA((CodeNumberField) obj, f);
-        }
-    }).setMultiplier(100.0f);
+    public static final SimpleFloatPropertyCompat ERROR_PROGRESS;
+    public static final SimpleFloatPropertyCompat FOCUSED_PROGRESS;
+    public static final SimpleFloatPropertyCompat SUCCESS_PROGRESS;
+    public static final SimpleFloatPropertyCompat SUCCESS_SCALE_PROGRESS;
+    public float enterAnimation;
+    public ValueAnimator enterAnimator;
+    public float errorProgress;
+    public final SpringAnimation errorSpringAnimation;
+    public float exitAnimation;
+    public ValueAnimator exitAnimator;
+    public Bitmap exitBitmap;
+    public Canvas exitCanvas;
+    public float focusedProgress;
+    public final SpringAnimation focusedSpringAnimation;
+    public boolean pressed;
+    public boolean replaceAnimation;
+    public boolean showSoftInputOnFocusInternal;
+    public float successProgress;
+    public float successScaleProgress;
+    public final SpringAnimation successScaleSpringAnimation;
+    public final SpringAnimation successSpringAnimation;
 
-    public static void $r8$lambda$HpXuBv82yoAS76t8pi9KS1yL5o0(CodeNumberField codeNumberField, float f) {
-        codeNumberField.focusedProgress = f;
-        if (codeNumberField.getParent() != null) {
-            ((View) codeNumberField.getParent()).invalidate();
-        }
-    }
-
-    public static void m1908$r8$lambda$5g0GVwwllzQjIXFZT8itpR3Y64(CodeNumberField codeNumberField, float f) {
-        codeNumberField.errorProgress = f;
-        if (codeNumberField.getParent() != null) {
-            ((View) codeNumberField.getParent()).invalidate();
-        }
-    }
-
-    public static void m1910$r8$lambda$UomGlqr4jGpJcdvkMj7Ervg9P4(CodeNumberField codeNumberField, float f) {
-        codeNumberField.successProgress = f;
-        if (codeNumberField.getParent() != null) {
-            ((View) codeNumberField.getParent()).invalidate();
-        }
-    }
-
-    public static void m1911$r8$lambda$XQm0Un1gXrJzRog9t989rgHlYA(CodeNumberField codeNumberField, float f) {
-        codeNumberField.successScaleProgress = f;
-        if (codeNumberField.getParent() != null) {
-            ((View) codeNumberField.getParent()).invalidate();
-        }
+    static {
+        SimpleFloatPropertyCompat simpleFloatPropertyCompat = new SimpleFloatPropertyCompat(new ChatActivity$$ExternalSyntheticLambda131(8), new ChatActivity$$ExternalSyntheticLambda131(9));
+        simpleFloatPropertyCompat.multiplier = 100.0f;
+        FOCUSED_PROGRESS = simpleFloatPropertyCompat;
+        SimpleFloatPropertyCompat simpleFloatPropertyCompat2 = new SimpleFloatPropertyCompat(new ChatActivity$$ExternalSyntheticLambda131(10), new ChatActivity$$ExternalSyntheticLambda131(11));
+        simpleFloatPropertyCompat2.multiplier = 100.0f;
+        ERROR_PROGRESS = simpleFloatPropertyCompat2;
+        SimpleFloatPropertyCompat simpleFloatPropertyCompat3 = new SimpleFloatPropertyCompat(new ChatActivity$$ExternalSyntheticLambda131(12), new ChatActivity$$ExternalSyntheticLambda131(13));
+        simpleFloatPropertyCompat3.multiplier = 100.0f;
+        SUCCESS_PROGRESS = simpleFloatPropertyCompat3;
+        SimpleFloatPropertyCompat simpleFloatPropertyCompat4 = new SimpleFloatPropertyCompat(new ChatActivity$$ExternalSyntheticLambda131(14), new ChatActivity$$ExternalSyntheticLambda131(15));
+        simpleFloatPropertyCompat4.multiplier = 100.0f;
+        SUCCESS_SCALE_PROGRESS = simpleFloatPropertyCompat4;
     }
 
     public CodeNumberField(Context context) {
@@ -132,47 +73,50 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
         this.enterAnimation = 1.0f;
         this.exitAnimation = 1.0f;
         this.pressed = false;
-        this.startX = 0.0f;
-        this.startY = 0.0f;
         setBackground(null);
-        setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
         setMovementMethod(null);
-        addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                CodeNumberField.this.startEnterAnimation(charSequence.length() != 0);
-                CodeNumberField.this.hideActionMode();
-            }
-        });
+        addTextChangedListener(new ArticleViewer.AnonymousClass16((CodeFieldContainer.AnonymousClass1) this, 8));
     }
 
-    public void setShowSoftInputOnFocusCompat(boolean z) {
-        this.showSoftInputOnFocusInternal = z;
-        setShowSoftInputOnFocus(z);
+    public static void animateSpring(SpringAnimation springAnimation, float f) {
+        SpringForce springForce = springAnimation.mSpring;
+        if (springForce == null || f != ((float) springForce.mFinalPosition)) {
+            springAnimation.cancel();
+            SpringForce springForce2 = new SpringForce(f);
+            springForce2.setStiffness(400.0f);
+            springForce2.setDampingRatio(1.0f);
+            springForce2.mFinalPosition = f;
+            springAnimation.mSpring = springForce2;
+            springAnimation.start();
+        }
     }
 
-    public float getFocusedProgress() {
-        return this.focusedProgress;
-    }
-
-    public void animateFocusedProgress(float f) {
-        animateSpring(this.focusedSpringAnimation, f * 100.0f);
+    public final void animateSuccessProgress(float f) {
+        animateSpring(this.successSpringAnimation, f * 100.0f);
+        SpringAnimation springAnimation = this.successScaleSpringAnimation;
+        springAnimation.cancel();
+        if (f == 0.0f) {
+            this.successScaleProgress = 1.0f;
+            return;
+        }
+        SpringForce springForce = new SpringForce(1.0f);
+        springForce.setStiffness(500.0f);
+        springForce.setDampingRatio(0.75f);
+        springForce.mFinalPosition = 100.0f;
+        springAnimation.mSpring = springForce;
+        springAnimation.mValue = 100.0f;
+        springAnimation.mStartValueIsSet = true;
+        springAnimation.mVelocity = 4000.0f;
+        springAnimation.start();
     }
 
     public float getErrorProgress() {
         return this.errorProgress;
     }
 
-    public void animateErrorProgress(float f) {
-        animateSpring(this.errorSpringAnimation, f * 100.0f);
+    public float getFocusedProgress() {
+        return this.focusedProgress;
     }
 
     public float getSuccessProgress() {
@@ -183,31 +127,74 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
         return this.successScaleProgress;
     }
 
-    public void animateSuccessProgress(float f) {
-        animateSpring(this.successSpringAnimation, f * 100.0f);
-        this.successScaleSpringAnimation.cancel();
-        if (f != 0.0f) {
-            ((SpringAnimation) ((SpringAnimation) this.successScaleSpringAnimation.setSpring(new SpringForce(1.0f).setStiffness(500.0f).setDampingRatio(0.75f).setFinalPosition(100.0f)).setStartValue(100.0f)).setStartVelocity(4000.0f)).start();
-        } else {
-            this.successScaleProgress = 1.0f;
-        }
-    }
-
-    private void animateSpring(SpringAnimation springAnimation, float f) {
-        if (springAnimation.getSpring() == null || f != springAnimation.getSpring().getFinalPosition()) {
-            springAnimation.cancel();
-            springAnimation.setSpring(new SpringForce(f).setStiffness(400.0f).setDampingRatio(1.0f).setFinalPosition(f)).start();
-        }
-    }
-
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.focusedSpringAnimation.cancel();
         this.errorSpringAnimation.cancel();
     }
 
-    public void startExitAnimation() {
+    @Override
+    public final void onFocusChanged(boolean z, int i, Rect rect) {
+        super.onFocusChanged(z, i, rect);
+        if (isFocused()) {
+            return;
+        }
+        hideActionMode();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ClipDescription primaryClipDescription;
+        int i;
+        if (motionEvent.getAction() == 0) {
+            this.pressed = true;
+            motionEvent.getX();
+            motionEvent.getY();
+        }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            CodeFieldContainer codeFieldContainer = getParent() instanceof CodeFieldContainer ? (CodeFieldContainer) getParent() : null;
+            if (motionEvent.getAction() == 1 && this.pressed) {
+                if (!isFocused() || codeFieldContainer == null) {
+                    requestFocus();
+                } else {
+                    ClipboardManager clipboardManager = (ClipboardManager) ContextCompat.getSystemService(getContext(), ClipboardManager.class);
+                    if (clipboardManager == null || clipboardManager.getPrimaryClipDescription() == null || (primaryClipDescription = clipboardManager.getPrimaryClipDescription()) == null) {
+                        return false;
+                    }
+                    primaryClipDescription.hasMimeType("text/plain");
+                    ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
+                    try {
+                        i = Integer.parseInt((itemAt == null || itemAt.getText() == null) ? "" : itemAt.getText().toString());
+                    } catch (Exception unused) {
+                        i = -1;
+                    }
+                    if (i > 0) {
+                        startActionMode(new AnonymousClass2(0, this));
+                    }
+                }
+                setSelection(0);
+                if (this.showSoftInputOnFocusInternal) {
+                    AndroidUtilities.showKeyboard(this);
+                }
+            }
+            this.pressed = false;
+        }
+        return this.pressed;
+    }
+
+    @Override
+    public final boolean requestFocus(int i, Rect rect) {
+        ((ViewGroup) getParent()).invalidate();
+        return super.requestFocus(i, rect);
+    }
+
+    public void setShowSoftInputOnFocusCompat(boolean z) {
+        this.showSoftInputOnFocusInternal = z;
+        setShowSoftInputOnFocus(z);
+    }
+
+    public final void startExitAnimation() {
         if (getMeasuredHeight() == 0 || getMeasuredWidth() == 0 || getLayout() == null) {
             return;
         }
@@ -230,150 +217,88 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
         this.exitAnimation = 0.0f;
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.exitAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CodeNumberField.m1909$r8$lambda$5ixkb8nTCtYwT0lysRUsR2xdPc(this.f$0, valueAnimator);
-            }
-        });
+        valueAnimatorOfFloat.addUpdateListener(new CodeNumberField$$ExternalSyntheticLambda8(this, 0));
         this.exitAnimator.setDuration(220L);
         this.exitAnimator.start();
     }
 
-    public static void m1909$r8$lambda$5ixkb8nTCtYwT0lysRUsR2xdPc(CodeNumberField codeNumberField, ValueAnimator valueAnimator) {
-        codeNumberField.getClass();
-        codeNumberField.exitAnimation = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        codeNumberField.invalidate();
-        if (codeNumberField.getParent() != null) {
-            ((ViewGroup) codeNumberField.getParent()).invalidate();
-        }
-    }
+    public final class AnonymousClass2 implements ActionMode.Callback {
+        public final int $r8$classId;
+        public final EditTextBoldCursor this$0;
 
-    public void startEnterAnimation(boolean z) {
-        this.replaceAnimation = z;
-        this.enterAnimation = 0.0f;
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.enterAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CodeNumberField.$r8$lambda$8PP3jZio9e8HrIjQ2NMH4qaWzlI(this.f$0, valueAnimator);
+        public AnonymousClass2(int i, EditTextBoldCursor editTextBoldCursor) {
+            this.$r8$classId = i;
+            this.this$0 = editTextBoldCursor;
+        }
+
+        @Override
+        public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            ClipboardManager clipboardManager;
+            ClipData primaryClip;
+            int i;
+            switch (this.$r8$classId) {
+                case 0:
+                    if (menuItem.getItemId() == 16908322) {
+                        CodeNumberField codeNumberField = (CodeNumberField) this.this$0;
+                        CodeFieldContainer codeFieldContainer = codeNumberField.getParent() instanceof CodeFieldContainer ? (CodeFieldContainer) codeNumberField.getParent() : null;
+                        if (codeFieldContainer != null && (clipboardManager = (ClipboardManager) ContextCompat.getSystemService(codeNumberField.getContext(), ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
+                            String string = primaryClip.getItemAt(0).getText().toString();
+                            try {
+                                i = Integer.parseInt(string);
+                            } catch (Exception unused) {
+                                i = -1;
+                            }
+                            if (i > 0) {
+                                codeFieldContainer.setText(string, true);
+                            }
+                        }
+                        codeNumberField.hideActionMode();
+                        break;
+                    }
+                    return true;
+                default:
+                    return false;
             }
-        });
-        if (!this.replaceAnimation) {
-            this.enterAnimator.setInterpolator(new OvershootInterpolator(1.5f));
-            this.enterAnimator.setDuration(350L);
-        } else {
-            this.enterAnimator.setDuration(220L);
         }
-        this.enterAnimator.start();
-    }
 
-    public static void $r8$lambda$8PP3jZio9e8HrIjQ2NMH4qaWzlI(CodeNumberField codeNumberField, ValueAnimator valueAnimator) {
-        codeNumberField.getClass();
-        codeNumberField.enterAnimation = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        codeNumberField.invalidate();
-        if (codeNumberField.getParent() != null) {
-            ((ViewGroup) codeNumberField.getParent()).invalidate();
+        @Override
+        public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+            switch (this.$r8$classId) {
+                case 0:
+                    menu.add(0, 16908322, 0, 17039371);
+                    break;
+            }
+            return true;
         }
-    }
 
-    @Override
-    public boolean requestFocus(int i, Rect rect) {
-        ((ViewGroup) getParent()).invalidate();
-        return super.requestFocus(i, rect);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        ClipDescription primaryClipDescription;
-        int i;
-        if (motionEvent.getAction() == 0) {
-            this.pressed = true;
-            this.startX = motionEvent.getX();
-            this.startY = motionEvent.getY();
+        @Override
+        public final void onDestroyActionMode(ActionMode actionMode) {
+            int i = this.$r8$classId;
         }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            CodeFieldContainer codeFieldContainer = getParent() instanceof CodeFieldContainer ? (CodeFieldContainer) getParent() : null;
-            if (motionEvent.getAction() == 1 && this.pressed) {
-                if (isFocused() && codeFieldContainer != null) {
-                    ClipboardManager clipboardManager = (ClipboardManager) ContextCompat.getSystemService(getContext(), ClipboardManager.class);
-                    if (clipboardManager == null || clipboardManager.getPrimaryClipDescription() == null || (primaryClipDescription = clipboardManager.getPrimaryClipDescription()) == null) {
+
+        @Override
+        public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            switch (this.$r8$classId) {
+                case 0:
+                    return true;
+                default:
+                    if (((RichEditText) this.this$0).length() != 0) {
                         return false;
                     }
-                    primaryClipDescription.hasMimeType("text/plain");
-                    ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
-                    try {
-                        i = Integer.parseInt((itemAt == null || itemAt.getText() == null) ? "" : itemAt.getText().toString());
-                    } catch (Exception unused) {
-                        i = -1;
+                    for (int size = menu.size() - 1; size >= 0; size--) {
+                        int itemId = menu.getItem(size).getItemId();
+                        if (itemId != 16908322 && itemId != 16908337) {
+                            menu.removeItem(itemId);
+                        }
                     }
-                    if (i > 0) {
-                        startActionMode(new ActionMode.Callback() {
-                            @Override
-                            public void onDestroyActionMode(ActionMode actionMode) {
-                            }
-
-                            @Override
-                            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-                                return true;
-                            }
-
-                            @Override
-                            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-                                menu.add(0, 16908322, 0, 17039371);
-                                return true;
-                            }
-
-                            @Override
-                            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-                                if (menuItem.getItemId() != 16908322) {
-                                    return true;
-                                }
-                                CodeNumberField.this.pasteFromClipboard();
-                                CodeNumberField.this.hideActionMode();
-                                return true;
-                            }
-                        });
-                    }
-                } else {
-                    requestFocus();
-                }
-                setSelection(0);
-                if (this.showSoftInputOnFocusInternal) {
-                    AndroidUtilities.showKeyboard(this);
-                }
+                    return true;
             }
-            this.pressed = false;
         }
-        return this.pressed;
-    }
 
-    public void pasteFromClipboard() {
-        ClipboardManager clipboardManager;
-        ClipData primaryClip;
-        int i;
-        CodeFieldContainer codeFieldContainer = getParent() instanceof CodeFieldContainer ? (CodeFieldContainer) getParent() : null;
-        if (codeFieldContainer == null || (clipboardManager = (ClipboardManager) ContextCompat.getSystemService(getContext(), ClipboardManager.class)) == null || (primaryClip = clipboardManager.getPrimaryClip()) == null) {
-            return;
+        private final void onDestroyActionMode$org$telegram$ui$CodeNumberField$2(ActionMode actionMode) {
         }
-        String string = primaryClip.getItemAt(0).getText().toString();
-        try {
-            i = Integer.parseInt(string);
-        } catch (Exception unused) {
-            i = -1;
-        }
-        if (i > 0) {
-            codeFieldContainer.setText(string, true);
-        }
-    }
 
-    @Override
-    protected void onFocusChanged(boolean z, int i, Rect rect) {
-        super.onFocusChanged(z, i, rect);
-        if (isFocused()) {
-            return;
+        private final void onDestroyActionMode$org$telegram$ui$iv$RichEditText$2(ActionMode actionMode) {
         }
-        hideActionMode();
     }
 }

@@ -2,33 +2,37 @@ package org.telegram.ui.Business;
 
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import com.google.android.exoplayer2.util.Log;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
 import j$.time.Instant;
 import j$.time.ZoneId;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda208;
 
-public class TimezonesController {
-    private static volatile TimezonesController[] Instance = new TimezonesController[4];
-    private static final Object[] lockObjects = new Object[4];
+public final class TimezonesController {
+    public static volatile TimezonesController[] Instance = new TimezonesController[4];
+    public static final Object[] lockObjects = new Object[4];
     public final int currentAccount;
-    private boolean loaded;
-    private boolean loading;
-    private final ArrayList timezones = new ArrayList();
+    public boolean loaded;
+    public boolean loading;
+    public final ArrayList timezones = new ArrayList();
 
     static {
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
         }
+    }
+
+    public TimezonesController(int i) {
+        this.currentAccount = i;
     }
 
     public static TimezonesController getInstance(int i) {
@@ -53,164 +57,123 @@ public class TimezonesController {
         return timezonesController;
     }
 
-    private TimezonesController(int i) {
-        this.currentAccount = i;
+    public static String getTimezoneOffsetName(TLRPC.TL_timezone tL_timezone) {
+        int i = tL_timezone.utc_offset;
+        if (i == 0) {
+            return "GMT";
+        }
+        String strConcat = "GMT".concat(i < 0 ? "-" : "+");
+        int iAbs = Math.abs(tL_timezone.utc_offset) / 60;
+        int i2 = iAbs / 60;
+        int i3 = iAbs % 60;
+        StringBuilder sbM = Log.m(strConcat);
+        sbM.append(i2 < 10 ? "0" : "");
+        sbM.append(i2);
+        StringBuilder sbM2 = Log.m(zzhr.m(sbM.toString(), ":"));
+        sbM2.append(i3 < 10 ? "0" : "");
+        sbM2.append(i3);
+        return sbM2.toString();
     }
 
-    public ArrayList getTimezones() {
+    public final TLRPC.TL_timezone findTimezone(String str) {
+        if (str == null) {
+            return null;
+        }
         load();
-        return this.timezones;
-    }
-
-    public void load() {
-        if (this.loading || this.loaded) {
-            return;
-        }
-        this.loading = true;
-        final SharedPreferences mainSettings = MessagesController.getInstance(this.currentAccount).getMainSettings();
-        TLRPC.help_timezonesList help_timezoneslistTLdeserialize = null;
-        String string = mainSettings.getString("timezones", null);
-        if (string != null) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-            help_timezoneslistTLdeserialize = TLRPC.help_timezonesList.TLdeserialize(serializedData, serializedData.readInt32(false), false);
-        }
-        this.timezones.clear();
-        if (help_timezoneslistTLdeserialize != null) {
-            this.timezones.addAll(help_timezoneslistTLdeserialize.timezones);
-        }
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.timezonesUpdated, new Object[0]);
-        TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
-        tL_help_getTimezonesList.hash = help_timezoneslistTLdeserialize != null ? help_timezoneslistTLdeserialize.hash : 0;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_help_getTimezonesList, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TimezonesController.m1420$r8$lambda$f6dXHBZd0MEqZLgFSSBGh4Zd1Q(this.f$0, mainSettings, tLObject, tL_error);
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.timezones;
+            if (i >= arrayList.size()) {
+                return null;
             }
-        });
-    }
-
-    public static void m1420$r8$lambda$f6dXHBZd0MEqZLgFSSBGh4Zd1Q(final TimezonesController timezonesController, final SharedPreferences sharedPreferences, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        timezonesController.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                TimezonesController.m1421$r8$lambda$tqrv1Lre0W6MbPeoaQYSWqckzk(this.f$0, tLObject, sharedPreferences);
+            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i);
+            if (TextUtils.equals(tL_timezone.id, str)) {
+                return tL_timezone;
             }
-        });
-    }
-
-    public static void m1421$r8$lambda$tqrv1Lre0W6MbPeoaQYSWqckzk(TimezonesController timezonesController, TLObject tLObject, SharedPreferences sharedPreferences) {
-        timezonesController.getClass();
-        if (tLObject instanceof TLRPC.TL_help_timezonesList) {
-            timezonesController.timezones.clear();
-            timezonesController.timezones.addAll(((TLRPC.TL_help_timezonesList) tLObject).timezones);
-            SerializedData serializedData = new SerializedData(tLObject.getObjectSize());
-            tLObject.serializeToStream(serializedData);
-            sharedPreferences.edit().putString("timezones", Utilities.bytesToHex(serializedData.toByteArray())).apply();
-            NotificationCenter.getInstance(timezonesController.currentAccount).postNotificationName(NotificationCenter.timezonesUpdated, new Object[0]);
+            i++;
         }
-        timezonesController.loaded = true;
-        timezonesController.loading = false;
     }
 
-    public String getSystemTimezoneId() {
+    public final String getSystemTimezoneId() {
         ZoneId zoneIdSystemDefault = ZoneId.systemDefault();
         String id = zoneIdSystemDefault != null ? zoneIdSystemDefault.getId() : null;
         if (this.loading || !this.loaded) {
             load();
             return id;
         }
-        for (int i = 0; i < this.timezones.size(); i++) {
-            if (TextUtils.equals(((TLRPC.TL_timezone) this.timezones.get(i)).id, id)) {
-                return id;
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.timezones;
+            if (i >= arrayList.size()) {
+                int totalSeconds = zoneIdSystemDefault != null ? zoneIdSystemDefault.getRules().getOffset(Instant.now()).getTotalSeconds() : 0;
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                    TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i2);
+                    if (totalSeconds == tL_timezone.utc_offset) {
+                        return tL_timezone.id;
+                    }
+                }
+                if (arrayList.isEmpty()) {
+                    break;
+                }
+                return ((TLRPC.TL_timezone) arrayList.get(0)).id;
             }
-        }
-        int totalSeconds = zoneIdSystemDefault != null ? zoneIdSystemDefault.getRules().getOffset(Instant.now()).getTotalSeconds() : 0;
-        for (int i2 = 0; i2 < this.timezones.size(); i2++) {
-            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) this.timezones.get(i2);
-            if (totalSeconds == tL_timezone.utc_offset) {
-                return tL_timezone.id;
+            if (TextUtils.equals(((TLRPC.TL_timezone) arrayList.get(i)).id, id)) {
+                break;
             }
-        }
-        if (!this.timezones.isEmpty()) {
-            return ((TLRPC.TL_timezone) this.timezones.get(0)).id;
+            i++;
         }
         return id;
     }
 
-    public TLRPC.TL_timezone findTimezone(String str) {
-        if (str == null) {
-            return null;
-        }
-        load();
-        for (int i = 0; i < this.timezones.size(); i++) {
-            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) this.timezones.get(i);
-            if (TextUtils.equals(tL_timezone.id, str)) {
-                return tL_timezone;
-            }
-        }
-        return null;
-    }
-
-    public String getTimezoneName(TLRPC.TL_timezone tL_timezone, boolean z) {
-        if (tL_timezone == null) {
-            return null;
-        }
-        if (z) {
-            return tL_timezone.name + ", " + getTimezoneOffsetName(tL_timezone);
-        }
-        return tL_timezone.name;
-    }
-
-    public String getTimezoneOffsetName(TLRPC.TL_timezone tL_timezone) {
-        if (tL_timezone.utc_offset == 0) {
-            return "GMT";
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append("GMT");
-        sb.append(tL_timezone.utc_offset < 0 ? "-" : "+");
-        String string = sb.toString();
-        int iAbs = Math.abs(tL_timezone.utc_offset) / 60;
-        int i = iAbs / 60;
-        int i2 = iAbs % 60;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(string);
-        sb2.append(i < 10 ? "0" : "");
-        sb2.append(i);
-        String str = sb2.toString() + ":";
-        StringBuilder sb3 = new StringBuilder();
-        sb3.append(str);
-        sb3.append(i2 < 10 ? "0" : "");
-        sb3.append(i2);
-        return sb3.toString();
-    }
-
-    public String getTimezoneName(String str, boolean z) {
-        String str2;
+    public final String getTimezoneName(String str, boolean z) {
+        String strConcat;
         TLRPC.TL_timezone tL_timezoneFindTimezone = findTimezone(str);
         if (tL_timezoneFindTimezone != null) {
-            return getTimezoneName(tL_timezoneFindTimezone, z);
+            if (!z) {
+                return tL_timezoneFindTimezone.name;
+            }
+            return tL_timezoneFindTimezone.name + ", " + getTimezoneOffsetName(tL_timezoneFindTimezone);
         }
         ZoneId zoneIdOf = ZoneId.of(str);
-        String str3 = "";
         if (zoneIdOf == null) {
             return "";
         }
         if (z) {
             String displayName = zoneIdOf.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-            str2 = "GMT";
+            strConcat = "GMT";
             if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
-                str2 = "GMT" + displayName;
+                strConcat = "GMT".concat(displayName);
             }
         } else {
-            str2 = null;
+            strConcat = null;
         }
         StringBuilder sb = new StringBuilder();
         sb.append(zoneIdOf.getId().replace("/", ", ").replace("_", " "));
-        if (str2 != null) {
-            str3 = ", " + str2;
-        }
-        sb.append(str3);
+        sb.append(strConcat != null ? ", ".concat(strConcat) : "");
         return sb.toString();
+    }
+
+    public final void load() {
+        if (this.loading || this.loaded) {
+            return;
+        }
+        this.loading = true;
+        int i = this.currentAccount;
+        SharedPreferences mainSettings = MessagesController.getInstance(i).getMainSettings();
+        TLRPC.help_timezonesList help_timezoneslistTLdeserialize = null;
+        String string = mainSettings.getString("timezones", null);
+        if (string != null) {
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+            help_timezoneslistTLdeserialize = TLRPC.help_timezonesList.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+        }
+        ArrayList arrayList = this.timezones;
+        arrayList.clear();
+        if (help_timezoneslistTLdeserialize != null) {
+            arrayList.addAll(help_timezoneslistTLdeserialize.timezones);
+        }
+        NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.timezonesUpdated, new Object[0]);
+        TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
+        tL_help_getTimezonesList.hash = help_timezoneslistTLdeserialize != null ? help_timezoneslistTLdeserialize.hash : 0;
+        ConnectionsManager.getInstance(i).sendRequest(tL_help_getTimezonesList, new ChatActivity$$ExternalSyntheticLambda208(12, this, mainSettings));
     }
 }

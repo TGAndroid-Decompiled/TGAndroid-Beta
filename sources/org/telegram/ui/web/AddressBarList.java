@@ -1,5 +1,6 @@
 package org.telegram.ui.web;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,13 +9,13 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.URLSpan;
+import android.util.SparseIntArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -23,10 +24,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
@@ -40,15 +42,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda10;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda33;
+import org.telegram.ui.Cells.BaseCell;
+import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -57,431 +60,109 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.WrappedResourceProvider;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda3;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.ProfileActivity$6$$ExternalSyntheticLambda7;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
+import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
 
-public class AddressBarList extends FrameLayout {
-    private int backgroundColor;
-    private final BookmarksList bookmarksList;
-    public final int currentAccount;
+public final class AddressBarList extends FrameLayout {
+    public int backgroundColor;
+    public final BookmarksList bookmarksList;
     public final FrameLayout currentContainer;
-    public final Drawable currentCopyBackground;
+    public final BaseCell.RippleDrawableSafe currentCopyBackground;
     public final ImageView currentCopyView;
     public final ImageView currentIconView;
     public final TextView currentLinkView;
-    public final LinearLayout currentTextContainer;
     public final TextView currentTitleView;
     public final FrameLayout currentView;
-    private final Drawable currentViewBackground;
-    private int grayBackgroundColor;
+    public final BaseCell.RippleDrawableSafe currentViewBackground;
+    public int grayBackgroundColor;
     public boolean hideCurrent;
-    private float[] hsv;
-    private AsyncTask lastTask;
-    private int listBackgroundColor;
-    public UniversalRecyclerView listView;
-    private Runnable onCurrentClick;
-    private Utilities.Callback onQueryClick;
-    private Utilities.Callback onQueryInsertClick;
-    private Utilities.Callback onURLClick;
-    private float openProgress;
+    public AsyncTask lastTask;
+    public int listBackgroundColor;
+    public final AnonymousClass1 listView;
+    public ArticleViewer$$ExternalSyntheticLambda33 onQueryClick;
+    public ArticleViewer$$ExternalSyntheticLambda10 onQueryInsertClick;
+    public ArticleViewer$$ExternalSyntheticLambda10 onURLClick;
+    public float openProgress;
     public boolean opened;
-    public final WrappedResourceProvider resourceProvider;
-    private int rippleColor;
-    public final View space;
+    public final PhotoViewer.AnonymousClass14 resourceProvider;
+    public int rippleColor;
+    public final AnonymousClass2 space;
     public final ArrayList suggestions;
-    private int textColor;
+    public int textColor;
 
-    public AddressBarList(Context context) {
-        super(context);
-        int i = UserConfig.selectedAccount;
-        this.currentAccount = i;
-        this.suggestions = new ArrayList();
-        this.openProgress = 0.0f;
-        this.hsv = new float[3];
-        setWillNotDraw(false);
-        int i2 = UserConfig.selectedAccount;
-        Utilities.Callback2 callback2 = new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        };
-        Utilities.Callback5 callback5 = new Utilities.Callback5() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                this.f$0.itemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-            }
-        };
-        WrappedResourceProvider wrappedResourceProvider = new WrappedResourceProvider(null);
-        this.resourceProvider = wrappedResourceProvider;
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i2, 0, callback2, callback5, null, wrappedResourceProvider) {
-            @Override
-            public void onScrolled(int i3, int i4) {
-                super.onScrolled(i3, i4);
-                if (canScrollVertically(1) || AddressBarList.this.bookmarksList == null || !AddressBarList.this.bookmarksList.attached) {
-                    return;
-                }
-                AddressBarList.this.bookmarksList.load();
-            }
-        };
-        this.listView = universalRecyclerView;
-        universalRecyclerView.adapter.setApplyBackground(false);
-        this.listView.setOverScrollMode(2);
-        this.listView.setPadding(0, 0, 0, 0);
-        addView(this.listView, LayoutHelper.createFrame(-1, -1, 119));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.currentContainer = frameLayout;
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.currentView = frameLayout2;
-        Drawable drawableCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(this.grayBackgroundColor, this.rippleColor, 15, 15);
-        this.currentViewBackground = drawableCreateRadSelectorDrawable;
-        frameLayout2.setBackground(drawableCreateRadSelectorDrawable);
-        ScaleStateListAnimator.apply(frameLayout2, 0.04f, 1.25f);
-        frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -2.0f, 7, 12.0f, 0.0f, 12.0f, 15.0f));
-        ImageView imageView = new ImageView(context);
-        this.currentIconView = imageView;
-        frameLayout2.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 16.0f, 16.0f, 16.0f, 16.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.currentCopyView = imageView2;
-        ScaleStateListAnimator.apply(imageView2);
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setImageResource(R.drawable.msg_copy);
-        Drawable drawableCreateRadSelectorDrawable2 = Theme.createRadSelectorDrawable(0, 0, 6, 6);
-        this.currentCopyBackground = drawableCreateRadSelectorDrawable2;
-        imageView2.setBackground(drawableCreateRadSelectorDrawable2);
-        frameLayout2.addView(imageView2, LayoutHelper.createFrame(32, 32.0f, 53, 14.0f, 14.0f, 14.0f, 14.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.currentTextContainer = linearLayout;
-        linearLayout.setOrientation(1);
-        frameLayout2.addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 16, 54.0f, 9.0f, 54.0f, 9.0f));
-        TextView textView = new TextView(context);
-        this.currentTitleView = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setMaxLines(4);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 2));
-        TextView textView2 = new TextView(context);
-        this.currentLinkView = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setMaxLines(3);
-        textView2.setEllipsize(TextUtils.TruncateAt.MIDDLE);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 0));
-        this.bookmarksList = new BookmarksList(i, new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.listView.adapter.update(true);
-            }
-        });
-        this.space = new View(context) {
-            @Override
-            protected void onMeasure(int i3, int i4) {
-                super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(6.0f), 1073741824));
-            }
-        };
-        int i3 = Theme.key_iv_background;
-        setColors(Theme.getColor(i3), AndroidUtilities.computePerceivedBrightness(Theme.getColor(i3)) >= 0.721f ? -16777216 : -1);
-        setOpenProgress(0.0f);
-        setImportantForAccessibility(4);
-    }
+    public final class AnonymousClass2 extends View {
+        public final int $r8$classId;
 
-    public void clearRecentSearches(View view) {
-        new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.WebRecentClearTitle)).setMessage(LocaleController.getString(R.string.WebRecentClearText)).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                AddressBarList.$r8$lambda$TtOs0I5Kdv2a3yBWwbVCj04LQtk(this.f$0, alertDialog, i);
-            }
-        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
-    }
-
-    public static void $r8$lambda$TtOs0I5Kdv2a3yBWwbVCj04LQtk(AddressBarList addressBarList, AlertDialog alertDialog, int i) {
-        clearRecentSearches(addressBarList.getContext());
-        addressBarList.listView.adapter.update(true);
-    }
-
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        if (!this.hideCurrent && this.suggestions.isEmpty()) {
-            arrayList.add(UItem.asCustom(this.currentContainer));
+        public AnonymousClass2(Context context, int i) {
+            super(context);
+            this.$r8$classId = i;
         }
-        ArrayList recentSearches = getRecentSearches(getContext());
-        this.suggestions.size();
-        recentSearches.size();
-        if (!this.suggestions.isEmpty()) {
-            arrayList.add(UItem.asCustom(this.space));
-        }
-        int i = 0;
-        while (i < this.suggestions.size()) {
-            final String str = (String) this.suggestions.get(i);
-            arrayList.add(Address2View.Factory.as(1, str, new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    AddressBarList.$r8$lambda$YpiGxkAnpjQUmTwsml7BUKmG9Gg(this.f$0, str, view);
-                }
-            }, i == 0, i == this.suggestions.size() - 1, this));
-            i++;
-        }
-        if (!recentSearches.isEmpty()) {
-            arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.WebSectionRecent), LocaleController.getString(R.string.WebRecentClear), new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    this.f$0.clearRecentSearches(view);
-                }
-            }));
-            int i2 = 0;
-            while (i2 < recentSearches.size()) {
-                final String str2 = (String) recentSearches.get(i2);
-                arrayList.add(Address2View.Factory.as(0, str2, new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        AddressBarList.m5032$r8$lambda$stNWdARcmIlhL7aOAk6QpqvU(this.f$0, str2, view);
-                    }
-                }, i2 == 0, i2 == recentSearches.size() - 1, this));
-                i2++;
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            switch (this.$r8$classId) {
+                case 0:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(6.0f), 1073741824));
+                    break;
+                default:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                    break;
             }
         }
-        BookmarksList bookmarksList = this.bookmarksList;
-        if (bookmarksList == null || bookmarksList.links.isEmpty()) {
-            return;
-        }
-        arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.WebSectionBookmarks)));
-        for (int i3 = 0; i3 < this.bookmarksList.links.size(); i3++) {
-            MessageObject messageObject = (MessageObject) this.bookmarksList.links.get(i3);
-            if (!TextUtils.isEmpty(getLink(messageObject))) {
-                arrayList.add(BookmarkView.Factory.as(messageObject, true));
-            }
-        }
-        if (this.bookmarksList.endReached) {
-            return;
-        }
-        arrayList.add(UItem.asFlicker(arrayList.size(), 32));
-        arrayList.add(UItem.asFlicker(arrayList.size(), 32));
-        arrayList.add(UItem.asFlicker(arrayList.size(), 32));
     }
 
-    public static void $r8$lambda$YpiGxkAnpjQUmTwsml7BUKmG9Gg(AddressBarList addressBarList, String str, View view) {
-        Utilities.Callback callback = addressBarList.onQueryInsertClick;
-        if (callback != null) {
-            callback.run(str);
-        }
-    }
-
-    public static void m5032$r8$lambda$stNWdARcmIlhL7aOAk6QpqvU(AddressBarList addressBarList, String str, View view) {
-        Utilities.Callback callback = addressBarList.onQueryInsertClick;
-        if (callback != null) {
-            callback.run(str);
-        }
-    }
-
-    public static String getLink(MessageObject messageObject) {
-        TLRPC.Message message = messageObject.messageOwner;
-        if (message != null) {
-            TLRPC.MessageMedia messageMedia = message.media;
-            if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
-                return messageMedia.webpage.url;
-            }
-        }
-        CharSequence charSequence = messageObject.messageText;
-        if (charSequence == null || charSequence.length() <= 0) {
-            return null;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(messageObject.messageText);
-        for (URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
-            String url = uRLSpan.getURL();
-            if (url != null && !url.startsWith("@") && !url.startsWith("#") && !url.startsWith("$")) {
-                return url;
-            }
-        }
-        return null;
-    }
-
-    public void itemClick(UItem uItem, View view, int i, float f, float f2) {
-        Utilities.Callback callback;
-        if (uItem.instanceOf(Address2View.Factory.class)) {
-            String string = uItem.text.toString();
-            Utilities.Callback callback2 = this.onQueryClick;
-            if (callback2 != null) {
-                callback2.run(string);
-                return;
-            }
-            return;
-        }
-        if (!uItem.instanceOf(BookmarkView.Factory.class) || (callback = this.onURLClick) == null) {
-            return;
-        }
-        try {
-            callback.run(getLink((MessageObject) uItem.object2));
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getWidth(), getHeight() * this.openProgress);
-        canvas.drawColor(this.listBackgroundColor);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    public void setOpenProgress(float f) {
-        if (Math.abs(this.openProgress - f) > 1.0E-4f) {
-            this.openProgress = f;
-            int i = f <= 1.0E-4f ? 4 : 0;
-            if (getImportantForAccessibility() != i) {
-                setImportantForAccessibility(i);
-            }
-            invalidate();
-        }
-    }
-
-    public void setOpened(boolean z) {
-        boolean z2 = z && this.bookmarksList != null;
-        this.opened = z2;
-        if (z2) {
-            this.bookmarksList.attach();
-        }
-    }
-
-    public void setColors(int i, int i2) {
-        if (this.backgroundColor != i) {
-            this.backgroundColor = i;
-            invalidate();
-        }
-        this.textColor = i2;
-        float f = AndroidUtilities.computePerceivedBrightness(i) >= 0.721f ? 0.0f : 1.0f;
-        this.grayBackgroundColor = ColorUtils.blendARGB(i, i2, AndroidUtilities.lerp(0.05f, 0.12f, f));
-        this.listBackgroundColor = i;
-        this.rippleColor = ColorUtils.blendARGB(i, i2, AndroidUtilities.lerp(0.12f, 0.22f, f));
-        Theme.setSelectorDrawableColor(this.currentViewBackground, this.grayBackgroundColor, false);
-        Theme.setSelectorDrawableColor(this.currentViewBackground, this.rippleColor, true);
-        this.currentView.invalidate();
-        this.currentTitleView.setTextColor(i2);
-        this.currentLinkView.setTextColor(Theme.multAlpha(i2, 0.6f));
-        if (this.currentIconView.getColorFilter() != null) {
-            this.currentIconView.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
-        }
-        this.currentCopyView.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
-        Theme.setSelectorDrawableColor(this.currentCopyBackground, Theme.multAlpha(this.rippleColor, 1.5f), true);
-        int iBlendOver = Theme.blendOver(i, Theme.multAlpha(i2, 0.05f));
-        int iBlendOver2 = Theme.blendOver(i, Theme.multAlpha(i2, 0.55f));
-        this.resourceProvider.sparseIntArray.put(Theme.key_windowBackgroundWhite, this.listBackgroundColor);
-        this.resourceProvider.sparseIntArray.put(Theme.key_windowBackgroundWhiteBlackText, i2);
-        this.resourceProvider.sparseIntArray.put(Theme.key_graySection, iBlendOver);
-        this.resourceProvider.sparseIntArray.put(Theme.key_graySectionText, iBlendOver2);
-        this.resourceProvider.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuBackground, Theme.multAlpha(i2, 0.2f));
-        this.resourceProvider.sparseIntArray.put(Theme.key_listSelector, Theme.multAlpha(i2, AndroidUtilities.lerp(0.05f, 0.12f, f)));
-        this.listView.invalidateViews();
-    }
-
-    public void setCurrent(Bitmap bitmap, String str, String str2, final Runnable runnable, Utilities.Callback callback, Utilities.Callback callback2, Utilities.Callback callback3, View.OnClickListener onClickListener) {
-        String strDecode;
-        if (bitmap == null) {
-            this.currentIconView.setImageResource(R.drawable.msg_language);
-            this.currentIconView.setColorFilter(new PorterDuffColorFilter(this.textColor, PorterDuff.Mode.SRC_IN));
-        } else {
-            this.currentIconView.setImageDrawable(new BitmapDrawable(getContext().getResources(), bitmap));
-            this.currentIconView.setColorFilter((ColorFilter) null);
-        }
-        TextView textView = this.currentTitleView;
-        textView.setText(Emoji.replaceEmoji(str, textView.getPaint().getFontMetricsInt(), false));
-        try {
-            try {
-                Uri uri = Uri.parse(str2);
-                str2 = Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
-            } catch (Exception e) {
-                FileLog.e((Throwable) e, false);
-            }
-            strDecode = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
-        } catch (Exception e2) {
-            FileLog.e(e2);
-            strDecode = str2;
-        }
-        TextView textView2 = this.currentLinkView;
-        textView2.setText(Emoji.replaceEmoji(strDecode, textView2.getPaint().getFontMetricsInt(), false));
-        this.onCurrentClick = runnable;
-        this.onQueryClick = callback;
-        this.onQueryInsertClick = callback2;
-        this.onURLClick = callback3;
-        this.currentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                AddressBarList.$r8$lambda$YSiTCFOjsMYnhC4NSL3EwrnOBBU(this.f$0, runnable, view);
-            }
-        });
-        this.currentCopyView.setOnClickListener(onClickListener);
-        this.hideCurrent = false;
-        setInput(null);
-        this.listView.adapter.update(true);
-        this.listView.scrollToPosition(0);
-    }
-
-    public static void $r8$lambda$YSiTCFOjsMYnhC4NSL3EwrnOBBU(AddressBarList addressBarList, Runnable runnable, View view) {
-        addressBarList.hideCurrent = true;
-        if (runnable != null) {
-            runnable.run();
-        }
-        addressBarList.listView.adapter.update(true);
-    }
-
-    public void setInput(String str) {
-        AsyncTask asyncTask = this.lastTask;
-        if (asyncTask != null) {
-            asyncTask.cancel(true);
-            this.lastTask = null;
-        }
-        final boolean z = !this.suggestions.isEmpty();
-        if (TextUtils.isEmpty(str)) {
-            this.suggestions.clear();
-            this.listView.adapter.update(true);
-            if (z != (!this.suggestions.isEmpty())) {
-                this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
-                return;
-            }
-            return;
-        }
-        this.lastTask = new HttpGetTask(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                AddressBarList.m5029$r8$lambda$BBrE1eH0RTg_UqaYETTgoD4liM(this.f$0, z, (String) obj);
-            }
-        }).execute(SearchEngine.getCurrent().getAutocompleteURL(str));
-    }
-
-    public static void m5029$r8$lambda$BBrE1eH0RTg_UqaYETTgoD4liM(final AddressBarList addressBarList, final boolean z, final String str) {
-        addressBarList.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                AddressBarList.$r8$lambda$jiACZx8TMSkFPdxybqDOf4xwq64(this.f$0, str, z);
-            }
-        });
-    }
-
-    public static void $r8$lambda$jiACZx8TMSkFPdxybqDOf4xwq64(AddressBarList addressBarList, String str, boolean z) {
-        addressBarList.suggestions.clear();
-        addressBarList.suggestions.addAll(SearchEngine.getCurrent().extractSuggestions(str));
-        addressBarList.listView.adapter.update(true);
-        if (z != (!addressBarList.suggestions.isEmpty())) {
-            addressBarList.listView.layoutManager.scrollToPositionWithOffset(0, 0);
-        }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.openProgress < 0.3f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public static class Address2View extends FrameLayout {
-        private final Paint dividerPaint;
+    public final class Address2View extends FrameLayout {
+        public final Paint dividerPaint;
         public final ImageView iconView;
         public final ImageView insertView;
-        private boolean needDivider;
+        public boolean needDivider;
         public final TextView textView;
 
-        public void setTopBottom(int i, int i2, boolean z, boolean z2) {
+        public final class Factory extends UItem.UItemFactory {
+            public static final int $r8$clinit = 0;
+
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            @Override
+            public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                Address2View address2View = (Address2View) view;
+                if (uItem.object == null) {
+                    address2View.setAsShowMore((AddressBarList) uItem.object2);
+                    return;
+                }
+                int i = uItem.intValue;
+                String string = uItem.text.toString();
+                View.OnClickListener onClickListener = uItem.clickCallback;
+                AddressBarList addressBarList = (AddressBarList) uItem.object2;
+                ImageView imageView = address2View.iconView;
+                imageView.setVisibility(0);
+                int i2 = addressBarList.listBackgroundColor;
+                int i3 = addressBarList.textColor;
+                TextView textView = address2View.textView;
+                textView.setTextColor(i3);
+                int iMultAlpha = Theme.multAlpha(0.6f, i3);
+                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+                imageView.setColorFilter(new PorterDuffColorFilter(iMultAlpha, mode));
+                ImageView imageView2 = address2View.insertView;
+                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(0.6f, i3), mode));
+                imageView2.setBackground(Theme.createRadSelectorDrawable(0, Theme.multAlpha(0.15f, i3), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
+                imageView.setImageResource(i == 0 ? R.drawable.msg_clear_recent : R.drawable.msg_search);
+                textView.setText(string);
+                imageView2.setOnClickListener(onClickListener);
+                address2View.dividerPaint.setColor(Theme.multAlpha(0.1f, addressBarList.textColor));
+                address2View.needDivider = z;
+                address2View.setWillNotDraw(!z);
+            }
+
+            @Override
+            public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new Address2View(context);
+            }
         }
 
         public Address2View(Context context) {
@@ -504,35 +185,8 @@ public class AddressBarList extends FrameLayout {
             addView(imageView2, LayoutHelper.createFrame(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
         }
 
-        public void setColors(int i, int i2) {
-            this.textView.setTextColor(i2);
-            ImageView imageView = this.iconView;
-            int iMultAlpha = Theme.multAlpha(i2, 0.6f);
-            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-            imageView.setColorFilter(new PorterDuffColorFilter(iMultAlpha, mode));
-            this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), mode));
-            this.insertView.setBackground(Theme.createRadSelectorDrawable(0, Theme.multAlpha(i2, 0.15f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
-        }
-
-        public void set(int i, String str, View.OnClickListener onClickListener, boolean z, boolean z2, AddressBarList addressBarList, boolean z3) {
-            this.iconView.setVisibility(0);
-            setColors(addressBarList.listBackgroundColor, addressBarList.textColor);
-            this.iconView.setImageResource(i == 0 ? R.drawable.msg_clear_recent : R.drawable.msg_search);
-            this.textView.setText(str);
-            this.insertView.setOnClickListener(onClickListener);
-            setTopBottom(addressBarList.grayBackgroundColor, addressBarList.rippleColor, z, z2);
-            this.dividerPaint.setColor(Theme.multAlpha(addressBarList.textColor, 0.1f));
-            this.needDivider = z3;
-            setWillNotDraw(!z3);
-        }
-
-        public void setAsShowMore(AddressBarList addressBarList) {
-            this.iconView.setImageResource(R.drawable.arrow_more);
-            this.iconView.setColorFilter(new PorterDuffColorFilter(addressBarList.textColor, PorterDuff.Mode.SRC_IN));
-        }
-
         @Override
-        protected void onDraw(Canvas canvas) {
+        public final void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             if (this.needDivider) {
                 canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - Math.max(AndroidUtilities.dp(0.66f), 1), getWidth(), getHeight(), this.dividerPaint);
@@ -540,60 +194,353 @@ public class AddressBarList extends FrameLayout {
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public final void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
         }
 
-        public static class Factory extends UItem.UItemFactory {
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
-
-            @Override
-            public Address2View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new Address2View(context);
-            }
-
-            @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                Address2View address2View = (Address2View) view;
-                if (uItem.object == null) {
-                    address2View.setAsShowMore((AddressBarList) uItem.object2);
-                } else {
-                    address2View.set(uItem.intValue, uItem.text.toString(), uItem.clickCallback, uItem.accent, uItem.red, (AddressBarList) uItem.object2, z);
-                }
-            }
-
-            public static UItem as(int i, String str, View.OnClickListener onClickListener, boolean z, boolean z2, AddressBarList addressBarList) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.intValue = i;
-                uItemOfFactory.text = str;
-                uItemOfFactory.clickCallback = onClickListener;
-                uItemOfFactory.accent = z;
-                uItemOfFactory.red = z2;
-                uItemOfFactory.object = Boolean.TRUE;
-                uItemOfFactory.object2 = addressBarList;
-                return uItemOfFactory;
-            }
+        public void setAsShowMore(AddressBarList addressBarList) {
+            ImageView imageView = this.iconView;
+            imageView.setImageResource(R.drawable.arrow_more);
+            imageView.setColorFilter(new PorterDuffColorFilter(addressBarList.textColor, PorterDuff.Mode.SRC_IN));
         }
     }
 
-    public static class BookmarkView extends FrameLayout implements Theme.Colorable {
-        public final CheckBox2 checkBox;
-        private final Paint dividerPaint;
+    public final class BookmarkView extends FrameLayout implements Theme.Colorable {
+        public final DialogCell.AnonymousClass3 checkBox;
+        public final Paint dividerPaint;
         public final BackupImageView iconView;
         public final ImageView insertView;
-        private boolean needDivider;
-        private final Theme.ResourcesProvider resourcesProvider;
+        public boolean needDivider;
+        public final Theme.ResourcesProvider resourcesProvider;
         public final TextView subtextView;
-        private int textColor;
+        public int textColor;
         public final LinearLayout textLayout;
         public final FrameLayout.LayoutParams textLayoutParams;
         public final TextView textView;
         public final TextView timeView;
 
-        public int[] getColorKeys() {
-            return Theme.Colorable.CC.$default$getColorKeys(this);
+        public final class Factory extends UItem.UItemFactory {
+            public static final int $r8$clinit = 0;
+
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            @Override
+            public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                String strDecode;
+                Bitmap bitmap;
+                CharSequence charSequence;
+                String str;
+                TLRPC.Photo photo;
+                Bitmap bitmap2;
+                String str2;
+                BookmarkView bookmarkView = (BookmarkView) view;
+                Object obj = uItem.object2;
+                if (!(obj instanceof MessageObject)) {
+                    if (obj instanceof BrowserHistory.Entry) {
+                        BrowserHistory.Entry entry = (BrowserHistory.Entry) obj;
+                        CharSequence charSequence2 = uItem.subtext;
+                        String string = charSequence2 == null ? null : charSequence2.toString();
+                        bookmarkView.updateColors$1();
+                        if (entry == null) {
+                            return;
+                        }
+                        String strReplace = entry.url;
+                        WebMetadataCache.WebMetadata webMetadata = entry.meta;
+                        TextView textView = bookmarkView.textView;
+                        if (webMetadata != null && !TextUtils.isEmpty(webMetadata.title)) {
+                            textView.setText(webMetadata.title);
+                        } else if (webMetadata == null || TextUtils.isEmpty(webMetadata.sitename)) {
+                            try {
+                                String[] strArrSplit = Uri.parse(strReplace).getHost().split("\\.");
+                                String str3 = strArrSplit[strArrSplit.length - 2];
+                                textView.setText(str3.substring(0, 1).toUpperCase() + str3.substring(1));
+                            } catch (Exception unused) {
+                                textView.setText("");
+                            }
+                        } else {
+                            textView.setText(webMetadata.sitename);
+                        }
+                        BackupImageView backupImageView = bookmarkView.iconView;
+                        if (webMetadata == null || (bitmap = webMetadata.favicon) == null) {
+                            String string2 = textView.getText() == null ? "" : textView.getText().toString();
+                            BreakIterator characterInstance = BreakIterator.getCharacterInstance();
+                            characterInstance.setText(string2);
+                            CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(0.1f, bookmarkView.textColor)), new Drawable(bookmarkView, string2.isEmpty() ? "" : string2.substring(characterInstance.first(), characterInstance.next()), 1) {
+                                public final int $r8$classId;
+                                public final Text text;
+                                public final BookmarkView this$0;
+
+                                {
+                                    this.$r8$classId = i;
+                                    switch (i) {
+                                        case 1:
+                                            this.this$0 = bookmarkView;
+                                            this.text = new Text(str, 14.0f, AndroidUtilities.bold());
+                                            break;
+                                        default:
+                                            this.this$0 = bookmarkView;
+                                            this.text = new Text(str, 14.0f, AndroidUtilities.bold());
+                                            break;
+                                    }
+                                }
+
+                                @Override
+                                public final void draw(Canvas canvas) {
+                                    switch (this.$r8$classId) {
+                                        case 0:
+                                            this.text.draw(getBounds().centerX() - (this.text.width / 2.0f), getBounds().centerY(), 1.0f, this.this$0.textColor, canvas);
+                                            break;
+                                        default:
+                                            this.text.draw(getBounds().centerX() - (this.text.width / 2.0f), getBounds().centerY(), 1.0f, this.this$0.textColor, canvas);
+                                            break;
+                                    }
+                                }
+
+                                @Override
+                                public final int getOpacity() {
+                                    switch (this.$r8$classId) {
+                                    }
+                                    return -2;
+                                }
+
+                                @Override
+                                public final void setAlpha(int i) {
+                                    int i2 = this.$r8$classId;
+                                }
+
+                                @Override
+                                public final void setColorFilter(ColorFilter colorFilter) {
+                                    int i = this.$r8$classId;
+                                }
+
+                                private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$2(int i) {
+                                }
+
+                                private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$3(int i) {
+                                }
+
+                                private final void setColorFilter$org$telegram$ui$web$AddressBarList$BookmarkView$2(ColorFilter colorFilter) {
+                                }
+
+                                private final void setColorFilter$org$telegram$ui$web$AddressBarList$BookmarkView$3(ColorFilter colorFilter) {
+                                }
+                            });
+                            int iDp = AndroidUtilities.dp(28.0f);
+                            int iDp2 = AndroidUtilities.dp(28.0f);
+                            combinedDrawable.backWidth = iDp;
+                            combinedDrawable.backHeight = iDp2;
+                            backupImageView.setImageDrawable(combinedDrawable);
+                        } else {
+                            backupImageView.setImageBitmap(bitmap);
+                        }
+                        bookmarkView.insertView.setVisibility(8);
+                        try {
+                            try {
+                                Uri uri = Uri.parse(strReplace);
+                                strReplace = Browser.replace(uri, null, null, Browser.IDN_toUnicode(uri.getHost()), null);
+                            } catch (Exception e) {
+                                FileLog.e(e);
+                                strDecode = strReplace;
+                            }
+                        } catch (Exception e2) {
+                            FileLog.e((Throwable) e2, false);
+                        }
+                        strDecode = URLDecoder.decode(strReplace.replaceAll("\\+", "%2b"), "UTF-8");
+                        TextView textView2 = bookmarkView.subtextView;
+                        textView2.setText(strDecode);
+                        if (!TextUtils.isEmpty(string)) {
+                            CharSequence text = textView.getText();
+                            Theme.ResourcesProvider resourcesProvider = bookmarkView.resourcesProvider;
+                            textView.setText(AndroidUtilities.highlightText(text, string, resourcesProvider));
+                            textView2.setText(AndroidUtilities.highlightText(textView2.getText(), string, resourcesProvider));
+                        }
+                        textView.setText(Emoji.replaceEmoji(textView.getText(), textView.getPaint().getFontMetricsInt(), false));
+                        textView2.setText(Emoji.replaceEmoji(textView2.getText(), textView2.getPaint().getFontMetricsInt(), false));
+                        bookmarkView.timeView.setText(LocaleController.getInstance().getFormatterDay().format(entry.time));
+                        bookmarkView.checkBox.checkBoxBase.setChecked(-1, false, false);
+                        FrameLayout.LayoutParams layoutParams = bookmarkView.textLayoutParams;
+                        layoutParams.rightMargin = AndroidUtilities.dp(70.0f);
+                        bookmarkView.textLayout.setLayoutParams(layoutParams);
+                        bookmarkView.needDivider = z;
+                        bookmarkView.setWillNotDraw(!z);
+                        return;
+                    }
+                    return;
+                }
+                MessageObject messageObject = (MessageObject) obj;
+                boolean z2 = uItem.accent;
+                CharSequence charSequence3 = uItem.subtext;
+                String string3 = charSequence3 == null ? null : charSequence3.toString();
+                boolean z3 = uItem.checked;
+                bookmarkView.updateColors$1();
+                TLRPC.WebPage webPage = MessageObject.getMedia(messageObject) != null ? MessageObject.getMedia(messageObject).webpage : null;
+                String link = webPage != null ? webPage.url : AddressBarList.getLink(messageObject);
+                String hostAuthority = AndroidUtilities.getHostAuthority(link, true);
+                if (WebMetadataCache.instance == null) {
+                    WebMetadataCache.instance = new WebMetadataCache();
+                }
+                WebMetadataCache webMetadataCache = WebMetadataCache.instance;
+                webMetadataCache.load();
+                WebMetadataCache.WebMetadata webMetadata2 = (WebMetadataCache.WebMetadata) webMetadataCache.cache.get(hostAuthority);
+                if (webMetadata2 == null) {
+                    webMetadata2 = null;
+                } else {
+                    webMetadata2.time = Math.max(webMetadata2.time, System.currentTimeMillis());
+                    webMetadataCache.scheduleSave();
+                }
+                TextView textView3 = bookmarkView.textView;
+                if (webPage != null && (str2 = webPage.title) != null) {
+                    textView3.setText(str2);
+                } else if (webPage != null && (str = webPage.site_name) != null) {
+                    textView3.setText(str);
+                } else if (webMetadata2 != null && !TextUtils.isEmpty(webMetadata2.title)) {
+                    textView3.setText(webMetadata2.title);
+                } else if (webMetadata2 == null || TextUtils.isEmpty(webMetadata2.sitename)) {
+                    try {
+                        String[] strArrSplit2 = Uri.parse(link).getHost().split("\\.");
+                        String str4 = strArrSplit2[strArrSplit2.length - 2];
+                        textView3.setText(str4.substring(0, 1).toUpperCase() + str4.substring(1));
+                    } catch (Exception unused2) {
+                        charSequence = r15;
+                        textView3.setText(charSequence);
+                    }
+                } else {
+                    textView3.setText(webMetadata2.sitename);
+                }
+                charSequence = "";
+                BackupImageView backupImageView2 = bookmarkView.iconView;
+                backupImageView2.imageReceiver.clearImage();
+                if (webMetadata2 != null && (bitmap2 = webMetadata2.favicon) != null) {
+                    backupImageView2.setImageBitmap(bitmap2);
+                } else if (webPage == null || (photo = webPage.photo) == null) {
+                    String string4 = textView3.getText() == null ? charSequence : textView3.getText().toString();
+                    BreakIterator characterInstance2 = BreakIterator.getCharacterInstance();
+                    characterInstance2.setText(string4);
+                    CombinedDrawable combinedDrawable2 = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(0.1f, bookmarkView.textColor)), new Drawable(bookmarkView, string4.isEmpty() ? charSequence : string4.substring(characterInstance2.first(), characterInstance2.next()), 0) {
+                        public final int $r8$classId;
+                        public final Text text;
+                        public final BookmarkView this$0;
+
+                        {
+                            this.$r8$classId = i;
+                            switch (i) {
+                                case 1:
+                                    this.this$0 = bookmarkView;
+                                    this.text = new Text(str, 14.0f, AndroidUtilities.bold());
+                                    break;
+                                default:
+                                    this.this$0 = bookmarkView;
+                                    this.text = new Text(str, 14.0f, AndroidUtilities.bold());
+                                    break;
+                            }
+                        }
+
+                        @Override
+                        public final void draw(Canvas canvas) {
+                            switch (this.$r8$classId) {
+                                case 0:
+                                    this.text.draw(getBounds().centerX() - (this.text.width / 2.0f), getBounds().centerY(), 1.0f, this.this$0.textColor, canvas);
+                                    break;
+                                default:
+                                    this.text.draw(getBounds().centerX() - (this.text.width / 2.0f), getBounds().centerY(), 1.0f, this.this$0.textColor, canvas);
+                                    break;
+                            }
+                        }
+
+                        @Override
+                        public final int getOpacity() {
+                            switch (this.$r8$classId) {
+                            }
+                            return -2;
+                        }
+
+                        @Override
+                        public final void setAlpha(int i) {
+                            int i2 = this.$r8$classId;
+                        }
+
+                        @Override
+                        public final void setColorFilter(ColorFilter colorFilter) {
+                            int i = this.$r8$classId;
+                        }
+
+                        private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$2(int i) {
+                        }
+
+                        private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$3(int i) {
+                        }
+
+                        private final void setColorFilter$org$telegram$ui$web$AddressBarList$BookmarkView$2(ColorFilter colorFilter) {
+                        }
+
+                        private final void setColorFilter$org$telegram$ui$web$AddressBarList$BookmarkView$3(ColorFilter colorFilter) {
+                        }
+                    });
+                    int iDp3 = AndroidUtilities.dp(28.0f);
+                    int iDp4 = AndroidUtilities.dp(28.0f);
+                    combinedDrawable2.backWidth = iDp3;
+                    combinedDrawable2.backHeight = iDp4;
+                    backupImageView2.setImageDrawable(combinedDrawable2);
+                } else {
+                    backupImageView2.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(32.0f), true, null, true), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, AndroidUtilities.dp(32.0f), true, null, false), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), null, null, 0, messageObject);
+                }
+                bookmarkView.timeView.setVisibility(8);
+                bookmarkView.insertView.setVisibility(z2 ? 0 : 8);
+                String link2 = webPage != null ? webPage.url : AddressBarList.getLink(messageObject);
+                try {
+                    try {
+                        Uri uri2 = Uri.parse(link2);
+                        link2 = Browser.replace(uri2, null, null, Browser.IDN_toUnicode(uri2.getHost()), null);
+                    } catch (Exception e3) {
+                        FileLog.e((Throwable) e3, false);
+                    }
+                    link2 = URLDecoder.decode(link2.replaceAll("\\+", "%2b"), "UTF-8");
+                    HashMap map = BottomSheetTabs.tabs;
+                    if (link2 == null) {
+                        link2 = null;
+                    } else {
+                        int iIndexOf = link2.indexOf(35);
+                        if (iIndexOf >= 0) {
+                            link2 = link2.substring(0, iIndexOf + 1);
+                        }
+                    }
+                } catch (Exception e4) {
+                    FileLog.e(e4);
+                }
+                TextView textView4 = bookmarkView.subtextView;
+                textView4.setText(link2);
+                if (!TextUtils.isEmpty(string3)) {
+                    CharSequence text2 = textView3.getText();
+                    Theme.ResourcesProvider resourcesProvider2 = bookmarkView.resourcesProvider;
+                    textView3.setText(AndroidUtilities.highlightText(text2, string3, resourcesProvider2));
+                    textView4.setText(AndroidUtilities.highlightText(textView4.getText(), string3, resourcesProvider2));
+                }
+                textView3.setText(Emoji.replaceEmoji(textView3.getText(), textView3.getPaint().getFontMetricsInt(), false));
+                textView4.setText(Emoji.replaceEmoji(textView4.getText(), textView4.getPaint().getFontMetricsInt(), false));
+                bookmarkView.checkBox.checkBoxBase.setChecked(-1, z3, false);
+                FrameLayout.LayoutParams layoutParams2 = bookmarkView.textLayoutParams;
+                layoutParams2.rightMargin = AndroidUtilities.dp(52.0f);
+                bookmarkView.textLayout.setLayoutParams(layoutParams2);
+                bookmarkView.needDivider = z;
+                bookmarkView.setWillNotDraw(!z);
+            }
+
+            @Override
+            public final boolean contentsEquals(UItem uItem, UItem uItem2) {
+                return uItem.object2 == uItem2.object2 && TextUtils.equals(uItem.subtext, uItem2.subtext);
+            }
+
+            @Override
+            public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new BookmarkView(context, resourcesProvider);
+            }
+
+            @Override
+            public final boolean equals(UItem uItem, UItem uItem2) {
+                return uItem.object2 == uItem2.object2 && TextUtils.isEmpty(uItem.subtext) == TextUtils.isEmpty(uItem2.subtext);
+            }
         }
 
         public BookmarkView(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -637,231 +584,20 @@ public class AddressBarList extends FrameLayout {
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageView.setImageResource(R.drawable.attach_arrow_right);
             addView(imageView, LayoutHelper.createFrame(32, 32.0f, 21, 8.0f, 8.0f, 8.0f, 8.0f));
-            CheckBox2 checkBox2 = new CheckBox2(getContext(), 21, resourcesProvider) {
-                @Override
-                public void invalidate() {
-                    super.invalidate();
-                    BookmarkView.this.invalidate();
-                }
-            };
-            this.checkBox = checkBox2;
-            checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
-            checkBox2.setDrawUnchecked(false);
-            checkBox2.setDrawBackgroundAsArc(3);
-            addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, 19, 26.0f, 12.0f, 0.0f, 0.0f));
+            DialogCell.AnonymousClass3 anonymousClass3 = new DialogCell.AnonymousClass3(this, getContext(), resourcesProvider, 2);
+            this.checkBox = anonymousClass3;
+            anonymousClass3.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+            anonymousClass3.setDrawUnchecked(false);
+            anonymousClass3.setDrawBackgroundAsArc(3);
+            addView(anonymousClass3, LayoutHelper.createFrame(24, 24.0f, 19, 26.0f, 12.0f, 0.0f, 0.0f));
+        }
+
+        public int[] getColorKeys() {
+            return null;
         }
 
         @Override
-        public void updateColors() {
-            int color = Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider);
-            int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider);
-            setColors(color, color2);
-            this.dividerPaint.setColor(Theme.multAlpha(color2, 0.1f));
-            this.iconView.invalidate();
-        }
-
-        public void setColors(int i, int i2) {
-            this.textColor = i2;
-            this.textView.setTextColor(i2);
-            this.subtextView.setTextColor(Theme.blendOver(i, Theme.multAlpha(i2, 0.55f)));
-            this.timeView.setTextColor(Theme.multAlpha(i2, 0.55f));
-            this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), PorterDuff.Mode.SRC_IN));
-        }
-
-        public void set(MessageObject messageObject, boolean z, String str, boolean z2, boolean z3) {
-            String str2;
-            TLRPC.Photo photo;
-            String strUrlWithoutFragment;
-            Bitmap bitmap;
-            String str3;
-            updateColors();
-            TLRPC.WebPage webPage = MessageObject.getMedia(messageObject) != null ? MessageObject.getMedia(messageObject).webpage : null;
-            String link = webPage != null ? webPage.url : AddressBarList.getLink(messageObject);
-            WebMetadataCache.WebMetadata webMetadata = WebMetadataCache.getInstance().get(AndroidUtilities.getHostAuthority(link, true));
-            if (webPage != null && (str3 = webPage.title) != null) {
-                this.textView.setText(str3);
-            } else if (webPage != null && (str2 = webPage.site_name) != null) {
-                this.textView.setText(str2);
-            } else if (webMetadata != null && !TextUtils.isEmpty(webMetadata.title)) {
-                this.textView.setText(webMetadata.title);
-            } else if (webMetadata != null && !TextUtils.isEmpty(webMetadata.sitename)) {
-                this.textView.setText(webMetadata.sitename);
-            } else {
-                try {
-                    String[] strArrSplit = Uri.parse(link).getHost().split("\\.");
-                    String str4 = strArrSplit[strArrSplit.length - 2];
-                    this.textView.setText(str4.substring(0, 1).toUpperCase() + str4.substring(1));
-                } catch (Exception unused) {
-                    this.textView.setText("");
-                }
-            }
-            this.iconView.clearImage();
-            if (webMetadata != null && (bitmap = webMetadata.favicon) != null) {
-                this.iconView.setImageBitmap(bitmap);
-            } else if (webPage != null && (photo = webPage.photo) != null) {
-                this.iconView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(32.0f), true, null, true), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, AndroidUtilities.dp(32.0f), true, null, false), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), 0, messageObject);
-            } else {
-                String string = this.textView.getText() == null ? "" : this.textView.getText().toString();
-                BreakIterator characterInstance = BreakIterator.getCharacterInstance();
-                characterInstance.setText(string);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(this.textColor, 0.1f)), new Drawable(string.isEmpty() ? "" : string.substring(characterInstance.first(), characterInstance.next())) {
-                    private final Text text;
-                    final String val$firstLetter;
-
-                    @Override
-                    public int getOpacity() {
-                        return -2;
-                    }
-
-                    @Override
-                    public void setAlpha(int i) {
-                    }
-
-                    @Override
-                    public void setColorFilter(ColorFilter colorFilter) {
-                    }
-
-                    {
-                        this.val$firstLetter = str;
-                        this.text = new Text(str, 14.0f, AndroidUtilities.bold());
-                    }
-
-                    @Override
-                    public void draw(Canvas canvas) {
-                        this.text.draw(canvas, getBounds().centerX() - (this.text.getCurrentWidth() / 2.0f), getBounds().centerY(), BookmarkView.this.textColor, 1.0f);
-                    }
-                });
-                combinedDrawable.setCustomSize(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f));
-                this.iconView.setImageDrawable(combinedDrawable);
-            }
-            this.timeView.setVisibility(8);
-            this.insertView.setVisibility(z ? 0 : 8);
-            String link2 = webPage != null ? webPage.url : AddressBarList.getLink(messageObject);
-            try {
-                try {
-                    Uri uri = Uri.parse(link2);
-                    link2 = Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
-                } catch (Exception e) {
-                    FileLog.e((Throwable) e, false);
-                }
-                link2 = URLDecoder.decode(link2.replaceAll("\\+", "%2b"), "UTF-8");
-                strUrlWithoutFragment = BottomSheetTabs.urlWithoutFragment(link2);
-            } catch (Exception e2) {
-                FileLog.e(e2);
-                strUrlWithoutFragment = link2;
-            }
-            this.subtextView.setText(strUrlWithoutFragment);
-            if (!TextUtils.isEmpty(str)) {
-                TextView textView = this.textView;
-                textView.setText(AndroidUtilities.highlightText(textView.getText(), str, this.resourcesProvider));
-                TextView textView2 = this.subtextView;
-                textView2.setText(AndroidUtilities.highlightText(textView2.getText(), str, this.resourcesProvider));
-            }
-            TextView textView3 = this.textView;
-            textView3.setText(Emoji.replaceEmoji(textView3.getText(), this.textView.getPaint().getFontMetricsInt(), false));
-            TextView textView4 = this.subtextView;
-            textView4.setText(Emoji.replaceEmoji(textView4.getText(), this.subtextView.getPaint().getFontMetricsInt(), false));
-            this.checkBox.setChecked(z2, false);
-            this.textLayoutParams.rightMargin = AndroidUtilities.dp(52.0f);
-            this.textLayout.setLayoutParams(this.textLayoutParams);
-            this.needDivider = z3;
-            setWillNotDraw(!z3);
-        }
-
-        public void set(BrowserHistory.Entry entry, String str, boolean z) {
-            Bitmap bitmap;
-            updateColors();
-            if (entry == null) {
-                return;
-            }
-            String strDecode = entry.url;
-            WebMetadataCache.WebMetadata webMetadata = entry.meta;
-            if (webMetadata != null && !TextUtils.isEmpty(webMetadata.title)) {
-                this.textView.setText(webMetadata.title);
-            } else if (webMetadata != null && !TextUtils.isEmpty(webMetadata.sitename)) {
-                this.textView.setText(webMetadata.sitename);
-            } else {
-                try {
-                    String[] strArrSplit = Uri.parse(strDecode).getHost().split("\\.");
-                    String str2 = strArrSplit[strArrSplit.length - 2];
-                    this.textView.setText(str2.substring(0, 1).toUpperCase() + str2.substring(1));
-                } catch (Exception unused) {
-                    this.textView.setText("");
-                }
-            }
-            if (webMetadata != null && (bitmap = webMetadata.favicon) != null) {
-                this.iconView.setImageBitmap(bitmap);
-            } else {
-                String string = this.textView.getText() == null ? "" : this.textView.getText().toString();
-                BreakIterator characterInstance = BreakIterator.getCharacterInstance();
-                characterInstance.setText(string);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(this.textColor, 0.1f)), new Drawable(string.isEmpty() ? "" : string.substring(characterInstance.first(), characterInstance.next())) {
-                    private final Text text;
-                    final String val$firstLetter;
-
-                    @Override
-                    public int getOpacity() {
-                        return -2;
-                    }
-
-                    @Override
-                    public void setAlpha(int i) {
-                    }
-
-                    @Override
-                    public void setColorFilter(ColorFilter colorFilter) {
-                    }
-
-                    {
-                        this.val$firstLetter = str;
-                        this.text = new Text(str, 14.0f, AndroidUtilities.bold());
-                    }
-
-                    @Override
-                    public void draw(Canvas canvas) {
-                        this.text.draw(canvas, getBounds().centerX() - (this.text.getCurrentWidth() / 2.0f), getBounds().centerY(), BookmarkView.this.textColor, 1.0f);
-                    }
-                });
-                combinedDrawable.setCustomSize(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f));
-                this.iconView.setImageDrawable(combinedDrawable);
-            }
-            this.insertView.setVisibility(8);
-            try {
-                try {
-                    Uri uri = Uri.parse(strDecode);
-                    strDecode = Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
-                } catch (Exception e) {
-                    FileLog.e((Throwable) e, false);
-                }
-                strDecode = URLDecoder.decode(strDecode.replaceAll("\\+", "%2b"), "UTF-8");
-            } catch (Exception e2) {
-                FileLog.e(e2);
-            }
-            this.subtextView.setText(strDecode);
-            if (!TextUtils.isEmpty(str)) {
-                TextView textView = this.textView;
-                textView.setText(AndroidUtilities.highlightText(textView.getText(), str, this.resourcesProvider));
-                TextView textView2 = this.subtextView;
-                textView2.setText(AndroidUtilities.highlightText(textView2.getText(), str, this.resourcesProvider));
-            }
-            TextView textView3 = this.textView;
-            textView3.setText(Emoji.replaceEmoji(textView3.getText(), this.textView.getPaint().getFontMetricsInt(), false));
-            TextView textView4 = this.subtextView;
-            textView4.setText(Emoji.replaceEmoji(textView4.getText(), this.subtextView.getPaint().getFontMetricsInt(), false));
-            this.timeView.setText(LocaleController.getInstance().getFormatterDay().format(entry.time));
-            this.checkBox.setChecked(false, false);
-            this.textLayoutParams.rightMargin = AndroidUtilities.dp(70.0f);
-            this.textLayout.setLayoutParams(this.textLayoutParams);
-            this.needDivider = z;
-            setWillNotDraw(!z);
-        }
-
-        public void setChecked(boolean z) {
-            this.checkBox.setChecked(z, true);
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
+        public final void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             if (this.needDivider) {
                 canvas.drawRect(AndroidUtilities.dp(59.0f), getHeight() - Math.max(AndroidUtilities.dp(0.66f), 1), getWidth(), getHeight(), this.dividerPaint);
@@ -869,77 +605,115 @@ public class AddressBarList extends FrameLayout {
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public final void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
         }
 
-        public static class Factory extends UItem.UItemFactory {
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
+        public void setChecked(boolean z) {
+            this.checkBox.checkBoxBase.setChecked(-1, z, true);
+        }
 
-            @Override
-            public BookmarkView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new BookmarkView(context, resourcesProvider);
-            }
-
-            @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                BookmarkView bookmarkView = (BookmarkView) view;
-                Object obj = uItem.object2;
-                if (obj instanceof MessageObject) {
-                    MessageObject messageObject = (MessageObject) obj;
-                    boolean z2 = uItem.accent;
-                    CharSequence charSequence = uItem.subtext;
-                    bookmarkView.set(messageObject, z2, charSequence != null ? charSequence.toString() : null, uItem.checked, z);
-                    return;
-                }
-                if (obj instanceof BrowserHistory.Entry) {
-                    BrowserHistory.Entry entry = (BrowserHistory.Entry) obj;
-                    CharSequence charSequence2 = uItem.subtext;
-                    bookmarkView.set(entry, charSequence2 != null ? charSequence2.toString() : null, z);
-                }
-            }
-
-            public static UItem as(MessageObject messageObject, boolean z) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.intValue = 3;
-                uItemOfFactory.accent = z;
-                uItemOfFactory.object2 = messageObject;
-                return uItemOfFactory;
-            }
-
-            public static UItem as(MessageObject messageObject, boolean z, String str) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.intValue = 3;
-                uItemOfFactory.accent = z;
-                uItemOfFactory.object2 = messageObject;
-                uItemOfFactory.subtext = str;
-                return uItemOfFactory;
-            }
-
-            public static UItem as(BrowserHistory.Entry entry, String str) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.intValue = 3;
-                uItemOfFactory.accent = false;
-                uItemOfFactory.object2 = entry;
-                uItemOfFactory.subtext = str;
-                return uItemOfFactory;
-            }
-
-            @Override
-            public boolean equals(UItem uItem, UItem uItem2) {
-                return uItem.object2 == uItem2.object2 && TextUtils.isEmpty(uItem.subtext) == TextUtils.isEmpty(uItem2.subtext);
-            }
-
-            @Override
-            public boolean contentsEquals(UItem uItem, UItem uItem2) {
-                return uItem.object2 == uItem2.object2 && TextUtils.equals(uItem.subtext, uItem2.subtext);
-            }
+        @Override
+        public final void updateColors$1() {
+            int i = Theme.key_windowBackgroundWhite;
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            int color = Theme.getColor(i, resourcesProvider);
+            int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider);
+            this.textColor = color2;
+            this.textView.setTextColor(color2);
+            this.subtextView.setTextColor(Theme.blendOver(color, Theme.multAlpha(0.55f, color2)));
+            this.timeView.setTextColor(Theme.multAlpha(0.55f, color2));
+            this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(0.6f, color2), PorterDuff.Mode.SRC_IN));
+            this.dividerPaint.setColor(Theme.multAlpha(0.1f, color2));
+            this.iconView.invalidate();
         }
     }
 
-    static class QueryEntry {
+    public final class BookmarksList implements NotificationCenter.NotificationCenterDelegate {
+        public boolean attached;
+        public final int currentAccount;
+        public boolean endReached;
+        public boolean loading;
+        public final String query;
+        public final Runnable whenUpdated;
+        public final ArrayList links = new ArrayList();
+        public final int guid = ConnectionsManager.generateClassGuid();
+
+        public BookmarksList(String str, int i, Runnable runnable) {
+            this.currentAccount = i;
+            this.query = str;
+            this.whenUpdated = runnable;
+        }
+
+        public final void attach() {
+            if (this.attached) {
+                return;
+            }
+            this.attached = true;
+            int i = this.currentAccount;
+            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.mediaDidLoad);
+            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.bookmarkAdded);
+            if (TextUtils.isEmpty(this.query)) {
+                load$1();
+            }
+        }
+
+        public final void detach() {
+            if (this.attached) {
+                this.attached = false;
+                int i = this.currentAccount;
+                NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.mediaDidLoad);
+                NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.bookmarkAdded);
+                ConnectionsManager.getInstance(i).cancelRequestsForGuid(this.guid);
+                this.loading = false;
+            }
+        }
+
+        @Override
+        public final void didReceivedNotification(int i, int i2, Object... objArr) {
+            int i3 = NotificationCenter.mediaDidLoad;
+            ArrayList arrayList = this.links;
+            if (i != i3) {
+                if (i == NotificationCenter.bookmarkAdded) {
+                    arrayList.add(0, (MessageObject) objArr[0]);
+                }
+            } else if (((Integer) objArr[3]).intValue() == this.guid) {
+                this.loading = false;
+                ArrayList arrayList2 = (ArrayList) objArr[2];
+                this.endReached = ((Boolean) objArr[5]).booleanValue();
+                arrayList.addAll(arrayList2);
+                this.whenUpdated.run();
+            }
+        }
+
+        public final void load$1() {
+            ArrayList arrayList;
+            if (this.loading || this.endReached) {
+                return;
+            }
+            this.loading = true;
+            int i = this.currentAccount;
+            long clientUserId = UserConfig.getInstance(i).getClientUserId();
+            int i2 = 0;
+            int iMin = Integer.MAX_VALUE;
+            while (true) {
+                arrayList = this.links;
+                if (i2 >= arrayList.size()) {
+                    break;
+                }
+                iMin = Math.min(iMin, ((MessageObject) arrayList.get(i2)).getId());
+                i2++;
+            }
+            MediaDataController mediaDataController = MediaDataController.getInstance(i);
+            int i3 = arrayList.isEmpty() ? 30 : 50;
+            if (iMin == Integer.MAX_VALUE) {
+                iMin = 0;
+            }
+            mediaDataController.loadMedia(clientUserId, i3, iMin, 0, 3, 0L, 1, this.guid, 0, null, this.query);
+        }
+    }
+
+    public final class QueryEntry {
         public long lastUsage;
         public final String query;
         public double rank;
@@ -950,49 +724,101 @@ public class AddressBarList extends FrameLayout {
         }
     }
 
-    public static ArrayList getRecentSearches(Context context) {
-        int i = 0;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("webhistory", 0);
-        ArrayList arrayList = new ArrayList();
-        String string = sharedPreferences.getString("queries_json", null);
-        if (string != null) {
-            try {
-                ArrayList arrayList2 = new ArrayList();
-                JSONArray jSONArray = new JSONArray(string);
-                for (int i2 = 0; i2 < jSONArray.length(); i2++) {
-                    JSONObject jSONObject = jSONArray.getJSONObject(i2);
-                    QueryEntry queryEntry = new QueryEntry(jSONObject.optString("name"), jSONObject.optLong("usage", System.currentTimeMillis()));
-                    queryEntry.rank = jSONObject.optDouble("rank", 0.0d);
-                    arrayList2.add(queryEntry);
+    public AddressBarList(Activity activity) {
+        super(activity);
+        int i = UserConfig.selectedAccount;
+        this.suggestions = new ArrayList();
+        this.openProgress = 0.0f;
+        setWillNotDraw(false);
+        int i2 = UserConfig.selectedAccount;
+        TodoItemMenu$$ExternalSyntheticLambda17 todoItemMenu$$ExternalSyntheticLambda17 = new TodoItemMenu$$ExternalSyntheticLambda17(this, 22);
+        AddressBarList$$ExternalSyntheticLambda2 addressBarList$$ExternalSyntheticLambda2 = new AddressBarList$$ExternalSyntheticLambda2(this);
+        PhotoViewer.AnonymousClass14 anonymousClass14 = new PhotoViewer.AnonymousClass14((Theme.ResourcesProvider) null);
+        this.resourceProvider = anonymousClass14;
+        ?? r0 = new UniversalRecyclerView(activity, i2, todoItemMenu$$ExternalSyntheticLambda17, addressBarList$$ExternalSyntheticLambda2, anonymousClass14) {
+            @Override
+            public final void onScrolled(int i3, int i4) {
+                BookmarksList bookmarksList;
+                if (canScrollVertically(1) || (bookmarksList = AddressBarList.this.bookmarksList) == null || !bookmarksList.attached) {
+                    return;
                 }
-                Collections.sort(arrayList2, new Comparator() {
-                    @Override
-                    public final int compare(Object obj, Object obj2) {
-                        return AddressBarList.$r8$lambda$A9HCdiFsN75Rds5ZIjcYL6l3kAw((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
-                    }
-                });
-                int size = arrayList2.size();
-                while (i < size) {
-                    Object obj = arrayList2.get(i);
-                    i++;
-                    QueryEntry queryEntry2 = (QueryEntry) obj;
-                    if (arrayList.size() >= 20) {
-                        break;
-                    }
-                    arrayList.add(queryEntry2.query);
-                }
-            } catch (Exception unused) {
+                bookmarksList.load$1();
+            }
+        };
+        this.listView = r0;
+        r0.adapter.applyBackground = false;
+        r0.setOverScrollMode(2);
+        r0.setPadding(0, 0, 0, 0);
+        addView((View) r0, LayoutHelper.createFrame(-1, -1, 119));
+        FrameLayout frameLayout = new FrameLayout(activity);
+        this.currentContainer = frameLayout;
+        FrameLayout frameLayout2 = new FrameLayout(activity);
+        this.currentView = frameLayout2;
+        BaseCell.RippleDrawableSafe rippleDrawableSafeCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(this.grayBackgroundColor, this.rippleColor, 15, 15);
+        this.currentViewBackground = rippleDrawableSafeCreateRadSelectorDrawable;
+        frameLayout2.setBackground(rippleDrawableSafeCreateRadSelectorDrawable);
+        ScaleStateListAnimator.apply(frameLayout2, 0.04f, 1.25f);
+        frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -2.0f, 7, 12.0f, 0.0f, 12.0f, 15.0f));
+        ImageView imageView = new ImageView(activity);
+        this.currentIconView = imageView;
+        frameLayout2.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 16.0f, 16.0f, 16.0f, 16.0f));
+        ImageView imageView2 = new ImageView(activity);
+        this.currentCopyView = imageView2;
+        ScaleStateListAnimator.apply(imageView2, 0.1f, 1.5f);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setImageResource(R.drawable.msg_copy);
+        BaseCell.RippleDrawableSafe rippleDrawableSafeCreateRadSelectorDrawable2 = Theme.createRadSelectorDrawable(0, 0, 6, 6);
+        this.currentCopyBackground = rippleDrawableSafeCreateRadSelectorDrawable2;
+        imageView2.setBackground(rippleDrawableSafeCreateRadSelectorDrawable2);
+        frameLayout2.addView(imageView2, LayoutHelper.createFrame(32, 32.0f, 53, 14.0f, 14.0f, 14.0f, 14.0f));
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(1);
+        frameLayout2.addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 16, 54.0f, 9.0f, 54.0f, 9.0f));
+        TextView textView = new TextView(activity);
+        this.currentTitleView = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setMaxLines(4);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 2));
+        TextView textView2 = new TextView(activity);
+        this.currentLinkView = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setMaxLines(3);
+        textView2.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 0));
+        this.bookmarksList = new BookmarksList(null, i, new VoIPFragment$8$$ExternalSyntheticLambda1(this, 19));
+        this.space = new AnonymousClass2(activity, 0);
+        int i3 = Theme.key_iv_background;
+        setColors(Theme.getColor(null, i3, false), AndroidUtilities.computePerceivedBrightness(Theme.getColor(null, i3, false)) >= 0.721f ? -16777216 : -1);
+        setOpenProgress(0.0f);
+        setImportantForAccessibility(4);
+    }
+
+    public static String getLink(MessageObject messageObject) {
+        TLRPC.Message message = messageObject.messageOwner;
+        if (message != null) {
+            TLRPC.MessageMedia messageMedia = message.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+                return messageMedia.webpage.url;
             }
         }
-        return arrayList;
+        CharSequence charSequence = messageObject.messageText;
+        if (charSequence == null || charSequence.length() <= 0) {
+            return null;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(messageObject.messageText);
+        for (URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
+            String url = uRLSpan.getURL();
+            if (url != null && !url.startsWith("@") && !url.startsWith("#") && !url.startsWith("$")) {
+                return url;
+            }
+        }
+        return null;
     }
 
-    public static int $r8$lambda$A9HCdiFsN75Rds5ZIjcYL6l3kAw(QueryEntry queryEntry, QueryEntry queryEntry2) {
-        return (int) (queryEntry2.rank - queryEntry.rank);
-    }
-
-    public static void pushRecentSearch(Context context, String str) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("webhistory", 0);
+    public static void pushRecentSearch(Activity activity, String str) {
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("webhistory", 0);
         QueryEntry queryEntry = null;
         String string = sharedPreferences.getString("queries_json", null);
         ArrayList arrayList = new ArrayList();
@@ -1005,12 +831,7 @@ public class AddressBarList extends FrameLayout {
                     queryEntry2.rank = jSONObject.optDouble("rank", 0.0d);
                     arrayList.add(queryEntry2);
                 }
-                Collections.sort(arrayList, new Comparator() {
-                    @Override
-                    public final int compare(Object obj, Object obj2) {
-                        return AddressBarList.m5031$r8$lambda$M1RWMsq_khurYUX4HFPRF86Yew((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
-                    }
-                });
+                Collections.sort(arrayList, new OAuthSheet$$ExternalSyntheticLambda3(24));
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -1047,108 +868,25 @@ public class AddressBarList extends FrameLayout {
         sharedPreferences.edit().putString("queries_json", jSONArray2.toString()).apply();
     }
 
-    public static int m5031$r8$lambda$M1RWMsq_khurYUX4HFPRF86Yew(QueryEntry queryEntry, QueryEntry queryEntry2) {
-        return (int) (queryEntry2.rank - queryEntry.rank);
-    }
-
-    public static void clearRecentSearches(Context context) {
-        context.getSharedPreferences("webhistory", 0).edit().remove("queries_json").apply();
-    }
-
-    public static class BookmarksList implements NotificationCenter.NotificationCenterDelegate {
-        private boolean attached;
-        private final int currentAccount;
-        public boolean endReached;
-        private int guid;
-        public final ArrayList links;
-        private boolean loading;
-        private final String query;
-        private final Runnable whenUpdated;
-
-        public BookmarksList(int i, Runnable runnable) {
-            this(i, null, runnable);
-        }
-
-        public BookmarksList(int i, String str, Runnable runnable) {
-            this.links = new ArrayList();
-            this.guid = ConnectionsManager.generateClassGuid();
-            this.currentAccount = i;
-            this.query = str;
-            this.whenUpdated = runnable;
-        }
-
-        public void attach() {
-            if (this.attached) {
-                return;
-            }
-            this.attached = true;
-            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.mediaDidLoad);
-            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.bookmarkAdded);
-            if (TextUtils.isEmpty(this.query)) {
-                load();
-            }
-        }
-
-        public void detach() {
-            if (this.attached) {
-                this.attached = false;
-                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.mediaDidLoad);
-                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.bookmarkAdded);
-                ConnectionsManager.getInstance(this.currentAccount).cancelRequestsForGuid(this.guid);
-                this.loading = false;
-            }
-        }
-
-        public void delete(ArrayList arrayList) {
-            int i = 0;
-            while (i < this.links.size()) {
-                if (arrayList.contains(Integer.valueOf(((MessageObject) this.links.get(i)).getId()))) {
-                    this.links.remove(i);
-                    i--;
-                }
-                i++;
-            }
-        }
-
-        public void load() {
-            if (this.loading || this.endReached) {
-                return;
-            }
-            this.loading = true;
-            long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-            int iMin = Integer.MAX_VALUE;
-            for (int i = 0; i < this.links.size(); i++) {
-                iMin = Math.min(iMin, ((MessageObject) this.links.get(i)).getId());
-            }
-            MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
-            int i2 = this.links.isEmpty() ? 30 : 50;
-            if (iMin == Integer.MAX_VALUE) {
-                iMin = 0;
-            }
-            mediaDataController.loadMedia(clientUserId, i2, iMin, 0, 3, 0L, 1, this.guid, 0, null, this.query);
-        }
-
-        @Override
-        public void didReceivedNotification(int i, int i2, Object... objArr) {
-            if (i == NotificationCenter.mediaDidLoad) {
-                if (((Integer) objArr[3]).intValue() == this.guid) {
-                    this.loading = false;
-                    ArrayList arrayList = (ArrayList) objArr[2];
-                    this.endReached = ((Boolean) objArr[5]).booleanValue();
-                    this.links.addAll(arrayList);
-                    this.whenUpdated.run();
-                    return;
-                }
-                return;
-            }
-            if (i == NotificationCenter.bookmarkAdded) {
-                this.links.add(0, (MessageObject) objArr[0]);
-            }
-        }
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(0.0f, 0.0f, getWidth(), getHeight() * this.openProgress);
+        canvas.drawColor(this.listBackgroundColor);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.openProgress < 0.3f) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         BookmarksList bookmarksList = this.bookmarksList;
         if (bookmarksList == null || !this.opened) {
@@ -1158,11 +896,93 @@ public class AddressBarList extends FrameLayout {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         BookmarksList bookmarksList = this.bookmarksList;
         if (bookmarksList != null) {
             bookmarksList.detach();
+        }
+    }
+
+    public final void setColors(int i, int i2) {
+        if (this.backgroundColor != i) {
+            this.backgroundColor = i;
+            invalidate();
+        }
+        this.textColor = i2;
+        float f = AndroidUtilities.computePerceivedBrightness(i) >= 0.721f ? 0.0f : 1.0f;
+        this.grayBackgroundColor = ColorUtils.blendARGB(AndroidUtilities.lerp(0.05f, 0.12f, f), i, i2);
+        this.listBackgroundColor = i;
+        this.rippleColor = ColorUtils.blendARGB(AndroidUtilities.lerp(0.12f, 0.22f, f), i, i2);
+        int i3 = this.grayBackgroundColor;
+        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.currentViewBackground;
+        Theme.setSelectorDrawableColor(rippleDrawableSafe, i3, false);
+        Theme.setSelectorDrawableColor(rippleDrawableSafe, this.rippleColor, true);
+        this.currentView.invalidate();
+        this.currentTitleView.setTextColor(i2);
+        this.currentLinkView.setTextColor(Theme.multAlpha(0.6f, i2));
+        ImageView imageView = this.currentIconView;
+        if (imageView.getColorFilter() != null) {
+            imageView.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
+        }
+        this.currentCopyView.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
+        Theme.setSelectorDrawableColor(this.currentCopyBackground, Theme.multAlpha(1.5f, this.rippleColor), true);
+        int iBlendOver = Theme.blendOver(i, Theme.multAlpha(0.05f, i2));
+        int iBlendOver2 = Theme.blendOver(i, Theme.multAlpha(0.55f, i2));
+        PhotoViewer.AnonymousClass14 anonymousClass14 = this.resourceProvider;
+        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_windowBackgroundWhite, this.listBackgroundColor);
+        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_windowBackgroundWhiteBlackText, i2);
+        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_graySection, iBlendOver);
+        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_graySectionText, iBlendOver2);
+        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_actionBarDefaultSubmenuBackground, Theme.multAlpha(0.2f, i2));
+        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_listSelector, Theme.multAlpha(AndroidUtilities.lerp(0.05f, 0.12f, f), i2));
+        invalidateViews();
+    }
+
+    public void setInput(String str) {
+        AsyncTask asyncTask = this.lastTask;
+        String str2 = null;
+        if (asyncTask != null) {
+            asyncTask.cancel(true);
+            this.lastTask = null;
+        }
+        ArrayList arrayList = this.suggestions;
+        boolean z = !arrayList.isEmpty();
+        if (TextUtils.isEmpty(str)) {
+            arrayList.clear();
+            AnonymousClass1 anonymousClass1 = this.listView;
+            anonymousClass1.adapter.update(true);
+            if (z != (!arrayList.isEmpty())) {
+                anonymousClass1.layoutManager.scrollToPositionWithOffset(0, 0);
+                return;
+            }
+            return;
+        }
+        HttpGetTask httpGetTask = new HttpGetTask(new ProfileActivity$6$$ExternalSyntheticLambda7(5, this, z));
+        SearchEngine current = SearchEngine.getCurrent();
+        if (current.autocomplete_url != null) {
+            str2 = current.autocomplete_url + URLEncoder.encode(str);
+        }
+        this.lastTask = httpGetTask.execute(str2);
+    }
+
+    public void setOpenProgress(float f) {
+        if (Math.abs(this.openProgress - f) > 1.0E-4f) {
+            this.openProgress = f;
+            int i = f <= 1.0E-4f ? 4 : 0;
+            if (getImportantForAccessibility() != i) {
+                setImportantForAccessibility(i);
+            }
+            invalidate();
+        }
+    }
+
+    public void setOpened(boolean z) {
+        BookmarksList bookmarksList = this.bookmarksList;
+        boolean z2 = z && bookmarksList != null;
+        this.opened = z2;
+        if (z2) {
+            bookmarksList.attach();
         }
     }
 }

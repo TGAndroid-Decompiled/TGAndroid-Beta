@@ -3,56 +3,57 @@ package org.commonmark.internal;
 import org.commonmark.node.Block;
 import org.commonmark.node.ListBlock;
 import org.commonmark.node.ListItem;
+import org.commonmark.node.Node;
 import org.commonmark.node.Paragraph;
 import org.commonmark.parser.block.AbstractBlockParser;
-import org.commonmark.parser.block.BlockContinue;
-import org.commonmark.parser.block.ParserState;
 
-public class ListItemParser extends AbstractBlockParser {
-    private final ListItem block = new ListItem();
-    private int contentIndent;
-    private boolean hadBlankLine;
-
-    @Override
-    public boolean isContainer() {
-        return true;
-    }
+public final class ListItemParser extends AbstractBlockParser {
+    public final ListItem block = new ListItem();
+    public final int contentIndent;
+    public boolean hadBlankLine;
 
     public ListItemParser(int i) {
         this.contentIndent = i;
     }
 
     @Override
-    public boolean canContain(Block block) {
+    public final boolean canContain(Block block) {
         if (!this.hadBlankLine) {
             return true;
         }
-        Block parent = this.block.getParent();
-        if (!(parent instanceof ListBlock)) {
+        Block block2 = (Block) ((Node) this.block.parent);
+        if (!(block2 instanceof ListBlock)) {
             return true;
         }
-        ((ListBlock) parent).setTight(false);
+        ((ListBlock) block2).getClass();
         return true;
     }
 
     @Override
-    public Block getBlock() {
+    public final Block getBlock() {
         return this.block;
     }
 
     @Override
-    public BlockContinue tryContinue(ParserState parserState) {
-        if (parserState.isBlank()) {
-            if (this.block.getFirstChild() == null) {
-                return BlockContinue.none();
+    public final boolean isContainer() {
+        return true;
+    }
+
+    @Override
+    public final BlockContinueImpl tryContinue(DocumentParser documentParser) {
+        if (documentParser.blank) {
+            if (((Node) this.block.firstChild) == null) {
+                return null;
             }
-            Block block = parserState.getActiveBlockParser().getBlock();
+            Block block = documentParser.getActiveBlockParser().getBlock();
             this.hadBlankLine = (block instanceof Paragraph) || (block instanceof ListItem);
-            return BlockContinue.atIndex(parserState.getNextNonSpaceIndex());
+            return BlockContinueImpl.atIndex(documentParser.nextNonSpace);
         }
-        if (parserState.getIndent() >= this.contentIndent) {
-            return BlockContinue.atColumn(parserState.getColumn() + this.contentIndent);
+        int i = documentParser.indent;
+        int i2 = this.contentIndent;
+        if (i >= i2) {
+            return new BlockContinueImpl(-1, documentParser.column + i2, false);
         }
-        return BlockContinue.none();
+        return null;
     }
 }

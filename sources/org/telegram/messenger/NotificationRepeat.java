@@ -2,25 +2,25 @@ package org.telegram.messenger;
 
 import android.app.IntentService;
 import android.content.Intent;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda42;
 
 public class NotificationRepeat extends IntentService {
     public NotificationRepeat() {
         super("NotificationRepeat");
     }
 
+    public static void lambda$onHandleIntent$0(int i) {
+        NotificationsController.getInstance(i).repeatNotificationMaybe();
+    }
+
     @Override
-    protected void onHandleIntent(Intent intent) {
+    public void onHandleIntent(Intent intent) {
         if (intent == null) {
             return;
         }
-        final int intExtra = intent.getIntExtra("currentAccount", UserConfig.selectedAccount);
+        int intExtra = intent.getIntExtra("currentAccount", UserConfig.selectedAccount);
         if (UserConfig.isValidAccount(intExtra)) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    NotificationsController.getInstance(intExtra).repeatNotificationMaybe();
-                }
-            });
+            AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda42(intExtra, 3));
         }
     }
 }

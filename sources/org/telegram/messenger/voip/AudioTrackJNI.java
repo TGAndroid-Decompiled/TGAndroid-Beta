@@ -1,6 +1,7 @@
 package org.telegram.messenger.voip;
 
 import android.media.AudioTrack;
+import androidx.recyclerview.widget.DiffUtil;
 import java.nio.ByteBuffer;
 
 public class AudioTrackJNI {
@@ -11,14 +12,58 @@ public class AudioTrackJNI {
     private boolean running;
     private Thread thread;
 
-    private native void nativeCallback(byte[] bArr);
-
     public AudioTrackJNI(long j) {
         this.nativeInst = j;
     }
 
     private int getBufferSize(int i, int i2) {
         return Math.max(AudioTrack.getMinBufferSize(i2, 4, 2), i);
+    }
+
+    public void lambda$startThread$0() {
+        try {
+            this.audioTrack.play();
+            ByteBuffer byteBufferAllocateDirect = this.needResampling ? ByteBuffer.allocateDirect(1920) : null;
+            ByteBuffer byteBufferAllocateDirect2 = this.needResampling ? ByteBuffer.allocateDirect(1764) : null;
+            while (this.running) {
+                try {
+                    if (this.needResampling) {
+                        nativeCallback(this.buffer);
+                        byteBufferAllocateDirect.rewind();
+                        byteBufferAllocateDirect.put(this.buffer);
+                        Resampler.convert48to44(byteBufferAllocateDirect, byteBufferAllocateDirect2);
+                        byteBufferAllocateDirect2.rewind();
+                        byteBufferAllocateDirect2.get(this.buffer, 0, 1764);
+                        this.audioTrack.write(this.buffer, 0, 1764);
+                    } else {
+                        nativeCallback(this.buffer);
+                        this.audioTrack.write(this.buffer, 0, 1920);
+                    }
+                    if (!this.running) {
+                        this.audioTrack.stop();
+                        break;
+                    }
+                    continue;
+                } catch (Exception e) {
+                    VLog.e(e);
+                }
+            }
+            VLog.i("audiotrack thread exits");
+        } catch (Exception e2) {
+            VLog.e("error starting AudioTrack", e2);
+        }
+    }
+
+    private native void nativeCallback(byte[] bArr);
+
+    private void startThread() {
+        if (this.thread != null) {
+            throw new IllegalStateException("thread already started");
+        }
+        this.running = true;
+        Thread thread = new Thread(new VoIPService$1$$ExternalSyntheticLambda0(this, 2));
+        this.thread = thread;
+        thread.start();
     }
 
     public void init(int i, int i2, int i3, int i4) {
@@ -34,19 +79,9 @@ public class AudioTrackJNI {
             } catch (Throwable unused) {
             }
             int bufferSize = getBufferSize(i4 * 6, 44100);
-            VLog.d("buffer size: " + bufferSize);
+            VLog.d(DiffUtil.m(bufferSize, "buffer size: "));
             this.audioTrack = new AudioTrack(0, 44100, i3 == 1 ? 4 : 12, 2, bufferSize, 1);
             this.needResampling = true;
-        }
-    }
-
-    public void stop() {
-        AudioTrack audioTrack = this.audioTrack;
-        if (audioTrack != null) {
-            try {
-                audioTrack.stop();
-            } catch (Exception unused) {
-            }
         }
     }
 
@@ -76,53 +111,13 @@ public class AudioTrackJNI {
         }
     }
 
-    private void startThread() {
-        if (this.thread != null) {
-            throw new IllegalStateException("thread already started");
-        }
-        this.running = true;
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public final void run() {
-                AudioTrackJNI.$r8$lambda$5btg7YbwPgTwQrACptyq6bfRxXI(this.f$0);
+    public void stop() {
+        AudioTrack audioTrack = this.audioTrack;
+        if (audioTrack != null) {
+            try {
+                audioTrack.stop();
+            } catch (Exception unused) {
             }
-        });
-        this.thread = thread;
-        thread.start();
-    }
-
-    public static void $r8$lambda$5btg7YbwPgTwQrACptyq6bfRxXI(AudioTrackJNI audioTrackJNI) {
-        audioTrackJNI.getClass();
-        try {
-            audioTrackJNI.audioTrack.play();
-            ByteBuffer byteBufferAllocateDirect = audioTrackJNI.needResampling ? ByteBuffer.allocateDirect(1920) : null;
-            ByteBuffer byteBufferAllocateDirect2 = audioTrackJNI.needResampling ? ByteBuffer.allocateDirect(1764) : null;
-            while (audioTrackJNI.running) {
-                try {
-                    if (audioTrackJNI.needResampling) {
-                        audioTrackJNI.nativeCallback(audioTrackJNI.buffer);
-                        byteBufferAllocateDirect.rewind();
-                        byteBufferAllocateDirect.put(audioTrackJNI.buffer);
-                        Resampler.convert48to44(byteBufferAllocateDirect, byteBufferAllocateDirect2);
-                        byteBufferAllocateDirect2.rewind();
-                        byteBufferAllocateDirect2.get(audioTrackJNI.buffer, 0, 1764);
-                        audioTrackJNI.audioTrack.write(audioTrackJNI.buffer, 0, 1764);
-                    } else {
-                        audioTrackJNI.nativeCallback(audioTrackJNI.buffer);
-                        audioTrackJNI.audioTrack.write(audioTrackJNI.buffer, 0, 1920);
-                    }
-                    if (!audioTrackJNI.running) {
-                        audioTrackJNI.audioTrack.stop();
-                        break;
-                    }
-                    continue;
-                } catch (Exception e) {
-                    VLog.e(e);
-                }
-            }
-            VLog.i("audiotrack thread exits");
-        } catch (Exception e2) {
-            VLog.e("error starting AudioTrack", e2);
         }
     }
 }

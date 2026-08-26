@@ -10,7 +10,6 @@ import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,107 +18,93 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import com.google.android.gms.internal.mlkit_vision_common.zzkf;
+import com.google.android.gms.internal.mlkit_vision_common.zzkh;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
-import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
+import org.telegram.ui.Stars.StarsReactionsSheet;
+import org.telegram.ui.web.WebActionBar$$ExternalSyntheticLambda9;
 
-public class HeaderCell extends FrameLayout {
-    private ValueAnimator goldenAnimator;
-    private final GLIconTextureView iconTextureView;
-    private final LinearLayout linearLayout;
-    private LinkSpanDrawable.LinkCollector links;
-    private final Paint[] paints;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private final StarParticlesView starParticlesView;
-    private final LinkSpanDrawable.LinksTextView subtitleView;
-    private final TextView titleView;
+public final class HeaderCell extends FrameLayout {
+    public ValueAnimator goldenAnimator;
+    public final StarsReactionsSheet.AnonymousClass6 iconTextureView;
+    public final LinkSpanDrawable.LinkCollector links;
+    public final Paint[] paints;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final AnonymousClass2 starParticlesView;
+    public final LinkSpanDrawable.LinksTextView subtitleView;
+    public final TextView titleView;
+
+    public final class AnonymousClass3 extends ViewOutlineProvider {
+        @Override
+        public final void getOutline(View view, Outline outline) {
+            float fDp = AndroidUtilities.dp(12.0f);
+            outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + fDp), fDp);
+        }
+    }
 
     public HeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.linearLayout = linearLayout;
-        linearLayout.setOrientation(1);
-        GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1) {
+        LinearLayout linearLayoutM = zzkf.m(context, 1);
+        StarsReactionsSheet.AnonymousClass6 anonymousClass6 = new StarsReactionsSheet.AnonymousClass6(context, 1, 0, 3);
+        this.iconTextureView = anonymousClass6;
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
+        int i = Theme.key_premiumGradient2;
+        canvas.drawColor(ColorUtils.blendARGB(0.5f, Theme.getColor(i, resourcesProvider), Theme.getColor(Theme.key_dialogBackground, resourcesProvider)));
+        anonymousClass6.setBackgroundBitmap(bitmapCreateBitmap);
+        GLIconRenderer gLIconRenderer = anonymousClass6.mRenderer;
+        gLIconRenderer.colorKey1 = i;
+        gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;
+        gLIconRenderer.updateColors();
+        linearLayoutM.addView(anonymousClass6, LayoutHelper.createLinear(160, 160, 1));
+        ?? r7 = new StarParticlesView(context) {
             @Override
-            protected void onAttachedToWindow() {
+            public final void onAttachedToWindow() {
                 super.onAttachedToWindow();
                 setPaused(false);
             }
 
             @Override
-            protected void onDetachedFromWindow() {
+            public final void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
                 setPaused(true);
             }
-        };
-        this.iconTextureView = gLIconTextureView;
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmapCreateBitmap);
-        int i = Theme.key_premiumGradient2;
-        canvas.drawColor(ColorUtils.blendARGB(Theme.getColor(i, resourcesProvider), Theme.getColor(Theme.key_dialogBackground, resourcesProvider), 0.5f));
-        gLIconTextureView.setBackgroundBitmap(bitmapCreateBitmap);
-        GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
-        gLIconRenderer.colorKey1 = i;
-        gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;
-        gLIconRenderer.updateColors();
-        linearLayout.addView(gLIconTextureView, LayoutHelper.createLinear(160, 160, 1));
-        StarParticlesView starParticlesView = new StarParticlesView(context) {
+
             @Override
-            protected void onMeasure(int i2, int i3) {
+            public final void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
                 this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
             }
-
-            @Override
-            protected void onAttachedToWindow() {
-                super.onAttachedToWindow();
-                HeaderCell.this.starParticlesView.setPaused(false);
-            }
-
-            @Override
-            protected void onDetachedFromWindow() {
-                super.onDetachedFromWindow();
-                HeaderCell.this.starParticlesView.setPaused(true);
-            }
         };
-        this.starParticlesView = starParticlesView;
+        this.starParticlesView = r7;
         this.paints = new Paint[20];
         updatePaints(0.0f);
-        StarParticlesView.Drawable drawable = starParticlesView.drawable;
+        StarParticlesView.Drawable drawable = r7.drawable;
         drawable.useGradient = false;
         drawable.useBlur = false;
         drawable.forceMaxAlpha = true;
         drawable.checkBounds = true;
-        drawable.getPaint = new Utilities.CallbackReturn() {
-            @Override
-            public final Object run(Object obj) {
-                return HeaderCell.$r8$lambda$WPcGChIXs94YZvbIdiyKzxTLPwQ(this.f$0, (Integer) obj);
-            }
-        };
-        starParticlesView.drawable.init();
-        gLIconTextureView.setStarParticlesView(starParticlesView);
+        drawable.getPaint = new WebActionBar$$ExternalSyntheticLambda9(this, 4);
+        drawable.init();
+        anonymousClass6.setStarParticlesView(r7);
         TextView textView = new TextView(context);
         this.titleView = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 22.0f);
+        zzkh.m(22.0f, textView);
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setGravity(1);
-        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 24, -8, 24, 0));
+        linearLayoutM.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 24, -8, 24, 0));
         LinkSpanDrawable.LinkCollector linkCollector = new LinkSpanDrawable.LinkCollector(this);
         this.links = linkCollector;
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, linkCollector, resourcesProvider);
@@ -130,73 +115,56 @@ public class HeaderCell extends FrameLayout {
         linksTextView.setMovementMethod(LinkMovementMethod.getInstance());
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, resourcesProvider));
         linksTextView.setImportantForAccessibility(2);
-        linearLayout.addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, 17, 24.0f, 8.0f, 24.0f, 18.0f));
+        linearLayoutM.addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, 17, 24.0f, 8.0f, 24.0f, 18.0f));
         setClipChildren(false);
-        addView(starParticlesView, LayoutHelper.createFrame(-1, 234, 48));
-        addView(linearLayout);
+        addView((View) r7, LayoutHelper.createFrame(-1, 234, 48));
+        addView(linearLayoutM);
         setWillNotDraw(false);
     }
 
-    public static Paint $r8$lambda$WPcGChIXs94YZvbIdiyKzxTLPwQ(HeaderCell headerCell, Integer num) {
-        return headerCell.paints[num.intValue() % headerCell.paints.length];
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        LinkSpanDrawable.LinkCollector linkCollector = this.links;
+        if (linkCollector != null) {
+            canvas.save();
+            LinkSpanDrawable.LinksTextView linksTextView = this.subtitleView;
+            canvas.translate(linksTextView.getLeft(), linksTextView.getTop());
+            if (linkCollector.draw(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        StarsReactionsSheet.AnonymousClass6 anonymousClass6 = this.iconTextureView;
+        float measuredHeight = (anonymousClass6.getMeasuredHeight() / 2.0f) + anonymousClass6.getTop();
+        AnonymousClass2 anonymousClass2 = this.starParticlesView;
+        anonymousClass2.setTranslationY(measuredHeight - (anonymousClass2.getMeasuredHeight() / 2.0f));
     }
 
     public void setBoostViaGifsText(TLRPC.Chat chat) {
-        setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                float fDp = AndroidUtilities.dp(12.0f);
-                outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + fDp), fDp);
-            }
-        });
+        setOutlineProvider(new AnonymousClass3());
         setClipToOutline(true);
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
         marginLayoutParams.topMargin = -AndroidUtilities.dp(6.0f);
         setLayoutParams(marginLayoutParams);
-        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+        int i = Theme.key_windowBackgroundGray;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        setBackgroundColor(Theme.getColor(i, resourcesProvider));
         this.titleView.setText(LocaleController.formatString("BoostingBoostsViaGifts", R.string.BoostingBoostsViaGifts, new Object[0]));
-        this.subtitleView.setText(LocaleController.formatString(ChatObject.isChannelAndNotMegaGroup(chat) ? R.string.BoostingGetMoreBoost2 : R.string.BoostingGetMoreBoostGroup, new Object[0]));
-        this.subtitleView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
-    }
-
-    public void setUsedGiftLinkText() {
-        this.titleView.setText(LocaleController.formatString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink, new Object[0]));
-        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkUsed", R.string.BoostingLinkUsed, new Object[0])));
-    }
-
-    public void setGiftLinkText() {
-        this.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllows", R.string.BoostingLinkAllows, new Object[0])));
-    }
-
-    public void setUnclaimedText() {
-        this.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllowsAnyone", R.string.BoostingLinkAllowsAnyone, new Object[0])));
-    }
-
-    public void setGiftLinkToUserText(long j, final Utilities.Callback callback) {
-        this.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-        SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
-        final TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
-        this.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", spannableStringBuilderReplaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user) + "**", Theme.key_chat_messageLinkIn, 2, new Runnable() {
-            @Override
-            public final void run() {
-                callback.run(user);
-            }
-        }, this.resourcesProvider)));
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        float top = this.iconTextureView.getTop() + (this.iconTextureView.getMeasuredHeight() / 2.0f);
-        StarParticlesView starParticlesView = this.starParticlesView;
-        starParticlesView.setTranslationY(top - (starParticlesView.getMeasuredHeight() / 2.0f));
+        boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
+        LinkSpanDrawable.LinksTextView linksTextView = this.subtitleView;
+        linksTextView.setText(LocaleController.formatString(zIsChannelAndNotMegaGroup ? R.string.BoostingGetMoreBoost2 : R.string.BoostingGetMoreBoostGroup, new Object[0]));
+        linksTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, resourcesProvider));
     }
 
     public void setPaused(boolean z) {
         this.iconTextureView.setPaused(z);
-        this.starParticlesView.setPaused(z);
+        setPaused(z);
     }
 
     public void setStars(final boolean z) {
@@ -204,31 +172,44 @@ public class HeaderCell extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        final float f = this.iconTextureView.mRenderer.golden;
+        StarsReactionsSheet.AnonymousClass6 anonymousClass6 = this.iconTextureView;
+        final float f = anonymousClass6.mRenderer.golden;
         final float f2 = z ? 1.0f : 0.0f;
         this.goldenAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
         final float[] fArr = {0.0f};
-        this.iconTextureView.cancelIdleAnimation();
-        this.iconTextureView.cancelAnimatons();
-        this.iconTextureView.startBackAnimation();
+        AndroidUtilities.cancelRunOnUIThread(anonymousClass6.idleAnimation);
+        anonymousClass6.cancelAnimatons();
+        anonymousClass6.startBackAnimation();
         this.goldenAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                HeaderCell.m2670$r8$lambda$yxHakWKcnYuCIiACk6m96TS_Sc(this.f$0, fArr, f, f2, z, valueAnimator2);
+                HeaderCell headerCell = this.f$0;
+                headerCell.getClass();
+                float fFloatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                float[] fArr2 = fArr;
+                float f3 = fFloatValue - fArr2[0];
+                fArr2[0] = fFloatValue;
+                StarsReactionsSheet.AnonymousClass6 anonymousClass7 = headerCell.iconTextureView;
+                anonymousClass7.mRenderer.golden = AndroidUtilities.lerp(f, f2, fFloatValue);
+                GLIconRenderer gLIconRenderer = anonymousClass7.mRenderer;
+                gLIconRenderer.angleX3 = (f3 * 360.0f * (z ? 1 : -1)) + gLIconRenderer.angleX3;
+                gLIconRenderer.updateColors();
+                headerCell.updatePaints(anonymousClass7.mRenderer.golden);
             }
         });
         this.goldenAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animator) {
+            public final void onAnimationEnd(Animator animator) {
                 float[] fArr2 = fArr;
                 float f3 = 1.0f - fArr2[0];
                 fArr2[0] = 1.0f;
-                HeaderCell.this.iconTextureView.mRenderer.golden = AndroidUtilities.lerp(f, f2, 1.0f);
-                HeaderCell.this.iconTextureView.mRenderer.angleX3 += f3 * 360.0f * (z ? 1 : -1);
-                HeaderCell.this.iconTextureView.mRenderer.updateColors();
                 HeaderCell headerCell = HeaderCell.this;
+                headerCell.iconTextureView.mRenderer.golden = AndroidUtilities.lerp(f, f2, 1.0f);
+                GLIconRenderer gLIconRenderer = headerCell.iconTextureView.mRenderer;
+                gLIconRenderer.angleX3 = (f3 * 360.0f * (z ? 1 : -1)) + gLIconRenderer.angleX3;
+                gLIconRenderer.updateColors();
                 headerCell.updatePaints(headerCell.iconTextureView.mRenderer.golden);
-                HeaderCell.this.iconTextureView.scheduleIdleAnimation(750L);
+                headerCell.iconTextureView.scheduleIdleAnimation(750L);
             }
         });
         this.goldenAnimator.setDuration(680L);
@@ -236,45 +217,22 @@ public class HeaderCell extends FrameLayout {
         this.goldenAnimator.start();
     }
 
-    public static void m2670$r8$lambda$yxHakWKcnYuCIiACk6m96TS_Sc(HeaderCell headerCell, float[] fArr, float f, float f2, boolean z, ValueAnimator valueAnimator) {
-        headerCell.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f3 = fFloatValue - fArr[0];
-        fArr[0] = fFloatValue;
-        headerCell.iconTextureView.mRenderer.golden = AndroidUtilities.lerp(f, f2, fFloatValue);
-        GLIconRenderer gLIconRenderer = headerCell.iconTextureView.mRenderer;
-        gLIconRenderer.angleX3 += f3 * 360.0f * (z ? 1 : -1);
-        gLIconRenderer.updateColors();
-        headerCell.updatePaints(headerCell.iconTextureView.mRenderer.golden);
-    }
-
-    public void updatePaints(float f) {
-        int color = Theme.getColor(Theme.key_premiumGradient1, this.resourcesProvider);
-        int color2 = Theme.getColor(Theme.key_premiumGradient2, this.resourcesProvider);
-        int iBlendARGB = ColorUtils.blendARGB(color, -371690, f);
-        int iBlendARGB2 = ColorUtils.blendARGB(color2, -14281, f);
-        int i = 0;
+    public final void updatePaints(float f) {
+        int i = Theme.key_premiumGradient1;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        int color = Theme.getColor(i, resourcesProvider);
+        int color2 = Theme.getColor(Theme.key_premiumGradient2, resourcesProvider);
+        int iBlendARGB = ColorUtils.blendARGB(f, color, -371690);
+        int iBlendARGB2 = ColorUtils.blendARGB(f, color2, -14281);
+        int i2 = 0;
         while (true) {
             Paint[] paintArr = this.paints;
-            if (i >= paintArr.length) {
+            if (i2 >= paintArr.length) {
                 return;
             }
-            paintArr[i] = new Paint(1);
-            this.paints[i].setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(iBlendARGB, iBlendARGB2, i / (this.paints.length - 1)), PorterDuff.Mode.SRC_IN));
-            i++;
-        }
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.links != null) {
-            canvas.save();
-            canvas.translate(this.subtitleView.getLeft(), this.subtitleView.getTop());
-            if (this.links.draw(canvas)) {
-                invalidate();
-            }
-            canvas.restore();
+            paintArr[i2] = new Paint(1);
+            paintArr[i2].setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(i2 / (paintArr.length - 1), iBlendARGB, iBlendARGB2), PorterDuff.Mode.SRC_IN));
+            i2++;
         }
     }
 }

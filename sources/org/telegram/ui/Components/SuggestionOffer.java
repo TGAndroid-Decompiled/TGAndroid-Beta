@@ -1,13 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -15,21 +12,22 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.R;
+import org.telegram.messenger.RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
-public class SuggestionOffer {
+public final class SuggestionOffer {
     public int height;
-    private final Theme.ResourcesProvider resourcesProvider;
-    public ArrayList rows = new ArrayList(2);
-    private int rowsInfoX;
-    private int rowsTitleX;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final ArrayList rows = new ArrayList(2);
+    public int rowsInfoX;
+    public int rowsTitleX;
     public StaticLayout title;
-    private int titleX;
+    public int titleX;
     public int width;
 
-    public static class Row {
+    public final class Row {
         public final Text info;
         public final Text title;
 
@@ -37,17 +35,30 @@ public class SuggestionOffer {
             this.title = text;
             this.info = text2;
         }
-
-        public int getHeight() {
-            return (int) this.title.getHeight();
-        }
     }
 
-    public SuggestionOffer(int i, View view, Theme.ResourcesProvider resourcesProvider) {
+    public SuggestionOffer(Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
     }
 
-    public void update(MessageObject messageObject) {
+    public static void updateBuildTitleStep(StringBuilder sb, int i, boolean z) {
+        if (sb.length() > 0) {
+            if (z) {
+                sb.append(' ');
+                sb.append(LocaleController.getString(R.string.SuggestionOfferInfoTitleEditedAnd));
+                sb.append(' ');
+            } else {
+                sb.append(", ");
+            }
+        }
+        sb.append(LocaleController.getString(i));
+    }
+
+    public final int getHeight() {
+        return this.height;
+    }
+
+    public final void update(MessageObject messageObject) {
         char c;
         int i;
         float f;
@@ -57,17 +68,22 @@ public class SuggestionOffer {
             return;
         }
         MessageSuggestionParams messageSuggestionParamsOf = MessageSuggestionParams.of(suggestedPost);
-        TextPaint textPaint = (TextPaint) getThemedPaint("paintChatActionText3");
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintChatActionText3") : null;
+        if (paint == null) {
+            paint = Theme.getThemePaint("paintChatActionText3");
+        }
+        TextPaint textPaint = (TextPaint) paint;
         this.height = AndroidUtilities.dp(14.0f) * 2;
-        this.rows.clear();
+        ArrayList arrayList = this.rows;
+        arrayList.clear();
         AmountUtils$Amount amountUtils$Amount = messageSuggestionParamsOf.amount;
         if (amountUtils$Amount != null && !amountUtils$Amount.isZero()) {
-            this.rows.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoPrice), textPaint), new Text(LocaleController.bold(messageSuggestionParamsOf.amount.formatAsDecimalSpaced()), textPaint)));
+            arrayList.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoPrice), textPaint), new Text(LocaleController.bold(messageSuggestionParamsOf.amount.formatAsDecimalSpaced()), textPaint)));
         }
         if (suggestedPost.schedule_date > 0) {
-            this.rows.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoTime), textPaint), new Text(LocaleController.bold(LocaleController.formatDateTime(suggestedPost.schedule_date, true)), textPaint)));
+            arrayList.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoTime), textPaint), new Text(LocaleController.bold(LocaleController.formatDateTime(suggestedPost.schedule_date, true)), textPaint)));
         }
-        ArrayList arrayList = this.rows;
         int size = arrayList.size();
         float fMax = 0.0f;
         float fMax2 = 0.0f;
@@ -78,9 +94,9 @@ public class SuggestionOffer {
             Row row = (Row) obj;
             fMax = Math.max(fMax, row.title.getWidth());
             fMax2 = Math.max(fMax2, row.info.getWidth());
-            int height = this.height + row.getHeight();
+            int height = row.title.layout.getHeight() + this.height;
             this.height = height;
-            this.height = height + AndroidUtilities.dp(7.0f);
+            this.height = AndroidUtilities.dp(7.0f) + height;
         }
         int iDp = (int) (fMax2 + fMax + AndroidUtilities.dp(11.0f));
         int iMax = Math.max(iDp, AndroidUtilities.dp(160.0f));
@@ -145,84 +161,14 @@ public class SuggestionOffer {
         for (int i10 = 0; i10 < this.title.getLineCount(); i10++) {
             iMax2 = (int) Math.max(iMax2, this.title.getLineWidth(i10));
         }
-        int height2 = this.height + this.title.getHeight();
+        int height2 = this.title.getHeight() + this.height;
         this.height = height2;
-        this.height = height2 + AndroidUtilities.dp(5.0f);
-        int iMax3 = Math.max(iDp, iMax2) + (AndroidUtilities.dp(24.0f) * 2);
-        this.width = iMax3;
-        this.titleX = (iMax3 - iMax) / 2;
-        int i11 = (iMax3 - iDp) / 2;
+        this.height = AndroidUtilities.dp(5.0f) + height2;
+        int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 24.0f, Math.max(iDp, iMax2));
+        this.width = iM;
+        this.titleX = (iM - iMax) / 2;
+        int i11 = (iM - iDp) / 2;
         this.rowsTitleX = i11;
-        this.rowsInfoX = (int) (i11 + AndroidUtilities.dp(f) + fMax);
-    }
-
-    private void updateBuildTitleStep(StringBuilder sb, int i, boolean z) {
-        if (sb.length() > 0) {
-            if (z) {
-                sb.append(' ');
-                sb.append(LocaleController.getString(R.string.SuggestionOfferInfoTitleEditedAnd));
-                sb.append(' ');
-            } else {
-                sb.append(", ");
-            }
-        }
-        sb.append(LocaleController.getString(i));
-    }
-
-    public int getHeight() {
-        return this.height;
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
-    public void draw(Canvas canvas, int i, float f, float f2, float f3, float f4, boolean z) {
-        int i2 = this.width;
-        int i3 = (i - i2) / 2;
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(i3, 0.0f, i2 + i3, this.height);
-        canvas.save();
-        canvas.translate(f / 2.0f, f2);
-        Paint themePaint = Theme.getThemePaint("paintChatActionBackground", this.resourcesProvider);
-        int alpha = themePaint.getAlpha();
-        themePaint.setAlpha((int) (alpha * f4 * f3));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), themePaint);
-        themePaint.setAlpha(alpha);
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        if (resourcesProvider != null ? resourcesProvider.hasGradientService() : Theme.hasGradientService()) {
-            Paint themePaint2 = Theme.getThemePaint("paintChatActionBackgroundDarken", this.resourcesProvider);
-            int alpha2 = themePaint2.getAlpha();
-            themePaint2.setAlpha((int) (alpha2 * f4 * f3));
-            canvas.drawRect(rectF, themePaint2);
-            themePaint2.setAlpha(alpha2);
-        }
-        int iDp = AndroidUtilities.dp(14.0f);
-        if (this.title != null) {
-            canvas.save();
-            canvas.translate(this.titleX + i3, iDp);
-            this.title.draw(canvas);
-            canvas.restore();
-            iDp += this.title.getHeight() + AndroidUtilities.dp(12.0f);
-        }
-        ArrayList arrayList = this.rows;
-        int size = arrayList.size();
-        int i4 = 0;
-        while (i4 < size) {
-            Object obj = arrayList.get(i4);
-            i4++;
-            Row row = (Row) obj;
-            float f5 = iDp;
-            row.title.draw(canvas, this.rowsTitleX + i3, (row.getHeight() / 2.0f) + f5, 0.85f);
-            row.info.draw(canvas, this.rowsInfoX + i3, f5 + (row.getHeight() / 2.0f));
-            iDp += row.getHeight() + AndroidUtilities.dp(7.0f);
-        }
-        canvas.restore();
-    }
-
-    protected Paint getThemedPaint(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
-        return paint != null ? paint : Theme.getThemePaint(str);
+        this.rowsInfoX = (int) (AndroidUtilities.dp(f) + i11 + fMax);
     }
 }

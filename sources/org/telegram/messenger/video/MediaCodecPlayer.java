@@ -57,26 +57,6 @@ public class MediaCodecPlayer {
         mediaCodecCreateDecoderByType.start();
     }
 
-    public int getWidth() {
-        return this.w;
-    }
-
-    public int getOrientedWidth() {
-        return (this.o / 90) % 2 == 1 ? this.h : this.w;
-    }
-
-    public int getHeight() {
-        return this.h;
-    }
-
-    public int getOrientedHeight() {
-        return (this.o / 90) % 2 == 1 ? this.w : this.h;
-    }
-
-    public int getOrientation() {
-        return this.o;
-    }
-
     public boolean ensure(long j) {
         ByteBuffer inputBuffer;
         if (this.done) {
@@ -95,14 +75,13 @@ public class MediaCodecPlayer {
             int iDequeueInputBuffer = this.codec.dequeueInputBuffer(10000L);
             if (iDequeueInputBuffer >= 0 && (inputBuffer = this.codec.getInputBuffer(iDequeueInputBuffer)) != null) {
                 int sampleData = this.extractor.readSampleData(inputBuffer, 0);
-                if (sampleData > 0) {
-                    this.codec.queueInputBuffer(iDequeueInputBuffer, 0, sampleData, this.extractor.getSampleTime(), this.extractor.getSampleFlags());
-                    this.extractor.advance();
-                } else {
+                if (sampleData <= 0) {
                     this.codec.queueInputBuffer(iDequeueInputBuffer, 0, 0, 0L, 4);
                     release();
                     return false;
                 }
+                this.codec.queueInputBuffer(iDequeueInputBuffer, 0, sampleData, this.extractor.getSampleTime(), this.extractor.getSampleFlags());
+                this.extractor.advance();
             }
             MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
             int iDequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 10000L);
@@ -116,6 +95,26 @@ public class MediaCodecPlayer {
                 this.codec.releaseOutputBuffer(iDequeueOutputBuffer, false);
             }
         }
+    }
+
+    public int getHeight() {
+        return this.h;
+    }
+
+    public int getOrientation() {
+        return this.o;
+    }
+
+    public int getOrientedHeight() {
+        return (this.o / 90) % 2 == 1 ? this.w : this.h;
+    }
+
+    public int getOrientedWidth() {
+        return (this.o / 90) % 2 == 1 ? this.h : this.w;
+    }
+
+    public int getWidth() {
+        return this.w;
     }
 
     public void release() {

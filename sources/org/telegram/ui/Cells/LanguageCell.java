@@ -12,19 +12,17 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
 
-public class LanguageCell extends FrameLayout {
-    private LocaleController.LocaleInfo currentLocale;
-    private int marginEndDp;
-    private int marginStartDp;
-    private boolean needDivider;
-    private RadioButton radioButton;
-    private TextView textView;
-    public TextView textView2;
+public final class LanguageCell extends FrameLayout {
+    public LocaleController.LocaleInfo currentLocale;
+    public final int marginStartDp;
+    public boolean needDivider;
+    public final RadioButton radioButton;
+    public final TextView textView;
+    public final TextView textView2;
 
     public LanguageCell(Context context) {
         super(context);
         this.marginStartDp = 62;
-        this.marginEndDp = 23;
         if (Theme.dividerPaint == null) {
             Theme.createCommonResources(context);
         }
@@ -32,70 +30,49 @@ public class LanguageCell extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        this.radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
-        RadioButton radioButton2 = this.radioButton;
+        int color = Theme.getColor(null, Theme.key_dialogRadioBackground, false);
+        int color2 = Theme.getColor(null, Theme.key_dialogRadioBackgroundChecked, false);
+        radioButton.color = color;
+        radioButton.checkedColor = color2;
+        radioButton.invalidate();
         boolean z = LocaleController.isRTL;
-        addView(radioButton2, LayoutHelper.createFrame(22, 22.0f, (z ? 5 : 3) | 16, z ? 0 : 20, 0.0f, z ? 20 : 0, 0.0f));
+        addView(radioButton, LayoutHelper.createFrame(22, 22.0f, (z ? 5 : 3) | 16, z ? 0 : 20, 0.0f, z ? 20 : 0, 0.0f));
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        this.textView.setTextSize(1, 16.0f);
-        this.textView.setSingleLine(true);
-        TextView textView2 = this.textView;
+        textView.setTextColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
+        textView.setTextSize(1, 16.0f);
+        textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView2.setEllipsize(truncateAt);
-        this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        TextView textView3 = this.textView;
+        textView.setEllipsize(truncateAt);
+        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         boolean z2 = LocaleController.isRTL;
-        addView(textView3, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? this.marginEndDp : this.marginStartDp, 0.0f, z2 ? this.marginStartDp : this.marginEndDp, 17.0f));
-        TextView textView4 = new TextView(context);
-        this.textView2 = textView4;
-        textView4.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
-        this.textView2.setTextSize(1, 13.0f);
-        this.textView2.setSingleLine(true);
-        this.textView2.setEllipsize(truncateAt);
-        this.textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        TextView textView5 = this.textView2;
+        addView(textView, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 23 : 62, 0.0f, z2 ? 62 : 23, 17.0f));
+        TextView textView2 = new TextView(context);
+        this.textView2 = textView2;
+        textView2.setTextColor(Theme.getColor(null, Theme.key_dialogTextGray3, false));
+        textView2.setTextSize(1, 13.0f);
+        textView2.setSingleLine(true);
+        textView2.setEllipsize(truncateAt);
+        textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         boolean z3 = LocaleController.isRTL;
-        addView(textView5, LayoutHelper.createFrame(-1, -1.0f, (z3 ? 5 : 3) | 48, z3 ? this.marginEndDp : this.marginStartDp, 20.0f, z3 ? this.marginStartDp : this.marginEndDp, 0.0f));
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.needDivider ? 1 : 0), 1073741824));
-    }
-
-    public void setLanguage(LocaleController.LocaleInfo localeInfo, String str, boolean z) {
-        TextView textView = this.textView;
-        if (str == null) {
-            str = localeInfo.name;
-        }
-        textView.setText(str);
-        this.textView2.setText(localeInfo.nameEnglish);
-        this.currentLocale = localeInfo;
-        this.needDivider = z;
-    }
-
-    public void setValue(CharSequence charSequence, CharSequence charSequence2) {
-        this.textView.setText(charSequence);
-        this.textView2.setText(charSequence2);
-        this.radioButton.setChecked(false, false);
-        this.currentLocale = null;
-        this.needDivider = false;
+        addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z3 ? 5 : 3) | 48, z3 ? 23 : 62, 20.0f, z3 ? 62 : 23, 0.0f));
     }
 
     public LocaleController.LocaleInfo getCurrentLocale() {
         return this.currentLocale;
     }
 
-    public void setLanguageSelected(boolean z, boolean z2) {
-        this.radioButton.setChecked(z, z2);
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.needDivider) {
+            boolean z = LocaleController.isRTL;
+            int i = this.marginStartDp;
+            canvas.drawLine(z ? 0.0f : AndroidUtilities.dp(i - 3), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(i - 3) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(this.marginStartDp - 3), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(this.marginStartDp - 3) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
-        }
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 }

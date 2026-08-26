@@ -1,16 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import org.telegram.ui.LoginActivity;
 
 public abstract class SlideView extends LinearLayout {
+    public String getHeaderName() {
+        return "";
+    }
+
     public boolean hasCustomKeyboard() {
-        return false;
+        return this instanceof LoginActivity.LoginActivityEmailCodeView;
     }
 
     public boolean needBackButton() {
-        return false;
+        return this instanceof LoginActivity.LoginActivityEmailCodeView;
     }
 
     public boolean onBackPressed(boolean z) {
@@ -44,14 +48,6 @@ public abstract class SlideView extends LinearLayout {
     public void setParams(Bundle bundle, boolean z) {
     }
 
-    public void updateColors() {
-    }
-
-    public SlideView(Context context) {
-        super(context);
-    }
-
-    public String getHeaderName() {
-        return "";
+    public void updateColors$1() {
     }
 }

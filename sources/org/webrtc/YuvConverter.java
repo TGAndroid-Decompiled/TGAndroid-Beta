@@ -13,7 +13,7 @@ public class YuvConverter {
     private final ThreadUtils.ThreadChecker threadChecker;
     private final VideoFrameDrawer videoFrameDrawer;
 
-    private static class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
+    public static class ShaderCallbacks implements GlGenericDrawer.ShaderCallbacks {
         private float[] coeffs;
         private int coeffsLoc;
         private float stepSize;
@@ -23,21 +23,6 @@ public class YuvConverter {
         private static final float[] vCoeffs = {0.439216f, -0.367788f, -0.0714274f, 0.501961f};
 
         private ShaderCallbacks() {
-        }
-
-        public void setPlaneY() {
-            this.coeffs = yCoeffs;
-            this.stepSize = 1.0f;
-        }
-
-        public void setPlaneU() {
-            this.coeffs = uCoeffs;
-            this.stepSize = 2.0f;
-        }
-
-        public void setPlaneV() {
-            this.coeffs = vCoeffs;
-            this.stepSize = 2.0f;
         }
 
         @Override
@@ -54,27 +39,31 @@ public class YuvConverter {
             float f2 = i;
             GLES20.glUniform2f(i5, (fArr[0] * f) / f2, (f * fArr[1]) / f2);
         }
+
+        public void setPlaneU() {
+            this.coeffs = uCoeffs;
+            this.stepSize = 2.0f;
+        }
+
+        public void setPlaneV() {
+            this.coeffs = vCoeffs;
+            this.stepSize = 2.0f;
+        }
+
+        public void setPlaneY() {
+            this.coeffs = yCoeffs;
+            this.stepSize = 1.0f;
+        }
     }
 
     public YuvConverter() {
         this(new VideoFrameDrawer());
     }
 
-    public YuvConverter(VideoFrameDrawer videoFrameDrawer) {
-        ThreadUtils.ThreadChecker threadChecker = new ThreadUtils.ThreadChecker();
-        this.threadChecker = threadChecker;
-        this.i420TextureFrameBuffer = new GlTextureFrameBuffer(6408);
-        ShaderCallbacks shaderCallbacks = new ShaderCallbacks();
-        this.shaderCallbacks = shaderCallbacks;
-        this.drawer = new GlGenericDrawer("uniform vec2 xUnit;\nuniform vec4 coeffs;\n\nvoid main() {\n  gl_FragColor.r = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 1.5 * xUnit).rgb);\n  gl_FragColor.g = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 0.5 * xUnit).rgb);\n  gl_FragColor.b = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 0.5 * xUnit).rgb);\n  gl_FragColor.a = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 1.5 * xUnit).rgb);\n}\n", shaderCallbacks);
-        this.videoFrameDrawer = videoFrameDrawer;
-        threadChecker.detachThread();
-    }
-
     public VideoFrame.I420Buffer convert(VideoFrame.TextureBuffer textureBuffer) {
         int i;
         int i2;
-        final ByteBuffer byteBuffer;
+        ByteBuffer byteBuffer;
         int i3;
         this.threadChecker.checkIsOnValidThread();
         VideoFrame.TextureBuffer textureBuffer2 = (VideoFrame.TextureBuffer) this.videoFrameDrawer.prepareBufferForViewportSize(textureBuffer, textureBuffer.getWidth(), textureBuffer.getHeight());
@@ -125,19 +114,14 @@ public class YuvConverter {
                         byteBuffer.limit(i8);
                         ByteBuffer byteBufferSlice = byteBuffer.slice();
                         byteBuffer.position(i8);
-                        int i11 = (i * (i2 - 1)) + i9;
+                        int i11 = ((i2 - 1) * i) + i9;
                         byteBuffer.limit(i8 + i11);
                         ByteBuffer byteBufferSlice2 = byteBuffer.slice();
                         byteBuffer.position(i10);
                         byteBuffer.limit(i10 + i11);
                         ByteBuffer byteBufferSlice3 = byteBuffer.slice();
                         textureBuffer2.release();
-                        return JavaI420Buffer.wrap(width, height, byteBufferSlice, i, byteBufferSlice2, i, byteBufferSlice3, i, new Runnable() {
-                            @Override
-                            public final void run() {
-                                JniCommon.nativeFreeByteBuffer(byteBuffer);
-                            }
-                        });
+                        return JavaI420Buffer.wrap(width, height, byteBufferSlice, i, byteBufferSlice2, i, byteBufferSlice3, i, new YuvConverter$$ExternalSyntheticLambda0(0, byteBuffer));
                     }
                 } catch (Exception e3) {
                     e = e3;
@@ -161,19 +145,14 @@ public class YuvConverter {
         byteBuffer.limit(i12);
         ByteBuffer byteBufferSlice4 = byteBuffer.slice();
         byteBuffer.position(i12);
-        int i15 = (i * (i2 - 1)) + i13;
+        int i15 = ((i2 - 1) * i) + i13;
         byteBuffer.limit(i12 + i15);
         ByteBuffer byteBufferSlice5 = byteBuffer.slice();
         byteBuffer.position(i14);
         byteBuffer.limit(i14 + i15);
         ByteBuffer byteBufferSlice6 = byteBuffer.slice();
         textureBuffer2.release();
-        return JavaI420Buffer.wrap(width, height, byteBufferSlice4, i, byteBufferSlice5, i, byteBufferSlice6, i, new Runnable() {
-            @Override
-            public final void run() {
-                JniCommon.nativeFreeByteBuffer(byteBuffer);
-            }
-        });
+        return JavaI420Buffer.wrap(width, height, byteBufferSlice4, i, byteBufferSlice5, i, byteBufferSlice6, i, new YuvConverter$$ExternalSyntheticLambda0(0, byteBuffer));
     }
 
     public void release() {
@@ -182,5 +161,16 @@ public class YuvConverter {
         this.i420TextureFrameBuffer.release();
         this.videoFrameDrawer.release();
         this.threadChecker.detachThread();
+    }
+
+    public YuvConverter(VideoFrameDrawer videoFrameDrawer) {
+        ThreadUtils.ThreadChecker threadChecker = new ThreadUtils.ThreadChecker();
+        this.threadChecker = threadChecker;
+        this.i420TextureFrameBuffer = new GlTextureFrameBuffer(6408);
+        ShaderCallbacks shaderCallbacks = new ShaderCallbacks();
+        this.shaderCallbacks = shaderCallbacks;
+        this.drawer = new GlGenericDrawer("uniform vec2 xUnit;\nuniform vec4 coeffs;\n\nvoid main() {\n  gl_FragColor.r = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 1.5 * xUnit).rgb);\n  gl_FragColor.g = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 0.5 * xUnit).rgb);\n  gl_FragColor.b = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 0.5 * xUnit).rgb);\n  gl_FragColor.a = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 1.5 * xUnit).rgb);\n}\n", shaderCallbacks);
+        this.videoFrameDrawer = videoFrameDrawer;
+        threadChecker.detachThread();
     }
 }

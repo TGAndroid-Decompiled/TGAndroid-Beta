@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BillingController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.CountdownTimer;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
@@ -29,23 +29,112 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.VideoEditTextureView$$ExternalSyntheticLambda1;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda12;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    private final LongSparseArray activeAuctionCells;
-    private List activeAuctions;
-    private UniversalAdapter adapter;
-    private final UItem headerItem;
-    private boolean isOpenAnimationEnd;
+public final class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
+    public final LongSparseArray activeAuctionCells;
+    public ArrayList activeAuctions;
+    public UniversalAdapter adapter;
+    public final UItem headerItem;
+    public boolean isOpenAnimationEnd;
 
-    public ActiveAuctionsSheet(final Context context, final Theme.ResourcesProvider resourcesProvider) {
-        super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
+    public final class ActiveAuctionCell extends FrameLayout {
+        public final GiftAuctionController.Auction auction;
+        public final ButtonWithCounterView buttonView;
+        public final ColoredImageSpan cs;
+        public final AnimatedTextView messageView;
+        public final Paint paint;
+        public final ColoredImageSpan[] spanRefStars;
+        public final CountdownTimer timer;
+        public final AnimatedTextView titleView;
+
+        public ActiveAuctionCell(Context context, GiftAuctionController.Auction auction) {
+            super(context);
+            Paint paint = new Paint(1);
+            this.paint = paint;
+            this.timer = new CountdownTimer(new VideoEditTextureView$$ExternalSyntheticLambda1(this, 23));
+            this.cs = new ColoredImageSpan(R.drawable.filled_gift_sell_24);
+            this.spanRefStars = new ColoredImageSpan[1];
+            this.auction = auction;
+            setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f));
+            paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, 0.0f, 536870912);
+            paint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, null, true);
+            this.buttonView = buttonWithCounterView;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = buttonWithCounterView.text;
+            animatedTextDrawable.splitByWords = false;
+            animatedTextDrawable.preserveIndex = true;
+            animatedTextDrawable.startFromEnd = true;
+            animatedTextDrawable.enforceByLetter = true;
+            RLottieImageView rLottieImageView = new RLottieImageView(context);
+            AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+            this.titleView = animatedTextView;
+            animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
+            animatedTextView.setTypeface(AndroidUtilities.bold());
+            animatedTextView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, false, false);
+            this.messageView = animatedTextView2;
+            animatedTextView2.setTextSize(AndroidUtilities.dp(12.0f));
+            TLRPC.Document document = auction.gift.sticker;
+            if (document != null) {
+                rLottieImageView.setAnimation(44, 44, document);
+            }
+            addView(animatedTextView, LayoutHelper.createFrame(-1, 18.0f, 51, 64.0f, 15.0f, 15.0f, 0.0f));
+            addView(animatedTextView2, LayoutHelper.createFrame(-1, 17.0f, 51, 64.0f, 34.0f, 15.0f, 0.0f));
+            addView(rLottieImageView, LayoutHelper.createFrame(44, 44.0f, 51, 14.0f, 11.0f, 0.0f, 0.0f));
+            addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 44.0f, 80, 15.0f, 0.0f, 15.0f, 15.0f));
+            updateStatus(false);
+        }
+
+        @Override
+        public final void dispatchDraw(Canvas canvas) {
+            canvas.drawRoundRect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), getMeasuredWidth() - AndroidUtilities.dp(14.0f), getMeasuredHeight() - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.paint);
+            super.dispatchDraw(canvas);
+        }
+
+        @Override
+        public final void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            CountdownTimer countdownTimer = this.timer;
+            countdownTimer.isRunning = false;
+            AndroidUtilities.cancelRunOnUIThread(countdownTimer.doUpdate);
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(146), 1073741824));
+        }
+
+        public final void updateStatus(boolean z) {
+            GiftAuctionController.Auction auction = this.auction;
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
+            if (tL_starGiftAuctionState != null) {
+                this.titleView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z, true);
+            }
+            String strM = BillingController$$ExternalSyntheticOutline0.m(auction.auctionUserState.bid_amount, ',', new StringBuilder("⭐️"));
+            boolean zIsOutbid = auction.getBidStatus().isOutbid();
+            AnimatedTextView animatedTextView = this.messageView;
+            ColoredImageSpan[] coloredImageSpanArr = this.spanRefStars;
+            if (zIsOutbid) {
+                animatedTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidOutbid, strM)), 0.66f, coloredImageSpanArr), z, true);
+                animatedTextView.setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
+            } else {
+                animatedTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidActive, strM, Integer.valueOf(auction.getApproximatedMyPlace()))), 0.66f, coloredImageSpanArr), z, true);
+                animatedTextView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+            }
+        }
+    }
+
+    public ActiveAuctionsSheet(Context context) {
+        super(context, null, false, false, false, false, false, 2, null);
+        int i = 0;
         this.activeAuctionCells = new LongSparseArray();
         this.activeAuctions = new ArrayList();
-        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
-        int i = 0;
         this.ignoreTouchActionBar = false;
         this.headerMoveTop = AndroidUtilities.dp(12.0f);
         fixNavigationBar();
@@ -63,28 +152,46 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
         while (i < size) {
             GiftAuctionController.Auction auction = activeAuctions.get(i);
             i++;
-            final GiftAuctionController.Auction auction2 = auction;
-            ActiveAuctionCell activeAuctionCell = new ActiveAuctionCell(context, resourcesProvider, auction2);
-            activeAuctionCell.buttonView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    ActiveAuctionsSheet.m3189$r8$lambda$BFltsclDpKFn9dcf8fhGTpjFE(this.f$0, context, resourcesProvider, auction2, view);
-                }
-            });
+            GiftAuctionController.Auction auction2 = auction;
+            ActiveAuctionCell activeAuctionCell = new ActiveAuctionCell(context, auction2);
+            activeAuctionCell.buttonView.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(this, context, auction2, 3));
             linearLayout.addView(activeAuctionCell, LayoutHelper.createLinear(-1, -2));
             this.activeAuctionCells.put(auction2.giftId, activeAuctionCell);
         }
         onActiveAuctionsUpdate(activeAuctions);
     }
 
-    public static void m3189$r8$lambda$BFltsclDpKFn9dcf8fhGTpjFE(ActiveAuctionsSheet activeAuctionsSheet, Context context, Theme.ResourcesProvider resourcesProvider, GiftAuctionController.Auction auction, View view) {
-        activeAuctionsSheet.getClass();
-        new AuctionBidSheet(context, resourcesProvider, null, auction).show();
-        activeAuctionsSheet.dismiss();
+    @Override
+    public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 23), this.resourcesProvider);
+        this.adapter = universalAdapter;
+        universalAdapter.applyBackground = false;
+        return universalAdapter;
     }
 
     @Override
-    public void onActiveAuctionsUpdate(List list) {
+    public final void lambda$showGiftOfferSheet$15() {
+        GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
+        super.lambda$showGiftOfferSheet$15();
+    }
+
+    @Override
+    public final CharSequence getTitle() {
+        ArrayList arrayList = this.activeAuctions;
+        if (arrayList == null) {
+            return null;
+        }
+        return LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(arrayList.size()));
+    }
+
+    public final void lambda$new$0(Context context, GiftAuctionController.Auction auction) {
+        new AuctionBidSheet(context, null, null, auction).show();
+        GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
+        super.lambda$showGiftOfferSheet$15();
+    }
+
+    @Override
+    public final void onActiveAuctionsUpdate(List list) {
         this.activeAuctions = new ArrayList(list);
         this.actionBar.setTitle(getTitle());
         Iterator it = list.iterator();
@@ -96,140 +203,23 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
             if (activeAuctionCell != null) {
                 activeAuctionCell.updateStatus(this.isOpenAnimationEnd);
                 long jMax = Math.max(0, i - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                activeAuctionCell.updateButton(jMax, this.isOpenAnimationEnd);
+                boolean z = this.isOpenAnimationEnd;
+                String durationNoHours = AndroidUtilities.formatDurationNoHours((int) jMax, false);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
+                spannableStringBuilder.setSpan(activeAuctionCell.cs, 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.append((CharSequence) "  ");
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActiveAuctionsActiveRaiseBid));
+                spannableStringBuilder.append((CharSequence) "  ");
+                spannableStringBuilder.append((CharSequence) durationNoHours);
+                activeAuctionCell.buttonView.setText(spannableStringBuilder, z, true);
                 activeAuctionCell.timer.start(jMax);
             }
         }
     }
 
     @Override
-    public void onOpenAnimationEnd() {
+    public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
         this.isOpenAnimationEnd = true;
-    }
-
-    @Override
-    public void dismiss() {
-        GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
-        super.dismiss();
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        List list = this.activeAuctions;
-        if (list == null) {
-            return null;
-        }
-        return LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(list.size()));
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, this.resourcesProvider);
-        this.adapter = universalAdapter;
-        universalAdapter.setApplyBackground(false);
-        return this.adapter;
-    }
-
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(this.headerItem);
-    }
-
-    static class ActiveAuctionCell extends FrameLayout {
-        private final GiftAuctionController.Auction auction;
-        private final ButtonWithCounterView buttonView;
-        private final ColoredImageSpan cs;
-        private final AnimatedTextView messageView;
-        private final Paint paint;
-        private final ColoredImageSpan[] spanRefStars;
-        private final CountdownTimer timer;
-        private final AnimatedTextView titleView;
-
-        public ActiveAuctionCell(Context context, Theme.ResourcesProvider resourcesProvider, GiftAuctionController.Auction auction) {
-            super(context);
-            Paint paint = new Paint(1);
-            this.paint = paint;
-            this.timer = new CountdownTimer(new CountdownTimer.Callback() {
-                @Override
-                public final void onTimerUpdate(long j) {
-                    this.f$0.updateButton(j, true);
-                }
-            });
-            this.cs = new ColoredImageSpan(R.drawable.filled_gift_sell_24);
-            this.spanRefStars = new ColoredImageSpan[1];
-            this.auction = auction;
-            setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f));
-            paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, 0.0f, 536870912);
-            paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-            this.buttonView = buttonWithCounterView;
-            buttonWithCounterView.setTextHacks(false, true, true, true);
-            RLottieImageView rLottieImageView = new RLottieImageView(context);
-            AnimatedTextView animatedTextView = new AnimatedTextView(context);
-            this.titleView = animatedTextView;
-            animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            animatedTextView.setTypeface(AndroidUtilities.bold());
-            animatedTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
-            this.messageView = animatedTextView2;
-            animatedTextView2.setTextSize(AndroidUtilities.dp(12.0f));
-            TLRPC.Document document = auction.gift.sticker;
-            if (document != null) {
-                rLottieImageView.setAnimation(document, 44, 44);
-            }
-            addView(animatedTextView, LayoutHelper.createFrame(-1, 18.0f, 51, 64.0f, 15.0f, 15.0f, 0.0f));
-            addView(animatedTextView2, LayoutHelper.createFrame(-1, 17.0f, 51, 64.0f, 34.0f, 15.0f, 0.0f));
-            addView(rLottieImageView, LayoutHelper.createFrame(44, 44.0f, 51, 14.0f, 11.0f, 0.0f, 0.0f));
-            addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 44.0f, 80, 15.0f, 0.0f, 15.0f, 15.0f));
-            updateStatus(false);
-        }
-
-        public void updateButton(long j, boolean z) {
-            String durationNoHours = AndroidUtilities.formatDurationNoHours((int) j, false);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
-            spannableStringBuilder.setSpan(this.cs, 0, spannableStringBuilder.length(), 33);
-            spannableStringBuilder.append((CharSequence) "  ");
-            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActiveAuctionsActiveRaiseBid));
-            spannableStringBuilder.append((CharSequence) "  ");
-            spannableStringBuilder.append((CharSequence) durationNoHours);
-            this.buttonView.setText(spannableStringBuilder, z);
-        }
-
-        public void updateStatus(boolean z) {
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.auction.auctionStateActive;
-            if (tL_starGiftAuctionState != null) {
-                this.titleView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(this.auction.auctionStateActive.total_rounds, ',')), z);
-            }
-            String str = "⭐️" + LocaleController.formatNumber(this.auction.auctionUserState.bid_amount, ',');
-            if (this.auction.getBidStatus().isOutbid()) {
-                this.messageView.setText(StarsIntroActivity.replaceStarsWithPlain(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidOutbid, str)), 0.66f, this.spanRefStars), z);
-                this.messageView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
-            } else {
-                this.messageView.setText(StarsIntroActivity.replaceStarsWithPlain(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidActive, str, Integer.valueOf(this.auction.getApproximatedMyPlace()))), 0.66f, this.spanRefStars), z);
-                this.messageView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            }
-        }
-
-        @Override
-        protected void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-            this.timer.stop();
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, LayoutHelper.measureSpecExactlyDp(146));
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            canvas.drawRoundRect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), getMeasuredWidth() - AndroidUtilities.dp(14.0f), getMeasuredHeight() - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.paint);
-            super.dispatchDraw(canvas);
-        }
     }
 }

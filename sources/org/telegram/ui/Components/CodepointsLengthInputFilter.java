@@ -4,7 +4,7 @@ import android.text.InputFilter;
 import android.text.Spanned;
 
 public abstract class CodepointsLengthInputFilter implements InputFilter {
-    private final int mMax;
+    public final int mMax;
 
     public CodepointsLengthInputFilter(int i) {
         this.mMax = i;

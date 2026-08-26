@@ -1,10 +1,9 @@
 package org.telegram.ui.Components;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,198 +13,59 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
+import androidx.recyclerview.widget.DiffUtil;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.Theme;
 
 public abstract class TextSelectionHint extends View {
-    Animator a;
-    int animateToEnd;
-    int animateToStart;
-    int currentEnd;
-    int currentStart;
-    Runnable dismissTunnable;
-    int end;
-    float endOffsetValue;
-    float enterValue;
-    private Interpolator interpolator;
-    int lastW;
-    int padding;
-    Path path;
-    float prepareProgress;
-    private final Theme.ResourcesProvider resourcesProvider;
-    Paint selectionPaint;
-    private boolean showOnMeasure;
-    boolean showing;
-    int start;
-    float startOffsetValue;
-    StaticLayout textLayout;
-    TextPaint textPaint;
+    public Animator a;
+    public int animateToEnd;
+    public int currentEnd;
+    public int currentStart;
+    public final SeekBarView$$ExternalSyntheticLambda1 dismissTunnable;
+    public int end;
+    public float endOffsetValue;
+    public float enterValue;
+    public final OvershootInterpolator interpolator;
+    public int lastW;
+    public final int padding;
+    public final Path path;
+    public float prepareProgress;
+    public final Paint selectionPaint;
+    public boolean showOnMeasure;
+    public boolean showing;
+    public int start;
+    public float startOffsetValue;
+    public StaticLayout textLayout;
+    public final TextPaint textPaint;
 
-    public TextSelectionHint(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
-        this.textPaint = new TextPaint(1);
-        this.selectionPaint = new Paint(1);
+    public TextSelectionHint(Activity activity, Theme.ResourcesProvider resourcesProvider) {
+        super(activity);
+        TextPaint textPaint = new TextPaint(1);
+        this.textPaint = textPaint;
+        Paint paint = new Paint(1);
+        this.selectionPaint = paint;
         this.padding = AndroidUtilities.dp(24.0f);
         this.interpolator = new OvershootInterpolator();
-        this.dismissTunnable = new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.hideInternal();
-            }
-        };
+        this.dismissTunnable = new SeekBarView$$ExternalSyntheticLambda1(this, 28);
         this.path = new Path();
-        this.resourcesProvider = resourcesProvider;
-        int themedColor = getThemedColor(Theme.key_undo_infoColor);
-        int iAlpha = Color.alpha(themedColor);
-        this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        this.textPaint.setColor(themedColor);
-        this.selectionPaint.setColor(themedColor);
-        this.selectionPaint.setAlpha((int) (((double) iAlpha) * 0.14d));
-        setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor(Theme.key_undo_background)));
+        int color = Theme.getColor(Theme.key_undo_infoColor, resourcesProvider);
+        int iAlpha = Color.alpha(color);
+        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setColor(color);
+        paint.setColor(color);
+        paint.setAlpha((int) (((double) iAlpha) * 0.14d));
+        setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_undo_background, resourcesProvider)));
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        if (getMeasuredWidth() != this.lastW || this.textLayout == null) {
-            Animator animator = this.a;
-            if (animator != null) {
-                animator.removeAllListeners();
-                this.a.cancel();
-            }
-            String string = LocaleController.getString(R.string.TextSelectionHint);
-            Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
-            String strGroup = matcher.matches() ? matcher.group() : null;
-            String strReplace = string.replace("**", "");
-            this.textLayout = new StaticLayout(strReplace, this.textPaint, getMeasuredWidth() - (this.padding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.start = 0;
-            this.end = 0;
-            if (strGroup != null) {
-                this.start = strReplace.indexOf(strGroup);
-            }
-            int i3 = this.start;
-            if (i3 > 0) {
-                this.end = i3 + strGroup.length();
-            } else {
-                int i4 = 0;
-                for (int i5 = 0; i5 < strReplace.length(); i5++) {
-                    if (strReplace.charAt(i5) == ' ') {
-                        i4++;
-                        if (i4 == 2) {
-                            this.start = i5 + 1;
-                        }
-                        if (i4 == 3) {
-                            this.end = i5 - 1;
-                        }
-                    }
-                }
-            }
-            if (this.end == 0) {
-                this.end = strReplace.length();
-            }
-            this.animateToStart = 0;
-            StaticLayout staticLayout = this.textLayout;
-            int offsetForHorizontal = staticLayout.getOffsetForHorizontal(staticLayout.getLineForOffset(this.end), this.textLayout.getWidth() - 1);
-            this.animateToEnd = offsetForHorizontal;
-            this.currentStart = this.start;
-            this.currentEnd = this.end;
-            if (this.showing) {
-                this.prepareProgress = 1.0f;
-                this.enterValue = 1.0f;
-                this.currentStart = this.animateToStart;
-                this.currentEnd = offsetForHorizontal;
-                this.startOffsetValue = 0.0f;
-                this.endOffsetValue = 0.0f;
-            } else if (this.showOnMeasure) {
-                show();
-            }
-            this.showOnMeasure = false;
-            this.lastW = getMeasuredWidth();
-        }
-        int height = this.textLayout.getHeight() + (AndroidUtilities.dp(8.0f) * 2);
-        if (height < AndroidUtilities.dp(56.0f)) {
-            height = AndroidUtilities.dp(56.0f);
-        }
-        setMeasuredDimension(getMeasuredWidth(), height);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        float f;
-        Path.Direction direction;
-        float f2;
-        float f3;
-        int i;
-        if (this.textLayout == null) {
-            return;
-        }
-        super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(this.padding, (getMeasuredHeight() - this.textLayout.getHeight()) >> 1);
-        if (this.enterValue != 0.0f) {
-            drawSelection(canvas, this.textLayout, this.currentStart, this.currentEnd);
-        }
-        this.textLayout.draw(canvas);
-        int iDp = AndroidUtilities.dp(14.0f);
-        int lineForOffset = this.textLayout.getLineForOffset(this.currentEnd);
-        this.textLayout.getPrimaryHorizontal(this.currentEnd);
-        int lineBottom = this.textLayout.getLineBottom(lineForOffset);
-        int i2 = this.currentEnd;
-        int i3 = this.animateToEnd;
-        if (i2 == i3) {
-            roundedRect(this.path, this.textLayout.getPrimaryHorizontal(i3), this.textLayout.getLineTop(lineForOffset), this.textLayout.getPrimaryHorizontal(this.animateToEnd) + AndroidUtilities.dpf2(4.0f), this.textLayout.getLineBottom(lineForOffset), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), false, true);
-            canvas.drawPath(this.path, this.selectionPaint);
-        }
-        float interpolation = this.interpolator.getInterpolation(this.enterValue);
-        int primaryHorizontal = (int) (this.textLayout.getPrimaryHorizontal(this.animateToEnd) + (AndroidUtilities.dpf2(4.0f) * (1.0f - this.endOffsetValue)) + ((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue));
-        canvas.save();
-        canvas.translate(primaryHorizontal, lineBottom);
-        float f4 = iDp;
-        float f5 = f4 / 2.0f;
-        canvas.scale(interpolation, interpolation, f5, f5);
-        this.path.reset();
-        Path path = this.path;
-        Path.Direction direction2 = Path.Direction.CCW;
-        path.addCircle(f5, f5, f5, direction2);
-        this.path.addRect(0.0f, 0.0f, f5, f5, direction2);
-        canvas.drawPath(this.path, this.textPaint);
-        canvas.restore();
-        int lineForOffset2 = this.textLayout.getLineForOffset(this.currentStart);
-        this.textLayout.getPrimaryHorizontal(this.currentStart);
-        int lineBottom2 = this.textLayout.getLineBottom(lineForOffset2);
-        if (this.currentStart == this.animateToStart) {
-            f = f5;
-            direction = direction2;
-            f2 = 1.0f;
-            f3 = 4.0f;
-            i = lineBottom2;
-            roundedRect(this.path, -AndroidUtilities.dp(4.0f), this.textLayout.getLineTop(lineForOffset2), 0.0f, this.textLayout.getLineBottom(lineForOffset2), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), true, false);
-            canvas.drawPath(this.path, this.selectionPaint);
-        } else {
-            f = f5;
-            direction = direction2;
-            f2 = 1.0f;
-            f3 = 4.0f;
-            i = lineBottom2;
-        }
-        canvas.save();
-        canvas.translate(((int) ((this.textLayout.getPrimaryHorizontal(this.animateToStart) - (AndroidUtilities.dp(f3) * (f2 - this.startOffsetValue))) + ((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(this.animateToStart)) * this.startOffsetValue))) - iDp, i);
-        canvas.scale(interpolation, interpolation, f, f);
-        this.path.reset();
-        this.path.addCircle(f, f, f, direction);
-        this.path.addRect(f, 0.0f, f4, f, direction);
-        canvas.drawPath(this.path, this.textPaint);
-        canvas.restore();
-        canvas.restore();
-    }
-
-    private void roundedRect(Path path, float f, float f2, float f3, float f4, float f5, float f6, boolean z, boolean z2) {
+    public static void roundedRect(Path path, float f, float f2, float f3, float f4, float f5, float f6, boolean z, boolean z2) {
         path.reset();
         if (f5 < 0.0f) {
             f5 = 0.0f;
@@ -251,29 +111,180 @@ public abstract class TextSelectionHint extends View {
         path.close();
     }
 
-    private void drawSelection(Canvas canvas, StaticLayout staticLayout, int i, int i2) {
-        int lineForOffset = staticLayout.getLineForOffset(i);
-        int lineForOffset2 = staticLayout.getLineForOffset(i2);
-        int primaryHorizontal = (int) staticLayout.getPrimaryHorizontal(i);
-        int primaryHorizontal2 = (int) staticLayout.getPrimaryHorizontal(i2);
-        if (lineForOffset == lineForOffset2) {
-            canvas.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
-            return;
-        }
-        canvas.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
-        canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset2), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset2), this.selectionPaint);
-        while (true) {
-            lineForOffset++;
-            if (lineForOffset >= lineForOffset2) {
-                return;
-            } else {
-                canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
-            }
-        }
+    public float getPrepareProgress() {
+        return this.prepareProgress;
     }
 
-    public void show() {
-        AndroidUtilities.cancelRunOnUIThread(this.dismissTunnable);
+    public final void hideInternal() {
+        Animator animator = this.a;
+        if (animator != null) {
+            animator.removeAllListeners();
+            this.a.cancel();
+        }
+        this.showing = false;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.prepareProgress, 0.0f);
+        valueAnimatorOfFloat.addUpdateListener(new TextSelectionHint$$ExternalSyntheticLambda0(this, 0));
+        valueAnimatorOfFloat.addListener(new Tooltip.AnonymousClass1(this, 12));
+        this.a = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.start();
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        TextPaint textPaint;
+        int i;
+        float f;
+        Canvas canvas2 = canvas;
+        if (this.textLayout == null) {
+            return;
+        }
+        super.onDraw(canvas);
+        canvas2.save();
+        canvas2.translate(this.padding, (getMeasuredHeight() - this.textLayout.getHeight()) >> 1);
+        float f2 = this.enterValue;
+        Paint paint = this.selectionPaint;
+        if (f2 != 0.0f) {
+            StaticLayout staticLayout = this.textLayout;
+            int i2 = this.currentStart;
+            int i3 = this.currentEnd;
+            int lineForOffset = staticLayout.getLineForOffset(i2);
+            int lineForOffset2 = staticLayout.getLineForOffset(i3);
+            int primaryHorizontal = (int) staticLayout.getPrimaryHorizontal(i2);
+            int primaryHorizontal2 = (int) staticLayout.getPrimaryHorizontal(i3);
+            if (lineForOffset != lineForOffset2) {
+                canvas.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), paint);
+                canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset2), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset2), paint);
+                while (true) {
+                    lineForOffset++;
+                    if (lineForOffset >= lineForOffset2) {
+                        break;
+                    } else {
+                        canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), paint);
+                    }
+                }
+            } else {
+                canvas2.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset), paint);
+            }
+            canvas2 = canvas;
+        }
+        this.textLayout.draw(canvas2);
+        int iDp = AndroidUtilities.dp(14.0f);
+        int lineForOffset3 = this.textLayout.getLineForOffset(this.currentEnd);
+        this.textLayout.getPrimaryHorizontal(this.currentEnd);
+        int lineBottom = this.textLayout.getLineBottom(lineForOffset3);
+        int i4 = this.currentEnd;
+        int i5 = this.animateToEnd;
+        Path path = this.path;
+        if (i4 == i5) {
+            roundedRect(path, this.textLayout.getPrimaryHorizontal(i5), this.textLayout.getLineTop(lineForOffset3), AndroidUtilities.dpf2(4.0f) + this.textLayout.getPrimaryHorizontal(this.animateToEnd), this.textLayout.getLineBottom(lineForOffset3), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), false, true);
+            canvas2.drawPath(path, paint);
+        }
+        float interpolation = this.interpolator.getInterpolation(this.enterValue);
+        int primaryHorizontal3 = (int) (((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue) + DiffUtil.m(1.0f, this.endOffsetValue, AndroidUtilities.dpf2(4.0f), this.textLayout.getPrimaryHorizontal(this.animateToEnd)));
+        canvas2.save();
+        canvas2.translate(primaryHorizontal3, lineBottom);
+        float f3 = iDp;
+        float f4 = f3 / 2.0f;
+        canvas2.scale(interpolation, interpolation, f4, f4);
+        path.reset();
+        Path.Direction direction = Path.Direction.CCW;
+        path.addCircle(f4, f4, f4, direction);
+        path.addRect(0.0f, 0.0f, f4, f4, direction);
+        TextPaint textPaint2 = this.textPaint;
+        canvas2.drawPath(path, textPaint2);
+        canvas2.restore();
+        int lineForOffset4 = this.textLayout.getLineForOffset(this.currentStart);
+        this.textLayout.getPrimaryHorizontal(this.currentStart);
+        int lineBottom2 = this.textLayout.getLineBottom(lineForOffset4);
+        if (this.currentStart == 0) {
+            i = lineBottom2;
+            textPaint = textPaint2;
+            f = 1.0f;
+            roundedRect(path, -AndroidUtilities.dp(4.0f), this.textLayout.getLineTop(lineForOffset4), 0.0f, this.textLayout.getLineBottom(lineForOffset4), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), true, false);
+            canvas2.drawPath(path, paint);
+        } else {
+            textPaint = textPaint2;
+            i = lineBottom2;
+            f = 1.0f;
+        }
+        canvas2.save();
+        canvas2.translate(((int) (((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(0)) * this.startOffsetValue) + BotFullscreenButtons$$ExternalSyntheticOutline0.m(f, this.startOffsetValue, AndroidUtilities.dp(4.0f), this.textLayout.getPrimaryHorizontal(0)))) - iDp, i);
+        canvas2.scale(interpolation, interpolation, f4, f4);
+        path.reset();
+        path.addCircle(f4, f4, f4, direction);
+        path.addRect(f4, 0.0f, f3, f4, direction);
+        canvas2.drawPath(path, textPaint);
+        canvas2.restore();
+        canvas2.restore();
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        if (getMeasuredWidth() != this.lastW || this.textLayout == null) {
+            Animator animator = this.a;
+            if (animator != null) {
+                animator.removeAllListeners();
+                this.a.cancel();
+            }
+            String string = LocaleController.getString(R.string.TextSelectionHint);
+            Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
+            String strGroup = matcher.matches() ? matcher.group() : null;
+            String strReplace = string.replace("**", "");
+            this.textLayout = new StaticLayout(strReplace, this.textPaint, getMeasuredWidth() - (this.padding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.start = 0;
+            this.end = 0;
+            if (strGroup != null) {
+                this.start = strReplace.indexOf(strGroup);
+            }
+            int i3 = this.start;
+            if (i3 > 0) {
+                this.end = strGroup.length() + i3;
+            } else {
+                int i4 = 0;
+                for (int i5 = 0; i5 < strReplace.length(); i5++) {
+                    if (strReplace.charAt(i5) == ' ') {
+                        i4++;
+                        if (i4 == 2) {
+                            this.start = i5 + 1;
+                        }
+                        if (i4 == 3) {
+                            this.end = i5 - 1;
+                        }
+                    }
+                }
+            }
+            if (this.end == 0) {
+                this.end = strReplace.length();
+            }
+            StaticLayout staticLayout = this.textLayout;
+            int offsetForHorizontal = staticLayout.getOffsetForHorizontal(staticLayout.getLineForOffset(this.end), this.textLayout.getWidth() - 1);
+            this.animateToEnd = offsetForHorizontal;
+            this.currentStart = this.start;
+            this.currentEnd = this.end;
+            if (this.showing) {
+                this.prepareProgress = 1.0f;
+                this.enterValue = 1.0f;
+                this.currentStart = 0;
+                this.currentEnd = offsetForHorizontal;
+                this.startOffsetValue = 0.0f;
+                this.endOffsetValue = 0.0f;
+            } else if (this.showOnMeasure) {
+                show();
+            }
+            this.showOnMeasure = false;
+            this.lastW = getMeasuredWidth();
+        }
+        int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 8.0f, this.textLayout.getHeight());
+        if (iM < AndroidUtilities.dp(56.0f)) {
+            iM = AndroidUtilities.dp(56.0f);
+        }
+        setMeasuredDimension(getMeasuredWidth(), iM);
+    }
+
+    public final void show() {
+        SeekBarView$$ExternalSyntheticLambda1 seekBarView$$ExternalSyntheticLambda1 = this.dismissTunnable;
+        AndroidUtilities.cancelRunOnUIThread(seekBarView$$ExternalSyntheticLambda1);
         Animator animator = this.a;
         if (animator != null) {
             animator.removeAllListeners();
@@ -293,121 +304,28 @@ public abstract class TextSelectionHint extends View {
         this.endOffsetValue = 1.0f;
         invalidate();
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.m2884$r8$lambda$Lje4aq515RDuOBWPgbN3oY167c(this.f$0, valueAnimator);
-            }
-        });
+        valueAnimatorOfFloat.addUpdateListener(new TextSelectionHint$$ExternalSyntheticLambda0(this, 1));
         valueAnimatorOfFloat.setDuration(210L);
         valueAnimatorOfFloat.setInterpolator(new DecelerateInterpolator());
         ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.$r8$lambda$eiI_o2taub1i_SBOidZZW_o77i0(this.f$0, valueAnimator);
-            }
-        });
+        valueAnimatorOfFloat2.addUpdateListener(new TextSelectionHint$$ExternalSyntheticLambda0(this, 2));
         valueAnimatorOfFloat2.setStartDelay(600L);
         valueAnimatorOfFloat2.setDuration(250L);
         ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
         valueAnimatorOfFloat3.setStartDelay(500L);
-        valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.m2882$r8$lambda$0XPTaIbGpU35GKdRoLzsnVJoE(this.f$0, valueAnimator);
-            }
-        });
+        valueAnimatorOfFloat3.addUpdateListener(new TextSelectionHint$$ExternalSyntheticLambda0(this, 3));
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
         valueAnimatorOfFloat3.setInterpolator(cubicBezierInterpolator);
         valueAnimatorOfFloat3.setDuration(500L);
         ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(1.0f, 0.0f);
         valueAnimatorOfFloat4.setStartDelay(400L);
-        valueAnimatorOfFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.$r8$lambda$pQFFxa2WNs_kH4Mux610U7CbtVw(this.f$0, valueAnimator);
-            }
-        });
+        valueAnimatorOfFloat4.addUpdateListener(new TextSelectionHint$$ExternalSyntheticLambda0(this, 4));
         valueAnimatorOfFloat4.setInterpolator(cubicBezierInterpolator);
         valueAnimatorOfFloat4.setDuration(900L);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playSequentially(valueAnimatorOfFloat, valueAnimatorOfFloat2, valueAnimatorOfFloat3, valueAnimatorOfFloat4);
         this.a = animatorSet;
         animatorSet.start();
-        AndroidUtilities.runOnUIThread(this.dismissTunnable, 5000L);
-    }
-
-    public static void m2884$r8$lambda$Lje4aq515RDuOBWPgbN3oY167c(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
-        textSelectionHint.getClass();
-        textSelectionHint.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        textSelectionHint.invalidate();
-    }
-
-    public static void $r8$lambda$eiI_o2taub1i_SBOidZZW_o77i0(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
-        textSelectionHint.getClass();
-        textSelectionHint.enterValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        textSelectionHint.invalidate();
-    }
-
-    public static void m2882$r8$lambda$0XPTaIbGpU35GKdRoLzsnVJoE(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
-        textSelectionHint.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        textSelectionHint.startOffsetValue = fFloatValue;
-        int i = textSelectionHint.animateToStart;
-        textSelectionHint.currentStart = (int) (i + ((textSelectionHint.start - i) * fFloatValue));
-        textSelectionHint.invalidate();
-    }
-
-    public static void $r8$lambda$pQFFxa2WNs_kH4Mux610U7CbtVw(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
-        textSelectionHint.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        textSelectionHint.endOffsetValue = fFloatValue;
-        int i = textSelectionHint.animateToEnd;
-        textSelectionHint.currentEnd = i + ((int) Math.ceil((textSelectionHint.end - i) * fFloatValue));
-        textSelectionHint.invalidate();
-    }
-
-    public void hide() {
-        AndroidUtilities.cancelRunOnUIThread(this.dismissTunnable);
-        hideInternal();
-    }
-
-    public void hideInternal() {
-        Animator animator = this.a;
-        if (animator != null) {
-            animator.removeAllListeners();
-            this.a.cancel();
-        }
-        this.showing = false;
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.prepareProgress, 0.0f);
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.$r8$lambda$JZH_qX8HL10Mi2jkTC2GA24iz4A(this.f$0, valueAnimator);
-            }
-        });
-        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator2) {
-                TextSelectionHint.this.setVisibility(4);
-            }
-        });
-        this.a = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.start();
-    }
-
-    public static void $r8$lambda$JZH_qX8HL10Mi2jkTC2GA24iz4A(TextSelectionHint textSelectionHint, ValueAnimator valueAnimator) {
-        textSelectionHint.getClass();
-        textSelectionHint.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        textSelectionHint.invalidate();
-    }
-
-    public float getPrepareProgress() {
-        return this.prepareProgress;
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+        AndroidUtilities.runOnUIThread(seekBarView$$ExternalSyntheticLambda1, 5000L);
     }
 }

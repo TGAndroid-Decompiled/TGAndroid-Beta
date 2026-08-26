@@ -1,22 +1,19 @@
 package kotlin.text;
 
-import java.io.IOException;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.Intrinsics;
 
 public abstract class StringsKt__AppendableKt {
-    public static void appendElement(Appendable appendable, Object obj, Function1 function1) throws IOException {
-        Intrinsics.checkNotNullParameter(appendable, "<this>");
+    public static void appendElement(StringBuilder sb, Object obj, Function1 function1) {
         if (function1 != null) {
-            appendable.append((CharSequence) function1.invoke(obj));
+            sb.append((CharSequence) function1.invoke(obj));
             return;
         }
         if (obj == null ? true : obj instanceof CharSequence) {
-            appendable.append((CharSequence) obj);
+            sb.append((CharSequence) obj);
         } else if (obj instanceof Character) {
-            appendable.append(((Character) obj).charValue());
+            sb.append(((Character) obj).charValue());
         } else {
-            appendable.append(obj.toString());
+            sb.append((CharSequence) obj.toString());
         }
     }
 }

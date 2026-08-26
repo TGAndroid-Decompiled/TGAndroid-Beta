@@ -1,14 +1,75 @@
 package org.commonmark.internal.util;
 
 public abstract class LinkScanner {
-    public static int scanLinkLabelContent(CharSequence charSequence, int i) {
+    public static int scanLinkDestination(int i, CharSequence charSequence) {
+        char cCharAt;
+        if (i >= charSequence.length()) {
+            return -1;
+        }
+        if (charSequence.charAt(i) == '<') {
+            while (true) {
+                i++;
+                if (i >= charSequence.length() || (cCharAt = charSequence.charAt(i)) == '\n' || cCharAt == '<') {
+                    break;
+                }
+                if (cCharAt == '>') {
+                    return i + 1;
+                }
+                if (cCharAt == '\\') {
+                    int i2 = i + 1;
+                    if (Parsing.isEscapable(i2, charSequence)) {
+                        i = i2;
+                    }
+                }
+            }
+            return -1;
+        }
+        int i3 = 0;
+        int i4 = i;
+        while (i4 < charSequence.length()) {
+            char cCharAt2 = charSequence.charAt(i4);
+            if (cCharAt2 == 0 || cCharAt2 == ' ') {
+                if (i4 != i) {
+                    return i4;
+                }
+                return -1;
+            }
+            if (cCharAt2 == '\\') {
+                int i5 = i4 + 1;
+                if (Parsing.isEscapable(i5, charSequence)) {
+                    i4 = i5;
+                }
+            } else if (cCharAt2 == '(') {
+                i3++;
+                if (i3 > 32) {
+                    return -1;
+                }
+            } else if (cCharAt2 != ')') {
+                if (Character.isISOControl(cCharAt2)) {
+                    if (i4 != i) {
+                        return i4;
+                    }
+                    return -1;
+                }
+            } else {
+                if (i3 == 0) {
+                    return i4;
+                }
+                i3--;
+            }
+            i4++;
+        }
+        return charSequence.length();
+    }
+
+    public static int scanLinkLabelContent(int i, CharSequence charSequence) {
         while (i < charSequence.length()) {
             switch (charSequence.charAt(i)) {
                 case '[':
                     return -1;
                 case '\\':
                     int i2 = i + 1;
-                    if (Parsing.isEscapable(charSequence, i2)) {
+                    if (Parsing.isEscapable(i2, charSequence)) {
                         i = i2;
                     }
                     break;
@@ -20,33 +81,7 @@ public abstract class LinkScanner {
         return charSequence.length();
     }
 
-    public static int scanLinkDestination(CharSequence charSequence, int i) {
-        char cCharAt;
-        if (i >= charSequence.length()) {
-            return -1;
-        }
-        if (charSequence.charAt(i) != '<') {
-            return scanLinkDestinationWithBalancedParens(charSequence, i);
-        }
-        while (true) {
-            i++;
-            if (i >= charSequence.length() || (cCharAt = charSequence.charAt(i)) == '\n' || cCharAt == '<') {
-                break;
-            }
-            if (cCharAt == '>') {
-                return i + 1;
-            }
-            if (cCharAt == '\\') {
-                int i2 = i + 1;
-                if (Parsing.isEscapable(charSequence, i2)) {
-                    i = i2;
-                }
-            }
-        }
-        return -1;
-    }
-
-    public static int scanLinkTitle(CharSequence charSequence, int i) {
+    public static int scanLinkTitle(int i, CharSequence charSequence) {
         if (i >= charSequence.length()) {
             return -1;
         }
@@ -73,7 +108,7 @@ public abstract class LinkScanner {
             char cCharAt = charSequence.charAt(i);
             if (cCharAt == '\\') {
                 int i2 = i + 1;
-                if (Parsing.isEscapable(charSequence, i2)) {
+                if (Parsing.isEscapable(i2, charSequence)) {
                     i = i2;
                 } else {
                     if (cCharAt == c) {
@@ -92,40 +127,6 @@ public abstract class LinkScanner {
                 }
             }
             i++;
-        }
-        return charSequence.length();
-    }
-
-    private static int scanLinkDestinationWithBalancedParens(CharSequence charSequence, int i) {
-        int i2 = 0;
-        int i3 = i;
-        while (i3 < charSequence.length()) {
-            char cCharAt = charSequence.charAt(i3);
-            if (cCharAt != 0 && cCharAt != ' ') {
-                if (cCharAt == '\\') {
-                    int i4 = i3 + 1;
-                    if (Parsing.isEscapable(charSequence, i4)) {
-                        i3 = i4;
-                    }
-                } else if (cCharAt == '(') {
-                    i2++;
-                    if (i2 > 32) {
-                        return -1;
-                    }
-                } else if (cCharAt != ')') {
-                    if (Character.isISOControl(cCharAt)) {
-                        if (i3 == i) {
-                            return -1;
-                        }
-                    }
-                } else if (i2 != 0) {
-                    i2--;
-                }
-                i3++;
-            } else if (i3 == i) {
-                return -1;
-            }
-            return i3;
         }
         return charSequence.length();
     }

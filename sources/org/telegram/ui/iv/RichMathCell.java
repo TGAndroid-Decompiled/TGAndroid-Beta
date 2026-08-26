@@ -6,6 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -24,22 +28,37 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 
-public class RichMathCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
-    private Bitmap bitmap;
-    private Delegate delegate;
-    private final ImageView image;
-    private int paintColor;
-    private final int[] rect;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private final HorizontalScrollView scrollView;
-    private final Paint selectionPaint;
+public final class RichMathCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
+    public Bitmap bitmap;
+    public RichEditorListView.AnonymousClass10 delegate;
+    public final ImageView image;
+    public int paintColor;
+    public final int[] rect;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final HorizontalScrollView scrollView;
+    public final Paint selectionPaint;
 
-    public interface Delegate {
-        TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper();
-    }
+    public final class Factory extends UItem.UItemFactory {
+        public static final int $r8$clinit = 0;
 
-    public int[] getColorKeys() {
-        return Theme.Colorable.CC.$default$getColorKeys(this);
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
+
+        @Override
+        public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            ((RichMathCell) view).bind((BlockRow) uItem.object, (RichEditorListView.AnonymousClass10) uItem.object2);
+        }
+
+        @Override
+        public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            return new RichMathCell(context, resourcesProvider);
+        }
+
+        @Override
+        public final boolean isClickable() {
+            return false;
+        }
     }
 
     public RichMathCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -62,18 +81,7 @@ public class RichMathCell extends RichBlockCell implements Theme.Colorable, Text
         horizontalScrollView.setFillViewport(true);
         horizontalScrollView.addView(frameLayout, new FrameLayout.LayoutParams(-2, -2));
         addView(horizontalScrollView, LayoutHelper.createFrame(-1, -2, 16));
-        updateColors();
-    }
-
-    public void bind(BlockRow blockRow, Delegate delegate) {
-        this.currentRow = blockRow;
-        this.delegate = delegate;
-        bindBlockInset(blockRow);
-        rebuild();
-    }
-
-    public BlockRow getRow() {
-        return this.currentRow;
+        updateColors$1();
     }
 
     private String getSource() {
@@ -88,34 +96,68 @@ public class RichMathCell extends RichBlockCell implements Theme.Colorable, Text
         return null;
     }
 
-    public void rebuild() {
+    public final void bind(BlockRow blockRow, RichEditorListView.AnonymousClass10 anonymousClass10) {
         Latex latexRender;
+        this.currentRow = blockRow;
+        this.delegate = anonymousClass10;
+        bindBlockInset(blockRow);
         this.bitmap = null;
         this.scrollView.scrollTo(0, 0);
         String source = getSource();
         if (!TextUtils.isEmpty(source) && (latexRender = Latex.render(source, AndroidUtilities.dp(SharedConfig.fontSize + 4), false)) != null) {
-            this.bitmap = latexRender.bitmap;
+            this.bitmap = (Bitmap) latexRender.bitmap;
         }
         this.image.setImageBitmap(this.bitmap);
         invalidate();
     }
 
     @Override
-    public void updateColors() {
-        this.selectionPaint.setColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, this.resourcesProvider));
-        this.paintColor = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider);
-        this.image.setColorFilter(new PorterDuffColorFilter(this.paintColor, PorterDuff.Mode.SRC_IN));
-        invalidate();
+    public final void fillTextLayoutBlocks(ArrayList arrayList) {
+        int[] iArr = this.rect;
+        selectionRect(iArr);
+        Rect rect = new Rect(iArr[0], iArr[1], iArr[2], iArr[3]);
+        if (RichBlockSelection.placeholder == null) {
+            RichBlockSelection.placeholder = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        }
+        arrayList.add(new RichBlockSelection.AnonymousClass1(RichBlockSelection.placeholder, rect));
     }
 
-    private boolean isScrollable() {
-        return this.bitmap != null && this.image.getWidth() > this.scrollView.getWidth();
+    public int[] getColorKeys() {
+        return null;
     }
 
-    private void selectionRect(int[] iArr) {
+    public BlockRow getRow() {
+        return this.currentRow;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        RichEditorListView.AnonymousClass10 anonymousClass10;
+        TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+        if (this.paintColor != Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider)) {
+            updateColors$1();
+        }
+        if (this.bitmap == null || (anonymousClass10 = this.delegate) == null || (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) == null || !textSelectionHelper.isInSelectionMode() || !(getParent() instanceof RecyclerView)) {
+            return;
+        }
+        ((RecyclerView) getParent()).getClass();
+        int childAdapterPosition = RecyclerView.getChildAdapterPosition(this);
+        if (childAdapterPosition >= 0 && childAdapterPosition >= textSelectionHelper.startViewPosition && childAdapterPosition <= textSelectionHelper.endViewPosition) {
+            int[] iArr = this.rect;
+            selectionRect(iArr);
+            canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.selectionPaint);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    }
+
+    public final void selectionRect(int[] iArr) {
         int paddingTop = getPaddingTop();
         int height = getHeight() - getPaddingBottom();
-        if (isScrollable()) {
+        if (this.bitmap != null && this.image.getWidth() > this.scrollView.getWidth()) {
             iArr[0] = getPaddingLeft();
             iArr[1] = paddingTop;
             iArr[2] = getWidth() - getPaddingRight();
@@ -127,76 +169,17 @@ public class RichMathCell extends RichBlockCell implements Theme.Colorable, Text
         int width2 = (getWidth() - width) / 2;
         iArr[0] = width2 - AndroidUtilities.dp(4.0f);
         iArr[1] = paddingTop;
-        iArr[2] = width2 + width + AndroidUtilities.dp(4.0f);
+        iArr[2] = AndroidUtilities.dp(4.0f) + width2 + width;
         iArr[3] = height;
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.paintColor != Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider)) {
-            updateColors();
-        }
-        if (this.bitmap == null || !isCellSelected()) {
-            return;
-        }
-        selectionRect(this.rect);
-        int[] iArr = this.rect;
-        canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.selectionPaint);
-    }
-
-    public boolean isPressOnMath(int i, int i2) {
-        if (this.bitmap == null) {
-            return false;
-        }
-        int[] iArr = new int[4];
-        selectionRect(iArr);
-        return i >= iArr[0] && i <= iArr[2] && i2 >= iArr[1] && i2 <= iArr[3];
-    }
-
-    private boolean isCellSelected() {
-        TextSelectionHelper.ArticleTextSelectionHelper selectionHelper;
-        int childAdapterPosition;
-        Delegate delegate = this.delegate;
-        return delegate != null && (selectionHelper = delegate.getSelectionHelper()) != null && selectionHelper.isInSelectionMode() && (getParent() instanceof RecyclerView) && (childAdapterPosition = ((RecyclerView) getParent()).getChildAdapterPosition(this)) >= 0 && childAdapterPosition >= selectionHelper.getStartCell() && childAdapterPosition <= selectionHelper.getEndCell();
-    }
-
-    @Override
-    public void fillTextLayoutBlocks(ArrayList arrayList) {
-        selectionRect(this.rect);
-        int[] iArr = this.rect;
-        arrayList.add(RichBlockSelection.of(iArr[0], iArr[1], iArr[2], iArr[3]));
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-    }
-
-    public static final class Factory extends UItem.UItemFactory {
-        @Override
-        public boolean isClickable() {
-            return false;
-        }
-
-        static {
-            UItem.UItemFactory.setup(new Factory());
-        }
-
-        @Override
-        public RichMathCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-            return new RichMathCell(context, resourcesProvider);
-        }
-
-        @Override
-        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-            ((RichMathCell) view).bind((BlockRow) uItem.object, (Delegate) uItem.object2);
-        }
-
-        public static UItem of(BlockRow blockRow, Delegate delegate) {
-            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-            uItemOfFactory.object = blockRow;
-            uItemOfFactory.object2 = delegate;
-            return uItemOfFactory;
-        }
+    public final void updateColors$1() {
+        int i = Theme.key_chat_inTextSelectionHighlight;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        this.selectionPaint.setColor(Theme.getColor(i, resourcesProvider));
+        this.paintColor = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider);
+        this.image.setColorFilter(new PorterDuffColorFilter(this.paintColor, PorterDuff.Mode.SRC_IN));
+        invalidate();
     }
 }

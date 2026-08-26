@@ -10,18 +10,23 @@ import android.graphics.Shader;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 
-public class DialogsActivityTopBubblesFadeView extends View {
-    private float fadeHeight;
-    private float fadeStart;
-    private int lastColor;
-    private final Matrix matrix;
-    private final Paint paint;
-    private Shader shader;
+public final class DialogsActivityTopBubblesFadeView extends View {
+    public float fadeHeight;
+    public float fadeStart;
+    public int lastColor;
+    public final Matrix matrix;
+    public final Paint paint;
+    public LinearGradient shader;
 
     public DialogsActivityTopBubblesFadeView(Context context) {
         super(context);
         this.paint = new Paint(1);
         this.matrix = new Matrix();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.fadeStart + this.fadeHeight, this.paint);
     }
 
     public void setColor(int i) {
@@ -34,26 +39,5 @@ public class DialogsActivityTopBubblesFadeView extends View {
             this.shader.setLocalMatrix(this.matrix);
             invalidate();
         }
-    }
-
-    public void setPosition(float f, float f2) {
-        if (this.fadeStart == f && this.fadeHeight == f2) {
-            return;
-        }
-        this.fadeStart = f;
-        this.fadeHeight = f2;
-        this.matrix.reset();
-        this.matrix.setScale(1.0f, f2);
-        this.matrix.postTranslate(0.0f, f);
-        Shader shader = this.shader;
-        if (shader != null) {
-            shader.setLocalMatrix(this.matrix);
-        }
-        invalidate();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.fadeStart + this.fadeHeight, this.paint);
     }
 }

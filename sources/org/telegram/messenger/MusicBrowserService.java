@@ -34,20 +34,15 @@ public class MusicBrowserService extends MediaBrowserService {
     }
 
     @Override
-    public void onLoadChildren(String str, final MediaBrowserService.Result<List<MediaBrowser.MediaItem>> result) {
+    public void onLoadChildren(String str, MediaBrowserService.Result<List<MediaBrowser.MediaItem>> result) {
         TelegramMediaSession telegramMediaSession = TelegramMediaSession.getInstance(this);
-        if (telegramMediaSession.isPasscodeLocked()) {
+        if (!telegramMediaSession.isPasscodeLocked()) {
+            result.detach();
+            telegramMediaSession.loadBrowseChildren(str, new BillingController$$ExternalSyntheticLambda0(result, 9));
+        } else {
             Toast.makeText(getApplicationContext(), LocaleController.getString(R.string.EnterYourTelegramPasscode), 1).show();
             stopSelf();
             result.detach();
-        } else {
-            result.detach();
-            telegramMediaSession.loadBrowseChildren(str, new TelegramMediaSession.BrowseChildrenCallback() {
-                @Override
-                public final void onResult(List list) {
-                    result.sendResult(list);
-                }
-            });
         }
     }
 }

@@ -1,104 +1,40 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.PopupWindow;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
-import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda67;
+import org.telegram.ui.Stories.DarkThemeResourceProvider;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda4;
 
 public abstract class CustomPopupMenu {
-    boolean isShowing;
-    ActionBarPopupWindow.ActionBarPopupWindowLayout popupLayout;
-    ActionBarPopupWindow popupWindow;
+    public boolean isShowing;
+    public final ActionBarPopupWindow popupWindow;
 
-    protected abstract void onCreate(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout);
-
-    protected abstract void onDismissed();
-
-    public CustomPopupMenu(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, R.drawable.popup_fixed_alert2, resourcesProvider, z ? 1 : 0);
-        this.popupLayout = actionBarPopupWindowLayout;
+    public CustomPopupMenu(Context context, DarkThemeResourceProvider darkThemeResourceProvider, boolean z) {
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z ? 1 : 0, context, darkThemeResourceProvider);
         actionBarPopupWindowLayout.setAnimationEnabled(false);
-        this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return CustomPopupMenu.$r8$lambda$ScMRpIBVmb0pKRV6aYDzWkRwdwU(this.f$0, view, motionEvent);
-            }
-        });
-        this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
-            @Override
-            public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                CustomPopupMenu.$r8$lambda$MfVTfsNaEXore7YXhCfNE8dp04Y(this.f$0, keyEvent);
-            }
-        });
-        this.popupLayout.setShownFromBottom(false);
-        onCreate(this.popupLayout);
-        ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.popupLayout, -2, -2);
+        actionBarPopupWindowLayout.setOnTouchListener(new TodoItemMenu$$ExternalSyntheticLambda4(this, 3));
+        actionBarPopupWindowLayout.setDispatchKeyEventListener(new ColorPicker$$ExternalSyntheticLambda6(this, 20));
+        actionBarPopupWindowLayout.setShownFromBottom(false);
+        onCreate(actionBarPopupWindowLayout);
+        ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout);
         this.popupWindow = actionBarPopupWindow;
-        actionBarPopupWindow.setAnimationEnabled(false);
-        this.popupWindow.setAnimationStyle(R.style.PopupContextAnimation2);
-        this.popupWindow.setOutsideTouchable(true);
-        this.popupWindow.setClippingEnabled(true);
-        this.popupWindow.setInputMethodMode(2);
-        this.popupWindow.setSoftInputMode(0);
-        this.popupWindow.getContentView().setFocusableInTouchMode(true);
+        actionBarPopupWindow.animationEnabled = false;
+        actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation2);
+        actionBarPopupWindow.setOutsideTouchable(true);
+        actionBarPopupWindow.setClippingEnabled(true);
+        actionBarPopupWindow.setInputMethodMode(2);
+        actionBarPopupWindow.setSoftInputMode(0);
+        actionBarPopupWindow.getContentView().setFocusableInTouchMode(true);
         if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
-            this.popupWindow.setFocusable(true);
+            actionBarPopupWindow.setFocusable(true);
         }
-        this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public final void onDismiss() {
-                CustomPopupMenu.$r8$lambda$sYyJto5SvamWUCpe3whtOhK1SWY(this.f$0);
-            }
-        });
+        actionBarPopupWindow.setOnDismissListener(new ArticleViewer$$ExternalSyntheticLambda67(this, 3));
     }
 
-    public static boolean $r8$lambda$ScMRpIBVmb0pKRV6aYDzWkRwdwU(CustomPopupMenu customPopupMenu, View view, MotionEvent motionEvent) {
-        ActionBarPopupWindow actionBarPopupWindow;
-        customPopupMenu.getClass();
-        if (motionEvent.getActionMasked() != 1 || (actionBarPopupWindow = customPopupMenu.popupWindow) == null || !actionBarPopupWindow.isShowing()) {
-            return false;
-        }
-        Rect rect = AndroidUtilities.rectTmp2;
-        view.getHitRect(rect);
-        if (rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-            return false;
-        }
-        customPopupMenu.popupWindow.dismiss();
-        return false;
-    }
+    public abstract void onCreate(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout);
 
-    public static void $r8$lambda$MfVTfsNaEXore7YXhCfNE8dp04Y(CustomPopupMenu customPopupMenu, KeyEvent keyEvent) {
-        ActionBarPopupWindow actionBarPopupWindow;
-        customPopupMenu.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = customPopupMenu.popupWindow) != null && actionBarPopupWindow.isShowing()) {
-            customPopupMenu.popupWindow.dismiss();
-        }
-    }
-
-    public static void $r8$lambda$sYyJto5SvamWUCpe3whtOhK1SWY(CustomPopupMenu customPopupMenu) {
-        customPopupMenu.onDismissed();
-        customPopupMenu.isShowing = false;
-    }
-
-    public void show(View view, int i, int i2) {
-        this.isShowing = true;
-        this.popupWindow.showAsDropDown(view, i, i2);
-    }
-
-    public void dismiss() {
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
-        if (actionBarPopupWindow != null) {
-            actionBarPopupWindow.dismiss();
-        }
-    }
-
-    public boolean isShowing() {
-        return this.isShowing;
-    }
+    public abstract void onDismissed();
 }

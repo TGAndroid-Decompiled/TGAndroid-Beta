@@ -12,11 +12,6 @@ public class FcscoreBox extends Box {
     private boolean strike;
     private float thickness;
 
-    @Override
-    public int getLastFontId() {
-        return -1;
-    }
-
     public FcscoreBox(int i, float f, float f2, float f3, boolean z) {
         if (i < 0) {
             i = 0;
@@ -24,7 +19,7 @@ public class FcscoreBox extends Box {
             i = 4096;
         }
         this.N = i;
-        this.width = (i * (f2 + f3)) + (2.0f * f3);
+        this.width = (2.0f * f3) + ((f2 + f3) * i);
         this.height = f;
         this.depth = 0.0f;
         this.strike = z;
@@ -50,10 +45,10 @@ public class FcscoreBox extends Box {
         float f3 = this.thickness / 2.0f;
         Line2D.Float r10 = new Line2D.Float();
         float f4 = this.space;
-        float f5 = (float) ((((double) (f + f4)) * scaleX) + (((double) (f4 / 2.0f)) * scaleX));
+        float f5 = (float) ((((double) (f4 / 2.0f)) * scaleX) + (((double) (f + f4)) * scaleX));
         int iRound = (int) Math.round(((double) (f4 + this.thickness)) * scaleX);
         while (i < this.N) {
-            double d = ((double) f5) + (((double) f3) * scaleX);
+            double d = (((double) f3) * scaleX) + ((double) f5);
             double d2 = scaleX;
             int i2 = iRound;
             r10.setLine(d, ((double) (f2 - this.height)) * scaleX, d, ((double) f2) * d2);
@@ -73,5 +68,10 @@ public class FcscoreBox extends Box {
         }
         graphics2D.setTransform(transform);
         graphics2D.setStroke(stroke);
+    }
+
+    @Override
+    public int getLastFontId() {
+        return -1;
     }
 }

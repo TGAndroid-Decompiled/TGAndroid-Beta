@@ -10,86 +10,75 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import com.google.android.gms.internal.mlkit_vision_label.zzcw;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline1;
+import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.Theme;
 
-public class SharedMediaFastScrollTooltip extends FrameLayout {
-    public SharedMediaFastScrollTooltip(Context context) {
-        super(context);
-        TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString(R.string.SharedMediaFastScrollHint));
-        textView.setTextSize(1, 14.0f);
-        textView.setMaxLines(3);
-        textView.setTextColor(Theme.getColor(Theme.key_chat_gifSaveHintText));
-        setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_gifSaveHintBackground)));
-        addView(textView, LayoutHelper.createFrame(-2, -2.0f, 16, 46.0f, 8.0f, 8.0f, 8.0f));
-        addView(new TooltipDrawableView(context), LayoutHelper.createFrame(29, 32.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
-    }
+public final class SharedMediaFastScrollTooltip extends FrameLayout {
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(300.0f), View.MeasureSpec.getSize(i) - AndroidUtilities.dp(32.0f)), Integer.MIN_VALUE), i2);
-    }
-
-    private class TooltipDrawableView extends View {
-        Paint fadePaint;
-        Paint fadePaintBack;
-        float fromProgress;
-        Paint paint;
-        Paint paint2;
-        float progress;
-        Random random;
-        float toProgress;
+    public final class TooltipDrawableView extends View {
+        public final Paint fadePaint;
+        public final Paint fadePaintBack;
+        public float fromProgress;
+        public final Paint paint;
+        public final Paint paint2;
+        public float progress;
+        public final Random random;
+        public float toProgress;
 
         public TooltipDrawableView(Context context) {
             super(context);
             this.random = new Random();
-            this.paint = new Paint(1);
-            this.paint2 = new Paint(1);
+            Paint paint = new Paint(1);
+            this.paint = paint;
+            Paint paint2 = new Paint(1);
+            this.paint2 = paint2;
             this.progress = 1.0f;
             this.fromProgress = 0.0f;
-            Paint paint = this.paint;
             int i = Theme.key_chat_gifSaveHintText;
-            paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 76));
-            this.paint2.setColor(Theme.getColor(i));
-            this.fadePaint = new Paint();
+            paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(null, i, false), 76));
+            paint2.setColor(Theme.getColor(null, i, false));
+            Paint paint3 = new Paint();
+            this.fadePaint = paint3;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            this.fadePaint.setShader(new LinearGradient(0.0f, AndroidUtilities.dp(4.0f), 0.0f, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
-            Paint paint2 = this.fadePaint;
+            paint3.setShader(new LinearGradient(0.0f, AndroidUtilities.dp(4.0f), 0.0f, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
             PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
-            paint2.setXfermode(new PorterDuffXfermode(mode));
-            this.fadePaintBack = new Paint();
-            this.fadePaintBack.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(4.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
-            this.fadePaintBack.setXfermode(new PorterDuffXfermode(mode));
+            paint3.setXfermode(new PorterDuffXfermode(mode));
+            Paint paint4 = new Paint();
+            this.fadePaintBack = paint4;
+            paint4.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(4.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
+            paint4.setXfermode(new PorterDuffXfermode(mode));
         }
 
         @Override
-        protected void onDraw(Canvas canvas) {
+        public final void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
             int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(3.0f);
-            int iDp = ((AndroidUtilities.dp(1.0f) + measuredWidth) * 7) + AndroidUtilities.dp(1.0f);
+            int iDp = AndroidUtilities.dp(1.0f) + ((AndroidUtilities.dp(1.0f) + measuredWidth) * 7);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
             float f = this.progress;
             float interpolation = cubicBezierInterpolator.getInterpolation(f > 0.4f ? (f - 0.4f) / 0.6f : 0.0f);
-            float f2 = (this.fromProgress * (1.0f - interpolation)) + (this.toProgress * interpolation);
+            float f2 = (this.toProgress * interpolation) + ((1.0f - interpolation) * this.fromProgress);
             canvas.save();
-            canvas.translate(0.0f, (-(iDp - (getMeasuredHeight() - AndroidUtilities.dp(4.0f)))) * f2);
+            canvas.translate(0.0f, (-RichMessageLayout$$ExternalSyntheticOutline1.m(getMeasuredHeight(), 4.0f, iDp)) * f2);
             int i = 0;
             for (int i2 = 7; i < i2; i2 = 7) {
-                int iDp2 = AndroidUtilities.dp(3.0f) + ((AndroidUtilities.dp(1.0f) + measuredWidth) * i);
+                int iDp2 = ((AndroidUtilities.dp(1.0f) + measuredWidth) * i) + AndroidUtilities.dp(3.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f3 = iDp2;
                 float f4 = iDp2 + measuredWidth;
                 rectF.set(0.0f, f3, measuredWidth, f4);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.paint);
-                rectF.set(AndroidUtilities.dp(1.0f) + measuredWidth, f3, AndroidUtilities.dp(1.0f) + measuredWidth + measuredWidth, f4);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.paint);
+                float fDp = AndroidUtilities.dp(2.0f);
+                float fDp2 = AndroidUtilities.dp(2.0f);
+                Paint paint = this.paint;
+                canvas.drawRoundRect(rectF, fDp, fDp2, paint);
+                rectF.set(AndroidUtilities.dp(1.0f) + measuredWidth, f3, RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(measuredWidth, 1.0f, measuredWidth), f4);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paint);
                 i++;
             }
             canvas.restore();
@@ -97,29 +86,37 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
             canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.dp(4.0f));
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(4.0f), this.fadePaintBack);
             canvas.restore();
-            float fDp = AndroidUtilities.dp(3.0f) + ((getMeasuredHeight() - AndroidUtilities.dp(21.0f)) * f2);
+            float measuredHeight = ((getMeasuredHeight() - AndroidUtilities.dp(21.0f)) * f2) + AndroidUtilities.dp(3.0f);
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(getMeasuredWidth() - AndroidUtilities.dp(3.0f), fDp, getMeasuredWidth(), AndroidUtilities.dp(15.0f) + fDp);
-            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), this.paint2);
+            rectF2.set(getMeasuredWidth() - AndroidUtilities.dp(3.0f), measuredHeight, getMeasuredWidth(), AndroidUtilities.dp(15.0f) + measuredHeight);
+            float fDp3 = AndroidUtilities.dp(1.5f);
+            float fDp4 = AndroidUtilities.dp(1.5f);
+            Paint paint2 = this.paint2;
+            canvas.drawRoundRect(rectF2, fDp3, fDp4, paint2);
             float fCenterY = rectF2.centerY();
-            float fDp2 = measuredWidth + AndroidUtilities.dp(0.5f);
-            rectF2.set(fDp2 - AndroidUtilities.dp(8.0f), fCenterY - AndroidUtilities.dp(3.0f), fDp2 + AndroidUtilities.dp(8.0f), fCenterY + AndroidUtilities.dp(3.0f));
-            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.paint2);
+            float fDp5 = AndroidUtilities.dp(0.5f) + measuredWidth;
+            rectF2.set(fDp5 - AndroidUtilities.dp(8.0f), fCenterY - AndroidUtilities.dp(3.0f), fDp5 + AndroidUtilities.dp(8.0f), fCenterY + AndroidUtilities.dp(3.0f));
+            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint2);
             float f5 = this.progress + 0.016f;
             this.progress = f5;
             if (f5 > 1.0f) {
                 this.fromProgress = this.toProgress;
-                float fAbs = Math.abs(this.random.nextInt() % 1001) / 1000.0f;
-                this.toProgress = fAbs;
-                if (fAbs > this.fromProgress) {
-                    this.toProgress = fAbs + 0.3f;
+                float fM = zzcw.m(this.random, 1001) / 1000.0f;
+                this.toProgress = fM;
+                if (fM > this.fromProgress) {
+                    this.toProgress = fM + 0.3f;
                 } else {
-                    this.toProgress = fAbs - 0.3f;
+                    this.toProgress = fM - 0.3f;
                 }
                 this.toProgress = Math.max(0.0f, Math.min(1.0f, this.toProgress));
                 this.progress = 0.0f;
             }
             invalidate();
         }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(300.0f), View.MeasureSpec.getSize(i) - AndroidUtilities.dp(32.0f)), Integer.MIN_VALUE), i2);
     }
 }

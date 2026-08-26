@@ -17,106 +17,20 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class RichCommand {
-    private static ArrayList cmds;
+public final class RichCommand {
+    public static ArrayList cmds;
     public final List commands;
     public final int icon;
     public final String name;
 
-    public static ArrayList get() {
-        ArrayList arrayList = cmds;
-        if (arrayList != null) {
-            return arrayList;
-        }
-        ArrayList arrayList2 = new ArrayList();
-        cmds = arrayList2;
-        arrayList2.add(new RichCommand(R.drawable.iv_h1, LocaleController.getString(R.string.ArticleHeading1), "#", "/h1", "/header", "/title", "/heading"));
-        cmds.add(new RichCommand(R.drawable.iv_h2, LocaleController.getString(R.string.ArticleHeading2), "##", "/h2"));
-        cmds.add(new RichCommand(R.drawable.iv_h3, LocaleController.getString(R.string.ArticleHeading3), "###", "/h3"));
-        cmds.add(new RichCommand(R.drawable.iv_h4, LocaleController.getString(R.string.ArticleHeading4), "####", "/h4"));
-        cmds.add(new RichCommand(R.drawable.iv_h5, LocaleController.getString(R.string.ArticleHeading5), "#####", "/h5"));
-        cmds.add(new RichCommand(R.drawable.iv_h6, LocaleController.getString(R.string.ArticleHeading6), "######", "/h6"));
-        cmds.add(new RichCommand(R.drawable.iv_quote, LocaleController.getString(R.string.ArticleQuote), "|", "/quote"));
-        cmds.add(new RichCommand(R.drawable.iv_pullquote, LocaleController.getString(R.string.ArticlePullquote), "/pullquote"));
-        cmds.add(new RichCommand(R.drawable.iv_code, LocaleController.getString(R.string.ArticleCode), "```", "/code", "/pre", "/preformatted"));
-        cmds.add(new RichCommand(R.drawable.iv_footer, LocaleController.getString(R.string.ArticleFooter), "/footer"));
-        cmds.add(new RichCommand(R.drawable.iv_list, LocaleController.getString(R.string.ArticleCommandList), "-", "/list"));
-        cmds.add(new RichCommand(R.drawable.iv_ordered_list, LocaleController.getString(R.string.ArticleCommandOrderedList), "1."));
-        cmds.add(new RichCommand(R.drawable.iv_todo, LocaleController.getString(R.string.ArticleListChecklist), "[]", "/todo", "/checklist"));
-        cmds.add(new RichCommand(R.drawable.iv_details, LocaleController.getString(R.string.ArticleCommandToggle), ">", "/toggle", "/details"));
-        cmds.add(new RichCommand(R.drawable.iv_button, LocaleController.getString(R.string.RichEditorButton), "/button"));
-        cmds.add(new RichCommand(R.drawable.iv_table, LocaleController.getString(R.string.ArticleCommandTable), "/table"));
-        cmds.add(new RichCommand(R.drawable.iv_math, LocaleController.getString(R.string.ArticleCommandMath), "/math", "/latex", "/expression"));
-        cmds.add(new RichCommand(R.drawable.iv_divider, LocaleController.getString(R.string.ArticleCommandDivider), "---"));
-        ArrayList arrayList3 = cmds;
-        int i = R.drawable.iv_media;
-        arrayList3.add(new RichCommand(i, LocaleController.getString(R.string.ArticleCommandImage), "/image", "/pic", "/picture", "/photo", "/img", "/media"));
-        cmds.add(new RichCommand(i, LocaleController.getString(R.string.ArticleCommandVideo), "/video", "/vid", "/media"));
-        cmds.add(new RichCommand(R.drawable.iv_audio, LocaleController.getString(R.string.ArticleCommandAudio), "/audio", "/music", "/media"));
-        cmds.add(new RichCommand(R.drawable.iv_location, LocaleController.getString(R.string.ArticleCommandMap), "/map", "/location", "/venue"));
-        return cmds;
-    }
-
-    public static ArrayList match(String str) {
-        String strTrim = str == null ? "" : str.trim();
-        if (strTrim.startsWith("/")) {
-            strTrim = strTrim.substring(1);
-        }
-        String lowerCase = strTrim.toLowerCase();
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = get();
-        int size = arrayList2.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList2.get(i);
-            i++;
-            RichCommand richCommand = (RichCommand) obj;
-            if (lowerCase.isEmpty() || richCommand.matches(lowerCase)) {
-                arrayList.add(richCommand);
-            }
-        }
-        return arrayList;
-    }
-
-    public RichCommand(int i, String str, String... strArr) {
-        this.icon = i;
-        this.name = str;
-        this.commands = Arrays.asList(strArr);
-    }
-
-    public boolean matches(String str) {
-        for (String str2 : this.name.toLowerCase().split(" ")) {
-            if (str2.startsWith(str)) {
-                return true;
-            }
-        }
-        Iterator it = this.commands.iterator();
-        while (it.hasNext()) {
-            String lowerCase = ((String) it.next()).toLowerCase();
-            if (lowerCase.startsWith("/")) {
-                lowerCase = lowerCase.substring(1);
-            }
-            if (lowerCase.startsWith(str)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static class View extends LinearLayout implements Theme.Colorable {
-        private final RichCommand cmd;
-        private final ImageView iconView;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private final TextView textView;
-        private final TextView textView2;
-
-        public int[] getColorKeys() {
-            return Theme.Colorable.CC.$default$getColorKeys(this);
-        }
+    public final class View extends LinearLayout implements Theme.Colorable {
+        public final ImageView iconView;
+        public final Theme.ResourcesProvider resourcesProvider;
+        public final TextView textView;
+        public final TextView textView2;
 
         public View(Context context, RichCommand richCommand, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            this.cmd = richCommand;
             this.resourcesProvider = resourcesProvider;
             setOrientation(0);
             ImageView imageView = new ImageView(context);
@@ -136,21 +50,101 @@ public class RichCommand {
             imageView.setImageResource(richCommand.icon);
             textView.setText(richCommand.name);
             textView2.setText((CharSequence) richCommand.commands.get(0));
-            updateColors();
+            updateColors$1();
+        }
+
+        public int[] getColorKeys() {
+            return null;
         }
 
         @Override
-        public void updateColors() {
-            ImageView imageView = this.iconView;
-            int i = Theme.key_windowBackgroundWhiteBlackText;
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
-            this.textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
-            this.textView2.setTextColor(Theme.multAlpha(Theme.getColor(i, this.resourcesProvider), 0.75f));
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
+        public final void onMeasure(int i, int i2) {
             super.onMeasure(i, android.view.View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
         }
+
+        @Override
+        public final void updateColors$1() {
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            this.iconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.SRC_IN));
+            this.textView.setTextColor(Theme.getColor(i, resourcesProvider));
+            this.textView2.setTextColor(Theme.multAlpha(0.75f, Theme.getColor(i, resourcesProvider)));
+        }
+    }
+
+    public RichCommand(String[] strArr, String str, int i) {
+        this.icon = i;
+        this.name = str;
+        this.commands = Arrays.asList(strArr);
+    }
+
+    public static ArrayList match(String str) {
+        String strTrim = str == null ? "" : str.trim();
+        if (strTrim.startsWith("/")) {
+            strTrim = strTrim.substring(1);
+        }
+        String lowerCase = strTrim.toLowerCase();
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = cmds;
+        if (arrayList2 == null) {
+            ArrayList arrayList3 = new ArrayList();
+            cmds = arrayList3;
+            arrayList3.add(new RichCommand(new String[]{"#", "/h1", "/header", "/title", "/heading"}, LocaleController.getString(R.string.ArticleHeading1), R.drawable.iv_h1));
+            cmds.add(new RichCommand(new String[]{"##", "/h2"}, LocaleController.getString(R.string.ArticleHeading2), R.drawable.iv_h2));
+            cmds.add(new RichCommand(new String[]{"###", "/h3"}, LocaleController.getString(R.string.ArticleHeading3), R.drawable.iv_h3));
+            cmds.add(new RichCommand(new String[]{"####", "/h4"}, LocaleController.getString(R.string.ArticleHeading4), R.drawable.iv_h4));
+            cmds.add(new RichCommand(new String[]{"#####", "/h5"}, LocaleController.getString(R.string.ArticleHeading5), R.drawable.iv_h5));
+            cmds.add(new RichCommand(new String[]{"######", "/h6"}, LocaleController.getString(R.string.ArticleHeading6), R.drawable.iv_h6));
+            cmds.add(new RichCommand(new String[]{"|", "/quote"}, LocaleController.getString(R.string.ArticleQuote), R.drawable.iv_quote));
+            cmds.add(new RichCommand(new String[]{"/pullquote"}, LocaleController.getString(R.string.ArticlePullquote), R.drawable.iv_pullquote));
+            cmds.add(new RichCommand(new String[]{"```", "/code", "/pre", "/preformatted"}, LocaleController.getString(R.string.ArticleCode), R.drawable.iv_code));
+            cmds.add(new RichCommand(new String[]{"/footer"}, LocaleController.getString(R.string.ArticleFooter), R.drawable.iv_footer));
+            cmds.add(new RichCommand(new String[]{"-", "/list"}, LocaleController.getString(R.string.ArticleCommandList), R.drawable.iv_list));
+            cmds.add(new RichCommand(new String[]{"1."}, LocaleController.getString(R.string.ArticleCommandOrderedList), R.drawable.iv_ordered_list));
+            cmds.add(new RichCommand(new String[]{"[]", "/todo", "/checklist"}, LocaleController.getString(R.string.ArticleListChecklist), R.drawable.iv_todo));
+            cmds.add(new RichCommand(new String[]{">", "/toggle", "/details"}, LocaleController.getString(R.string.ArticleCommandToggle), R.drawable.iv_details));
+            cmds.add(new RichCommand(new String[]{"/button"}, LocaleController.getString(R.string.RichEditorButton), R.drawable.iv_button));
+            cmds.add(new RichCommand(new String[]{"/table"}, LocaleController.getString(R.string.ArticleCommandTable), R.drawable.iv_table));
+            cmds.add(new RichCommand(new String[]{"/math", "/latex", "/expression"}, LocaleController.getString(R.string.ArticleCommandMath), R.drawable.iv_math));
+            cmds.add(new RichCommand(new String[]{"---"}, LocaleController.getString(R.string.ArticleCommandDivider), R.drawable.iv_divider));
+            ArrayList arrayList4 = cmds;
+            int i = R.drawable.iv_media;
+            arrayList4.add(new RichCommand(new String[]{"/image", "/pic", "/picture", "/photo", "/img", "/media"}, LocaleController.getString(R.string.ArticleCommandImage), i));
+            cmds.add(new RichCommand(new String[]{"/video", "/vid", "/media"}, LocaleController.getString(R.string.ArticleCommandVideo), i));
+            cmds.add(new RichCommand(new String[]{"/audio", "/music", "/media"}, LocaleController.getString(R.string.ArticleCommandAudio), R.drawable.iv_audio));
+            cmds.add(new RichCommand(new String[]{"/map", "/location", "/venue"}, LocaleController.getString(R.string.ArticleCommandMap), R.drawable.iv_location));
+            arrayList2 = cmds;
+        }
+        int size = arrayList2.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList2.get(i2);
+            i2++;
+            RichCommand richCommand = (RichCommand) obj;
+            if (!lowerCase.isEmpty()) {
+                String[] strArrSplit = richCommand.name.toLowerCase().split(" ");
+                int length = strArrSplit.length;
+                int i3 = 0;
+                while (true) {
+                    if (i3 >= length) {
+                        Iterator it = richCommand.commands.iterator();
+                        while (it.hasNext()) {
+                            String lowerCase2 = ((String) it.next()).toLowerCase();
+                            if (lowerCase2.startsWith("/")) {
+                                lowerCase2 = lowerCase2.substring(1);
+                            }
+                            if (lowerCase2.startsWith(lowerCase)) {
+                            }
+                        }
+                        break;
+                    }
+                    if (!strArrSplit[i3].startsWith(lowerCase)) {
+                        i3++;
+                    }
+                }
+            }
+            arrayList.add(richCommand);
+        }
+        return arrayList;
     }
 }

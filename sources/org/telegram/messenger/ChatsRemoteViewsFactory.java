@@ -14,7 +14,9 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.collection.LongSparseArray;
+import com.google.android.exoplayer2.util.Log;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
@@ -33,30 +35,6 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private LongSparseArray dialogs = new LongSparseArray();
     private LongSparseArray messageObjects = new LongSparseArray();
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public RemoteViews getLoadingView() {
-        return null;
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
-    public void onDestroy() {
-    }
-
     public ChatsRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
         Theme.createDialogsResources(context);
@@ -66,15 +44,9 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         if (i >= 0) {
             this.accountInstance = AccountInstance.getInstance(i);
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("deleted");
+        StringBuilder sb = new StringBuilder("deleted");
         sb.append(this.appWidgetId);
         this.deleted = sharedPreferences.getBoolean(sb.toString(), false) || this.accountInstance == null;
-    }
-
-    @Override
-    public void onCreate() {
-        ApplicationLoader.postInitApplication();
     }
 
     @Override
@@ -83,6 +55,16 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
             return 1;
         }
         return this.dids.size() + 1;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public RemoteViews getLoadingView() {
+        return null;
     }
 
     @Override
@@ -107,21 +89,17 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         int color;
         String str2;
         TLRPC.MessageMedia messageMedia;
+        CharSequence charSequenceM;
         CharSequence charSequence;
-        CharSequence charSequence2;
         String strReplace;
         SpannableStringBuilder spannableStringBuilderValueOf;
-        int i4;
-        char c2;
-        String string;
-        char c3;
-        SpannableStringBuilder spannableStringBuilderValueOf2;
+        String strM;
         SpannableStringBuilder spannableStringBuilder;
-        CharSequence string2;
-        CharSequence charSequence3;
+        CharSequence string;
+        CharSequence charSequence2;
         TLRPC.MessageAction messageAction;
         AvatarDrawable avatarDrawable;
-        String name;
+        String string2;
         TLRPC.UserProfilePhoto userProfilePhoto;
         TLRPC.FileLocation fileLocation3;
         if (this.deleted) {
@@ -147,21 +125,19 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
             user = this.accountInstance.getMessagesController().getUser(l);
             if (user != null) {
                 if (UserObject.isUserSelf(user)) {
-                    name = LocaleController.getString(R.string.SavedMessages);
+                    string2 = LocaleController.getString(R.string.SavedMessages);
                 } else if (UserObject.isReplyUser(user)) {
-                    name = LocaleController.getString(R.string.RepliesTitle);
-                } else if (UserObject.isDeleted(user)) {
-                    name = LocaleController.getString(R.string.HiddenName);
+                    string2 = LocaleController.getString(R.string.RepliesTitle);
                 } else {
-                    name = ContactsController.formatName(user.first_name, user.last_name);
+                    string2 = UserObject.isDeleted(user) ? LocaleController.getString(R.string.HiddenName) : ContactsController.formatName(user.first_name, user.last_name);
                 }
                 if (UserObject.isReplyUser(user) || UserObject.isUserSelf(user) || (userProfilePhoto = user.photo) == null || (fileLocation3 = userProfilePhoto.photo_small) == null || fileLocation3.volume_id == 0 || fileLocation3.local_id == 0) {
                     fileLocation = null;
-                    str = name;
+                    str = string2;
                     chat = null;
                 } else {
                     fileLocation = fileLocation3;
-                    str = name;
+                    str = string2;
                     chat = null;
                 }
             } else {
@@ -177,7 +153,7 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                 user = null;
                 fileLocation = null;
             } else if (ChatObject.isMonoForum(chat3)) {
-                monoForumTitle = ForumUtilities.getMonoForumTitle(this.accountInstance.getCurrentAccount(), chat3);
+                monoForumTitle = ForumUtilities.getMonoForumTitle(chat3, this.accountInstance.getCurrentAccount(), false);
                 TLRPC.Chat chat4 = this.accountInstance.getMessagesController().getChat(Long.valueOf(chat3.linked_monoforum_id));
                 if (chat4 == null || (chatPhoto = chat4.photo) == null || (fileLocation2 = chatPhoto.photo_small) == null || fileLocation2.volume_id == 0 || fileLocation2.local_id == 0) {
                     fileLocation = null;
@@ -231,20 +207,20 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                         if (ChatObject.isChannel(chat)) {
                             messageAction = messageObject.messageOwner.action;
                             if (!(messageAction instanceof TLRPC.TL_messageActionHistoryClear)) {
-                                charSequence3 = str3;
-                                charSequence3 = str3;
-                                charSequence3 = messageObject.messageText;
+                                charSequence2 = str3;
+                                charSequence2 = str3;
+                                charSequence2 = messageObject.messageText;
                             }
                         } else {
-                            charSequence3 = str3;
-                            charSequence3 = str3;
-                            charSequence3 = messageObject.messageText;
+                            charSequence2 = str3;
+                            charSequence2 = str3;
+                            charSequence2 = messageObject.messageText;
                         }
-                        charSequence3 = str3;
-                        charSequence3 = str3;
-                        charSequence3 = str3;
+                        charSequence2 = str3;
+                        charSequence2 = str3;
+                        charSequence2 = str3;
                         color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                        string2 = charSequence3;
+                        string = charSequence2;
                     } else {
                         str2 = "📎 ";
                         if (chat == null) {
@@ -261,24 +237,26 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                                         } else if (messageObject.isPhoto()) {
                                             str2 = "🖼 ";
                                         }
-                                        string2 = str2 + ((Object) messageObject.caption);
+                                        StringBuilder sbM = Log.m(str2);
+                                        sbM.append((Object) messageObject.caption);
+                                        string = sbM.toString();
                                     } else {
                                         if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
-                                            charSequence = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
+                                            charSequenceM = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
                                         } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                                            charSequence = "🎮 " + messageObject.messageOwner.media.game.title;
+                                            charSequenceM = "🎮 " + messageObject.messageOwner.media.game.title;
                                         } else if (messageObject.type == 14) {
-                                            charSequence = String.format("🎧 %s - %s", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
+                                            charSequenceM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 ", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle());
                                         } else {
-                                            charSequence = messageObject.messageText;
-                                            AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                                            charSequenceM = messageObject.messageText;
+                                            AndroidUtilities.highlightText(charSequenceM, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
                                         }
-                                        charSequence2 = charSequence;
-                                        string2 = charSequence2;
+                                        charSequence = charSequenceM;
+                                        string = charSequence;
                                         if (messageObject.messageOwner.media != null) {
-                                            string2 = charSequence2;
+                                            string = charSequence;
                                             color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                                            string2 = charSequence2;
+                                            string = charSequence;
                                         }
                                     }
                                 } else if (messageObject.caption != null) {
@@ -291,24 +269,26 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                                     } else if (messageObject.isPhoto()) {
                                         str2 = "🖼 ";
                                     }
-                                    string2 = str2 + ((Object) messageObject.caption);
+                                    StringBuilder sbM2 = Log.m(str2);
+                                    sbM2.append((Object) messageObject.caption);
+                                    string = sbM2.toString();
                                 } else {
                                     if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
-                                        charSequence = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
+                                        charSequenceM = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
                                     } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                                        charSequence = "🎮 " + messageObject.messageOwner.media.game.title;
+                                        charSequenceM = "🎮 " + messageObject.messageOwner.media.game.title;
                                     } else if (messageObject.type == 14) {
-                                        charSequence = String.format("🎧 %s - %s", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
+                                        charSequenceM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 ", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle());
                                     } else {
-                                        charSequence = messageObject.messageText;
-                                        AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                                        charSequenceM = messageObject.messageText;
+                                        AndroidUtilities.highlightText(charSequenceM, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
                                     }
-                                    charSequence2 = charSequence;
-                                    string2 = charSequence2;
+                                    charSequence = charSequenceM;
+                                    string = charSequence;
                                     if (messageObject.messageOwner.media != null) {
-                                        string2 = charSequence2;
+                                        string = charSequence;
                                         color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                                        string2 = charSequence2;
+                                        string = charSequence;
                                     }
                                 }
                             } else if (!(messageMedia instanceof TLRPC.TL_messageMediaDocument)) {
@@ -322,24 +302,26 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                                     } else if (messageObject.isPhoto()) {
                                         str2 = "🖼 ";
                                     }
-                                    string2 = str2 + ((Object) messageObject.caption);
+                                    StringBuilder sbM3 = Log.m(str2);
+                                    sbM3.append((Object) messageObject.caption);
+                                    string = sbM3.toString();
                                 } else {
                                     if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
-                                        charSequence = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
+                                        charSequenceM = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
                                     } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                                        charSequence = "🎮 " + messageObject.messageOwner.media.game.title;
+                                        charSequenceM = "🎮 " + messageObject.messageOwner.media.game.title;
                                     } else if (messageObject.type == 14) {
-                                        charSequence = String.format("🎧 %s - %s", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
+                                        charSequenceM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 ", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle());
                                     } else {
-                                        charSequence = messageObject.messageText;
-                                        AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                                        charSequenceM = messageObject.messageText;
+                                        AndroidUtilities.highlightText(charSequenceM, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
                                     }
-                                    charSequence2 = charSequence;
-                                    string2 = charSequence2;
+                                    charSequence = charSequenceM;
+                                    string = charSequence;
                                     if (messageObject.messageOwner.media != null) {
-                                        string2 = charSequence2;
+                                        string = charSequence;
                                         color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                                        string2 = charSequence2;
+                                        string = charSequence;
                                     }
                                 }
                             } else if (messageObject.caption != null) {
@@ -352,24 +334,26 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                                 } else if (messageObject.isPhoto()) {
                                     str2 = "🖼 ";
                                 }
-                                string2 = str2 + ((Object) messageObject.caption);
+                                StringBuilder sbM4 = Log.m(str2);
+                                sbM4.append((Object) messageObject.caption);
+                                string = sbM4.toString();
                             } else {
                                 if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
-                                    charSequence = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
+                                    charSequenceM = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
                                 } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                                    charSequence = "🎮 " + messageObject.messageOwner.media.game.title;
+                                    charSequenceM = "🎮 " + messageObject.messageOwner.media.game.title;
                                 } else if (messageObject.type == 14) {
-                                    charSequence = String.format("🎧 %s - %s", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
+                                    charSequenceM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 ", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle());
                                 } else {
-                                    charSequence = messageObject.messageText;
-                                    AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                                    charSequenceM = messageObject.messageText;
+                                    AndroidUtilities.highlightText(charSequenceM, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
                                 }
-                                charSequence2 = charSequence;
-                                string2 = charSequence2;
+                                charSequence = charSequenceM;
+                                string = charSequence;
                                 if (messageObject.messageOwner.media != null) {
-                                    string2 = charSequence2;
+                                    string = charSequence;
                                     color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                                    string2 = charSequence2;
+                                    string = charSequence;
                                 }
                             }
                         } else {
@@ -386,24 +370,26 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                                         } else if (messageObject.isPhoto()) {
                                             str2 = "🖼 ";
                                         }
-                                        string2 = str2 + ((Object) messageObject.caption);
+                                        StringBuilder sbM5 = Log.m(str2);
+                                        sbM5.append((Object) messageObject.caption);
+                                        string = sbM5.toString();
                                     } else {
                                         if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
-                                            charSequence = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
+                                            charSequenceM = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
                                         } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                                            charSequence = "🎮 " + messageObject.messageOwner.media.game.title;
+                                            charSequenceM = "🎮 " + messageObject.messageOwner.media.game.title;
                                         } else if (messageObject.type == 14) {
-                                            charSequence = String.format("🎧 %s - %s", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
+                                            charSequenceM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 ", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle());
                                         } else {
-                                            charSequence = messageObject.messageText;
-                                            AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                                            charSequenceM = messageObject.messageText;
+                                            AndroidUtilities.highlightText(charSequenceM, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
                                         }
-                                        charSequence2 = charSequence;
-                                        string2 = charSequence2;
+                                        charSequence = charSequenceM;
+                                        string = charSequence;
                                         if (messageObject.messageOwner.media != null) {
-                                            string2 = charSequence2;
+                                            string = charSequence;
                                             color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                                            string2 = charSequence2;
+                                            string = charSequence;
                                         }
                                     }
                                 } else if (messageObject.caption != null) {
@@ -416,24 +402,26 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                                     } else if (messageObject.isPhoto()) {
                                         str2 = "🖼 ";
                                     }
-                                    string2 = str2 + ((Object) messageObject.caption);
+                                    StringBuilder sbM6 = Log.m(str2);
+                                    sbM6.append((Object) messageObject.caption);
+                                    string = sbM6.toString();
                                 } else {
                                     if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
-                                        charSequence = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
+                                        charSequenceM = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
                                     } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                                        charSequence = "🎮 " + messageObject.messageOwner.media.game.title;
+                                        charSequenceM = "🎮 " + messageObject.messageOwner.media.game.title;
                                     } else if (messageObject.type == 14) {
-                                        charSequence = String.format("🎧 %s - %s", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
+                                        charSequenceM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 ", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle());
                                     } else {
-                                        charSequence = messageObject.messageText;
-                                        AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                                        charSequenceM = messageObject.messageText;
+                                        AndroidUtilities.highlightText(charSequenceM, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
                                     }
-                                    charSequence2 = charSequence;
-                                    string2 = charSequence2;
+                                    charSequence = charSequenceM;
+                                    string = charSequence;
                                     if (messageObject.messageOwner.media != null) {
-                                        string2 = charSequence2;
+                                        string = charSequence;
                                         color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                                        string2 = charSequence2;
+                                        string = charSequence;
                                     }
                                 }
                             } else if (!(messageMedia instanceof TLRPC.TL_messageMediaDocument)) {
@@ -447,24 +435,26 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                                     } else if (messageObject.isPhoto()) {
                                         str2 = "🖼 ";
                                     }
-                                    string2 = str2 + ((Object) messageObject.caption);
+                                    StringBuilder sbM7 = Log.m(str2);
+                                    sbM7.append((Object) messageObject.caption);
+                                    string = sbM7.toString();
                                 } else {
                                     if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
-                                        charSequence = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
+                                        charSequenceM = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
                                     } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                                        charSequence = "🎮 " + messageObject.messageOwner.media.game.title;
+                                        charSequenceM = "🎮 " + messageObject.messageOwner.media.game.title;
                                     } else if (messageObject.type == 14) {
-                                        charSequence = String.format("🎧 %s - %s", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
+                                        charSequenceM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 ", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle());
                                     } else {
-                                        charSequence = messageObject.messageText;
-                                        AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                                        charSequenceM = messageObject.messageText;
+                                        AndroidUtilities.highlightText(charSequenceM, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
                                     }
-                                    charSequence2 = charSequence;
-                                    string2 = charSequence2;
+                                    charSequence = charSequenceM;
+                                    string = charSequence;
                                     if (messageObject.messageOwner.media != null) {
-                                        string2 = charSequence2;
+                                        string = charSequence;
                                         color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                                        string2 = charSequence2;
+                                        string = charSequence;
                                     }
                                 }
                             } else if (messageObject.caption != null) {
@@ -477,42 +467,44 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                                 } else if (messageObject.isPhoto()) {
                                     str2 = "🖼 ";
                                 }
-                                string2 = str2 + ((Object) messageObject.caption);
+                                StringBuilder sbM8 = Log.m(str2);
+                                sbM8.append((Object) messageObject.caption);
+                                string = sbM8.toString();
                             } else {
                                 if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
-                                    charSequence = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
+                                    charSequenceM = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
                                 } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                                    charSequence = "🎮 " + messageObject.messageOwner.media.game.title;
+                                    charSequenceM = "🎮 " + messageObject.messageOwner.media.game.title;
                                 } else if (messageObject.type == 14) {
-                                    charSequence = String.format("🎧 %s - %s", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
+                                    charSequenceM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 ", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle());
                                 } else {
-                                    charSequence = messageObject.messageText;
-                                    AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                                    charSequenceM = messageObject.messageText;
+                                    AndroidUtilities.highlightText(charSequenceM, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
                                 }
-                                charSequence2 = charSequence;
-                                string2 = charSequence2;
+                                charSequence = charSequenceM;
+                                string = charSequence;
                                 if (messageObject.messageOwner.media != null) {
-                                    string2 = charSequence2;
+                                    string = charSequence;
                                     color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                                    string2 = charSequence2;
+                                    string = charSequence;
                                 }
                             }
                         }
                     }
-                    string2 = charSequence2;
+                    string = charSequence;
                     remoteViews3.setTextViewText(R.id.shortcut_widget_item_time, LocaleController.stringForMessageListDate(messageObject.messageOwner.date));
-                    int i5 = R.id.shortcut_widget_item_message;
-                    remoteViews3.setTextViewText(i5, string2.toString());
-                    remoteViews3.setTextColor(i5, color);
+                    int i4 = R.id.shortcut_widget_item_message;
+                    remoteViews3.setTextViewText(i4, string.toString());
+                    remoteViews3.setTextColor(i4, color);
                 } else {
-                    if (dialog == null) {
+                    if (dialog != null) {
                         remoteViews3.setTextViewText(R.id.shortcut_widget_item_time, "");
                     } else {
                         remoteViews3.setTextViewText(R.id.shortcut_widget_item_time, "");
                     }
                     remoteViews3.setTextViewText(R.id.shortcut_widget_item_message, "");
                 }
-                if (dialog == null) {
+                if (dialog != null) {
                     remoteViews3.setViewVisibility(R.id.shortcut_widget_item_badge, 8);
                 } else {
                     remoteViews3.setViewVisibility(R.id.shortcut_widget_item_badge, 8);
@@ -546,7 +538,7 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                     avatarDrawable.setAvatarType(1);
                 }
             } else {
-                avatarDrawable = new AvatarDrawable();
+                avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
                 avatarDrawable.setInfo(this.accountInstance.getCurrentAccount(), chat);
             }
             avatarDrawable.setBounds(0, 0, iDp, iDp);
@@ -591,35 +583,33 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                 if (ChatObject.isChannel(chat)) {
                     messageAction = messageObject.messageOwner.action;
                     if (!(messageAction instanceof TLRPC.TL_messageActionHistoryClear) && !(messageAction instanceof TLRPC.TL_messageActionChannelMigrateFrom)) {
-                        charSequence3 = str3;
-                        charSequence3 = str3;
-                        charSequence3 = messageObject.messageText;
+                        charSequence2 = str3;
+                        charSequence2 = str3;
+                        charSequence2 = messageObject.messageText;
                     }
                 } else {
-                    charSequence3 = str3;
-                    charSequence3 = str3;
-                    charSequence3 = messageObject.messageText;
+                    charSequence2 = str3;
+                    charSequence2 = str3;
+                    charSequence2 = messageObject.messageText;
                 }
-                charSequence3 = str3;
-                charSequence3 = str3;
-                charSequence3 = str3;
+                charSequence2 = str3;
+                charSequence2 = str3;
+                charSequence2 = str3;
                 color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                string2 = charSequence3;
+                string = charSequence2;
             } else {
                 str2 = "📎 ";
                 if (chat == null && chat2 == null && (!ChatObject.isChannel(chat) || ChatObject.isMegagroup(chat))) {
                     if (messageObject.isOutOwner()) {
                         strReplace = LocaleController.getString(R.string.FromYou);
-                    } else if (user2 != null) {
-                        strReplace = UserObject.getFirstName(user2).replace("\n", "");
                     } else {
-                        strReplace = "DELETED";
+                        strReplace = user2 != null ? UserObject.getFirstName(user2).replace("\n", "") : "DELETED";
                     }
                     String str4 = strReplace;
-                    CharSequence charSequence4 = messageObject.caption;
+                    CharSequence charSequence3 = messageObject.caption;
                     try {
-                        if (charSequence4 != null) {
-                            String string3 = charSequence4.toString();
+                        if (charSequence3 != null) {
+                            String string3 = charSequence3.toString();
                             if (string3.length() > 150) {
                                 string3 = string3.substring(0, 150);
                             }
@@ -632,79 +622,65 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                             } else if (messageObject.isPhoto()) {
                                 str2 = "🖼 ";
                             }
+                            StringBuilder sbM9 = Log.m(str2);
+                            sbM9.append(string3.replace('\n', ' '));
+                            String string4 = sbM9.toString();
                             Object[] objArr = new Object[2];
-                            objArr[0] = str2 + string3.replace('\n', ' ');
+                            objArr[0] = string4;
                             objArr[c] = str4;
                             spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(String.format("%2$s: \u2068%1$s\u2069", objArr));
                         } else {
-                            if (messageObject.messageOwner.media != null && !messageObject.isMediaEmpty()) {
-                                color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                                TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
-                                try {
-                                    if (messageMedia2 instanceof TLRPC.TL_messageMediaPoll) {
-                                        string = String.format("📊 \u2068%s\u2069", ((TLRPC.TL_messageMediaPoll) messageMedia2).poll.question.text);
-                                    } else {
-                                        if (messageMedia2 instanceof TLRPC.TL_messageMediaGame) {
-                                            string = String.format("🎮 \u2068%s\u2069", messageMedia2.game.title);
-                                        } else {
-                                            if (messageObject.type == 14) {
-                                                i4 = 2;
-                                                c2 = 1;
-                                                string = String.format("🎧 \u2068%s - %s\u2069", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
-                                            } else {
-                                                i4 = 2;
-                                                c2 = 1;
-                                                string = messageObject.messageText.toString();
-                                            }
-                                            c3 = '\n';
-                                        }
-                                        Object[] objArr2 = new Object[i4];
-                                        objArr2[0] = string.replace(c3, ' ');
-                                        objArr2[c2] = str4;
-                                        spannableStringBuilderValueOf2 = SpannableStringBuilder.valueOf(String.format("%2$s: \u2068%1$s\u2069", objArr2));
-                                        spannableStringBuilderValueOf2.setSpan(new ForegroundColorSpanThemable(Theme.key_chats_attachMessage), str4.length() + 2, spannableStringBuilderValueOf2.length(), 33);
-                                        spannableStringBuilder = spannableStringBuilderValueOf2;
-                                    }
-                                    spannableStringBuilderValueOf2.setSpan(new ForegroundColorSpanThemable(Theme.key_chats_attachMessage), str4.length() + 2, spannableStringBuilderValueOf2.length(), 33);
-                                    spannableStringBuilder = spannableStringBuilderValueOf2;
-                                } catch (Exception e) {
-                                    FileLog.e(e);
-                                    spannableStringBuilder = spannableStringBuilderValueOf2;
-                                }
-                                c3 = '\n';
-                                i4 = 2;
-                                c2 = 1;
-                                Object[] objArr3 = new Object[i4];
-                                objArr3[0] = string.replace(c3, ' ');
-                                objArr3[c2] = str4;
-                                spannableStringBuilderValueOf2 = SpannableStringBuilder.valueOf(String.format("%2$s: \u2068%1$s\u2069", objArr3));
-                            } else {
+                            if (messageObject.messageOwner.media == null || messageObject.isMediaEmpty()) {
                                 String strSubstring = messageObject.messageOwner.message;
                                 if (strSubstring != null) {
                                     if (strSubstring.length() > 150) {
                                         strSubstring = strSubstring.substring(0, 150);
                                     }
-                                    spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(String.format("%2$s: \u2068%1$s\u2069", strSubstring.replace('\n', ' ').trim(), str4));
+                                    Object[] objArr2 = new Object[2];
+                                    objArr2[0] = strSubstring.replace('\n', ' ').trim();
+                                    objArr2[c] = str4;
+                                    spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(String.format("%2$s: \u2068%1$s\u2069", objArr2));
                                 } else {
                                     spannableStringBuilderValueOf = SpannableStringBuilder.valueOf("");
                                 }
+                            } else {
+                                color = this.mContext.getResources().getColor(R.color.widget_action_text);
+                                TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
+                                if (messageMedia2 instanceof TLRPC.TL_messageMediaPoll) {
+                                    strM = SurfaceContainer$$ExternalSyntheticOutline0.m("📊 \u2068", ((TLRPC.TL_messageMediaPoll) messageMedia2).poll.question.text, "\u2069");
+                                } else if (messageMedia2 instanceof TLRPC.TL_messageMediaGame) {
+                                    strM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎮 \u2068", messageMedia2.game.title, "\u2069");
+                                } else {
+                                    strM = messageObject.type == 14 ? SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 \u2068", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle(), "\u2069") : messageObject.messageText.toString();
+                                }
+                                Object[] objArr3 = new Object[2];
+                                objArr3[0] = strM.replace('\n', ' ');
+                                objArr3[c] = str4;
+                                SpannableStringBuilder spannableStringBuilderValueOf2 = SpannableStringBuilder.valueOf(String.format("%2$s: \u2068%1$s\u2069", objArr3));
+                                try {
+                                    spannableStringBuilderValueOf2.setSpan(new ForegroundColorSpanThemable(Theme.key_chats_attachMessage, null), str4.length() + 2, spannableStringBuilderValueOf2.length(), 33);
+                                    spannableStringBuilder = spannableStringBuilderValueOf2;
+                                } catch (Exception e) {
+                                    FileLog.e(e);
+                                    spannableStringBuilder = spannableStringBuilderValueOf2;
+                                }
                             }
-                            spannableStringBuilder.setSpan(new ForegroundColorSpanThemable(Theme.key_chats_nameMessage), 0, str4.length() + 1, 33);
-                            string2 = spannableStringBuilder;
+                            spannableStringBuilder.setSpan(new ForegroundColorSpanThemable(Theme.key_chats_nameMessage, null), 0, str4.length() + 1, 33);
+                            string = spannableStringBuilder;
                         }
-                        spannableStringBuilder.setSpan(new ForegroundColorSpanThemable(Theme.key_chats_nameMessage), 0, str4.length() + 1, 33);
-                        string2 = spannableStringBuilder;
+                        spannableStringBuilder.setSpan(new ForegroundColorSpanThemable(Theme.key_chats_nameMessage, null), 0, str4.length() + 1, 33);
+                        string = spannableStringBuilder;
                     } catch (Exception e2) {
                         FileLog.e(e2);
-                        string2 = spannableStringBuilder;
+                        string = spannableStringBuilder;
                     }
                     spannableStringBuilder = spannableStringBuilderValueOf;
                 } else {
                     messageMedia = messageObject.messageOwner.media;
                     if (!(messageMedia instanceof TLRPC.TL_messageMediaPhoto) && (messageMedia.photo instanceof TLRPC.TL_photoEmpty) && messageMedia.ttl_seconds != 0) {
-                        string2 = LocaleController.getString(R.string.AttachPhotoExpired);
+                        string = LocaleController.getString(R.string.AttachPhotoExpired);
                     } else if (!(messageMedia instanceof TLRPC.TL_messageMediaDocument) && (messageMedia.document instanceof TLRPC.TL_documentEmpty) && messageMedia.ttl_seconds != 0) {
-                        string2 = LocaleController.getString(R.string.AttachVideoExpired);
+                        string = LocaleController.getString(R.string.AttachVideoExpired);
                     } else if (messageObject.caption != null) {
                         if (messageObject.isVideo()) {
                             str2 = "📹 ";
@@ -715,54 +691,56 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
                         } else if (messageObject.isPhoto()) {
                             str2 = "🖼 ";
                         }
-                        string2 = str2 + ((Object) messageObject.caption);
+                        StringBuilder sbM10 = Log.m(str2);
+                        sbM10.append((Object) messageObject.caption);
+                        string = sbM10.toString();
                     } else {
                         if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
-                            charSequence = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
+                            charSequenceM = "📊 " + ((TLRPC.TL_messageMediaPoll) messageMedia).poll.question.text;
                         } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                            charSequence = "🎮 " + messageObject.messageOwner.media.game.title;
+                            charSequenceM = "🎮 " + messageObject.messageOwner.media.game.title;
                         } else if (messageObject.type == 14) {
-                            charSequence = String.format("🎧 %s - %s", messageObject.getMusicAuthor(), messageObject.getMusicTitle());
+                            charSequenceM = SurfaceContainer$$ExternalSyntheticOutline0.m("🎧 ", messageObject.getMusicAuthor(), " - ", messageObject.getMusicTitle());
                         } else {
-                            charSequence = messageObject.messageText;
-                            AndroidUtilities.highlightText(charSequence, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
+                            charSequenceM = messageObject.messageText;
+                            AndroidUtilities.highlightText(charSequenceM, messageObject.highlightedWords, (Theme.ResourcesProvider) null);
                         }
-                        charSequence2 = charSequence;
-                        string2 = charSequence2;
+                        charSequence = charSequenceM;
+                        string = charSequence;
                         if (messageObject.messageOwner.media != null && !messageObject.isMediaEmpty()) {
-                            string2 = charSequence2;
+                            string = charSequence;
                             color = this.mContext.getResources().getColor(R.color.widget_action_text);
-                            string2 = charSequence2;
+                            string = charSequence;
                         }
                     }
                 }
             }
-            string2 = charSequence2;
+            string = charSequence;
             remoteViews3.setTextViewText(R.id.shortcut_widget_item_time, LocaleController.stringForMessageListDate(messageObject.messageOwner.date));
-            int i6 = R.id.shortcut_widget_item_message;
-            remoteViews3.setTextViewText(i6, string2.toString());
-            remoteViews3.setTextColor(i6, color);
+            int i5 = R.id.shortcut_widget_item_message;
+            remoteViews3.setTextViewText(i5, string.toString());
+            remoteViews3.setTextColor(i5, color);
         } else {
-            if (dialog == null && (i2 = dialog.last_message_date) != 0) {
-                remoteViews3.setTextViewText(R.id.shortcut_widget_item_time, LocaleController.stringForMessageListDate(i2));
-            } else {
+            if (dialog != null || (i2 = dialog.last_message_date) == 0) {
                 remoteViews3.setTextViewText(R.id.shortcut_widget_item_time, "");
+            } else {
+                remoteViews3.setTextViewText(R.id.shortcut_widget_item_time, LocaleController.stringForMessageListDate(i2));
             }
             remoteViews3.setTextViewText(R.id.shortcut_widget_item_message, "");
         }
-        if (dialog == null && (i3 = dialog.unread_count) > 0) {
-            int i7 = R.id.shortcut_widget_item_badge;
-            remoteViews3.setTextViewText(i7, String.format("%d", Integer.valueOf(i3)));
-            remoteViews3.setViewVisibility(i7, 0);
-            if (this.accountInstance.getMessagesController().isDialogMuted(dialog.id, 0L)) {
-                remoteViews3.setBoolean(i7, "setEnabled", false);
-                remoteViews3.setInt(i7, "setBackgroundResource", R.drawable.widget_badge_muted_background);
-            } else {
-                remoteViews3.setBoolean(i7, "setEnabled", true);
-                remoteViews3.setInt(i7, "setBackgroundResource", R.drawable.widget_badge_background);
-            }
-        } else {
+        if (dialog != null || (i3 = dialog.unread_count) <= 0) {
             remoteViews3.setViewVisibility(R.id.shortcut_widget_item_badge, 8);
+        } else {
+            int i6 = R.id.shortcut_widget_item_badge;
+            remoteViews3.setTextViewText(i6, String.format("%d", Integer.valueOf(i3)));
+            remoteViews3.setViewVisibility(i6, 0);
+            if (this.accountInstance.getMessagesController().isDialogMuted(dialog.id, 0L)) {
+                remoteViews3.setBoolean(i6, "setEnabled", false);
+                remoteViews3.setInt(i6, "setBackgroundResource", R.drawable.widget_badge_muted_background);
+            } else {
+                remoteViews3.setBoolean(i6, "setEnabled", true);
+                remoteViews3.setInt(i6, "setBackgroundResource", R.drawable.widget_badge_background);
+            }
         }
         bundle = new Bundle();
         if (DialogObject.isUserDialog(l.longValue())) {
@@ -776,6 +754,21 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         remoteViews3.setOnClickFillInIntent(R.id.shortcut_widget_item, intent3);
         remoteViews3.setViewVisibility(R.id.shortcut_widget_item_divider, i == getCount() ? 8 : 0);
         return remoteViews3;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
+    }
+
+    @Override
+    public void onCreate() {
+        ApplicationLoader.postInitApplication();
     }
 
     @Override
@@ -795,7 +788,11 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         this.messageObjects.clear();
         int size = longSparseArray.size();
         for (int i = 0; i < size; i++) {
-            this.messageObjects.put(longSparseArray.keyAt(i), new MessageObject(this.accountInstance.getCurrentAccount(), (TLRPC.Message) longSparseArray.valueAt(i), (LongSparseArray) null, (LongSparseArray) null, false, true));
+            this.messageObjects.put(new MessageObject(this.accountInstance.getCurrentAccount(), (TLRPC.Message) longSparseArray.valueAt(i), (LongSparseArray) null, (LongSparseArray) null, false, true), longSparseArray.keyAt(i));
         }
+    }
+
+    @Override
+    public void onDestroy() {
     }
 }

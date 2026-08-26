@@ -1,21 +1,32 @@
 package kotlinx.coroutines;
 
-import kotlinx.coroutines.internal.MainDispatchersKt;
-import kotlinx.coroutines.internal.SystemPropsKt;
+import kotlinx.coroutines.android.HandlerContext;
+import kotlinx.coroutines.internal.MainDispatcherLoader;
+import kotlinx.coroutines.internal.SystemPropsKt__SystemPropsKt;
+import kotlinx.coroutines.scheduling.DefaultScheduler;
 
 public abstract class DefaultExecutorKt {
-    private static final boolean defaultMainDelayOptIn = SystemPropsKt.systemProp("kotlinx.coroutines.main.delay", false);
-    private static final Delay DefaultDelay = initializeDefaultDelay();
+    public static final Delay DefaultDelay;
 
-    public static final Delay getDefaultDelay() {
-        return DefaultDelay;
-    }
-
-    private static final Delay initializeDefaultDelay() {
-        if (!defaultMainDelayOptIn) {
-            return DefaultExecutor.INSTANCE;
+    static {
+        String property;
+        ?? r0;
+        int i = SystemPropsKt__SystemPropsKt.AVAILABLE_PROCESSORS;
+        try {
+            property = System.getProperty("kotlinx.coroutines.main.delay");
+        } catch (SecurityException unused) {
+            property = null;
         }
-        MainCoroutineDispatcher main = Dispatchers.getMain();
-        return (MainDispatchersKt.isMissing(main) || !(main instanceof Delay)) ? DefaultExecutor.INSTANCE : (Delay) main;
+        if (property != null ? Boolean.parseBoolean(property) : false) {
+            DefaultScheduler defaultScheduler = Dispatchers.Default;
+            r0 = MainDispatcherLoader.dispatcher;
+            HandlerContext handlerContext = r0.immediate;
+            if (!(r0 != 0)) {
+                r0 = DefaultExecutor.INSTANCE;
+            }
+        } else {
+            r0 = DefaultExecutor.INSTANCE;
+        }
+        DefaultDelay = r0;
     }
 }

@@ -14,33 +14,54 @@ import android.graphics.Shader;
 import android.os.Build;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
-import java.lang.ref.WeakReference;
+import com.android.billingclient.api.zzbv;
+import com.google.common.base.Splitter;
+import com.google.mlkit.vision.label.defaults.thin.zzc;
 import java.util.Arrays;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.ColorShader;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.blur3.utils.BitmapChangeTracker;
-import org.telegram.ui.Components.blur3.utils.BitmapMemoizedMetadata;
 
-public class MotionBackgroundPaint {
-    private final AgslImpl agslImpl;
-    private int gradientHeight;
-    private int gradientWidth;
-    private int patternHeight;
-    private int patternWidth;
-    private static final float[] tmpPts = new float[4];
-    private static final Matrix tmpInverse = new Matrix();
-    private final BitmapMemoizedMetadata patterAlphaBitmapMemo = new BitmapMemoizedMetadata(new BitmapMemoizedMetadata.Provider() {
-        @Override
-        public final Object get(Bitmap bitmap) {
-            return MotionBackgroundPaint.getAlphaChannel(bitmap);
+public final class MotionBackgroundPaint {
+    public final AgslImpl agslImpl;
+    public int gradientHeight;
+    public int gradientWidth;
+    public int patternHeight;
+    public int patternWidth;
+    public static final float[] tmpPts = new float[4];
+    public static final Matrix tmpInverse = new Matrix();
+    public final ChatActivity.AnonymousClass117 patterAlphaBitmapMemo = new ChatActivity.AnonymousClass117(new EmojiView$$ExternalSyntheticLambda21(28));
+    public final Splitter gradientSoftLightBitmapMemo = new Splitter(19, (byte) 0);
+    public final ForwardBackground shaderImpl = new ForwardBackground();
+    public final Matrix tmpMatrix = new Matrix();
+    public final RectF tmpRectF = new RectF();
+
+    public final class AgslImpl {
+        public final zzc gradientShader;
+        public final zzc gradientSoftLightShader;
+        public float lastIntensity;
+        public int lastMode;
+        public final Paint paint;
+        public final zzc patternShader;
+        public final ChatActivity.AnonymousClass117 runtimeShaderNegative;
+        public final ChatActivity.AnonymousClass117 runtimeShaderPositive;
+        public final float[] tmpOut;
+
+        public AgslImpl() {
+            Paint paint = new Paint();
+            this.paint = paint;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            this.gradientShader = new zzc(tileMode);
+            this.gradientSoftLightShader = new zzc(tileMode);
+            this.patternShader = new zzc(Shader.TileMode.REPEAT);
+            this.runtimeShaderPositive = new ChatActivity.AnonymousClass117(R.raw.wallpaper_pos_intensity);
+            this.runtimeShaderNegative = new ChatActivity.AnonymousClass117(R.raw.wallpaper_neg_intensity);
+            this.tmpOut = new float[4];
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         }
-    });
-    private final BitmapMemoizedSoftLight gradientSoftLightBitmapMemo = new BitmapMemoizedSoftLight();
-    private final ShaderImpl shaderImpl = new ShaderImpl();
-    private final Matrix tmpMatrix = new Matrix();
-    private final RectF tmpRectF = new RectF();
+    }
 
     public MotionBackgroundPaint() {
         if (Build.VERSION.SDK_INT >= 33) {
@@ -50,314 +71,7 @@ public class MotionBackgroundPaint {
         }
     }
 
-    public Paint getPaint(Bitmap bitmap, Bitmap bitmap2, int i, int i2, int i3, boolean z) {
-        Bitmap bitmap3;
-        Bitmap bitmap4 = (Bitmap) this.patterAlphaBitmapMemo.get(bitmap2);
-        if (i3 >= 0) {
-            bitmap3 = this.gradientSoftLightBitmapMemo.get(bitmap, ColorUtils.setAlphaComponent(i, ((Color.alpha(i) * i2) * i3) / 25500));
-        } else {
-            bitmap3 = null;
-        }
-        Bitmap bitmap5 = bitmap3;
-        this.gradientWidth = bitmap.getWidth();
-        this.gradientHeight = bitmap.getHeight();
-        this.patternWidth = bitmap4.getWidth();
-        this.patternHeight = bitmap4.getHeight();
-        AgslImpl agslImpl = this.agslImpl;
-        if (agslImpl != null && z && Build.VERSION.SDK_INT >= 33) {
-            return agslImpl.getPaint(bitmap, bitmap4, bitmap5, i2, i3);
-        }
-        return this.shaderImpl.getPaint(bitmap, bitmap4, bitmap5, i2, i3);
-    }
-
-    private static class ShaderImpl {
-        private final ColorShaderState alphaShader;
-        private final ColorShaderState colorShader;
-        private final BitmapShaderState gradientShader;
-        private final BitmapShaderState gradientSoftLightShader;
-        private int lastMode;
-        private final Paint paint;
-        private final BitmapShaderState patternShader;
-        private final float[] tmpOut;
-
-        ShaderImpl() {
-            Paint paint = new Paint();
-            this.paint = paint;
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            this.gradientShader = new BitmapShaderState(tileMode);
-            this.gradientSoftLightShader = new BitmapShaderState(tileMode);
-            this.patternShader = new BitmapShaderState(Shader.TileMode.REPEAT);
-            this.colorShader = new ColorShaderState();
-            this.alphaShader = new ColorShaderState();
-            this.tmpOut = new float[4];
-            paint.setFilterBitmap(true);
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
-        }
-
-        Paint getPaint(Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i, int i2) {
-            boolean upVar = this.gradientShader.setup(bitmap) | this.patternShader.setup(bitmap2);
-            if (i2 >= 0) {
-                if ((upVar | this.gradientSoftLightShader.setup(bitmap3)) || this.lastMode != 1) {
-                    this.lastMode = 1;
-                    this.paint.setShader(new ComposeShader(this.gradientShader.shader, new ComposeShader(this.gradientSoftLightShader.shader, this.patternShader.shader, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
-                }
-            } else {
-                if ((upVar | this.alphaShader.setup(ColorUtils.setAlphaComponent(-1, (i * (-i2)) / 100)) | this.colorShader.setup(-16777216)) || this.lastMode != 2) {
-                    this.lastMode = 2;
-                    this.paint.setShader(new ComposeShader(this.colorShader.shader, new ComposeShader(new ComposeShader(this.gradientShader.shader, this.patternShader.shader, PorterDuff.Mode.DST_IN), this.alphaShader.shader, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
-                }
-            }
-            return this.paint;
-        }
-
-        void applyGradientMatrix(Matrix matrix) {
-            this.gradientShader.setLocalMatrix(matrix);
-            this.gradientSoftLightShader.setLocalMatrix(matrix);
-        }
-
-        void applyPatternMatrix(Matrix matrix) {
-            MotionBackgroundPaint.matrixToScaleTranslate(matrix, this.tmpOut);
-            this.patternShader.setLocalMatrix(matrix);
-            BitmapShaderState bitmapShaderState = this.patternShader;
-            boolean z = false;
-            if (MotionBackgroundPaint.isOne(this.tmpOut[0]) && MotionBackgroundPaint.isOne(this.tmpOut[1])) {
-                z = true;
-            }
-            bitmapShaderState.setUseNearestInterpolation(z);
-        }
-
-        private static class ColorShaderState {
-            int color;
-            ColorShader shader;
-
-            private ColorShaderState() {
-            }
-
-            boolean setup(int i) {
-                if (this.shader != null && this.color == i) {
-                    return false;
-                }
-                this.color = i;
-                this.shader = new ColorShader(i);
-                return true;
-            }
-        }
-    }
-
-    private static class AgslImpl {
-        private final BitmapShaderState gradientShader;
-        private final BitmapShaderState gradientSoftLightShader;
-        private float lastIntensity;
-        private int lastMode;
-        private final Paint paint;
-        private final BitmapShaderState patternShader;
-        private final RuntimeShaderState runtimeShaderNegative;
-        private final RuntimeShaderState runtimeShaderPositive;
-        private final float[] tmpOut;
-
-        AgslImpl() {
-            Paint paint = new Paint();
-            this.paint = paint;
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            this.gradientShader = new BitmapShaderState(tileMode);
-            this.gradientSoftLightShader = new BitmapShaderState(tileMode);
-            this.patternShader = new BitmapShaderState(Shader.TileMode.REPEAT);
-            this.runtimeShaderPositive = new RuntimeShaderState(R.raw.wallpaper_pos_intensity);
-            this.runtimeShaderNegative = new RuntimeShaderState(R.raw.wallpaper_neg_intensity);
-            this.tmpOut = new float[4];
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
-        }
-
-        Paint getPaint(Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i, int i2) {
-            boolean upVar = this.gradientShader.setup(bitmap) | this.patternShader.setup(bitmap2);
-            if (i2 >= 0) {
-                if ((upVar | this.gradientSoftLightShader.setup(bitmap3)) || this.lastMode != 1) {
-                    this.lastMode = 1;
-                    this.runtimeShaderPositive.shader.setInputBuffer("shaderPattern", this.patternShader.shader);
-                    this.runtimeShaderPositive.shader.setInputBuffer("shaderGradient", this.gradientShader.shader);
-                    this.runtimeShaderPositive.shader.setInputBuffer("shaderGradientSoftLight", this.gradientSoftLightShader.shader);
-                    this.runtimeShaderPositive.setMatrixUniforms();
-                    this.paint.setShader(this.runtimeShaderPositive.shader);
-                }
-            } else {
-                float fClamp = MathUtils.clamp((i * (-i2)) / 25500.0f, 0.0f, 1.0f);
-                if (upVar || this.lastIntensity != fClamp || this.lastMode != 2) {
-                    this.lastMode = 2;
-                    this.lastIntensity = fClamp;
-                    this.runtimeShaderNegative.shader.setInputBuffer("shaderPattern", this.patternShader.shader);
-                    this.runtimeShaderNegative.shader.setInputBuffer("shaderGradient", this.gradientShader.shader);
-                    this.runtimeShaderNegative.shader.setFloatUniform("intensity", fClamp);
-                    this.runtimeShaderNegative.setMatrixUniforms();
-                    this.paint.setShader(this.runtimeShaderNegative.shader);
-                }
-            }
-            return this.paint;
-        }
-
-        void applyGradientMatrix(Matrix matrix) {
-            MotionBackgroundPaint.matrixToScaleTranslate(matrix, this.tmpOut);
-            this.runtimeShaderPositive.setMiniMatrixGradient(this.tmpOut);
-            this.runtimeShaderNegative.setMiniMatrixGradient(this.tmpOut);
-        }
-
-        void applyPatternMatrix(Matrix matrix) {
-            MotionBackgroundPaint.matrixToScaleTranslate(matrix, this.tmpOut);
-            BitmapShaderState bitmapShaderState = this.patternShader;
-            boolean z = false;
-            if (MotionBackgroundPaint.isOne(this.tmpOut[0]) && MotionBackgroundPaint.isOne(this.tmpOut[1])) {
-                z = true;
-            }
-            bitmapShaderState.setUseNearestInterpolation(z);
-            this.runtimeShaderPositive.setMiniMatrixPattern(this.tmpOut);
-            this.runtimeShaderNegative.setMiniMatrixPattern(this.tmpOut);
-        }
-
-        private static class RuntimeShaderState {
-            private final RuntimeShader shader;
-            private final float[] transformGradient = {1.0f, 1.0f, 0.0f, 0.0f};
-            private final float[] transformPattern = {1.0f, 1.0f, 0.0f, 0.0f};
-
-            RuntimeShaderState(int i) {
-                MotionBackgroundPaint$AgslImpl$RuntimeShaderState$$ExternalSyntheticApiModelOutline1.m();
-                this.shader = MotionBackgroundPaint$AgslImpl$RuntimeShaderState$$ExternalSyntheticApiModelOutline0.m(AndroidUtilities.readRes(i));
-            }
-
-            void setMiniMatrixGradient(float[] fArr) {
-                if (Arrays.equals(fArr, this.transformGradient)) {
-                    return;
-                }
-                System.arraycopy(fArr, 0, this.transformGradient, 0, 4);
-                setMatrixUniformGradient();
-            }
-
-            void setMiniMatrixPattern(float[] fArr) {
-                if (Arrays.equals(fArr, this.transformPattern)) {
-                    return;
-                }
-                System.arraycopy(fArr, 0, this.transformPattern, 0, 4);
-                setMatrixUniformPattern();
-            }
-
-            private void setMatrixUniformGradient() {
-                this.shader.setFloatUniform("transformGradient", this.transformGradient);
-            }
-
-            private void setMatrixUniformPattern() {
-                this.shader.setFloatUniform("transformPattern", this.transformPattern);
-            }
-
-            public void setMatrixUniforms() {
-                setMatrixUniformGradient();
-                setMatrixUniformPattern();
-            }
-        }
-    }
-
-    public void applyGradientMatrix(RectF rectF) {
-        this.tmpRectF.set(0.0f, 0.0f, this.gradientWidth, this.gradientHeight);
-        this.tmpMatrix.setRectToRect(this.tmpRectF, rectF, Matrix.ScaleToFit.FILL);
-        this.shaderImpl.applyGradientMatrix(this.tmpMatrix);
-        AgslImpl agslImpl = this.agslImpl;
-        if (agslImpl == null || Build.VERSION.SDK_INT < 33) {
-            return;
-        }
-        agslImpl.applyGradientMatrix(this.tmpMatrix);
-    }
-
-    public void applyPatternMatrix(RectF rectF) {
-        this.tmpRectF.set(0.0f, 0.0f, this.patternWidth, this.patternHeight);
-        this.tmpMatrix.setRectToRect(this.tmpRectF, rectF, Matrix.ScaleToFit.FILL);
-        applyPatternMatrix(this.tmpMatrix);
-    }
-
-    public void applyPatternMatrix(Matrix matrix) {
-        this.shaderImpl.applyPatternMatrix(matrix);
-        AgslImpl agslImpl = this.agslImpl;
-        if (agslImpl == null || Build.VERSION.SDK_INT < 33) {
-            return;
-        }
-        agslImpl.applyPatternMatrix(matrix);
-    }
-
-    private static class BitmapShaderState {
-        WeakReference bitmap;
-        final Matrix localMatrix = new Matrix();
-        BitmapShader shader;
-        final Shader.TileMode tileMode;
-        boolean useNearestInterpolation;
-
-        BitmapShaderState(Shader.TileMode tileMode) {
-            this.tileMode = tileMode;
-        }
-
-        void setLocalMatrix(Matrix matrix) {
-            this.localMatrix.set(matrix);
-            BitmapShader bitmapShader = this.shader;
-            if (bitmapShader != null) {
-                bitmapShader.setLocalMatrix(matrix);
-            }
-        }
-
-        boolean setup(Bitmap bitmap) {
-            WeakReference weakReference = this.bitmap;
-            if (weakReference != null && weakReference.get() == bitmap) {
-                return false;
-            }
-            this.bitmap = new WeakReference(bitmap);
-            Shader.TileMode tileMode = this.tileMode;
-            BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-            this.shader = bitmapShader;
-            bitmapShader.setLocalMatrix(this.localMatrix);
-            if (Build.VERSION.SDK_INT >= 33) {
-                this.shader.setFilterMode(this.useNearestInterpolation ? 1 : 2);
-            }
-            return true;
-        }
-
-        void setUseNearestInterpolation(boolean z) {
-            BitmapShader bitmapShader;
-            if (this.useNearestInterpolation != z) {
-                this.useNearestInterpolation = z;
-                if (Build.VERSION.SDK_INT < 33 || (bitmapShader = this.shader) == null) {
-                    return;
-                }
-                bitmapShader.setFilterMode(z ? 1 : 2);
-            }
-        }
-    }
-
-    private static class BitmapMemoizedSoftLight {
-        private final BitmapChangeTracker lastBitmap;
-        private int lastColor;
-        private Bitmap memoized;
-
-        private BitmapMemoizedSoftLight() {
-            this.lastBitmap = new BitmapChangeTracker();
-        }
-
-        public Bitmap get(Bitmap bitmap, int i) {
-            if (this.lastBitmap.isInvalidated(bitmap) || i != this.lastColor || this.memoized == null) {
-                Bitmap bitmap2 = this.memoized;
-                if (bitmap2 == null || bitmap2.getWidth() != bitmap.getWidth() || this.memoized.getHeight() != bitmap.getHeight()) {
-                    this.memoized = Bitmap.createBitmap(bitmap);
-                }
-                Utilities.applySoftLight(bitmap, this.memoized, i);
-                this.lastBitmap.set(bitmap);
-                this.lastColor = i;
-            }
-            return this.memoized;
-        }
-    }
-
-    public static Bitmap getAlphaChannel(Bitmap bitmap) {
-        return bitmap.getConfig() == Bitmap.Config.ALPHA_8 ? bitmap : bitmap.extractAlpha();
-    }
-
-    public static boolean isOne(float f) {
-        return Math.abs(f - 1.0f) <= 1.0E-4f;
-    }
-
-    public static void matrixToScaleTranslate(Matrix matrix, float[] fArr) {
+    public static void access$200(Matrix matrix, float[] fArr) {
         Matrix matrix2 = tmpInverse;
         matrix.invert(matrix2);
         float[] fArr2 = tmpPts;
@@ -370,5 +84,195 @@ public class MotionBackgroundPaint {
         fArr[1] = fArr2[3] - fArr2[1];
         fArr[2] = fArr2[0];
         fArr[3] = fArr2[1];
+    }
+
+    public final void applyGradientMatrix(RectF rectF) {
+        RectF rectF2 = this.tmpRectF;
+        rectF2.set(0.0f, 0.0f, this.gradientWidth, this.gradientHeight);
+        Matrix matrix = this.tmpMatrix;
+        matrix.setRectToRect(rectF2, rectF, Matrix.ScaleToFit.FILL);
+        ForwardBackground forwardBackground = this.shaderImpl;
+        zzc zzcVar = (zzc) forwardBackground.path;
+        ((Matrix) zzcVar.zzb).set(matrix);
+        BitmapShader bitmapShader = (BitmapShader) zzcVar.zzc;
+        if (bitmapShader != null) {
+            bitmapShader.setLocalMatrix(matrix);
+        }
+        zzc zzcVar2 = (zzc) forwardBackground.bounds;
+        ((Matrix) zzcVar2.zzb).set(matrix);
+        BitmapShader bitmapShader2 = (BitmapShader) zzcVar2.zzc;
+        if (bitmapShader2 != null) {
+            bitmapShader2.setLocalMatrix(matrix);
+        }
+        AgslImpl agslImpl = this.agslImpl;
+        if (agslImpl == null || Build.VERSION.SDK_INT < 33) {
+            return;
+        }
+        float[] fArr = agslImpl.tmpOut;
+        access$200(matrix, fArr);
+        ChatActivity.AnonymousClass117 anonymousClass117 = agslImpl.runtimeShaderPositive;
+        float[] fArr2 = (float[]) anonymousClass117.val$finalReactionsLayout;
+        if (!Arrays.equals(fArr, fArr2)) {
+            System.arraycopy(fArr, 0, fArr2, 0, 4);
+            ((RuntimeShader) anonymousClass117.val$primaryMessage).setFloatUniform("transformGradient", fArr2);
+        }
+        ChatActivity.AnonymousClass117 anonymousClass118 = agslImpl.runtimeShaderNegative;
+        float[] fArr3 = (float[]) anonymousClass118.val$finalReactionsLayout;
+        if (Arrays.equals(fArr, fArr3)) {
+            return;
+        }
+        System.arraycopy(fArr, 0, fArr3, 0, 4);
+        ((RuntimeShader) anonymousClass118.val$primaryMessage).setFloatUniform("transformGradient", fArr3);
+    }
+
+    public final void applyPatternMatrix(Matrix matrix) {
+        int i;
+        BitmapShader bitmapShader;
+        BitmapShader bitmapShader2;
+        ForwardBackground forwardBackground = this.shaderImpl;
+        access$200(matrix, (float[]) forwardBackground.loadingDrawable);
+        zzc zzcVar = (zzc) forwardBackground.bounce;
+        ((Matrix) zzcVar.zzb).set(matrix);
+        BitmapShader bitmapShader3 = (BitmapShader) zzcVar.zzc;
+        if (bitmapShader3 != null) {
+            bitmapShader3.setLocalMatrix(matrix);
+        }
+        float[] fArr = (float[]) forwardBackground.loadingDrawable;
+        boolean z = Math.abs(fArr[0] - 1.0f) <= 1.0E-4f && Math.abs(fArr[1] - 1.0f) <= 1.0E-4f;
+        if (zzcVar.zzd != z) {
+            zzcVar.zzd = z;
+            if (Build.VERSION.SDK_INT >= 33 && (bitmapShader2 = (BitmapShader) zzcVar.zzc) != null) {
+                bitmapShader2.setFilterMode(z ? 1 : 2);
+            }
+        }
+        AgslImpl agslImpl = this.agslImpl;
+        if (agslImpl == null || (i = Build.VERSION.SDK_INT) < 33) {
+            return;
+        }
+        float[] fArr2 = agslImpl.tmpOut;
+        access$200(matrix, fArr2);
+        boolean z2 = Math.abs(fArr2[0] - 1.0f) <= 1.0E-4f && Math.abs(fArr2[1] - 1.0f) <= 1.0E-4f;
+        zzc zzcVar2 = agslImpl.patternShader;
+        if (zzcVar2.zzd != z2) {
+            zzcVar2.zzd = z2;
+            if (i >= 33 && (bitmapShader = (BitmapShader) zzcVar2.zzc) != null) {
+                bitmapShader.setFilterMode(z2 ? 1 : 2);
+            }
+        }
+        ChatActivity.AnonymousClass117 anonymousClass117 = agslImpl.runtimeShaderPositive;
+        float[] fArr3 = (float[]) anonymousClass117.this$0;
+        if (!Arrays.equals(fArr2, fArr3)) {
+            System.arraycopy(fArr2, 0, fArr3, 0, 4);
+            ((RuntimeShader) anonymousClass117.val$primaryMessage).setFloatUniform("transformPattern", fArr3);
+        }
+        ChatActivity.AnonymousClass117 anonymousClass118 = agslImpl.runtimeShaderNegative;
+        float[] fArr4 = (float[]) anonymousClass118.this$0;
+        if (Arrays.equals(fArr2, fArr4)) {
+            return;
+        }
+        System.arraycopy(fArr2, 0, fArr4, 0, 4);
+        ((RuntimeShader) anonymousClass118.val$primaryMessage).setFloatUniform("transformPattern", fArr4);
+    }
+
+    public final Paint getPaint(Bitmap bitmap, Bitmap bitmap2, int i, int i2, int i3, boolean z) {
+        Bitmap bitmap3;
+        boolean z2;
+        Bitmap bitmap4 = (Bitmap) this.patterAlphaBitmapMemo.get(bitmap2);
+        if (i3 >= 0) {
+            int alphaComponent = ColorUtils.setAlphaComponent(i, ((Color.alpha(i) * i2) * i3) / 25500);
+            Splitter splitter = this.gradientSoftLightBitmapMemo;
+            if (((BitmapChangeTracker) splitter.trimmer).isInvalidated(bitmap) || alphaComponent != splitter.limit || ((Bitmap) splitter.strategy) == null) {
+                Bitmap bitmap5 = (Bitmap) splitter.strategy;
+                if (bitmap5 == null || bitmap5.getWidth() != bitmap.getWidth() || ((Bitmap) splitter.strategy).getHeight() != bitmap.getHeight()) {
+                    splitter.strategy = Bitmap.createBitmap(bitmap);
+                }
+                Utilities.applySoftLight(bitmap, (Bitmap) splitter.strategy, alphaComponent);
+                ((BitmapChangeTracker) splitter.trimmer).set(bitmap);
+                splitter.limit = alphaComponent;
+            }
+            bitmap3 = (Bitmap) splitter.strategy;
+        } else {
+            bitmap3 = null;
+        }
+        this.gradientWidth = bitmap.getWidth();
+        this.gradientHeight = bitmap.getHeight();
+        this.patternWidth = bitmap4.getWidth();
+        this.patternHeight = bitmap4.getHeight();
+        boolean z3 = true;
+        AgslImpl agslImpl = this.agslImpl;
+        if (agslImpl != null && z && Build.VERSION.SDK_INT >= 33) {
+            zzc zzcVar = agslImpl.gradientShader;
+            boolean upVar = zzcVar.setup(bitmap);
+            zzc zzcVar2 = agslImpl.patternShader;
+            boolean upVar2 = upVar | zzcVar2.setup(bitmap4);
+            Paint paint = agslImpl.paint;
+            if (i3 >= 0) {
+                zzc zzcVar3 = agslImpl.gradientSoftLightShader;
+                if ((upVar2 | zzcVar3.setup(bitmap3)) || agslImpl.lastMode != 1) {
+                    agslImpl.lastMode = 1;
+                    ChatActivity.AnonymousClass117 anonymousClass117 = agslImpl.runtimeShaderPositive;
+                    ((RuntimeShader) anonymousClass117.val$primaryMessage).setInputBuffer("shaderPattern", (BitmapShader) zzcVar2.zzc);
+                    ((RuntimeShader) anonymousClass117.val$primaryMessage).setInputBuffer("shaderGradient", (BitmapShader) zzcVar.zzc);
+                    ((RuntimeShader) anonymousClass117.val$primaryMessage).setInputBuffer("shaderGradientSoftLight", (BitmapShader) zzcVar3.zzc);
+                    ((RuntimeShader) anonymousClass117.val$primaryMessage).setFloatUniform("transformGradient", (float[]) anonymousClass117.val$finalReactionsLayout);
+                    ((RuntimeShader) anonymousClass117.val$primaryMessage).setFloatUniform("transformPattern", (float[]) anonymousClass117.this$0);
+                    paint.setShader((RuntimeShader) anonymousClass117.val$primaryMessage);
+                    return paint;
+                }
+            } else {
+                float fClamp = MathUtils.clamp((i2 * (-i3)) / 25500.0f, 0.0f, 1.0f);
+                if (upVar2 || agslImpl.lastIntensity != fClamp || agslImpl.lastMode != 2) {
+                    agslImpl.lastMode = 2;
+                    agslImpl.lastIntensity = fClamp;
+                    ChatActivity.AnonymousClass117 anonymousClass118 = agslImpl.runtimeShaderNegative;
+                    ((RuntimeShader) anonymousClass118.val$primaryMessage).setInputBuffer("shaderPattern", (BitmapShader) zzcVar2.zzc);
+                    ((RuntimeShader) anonymousClass118.val$primaryMessage).setInputBuffer("shaderGradient", (BitmapShader) zzcVar.zzc);
+                    ((RuntimeShader) anonymousClass118.val$primaryMessage).setFloatUniform("intensity", fClamp);
+                    ((RuntimeShader) anonymousClass118.val$primaryMessage).setFloatUniform("transformGradient", (float[]) anonymousClass118.val$finalReactionsLayout);
+                    ((RuntimeShader) anonymousClass118.val$primaryMessage).setFloatUniform("transformPattern", (float[]) anonymousClass118.this$0);
+                    paint.setShader((RuntimeShader) anonymousClass118.val$primaryMessage);
+                    return paint;
+                }
+            }
+            return paint;
+        }
+        ForwardBackground forwardBackground = this.shaderImpl;
+        boolean upVar3 = ((zzc) forwardBackground.path).setup(bitmap);
+        zzc zzcVar4 = (zzc) forwardBackground.bounce;
+        boolean upVar4 = upVar3 | zzcVar4.setup(bitmap4);
+        Paint paint2 = (Paint) forwardBackground.view;
+        zzc zzcVar5 = (zzc) forwardBackground.path;
+        if (i3 >= 0) {
+            zzc zzcVar6 = (zzc) forwardBackground.bounds;
+            if ((upVar4 | zzcVar6.setup(bitmap3)) || forwardBackground.rippleDrawableColor != 1) {
+                forwardBackground.rippleDrawableColor = 1;
+                paint2.setShader(new ComposeShader((BitmapShader) zzcVar5.zzc, new ComposeShader((BitmapShader) zzcVar6.zzc, (BitmapShader) zzcVar4.zzc, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
+                return paint2;
+            }
+        } else {
+            int alphaComponent2 = ColorUtils.setAlphaComponent(-1, (i2 * (-i3)) / 100);
+            zzbv zzbvVar = (zzbv) forwardBackground.rippleDrawable;
+            if (((ColorShader) zzbvVar.zza) == null || zzbvVar.zzb != alphaComponent2) {
+                zzbvVar.zzb = alphaComponent2;
+                zzbvVar.zza = new ColorShader(alphaComponent2);
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            boolean z4 = upVar4 | z2;
+            zzbv zzbvVar2 = (zzbv) forwardBackground.r;
+            if (((ColorShader) zzbvVar2.zza) == null || zzbvVar2.zzb != -16777216) {
+                zzbvVar2.zzb = -16777216;
+                zzbvVar2.zza = new ColorShader(-16777216);
+            } else {
+                z3 = false;
+            }
+            if ((z4 | z3) || forwardBackground.rippleDrawableColor != 2) {
+                forwardBackground.rippleDrawableColor = 2;
+                paint2.setShader(new ComposeShader((ColorShader) zzbvVar2.zza, new ComposeShader(new ComposeShader((BitmapShader) zzcVar5.zzc, (BitmapShader) zzcVar4.zzc, PorterDuff.Mode.DST_IN), (ColorShader) zzbvVar.zza, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
+                return paint2;
+            }
+        }
+        return paint2;
     }
 }

@@ -3,6 +3,13 @@ package org.scilab.forge.jlatexmath;
 import ru.noties.jlatexmath.awt.Graphics2D;
 
 public class OverBar extends VerticalBox {
+    public OverBar(Box box, float f, float f2) {
+        add(new StrutBox(0.0f, f2, 0.0f, 0.0f));
+        add(new HorizontalRule(f2, box.getWidth(), 0.0f));
+        add(new StrutBox(0.0f, f, 0.0f, 0.0f));
+        add(box);
+    }
+
     @Override
     public void add(int i, Box box) {
         super.add(i, box);
@@ -21,12 +28,5 @@ public class OverBar extends VerticalBox {
     @Override
     public int getSize() {
         return super.getSize();
-    }
-
-    public OverBar(Box box, float f, float f2) {
-        add(new StrutBox(0.0f, f2, 0.0f, 0.0f));
-        add(new HorizontalRule(f2, box.getWidth(), 0.0f));
-        add(new StrutBox(0.0f, f, 0.0f, 0.0f));
-        add(box);
     }
 }

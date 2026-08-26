@@ -14,12 +14,6 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
         this.platformSoftwareVideoDecoderFactory = new PlatformSoftwareVideoDecoderFactory(context);
     }
 
-    DefaultVideoDecoderFactory(VideoDecoderFactory videoDecoderFactory) {
-        this.softwareVideoDecoderFactory = new SoftwareVideoDecoderFactory();
-        this.hardwareVideoDecoderFactory = videoDecoderFactory;
-        this.platformSoftwareVideoDecoderFactory = null;
-    }
-
     @Override
     public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
         VideoDecoderFactory videoDecoderFactory;
@@ -44,5 +38,11 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
             linkedHashSet.addAll(Arrays.asList(videoDecoderFactory.getSupportedCodecs()));
         }
         return (VideoCodecInfo[]) linkedHashSet.toArray(new VideoCodecInfo[linkedHashSet.size()]);
+    }
+
+    public DefaultVideoDecoderFactory(VideoDecoderFactory videoDecoderFactory) {
+        this.softwareVideoDecoderFactory = new SoftwareVideoDecoderFactory();
+        this.hardwareVideoDecoderFactory = videoDecoderFactory;
+        this.platformSoftwareVideoDecoderFactory = null;
     }
 }

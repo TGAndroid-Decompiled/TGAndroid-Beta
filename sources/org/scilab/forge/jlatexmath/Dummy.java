@@ -9,37 +9,6 @@ public class Dummy {
         this.el = atom;
     }
 
-    public void setType(int i) {
-        this.type = i;
-    }
-
-    public int getType() {
-        return this.type;
-    }
-
-    public int getLeftType() {
-        int i = this.type;
-        return i >= 0 ? i : this.el.getLeftType();
-    }
-
-    public int getRightType() {
-        int i = this.type;
-        return i >= 0 ? i : this.el.getRightType();
-    }
-
-    public boolean isCharSymbol() {
-        return this.el instanceof CharSymbol;
-    }
-
-    public boolean isCharInMathMode() {
-        Atom atom = this.el;
-        return (atom instanceof CharAtom) && ((CharAtom) atom).isMathMode();
-    }
-
-    public CharFont getCharFont(TeXFont teXFont) {
-        return ((CharSymbol) this.el).getCharFont(teXFont);
-    }
-
     public void changeAtom(FixedCharAtom fixedCharAtom) {
         this.textSymbol = false;
         this.type = -1;
@@ -57,12 +26,39 @@ public class Dummy {
         return boxCreateBox;
     }
 
-    public void markAsTextSymbol() {
-        this.textSymbol = true;
+    public CharFont getCharFont(TeXFont teXFont) {
+        return ((CharSymbol) this.el).getCharFont(teXFont);
+    }
+
+    public int getLeftType() {
+        int i = this.type;
+        return i >= 0 ? i : this.el.getLeftType();
+    }
+
+    public int getRightType() {
+        int i = this.type;
+        return i >= 0 ? i : this.el.getRightType();
+    }
+
+    public int getType() {
+        return this.type;
+    }
+
+    public boolean isCharInMathMode() {
+        Atom atom = this.el;
+        return (atom instanceof CharAtom) && ((CharAtom) atom).isMathMode();
+    }
+
+    public boolean isCharSymbol() {
+        return this.el instanceof CharSymbol;
     }
 
     public boolean isKern() {
         return this.el instanceof SpaceAtom;
+    }
+
+    public void markAsTextSymbol() {
+        this.textSymbol = true;
     }
 
     public void setPreviousAtom(Dummy dummy) {
@@ -70,5 +66,9 @@ public class Dummy {
         if (cloneable instanceof Row) {
             ((Row) cloneable).setPreviousAtom(dummy);
         }
+    }
+
+    public void setType(int i) {
+        this.type = i;
     }
 }

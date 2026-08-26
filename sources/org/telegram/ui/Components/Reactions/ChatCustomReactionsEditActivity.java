@@ -3,7 +3,7 @@ package org.telegram.ui.Components.Reactions;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.LayoutTransition;
-import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -24,12 +24,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.core.math.MathUtils;
-import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -37,13 +33,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
@@ -52,246 +45,410 @@ import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda131;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SectionsScrollView;
+import org.telegram.ui.Components.ShareAlert$$ExternalSyntheticLambda29;
+import org.telegram.ui.GLIconSettingsView;
+import org.telegram.ui.IntroActivity;
+import org.telegram.ui.LoginActivity;
+import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda0;
+import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda1;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 
-public class ChatCustomReactionsEditActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    private UpdateReactionsButton actionButton;
-    private FrameLayout actionButtonContainer;
-    private ImageView actionButtonContainerGradient;
-    private BackSpaceButtonView backSpaceButtonView;
-    private TL_stories.TL_premium_boostsStatus boostsStatus;
-    private FrameLayout bottomDialogLayout;
-    private final long chatId;
-    private LinearLayout contentLayout;
-    private TLRPC.Chat currentChat;
-    private int currentReactionsCount;
-    private CustomReactionEditText editText;
-    private TextCheckCell enableReactionsCell;
-    private final TLRPC.ChatFull info;
-    private boolean initialPaid;
-    private boolean isPaused;
-    private boolean paid;
-    private TextCheckCell paidCheckCell;
-    private int reactionsCount;
-    private SectionsScrollView scrollView;
-    private SelectAnimatedEmojiDialog selectAnimatedEmojiDialog;
-    private int selectedCustomReactions;
-    private SlideIntChooseView slideView;
-    private LinearLayout switchLayout;
-    private final HashMap selectedEmojisMap = new LinkedHashMap();
-    private final List selectedEmojisIds = new ArrayList();
-    private final HashMap initialSelectedEmojis = new LinkedHashMap();
-    private final List allAvailableReactions = new ArrayList();
-    private final int maxReactionsCount = getMessagesController().boostsChannelLevelMax;
-    private boolean emojiKeyboardVisible = false;
-    private int selectedType = -1;
-    private final Runnable checkAfterFastDeleteRunnable = new Runnable() {
-        @Override
-        public final void run() {
-            this.f$0.checkMaxCustomReactions(false);
+public final class ChatCustomReactionsEditActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    public UpdateReactionsButton actionButton;
+    public FrameLayout actionButtonContainer;
+    public ImageView actionButtonContainerGradient;
+    public final ArrayList allAvailableReactions;
+    public BackSpaceButtonView backSpaceButtonView;
+    public TL_stories.TL_premium_boostsStatus boostsStatus;
+    public ChatActivity.AnonymousClass60 bottomDialogLayout;
+    public final long chatId;
+    public final ChatCustomReactionsEditActivity$$ExternalSyntheticLambda3 checkAfterFastDeleteRunnable;
+    public GLIconSettingsView contentLayout;
+    public TLRPC.Chat currentChat;
+    public int currentReactionsCount;
+    public AnonymousClass3 editText;
+    public boolean emojiKeyboardVisible;
+    public TextCheckCell enableReactionsCell;
+    public final TLRPC.ChatFull info;
+    public boolean initialPaid;
+    public final LinkedHashMap initialSelectedEmojis;
+    public boolean isPaused;
+    public final int maxReactionsCount;
+    public boolean paid;
+    public TextCheckCell paidCheckCell;
+    public int reactionsCount;
+    public SectionsScrollView scrollView;
+    public AnonymousClass5 selectAnimatedEmojiDialog;
+    public int selectedCustomReactions;
+    public final ArrayList selectedEmojisIds;
+    public final LinkedHashMap selectedEmojisMap;
+    public int selectedType;
+    public SlideIntChooseView slideView;
+    public LinearLayout switchLayout;
+
+    public final class AnonymousClass5 extends SelectAnimatedEmojiDialog {
+        public boolean firstLayout;
+
+        public AnonymousClass5(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, Activity activity, Theme.ResourcesProvider resourcesProvider, int i) {
+            super(chatCustomReactionsEditActivity, activity, false, null, 6, false, resourcesProvider, 16, i);
+            this.firstLayout = true;
+            setDrawBackground(false);
         }
-    };
+
+        @Override
+        public final void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+            ChatCustomReactionsEditActivity chatCustomReactionsEditActivity = ChatCustomReactionsEditActivity.this;
+            LinkedHashMap linkedHashMap = chatCustomReactionsEditActivity.selectedEmojisMap;
+            boolean zContainsKey = linkedHashMap.containsKey(l);
+            ArrayList arrayList = chatCustomReactionsEditActivity.selectedEmojisIds;
+            if (zContainsKey) {
+                arrayList.remove(l);
+                AnimatedEmojiSpan animatedEmojiSpan = (AnimatedEmojiSpan) linkedHashMap.remove(l);
+                animatedEmojiSpan.setRemoved(new ShareAlert$$ExternalSyntheticLambda29(8, this, animatedEmojiSpan));
+                chatCustomReactionsEditActivity.animateChangesInNextRows(animatedEmojiSpan);
+                chatCustomReactionsEditActivity.selectAnimatedEmojiDialog.setMultiSelected(l, true);
+                chatCustomReactionsEditActivity.checkMaxCustomReactions(false);
+                return;
+            }
+            int size = linkedHashMap.size() - (linkedHashMap.containsKey(-1L) ? 1 : 0);
+            int i = chatCustomReactionsEditActivity.maxReactionsCount;
+            if (size >= i) {
+                BulletinFactory.of(chatCustomReactionsEditActivity).createErrorBulletin(LocaleController.formatPluralString("ReactionMaxCountError", i, new Object[0]), null).show();
+                return;
+            }
+            try {
+                int editTextSelectionEnd = chatCustomReactionsEditActivity.editText.getEditTextSelectionEnd();
+                SpannableString spannableString = new SpannableString("b");
+                AnimatedEmojiSpan animatedEmojiSpanCreateAnimatedEmojiSpan = ReactionsUtils.createAnimatedEmojiSpan(document, l, chatCustomReactionsEditActivity.editText.getFontMetricsInt());
+                animatedEmojiSpanCreateAnimatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
+                animatedEmojiSpanCreateAnimatedEmojiSpan.setAdded();
+                arrayList.add(MathUtils.clamp(editTextSelectionEnd, 0, arrayList.size()), l);
+                linkedHashMap.put(l, animatedEmojiSpanCreateAnimatedEmojiSpan);
+                spannableString.setSpan(animatedEmojiSpanCreateAnimatedEmojiSpan, 0, spannableString.length(), 33);
+                chatCustomReactionsEditActivity.editText.getText().insert(editTextSelectionEnd, spannableString);
+                chatCustomReactionsEditActivity.editText.setSelection(editTextSelectionEnd + spannableString.length());
+                chatCustomReactionsEditActivity.selectAnimatedEmojiDialog.setMultiSelected(l, true);
+                chatCustomReactionsEditActivity.checkMaxCustomReactions(true);
+                chatCustomReactionsEditActivity.animateChangesInNextRows(animatedEmojiSpanCreateAnimatedEmojiSpan);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+
+        @Override
+        public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+            if (this.firstLayout) {
+                this.firstLayout = false;
+                ChatCustomReactionsEditActivity.this.selectAnimatedEmojiDialog.onShow(null);
+            }
+        }
+    }
+
+    public final class AnonymousClass6 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final ChatCustomReactionsEditActivity this$0;
+
+        public AnonymousClass6(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, int i) {
+            this.$r8$classId = i;
+            this.this$0 = chatCustomReactionsEditActivity;
+        }
+
+        @Override
+        public final void onAnimationEnd(Animator animator) {
+            ChatCustomReactionsEditActivity chatCustomReactionsEditActivity = this.this$0;
+            switch (this.$r8$classId) {
+                case 0:
+                    chatCustomReactionsEditActivity.editText.setFocusableInTouchMode(true);
+                    break;
+                case 1:
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                    chatCustomReactionsEditActivity.bottomDialogLayout.setVisibility(4);
+                    if (Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28) {
+                        chatCustomReactionsEditActivity.switchLayout.setFocusableInTouchMode(false);
+                        break;
+                    }
+                    break;
+                case 2:
+                    chatCustomReactionsEditActivity.actionButtonContainer.setVisibility(4);
+                    break;
+                default:
+                    chatCustomReactionsEditActivity.editText.setFocusableInTouchMode(false);
+                    chatCustomReactionsEditActivity.switchLayout.setVisibility(4);
+                    break;
+            }
+        }
+    }
 
     public ChatCustomReactionsEditActivity(long j, TLRPC.ChatFull chatFull) {
+        super(null);
+        this.selectedEmojisMap = new LinkedHashMap();
+        this.selectedEmojisIds = new ArrayList();
+        this.initialSelectedEmojis = new LinkedHashMap();
+        this.allAvailableReactions = new ArrayList();
+        this.maxReactionsCount = getMessagesController().boostsChannelLevelMax;
+        this.emojiKeyboardVisible = false;
+        this.selectedType = -1;
+        this.checkAfterFastDeleteRunnable = new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda3(this, 5);
         this.chatId = j;
         this.info = chatFull;
     }
 
-    @Override
-    public boolean onFragmentCreate() {
-        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
-        this.currentChat = chat;
-        if (chat == null) {
-            TLRPC.Chat chatSync = MessagesStorage.getInstance(this.currentAccount).getChatSync(this.chatId);
-            this.currentChat = chatSync;
-            if (chatSync == null) {
-                return false;
+    public final void animateChangesInNextRows(AnimatedEmojiSpan animatedEmojiSpan) {
+        Editable text = getText();
+        Layout layout = getLayout();
+        int lineForOffset = layout.getLineForOffset(text.getSpanStart(animatedEmojiSpan)) + 1;
+        if (lineForOffset < layout.getLineCount()) {
+            AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) text.getSpans(layout.getLineStart(lineForOffset), text.length(), AnimatedEmojiSpan.class);
+            for (AnimatedEmojiSpan animatedEmojiSpan2 : animatedEmojiSpanArr) {
+                animatedEmojiSpan2.setAnimateChanges();
             }
-            getMessagesController().putChat(this.currentChat, true);
         }
-        if (this.info == null) {
+    }
+
+    @Override
+    public final boolean canBeginSlide() {
+        if (checkChangesBeforeExit(true)) {
             return false;
         }
-        getMessagesController().getBoostsController().getBoostsStats(-this.chatId, new Consumer() {
-            @Override
-            public final void accept(Object obj) {
-                ChatCustomReactionsEditActivity.m2705$r8$lambda$POZTsX4le8JLvspVQot4FTX6GM(this.f$0, (TL_stories.TL_premium_boostsStatus) obj);
-            }
-        });
-        getNotificationCenter().addObserver(this, NotificationCenter.reactionsDidLoad);
-        this.allAvailableReactions.addAll(getMediaDataController().getEnabledReactionsList());
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
-        getNotificationCenter().addObserver(this, NotificationCenter.dialogDeleted);
-        return super.onFragmentCreate();
+        return super.canBeginSlide();
     }
 
-    public static void m2705$r8$lambda$POZTsX4le8JLvspVQot4FTX6GM(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        chatCustomReactionsEditActivity.boostsStatus = tL_premium_boostsStatus;
-        if (chatCustomReactionsEditActivity.selectedEmojisMap.keySet().equals(chatCustomReactionsEditActivity.initialSelectedEmojis.keySet())) {
+    public final boolean checkChangesBeforeExit(boolean z) {
+        boolean z2 = !this.selectedEmojisMap.keySet().equals(this.initialSelectedEmojis.keySet());
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.boostsStatus;
+        if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < this.selectedCustomReactions) {
+            z2 = false;
+        }
+        boolean z3 = this.initialPaid == this.paid ? z2 : true;
+        if (z && z3) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, getResourceProvider());
+            String string = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
+            AlertDialog alertDialog = builder.alertDialog;
+            alertDialog.title = string;
+            alertDialog.message = LocaleController.getString("ReactionApplyChangesDialog", R.string.ReactionApplyChangesDialog);
+            final int i = 0;
+            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener(this) {
+                public final ChatCustomReactionsEditActivity f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void onClick(AlertDialog alertDialog2, int i2) {
+                    switch (i) {
+                        case 0:
+                            this.f$0.actionButton.performClick();
+                            break;
+                        default:
+                            this.f$0.lambda$checkChangesBeforeExit$15(alertDialog2, i2);
+                            break;
+                    }
+                }
+            });
+            final int i2 = 1;
+            builder.setNegativeButton(LocaleController.getString(R.string.Discard), new AlertDialog.OnButtonClickListener(this) {
+                public final ChatCustomReactionsEditActivity f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void onClick(AlertDialog alertDialog2, int i3) {
+                    switch (i2) {
+                        case 0:
+                            this.f$0.actionButton.performClick();
+                            break;
+                        default:
+                            this.f$0.lambda$checkChangesBeforeExit$15(alertDialog2, i3);
+                            break;
+                    }
+                }
+            });
+            builder.show();
+        }
+        return z3;
+    }
+
+    public final void checkMaxCustomReactions(boolean z) {
+        if (this.boostsStatus == null) {
             return;
         }
-        chatCustomReactionsEditActivity.checkMaxCustomReactions(false);
+        if (this.selectedType == 0) {
+            this.selectedType = 1;
+        }
+        int size = grabReactions(true).size();
+        this.selectedCustomReactions = size;
+        if (this.boostsStatus.level >= size) {
+            this.actionButton.setSubText(null, true);
+            return;
+        }
+        if (z) {
+            BulletinFactory.of(this).createSimpleBulletinWithIconSize(R.raw.chats_infotip, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("ReactionReachLvlForReactionShort", size, Integer.valueOf(size)))).show();
+        }
+        this.actionButton.setLvlRequiredState(this.selectedCustomReactions);
+    }
+
+    public final void closeKeyboard$1() {
+        int i = 1;
+        int i2 = 0;
+        if (this.emojiKeyboardVisible) {
+            this.emojiKeyboardVisible = false;
+            if (!Build.MODEL.toLowerCase().startsWith("zte") || Build.VERSION.SDK_INT > 28) {
+                clearFocus();
+            } else {
+                this.switchLayout.setFocusableInTouchMode(true);
+                this.switchLayout.requestFocus();
+            }
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.scrollView.getLayoutParams();
+            marginLayoutParams.bottomMargin = 0;
+            this.scrollView.setLayoutParams(marginLayoutParams);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+            this.bottomDialogLayout.animate().setListener(null).cancel();
+            this.bottomDialogLayout.animate().translationY(this.bottomDialogLayout.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda1(this, i2)).setListener(new AnonymousClass6(this, i)).start();
+        }
     }
 
     @Override
-    public View createView(Context context) {
+    public final View createView(Context context) {
+        LinkedHashMap linkedHashMap;
+        LinkedHashMap linkedHashMap2;
+        SpannableStringBuilder spannableStringBuilder;
+        int i;
+        SpannableStringBuilder spannableStringBuilder2;
+        LinkedHashMap linkedHashMap3;
+        ArrayList arrayList;
+        boolean z;
+        LinkedHashMap linkedHashMap4;
+        SpannableStringBuilder spannableStringBuilder3;
         this.actionBar.setTitle(LocaleController.getString(R.string.Reactions));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        boolean z = true;
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            @Override
-            public void onItemClick(int i) {
-                if (i != -1 || ChatCustomReactionsEditActivity.this.checkChangesBeforeExit(true)) {
-                    return;
-                }
-                ChatCustomReactionsEditActivity.this.finishFragment();
-            }
-        });
-        this.contentLayout = new SectionsScrollView.SectionsLinearLayout(context);
-        SectionsScrollView sectionsScrollView = new SectionsScrollView(context, this.contentLayout, this.resourceProvider);
+        this.actionBar.setActionBarMenuOnItemClick(new LoginActivity.AnonymousClass1(this, 5));
+        this.contentLayout = new GLIconSettingsView(context);
+        SectionsScrollView sectionsScrollView = new SectionsScrollView(context, this.contentLayout, this.resourceProvider, true);
         this.scrollView = sectionsScrollView;
         sectionsScrollView.setFillViewport(true);
         this.actionBar.setAdaptiveBackground(this.scrollView);
-        FrameLayout frameLayout = new FrameLayout(context) {
-            final AdjustPanLayoutHelper adjustPanLayoutHelper = new AnonymousClass1(this);
-
-            class AnonymousClass1 extends AdjustPanLayoutHelper {
-                @Override
-                protected boolean applyTranslation() {
-                    return false;
-                }
-
-                @Override
-                protected void onTransitionEnd() {
-                }
-
-                AnonymousClass1(View view) {
-                    super(view);
-                }
-
-                @Override
-                protected void onTransitionStart(final boolean z, int i) {
-                    ChatCustomReactionsEditActivity.this.actionButtonContainer.setVisibility(0);
-                    ChatCustomReactionsEditActivity.this.actionButtonContainer.animate().alpha(!z ? 1.0f : 0.0f).withEndAction(new Runnable() {
-                        @Override
-                        public final void run() {
-                            ChatCustomReactionsEditActivity.AnonymousClass2.AnonymousClass1.$r8$lambda$z0cRhqJZEOP7oUROx3MjUC_dizg(this.f$0, z);
-                        }
-                    }).start();
-                }
-
-                public static void $r8$lambda$z0cRhqJZEOP7oUROx3MjUC_dizg(AnonymousClass1 anonymousClass1, boolean z) {
-                    if (z) {
-                        ChatCustomReactionsEditActivity.this.actionButtonContainer.setVisibility(4);
-                    } else {
-                        anonymousClass1.getClass();
-                    }
-                }
-
-                @Override
-                protected void onPanTranslationUpdate(float f, float f2, boolean z) {
-                    if (ChatCustomReactionsEditActivity.this.getParentLayout() != null) {
-                        ChatCustomReactionsEditActivity.this.getParentLayout().isPreviewOpenAnimationInProgress();
-                    }
-                }
-
-                @Override
-                protected boolean heightAnimationEnabled() {
-                    return (((BaseFragment) ChatCustomReactionsEditActivity.this).inPreviewMode || AndroidUtilities.isTablet() || ((BaseFragment) ChatCustomReactionsEditActivity.this).inBubbleMode || AndroidUtilities.isInMultiwindow || ChatCustomReactionsEditActivity.this.getParentLayout() == null) ? false : true;
-                }
-            }
-
-            @Override
-            protected void onAttachedToWindow() {
-                super.onAttachedToWindow();
-                this.adjustPanLayoutHelper.onAttach();
-            }
-
-            @Override
-            protected void onDetachedFromWindow() {
-                super.onDetachedFromWindow();
-                this.adjustPanLayoutHelper.onDetach();
-            }
-        };
+        IntroActivity.AnonymousClass1 anonymousClass1 = new IntroActivity.AnonymousClass1(this, context);
         this.contentLayout.setOrientation(1);
         this.scrollView.addView(this.contentLayout);
         TextCheckCell textCheckCell = new TextCheckCell(context);
         this.enableReactionsCell = textCheckCell;
         textCheckCell.setHeight(56);
         TextCheckCell textCheckCell2 = this.enableReactionsCell;
-        textCheckCell2.setBackgroundColor(Theme.getColor(textCheckCell2.isChecked() ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
+        textCheckCell2.setBackgroundColor(Theme.getColor(null, textCheckCell2.checkBox.isChecked ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked, false));
         this.enableReactionsCell.setTypeface(AndroidUtilities.bold());
         this.enableReactionsCell.setColors(Theme.key_windowBackgroundCheckText, Theme.key_switchTrackBlue, Theme.key_switchTrackBlueChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
-        this.enableReactionsCell.setOnClickListener(new View.OnClickListener() {
+        final int i2 = 0;
+        this.enableReactionsCell.setOnClickListener(new View.OnClickListener(this) {
+            public final ChatCustomReactionsEditActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                ChatCustomReactionsEditActivity.m2701$r8$lambda$AHE6gpV7lQiQfO8NXS8DX9ZMc(this.f$0, view);
+                TextCheckCell textCheckCell3;
+                switch (i2) {
+                    case 0:
+                        ChatCustomReactionsEditActivity chatCustomReactionsEditActivity = this.f$0;
+                        if (chatCustomReactionsEditActivity.enableReactionsCell.checkBox.isChecked && (textCheckCell3 = chatCustomReactionsEditActivity.paidCheckCell) != null && textCheckCell3.checkBox.isChecked) {
+                            chatCustomReactionsEditActivity.toggleStarsEnabled();
+                        }
+                        boolean z2 = chatCustomReactionsEditActivity.enableReactionsCell.checkBox.isChecked;
+                        chatCustomReactionsEditActivity.setCheckedEnableReactionCell(z2 ? 2 : 1, z2 ? false : chatCustomReactionsEditActivity.paid, true);
+                        break;
+                    case 1:
+                        this.f$0.toggleStarsEnabled();
+                        break;
+                    default:
+                        ChatCustomReactionsEditActivity chatCustomReactionsEditActivity2 = this.f$0;
+                        if (!chatCustomReactionsEditActivity2.actionButton.loading) {
+                            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = chatCustomReactionsEditActivity2.boostsStatus;
+                            if (tL_premium_boostsStatus != null) {
+                                int i3 = tL_premium_boostsStatus.level;
+                                int i4 = chatCustomReactionsEditActivity2.selectedCustomReactions;
+                                if (i3 < i4) {
+                                    ReactionsUtils.showLimitReachedDialogForReactions(-chatCustomReactionsEditActivity2.chatId, i4, tL_premium_boostsStatus);
+                                }
+                            }
+                            TextCheckCell textCheckCell4 = chatCustomReactionsEditActivity2.paidCheckCell;
+                            Boolean boolValueOf = (textCheckCell4 == null || !chatCustomReactionsEditActivity2.info.paid_media_allowed) ? null : Boolean.valueOf(textCheckCell4.checkBox.isChecked);
+                            chatCustomReactionsEditActivity2.actionButton.setLoading(true);
+                            MessagesController messagesController = chatCustomReactionsEditActivity2.getMessagesController();
+                            int i5 = chatCustomReactionsEditActivity2.selectedType;
+                            ArrayList arrayListGrabReactions = chatCustomReactionsEditActivity2.grabReactions(false);
+                            int i6 = chatCustomReactionsEditActivity2.reactionsCount;
+                            chatCustomReactionsEditActivity2.currentReactionsCount = i6;
+                            messagesController.setCustomChatReactions(chatCustomReactionsEditActivity2.chatId, i5, arrayListGrabReactions, i6, boolValueOf, new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda5(chatCustomReactionsEditActivity2, 1), new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda3(chatCustomReactionsEditActivity2, 2));
+                            break;
+                        }
+                        break;
+                }
             }
         });
         this.contentLayout.addView(this.enableReactionsCell, LayoutHelper.createLinear(-1, -2));
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
-        int i = Theme.key_windowBackgroundWhiteGrayText4;
-        textInfoPrivacyCell.setTextColor(Theme.getColor(i));
+        int i3 = Theme.key_windowBackgroundWhiteGrayText4;
+        textInfoPrivacyCell.setTextColor(Theme.getColor(null, i3, false));
         textInfoPrivacyCell.setTopPadding(12);
         textInfoPrivacyCell.setBottomPadding(16);
         textInfoPrivacyCell.setText(LocaleController.getString(R.string.ReactionAddEmojiFromAnyPack));
         this.contentLayout.addView(textInfoPrivacyCell, LayoutHelper.createLinear(-1, -2));
         HeaderCell headerCell = new HeaderCell(context);
         headerCell.setText(LocaleController.getString(R.string.AvailableReactions));
-        headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        headerCell.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
         headerCell.setTextSize(15.0f);
         headerCell.setTopMargin(14);
         LinearLayout linearLayout = new LinearLayout(context);
         this.switchLayout = linearLayout;
         linearLayout.setOrientation(1);
-        this.contentLayout.addView(this.switchLayout, LayoutHelper.createFrame(-1, -2.0f));
+        this.contentLayout.addView(this.switchLayout, LayoutHelper.createFrame(-2.0f, -1));
         this.switchLayout.addView(headerCell, LayoutHelper.createLinear(-1, -2));
-        CustomReactionEditText customReactionEditText = new CustomReactionEditText(context, getResourceProvider(), this.maxReactionsCount) {
+        Theme.ResourcesProvider resourceProvider = getResourceProvider();
+        int i4 = this.maxReactionsCount;
+        ?? r4 = new CustomReactionEditText(context, resourceProvider, i4) {
             @Override
-            protected void onLineCountChanged(int i2, int i3) {
-                if (i3 > i2) {
+            public final void onLineCountChanged(int i5, int i6) {
+                if (i6 > i5) {
                     ChatCustomReactionsEditActivity.this.scrollView.smoothScrollBy(0, AndroidUtilities.dp(30.0f));
                 }
             }
 
             @Override
-            public boolean onTextContextMenuItem(int i2) {
-                if (i2 == R.id.menu_delete || i2 == 16908320) {
+            public final boolean onTextContextMenuItem(int i5) {
+                if (i5 == R.id.menu_delete || i5 == 16908320) {
                     return ChatCustomReactionsEditActivity.this.deleteSelectedEmojis();
                 }
-                if (i2 == 16908322 || i2 == 16908321) {
+                if (i5 == 16908322 || i5 == 16908321) {
                     return false;
                 }
-                return super.onTextContextMenuItem(i2);
+                return super.onTextContextMenuItem(i5);
             }
         };
-        this.editText = customReactionEditText;
-        customReactionEditText.setOnFocused(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.showKeyboard();
-            }
-        });
+        this.editText = r4;
+        r4.setOnFocused(new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda3(this, 0));
         this.switchLayout.addView(this.editText, LayoutHelper.createLinear(-1, -2));
         LayoutTransition layoutTransition = new LayoutTransition();
         layoutTransition.setDuration(200L);
         layoutTransition.enableTransitionType(4);
         this.switchLayout.setLayoutTransition(layoutTransition);
         TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
-        textInfoPrivacyCell2.setTextColor(Theme.getColor(i));
-        textInfoPrivacyCell2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ReactionCreateOwnPack), Theme.key_chat_messageLinkIn, 0, new Runnable() {
-            @Override
-            public final void run() {
-                Browser.openUrl(this.f$0.getContext(), "https://t.me/stickers");
-            }
-        }, getResourceProvider()));
+        textInfoPrivacyCell2.setTextColor(Theme.getColor(null, i3, false));
+        textInfoPrivacyCell2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ReactionCreateOwnPack), Theme.key_chat_messageLinkIn, 0, new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda3(this, 3), getResourceProvider()));
         this.switchLayout.addView(textInfoPrivacyCell2, LayoutHelper.createLinear(-1, -2));
         HeaderCell headerCell2 = new HeaderCell(context, this.resourceProvider);
         headerCell2.setText(LocaleController.getString(R.string.MaximumReactionsHeader));
@@ -299,47 +456,87 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         this.slideView = new SlideIntChooseView(context, this.resourceProvider);
         TLRPC.ChatFull chatFull = this.info;
         if (!(chatFull instanceof TLRPC.TL_chatFull) ? (chatFull.flags2 & 8192) != 0 : (chatFull.flags & 1048576) != 0) {
-            int i2 = chatFull.reactions_limit;
-            this.reactionsCount = i2;
-            this.currentReactionsCount = i2;
+            int i5 = getMessagesController().reactionsUniqMax;
+            this.reactionsCount = i5;
+            this.currentReactionsCount = i5;
         } else {
-            int i3 = getMessagesController().reactionsUniqMax;
-            this.reactionsCount = i3;
-            this.currentReactionsCount = i3;
+            int i6 = chatFull.reactions_limit;
+            this.reactionsCount = i6;
+            this.currentReactionsCount = i6;
         }
-        this.slideView.set(this.reactionsCount, SlideIntChooseView.Options.make(0, "MaximumReactionsValue", 1, getMessagesController().reactionsUniqMax), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChatCustomReactionsEditActivity.m2706$r8$lambda$PhCFVIWDtAS8gSu2gN0K4wNPU(this.f$0, (Integer) obj);
-            }
-        });
+        SlideIntChooseView slideIntChooseView = this.slideView;
+        int i7 = this.reactionsCount;
+        int i8 = getMessagesController().reactionsUniqMax;
+        SlideIntChooseView.Options options = new SlideIntChooseView.Options();
+        options.min = 1;
+        options.max = i8;
+        options.toString = new ChatActivity$$ExternalSyntheticLambda131(3);
+        slideIntChooseView.set(i7, options, new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda5(this, 0));
         this.switchLayout.addView(this.slideView, LayoutHelper.createLinear(-1, -2));
         TextInfoPrivacyCell textInfoPrivacyCell3 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
         textInfoPrivacyCell3.setTopPadding(12);
         textInfoPrivacyCell3.setBottomPadding(16);
         textInfoPrivacyCell3.setText(LocaleController.getString(R.string.MaximumReactionsInfo));
         this.switchLayout.addView(textInfoPrivacyCell3, LayoutHelper.createLinear(-1, -2));
-        if (this.info.paid_media_allowed) {
+        if (chatFull.paid_media_allowed) {
             TextCheckCell textCheckCell3 = new TextCheckCell(context);
             this.paidCheckCell = textCheckCell3;
             textCheckCell3.setTextAndCheck(LocaleController.getString(R.string.ChannelEnablePaidReactions), false, false);
             this.switchLayout.addView(this.paidCheckCell, LayoutHelper.createLinear(-1, -2));
-            this.paidCheckCell.setOnClickListener(new View.OnClickListener() {
+            final int i9 = 1;
+            this.paidCheckCell.setOnClickListener(new View.OnClickListener(this) {
+                public final ChatCustomReactionsEditActivity f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.toggleStarsEnabled();
+                    TextCheckCell textCheckCell4;
+                    switch (i9) {
+                        case 0:
+                            ChatCustomReactionsEditActivity chatCustomReactionsEditActivity = this.f$0;
+                            if (chatCustomReactionsEditActivity.enableReactionsCell.checkBox.isChecked && (textCheckCell4 = chatCustomReactionsEditActivity.paidCheckCell) != null && textCheckCell4.checkBox.isChecked) {
+                                chatCustomReactionsEditActivity.toggleStarsEnabled();
+                            }
+                            boolean z2 = chatCustomReactionsEditActivity.enableReactionsCell.checkBox.isChecked;
+                            chatCustomReactionsEditActivity.setCheckedEnableReactionCell(z2 ? 2 : 1, z2 ? false : chatCustomReactionsEditActivity.paid, true);
+                            break;
+                        case 1:
+                            this.f$0.toggleStarsEnabled();
+                            break;
+                        default:
+                            ChatCustomReactionsEditActivity chatCustomReactionsEditActivity2 = this.f$0;
+                            if (!chatCustomReactionsEditActivity2.actionButton.loading) {
+                                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = chatCustomReactionsEditActivity2.boostsStatus;
+                                if (tL_premium_boostsStatus != null) {
+                                    int i10 = tL_premium_boostsStatus.level;
+                                    int i11 = chatCustomReactionsEditActivity2.selectedCustomReactions;
+                                    if (i10 < i11) {
+                                        ReactionsUtils.showLimitReachedDialogForReactions(-chatCustomReactionsEditActivity2.chatId, i11, tL_premium_boostsStatus);
+                                    }
+                                }
+                                TextCheckCell textCheckCell5 = chatCustomReactionsEditActivity2.paidCheckCell;
+                                Boolean boolValueOf = (textCheckCell5 == null || !chatCustomReactionsEditActivity2.info.paid_media_allowed) ? null : Boolean.valueOf(textCheckCell5.checkBox.isChecked);
+                                chatCustomReactionsEditActivity2.actionButton.setLoading(true);
+                                MessagesController messagesController = chatCustomReactionsEditActivity2.getMessagesController();
+                                int i12 = chatCustomReactionsEditActivity2.selectedType;
+                                ArrayList arrayListGrabReactions = chatCustomReactionsEditActivity2.grabReactions(false);
+                                int i13 = chatCustomReactionsEditActivity2.reactionsCount;
+                                chatCustomReactionsEditActivity2.currentReactionsCount = i13;
+                                messagesController.setCustomChatReactions(chatCustomReactionsEditActivity2.chatId, i12, arrayListGrabReactions, i13, boolValueOf, new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda5(chatCustomReactionsEditActivity2, 1), new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda3(chatCustomReactionsEditActivity2, 2));
+                                break;
+                            }
+                            break;
+                    }
                 }
             });
             TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
-            textInfoPrivacyCell4.setTextColor(Theme.getColor(i));
+            textInfoPrivacyCell4.setTextColor(Theme.getColor(null, i3, false));
             textInfoPrivacyCell4.setTopPadding(12);
             textInfoPrivacyCell4.setBottomPadding(70);
-            textInfoPrivacyCell4.setText(AndroidUtilities.withLearnMore(LocaleController.getString(R.string.ChannelEnablePaidReactionsInfo), new Runnable() {
-                @Override
-                public final void run() {
-                    Browser.openUrl(this.f$0.getContext(), LocaleController.getString(R.string.ChannelEnablePaidReactionsInfoLink));
-                }
-            }));
+            textInfoPrivacyCell4.setText(AndroidUtilities.withLearnMore(LocaleController.getString(R.string.ChannelEnablePaidReactionsInfo), new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda3(this, 4)));
             this.switchLayout.addView(textInfoPrivacyCell4, LayoutHelper.createLinear(-1, -2));
         } else {
             textInfoPrivacyCell3.setBottomPadding(70);
@@ -350,367 +547,263 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         imageView.setImageResource(R.drawable.gradient_bottom);
         this.actionButtonContainerGradient.setScaleType(ImageView.ScaleType.FIT_XY);
         ImageView imageView2 = this.actionButtonContainerGradient;
-        int i4 = Theme.key_windowBackgroundGray;
-        imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, this.resourceProvider), PorterDuff.Mode.SRC_ATOP));
+        int i10 = Theme.key_windowBackgroundGray;
+        imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i10, this.resourceProvider), PorterDuff.Mode.SRC_ATOP));
         this.actionButtonContainer.addView(this.actionButtonContainerGradient, LayoutHelper.createFrame(-1, -1, 119));
-        UpdateReactionsButton updateReactionsButton = new UpdateReactionsButton(context, getResourceProvider());
+        UpdateReactionsButton updateReactionsButton = new UpdateReactionsButton(context, getResourceProvider(), true);
         this.actionButton = updateReactionsButton;
-        updateReactionsButton.setRound();
-        this.actionButton.setDefaultState();
-        this.actionButton.setOnClickListener(new View.OnClickListener() {
+        updateReactionsButton.setRoundRadius(24);
+        UpdateReactionsButton updateReactionsButton2 = this.actionButton;
+        updateReactionsButton2.getClass();
+        updateReactionsButton2.setText(new SpannableStringBuilder(LocaleController.getString(R.string.ReactionUpdateReactionsBtn)), false, true);
+        updateReactionsButton2.lock = new SpannableStringBuilder("l");
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_switch_lock);
+        coloredImageSpan.setTopOffset(1);
+        updateReactionsButton2.lock.setSpan(coloredImageSpan, 0, 1, 33);
+        final int i11 = 2;
+        this.actionButton.setOnClickListener(new View.OnClickListener(this) {
+            public final ChatCustomReactionsEditActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                ChatCustomReactionsEditActivity.$r8$lambda$kQYQp4t6tzhJZmJUdTeWwi96JIM(this.f$0, view);
+                TextCheckCell textCheckCell4;
+                switch (i11) {
+                    case 0:
+                        ChatCustomReactionsEditActivity chatCustomReactionsEditActivity = this.f$0;
+                        if (chatCustomReactionsEditActivity.enableReactionsCell.checkBox.isChecked && (textCheckCell4 = chatCustomReactionsEditActivity.paidCheckCell) != null && textCheckCell4.checkBox.isChecked) {
+                            chatCustomReactionsEditActivity.toggleStarsEnabled();
+                        }
+                        boolean z2 = chatCustomReactionsEditActivity.enableReactionsCell.checkBox.isChecked;
+                        chatCustomReactionsEditActivity.setCheckedEnableReactionCell(z2 ? 2 : 1, z2 ? false : chatCustomReactionsEditActivity.paid, true);
+                        break;
+                    case 1:
+                        this.f$0.toggleStarsEnabled();
+                        break;
+                    default:
+                        ChatCustomReactionsEditActivity chatCustomReactionsEditActivity2 = this.f$0;
+                        if (!chatCustomReactionsEditActivity2.actionButton.loading) {
+                            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = chatCustomReactionsEditActivity2.boostsStatus;
+                            if (tL_premium_boostsStatus != null) {
+                                int i12 = tL_premium_boostsStatus.level;
+                                int i13 = chatCustomReactionsEditActivity2.selectedCustomReactions;
+                                if (i12 < i13) {
+                                    ReactionsUtils.showLimitReachedDialogForReactions(-chatCustomReactionsEditActivity2.chatId, i13, tL_premium_boostsStatus);
+                                }
+                            }
+                            TextCheckCell textCheckCell5 = chatCustomReactionsEditActivity2.paidCheckCell;
+                            Boolean boolValueOf = (textCheckCell5 == null || !chatCustomReactionsEditActivity2.info.paid_media_allowed) ? null : Boolean.valueOf(textCheckCell5.checkBox.isChecked);
+                            chatCustomReactionsEditActivity2.actionButton.setLoading(true);
+                            MessagesController messagesController = chatCustomReactionsEditActivity2.getMessagesController();
+                            int i14 = chatCustomReactionsEditActivity2.selectedType;
+                            ArrayList arrayListGrabReactions = chatCustomReactionsEditActivity2.grabReactions(false);
+                            int i15 = chatCustomReactionsEditActivity2.reactionsCount;
+                            chatCustomReactionsEditActivity2.currentReactionsCount = i15;
+                            messagesController.setCustomChatReactions(chatCustomReactionsEditActivity2.chatId, i14, arrayListGrabReactions, i15, boolValueOf, new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda5(chatCustomReactionsEditActivity2, 1), new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda3(chatCustomReactionsEditActivity2, 2));
+                            break;
+                        }
+                        break;
+                }
             }
         });
-        frameLayout.addView(this.scrollView);
-        frameLayout.addView(this.actionButtonContainer, LayoutHelper.createFrame(-1, 74.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        anonymousClass1.addView(this.scrollView);
+        anonymousClass1.addView(this.actionButtonContainer, LayoutHelper.createFrame(-1, 74.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         this.actionButtonContainer.addView(this.actionButton, LayoutHelper.createFrame(-1, 48.0f, 80, 13.0f, 13.0f, 13.0f, 13.0f));
-        frameLayout.setBackgroundColor(Theme.getColor(i4));
-        FrameLayout frameLayout2 = new FrameLayout(context) {
-            @Override
-            protected void onLayout(boolean z2, int i5, int i6, int i7, int i8) {
-                super.onLayout(z2, i5, i6, i7, i8);
-                if (ChatCustomReactionsEditActivity.this.emojiKeyboardVisible && z2) {
-                    ChatCustomReactionsEditActivity.this.actionButtonContainer.setTranslationY(-ChatCustomReactionsEditActivity.this.bottomDialogLayout.getMeasuredHeight());
-                    ChatCustomReactionsEditActivity chatCustomReactionsEditActivity = ChatCustomReactionsEditActivity.this;
-                    chatCustomReactionsEditActivity.updateScrollViewMarginBottom(chatCustomReactionsEditActivity.bottomDialogLayout.getMeasuredHeight());
-                }
-            }
-        };
-        this.bottomDialogLayout = frameLayout2;
-        frameLayout2.setVisibility(4);
-        frameLayout.addView(this.bottomDialogLayout, LayoutHelper.createFrame(-1, -2, 80));
-        TLRPC.ChatFull chatFull2 = this.info;
-        TLRPC.ChatReactions chatReactions = chatFull2.available_reactions;
-        if (chatReactions instanceof TLRPC.TL_chatReactionsAll) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            Iterator it = this.allAvailableReactions.iterator();
-            int i5 = 0;
-            while (it.hasNext()) {
-                ReactionsUtils.addReactionToEditText((TLRPC.TL_availableReaction) it.next(), this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
-                i5++;
-                if (i5 >= this.maxReactionsCount) {
+        anonymousClass1.setBackgroundColor(Theme.getColor(null, i10, false));
+        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(this, context, 21);
+        this.bottomDialogLayout = anonymousClass60;
+        anonymousClass60.setVisibility(4);
+        anonymousClass1.addView(this.bottomDialogLayout, LayoutHelper.createFrame(-1, -2, 80));
+        TLRPC.ChatReactions chatReactions = chatFull.available_reactions;
+        boolean z2 = chatReactions instanceof TLRPC.TL_chatReactionsAll;
+        ArrayList arrayList2 = this.allAvailableReactions;
+        ArrayList arrayList3 = this.selectedEmojisIds;
+        LinkedHashMap linkedHashMap5 = this.selectedEmojisMap;
+        if (z2) {
+            SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
+            int size = arrayList2.size();
+            int i12 = 0;
+            int i13 = 0;
+            while (true) {
+                if (i12 >= size) {
+                    linkedHashMap4 = linkedHashMap5;
+                    spannableStringBuilder3 = spannableStringBuilder4;
                     break;
                 }
+                Object obj = arrayList2.get(i12);
+                i12++;
+                ArrayList arrayList4 = arrayList3;
+                linkedHashMap4 = linkedHashMap5;
+                ReactionsUtils.addReactionToEditText((TLRPC.TL_availableReaction) obj, linkedHashMap4, arrayList4, spannableStringBuilder4, this.selectAnimatedEmojiDialog, getFontMetricsInt());
+                spannableStringBuilder3 = spannableStringBuilder4;
+                i13++;
+                if (i13 >= i4) {
+                    break;
+                }
+                spannableStringBuilder4 = spannableStringBuilder3;
+                linkedHashMap5 = linkedHashMap4;
+                arrayList3 = arrayList4;
             }
-            this.editText.append(spannableStringBuilder);
+            append(spannableStringBuilder3);
             setCheckedEnableReactionCell(0, this.paid, false);
-        } else if (chatReactions instanceof TLRPC.TL_chatReactionsSome) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-            ArrayList<TLRPC.Reaction> arrayList = ((TLRPC.TL_chatReactionsSome) chatReactions).reactions;
-            int size = arrayList.size();
-            int i6 = 0;
-            int i7 = 0;
-            while (i6 < size) {
-                TLRPC.Reaction reaction = arrayList.get(i6);
-                i6++;
+            linkedHashMap2 = linkedHashMap4;
+        } else {
+            ArrayList arrayList5 = arrayList3;
+            LinkedHashMap linkedHashMap6 = linkedHashMap5;
+            if (!(chatReactions instanceof TLRPC.TL_chatReactionsSome)) {
+                linkedHashMap = linkedHashMap6;
+                ArrayList arrayList6 = arrayList5;
+                boolean z3 = chatReactions instanceof TLRPC.TL_chatReactionsNone;
+                if (z3 && chatFull.paid_media_allowed && chatFull.paid_reactions_available) {
+                    i = 2;
+                    setCheckedEnableReactionCell(2, this.paid, false);
+                    linkedHashMap2 = linkedHashMap;
+                } else if (z3) {
+                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder();
+                    int size2 = arrayList2.size();
+                    int i14 = 0;
+                    int i15 = 0;
+                    while (true) {
+                        if (i14 >= size2) {
+                            linkedHashMap2 = linkedHashMap;
+                            spannableStringBuilder = spannableStringBuilder5;
+                            break;
+                        }
+                        Object obj2 = arrayList2.get(i14);
+                        i14++;
+                        ArrayList arrayList7 = arrayList6;
+                        LinkedHashMap linkedHashMap7 = linkedHashMap;
+                        ReactionsUtils.addReactionToEditText((TLRPC.TL_availableReaction) obj2, linkedHashMap7, arrayList7, spannableStringBuilder5, this.selectAnimatedEmojiDialog, getFontMetricsInt());
+                        linkedHashMap2 = linkedHashMap7;
+                        spannableStringBuilder = spannableStringBuilder5;
+                        i15++;
+                        if (i15 >= i4) {
+                            break;
+                        }
+                        spannableStringBuilder5 = spannableStringBuilder;
+                        linkedHashMap = linkedHashMap2;
+                        arrayList6 = arrayList7;
+                    }
+                    append(spannableStringBuilder);
+                    i = 2;
+                    setCheckedEnableReactionCell(2, this.paid, false);
+                }
+                TextCheckCell textCheckCell4 = this.enableReactionsCell;
+                String string = LocaleController.getString(R.string.EnableReactions);
+                if (this.selectedType == i || this.paid) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                textCheckCell4.setTextAndCheck(string, z, false);
+                addReactionsSpan();
+                if (chatFull.paid_media_allowed && chatFull.paid_reactions_available) {
+                    toggleStarsEnabled();
+                }
+                this.initialSelectedEmojis.putAll(linkedHashMap2);
+                this.initialPaid = this.paid;
+                this.fragmentView = anonymousClass1;
+                return anonymousClass1;
+            }
+            SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder();
+            ArrayList<TLRPC.Reaction> arrayList8 = ((TLRPC.TL_chatReactionsSome) chatReactions).reactions;
+            int size3 = arrayList8.size();
+            int i16 = 0;
+            int i17 = 0;
+            while (true) {
+                if (i16 >= size3) {
+                    linkedHashMap = linkedHashMap6;
+                    spannableStringBuilder2 = spannableStringBuilder6;
+                    break;
+                }
+                TLRPC.Reaction reaction = arrayList8.get(i16);
+                i16++;
                 TLRPC.Reaction reaction2 = reaction;
                 if (reaction2 instanceof TLRPC.TL_reactionEmoji) {
                     TLRPC.TL_availableReaction tL_availableReaction = getMediaDataController().getReactionsMap().get(((TLRPC.TL_reactionEmoji) reaction2).emoticon);
                     if (tL_availableReaction == null) {
                         continue;
                     } else {
-                        ReactionsUtils.addReactionToEditText(tL_availableReaction, this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder2, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
+                        ReactionsUtils.addReactionToEditText(tL_availableReaction, linkedHashMap6, arrayList5, spannableStringBuilder6, this.selectAnimatedEmojiDialog, getFontMetricsInt());
+                        linkedHashMap3 = linkedHashMap6;
+                        arrayList = arrayList5;
+                        spannableStringBuilder2 = spannableStringBuilder6;
+                        i17++;
                     }
                 } else {
+                    linkedHashMap3 = linkedHashMap6;
+                    arrayList = arrayList5;
+                    spannableStringBuilder2 = spannableStringBuilder6;
                     if (reaction2 instanceof TLRPC.TL_reactionCustomEmoji) {
-                        ReactionsUtils.addReactionToEditText((TLRPC.TL_reactionCustomEmoji) reaction2, this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder2, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
+                        TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = (TLRPC.TL_reactionCustomEmoji) reaction2;
+                        AnonymousClass5 anonymousClass5 = this.selectAnimatedEmojiDialog;
+                        AnimatedEmojiSpan animatedEmojiSpanCreateAnimatedEmojiSpan = ReactionsUtils.createAnimatedEmojiSpan(null, Long.valueOf(tL_reactionCustomEmoji.document_id), getFontMetricsInt());
+                        linkedHashMap = linkedHashMap3;
+                        linkedHashMap.put(Long.valueOf(tL_reactionCustomEmoji.document_id), animatedEmojiSpanCreateAnimatedEmojiSpan);
+                        int i18 = i17;
+                        arrayList.add(Long.valueOf(tL_reactionCustomEmoji.document_id));
+                        SpannableString spannableString = new SpannableString("e");
+                        arrayList8 = arrayList8;
+                        spannableString.setSpan(animatedEmojiSpanCreateAnimatedEmojiSpan, 0, spannableString.length(), 33);
+                        spannableStringBuilder2.append((CharSequence) spannableString);
+                        if (anonymousClass5 != null) {
+                            anonymousClass5.setMultiSelected(Long.valueOf(tL_reactionCustomEmoji.document_id), false);
+                        }
+                        i17 = i18 + 1;
                     }
-                    if (i7 >= this.maxReactionsCount) {
+                    if (i17 >= i4) {
                         break;
                     }
+                    arrayList5 = arrayList;
+                    i16 = i16;
+                    spannableStringBuilder6 = spannableStringBuilder2;
+                    arrayList8 = arrayList8;
+                    linkedHashMap6 = linkedHashMap;
+                    i4 = i4;
                 }
-                i7++;
-                if (i7 >= this.maxReactionsCount) {
+                linkedHashMap = linkedHashMap3;
+                if (i17 >= i4) {
                     break;
                     break;
                 }
+                arrayList5 = arrayList;
+                i16 = i16;
+                spannableStringBuilder6 = spannableStringBuilder2;
+                arrayList8 = arrayList8;
+                linkedHashMap6 = linkedHashMap;
+                i4 = i4;
             }
-            this.editText.append(spannableStringBuilder2);
+            append(spannableStringBuilder2);
             setCheckedEnableReactionCell(1, this.paid, false);
+            linkedHashMap2 = linkedHashMap;
+        }
+        i = 2;
+        TextCheckCell textCheckCell5 = this.enableReactionsCell;
+        String string2 = LocaleController.getString(R.string.EnableReactions);
+        if (this.selectedType == i) {
+            z = true;
         } else {
-            boolean z2 = chatReactions instanceof TLRPC.TL_chatReactionsNone;
-            if (z2 && chatFull2.paid_media_allowed && chatFull2.paid_reactions_available) {
-                setCheckedEnableReactionCell(2, this.paid, false);
-            } else if (z2) {
-                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
-                Iterator it2 = this.allAvailableReactions.iterator();
-                int i8 = 0;
-                while (it2.hasNext()) {
-                    ReactionsUtils.addReactionToEditText((TLRPC.TL_availableReaction) it2.next(), this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder3, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
-                    i8++;
-                    if (i8 >= this.maxReactionsCount) {
-                        break;
-                    }
-                }
-                this.editText.append(spannableStringBuilder3);
-                setCheckedEnableReactionCell(2, this.paid, false);
-            }
+            z = true;
         }
-        TextCheckCell textCheckCell4 = this.enableReactionsCell;
-        String string = LocaleController.getString(R.string.EnableReactions);
-        if (this.selectedType == 2 && !this.paid) {
-            z = false;
-        }
-        textCheckCell4.setTextAndCheck(string, z, false);
-        this.editText.addReactionsSpan();
-        TLRPC.ChatFull chatFull3 = this.info;
-        if (chatFull3.paid_media_allowed && chatFull3.paid_reactions_available) {
+        textCheckCell5.setTextAndCheck(string2, z, false);
+        addReactionsSpan();
+        if (chatFull.paid_media_allowed) {
             toggleStarsEnabled();
         }
-        this.initialSelectedEmojis.putAll(this.selectedEmojisMap);
+        this.initialSelectedEmojis.putAll(linkedHashMap2);
         this.initialPaid = this.paid;
-        this.fragmentView = frameLayout;
-        return frameLayout;
+        this.fragmentView = anonymousClass1;
+        return anonymousClass1;
     }
 
-    public static void m2701$r8$lambda$AHE6gpV7lQiQfO8NXS8DX9ZMc(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, View view) {
-        TextCheckCell textCheckCell;
-        if (chatCustomReactionsEditActivity.enableReactionsCell.isChecked() && (textCheckCell = chatCustomReactionsEditActivity.paidCheckCell) != null && textCheckCell.isChecked()) {
-            chatCustomReactionsEditActivity.toggleStarsEnabled();
-        }
-        chatCustomReactionsEditActivity.setCheckedEnableReactionCell(chatCustomReactionsEditActivity.enableReactionsCell.isChecked() ? 2 : 1, chatCustomReactionsEditActivity.enableReactionsCell.isChecked() ? false : chatCustomReactionsEditActivity.paid, true);
-    }
-
-    public static void m2706$r8$lambda$PhCFVIWDtAS8gSu2gN0K4wNPU(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, Integer num) {
-        chatCustomReactionsEditActivity.getClass();
-        chatCustomReactionsEditActivity.reactionsCount = num.intValue();
-    }
-
-    public static void $r8$lambda$kQYQp4t6tzhJZmJUdTeWwi96JIM(final ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, View view) {
-        if (chatCustomReactionsEditActivity.actionButton.isLoading()) {
-            return;
-        }
-        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = chatCustomReactionsEditActivity.boostsStatus;
-        if (tL_premium_boostsStatus != null) {
-            int i = tL_premium_boostsStatus.level;
-            int i2 = chatCustomReactionsEditActivity.selectedCustomReactions;
-            if (i < i2) {
-                ReactionsUtils.showLimitReachedDialogForReactions(-chatCustomReactionsEditActivity.chatId, i2, tL_premium_boostsStatus);
-                return;
-            }
-        }
-        TextCheckCell textCheckCell = chatCustomReactionsEditActivity.paidCheckCell;
-        Boolean boolValueOf = (textCheckCell == null || !chatCustomReactionsEditActivity.info.paid_media_allowed) ? null : Boolean.valueOf(textCheckCell.isChecked());
-        chatCustomReactionsEditActivity.actionButton.setLoading(true);
-        MessagesController messagesController = chatCustomReactionsEditActivity.getMessagesController();
-        long j = chatCustomReactionsEditActivity.chatId;
-        int i3 = chatCustomReactionsEditActivity.selectedType;
-        List<TLRPC.Reaction> listGrabReactions = chatCustomReactionsEditActivity.grabReactions(false);
-        int i4 = chatCustomReactionsEditActivity.reactionsCount;
-        chatCustomReactionsEditActivity.currentReactionsCount = i4;
-        messagesController.setCustomChatReactions(j, i3, listGrabReactions, i4, boolValueOf, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChatCustomReactionsEditActivity.$r8$lambda$m80USuPtTcEqs2cOzQgqYVmyx4E(this.f$0, (TLRPC.TL_error) obj);
-            }
-        }, new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.finishFragment();
-            }
-        });
-    }
-
-    public static void $r8$lambda$m80USuPtTcEqs2cOzQgqYVmyx4E(final ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, final TLRPC.TL_error tL_error) {
-        if (chatCustomReactionsEditActivity.isFinishing()) {
-            return;
-        }
-        chatCustomReactionsEditActivity.actionButton.setLoading(false);
-        if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
-            chatCustomReactionsEditActivity.finishFragment();
-        } else {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatCustomReactionsEditActivity.m2702$r8$lambda$AySnEt7RrsN2eHiBFYPWJSNGg(this.f$0, tL_error);
-                }
-            }, chatCustomReactionsEditActivity.boostsStatus == null ? 200L : 0L);
-        }
-    }
-
-    public static void m2702$r8$lambda$AySnEt7RrsN2eHiBFYPWJSNGg(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, TLRPC.TL_error tL_error) {
-        if (chatCustomReactionsEditActivity.boostsStatus != null && tL_error.text.equals("BOOSTS_REQUIRED")) {
-            ReactionsUtils.showLimitReachedDialogForReactions(-chatCustomReactionsEditActivity.chatId, chatCustomReactionsEditActivity.selectedCustomReactions, chatCustomReactionsEditActivity.boostsStatus);
-            return;
-        }
-        String pluralString = tL_error.text;
-        if (pluralString.equals("REACTIONS_TOO_MANY")) {
-            pluralString = LocaleController.formatPluralString("ReactionMaxCountError", chatCustomReactionsEditActivity.maxReactionsCount, new Object[0]);
-        }
-        BulletinFactory.of(chatCustomReactionsEditActivity).createErrorBulletin(pluralString).show();
-    }
-
-    private void initSelectAnimatedEmojiDialog() {
-        if (this.selectAnimatedEmojiDialog != null) {
-            return;
-        }
-        AnonymousClass5 anonymousClass5 = new AnonymousClass5(this, getContext(), false, null, 6, false, getResourceProvider(), 16, Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, getResourceProvider()));
-        this.selectAnimatedEmojiDialog = anonymousClass5;
-        anonymousClass5.setAnimationsEnabled(false);
-        this.selectAnimatedEmojiDialog.setClipChildren(false);
-        this.selectAnimatedEmojiDialog.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        this.bottomDialogLayout.addView(this.selectAnimatedEmojiDialog, LayoutHelper.createFrame(-1, -2, 80));
-        BackSpaceButtonView backSpaceButtonView = new BackSpaceButtonView(getContext(), getResourceProvider());
-        this.backSpaceButtonView = backSpaceButtonView;
-        backSpaceButtonView.setOnBackspace(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChatCustomReactionsEditActivity.$r8$lambda$NigpBWauH3zWZVvm_JKFiHW6tsQ(this.f$0, (Boolean) obj);
-            }
-        });
-        this.bottomDialogLayout.addView(this.backSpaceButtonView, LayoutHelper.createFrame(-1, -2.0f, 85, 0.0f, 0.0f, 8.0f, 8.0f));
-        Iterator it = this.selectedEmojisIds.iterator();
-        while (it.hasNext()) {
-            this.selectAnimatedEmojiDialog.setMultiSelected((Long) it.next(), false);
-        }
-    }
-
-    class AnonymousClass5 extends SelectAnimatedEmojiDialog {
-        private boolean firstLayout;
-
-        AnonymousClass5(BaseFragment baseFragment, Context context, boolean z, Integer num, int i, boolean z2, Theme.ResourcesProvider resourcesProvider, int i2, int i3) {
-            super(baseFragment, context, z, num, i, z2, resourcesProvider, i2, i3);
-            this.firstLayout = true;
-            setDrawBackground(false);
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            if (this.firstLayout) {
-                this.firstLayout = false;
-                ChatCustomReactionsEditActivity.this.selectAnimatedEmojiDialog.onShow(null);
-            }
-        }
-
-        @Override
-        protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-            if (ChatCustomReactionsEditActivity.this.selectedEmojisMap.containsKey(l)) {
-                ChatCustomReactionsEditActivity.this.selectedEmojisIds.remove(l);
-                final AnimatedEmojiSpan animatedEmojiSpan = (AnimatedEmojiSpan) ChatCustomReactionsEditActivity.this.selectedEmojisMap.remove(l);
-                animatedEmojiSpan.setRemoved(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatCustomReactionsEditActivity.AnonymousClass5.$r8$lambda$caeh1DVe26QMo7kEMSoIGrj8TFo(this.f$0, animatedEmojiSpan);
-                    }
-                });
-                ChatCustomReactionsEditActivity.this.animateChangesInNextRows(animatedEmojiSpan);
-                ChatCustomReactionsEditActivity.this.selectAnimatedEmojiDialog.setMultiSelected(l, true);
-                ChatCustomReactionsEditActivity.this.checkMaxCustomReactions(false);
-                return;
-            }
-            if (ChatCustomReactionsEditActivity.this.selectedEmojisMap.size() - (ChatCustomReactionsEditActivity.this.selectedEmojisMap.containsKey(-1L) ? 1 : 0) >= ChatCustomReactionsEditActivity.this.maxReactionsCount) {
-                BulletinFactory.of(ChatCustomReactionsEditActivity.this).createErrorBulletin(LocaleController.formatPluralString("ReactionMaxCountError", ChatCustomReactionsEditActivity.this.maxReactionsCount, new Object[0])).show();
-                return;
-            }
-            try {
-                int editTextSelectionEnd = ChatCustomReactionsEditActivity.this.editText.getEditTextSelectionEnd();
-                SpannableString spannableString = new SpannableString("b");
-                AnimatedEmojiSpan animatedEmojiSpanCreateAnimatedEmojiSpan = ReactionsUtils.createAnimatedEmojiSpan(document, l, ChatCustomReactionsEditActivity.this.editText.getFontMetricsInt());
-                animatedEmojiSpanCreateAnimatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
-                animatedEmojiSpanCreateAnimatedEmojiSpan.setAdded();
-                ChatCustomReactionsEditActivity.this.selectedEmojisIds.add(MathUtils.clamp(editTextSelectionEnd, 0, ChatCustomReactionsEditActivity.this.selectedEmojisIds.size()), l);
-                ChatCustomReactionsEditActivity.this.selectedEmojisMap.put(l, animatedEmojiSpanCreateAnimatedEmojiSpan);
-                spannableString.setSpan(animatedEmojiSpanCreateAnimatedEmojiSpan, 0, spannableString.length(), 33);
-                ChatCustomReactionsEditActivity.this.editText.getText().insert(editTextSelectionEnd, spannableString);
-                ChatCustomReactionsEditActivity.this.editText.setSelection(editTextSelectionEnd + spannableString.length());
-                ChatCustomReactionsEditActivity.this.selectAnimatedEmojiDialog.setMultiSelected(l, true);
-                ChatCustomReactionsEditActivity.this.checkMaxCustomReactions(true);
-                ChatCustomReactionsEditActivity.this.animateChangesInNextRows(animatedEmojiSpanCreateAnimatedEmojiSpan);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-
-        public static void $r8$lambda$caeh1DVe26QMo7kEMSoIGrj8TFo(AnonymousClass5 anonymousClass5, AnimatedEmojiSpan animatedEmojiSpan) {
-            anonymousClass5.getClass();
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ChatCustomReactionsEditActivity.this.editText.getText());
-            for (AnimatedEmojiSpan animatedEmojiSpan2 : (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)) {
-                if (animatedEmojiSpan2 == animatedEmojiSpan) {
-                    int editTextSelectionEnd = ChatCustomReactionsEditActivity.this.editText.getEditTextSelectionEnd();
-                    int spanEnd = spannableStringBuilder.getSpanEnd(animatedEmojiSpan2);
-                    int spanStart = spannableStringBuilder.getSpanStart(animatedEmojiSpan2);
-                    ChatCustomReactionsEditActivity.this.editText.getText().delete(spanStart, spanEnd);
-                    int i = spanEnd - spanStart;
-                    CustomReactionEditText customReactionEditText = ChatCustomReactionsEditActivity.this.editText;
-                    if (spanEnd <= editTextSelectionEnd) {
-                        editTextSelectionEnd -= i;
-                    }
-                    customReactionEditText.setSelection(editTextSelectionEnd);
-                    return;
-                }
-            }
-        }
-    }
-
-    public static void $r8$lambda$NigpBWauH3zWZVvm_JKFiHW6tsQ(final ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, Boolean bool) {
-        TextCheckCell textCheckCell;
-        if (chatCustomReactionsEditActivity.deleteSelectedEmojis()) {
-            return;
-        }
-        final int editTextSelectionEnd = chatCustomReactionsEditActivity.editText.getEditTextSelectionEnd();
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(chatCustomReactionsEditActivity.editText.getText());
-        for (final AnimatedEmojiSpan animatedEmojiSpan : (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)) {
-            if (spannableStringBuilder.getSpanEnd(animatedEmojiSpan) == editTextSelectionEnd) {
-                chatCustomReactionsEditActivity.selectedEmojisMap.remove(Long.valueOf(animatedEmojiSpan.documentId));
-                chatCustomReactionsEditActivity.selectedEmojisIds.remove(Long.valueOf(animatedEmojiSpan.documentId));
-                chatCustomReactionsEditActivity.selectAnimatedEmojiDialog.unselect(Long.valueOf(animatedEmojiSpan.documentId));
-                if (animatedEmojiSpan.documentId == -1 && (textCheckCell = chatCustomReactionsEditActivity.paidCheckCell) != null) {
-                    textCheckCell.setChecked(false);
-                    chatCustomReactionsEditActivity.editText.setMaxLength(chatCustomReactionsEditActivity.maxReactionsCount);
-                }
-                if (bool.booleanValue()) {
-                    chatCustomReactionsEditActivity.editText.dispatchKeyEvent(new KeyEvent(0, 67));
-                    AndroidUtilities.cancelRunOnUIThread(chatCustomReactionsEditActivity.checkAfterFastDeleteRunnable);
-                    AndroidUtilities.runOnUIThread(chatCustomReactionsEditActivity.checkAfterFastDeleteRunnable, 350L);
-                    return;
-                } else {
-                    animatedEmojiSpan.setRemoved(new Runnable() {
-                        @Override
-                        public final void run() {
-                            ChatCustomReactionsEditActivity.$r8$lambda$LuEiPB51fqiMfG3pGL1dWnTm5U4(this.f$0, animatedEmojiSpan, editTextSelectionEnd);
-                        }
-                    });
-                    chatCustomReactionsEditActivity.animateChangesInNextRows(animatedEmojiSpan);
-                    chatCustomReactionsEditActivity.checkMaxCustomReactions(false);
-                    return;
-                }
-            }
-        }
-    }
-
-    public static void $r8$lambda$LuEiPB51fqiMfG3pGL1dWnTm5U4(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, AnimatedEmojiSpan animatedEmojiSpan, int i) {
-        Editable text = chatCustomReactionsEditActivity.editText.getText();
-        int spanStart = text.getSpanStart(animatedEmojiSpan);
-        int spanEnd = text.getSpanEnd(animatedEmojiSpan);
-        int i2 = spanEnd - spanStart;
-        if (spanStart == -1 || spanEnd == -1) {
-            return;
-        }
-        chatCustomReactionsEditActivity.editText.getText().delete(spanStart, spanEnd);
-        CustomReactionEditText customReactionEditText = chatCustomReactionsEditActivity.editText;
-        customReactionEditText.setSelection(Math.min(i - i2, customReactionEditText.getText().length()));
-    }
-
-    public void animateChangesInNextRows(AnimatedEmojiSpan animatedEmojiSpan) {
-        Editable text = this.editText.getText();
-        Layout layout = this.editText.getLayout();
-        int lineForOffset = layout.getLineForOffset(text.getSpanStart(animatedEmojiSpan)) + 1;
-        if (lineForOffset < layout.getLineCount()) {
-            AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) text.getSpans(layout.getLineStart(lineForOffset), text.length(), AnimatedEmojiSpan.class);
-            for (AnimatedEmojiSpan animatedEmojiSpan2 : animatedEmojiSpanArr) {
-                animatedEmojiSpan2.setAnimateChanges();
-            }
-        }
-    }
-
-    public boolean deleteSelectedEmojis() {
-        int editTextSelectionEnd = this.editText.getEditTextSelectionEnd();
-        int editTextSelectionStart = this.editText.getEditTextSelectionStart();
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.editText.getText());
-        if (!this.editText.hasSelection()) {
+    public final boolean deleteSelectedEmojis() {
+        int editTextSelectionEnd = getEditTextSelectionEnd();
+        int editTextSelectionStart = getEditTextSelectionStart();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
+        if (!hasSelection()) {
             return false;
         }
         AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(editTextSelectionStart, editTextSelectionEnd, AnimatedEmojiSpan.class);
@@ -719,226 +812,48 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             this.selectedEmojisIds.remove(Long.valueOf(animatedEmojiSpan.documentId));
             this.selectAnimatedEmojiDialog.unselect(Long.valueOf(animatedEmojiSpan.documentId));
         }
-        this.editText.dispatchKeyEvent(new KeyEvent(0, 67));
+        dispatchKeyEvent(new KeyEvent(0, 67));
         checkMaxCustomReactions(false);
         return true;
     }
 
     @Override
-    public boolean canBeginSlide() {
-        if (checkChangesBeforeExit(true)) {
-            return false;
-        }
-        return super.canBeginSlide();
-    }
-
-    @Override
-    public void onTransitionAnimationEnd(boolean z, boolean z2) {
-        super.onTransitionAnimationEnd(z, z2);
-        if (z && this.selectedType != 2) {
-            this.editText.setFocusableInTouchMode(true);
-        }
-        if (!z || z2) {
-            return;
-        }
-        initSelectAnimatedEmojiDialog();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
-            }
-        }, 200L);
-    }
-
-    private void setCheckedEnableReactionCell(int i, boolean z, boolean z2) {
-        if (this.selectedType == i && this.paid == z) {
-            return;
-        }
-        this.paid = z;
-        boolean z3 = i == 1 || i == 0 || z;
-        this.enableReactionsCell.setChecked(z3);
-        int color = Theme.getColor(z3 ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked);
-        if (!z2) {
-            this.enableReactionsCell.setBackgroundColor(color);
-        } else if (z3) {
-            this.enableReactionsCell.setBackgroundColorAnimated(true, color);
-        } else {
-            this.enableReactionsCell.setBackgroundColorAnimatedReverse(color);
-        }
-        this.selectedType = i;
-        if (i != 1 && i != 0 && !z) {
-            if (z2) {
-                closeKeyboard();
-                this.actionButtonContainer.animate().setListener(null).cancel();
-                this.switchLayout.animate().setListener(null).cancel();
-                ViewPropertyAnimator duration = this.actionButtonContainer.animate().alpha(0.0f).setDuration(350L);
-                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-                duration.setInterpolator(cubicBezierInterpolator).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        ChatCustomReactionsEditActivity.this.actionButtonContainer.setVisibility(4);
-                    }
-                }).start();
-                this.switchLayout.animate().alpha(0.0f).setDuration(350L).setInterpolator(cubicBezierInterpolator).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        ChatCustomReactionsEditActivity.this.editText.setFocusableInTouchMode(false);
-                        ChatCustomReactionsEditActivity.this.switchLayout.setVisibility(4);
-                    }
-                }).start();
-                return;
-            }
-            this.switchLayout.setVisibility(4);
-            this.actionButtonContainer.setVisibility(4);
-            return;
-        }
-        this.switchLayout.setVisibility(0);
-        this.actionButtonContainer.setVisibility(0);
-        if (z2) {
-            this.actionButtonContainer.animate().setListener(null).cancel();
-            this.switchLayout.animate().setListener(null).cancel();
-            ViewPropertyAnimator duration2 = this.switchLayout.animate().alpha(1.0f).setDuration(350L);
-            CubicBezierInterpolator cubicBezierInterpolator2 = CubicBezierInterpolator.DEFAULT;
-            duration2.setInterpolator(cubicBezierInterpolator2).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ChatCustomReactionsEditActivity.this.editText.setFocusableInTouchMode(true);
-                }
-            }).start();
-            this.actionButtonContainer.animate().alpha(1.0f).setDuration(350L).setInterpolator(cubicBezierInterpolator2).start();
-            if (this.selectedEmojisMap.isEmpty()) {
-                this.selectAnimatedEmojiDialog.clearSelectedDocuments();
-                this.editText.setText("");
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                Iterator it = this.allAvailableReactions.iterator();
-                int i2 = 0;
-                while (it.hasNext()) {
-                    ReactionsUtils.addReactionToEditText((TLRPC.TL_availableReaction) it.next(), this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
-                    i2++;
-                    if (i2 >= this.maxReactionsCount) {
-                        break;
-                    }
-                }
-                this.editText.append(spannableStringBuilder);
-                this.editText.addReactionsSpan();
-                this.selectAnimatedEmojiDialog.notifyDataSetChanged();
-                checkMaxCustomReactions(false);
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.chatId)) {
+            INavigationLayout iNavigationLayout = this.parentLayout;
+            if (iNavigationLayout == null || ((ActionBarLayout) iNavigationLayout).getLastFragment() != this) {
+                removeSelfFromStack();
+            } else {
+                finishFragment();
             }
         }
     }
 
-    @Override
-    public void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        AndroidUtilities.cancelRunOnUIThread(this.checkAfterFastDeleteRunnable);
-        if (this.selectedType == 2 && this.reactionsCount != this.currentReactionsCount) {
-            getMessagesController().setCustomChatReactions(this.chatId, this.selectedType, grabReactions(false), this.reactionsCount, null, null, null);
-        }
-        getNotificationCenter().removeObserver(this, NotificationCenter.dialogDeleted);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (this.isPaused) {
-            this.isPaused = false;
-            this.editText.setFocusable(true);
-            this.editText.setFocusableInTouchMode(true);
-            if (this.emojiKeyboardVisible) {
-                this.editText.removeReactionsSpan(false);
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.editText.requestFocus();
-                    }
-                }, 250L);
-            }
-        }
-    }
-
-    @Override
-    public void onPause() {
-        this.isPaused = true;
-        this.editText.setFocusable(false);
-        super.onPause();
-    }
-
-    @Override
-    public boolean onBackPressed(boolean z) {
-        if (this.emojiKeyboardVisible) {
-            if (z) {
-                closeKeyboard();
-            }
-            return false;
-        }
-        if (checkChangesBeforeExit(z)) {
-            return false;
-        }
-        return super.onBackPressed(z);
-    }
-
-    public boolean checkChangesBeforeExit(boolean z) {
-        boolean z2 = !this.selectedEmojisMap.keySet().equals(this.initialSelectedEmojis.keySet());
-        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.boostsStatus;
-        if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < this.selectedCustomReactions) {
-            z2 = false;
-        }
-        boolean z3 = this.initialPaid == this.paid ? z2 : true;
-        if (z && z3) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getResourceProvider());
-            builder.setTitle(LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges));
-            builder.setMessage(LocaleController.getString("ReactionApplyChangesDialog", R.string.ReactionApplyChangesDialog));
-            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.actionButton.performClick();
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString(R.string.Discard), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.finishFragment();
-                }
-            });
-            builder.show();
-        }
-        return z3;
-    }
-
-    public void checkMaxCustomReactions(boolean z) {
-        if (this.boostsStatus == null) {
-            return;
-        }
-        if (this.selectedType == 0) {
-            this.selectedType = 1;
-        }
-        int size = grabReactions(true).size();
-        this.selectedCustomReactions = size;
-        if (this.boostsStatus.level < size) {
-            if (z) {
-                BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_infotip, AndroidUtilities.replaceTags(LocaleController.formatPluralString("ReactionReachLvlForReactionShort", size, Integer.valueOf(size)))).show();
-            }
-            this.actionButton.setLvlRequiredState(this.selectedCustomReactions);
-            return;
-        }
-        this.actionButton.removeLvlRequiredState();
-    }
-
-    private List grabReactions(boolean z) {
+    public final ArrayList grabReactions(boolean z) {
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        for (Long l : this.selectedEmojisIds) {
+        ArrayList arrayList3 = this.selectedEmojisIds;
+        int size = arrayList3.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList3.get(i);
+            i++;
+            Long l = (Long) obj;
             if (l.longValue() != -1) {
-                Iterator it = this.allAvailableReactions.iterator();
+                ArrayList arrayList4 = this.allAvailableReactions;
+                int size2 = arrayList4.size();
+                int i2 = 0;
                 while (true) {
-                    if (!it.hasNext()) {
+                    if (i2 >= size2) {
                         TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
                         tL_reactionCustomEmoji.document_id = l.longValue();
                         arrayList.add(tL_reactionCustomEmoji);
                         arrayList2.add(tL_reactionCustomEmoji);
                         break;
                     }
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) it.next();
+                    Object obj2 = arrayList4.get(i2);
+                    i2++;
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) obj2;
                     if (l.longValue() == tL_availableReaction.activate_animation.id) {
                         TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
                         tL_reactionEmoji.emoticon = tL_availableReaction.reaction;
@@ -951,126 +866,221 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         return z ? arrayList2 : arrayList;
     }
 
-    public void showKeyboard() {
+    @Override
+    public final boolean onBackPressed(boolean z) {
         if (this.emojiKeyboardVisible) {
-            return;
+            if (z) {
+                closeKeyboard$1();
+                return false;
+            }
+        } else if (!checkChangesBeforeExit(z)) {
+            return super.onBackPressed(z);
         }
-        this.emojiKeyboardVisible = true;
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
-        updateScrollViewMarginBottom(this.bottomDialogLayout.getMeasuredHeight());
-        this.bottomDialogLayout.setVisibility(0);
-        FrameLayout frameLayout = this.bottomDialogLayout;
-        frameLayout.setTranslationY(frameLayout.getMeasuredHeight());
-        this.bottomDialogLayout.animate().setListener(null).cancel();
-        this.bottomDialogLayout.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatCustomReactionsEditActivity chatCustomReactionsEditActivity = this.f$0;
-                chatCustomReactionsEditActivity.actionButtonContainer.setTranslationY((-((Float) valueAnimator.getAnimatedValue()).floatValue()) * chatCustomReactionsEditActivity.bottomDialogLayout.getMeasuredHeight());
-            }
-        }).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
-            }
-        }).start();
-    }
-
-    private boolean closeKeyboard() {
-        if (!this.emojiKeyboardVisible) {
-            return false;
-        }
-        this.emojiKeyboardVisible = false;
-        if (isClearFocusNotWorking()) {
-            this.switchLayout.setFocusableInTouchMode(true);
-            this.switchLayout.requestFocus();
-        } else {
-            this.editText.clearFocus();
-        }
-        updateScrollViewMarginBottom(0);
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 512);
-        this.bottomDialogLayout.animate().setListener(null).cancel();
-        this.bottomDialogLayout.animate().translationY(this.bottomDialogLayout.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatCustomReactionsEditActivity chatCustomReactionsEditActivity = this.f$0;
-                chatCustomReactionsEditActivity.actionButtonContainer.setTranslationY((-(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue())) * chatCustomReactionsEditActivity.bottomDialogLayout.getMeasuredHeight());
-            }
-        }).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 512);
-                ChatCustomReactionsEditActivity.this.bottomDialogLayout.setVisibility(4);
-                if (ChatCustomReactionsEditActivity.this.isClearFocusNotWorking()) {
-                    ChatCustomReactionsEditActivity.this.switchLayout.setFocusableInTouchMode(false);
-                }
-            }
-        }).start();
-        return true;
-    }
-
-    public boolean isClearFocusNotWorking() {
-        return Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28;
-    }
-
-    public void updateScrollViewMarginBottom(int i) {
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.scrollView.getLayoutParams();
-        marginLayoutParams.bottomMargin = i;
-        this.scrollView.setLayoutParams(marginLayoutParams);
+        return false;
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.chatId)) {
-            INavigationLayout iNavigationLayout = this.parentLayout;
-            if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                finishFragment();
-            } else {
-                removeSelfFromStack();
+    public final boolean onFragmentCreate() {
+        MessagesController messagesController = getMessagesController();
+        long j = this.chatId;
+        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j));
+        this.currentChat = chat;
+        if (chat == null) {
+            TLRPC.Chat chatSync = MessagesStorage.getInstance(this.currentAccount).getChatSync(j);
+            this.currentChat = chatSync;
+            if (chatSync != null) {
+                getMessagesController().putChat(this.currentChat, true);
+                if (this.info != null) {
+                    getMessagesController().getBoostsController().getBoostsStats(-j, new QrActivity$5$$ExternalSyntheticLambda0(this, 4));
+                    getNotificationCenter().addObserver(this, NotificationCenter.reactionsDidLoad);
+                    this.allAvailableReactions.addAll(getMediaDataController().getEnabledReactionsList());
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+                    getNotificationCenter().addObserver(this, NotificationCenter.dialogDeleted);
+                    return super.onFragmentCreate();
+                }
+            }
+        } else if (this.info != null) {
+            getMessagesController().getBoostsController().getBoostsStats(-j, new QrActivity$5$$ExternalSyntheticLambda0(this, 4));
+            getNotificationCenter().addObserver(this, NotificationCenter.reactionsDidLoad);
+            this.allAvailableReactions.addAll(getMediaDataController().getEnabledReactionsList());
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+            getNotificationCenter().addObserver(this, NotificationCenter.dialogDeleted);
+            return super.onFragmentCreate();
+        }
+        return false;
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        AndroidUtilities.cancelRunOnUIThread(this.checkAfterFastDeleteRunnable);
+        if (this.selectedType == 2 && this.reactionsCount != this.currentReactionsCount) {
+            getMessagesController().setCustomChatReactions(this.chatId, this.selectedType, grabReactions(false), this.reactionsCount, null, null, null);
+        }
+        getNotificationCenter().removeObserver(this, NotificationCenter.dialogDeleted);
+    }
+
+    @Override
+    public final void onPause() {
+        this.isPaused = true;
+        setFocusable(false);
+        super.onPause();
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        if (this.isPaused) {
+            this.isPaused = false;
+            setFocusable(true);
+            setFocusableInTouchMode(true);
+            if (this.emojiKeyboardVisible) {
+                removeReactionsSpan(false);
+                AndroidUtilities.runOnUIThread(new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda3(this, 1), 250L);
             }
         }
     }
 
-    public void toggleStarsEnabled() {
-        long j = -1;
-        if (this.paidCheckCell.isChecked()) {
-            this.paidCheckCell.setChecked(false);
-            this.selectedEmojisIds.remove((Object) (-1L));
-            final AnimatedEmojiSpan animatedEmojiSpan = (AnimatedEmojiSpan) this.selectedEmojisMap.remove(-1L);
-            if (animatedEmojiSpan != null) {
-                animatedEmojiSpan.setRemoved(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatCustomReactionsEditActivity.$r8$lambda$oKS2dSeSU13cGR6EW5dejJNs4g8(this.f$0, animatedEmojiSpan);
+    @Override
+    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
+        super.onTransitionAnimationEnd(z, z2);
+        if (z && this.selectedType != 2) {
+            setFocusableInTouchMode(true);
+        }
+        if (!z || z2) {
+            return;
+        }
+        if (this.selectAnimatedEmojiDialog == null) {
+            AnonymousClass5 anonymousClass5 = new AnonymousClass5(this, getParentActivity(), getResourceProvider(), Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, getResourceProvider()));
+            this.selectAnimatedEmojiDialog = anonymousClass5;
+            anonymousClass5.setAnimationsEnabled(false);
+            this.selectAnimatedEmojiDialog.setClipChildren(false);
+            this.selectAnimatedEmojiDialog.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+            this.bottomDialogLayout.addView(this.selectAnimatedEmojiDialog, LayoutHelper.createFrame(-1, -2, 80));
+            BackSpaceButtonView backSpaceButtonView = new BackSpaceButtonView(getParentActivity(), getResourceProvider());
+            this.backSpaceButtonView = backSpaceButtonView;
+            backSpaceButtonView.setOnBackspace(new ChatCustomReactionsEditActivity$$ExternalSyntheticLambda5(this, 2));
+            this.bottomDialogLayout.addView(this.backSpaceButtonView, LayoutHelper.createFrame(-1, -2.0f, 85, 0.0f, 0.0f, 8.0f, 8.0f));
+            ArrayList arrayList = this.selectedEmojisIds;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                this.selectAnimatedEmojiDialog.setMultiSelected((Long) obj, false);
+            }
+        }
+        AndroidUtilities.runOnUIThread(new QrActivity$5$$ExternalSyntheticLambda1(3), 200L);
+    }
+
+    public final void setCheckedEnableReactionCell(int i, boolean z, boolean z2) {
+        if (this.selectedType == i && this.paid == z) {
+            return;
+        }
+        this.paid = z;
+        boolean z3 = i == 1 || i == 0 || z;
+        this.enableReactionsCell.setChecked(z3);
+        int color = Theme.getColor(null, z3 ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked, false);
+        if (!z2) {
+            this.enableReactionsCell.setBackgroundColor(color);
+        } else if (z3) {
+            this.enableReactionsCell.setBackgroundColorAnimated(color, true);
+        } else {
+            this.enableReactionsCell.setBackgroundColorAnimatedReverse(color);
+        }
+        this.selectedType = i;
+        if (i != 1 && i != 0 && !z) {
+            if (!z2) {
+                this.switchLayout.setVisibility(4);
+                this.actionButtonContainer.setVisibility(4);
+                return;
+            }
+            closeKeyboard$1();
+            this.actionButtonContainer.animate().setListener(null).cancel();
+            this.switchLayout.animate().setListener(null).cancel();
+            ViewPropertyAnimator duration = this.actionButtonContainer.animate().alpha(0.0f).setDuration(350L);
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+            duration.setInterpolator(cubicBezierInterpolator).setListener(new AnonymousClass6(this, 2)).start();
+            this.switchLayout.animate().alpha(0.0f).setDuration(350L).setInterpolator(cubicBezierInterpolator).setListener(new AnonymousClass6(this, 3)).start();
+            return;
+        }
+        this.switchLayout.setVisibility(0);
+        this.actionButtonContainer.setVisibility(0);
+        if (z2) {
+            this.actionButtonContainer.animate().setListener(null).cancel();
+            this.switchLayout.animate().setListener(null).cancel();
+            ViewPropertyAnimator duration2 = this.switchLayout.animate().alpha(1.0f).setDuration(350L);
+            CubicBezierInterpolator cubicBezierInterpolator2 = CubicBezierInterpolator.DEFAULT;
+            duration2.setInterpolator(cubicBezierInterpolator2).setListener(new AnonymousClass6(this, 0)).start();
+            this.actionButtonContainer.animate().alpha(1.0f).setDuration(350L).setInterpolator(cubicBezierInterpolator2).start();
+            LinkedHashMap linkedHashMap = this.selectedEmojisMap;
+            if (linkedHashMap.isEmpty()) {
+                this.selectAnimatedEmojiDialog.selectedDocumentIds.clear();
+                setText("");
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                ArrayList arrayList = this.allAvailableReactions;
+                int size = arrayList.size();
+                int i2 = 0;
+                int i3 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    ReactionsUtils.addReactionToEditText((TLRPC.TL_availableReaction) obj, linkedHashMap, this.selectedEmojisIds, spannableStringBuilder, this.selectAnimatedEmojiDialog, getFontMetricsInt());
+                    i3++;
+                    if (i3 >= this.maxReactionsCount) {
+                        break;
                     }
-                });
+                }
+                append(spannableStringBuilder);
+                addReactionsSpan();
+                SelectAnimatedEmojiDialog.Adapter adapter = this.selectAnimatedEmojiDialog.adapter;
+                if (adapter != null) {
+                    adapter.mObservable.notifyChanged();
+                }
+                checkMaxCustomReactions(false);
+            }
+        }
+    }
+
+    public final void toggleStarsEnabled() {
+        TextCheckCell textCheckCell = this.paidCheckCell;
+        boolean z = textCheckCell.checkBox.isChecked;
+        LinkedHashMap linkedHashMap = this.selectedEmojisMap;
+        ArrayList arrayList = this.selectedEmojisIds;
+        int i = this.maxReactionsCount;
+        if (z) {
+            textCheckCell.setChecked(false);
+            arrayList.remove((Object) (-1L));
+            AnimatedEmojiSpan animatedEmojiSpan = (AnimatedEmojiSpan) linkedHashMap.remove(-1L);
+            if (animatedEmojiSpan != null) {
+                animatedEmojiSpan.setRemoved(new ShareAlert$$ExternalSyntheticLambda29(6, this, animatedEmojiSpan));
             }
             animateChangesInNextRows(animatedEmojiSpan);
             this.selectAnimatedEmojiDialog.setMultiSelected(-1L, true);
             checkMaxCustomReactions(false);
-            this.editText.setMaxLength(this.maxReactionsCount);
+            setMaxLength(i);
             setCheckedEnableReactionCell(this.selectedType, this.paid, true);
         } else {
-            this.paidCheckCell.setChecked(true);
+            textCheckCell.setChecked(true);
             try {
-                this.editText.setMaxLength(this.maxReactionsCount + 1);
+                setMaxLength(i + 1);
                 SpannableString spannableString = new SpannableString("b");
-                AnimatedEmojiSpan animatedEmojiSpan2 = new AnimatedEmojiSpan(j, null) {
-                    private final Bitmap bitmap;
+                AnimatedEmojiSpan animatedEmojiSpan2 = new AnimatedEmojiSpan(this) {
+                    public final Bitmap bitmap;
 
                     {
                         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Bitmap.Config.ARGB_8888);
                         this.bitmap = bitmapCreateBitmap;
-                        Drawable drawableMutate = ChatCustomReactionsEditActivity.this.getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate();
+                        Drawable drawableMutate = this.getParentActivity().getResources().getDrawable(R.drawable.star_small_inner).mutate();
                         drawableMutate.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                         drawableMutate.draw(new Canvas(bitmapCreateBitmap));
                     }
 
                     @Override
-                    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-                        super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
+                    public final void draw(Canvas canvas, CharSequence charSequence, int i2, int i3, float f, int i4, int i5, int i6, Paint paint) {
+                        super.draw(canvas, charSequence, i2, i3, f, i4, i5, i6, paint);
                         canvas.save();
-                        canvas.translate(f, ((i3 + i5) / 2.0f) - AndroidUtilities.dp(12.0f));
+                        canvas.translate(f, ((i4 + i6) / 2.0f) - AndroidUtilities.dp(12.0f));
                         float f2 = this.extraScale;
                         canvas.scale(f2, f2, f + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
                         canvas.drawBitmap(this.bitmap, 0.0f, 0.0f, (Paint) null);
@@ -1078,16 +1088,16 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                     }
 
                     @Override
-                    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-                        return super.getSize(paint, charSequence, i, i2, fontMetricsInt) + AndroidUtilities.dp(5.0f);
+                    public final int getSize(Paint paint, CharSequence charSequence, int i2, int i3, Paint.FontMetricsInt fontMetricsInt) {
+                        return AndroidUtilities.dp(5.0f) + super.getSize(paint, charSequence, i2, i3, fontMetricsInt);
                     }
                 };
                 animatedEmojiSpan2.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
                 animatedEmojiSpan2.setAdded();
-                this.selectedEmojisIds.add(0, -1L);
-                this.selectedEmojisMap.put(-1L, animatedEmojiSpan2);
+                arrayList.add(0, -1L);
+                linkedHashMap.put(-1L, animatedEmojiSpan2);
                 spannableString.setSpan(animatedEmojiSpan2, 0, spannableString.length(), 33);
-                this.editText.getText().insert(0, spannableString);
+                getText().insert(0, spannableString);
                 this.selectAnimatedEmojiDialog.setMultiSelected(-1L, true);
                 checkMaxCustomReactions(true);
                 animateChangesInNextRows(animatedEmojiSpan2);
@@ -1096,26 +1106,6 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             }
             setCheckedEnableReactionCell(this.selectedType, true, true);
         }
-        this.editText.updateAnimatedEmoji(true);
-    }
-
-    public static void $r8$lambda$oKS2dSeSU13cGR6EW5dejJNs4g8(ChatCustomReactionsEditActivity chatCustomReactionsEditActivity, AnimatedEmojiSpan animatedEmojiSpan) {
-        chatCustomReactionsEditActivity.getClass();
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(chatCustomReactionsEditActivity.editText.getText());
-        for (AnimatedEmojiSpan animatedEmojiSpan2 : (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)) {
-            if (animatedEmojiSpan2 == animatedEmojiSpan) {
-                int editTextSelectionEnd = chatCustomReactionsEditActivity.editText.getEditTextSelectionEnd();
-                int spanEnd = spannableStringBuilder.getSpanEnd(animatedEmojiSpan2);
-                int spanStart = spannableStringBuilder.getSpanStart(animatedEmojiSpan2);
-                chatCustomReactionsEditActivity.editText.getText().delete(spanStart, spanEnd);
-                int i = spanEnd - spanStart;
-                CustomReactionEditText customReactionEditText = chatCustomReactionsEditActivity.editText;
-                if (spanEnd <= editTextSelectionEnd) {
-                    editTextSelectionEnd -= i;
-                }
-                customReactionEditText.setSelection(editTextSelectionEnd);
-                return;
-            }
-        }
+        updateAnimatedEmoji(true);
     }
 }

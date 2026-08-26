@@ -1,14 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.text.SpannableStringBuilder;
 import android.util.Property;
@@ -20,209 +15,108 @@ import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.voip.CellFlickerDrawable;
+import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$16$$ExternalSyntheticLambda4;
+import org.telegram.ui.LaunchActivity;
 
-public class BlockingUpdateView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    private FrameLayout acceptButton;
-    private TextView acceptTextView;
-    private int accountNum;
-    private TLRPC.TL_help_appUpdate appUpdate;
-    private String fileName;
-    Drawable gradientDrawableBottom;
-    Drawable gradientDrawableTop;
-    private int pressCount;
-    private AnimatorSet progressAnimation;
-    private RadialProgress radialProgress;
-    private FrameLayout radialProgressView;
-    private ScrollView scrollView;
-    private TextView textView;
+public final class BlockingUpdateView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public final ChatActivity.AnonymousClass60 acceptButton;
+    public final TextView acceptTextView;
+    public int accountNum;
+    public TLRPC.TL_help_appUpdate appUpdate;
+    public String fileName;
+    public final GradientDrawable gradientDrawableBottom;
+    public final GradientDrawable gradientDrawableTop;
+    public int pressCount;
+    public AnimatorSet progressAnimation;
+    public final RadialProgress radialProgress;
+    public final ChatActivity.AnonymousClass60 radialProgressView;
+    public final ScrollView scrollView;
+    public final TextView textView;
 
-    public BlockingUpdateView(final Context context) {
-        super(context);
+    public BlockingUpdateView(LaunchActivity launchActivity) {
+        super(launchActivity);
+        int i = 7;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i = Theme.key_windowBackgroundWhite;
-        this.gradientDrawableTop = new GradientDrawable(orientation, new int[]{Theme.getColor(i), 0});
-        this.gradientDrawableBottom = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{Theme.getColor(i), 0});
-        setBackgroundColor(Theme.getColor(i));
-        int i2 = (int) (AndroidUtilities.statusBarHeight / AndroidUtilities.density);
-        FrameLayout frameLayout = new FrameLayout(context);
+        int i2 = Theme.key_windowBackgroundWhite;
+        this.gradientDrawableTop = new GradientDrawable(orientation, new int[]{Theme.getColor(null, i2, false), 0});
+        this.gradientDrawableBottom = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{Theme.getColor(null, i2, false), 0});
+        setBackgroundColor(Theme.getColor(null, i2, false));
+        int i3 = (int) (AndroidUtilities.statusBarHeight / AndroidUtilities.density);
+        FrameLayout frameLayout = new FrameLayout(launchActivity);
         addView(frameLayout, new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(176.0f) + AndroidUtilities.statusBarHeight));
-        RLottieImageView rLottieImageView = new RLottieImageView(context);
-        rLottieImageView.setAnimation(R.raw.qr_code_logo, 108, 108);
+        RLottieImageView rLottieImageView = new RLottieImageView(launchActivity);
+        rLottieImageView.setAnimation(R.raw.qr_code_logo, 108, 108, null);
         rLottieImageView.playAnimation();
         rLottieImageView.getAnimatedDrawable().setAutoRepeat(1);
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
         rLottieImageView.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
-        frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, i2, 0.0f, 0.0f));
-        rLottieImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                BlockingUpdateView.$r8$lambda$U_RZEnwRXjYgV4ORBzuGeBRkEHo(this.f$0, view);
-            }
-        });
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        ScrollView scrollView = new ScrollView(context);
+        frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, i3, 0.0f, 0.0f));
+        rLottieImageView.setOnClickListener(new ChatActivity$16$$ExternalSyntheticLambda4(this, i));
+        FrameLayout frameLayout2 = new FrameLayout(launchActivity);
+        ScrollView scrollView = new ScrollView(launchActivity);
         this.scrollView = scrollView;
-        AndroidUtilities.setScrollViewEdgeEffectColor(scrollView, Theme.getColor(Theme.key_actionBarDefault));
-        this.scrollView.setPadding(0, AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f));
-        this.scrollView.setClipToPadding(false);
-        addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f, 51, 27.0f, i2 + 178, 27.0f, 130.0f));
-        this.scrollView.addView(frameLayout2);
-        TextView textView = new TextView(context);
-        int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i3));
+        AndroidUtilities.setScrollViewEdgeEffectColor(scrollView, Theme.getColor(null, Theme.key_actionBarDefault, false));
+        scrollView.setPadding(0, AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f));
+        scrollView.setClipToPadding(false);
+        addView(scrollView, LayoutHelper.createFrame(-1, -1.0f, 51, 27.0f, i3 + 178, 27.0f, 130.0f));
+        scrollView.addView(frameLayout2);
+        TextView textView = new TextView(launchActivity);
+        int i4 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(null, i4, false));
         textView.setTextSize(1, 20.0f);
         textView.setGravity(49);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.UpdateTelegram));
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2, 49));
-        TextView textView2 = new TextView(context);
+        TextView textView2 = new TextView(launchActivity);
         this.textView = textView2;
-        textView2.setTextColor(Theme.getColor(i3));
-        this.textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
-        this.textView.setTextSize(1, 15.0f);
-        this.textView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        this.textView.setGravity(49);
-        this.textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        frameLayout2.addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 44.0f, 0.0f, 0.0f));
-        FrameLayout frameLayout3 = new FrameLayout(context) {
-            CellFlickerDrawable cellFlickerDrawable;
-
-            @Override
-            protected void onDraw(Canvas canvas) {
-                super.onDraw(canvas);
-                if (this.cellFlickerDrawable == null) {
-                    CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
-                    this.cellFlickerDrawable = cellFlickerDrawable;
-                    cellFlickerDrawable.drawFrame = false;
-                    cellFlickerDrawable.repeatProgress = 2.0f;
-                }
-                this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(4.0f), null);
-                invalidate();
-            }
-
-            @Override
-            protected void onMeasure(int i4, int i5) {
-                if (View.MeasureSpec.getSize(i4) > AndroidUtilities.dp(260.0f)) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(320.0f), 1073741824), i5);
-                } else {
-                    super.onMeasure(i4, i5);
-                }
-            }
-        };
-        this.acceptButton = frameLayout3;
-        frameLayout3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        this.acceptButton.setBackgroundDrawable(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
-        this.acceptButton.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        addView(this.acceptButton, LayoutHelper.createFrame(-2, 46.0f, 81, 0.0f, 0.0f, 0.0f, 45.0f));
-        this.acceptButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                BlockingUpdateView.$r8$lambda$nf7Rrnr1SEoVB8wl8TfUfgP5m94(this.f$0, context, view);
-            }
-        });
-        TextView textView3 = new TextView(context);
+        textView2.setTextColor(Theme.getColor(null, i4, false));
+        textView2.setLinkTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteLinkText, false));
+        textView2.setTextSize(1, 15.0f);
+        textView2.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
+        textView2.setGravity(49);
+        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        frameLayout2.addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 44.0f, 0.0f, 0.0f));
+        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(launchActivity);
+        this.acceptButton = anonymousClass60;
+        anonymousClass60.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        anonymousClass60.setBackgroundDrawable(Theme.AdaptiveRipple.filledRectByKey(new float[]{4.0f}, Theme.key_featuredStickers_addButton));
+        anonymousClass60.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        addView(anonymousClass60, LayoutHelper.createFrame(-2, 46.0f, 81, 0.0f, 0.0f, 0.0f, 45.0f));
+        anonymousClass60.setOnClickListener(new ItemOptions$$ExternalSyntheticLambda7(11, this, launchActivity));
+        TextView textView3 = new TextView(launchActivity);
         this.acceptTextView = textView3;
         textView3.setGravity(17);
-        this.acceptTextView.setTypeface(AndroidUtilities.bold());
-        this.acceptTextView.setTextColor(-1);
-        this.acceptTextView.setTextSize(1, 14.0f);
-        this.acceptButton.addView(this.acceptTextView, LayoutHelper.createFrame(-2, -2, 17));
-        FrameLayout frameLayout4 = new FrameLayout(context) {
-            @Override
-            protected void onLayout(boolean z, int i4, int i5, int i6, int i7) {
-                super.onLayout(z, i4, i5, i6, i7);
-                int i8 = i6 - i4;
-                int iDp = AndroidUtilities.dp(36.0f);
-                int i9 = (i8 - iDp) / 2;
-                int i10 = ((i7 - i5) - iDp) / 2;
-                BlockingUpdateView.this.radialProgress.setProgressRect(i9, i10, i9 + iDp, iDp + i10);
-            }
-
-            @Override
-            protected void onDraw(Canvas canvas) {
-                BlockingUpdateView.this.radialProgress.draw(canvas);
-            }
-        };
-        this.radialProgressView = frameLayout4;
-        frameLayout4.setWillNotDraw(false);
-        this.radialProgressView.setAlpha(0.0f);
-        this.radialProgressView.setScaleX(0.1f);
-        this.radialProgressView.setScaleY(0.1f);
-        this.radialProgressView.setVisibility(4);
-        RadialProgress radialProgress = new RadialProgress(this.radialProgressView);
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setTextColor(-1);
+        textView3.setTextSize(1, 14.0f);
+        anonymousClass60.addView(textView3, LayoutHelper.createFrame(-2, -2, 17));
+        ChatActivity.AnonymousClass60 anonymousClass61 = new ChatActivity.AnonymousClass60(this, launchActivity, i);
+        this.radialProgressView = anonymousClass61;
+        anonymousClass61.setWillNotDraw(false);
+        anonymousClass61.setAlpha(0.0f);
+        anonymousClass61.setScaleX(0.1f);
+        anonymousClass61.setScaleY(0.1f);
+        anonymousClass61.setVisibility(4);
+        RadialProgress radialProgress = new RadialProgress(anonymousClass61);
         this.radialProgress = radialProgress;
         radialProgress.setBackground(null, true, false);
-        this.radialProgress.setProgressColor(-1);
-        this.acceptButton.addView(this.radialProgressView, LayoutHelper.createFrame(36, 36, 17));
-    }
-
-    public static void $r8$lambda$U_RZEnwRXjYgV4ORBzuGeBRkEHo(BlockingUpdateView blockingUpdateView, View view) {
-        int i = blockingUpdateView.pressCount + 1;
-        blockingUpdateView.pressCount = i;
-        if (i >= 10) {
-            blockingUpdateView.setVisibility(8);
-            SharedConfig.pendingAppUpdate = null;
-            SharedConfig.saveConfig();
-        }
-    }
-
-    public static void $r8$lambda$nf7Rrnr1SEoVB8wl8TfUfgP5m94(BlockingUpdateView blockingUpdateView, Context context, View view) {
-        blockingUpdateView.getClass();
-        if (ApplicationLoader.isStandaloneBuild() || BuildVars.DEBUG_VERSION) {
-            if (ApplicationLoader.applicationLoaderInstance.checkApkInstallPermissions(blockingUpdateView.getContext())) {
-                TLRPC.TL_help_appUpdate tL_help_appUpdate = blockingUpdateView.appUpdate;
-                if (tL_help_appUpdate.document instanceof TLRPC.TL_document) {
-                    if (ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) blockingUpdateView.getContext(), blockingUpdateView.appUpdate.document)) {
-                        return;
-                    }
-                    FileLoader.getInstance(blockingUpdateView.accountNum).loadFile(blockingUpdateView.appUpdate.document, "update", 3, 1);
-                    blockingUpdateView.showProgress(true);
-                    return;
-                }
-                if (tL_help_appUpdate.url != null) {
-                    Browser.openUrl(blockingUpdateView.getContext(), blockingUpdateView.appUpdate.url);
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        if (BuildVars.isHuaweiStoreApp()) {
-            Browser.openUrl(context, BuildVars.HUAWEI_STORE_URL);
-        } else {
-            Browser.openUrl(context, BuildVars.PLAYSTORE_APP_URL);
-        }
+        radialProgress.progressColor = -1;
+        anonymousClass60.addView(anonymousClass61, LayoutHelper.createFrame(36, 36, 17));
     }
 
     @Override
-    public void setVisibility(int i) {
-        super.setVisibility(i);
-        if (i == 8) {
-            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadFailed);
-            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
-        }
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.fileLoaded) {
             String str = (String) objArr[0];
             String str2 = this.fileName;
@@ -252,50 +146,29 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         }
     }
 
-    private void showProgress(final boolean z) {
-        AnimatorSet animatorSet = this.progressAnimation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.progressAnimation = new AnimatorSet();
-        Property property = View.ALPHA;
-        Property property2 = View.SCALE_Y;
-        Property property3 = View.SCALE_X;
-        if (z) {
-            this.radialProgressView.setVisibility(0);
-            this.acceptButton.setEnabled(false);
-            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property3, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property2, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property3, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property2, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property, 1.0f));
-        } else {
-            this.acceptTextView.setVisibility(0);
-            this.acceptButton.setEnabled(true);
-            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property3, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property2, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property3, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property2, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) property, 1.0f));
-        }
-        this.progressAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (BlockingUpdateView.this.progressAnimation == null || !BlockingUpdateView.this.progressAnimation.equals(animator)) {
-                    return;
-                }
-                if (!z) {
-                    BlockingUpdateView.this.radialProgressView.setVisibility(4);
-                } else {
-                    BlockingUpdateView.this.acceptTextView.setVisibility(4);
-                }
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                if (BlockingUpdateView.this.progressAnimation == null || !BlockingUpdateView.this.progressAnimation.equals(animator)) {
-                    return;
-                }
-                BlockingUpdateView.this.progressAnimation = null;
-            }
-        });
-        this.progressAnimation.setDuration(150L);
-        this.progressAnimation.start();
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        GradientDrawable gradientDrawable = this.gradientDrawableTop;
+        ScrollView scrollView = this.scrollView;
+        gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), AndroidUtilities.dp(16.0f) + scrollView.getTop());
+        gradientDrawable.draw(canvas);
+        GradientDrawable gradientDrawable2 = this.gradientDrawableBottom;
+        gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - AndroidUtilities.dp(18.0f), scrollView.getRight(), scrollView.getBottom());
+        gradientDrawable2.draw(canvas);
     }
 
-    public void show(int i, TLRPC.TL_help_appUpdate tL_help_appUpdate, boolean z) {
+    @Override
+    public void setVisibility(int i) {
+        super.setVisibility(i);
+        if (i == 8) {
+            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadFailed);
+            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+        }
+    }
+
+    public final void show(int i, TLRPC.TL_help_appUpdate tL_help_appUpdate, boolean z) {
         this.pressCount = 0;
         this.appUpdate = tL_help_appUpdate;
         this.accountNum = i;
@@ -326,41 +199,33 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
             if (tL_help_getAppUpdate.source == null) {
                 tL_help_getAppUpdate.source = "";
             }
-            ConnectionsManager.getInstance(this.accountNum).sendRequest(tL_help_getAppUpdate, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BlockingUpdateView.m2054$r8$lambda$Tf63wIwJLQECXnytaYLfB3IrDQ(this.f$0, tLObject, tL_error);
-                }
-            });
+            ConnectionsManager.getInstance(this.accountNum).sendRequest(tL_help_getAppUpdate, new CallLogActivity$$ExternalSyntheticLambda1(this, 17));
         }
     }
 
-    public static void m2054$r8$lambda$Tf63wIwJLQECXnytaYLfB3IrDQ(final BlockingUpdateView blockingUpdateView, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        blockingUpdateView.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BlockingUpdateView.$r8$lambda$OSKv_cAGgg7g5Okm2EiCmEC1NiM(this.f$0, tLObject);
-            }
-        });
-    }
-
-    public static void $r8$lambda$OSKv_cAGgg7g5Okm2EiCmEC1NiM(BlockingUpdateView blockingUpdateView, TLObject tLObject) {
-        blockingUpdateView.getClass();
-        if (!(tLObject instanceof TLRPC.TL_help_appUpdate) || ((TLRPC.TL_help_appUpdate) tLObject).can_not_skip) {
-            return;
+    public final void showProgress(boolean z) {
+        AnimatorSet animatorSet = this.progressAnimation;
+        if (animatorSet != null) {
+            animatorSet.cancel();
         }
-        blockingUpdateView.setVisibility(8);
-        SharedConfig.pendingAppUpdate = null;
-        SharedConfig.saveConfig();
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.gradientDrawableTop.setBounds(this.scrollView.getLeft(), this.scrollView.getTop(), this.scrollView.getRight(), this.scrollView.getTop() + AndroidUtilities.dp(16.0f));
-        this.gradientDrawableTop.draw(canvas);
-        this.gradientDrawableBottom.setBounds(this.scrollView.getLeft(), this.scrollView.getBottom() - AndroidUtilities.dp(18.0f), this.scrollView.getRight(), this.scrollView.getBottom());
-        this.gradientDrawableBottom.draw(canvas);
+        this.progressAnimation = new AnimatorSet();
+        TextView textView = this.acceptTextView;
+        Property property = View.ALPHA;
+        Property property2 = View.SCALE_Y;
+        Property property3 = View.SCALE_X;
+        ChatActivity.AnonymousClass60 anonymousClass60 = this.acceptButton;
+        ChatActivity.AnonymousClass60 anonymousClass61 = this.radialProgressView;
+        if (z) {
+            anonymousClass61.setVisibility(0);
+            anonymousClass60.setEnabled(false);
+            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property3, 0.1f), ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property2, 0.1f), ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(anonymousClass61, (Property<ChatActivity.AnonymousClass60, Float>) property3, 1.0f), ObjectAnimator.ofFloat(anonymousClass61, (Property<ChatActivity.AnonymousClass60, Float>) property2, 1.0f), ObjectAnimator.ofFloat(anonymousClass61, (Property<ChatActivity.AnonymousClass60, Float>) property, 1.0f));
+        } else {
+            textView.setVisibility(0);
+            anonymousClass60.setEnabled(true);
+            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(anonymousClass61, (Property<ChatActivity.AnonymousClass60, Float>) property3, 0.1f), ObjectAnimator.ofFloat(anonymousClass61, (Property<ChatActivity.AnonymousClass60, Float>) property2, 0.1f), ObjectAnimator.ofFloat(anonymousClass61, (Property<ChatActivity.AnonymousClass60, Float>) property, 0.0f), ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property3, 1.0f), ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property2, 1.0f), ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 1.0f));
+        }
+        this.progressAnimation.addListener(new ChatActivity.AnonymousClass77(13, this, z));
+        this.progressAnimation.setDuration(150L);
+        this.progressAnimation.start();
     }
 }

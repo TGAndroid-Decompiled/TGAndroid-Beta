@@ -10,27 +10,6 @@ import android.widget.RemoteViews;
 import org.telegram.ui.LaunchActivity;
 
 public class FeedWidgetProvider extends AppWidgetProvider {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        super.onReceive(context, intent);
-    }
-
-    @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] iArr) {
-        super.onUpdate(context, appWidgetManager, iArr);
-        for (int i : iArr) {
-            updateWidget(context, appWidgetManager, i);
-        }
-    }
-
-    @Override
-    public void onDeleted(Context context, int[] iArr) {
-        super.onDeleted(context, iArr);
-        for (int i = 0; i < iArr.length; i++) {
-            context.getSharedPreferences("shortcut_widget", 0).edit().remove("account" + iArr[i]).remove("dialogId" + iArr[i]).commit();
-        }
-    }
-
     public static void updateWidget(Context context, AppWidgetManager appWidgetManager, int i) {
         Intent intent = new Intent(context, (Class<?>) FeedWidgetService.class);
         intent.putExtra("appWidgetId", i);
@@ -45,5 +24,26 @@ public class FeedWidgetProvider extends AppWidgetProvider {
         intent2.addCategory("android.intent.category.LAUNCHER");
         remoteViews.setPendingIntentTemplate(i2, PendingIntent.getActivity(ApplicationLoader.applicationContext, 0, intent2, 167772160));
         appWidgetManager.updateAppWidget(i, remoteViews);
+    }
+
+    @Override
+    public void onDeleted(Context context, int[] iArr) {
+        super.onDeleted(context, iArr);
+        for (int i = 0; i < iArr.length; i++) {
+            context.getSharedPreferences("shortcut_widget", 0).edit().remove("account" + iArr[i]).remove("dialogId" + iArr[i]).commit();
+        }
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+    }
+
+    @Override
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] iArr) {
+        super.onUpdate(context, appWidgetManager, iArr);
+        for (int i : iArr) {
+            updateWidget(context, appWidgetManager, i);
+        }
     }
 }

@@ -7,92 +7,73 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 
-public class PathAnimator {
-    private float durationScale;
-    private float scale;
-    private float tx;
-    private float ty;
-    private Path path = new Path();
-    private float pathTime = -1.0f;
-    private ArrayList keyFrames = new ArrayList();
+public final class PathAnimator {
+    public final Path path = new Path();
+    public float pathTime = -1.0f;
+    public final ArrayList keyFrames = new ArrayList();
+    public final float scale = 0.293f;
+    public final float tx = -26.0f;
+    public final float ty = -28.0f;
+    public final float durationScale = 1.0f;
 
-    private static class KeyFrame {
-        public ArrayList commands;
-        public float time;
-
-        private KeyFrame() {
-            this.commands = new ArrayList();
-        }
-    }
-
-    private static class MoveTo {
-        public float x;
-        public float y;
-
-        private MoveTo() {
-        }
-    }
-
-    private static class LineTo {
-        public float x;
-        public float y;
-
-        private LineTo() {
-        }
-    }
-
-    private static class CurveTo {
+    public final class CurveTo {
         public float x;
         public float x1;
         public float x2;
         public float y;
         public float y1;
         public float y2;
-
-        private CurveTo() {
-        }
     }
 
-    public PathAnimator(float f, float f2, float f3, float f4) {
-        this.scale = f;
-        this.tx = f2;
-        this.ty = f3;
-        this.durationScale = f4;
+    public final class KeyFrame {
+        public final ArrayList commands = new ArrayList();
+        public float time;
     }
 
-    public void addSvgKeyFrame(String str, float f) {
-        if (str == null) {
-            return;
-        }
+    public final class LineTo {
+        public float x;
+        public float y;
+    }
+
+    public final class MoveTo {
+        public float x;
+        public float y;
+    }
+
+    public final void addSvgKeyFrame(String str, float f) {
         try {
             KeyFrame keyFrame = new KeyFrame();
+            ArrayList arrayList = keyFrame.commands;
             keyFrame.time = f * this.durationScale;
             String[] strArrSplit = str.split(" ");
             int i = 0;
             while (i < strArrSplit.length) {
                 char cCharAt = strArrSplit[i].charAt(0);
+                float f2 = this.ty;
+                float f3 = this.tx;
+                float f4 = this.scale;
                 if (cCharAt == 'C') {
                     CurveTo curveTo = new CurveTo();
-                    curveTo.x1 = (Float.parseFloat(strArrSplit[i + 1]) + this.tx) * this.scale;
-                    curveTo.y1 = (Float.parseFloat(strArrSplit[i + 2]) + this.ty) * this.scale;
-                    curveTo.x2 = (Float.parseFloat(strArrSplit[i + 3]) + this.tx) * this.scale;
-                    curveTo.y2 = (Float.parseFloat(strArrSplit[i + 4]) + this.ty) * this.scale;
-                    curveTo.x = (Float.parseFloat(strArrSplit[i + 5]) + this.tx) * this.scale;
+                    curveTo.x1 = (Float.parseFloat(strArrSplit[i + 1]) + f3) * f4;
+                    curveTo.y1 = (Float.parseFloat(strArrSplit[i + 2]) + f2) * f4;
+                    curveTo.x2 = (Float.parseFloat(strArrSplit[i + 3]) + f3) * f4;
+                    curveTo.y2 = (Float.parseFloat(strArrSplit[i + 4]) + f2) * f4;
+                    curveTo.x = (Float.parseFloat(strArrSplit[i + 5]) + f3) * f4;
                     i += 6;
-                    curveTo.y = (Float.parseFloat(strArrSplit[i]) + this.ty) * this.scale;
-                    keyFrame.commands.add(curveTo);
+                    curveTo.y = (Float.parseFloat(strArrSplit[i]) + f2) * f4;
+                    arrayList.add(curveTo);
                 } else if (cCharAt == 'L') {
                     LineTo lineTo = new LineTo();
-                    lineTo.x = (Float.parseFloat(strArrSplit[i + 1]) + this.tx) * this.scale;
+                    lineTo.x = (Float.parseFloat(strArrSplit[i + 1]) + f3) * f4;
                     i += 2;
-                    lineTo.y = (Float.parseFloat(strArrSplit[i]) + this.ty) * this.scale;
-                    keyFrame.commands.add(lineTo);
+                    lineTo.y = (Float.parseFloat(strArrSplit[i]) + f2) * f4;
+                    arrayList.add(lineTo);
                 } else if (cCharAt == 'M') {
                     MoveTo moveTo = new MoveTo();
-                    moveTo.x = (Float.parseFloat(strArrSplit[i + 1]) + this.tx) * this.scale;
+                    moveTo.x = (Float.parseFloat(strArrSplit[i + 1]) + f3) * f4;
                     i += 2;
-                    moveTo.y = (Float.parseFloat(strArrSplit[i]) + this.ty) * this.scale;
-                    keyFrame.commands.add(moveTo);
+                    moveTo.y = (Float.parseFloat(strArrSplit[i]) + f2) * f4;
+                    arrayList.add(moveTo);
                 }
                 i++;
             }
@@ -102,46 +83,55 @@ public class PathAnimator {
         }
     }
 
-    public void draw(Canvas canvas, Paint paint, float f) {
+    public final void draw(Canvas canvas, Paint paint, float f) {
+        KeyFrame keyFrame;
+        KeyFrame keyFrame2;
         float f2;
-        if (this.pathTime != f) {
+        float f3 = this.pathTime;
+        Path path = this.path;
+        if (f3 != f) {
             this.pathTime = f;
-            int size = this.keyFrames.size();
-            KeyFrame keyFrame = null;
-            KeyFrame keyFrame2 = null;
+            ArrayList arrayList = this.keyFrames;
+            int size = arrayList.size();
+            KeyFrame keyFrame3 = null;
+            KeyFrame keyFrame4 = null;
             for (int i = 0; i < size; i++) {
-                KeyFrame keyFrame3 = (KeyFrame) this.keyFrames.get(i);
-                if ((keyFrame2 == null || keyFrame2.time < keyFrame3.time) && keyFrame3.time <= f) {
-                    keyFrame2 = keyFrame3;
+                KeyFrame keyFrame5 = (KeyFrame) arrayList.get(i);
+                if ((keyFrame4 == null || keyFrame4.time < keyFrame5.time) && keyFrame5.time <= f) {
+                    keyFrame4 = keyFrame5;
                 }
-                if ((keyFrame == null || keyFrame.time > keyFrame3.time) && keyFrame3.time >= f) {
-                    keyFrame = keyFrame3;
+                if ((keyFrame3 == null || keyFrame3.time > keyFrame5.time) && keyFrame5.time >= f) {
+                    keyFrame3 = keyFrame5;
                 }
             }
-            if (keyFrame == keyFrame2) {
-                keyFrame2 = null;
+            if (keyFrame3 == keyFrame4) {
+                keyFrame4 = null;
             }
-            if (keyFrame2 != null && keyFrame == null) {
-                keyFrame = keyFrame2;
+            if (keyFrame4 == null || keyFrame3 != null) {
+                keyFrame = keyFrame3;
+                keyFrame2 = keyFrame4;
+            } else {
+                keyFrame = keyFrame4;
                 keyFrame2 = null;
             }
             if (keyFrame == null) {
                 return;
             }
-            if (keyFrame2 != null && keyFrame2.commands.size() != keyFrame.commands.size()) {
+            ArrayList arrayList2 = keyFrame.commands;
+            if (keyFrame2 != null && keyFrame2.commands.size() != arrayList2.size()) {
                 return;
             }
-            this.path.reset();
-            int size2 = keyFrame.commands.size();
+            path.reset();
+            int size2 = arrayList2.size();
             for (int i2 = 0; i2 < size2; i2++) {
                 Object obj = keyFrame2 != null ? keyFrame2.commands.get(i2) : null;
-                Object obj2 = keyFrame.commands.get(i2);
+                Object obj2 = arrayList2.get(i2);
                 if (obj != null && obj.getClass() != obj2.getClass()) {
                     return;
                 }
                 if (keyFrame2 != null) {
-                    float f3 = keyFrame2.time;
-                    f2 = (f - f3) / (keyFrame.time - f3);
+                    float f4 = keyFrame2.time;
+                    f2 = (f - f4) / (keyFrame.time - f4);
                 } else {
                     f2 = 1.0f;
                 }
@@ -149,50 +139,47 @@ public class PathAnimator {
                     MoveTo moveTo = (MoveTo) obj2;
                     MoveTo moveTo2 = (MoveTo) obj;
                     if (moveTo2 != null) {
-                        Path path = this.path;
-                        float f4 = moveTo2.x;
-                        float fDpf2 = AndroidUtilities.dpf2(f4 + ((moveTo.x - f4) * f2));
-                        float f5 = moveTo2.y;
-                        path.moveTo(fDpf2, AndroidUtilities.dpf2(f5 + ((moveTo.y - f5) * f2)));
+                        float f5 = moveTo2.x;
+                        float fDpf2 = AndroidUtilities.dpf2(((moveTo.x - f5) * f2) + f5);
+                        float f6 = moveTo2.y;
+                        path.moveTo(fDpf2, AndroidUtilities.dpf2(((moveTo.y - f6) * f2) + f6));
                     } else {
-                        this.path.moveTo(AndroidUtilities.dpf2(moveTo.x), AndroidUtilities.dpf2(moveTo.y));
+                        path.moveTo(AndroidUtilities.dpf2(moveTo.x), AndroidUtilities.dpf2(moveTo.y));
                     }
                 } else if (obj2 instanceof LineTo) {
                     LineTo lineTo = (LineTo) obj2;
                     LineTo lineTo2 = (LineTo) obj;
                     if (lineTo2 != null) {
-                        Path path2 = this.path;
-                        float f6 = lineTo2.x;
-                        float fDpf3 = AndroidUtilities.dpf2(f6 + ((lineTo.x - f6) * f2));
-                        float f7 = lineTo2.y;
-                        path2.lineTo(fDpf3, AndroidUtilities.dpf2(f7 + ((lineTo.y - f7) * f2)));
+                        float f7 = lineTo2.x;
+                        float fDpf3 = AndroidUtilities.dpf2(((lineTo.x - f7) * f2) + f7);
+                        float f8 = lineTo2.y;
+                        path.lineTo(fDpf3, AndroidUtilities.dpf2(((lineTo.y - f8) * f2) + f8));
                     } else {
-                        this.path.lineTo(AndroidUtilities.dpf2(lineTo.x), AndroidUtilities.dpf2(lineTo.y));
+                        path.lineTo(AndroidUtilities.dpf2(lineTo.x), AndroidUtilities.dpf2(lineTo.y));
                     }
                 } else if (obj2 instanceof CurveTo) {
                     CurveTo curveTo = (CurveTo) obj2;
                     CurveTo curveTo2 = (CurveTo) obj;
                     if (curveTo2 != null) {
-                        Path path3 = this.path;
-                        float f8 = curveTo2.x1;
-                        float fDpf4 = AndroidUtilities.dpf2(f8 + ((curveTo.x1 - f8) * f2));
-                        float f9 = curveTo2.y1;
-                        float fDpf5 = AndroidUtilities.dpf2(f9 + ((curveTo.y1 - f9) * f2));
-                        float f10 = curveTo2.x2;
-                        float fDpf6 = AndroidUtilities.dpf2(f10 + ((curveTo.x2 - f10) * f2));
-                        float f11 = curveTo2.y2;
-                        float fDpf7 = AndroidUtilities.dpf2(f11 + ((curveTo.y2 - f11) * f2));
-                        float f12 = curveTo2.x;
-                        float fDpf8 = AndroidUtilities.dpf2(f12 + ((curveTo.x - f12) * f2));
-                        float f13 = curveTo2.y;
-                        path3.cubicTo(fDpf4, fDpf5, fDpf6, fDpf7, fDpf8, AndroidUtilities.dpf2(f13 + ((curveTo.y - f13) * f2)));
+                        float f9 = curveTo2.x1;
+                        float fDpf4 = AndroidUtilities.dpf2(((curveTo.x1 - f9) * f2) + f9);
+                        float f10 = curveTo2.y1;
+                        float fDpf5 = AndroidUtilities.dpf2(((curveTo.y1 - f10) * f2) + f10);
+                        float f11 = curveTo2.x2;
+                        float fDpf6 = AndroidUtilities.dpf2(((curveTo.x2 - f11) * f2) + f11);
+                        float f12 = curveTo2.y2;
+                        float fDpf7 = AndroidUtilities.dpf2(((curveTo.y2 - f12) * f2) + f12);
+                        float f13 = curveTo2.x;
+                        float fDpf8 = AndroidUtilities.dpf2(((curveTo.x - f13) * f2) + f13);
+                        float f14 = curveTo2.y;
+                        path.cubicTo(fDpf4, fDpf5, fDpf6, fDpf7, fDpf8, AndroidUtilities.dpf2(((curveTo.y - f14) * f2) + f14));
                     } else {
-                        this.path.cubicTo(AndroidUtilities.dpf2(curveTo.x1), AndroidUtilities.dpf2(curveTo.y1), AndroidUtilities.dpf2(curveTo.x2), AndroidUtilities.dpf2(curveTo.y2), AndroidUtilities.dpf2(curveTo.x), AndroidUtilities.dpf2(curveTo.y));
+                        path.cubicTo(AndroidUtilities.dpf2(curveTo.x1), AndroidUtilities.dpf2(curveTo.y1), AndroidUtilities.dpf2(curveTo.x2), AndroidUtilities.dpf2(curveTo.y2), AndroidUtilities.dpf2(curveTo.x), AndroidUtilities.dpf2(curveTo.y));
                     }
                 }
             }
-            this.path.close();
+            path.close();
         }
-        canvas.drawPath(this.path, paint);
+        canvas.drawPath(path, paint);
     }
 }

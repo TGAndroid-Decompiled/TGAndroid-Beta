@@ -1,8 +1,6 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -22,10 +20,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ShareAlert;
 
 public class ShareActivity extends Activity {
-    private Dialog visibleDialog;
+    public ShareAlert visibleDialog;
 
     @Override
-    protected void onCreate(Bundle bundle) {
+    public final void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         AndroidUtilities.checkDisplaySize(this, getResources().getConfiguration());
         AndroidUtilities.setPreferredMaxRefreshRate(getWindow());
@@ -64,15 +62,10 @@ public class ShareActivity extends Activity {
         MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, messageTLdeserialize, false, true);
         messageObject.messageOwner.with_my_score = true;
         try {
-            ShareAlert shareAlertCreateShareAlert = ShareAlert.createShareAlert(this, messageObject, null, false, string3, false);
+            ShareAlert shareAlertCreateShareAlert = ShareAlert.createShareAlert(this, messageObject, null, false, string3);
             this.visibleDialog = shareAlertCreateShareAlert;
             shareAlertCreateShareAlert.setCanceledOnTouchOutside(true);
-            this.visibleDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    ShareActivity.$r8$lambda$4KdOU0rHbabAC8AjuUf4d8KX8Hg(this.f$0, dialogInterface);
-                }
-            });
+            this.visibleDialog.setOnDismissListener(new ShareActivity$$ExternalSyntheticLambda0(this, 0));
             this.visibleDialog.show();
         } catch (Exception e) {
             FileLog.e(e);
@@ -80,22 +73,15 @@ public class ShareActivity extends Activity {
         }
     }
 
-    public static void $r8$lambda$4KdOU0rHbabAC8AjuUf4d8KX8Hg(ShareActivity shareActivity, DialogInterface dialogInterface) {
-        if (!shareActivity.isFinishing()) {
-            shareActivity.finish();
-        }
-        shareActivity.visibleDialog = null;
-    }
-
     @Override
-    public void onPause() {
+    public final void onPause() {
         super.onPause();
         try {
-            Dialog dialog = this.visibleDialog;
-            if (dialog == null || !dialog.isShowing()) {
+            ShareAlert shareAlert = this.visibleDialog;
+            if (shareAlert == null || !shareAlert.isShowing()) {
                 return;
             }
-            this.visibleDialog.dismiss();
+            this.visibleDialog.lambda$showGiftOfferSheet$15();
             this.visibleDialog = null;
         } catch (Exception e) {
             FileLog.e(e);

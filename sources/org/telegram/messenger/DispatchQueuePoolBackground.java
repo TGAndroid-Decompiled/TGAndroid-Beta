@@ -50,20 +50,20 @@ public class DispatchQueuePoolBackground {
     };
     private int guid = Utilities.random.nextInt();
 
-    static int access$110(DispatchQueuePoolBackground dispatchQueuePoolBackground) {
+    private DispatchQueuePoolBackground(int i) {
+        this.maxCount = i;
+    }
+
+    public static int access$110(DispatchQueuePoolBackground dispatchQueuePoolBackground) {
         int i = dispatchQueuePoolBackground.createdCount;
         dispatchQueuePoolBackground.createdCount = i - 1;
         return i;
     }
 
-    private DispatchQueuePoolBackground(int i) {
-        this.maxCount = i;
-    }
-
     private void execute(ArrayList<Runnable> arrayList) {
-        final DispatchQueue dispatchQueueRemove;
+        DispatchQueue dispatchQueueRemove;
         for (int i = 0; i < arrayList.size(); i++) {
-            final Runnable runnable = arrayList.get(i);
+            Runnable runnable = arrayList.get(i);
             if (runnable != null) {
                 if (!this.busyQueues.isEmpty() && (this.totalTasksCount / 2 <= this.busyQueues.size() || (this.queues.isEmpty() && this.createdCount >= this.maxCount))) {
                     dispatchQueueRemove = this.busyQueues.remove(0);
@@ -81,42 +81,55 @@ public class DispatchQueuePoolBackground {
                 this.totalTasksCount++;
                 this.busyQueues.add(dispatchQueueRemove);
                 this.busyQueuesMap.put(dispatchQueueRemove.index, this.busyQueuesMap.get(dispatchQueueRemove.index, 0) + 1);
-                if (HwEmojis.isHwEnabled()) {
+                if (HwEmojis.hwEnabled) {
                     dispatchQueueRemove.setPriority(1);
                 } else if (dispatchQueueRemove.getPriority() != 10) {
                     dispatchQueueRemove.setPriority(10);
                 }
-                dispatchQueueRemove.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        DispatchQueuePoolBackground.$r8$lambda$NgWWbhAd8Pbq6aNX4bpN7zTzzGs(this.f$0, runnable, dispatchQueueRemove);
-                    }
-                });
+                dispatchQueueRemove.postRunnable(new FileLoader$$ExternalSyntheticLambda0(this, runnable, dispatchQueueRemove, 17));
             }
         }
     }
 
-    public static void $r8$lambda$NgWWbhAd8Pbq6aNX4bpN7zTzzGs(final DispatchQueuePoolBackground dispatchQueuePoolBackground, Runnable runnable, final DispatchQueue dispatchQueue) {
-        dispatchQueuePoolBackground.getClass();
-        runnable.run();
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                DispatchQueuePoolBackground.m423$r8$lambda$kdj_O_LqsCSAkhlAhxnyAt8aQU(this.f$0, dispatchQueue);
-            }
-        });
-    }
-
-    public static void m423$r8$lambda$kdj_O_LqsCSAkhlAhxnyAt8aQU(DispatchQueuePoolBackground dispatchQueuePoolBackground, DispatchQueue dispatchQueue) {
-        dispatchQueuePoolBackground.totalTasksCount--;
-        int i = dispatchQueuePoolBackground.busyQueuesMap.get(dispatchQueue.index) - 1;
-        if (i == 0) {
-            dispatchQueuePoolBackground.busyQueuesMap.delete(dispatchQueue.index);
-            dispatchQueuePoolBackground.busyQueues.remove(dispatchQueue);
-            dispatchQueuePoolBackground.queues.add(dispatchQueue);
+    public static void finishCollectUpdateRunnables() {
+        ArrayList<Runnable> arrayList = updateTaskCollection;
+        if (arrayList == null || arrayList.isEmpty()) {
+            updateTaskCollection = null;
             return;
         }
-        dispatchQueuePoolBackground.busyQueuesMap.put(dispatchQueue.index, i);
+        ArrayList<Runnable> arrayList2 = updateTaskCollection;
+        updateTaskCollection = null;
+        if (backgroundQueue == null) {
+            backgroundQueue = new DispatchQueuePoolBackground(Math.max(1, Runtime.getRuntime().availableProcessors()));
+        }
+        Utilities.globalQueue.postRunnable(new AndroidUtilities$$ExternalSyntheticLambda45(arrayList2, 2));
+    }
+
+    public void lambda$execute$0(DispatchQueue dispatchQueue) {
+        this.totalTasksCount--;
+        int i = this.busyQueuesMap.get(dispatchQueue.index) - 1;
+        if (i != 0) {
+            this.busyQueuesMap.put(dispatchQueue.index, i);
+            return;
+        }
+        this.busyQueuesMap.delete(dispatchQueue.index);
+        this.busyQueues.remove(dispatchQueue);
+        this.queues.add(dispatchQueue);
+    }
+
+    public void lambda$execute$1(Runnable runnable, DispatchQueue dispatchQueue) {
+        runnable.run();
+        Utilities.globalQueue.postRunnable(new ImageLoader$$ExternalSyntheticLambda5(28, this, dispatchQueue));
+    }
+
+    public static void lambda$finishCollectUpdateRunnables$2(ArrayList arrayList) {
+        freeCollections.add(arrayList);
+    }
+
+    public static void lambda$finishCollectUpdateRunnables$3(ArrayList arrayList) {
+        backgroundQueue.execute((ArrayList<Runnable>) arrayList);
+        arrayList.clear();
+        AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda45(arrayList, 3));
     }
 
     public static void execute(Runnable runnable) {
@@ -134,7 +147,7 @@ public class DispatchQueuePoolBackground {
         if (updateTaskCollection == null) {
             ArrayList<ArrayList<Runnable>> arrayList = freeCollections;
             if (!arrayList.isEmpty()) {
-                updateTaskCollection = arrayList.remove(arrayList.size() - 1);
+                updateTaskCollection = (ArrayList) arrayList.remove(arrayList.size() - 1);
             } else {
                 updateTaskCollection = new ArrayList<>(100);
             }
@@ -148,35 +161,5 @@ public class DispatchQueuePoolBackground {
             AndroidUtilities.cancelRunOnUIThread(runnable2);
             runnable2.run();
         }
-    }
-
-    public static void finishCollectUpdateRunnables() {
-        ArrayList<Runnable> arrayList = updateTaskCollection;
-        if (arrayList == null || arrayList.isEmpty()) {
-            updateTaskCollection = null;
-            return;
-        }
-        final ArrayList<Runnable> arrayList2 = updateTaskCollection;
-        updateTaskCollection = null;
-        if (backgroundQueue == null) {
-            backgroundQueue = new DispatchQueuePoolBackground(Math.max(1, Runtime.getRuntime().availableProcessors()));
-        }
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                DispatchQueuePoolBackground.m424$r8$lambda$olCmqjv06XbZi7A_RYb7NkHJQA(arrayList2);
-            }
-        });
-    }
-
-    public static void m424$r8$lambda$olCmqjv06XbZi7A_RYb7NkHJQA(final ArrayList arrayList) {
-        backgroundQueue.execute((ArrayList<Runnable>) arrayList);
-        arrayList.clear();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                DispatchQueuePoolBackground.freeCollections.add(arrayList);
-            }
-        });
     }
 }

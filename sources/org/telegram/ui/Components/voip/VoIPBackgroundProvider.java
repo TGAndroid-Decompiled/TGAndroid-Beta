@@ -1,38 +1,36 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import com.google.firebase.messaging.GmsRpc;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import org.telegram.ui.Components.BitmapShaderTools;
+import org.telegram.ui.Components.Tooltip;
 
-public class VoIPBackgroundProvider {
-    private final Paint darkPaint;
-    private final BitmapShaderTools darkShaderTools;
-    private final Paint darkVideoPaint;
-    private int degree;
-    private boolean hasVideo;
-    private boolean isReveal;
-    private final BitmapShaderTools lightShaderTools;
-    private BitmapShaderTools revealDarkShaderTools;
-    private BitmapShaderTools revealShaderTools;
-    public final float scale;
-    private int totalHeight;
-    private int totalWidth;
-    private final List views;
-    private final Paint whiteVideoPaint;
+public final class VoIPBackgroundProvider {
+    public final Paint darkPaint;
+    public final GmsRpc darkShaderTools;
+    public final Paint darkVideoPaint;
+    public int degree;
+    public boolean hasVideo;
+    public boolean isReveal;
+    public final GmsRpc lightShaderTools;
+    public GmsRpc revealDarkShaderTools;
+    public GmsRpc revealShaderTools;
+    public int totalHeight;
+    public int totalWidth;
+    public final ArrayList views;
+    public final Paint whiteVideoPaint;
 
     public VoIPBackgroundProvider() {
-        BitmapShaderTools bitmapShaderTools = new BitmapShaderTools(80, 80);
-        this.lightShaderTools = bitmapShaderTools;
-        BitmapShaderTools bitmapShaderTools2 = new BitmapShaderTools(80, 80);
-        this.darkShaderTools = bitmapShaderTools2;
+        GmsRpc gmsRpc = new GmsRpc(80, 80);
+        this.lightShaderTools = gmsRpc;
+        GmsRpc gmsRpc2 = new GmsRpc(80, 80);
+        this.darkShaderTools = gmsRpc2;
         this.totalWidth = 0;
         this.totalHeight = 0;
         Paint paint = new Paint(1);
@@ -42,178 +40,130 @@ public class VoIPBackgroundProvider {
         Paint paint3 = new Paint(1);
         this.darkPaint = paint3;
         this.views = new ArrayList();
-        this.scale = 1.12f;
-        bitmapShaderTools2.setBounds(0.0f, 0.0f, 80.0f, 80.0f);
-        bitmapShaderTools.setBounds(0.0f, 0.0f, 80.0f, 80.0f);
+        gmsRpc2.setBounds(0.0f, 0.0f, 80.0f, 80.0f);
+        gmsRpc.setBounds(0.0f, 0.0f, 80.0f, 80.0f);
         paint.setColor(-1);
         paint.setAlpha(35);
         paint2.setColor(-16777216);
         paint2.setAlpha(102);
         paint3.setColor(-16777216);
         paint3.setAlpha(35);
-        bitmapShaderTools2.paint.setAlpha(180);
+        ((Paint) gmsRpc2.app).setAlpha(180);
     }
 
-    public void invalidateViews() {
-        Iterator it = this.views.iterator();
-        while (it.hasNext()) {
-            ((View) it.next()).invalidate();
+    public final Paint getDarkPaint() {
+        return this.hasVideo ? this.darkVideoPaint : (Paint) this.darkShaderTools.app;
+    }
+
+    public final void invalidateViews() {
+        ArrayList arrayList = this.views;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((View) obj).invalidate();
         }
     }
 
-    public void attach(View view) {
-        this.views.add(view);
+    public final void setDarkTranslation(float f, float f2) {
+        float f3 = this.totalHeight * 1.12f;
+        GmsRpc gmsRpc = this.darkShaderTools;
+        float height = f3 / ((Bitmap) gmsRpc.rpc).getHeight();
+        float f4 = (f3 - this.totalWidth) / 2.0f;
+        float f5 = (f3 - this.totalHeight) / 2.0f;
+        float f6 = -f;
+        float f7 = -f2;
+        float f8 = this.degree;
+        ((Matrix) gmsRpc.firebaseInstallations).reset();
+        Matrix matrix = (Matrix) gmsRpc.firebaseInstallations;
+        Bitmap bitmap = (Bitmap) gmsRpc.rpc;
+        matrix.postRotate(f8, bitmap.getWidth() / 2.0f, bitmap.getHeight() / 2.0f);
+        matrix.postScale(height, height);
+        matrix.postTranslate(f6 - f4, f7 - f5);
+        ((BitmapShader) gmsRpc.heartbeatInfo).setLocalMatrix(matrix);
+        this.revealDarkShaderTools.setBounds(f6, f7, this.totalWidth - f, this.totalHeight - f2);
     }
 
-    public void detach(View view) {
-        this.views.remove(view);
-    }
-
-    public void setHasVideo(boolean z) {
-        if (this.hasVideo && !z) {
+    public final void setHasVideo(boolean z) {
+        if (!this.hasVideo || z) {
+            this.hasVideo = z;
+        } else {
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            final int i = 0;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final VoIPBackgroundProvider f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    VoIPBackgroundProvider.$r8$lambda$QMudu5aswTbVewGRgDTvmdq1UEM(this.f$0, valueAnimator);
+                    switch (i) {
+                        case 0:
+                            VoIPBackgroundProvider voIPBackgroundProvider = this.f$0;
+                            voIPBackgroundProvider.getClass();
+                            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            int i2 = (int) (35.0f * fFloatValue);
+                            voIPBackgroundProvider.darkPaint.setAlpha(i2);
+                            voIPBackgroundProvider.darkVideoPaint.setAlpha((int) (fFloatValue * 102.0f));
+                            voIPBackgroundProvider.whiteVideoPaint.setAlpha(i2);
+                            voIPBackgroundProvider.invalidateViews();
+                            break;
+                        default:
+                            VoIPBackgroundProvider voIPBackgroundProvider2 = this.f$0;
+                            voIPBackgroundProvider2.getClass();
+                            float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            ((Paint) voIPBackgroundProvider2.darkShaderTools.app).setAlpha((int) (180.0f * fFloatValue2));
+                            ((Paint) voIPBackgroundProvider2.lightShaderTools.app).setAlpha((int) (fFloatValue2 * 255.0f));
+                            voIPBackgroundProvider2.invalidateViews();
+                            break;
+                    }
                 }
             });
             valueAnimatorOfFloat.setInterpolator(new LinearInterpolator());
             valueAnimatorOfFloat.setDuration(80L);
-            valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    VoIPBackgroundProvider.this.hasVideo = false;
-                    VoIPBackgroundProvider.this.darkPaint.setAlpha(35);
-                    VoIPBackgroundProvider.this.darkVideoPaint.setAlpha(102);
-                    VoIPBackgroundProvider.this.whiteVideoPaint.setAlpha(35);
-                    VoIPBackgroundProvider.this.invalidateViews();
-                }
-            });
+            valueAnimatorOfFloat.addListener(new Tooltip.AnonymousClass1(this, 27));
             valueAnimatorOfFloat.start();
             ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            final int i2 = 1;
+            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final VoIPBackgroundProvider f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    VoIPBackgroundProvider.$r8$lambda$L1LSd_WXei80B3Enj5rYixrVATM(this.f$0, valueAnimator);
+                    switch (i2) {
+                        case 0:
+                            VoIPBackgroundProvider voIPBackgroundProvider = this.f$0;
+                            voIPBackgroundProvider.getClass();
+                            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            int i3 = (int) (35.0f * fFloatValue);
+                            voIPBackgroundProvider.darkPaint.setAlpha(i3);
+                            voIPBackgroundProvider.darkVideoPaint.setAlpha((int) (fFloatValue * 102.0f));
+                            voIPBackgroundProvider.whiteVideoPaint.setAlpha(i3);
+                            voIPBackgroundProvider.invalidateViews();
+                            break;
+                        default:
+                            VoIPBackgroundProvider voIPBackgroundProvider2 = this.f$0;
+                            voIPBackgroundProvider2.getClass();
+                            float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            ((Paint) voIPBackgroundProvider2.darkShaderTools.app).setAlpha((int) (180.0f * fFloatValue2));
+                            ((Paint) voIPBackgroundProvider2.lightShaderTools.app).setAlpha((int) (fFloatValue2 * 255.0f));
+                            voIPBackgroundProvider2.invalidateViews();
+                            break;
+                    }
                 }
             });
             valueAnimatorOfFloat2.setInterpolator(new LinearInterpolator());
             valueAnimatorOfFloat2.setStartDelay(80L);
             valueAnimatorOfFloat2.setDuration(80L);
             valueAnimatorOfFloat2.start();
-        } else {
-            this.hasVideo = z;
         }
         invalidateViews();
-    }
-
-    public static void $r8$lambda$QMudu5aswTbVewGRgDTvmdq1UEM(VoIPBackgroundProvider voIPBackgroundProvider, ValueAnimator valueAnimator) {
-        voIPBackgroundProvider.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        int i = (int) (35.0f * fFloatValue);
-        voIPBackgroundProvider.darkPaint.setAlpha(i);
-        voIPBackgroundProvider.darkVideoPaint.setAlpha((int) (fFloatValue * 102.0f));
-        voIPBackgroundProvider.whiteVideoPaint.setAlpha(i);
-        voIPBackgroundProvider.invalidateViews();
-    }
-
-    public static void $r8$lambda$L1LSd_WXei80B3Enj5rYixrVATM(VoIPBackgroundProvider voIPBackgroundProvider, ValueAnimator valueAnimator) {
-        voIPBackgroundProvider.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        voIPBackgroundProvider.darkShaderTools.paint.setAlpha((int) (180.0f * fFloatValue));
-        voIPBackgroundProvider.lightShaderTools.paint.setAlpha((int) (fFloatValue * 255.0f));
-        voIPBackgroundProvider.invalidateViews();
-    }
-
-    public Canvas getLightCanvas() {
-        return this.lightShaderTools.getCanvas();
-    }
-
-    public Canvas getRevealCanvas() {
-        return this.revealShaderTools.getCanvas();
-    }
-
-    public Canvas getRevealDrakCanvas() {
-        return this.revealDarkShaderTools.getCanvas();
-    }
-
-    public Canvas getDarkCanvas() {
-        return this.darkShaderTools.getCanvas();
-    }
-
-    public void setTotalSize(int i, int i2) {
-        this.totalWidth = i;
-        this.totalHeight = i2;
-        int i3 = i / 4;
-        int i4 = i2 / 4;
-        this.revealShaderTools = new BitmapShaderTools(i3, i4);
-        BitmapShaderTools bitmapShaderTools = new BitmapShaderTools(i3, i4);
-        this.revealDarkShaderTools = bitmapShaderTools;
-        bitmapShaderTools.paint.setAlpha(180);
-    }
-
-    public int getDegree() {
-        return this.degree;
-    }
-
-    public void setDegree(int i) {
-        this.degree = i;
-        invalidateViews();
-    }
-
-    public void setLightTranslation(float f, float f2) {
-        float height = (this.totalHeight * 1.12f) / this.lightShaderTools.getBitmap().getHeight();
-        float f3 = this.totalHeight;
-        float f4 = 1.12f * f3;
-        float f5 = -f;
-        float f6 = -f2;
-        this.lightShaderTools.setMatrix(f5 - ((f4 - this.totalWidth) / 2.0f), f6 - ((f4 - f3) / 2.0f), height, this.degree);
-        this.revealShaderTools.setBounds(f5, f6, this.totalWidth - f, this.totalHeight - f2);
-    }
-
-    public void setDarkTranslation(float f, float f2) {
-        float f3 = this.totalHeight * 1.12f;
-        float f4 = -f;
-        float f5 = -f2;
-        this.darkShaderTools.setMatrix(f4 - ((f3 - this.totalWidth) / 2.0f), f5 - ((f3 - this.totalHeight) / 2.0f), f3 / this.darkShaderTools.getBitmap().getHeight(), this.degree);
-        this.revealDarkShaderTools.setBounds(f4, f5, this.totalWidth - f, this.totalHeight - f2);
-    }
-
-    public boolean isReveal() {
-        return this.isReveal;
-    }
-
-    public void setReveal(boolean z) {
-        this.isReveal = z;
-    }
-
-    public Paint getRevealPaint() {
-        return this.revealShaderTools.paint;
-    }
-
-    public Paint getRevealDarkPaint() {
-        return this.revealDarkShaderTools.paint;
-    }
-
-    public Paint getLightPaint() {
-        if (this.hasVideo) {
-            return this.whiteVideoPaint;
-        }
-        return this.lightShaderTools.paint;
-    }
-
-    public Paint getDarkPaint() {
-        if (this.hasVideo) {
-            return this.darkVideoPaint;
-        }
-        return this.darkShaderTools.paint;
-    }
-
-    public Paint getDarkPaint(boolean z) {
-        if (z) {
-            return this.darkPaint;
-        }
-        return getDarkPaint();
     }
 }

@@ -6,10 +6,6 @@ import ru.noties.jlatexmath.awt.image.BufferedImage;
 public final class Images {
     public static double DISTANCE_THRESHOLD = 40.0d;
 
-    private static double sqr(double d) {
-        return d * d;
-    }
-
     private Images() {
     }
 
@@ -28,5 +24,9 @@ public final class Images {
             }
         }
         return Math.sqrt((dSqr / ((double) height)) / ((double) width));
+    }
+
+    private static double sqr(double d) {
+        return d * d;
     }
 }

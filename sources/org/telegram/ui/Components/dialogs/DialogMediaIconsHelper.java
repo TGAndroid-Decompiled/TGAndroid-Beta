@@ -6,15 +6,10 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColoredImageSpan;
 
 public abstract class DialogMediaIconsHelper {
-    private static final SparseArray spans = new SparseArray(6);
+    public static final SparseArray spans = new SparseArray(6);
 
-    public static CharSequence addDialogMediaSpan(CharSequence charSequence, int i, boolean z) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (charSequence instanceof SpannableStringBuilder) {
-            spannableStringBuilder = (SpannableStringBuilder) charSequence;
-        } else {
-            spannableStringBuilder = new SpannableStringBuilder(charSequence);
-        }
+    public static SpannableStringBuilder addDialogMediaSpan(int i, CharSequence charSequence, boolean z) {
+        SpannableStringBuilder spannableStringBuilder = charSequence instanceof SpannableStringBuilder ? (SpannableStringBuilder) charSequence : new SpannableStringBuilder(charSequence);
         if (z) {
             spannableStringBuilder.insert(0, (CharSequence) "* \u2068");
         } else {

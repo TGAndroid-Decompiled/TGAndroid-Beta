@@ -25,9 +25,9 @@ public class OgonekAtom extends Atom {
         HorizontalBox horizontalBox2 = new HorizontalBox(horizontalBox, boxCreateBox.getWidth(), 1);
         verticalBox.add(new StrutBox(0.0f, -charBox.getHeight(), 0.0f, 0.0f));
         verticalBox.add(horizontalBox2);
-        float height = verticalBox.getHeight() + verticalBox.getDepth();
+        float depth = verticalBox.getDepth() + verticalBox.getHeight();
         verticalBox.setHeight(boxCreateBox.getHeight());
-        verticalBox.setDepth(height - boxCreateBox.getHeight());
+        verticalBox.setDepth(depth - boxCreateBox.getHeight());
         return verticalBox;
     }
 }

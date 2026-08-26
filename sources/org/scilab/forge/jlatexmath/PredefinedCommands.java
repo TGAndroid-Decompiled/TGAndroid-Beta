@@ -1,9 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
 final class PredefinedCommands {
-    PredefinedCommands() {
-    }
-
     static {
         MacroInfo.Commands.put("newcommand", new PredefMacroInfo(0, 2, 2));
         MacroInfo.Commands.put("renewcommand", new PredefMacroInfo(1, 2, 2));

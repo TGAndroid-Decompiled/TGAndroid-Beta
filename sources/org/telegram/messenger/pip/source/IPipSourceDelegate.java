@@ -3,28 +3,16 @@ package org.telegram.messenger.pip.source;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.View;
+import org.telegram.messenger.pip.utils.Trigger;
 
 public interface IPipSourceDelegate {
-
-    public abstract class CC {
-        public static boolean $default$pipIsAvailable(IPipSourceDelegate iPipSourceDelegate) {
-            return true;
-        }
-
-        public static void $default$pipRenderBackground(IPipSourceDelegate iPipSourceDelegate, Canvas canvas) {
-        }
-
-        public static void $default$pipRenderForeground(IPipSourceDelegate iPipSourceDelegate, Canvas canvas) {
-        }
-    }
-
     View pipCreatePictureInPictureView();
 
     Bitmap pipCreatePictureInPictureViewBitmap();
 
     Bitmap pipCreatePrimaryWindowViewBitmap();
 
-    void pipHidePrimaryWindowView(Runnable runnable);
+    void pipHidePrimaryWindowView(Trigger trigger);
 
     boolean pipIsAvailable();
 
@@ -32,5 +20,5 @@ public interface IPipSourceDelegate {
 
     void pipRenderForeground(Canvas canvas);
 
-    void pipShowPrimaryWindowView(Runnable runnable);
+    void pipShowPrimaryWindowView(Trigger trigger);
 }

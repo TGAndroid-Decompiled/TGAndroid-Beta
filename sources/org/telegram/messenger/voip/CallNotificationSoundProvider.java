@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import com.google.android.gms.internal.mlkit_language_id_common.zzil;
 import java.io.FileNotFoundException;
 import org.telegram.messenger.ApplicationLoader;
 
@@ -30,19 +31,9 @@ public class CallNotificationSoundProvider extends ContentProvider {
     }
 
     @Override
-    public Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
-        return null;
-    }
-
-    @Override
-    public int update(Uri uri, ContentValues contentValues, String str, String[] strArr) {
-        return 0;
-    }
-
-    @Override
     public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
         if (!"r".equals(str)) {
-            throw new SecurityException("Unexpected file mode " + str);
+            throw new SecurityException(zzil.m("Unexpected file mode ", str));
         }
         if (ApplicationLoader.applicationContext == null) {
             throw new FileNotFoundException("Unexpected application state");
@@ -60,5 +51,15 @@ public class CallNotificationSoundProvider extends ContentProvider {
         } catch (Exception e) {
             throw new FileNotFoundException(e.getMessage());
         }
+    }
+
+    @Override
+    public Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
+        return null;
+    }
+
+    @Override
+    public int update(Uri uri, ContentValues contentValues, String str, String[] strArr) {
+        return 0;
     }
 }

@@ -1,5 +1,6 @@
 package io.noties.markwon.html;
 
+import androidx.datastore.preferences.PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility;
 import io.noties.markwon.html.jsoup.nodes.Attribute;
 import io.noties.markwon.html.jsoup.nodes.Attributes;
 import io.noties.markwon.html.jsoup.parser.CharacterReader;
@@ -7,300 +8,299 @@ import io.noties.markwon.html.jsoup.parser.ParseErrorList;
 import io.noties.markwon.html.jsoup.parser.Token;
 import io.noties.markwon.html.jsoup.parser.Tokeniser;
 import j$.util.DesugarCollections;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import org.telegram.ui.ChatActivity;
+import org.telegram.ui.iv.RichEditor;
 
-public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
-    private final HtmlEmptyTagReplacement emptyTagReplacement;
-    private boolean isInsidePreTag;
-    private boolean previousIsBlock;
-    private final TrimmingAppender trimmingAppender;
-    static final Set INLINE_TAGS = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
-    private static final Set VOID_TAGS = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
-    private static final Set BLOCK_TAGS = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
-    private final List inlineTags = new ArrayList(0);
-    private HtmlTagImpl.BlockImpl currentBlock = HtmlTagImpl.BlockImpl.root();
+public final class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
+    public final RichEditor.AnonymousClass12 emptyTagReplacement;
+    public boolean isInsidePreTag;
+    public boolean previousIsBlock;
+    public final ChatActivity.AnonymousClass40 trimmingAppender;
+    public static final Set INLINE_TAGS = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
+    public static final Set VOID_TAGS = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
+    public static final Set BLOCK_TAGS = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
+    public final ArrayList inlineTags = new ArrayList(0);
+    public HtmlTagImpl.BlockImpl currentBlock = new HtmlTagImpl.BlockImpl("", 0, Collections.EMPTY_MAP, null);
 
-    public static MarkwonHtmlParserImpl create() {
-        return create(HtmlEmptyTagReplacement.create());
+    public MarkwonHtmlParserImpl(RichEditor.AnonymousClass12 anonymousClass12, ChatActivity.AnonymousClass40 anonymousClass40) {
+        this.emptyTagReplacement = anonymousClass12;
+        this.trimmingAppender = anonymousClass40;
     }
 
-    public static MarkwonHtmlParserImpl create(HtmlEmptyTagReplacement htmlEmptyTagReplacement) {
-        return new MarkwonHtmlParserImpl(htmlEmptyTagReplacement, TrimmingAppender.create());
-    }
-
-    MarkwonHtmlParserImpl(HtmlEmptyTagReplacement htmlEmptyTagReplacement, TrimmingAppender trimmingAppender) {
-        this.emptyTagReplacement = htmlEmptyTagReplacement;
-        this.trimmingAppender = trimmingAppender;
-    }
-
-    @Override
-    public void processFragment(Appendable appendable, String str) {
-        Tokeniser tokeniser = new Tokeniser(new CharacterReader(str), ParseErrorList.noTracking());
+    public static Map extractAttributes(Token.StartTag startTag) {
+        Attributes attributes = startTag.attributes;
+        int i = attributes.size;
+        if (i <= 0) {
+            return Collections.EMPTY_MAP;
+        }
+        HashMap map = new HashMap(i);
+        int i2 = 0;
         while (true) {
-            Token token = tokeniser.read();
-            Token.TokenType tokenType = token.type;
-            if (Token.TokenType.EOF == tokenType) {
-                return;
+            if (!(i2 < attributes.size)) {
+                return DesugarCollections.unmodifiableMap(map);
             }
-            int i = AnonymousClass1.$SwitchMap$io$noties$markwon$html$jsoup$parser$Token$TokenType[tokenType.ordinal()];
-            if (i == 1) {
-                Token.StartTag startTag = (Token.StartTag) token;
-                if (isInlineTag(startTag.normalName)) {
-                    processInlineTagStart(appendable, startTag);
-                } else {
-                    processBlockTagStart(appendable, startTag);
-                }
-            } else if (i == 2) {
-                Token.EndTag endTag = (Token.EndTag) token;
-                if (isInlineTag(endTag.normalName)) {
-                    processInlineTagEnd(appendable, endTag);
-                } else {
-                    processBlockTagEnd(appendable, endTag);
-                }
-            } else if (i == 3) {
-                processCharacter(appendable, (Token.Character) token);
+            String str = attributes.vals[i2];
+            String str2 = attributes.keys[i2];
+            if (str == null) {
+                str = "";
             }
-            token.reset();
+            Attribute attribute = new Attribute();
+            if (str2 == null) {
+                throw new IllegalArgumentException("Object must not be null");
+            }
+            attribute.key = str2.trim();
+            if (str2.length() == 0) {
+                throw new IllegalArgumentException("String must not be empty");
+            }
+            attribute.val = str;
+            attribute.parent = attributes;
+            i2++;
+            map.put(attribute.key.toLowerCase(Locale.US), attribute.val);
         }
     }
 
-    static class AnonymousClass1 {
-        static final int[] $SwitchMap$io$noties$markwon$html$jsoup$parser$Token$TokenType;
-
-        static {
-            int[] iArr = new int[Token.TokenType.values().length];
-            $SwitchMap$io$noties$markwon$html$jsoup$parser$Token$TokenType = iArr;
-            try {
-                iArr[Token.TokenType.StartTag.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$io$noties$markwon$html$jsoup$parser$Token$TokenType[Token.TokenType.EndTag.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$io$noties$markwon$html$jsoup$parser$Token$TokenType[Token.TokenType.Character.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-        }
-    }
-
-    @Override
-    public void flushInlineTags(int i, MarkwonHtmlParser.FlushAction flushAction) {
-        if (this.inlineTags.size() > 0) {
-            if (i > -1) {
-                Iterator it = this.inlineTags.iterator();
-                while (it.hasNext()) {
-                    ((HtmlTagImpl.InlineImpl) it.next()).closeAt(i);
-                }
-            }
-            flushAction.apply(DesugarCollections.unmodifiableList(this.inlineTags));
-            this.inlineTags.clear();
-            return;
-        }
-        flushAction.apply(Collections.EMPTY_LIST);
-    }
-
-    @Override
-    public void flushBlockTags(int i, MarkwonHtmlParser.FlushAction flushAction) {
-        HtmlTagImpl.BlockImpl blockImpl = this.currentBlock;
+    public final void processFragment(Appendable appendable, String str) {
+        Token token;
+        HtmlTagImpl.InlineImpl inlineImpl;
+        int length;
+        Tokeniser tokeniser = new Tokeniser(new CharacterReader(str), new ParseErrorList(0));
         while (true) {
-            HtmlTagImpl.BlockImpl blockImpl2 = blockImpl.parent;
-            if (blockImpl2 == null) {
-                break;
+            if (tokeniser.isEmitPending) {
+                StringBuilder sb = tokeniser.charsBuilder;
+                int length2 = sb.length();
+                Token.Character character = tokeniser.charPending;
+                if (length2 > 0) {
+                    String string = sb.toString();
+                    sb.delete(0, sb.length());
+                    tokeniser.charsString = null;
+                    character.data = string;
+                    token = character;
+                } else {
+                    String str2 = tokeniser.charsString;
+                    if (str2 != null) {
+                        character.data = str2;
+                        tokeniser.charsString = null;
+                        token = character;
+                    } else {
+                        tokeniser.isEmitPending = false;
+                        token = tokeniser.emitPending;
+                    }
+                }
+                int i = token.type;
+                if (6 == i) {
+                    return;
+                }
+                int iOrdinal = PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility.ordinal(i);
+                ArrayList arrayList = this.inlineTags;
+                RichEditor.AnonymousClass12 anonymousClass12 = this.emptyTagReplacement;
+                Set set = BLOCK_TAGS;
+                Set set2 = INLINE_TAGS;
+                if (iOrdinal == 1) {
+                    Token.StartTag startTag = (Token.StartTag) token;
+                    boolean zContains = set2.contains(startTag.normalName);
+                    Set set3 = VOID_TAGS;
+                    if (zContains) {
+                        String str3 = startTag.normalName;
+                        CharSequence charSequence = (CharSequence) appendable;
+                        HtmlTagImpl.InlineImpl inlineImpl2 = new HtmlTagImpl.InlineImpl(charSequence.length(), str3, extractAttributes(startTag));
+                        if (this.previousIsBlock) {
+                            int length3 = charSequence.length();
+                            if (length3 > 0 && '\n' != charSequence.charAt(length3 - 1)) {
+                                AppendableUtils.appendQuietly(appendable, '\n');
+                            }
+                            this.previousIsBlock = false;
+                        }
+                        if (set3.contains(str3) || startTag.selfClosing) {
+                            anonymousClass12.getClass();
+                            String strReplace = RichEditor.AnonymousClass12.replace(inlineImpl2);
+                            if (strReplace != null && strReplace.length() > 0) {
+                                try {
+                                    appendable.append(strReplace);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                            int length4 = charSequence.length();
+                            if (inlineImpl2.end <= -1) {
+                                inlineImpl2.end = length4;
+                            }
+                        }
+                        arrayList.add(inlineImpl2);
+                    } else {
+                        String str4 = startTag.normalName;
+                        if ("p".equals(this.currentBlock.name)) {
+                            this.currentBlock.closeAt(((CharSequence) appendable).length());
+                            AppendableUtils.appendQuietly(appendable, '\n');
+                            this.currentBlock = this.currentBlock.parent;
+                        } else if ("li".equals(str4) && "li".equals(this.currentBlock.name)) {
+                            this.currentBlock.closeAt(((CharSequence) appendable).length());
+                            this.currentBlock = this.currentBlock.parent;
+                        }
+                        if (set.contains(str4)) {
+                            this.isInsidePreTag = "pre".equals(str4);
+                            CharSequence charSequence2 = (CharSequence) appendable;
+                            int length5 = charSequence2.length();
+                            if (length5 > 0 && '\n' != charSequence2.charAt(length5 - 1)) {
+                                AppendableUtils.appendQuietly(appendable, '\n');
+                            }
+                        } else if (this.previousIsBlock) {
+                            CharSequence charSequence3 = (CharSequence) appendable;
+                            int length6 = charSequence3.length();
+                            if (length6 > 0 && '\n' != charSequence3.charAt(length6 - 1)) {
+                                AppendableUtils.appendQuietly(appendable, '\n');
+                            }
+                            this.previousIsBlock = false;
+                        }
+                        CharSequence charSequence4 = (CharSequence) appendable;
+                        int length7 = charSequence4.length();
+                        Map mapExtractAttributes = extractAttributes(startTag);
+                        HtmlTagImpl.BlockImpl blockImpl = this.currentBlock;
+                        HtmlTagImpl.BlockImpl blockImpl2 = new HtmlTagImpl.BlockImpl(str4, length7, mapExtractAttributes, blockImpl);
+                        boolean z = set3.contains(str4) || startTag.selfClosing;
+                        if (z) {
+                            anonymousClass12.getClass();
+                            String strReplace2 = RichEditor.AnonymousClass12.replace(blockImpl2);
+                            if (strReplace2 != null && strReplace2.length() > 0) {
+                                try {
+                                    appendable.append(strReplace2);
+                                } catch (IOException e2) {
+                                    throw new RuntimeException(e2);
+                                }
+                            }
+                            blockImpl2.closeAt(charSequence4.length());
+                        }
+                        ArrayList arrayList2 = blockImpl.children;
+                        if (arrayList2 == null) {
+                            arrayList2 = new ArrayList(2);
+                            blockImpl.children = arrayList2;
+                        }
+                        arrayList2.add(blockImpl2);
+                        if (!z) {
+                            this.currentBlock = blockImpl2;
+                        }
+                    }
+                } else if (iOrdinal == 2) {
+                    Token.EndTag endTag = (Token.EndTag) token;
+                    if (set2.contains(endTag.normalName)) {
+                        String str5 = endTag.normalName;
+                        int size = arrayList.size() - 1;
+                        while (true) {
+                            if (size <= -1) {
+                                inlineImpl = null;
+                                break;
+                            }
+                            HtmlTagImpl.InlineImpl inlineImpl3 = (HtmlTagImpl.InlineImpl) arrayList.get(size);
+                            if (str5.equals(inlineImpl3.name) && inlineImpl3.end < 0) {
+                                inlineImpl = inlineImpl3;
+                                break;
+                            }
+                            size--;
+                        }
+                        if (inlineImpl != null) {
+                            CharSequence charSequence5 = (CharSequence) appendable;
+                            if (inlineImpl.start == charSequence5.length()) {
+                                anonymousClass12.getClass();
+                                CharSequence charSequenceReplace = RichEditor.AnonymousClass12.replace(inlineImpl);
+                                if (charSequenceReplace != null) {
+                                    try {
+                                        appendable.append(charSequenceReplace);
+                                    } catch (IOException e3) {
+                                        throw new RuntimeException(e3);
+                                    }
+                                }
+                            }
+                            int length8 = charSequence5.length();
+                            if (inlineImpl.end <= -1) {
+                                inlineImpl.end = length8;
+                            }
+                        }
+                    } else {
+                        String str6 = endTag.normalName;
+                        HtmlTagImpl.BlockImpl blockImpl3 = this.currentBlock;
+                        while (blockImpl3 != null && !str6.equals(blockImpl3.name) && blockImpl3.end <= -1) {
+                            blockImpl3 = blockImpl3.parent;
+                        }
+                        if (blockImpl3 != null) {
+                            if ("pre".equals(str6)) {
+                                this.isInsidePreTag = false;
+                            }
+                            CharSequence charSequence6 = (CharSequence) appendable;
+                            int length9 = charSequence6.length();
+                            int i2 = blockImpl3.start;
+                            if (i2 == length9) {
+                                anonymousClass12.getClass();
+                                CharSequence charSequenceReplace2 = RichEditor.AnonymousClass12.replace(blockImpl3);
+                                if (charSequenceReplace2 != null) {
+                                    try {
+                                        appendable.append(charSequenceReplace2);
+                                    } catch (IOException e4) {
+                                        throw new RuntimeException(e4);
+                                    }
+                                }
+                            }
+                            blockImpl3.closeAt(charSequence6.length());
+                            if (i2 != blockImpl3.end) {
+                                this.previousIsBlock = set.contains(blockImpl3.name);
+                            }
+                            if ("p".equals(str6)) {
+                                AppendableUtils.appendQuietly(appendable, '\n');
+                            }
+                            this.currentBlock = blockImpl3.parent;
+                        }
+                    }
+                } else if (iOrdinal == 4) {
+                    Token.Character character2 = (Token.Character) token;
+                    if (this.isInsidePreTag) {
+                        try {
+                            appendable.append(character2.data);
+                        } catch (IOException e5) {
+                            throw new RuntimeException(e5);
+                        }
+                    } else {
+                        if (this.previousIsBlock) {
+                            CharSequence charSequence7 = (CharSequence) appendable;
+                            int length10 = charSequence7.length();
+                            if (length10 > 0 && '\n' != charSequence7.charAt(length10 - 1)) {
+                                AppendableUtils.appendQuietly(appendable, '\n');
+                            }
+                            this.previousIsBlock = false;
+                        }
+                        String str7 = character2.data;
+                        this.trimmingAppender.getClass();
+                        CharSequence charSequence8 = (CharSequence) appendable;
+                        int length11 = charSequence8.length();
+                        int length12 = str7.length();
+                        boolean z2 = false;
+                        for (int i3 = 0; i3 < length12; i3++) {
+                            char cCharAt = str7.charAt(i3);
+                            if (Character.isWhitespace(cCharAt)) {
+                                z2 = true;
+                            } else {
+                                if (z2 && (length = charSequence8.length()) > 0 && !Character.isWhitespace(charSequence8.charAt(length - 1))) {
+                                    AppendableUtils.appendQuietly(appendable, ' ');
+                                }
+                                AppendableUtils.appendQuietly(appendable, cCharAt);
+                                z2 = false;
+                            }
+                        }
+                        if (z2 && length11 < charSequence8.length()) {
+                            AppendableUtils.appendQuietly(appendable, ' ');
+                        }
+                    }
+                }
+                token.reset();
             } else {
-                blockImpl = blockImpl2;
+                tokeniser.state.read(tokeniser, tokeniser.reader);
             }
-        }
-        if (i > -1) {
-            blockImpl.closeAt(i);
-        }
-        List listChildren = blockImpl.children();
-        if (listChildren.size() > 0) {
-            flushAction.apply(listChildren);
-        } else {
-            flushAction.apply(Collections.EMPTY_LIST);
-        }
-        this.currentBlock = HtmlTagImpl.BlockImpl.root();
-    }
-
-    protected void processInlineTagStart(Appendable appendable, Token.StartTag startTag) {
-        String str = startTag.normalName;
-        CharSequence charSequence = (CharSequence) appendable;
-        HtmlTagImpl.InlineImpl inlineImpl = new HtmlTagImpl.InlineImpl(str, charSequence.length(), extractAttributes(startTag));
-        ensureNewLineIfPreviousWasBlock(appendable);
-        if (isVoidTag(str) || startTag.selfClosing) {
-            String strReplace = this.emptyTagReplacement.replace(inlineImpl);
-            if (strReplace != null && strReplace.length() > 0) {
-                AppendableUtils.appendQuietly(appendable, strReplace);
-            }
-            inlineImpl.closeAt(charSequence.length());
-        }
-        this.inlineTags.add(inlineImpl);
-    }
-
-    protected void processInlineTagEnd(Appendable appendable, Token.EndTag endTag) {
-        HtmlTagImpl.InlineImpl inlineImplFindOpenInlineTag = findOpenInlineTag(endTag.normalName);
-        if (inlineImplFindOpenInlineTag != null) {
-            if (isEmpty(appendable, inlineImplFindOpenInlineTag)) {
-                appendEmptyTagReplacement(appendable, inlineImplFindOpenInlineTag);
-            }
-            inlineImplFindOpenInlineTag.closeAt(((CharSequence) appendable).length());
-        }
-    }
-
-    protected void processBlockTagStart(Appendable appendable, Token.StartTag startTag) {
-        String str = startTag.normalName;
-        if ("p".equals(this.currentBlock.name)) {
-            this.currentBlock.closeAt(((CharSequence) appendable).length());
-            AppendableUtils.appendQuietly(appendable, '\n');
-            this.currentBlock = this.currentBlock.parent;
-        } else if ("li".equals(str) && "li".equals(this.currentBlock.name)) {
-            this.currentBlock.closeAt(((CharSequence) appendable).length());
-            this.currentBlock = this.currentBlock.parent;
-        }
-        if (isBlockTag(str)) {
-            this.isInsidePreTag = "pre".equals(str);
-            ensureNewLine(appendable);
-        } else {
-            ensureNewLineIfPreviousWasBlock(appendable);
-        }
-        CharSequence charSequence = (CharSequence) appendable;
-        HtmlTagImpl.BlockImpl blockImplCreate = HtmlTagImpl.BlockImpl.create(str, charSequence.length(), extractAttributes(startTag), this.currentBlock);
-        boolean z = isVoidTag(str) || startTag.selfClosing;
-        if (z) {
-            String strReplace = this.emptyTagReplacement.replace(blockImplCreate);
-            if (strReplace != null && strReplace.length() > 0) {
-                AppendableUtils.appendQuietly(appendable, strReplace);
-            }
-            blockImplCreate.closeAt(charSequence.length());
-        }
-        appendBlockChild(blockImplCreate.parent, blockImplCreate);
-        if (z) {
-            return;
-        }
-        this.currentBlock = blockImplCreate;
-    }
-
-    protected void processBlockTagEnd(Appendable appendable, Token.EndTag endTag) {
-        String str = endTag.normalName;
-        HtmlTagImpl.BlockImpl blockImplFindOpenBlockTag = findOpenBlockTag(str);
-        if (blockImplFindOpenBlockTag != null) {
-            if ("pre".equals(str)) {
-                this.isInsidePreTag = false;
-            }
-            if (isEmpty(appendable, blockImplFindOpenBlockTag)) {
-                appendEmptyTagReplacement(appendable, blockImplFindOpenBlockTag);
-            }
-            blockImplFindOpenBlockTag.closeAt(((CharSequence) appendable).length());
-            if (!blockImplFindOpenBlockTag.isEmpty()) {
-                this.previousIsBlock = isBlockTag(blockImplFindOpenBlockTag.name);
-            }
-            if ("p".equals(str)) {
-                AppendableUtils.appendQuietly(appendable, '\n');
-            }
-            this.currentBlock = blockImplFindOpenBlockTag.parent;
-        }
-    }
-
-    protected void processCharacter(Appendable appendable, Token.Character character) {
-        if (this.isInsidePreTag) {
-            AppendableUtils.appendQuietly(appendable, character.getData());
-        } else {
-            ensureNewLineIfPreviousWasBlock(appendable);
-            this.trimmingAppender.append(appendable, character.getData());
-        }
-    }
-
-    protected void appendBlockChild(HtmlTagImpl.BlockImpl blockImpl, HtmlTagImpl.BlockImpl blockImpl2) {
-        List arrayList = blockImpl.children;
-        if (arrayList == null) {
-            arrayList = new ArrayList(2);
-            blockImpl.children = arrayList;
-        }
-        arrayList.add(blockImpl2);
-    }
-
-    protected HtmlTagImpl.InlineImpl findOpenInlineTag(String str) {
-        int size = this.inlineTags.size();
-        while (true) {
-            size--;
-            if (size <= -1) {
-                return null;
-            }
-            HtmlTagImpl.InlineImpl inlineImpl = (HtmlTagImpl.InlineImpl) this.inlineTags.get(size);
-            if (str.equals(inlineImpl.name) && inlineImpl.end < 0) {
-                return inlineImpl;
-            }
-        }
-    }
-
-    protected HtmlTagImpl.BlockImpl findOpenBlockTag(String str) {
-        HtmlTagImpl.BlockImpl blockImpl = this.currentBlock;
-        while (blockImpl != null && !str.equals(blockImpl.name) && !blockImpl.isClosed()) {
-            blockImpl = blockImpl.parent;
-        }
-        return blockImpl;
-    }
-
-    protected void ensureNewLineIfPreviousWasBlock(Appendable appendable) {
-        if (this.previousIsBlock) {
-            ensureNewLine(appendable);
-            this.previousIsBlock = false;
-        }
-    }
-
-    protected static boolean isInlineTag(String str) {
-        return INLINE_TAGS.contains(str);
-    }
-
-    protected static boolean isVoidTag(String str) {
-        return VOID_TAGS.contains(str);
-    }
-
-    protected static boolean isBlockTag(String str) {
-        return BLOCK_TAGS.contains(str);
-    }
-
-    protected static void ensureNewLine(Appendable appendable) {
-        CharSequence charSequence = (CharSequence) appendable;
-        int length = charSequence.length();
-        if (length <= 0 || '\n' == charSequence.charAt(length - 1)) {
-            return;
-        }
-        AppendableUtils.appendQuietly(appendable, '\n');
-    }
-
-    protected static Map extractAttributes(Token.StartTag startTag) {
-        Attributes<Attribute> attributes = startTag.attributes;
-        int size = attributes.size();
-        if (size > 0) {
-            HashMap map = new HashMap(size);
-            for (Attribute attribute : attributes) {
-                map.put(attribute.getKey().toLowerCase(Locale.US), attribute.getValue());
-            }
-            return DesugarCollections.unmodifiableMap(map);
-        }
-        return Collections.EMPTY_MAP;
-    }
-
-    protected static boolean isEmpty(Appendable appendable, HtmlTagImpl htmlTagImpl) {
-        return htmlTagImpl.start == ((CharSequence) appendable).length();
-    }
-
-    protected void appendEmptyTagReplacement(Appendable appendable, HtmlTagImpl htmlTagImpl) {
-        String strReplace = this.emptyTagReplacement.replace(htmlTagImpl);
-        if (strReplace != null) {
-            AppendableUtils.appendQuietly(appendable, strReplace);
         }
     }
 }

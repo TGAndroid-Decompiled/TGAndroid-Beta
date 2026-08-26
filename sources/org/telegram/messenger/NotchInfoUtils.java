@@ -6,6 +6,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Build;
 import android.util.DisplayMetrics;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.graphics.PathParser;
 
 public class NotchInfoUtils {
@@ -54,7 +55,7 @@ public class NotchInfoUtils {
             }
             boolean zEndsWith = strTrim.endsWith("@dp");
             if (zEndsWith) {
-                strTrim = strTrim.substring(0, strTrim.length() - 3);
+                strTrim = SurfaceContainer$$ExternalSyntheticOutline0.m(3, 0, strTrim);
             }
             if (strTrim.contains("@bottom")) {
                 strTrim = strTrim.split("@bottom", 2)[0].trim();

@@ -11,21 +11,25 @@ public class AffineTransform implements Cloneable {
     private float translateX;
     private float translateY;
 
-    public static AffineTransform create(Canvas canvas) {
-        return new AffineTransform(null, canvas);
-    }
-
     private AffineTransform(AffineTransform affineTransform, Canvas canvas) {
         this.parent = affineTransform;
         this.canvas = canvas;
     }
 
-    public AffineTransform save() {
-        AffineTransform affineTransform = new AffineTransform(this, this.canvas);
-        affineTransform.setScale(this.scaleX, this.scaleY);
-        affineTransform.setTranslate(this.translateX, this.translateY);
-        affineTransform.save = this.canvas.save();
-        return affineTransform;
+    public static AffineTransform create(Canvas canvas) {
+        return new AffineTransform(null, canvas);
+    }
+
+    public Canvas getCanvas() {
+        return this.canvas;
+    }
+
+    public double getScaleX() {
+        return this.scaleX;
+    }
+
+    public double getScaleY() {
+        return this.scaleY;
     }
 
     public AffineTransform restore() {
@@ -41,22 +45,17 @@ public class AffineTransform implements Cloneable {
         throw new IllegalStateException("Cannot restore root transform instance");
     }
 
-    public double getScaleX() {
-        return this.scaleX;
-    }
-
-    public double getScaleY() {
-        return this.scaleY;
+    public AffineTransform save() {
+        AffineTransform affineTransform = new AffineTransform(this, this.canvas);
+        affineTransform.setScale(this.scaleX, this.scaleY);
+        affineTransform.setTranslate(this.translateX, this.translateY);
+        affineTransform.save = this.canvas.save();
+        return affineTransform;
     }
 
     public void scale(double d, double d2) {
         setScale(d, d2);
         this.canvas.scale((float) d, (float) d2);
-    }
-
-    public void translate(float f, float f2) {
-        this.canvas.translate(f, f2);
-        setTranslate(f, f2);
     }
 
     public void setScale(double d, double d2) {
@@ -69,8 +68,9 @@ public class AffineTransform implements Cloneable {
         this.translateY = f2;
     }
 
-    public Canvas getCanvas() {
-        return this.canvas;
+    public void translate(float f, float f2) {
+        this.canvas.translate(f, f2);
+        setTranslate(f, f2);
     }
 
     public float translateX() {

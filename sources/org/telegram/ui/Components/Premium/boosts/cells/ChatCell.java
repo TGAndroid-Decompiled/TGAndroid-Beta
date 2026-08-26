@@ -10,23 +10,22 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.UserCell2;
+import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda8;
 
-public class ChatCell extends BaseCell {
-    private TLRPC.Chat chat;
-    private ChatDeleteListener chatDeleteListener;
-    private final ImageView deleteImageView;
-    private boolean removable;
+public final class ChatCell extends BaseCell {
+    public TLRPC.Chat chat;
+    public ChatDeleteListener chatDeleteListener;
+    public final ImageView deleteImageView;
+    public boolean removable;
 
     public interface ChatDeleteListener {
-        void onChatDeleted(TLRPC.Chat chat);
-    }
-
-    @Override
-    protected boolean needCheck() {
-        return false;
     }
 
     public ChatCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -36,33 +35,43 @@ public class ChatCell extends BaseCell {
         this.deleteImageView = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector)));
+        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, Theme.key_stickers_menuSelector, false), 1, -1));
         imageView.setImageResource(R.drawable.poll_remove);
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayIcon, false), PorterDuff.Mode.MULTIPLY));
         imageView.setContentDescription(LocaleController.getString(R.string.Delete));
         boolean z = LocaleController.isRTL;
         addView(imageView, LayoutHelper.createFrame(48, 50.0f, (z ? 3 : 5) | 17, z ? 3.0f : 0.0f, 0.0f, z ? 0.0f : 3.0f, 0.0f));
         this.titleTextView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 24.0f : 0.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), 0);
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        this.deleteImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-    }
-
     public TLRPC.Chat getChat() {
         return this.chat;
     }
 
-    public void setChat(final TLRPC.Chat chat, int i, boolean z, int i2) {
+    @Override
+    public final boolean needCheck() {
+        return false;
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.deleteImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    }
+
+    public final void setChat(TLRPC.Chat chat, int i, boolean z, int i2) {
         String string;
         this.removable = z;
         this.chat = chat;
-        this.avatarDrawable.setInfo(chat);
-        this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-        this.imageView.setForUserOrChat(chat, this.avatarDrawable);
-        this.titleTextView.setText(Emoji.replaceEmoji(chat.title, this.titleTextView.getPaint().getFontMetricsInt(), false));
+        AvatarDrawable avatarDrawable = this.avatarDrawable;
+        avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
+        BackupImageView backupImageView = this.imageView;
+        backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
+        backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
+        backupImageView.onNewImageSet();
+        String str = chat.title;
+        UserCell2.AnonymousClass1 anonymousClass1 = this.titleTextView;
+        anonymousClass1.setText(Emoji.replaceEmoji(str, anonymousClass1.getPaint().getFontMetricsInt(), false));
         boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (z) {
             if (i2 >= 1) {
@@ -76,42 +85,16 @@ public class ChatCell extends BaseCell {
         }
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
         setDivider(true);
+        ImageView imageView = this.deleteImageView;
         if (z) {
-            this.deleteImageView.setVisibility(0);
+            imageView.setVisibility(0);
         } else {
-            this.deleteImageView.setVisibility(4);
+            imageView.setVisibility(4);
         }
-        this.deleteImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ChatCell.$r8$lambda$zXU8z5sobWHrkNDI40VTPJIlM6o(this.f$0, chat, view);
-            }
-        });
-    }
-
-    public static void $r8$lambda$zXU8z5sobWHrkNDI40VTPJIlM6o(ChatCell chatCell, TLRPC.Chat chat, View view) {
-        ChatDeleteListener chatDeleteListener = chatCell.chatDeleteListener;
-        if (chatDeleteListener != null) {
-            chatDeleteListener.onChatDeleted(chat);
-        }
+        imageView.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(10, this, chat));
     }
 
     public void setChatDeleteListener(ChatDeleteListener chatDeleteListener) {
         this.chatDeleteListener = chatDeleteListener;
-    }
-
-    public void setCounter(int i, int i2) {
-        String string;
-        boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.chat);
-        if (!this.removable) {
-            setSubtitle(LocaleController.formatPluralString(zIsChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]));
-            return;
-        }
-        if (i2 >= 1) {
-            string = LocaleController.formatPluralString(zIsChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
-        } else {
-            string = LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
-        }
-        setSubtitle(string);
     }
 }

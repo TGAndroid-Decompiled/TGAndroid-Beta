@@ -6,11 +6,10 @@ import java.util.Arrays;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
 
-public class StackLinearChartData extends ChartData {
+public final class StackLinearChartData extends ChartData {
     public int simplifiedSize;
     public long[][] simplifiedY;
-    long[] ySum;
-    SegmentTree ySumSegmentTree;
+    public final long[] ySum;
 
     public StackLinearChartData(JSONObject jSONObject, boolean z) {
         super(jSONObject);
@@ -53,7 +52,38 @@ public class StackLinearChartData extends ChartData {
                 jArr2[i5] = jArr2[i5] + ((ChartData.Line) this.lines.get(i6)).y[i5];
             }
         }
-        this.ySumSegmentTree = new SegmentTree(this.ySum);
+        new SegmentTree(this.ySum);
+    }
+
+    @Override
+    public final void measure() {
+        super.measure();
+        this.simplifiedSize = 0;
+        int length = this.xPercentage.length;
+        int size = this.lines.size();
+        int iMax = Math.max(1, Math.round(length / 140.0f));
+        int i = length / iMax;
+        this.simplifiedY = (long[][]) Array.newInstance((Class<?>) Long.TYPE, size, i);
+        long[] jArr = new long[size];
+        for (int i2 = 0; i2 < length; i2++) {
+            for (int i3 = 0; i3 < size; i3++) {
+                long j = ((ChartData.Line) this.lines.get(i3)).y[i2];
+                if (j > jArr[i3]) {
+                    jArr[i3] = j;
+                }
+            }
+            if (i2 % iMax == 0) {
+                for (int i4 = 0; i4 < size; i4++) {
+                    this.simplifiedY[i4][this.simplifiedSize] = jArr[i4];
+                    jArr[i4] = 0;
+                }
+                int i5 = this.simplifiedSize + 1;
+                this.simplifiedSize = i5;
+                if (i5 >= i) {
+                    return;
+                }
+            }
+        }
     }
 
     public StackLinearChartData(ChartData chartData, long j) {
@@ -95,36 +125,5 @@ public class StackLinearChartData extends ChartData {
         }
         this.timeStep = 86400000L;
         measure();
-    }
-
-    @Override
-    protected void measure() {
-        super.measure();
-        this.simplifiedSize = 0;
-        int length = this.xPercentage.length;
-        int size = this.lines.size();
-        int iMax = Math.max(1, Math.round(length / 140.0f));
-        int i = length / iMax;
-        this.simplifiedY = (long[][]) Array.newInstance((Class<?>) Long.TYPE, size, i);
-        long[] jArr = new long[size];
-        for (int i2 = 0; i2 < length; i2++) {
-            for (int i3 = 0; i3 < size; i3++) {
-                long j = ((ChartData.Line) this.lines.get(i3)).y[i2];
-                if (j > jArr[i3]) {
-                    jArr[i3] = j;
-                }
-            }
-            if (i2 % iMax == 0) {
-                for (int i4 = 0; i4 < size; i4++) {
-                    this.simplifiedY[i4][this.simplifiedSize] = jArr[i4];
-                    jArr[i4] = 0;
-                }
-                int i5 = this.simplifiedSize + 1;
-                this.simplifiedSize = i5;
-                if (i5 >= i) {
-                    return;
-                }
-            }
-        }
     }
 }

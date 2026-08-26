@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -14,31 +15,103 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.PhotoViewer;
 
 public abstract class AvatarConstructorPreviewCell extends FrameLayout {
-    private AnimatedEmojiDrawable animatedEmojiDrawable;
-    int backgroundIndex;
-    private final int currentAccount;
-    GradientTools currentBackgroundDrawable;
-    BackupImageView currentImage;
-    int emojiIndex;
-    TLRPC.TL_emojiList emojiList;
-    public final boolean forUser;
-    private boolean isAllEmojiDrawablesLoaded;
-    private AnimatedEmojiDrawable nextAnimatedEmojiDrawable;
-    GradientTools nextBackgroundDrawable;
-    BackupImageView nextImage;
-    float progressToNext;
-    Runnable scheduleSwitchToNextRunnable;
-    TextView textView;
+    public AnimatedEmojiDrawable animatedEmojiDrawable;
+    public int backgroundIndex;
+    public final int currentAccount;
+    public GradientTools currentBackgroundDrawable;
+    public BackupImageView currentImage;
+    public int emojiIndex;
+    public final TLRPC.TL_emojiList emojiList;
+    public boolean isAllEmojiDrawablesLoaded;
+    public AnimatedEmojiDrawable nextAnimatedEmojiDrawable;
+    public GradientTools nextBackgroundDrawable;
+    public BackupImageView nextImage;
+    public float progressToNext;
+    public final AnonymousClass1 scheduleSwitchToNextRunnable;
+    public final TextView textView;
 
-    public static TLRPC.TL_emojiList getOrCreateEmojiList(int i, boolean z) {
-        TLRPC.TL_emojiList tL_emojiList;
-        if (z) {
-            tL_emojiList = MediaDataController.getInstance(i).profileAvatarConstructorDefault;
-        } else {
-            tL_emojiList = MediaDataController.getInstance(i).groupAvatarConstructorDefault;
+    public AvatarConstructorPreviewCell(Context context) {
+        super(context);
+        int i = UserConfig.selectedAccount;
+        this.currentAccount = i;
+        this.backgroundIndex = 0;
+        this.emojiIndex = 0;
+        this.progressToNext = 1.0f;
+        final ChatAttachAlertPhotoLayout.PhotoAttachAdapter.AnonymousClass3 anonymousClass3 = (ChatAttachAlertPhotoLayout.PhotoAttachAdapter.AnonymousClass3) this;
+        this.scheduleSwitchToNextRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                PhotoViewer.AnonymousClass11 anonymousClass11;
+                ChatAttachAlertPhotoLayout.PhotoAttachAdapter.AnonymousClass3 anonymousClass4 = anonymousClass3;
+                AndroidUtilities.runOnUIThread(anonymousClass4.scheduleSwitchToNextRunnable, 1000L);
+                TLRPC.TL_emojiList tL_emojiList = anonymousClass4.emojiList;
+                if (tL_emojiList == null || tL_emojiList.document_id.isEmpty() || anonymousClass4.progressToNext != 1.0f) {
+                    return;
+                }
+                if (anonymousClass4.isAllEmojiDrawablesLoaded || ((anonymousClass11 = anonymousClass4.nextAnimatedEmojiDrawable.imageReceiver) != null && anonymousClass11.hasImageLoaded())) {
+                    int i2 = anonymousClass4.emojiIndex + 1;
+                    anonymousClass4.emojiIndex = i2;
+                    anonymousClass4.backgroundIndex++;
+                    if (i2 > tL_emojiList.document_id.size() - 1) {
+                        anonymousClass4.emojiIndex = 0;
+                    }
+                    int i3 = anonymousClass4.backgroundIndex;
+                    int[][] iArr = AvatarConstructorFragment.defaultColors;
+                    if (i3 > 6) {
+                        anonymousClass4.backgroundIndex = 0;
+                    }
+                    AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, anonymousClass4.currentAccount, tL_emojiList.document_id.get(anonymousClass4.emojiIndex).longValue());
+                    anonymousClass4.animatedEmojiDrawable = animatedEmojiDrawable;
+                    anonymousClass4.nextImage.setAnimatedEmojiDrawable(animatedEmojiDrawable);
+                    int[] iArr2 = iArr[anonymousClass4.backgroundIndex];
+                    int i4 = iArr2[0];
+                    int i5 = iArr2[1];
+                    int i6 = iArr2[2];
+                    int i7 = iArr2[3];
+                    GradientTools gradientTools = new GradientTools();
+                    anonymousClass4.nextBackgroundDrawable = gradientTools;
+                    gradientTools.setColors(i4, i5, i6, i7);
+                    anonymousClass4.progressToNext = 0.0f;
+                    anonymousClass4.preloadNextEmojiDrawable();
+                    anonymousClass4.invalidate();
+                }
+            }
+        };
+        TLRPC.TL_emojiList orCreateEmojiList = getOrCreateEmojiList(i);
+        this.emojiList = orCreateEmojiList;
+        this.currentImage = new BackupImageView(context);
+        this.nextImage = new BackupImageView(context);
+        addView(this.currentImage, LayoutHelper.createFrame(50, 50, 1));
+        addView(this.nextImage, LayoutHelper.createFrame(50, 50, 1));
+        if (!orCreateEmojiList.document_id.isEmpty()) {
+            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, i, orCreateEmojiList.document_id.get(0).longValue());
+            this.animatedEmojiDrawable = animatedEmojiDrawable;
+            this.currentImage.setAnimatedEmojiDrawable(animatedEmojiDrawable);
+            preloadNextEmojiDrawable();
         }
+        int[] iArr = AvatarConstructorFragment.defaultColors[this.backgroundIndex];
+        int i2 = iArr[0];
+        int i3 = iArr[1];
+        int i4 = iArr[2];
+        int i5 = iArr[3];
+        GradientTools gradientTools = new GradientTools();
+        this.currentBackgroundDrawable = gradientTools;
+        gradientTools.setColors(i2, i3, i4, i5);
+        TextView textView = new TextView(context);
+        this.textView = textView;
+        textView.setTextSize(1, 12.0f);
+        textView.setTextColor(Theme.getColor(null, Theme.key_avatar_text, false));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        textView.setText(LocaleController.getString(R.string.UseEmoji));
+        addView(textView, LayoutHelper.createFrame(-1, 28.0f, 80, 10.0f, 10.0f, 10.0f, 10.0f));
+    }
+
+    public static TLRPC.TL_emojiList getOrCreateEmojiList(int i) {
+        TLRPC.TL_emojiList tL_emojiList = MediaDataController.getInstance(i).groupAvatarConstructorDefault;
         if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty()) {
             return tL_emojiList;
         }
@@ -69,129 +142,23 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
         return tL_emojiList2;
     }
 
-    public AvatarConstructorPreviewCell(Context context, boolean z) {
-        super(context);
-        int i = UserConfig.selectedAccount;
-        this.currentAccount = i;
-        this.backgroundIndex = 0;
-        this.emojiIndex = 0;
-        this.progressToNext = 1.0f;
-        this.scheduleSwitchToNextRunnable = new Runnable() {
-            @Override
-            public void run() {
-                AndroidUtilities.runOnUIThread(AvatarConstructorPreviewCell.this.scheduleSwitchToNextRunnable, 1000L);
-                TLRPC.TL_emojiList tL_emojiList = AvatarConstructorPreviewCell.this.emojiList;
-                if (tL_emojiList == null || tL_emojiList.document_id.isEmpty()) {
-                    return;
-                }
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell = AvatarConstructorPreviewCell.this;
-                if (avatarConstructorPreviewCell.progressToNext != 1.0f) {
-                    return;
-                }
-                if (avatarConstructorPreviewCell.isAllEmojiDrawablesLoaded || (AvatarConstructorPreviewCell.this.nextAnimatedEmojiDrawable.getImageReceiver() != null && AvatarConstructorPreviewCell.this.nextAnimatedEmojiDrawable.getImageReceiver().hasImageLoaded())) {
-                    AvatarConstructorPreviewCell avatarConstructorPreviewCell2 = AvatarConstructorPreviewCell.this;
-                    int i2 = avatarConstructorPreviewCell2.emojiIndex + 1;
-                    avatarConstructorPreviewCell2.emojiIndex = i2;
-                    avatarConstructorPreviewCell2.backgroundIndex++;
-                    if (i2 > avatarConstructorPreviewCell2.emojiList.document_id.size() - 1) {
-                        AvatarConstructorPreviewCell.this.emojiIndex = 0;
-                    }
-                    AvatarConstructorPreviewCell avatarConstructorPreviewCell3 = AvatarConstructorPreviewCell.this;
-                    int i3 = avatarConstructorPreviewCell3.backgroundIndex;
-                    int[][] iArr = AvatarConstructorFragment.defaultColors;
-                    if (i3 > iArr.length - 1) {
-                        avatarConstructorPreviewCell3.backgroundIndex = 0;
-                    }
-                    int i4 = AvatarConstructorPreviewCell.this.currentAccount;
-                    AvatarConstructorPreviewCell avatarConstructorPreviewCell4 = AvatarConstructorPreviewCell.this;
-                    avatarConstructorPreviewCell3.animatedEmojiDrawable = new AnimatedEmojiDrawable(4, i4, avatarConstructorPreviewCell4.emojiList.document_id.get(avatarConstructorPreviewCell4.emojiIndex).longValue());
-                    AvatarConstructorPreviewCell avatarConstructorPreviewCell5 = AvatarConstructorPreviewCell.this;
-                    avatarConstructorPreviewCell5.nextImage.setAnimatedEmojiDrawable(avatarConstructorPreviewCell5.animatedEmojiDrawable);
-                    AvatarConstructorPreviewCell avatarConstructorPreviewCell6 = AvatarConstructorPreviewCell.this;
-                    int[] iArr2 = iArr[avatarConstructorPreviewCell6.backgroundIndex];
-                    int i5 = iArr2[0];
-                    int i6 = iArr2[1];
-                    int i7 = iArr2[2];
-                    int i8 = iArr2[3];
-                    avatarConstructorPreviewCell6.nextBackgroundDrawable = new GradientTools();
-                    AvatarConstructorPreviewCell.this.nextBackgroundDrawable.setColors(i5, i6, i7, i8);
-                    AvatarConstructorPreviewCell avatarConstructorPreviewCell7 = AvatarConstructorPreviewCell.this;
-                    avatarConstructorPreviewCell7.progressToNext = 0.0f;
-                    avatarConstructorPreviewCell7.preloadNextEmojiDrawable();
-                    AvatarConstructorPreviewCell.this.invalidate();
-                }
-            }
-        };
-        this.forUser = z;
-        this.emojiList = getOrCreateEmojiList(i, z);
-        this.currentImage = new BackupImageView(context);
-        this.nextImage = new BackupImageView(context);
-        addView(this.currentImage, LayoutHelper.createFrame(50, 50, 1));
-        addView(this.nextImage, LayoutHelper.createFrame(50, 50, 1));
-        TLRPC.TL_emojiList tL_emojiList = this.emojiList;
-        if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty()) {
-            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, i, this.emojiList.document_id.get(0).longValue());
-            this.animatedEmojiDrawable = animatedEmojiDrawable;
-            this.currentImage.setAnimatedEmojiDrawable(animatedEmojiDrawable);
-            preloadNextEmojiDrawable();
-        }
-        int[] iArr = AvatarConstructorFragment.defaultColors[this.backgroundIndex];
-        int i2 = iArr[0];
-        int i3 = iArr[1];
-        int i4 = iArr[2];
-        int i5 = iArr[3];
-        GradientTools gradientTools = new GradientTools();
-        this.currentBackgroundDrawable = gradientTools;
-        gradientTools.setColors(i2, i3, i4, i5);
-        TextView textView = new TextView(context);
-        this.textView = textView;
-        textView.setTextSize(1, 12.0f);
-        this.textView.setTextColor(Theme.getColor(Theme.key_avatar_text));
-        this.textView.setTypeface(AndroidUtilities.bold());
-        this.textView.setGravity(17);
-        this.textView.setText(LocaleController.getString(R.string.UseEmoji));
-        addView(this.textView, LayoutHelper.createFrame(-1, 28.0f, 80, 10.0f, 10.0f, 10.0f, 10.0f));
-    }
-
-    public void preloadNextEmojiDrawable() {
-        if (this.isAllEmojiDrawablesLoaded) {
-            return;
-        }
-        int i = this.emojiIndex + 1;
-        if (i > this.emojiList.document_id.size() - 1) {
-            this.isAllEmojiDrawablesLoaded = true;
-            return;
-        }
-        AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, this.currentAccount, this.emojiList.document_id.get(i).longValue());
-        this.nextAnimatedEmojiDrawable = animatedEmojiDrawable;
-        animatedEmojiDrawable.preload();
-    }
-
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        int top = this.textView.getTop();
-        int i3 = (int) (top * 0.7f);
-        int i4 = (int) ((top - i3) * 0.7f);
-        ViewGroup.LayoutParams layoutParams = this.currentImage.getLayoutParams();
-        this.currentImage.getLayoutParams().height = i3;
-        layoutParams.width = i3;
-        ViewGroup.LayoutParams layoutParams2 = this.nextImage.getLayoutParams();
-        this.nextImage.getLayoutParams().height = i3;
-        layoutParams2.width = i3;
-        ((FrameLayout.LayoutParams) this.currentImage.getLayoutParams()).topMargin = i4;
-        ((FrameLayout.LayoutParams) this.nextImage.getLayoutParams()).topMargin = i4;
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         GradientTools gradientTools = this.currentBackgroundDrawable;
         if (gradientTools != null) {
-            gradientTools.setBounds(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            float measuredWidth = getMeasuredWidth();
+            float measuredHeight = getMeasuredHeight();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, measuredWidth, measuredHeight);
+            gradientTools.setBounds(rectF);
         }
         GradientTools gradientTools2 = this.nextBackgroundDrawable;
         if (gradientTools2 != null) {
-            gradientTools2.setBounds(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            float measuredWidth2 = getMeasuredWidth();
+            float measuredHeight2 = getMeasuredHeight();
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(0.0f, 0.0f, measuredWidth2, measuredHeight2);
+            gradientTools2.setBounds(rectF2);
         }
         float f = this.progressToNext;
         if (f == 1.0f) {
@@ -230,16 +197,8 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
         super.dispatchDraw(canvas);
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.scheduleSwitchToNextRunnable, 1000L);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.scheduleSwitchToNextRunnable);
+    public AnimatedEmojiDrawable getAnimatedEmoji() {
+        return this.animatedEmojiDrawable;
     }
 
     public AvatarConstructorFragment.BackgroundGradient getBackgroundGradient() {
@@ -252,7 +211,47 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
         return backgroundGradient;
     }
 
-    public AnimatedEmojiDrawable getAnimatedEmoji() {
-        return this.animatedEmojiDrawable;
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        AndroidUtilities.runOnUIThread(this.scheduleSwitchToNextRunnable, 1000L);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        AndroidUtilities.cancelRunOnUIThread(this.scheduleSwitchToNextRunnable);
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        int top = this.textView.getTop();
+        int i3 = (int) (top * 0.7f);
+        int i4 = (int) ((top - i3) * 0.7f);
+        ViewGroup.LayoutParams layoutParams = this.currentImage.getLayoutParams();
+        this.currentImage.getLayoutParams().height = i3;
+        layoutParams.width = i3;
+        ViewGroup.LayoutParams layoutParams2 = this.nextImage.getLayoutParams();
+        this.nextImage.getLayoutParams().height = i3;
+        layoutParams2.width = i3;
+        ((FrameLayout.LayoutParams) this.currentImage.getLayoutParams()).topMargin = i4;
+        ((FrameLayout.LayoutParams) this.nextImage.getLayoutParams()).topMargin = i4;
+    }
+
+    public final void preloadNextEmojiDrawable() {
+        if (this.isAllEmojiDrawablesLoaded) {
+            return;
+        }
+        int i = this.emojiIndex + 1;
+        TLRPC.TL_emojiList tL_emojiList = this.emojiList;
+        if (i > tL_emojiList.document_id.size() - 1) {
+            this.isAllEmojiDrawablesLoaded = true;
+            return;
+        }
+        AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, this.currentAccount, tL_emojiList.document_id.get(i).longValue());
+        this.nextAnimatedEmojiDrawable = animatedEmojiDrawable;
+        animatedEmojiDrawable.preloading = true;
+        animatedEmojiDrawable.updateAttachState();
     }
 }

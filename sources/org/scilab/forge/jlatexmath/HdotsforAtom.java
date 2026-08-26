@@ -12,14 +12,14 @@ public class HdotsforAtom extends MulticolumnAtom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        StrutBox strutBox = new StrutBox(this.coeff * thin.createBox(teXEnvironment).getWidth(), 0.0f, 0.0f, 0.0f);
+        StrutBox strutBox = new StrutBox(thin.createBox(teXEnvironment).getWidth() * this.coeff, 0.0f, 0.0f, 0.0f);
         HorizontalBox horizontalBox = new HorizontalBox(strutBox);
         horizontalBox.add(ldotp.createBox(teXEnvironment));
         horizontalBox.add(strutBox);
         if (this.w != 0.0f) {
             float width = horizontalBox.getWidth();
             float f = this.w;
-            if (width <= 0.0f || !DelimiterFactory$$ExternalSyntheticBackport0.m(width) || f > 65536.0f) {
+            if (width <= 0.0f || Float.isInfinite(width) || Float.isNaN(width) || f > 65536.0f) {
                 f = 0.0f;
             }
             HorizontalBox horizontalBox2 = new HorizontalBox(horizontalBox);

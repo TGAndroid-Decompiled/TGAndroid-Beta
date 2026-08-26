@@ -22,6 +22,16 @@ public class InputSurface {
         eglSetup();
     }
 
+    private void checkEglError(String str) {
+        boolean z = false;
+        while (EGL14.eglGetError() != 12288) {
+            z = true;
+        }
+        if (z) {
+            throw new RuntimeException("EGL error encountered (see log)");
+        }
+    }
+
     private void eglSetup() {
         EGLDisplay eGLDisplayEglGetDisplay = EGL14.eglGetDisplay(0);
         this.mEGLDisplay = eGLDisplayEglGetDisplay;
@@ -49,6 +59,18 @@ public class InputSurface {
         }
     }
 
+    public Surface getSurface() {
+        return this.mSurface;
+    }
+
+    public void makeCurrent() {
+        EGLDisplay eGLDisplay = this.mEGLDisplay;
+        EGLSurface eGLSurface = this.mEGLSurface;
+        if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
+            throw new RuntimeException("eglMakeCurrent failed");
+        }
+    }
+
     public void release() {
         if (EGL14.eglGetCurrentContext().equals(this.mEGLContext)) {
             EGLDisplay eGLDisplay = this.mEGLDisplay;
@@ -64,33 +86,11 @@ public class InputSurface {
         this.mSurface = null;
     }
 
-    public void makeCurrent() {
-        EGLDisplay eGLDisplay = this.mEGLDisplay;
-        EGLSurface eGLSurface = this.mEGLSurface;
-        if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
-            throw new RuntimeException("eglMakeCurrent failed");
-        }
-    }
-
-    public boolean swapBuffers() {
-        return EGL14.eglSwapBuffers(this.mEGLDisplay, this.mEGLSurface);
-    }
-
-    public Surface getSurface() {
-        return this.mSurface;
-    }
-
     public void setPresentationTime(long j) {
         EGLExt.eglPresentationTimeANDROID(this.mEGLDisplay, this.mEGLSurface, j);
     }
 
-    private void checkEglError(String str) {
-        boolean z = false;
-        while (EGL14.eglGetError() != 12288) {
-            z = true;
-        }
-        if (z) {
-            throw new RuntimeException("EGL error encountered (see log)");
-        }
+    public boolean swapBuffers() {
+        return EGL14.eglSwapBuffers(this.mEGLDisplay, this.mEGLSurface);
     }
 }

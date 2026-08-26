@@ -8,16 +8,6 @@ class PredefMacroInfo extends MacroInfo {
         this.id = i;
     }
 
-    public PredefMacroInfo(int i, int i2) {
-        super(i2);
-        this.id = i;
-    }
-
-    @Override
-    public Object invoke(TeXParser teXParser, String[] strArr) {
-        return invokeID(this.id, teXParser, strArr);
-    }
-
     private static final Object invokeID(int i, TeXParser teXParser, String[] strArr) {
         try {
             switch (i) {
@@ -540,5 +530,15 @@ class PredefMacroInfo extends MacroInfo {
         } catch (Exception e) {
             throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n" + e.getMessage());
         }
+    }
+
+    @Override
+    public Object invoke(TeXParser teXParser, String[] strArr) {
+        return invokeID(this.id, teXParser, strArr);
+    }
+
+    public PredefMacroInfo(int i, int i2) {
+        super(i2);
+        this.id = i;
     }
 }

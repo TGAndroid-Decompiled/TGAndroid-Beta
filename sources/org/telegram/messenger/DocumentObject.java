@@ -16,31 +16,35 @@ public class DocumentObject {
 
         public ThemeDocument(TLRPC.ThemeSettings themeSettings) {
             this.themeSettings = themeSettings;
-            Theme.ThemeInfo theme = Theme.getTheme(Theme.getBaseThemeKey(themeSettings));
-            this.baseTheme = theme;
-            this.accent = theme.createNewAccent(themeSettings);
+            Theme.ThemeInfo themeInfo = (Theme.ThemeInfo) Theme.themesDict.get(Theme.getBaseThemeKey(themeSettings));
+            this.baseTheme = themeInfo;
+            themeInfo.getClass();
+            Theme.ThemeAccent themeAccent = new Theme.ThemeAccent();
+            Theme.ThemeInfo.fillAccentValues(themeAccent, themeSettings);
+            themeAccent.parentTheme = themeInfo;
+            this.accent = themeAccent;
             TLRPC.WallPaper wallPaper = this.themeSettings.wallpaper;
-            if (wallPaper instanceof TLRPC.TL_wallPaper) {
-                TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
-                this.wallpaper = document;
-                this.id = document.id;
-                this.access_hash = document.access_hash;
-                this.file_reference = document.file_reference;
-                this.user_id = document.user_id;
-                this.date = document.date;
-                this.file_name = document.file_name;
-                this.mime_type = document.mime_type;
-                this.size = document.size;
-                this.thumbs = document.thumbs;
-                this.version = document.version;
-                this.dc_id = document.dc_id;
-                this.key = document.key;
-                this.iv = document.iv;
-                this.attributes = document.attributes;
+            if (!(wallPaper instanceof TLRPC.TL_wallPaper)) {
+                this.id = -2147483648L;
+                this.dc_id = Integer.MIN_VALUE;
                 return;
             }
-            this.id = -2147483648L;
-            this.dc_id = Integer.MIN_VALUE;
+            TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
+            this.wallpaper = document;
+            this.id = document.id;
+            this.access_hash = document.access_hash;
+            this.file_reference = document.file_reference;
+            this.user_id = document.user_id;
+            this.date = document.date;
+            this.file_name = document.file_name;
+            this.mime_type = document.mime_type;
+            this.size = document.size;
+            this.thumbs = document.thumbs;
+            this.version = document.version;
+            this.dc_id = document.dc_id;
+            this.key = document.key;
+            this.iv = document.iv;
+            this.attributes = document.attributes;
         }
     }
 
@@ -57,8 +61,41 @@ public class DocumentObject {
         return false;
     }
 
+    public static SvgHelper.SvgDrawable getCircleThumb(float f, int i, float f2) {
+        return getCircleThumb(f, i, null, f2);
+    }
+
+    public static SvgHelper.SvgDrawable getSvgRectThumb(int i, float f) {
+        Path path = new Path();
+        path.addRect(0.0f, 0.0f, 512.0f, 512.0f, Path.Direction.CW);
+        path.close();
+        SvgHelper.SvgDrawable svgDrawable = new SvgHelper.SvgDrawable();
+        svgDrawable.commands.add(path);
+        svgDrawable.paints.put(path, new Paint(1));
+        svgDrawable.width = 512;
+        svgDrawable.height = 512;
+        svgDrawable.setupGradient(i, f, false);
+        return svgDrawable;
+    }
+
     public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC.PhotoSize> arrayList, int i, float f) {
         return getSvgThumb(arrayList, i, f, false);
+    }
+
+    public static SvgHelper.SvgDrawable getCircleThumb(float f, int i, Theme.ResourcesProvider resourcesProvider, float f2) {
+        try {
+            SvgHelper.SvgDrawable svgDrawable = new SvgHelper.SvgDrawable();
+            SvgHelper.Circle circle = new SvgHelper.Circle(256.0f, 256.0f, f * 512.0f);
+            svgDrawable.commands.add(circle);
+            svgDrawable.paints.put(circle, new Paint(1));
+            svgDrawable.width = 512;
+            svgDrawable.height = 512;
+            svgDrawable.setupGradient(i, f2, false);
+            return svgDrawable;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
     }
 
     public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC.PhotoSize> arrayList, int i, float f, boolean z) {
@@ -85,41 +122,8 @@ public class DocumentObject {
         return drawableByPath;
     }
 
-    public static SvgHelper.SvgDrawable getCircleThumb(float f, int i, float f2) {
-        return getCircleThumb(f, i, null, f2);
-    }
-
-    public static SvgHelper.SvgDrawable getCircleThumb(float f, int i, Theme.ResourcesProvider resourcesProvider, float f2) {
-        try {
-            SvgHelper.SvgDrawable svgDrawable = new SvgHelper.SvgDrawable();
-            SvgHelper.Circle circle = new SvgHelper.Circle(256.0f, 256.0f, f * 512.0f);
-            svgDrawable.commands.add(circle);
-            svgDrawable.paints.put(circle, new Paint(1));
-            svgDrawable.width = 512;
-            svgDrawable.height = 512;
-            svgDrawable.setupGradient(i, f2, false);
-            return svgDrawable;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return null;
-        }
-    }
-
     public static SvgHelper.SvgDrawable getSvgThumb(TLRPC.Document document, int i, float f) {
         return getSvgThumb(document, i, f, 1.0f, null);
-    }
-
-    public static SvgHelper.SvgDrawable getSvgRectThumb(int i, float f) {
-        Path path = new Path();
-        path.addRect(0.0f, 0.0f, 512.0f, 512.0f, Path.Direction.CW);
-        path.close();
-        SvgHelper.SvgDrawable svgDrawable = new SvgHelper.SvgDrawable();
-        svgDrawable.commands.add(path);
-        svgDrawable.paints.put(path, new Paint(1));
-        svgDrawable.width = 512;
-        svgDrawable.height = 512;
-        svgDrawable.setupGradient(i, f, false);
-        return svgDrawable;
     }
 
     public static SvgHelper.SvgDrawable getSvgThumb(TLRPC.Document document, int i, float f, float f2, Theme.ResourcesProvider resourcesProvider) {

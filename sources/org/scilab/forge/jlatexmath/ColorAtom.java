@@ -21,40 +21,9 @@ public class ColorAtom extends Atom implements Row {
         this.color = color2;
     }
 
-    public ColorAtom(Color color, Color color2, ColorAtom colorAtom) {
-        this.elements = new RowAtom(colorAtom.elements);
-        this.background = color == null ? colorAtom.background : color;
-        this.color = color2 == null ? colorAtom.color : color2;
-    }
-
-    @Override
-    public Box createBox(TeXEnvironment teXEnvironment) {
-        teXEnvironment.isColored = true;
-        TeXEnvironment teXEnvironmentCopy = teXEnvironment.copy();
-        Color color = this.background;
-        if (color != null) {
-            teXEnvironmentCopy.setBackground(color);
-        }
-        Color color2 = this.color;
-        if (color2 != null) {
-            teXEnvironmentCopy.setColor(color2);
-        }
-        return this.elements.createBox(teXEnvironmentCopy);
-    }
-
-    @Override
-    public int getLeftType() {
-        return this.elements.getLeftType();
-    }
-
-    @Override
-    public int getRightType() {
-        return this.elements.getRightType();
-    }
-
-    @Override
-    public void setPreviousAtom(Dummy dummy) {
-        this.elements.setPreviousAtom(dummy);
+    private static Color convColor(float f, float f2, float f3, float f4) {
+        float f5 = 1.0f - f4;
+        return new Color((1.0f - f) * f5, (1.0f - f2) * f5, (1.0f - f3) * f5);
     }
 
     public static Color getColor(String str) {
@@ -75,10 +44,7 @@ public class ColorAtom extends Atom implements Row {
                             float f = Float.parseFloat(strTrim2);
                             float f2 = Float.parseFloat(strTrim3);
                             float f3 = Float.parseFloat(strTrim4);
-                            if (f == ((int) f) && f2 == ((int) f2) && f3 == ((int) f3) && strTrim2.indexOf(46) == -1 && strTrim3.indexOf(46) == -1 && strTrim4.indexOf(46) == -1) {
-                                return new Color((int) Math.min(255.0f, Math.max(0.0f, f)), (int) Math.min(255.0f, Math.max(0.0f, f2)), (int) Math.min(255.0f, Math.max(0.0f, f3)));
-                            }
-                            return new Color(Math.min(1.0f, Math.max(0.0f, f)), Math.min(1.0f, Math.max(0.0f, f2)), Math.min(1.0f, Math.max(0.0f, f3)));
+                            return (f == ((float) ((int) f)) && f2 == ((float) ((int) f2)) && f3 == ((float) ((int) f3)) && strTrim2.indexOf(46) == -1 && strTrim3.indexOf(46) == -1 && strTrim4.indexOf(46) == -1) ? new Color((int) Math.min(255.0f, Math.max(0.0f, f)), (int) Math.min(255.0f, Math.max(0.0f, f2)), (int) Math.min(255.0f, Math.max(0.0f, f3))) : new Color(Math.min(1.0f, Math.max(0.0f, f)), Math.min(1.0f, Math.max(0.0f, f2)), Math.min(1.0f, Math.max(0.0f, f3)));
                         } catch (NumberFormatException unused) {
                             return Color.black;
                         }
@@ -102,7 +68,7 @@ public class ColorAtom extends Atom implements Row {
                     } catch (NumberFormatException unused3) {
                     }
                 }
-                return Color.decode("#" + strTrim);
+                return Color.decode("#".concat(strTrim));
             }
         }
         return Color.black;
@@ -180,8 +146,39 @@ public class ColorAtom extends Atom implements Row {
         Colors.put("gray", convColor(0.0f, 0.0f, 0.0f, 0.5f));
     }
 
-    private static Color convColor(float f, float f2, float f3, float f4) {
-        float f5 = 1.0f - f4;
-        return new Color((1.0f - f) * f5, (1.0f - f2) * f5, f5 * (1.0f - f3));
+    @Override
+    public Box createBox(TeXEnvironment teXEnvironment) {
+        teXEnvironment.isColored = true;
+        TeXEnvironment teXEnvironmentCopy = teXEnvironment.copy();
+        Color color = this.background;
+        if (color != null) {
+            teXEnvironmentCopy.setBackground(color);
+        }
+        Color color2 = this.color;
+        if (color2 != null) {
+            teXEnvironmentCopy.setColor(color2);
+        }
+        return this.elements.createBox(teXEnvironmentCopy);
+    }
+
+    @Override
+    public int getLeftType() {
+        return this.elements.getLeftType();
+    }
+
+    @Override
+    public int getRightType() {
+        return this.elements.getRightType();
+    }
+
+    @Override
+    public void setPreviousAtom(Dummy dummy) {
+        this.elements.setPreviousAtom(dummy);
+    }
+
+    public ColorAtom(Color color, Color color2, ColorAtom colorAtom) {
+        this.elements = new RowAtom(colorAtom.elements);
+        this.background = color == null ? colorAtom.background : color;
+        this.color = color2 == null ? colorAtom.color : color2;
     }
 }

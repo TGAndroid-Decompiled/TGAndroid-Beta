@@ -1,21 +1,17 @@
 package io.noties.markwon.inlineparser;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.util.regex.Pattern;
 import org.commonmark.internal.util.Parsing;
 import org.commonmark.node.Code;
 import org.commonmark.node.Node;
 
-public class BackticksInlineProcessor extends InlineProcessor {
-    private static final Pattern TICKS = Pattern.compile("`+");
-    private static final Pattern TICKS_HERE = Pattern.compile("^`+");
+public final class BackticksInlineProcessor extends InlineProcessor {
+    public static final Pattern TICKS = Pattern.compile("`+");
+    public static final Pattern TICKS_HERE = Pattern.compile("^`+");
 
     @Override
-    public char specialCharacter() {
-        return '`';
-    }
-
-    @Override
-    protected Node parse() {
+    public final Node parse() {
         String strMatch;
         String strMatch2 = match(TICKS_HERE);
         if (strMatch2 == null) {
@@ -29,12 +25,20 @@ public class BackticksInlineProcessor extends InlineProcessor {
                 return text(strMatch2);
             }
         } while (!strMatch.equals(strMatch2));
-        Code code = new Code();
+        Code code = new Code(0);
         String strReplace = this.input.substring(i, this.index - strMatch2.length()).replace('\n', ' ');
-        if (strReplace.length() >= 3 && strReplace.charAt(0) == ' ' && strReplace.charAt(strReplace.length() - 1) == ' ' && Parsing.hasNonSpace(strReplace)) {
-            strReplace = strReplace.substring(1, strReplace.length() - 1);
+        if (strReplace.length() >= 3 && strReplace.charAt(0) == ' ' && strReplace.charAt(strReplace.length() - 1) == ' ') {
+            int length = strReplace.length();
+            if (Parsing.skip(' ', strReplace, 0, length) != length) {
+                strReplace = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, strReplace);
+            }
         }
-        code.setLiteral(strReplace);
+        code.literal = strReplace;
         return code;
+    }
+
+    @Override
+    public final char specialCharacter() {
+        return '`';
     }
 }

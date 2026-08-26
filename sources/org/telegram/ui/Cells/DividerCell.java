@@ -8,14 +8,10 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
-public class DividerCell extends View {
-    private boolean forceDarkTheme;
-    private Paint paint;
-    private Theme.ResourcesProvider resourcesProvider;
-
-    public DividerCell(Context context) {
-        this(context, null);
-    }
+public final class DividerCell extends View {
+    public boolean forceDarkTheme;
+    public final Paint paint;
+    public final Theme.ResourcesProvider resourcesProvider;
 
     public DividerCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -25,18 +21,21 @@ public class DividerCell extends View {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), getPaddingTop() + getPaddingBottom() + 1);
+    public final void onDraw(Canvas canvas) {
+        boolean z = this.forceDarkTheme;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Paint paint = this.paint;
+        if (z) {
+            paint.setColor(ColorUtils.blendARGB(0.2f, -16777216, Theme.getColor(Theme.key_voipgroup_dialogBackground, resourcesProvider)));
+        } else {
+            paint.setColor(Theme.getColor(Theme.key_divider, resourcesProvider));
+        }
+        canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), paint);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.forceDarkTheme) {
-            this.paint.setColor(ColorUtils.blendARGB(-16777216, Theme.getColor(Theme.key_voipgroup_dialogBackground, this.resourcesProvider), 0.2f));
-        } else {
-            this.paint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
-        }
-        canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), this.paint);
+    public final void onMeasure(int i, int i2) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i), getPaddingBottom() + getPaddingTop() + 1);
     }
 
     public void setForceDarkTheme(boolean z) {

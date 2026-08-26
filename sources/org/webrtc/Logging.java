@@ -21,35 +21,6 @@ public class Logging {
     }
 
     @Deprecated
-    public static void enableTracing(String str, EnumSet<TraceLevel> enumSet) {
-    }
-
-    private static native void nativeEnableLogThreads();
-
-    private static native void nativeEnableLogTimeStamps();
-
-    private static native void nativeEnableLogToDebugOutput(int i);
-
-    private static native void nativeLog(int i, String str, String str2);
-
-    private static Logger createFallbackLogger() {
-        Logger logger = Logger.getLogger("org.webrtc.Logging");
-        logger.setLevel(Level.ALL);
-        return logger;
-    }
-
-    static void injectLoggable(Loggable loggable2, Severity severity) {
-        if (loggable2 != null) {
-            loggable = loggable2;
-            loggableSeverity = severity;
-        }
-    }
-
-    static void deleteInjectedLoggable() {
-        loggable = null;
-    }
-
-    @Deprecated
     public enum TraceLevel {
         TRACE_NONE(0),
         TRACE_STATEINFO(1),
@@ -74,6 +45,24 @@ public class Logging {
         }
     }
 
+    private static Logger createFallbackLogger() {
+        Logger logger = Logger.getLogger("org.webrtc.Logging");
+        logger.setLevel(Level.ALL);
+        return logger;
+    }
+
+    public static void d(String str, String str2) {
+        log(Severity.LS_INFO, str, str2);
+    }
+
+    public static void deleteInjectedLoggable() {
+        loggable = null;
+    }
+
+    public static void e(String str, String str2) {
+        log(Severity.LS_ERROR, str, str2);
+    }
+
     public static void enableLogThreads() {
         nativeEnableLogThreads();
     }
@@ -88,6 +77,26 @@ public class Logging {
         }
         nativeEnableLogToDebugOutput(severity.ordinal());
         loggingEnabled = true;
+    }
+
+    @Deprecated
+    public static void enableTracing(String str, EnumSet<TraceLevel> enumSet) {
+    }
+
+    private static String getStackTraceString(Throwable th) {
+        if (th == null) {
+            return "";
+        }
+        StringWriter stringWriter = new StringWriter();
+        th.printStackTrace(new PrintWriter(stringWriter));
+        return stringWriter.toString();
+    }
+
+    public static void injectLoggable(Loggable loggable2, Severity severity) {
+        if (loggable2 != null) {
+            loggable = loggable2;
+            loggableSeverity = severity;
+        }
     }
 
     public static void log(Severity severity, String str, String str2) {
@@ -109,22 +118,24 @@ public class Logging {
         int iOrdinal = severity.ordinal();
         if (iOrdinal == 1) {
             level = Level.INFO;
-        } else if (iOrdinal == 2) {
-            level = Level.WARNING;
-        } else if (iOrdinal == 3) {
-            level = Level.SEVERE;
+        } else if (iOrdinal != 2) {
+            level = iOrdinal != 3 ? Level.FINE : Level.SEVERE;
         } else {
-            level = Level.FINE;
+            level = Level.WARNING;
         }
         fallbackLogger.log(level, str + ": " + str2);
     }
 
-    public static void d(String str, String str2) {
-        log(Severity.LS_INFO, str, str2);
-    }
+    private static native void nativeEnableLogThreads();
 
-    public static void e(String str, String str2) {
-        log(Severity.LS_ERROR, str, str2);
+    private static native void nativeEnableLogTimeStamps();
+
+    private static native void nativeEnableLogToDebugOutput(int i);
+
+    private static native void nativeLog(int i, String str, String str2);
+
+    public static void v(String str, String str2) {
+        log(Severity.LS_VERBOSE, str, str2);
     }
 
     public static void w(String str, String str2) {
@@ -143,18 +154,5 @@ public class Logging {
         log(severity, str, str2);
         log(severity, str, th.toString());
         log(severity, str, getStackTraceString(th));
-    }
-
-    public static void v(String str, String str2) {
-        log(Severity.LS_VERBOSE, str, str2);
-    }
-
-    private static String getStackTraceString(Throwable th) {
-        if (th == null) {
-            return "";
-        }
-        StringWriter stringWriter = new StringWriter();
-        th.printStackTrace(new PrintWriter(stringWriter));
-        return stringWriter.toString();
     }
 }

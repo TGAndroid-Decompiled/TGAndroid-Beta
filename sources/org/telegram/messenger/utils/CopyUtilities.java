@@ -1,10 +1,8 @@
 package org.telegram.messenger.utils;
 
-import android.graphics.Paint;
 import android.os.Build;
 import android.text.Editable;
 import android.text.Html;
-import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -12,6 +10,7 @@ import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+import com.stripe.android.time.Clock;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import org.telegram.messenger.CodeHighlighting;
@@ -28,9 +27,108 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 public abstract class CopyUtilities {
-    public static Spannable fromHTML(String str) {
+
+    public final class HTMLTagAttributesHandler implements Html.TagHandler, ContentHandler {
+        public final Clock handler;
+        public final ArrayDeque tagStatus = new ArrayDeque();
+        public Editable text;
+        public ContentHandler wrapped;
+
+        public HTMLTagAttributesHandler(Clock clock) {
+            this.handler = clock;
+        }
+
+        public static String getValue(String str, Attributes attributes) {
+            int length = attributes.getLength();
+            for (int i = 0; i < length; i++) {
+                if (str.equals(attributes.getLocalName(i))) {
+                    return attributes.getValue(i);
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public final void characters(char[] cArr, int i, int i2) throws SAXException {
+            this.wrapped.characters(cArr, i, i2);
+        }
+
+        @Override
+        public final void endDocument() throws SAXException {
+            this.wrapped.endDocument();
+        }
+
+        @Override
+        public final void endElement(String str, String str2, String str3) throws SAXException {
+            if (!((Boolean) this.tagStatus.removeLast()).booleanValue()) {
+                this.wrapped.endElement(str, str2, str3);
+            }
+            Editable editable = this.text;
+            this.handler.getClass();
+            Clock.handleTag(false, str2, editable, null);
+        }
+
+        @Override
+        public final void endPrefixMapping(String str) throws SAXException {
+            this.wrapped.endPrefixMapping(str);
+        }
+
+        @Override
+        public final void handleTag(boolean z, String str, Editable editable, XMLReader xMLReader) {
+            if (this.wrapped == null) {
+                this.text = editable;
+                this.wrapped = xMLReader.getContentHandler();
+                xMLReader.setContentHandler(this);
+                this.tagStatus.addLast(Boolean.FALSE);
+            }
+        }
+
+        @Override
+        public final void ignorableWhitespace(char[] cArr, int i, int i2) throws SAXException {
+            this.wrapped.ignorableWhitespace(cArr, i, i2);
+        }
+
+        @Override
+        public final void processingInstruction(String str, String str2) throws SAXException {
+            this.wrapped.processingInstruction(str, str2);
+        }
+
+        @Override
+        public final void setDocumentLocator(Locator locator) {
+            this.wrapped.setDocumentLocator(locator);
+        }
+
+        @Override
+        public final void skippedEntity(String str) throws SAXException {
+            this.wrapped.skippedEntity(str);
+        }
+
+        @Override
+        public final void startDocument() throws SAXException {
+            this.wrapped.startDocument();
+        }
+
+        @Override
+        public final void startElement(String str, String str2, String str3, Attributes attributes) throws SAXException {
+            Editable editable = this.text;
+            this.handler.getClass();
+            boolean zHandleTag = Clock.handleTag(true, str2, editable, attributes);
+            this.tagStatus.addLast(Boolean.valueOf(zHandleTag));
+            if (zHandleTag) {
+                return;
+            }
+            this.wrapped.startElement(str, str2, str3, attributes);
+        }
+
+        @Override
+        public final void startPrefixMapping(String str, String str2) throws SAXException {
+            this.wrapped.startPrefixMapping(str, str2);
+        }
+    }
+
+    public static SpannableStringBuilder fromHTML(String str) {
         try {
-            Spanned spannedFromHtml = Build.VERSION.SDK_INT >= 24 ? Html.fromHtml("<inject>" + str + "</inject>", 63, null, new HTMLTagAttributesHandler(new HTMLTagHandler())) : Html.fromHtml("<inject>" + str + "</inject>", null, new HTMLTagAttributesHandler(new HTMLTagHandler()));
+            Spanned spannedFromHtml = Build.VERSION.SDK_INT >= 24 ? Html.fromHtml("<inject>" + str + "</inject>", 63, null, new HTMLTagAttributesHandler(new Clock(22))) : Html.fromHtml("<inject>" + str + "</inject>", null, new HTMLTagAttributesHandler(new Clock(22)));
             if (spannedFromHtml == null) {
                 return null;
             }
@@ -44,25 +142,43 @@ public abstract class CopyUtilities {
                 if (obj instanceof StyleSpan) {
                     int style = ((StyleSpan) obj).getStyle();
                     if ((style & 1) > 0) {
-                        arrayList.add(setEntityStartEnd(new TLRPC.TL_messageEntityBold(), spanStart, spanEnd));
+                        TLRPC.TL_messageEntityBold tL_messageEntityBold = new TLRPC.TL_messageEntityBold();
+                        tL_messageEntityBold.offset = spanStart;
+                        tL_messageEntityBold.length = spanEnd - spanStart;
+                        arrayList.add(tL_messageEntityBold);
                     }
                     if ((style & 2) > 0) {
-                        arrayList.add(setEntityStartEnd(new TLRPC.TL_messageEntityItalic(), spanStart, spanEnd));
+                        TLRPC.TL_messageEntityItalic tL_messageEntityItalic = new TLRPC.TL_messageEntityItalic();
+                        tL_messageEntityItalic.offset = spanStart;
+                        tL_messageEntityItalic.length = spanEnd - spanStart;
+                        arrayList.add(tL_messageEntityItalic);
                     }
                 } else if (obj instanceof UnderlineSpan) {
-                    arrayList.add(setEntityStartEnd(new TLRPC.TL_messageEntityUnderline(), spanStart, spanEnd));
+                    TLRPC.TL_messageEntityUnderline tL_messageEntityUnderline = new TLRPC.TL_messageEntityUnderline();
+                    tL_messageEntityUnderline.offset = spanStart;
+                    tL_messageEntityUnderline.length = spanEnd - spanStart;
+                    arrayList.add(tL_messageEntityUnderline);
                 } else if (obj instanceof StrikethroughSpan) {
-                    arrayList.add(setEntityStartEnd(new TLRPC.TL_messageEntityStrike(), spanStart, spanEnd));
+                    TLRPC.TL_messageEntityStrike tL_messageEntityStrike = new TLRPC.TL_messageEntityStrike();
+                    tL_messageEntityStrike.offset = spanStart;
+                    tL_messageEntityStrike.length = spanEnd - spanStart;
+                    arrayList.add(tL_messageEntityStrike);
                 } else if (obj instanceof ParsedSpan) {
                     ParsedSpan parsedSpan = (ParsedSpan) obj;
                     int i = parsedSpan.type;
                     if (i == 0) {
-                        arrayList.add(setEntityStartEnd(new TLRPC.TL_messageEntitySpoiler(), spanStart, spanEnd));
+                        TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = new TLRPC.TL_messageEntitySpoiler();
+                        tL_messageEntitySpoiler.offset = spanStart;
+                        tL_messageEntitySpoiler.length = spanEnd - spanStart;
+                        arrayList.add(tL_messageEntitySpoiler);
                     } else if (i == 1) {
-                        if (!TextUtils.isEmpty(parsedSpan.lng)) {
-                            arrayList2.add(parsedSpan);
+                        if (TextUtils.isEmpty(parsedSpan.lng)) {
+                            TLRPC.TL_messageEntityPre tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
+                            tL_messageEntityPre.offset = spanStart;
+                            tL_messageEntityPre.length = spanEnd - spanStart;
+                            arrayList.add(tL_messageEntityPre);
                         } else {
-                            arrayList.add(setEntityStartEnd(new TLRPC.TL_messageEntityPre(), spanStart, spanEnd));
+                            arrayList2.add(parsedSpan);
                         }
                     } else if (i == 2 || i == 3) {
                         arrayList3.add(parsedSpan);
@@ -72,7 +188,9 @@ public abstract class CopyUtilities {
                     AnimatedEmojiSpan animatedEmojiSpan = (AnimatedEmojiSpan) obj;
                     tL_messageEntityCustomEmoji.document_id = animatedEmojiSpan.documentId;
                     tL_messageEntityCustomEmoji.document = animatedEmojiSpan.document;
-                    arrayList.add(setEntityStartEnd(tL_messageEntityCustomEmoji, spanStart, spanEnd));
+                    tL_messageEntityCustomEmoji.offset = spanStart;
+                    tL_messageEntityCustomEmoji.length = spanEnd - spanStart;
+                    arrayList.add(tL_messageEntityCustomEmoji);
                 }
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(spannedFromHtml.toString());
@@ -86,7 +204,7 @@ public abstract class CopyUtilities {
                     if (string.equals(url)) {
                         spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
-                        spannableStringBuilder.setSpan(new URLSpanReplacement(url), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new URLSpanReplacement(url, null), spanStart2, spanEnd2, 33);
                     }
                 }
             }
@@ -108,266 +226,17 @@ public abstract class CopyUtilities {
         }
     }
 
-    private static TLRPC.MessageEntity setEntityStartEnd(TLRPC.MessageEntity messageEntity, int i, int i2) {
-        messageEntity.offset = i;
-        messageEntity.length = i2 - i;
-        return messageEntity;
-    }
+    public final class ParsedSpan {
+        public final String lng;
+        public final int type;
 
-    public static class HTMLTagAttributesHandler implements Html.TagHandler, ContentHandler {
-        private final TagHandler handler;
-        private ArrayDeque tagStatus;
-        private Editable text;
-        private ContentHandler wrapped;
-
-        public interface TagHandler {
-            boolean handleTag(boolean z, String str, Editable editable, Attributes attributes);
-        }
-
-        public static String getValue(Attributes attributes, String str) {
-            int length = attributes.getLength();
-            for (int i = 0; i < length; i++) {
-                if (str.equals(attributes.getLocalName(i))) {
-                    return attributes.getValue(i);
-                }
-            }
-            return null;
-        }
-
-        private HTMLTagAttributesHandler(TagHandler tagHandler) {
-            this.tagStatus = new ArrayDeque();
-            this.handler = tagHandler;
-        }
-
-        @Override
-        public void handleTag(boolean z, String str, Editable editable, XMLReader xMLReader) {
-            if (this.wrapped == null) {
-                this.text = editable;
-                this.wrapped = xMLReader.getContentHandler();
-                xMLReader.setContentHandler(this);
-                this.tagStatus.addLast(Boolean.FALSE);
-            }
-        }
-
-        @Override
-        public void startElement(String str, String str2, String str3, Attributes attributes) throws SAXException {
-            boolean zHandleTag = this.handler.handleTag(true, str2, this.text, attributes);
-            this.tagStatus.addLast(Boolean.valueOf(zHandleTag));
-            if (zHandleTag) {
-                return;
-            }
-            this.wrapped.startElement(str, str2, str3, attributes);
-        }
-
-        @Override
-        public void endElement(String str, String str2, String str3) throws SAXException {
-            if (!((Boolean) this.tagStatus.removeLast()).booleanValue()) {
-                this.wrapped.endElement(str, str2, str3);
-            }
-            this.handler.handleTag(false, str2, this.text, null);
-        }
-
-        @Override
-        public void setDocumentLocator(Locator locator) {
-            this.wrapped.setDocumentLocator(locator);
-        }
-
-        @Override
-        public void startDocument() throws SAXException {
-            this.wrapped.startDocument();
-        }
-
-        @Override
-        public void endDocument() throws SAXException {
-            this.wrapped.endDocument();
-        }
-
-        @Override
-        public void startPrefixMapping(String str, String str2) throws SAXException {
-            this.wrapped.startPrefixMapping(str, str2);
-        }
-
-        @Override
-        public void endPrefixMapping(String str) throws SAXException {
-            this.wrapped.endPrefixMapping(str);
-        }
-
-        @Override
-        public void characters(char[] cArr, int i, int i2) throws SAXException {
-            this.wrapped.characters(cArr, i, i2);
-        }
-
-        @Override
-        public void ignorableWhitespace(char[] cArr, int i, int i2) throws SAXException {
-            this.wrapped.ignorableWhitespace(cArr, i, i2);
-        }
-
-        @Override
-        public void processingInstruction(String str, String str2) throws SAXException {
-            this.wrapped.processingInstruction(str, str2);
-        }
-
-        @Override
-        public void skippedEntity(String str) throws SAXException {
-            this.wrapped.skippedEntity(str);
-        }
-    }
-
-    private static class HTMLTagHandler implements HTMLTagAttributesHandler.TagHandler {
-        private HTMLTagHandler() {
-        }
-
-        @Override
-        public boolean handleTag(boolean z, String str, Editable editable, Attributes attributes) {
-            int i = 0;
-            int i2 = 1;
-            if (str.startsWith("animated-emoji")) {
-                if (z) {
-                    String value = HTMLTagAttributesHandler.getValue(attributes, "data-document-id");
-                    if (value != null) {
-                        editable.setSpan(new AnimatedEmojiSpan(Long.parseLong(value), (Paint.FontMetricsInt) null), editable.length(), editable.length(), 17);
-                        return true;
-                    }
-                } else {
-                    AnimatedEmojiSpan animatedEmojiSpan = (AnimatedEmojiSpan) getLast(editable, AnimatedEmojiSpan.class);
-                    if (animatedEmojiSpan != null) {
-                        int spanStart = editable.getSpanStart(animatedEmojiSpan);
-                        editable.removeSpan(animatedEmojiSpan);
-                        if (spanStart != editable.length()) {
-                            editable.setSpan(animatedEmojiSpan, spanStart, editable.length(), 33);
-                        }
-                        return true;
-                    }
-                }
-            } else if (str.equals("spoiler")) {
-                if (z) {
-                    editable.setSpan(new ParsedSpan(i), editable.length(), editable.length(), 17);
-                    return true;
-                }
-                ParsedSpan last = getLast(editable, ParsedSpan.class, 0);
-                if (last != null) {
-                    int spanStart2 = editable.getSpanStart(last);
-                    editable.removeSpan(last);
-                    if (spanStart2 != editable.length()) {
-                        editable.setSpan(last, spanStart2, editable.length(), 33);
-                    }
-                    return true;
-                }
-            } else if (!str.equals("pre")) {
-                int i3 = 3;
-                if (str.equals("blockquote")) {
-                    if (z) {
-                        String value2 = HTMLTagAttributesHandler.getValue(attributes, "class");
-                        if (HTMLTagAttributesHandler.getValue(attributes, "data-collapsed") != null || (value2 != null && value2.contains("telegram-collapsed-quote"))) {
-                            i = 1;
-                        }
-                        editable.setSpan(new ParsedSpan(i == 0 ? 2 : 3), editable.length(), editable.length(), 17);
-                        return true;
-                    }
-                    ParsedSpan lastQuote = getLastQuote(editable);
-                    if (lastQuote != null) {
-                        int spanStart3 = editable.getSpanStart(lastQuote);
-                        editable.removeSpan(lastQuote);
-                        if (spanStart3 != editable.length()) {
-                            editable.setSpan(lastQuote, spanStart3, editable.length(), 33);
-                        }
-                        return true;
-                    }
-                } else if (str.equals("details")) {
-                    if (z) {
-                        editable.setSpan(new ParsedSpan(i3), editable.length(), editable.length(), 17);
-                        return true;
-                    }
-                    ParsedSpan last2 = getLast(editable, ParsedSpan.class, 3);
-                    if (last2 != null) {
-                        int spanStart4 = editable.getSpanStart(last2);
-                        editable.removeSpan(last2);
-                        if (spanStart4 != editable.length()) {
-                            editable.setSpan(last2, spanStart4, editable.length(), 33);
-                        }
-                        return true;
-                    }
-                }
-            } else {
-                if (z) {
-                    String value3 = HTMLTagAttributesHandler.getValue(attributes, "language");
-                    if (value3 == null) {
-                        value3 = HTMLTagAttributesHandler.getValue(attributes, "lang");
-                    }
-                    if (value3 == null) {
-                        value3 = HTMLTagAttributesHandler.getValue(attributes, "lng");
-                    }
-                    editable.setSpan(new ParsedSpan(i2, value3), editable.length(), editable.length(), 17);
-                    return true;
-                }
-                ParsedSpan last3 = getLast(editable, ParsedSpan.class, 1);
-                if (last3 != null) {
-                    int spanStart5 = editable.getSpanStart(last3);
-                    editable.removeSpan(last3);
-                    if (spanStart5 != editable.length()) {
-                        editable.setSpan(last3, spanStart5, editable.length(), 33);
-                    }
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private ParsedSpan getLastQuote(Editable editable) {
-            int i;
-            ParsedSpan[] parsedSpanArr = (ParsedSpan[]) editable.getSpans(0, editable.length(), ParsedSpan.class);
-            for (int length = parsedSpanArr.length - 1; length >= 0; length--) {
-                ParsedSpan parsedSpan = parsedSpanArr[length];
-                if (editable.getSpanFlags(parsedSpan) == 17 && ((i = parsedSpan.type) == 2 || i == 3)) {
-                    return parsedSpan;
-                }
-            }
-            return null;
-        }
-
-        private Object getLast(Editable editable, Class cls) {
-            Object[] spans = editable.getSpans(0, editable.length(), cls);
-            if (spans.length == 0) {
-                return null;
-            }
-            for (int length = spans.length; length > 0; length--) {
-                int i = length - 1;
-                if (editable.getSpanFlags(spans[i]) == 17) {
-                    return spans[i];
-                }
-            }
-            return null;
-        }
-
-        private ParsedSpan getLast(Editable editable, Class cls, int i) {
-            ParsedSpan[] parsedSpanArr = (ParsedSpan[]) editable.getSpans(0, editable.length(), cls);
-            if (parsedSpanArr.length == 0) {
-                return null;
-            }
-            for (int length = parsedSpanArr.length; length > 0; length--) {
-                int i2 = length - 1;
-                if (editable.getSpanFlags(parsedSpanArr[i2]) == 17) {
-                    ParsedSpan parsedSpan = parsedSpanArr[i2];
-                    if (parsedSpan.type == i) {
-                        return parsedSpan;
-                    }
-                }
-            }
-            return null;
-        }
-    }
-
-    private static class ParsedSpan {
-        final String lng;
-        final int type;
-
-        private ParsedSpan(int i) {
+        public ParsedSpan(int i) {
             this.type = i;
             this.lng = null;
         }
 
-        private ParsedSpan(int i, String str) {
-            this.type = i;
+        public ParsedSpan(String str) {
+            this.type = 1;
             this.lng = str;
         }
     }

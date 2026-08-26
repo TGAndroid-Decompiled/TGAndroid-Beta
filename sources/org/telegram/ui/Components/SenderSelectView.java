@@ -1,15 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import androidx.dynamicanimation.animation.DynamicAnimation;
-import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
@@ -20,77 +16,81 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.CameraScanActivity$$ExternalSyntheticLambda14;
+import org.telegram.ui.Cells.BaseCell;
 
-public class SenderSelectView extends View {
-    private static final FloatPropertyCompat MENU_PROGRESS = new SimpleFloatPropertyCompat("menuProgress", new SimpleFloatPropertyCompat.Getter() {
-        @Override
-        public final float get(Object obj) {
-            return ((SenderSelectView) obj).menuProgress;
-        }
-    }, new SimpleFloatPropertyCompat.Setter() {
-        @Override
-        public final void set(Object obj, float f) {
-            SenderSelectView.m2749$r8$lambda$K0kIe8gi8ce3Pl7QoAyAgwuavA((SenderSelectView) obj, f);
-        }
-    }).setMultiplier(100.0f);
-    private AvatarDrawable avatarDrawable;
-    private ImageReceiver avatarImage;
-    private Paint backgroundPaint;
-    private ValueAnimator menuAnimator;
-    private Paint menuPaint;
-    private float menuProgress;
-    private SpringAnimation menuSpring;
-    private boolean scaleIn;
-    private boolean scaleOut;
-    private Drawable selectorDrawable;
+public final class SenderSelectView extends View {
+    public static final SimpleFloatPropertyCompat MENU_PROGRESS;
+    public final AvatarDrawable avatarDrawable;
+    public final ImageReceiver avatarImage;
+    public final Paint backgroundPaint;
+    public ValueAnimator menuAnimator;
+    public final Paint menuPaint;
+    public float menuProgress;
+    public SpringAnimation menuSpring;
+    public boolean scaleIn;
+    public boolean scaleOut;
+    public final BaseCell.RippleDrawableSafe selectorDrawable;
 
-    public static void m2749$r8$lambda$K0kIe8gi8ce3Pl7QoAyAgwuavA(SenderSelectView senderSelectView, float f) {
-        senderSelectView.menuProgress = f;
-        senderSelectView.invalidate();
+    static {
+        SimpleFloatPropertyCompat simpleFloatPropertyCompat = new SimpleFloatPropertyCompat(new ShareAlert$$ExternalSyntheticLambda15(28), new ShareAlert$$ExternalSyntheticLambda15(29));
+        simpleFloatPropertyCompat.multiplier = 100.0f;
+        MENU_PROGRESS = simpleFloatPropertyCompat;
     }
 
     public SenderSelectView(Context context) {
         super(context);
-        this.avatarImage = new ImageReceiver(this);
-        this.avatarDrawable = new AvatarDrawable();
-        this.backgroundPaint = new Paint(1);
-        this.menuPaint = new Paint(1);
-        this.avatarImage.setRoundRadius(AndroidUtilities.dp(28.0f));
-        this.menuPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.menuPaint.setStrokeCap(Paint.Cap.ROUND);
-        this.menuPaint.setStyle(Paint.Style.STROKE);
-        updateColors();
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.avatarImage = imageReceiver;
+        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        Paint paint = new Paint(1);
+        this.backgroundPaint = paint;
+        Paint paint2 = new Paint(1);
+        this.menuPaint = paint2;
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(28.0f));
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint2.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setStyle(Paint.Style.STROKE);
+        paint.setColor(Theme.getColor(null, Theme.key_chat_messagePanelVoiceBackground, false));
+        paint2.setColor(Theme.getColor(null, Theme.key_chat_messagePanelVoicePressed, false));
+        int iDp = AndroidUtilities.dp(18.0f);
+        int iMultAlpha = Theme.multAlpha(0.2f, Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+        BaseCell.RippleDrawableSafe rippleDrawableSafeCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, 0, iMultAlpha, iMultAlpha);
+        this.selectorDrawable = rippleDrawableSafeCreateSimpleSelectorRoundRectDrawable;
+        rippleDrawableSafeCreateSimpleSelectorRoundRectDrawable.setCallback(this);
         setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, ""));
     }
 
-    private void updateColors() {
-        this.backgroundPaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground));
-        this.menuPaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoicePressed));
-        Drawable drawableCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(18.0f), 0, Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite), 0.2f));
-        this.selectorDrawable = drawableCreateSimpleSelectorRoundRectDrawable;
-        drawableCreateSimpleSelectorRoundRectDrawable.setCallback(this);
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        this.selectorDrawable.setState(getDrawableState());
+    }
+
+    public float getProgress() {
+        return this.menuProgress;
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        this.selectorDrawable.jumpToCurrentState();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.avatarImage.onAttachedToWindow();
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.avatarImage.onDetachedFromWindow();
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getLayoutParams().width, 1073741824), View.MeasureSpec.makeMeasureSpec(getLayoutParams().height, 1073741824));
-        this.avatarImage.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         canvas.save();
         float f = 1.0f;
         if (this.scaleOut) {
@@ -102,17 +102,28 @@ public class SenderSelectView extends View {
         super.onDraw(canvas);
         this.avatarImage.draw(canvas);
         int i = (int) (this.menuProgress * 255.0f);
-        this.backgroundPaint.setAlpha(i);
-        canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth(), getHeight()) / 2.0f, this.backgroundPaint);
+        Paint paint = this.backgroundPaint;
+        paint.setAlpha(i);
+        canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth(), getHeight()) / 2.0f, paint);
         canvas.save();
-        this.menuPaint.setAlpha(i);
-        float fDp = AndroidUtilities.dp(10.0f) + this.menuPaint.getStrokeWidth();
-        canvas.drawLine(fDp, fDp, getWidth() - fDp, getHeight() - fDp, this.menuPaint);
-        canvas.drawLine(fDp, getHeight() - fDp, getWidth() - fDp, fDp, this.menuPaint);
+        Paint paint2 = this.menuPaint;
+        paint2.setAlpha(i);
+        float strokeWidth = paint2.getStrokeWidth() + AndroidUtilities.dp(10.0f);
+        canvas.drawLine(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth, paint2);
+        canvas.drawLine(strokeWidth, getHeight() - strokeWidth, getWidth() - strokeWidth, strokeWidth, paint2);
         canvas.restore();
-        this.selectorDrawable.setBounds(0, 0, getWidth(), getHeight());
-        this.selectorDrawable.draw(canvas);
+        int width = getWidth();
+        int height = getHeight();
+        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.selectorDrawable;
+        rippleDrawableSafe.setBounds(0, 0, width, height);
+        rippleDrawableSafe.draw(canvas);
         canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getLayoutParams().width, 1073741824), View.MeasureSpec.makeMeasureSpec(getLayoutParams().height, 1073741824));
+        this.avatarImage.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
     }
 
     public void setAvatar(TLObject tLObject) {
@@ -121,132 +132,66 @@ public class SenderSelectView extends View {
             firstName = UserObject.getFirstName((TLRPC.User) tLObject);
         } else if (tLObject instanceof TLRPC.Chat) {
             firstName = ((TLRPC.Chat) tLObject).title;
-        } else if (!(tLObject instanceof TLRPC.ChatInvite)) {
-            firstName = "";
         } else {
-            firstName = ((TLRPC.ChatInvite) tLObject).title;
+            firstName = tLObject instanceof TLRPC.ChatInvite ? ((TLRPC.ChatInvite) tLObject).title : "";
         }
         setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, firstName));
-        this.avatarDrawable.setInfo(tLObject);
-        this.avatarImage.setForUserOrChat(tLObject, this.avatarDrawable);
+        AvatarDrawable avatarDrawable = this.avatarDrawable;
+        avatarDrawable.setInfo(tLObject);
+        this.avatarImage.setForUserOrChat(tLObject, avatarDrawable);
     }
 
     public void setProgress(float f) {
-        setProgress(f, true);
-    }
-
-    public void setProgress(float f, boolean z) {
-        setProgress(f, z, f != 0.0f);
-    }
-
-    public void setProgress(float f, boolean z, boolean z2) {
-        if (z) {
-            SpringAnimation springAnimation = this.menuSpring;
-            if (springAnimation != null) {
-                springAnimation.cancel();
-            }
-            ValueAnimator valueAnimator = this.menuAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.scaleIn = false;
-            this.scaleOut = false;
-            if (z2) {
-                final float f2 = this.menuProgress * 100.0f;
-                SpringAnimation springAnimation2 = (SpringAnimation) new SpringAnimation(this, MENU_PROGRESS).setStartValue(f2);
-                this.menuSpring = springAnimation2;
-                final boolean z3 = f < this.menuProgress;
-                final float f3 = f * 100.0f;
-                this.scaleIn = z3;
-                this.scaleOut = !z3;
-                springAnimation2.setSpring(new SpringForce(f3).setFinalPosition(f3).setStiffness(450.0f).setDampingRatio(1.0f));
-                this.menuSpring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f4, float f5) {
-                        SenderSelectView.$r8$lambda$tvKHM2Ks8u9CXao3tOmjK89FcF4(this.f$0, z3, f2, f3, dynamicAnimation, f4, f5);
-                    }
-                });
-                this.menuSpring.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
-                    @Override
-                    public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z4, float f4, float f5) {
-                        SenderSelectView.$r8$lambda$139Yq8ZuUy7Lp93hTzCnjcroZ7A(this.f$0, dynamicAnimation, z4, f4, f5);
-                    }
-                });
-                this.menuSpring.start();
-                return;
-            }
-            ValueAnimator duration = ValueAnimator.ofFloat(this.menuProgress, f).setDuration(200L);
-            this.menuAnimator = duration;
-            duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            this.menuAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    SenderSelectView.$r8$lambda$yWkUVg07clSnF4EpobV2H0D4FKU(this.f$0, valueAnimator2);
-                }
-            });
-            this.menuAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (animator == SenderSelectView.this.menuAnimator) {
-                        SenderSelectView.this.menuAnimator = null;
-                    }
-                }
-            });
-            this.menuAnimator.start();
-            return;
-        }
-        this.menuProgress = f;
-        invalidate();
-    }
-
-    public static void $r8$lambda$tvKHM2Ks8u9CXao3tOmjK89FcF4(SenderSelectView senderSelectView, boolean z, float f, float f2, DynamicAnimation dynamicAnimation, float f3, float f4) {
-        senderSelectView.getClass();
-        if (z) {
-            if (f3 > f / 2.0f || !senderSelectView.scaleIn) {
-                return;
-            }
-        } else if (f3 < f2 / 2.0f || !senderSelectView.scaleOut) {
-            return;
-        }
-        senderSelectView.scaleIn = !z;
-        senderSelectView.scaleOut = z;
-    }
-
-    public static void $r8$lambda$139Yq8ZuUy7Lp93hTzCnjcroZ7A(SenderSelectView senderSelectView, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-        senderSelectView.scaleIn = false;
-        senderSelectView.scaleOut = false;
-        if (!z) {
-            dynamicAnimation.cancel();
-        }
-        if (dynamicAnimation == senderSelectView.menuSpring) {
-            senderSelectView.menuSpring = null;
-        }
-    }
-
-    public static void $r8$lambda$yWkUVg07clSnF4EpobV2H0D4FKU(SenderSelectView senderSelectView, ValueAnimator valueAnimator) {
-        senderSelectView.getClass();
-        senderSelectView.menuProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        senderSelectView.invalidate();
-    }
-
-    public float getProgress() {
-        return this.menuProgress;
+        setProgress(true, f != 0.0f, f);
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable drawable) {
+    public final boolean verifyDrawable(Drawable drawable) {
         return super.verifyDrawable(drawable) || this.selectorDrawable == drawable;
     }
 
-    @Override
-    protected void drawableStateChanged() {
-        super.drawableStateChanged();
-        this.selectorDrawable.setState(getDrawableState());
-    }
-
-    @Override
-    public void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        this.selectorDrawable.jumpToCurrentState();
+    public final void setProgress(boolean z, boolean z2, float f) {
+        int i = 2;
+        if (!z) {
+            this.menuProgress = f;
+            invalidate();
+            return;
+        }
+        SpringAnimation springAnimation = this.menuSpring;
+        if (springAnimation != null) {
+            springAnimation.cancel();
+        }
+        ValueAnimator valueAnimator = this.menuAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        this.scaleIn = false;
+        this.scaleOut = false;
+        if (!z2) {
+            ValueAnimator duration = ValueAnimator.ofFloat(this.menuProgress, f).setDuration(200L);
+            this.menuAnimator = duration;
+            duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            this.menuAnimator.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 15));
+            this.menuAnimator.addListener(new Tooltip.AnonymousClass1(this, i));
+            this.menuAnimator.start();
+            return;
+        }
+        float f2 = this.menuProgress * 100.0f;
+        SpringAnimation springAnimation2 = new SpringAnimation(this, MENU_PROGRESS);
+        springAnimation2.mValue = f2;
+        springAnimation2.mStartValueIsSet = true;
+        this.menuSpring = springAnimation2;
+        boolean z3 = f < this.menuProgress;
+        float f3 = f * 100.0f;
+        this.scaleIn = z3;
+        this.scaleOut = !z3;
+        SpringForce springForce = new SpringForce(f3);
+        springForce.mFinalPosition = f3;
+        springForce.setStiffness(450.0f);
+        springForce.setDampingRatio(1.0f);
+        springAnimation2.mSpring = springForce;
+        this.menuSpring.addUpdateListener(new ChatAttachAlert$$ExternalSyntheticLambda50(this, z3, f2, f3));
+        this.menuSpring.addEndListener(new CameraScanActivity$$ExternalSyntheticLambda14(this, 5));
+        this.menuSpring.start();
     }
 }

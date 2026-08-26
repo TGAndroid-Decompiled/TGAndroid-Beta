@@ -1,23 +1,28 @@
 package kotlinx.coroutines.internal;
 
+import com.google.android.gms.internal.mlkit_vision_common.zzjj;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.intrinsics.IntrinsicsKt;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
 import kotlinx.coroutines.AbstractCoroutine;
-import kotlinx.coroutines.CompletionStateKt;
+import kotlinx.coroutines.JobKt;
 
 public class ScopeCoroutine extends AbstractCoroutine implements CoroutineStackFrame {
     public final Continuation uCont;
 
-    @Override
-    protected final boolean isScopedCoroutine() {
-        return true;
+    public ScopeCoroutine(Continuation continuation, CoroutineContext coroutineContext) {
+        super(coroutineContext, true);
+        this.uCont = continuation;
     }
 
-    public ScopeCoroutine(CoroutineContext coroutineContext, Continuation continuation) {
-        super(coroutineContext, true, true);
-        this.uCont = continuation;
+    @Override
+    public void afterCompletion(Object obj) {
+        AtomicKt.resumeCancellableWith(JobKt.recoverResult(obj), zzjj.intercepted(this.uCont));
+    }
+
+    @Override
+    public void afterResume(Object obj) {
+        this.uCont.resumeWith(JobKt.recoverResult(obj));
     }
 
     @Override
@@ -30,13 +35,7 @@ public class ScopeCoroutine extends AbstractCoroutine implements CoroutineStackF
     }
 
     @Override
-    protected void afterCompletion(Object obj) {
-        DispatchedContinuationKt.resumeCancellableWith$default(IntrinsicsKt.intercepted(this.uCont), CompletionStateKt.recoverResult(obj, this.uCont), null, 2, null);
-    }
-
-    @Override
-    protected void afterResume(Object obj) {
-        Continuation continuation = this.uCont;
-        continuation.resumeWith(CompletionStateKt.recoverResult(obj, continuation));
+    public final boolean isScopedCoroutine() {
+        return true;
     }
 }

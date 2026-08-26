@@ -1,5 +1,6 @@
 package kotlin.jvm.internal;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import kotlin.Function;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -7,46 +8,28 @@ import kotlin.jvm.functions.Function2;
 import kotlin.jvm.functions.Function3;
 
 public abstract class TypeIntrinsics {
-    private static Throwable sanitizeStackTrace(Throwable th) {
-        return Intrinsics.sanitizeStackTrace(th, TypeIntrinsics.class.getName());
-    }
-
-    public static void throwCce(Object obj, String str) {
-        throwCce((obj == null ? "null" : obj.getClass().getName()) + " cannot be cast to " + str);
-    }
-
-    public static void throwCce(String str) {
-        throw throwCce(new ClassCastException(str));
-    }
-
-    public static ClassCastException throwCce(ClassCastException classCastException) {
-        throw ((ClassCastException) sanitizeStackTrace(classCastException));
-    }
-
-    public static int getFunctionArity(Object obj) {
-        if (obj instanceof FunctionBase) {
-            return ((FunctionBase) obj).getArity();
+    public static void beforeCheckcastToFunctionOfArity(int i, Object obj) {
+        int arity;
+        if (obj != null) {
+            if (obj instanceof Function) {
+                if (obj instanceof FunctionBase) {
+                    arity = ((FunctionBase) obj).getArity();
+                } else if (obj instanceof Function0) {
+                    arity = 0;
+                } else if (obj instanceof Function1) {
+                    arity = 1;
+                } else if (obj instanceof Function2) {
+                    arity = 2;
+                } else {
+                    arity = obj instanceof Function3 ? 3 : -1;
+                }
+                if (arity == i) {
+                    return;
+                }
+            }
+            ClassCastException classCastException = new ClassCastException(SurfaceContainer$$ExternalSyntheticOutline0.m$1(obj.getClass().getName(), " cannot be cast to ", SurfaceContainer$$ExternalSyntheticOutline0.m(i, "kotlin.jvm.functions.Function")));
+            Intrinsics.sanitizeStackTrace(classCastException, TypeIntrinsics.class.getName());
+            throw classCastException;
         }
-        if (obj instanceof Function0) {
-            return 0;
-        }
-        if (obj instanceof Function1) {
-            return 1;
-        }
-        if (obj instanceof Function2) {
-            return 2;
-        }
-        return obj instanceof Function3 ? 3 : -1;
-    }
-
-    public static boolean isFunctionOfArity(Object obj, int i) {
-        return (obj instanceof Function) && getFunctionArity(obj) == i;
-    }
-
-    public static Object beforeCheckcastToFunctionOfArity(Object obj, int i) {
-        if (obj != null && !isFunctionOfArity(obj, i)) {
-            throwCce(obj, "kotlin.jvm.functions.Function" + i);
-        }
-        return obj;
     }
 }

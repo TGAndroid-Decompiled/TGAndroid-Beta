@@ -1,32 +1,49 @@
 package org.telegram.messenger;
 
 import android.util.SparseArray;
+import androidx.recyclerview.widget.DiffUtil;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Set;
 
 public class AutoDeleteMediaTask {
     public static Set<String> usingFilePaths = Collections.newSetFromMap(new ConcurrentHashMap());
 
-    public static void run() {
-        final int iCurrentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-        if (Math.abs(iCurrentTimeMillis - SharedConfig.lastKeepMediaCheckTime) < 86400) {
-            return;
+    public static class FileInfoInternal extends CacheByChatsController.KeepMediaFile {
+        final long lastUsageDate;
+
+        private FileInfoInternal(File file) {
+            super(file);
+            this.lastUsageDate = Utilities.getLastUsageFileTime(file.getAbsolutePath());
         }
-        SharedConfig.lastKeepMediaCheckTime = iCurrentTimeMillis;
-        final File fileCheckDirectory = FileLoader.checkDirectory(4);
-        Utilities.cacheClearQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                AutoDeleteMediaTask.$r8$lambda$ap5ZJdebehBgIX4zKtBVK_9N3_k(iCurrentTimeMillis, fileCheckDirectory);
-            }
-        });
     }
 
-    public static void $r8$lambda$ap5ZJdebehBgIX4zKtBVK_9N3_k(int i, File file) {
+    private static void fillFilesRecursive(File file, ArrayList<FileInfoInternal> arrayList) {
+        File[] fileArrListFiles;
+        if (file == null || (fileArrListFiles = file.listFiles()) == null) {
+            return;
+        }
+        for (File file2 : fileArrListFiles) {
+            if (file2.isDirectory()) {
+                fillFilesRecursive(file2, arrayList);
+            } else if (!file2.getName().equals(".nomedia") && !usingFilePaths.contains(file2.getAbsolutePath())) {
+                arrayList.add(new FileInfoInternal(file2));
+            }
+        }
+    }
+
+    public static int lambda$run$0(FileInfoInternal fileInfoInternal, FileInfoInternal fileInfoInternal2) {
+        long j = fileInfoInternal2.lastUsageDate;
+        long j2 = fileInfoInternal.lastUsageDate;
+        if (j > j2) {
+            return -1;
+        }
+        return j < j2 ? 1 : 0;
+    }
+
+    public static void lambda$run$1(int i, File file) {
         int i2;
         int i3;
         long j;
@@ -47,8 +64,8 @@ public class AutoDeleteMediaTask {
         int i7 = 0;
         boolean z = false;
         while (true) {
-            i2 = 1;
-            i3 = 4;
+            i2 = 4;
+            i3 = 1;
             if (i7 >= 4) {
                 break;
             }
@@ -65,7 +82,7 @@ public class AutoDeleteMediaTask {
         long j4 = Long.MAX_VALUE;
         boolean z2 = true;
         for (int i8 = 0; i8 < 4; i8++) {
-            int i9 = SharedConfig.getPreferences().getInt("keep_media_type_" + i8, CacheByChatsController.getDefault(i8));
+            int i9 = SharedConfig.getPreferences().getInt(DiffUtil.m(i8, "keep_media_type_"), CacheByChatsController.getDefault(i8));
             iArr[i8] = i9;
             if (i9 != CacheByChatsController.KEEP_MEDIA_FOREVER) {
                 z2 = false;
@@ -83,10 +100,10 @@ public class AutoDeleteMediaTask {
         int i11 = 0;
         long length = 0;
         while (i11 < sparseArrayCreateMediaPaths.size()) {
-            if (z2 && (sparseArrayCreateMediaPaths.keyAt(i11) == i2 || sparseArrayCreateMediaPaths.keyAt(i11) == 3)) {
+            if (z2 && (sparseArrayCreateMediaPaths.keyAt(i11) == i3 || sparseArrayCreateMediaPaths.keyAt(i11) == 3)) {
                 j2 = jCurrentTimeMillis;
             } else {
-                boolean z3 = sparseArrayCreateMediaPaths.keyAt(i11) == i3;
+                boolean z3 = sparseArrayCreateMediaPaths.keyAt(i11) == i2;
                 try {
                     File[] fileArrListFiles = sparseArrayCreateMediaPaths.valueAt(i11).listFiles();
                     ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList3 = new ArrayList<>();
@@ -165,8 +182,8 @@ public class AutoDeleteMediaTask {
                             FileLog.e(th);
                             i11++;
                             jCurrentTimeMillis = j2;
-                            i2 = 1;
-                            i3 = 4;
+                            i2 = 4;
+                            i3 = 1;
                         }
                         j3 = ((long) i) - daysInSeconds2;
                     }
@@ -178,8 +195,8 @@ public class AutoDeleteMediaTask {
             }
             i11++;
             jCurrentTimeMillis = j2;
-            i2 = 1;
-            i3 = 4;
+            i2 = 4;
+            i3 = 1;
         }
         long j5 = jCurrentTimeMillis;
         int i17 = SharedConfig.getPreferences().getInt("cache_limit", Integer.MAX_VALUE);
@@ -201,12 +218,7 @@ public class AutoDeleteMediaTask {
                 for (int i20 = 0; i20 < arrayList2.size(); i20++) {
                     ((CacheByChatsController) arrayList2.get(i20)).lookupFiles(arrayList4);
                 }
-                Collections.sort(arrayList4, new Comparator() {
-                    @Override
-                    public final int compare(Object obj, Object obj2) {
-                        return AutoDeleteMediaTask.$r8$lambda$8dg4GbivFh1IfgXiPENigECyG2w((AutoDeleteMediaTask.FileInfoInternal) obj, (AutoDeleteMediaTask.FileInfoInternal) obj2);
-                    }
-                });
+                Collections.sort(arrayList4, new Emoji$$ExternalSyntheticLambda0(2));
                 j = 0;
                 int i21 = 0;
                 i4 = 0;
@@ -250,43 +262,20 @@ public class AutoDeleteMediaTask {
         }
     }
 
-    public static int $r8$lambda$8dg4GbivFh1IfgXiPENigECyG2w(FileInfoInternal fileInfoInternal, FileInfoInternal fileInfoInternal2) {
-        long j = fileInfoInternal2.lastUsageDate;
-        long j2 = fileInfoInternal.lastUsageDate;
-        if (j > j2) {
-            return -1;
-        }
-        return j < j2 ? 1 : 0;
-    }
-
-    private static void fillFilesRecursive(File file, ArrayList<FileInfoInternal> arrayList) {
-        File[] fileArrListFiles;
-        if (file == null || (fileArrListFiles = file.listFiles()) == null) {
-            return;
-        }
-        for (File file2 : fileArrListFiles) {
-            if (file2.isDirectory()) {
-                fillFilesRecursive(file2, arrayList);
-            } else if (!file2.getName().equals(".nomedia") && !usingFilePaths.contains(file2.getAbsolutePath())) {
-                arrayList.add(new FileInfoInternal(file2));
-            }
-        }
-    }
-
-    static class FileInfoInternal extends CacheByChatsController.KeepMediaFile {
-        final long lastUsageDate;
-
-        private FileInfoInternal(File file) {
-            super(file);
-            this.lastUsageDate = Utilities.getLastUsageFileTime(file.getAbsolutePath());
-        }
-    }
-
     public static void lockFile(File file) {
         if (file == null) {
             return;
         }
         lockFile(file.getAbsolutePath());
+    }
+
+    public static void run() {
+        int iCurrentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+        if (Math.abs(iCurrentTimeMillis - SharedConfig.lastKeepMediaCheckTime) < 86400) {
+            return;
+        }
+        SharedConfig.lastKeepMediaCheckTime = iCurrentTimeMillis;
+        Utilities.cacheClearQueue.postRunnable(new Utilities$$ExternalSyntheticLambda0(iCurrentTimeMillis, FileLoader.checkDirectory(4), 5));
     }
 
     public static void unlockFile(File file) {

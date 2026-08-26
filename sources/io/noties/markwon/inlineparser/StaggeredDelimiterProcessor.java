@@ -2,37 +2,23 @@ package io.noties.markwon.inlineparser;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
+import org.commonmark.internal.Delimiter;
 import org.commonmark.node.Text;
 import org.commonmark.parser.delimiter.DelimiterProcessor;
-import org.commonmark.parser.delimiter.DelimiterRun;
 
-class StaggeredDelimiterProcessor implements DelimiterProcessor {
-    private final char delim;
-    private int minLength = 0;
-    private LinkedList processors = new LinkedList();
+public final class StaggeredDelimiterProcessor implements DelimiterProcessor {
+    public final char delim;
+    public int minLength = 0;
+    public final LinkedList processors = new LinkedList();
 
-    StaggeredDelimiterProcessor(char c) {
+    public StaggeredDelimiterProcessor(char c) {
         this.delim = c;
     }
 
-    @Override
-    public char getOpeningCharacter() {
-        return this.delim;
-    }
-
-    @Override
-    public char getClosingCharacter() {
-        return this.delim;
-    }
-
-    @Override
-    public int getMinLength() {
-        return this.minLength;
-    }
-
-    void add(DelimiterProcessor delimiterProcessor) {
+    public final void add(DelimiterProcessor delimiterProcessor) {
         int minLength = delimiterProcessor.getMinLength();
-        ListIterator listIterator = this.processors.listIterator();
+        LinkedList linkedList = this.processors;
+        ListIterator listIterator = linkedList.listIterator();
         while (listIterator.hasNext()) {
             int minLength2 = ((DelimiterProcessor) listIterator.next()).getMinLength();
             if (minLength > minLength2) {
@@ -43,26 +29,47 @@ class StaggeredDelimiterProcessor implements DelimiterProcessor {
                 throw new IllegalArgumentException("Cannot add two delimiter processors for char '" + this.delim + "' and minimum length " + minLength);
             }
         }
-        this.processors.add(delimiterProcessor);
+        linkedList.add(delimiterProcessor);
         this.minLength = minLength;
     }
 
-    private DelimiterProcessor findProcessor(int i) {
-        for (DelimiterProcessor delimiterProcessor : this.processors) {
+    @Override
+    public final char getClosingCharacter() {
+        return this.delim;
+    }
+
+    @Override
+    public final int getDelimiterUse(Delimiter delimiter, Delimiter delimiter2) {
+        int i = delimiter.length;
+        LinkedList<DelimiterProcessor> linkedList = this.processors;
+        for (DelimiterProcessor delimiterProcessor : linkedList) {
             if (delimiterProcessor.getMinLength() <= i) {
-                return delimiterProcessor;
+                return delimiterProcessor.getDelimiterUse(delimiter, delimiter2);
             }
         }
-        return (DelimiterProcessor) this.processors.getFirst();
+        delimiterProcessor = (DelimiterProcessor) linkedList.getFirst();
+        return delimiterProcessor.getDelimiterUse(delimiter, delimiter2);
     }
 
     @Override
-    public int getDelimiterUse(DelimiterRun delimiterRun, DelimiterRun delimiterRun2) {
-        return findProcessor(delimiterRun.length()).getDelimiterUse(delimiterRun, delimiterRun2);
+    public final int getMinLength() {
+        return this.minLength;
     }
 
     @Override
-    public void process(Text text, Text text2, int i) {
-        findProcessor(i).process(text, text2, i);
+    public final char getOpeningCharacter() {
+        return this.delim;
+    }
+
+    @Override
+    public final void process(Text text, Text text2, int i) {
+        LinkedList<DelimiterProcessor> linkedList = this.processors;
+        for (DelimiterProcessor delimiterProcessor : linkedList) {
+            if (delimiterProcessor.getMinLength() <= i) {
+                delimiterProcessor.process(text, text2, i);
+            }
+        }
+        delimiterProcessor = (DelimiterProcessor) linkedList.getFirst();
+        delimiterProcessor.process(text, text2, i);
     }
 }

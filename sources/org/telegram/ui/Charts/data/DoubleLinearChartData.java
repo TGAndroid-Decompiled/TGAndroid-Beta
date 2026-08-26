@@ -1,16 +1,10 @@
 package org.telegram.ui.Charts.data;
 
-import org.json.JSONObject;
-
-public class DoubleLinearChartData extends ChartData {
+public final class DoubleLinearChartData extends ChartData {
     public float[] linesK;
 
-    public DoubleLinearChartData(JSONObject jSONObject) {
-        super(jSONObject);
-    }
-
     @Override
-    protected void measure() {
+    public final void measure() {
         super.measure();
         int size = this.lines.size();
         long j = 0;

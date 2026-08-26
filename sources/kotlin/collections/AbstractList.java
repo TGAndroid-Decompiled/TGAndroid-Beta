@@ -1,250 +1,180 @@
 package kotlin.collections;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.RandomAccess;
-import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.ArrayIterator;
 import kotlin.jvm.internal.Intrinsics;
 
-public abstract class AbstractList extends AbstractCollection implements List {
-    public static final Companion Companion = new Companion(null);
+public abstract class AbstractList implements List, Collection {
 
-    @Override
-    public void add(int i, Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    public abstract class Companion {
+        public static void checkRangeIndexes$kotlin_stdlib(int i, int i2, int i3) {
+            if (i >= 0 && i2 <= i3) {
+                if (i > i2) {
+                    throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "fromIndex: ", " > toIndex: "));
+                }
+                return;
+            }
+            throw new IndexOutOfBoundsException("fromIndex: " + i + ", toIndex: " + i2 + ", size: " + i3);
+        }
     }
 
-    @Override
-    public boolean addAll(int i, Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    public final class ListIteratorImpl extends ArrayIterator implements ListIterator {
+        public ListIteratorImpl(int i) {
+            super(AbstractList.this);
+            int size = AbstractList.this.getSize();
+            if (i < 0 || i > size) {
+                throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, size, "index: ", ", size: "));
+            }
+            this.index = i;
+        }
+
+        @Override
+        public final void add(Object obj) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+
+        @Override
+        public final boolean hasPrevious() {
+            return this.index > 0;
+        }
+
+        @Override
+        public final int nextIndex() {
+            return this.index;
+        }
+
+        @Override
+        public final Object previous() {
+            if (!hasPrevious()) {
+                throw new NoSuchElementException();
+            }
+            int i = this.index - 1;
+            this.index = i;
+            return AbstractList.this.get(i);
+        }
+
+        @Override
+        public final int previousIndex() {
+            return this.index - 1;
+        }
+
+        @Override
+        public final void set(Object obj) {
+            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
     }
 
-    @Override
-    public abstract Object get(int i);
+    public final class SubList extends AbstractList implements RandomAccess {
+        public final int _size;
+        public final int fromIndex;
+        public final AbstractList list;
 
-    @Override
-    public Object remove(int i) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public Object set(int i, Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    protected AbstractList() {
-    }
-
-    @Override
-    public Iterator iterator() {
-        return new IteratorImpl();
-    }
-
-    @Override
-    public ListIterator listIterator() {
-        return new ListIteratorImpl(0);
-    }
-
-    @Override
-    public ListIterator listIterator(int i) {
-        return new ListIteratorImpl(i);
-    }
-
-    @Override
-    public List subList(int i, int i2) {
-        return new SubList(this, i, i2);
-    }
-
-    private static final class SubList extends AbstractList implements RandomAccess {
-        private int _size;
-        private final int fromIndex;
-        private final AbstractList list;
-
-        public SubList(AbstractList list, int i, int i2) {
-            Intrinsics.checkNotNullParameter(list, "list");
-            this.list = list;
+        public SubList(AbstractList abstractList, int i, int i2) {
+            this.list = abstractList;
             this.fromIndex = i;
-            AbstractList.Companion.checkRangeIndexes$kotlin_stdlib(i, i2, list.size());
+            Companion.checkRangeIndexes$kotlin_stdlib(i, i2, abstractList.getSize());
             this._size = i2 - i;
         }
 
         @Override
-        public Object get(int i) {
-            AbstractList.Companion.checkElementIndex$kotlin_stdlib(i, this._size);
+        public final Object get(int i) {
+            int i2 = this._size;
+            if (i < 0 || i >= i2) {
+                throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
+            }
             return this.list.get(this.fromIndex + i);
         }
 
         @Override
-        public int getSize() {
+        public final int getSize() {
             return this._size;
         }
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public final void add(int i, Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean addAll(int i, Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public boolean contains(Object obj) {
+        if (isEmpty()) {
+            return false;
         }
-        if (obj instanceof List) {
-            return Companion.orderedEquals$kotlin_stdlib(this, (Collection) obj);
+        Iterator<E> it = iterator();
+        while (it.hasNext()) {
+            if (Intrinsics.areEqual(it.next(), obj)) {
+                return true;
+            }
         }
         return false;
     }
 
     @Override
-    public int hashCode() {
-        return Companion.orderedHashCode$kotlin_stdlib(this);
-    }
-
-    private class IteratorImpl implements Iterator {
-        private int index;
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    public final boolean containsAll(Collection elements) {
+        Intrinsics.checkNotNullParameter(elements, "elements");
+        Collection collection = elements;
+        if (collection.isEmpty()) {
+            return true;
         }
-
-        public IteratorImpl() {
-        }
-
-        protected final int getIndex() {
-            return this.index;
-        }
-
-        protected final void setIndex(int i) {
-            this.index = i;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return this.index < AbstractList.this.size();
-        }
-
-        @Override
-        public Object next() {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            AbstractList abstractList = AbstractList.this;
-            int i = this.index;
-            this.index = i + 1;
-            return abstractList.get(i);
-        }
-    }
-
-    private class ListIteratorImpl extends IteratorImpl implements ListIterator {
-        @Override
-        public void add(Object obj) {
-            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-        }
-
-        @Override
-        public void set(Object obj) {
-            throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-        }
-
-        public ListIteratorImpl(int i) {
-            super();
-            AbstractList.Companion.checkPositionIndex$kotlin_stdlib(i, AbstractList.this.size());
-            setIndex(i);
-        }
-
-        @Override
-        public boolean hasPrevious() {
-            return getIndex() > 0;
-        }
-
-        @Override
-        public int nextIndex() {
-            return getIndex();
-        }
-
-        @Override
-        public Object previous() {
-            if (!hasPrevious()) {
-                throw new NoSuchElementException();
-            }
-            AbstractList abstractList = AbstractList.this;
-            setIndex(getIndex() - 1);
-            return abstractList.get(getIndex());
-        }
-
-        @Override
-        public int previousIndex() {
-            return getIndex() - 1;
-        }
-    }
-
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        public final int newCapacity$kotlin_stdlib(int i, int i2) {
-            int i3 = i + (i >> 1);
-            if (i3 - i2 < 0) {
-                i3 = i2;
-            }
-            if (i3 - 2147483639 > 0) {
-                return i2 > 2147483639 ? Integer.MAX_VALUE : 2147483639;
-            }
-            return i3;
-        }
-
-        private Companion() {
-        }
-
-        public final void checkElementIndex$kotlin_stdlib(int i, int i2) {
-            if (i < 0 || i >= i2) {
-                throw new IndexOutOfBoundsException("index: " + i + ", size: " + i2);
-            }
-        }
-
-        public final void checkPositionIndex$kotlin_stdlib(int i, int i2) {
-            if (i < 0 || i > i2) {
-                throw new IndexOutOfBoundsException("index: " + i + ", size: " + i2);
-            }
-        }
-
-        public final void checkRangeIndexes$kotlin_stdlib(int i, int i2, int i3) {
-            if (i < 0 || i2 > i3) {
-                throw new IndexOutOfBoundsException("fromIndex: " + i + ", toIndex: " + i2 + ", size: " + i3);
-            }
-            if (i <= i2) {
-                return;
-            }
-            throw new IllegalArgumentException("fromIndex: " + i + " > toIndex: " + i2);
-        }
-
-        public final int orderedHashCode$kotlin_stdlib(Collection c) {
-            Intrinsics.checkNotNullParameter(c, "c");
-            Iterator it = c.iterator();
-            int iHashCode = 1;
-            while (it.hasNext()) {
-                Object next = it.next();
-                iHashCode = (iHashCode * 31) + (next != null ? next.hashCode() : 0);
-            }
-            return iHashCode;
-        }
-
-        public final boolean orderedEquals$kotlin_stdlib(Collection c, Collection other) {
-            Intrinsics.checkNotNullParameter(c, "c");
-            Intrinsics.checkNotNullParameter(other, "other");
-            if (c.size() != other.size()) {
+        Iterator it = collection.iterator();
+        while (it.hasNext()) {
+            if (!contains(it.next())) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof List)) {
+            return false;
+        }
+        Collection other = (Collection) obj;
+        Intrinsics.checkNotNullParameter(other, "other");
+        if (size() == other.size()) {
             Iterator it = other.iterator();
-            Iterator it2 = c.iterator();
+            Iterator<E> it2 = iterator();
             while (it2.hasNext()) {
                 if (!Intrinsics.areEqual(it2.next(), it.next())) {
-                    return false;
                 }
             }
             return true;
         }
+        return false;
+    }
+
+    public abstract int getSize();
+
+    @Override
+    public final int hashCode() {
+        Iterator<E> it = iterator();
+        int iHashCode = 1;
+        while (it.hasNext()) {
+            Object next = it.next();
+            iHashCode = (iHashCode * 31) + (next != null ? next.hashCode() : 0);
+        }
+        return iHashCode;
     }
 
     @Override
@@ -261,6 +191,16 @@ public abstract class AbstractList extends AbstractCollection implements List {
     }
 
     @Override
+    public final boolean isEmpty() {
+        return getSize() == 0;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new ArrayIterator(this);
+    }
+
+    @Override
     public int lastIndexOf(Object obj) {
         ListIterator listIterator = listIterator(size());
         while (listIterator.hasPrevious()) {
@@ -269,5 +209,75 @@ public abstract class AbstractList extends AbstractCollection implements List {
             }
         }
         return -1;
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        return new ListIteratorImpl(0);
+    }
+
+    @Override
+    public final Object remove(int i) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final Object set(int i, Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final int size() {
+        return getSize();
+    }
+
+    @Override
+    public final List subList(int i, int i2) {
+        return new SubList(this, i, i2);
+    }
+
+    @Override
+    public Object[] toArray() {
+        return Intrinsics.toArray(this);
+    }
+
+    public final String toString() {
+        return CollectionsKt.joinToString$default(this, ", ", "[", "]", new AbstractCollection$$ExternalSyntheticLambda0(this, 0), 24);
+    }
+
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean addAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final ListIterator listIterator(int i) {
+        return new ListIteratorImpl(i);
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public Object[] toArray(Object[] array) {
+        Intrinsics.checkNotNullParameter(array, "array");
+        return Intrinsics.toArray(this, array);
     }
 }

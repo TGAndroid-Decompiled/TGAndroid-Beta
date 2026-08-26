@@ -1,37 +1,41 @@
 package kotlinx.coroutines;
 
-public class JobImpl extends JobSupport implements CompletableJob {
-    private final boolean handlesException;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
-    @Override
-    public boolean getOnCancelComplete$kotlinx_coroutines_core() {
-        return true;
-    }
+public class JobImpl extends JobSupport {
+    public final boolean handlesException;
 
-    public JobImpl(Job job) {
+    public JobImpl() {
         super(true);
-        initParentJob(job);
-        this.handlesException = handlesException();
+        boolean z = true;
+        initParentJob(null);
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = JobSupport._parentHandle$volatile$FU;
+        ChildHandle childHandle = (ChildHandle) atomicReferenceFieldUpdater.get(this);
+        ChildHandleNode childHandleNode = childHandle instanceof ChildHandleNode ? (ChildHandleNode) childHandle : null;
+        if (childHandleNode == null) {
+            z = false;
+            break;
+        }
+        JobSupport job = childHandleNode.getJob();
+        while (!job.getHandlesException$kotlinx_coroutines_core()) {
+            ChildHandle childHandle2 = (ChildHandle) atomicReferenceFieldUpdater.get(job);
+            ChildHandleNode childHandleNode2 = childHandle2 instanceof ChildHandleNode ? (ChildHandleNode) childHandle2 : null;
+            if (childHandleNode2 == null) {
+                z = false;
+                break;
+            }
+            job = childHandleNode2.getJob();
+        }
+        this.handlesException = z;
     }
 
     @Override
-    public boolean getHandlesException$kotlinx_coroutines_core() {
+    public final boolean getHandlesException$kotlinx_coroutines_core() {
         return this.handlesException;
     }
 
-    private final boolean handlesException() {
-        JobSupport job;
-        ChildHandle parentHandle$kotlinx_coroutines_core = getParentHandle$kotlinx_coroutines_core();
-        ChildHandleNode childHandleNode = parentHandle$kotlinx_coroutines_core instanceof ChildHandleNode ? (ChildHandleNode) parentHandle$kotlinx_coroutines_core : null;
-        if (childHandleNode != null && (job = childHandleNode.getJob()) != null) {
-            while (!job.getHandlesException$kotlinx_coroutines_core()) {
-                ChildHandle parentHandle$kotlinx_coroutines_core2 = job.getParentHandle$kotlinx_coroutines_core();
-                ChildHandleNode childHandleNode2 = parentHandle$kotlinx_coroutines_core2 instanceof ChildHandleNode ? (ChildHandleNode) parentHandle$kotlinx_coroutines_core2 : null;
-                if (childHandleNode2 == null || (job = childHandleNode2.getJob()) == null) {
-                }
-            }
-            return true;
-        }
-        return false;
+    @Override
+    public final boolean getOnCancelComplete$kotlinx_coroutines_core() {
+        return true;
     }
 }

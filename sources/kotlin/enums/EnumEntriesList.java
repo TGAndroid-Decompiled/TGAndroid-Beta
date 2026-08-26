@@ -1,36 +1,12 @@
 package kotlin.enums;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.io.Serializable;
 import kotlin.collections.AbstractList;
-import kotlin.collections.ArraysKt;
 import kotlin.jvm.internal.Intrinsics;
 
-final class EnumEntriesList extends AbstractList implements EnumEntries, Serializable {
-    private final Enum[] entries;
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Enum) {
-            return contains((Enum) obj);
-        }
-        return false;
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        if (obj instanceof Enum) {
-            return indexOf((Enum) obj);
-        }
-        return -1;
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj instanceof Enum) {
-            return lastIndexOf((Enum) obj);
-        }
-        return -1;
-    }
+public final class EnumEntriesList extends AbstractList implements EnumEntries, Serializable {
+    public final Enum[] entries;
 
     public EnumEntriesList(Enum[] entries) {
         Intrinsics.checkNotNullParameter(entries, "entries");
@@ -38,32 +14,56 @@ final class EnumEntriesList extends AbstractList implements EnumEntries, Seriali
     }
 
     @Override
-    public int getSize() {
+    public final boolean contains(Object obj) {
+        if (!(obj instanceof Enum)) {
+            return false;
+        }
+        Enum element = (Enum) obj;
+        Intrinsics.checkNotNullParameter(element, "element");
+        int iOrdinal = element.ordinal();
+        Enum[] enumArr = this.entries;
+        Intrinsics.checkNotNullParameter(enumArr, "<this>");
+        return ((iOrdinal < 0 || iOrdinal >= enumArr.length) ? null : enumArr[iOrdinal]) == element;
+    }
+
+    @Override
+    public final Object get(int i) {
+        Enum[] enumArr = this.entries;
+        int length = enumArr.length;
+        if (i < 0 || i >= length) {
+            throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, length, "index: ", ", size: "));
+        }
+        return enumArr[i];
+    }
+
+    @Override
+    public final int getSize() {
         return this.entries.length;
     }
 
     @Override
-    public Enum get(int i) {
-        AbstractList.Companion.checkElementIndex$kotlin_stdlib(i, this.entries.length);
-        return this.entries[i];
-    }
-
-    public boolean contains(Enum element) {
-        Intrinsics.checkNotNullParameter(element, "element");
-        return ((Enum) ArraysKt.getOrNull(this.entries, element.ordinal())) == element;
-    }
-
-    public int indexOf(Enum element) {
+    public final int indexOf(Object obj) {
+        if (!(obj instanceof Enum)) {
+            return -1;
+        }
+        Enum element = (Enum) obj;
         Intrinsics.checkNotNullParameter(element, "element");
         int iOrdinal = element.ordinal();
-        if (((Enum) ArraysKt.getOrNull(this.entries, iOrdinal)) == element) {
+        Enum[] enumArr = this.entries;
+        Intrinsics.checkNotNullParameter(enumArr, "<this>");
+        if (((iOrdinal < 0 || iOrdinal >= enumArr.length) ? null : enumArr[iOrdinal]) == element) {
             return iOrdinal;
         }
         return -1;
     }
 
-    public int lastIndexOf(Enum element) {
+    @Override
+    public final int lastIndexOf(Object obj) {
+        if (!(obj instanceof Enum)) {
+            return -1;
+        }
+        Enum element = (Enum) obj;
         Intrinsics.checkNotNullParameter(element, "element");
-        return indexOf((Object) element);
+        return indexOf(element);
     }
 }

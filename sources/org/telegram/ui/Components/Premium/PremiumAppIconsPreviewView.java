@@ -7,7 +7,6 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
@@ -17,13 +16,59 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LauncherIconController;
 
-public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHeaderView {
-    private AdaptiveIconImageView bottomLeftIcon;
-    private AdaptiveIconImageView bottomRightIcon;
-    private List icons;
-    boolean isEmpty;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private AdaptiveIconImageView topIcon;
+public final class PremiumAppIconsPreviewView extends FrameLayout implements PagerHeaderView {
+    public final AdaptiveIconImageView bottomLeftIcon;
+    public final AdaptiveIconImageView bottomRightIcon;
+    public final ArrayList icons;
+    public final boolean isEmpty;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final AdaptiveIconImageView topIcon;
+
+    public final class AdaptiveIconImageView extends AppIconsSelectorCell.AdaptiveIconImageView {
+        public final StarParticlesView.Drawable drawable;
+        public final Paint paint;
+        public float particlesScale;
+
+        public AdaptiveIconImageView(PremiumAppIconsPreviewView premiumAppIconsPreviewView, Context context, int i) {
+            super(context);
+            StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(20);
+            this.drawable = drawable;
+            Paint paint = new Paint(1);
+            this.paint = paint;
+            drawable.size1 = 12;
+            drawable.size2 = 8;
+            drawable.size3 = 6;
+            if (i == 1) {
+                drawable.type = 1001;
+            }
+            if (i == 0) {
+                drawable.type = 1002;
+            }
+            drawable.resourcesProvider = premiumAppIconsPreviewView.resourcesProvider;
+            drawable.colorKey = Theme.key_premiumStartSmallStarsColor2;
+            drawable.init();
+            paint.setColor(-1);
+        }
+
+        @Override
+        public final void draw(Canvas canvas) {
+            int iDp = AndroidUtilities.dp(10.0f);
+            StarParticlesView.Drawable drawable = this.drawable;
+            drawable.excludeRect.set(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), getMeasuredWidth() - AndroidUtilities.dp(5.0f), getMeasuredHeight() - AndroidUtilities.dp(5.0f));
+            float f = -iDp;
+            drawable.rect.set(f, f, getWidth() + iDp, getHeight() + iDp);
+            canvas.save();
+            float f2 = 1.0f - this.particlesScale;
+            canvas.scale(f2, f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+            drawable.onDraw(canvas, 1.0f);
+            canvas.restore();
+            invalidate();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
+            super.draw(canvas);
+        }
+    }
 
     public PremiumAppIconsPreviewView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -48,9 +93,9 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
         }
     }
 
-    private AdaptiveIconImageView newIconView(Context context, int i) {
+    public final AdaptiveIconImageView newIconView(Context context, int i) {
         LauncherIconController.LauncherIcon launcherIcon = (LauncherIconController.LauncherIcon) this.icons.get(i);
-        AdaptiveIconImageView adaptiveIconImageView = new AdaptiveIconImageView(context, i);
+        AdaptiveIconImageView adaptiveIconImageView = new AdaptiveIconImageView(this, context, i);
         adaptiveIconImageView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 52.0f, 0.0f, 0.0f));
         adaptiveIconImageView.setForeground(launcherIcon.foreground);
         adaptiveIconImageView.setBackgroundResource(launcherIcon.background);
@@ -61,7 +106,7 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         if (this.isEmpty) {
             return;
@@ -91,70 +136,31 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
         }
         float fAbs = Math.abs(f / getMeasuredWidth());
         float interpolation = CubicBezierInterpolator.EASE_IN.getInterpolation(fAbs);
-        this.bottomRightIcon.setTranslationX(((getRight() - this.bottomRightIcon.getRight()) + (this.bottomRightIcon.getWidth() * 1.5f) + AndroidUtilities.dp(32.0f)) * interpolation);
-        this.bottomRightIcon.setTranslationY(AndroidUtilities.dp(16.0f) * interpolation);
+        int right = getRight();
+        AdaptiveIconImageView adaptiveIconImageView = this.bottomRightIcon;
+        adaptiveIconImageView.setTranslationX(((adaptiveIconImageView.getWidth() * 1.5f) + (right - adaptiveIconImageView.getRight()) + AndroidUtilities.dp(32.0f)) * interpolation);
+        adaptiveIconImageView.setTranslationY(AndroidUtilities.dp(16.0f) * interpolation);
         float fClamp = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.5f, interpolation), 1.0f, 0.0f);
-        this.bottomRightIcon.setScaleX(fClamp);
-        this.bottomRightIcon.setScaleY(fClamp);
-        this.topIcon.setTranslationY((((getTop() - this.topIcon.getTop()) - (this.topIcon.getHeight() * 1.8f)) - AndroidUtilities.dp(32.0f)) * fAbs);
-        this.topIcon.setTranslationX(AndroidUtilities.dp(16.0f) * fAbs);
+        adaptiveIconImageView.setScaleX(fClamp);
+        adaptiveIconImageView.setScaleY(fClamp);
+        int top = getTop();
+        AdaptiveIconImageView adaptiveIconImageView2 = this.topIcon;
+        adaptiveIconImageView2.setTranslationY((((top - adaptiveIconImageView2.getTop()) - (adaptiveIconImageView2.getHeight() * 1.8f)) - AndroidUtilities.dp(32.0f)) * fAbs);
+        adaptiveIconImageView2.setTranslationX(AndroidUtilities.dp(16.0f) * fAbs);
         float fClamp2 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.8f, fAbs), 1.0f, 0.0f);
-        this.topIcon.setScaleX(fClamp2);
-        this.topIcon.setScaleY(fClamp2);
+        adaptiveIconImageView2.setScaleX(fClamp2);
+        adaptiveIconImageView2.setScaleY(fClamp2);
         float interpolation2 = CubicBezierInterpolator.EASE_OUT.getInterpolation(fAbs);
-        this.bottomLeftIcon.setTranslationX((((getLeft() - this.bottomLeftIcon.getLeft()) - (this.bottomLeftIcon.getWidth() * 2.5f)) + AndroidUtilities.dp(32.0f)) * interpolation2);
-        this.bottomLeftIcon.setTranslationY(interpolation2 * ((getBottom() - this.bottomLeftIcon.getBottom()) + (this.bottomLeftIcon.getHeight() * 2.5f) + AndroidUtilities.dp(32.0f)));
+        int left = getLeft();
+        AdaptiveIconImageView adaptiveIconImageView3 = this.bottomLeftIcon;
+        adaptiveIconImageView3.setTranslationX((((left - adaptiveIconImageView3.getLeft()) - (adaptiveIconImageView3.getWidth() * 2.5f)) + AndroidUtilities.dp(32.0f)) * interpolation2);
+        adaptiveIconImageView3.setTranslationY(((adaptiveIconImageView3.getHeight() * 2.5f) + (getBottom() - adaptiveIconImageView3.getBottom()) + AndroidUtilities.dp(32.0f)) * interpolation2);
         float fClamp3 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 2.5f, fAbs), 1.0f, 0.0f);
-        this.bottomLeftIcon.setScaleX(fClamp3);
-        this.bottomLeftIcon.setScaleY(fClamp3);
+        adaptiveIconImageView3.setScaleX(fClamp3);
+        adaptiveIconImageView3.setScaleY(fClamp3);
         float f2 = fAbs < 0.4f ? fAbs / 0.4f : 1.0f;
-        this.bottomRightIcon.particlesScale = f2;
-        this.topIcon.particlesScale = f2;
-        this.bottomLeftIcon.particlesScale = f2;
-    }
-
-    private class AdaptiveIconImageView extends AppIconsSelectorCell.AdaptiveIconImageView {
-        StarParticlesView.Drawable drawable;
-        Paint paint;
-        float particlesScale;
-
-        public AdaptiveIconImageView(Context context, int i) {
-            super(context);
-            this.drawable = new StarParticlesView.Drawable(20);
-            this.paint = new Paint(1);
-            StarParticlesView.Drawable drawable = this.drawable;
-            drawable.size1 = 12;
-            drawable.size2 = 8;
-            drawable.size3 = 6;
-            if (i == 1) {
-                drawable.type = 1001;
-            }
-            if (i == 0) {
-                drawable.type = 1002;
-            }
-            drawable.resourcesProvider = PremiumAppIconsPreviewView.this.resourcesProvider;
-            StarParticlesView.Drawable drawable2 = this.drawable;
-            drawable2.colorKey = Theme.key_premiumStartSmallStarsColor2;
-            drawable2.init();
-            this.paint.setColor(-1);
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            int iDp = AndroidUtilities.dp(10.0f);
-            this.drawable.excludeRect.set(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), getMeasuredWidth() - AndroidUtilities.dp(5.0f), getMeasuredHeight() - AndroidUtilities.dp(5.0f));
-            float f = -iDp;
-            this.drawable.rect.set(f, f, getWidth() + iDp, getHeight() + iDp);
-            canvas.save();
-            float f2 = 1.0f - this.particlesScale;
-            canvas.scale(f2, f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-            this.drawable.onDraw(canvas);
-            canvas.restore();
-            invalidate();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
-            super.draw(canvas);
-        }
+        adaptiveIconImageView.particlesScale = f2;
+        adaptiveIconImageView2.particlesScale = f2;
+        adaptiveIconImageView3.particlesScale = f2;
     }
 }

@@ -9,6 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SmsReceiver extends BroadcastReceiver {
+    public static void lambda$onReceive$0(String str) {
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveSmsCode, str);
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         String str;
@@ -30,17 +34,12 @@ public class SmsReceiver extends BroadcastReceiver {
             }
             Matcher matcher = Pattern.compile("[0-9\\-]+").matcher(str);
             if (matcher.find()) {
-                final String strReplace = matcher.group(0).replace("-", "");
+                String strReplace = matcher.group(0).replace("-", "");
                 if (strReplace.length() >= 3) {
                     if (string != null) {
                         sharedPreferences.edit().putString("sms_hash_code", string + "|" + strReplace).commit();
                     }
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didReceiveSmsCode, strReplace);
-                        }
-                    });
+                    AndroidUtilities.runOnUIThread(new FileLog$$ExternalSyntheticLambda1(strReplace, 5));
                 }
             }
         } catch (Throwable th) {

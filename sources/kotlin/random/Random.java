@@ -1,26 +1,17 @@
 package kotlin.random;
 
 import java.io.Serializable;
-import kotlin.internal.PlatformImplementationsKt;
-import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.internal.jdk8.JDK8PlatformImplementations$ReflectSdkVersion;
+import kotlin.random.jdk8.PlatformThreadLocalRandom;
 
 public abstract class Random {
-    public static final Default Default = new Default(null);
-    private static final Random defaultRandom = PlatformImplementationsKt.IMPLEMENTATIONS.defaultPlatformRandom();
+    public static final AbstractPlatformRandom defaultRandom;
 
-    public abstract int nextInt(int i);
+    public final class Default extends Random implements Serializable {
+    }
 
-    public static final class Default extends Random implements Serializable {
-        public Default(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Default() {
-        }
-
-        @Override
-        public int nextInt(int i) {
-            return Random.defaultRandom.nextInt(i);
-        }
+    static {
+        Integer num = JDK8PlatformImplementations$ReflectSdkVersion.sdkVersion;
+        defaultRandom = (num == null || num.intValue() >= 34) ? new PlatformThreadLocalRandom() : new FallbackThreadLocalRandom();
     }
 }

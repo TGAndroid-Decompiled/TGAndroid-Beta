@@ -11,17 +11,20 @@ public class RTCStatsReport {
         this.stats = map;
     }
 
-    public double getTimestampUs() {
-        return this.timestampUs;
+    private static RTCStatsReport create(long j, Map map) {
+        return new RTCStatsReport(j, map);
     }
 
     public Map<String, RTCStats> getStatsMap() {
         return this.stats;
     }
 
+    public double getTimestampUs() {
+        return this.timestampUs;
+    }
+
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{ timestampUs: ");
+        StringBuilder sb = new StringBuilder("{ timestampUs: ");
         sb.append(this.timestampUs);
         sb.append(", stats: [\n");
         boolean z = true;
@@ -34,9 +37,5 @@ public class RTCStatsReport {
         }
         sb.append(" ] }");
         return sb.toString();
-    }
-
-    private static RTCStatsReport create(long j, Map map) {
-        return new RTCStatsReport(j, map);
     }
 }

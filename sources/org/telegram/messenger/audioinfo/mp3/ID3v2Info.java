@@ -2,147 +2,80 @@ package org.telegram.messenger.audioinfo.mp3;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import com.stripe.android.Stripe;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.telegram.messenger.audioinfo.AudioInfo;
+import org.telegram.messenger.audioinfo.util.RangeInputStream;
 
-public class ID3v2Info extends AudioInfo {
-    static final Logger LOGGER = Logger.getLogger(ID3v2Info.class.getName());
-    private byte coverPictureType;
-    private final Level debugLevel;
+public final class ID3v2Info extends AudioInfo {
+    public static final Logger LOGGER = Logger.getLogger(ID3v2Info.class.getName());
+    public byte coverPictureType;
 
-    static class AttachedPicture {
-        final String description;
-        final byte[] imageData;
-        final String imageType;
-        final byte type;
-
-        public AttachedPicture(byte b, String str, String str2, byte[] bArr) {
-            this.type = b;
-            this.description = str;
-            this.imageType = str2;
-            this.imageData = bArr;
-        }
-    }
-
-    static class CommentOrUnsynchronizedLyrics {
-        final String description;
-        final String language;
-        final String text;
-
-        public CommentOrUnsynchronizedLyrics(String str, String str2, String str3) {
-            this.language = str;
-            this.description = str2;
-            this.text = str3;
-        }
-    }
-
-    public static boolean isID3v2StartPosition(InputStream inputStream) throws IOException {
-        inputStream.mark(3);
+    public static boolean isID3v2StartPosition(MP3Input mP3Input) {
+        mP3Input.mark(3);
         try {
-            return inputStream.read() == 73 && inputStream.read() == 68 && inputStream.read() == 51;
+            return mP3Input.read() == 73 && mP3Input.read() == 68 && mP3Input.read() == 51;
         } finally {
-            inputStream.reset();
+            mP3Input.reset();
         }
     }
 
-    public ID3v2Info(InputStream inputStream, Level level) throws IOException, ID3v2Exception {
-        ID3v2DataInput data;
-        this.debugLevel = level;
-        if (isID3v2StartPosition(inputStream)) {
-            ID3v2TagHeader iD3v2TagHeader = new ID3v2TagHeader(inputStream);
-            this.brand = "ID3";
-            this.version = String.format("2.%d.%d", Integer.valueOf(iD3v2TagHeader.getVersion()), Integer.valueOf(iD3v2TagHeader.getRevision()));
-            ID3v2TagBody iD3v2TagBodyTagBody = iD3v2TagHeader.tagBody(inputStream);
-            while (iD3v2TagBodyTagBody.getRemainingLength() > 10) {
-                try {
-                    ID3v2FrameHeader iD3v2FrameHeader = new ID3v2FrameHeader(iD3v2TagBodyTagBody);
-                    if (iD3v2FrameHeader.isPadding()) {
-                        break;
-                    }
-                    if (iD3v2FrameHeader.getBodySize() > iD3v2TagBodyTagBody.getRemainingLength()) {
-                        Logger logger = LOGGER;
-                        if (!logger.isLoggable(level)) {
-                            break;
-                        }
-                        logger.log(level, "ID3 frame claims to extend frames area");
-                        break;
-                    }
-                    if (iD3v2FrameHeader.isValid() && !iD3v2FrameHeader.isEncryption()) {
-                        ID3v2FrameBody iD3v2FrameBodyFrameBody = iD3v2TagBodyTagBody.frameBody(iD3v2FrameHeader);
-                        try {
-                            try {
-                                parseFrame(iD3v2FrameBodyFrameBody);
-                                data = iD3v2FrameBodyFrameBody.getData();
-                            } catch (ID3v2Exception e) {
-                                if (LOGGER.isLoggable(level)) {
-                                    LOGGER.log(level, String.format("ID3 exception occured in frame %s: %s", iD3v2FrameHeader.getFrameId(), e.getMessage()));
-                                }
-                                data = iD3v2FrameBodyFrameBody.getData();
-                            }
-                            data.skipFully(iD3v2FrameBodyFrameBody.getRemainingLength());
-                        } catch (Throwable th) {
-                            iD3v2FrameBodyFrameBody.getData().skipFully(iD3v2FrameBodyFrameBody.getRemainingLength());
-                            throw th;
-                        }
-                    } else {
-                        iD3v2TagBodyTagBody.getData().skipFully(iD3v2FrameHeader.getBodySize());
-                    }
-                } catch (ID3v2Exception e2) {
-                    Logger logger2 = LOGGER;
-                    if (logger2.isLoggable(level)) {
-                        logger2.log(level, "ID3 exception occured: " + e2.getMessage());
-                    }
-                }
-            }
-            iD3v2TagBodyTagBody.getData().skipFully(iD3v2TagBodyTagBody.getRemainingLength());
-            if (iD3v2TagHeader.getFooterSize() > 0) {
-                inputStream.skip(iD3v2TagHeader.getFooterSize());
-            }
-        }
-    }
-
-    void parseFrame(ID3v2FrameBody iD3v2FrameBody) throws IOException, ID3v2Exception {
-        String str;
-        byte b;
-        ID3v1Genre genre;
+    public final void parseFrame(ID3v2FrameBody iD3v2FrameBody) throws IOException, ID3v2Exception {
         int i;
+        int i2 = 0;
+        Level level = Level.FINEST;
         Logger logger = LOGGER;
-        if (logger.isLoggable(this.debugLevel)) {
-            logger.log(this.debugLevel, "Parsing frame: " + iD3v2FrameBody.getFrameHeader().getFrameId());
+        boolean zIsLoggable = logger.isLoggable(level);
+        ID3v2FrameHeader iD3v2FrameHeader = iD3v2FrameBody.frameHeader;
+        if (zIsLoggable) {
+            logger.log(level, "Parsing frame: " + ((String) iD3v2FrameHeader.frameId));
         }
-        String frameId = iD3v2FrameBody.getFrameHeader().getFrameId();
-        frameId.getClass();
-        switch (frameId) {
+        String str = (String) iD3v2FrameHeader.frameId;
+        str.getClass();
+        RangeInputStream rangeInputStream = iD3v2FrameBody.input;
+        switch (str) {
             case "COM":
             case "COMM":
-                CommentOrUnsynchronizedLyrics commentOrUnsynchronizedLyricsFrame = parseCommentOrUnsynchronizedLyricsFrame(iD3v2FrameBody);
-                if (this.comment == null || (str = commentOrUnsynchronizedLyricsFrame.description) == null || "".equals(str)) {
-                    this.comment = commentOrUnsynchronizedLyricsFrame.text;
+                ID3v2Encoding encoding = iD3v2FrameBody.readEncoding();
+                iD3v2FrameBody.readFixedLengthString(3, ID3v2Encoding.ISO_8859_1);
+                String zeroTerminatedString = iD3v2FrameBody.readZeroTerminatedString(200, encoding);
+                String fixedLengthString = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), encoding);
+                if (this.comment == null || zeroTerminatedString == null || "".equals(zeroTerminatedString)) {
+                    this.comment = fixedLengthString;
                     break;
                 }
                 break;
             case "PIC":
             case "APIC":
                 if (this.cover == null || this.coverPictureType != 3) {
-                    AttachedPicture attachedPictureFrame = parseAttachedPictureFrame(iD3v2FrameBody);
-                    if (this.cover == null || (b = attachedPictureFrame.type) == 3 || b == 0) {
+                    ID3v2Encoding encoding2 = iD3v2FrameBody.readEncoding();
+                    if (iD3v2FrameBody.tagHeader.version == 2) {
+                        iD3v2FrameBody.readFixedLengthString(3, ID3v2Encoding.ISO_8859_1).toUpperCase().getClass();
+                    } else {
+                        iD3v2FrameBody.readZeroTerminatedString(20, ID3v2Encoding.ISO_8859_1);
+                    }
+                    Stripe stripe = iD3v2FrameBody.data;
+                    byte b = stripe.readByte();
+                    iD3v2FrameBody.readZeroTerminatedString(200, encoding2);
+                    int remainingLength = (int) rangeInputStream.getRemainingLength();
+                    byte[] bArr = new byte[remainingLength];
+                    stripe.readFully(remainingLength, bArr);
+                    if (this.cover == null || b == 3 || b == 0) {
                         try {
-                            byte[] bArr = attachedPictureFrame.imageData;
                             BitmapFactory.Options options = new BitmapFactory.Options();
                             options.inJustDecodeBounds = true;
                             options.inSampleSize = 1;
-                            BitmapFactory.decodeByteArray(bArr, 0, bArr.length, options);
-                            int i2 = options.outWidth;
-                            if (i2 > 800 || options.outHeight > 800) {
-                                for (int iMax = Math.max(i2, options.outHeight); iMax > 800; iMax /= 2) {
+                            BitmapFactory.decodeByteArray(bArr, 0, remainingLength, options);
+                            int i3 = options.outWidth;
+                            if (i3 > 800 || options.outHeight > 800) {
+                                for (int iMax = Math.max(i3, options.outHeight); iMax > 800; iMax /= 2) {
                                     options.inSampleSize *= 2;
                                 }
                             }
                             options.inJustDecodeBounds = false;
-                            Bitmap bitmapDecodeByteArray = BitmapFactory.decodeByteArray(bArr, 0, bArr.length, options);
+                            Bitmap bitmapDecodeByteArray = BitmapFactory.decodeByteArray(bArr, 0, remainingLength, options);
                             this.cover = bitmapDecodeByteArray;
                             if (bitmapDecodeByteArray != null) {
                                 float fMax = Math.max(bitmapDecodeByteArray.getWidth(), this.cover.getHeight()) / 120.0f;
@@ -159,40 +92,46 @@ public class ID3v2Info extends AudioInfo {
                         } catch (Throwable th) {
                             th.printStackTrace();
                         }
-                        this.coverPictureType = attachedPictureFrame.type;
+                        this.coverPictureType = b;
                     }
                     break;
                 }
                 break;
             case "TAL":
             case "TALB":
-                this.album = parseTextFrame(iD3v2FrameBody);
+                this.album = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
                 break;
             case "TCM":
             case "TCOM":
-                this.composer = parseTextFrame(iD3v2FrameBody);
+                this.composer = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
                 break;
             case "TCO":
             case "TCON":
-                String textFrame = parseTextFrame(iD3v2FrameBody);
-                if (textFrame.length() > 0) {
-                    this.genre = textFrame;
+                String fixedLengthString2 = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
+                if (fixedLengthString2.length() > 0) {
+                    this.genre = fixedLengthString2;
                     try {
-                        if (textFrame.charAt(0) == '(') {
-                            int iIndexOf = textFrame.indexOf(41);
+                        if (fixedLengthString2.charAt(0) == '(') {
+                            int iIndexOf = fixedLengthString2.indexOf(41);
                             if (iIndexOf > 1) {
-                                genre = ID3v1Genre.getGenre(Integer.parseInt(textFrame.substring(1, iIndexOf)));
-                                if (genre == null && textFrame.length() > (i = iIndexOf + 1)) {
-                                    this.genre = textFrame.substring(i);
+                                int i4 = Integer.parseInt(fixedLengthString2.substring(1, iIndexOf));
+                                int[] iArrValues = ID3v1Genre$EnumUnboxingLocalUtility.values(126);
+                                if (i4 >= 0 && i4 < iArrValues.length) {
+                                    i2 = iArrValues[i4];
                                 }
-                            } else {
-                                genre = null;
+                                if (i2 == 0 && fixedLengthString2.length() > (i = iIndexOf + 1)) {
+                                    this.genre = fixedLengthString2.substring(i);
+                                }
                             }
                         } else {
-                            genre = ID3v1Genre.getGenre(Integer.parseInt(textFrame));
+                            int i5 = Integer.parseInt(fixedLengthString2);
+                            int[] iArrValues2 = ID3v1Genre$EnumUnboxingLocalUtility.values(126);
+                            if (i5 >= 0 && i5 < iArrValues2.length) {
+                                i2 = iArrValues2[i5];
+                            }
                         }
-                        if (genre != null) {
-                            this.genre = genre.getDescription();
+                        if (i2 != 0) {
+                            this.genre = ID3v1Genre$EnumUnboxingLocalUtility.getDescription(i2);
                         }
                     } catch (NumberFormatException unused) {
                         return;
@@ -202,22 +141,22 @@ public class ID3v2Info extends AudioInfo {
                 break;
             case "TCP":
             case "TCMP":
-                this.compilation = "1".equals(parseTextFrame(iD3v2FrameBody));
+                "1".equals(iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding()));
                 break;
             case "TCR":
             case "TCOP":
-                this.copyright = parseTextFrame(iD3v2FrameBody);
+                this.copyright = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
                 break;
             case "TLE":
             case "TLEN":
-                String textFrame2 = parseTextFrame(iD3v2FrameBody);
+                String fixedLengthString3 = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
                 try {
-                    this.duration = Long.valueOf(textFrame2).longValue();
+                    this.duration = Long.valueOf(fixedLengthString3).longValue();
                     break;
                 } catch (NumberFormatException unused2) {
-                    Logger logger2 = LOGGER;
-                    if (logger2.isLoggable(this.debugLevel)) {
-                        logger2.log(this.debugLevel, "Could not parse track duration: " + textFrame2);
+                    Level level2 = Level.FINEST;
+                    if (logger.isLoggable(level2)) {
+                        logger.log(level2, "Could not parse track duration: " + fixedLengthString3);
                         return;
                     }
                     return;
@@ -225,43 +164,43 @@ public class ID3v2Info extends AudioInfo {
                 break;
             case "TP1":
             case "TPE1":
-                this.artist = parseTextFrame(iD3v2FrameBody);
+                this.artist = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
                 break;
             case "TP2":
             case "TPE2":
-                this.albumArtist = parseTextFrame(iD3v2FrameBody);
+                this.albumArtist = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
                 break;
             case "TPA":
             case "TPOS":
-                String textFrame3 = parseTextFrame(iD3v2FrameBody);
-                if (textFrame3.length() > 0) {
-                    int iIndexOf2 = textFrame3.indexOf(47);
+                String fixedLengthString4 = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
+                if (fixedLengthString4.length() > 0) {
+                    int iIndexOf2 = fixedLengthString4.indexOf(47);
                     if (iIndexOf2 < 0) {
                         try {
-                            this.disc = Short.valueOf(textFrame3).shortValue();
+                            this.disc = Short.valueOf(fixedLengthString4).shortValue();
                         } catch (NumberFormatException unused3) {
-                            Logger logger3 = LOGGER;
-                            if (logger3.isLoggable(this.debugLevel)) {
-                                logger3.log(this.debugLevel, "Could not parse disc number: " + textFrame3);
+                            Level level3 = Level.FINEST;
+                            if (logger.isLoggable(level3)) {
+                                logger.log(level3, "Could not parse disc number: ".concat(fixedLengthString4));
                                 return;
                             }
                             return;
                         }
                     } else {
                         try {
-                            this.disc = Short.valueOf(textFrame3.substring(0, iIndexOf2)).shortValue();
+                            this.disc = Short.valueOf(fixedLengthString4.substring(0, iIndexOf2)).shortValue();
                         } catch (NumberFormatException unused4) {
-                            Logger logger4 = LOGGER;
-                            if (logger4.isLoggable(this.debugLevel)) {
-                                logger4.log(this.debugLevel, "Could not parse disc number: " + textFrame3);
+                            Level level4 = Level.FINEST;
+                            if (logger.isLoggable(level4)) {
+                                logger.log(level4, "Could not parse disc number: ".concat(fixedLengthString4));
                             }
                         }
                         try {
-                            this.discs = Short.valueOf(textFrame3.substring(iIndexOf2 + 1)).shortValue();
+                            Short.valueOf(fixedLengthString4.substring(iIndexOf2 + 1)).getClass();
                         } catch (NumberFormatException unused5) {
-                            Logger logger5 = LOGGER;
-                            if (logger5.isLoggable(this.debugLevel)) {
-                                logger5.log(this.debugLevel, "Could not parse number of discs: " + textFrame3);
+                            Level level5 = Level.FINEST;
+                            if (logger.isLoggable(level5)) {
+                                logger.log(level5, "Could not parse number of discs: ".concat(fixedLengthString4));
                                 return;
                             }
                             return;
@@ -272,35 +211,35 @@ public class ID3v2Info extends AudioInfo {
                 break;
             case "TRK":
             case "TRCK":
-                String textFrame4 = parseTextFrame(iD3v2FrameBody);
-                if (textFrame4.length() > 0) {
-                    int iIndexOf3 = textFrame4.indexOf(47);
+                String fixedLengthString5 = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
+                if (fixedLengthString5.length() > 0) {
+                    int iIndexOf3 = fixedLengthString5.indexOf(47);
                     if (iIndexOf3 < 0) {
                         try {
-                            this.track = Short.valueOf(textFrame4).shortValue();
+                            this.track = Short.valueOf(fixedLengthString5).shortValue();
                         } catch (NumberFormatException unused6) {
-                            Logger logger6 = LOGGER;
-                            if (logger6.isLoggable(this.debugLevel)) {
-                                logger6.log(this.debugLevel, "Could not parse track number: " + textFrame4);
+                            Level level6 = Level.FINEST;
+                            if (logger.isLoggable(level6)) {
+                                logger.log(level6, "Could not parse track number: ".concat(fixedLengthString5));
                                 return;
                             }
                             return;
                         }
                     } else {
                         try {
-                            this.track = Short.valueOf(textFrame4.substring(0, iIndexOf3)).shortValue();
+                            this.track = Short.valueOf(fixedLengthString5.substring(0, iIndexOf3)).shortValue();
                         } catch (NumberFormatException unused7) {
-                            Logger logger7 = LOGGER;
-                            if (logger7.isLoggable(this.debugLevel)) {
-                                logger7.log(this.debugLevel, "Could not parse track number: " + textFrame4);
+                            Level level7 = Level.FINEST;
+                            if (logger.isLoggable(level7)) {
+                                logger.log(level7, "Could not parse track number: ".concat(fixedLengthString5));
                             }
                         }
                         try {
-                            this.tracks = Short.valueOf(textFrame4.substring(iIndexOf3 + 1)).shortValue();
+                            Short.valueOf(fixedLengthString5.substring(iIndexOf3 + 1)).getClass();
                         } catch (NumberFormatException unused8) {
-                            Logger logger8 = LOGGER;
-                            if (logger8.isLoggable(this.debugLevel)) {
-                                logger8.log(this.debugLevel, "Could not parse number of tracks: " + textFrame4);
+                            Level level8 = Level.FINEST;
+                            if (logger.isLoggable(level8)) {
+                                logger.log(level8, "Could not parse number of tracks: ".concat(fixedLengthString5));
                                 return;
                             }
                             return;
@@ -311,22 +250,22 @@ public class ID3v2Info extends AudioInfo {
                 break;
             case "TT1":
             case "TIT1":
-                this.grouping = parseTextFrame(iD3v2FrameBody);
+                iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
                 break;
             case "TT2":
             case "TIT2":
-                this.title = parseTextFrame(iD3v2FrameBody);
+                this.title = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
                 break;
             case "TYE":
             case "TYER":
-                String textFrame5 = parseTextFrame(iD3v2FrameBody);
-                if (textFrame5.length() > 0) {
+                String fixedLengthString6 = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
+                if (fixedLengthString6.length() > 0) {
                     try {
-                        this.year = Short.valueOf(textFrame5).shortValue();
+                        this.year = Short.valueOf(fixedLengthString6).shortValue();
                     } catch (NumberFormatException unused9) {
-                        Logger logger9 = LOGGER;
-                        if (logger9.isLoggable(this.debugLevel)) {
-                            logger9.log(this.debugLevel, "Could not parse year: " + textFrame5);
+                        Level level9 = Level.FINEST;
+                        if (logger.isLoggable(level9)) {
+                            logger.log(level9, "Could not parse year: ".concat(fixedLengthString6));
                             return;
                         }
                         return;
@@ -337,19 +276,22 @@ public class ID3v2Info extends AudioInfo {
             case "ULT":
             case "USLT":
                 if (this.lyrics == null) {
-                    this.lyrics = parseCommentOrUnsynchronizedLyricsFrame(iD3v2FrameBody).text;
+                    ID3v2Encoding encoding3 = iD3v2FrameBody.readEncoding();
+                    iD3v2FrameBody.readFixedLengthString(3, ID3v2Encoding.ISO_8859_1);
+                    iD3v2FrameBody.readZeroTerminatedString(200, encoding3);
+                    this.lyrics = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), encoding3);
                     break;
                 }
                 break;
             case "TDRC":
-                String textFrame6 = parseTextFrame(iD3v2FrameBody);
-                if (textFrame6.length() >= 4) {
+                String fixedLengthString7 = iD3v2FrameBody.readFixedLengthString((int) rangeInputStream.getRemainingLength(), iD3v2FrameBody.readEncoding());
+                if (fixedLengthString7.length() >= 4) {
                     try {
-                        this.year = Short.valueOf(textFrame6.substring(0, 4)).shortValue();
+                        this.year = Short.valueOf(fixedLengthString7.substring(0, 4)).shortValue();
                     } catch (NumberFormatException unused10) {
-                        Logger logger10 = LOGGER;
-                        if (logger10.isLoggable(this.debugLevel)) {
-                            logger10.log(this.debugLevel, "Could not parse year from: " + textFrame6);
+                        Level level10 = Level.FINEST;
+                        if (logger.isLoggable(level10)) {
+                            logger.log(level10, "Could not parse year from: ".concat(fixedLengthString7));
                             return;
                         }
                         return;
@@ -358,33 +300,5 @@ public class ID3v2Info extends AudioInfo {
                 }
                 break;
         }
-    }
-
-    String parseTextFrame(ID3v2FrameBody iD3v2FrameBody) throws IOException, ID3v2Exception {
-        return iD3v2FrameBody.readFixedLengthString((int) iD3v2FrameBody.getRemainingLength(), iD3v2FrameBody.readEncoding());
-    }
-
-    CommentOrUnsynchronizedLyrics parseCommentOrUnsynchronizedLyricsFrame(ID3v2FrameBody iD3v2FrameBody) throws IOException, ID3v2Exception {
-        ID3v2Encoding encoding = iD3v2FrameBody.readEncoding();
-        return new CommentOrUnsynchronizedLyrics(iD3v2FrameBody.readFixedLengthString(3, ID3v2Encoding.ISO_8859_1), iD3v2FrameBody.readZeroTerminatedString(200, encoding), iD3v2FrameBody.readFixedLengthString((int) iD3v2FrameBody.getRemainingLength(), encoding));
-    }
-
-    AttachedPicture parseAttachedPictureFrame(ID3v2FrameBody iD3v2FrameBody) throws IOException, ID3v2Exception {
-        String zeroTerminatedString;
-        ID3v2Encoding encoding = iD3v2FrameBody.readEncoding();
-        if (iD3v2FrameBody.getTagHeader().getVersion() == 2) {
-            String upperCase = iD3v2FrameBody.readFixedLengthString(3, ID3v2Encoding.ISO_8859_1).toUpperCase();
-            upperCase.getClass();
-            if (upperCase.equals("JPG")) {
-                zeroTerminatedString = "image/jpeg";
-            } else if (upperCase.equals("PNG")) {
-                zeroTerminatedString = "image/png";
-            } else {
-                zeroTerminatedString = "image/unknown";
-            }
-        } else {
-            zeroTerminatedString = iD3v2FrameBody.readZeroTerminatedString(20, ID3v2Encoding.ISO_8859_1);
-        }
-        return new AttachedPicture(iD3v2FrameBody.getData().readByte(), iD3v2FrameBody.readZeroTerminatedString(200, encoding), zeroTerminatedString, iD3v2FrameBody.getData().readFully((int) iD3v2FrameBody.getRemainingLength()));
     }
 }

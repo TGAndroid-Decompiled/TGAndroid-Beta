@@ -11,12 +11,9 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 
 public abstract class BaseListPageView extends FrameLayout implements PagerHeaderView {
-    RecyclerView.Adapter adapter;
-    final LinearLayoutManager layoutManager;
-    final RecyclerListView recyclerListView;
-    final Theme.ResourcesProvider resourcesProvider;
-
-    public abstract RecyclerView.Adapter createAdapter();
+    public final LinearLayoutManager layoutManager;
+    public final RecyclerListView recyclerListView;
+    public final Theme.ResourcesProvider resourcesProvider;
 
     public BaseListPageView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -24,18 +21,18 @@ public abstract class BaseListPageView extends FrameLayout implements PagerHeade
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider);
         this.recyclerListView = recyclerListView;
         recyclerListView.setNestedScrollingEnabled(true);
-        RecyclerView.Adapter adapterCreateAdapter = createAdapter();
-        this.adapter = adapterCreateAdapter;
-        recyclerListView.setAdapter(adapterCreateAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
+        recyclerListView.setAdapter(createAdapter());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(1, false);
         this.layoutManager = linearLayoutManager;
         recyclerListView.setLayoutManager(linearLayoutManager);
         recyclerListView.setClipToPadding(false);
-        addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
+        addView(recyclerListView, LayoutHelper.createFrame(-1.0f, -1));
     }
 
+    public abstract RecyclerView.Adapter createAdapter();
+
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
         if (themePaint == null) {
@@ -47,8 +44,9 @@ public abstract class BaseListPageView extends FrameLayout implements PagerHeade
     @Override
     public void setOffset(float f) {
         if (Math.abs(f / getMeasuredWidth()) == 1.0f) {
-            if (this.recyclerListView.findViewHolderForAdapterPosition(0) == null || this.recyclerListView.findViewHolderForAdapterPosition(0).itemView.getTop() != this.recyclerListView.getPaddingTop()) {
-                this.recyclerListView.scrollToPosition(0);
+            RecyclerListView recyclerListView = this.recyclerListView;
+            if (recyclerListView.findViewHolderForAdapterPosition(0) == null || recyclerListView.findViewHolderForAdapterPosition(0).itemView.getTop() != recyclerListView.getPaddingTop()) {
+                recyclerListView.scrollToPosition(0);
             }
         }
     }

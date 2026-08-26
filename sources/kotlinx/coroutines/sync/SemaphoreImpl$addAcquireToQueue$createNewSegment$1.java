@@ -3,19 +3,12 @@ package kotlinx.coroutines.sync;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.FunctionReferenceImpl;
 
-class SemaphoreImpl$addAcquireToQueue$createNewSegment$1 extends FunctionReferenceImpl implements Function2 {
-    public static final SemaphoreImpl$addAcquireToQueue$createNewSegment$1 INSTANCE = new SemaphoreImpl$addAcquireToQueue$createNewSegment$1();
-
-    SemaphoreImpl$addAcquireToQueue$createNewSegment$1() {
-        super(2, SemaphoreKt.class, "createSegment", "createSegment(JLkotlinx/coroutines/sync/SemaphoreSegment;)Lkotlinx/coroutines/sync/SemaphoreSegment;", 1);
-    }
+public final class SemaphoreImpl$addAcquireToQueue$createNewSegment$1 extends FunctionReferenceImpl implements Function2 {
+    public static final SemaphoreImpl$addAcquireToQueue$createNewSegment$1 INSTANCE = new SemaphoreImpl$addAcquireToQueue$createNewSegment$1(2, SemaphoreKt.class, "createSegment", "createSegment(JLkotlinx/coroutines/sync/SemaphoreSegment;)Lkotlinx/coroutines/sync/SemaphoreSegment;", 1);
 
     @Override
-    public Object invoke(Object obj, Object obj2) {
-        return invoke(((Number) obj).longValue(), (SemaphoreSegment) obj2);
-    }
-
-    public final SemaphoreSegment invoke(long j, SemaphoreSegment semaphoreSegment) {
-        return SemaphoreKt.createSegment(j, semaphoreSegment);
+    public final Object invoke(Object obj, Object obj2) {
+        int i = SemaphoreKt.MAX_SPIN_CYCLES;
+        return new SemaphoreSegment(((Number) obj).longValue(), (SemaphoreSegment) obj2, 0);
     }
 }

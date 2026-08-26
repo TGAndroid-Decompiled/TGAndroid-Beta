@@ -10,13 +10,12 @@ import com.google.zxing.common.detector.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
 
 public abstract class EntitiesContainerView extends FrameLayout {
-    private boolean cancelled;
-    private EntitiesContainerViewDelegate delegate;
+    public boolean cancelled;
+    public final EntitiesContainerViewDelegate delegate;
     public boolean drawForThumb;
-    private boolean hasTransformed;
-    private float previousScale;
-    private float px;
-    private float py;
+    public boolean hasTransformed;
+    public float px;
+    public float py;
 
     public interface EntitiesContainerViewDelegate {
         void onEntityDeselect();
@@ -26,80 +25,72 @@ public abstract class EntitiesContainerView extends FrameLayout {
 
     public EntitiesContainerView(Context context, EntitiesContainerViewDelegate entitiesContainerViewDelegate) {
         super(context);
-        this.previousScale = 1.0f;
         this.delegate = entitiesContainerViewDelegate;
     }
 
-    public int entitiesCount() {
-        int i = 0;
-        for (int i2 = 0; i2 < getChildCount(); i2++) {
-            if (getChildAt(i2) instanceof EntityView) {
-                i++;
-            }
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        if (this.drawForThumb && (view instanceof ReactionWidgetEntityView)) {
+            return true;
         }
-        return i;
+        return super.drawChild(canvas, view, j);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        EntitiesContainerViewDelegate entitiesContainerViewDelegate;
-        EntityView entityViewOnSelectedEntityRequest = this.delegate.onSelectedEntityRequest();
+    public final void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
+        if (!(view instanceof TextPaintView)) {
+            super.measureChildWithMargins(view, i, i2, i3, i4);
+            return;
+        }
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+        view.measure(ViewGroup.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i2, marginLayoutParams.width), View.MeasureSpec.makeMeasureSpec(0, 0));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        EntitiesContainerViewDelegate entitiesContainerViewDelegate = this.delegate;
+        EntityView entityViewOnSelectedEntityRequest = entitiesContainerViewDelegate.onSelectedEntityRequest();
         if (entityViewOnSelectedEntityRequest == null) {
             return false;
         }
-        if (motionEvent.getPointerCount() == 1) {
-            int actionMasked = motionEvent.getActionMasked();
-            if (actionMasked == 0) {
-                this.hasTransformed = false;
-                entityViewOnSelectedEntityRequest.hasPanned = false;
-                entityViewOnSelectedEntityRequest.hasReleased = false;
-                this.px = motionEvent.getX();
-                this.py = motionEvent.getY();
-                this.cancelled = false;
-            } else if (!this.cancelled && actionMasked == 2) {
-                float x = motionEvent.getX();
-                float y = motionEvent.getY();
-                if (this.hasTransformed || MathUtils.distance(x, y, this.px, this.py) > AndroidUtilities.touchSlop) {
-                    this.hasTransformed = true;
-                    entityViewOnSelectedEntityRequest.hasPanned = true;
-                    entityViewOnSelectedEntityRequest.pan(x - this.px, y - this.py);
-                    this.px = x;
-                    this.py = y;
-                }
-            } else if (actionMasked == 1 || actionMasked == 3) {
-                entityViewOnSelectedEntityRequest.hasPanned = false;
-                entityViewOnSelectedEntityRequest.hasReleased = true;
-                if (!this.hasTransformed && (entitiesContainerViewDelegate = this.delegate) != null) {
-                    entitiesContainerViewDelegate.onEntityDeselect();
-                }
-                invalidate();
-                return false;
-            }
-        } else {
+        if (motionEvent.getPointerCount() != 1) {
             entityViewOnSelectedEntityRequest.hasPanned = false;
             entityViewOnSelectedEntityRequest.hasReleased = true;
             this.hasTransformed = false;
             this.cancelled = true;
             invalidate();
-        }
-        return true;
-    }
-
-    @Override
-    protected void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
-        if (view instanceof TextPaintView) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            view.measure(ViewGroup.getChildMeasureSpec(i, getPaddingLeft() + getPaddingRight() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i2, marginLayoutParams.width), View.MeasureSpec.makeMeasureSpec(0, 0));
-        } else {
-            super.measureChildWithMargins(view, i, i2, i3, i4);
-        }
-    }
-
-    @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        if (this.drawForThumb && (view instanceof ReactionWidgetEntityView)) {
             return true;
         }
-        return super.drawChild(canvas, view, j);
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            this.hasTransformed = false;
+            entityViewOnSelectedEntityRequest.hasPanned = false;
+            entityViewOnSelectedEntityRequest.hasReleased = false;
+            this.px = motionEvent.getX();
+            this.py = motionEvent.getY();
+            this.cancelled = false;
+            return true;
+        }
+        if (!this.cancelled && actionMasked == 2) {
+            float x = motionEvent.getX();
+            float y = motionEvent.getY();
+            if (this.hasTransformed || MathUtils.distance(x, y, this.px, this.py) > AndroidUtilities.touchSlop) {
+                this.hasTransformed = true;
+                entityViewOnSelectedEntityRequest.hasPanned = true;
+                entityViewOnSelectedEntityRequest.pan(x - this.px, y - this.py);
+                this.px = x;
+                this.py = y;
+                return true;
+            }
+        } else if (actionMasked == 1 || actionMasked == 3) {
+            entityViewOnSelectedEntityRequest.hasPanned = false;
+            entityViewOnSelectedEntityRequest.hasReleased = true;
+            if (!this.hasTransformed) {
+                entitiesContainerViewDelegate.onEntityDeselect();
+            }
+            invalidate();
+            return false;
+        }
+        return true;
     }
 }

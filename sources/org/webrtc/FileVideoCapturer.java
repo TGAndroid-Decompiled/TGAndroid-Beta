@@ -2,6 +2,7 @@ package org.webrtc;
 
 import android.content.Context;
 import android.os.SystemClock;
+import com.google.android.gms.internal.mlkit_language_id_common.zzil;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -23,22 +24,13 @@ public class FileVideoCapturer implements VideoCapturer {
         }
     };
 
-    private interface VideoReader {
+    public interface VideoReader {
         void close();
 
         VideoFrame getNextFrame();
     }
 
-    @Override
-    public void changeCaptureFormat(int i, int i2, int i3) {
-    }
-
-    @Override
-    public boolean isScreencast() {
-        return false;
-    }
-
-    private static class VideoReaderY4M implements VideoReader {
+    public static class VideoReaderY4M implements VideoReader {
         private static final int FRAME_DELIMETER_LENGTH = 6;
         private static final String TAG = "VideoReaderY4M";
         private static final String Y4M_FRAME_DELIMETER = "FRAME";
@@ -56,11 +48,9 @@ public class FileVideoCapturer implements VideoCapturer {
             while (true) {
                 int i = this.mediaFile.read();
                 if (i == -1) {
-                    throw new RuntimeException("Found end of file before end of header for file: " + str);
+                    throw new RuntimeException(zzil.m("Found end of file before end of header for file: ", str));
                 }
-                if (i != 10) {
-                    sb.append((char) i);
-                } else {
+                if (i == 10) {
                     this.videoStart = this.mediaFileChannel.position();
                     String strSubstring = "";
                     int i2 = 0;
@@ -87,6 +77,16 @@ public class FileVideoCapturer implements VideoCapturer {
                     Logging.d("VideoReaderY4M", "frame dim: (" + i2 + ", " + i3 + ")");
                     return;
                 }
+                sb.append((char) i);
+            }
+        }
+
+        @Override
+        public void close() {
+            try {
+                this.mediaFile.close();
+            } catch (IOException e) {
+                Logging.e("VideoReaderY4M", "Problem closing file", e);
             }
         }
 
@@ -110,24 +110,15 @@ public class FileVideoCapturer implements VideoCapturer {
                     }
                 }
                 String str = new String(byteBufferAllocate.array(), Charset.forName("US-ASCII"));
-                if (!str.equals("FRAME\n")) {
-                    throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
+                if (str.equals("FRAME\n")) {
+                    this.mediaFileChannel.read(dataY);
+                    this.mediaFileChannel.read(dataU);
+                    this.mediaFileChannel.read(dataV);
+                    return new VideoFrame(javaI420BufferAllocate, 0, nanos);
                 }
-                this.mediaFileChannel.read(dataY);
-                this.mediaFileChannel.read(dataU);
-                this.mediaFileChannel.read(dataV);
-                return new VideoFrame(javaI420BufferAllocate, 0, nanos);
+                throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }
-        }
-
-        @Override
-        public void close() {
-            try {
-                this.mediaFile.close();
-            } catch (IOException e) {
-                Logging.e("VideoReaderY4M", "Problem closing file", e);
             }
         }
     }
@@ -141,15 +132,23 @@ public class FileVideoCapturer implements VideoCapturer {
         }
     }
 
-    public void tick() {
-        VideoFrame nextFrame = this.videoReader.getNextFrame();
-        this.capturerObserver.onFrameCaptured(nextFrame);
-        nextFrame.release();
+    @Override
+    public void changeCaptureFormat(int i, int i2, int i3) {
+    }
+
+    @Override
+    public void dispose() {
+        this.videoReader.close();
     }
 
     @Override
     public void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context, CapturerObserver capturerObserver) {
         this.capturerObserver = capturerObserver;
+    }
+
+    @Override
+    public boolean isScreencast() {
+        return false;
     }
 
     @Override
@@ -162,8 +161,9 @@ public class FileVideoCapturer implements VideoCapturer {
         this.timer.cancel();
     }
 
-    @Override
-    public void dispose() {
-        this.videoReader.close();
+    public void tick() {
+        VideoFrame nextFrame = this.videoReader.getNextFrame();
+        this.capturerObserver.onFrameCaptured(nextFrame);
+        nextFrame.release();
     }
 }

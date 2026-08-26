@@ -1,5 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,11 +32,32 @@ public class GlueSettingsParser {
         }
     }
 
-    private void setStyleMappings() {
-        this.styleMappings.put("display", 0);
-        this.styleMappings.put("text", 1);
-        this.styleMappings.put("script", 2);
-        this.styleMappings.put("script_script", 3);
+    private static void checkMapping(Object obj, String str, String str2, String str3) {
+        if (obj == null) {
+            throw new XMLResourceParseException("GlueSettings.xml", str, str2, SurfaceContainer$$ExternalSyntheticOutline0.m("has an unknown value '", str3, "'!"));
+        }
+    }
+
+    private Glue createGlue(Element element, String str) {
+        String[] strArr = {"space", "stretch", "shrink"};
+        float[] fArr = new float[3];
+        for (int i = 0; i < 3; i++) {
+            try {
+                String attribute = element.getAttribute(strArr[i]);
+                fArr[i] = (float) (!attribute.equals("") ? Double.parseDouble(attribute) : 0.0d);
+            } catch (NumberFormatException unused) {
+                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i], SurfaceContainer$$ExternalSyntheticOutline0.m("has an invalid real value '", (String) null, "'!"));
+            }
+        }
+        return new Glue(fArr[0], fArr[1], fArr[2], str);
+    }
+
+    private static String getAttrValueAndCheckIfNotNull(String str, Element element) {
+        String attribute = element.getAttribute(str);
+        if (attribute.equals("")) {
+            throw new XMLResourceParseException("GlueSettings.xml", element.getTagName(), str, null);
+        }
+        return attribute;
     }
 
     private void parseGlueTypes() {
@@ -81,18 +103,11 @@ public class GlueSettingsParser {
         }
     }
 
-    private Glue createGlue(Element element, String str) {
-        String[] strArr = {"space", "stretch", "shrink"};
-        float[] fArr = new float[3];
-        for (int i = 0; i < 3; i++) {
-            try {
-                String attribute = element.getAttribute(strArr[i]);
-                fArr[i] = (float) (!attribute.equals("") ? Double.parseDouble(attribute) : 0.0d);
-            } catch (NumberFormatException unused) {
-                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i], "has an invalid real value '" + ((String) null) + "'!");
-            }
-        }
-        return new Glue(fArr[0], fArr[1], fArr[2], str);
+    private void setStyleMappings() {
+        this.styleMappings.put("display", 0);
+        this.styleMappings.put("text", 1);
+        this.styleMappings.put("script", 2);
+        this.styleMappings.put("script_script", 3);
     }
 
     private void setTypeMappings() {
@@ -104,10 +119,6 @@ public class GlueSettingsParser {
         this.typeMappings.put("close", 5);
         this.typeMappings.put("punct", 6);
         this.typeMappings.put("inner", 7);
-    }
-
-    public Glue[] getGlueTypes() {
-        return this.glueTypes;
     }
 
     public int[][][] createGlueTable() {
@@ -151,18 +162,7 @@ public class GlueSettingsParser {
         return iArr;
     }
 
-    private static void checkMapping(Object obj, String str, String str2, String str3) {
-        if (obj != null) {
-            return;
-        }
-        throw new XMLResourceParseException("GlueSettings.xml", str, str2, "has an unknown value '" + str3 + "'!");
-    }
-
-    private static String getAttrValueAndCheckIfNotNull(String str, Element element) {
-        String attribute = element.getAttribute(str);
-        if (attribute.equals("")) {
-            throw new XMLResourceParseException("GlueSettings.xml", element.getTagName(), str, null);
-        }
-        return attribute;
+    public Glue[] getGlueTypes() {
+        return this.glueTypes;
     }
 }

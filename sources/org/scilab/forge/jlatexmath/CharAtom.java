@@ -11,12 +11,13 @@ public class CharAtom extends CharSymbol {
         this.mathMode = z;
     }
 
-    public CharAtom(char c, String str) {
-        this(c, str, false);
-    }
-
-    public boolean isMathMode() {
-        return this.mathMode;
+    private Char getChar(TeXFont teXFont, int i, boolean z) {
+        char upperCase = this.c;
+        if (z && Character.isLowerCase(upperCase)) {
+            upperCase = Character.toUpperCase(this.c);
+        }
+        String str = this.textStyle;
+        return str == null ? teXFont.getDefaultChar(upperCase, i) : teXFont.getChar(upperCase, str, i);
     }
 
     @Override
@@ -30,28 +31,24 @@ public class CharAtom extends CharSymbol {
         return (smallCap && Character.isLowerCase(this.c)) ? new ScaleBox(charBox, 0.800000011920929d, 0.800000011920929d) : charBox;
     }
 
-    public char getCharacter() {
-        return this.c;
-    }
-
-    private Char getChar(TeXFont teXFont, int i, boolean z) {
-        char upperCase = this.c;
-        if (z && Character.isLowerCase(upperCase)) {
-            upperCase = Character.toUpperCase(this.c);
-        }
-        String str = this.textStyle;
-        if (str == null) {
-            return teXFont.getDefaultChar(upperCase, i);
-        }
-        return teXFont.getChar(upperCase, str, i);
-    }
-
     @Override
     public CharFont getCharFont(TeXFont teXFont) {
         return getChar(teXFont, 0, false).getCharFont();
     }
 
+    public char getCharacter() {
+        return this.c;
+    }
+
+    public boolean isMathMode() {
+        return this.mathMode;
+    }
+
     public String toString() {
         return "CharAtom: '" + this.c + "'";
+    }
+
+    public CharAtom(char c, String str) {
+        this(c, str, false);
     }
 }

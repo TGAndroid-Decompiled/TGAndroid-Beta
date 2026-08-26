@@ -5,56 +5,70 @@ import android.graphics.Canvas;
 import android.text.TextPaint;
 import android.view.View;
 import org.telegram.tgnet.TLObject;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 
-public class GiftMessageView extends View {
-    private final GiftMessageDrawable drawable;
+public final class GiftMessageView extends View {
+    public final GiftMessageDrawable drawable;
 
     public GiftMessageView(Context context) {
         super(context);
         GiftMessageDrawable giftMessageDrawable = new GiftMessageDrawable();
         this.drawable = giftMessageDrawable;
-        giftMessageDrawable.setParentView(this);
-    }
-
-    public void setMessage(CharSequence charSequence) {
-        this.drawable.setMessage(charSequence);
-        requestLayout();
-    }
-
-    public void setUser(TLObject tLObject) {
-        this.drawable.setUser(tLObject);
-        invalidate();
+        giftMessageDrawable.parentView = this;
+        giftMessageDrawable.avatarReceiver.setParentView(this);
     }
 
     public GiftMessageDrawable getDrawable() {
         return this.drawable;
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        this.drawable.measure((View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight());
-        setMeasuredDimension(this.drawable.getMinimumWidth() + getPaddingLeft() + getPaddingRight(), this.drawable.getMinimumHeight() + getPaddingTop() + getPaddingBottom());
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        this.drawable.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-        this.drawable.draw(canvas);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.drawable.attach();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.drawable.detach();
-    }
-
     public TextPaint getTextPaint() {
-        return this.drawable.getTextPaint();
+        return this.drawable.textPaint;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.drawable.avatarReceiver.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        GiftMessageDrawable giftMessageDrawable = this.drawable;
+        giftMessageDrawable.avatarReceiver.onDetachedFromWindow();
+        AnimatedEmojiSpan.release((View) null, giftMessageDrawable.emojiGroupedSpans);
+        giftMessageDrawable.emojiGroupedSpans = null;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int paddingLeft = getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int width = getWidth() - getPaddingRight();
+        int height = getHeight() - getPaddingBottom();
+        GiftMessageDrawable giftMessageDrawable = this.drawable;
+        giftMessageDrawable.setBounds(paddingLeft, paddingTop, width, height);
+        giftMessageDrawable.draw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int size = (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
+        GiftMessageDrawable giftMessageDrawable = this.drawable;
+        giftMessageDrawable.measure(size);
+        setMeasuredDimension(getPaddingRight() + getPaddingLeft() + giftMessageDrawable.measuredWidth, getPaddingBottom() + getPaddingTop() + giftMessageDrawable.measuredHeight);
+    }
+
+    public void setMessage(CharSequence charSequence) {
+        GiftMessageDrawable giftMessageDrawable = this.drawable;
+        giftMessageDrawable.message = charSequence;
+        giftMessageDrawable.lastMeasuredWidth = -1;
+        requestLayout();
+    }
+
+    public void setUser(TLObject tLObject) {
+        this.drawable.setUser(tLObject);
+        invalidate();
     }
 }

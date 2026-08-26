@@ -7,7 +7,6 @@ import android.os.Build;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Layout;
-import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -16,180 +15,78 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda380;
+import org.telegram.ui.CodeNumberField;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.URLSpanReplacement;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda44;
+import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
 
-public class RichEditText extends EditTextCaption {
-    private boolean accentHint;
-    private boolean allowNewlines;
-    private boolean applyingEmptyHint;
-    private boolean autoBold;
+public final class RichEditText extends EditTextCaption {
+    public boolean accentHint;
+    public boolean allowNewlines;
+    public boolean applyingEmptyHint;
+    public boolean autoBold;
     public TL_iv.PageBlock block;
-    private boolean centerEmptyHint;
-    private int currentAccount;
-    private boolean ignoreTextChange;
-    private InlineButtonClickListener inlineButtonClickListener;
-    private final Runnable inlineButtonLongPressRunnable;
-    private boolean inlineButtonLongPressed;
-    private boolean insertingNewline;
-    private Layout lastMarkLayout;
-    private int lastMarkTextLength;
-    private Listener listener;
-    private boolean locked;
-    private final InputFilter lockingFilter;
-    private Paint markPaint;
-    private LinkPath markPath;
-    private boolean markPathDirty;
-    private long mathDownTime;
-    private float mathDownX;
-    private float mathDownY;
-    private RichInlineButtonSpan pressedInlineButton;
-    private Theme.ResourcesProvider resourcesProvider;
-    private boolean softEnterNewline;
-    private int textColorKey;
-    private int touchSlop;
+    public boolean centerEmptyHint;
+    public int currentAccount;
+    public boolean ignoreTextChange;
+    public InlineButtonClickListener inlineButtonClickListener;
+    public final RichEditText$$ExternalSyntheticLambda2 inlineButtonLongPressRunnable;
+    public boolean inlineButtonLongPressed;
+    public boolean insertingNewline;
+    public Layout lastMarkLayout;
+    public int lastMarkTextLength;
+    public Listener listener;
+    public boolean locked;
+    public final RichEditText$$ExternalSyntheticLambda1 lockingFilter;
+    public Paint markPaint;
+    public LinkPath markPath;
+    public boolean markPathDirty;
+    public long mathDownTime;
+    public float mathDownX;
+    public float mathDownY;
+    public RichInlineButtonSpan pressedInlineButton;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public boolean softEnterNewline;
+    public int textColorKey;
+    public int touchSlop;
 
     public interface InlineButtonClickListener {
-        void onInlineButtonClick(RichEditText richEditText, RichInlineButtonSpan richInlineButtonSpan, boolean z);
     }
 
     public interface Listener {
-
-        public abstract class CC {
-            public static boolean $default$onBackspaceAtStart(Listener listener, RichEditText richEditText) {
-                return false;
-            }
-
-            public static void $default$onBackspaceOnEmpty(Listener listener, RichEditText richEditText) {
-            }
-
-            public static void $default$onEnterPressed(Listener listener, RichEditText richEditText) {
-            }
-
-            public static void $default$onLockedInsert(Listener listener, RichEditText richEditText, CharSequence charSequence) {
-            }
-
-            public static boolean $default$onPaste(Listener listener, RichEditText richEditText) {
-                return false;
-            }
-
-            public static boolean $default$onSelectAll(Listener listener, RichEditText richEditText) {
-                return false;
-            }
-
-            public static boolean $default$onTab(Listener listener, RichEditText richEditText, boolean z) {
-                return false;
-            }
-
-            public static void $default$onTextWillChange(Listener listener, RichEditText richEditText, int i, int i2) {
-            }
-        }
-
         boolean onBackspaceAtStart(RichEditText richEditText);
 
-        void onBackspaceOnEmpty(RichEditText richEditText);
+        void onBackspaceOnEmpty();
 
         void onEnterPressed(RichEditText richEditText);
 
-        void onLockedInsert(RichEditText richEditText, CharSequence charSequence);
+        void onLockedInsert(CharSequence charSequence);
 
         boolean onPaste(RichEditText richEditText);
 
-        void onRequestWindowFocusable(RichEditText richEditText, boolean z);
+        void onRequestWindowFocusable(RichEditText richEditText);
 
-        boolean onSelectAll(RichEditText richEditText);
+        boolean onSelectAll();
 
         void onSelectionChanged(RichEditText richEditText, int i, int i2);
 
-        boolean onTab(RichEditText richEditText, boolean z);
+        void onTab(boolean z);
 
-        void onTextChanged(RichEditText richEditText, Editable editable);
+        void onTextChanged(Editable editable);
 
-        void onTextWillChange(RichEditText richEditText, int i, int i2);
-    }
-
-    @Override
-    protected void extendActionMode(ActionMode actionMode, Menu menu) {
-    }
-
-    public static CharSequence $r8$lambda$iRPklAQgcnDmxbuQdehd2WtiT1k(RichEditText richEditText, CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
-        if (!richEditText.locked || richEditText.ignoreTextChange) {
-            return null;
-        }
-        Listener listener = richEditText.listener;
-        if (listener != null && charSequence != null && i2 > i && i3 == i4) {
-            listener.onLockedInsert(richEditText, charSequence.subSequence(i, i2));
-        }
-        return spanned.subSequence(i3, i4);
-    }
-
-    public void setBlock(TL_iv.PageBlock pageBlock) {
-        this.block = pageBlock;
-    }
-
-    public void setAccentHint(boolean z) {
-        if (this.accentHint == z) {
-            return;
-        }
-        this.accentHint = z;
-        updateColors();
-    }
-
-    public void setCenterEmptyHint(boolean z) {
-        if (this.centerEmptyHint == z) {
-            return;
-        }
-        this.centerEmptyHint = z;
-        if (z) {
-            refreshEmptyHintGravity();
-        } else {
-            int iDp = AndroidUtilities.dp(2.0f);
-            setPadding(iDp, getPaddingTop(), iDp, getPaddingBottom());
-        }
-    }
-
-    public void refreshEmptyHintGravity() {
-        if (this.centerEmptyHint) {
-            this.applyingEmptyHint = true;
-            int iDp = AndroidUtilities.dp(2.0f);
-            CharSequence hint = getHint();
-            if (length() == 0 && getWidth() > 0 && !TextUtils.isEmpty(hint)) {
-                int iMax = Math.max(0, Math.round(((getWidth() - (iDp * 2)) - getPaint().measureText(hint.toString())) / 2.0f));
-                super.setGravity(51);
-                setPadding(iMax + iDp, getPaddingTop(), iDp, getPaddingBottom());
-            } else {
-                super.setGravity(17);
-                setPadding(iDp, getPaddingTop(), iDp, getPaddingBottom());
-            }
-            this.applyingEmptyHint = false;
-        }
-    }
-
-    @Override
-    public void setGravity(int i) {
-        if (!this.applyingEmptyHint) {
-            this.centerEmptyHint = false;
-        }
-        super.setGravity(i);
-    }
-
-    @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        refreshEmptyHintGravity();
+        void onTextWillChange(int i, int i2);
     }
 
     public RichEditText(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -197,19 +94,10 @@ public class RichEditText extends EditTextCaption {
         this.currentAccount = UserConfig.selectedAccount;
         this.lastMarkTextLength = -1;
         this.markPathDirty = true;
-        this.lockingFilter = new InputFilter() {
-            @Override
-            public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
-                return RichEditText.$r8$lambda$iRPklAQgcnDmxbuQdehd2WtiT1k(this.f$0, charSequence, i, i2, spanned, i3, i4);
-            }
-        };
+        int i = 0;
+        this.lockingFilter = new RichEditText$$ExternalSyntheticLambda1(i, this);
         this.textColorKey = Theme.key_windowBackgroundWhiteBlackText;
-        this.inlineButtonLongPressRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                RichEditText.$r8$lambda$y1oU0IY08BSrOo05VUjrt9nTmjo(this.f$0);
-            }
-        };
+        this.inlineButtonLongPressRunnable = new RichEditText$$ExternalSyntheticLambda2(this, i);
         this.resourcesProvider = resourcesProvider;
         this.adaptiveCreateLinkDialog = true;
         setBackground(null);
@@ -217,105 +105,34 @@ public class RichEditText extends EditTextCaption {
         setGravity(8388659);
         setInputType(getInputType() | 147456);
         setImeOptions(5);
-        ActionMode.Callback callback = new ActionMode.Callback() {
-            @Override
-            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-                return false;
-            }
-
-            @Override
-            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-                return false;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode actionMode) {
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-                return false;
-            }
-        };
-        ActionMode.Callback callback2 = new ActionMode.Callback() {
-            @Override
-            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-                return false;
-            }
-
-            @Override
-            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-                return true;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode actionMode) {
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-                if (RichEditText.this.length() != 0) {
-                    return false;
-                }
-                for (int size = menu.size() - 1; size >= 0; size--) {
-                    int itemId = menu.getItem(size).getItemId();
-                    if (itemId != 16908322 && itemId != 16908337) {
-                        menu.removeItem(itemId);
-                    }
-                }
-                return true;
-            }
-        };
-        setCustomSelectionActionModeCallback(callback);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(0);
+        CodeNumberField.AnonymousClass2 anonymousClass2 = new CodeNumberField.AnonymousClass2(1, this);
+        setCustomSelectionActionModeCallback(anonymousClass1);
         if (Build.VERSION.SDK_INT >= 23) {
-            setCustomInsertionActionModeCallback(callback2);
+            setCustomInsertionActionModeCallback(anonymousClass2);
         }
-        setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public final boolean onLongClick(View view) {
-                return RichEditText.$r8$lambda$1zanUkwDccpaCzSLtbOTgIXX62M(this.f$0, view);
-            }
-        });
-        updateLongClickForEmpty();
-        setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                return RichEditText.$r8$lambda$8cYQBJoce3BSQuD6acT9rqgqB_k(this.f$0, textView, i, keyEvent);
-            }
-        });
+        setOnLongClickListener(new PhotoViewer$$ExternalSyntheticLambda44(this, 16));
+        setLongClickable(length() == 0);
+        setOnEditorActionListener(new ChatActivity$$ExternalSyntheticLambda380(this, 25));
         addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                if (RichEditText.this.ignoreTextChange || RichEditText.this.listener == null) {
-                    return;
-                }
-                RichEditText.this.listener.onTextWillChange(RichEditText.this, i2, i3);
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                RichEditText.this.markPathDirty = true;
-                RichEditText.this.refreshEmptyHintGravity();
-                RichEditText.this.updateLongClickForEmpty();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
+            public final void afterTextChanged(Editable editable) {
                 Editable editable2;
-                if (RichEditText.this.ignoreTextChange || RichEditText.this.listener == null) {
+                RichEditText richEditText = RichEditText.this;
+                if (richEditText.ignoreTextChange || richEditText.listener == null) {
                     return;
                 }
-                if (!RichEditText.this.autoBold || editable.length() <= 0) {
+                if (!richEditText.autoBold || editable.length() <= 0) {
                     editable2 = editable;
                 } else {
                     editable2 = editable;
-                    RichTextStyle.setStyle(editable2, 0, editable.length(), 1, true, RichEditText.this.block);
+                    RichTextStyle.setStyle(editable2, 0, editable.length(), 1, true, richEditText.block);
                 }
-                if (RichEditText.this.allowNewlines || RichEditText.this.insertingNewline || RichEditText.this.softEnterNewline) {
-                    RichEditText.this.listener.onTextChanged(RichEditText.this, editable2);
+                if (richEditText.allowNewlines || richEditText.insertingNewline || richEditText.softEnterNewline) {
+                    richEditText.listener.onTextChanged(editable2);
                     return;
                 }
-                RichEditText.this.ignoreTextChange = true;
+                richEditText.ignoreTextChange = true;
                 boolean z = false;
                 for (int length = editable2.length() - 1; length >= 0; length--) {
                     if (editable2.charAt(length) == '\n') {
@@ -323,62 +140,53 @@ public class RichEditText extends EditTextCaption {
                         z = true;
                     }
                 }
-                RichEditText.this.ignoreTextChange = false;
+                richEditText.ignoreTextChange = false;
                 if (z) {
-                    RichEditText.this.listener.onEnterPressed(RichEditText.this);
+                    richEditText.listener.onEnterPressed(richEditText);
                 } else {
-                    RichEditText.this.listener.onTextChanged(RichEditText.this, editable2);
+                    richEditText.listener.onTextChanged(editable2);
                 }
+            }
+
+            @Override
+            public final void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                Listener listener;
+                RichEditText richEditText = RichEditText.this;
+                if (richEditText.ignoreTextChange || (listener = richEditText.listener) == null) {
+                    return;
+                }
+                listener.onTextWillChange(i3, i4);
+            }
+
+            @Override
+            public final void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                RichEditText richEditText = RichEditText.this;
+                richEditText.markPathDirty = true;
+                richEditText.refreshEmptyHintGravity();
+                richEditText.setLongClickable(richEditText.length() == 0);
             }
         });
         updateColors();
     }
 
-    public static boolean $r8$lambda$1zanUkwDccpaCzSLtbOTgIXX62M(RichEditText richEditText, View view) {
-        return richEditText.length() != 0;
-    }
-
-    public static boolean $r8$lambda$8cYQBJoce3BSQuD6acT9rqgqB_k(RichEditText richEditText, TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            richEditText.getClass();
-            return false;
-        }
-        Listener listener = richEditText.listener;
-        if (listener == null || richEditText.allowNewlines) {
-            return false;
-        }
-        if (richEditText.softEnterNewline) {
-            richEditText.insertNewlineAtSelection();
-            return true;
-        }
-        listener.onEnterPressed(richEditText);
-        return true;
-    }
-
     @Override
-    protected Theme.ResourcesProvider getResourcesProvider() {
-        return this.resourcesProvider;
+    public final void addStyle(int i, int i2, int i3) {
+        int iMin;
+        Editable text = getText();
+        if (text == null || i2 < 0 || i3 < 0 || i2 >= i3 || i2 >= (iMin = Math.min(i3, text.length()))) {
+            return;
+        }
+        RichTextStyle.setStyle(text, i2, iMin, i, true, this.block);
+        if ((i & 256) != 0) {
+            invalidateSpoilers();
+        }
+        super.notifySpansChanged();
+        this.markPathDirty = true;
+        invalidate();
     }
 
-    @Override
-    protected URLSpanReplacement createUrlSpan(String str) {
-        return RichTextStyle.linkSpan(str);
-    }
-
-    public void setListener(Listener listener) {
-        this.listener = listener;
-    }
-
-    public void setInlineButtonClickListener(InlineButtonClickListener inlineButtonClickListener) {
-        this.inlineButtonClickListener = inlineButtonClickListener;
-    }
-
-    public void setInlineButtonContext(int i) {
-        this.currentAccount = i;
-        bindInlineButtons();
-    }
-
-    private void bindInlineButtons() {
+    public final void bindInlineButtons() {
+        RichEditText richEditText;
         Editable text = getText();
         if (text == null) {
             return;
@@ -388,155 +196,63 @@ public class RichEditText extends EditTextCaption {
             richInlineButtonSpan.removeNestedReplacementSpans(text);
         }
         for (RichInlineButtonSpan richInlineButtonSpan2 : richInlineButtonSpanArr) {
-            richInlineButtonSpan2.bind(this, this.currentAccount, this.resourcesProvider);
-        }
-    }
-
-    public void setAllowNewlines(boolean z) {
-        this.allowNewlines = z;
-    }
-
-    public void setAutoBold(boolean z) {
-        this.autoBold = z;
-    }
-
-    public boolean isAutoBold() {
-        return this.autoBold;
-    }
-
-    public void setSoftEnterNewline(boolean z) {
-        this.softEnterNewline = z;
-    }
-
-    @Override
-    public void setInputType(int i) {
-        InputMethodManager inputMethodManager;
-        boolean z = getInputType() != i;
-        super.setInputType(i);
-        if (z && isFocused() && (inputMethodManager = (InputMethodManager) getContext().getSystemService("input_method")) != null) {
-            inputMethodManager.restartInput(this);
-        }
-    }
-
-    public void setTextSilently(CharSequence charSequence) {
-        this.ignoreTextChange = true;
-        setText(charSequence);
-        bindInlineButtons();
-        setSelection(length());
-        this.ignoreTextChange = false;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        bindInlineButtons();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        AndroidUtilities.cancelRunOnUIThread(this.inlineButtonLongPressRunnable);
-        this.pressedInlineButton = null;
-        this.inlineButtonLongPressed = false;
-        Editable text = getText();
-        if (text != null) {
-            for (RichInlineButtonSpan richInlineButtonSpan : (RichInlineButtonSpan[]) text.getSpans(0, text.length(), RichInlineButtonSpan.class)) {
-                richInlineButtonSpan.detach(this);
+            int i = this.currentAccount;
+            RichMessageLayout.RichButtonSpan richButtonSpan = richInlineButtonSpan2.renderedSpan;
+            if (richButtonSpan != null && (richEditText = richInlineButtonSpan2.attachedView) != null) {
+                richButtonSpan.detach(richEditText);
             }
+            richInlineButtonSpan2.attachedView = this;
+            richInlineButtonSpan2.currentAccount = i;
+            richInlineButtonSpan2.resourcesProvider = this.resourcesProvider;
+            richInlineButtonSpan2.renderedSpan = null;
+            richInlineButtonSpan2.ensureRenderer();
         }
-        super.onDetachedFromWindow();
     }
 
-    public void deleteToEndSilently(int i) {
-        Editable text = getText();
-        if (text == null || i < 0 || i >= text.length()) {
-            return;
-        }
-        this.ignoreTextChange = true;
-        text.delete(i, text.length());
-        this.ignoreTextChange = false;
+    @Override
+    public final URLSpanReplacement createUrlSpan(String str) {
+        TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+        textStyleRun.flags = 1024;
+        return new URLSpanReplacement(str, textStyleRun);
     }
 
-    public void appendSilently(CharSequence charSequence) {
-        Editable text = getText();
-        if (text == null || charSequence == null || charSequence.length() == 0) {
-            return;
-        }
-        this.ignoreTextChange = true;
-        text.append(charSequence);
-        this.ignoreTextChange = false;
-    }
-
-    public void setTextColorKey(int i) {
-        this.textColorKey = i;
-        updateColors();
-    }
-
-    public void updateColors() {
-        setTextColor(Theme.getColor(this.textColorKey, this.resourcesProvider));
-        setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider));
-        setHintTextColor(this.accentHint ? Theme.multAlpha(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), 0.5f) : Theme.getColor(Theme.key_windowBackgroundWhiteHintText, this.resourcesProvider));
-        setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-        setHandlesColor(Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, this.resourcesProvider));
-        bindInlineButtons();
-    }
-
-    public void setLocked(boolean z) {
-        boolean z2;
-        if (this.locked == z) {
-            return;
-        }
-        this.locked = z;
-        InputFilter[] filters = getFilters();
-        int length = filters.length;
-        int i = 0;
-        while (true) {
-            if (i >= length) {
-                z2 = false;
-                break;
-            } else {
-                if (filters[i] == this.lockingFilter) {
-                    z2 = true;
-                    break;
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        Listener listener;
+        if (keyEvent.getKeyCode() != 61) {
+            int keyCode = keyEvent.getKeyCode();
+            if ((keyCode != 66 && keyCode != 160) || this.listener == null || this.allowNewlines) {
+                return super.dispatchKeyEvent(keyEvent);
+            }
+            if (keyEvent.getAction() == 0) {
+                boolean z = (keyEvent.getFlags() & 2) != 0;
+                if (this.softEnterNewline && (z || keyEvent.isShiftPressed())) {
+                    int iMax = Math.max(0, getSelectionStart());
+                    int iMax2 = Math.max(0, getSelectionEnd());
+                    if (iMax > iMax2) {
+                        iMax2 = iMax;
+                        iMax = iMax2;
+                    }
+                    this.insertingNewline = true;
+                    getText().replace(iMax, iMax2, "\n");
+                    this.insertingNewline = false;
+                    setSelection(iMax + 1);
+                    return true;
                 }
-                i++;
+                this.listener.onEnterPressed(this);
             }
+        } else if (keyEvent.getAction() == 0 && (listener = this.listener) != null) {
+            listener.onTab(keyEvent.isShiftPressed());
+            return true;
         }
-        if (z && !z2) {
-            InputFilter[] inputFilterArr = new InputFilter[filters.length + 1];
-            System.arraycopy(filters, 0, inputFilterArr, 0, filters.length);
-            inputFilterArr[filters.length] = this.lockingFilter;
-            setFilters(inputFilterArr);
-        }
-        boolean z3 = !z;
-        setAllowDrawCursor(z3);
-        setCursorVisible(z3);
+        return true;
     }
 
-    public void requestEditFocus() {
-        Listener listener = this.listener;
-        if (listener != null) {
-            listener.onRequestWindowFocusable(this, true);
-        }
-        requestFocus();
-        AndroidUtilities.showKeyboard(this);
+    @Override
+    public final void extendActionMode(ActionMode actionMode, Menu menu) {
     }
 
-    public void requestEditFocusRebuild() {
-        finishActionMode();
-        if (isFocused()) {
-            clearFocus();
-        }
-        requestEditFocus();
-        finishActionMode();
-        post(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.finishActionMode();
-            }
-        });
-    }
-
-    public void finishActionMode() {
+    public final void finishActionMode() {
         FloatingActionMode floatingActionMode = this.floatingActionMode;
         if (floatingActionMode != null) {
             try {
@@ -546,78 +262,23 @@ public class RichEditText extends EditTextCaption {
         }
     }
 
-    public static void $r8$lambda$y1oU0IY08BSrOo05VUjrt9nTmjo(RichEditText richEditText) {
-        RichInlineButtonSpan richInlineButtonSpan = richEditText.pressedInlineButton;
-        if (richInlineButtonSpan == null || richEditText.inlineButtonClickListener == null) {
-            return;
+    @Override
+    public final int getCurrentStyle(int i, int i2) {
+        int iMax;
+        int iMin;
+        Editable text = getText();
+        if (text != null && (iMax = Math.max(0, i)) < (iMin = Math.min(i2, text.length()))) {
+            return RichTextStyle.stylesFullyCovering(iMax, iMin, text);
         }
-        richEditText.inlineButtonLongPressed = true;
-        richInlineButtonSpan.setPressed(false);
-        try {
-            richEditText.performHapticFeedback(0);
-        } catch (Exception unused) {
-        }
-        richEditText.inlineButtonClickListener.onInlineButtonClick(richEditText, richEditText.pressedInlineButton, true);
+        return 0;
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        MathSpan mathSpanMathSpanAt;
-        if (motionEvent.getAction() == 0 && this.listener != null && isEnabled() && isFocusable()) {
-            this.listener.onRequestWindowFocusable(this, true);
-        }
-        if (!this.locked) {
-            if (motionEvent.getAction() == 0) {
-                this.mathDownX = motionEvent.getX();
-                this.mathDownY = motionEvent.getY();
-                this.mathDownTime = motionEvent.getEventTime();
-                RichInlineButtonSpan richInlineButtonSpanInlineButtonSpanAt = inlineButtonSpanAt(motionEvent.getX(), motionEvent.getY());
-                this.pressedInlineButton = richInlineButtonSpanInlineButtonSpanAt;
-                if (richInlineButtonSpanInlineButtonSpanAt != null && this.inlineButtonClickListener != null) {
-                    this.inlineButtonLongPressed = false;
-                    richInlineButtonSpanInlineButtonSpanAt.setPressed(true);
-                    AndroidUtilities.cancelRunOnUIThread(this.inlineButtonLongPressRunnable);
-                    AndroidUtilities.runOnUIThread(this.inlineButtonLongPressRunnable, ViewConfiguration.getLongPressTimeout());
-                    return true;
-                }
-                this.pressedInlineButton = null;
-            } else {
-                RichInlineButtonSpan richInlineButtonSpan = this.pressedInlineButton;
-                if (richInlineButtonSpan != null) {
-                    boolean z = motionEvent.getAction() == 1 || motionEvent.getAction() == 3;
-                    boolean z2 = motionEvent.getAction() != 3 && inlineButtonSpanAt(motionEvent.getX(), motionEvent.getY()) == richInlineButtonSpan;
-                    if (!z2 || z) {
-                        richInlineButtonSpan.setPressed(false);
-                        AndroidUtilities.cancelRunOnUIThread(this.inlineButtonLongPressRunnable);
-                    }
-                    if (z) {
-                        this.pressedInlineButton = null;
-                        if (!this.inlineButtonLongPressed && z2 && motionEvent.getAction() == 1) {
-                            this.inlineButtonClickListener.onInlineButtonClick(this, richInlineButtonSpan, false);
-                        }
-                        this.inlineButtonLongPressed = false;
-                    }
-                    return true;
-                }
-                if (motionEvent.getAction() == 1) {
-                    if (this.touchSlop == 0) {
-                        this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-                    }
-                    float x = motionEvent.getX() - this.mathDownX;
-                    float y = motionEvent.getY() - this.mathDownY;
-                    float f = (x * x) + (y * y);
-                    int i = this.touchSlop;
-                    if (f <= i * i && motionEvent.getEventTime() - this.mathDownTime < ViewConfiguration.getLongPressTimeout() && (mathSpanMathSpanAt = mathSpanAt(motionEvent.getX(), motionEvent.getY())) != null) {
-                        openMathEditor(mathSpanMathSpanAt);
-                        return true;
-                    }
-                }
-            }
-        }
-        return super.onTouchEvent(motionEvent);
+    public Theme.ResourcesProvider getResourcesProvider() {
+        return this.resourcesProvider;
     }
 
-    private RichInlineButtonSpan inlineButtonSpanAt(float f, float f2) {
+    public final RichInlineButtonSpan inlineButtonSpanAt(float f, float f2) {
         int totalPaddingTop;
         Layout layout = getLayout();
         Editable text = getText();
@@ -639,149 +300,106 @@ public class RichEditText extends EditTextCaption {
         return null;
     }
 
-    public void notifyInlineContentChanged() {
-        notifySpansChanged();
+    public final void notifyInlineContentChanged() {
+        super.notifySpansChanged();
+        this.markPathDirty = true;
+        invalidate();
         requestLayout();
         invalidateEffects();
     }
 
-    private MathSpan mathSpanAt(float f, float f2) {
-        Layout layout = getLayout();
-        Editable text = getText();
-        if (layout != null && text != null && text.length() != 0) {
-            int lineForVertical = layout.getLineForVertical((int) ((f2 - getTotalPaddingTop()) + getScrollY()));
-            float totalPaddingLeft = (f - getTotalPaddingLeft()) + getScrollX();
-            if (totalPaddingLeft >= layout.getLineLeft(lineForVertical) - AndroidUtilities.dp(2.0f) && totalPaddingLeft <= layout.getLineRight(lineForVertical) + AndroidUtilities.dp(2.0f)) {
-                int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, totalPaddingLeft);
-                for (MathSpan mathSpan : (MathSpan[]) text.getSpans(Math.max(0, offsetForHorizontal - 1), Math.min(text.length(), offsetForHorizontal + 1), MathSpan.class)) {
-                    int spanStart = text.getSpanStart(mathSpan);
-                    int spanEnd = text.getSpanEnd(mathSpan);
-                    if (spanStart >= 0 && spanEnd >= 0) {
-                        float primaryHorizontal = layout.getPrimaryHorizontal(spanStart);
-                        float primaryHorizontal2 = spanEnd <= text.length() ? layout.getPrimaryHorizontal(spanEnd) : primaryHorizontal;
-                        if (totalPaddingLeft >= Math.min(primaryHorizontal, primaryHorizontal2) - AndroidUtilities.dp(2.0f) && totalPaddingLeft <= Math.max(primaryHorizontal, primaryHorizontal2) + AndroidUtilities.dp(2.0f)) {
-                            return mathSpan;
-                        }
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    private void openMathEditor(final MathSpan mathSpan) {
-        ChatAttachAlertRichLayout.showEditLatexSheet(getContext(), mathSpan.source, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                RichEditText.$r8$lambda$qLeOYjsCVrSBF1iBC3xpne4abxA(this.f$0, mathSpan, (String) obj);
-            }
-        }, this.resourcesProvider);
-    }
-
-    public static void $r8$lambda$qLeOYjsCVrSBF1iBC3xpne4abxA(RichEditText richEditText, MathSpan mathSpan, String str) {
-        MathSpan mathSpanCreate;
-        richEditText.getClass();
-        if (TextUtils.isEmpty(str)) {
-            return;
-        }
-        Editable text = richEditText.getText();
-        int spanStart = text.getSpanStart(mathSpan);
-        int spanEnd = text.getSpanEnd(mathSpan);
-        if (spanStart < 0 || spanEnd < 0 || (mathSpanCreate = MathSpan.create(str, richEditText.getCurrentTextColor(), AndroidUtilities.dp(SharedConfig.fontSize + 4))) == null) {
-            return;
-        }
-        boolean z = richEditText.locked;
-        if (z) {
-            richEditText.setLocked(false);
-        }
-        SpannableString spannableString = new SpannableString(" ");
-        spannableString.setSpan(mathSpanCreate, 0, 1, 33);
-        int iMax = Math.max(0, Math.min(spanStart, richEditText.length()));
-        text.replace(iMax, Math.max(iMax, Math.min(spanEnd, richEditText.length())), spannableString);
-        richEditText.setSelection(Math.min(iMax + 1, richEditText.length()));
-        if (z) {
-            richEditText.setLocked(true);
-        }
-    }
-
     @Override
-    public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        Listener listener;
-        if (keyEvent.getKeyCode() == 61) {
-            if (keyEvent.getAction() == 0 && (listener = this.listener) != null) {
-                listener.onTab(this, keyEvent.isShiftPressed());
-            }
-            return true;
-        }
-        int keyCode = keyEvent.getKeyCode();
-        if ((keyCode == 66 || keyCode == 160) && this.listener != null && !this.allowNewlines) {
-            if (keyEvent.getAction() == 0) {
-                boolean z = (keyEvent.getFlags() & 2) != 0;
-                if (this.softEnterNewline && (z || keyEvent.isShiftPressed())) {
-                    insertNewlineAtSelection();
-                } else {
-                    this.listener.onEnterPressed(this);
-                }
-            }
-            return true;
-        }
-        return super.dispatchKeyEvent(keyEvent);
-    }
-
-    @Override
-    public boolean onKeyDown(int i, KeyEvent keyEvent) {
-        if (i == 67 && this.listener != null) {
-            if (length() == 0) {
-                this.listener.onBackspaceOnEmpty(this);
-                return true;
-            }
-            if (getSelectionStart() == 0 && getSelectionEnd() == 0 && this.listener.onBackspaceAtStart(this)) {
-                return true;
-            }
-        }
-        return super.onKeyDown(i, keyEvent);
-    }
-
-    private void insertNewlineAtSelection() {
-        int iMax = Math.max(0, getSelectionStart());
-        int iMax2 = Math.max(0, getSelectionEnd());
-        if (iMax > iMax2) {
-            iMax2 = iMax;
-            iMax = iMax2;
-        }
-        this.insertingNewline = true;
-        getText().replace(iMax, iMax2, "\n");
-        this.insertingNewline = false;
-        setSelection(iMax + 1);
-    }
-
-    @Override
-    public boolean onTextContextMenuItem(int i) {
-        Listener listener;
-        Listener listener2;
-        if (i == 16908319 && (listener2 = this.listener) != null && listener2.onSelectAll(this)) {
-            return true;
-        }
-        if (i == 16908322 && (listener = this.listener) != null && listener.onPaste(this)) {
-            return true;
-        }
-        return super.onTextContextMenuItem(i);
-    }
-
-    public void updateLongClickForEmpty() {
-        setLongClickable(length() == 0);
-    }
-
-    @Override
-    protected void notifySpansChanged() {
+    public final void notifySpansChanged() {
         super.notifySpansChanged();
         this.markPathDirty = true;
         invalidate();
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        buildMarkPath();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        bindInlineButtons();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        AndroidUtilities.cancelRunOnUIThread(this.inlineButtonLongPressRunnable);
+        this.pressedInlineButton = null;
+        this.inlineButtonLongPressed = false;
+        Editable text = getText();
+        if (text != null) {
+            for (RichInlineButtonSpan richInlineButtonSpan : (RichInlineButtonSpan[]) text.getSpans(0, text.length(), RichInlineButtonSpan.class)) {
+                RichMessageLayout.RichButtonSpan richButtonSpan = richInlineButtonSpan.renderedSpan;
+                if (richButtonSpan != null && richInlineButtonSpan.attachedView == this) {
+                    richButtonSpan.detach(this);
+                    richInlineButtonSpan.attachedView = null;
+                }
+            }
+        }
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int iDp;
+        int iDp2;
+        Layout layout = getLayout();
+        LinkPath linkPath = null;
+        if (layout == null) {
+            this.markPath = null;
+            this.lastMarkLayout = null;
+            this.lastMarkTextLength = -1;
+        } else {
+            CharSequence text = layout.getText();
+            if (this.markPathDirty || layout != this.lastMarkLayout || text.length() != this.lastMarkTextLength) {
+                this.markPathDirty = false;
+                this.lastMarkLayout = layout;
+                this.lastMarkTextLength = text.length();
+                this.markPath = null;
+                if (text instanceof Spanned) {
+                    Spanned spanned = (Spanned) text;
+                    TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) spanned.getSpans(0, spanned.length(), TextStyleSpan.class);
+                    int length = textStyleSpanArr.length;
+                    int i = 0;
+                    while (i < length) {
+                        TextStyleSpan textStyleSpan = textStyleSpanArr[i];
+                        int i2 = textStyleSpan.style.flags;
+                        if ((65536 & i2) != 0) {
+                            int spanStart = spanned.getSpanStart(textStyleSpan);
+                            int spanEnd = spanned.getSpanEnd(textStyleSpan);
+                            if (spanStart < 0) {
+                                linkPath = linkPath;
+                            } else if (spanEnd > spanStart) {
+                                if (linkPath == null) {
+                                    LinkPath linkPath2 = new LinkPath(0);
+                                    linkPath2.allowReset = false;
+                                    linkPath = linkPath2;
+                                }
+                                linkPath.setCurrentLayout(layout, spanStart, 0.0f, 0.0f);
+                                if ((32768 & i2) != 0) {
+                                    iDp = -AndroidUtilities.dp(6.0f);
+                                } else {
+                                    iDp = (i2 & 16384) != 0 ? AndroidUtilities.dp(2.0f) : 0;
+                                }
+                                if (iDp != 0) {
+                                    iDp2 = AndroidUtilities.dp(iDp > 0 ? 5.0f : -2.0f) + iDp;
+                                } else {
+                                    iDp2 = 0;
+                                }
+                                linkPath.baselineShift = iDp2;
+                                layout.getSelectionPath(spanStart, spanEnd, linkPath);
+                            }
+                        }
+                        i++;
+                        linkPath = linkPath;
+                    }
+                    if (linkPath != null) {
+                        linkPath.allowReset = true;
+                    }
+                    this.markPath = linkPath;
+                }
+            }
+        }
         if (this.markPath != null) {
             if (this.markPaint == null) {
                 Paint paint = new Paint(1);
@@ -797,71 +415,22 @@ public class RichEditText extends EditTextCaption {
         super.onDraw(canvas);
     }
 
-    private void buildMarkPath() {
-        int iDp;
-        int iDp2;
-        Layout layout = getLayout();
-        LinkPath linkPath = null;
-        if (layout == null) {
-            this.markPath = null;
-            this.lastMarkLayout = null;
-            this.lastMarkTextLength = -1;
-            return;
-        }
-        CharSequence text = layout.getText();
-        if (!this.markPathDirty && layout == this.lastMarkLayout && text.length() == this.lastMarkTextLength) {
-            return;
-        }
-        this.markPathDirty = false;
-        this.lastMarkLayout = layout;
-        this.lastMarkTextLength = text.length();
-        this.markPath = null;
-        if (text instanceof Spanned) {
-            Spanned spanned = (Spanned) text;
-            TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) spanned.getSpans(0, spanned.length(), TextStyleSpan.class);
-            int length = textStyleSpanArr.length;
-            int i = 0;
-            while (i < length) {
-                TextStyleSpan textStyleSpan = textStyleSpanArr[i];
-                int styleFlags = textStyleSpan.getStyleFlags();
-                if ((65536 & styleFlags) != 0) {
-                    int spanStart = spanned.getSpanStart(textStyleSpan);
-                    int spanEnd = spanned.getSpanEnd(textStyleSpan);
-                    if (spanStart < 0) {
-                        linkPath = linkPath;
-                    } else if (spanEnd > spanStart) {
-                        if (linkPath == null) {
-                            LinkPath linkPath2 = new LinkPath(true);
-                            linkPath2.setAllowReset(false);
-                            linkPath = linkPath2;
-                        }
-                        linkPath.setCurrentLayout(layout, spanStart, 0.0f);
-                        if ((32768 & styleFlags) != 0) {
-                            iDp = -AndroidUtilities.dp(6.0f);
-                        } else {
-                            iDp = (styleFlags & 16384) != 0 ? AndroidUtilities.dp(2.0f) : 0;
-                        }
-                        if (iDp != 0) {
-                            iDp2 = iDp + AndroidUtilities.dp(iDp > 0 ? 5.0f : -2.0f);
-                        } else {
-                            iDp2 = 0;
-                        }
-                        linkPath.setBaselineShift(iDp2);
-                        layout.getSelectionPath(spanStart, spanEnd, linkPath);
-                    }
-                }
-                i++;
-                linkPath = linkPath;
+    @Override
+    public final boolean onKeyDown(int i, KeyEvent keyEvent) {
+        if (i == 67 && this.listener != null) {
+            if (length() == 0) {
+                this.listener.onBackspaceOnEmpty();
+                return true;
             }
-            if (linkPath != null) {
-                linkPath.setAllowReset(true);
+            if (getSelectionStart() == 0 && getSelectionEnd() == 0 && this.listener.onBackspaceAtStart(this)) {
+                return true;
             }
-            this.markPath = linkPath;
         }
+        return super.onKeyDown(i, keyEvent);
     }
 
     @Override
-    protected void onSelectionChanged(int i, int i2) {
+    public final void onSelectionChanged(int i, int i2) {
         super.onSelectionChanged(i, i2);
         Listener listener = this.listener;
         if (listener != null) {
@@ -870,32 +439,127 @@ public class RichEditText extends EditTextCaption {
     }
 
     @Override
-    public int getCurrentStyle(int i, int i2) {
-        int iMax;
-        int iMin;
-        Editable text = getText();
-        if (text != null && (iMax = Math.max(0, i)) < (iMin = Math.min(i2, text.length()))) {
-            return RichTextStyle.stylesFullyCovering(text, iMax, iMin);
-        }
-        return 0;
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        super.onSizeChanged(i, i2, i3, i4);
+        refreshEmptyHintGravity();
     }
 
     @Override
-    public void addStyle(int i, int i2, int i3) {
-        int iMin;
-        Editable text = getText();
-        if (text == null || i2 < 0 || i3 < 0 || i2 >= i3 || i2 >= (iMin = Math.min(i3, text.length()))) {
-            return;
+    public final boolean onTextContextMenuItem(int i) {
+        Listener listener;
+        Listener listener2;
+        if (i == 16908319 && (listener2 = this.listener) != null && listener2.onSelectAll()) {
+            return true;
         }
-        RichTextStyle.setStyle(text, i2, iMin, i, true, this.block);
-        if ((i & 256) != 0) {
-            invalidateSpoilers();
+        if (i == 16908322 && (listener = this.listener) != null && listener.onPaste(this)) {
+            return true;
         }
-        notifySpansChanged();
+        return super.onTextContextMenuItem(i);
     }
 
     @Override
-    public void removeStyle(int i, int i2, int i3) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && this.listener != null && isEnabled() && isFocusable()) {
+            this.listener.onRequestWindowFocusable(this);
+        }
+        if (!this.locked) {
+            int action = motionEvent.getAction();
+            MathSpan mathSpan = null;
+            RichEditText$$ExternalSyntheticLambda2 richEditText$$ExternalSyntheticLambda2 = this.inlineButtonLongPressRunnable;
+            if (action == 0) {
+                this.mathDownX = motionEvent.getX();
+                this.mathDownY = motionEvent.getY();
+                this.mathDownTime = motionEvent.getEventTime();
+                RichInlineButtonSpan richInlineButtonSpanInlineButtonSpanAt = inlineButtonSpanAt(motionEvent.getX(), motionEvent.getY());
+                this.pressedInlineButton = richInlineButtonSpanInlineButtonSpanAt;
+                if (richInlineButtonSpanInlineButtonSpanAt != null && this.inlineButtonClickListener != null) {
+                    this.inlineButtonLongPressed = false;
+                    richInlineButtonSpanInlineButtonSpanAt.ensureRenderer().setPressed(true);
+                    AndroidUtilities.cancelRunOnUIThread(richEditText$$ExternalSyntheticLambda2);
+                    AndroidUtilities.runOnUIThread(richEditText$$ExternalSyntheticLambda2, ViewConfiguration.getLongPressTimeout());
+                    return true;
+                }
+                this.pressedInlineButton = null;
+            } else {
+                RichInlineButtonSpan richInlineButtonSpan = this.pressedInlineButton;
+                if (richInlineButtonSpan != null) {
+                    boolean z = motionEvent.getAction() == 1 || motionEvent.getAction() == 3;
+                    boolean z2 = motionEvent.getAction() != 3 && inlineButtonSpanAt(motionEvent.getX(), motionEvent.getY()) == richInlineButtonSpan;
+                    if (!z2 || z) {
+                        richInlineButtonSpan.ensureRenderer().setPressed(false);
+                        AndroidUtilities.cancelRunOnUIThread(richEditText$$ExternalSyntheticLambda2);
+                    }
+                    if (z) {
+                        this.pressedInlineButton = null;
+                        if (!this.inlineButtonLongPressed && z2 && motionEvent.getAction() == 1) {
+                            ((RichEditorListView$$ExternalSyntheticLambda37) this.inlineButtonClickListener).onInlineButtonClick(this, richInlineButtonSpan, false);
+                        }
+                        this.inlineButtonLongPressed = false;
+                    }
+                    return true;
+                }
+                if (motionEvent.getAction() == 1) {
+                    if (this.touchSlop == 0) {
+                        this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
+                    }
+                    float x = motionEvent.getX() - this.mathDownX;
+                    float y = motionEvent.getY() - this.mathDownY;
+                    float f = (y * y) + (x * x);
+                    int i = this.touchSlop;
+                    if (f <= i * i && motionEvent.getEventTime() - this.mathDownTime < ViewConfiguration.getLongPressTimeout()) {
+                        float x2 = motionEvent.getX();
+                        float y2 = motionEvent.getY();
+                        Layout layout = getLayout();
+                        Editable text = getText();
+                        if (layout != null && text != null && text.length() != 0) {
+                            int lineForVertical = layout.getLineForVertical((int) ((y2 - getTotalPaddingTop()) + getScrollY()));
+                            float totalPaddingLeft = (x2 - getTotalPaddingLeft()) + getScrollX();
+                            if (totalPaddingLeft >= layout.getLineLeft(lineForVertical) - AndroidUtilities.dp(2.0f) && totalPaddingLeft <= layout.getLineRight(lineForVertical) + AndroidUtilities.dp(2.0f)) {
+                                int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, totalPaddingLeft);
+                                for (MathSpan mathSpan2 : (MathSpan[]) text.getSpans(Math.max(0, offsetForHorizontal - 1), Math.min(text.length(), offsetForHorizontal + 1), MathSpan.class)) {
+                                    int spanStart = text.getSpanStart(mathSpan2);
+                                    int spanEnd = text.getSpanEnd(mathSpan2);
+                                    if (spanStart >= 0 && spanEnd >= 0) {
+                                        float primaryHorizontal = layout.getPrimaryHorizontal(spanStart);
+                                        float primaryHorizontal2 = spanEnd <= text.length() ? layout.getPrimaryHorizontal(spanEnd) : primaryHorizontal;
+                                        if (totalPaddingLeft >= Math.min(primaryHorizontal, primaryHorizontal2) - AndroidUtilities.dp(2.0f) && totalPaddingLeft <= Math.max(primaryHorizontal, primaryHorizontal2) + AndroidUtilities.dp(2.0f)) {
+                                            mathSpan = mathSpan2;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (mathSpan != null) {
+                            ChatAttachAlertRichLayout.showEditLatexSheet(getContext(), mathSpan.source, new ThemeActivity$$ExternalSyntheticLambda19(18, this, mathSpan), this.resourcesProvider);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public final void refreshEmptyHintGravity() {
+        if (this.centerEmptyHint) {
+            this.applyingEmptyHint = true;
+            int iDp = AndroidUtilities.dp(2.0f);
+            CharSequence hint = getHint();
+            if (length() != 0 || getWidth() <= 0 || TextUtils.isEmpty(hint)) {
+                super.setGravity(17);
+                setPadding(iDp, getPaddingTop(), iDp, getPaddingBottom());
+            } else {
+                int iMax = Math.max(0, Math.round(((getWidth() - (iDp * 2)) - getPaint().measureText(hint.toString())) / 2.0f));
+                super.setGravity(51);
+                setPadding(iMax + iDp, getPaddingTop(), iDp, getPaddingBottom());
+            }
+            this.applyingEmptyHint = false;
+        }
+    }
+
+    @Override
+    public final void removeStyle(int i, int i2, int i3) {
         int iMin;
         Editable text = getText();
         if (text == null || i2 < 0 || i3 < 0 || i2 >= i3 || i2 >= (iMin = Math.min(i3, text.length()))) {
@@ -908,6 +572,205 @@ public class RichEditText extends EditTextCaption {
         if ((i & 256) != 0) {
             invalidateSpoilers();
         }
-        notifySpansChanged();
+        super.notifySpansChanged();
+        this.markPathDirty = true;
+        invalidate();
+    }
+
+    public final void requestEditFocus() {
+        Listener listener = this.listener;
+        if (listener != null) {
+            listener.onRequestWindowFocusable(this);
+        }
+        requestFocus();
+        AndroidUtilities.showKeyboard(this);
+    }
+
+    public final void requestEditFocusRebuild() {
+        finishActionMode();
+        if (isFocused()) {
+            clearFocus();
+        }
+        requestEditFocus();
+        finishActionMode();
+        post(new RichEditText$$ExternalSyntheticLambda2(this, 1));
+    }
+
+    public void setAccentHint(boolean z) {
+        if (this.accentHint == z) {
+            return;
+        }
+        this.accentHint = z;
+        updateColors();
+    }
+
+    public void setAllowNewlines(boolean z) {
+        this.allowNewlines = z;
+    }
+
+    public void setAutoBold(boolean z) {
+        this.autoBold = z;
+    }
+
+    public void setBlock(TL_iv.PageBlock pageBlock) {
+        this.block = pageBlock;
+    }
+
+    public void setCenterEmptyHint(boolean z) {
+        if (this.centerEmptyHint == z) {
+            return;
+        }
+        this.centerEmptyHint = z;
+        if (z) {
+            refreshEmptyHintGravity();
+        } else {
+            int iDp = AndroidUtilities.dp(2.0f);
+            setPadding(iDp, getPaddingTop(), iDp, getPaddingBottom());
+        }
+    }
+
+    @Override
+    public void setGravity(int i) {
+        if (!this.applyingEmptyHint) {
+            this.centerEmptyHint = false;
+        }
+        super.setGravity(i);
+    }
+
+    public void setInlineButtonClickListener(InlineButtonClickListener inlineButtonClickListener) {
+        this.inlineButtonClickListener = inlineButtonClickListener;
+    }
+
+    public void setInlineButtonContext(int i) {
+        this.currentAccount = i;
+        bindInlineButtons();
+    }
+
+    @Override
+    public void setInputType(int i) {
+        InputMethodManager inputMethodManager;
+        boolean z = getInputType() != i;
+        super.setInputType(i);
+        if (z && isFocused() && (inputMethodManager = (InputMethodManager) getContext().getSystemService("input_method")) != null) {
+            inputMethodManager.restartInput(this);
+        }
+    }
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
+    }
+
+    public void setLocked(boolean z) {
+        RichEditText$$ExternalSyntheticLambda1 richEditText$$ExternalSyntheticLambda1;
+        boolean z2;
+        if (this.locked == z) {
+            return;
+        }
+        this.locked = z;
+        InputFilter[] filters = getFilters();
+        int length = filters.length;
+        int i = 0;
+        while (true) {
+            richEditText$$ExternalSyntheticLambda1 = this.lockingFilter;
+            if (i >= length) {
+                z2 = false;
+                break;
+            } else {
+                if (filters[i] == richEditText$$ExternalSyntheticLambda1) {
+                    z2 = true;
+                    break;
+                }
+                i++;
+            }
+        }
+        if (z && !z2) {
+            InputFilter[] inputFilterArr = new InputFilter[filters.length + 1];
+            System.arraycopy(filters, 0, inputFilterArr, 0, filters.length);
+            inputFilterArr[filters.length] = richEditText$$ExternalSyntheticLambda1;
+            setFilters(inputFilterArr);
+        }
+        boolean z3 = !z;
+        setAllowDrawCursor(z3);
+        setCursorVisible(z3);
+    }
+
+    public void setSoftEnterNewline(boolean z) {
+        this.softEnterNewline = z;
+    }
+
+    public void setTextColorKey(int i) {
+        this.textColorKey = i;
+        updateColors();
+    }
+
+    public void setTextSilently(CharSequence charSequence) {
+        this.ignoreTextChange = true;
+        setText(charSequence);
+        bindInlineButtons();
+        setSelection(length());
+        this.ignoreTextChange = false;
+    }
+
+    public final void updateColors() {
+        int i = this.textColorKey;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        setTextColor(Theme.getColor(i, resourcesProvider));
+        setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
+        setHintTextColor(this.accentHint ? Theme.multAlpha(0.5f, Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)) : Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
+        setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        setHandlesColor(Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider));
+        bindInlineButtons();
+    }
+
+    public final class AnonymousClass1 implements ActionMode.Callback {
+        public final int $r8$classId;
+
+        public AnonymousClass1(int i) {
+            this.$r8$classId = i;
+        }
+
+        @Override
+        public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            switch (this.$r8$classId) {
+            }
+            return false;
+        }
+
+        @Override
+        public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+            switch (this.$r8$classId) {
+            }
+            return false;
+        }
+
+        @Override
+        public final void onDestroyActionMode(ActionMode actionMode) {
+            int i = this.$r8$classId;
+        }
+
+        @Override
+        public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            switch (this.$r8$classId) {
+            }
+            return false;
+        }
+
+        private final void onDestroyActionMode$org$telegram$ui$ActionBar$ActionBarMenuItem$10(ActionMode actionMode) {
+        }
+
+        private final void onDestroyActionMode$org$telegram$ui$Components$PasscodeView$3(ActionMode actionMode) {
+        }
+
+        private final void onDestroyActionMode$org$telegram$ui$PasscodeActivity$7(ActionMode actionMode) {
+        }
+
+        private final void onDestroyActionMode$org$telegram$ui$PassportActivity$7(ActionMode actionMode) {
+        }
+
+        private final void onDestroyActionMode$org$telegram$ui$UsersSelectActivity$5(ActionMode actionMode) {
+        }
+
+        private final void onDestroyActionMode$org$telegram$ui$iv$RichEditText$1(ActionMode actionMode) {
+        }
     }
 }

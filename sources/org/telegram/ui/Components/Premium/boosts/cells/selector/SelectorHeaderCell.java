@@ -7,19 +7,21 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkh;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.SearchField$$ExternalSyntheticLambda0;
 
 public class SelectorHeaderCell extends FrameLayout {
-    public BackDrawable backDrawable;
-    private final ImageView closeView;
-    private final Paint dividerPaint;
-    private Runnable onCloseClickListener;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private final TextView textView;
+    public final BackDrawable backDrawable;
+    public final ImageView closeView;
+    public final Paint dividerPaint;
+    public Runnable onCloseClickListener;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final TextView textView;
 
     public SelectorHeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -27,8 +29,7 @@ public class SelectorHeaderCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 20.0f);
+        zzkh.m(20.0f, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
         int i = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i, resourcesProvider));
@@ -39,34 +40,34 @@ public class SelectorHeaderCell extends FrameLayout {
         BackDrawable backDrawable = new BackDrawable(false);
         this.backDrawable = backDrawable;
         imageView.setImageDrawable(backDrawable);
-        this.backDrawable.setColor(Theme.getColor(i, resourcesProvider));
-        this.backDrawable.setRotatedColor(Theme.getColor(i, resourcesProvider));
-        this.backDrawable.setAnimationTime(220.0f);
+        backDrawable.color = Theme.getColor(i, resourcesProvider);
+        backDrawable.invalidateSelf();
+        backDrawable.rotatedColor = Theme.getColor(i, resourcesProvider);
+        backDrawable.invalidateSelf();
+        backDrawable.animationTime = 220.0f;
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                SelectorHeaderCell.$r8$lambda$Q_aq6LZJEciJ9EbiU8tIvtGbJGc(this.f$0, view);
-            }
-        });
-    }
-
-    public static void $r8$lambda$Q_aq6LZJEciJ9EbiU8tIvtGbJGc(SelectorHeaderCell selectorHeaderCell, View view) {
-        Runnable runnable = selectorHeaderCell.onCloseClickListener;
-        if (runnable != null) {
-            runnable.run();
-        }
+        imageView.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 21));
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.dividerPaint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
-        canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), this.dividerPaint);
+        Paint paint = this.dividerPaint;
+        paint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
+        canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
     }
 
-    public void setText(CharSequence charSequence) {
-        this.textView.setText(charSequence);
+    public int getHeaderHeight() {
+        return AndroidUtilities.dp(56.0f);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(getHeaderHeight(), 1073741824));
+    }
+
+    public void setBackImage(int i) {
+        this.closeView.setImageResource(i);
     }
 
     public void setCloseImageVisible(boolean z) {
@@ -76,20 +77,11 @@ public class SelectorHeaderCell extends FrameLayout {
         textView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, 23, (z2 || !z) ? 22.0f : 53.0f, 0.0f, (z2 && z) ? 53.0f : 22.0f, 0.0f));
     }
 
-    public void setBackImage(int i) {
-        this.closeView.setImageResource(i);
-    }
-
     public void setOnCloseClickListener(Runnable runnable) {
         this.onCloseClickListener = runnable;
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(getHeaderHeight(), 1073741824));
-    }
-
-    protected int getHeaderHeight() {
-        return AndroidUtilities.dp(56.0f);
+    public void setText(CharSequence charSequence) {
+        this.textView.setText(charSequence);
     }
 }

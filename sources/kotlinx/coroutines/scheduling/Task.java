@@ -1,15 +1,13 @@
 package kotlinx.coroutines.scheduling;
 
+import org.telegram.ui.CastSync;
+
 public abstract class Task implements Runnable {
     public long submissionTime;
-    public TaskContext taskContext;
+    public CastSync.AnonymousClass1 taskContext;
 
-    public Task(long j, TaskContext taskContext) {
+    public Task(long j, CastSync.AnonymousClass1 anonymousClass1) {
         this.submissionTime = j;
-        this.taskContext = taskContext;
-    }
-
-    public Task() {
-        this(0L, TasksKt.NonBlockingContext);
+        this.taskContext = anonymousClass1;
     }
 }

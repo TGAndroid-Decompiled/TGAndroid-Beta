@@ -1,53 +1,139 @@
 package org.telegram.ui.Components.Paint.Views;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PointF;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Build;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.Paint.Swatch;
+import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.RectOld;
+import org.telegram.ui.LoginActivity;
 
-public class TextPaintView extends EntityView {
-    private int align;
-    private int baseFontSize;
-    private int currentType;
-    private boolean disableAutoresize;
-    private EditTextOutline editText;
-    private String lastTypefaceKey;
-    private int maxFontSize;
-    private int minFontSize;
-    private Runnable onFontChange;
-    private Swatch swatch;
-    private PaintTypeface typeface;
+public final class TextPaintView extends EntityView {
+    public int align;
+    public int baseFontSize;
+    public int currentType;
+    public boolean disableAutoresize;
+    public final AnonymousClass1 editText;
+    public String lastTypefaceKey;
+    public int maxFontSize;
+    public int minFontSize;
+    public Runnable onFontChange;
+    public Swatch swatch;
+    public PaintTypeface typeface;
+
+    public final class AnonymousClass2 implements TextWatcher {
+        public final int $r8$classId = 0;
+        public boolean pasted;
+        public final ViewGroup this$0;
+
+        public AnonymousClass2(TextPaintView textPaintView) {
+            this.this$0 = textPaintView;
+        }
+
+        @Override
+        public final void afterTextChanged(Editable editable) {
+            int iClamp;
+            switch (this.$r8$classId) {
+                case 0:
+                    boolean z = this.pasted;
+                    TextPaintView textPaintView = (TextPaintView) this.this$0;
+                    if (z && textPaintView.minFontSize > 0 && textPaintView.maxFontSize > 0 && !textPaintView.disableAutoresize) {
+                        AnonymousClass1 anonymousClass1 = textPaintView.editText;
+                        if (anonymousClass1.getLayout() != null) {
+                            int height = anonymousClass1.getLayout().getHeight();
+                            float f = AndroidUtilities.displaySize.y / 3.0f;
+                            float f2 = height;
+                            if (f2 > f && (iClamp = Utilities.clamp((int) ((f / f2) * textPaintView.getBaseFontSize()), textPaintView.maxFontSize, textPaintView.minFontSize)) != textPaintView.getBaseFontSize()) {
+                                textPaintView.setBaseFontSize(iClamp);
+                                Runnable runnable = textPaintView.onFontChange;
+                                if (runnable != null) {
+                                    runnable.run();
+                                }
+                            }
+                        }
+                    }
+                    int length = textPaintView.editText.getText().length();
+                    AnonymousClass1 anonymousClass2 = textPaintView.editText;
+                    if (length > 0) {
+                        anonymousClass2.setHint((CharSequence) null);
+                    } else {
+                        anonymousClass2.setHint(LocaleController.getString(R.string.TextPlaceholder));
+                        anonymousClass2.setHintTextColor(1627389951);
+                    }
+                    break;
+                default:
+                    if (this.pasted) {
+                        LoginActivity.LoginActivityNewPasswordView loginActivityNewPasswordView = (LoginActivity.LoginActivityNewPasswordView) this.this$0;
+                        if (loginActivityNewPasswordView.passwordButton.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
+                            if (loginActivityNewPasswordView.isPasswordVisible) {
+                                loginActivityNewPasswordView.passwordButton.callOnClick();
+                            }
+                            AndroidUtilities.updateViewVisibilityAnimated(loginActivityNewPasswordView.passwordButton, true, 0.1f, true);
+                            break;
+                        } else if (loginActivityNewPasswordView.passwordButton.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
+                            AndroidUtilities.updateViewVisibilityAnimated(loginActivityNewPasswordView.passwordButton, false, 0.1f, true);
+                            break;
+                        }
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            switch (this.$r8$classId) {
+                case 0:
+                    this.pasted = i3 > 3;
+                    break;
+            }
+        }
+
+        @Override
+        public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            int i4 = this.$r8$classId;
+        }
+
+        public AnonymousClass2(LoginActivity.LoginActivityNewPasswordView loginActivityNewPasswordView, boolean z) {
+            this.this$0 = loginActivityNewPasswordView;
+            this.pasted = z;
+        }
+
+        private final void beforeTextChanged$org$telegram$ui$LoginActivity$LoginActivityNewPasswordView$1(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void onTextChanged$org$telegram$ui$Components$Paint$Views$TextPaintView$2(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void onTextChanged$org$telegram$ui$LoginActivity$LoginActivityNewPasswordView$1(int i, int i2, int i3, CharSequence charSequence) {
+        }
+    }
 
     public TextPaintView(Context context, PointF pointF, int i, CharSequence charSequence, Swatch swatch, int i2) {
         super(context, pointF);
         this.typeface = PaintTypeface.ROBOTO_MEDIUM;
         this.baseFontSize = i;
-        EditTextOutline editTextOutline = new EditTextOutline(context) {
+        ?? r5 = new EditTextOutline(context) {
             @Override
-            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
                 EntityView.SelectionView selectionView = TextPaintView.this.selectionView;
                 if (selectionView == null || selectionView.getVisibility() != 0) {
                     return false;
@@ -56,81 +142,126 @@ public class TextPaintView extends EntityView {
             }
 
             @Override
-            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+            public final void onLayout(boolean z, int i3, int i4, int i5, int i6) {
                 super.onLayout(z, i3, i4, i5, i6);
-                TextPaintView.this.updateSelectionView();
+                EntityView.SelectionView selectionView = TextPaintView.this.selectionView;
+                if (selectionView != null) {
+                    selectionView.updatePosition();
+                }
             }
 
             @Override
-            protected void onMeasure(int i3, int i4) {
+            public final void onMeasure(int i3, int i4) {
                 super.onMeasure(i3, i4);
-                TextPaintView.this.updateSelectionView();
+                EntityView.SelectionView selectionView = TextPaintView.this.selectionView;
+                if (selectionView != null) {
+                    selectionView.updatePosition();
+                }
             }
         };
-        this.editText = editTextOutline;
-        NotificationCenter.listenEmojiLoading(editTextOutline);
-        this.editText.setGravity(19);
-        this.editText.setBackgroundColor(0);
-        this.editText.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-        this.editText.setClickable(false);
-        this.editText.setEnabled(false);
-        this.editText.setCursorColor(-1);
-        this.editText.setTextSize(0, this.baseFontSize);
-        this.editText.setCursorSize(AndroidUtilities.dp(this.baseFontSize * 0.4f));
-        this.editText.setText(charSequence);
-        updateHint();
-        this.editText.setTextColor(swatch.color);
-        this.editText.setTypeface(null, 1);
-        this.editText.setHorizontallyScrolling(false);
+        this.editText = r5;
+        NotificationCenter.listenEmojiLoading(r5);
+        r5.setGravity(19);
+        r5.setBackgroundColor(0);
+        r5.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
+        r5.setClickable(false);
+        r5.setEnabled(false);
+        r5.setCursorColor(-1);
+        r5.setTextSize(0, this.baseFontSize);
+        r5.setCursorSize(AndroidUtilities.dp(this.baseFontSize * 0.4f));
+        r5.setText(charSequence);
+        if (r5.getText().length() <= 0) {
+            r5.setHint(LocaleController.getString(R.string.TextPlaceholder));
+            r5.setHintTextColor(1627389951);
+        } else {
+            r5.setHint(null);
+        }
+        r5.setTextColor(swatch.color);
+        r5.setTypeface(null, 1);
+        r5.setHorizontallyScrolling(false);
         int i3 = Build.VERSION.SDK_INT;
         if (i3 >= 26) {
-            this.editText.setImeOptions(285212672);
+            r5.setImeOptions(285212672);
         } else {
-            this.editText.setImeOptions(268435456);
+            r5.setImeOptions(268435456);
         }
-        this.editText.setFocusableInTouchMode(true);
-        this.editText.setInputType(16384);
-        this.editText.setSingleLine(false);
-        addView(this.editText, LayoutHelper.createFrame(-2, -2, 51));
+        r5.setFocusableInTouchMode(true);
+        r5.setInputType(16384);
+        r5.setSingleLine(false);
+        addView((View) r5, LayoutHelper.createFrame(-2, -2, 51));
         if (i3 >= 29 || i3 >= 23) {
-            this.editText.setBreakStrategy(0);
+            r5.setBreakStrategy(0);
         }
         setSwatch(swatch);
         setType(i2);
         updatePosition();
-        this.editText.addTextChangedListener(new TextWatcher() {
-            boolean pasted;
+        r5.addTextChangedListener(new AnonymousClass2(this));
+    }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence2, int i4, int i5, int i6) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence2, int i4, int i5, int i6) {
-                this.pasted = i6 > 3;
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                int iClamp;
-                if (this.pasted && TextPaintView.this.minFontSize > 0 && TextPaintView.this.maxFontSize > 0 && !TextPaintView.this.disableAutoresize && TextPaintView.this.editText.getLayout() != null) {
-                    int height = TextPaintView.this.editText.getLayout().getHeight();
-                    float f = AndroidUtilities.displaySize.y / 3.0f;
-                    float f2 = height;
-                    if (f2 > f && (iClamp = Utilities.clamp((int) ((f / f2) * TextPaintView.this.getBaseFontSize()), TextPaintView.this.maxFontSize, TextPaintView.this.minFontSize)) != TextPaintView.this.getBaseFontSize()) {
-                        TextPaintView.this.setBaseFontSize(iClamp);
-                        if (TextPaintView.this.onFontChange != null) {
-                            TextPaintView.this.onFontChange.run();
-                        }
-                    }
-                }
-                TextPaintView.this.updateHint();
-            }
-        });
+    public final void beginEditing() {
+        AnonymousClass1 anonymousClass1 = this.editText;
+        anonymousClass1.setEnabled(true);
+        anonymousClass1.setClickable(true);
+        anonymousClass1.requestFocus();
+        anonymousClass1.setSelection(anonymousClass1.getText().length());
+        AndroidUtilities.runOnUIThread(new PasscodeView$9$$ExternalSyntheticLambda0(this, 3), 300L);
     }
 
     @Override
-    protected float getStickyPaddingLeft() {
+    public final EntityView.SelectionView createSelectionView() {
+        return new LinkView.TextViewSelectionView(this, getContext());
+    }
+
+    public int getAlign() {
+        return this.align;
+    }
+
+    public int getBaseFontSize() {
+        return this.baseFontSize;
+    }
+
+    public EditTextOutline getEditText() {
+        return this.editText;
+    }
+
+    public View getFocusedView() {
+        return this.editText;
+    }
+
+    public Paint.FontMetricsInt getFontMetricsInt() {
+        return getPaint().getFontMetricsInt();
+    }
+
+    public float getFontSize() {
+        return getTextSize();
+    }
+
+    @Override
+    public RectOld getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new RectOld();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float fDp = (AndroidUtilities.dp(64.0f) / scaleX) + (getScale() * getMeasuredWidth());
+        float fDp2 = (AndroidUtilities.dp(52.0f) / scaleX) + (getScale() * getMeasuredHeight());
+        float fM$1 = OKLCH.m$1(fDp, 2.0f, getPositionX(), scaleX);
+        float positionY = getPositionY();
+        AnonymousClass1 anonymousClass1 = this.editText;
+        return new RectOld(fM$1, (positionY - (((fDp2 - anonymousClass1.getExtendedPaddingTop()) - AndroidUtilities.dpf2(4.0f)) / 2.0f)) * scaleX, ((fDp * scaleX) + fM$1) - fM$1, (fDp2 - anonymousClass1.getExtendedPaddingBottom()) * scaleX);
+    }
+
+    @Override
+    public float getStickyPaddingBottom() {
+        RectF rectF = this.editText.framePadding;
+        if (rectF == null) {
+            return 0.0f;
+        }
+        return rectF.bottom;
+    }
+
+    @Override
+    public float getStickyPaddingLeft() {
         RectF rectF = this.editText.framePadding;
         if (rectF == null) {
             return 0.0f;
@@ -139,7 +270,7 @@ public class TextPaintView extends EntityView {
     }
 
     @Override
-    protected float getStickyPaddingRight() {
+    public float getStickyPaddingRight() {
         RectF rectF = this.editText.framePadding;
         if (rectF == null) {
             return 0.0f;
@@ -148,7 +279,7 @@ public class TextPaintView extends EntityView {
     }
 
     @Override
-    protected float getStickyPaddingTop() {
+    public float getStickyPaddingTop() {
         RectF rectF = this.editText.framePadding;
         if (rectF == null) {
             return 0.0f;
@@ -156,21 +287,131 @@ public class TextPaintView extends EntityView {
         return rectF.top;
     }
 
-    @Override
-    protected float getStickyPaddingBottom() {
-        RectF rectF = this.editText.framePadding;
-        if (rectF == null) {
-            return 0.0f;
-        }
-        return rectF.bottom;
+    public Swatch getSwatch() {
+        return this.swatch;
     }
 
-    public void updateHint() {
-        if (this.editText.getText().length() <= 0) {
-            this.editText.setHint(LocaleController.getString(R.string.TextPlaceholder));
-            this.editText.setHintTextColor(1627389951);
+    public CharSequence getText() {
+        return getText();
+    }
+
+    public int getTextSize() {
+        return (int) getTextSize();
+    }
+
+    public int getType() {
+        return this.currentType;
+    }
+
+    public PaintTypeface getTypeface() {
+        return this.typeface;
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        updatePosition();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        updatePosition();
+    }
+
+    public void setAlign(int i) {
+        this.align = i;
+    }
+
+    public void setBaseFontSize(int i) {
+        this.baseFontSize = i;
+        float f = i;
+        AnonymousClass1 anonymousClass1 = this.editText;
+        anonymousClass1.setTextSize(0, f);
+        anonymousClass1.setCursorSize(AndroidUtilities.dp(f * 0.4f));
+        if (anonymousClass1.getText() != null) {
+            Editable text = anonymousClass1.getText();
+            Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) text.getSpans(0, text.length(), Emoji.EmojiSpan.class);
+            for (int i2 = 0; i2 < emojiSpanArr.length; i2++) {
+                emojiSpanArr[i2].replaceFontMetrics(getFontMetricsInt());
+                emojiSpanArr[i2].scale = 0.85f;
+            }
+            for (AnimatedEmojiSpan animatedEmojiSpan : (AnimatedEmojiSpan[]) text.getSpans(0, text.length(), AnimatedEmojiSpan.class)) {
+                animatedEmojiSpan.replaceFontMetrics(getFontMetricsInt());
+            }
+            anonymousClass1.invalidateForce();
+        }
+    }
+
+    public void setMaxWidth(int i) {
+        setMaxWidth(i);
+    }
+
+    public void setSwatch(Swatch swatch) {
+        this.swatch = new Swatch(swatch.brushWeight, swatch.color);
+        updateColor();
+    }
+
+    public void setText(CharSequence charSequence) {
+        AnonymousClass1 anonymousClass1 = this.editText;
+        anonymousClass1.setText(charSequence);
+        if (anonymousClass1.getText().length() > 0) {
+            anonymousClass1.setHint((CharSequence) null);
         } else {
-            this.editText.setHint((CharSequence) null);
+            anonymousClass1.setHint(LocaleController.getString(R.string.TextPlaceholder));
+            anonymousClass1.setHintTextColor(1627389951);
+        }
+    }
+
+    public void setType(int i) {
+        this.currentType = i;
+        updateColor();
+    }
+
+    public void setTypeface(PaintTypeface paintTypeface) {
+        this.typeface = paintTypeface;
+        if (paintTypeface != null) {
+            setTypeface(paintTypeface.getTypeface());
+        }
+        EntityView.SelectionView selectionView = this.selectionView;
+        if (selectionView != null) {
+            selectionView.updatePosition();
+        }
+    }
+
+    public final void updateColor() {
+        AnonymousClass1 anonymousClass1 = this.editText;
+        anonymousClass1.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+        int i = this.swatch.color;
+        int i2 = this.currentType;
+        if (i2 == 0) {
+            anonymousClass1.setFrameColor(i);
+            i = AndroidUtilities.computePerceivedBrightness(this.swatch.color) >= 0.721f ? -16777216 : -1;
+        } else if (i2 == 1) {
+            anonymousClass1.setFrameColor(AndroidUtilities.computePerceivedBrightness(i) >= 0.25f ? -1728053248 : -1711276033);
+        } else if (i2 == 2) {
+            anonymousClass1.setFrameColor(AndroidUtilities.computePerceivedBrightness(i) >= 0.25f ? -16777216 : -1);
+        } else {
+            anonymousClass1.setFrameColor(0);
+        }
+        anonymousClass1.setTextColor(i);
+        anonymousClass1.setCursorColor(i);
+        anonymousClass1.setHandlesColor(i);
+        anonymousClass1.setHighlightColor(Theme.multAlpha(0.4f, i));
+    }
+
+    public void setTypeface(String str) {
+        for (PaintTypeface paintTypeface : PaintTypeface.get()) {
+            if (paintTypeface.key.equals(str)) {
+                setTypeface(paintTypeface);
+                str = null;
+                break;
+            }
+        }
+        this.lastTypefaceKey = str;
+        EntityView.SelectionView selectionView = this.selectionView;
+        if (selectionView != null) {
+            selectionView.updatePosition();
         }
     }
 
@@ -182,298 +423,13 @@ public class TextPaintView extends EntityView {
         setAlign(textPaintView.getAlign());
         int align = getAlign();
         int i = 2;
-        this.editText.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
+        setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
         int align2 = getAlign();
         if (align2 == 1) {
             i = 4;
         } else if (align2 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
             i = 3;
         }
-        this.editText.setTextAlignment(i);
-    }
-
-    public int getBaseFontSize() {
-        return this.baseFontSize;
-    }
-
-    public void setMinMaxFontSize(int i, int i2, Runnable runnable) {
-        this.minFontSize = i;
-        this.maxFontSize = i2;
-        this.onFontChange = runnable;
-    }
-
-    public void disableAutoresize(boolean z) {
-        this.disableAutoresize = z;
-    }
-
-    public void setBaseFontSize(int i) {
-        this.baseFontSize = i;
-        float f = i;
-        this.editText.setTextSize(0, f);
-        this.editText.setCursorSize(AndroidUtilities.dp(f * 0.4f));
-        if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(this.editText.getText())) {
-            Editable text = this.editText.getText();
-            Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) text.getSpans(0, text.length(), Emoji.EmojiSpan.class);
-            for (int i2 = 0; i2 < emojiSpanArr.length; i2++) {
-                emojiSpanArr[i2].replaceFontMetrics(getFontMetricsInt());
-                emojiSpanArr[i2].scale = 0.85f;
-            }
-            for (AnimatedEmojiSpan animatedEmojiSpan : (AnimatedEmojiSpan[]) text.getSpans(0, text.length(), AnimatedEmojiSpan.class)) {
-                animatedEmojiSpan.replaceFontMetrics(getFontMetricsInt());
-            }
-            this.editText.invalidateForce();
-        }
-    }
-
-    public void setAlign(int i) {
-        this.align = i;
-    }
-
-    public int getAlign() {
-        return this.align;
-    }
-
-    public void setTypeface(PaintTypeface paintTypeface) {
-        this.typeface = paintTypeface;
-        if (paintTypeface != null) {
-            this.editText.setTypeface(paintTypeface.getTypeface());
-        }
-        updateSelectionView();
-    }
-
-    public void setTypeface(String str) {
-        for (PaintTypeface paintTypeface : PaintTypeface.get()) {
-            if (paintTypeface.getKey().equals(str)) {
-                setTypeface(paintTypeface);
-                str = null;
-                break;
-            }
-        }
-        this.lastTypefaceKey = str;
-        updateSelectionView();
-    }
-
-    public void updateTypeface() {
-        String str = this.lastTypefaceKey;
-        if (str != null) {
-            setTypeface(str);
-        }
-    }
-
-    public PaintTypeface getTypeface() {
-        return this.typeface;
-    }
-
-    public EditTextOutline getEditText() {
-        return this.editText;
-    }
-
-    public void setMaxWidth(int i) {
-        this.editText.setMaxWidth(i);
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        updatePosition();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        updatePosition();
-    }
-
-    public CharSequence getText() {
-        return this.editText.getText();
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.editText.setText(charSequence);
-        updateHint();
-    }
-
-    public Paint.FontMetricsInt getFontMetricsInt() {
-        return this.editText.getPaint().getFontMetricsInt();
-    }
-
-    public float getFontSize() {
-        return this.editText.getTextSize();
-    }
-
-    public View getFocusedView() {
-        return this.editText;
-    }
-
-    public void beginEditing() {
-        this.editText.setEnabled(true);
-        this.editText.setClickable(true);
-        this.editText.requestFocus();
-        EditTextOutline editTextOutline = this.editText;
-        editTextOutline.setSelection(editTextOutline.getText().length());
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                AndroidUtilities.showKeyboard(this.f$0.editText);
-            }
-        }, 300L);
-    }
-
-    public void endEditing() {
-        this.editText.clearFocus();
-        this.editText.setEnabled(false);
-        this.editText.setClickable(false);
-        updateSelectionView();
-    }
-
-    public Swatch getSwatch() {
-        return this.swatch;
-    }
-
-    public int getTextSize() {
-        return (int) this.editText.getTextSize();
-    }
-
-    public void setSwatch(Swatch swatch) {
-        this.swatch = swatch.clone();
-        updateColor();
-    }
-
-    public void setType(int i) {
-        this.currentType = i;
-        updateColor();
-    }
-
-    public int getType() {
-        return this.currentType;
-    }
-
-    public void updateColor() {
-        this.editText.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-        int i = this.swatch.color;
-        int i2 = this.currentType;
-        if (i2 == 0) {
-            this.editText.setFrameColor(i);
-            i = AndroidUtilities.computePerceivedBrightness(this.swatch.color) >= 0.721f ? -16777216 : -1;
-        } else if (i2 == 1) {
-            this.editText.setFrameColor(AndroidUtilities.computePerceivedBrightness(i) >= 0.25f ? -1728053248 : -1711276033);
-        } else if (i2 == 2) {
-            this.editText.setFrameColor(AndroidUtilities.computePerceivedBrightness(i) >= 0.25f ? -16777216 : -1);
-        } else {
-            this.editText.setFrameColor(0);
-        }
-        this.editText.setTextColor(i);
-        this.editText.setCursorColor(i);
-        this.editText.setHandlesColor(i);
-        this.editText.setHighlightColor(Theme.multAlpha(i, 0.4f));
-    }
-
-    @Override
-    public RectOld getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new RectOld();
-        }
-        float scaleX = viewGroup.getScaleX();
-        float measuredWidth = (getMeasuredWidth() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
-        float measuredHeight = (getMeasuredHeight() * getScale()) + (AndroidUtilities.dp(52.0f) / scaleX);
-        float positionX = (getPositionX() - (measuredWidth / 2.0f)) * scaleX;
-        return new RectOld(positionX, (getPositionY() - (((measuredHeight - this.editText.getExtendedPaddingTop()) - AndroidUtilities.dpf2(4.0f)) / 2.0f)) * scaleX, ((measuredWidth * scaleX) + positionX) - positionX, (measuredHeight - this.editText.getExtendedPaddingBottom()) * scaleX);
-    }
-
-    @Override
-    public TextViewSelectionView createSelectionView() {
-        return new TextViewSelectionView(getContext());
-    }
-
-    public class TextViewSelectionView extends EntityView.SelectionView {
-        private final Paint clearPaint;
-        private Path path;
-
-        public TextViewSelectionView(Context context) {
-            super(context);
-            Paint paint = new Paint(1);
-            this.clearPaint = paint;
-            this.path = new Path();
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        }
-
-        @Override
-        protected int pointInsideHandle(float f, float f2) {
-            float fDp = AndroidUtilities.dp(1.0f);
-            float fDp2 = AndroidUtilities.dp(19.5f);
-            float f3 = fDp + fDp2;
-            float f4 = f3 * 2.0f;
-            float measuredWidth = getMeasuredWidth() - f4;
-            float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
-            if (f > f3 - fDp2 && f2 > measuredHeight - fDp2 && f < f3 + fDp2 && f2 < measuredHeight + fDp2) {
-                return 1;
-            }
-            float f5 = f3 + measuredWidth;
-            return (f <= f5 - fDp2 || f2 <= measuredHeight - fDp2 || f >= f5 + fDp2 || f2 >= measuredHeight + fDp2) ? 0 : 2;
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            Canvas canvas2;
-            super.onDraw(canvas);
-            int saveCount = canvas.getSaveCount();
-            float showAlpha = getShowAlpha();
-            if (showAlpha <= 0.0f) {
-                return;
-            }
-            if (showAlpha < 1.0f) {
-                int i = (int) (showAlpha * 255.0f);
-                canvas2 = canvas;
-                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), i, 31);
-            } else {
-                canvas2 = canvas;
-            }
-            float fDp = AndroidUtilities.dp(2.0f);
-            float fDpf2 = AndroidUtilities.dpf2(5.66f);
-            float fDp2 = fDp + fDpf2 + AndroidUtilities.dp(15.0f);
-            float f = fDp2 * 2.0f;
-            float measuredWidth = getMeasuredWidth() - f;
-            float measuredHeight = getMeasuredHeight() - f;
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f2 = fDp2 + measuredWidth;
-            float f3 = fDp2 + measuredHeight;
-            rectF.set(fDp2, fDp2, f2, f3);
-            float fDp3 = AndroidUtilities.dp(12.0f);
-            float fMin = Math.min(fDp3, measuredWidth / 2.0f);
-            float f4 = measuredHeight / 2.0f;
-            float fMin2 = Math.min(fDp3, f4);
-            this.path.rewind();
-            float f5 = fMin * 2.0f;
-            float f6 = fDp2 + f5;
-            float f7 = 2.0f * fMin2;
-            float f8 = fDp2 + f7;
-            rectF.set(fDp2, fDp2, f6, f8);
-            this.path.arcTo(rectF, 180.0f, 90.0f);
-            float f9 = f2 - f5;
-            rectF.set(f9, fDp2, f2, f8);
-            this.path.arcTo(rectF, 270.0f, 90.0f);
-            canvas2.drawPath(this.path, this.paint);
-            this.path.rewind();
-            float f10 = f3 - f7;
-            rectF.set(fDp2, f10, f6, f3);
-            this.path.arcTo(rectF, 180.0f, -90.0f);
-            rectF.set(f9, f10, f2, f3);
-            this.path.arcTo(rectF, 90.0f, -90.0f);
-            canvas2.drawPath(this.path, this.paint);
-            float f11 = fDp2 + f4;
-            canvas2.drawCircle(fDp2, f11, fDpf2, this.dotStrokePaint);
-            canvas2.drawCircle(fDp2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas2.drawCircle(f2, f11, fDpf2, this.dotStrokePaint);
-            canvas2.drawCircle(f2, f11, (fDpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            float f12 = fDp2 + fMin2;
-            float f13 = f3 - fMin2;
-            canvas.drawLine(fDp2, f12, fDp2, f13, this.paint);
-            canvas.drawLine(f2, f12, f2, f13, this.paint);
-            canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + fDpf2) - 1.0f, this.clearPaint);
-            canvas.drawCircle(fDp2, f11, (fDpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
-            canvas.restoreToCount(saveCount);
-        }
+        setTextAlignment(i);
     }
 }

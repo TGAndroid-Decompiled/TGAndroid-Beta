@@ -1,11 +1,9 @@
 package org.telegram.ui.Charts.view_data;
 
-public class TransitionParams {
+public final class TransitionParams {
     public float[] angle;
-    public long date;
     public float[] endX;
     public float[] endY;
-    public boolean needScaleY = true;
     public float pX;
     public float pY;
     public float pickerEndOut;

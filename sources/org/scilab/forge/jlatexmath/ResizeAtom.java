@@ -29,18 +29,10 @@ public class ResizeAtom extends Atom {
     }
 
     @Override
-    public int getLeftType() {
-        return this.base.getLeftType();
-    }
-
-    @Override
-    public int getRightType() {
-        return this.base.getRightType();
-    }
-
-    @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        double factor;
+        float factor;
+        float f;
+        double dMin;
         double d;
         double d2;
         Box boxCreateBox = this.base.createBox(teXEnvironment);
@@ -49,23 +41,36 @@ public class ResizeAtom extends Atom {
             return boxCreateBox;
         }
         if (i != -1 && this.hunit != -1) {
-            double factor2 = (this.w * SpaceAtom.getFactor(i, teXEnvironment)) / boxCreateBox.width;
-            double factor3 = (this.h * SpaceAtom.getFactor(this.hunit, teXEnvironment)) / boxCreateBox.height;
+            double factor2 = (SpaceAtom.getFactor(i, teXEnvironment) * this.w) / boxCreateBox.width;
+            double factor3 = (SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h) / boxCreateBox.height;
             if (this.keepaspectratio) {
-                factor = Math.min(factor2, factor3);
+                dMin = Math.min(factor2, factor3);
             } else {
                 d = factor3;
                 d2 = factor2;
             }
             return new ScaleBox(boxCreateBox, d2, d);
         }
-        if (i != -1 && this.hunit == -1) {
-            factor = (this.w * SpaceAtom.getFactor(i, teXEnvironment)) / boxCreateBox.width;
+        if (i == -1 || this.hunit != -1) {
+            factor = SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h;
+            f = boxCreateBox.height;
         } else {
-            factor = (this.h * SpaceAtom.getFactor(this.hunit, teXEnvironment)) / boxCreateBox.height;
+            factor = SpaceAtom.getFactor(i, teXEnvironment) * this.w;
+            f = boxCreateBox.width;
         }
-        d2 = factor;
+        dMin = factor / f;
+        d2 = dMin;
         d = d2;
         return new ScaleBox(boxCreateBox, d2, d);
+    }
+
+    @Override
+    public int getLeftType() {
+        return this.base.getLeftType();
+    }
+
+    @Override
+    public int getRightType() {
+        return this.base.getRightType();
     }
 }

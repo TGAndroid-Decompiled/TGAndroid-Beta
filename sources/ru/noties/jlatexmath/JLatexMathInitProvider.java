@@ -22,6 +22,12 @@ public class JLatexMathInitProvider extends ContentProvider {
     }
 
     @Override
+    public boolean onCreate() {
+        JLatexMathAndroid.init(getContext());
+        return false;
+    }
+
+    @Override
     public Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
         return null;
     }
@@ -29,11 +35,5 @@ public class JLatexMathInitProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues contentValues, String str, String[] strArr) {
         return 0;
-    }
-
-    @Override
-    public boolean onCreate() {
-        JLatexMathAndroid.init(getContext());
-        return false;
     }
 }

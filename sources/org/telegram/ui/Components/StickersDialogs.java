@@ -3,227 +3,40 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.text.Editable;
 import android.text.InputFilter;
-import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.FileRefController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
-import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ContentPreviewViewer;
-import org.telegram.ui.Stories.DarkThemeResourceProvider;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda380;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda454;
+import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
+import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda52;
 import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
+import org.telegram.ui.iv.RichEditText$$ExternalSyntheticLambda1;
 
 public abstract class StickersDialogs {
-    public static void m2865$r8$lambda$_hnR8VeKoqzA2OPCRcOT4Rt9Us() {
-    }
 
-    private static int getThemedColor(int i, Theme.ResourcesProvider resourcesProvider) {
-        return Theme.getColor(i, resourcesProvider);
-    }
-
-    public static void showNameEditorDialog(TLRPC.StickerSet stickerSet, Theme.ResourcesProvider resourcesProvider, final Context context, final Utilities.Callback2 callback2) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
-        final boolean z = stickerSet != null;
-        builder.setTitle(LocaleController.getString(z ? R.string.EditStickerPack : R.string.NewStickerPack));
-        builder.setMessage(LocaleController.getString(R.string.StickersChooseNameForStickerPack));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
-            @Override
-            protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-            }
-        };
-        int i = Theme.key_dialogTextBlack;
-        editTextBoldCursor.setTextColor(getThemedColor(i, resourcesProvider));
-        editTextBoldCursor.setInputType(16385);
-        editTextBoldCursor.setTextSize(1, 16.0f);
-        editTextBoldCursor.setTextColor(getThemedColor(i, resourcesProvider));
-        editTextBoldCursor.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor, resourcesProvider));
-        editTextBoldCursor.setHeaderHintColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
-        editTextBoldCursor.setSingleLine(true);
-        editTextBoldCursor.setFocusable(true);
-        editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50), new InputFilter() {
-            @Override
-            public final CharSequence filter(CharSequence charSequence, int i2, int i3, Spanned spanned, int i4, int i5) {
-                return StickersDialogs.$r8$lambda$53Wx5EDwOzT1cKuG1CMoQDiyqi0(editTextBoldCursor, charSequence, i2, i3, spanned, i4, i5);
-            }
-        }});
-        editTextBoldCursor.setLineColors(getThemedColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), getThemedColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), getThemedColor(Theme.key_text_RedRegular, resourcesProvider));
-        editTextBoldCursor.setImeOptions(6);
-        editTextBoldCursor.setBackground(null);
-        editTextBoldCursor.requestFocus();
-        editTextBoldCursor.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : 0.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 28.0f), 0);
-        frameLayout.addView(editTextBoldCursor);
-        final NumberTextView numberTextView = new NumberTextView(context);
-        numberTextView.setCenterAlign(true);
-        numberTextView.setTextSize(15);
-        numberTextView.setNumber(50, false);
-        numberTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
-        numberTextView.setImportantForAccessibility(2);
-        frameLayout.addView(numberTextView, LayoutHelper.createFrame(26, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 0.0f, 2.0f, 4.0f, 0.0f));
-        editTextBoldCursor.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                numberTextView.setNumber(50 - Character.codePointCount(editable, 0, editable.length()), true);
-                editTextBoldCursor.setErrorText(null);
-            }
-        });
-        if (z) {
-            editTextBoldCursor.setText(stickerSet.title);
-            editTextBoldCursor.setSelection(stickerSet.title.length());
-        }
-        builder.setView(frameLayout);
-        builder.setCustomViewOffset(4);
-        builder.setPositiveButton(LocaleController.getString(z ? R.string.Done : R.string.Create), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
-                StickersDialogs.$r8$lambda$DAW1lVNR7fxmKYYqGz1Rf67gutg(editTextBoldCursor, callback2, context, z, alertDialog, i2);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
-                StickersDialogs.$r8$lambda$kOHx1buTxxqFdPiypijDzxz9RjA(editTextBoldCursor, alertDialog, i2);
-            }
-        });
-        final AlertDialog alertDialogShow = builder.show();
-        alertDialogShow.setDismissDialogByButtons(false);
-        editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                return StickersDialogs.$r8$lambda$jLZwtbJdzymZUSGauwOzoCMqBx0(alertDialogShow, textView, i2, keyEvent);
-            }
-        });
-    }
-
-    public static CharSequence $r8$lambda$53Wx5EDwOzT1cKuG1CMoQDiyqi0(EditTextBoldCursor editTextBoldCursor, CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
-        return (charSequence.length() > 0 && Character.isWhitespace(charSequence.charAt(0)) && (TextUtils.isEmpty(editTextBoldCursor.getText()) || i3 == 0)) ? "" : charSequence;
-    }
-
-    public static void $r8$lambda$DAW1lVNR7fxmKYYqGz1Rf67gutg(final EditTextBoldCursor editTextBoldCursor, Utilities.Callback2 callback2, Context context, boolean z, final AlertDialog alertDialog, int i) {
-        String strTrim = editTextBoldCursor.getText().toString().trim();
-        if (TextUtils.isEmpty(strTrim) || TextUtils.isEmpty(AndroidUtilities.translitSafe(strTrim.toString()))) {
-            editTextBoldCursor.setErrorText(".");
-            AndroidUtilities.shakeViewSpring(editTextBoldCursor, -6.0f);
-            BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            AndroidUtilities.showKeyboard(editTextBoldCursor);
-            return;
-        }
-        AndroidUtilities.hideKeyboard(editTextBoldCursor);
-        if (callback2 == null) {
-            return;
-        }
-        final AlertDialog alertDialog2 = new AlertDialog(context, 3, z ? null : new DarkThemeResourceProvider());
-        alertDialog2.showDelayed(250L);
-        callback2.run(strTrim, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                StickersDialogs.$r8$lambda$Q0KF3qYIa06EWHJoCmOCUPu4pZk(alertDialog2, alertDialog, editTextBoldCursor, (Boolean) obj);
-            }
-        });
-    }
-
-    public static void $r8$lambda$Q0KF3qYIa06EWHJoCmOCUPu4pZk(AlertDialog alertDialog, AlertDialog alertDialog2, EditTextBoldCursor editTextBoldCursor, Boolean bool) {
-        alertDialog.dismiss();
-        if (bool.booleanValue()) {
-            alertDialog2.dismiss();
-            return;
-        }
-        editTextBoldCursor.setErrorText(".");
-        AndroidUtilities.shakeViewSpring(editTextBoldCursor, -6.0f);
-        BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        AndroidUtilities.showKeyboard(editTextBoldCursor);
-    }
-
-    public static void $r8$lambda$kOHx1buTxxqFdPiypijDzxz9RjA(EditTextBoldCursor editTextBoldCursor, AlertDialog alertDialog, int i) {
-        AndroidUtilities.hideKeyboard(editTextBoldCursor);
-        alertDialog.dismiss();
-    }
-
-    public static boolean $r8$lambda$jLZwtbJdzymZUSGauwOzoCMqBx0(AlertDialog alertDialog, TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 6) {
-            return false;
-        }
-        alertDialog.getButton(-1).callOnClick();
-        return true;
-    }
-
-    public static void showDeleteForEveryOneDialog(final TLRPC.StickerSet stickerSet, Theme.ResourcesProvider resourcesProvider, Context context, final Runnable runnable) {
-        if (stickerSet == null) {
-            return;
-        }
-        AlertDialog alertDialogCreate = new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.StickersDeleteStickerSetTitle)).setMessage(LocaleController.getString(R.string.StickersDeleteStickerSetDescription)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                StickersDialogs.m2864$r8$lambda$YO0w2MC46Ze4CtRzzGkru9YLik(runnable, stickerSet, alertDialog, i);
-            }
-        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
-        alertDialogCreate.show();
-        TextView textView = (TextView) alertDialogCreate.getButton(-1);
-        if (textView != null) {
-            textView.setTextColor(getThemedColor(Theme.key_text_RedBold, resourcesProvider));
+    public final class AnonymousClass1 extends EditTextBoldCursor {
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         }
     }
 
-    public static void m2864$r8$lambda$YO0w2MC46Ze4CtRzzGkru9YLik(Runnable runnable, TLRPC.StickerSet stickerSet, AlertDialog alertDialog, int i) {
-        runnable.run();
-        TLRPC.TL_stickers_deleteStickerSet tL_stickers_deleteStickerSet = new TLRPC.TL_stickers_deleteStickerSet();
-        tL_stickers_deleteStickerSet.stickerset = MediaDataController.getInputStickerSet(stickerSet);
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stickers_deleteStickerSet, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StickersDialogs.m2865$r8$lambda$_hnR8VeKoqzA2OPCRcOT4Rt9Us();
-                    }
-                });
-            }
-        });
-    }
-
-    private static void openStickerPickerDialog(final TLRPC.TL_messages_stickerSet tL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
-        final int i = UserConfig.selectedAccount;
-        final Context context = baseFragment.getContext();
-        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(context, true, resourcesProvider, false);
-        emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3Return() {
-            @Override
-            public final Object run(Object obj, Object obj2, Object obj3) {
-                return StickersDialogs.m2867$r8$lambda$o7KvI6jticMZZAlTouYSxsHIg(i, context, tL_messages_stickerSet, obj, (TLRPC.Document) obj2, (Boolean) obj3);
-            }
-        });
+    public static void openStickerPickerDialog(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
+        int i = UserConfig.selectedAccount;
+        Context context = baseFragment.getContext();
+        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(context, resourcesProvider, true, false);
+        emojiBottomSheet.onDocumentSelected = new PassportActivity$$ExternalSyntheticLambda52(i, context, tL_messages_stickerSet, 10);
         if (baseFragment.visibleDialog != null) {
             emojiBottomSheet.show();
         } else {
@@ -231,123 +44,82 @@ public abstract class StickersDialogs {
         }
     }
 
-    public static Boolean m2867$r8$lambda$o7KvI6jticMZZAlTouYSxsHIg(final int i, Context context, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final Object obj, final TLRPC.Document document, Boolean bool) {
-        String strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document, "😀", Integer.valueOf(i));
-        String str = TextUtils.isEmpty(strFindAnimatedEmojiEmoticon) ? "😀" : strFindAnimatedEmojiEmoticon;
-        final AlertDialog alertDialog = new AlertDialog(context, 3);
-        final TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
-        tL_stickers_addStickerToSet.stickerset = MediaDataController.getInputStickerSet(tL_messages_stickerSet.set);
-        tL_stickers_addStickerToSet.sticker = MediaDataController.getInputStickerSetItem(document, str);
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stickers_addStickerToSet, new RequestDelegate() {
+    public static void showDeleteForEveryOneDialog(TLRPC.StickerSet stickerSet, Theme.ResourcesProvider resourcesProvider, Context context, Runnable runnable) {
+        if (stickerSet == null) {
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, resourcesProvider);
+        String string = LocaleController.getString(R.string.StickersDeleteStickerSetTitle);
+        AlertDialog alertDialog = builder.alertDialog;
+        alertDialog.title = string;
+        alertDialog.message = LocaleController.getString(R.string.StickersDeleteStickerSetDescription);
+        builder.setPositiveButton(LocaleController.getString(R.string.Delete), new RateCallLayout$$ExternalSyntheticLambda1(19, runnable, stickerSet));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        alertDialog.show();
+        TextView textView = (TextView) alertDialog.getButton(-1);
+        if (textView != null) {
+            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold, resourcesProvider));
+        }
+    }
+
+    public static void showNameEditorDialog(TLRPC.StickerSet stickerSet, Theme.ResourcesProvider resourcesProvider, Context context, Utilities.Callback2 callback2) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, resourcesProvider);
+        boolean z = stickerSet != null;
+        String string = LocaleController.getString(z ? R.string.EditStickerPack : R.string.NewStickerPack);
+        AlertDialog alertDialog = builder.alertDialog;
+        alertDialog.title = string;
+        alertDialog.message = LocaleController.getString(R.string.StickersChooseNameForStickerPack);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        final AnonymousClass1 anonymousClass1 = new AnonymousClass1(context);
+        int i = Theme.key_dialogTextBlack;
+        anonymousClass1.setTextColor(Theme.getColor(i, resourcesProvider));
+        anonymousClass1.setInputType(16385);
+        anonymousClass1.setTextSize(1, 16.0f);
+        anonymousClass1.setTextColor(Theme.getColor(i, resourcesProvider));
+        anonymousClass1.setHandlesColor(Theme.getColor(Theme.key_chat_TextSelectionCursor, resourcesProvider));
+        anonymousClass1.setHeaderHintColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
+        anonymousClass1.setSingleLine(true);
+        anonymousClass1.setFocusable(true);
+        anonymousClass1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50), new RichEditText$$ExternalSyntheticLambda1(1, anonymousClass1)});
+        anonymousClass1.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
+        anonymousClass1.setImeOptions(6);
+        anonymousClass1.setBackground(null);
+        anonymousClass1.requestFocus();
+        anonymousClass1.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : 0.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 28.0f), 0);
+        frameLayout.addView(anonymousClass1);
+        final NumberTextView numberTextView = new NumberTextView(context);
+        numberTextView.setCenterAlign(true);
+        numberTextView.setTextSize(15);
+        numberTextView.setNumber(50, false);
+        numberTextView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText4, false));
+        numberTextView.setImportantForAccessibility(2);
+        frameLayout.addView(numberTextView, LayoutHelper.createFrame(26, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 0.0f, 2.0f, 4.0f, 0.0f));
+        anonymousClass1.addTextChangedListener(new TextWatcher() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StickersDialogs.$r8$lambda$PWfBenhYVsMMCsELCmX85DIeeW0(alertDialog, tLObject, i, document, tL_error, obj, tL_stickers_addStickerToSet);
-                    }
-                });
+            public final void afterTextChanged(Editable editable) {
+                numberTextView.setNumber(50 - Character.codePointCount(editable, 0, editable.length()), true);
+                anonymousClass1.setErrorText(null);
+            }
+
+            @Override
+            public final void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            }
+
+            @Override
+            public final void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
             }
         });
-        try {
-            alertDialog.showDelayed(350L);
-        } catch (Exception unused) {
+        if (z) {
+            anonymousClass1.setText(stickerSet.title);
+            anonymousClass1.setSelection(stickerSet.title.length());
         }
-        return Boolean.TRUE;
-    }
-
-    public static void $r8$lambda$PWfBenhYVsMMCsELCmX85DIeeW0(AlertDialog alertDialog, TLObject tLObject, int i, final TLRPC.Document document, TLRPC.TL_error tL_error, Object obj, TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet) {
-        final TLObject tLObject2;
-        alertDialog.dismiss();
-        if (!(tLObject instanceof TLRPC.TL_messages_stickerSet)) {
-            if (tL_error != null) {
-                if (FileRefController.isFileRefError(tL_error.text)) {
-                    FileRefController.getInstance(i).requestReference(obj, tL_stickers_addStickerToSet);
-                    return;
-                } else {
-                    BulletinFactory.showError(tL_error);
-                    return;
-                }
-            }
-            return;
-        }
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
-        MediaDataController.getInstance(i).putStickerSet(tL_messages_stickerSet);
-        if (MediaDataController.getInstance(i).isStickerPackInstalled(tL_messages_stickerSet.set.id)) {
-            tLObject2 = tLObject;
-        } else {
-            tLObject2 = tLObject;
-            MediaDataController.getInstance(i).toggleStickerSet(null, tLObject2, 2, null, false, false);
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StickersDialogs.$r8$lambda$y7WVL1v67IsxlypQDQjo8zkcwCk(tLObject2, document);
-            }
-        }, 250L);
-    }
-
-    public static void $r8$lambda$y7WVL1v67IsxlypQDQjo8zkcwCk(TLObject tLObject, TLRPC.Document document) {
-        NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
-        int i = NotificationCenter.customStickerCreated;
-        Boolean bool = Boolean.FALSE;
-        notificationCenter.postNotificationNameOnUIThread(i, bool, tLObject, document, null, bool);
-    }
-
-    public static void showAddStickerDialog(final TLRPC.TL_messages_stickerSet tL_messages_stickerSet, View view, final BaseFragment baseFragment, final Theme.ResourcesProvider resourcesProvider) {
-        if (baseFragment == null) {
-            return;
-        }
-        Context context = baseFragment.getContext();
-        if (!(baseFragment instanceof ChatActivity)) {
-            openStickerPickerDialog(tL_messages_stickerSet, baseFragment, resourcesProvider);
-            return;
-        }
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, R.drawable.popup_fixed_alert3, resourcesProvider, 0);
-        ArrayList arrayList = new ArrayList();
-        final ArrayList arrayList2 = new ArrayList();
-        ArrayList arrayList3 = new ArrayList();
-        arrayList.add(LocaleController.getString(R.string.StickersCreateNewSticker));
-        arrayList3.add(Integer.valueOf(R.drawable.menu_sticker_add));
-        arrayList2.add(0);
-        arrayList.add(LocaleController.getString(R.string.StickersAddAnExistingSticker));
-        arrayList3.add(Integer.valueOf(R.drawable.menu_sticker_select));
-        arrayList2.add(1);
-        final ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                StickersDialogs.m2863$r8$lambda$KwNe0gshzMmIwENIJT3PkIZ_Wc(actionBarPopupWindow, arrayList2, tL_messages_stickerSet, baseFragment, resourcesProvider, view2);
-            }
-        };
-        for (int i = 0; i < arrayList.size(); i++) {
-            ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i)).intValue(), (CharSequence) arrayList.get(i), false, resourcesProvider);
-            actionBarMenuSubItemAddItem.setTag(Integer.valueOf(i));
-            actionBarMenuSubItemAddItem.setOnClickListener(onClickListener);
-        }
-        actionBarPopupWindow.setDismissAnimationDuration(100);
-        actionBarPopupWindow.setScaleOut(true);
-        actionBarPopupWindow.setOutsideTouchable(true);
-        actionBarPopupWindow.setClippingEnabled(true);
-        actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
-        actionBarPopupWindow.setFocusable(true);
-        actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
-        actionBarPopupWindow.setInputMethodMode(2);
-        actionBarPopupWindow.getContentView().setFocusableInTouchMode(true);
-        int[] iArr = new int[2];
-        view.getLocationInWindow(iArr);
-        actionBarPopupWindow.showAtLocation(view, 0, (iArr[0] + (view.getMeasuredWidth() / 2)) - (actionBarPopupWindowLayout.getMeasuredWidth() / 2), (iArr[1] + (view.getMeasuredHeight() / 2)) - (actionBarPopupWindowLayout.getMeasuredHeight() / 2));
-        actionBarPopupWindow.dimBehind();
-    }
-
-    public static void m2863$r8$lambda$KwNe0gshzMmIwENIJT3PkIZ_Wc(ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
-        int iIntValue = ((Integer) view.getTag()).intValue();
-        actionBarPopupWindow.dismiss();
-        if (((Integer) arrayList.get(iIntValue)).intValue() == 1) {
-            openStickerPickerDialog(tL_messages_stickerSet, baseFragment, resourcesProvider);
-        } else {
-            ((ChatActivity) baseFragment).openAttachMenuForCreatingSticker();
-            ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(tL_messages_stickerSet);
-        }
+        builder.setView(frameLayout);
+        alertDialog.customViewOffset = 4;
+        builder.setPositiveButton(LocaleController.getString(z ? R.string.Done : R.string.Create), new ChatActivity$$ExternalSyntheticLambda454(anonymousClass1, callback2, context, z, 3));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new ProfileGooeyView$$ExternalSyntheticLambda0(anonymousClass1, 28));
+        AlertDialog alertDialogShow = builder.show();
+        alertDialogShow.dismissDialogByButtons = false;
+        anonymousClass1.setOnEditorActionListener(new ChatActivity$$ExternalSyntheticLambda380(alertDialogShow, 12));
     }
 }

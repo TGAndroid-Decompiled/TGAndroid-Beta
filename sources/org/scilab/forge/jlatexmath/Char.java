@@ -15,12 +15,16 @@ public class Char {
         this.m = metrics;
     }
 
+    public char getChar() {
+        return this.c;
+    }
+
     public CharFont getCharFont() {
         return new CharFont(this.c, this.fontCode);
     }
 
-    public char getChar() {
-        return this.c;
+    public float getDepth() {
+        return this.m.getDepth();
     }
 
     public Font getFont() {
@@ -31,23 +35,19 @@ public class Char {
         return this.fontCode;
     }
 
-    public float getWidth() {
-        return this.m.getWidth();
+    public float getHeight() {
+        return this.m.getHeight();
     }
 
     public float getItalic() {
         return this.m.getItalic();
     }
 
-    public float getHeight() {
-        return this.m.getHeight();
-    }
-
-    public float getDepth() {
-        return this.m.getDepth();
-    }
-
     public Metrics getMetrics() {
         return this.m;
+    }
+
+    public float getWidth() {
+        return this.m.getWidth();
     }
 }

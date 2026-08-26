@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import com.google.android.gms.internal.mlkit_language_id_common.zzil;
 
 public class NotificationsDisabledReceiver extends BroadcastReceiver {
     @Override
@@ -63,16 +64,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                 }
                 notificationsSettings.edit().putInt(NotificationsController.getGlobalNotificationsKey(1), booleanExtra ? Integer.MAX_VALUE : 0).commit();
                 AccountInstance.getInstance(iIntValue).getNotificationsController().updateServerNotificationsSettings(1);
-            } else if (strArrSplit[1].startsWith("stories")) {
-                if (!stringExtra.equals(notificationsSettings.getString("stories", null))) {
-                    return;
-                }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("apply channel{stories} " + stringExtra + " state");
-                }
-                notificationsSettings.edit().putBoolean(NotificationsController.getGlobalNotificationsKey(3), !booleanExtra).commit();
-                AccountInstance.getInstance(iIntValue).getNotificationsController().updateServerNotificationsSettings(1);
-            } else {
+            } else if (!strArrSplit[1].startsWith("stories")) {
                 long jLongValue = Utilities.parseLong(strArrSplit[1]).longValue();
                 if (jLongValue == 0) {
                     return;
@@ -85,12 +77,21 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     FileLog.d("apply channel{else} " + stringExtra + " state");
                 }
                 SharedPreferences.Editor editorEdit = notificationsSettings.edit();
-                editorEdit.putInt("notify2_" + sharedPrefKey, booleanExtra ? 2 : 0);
+                editorEdit.putInt(zzil.m("notify2_", sharedPrefKey), booleanExtra ? 2 : 0);
                 if (!booleanExtra) {
                     editorEdit.remove("notifyuntil_" + sharedPrefKey);
                 }
                 editorEdit.commit();
                 AccountInstance.getInstance(iIntValue).getNotificationsController().updateServerNotificationsSettings(jLongValue, 0L, true);
+            } else {
+                if (!stringExtra.equals(notificationsSettings.getString("stories", null))) {
+                    return;
+                }
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("apply channel{stories} " + stringExtra + " state");
+                }
+                notificationsSettings.edit().putBoolean(NotificationsController.getGlobalNotificationsKey(3), !booleanExtra).commit();
+                AccountInstance.getInstance(iIntValue).getNotificationsController().updateServerNotificationsSettings(1);
             }
             AccountInstance.getInstance(iIntValue).getConnectionsManager().resumeNetworkMaybe();
         }

@@ -1,6 +1,6 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
@@ -9,15 +9,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 
-public class HideEmojiTextView extends TextView {
-    private final VoIPBackgroundProvider backgroundProvider;
-    private final RectF bgRect;
+public final class HideEmojiTextView extends TextView {
+    public final VoIPBackgroundProvider backgroundProvider;
+    public final RectF bgRect;
 
-    public HideEmojiTextView(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(context);
+    public HideEmojiTextView(Activity activity, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(activity);
         this.bgRect = new RectF();
         this.backgroundProvider = voIPBackgroundProvider;
-        voIPBackgroundProvider.attach(this);
+        voIPBackgroundProvider.views.add(this);
         int i = R.string.VoipHideEmoji;
         setText(LocaleController.getString(i));
         setContentDescription(LocaleController.getString(i));
@@ -27,10 +27,14 @@ public class HideEmojiTextView extends TextView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        this.bgRect.set(0.0f, 0.0f, getWidth(), getHeight());
-        this.backgroundProvider.setDarkTranslation(getX() + ((View) getParent()).getX(), getY() + ((View) getParent()).getY());
-        canvas.drawRoundRect(this.bgRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.backgroundProvider.getDarkPaint());
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = this.bgRect;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        float x = ((View) getParent()).getX() + getX();
+        float y = ((View) getParent()).getY() + getY();
+        VoIPBackgroundProvider voIPBackgroundProvider = this.backgroundProvider;
+        voIPBackgroundProvider.setDarkTranslation(x, y);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), voIPBackgroundProvider.getDarkPaint());
         super.onDraw(canvas);
     }
 }

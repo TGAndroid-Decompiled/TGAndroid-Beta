@@ -1,19 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
@@ -25,19 +20,19 @@ import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.webkit.MimeTypeMap;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSmoothScroller;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import com.google.android.gms.internal.mlkit_vision_common.zzki;
+import com.google.android.gms.internal.mlkit_vision_common.zzkl;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -56,11 +51,12 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.pip.PipActivityHandler;
 import org.telegram.messenger.ringtone.RingtoneDataStore;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -69,164 +65,1115 @@ import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Adapters.FiltersView;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
+import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.SharedDocumentCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline1;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.FilteredSearchView;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoPickerActivity;
+import org.telegram.ui.TopicsFragment;
+import org.telegram.ui.bots.ChannelAffiliateProgramsFragment$$ExternalSyntheticLambda25;
 
-public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLayout {
-    private float additionalTranslationY;
-    private boolean allowMusic;
-    private LinearLayoutManager backgroundLayoutManager;
-    private ListAdapter backgroundListAdapter;
-    private RecyclerListView backgroundListView;
-    private boolean canSelectOnlyImageFiles;
-    private int currentAnimationType;
-    private File currentDir;
-    private DocumentSelectActivityDelegate delegate;
-    private StickerEmptyView emptyView;
-    private FiltersView filtersView;
-    private AnimatorSet filtersViewAnimator;
-    private boolean hasFiles;
+public final class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLayout {
+    public static final int $r8$clinit = 0;
+    public float additionalTranslationY;
+    public final boolean allowMusic;
+    public final FillLastLinearLayoutManager backgroundLayoutManager;
+    public final ListAdapter backgroundListAdapter;
+    public final AnonymousClass4 backgroundListView;
+    public boolean canSelectOnlyImageFiles;
+    public int currentAnimationType;
+    public File currentDir;
+    public DocumentSelectActivityDelegate delegate;
+    public final AnonymousClass3 emptyView;
+    public final FiltersView filtersView;
+    public AnimatorSet filtersViewAnimator;
+    public boolean hasFiles;
     public boolean isSoundPicker;
-    private LinearLayoutManager layoutManager;
-    private ListAdapter listAdapter;
-    ValueAnimator listAnimation;
-    private RecyclerListView listView;
-    private FlickerLoadingView loadingView;
-    private int maxSelectedFiles;
-    private BroadcastReceiver receiver;
-    private boolean receiverRegistered;
-    private boolean scrolling;
-    private SearchAdapter searchAdapter;
-    private ActionBarMenuItem searchItem;
-    private boolean searching;
-    private HashMap selectedFiles;
-    public ArrayList selectedFilesOrder;
-    private HashMap selectedMessages;
-    private boolean sendPressed;
-    private boolean sortByName;
-    private ActionBarMenuItem sortItem;
+    public final ChatAttachAlertPollLayout.AnonymousClass4 layoutManager;
+    public final ListAdapter listAdapter;
+    public ValueAnimator listAnimation;
+    public final AnonymousClass4 listView;
+    public final FlickerLoadingView loadingView;
+    public int maxSelectedFiles;
+    public final PipActivityHandler.AnonymousClass1 receiver;
+    public boolean receiverRegistered;
+    public boolean scrolling;
+    public final SearchAdapter searchAdapter;
+    public final ActionBarMenuItem searchItem;
+    public boolean searching;
+    public final HashMap selectedFiles;
+    public final ArrayList selectedFilesOrder;
+    public final HashMap selectedMessages;
+    public boolean sendPressed;
+    public boolean sortByName;
+    public final ActionBarMenuItem sortItem;
 
-    public interface DocumentSelectActivityDelegate {
-
-        public abstract class CC {
-            public static void $default$didSelectPhotos(DocumentSelectActivityDelegate documentSelectActivityDelegate, ArrayList arrayList, boolean z, int i, int i2, long j) {
-            }
-
-            public static void $default$startMusicSelectActivity(DocumentSelectActivityDelegate documentSelectActivityDelegate) {
-            }
+    public final class AnonymousClass3 extends StickerEmptyView {
+        public AnonymousClass3(Context context, FlickerLoadingView flickerLoadingView, Theme.ResourcesProvider resourcesProvider) {
+            super(1, resourcesProvider, context, flickerLoadingView);
         }
 
-        void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, int i2, long j, boolean z2, long j2);
+        @Override
+        public final float getTranslationY() {
+            return super.getTranslationY() - ChatAttachAlertDocumentLayout.this.additionalTranslationY;
+        }
 
-        void didSelectPhotos(ArrayList arrayList, boolean z, int i, int i2, long j);
+        @Override
+        public final void setTranslationY(float f) {
+            super.setTranslationY(f + ChatAttachAlertDocumentLayout.this.additionalTranslationY);
+        }
+    }
+
+    public interface DocumentSelectActivityDelegate {
+        void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, long j, boolean z2, long j2);
+
+        void didSelectPhotos(long j, ArrayList arrayList, boolean z, int i);
 
         void startDocumentSelectActivity();
 
         void startMusicSelectActivity();
     }
 
-    public static boolean $r8$lambda$qP60ZdA4oSS_tOn_64X7emq6heE(View view, MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public int needsActionBar() {
-        return 1;
-    }
-
-    static class ListItem {
-        public String ext;
-        public File file;
-        public int icon;
-        public String subtitle;
-        public String thumb;
+    public final class HistoryEntry {
+        public File dir;
         public String title;
-
-        private ListItem() {
-            this.subtitle = "";
-            this.ext = "";
-        }
-
-        ListItem(AnonymousClass1 anonymousClass1) {
-            this();
-        }
     }
 
-    static class HistoryEntry {
-        File dir;
-        int scrollItem;
-        int scrollOffset;
-        String title;
+    public final class ListAdapter extends RecyclerListView.SelectionAdapter {
+        public final Context mContext;
+        public final ArrayList items = new ArrayList();
+        public final ArrayList history = new ArrayList();
+        public final ArrayList recentItems = new ArrayList();
 
-        private HistoryEntry() {
+        public ListAdapter(Context context) {
+            this.mContext = context;
         }
 
-        HistoryEntry(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-    }
-
-    class AnonymousClass1 extends BroadcastReceiver {
-        AnonymousClass1() {
+        public final ListItem getItem(int i) {
+            int iM;
+            ArrayList arrayList = this.items;
+            int size = arrayList.size();
+            if (i < size) {
+                return (ListItem) arrayList.get(i);
+            }
+            if (!this.history.isEmpty()) {
+                return null;
+            }
+            ArrayList arrayList2 = this.recentItems;
+            if (arrayList2.isEmpty() || i == size || i == size + 1 || (iM = zzki.m(2, i, arrayList)) >= arrayList2.size()) {
+                return null;
+            }
+            return (ListItem) arrayList2.get(iM);
         }
 
         @Override
-        public void onReceive(Context context, Intent intent) {
-            Runnable runnable = new Runnable() {
-                @Override
-                public final void run() throws Throwable {
-                    ChatAttachAlertDocumentLayout.AnonymousClass1.$r8$lambda$KcR2_ph3HsH0mQCoBqCxlmKd7Xo(this.f$0);
+        public final int getItemCount() {
+            int size = this.items.size();
+            if (this.history.isEmpty()) {
+                ArrayList arrayList = this.recentItems;
+                if (!arrayList.isEmpty()) {
+                    size += arrayList.size() + 2;
                 }
-            };
-            if ("android.intent.action.MEDIA_UNMOUNTED".equals(intent.getAction())) {
-                ChatAttachAlertDocumentLayout.this.listView.postDelayed(runnable, 1000L);
+            }
+            return size + 1;
+        }
+
+        @Override
+        public final int getItemViewType(int i) {
+            if (i == getItemCount() - 1) {
+                return 3;
+            }
+            int size = this.items.size();
+            if (i == size) {
+                return 2;
+            }
+            return i == size + 1 ? 0 : 1;
+        }
+
+        @Override
+        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.mItemViewType == 1;
+        }
+
+        @Override
+        public final void notifyDataSetChanged() {
+            this.mObservable.notifyChanged();
+            ChatAttachAlertDocumentLayout.this.updateEmptyView$6();
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            int i2 = viewHolder.mItemViewType;
+            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
+            View view = viewHolder.itemView;
+            if (i2 == 0) {
+                HeaderCell headerCell = (HeaderCell) view;
+                if (chatAttachAlertDocumentLayout.sortByName) {
+                    headerCell.setText(LocaleController.getString(R.string.RecentFilesAZ));
+                    return;
+                } else {
+                    headerCell.setText(LocaleController.getString(R.string.RecentFiles));
+                    return;
+                }
+            }
+            if (i2 != 1) {
+                return;
+            }
+            ListItem item = getItem(i);
+            SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) view;
+            int i3 = item.icon;
+            if (i3 != 0) {
+                sharedDocumentCell.setTextAndValueAndTypeAndThumb(i != this.items.size() - 1, item.title, i3, item.subtitle, null, null);
             } else {
-                runnable.run();
+                sharedDocumentCell.setTextAndValueAndTypeAndThumb(false, item.title, 0, item.subtitle, item.ext.toUpperCase().substring(0, Math.min(item.ext.length(), 4)), item.thumb);
+            }
+            File file = item.file;
+            if (file != null) {
+                sharedDocumentCell.setChecked(chatAttachAlertDocumentLayout.selectedFiles.containsKey(file.toString()), !chatAttachAlertDocumentLayout.scrolling);
+            } else {
+                sharedDocumentCell.setChecked(false, !chatAttachAlertDocumentLayout.scrolling);
             }
         }
 
-        public static void $r8$lambda$KcR2_ph3HsH0mQCoBqCxlmKd7Xo(AnonymousClass1 anonymousClass1) throws Throwable {
-            anonymousClass1.getClass();
-            try {
-                if (ChatAttachAlertDocumentLayout.this.currentDir == null) {
-                    ChatAttachAlertDocumentLayout.this.listRoots();
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View headerCell;
+            View shadowSectionCell;
+            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
+            Context context = this.mContext;
+            if (i != 0) {
+                if (i == 1) {
+                    headerCell = new SharedDocumentCell(context, 1, chatAttachAlertDocumentLayout.resourcesProvider);
+                } else if (i != 2) {
+                    shadowSectionCell = new View(context);
+                    shadowSectionCell.setTag(-33024);
                 } else {
-                    ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
-                    chatAttachAlertDocumentLayout.listFiles(chatAttachAlertDocumentLayout.currentDir);
+                    shadowSectionCell = new ShadowSectionCell(context, (Object) null);
                 }
-                ChatAttachAlertDocumentLayout.this.updateSearchButton();
-            } catch (Exception e) {
-                FileLog.e(e);
+                return new RecyclerListView.Holder(shadowSectionCell);
+            }
+            headerCell = new HeaderCell(context, chatAttachAlertDocumentLayout.resourcesProvider);
+            shadowSectionCell = headerCell;
+            return new RecyclerListView.Holder(shadowSectionCell);
+        }
+    }
+
+    public final class ListItem {
+        public File file;
+        public int icon;
+        public String thumb;
+        public String title;
+        public String subtitle = "";
+        public String ext = "";
+    }
+
+    public final class SearchAdapter extends RecyclerListView.SectionsAdapter {
+        public String currentDataQuery;
+        public long currentSearchDialogId;
+        public FiltersView.MediaFilterData currentSearchFilter;
+        public long currentSearchMaxDate;
+        public long currentSearchMinDate;
+        public boolean endReached;
+        public boolean isLoading;
+        public String lastMessagesSearchString;
+        public String lastSearchFilterQueryString;
+        public EmojiView$2$$ExternalSyntheticLambda1 localSearchRunnable;
+        public final Context mContext;
+        public int nextSearchRate;
+        public int requestIndex;
+        public ChatAttachAlertDocumentLayout$SearchAdapter$$ExternalSyntheticLambda0 searchRunnable;
+        public ArrayList searchResult = new ArrayList();
+        public final FilteredSearchView.MessageHashId messageHashIdTmp = new FilteredSearchView.MessageHashId(0, 0);
+        public final ArrayList localTipChats = new ArrayList();
+        public final ArrayList localTipDates = new ArrayList();
+        public final ArrayList messages = new ArrayList();
+        public final SparseArray messagesById = new SparseArray();
+        public final ArrayList sections = new ArrayList();
+        public final HashMap sectionArrays = new HashMap();
+        public final ArrayList currentSearchFilters = new ArrayList();
+        public final AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker();
+        public final BubbleActivity.AnonymousClass1 clearCurrentResultsRunnable = new BubbleActivity.AnonymousClass1(this, 13);
+
+        public SearchAdapter(Context context) {
+            this.mContext = context;
+        }
+
+        @Override
+        public final int getCountForSection(int i) {
+            if (i == 0) {
+                return this.searchResult.size();
+            }
+            int i2 = i - 1;
+            ArrayList arrayList = this.sections;
+            int i3 = 1;
+            if (i2 >= arrayList.size()) {
+                return 1;
+            }
+            ArrayList arrayList2 = (ArrayList) this.sectionArrays.get(arrayList.get(i2));
+            if (arrayList2 == null) {
+                return 0;
+            }
+            int size = arrayList2.size();
+            if (i2 == 0 && this.searchResult.isEmpty()) {
+                i3 = 0;
+            }
+            return size + i3;
+        }
+
+        @Override
+        public final Object getItem(int i, int i2) {
+            ArrayList arrayList;
+            if (i == 0) {
+                if (i2 < this.searchResult.size()) {
+                    return this.searchResult.get(i2);
+                }
+                return null;
+            }
+            int i3 = i - 1;
+            ArrayList arrayList2 = this.sections;
+            if (i3 >= arrayList2.size() || (arrayList = (ArrayList) this.sectionArrays.get(arrayList2.get(i3))) == null) {
+                return null;
+            }
+            int i4 = i2 - ((i3 == 0 && this.searchResult.isEmpty()) ? 0 : 1);
+            if (i4 < 0 || i4 >= arrayList.size()) {
+                return null;
+            }
+            return arrayList.get(i4);
+        }
+
+        @Override
+        public final int getItemViewType(int i, int i2) {
+            if (i == 0) {
+                return 1;
+            }
+            if (i == getSectionCount() - 1) {
+                return 3;
+            }
+            int i3 = i - 1;
+            if (i3 < this.sections.size()) {
+                return (!(i3 == 0 && this.searchResult.isEmpty()) && i2 == 0) ? 0 : 4;
+            }
+            return 2;
+        }
+
+        @Override
+        public final String getLetter(int i) {
+            return null;
+        }
+
+        @Override
+        public final void getPositionForScrollProgress(RecyclerListView recyclerListView, float f, int[] iArr) {
+            iArr[0] = 0;
+            iArr[1] = 0;
+        }
+
+        @Override
+        public final int getSectionCount() {
+            ArrayList arrayList = this.sections;
+            if (arrayList.isEmpty()) {
+                return 2;
+            }
+            return arrayList.size() + (!this.endReached ? 1 : 0) + 2;
+        }
+
+        @Override
+        public final View getSectionHeaderView$1(int i, View view) {
+            GraySectionCell graySectionCell = (GraySectionCell) view;
+            if (graySectionCell == null) {
+                ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
+                graySectionCell = new GraySectionCell(this.mContext, 16, chatAttachAlertDocumentLayout.resourcesProvider);
+                graySectionCell.setBackgroundColor(Theme.getColor(Theme.key_graySection, chatAttachAlertDocumentLayout.resourcesProvider) & (-218103809));
+            }
+            if (i == 0 || (i == 1 && this.searchResult.isEmpty())) {
+                graySectionCell.setAlpha(0.0f);
+                return graySectionCell;
+            }
+            int i2 = i - 1;
+            ArrayList arrayList = this.sections;
+            if (i2 < arrayList.size()) {
+                graySectionCell.setAlpha(1.0f);
+                ArrayList arrayList2 = (ArrayList) this.sectionArrays.get((String) arrayList.get(i2));
+                if (arrayList2 != null) {
+                    graySectionCell.setText((i2 != 0 || this.searchResult.isEmpty()) ? LocaleController.formatSectionDate(((MessageObject) arrayList2.get(0)).messageOwner.date) : LocaleController.getString(R.string.GlobalSearch));
+                }
+            }
+            return view;
+        }
+
+        @Override
+        public final boolean isEnabled(int i, int i2, RecyclerView.ViewHolder viewHolder) {
+            int i3 = viewHolder.mItemViewType;
+            return i3 == 1 || i3 == 4;
+        }
+
+        @Override
+        public final void notifyDataSetChanged() {
+            update(false);
+            ChatAttachAlertDocumentLayout.this.updateEmptyView$6();
+        }
+
+        @Override
+        public final void onBindViewHolder(int i, int i2, RecyclerView.ViewHolder viewHolder) {
+            int i3 = i2;
+            int i4 = viewHolder.mItemViewType;
+            if (i4 == 2 || i4 == 3) {
+                return;
+            }
+            HashMap map = this.sectionArrays;
+            ArrayList arrayList = this.sections;
+            boolean z = false;
+            View view = viewHolder.itemView;
+            if (i4 == 0) {
+                int i5 = i - 1;
+                ArrayList arrayList2 = (ArrayList) map.get((String) arrayList.get(i5));
+                if (arrayList2 == null) {
+                    return;
+                }
+                ((GraySectionCell) view).setText((i5 != 0 || this.searchResult.isEmpty()) ? LocaleController.formatSectionDate(((MessageObject) arrayList2.get(0)).messageOwner.date) : LocaleController.getString(R.string.GlobalSearch));
+                return;
+            }
+            if (i4 == 1 || i4 == 4) {
+                SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) view;
+                if (i == 0) {
+                    ListItem listItem = (ListItem) getItem(getSectionForPosition(i3), getPositionInSectionForPosition(i3));
+                    int i6 = listItem.icon;
+                    if (i6 != 0) {
+                        sharedDocumentCell.setTextAndValueAndTypeAndThumb(false, listItem.title, i6, listItem.subtitle, null, null);
+                    } else {
+                        sharedDocumentCell.setTextAndValueAndTypeAndThumb(false, listItem.title, 0, listItem.subtitle, listItem.ext.toUpperCase().substring(0, Math.min(listItem.ext.length(), 4)), listItem.thumb);
+                    }
+                    File file = listItem.file;
+                    ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
+                    if (file != null) {
+                        sharedDocumentCell.setChecked(chatAttachAlertDocumentLayout.selectedFiles.containsKey(file.toString()), !chatAttachAlertDocumentLayout.scrolling);
+                        return;
+                    } else {
+                        sharedDocumentCell.setChecked(false, !chatAttachAlertDocumentLayout.scrolling);
+                        return;
+                    }
+                }
+                int i7 = i - 1;
+                if (i7 != 0 || !this.searchResult.isEmpty()) {
+                    i3--;
+                }
+                ArrayList arrayList3 = (ArrayList) map.get((String) arrayList.get(i7));
+                if (arrayList3 == null) {
+                    return;
+                }
+                MessageObject messageObject = (MessageObject) arrayList3.get(i3);
+                boolean z2 = sharedDocumentCell.getMessage() != null && sharedDocumentCell.getMessage().getId() == messageObject.getId();
+                if (i3 != arrayList3.size() - 1 || (i7 == arrayList.size() - 1 && this.isLoading)) {
+                    z = true;
+                }
+                sharedDocumentCell.setDocument(messageObject, z);
+                sharedDocumentCell.getViewTreeObserver().addOnPreDrawListener(new FilteredSearchView.SharedLinksAdapter.AnonymousClass2(this, sharedDocumentCell, messageObject, z2, 1));
+            }
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View graySectionCell;
+            View view;
+            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
+            Context context = this.mContext;
+            if (i != 0) {
+                if (i == 1) {
+                    SharedDocumentCell sharedDocumentCell = new SharedDocumentCell(context, i == 1 ? 1 : 2, chatAttachAlertDocumentLayout.resourcesProvider);
+                    sharedDocumentCell.setDrawDownloadIcon(false);
+                    view = sharedDocumentCell;
+                } else if (i == 2) {
+                    FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, chatAttachAlertDocumentLayout.resourcesProvider);
+                    flickerLoadingView.setViewType(3);
+                    flickerLoadingView.setIsSingleCell(true);
+                    graySectionCell = flickerLoadingView;
+                } else if (i != 4) {
+                    View view2 = new View(context);
+                    view2.setTag(-33024);
+                    view = view2;
+                } else {
+                    SharedDocumentCell sharedDocumentCell2 = new SharedDocumentCell(context, i == 1 ? 1 : 2, chatAttachAlertDocumentLayout.resourcesProvider);
+                    sharedDocumentCell2.setDrawDownloadIcon(false);
+                    view = sharedDocumentCell2;
+                }
+                return zzkl.m(view, view);
+            }
+            graySectionCell = new GraySectionCell(context, 16, chatAttachAlertDocumentLayout.resourcesProvider);
+            view = graySectionCell;
+            return zzkl.m(view, view);
+        }
+
+        public final void search(String str, boolean z) {
+            long j;
+            EmojiView$2$$ExternalSyntheticLambda1 emojiView$2$$ExternalSyntheticLambda1 = this.localSearchRunnable;
+            if (emojiView$2$$ExternalSyntheticLambda1 != null) {
+                AndroidUtilities.cancelRunOnUIThread(emojiView$2$$ExternalSyntheticLambda1);
+                this.localSearchRunnable = null;
+            }
+            boolean zIsEmpty = TextUtils.isEmpty(str);
+            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
+            if (zIsEmpty) {
+                if (!this.searchResult.isEmpty()) {
+                    this.searchResult.clear();
+                }
+                RecyclerView.Adapter adapter = chatAttachAlertDocumentLayout.listView.getAdapter();
+                ListAdapter listAdapter = chatAttachAlertDocumentLayout.listAdapter;
+                if (adapter != listAdapter) {
+                    chatAttachAlertDocumentLayout.listView.setAdapter(listAdapter);
+                }
+                notifyDataSetChanged();
+            } else {
+                EmojiView$2$$ExternalSyntheticLambda1 emojiView$2$$ExternalSyntheticLambda2 = new EmojiView$2$$ExternalSyntheticLambda1(4, this, str);
+                this.localSearchRunnable = emojiView$2$$ExternalSyntheticLambda2;
+                AndroidUtilities.runOnUIThread(emojiView$2$$ExternalSyntheticLambda2, 300L);
+            }
+            if (chatAttachAlertDocumentLayout.canSelectOnlyImageFiles || !chatAttachAlertDocumentLayout.listAdapter.history.isEmpty()) {
+                return;
+            }
+            int i = 0;
+            long j2 = 0;
+            long j3 = 0;
+            long j4 = 0;
+            while (true) {
+                ArrayList arrayList = this.currentSearchFilters;
+                if (i >= arrayList.size()) {
+                    searchGlobal(j2, j3, j4, FiltersView.filters[2], str, z);
+                    return;
+                }
+                FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) arrayList.get(i);
+                int i2 = mediaFilterData.filterType;
+                if (i2 == 4) {
+                    TLObject tLObject = mediaFilterData.chat;
+                    if (tLObject instanceof TLRPC.User) {
+                        j = ((TLRPC.User) tLObject).id;
+                    } else if (tLObject instanceof TLRPC.Chat) {
+                        j = -((TLRPC.Chat) tLObject).id;
+                    }
+                    j2 = j;
+                } else if (i2 == 6) {
+                    FiltersView.DateData dateData = mediaFilterData.dateData;
+                    j3 = dateData.minDate;
+                    j4 = dateData.maxDate;
+                }
+                i++;
+            }
+        }
+
+        public final void searchGlobal(final long j, final long j2, final long j3, FiltersView.MediaFilterData mediaFilterData, final String str, boolean z) {
+            Locale locale = Locale.ENGLISH;
+            final String str2 = j + j2 + j3 + mediaFilterData.filterType + str;
+            String str3 = this.lastSearchFilterQueryString;
+            boolean z2 = str3 != null && str3.equals(str2);
+            boolean z3 = !z2 && z;
+            this.currentSearchFilter = mediaFilterData;
+            this.currentSearchDialogId = j;
+            this.currentSearchMinDate = j2;
+            this.currentSearchMaxDate = j3;
+            ChatAttachAlertDocumentLayout$SearchAdapter$$ExternalSyntheticLambda0 chatAttachAlertDocumentLayout$SearchAdapter$$ExternalSyntheticLambda0 = this.searchRunnable;
+            if (chatAttachAlertDocumentLayout$SearchAdapter$$ExternalSyntheticLambda0 != null) {
+                AndroidUtilities.cancelRunOnUIThread(chatAttachAlertDocumentLayout$SearchAdapter$$ExternalSyntheticLambda0);
+            }
+            BubbleActivity.AnonymousClass1 anonymousClass1 = this.clearCurrentResultsRunnable;
+            AndroidUtilities.cancelRunOnUIThread(anonymousClass1);
+            if (z2 && z) {
+                return;
+            }
+            ArrayList arrayList = this.localTipDates;
+            ArrayList arrayList2 = this.localTipChats;
+            ArrayList arrayList3 = this.messages;
+            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
+            if (z3) {
+                arrayList3.clear();
+                this.sections.clear();
+                this.sectionArrays.clear();
+                this.isLoading = true;
+                chatAttachAlertDocumentLayout.emptyView.setVisibility(0);
+                notifyDataSetChanged();
+                this.requestIndex++;
+                AnonymousClass4 anonymousClass4 = chatAttachAlertDocumentLayout.listView;
+                if (anonymousClass4.getPinnedHeader() != null) {
+                    anonymousClass4.getPinnedHeader().setAlpha(0.0f);
+                }
+                arrayList2.clear();
+                arrayList.clear();
+            }
+            this.isLoading = true;
+            notifyDataSetChanged();
+            if (!z2) {
+                anonymousClass1.run();
+                chatAttachAlertDocumentLayout.emptyView.showProgress(true, !z);
+            }
+            if (TextUtils.isEmpty(str)) {
+                arrayList.clear();
+                arrayList2.clear();
+                updateFiltersView(null, null, false);
+                return;
+            }
+            final int i = this.requestIndex + 1;
+            this.requestIndex = i;
+            final AccountInstance accountInstance = AccountInstance.getInstance(UserConfig.selectedAccount);
+            final boolean z4 = z2;
+            ?? r0 = new Runnable() {
+                @Override
+                public final void run() throws Throwable {
+                    String str4;
+                    int i2;
+                    ArrayList<Object> arrayList4;
+                    long j4;
+                    TLObject tLObject;
+                    final ChatAttachAlertDocumentLayout.SearchAdapter searchAdapter = this.f$0;
+                    ArrayList arrayList5 = searchAdapter.messages;
+                    final long j5 = j;
+                    String str5 = str;
+                    final AccountInstance accountInstance2 = accountInstance;
+                    final long j6 = j2;
+                    long j7 = j3;
+                    final boolean z5 = z4;
+                    if (j5 != 0) {
+                        TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
+                        tL_messages_search.q = str5;
+                        tL_messages_search.limit = 20;
+                        tL_messages_search.filter = searchAdapter.currentSearchFilter.filter;
+                        tL_messages_search.peer = accountInstance2.getMessagesController().getInputPeer(j5);
+                        if (j6 > 0) {
+                            tL_messages_search.min_date = (int) (j6 / 1000);
+                        }
+                        if (j7 > 0) {
+                            tL_messages_search.max_date = (int) (j7 / 1000);
+                        }
+                        if (z5 && str5.equals(searchAdapter.lastMessagesSearchString) && !arrayList5.isEmpty()) {
+                            tL_messages_search.offset_id = ((MessageObject) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList5)).getId();
+                        } else {
+                            tL_messages_search.offset_id = 0;
+                        }
+                        str4 = str5;
+                        arrayList4 = null;
+                        tLObject = tL_messages_search;
+                    } else {
+                        if (TextUtils.isEmpty(str5)) {
+                            str4 = str5;
+                            i2 = 20;
+                            arrayList4 = null;
+                        } else {
+                            ArrayList<Object> arrayList6 = new ArrayList<>();
+                            str4 = str5;
+                            i2 = 20;
+                            accountInstance2.getMessagesStorage().localSearch(0, str4, arrayList6, new ArrayList<>(), new ArrayList<>(), null, -1);
+                            arrayList4 = arrayList6;
+                        }
+                        TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
+                        tL_messages_searchGlobal.limit = i2;
+                        tL_messages_searchGlobal.q = str4;
+                        tL_messages_searchGlobal.filter = searchAdapter.currentSearchFilter.filter;
+                        if (j6 > 0) {
+                            tL_messages_searchGlobal.min_date = (int) (j6 / 1000);
+                        }
+                        if (j7 > 0) {
+                            tL_messages_searchGlobal.max_date = (int) (j7 / 1000);
+                        }
+                        if (z5 && str4.equals(searchAdapter.lastMessagesSearchString) && !arrayList5.isEmpty()) {
+                            MessageObject messageObject = (MessageObject) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList5);
+                            tL_messages_searchGlobal.offset_id = messageObject.getId();
+                            tL_messages_searchGlobal.offset_rate = searchAdapter.nextSearchRate;
+                            TLRPC.Peer peer = messageObject.messageOwner.peer_id;
+                            long j8 = peer.channel_id;
+                            if (j8 != 0) {
+                                j4 = -j8;
+                            } else {
+                                j8 = peer.chat_id;
+                                if (j8 != 0) {
+                                    j4 = -j8;
+                                } else {
+                                    j4 = peer.user_id;
+                                }
+                            }
+                            tL_messages_searchGlobal.offset_peer = accountInstance2.getMessagesController().getInputPeer(j4);
+                            tLObject = tL_messages_searchGlobal;
+                        } else {
+                            tL_messages_searchGlobal.offset_rate = 0;
+                            tL_messages_searchGlobal.offset_id = 0;
+                            tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
+                            tLObject = tL_messages_searchGlobal;
+                        }
+                    }
+                    searchAdapter.lastMessagesSearchString = str4;
+                    searchAdapter.lastSearchFilterQueryString = str2;
+                    final ArrayList arrayList7 = new ArrayList();
+                    FiltersView.fillTipDates(searchAdapter.lastMessagesSearchString, arrayList7);
+                    ConnectionsManager connectionsManager = accountInstance2.getConnectionsManager();
+                    final int i3 = i;
+                    final String str6 = str4;
+                    final ArrayList<Object> arrayList8 = arrayList4;
+                    connectionsManager.sendRequest(tLObject, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                            ChatAttachAlertDocumentLayout.SearchAdapter searchAdapter2 = searchAdapter;
+                            searchAdapter2.getClass();
+                            ArrayList arrayList9 = new ArrayList();
+                            AccountInstance accountInstance3 = accountInstance2;
+                            String str7 = str6;
+                            if (tL_error == null) {
+                                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject2;
+                                int size = messages_messages.messages.size();
+                                for (int i4 = 0; i4 < size; i4++) {
+                                    MessageObject messageObject2 = new MessageObject(accountInstance3.getCurrentAccount(), messages_messages.messages.get(i4), false, true);
+                                    messageObject2.setQuery(str7);
+                                    arrayList9.add(messageObject2);
+                                }
+                            }
+                            AndroidUtilities.runOnUIThread(new ChannelAffiliateProgramsFragment$$ExternalSyntheticLambda25(searchAdapter2, i3, tL_error, tLObject2, accountInstance3, z5, str7, arrayList9, j5, j6, arrayList8, arrayList7));
+                        }
+                    });
+                }
+            };
+            this.searchRunnable = r0;
+            AndroidUtilities.runOnUIThread(r0, (!z4 || arrayList3.isEmpty()) ? 350L : 0L);
+            chatAttachAlertDocumentLayout.loadingView.setViewType(3);
+        }
+
+        public final void updateFiltersView(ArrayList arrayList, ArrayList arrayList2, boolean z) {
+            boolean z2;
+            int i = 0;
+            boolean z3 = false;
+            boolean z4 = false;
+            boolean z5 = false;
+            while (true) {
+                ArrayList arrayList3 = this.currentSearchFilters;
+                if (i >= arrayList3.size()) {
+                    break;
+                }
+                if (((FiltersView.MediaFilterData) arrayList3.get(i)).isMedia()) {
+                    z3 = true;
+                } else if (((FiltersView.MediaFilterData) arrayList3.get(i)).filterType == 4) {
+                    z4 = true;
+                } else if (((FiltersView.MediaFilterData) arrayList3.get(i)).filterType == 6) {
+                    z5 = true;
+                }
+                i++;
+            }
+            boolean z6 = ((arrayList == null || arrayList.isEmpty()) && (arrayList2 == null || arrayList2.isEmpty())) ? false : true;
+            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
+            if ((z3 || z6 || !z) && z6) {
+                if (arrayList == null || arrayList.isEmpty() || z4) {
+                    arrayList = null;
+                }
+                if (arrayList2 == null || arrayList2.isEmpty() || z5) {
+                    arrayList2 = null;
+                }
+                if (arrayList == null && arrayList2 == null) {
+                    z2 = false;
+                } else {
+                    chatAttachAlertDocumentLayout.filtersView.setUsersAndDates(arrayList, arrayList2, false);
+                    z2 = true;
+                }
+            } else {
+                z2 = false;
+            }
+            if (!z2) {
+                chatAttachAlertDocumentLayout.filtersView.setUsersAndDates(null, null, false);
+            }
+            chatAttachAlertDocumentLayout.filtersView.setEnabled(z2);
+            FiltersView filtersView = chatAttachAlertDocumentLayout.filtersView;
+            if (!z2 || filtersView.getTag() == null) {
+                if (z2 || filtersView.getTag() != null) {
+                    filtersView.setTag(z2 ? 1 : null);
+                    AnimatorSet animatorSet = chatAttachAlertDocumentLayout.filtersViewAnimator;
+                    if (animatorSet != null) {
+                        animatorSet.cancel();
+                    }
+                    if (z2) {
+                        filtersView.setVisibility(0);
+                    }
+                    AnimatorSet animatorSet2 = new AnimatorSet();
+                    chatAttachAlertDocumentLayout.filtersViewAnimator = animatorSet2;
+                    Property property = View.TRANSLATION_Y;
+                    animatorSet2.playTogether(ObjectAnimator.ofFloat(chatAttachAlertDocumentLayout.listView, (Property<AnonymousClass4, Float>) property, z2 ? AndroidUtilities.dp(44.0f) : 0.0f), ObjectAnimator.ofFloat(filtersView, (Property<FiltersView, Float>) property, z2 ? 0.0f : -AndroidUtilities.dp(44.0f)), ObjectAnimator.ofFloat(chatAttachAlertDocumentLayout.loadingView, (Property<FlickerLoadingView, Float>) property, z2 ? AndroidUtilities.dp(44.0f) : 0.0f), ObjectAnimator.ofFloat(chatAttachAlertDocumentLayout.emptyView, (Property<AnonymousClass3, Float>) property, z2 ? AndroidUtilities.dp(44.0f) : 0.0f));
+                    chatAttachAlertDocumentLayout.filtersViewAnimator.addListener(new CheckBox.AnonymousClass1(this, 17));
+                    chatAttachAlertDocumentLayout.filtersViewAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                    chatAttachAlertDocumentLayout.filtersViewAnimator.setDuration(180L);
+                    chatAttachAlertDocumentLayout.filtersViewAnimator.start();
+                }
             }
         }
     }
 
-    public ChatAttachAlertDocumentLayout(ChatAttachAlert chatAttachAlert, Context context, int i, Theme.ResourcesProvider resourcesProvider) throws Throwable {
-        super(chatAttachAlert, context, resourcesProvider);
+    public ChatAttachAlertDocumentLayout(int i, Context context, Theme.ResourcesProvider resourcesProvider, ChatAttachAlert chatAttachAlert) throws Throwable {
+        int i2;
+        IntentFilter intentFilter;
+        super(context, resourcesProvider, chatAttachAlert);
         this.receiverRegistered = false;
         this.selectedFiles = new HashMap();
         this.selectedFilesOrder = new ArrayList();
         this.selectedMessages = new HashMap();
         this.maxSelectedFiles = -1;
-        this.receiver = new AnonymousClass1();
-        this.listAdapter = new ListAdapter(context);
+        this.receiver = new PipActivityHandler.AnonymousClass1(this, 8);
+        ListAdapter listAdapter = new ListAdapter(context);
+        this.listAdapter = listAdapter;
         this.allowMusic = i == 1;
-        this.isSoundPicker = i == 2;
+        boolean z = i == 2;
+        this.isSoundPicker = z;
         this.sortByName = SharedConfig.sortFilesByName;
-        loadRecentFiles();
+        int i3 = 4;
+        try {
+            if (z) {
+                try {
+                    Cursor cursorQuery = ApplicationLoader.applicationContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{"_id", "_data", "duration", "_size", "mime_type"}, "is_music != 0", null, "date_added DESC");
+                    while (cursorQuery.moveToNext()) {
+                        try {
+                            File file = new File(cursorQuery.getString(1));
+                            long j = cursorQuery.getLong(2);
+                            long j2 = cursorQuery.getLong(3);
+                            String string = cursorQuery.getString(i3);
+                            if (j <= MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax * 1000 && j2 <= MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax && (TextUtils.isEmpty(string) || "audio/mpeg".equals(string) || !"audio/mpeg4".equals(string))) {
+                                ListItem listItem = new ListItem();
+                                listItem.title = file.getName();
+                                listItem.file = file;
+                                String name = file.getName();
+                                String[] strArrSplit = name.split("\\.");
+                                listItem.ext = strArrSplit.length > 1 ? strArrSplit[strArrSplit.length - 1] : "?";
+                                listItem.subtitle = AndroidUtilities.formatFileSize(file.length());
+                                String lowerCase = name.toLowerCase();
+                                if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
+                                    listItem.thumb = file.getAbsolutePath();
+                                }
+                                this.listAdapter.recentItems.add(listItem);
+                            }
+                            i3 = 4;
+                        } catch (Throwable th) {
+                            if (cursorQuery == null) {
+                                throw th;
+                            }
+                            try {
+                                cursorQuery.close();
+                                throw th;
+                            } catch (Throwable th2) {
+                                th.addSuppressed(th2);
+                                throw th;
+                            }
+                            this.searching = false;
+                            if (!this.receiverRegistered) {
+                                this.receiverRegistered = true;
+                                intentFilter = new IntentFilter();
+                                intentFilter.addAction("android.intent.action.MEDIA_BAD_REMOVAL");
+                                intentFilter.addAction("android.intent.action.MEDIA_CHECKING");
+                                intentFilter.addAction("android.intent.action.MEDIA_EJECT");
+                                intentFilter.addAction("android.intent.action.MEDIA_MOUNTED");
+                                intentFilter.addAction("android.intent.action.MEDIA_NOFS");
+                                intentFilter.addAction("android.intent.action.MEDIA_REMOVED");
+                                intentFilter.addAction("android.intent.action.MEDIA_SHARED");
+                                intentFilter.addAction("android.intent.action.MEDIA_UNMOUNTABLE");
+                                intentFilter.addAction("android.intent.action.MEDIA_UNMOUNTED");
+                                intentFilter.addDataScheme("file");
+                                if (Build.VERSION.SDK_INT >= 33) {
+                                    ApplicationLoader.applicationContext.registerReceiver(this.receiver, intentFilter, 4);
+                                } else {
+                                    ApplicationLoader.applicationContext.registerReceiver(this.receiver, intentFilter);
+                                }
+                            }
+                            ActionBarMenu actionBarMenuCreateMenu = this.parentAlert.actionBar.createMenu();
+                            ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateMenu.addItem(0, R.drawable.outline_header_search);
+                            actionBarMenuItemAddItem.setIsSearchField$1();
+                            actionBarMenuItemAddItem.listener = new TopicsFragment.AnonymousClass3(this, 6);
+                            this.searchItem = actionBarMenuItemAddItem;
+                            int i4 = R.string.Search;
+                            actionBarMenuItemAddItem.setSearchFieldHint(LocaleController.getString(i4));
+                            actionBarMenuItemAddItem.setContentDescription(LocaleController.getString(i4));
+                            EditTextBoldCursor searchField = actionBarMenuItemAddItem.getSearchField();
+                            int i5 = Theme.key_dialogTextBlack;
+                            searchField.setTextColor(Theme.getColor(i5, this.resourcesProvider));
+                            searchField.setCursorColor(Theme.getColor(i5, this.resourcesProvider));
+                            searchField.setHintTextColor(Theme.getColor(Theme.key_chat_messagePanelHint, this.resourcesProvider));
+                            if (this.sortByName) {
+                                i2 = R.drawable.msg_contacts_time;
+                            } else {
+                                i2 = R.drawable.msg_contacts_name;
+                            }
+                            ActionBarMenuItem actionBarMenuItemAddItem2 = actionBarMenuCreateMenu.addItem(6, i2);
+                            this.sortItem = actionBarMenuItemAddItem2;
+                            actionBarMenuItemAddItem2.setContentDescription(LocaleController.getString(R.string.AccDescrContactSorting));
+                            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, resourcesProvider);
+                            this.loadingView = flickerLoadingView;
+                            addView(flickerLoadingView);
+                            AnonymousClass3 anonymousClass3 = new AnonymousClass3(context, flickerLoadingView, resourcesProvider);
+                            this.emptyView = anonymousClass3;
+                            addView(anonymousClass3, LayoutHelper.createFrame(-1.0f, -1));
+                            anonymousClass3.setVisibility(8);
+                            anonymousClass3.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(13));
+                            ?? r6 = new RecyclerListView(this, context, resourcesProvider, 0) {
+                                public final int $r8$classId;
+                                public final Paint paint;
+                                public final ChatAttachAlertDocumentLayout this$0;
+
+                                {
+                                    super(context, resourcesProvider);
+                                    this.$r8$classId = i;
+                                    switch (i) {
+                                        case 1:
+                                            this.this$0 = this;
+                                            super(context, resourcesProvider);
+                                            this.paint = new Paint();
+                                            break;
+                                        default:
+                                            this.this$0 = this;
+                                            this.paint = new Paint();
+                                            break;
+                                    }
+                                }
+
+                                @Override
+                                public final void dispatchDraw(Canvas canvas) {
+                                    switch (this.$r8$classId) {
+                                        case 0:
+                                            if (this.this$0.currentAnimationType == 2 && getChildCount() > 0) {
+                                                float y = 2.1474836E9f;
+                                                for (int i6 = 0; i6 < getChildCount(); i6++) {
+                                                    if (getChildAt(i6).getY() < y) {
+                                                        y = getChildAt(i6).getY();
+                                                    }
+                                                }
+                                                this.paint.setColor(Theme.getColor(null, Theme.key_dialogBackground, false));
+                                            }
+                                            super.dispatchDraw(canvas);
+                                            break;
+                                        default:
+                                            if (this.this$0.currentAnimationType == 1 && getChildCount() > 0) {
+                                                float y2 = 2.1474836E9f;
+                                                for (int i7 = 0; i7 < getChildCount(); i7++) {
+                                                    if (getChildAt(i7).getY() < y2) {
+                                                        y2 = getChildAt(i7).getY();
+                                                    }
+                                                }
+                                                this.paint.setColor(Theme.getColor(null, Theme.key_dialogBackground, false));
+                                            }
+                                            super.dispatchDraw(canvas);
+                                            break;
+                                    }
+                                }
+
+                                @Override
+                                public boolean onTouchEvent(MotionEvent motionEvent) {
+                                    switch (this.$r8$classId) {
+                                        case 0:
+                                            if (this.this$0.currentAnimationType != 0) {
+                                                return false;
+                                            }
+                                            return super.onTouchEvent(motionEvent);
+                                        default:
+                                            return super.onTouchEvent(motionEvent);
+                                    }
+                                }
+                            };
+                            this.backgroundListView = r6;
+                            r6.setSectionsType(2);
+                            r6.setVerticalScrollBarEnabled(false);
+                            FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(AndroidUtilities.dp(56.0f), 0, r6);
+                            this.backgroundLayoutManager = fillLastLinearLayoutManager;
+                            r6.setLayoutManager(fillLastLinearLayoutManager);
+                            r6.setClipToPadding(false);
+                            ListAdapter listAdapter2 = new ListAdapter(context);
+                            this.backgroundListAdapter = listAdapter2;
+                            r6.setAdapter(listAdapter2);
+                            addView((View) r6, LayoutHelper.createFrame(-1.0f, -1));
+                            r6.setVisibility(8);
+                            ?? r7 = new RecyclerListView(this, context, resourcesProvider, 1) {
+                                public final int $r8$classId;
+                                public final Paint paint;
+                                public final ChatAttachAlertDocumentLayout this$0;
+
+                                {
+                                    super(context, resourcesProvider);
+                                    this.$r8$classId = i;
+                                    switch (i) {
+                                        case 1:
+                                            this.this$0 = this;
+                                            super(context, resourcesProvider);
+                                            this.paint = new Paint();
+                                            break;
+                                        default:
+                                            this.this$0 = this;
+                                            this.paint = new Paint();
+                                            break;
+                                    }
+                                }
+
+                                @Override
+                                public final void dispatchDraw(Canvas canvas) {
+                                    switch (this.$r8$classId) {
+                                        case 0:
+                                            if (this.this$0.currentAnimationType == 2 && getChildCount() > 0) {
+                                                float y = 2.1474836E9f;
+                                                for (int i6 = 0; i6 < getChildCount(); i6++) {
+                                                    if (getChildAt(i6).getY() < y) {
+                                                        y = getChildAt(i6).getY();
+                                                    }
+                                                }
+                                                this.paint.setColor(Theme.getColor(null, Theme.key_dialogBackground, false));
+                                            }
+                                            super.dispatchDraw(canvas);
+                                            break;
+                                        default:
+                                            if (this.this$0.currentAnimationType == 1 && getChildCount() > 0) {
+                                                float y2 = 2.1474836E9f;
+                                                for (int i7 = 0; i7 < getChildCount(); i7++) {
+                                                    if (getChildAt(i7).getY() < y2) {
+                                                        y2 = getChildAt(i7).getY();
+                                                    }
+                                                }
+                                                this.paint.setColor(Theme.getColor(null, Theme.key_dialogBackground, false));
+                                            }
+                                            super.dispatchDraw(canvas);
+                                            break;
+                                    }
+                                }
+
+                                @Override
+                                public boolean onTouchEvent(MotionEvent motionEvent) {
+                                    switch (this.$r8$classId) {
+                                        case 0:
+                                            if (this.this$0.currentAnimationType != 0) {
+                                                return false;
+                                            }
+                                            return super.onTouchEvent(motionEvent);
+                                        default:
+                                            return super.onTouchEvent(motionEvent);
+                                    }
+                                }
+                            };
+                            this.listView = r7;
+                            r7.setSections();
+                            this.iBlur3Capture = r7;
+                            this.iBlur3CaptureView = r7;
+                            this.occupyStatusBar = true;
+                            this.occupyNavigationBar = true;
+                            r7.setSectionsType(2);
+                            r7.setVerticalScrollBarEnabled(false);
+                            ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass4 = new ChatAttachAlertPollLayout.AnonymousClass4(this, AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight, r7, 3);
+                            this.layoutManager = anonymousClass4;
+                            r7.setLayoutManager(anonymousClass4);
+                            r7.setClipToPadding(false);
+                            r7.setAdapter(this.listAdapter);
+                            addView((View) r7, LayoutHelper.createFrame(-1.0f, -1));
+                            this.searchAdapter = new SearchAdapter(context);
+                            r7.setOnScrollListener(new ChatActivity.AnonymousClass53(this, 18));
+                            final int i6 = 0;
+                            r7.setOnItemClickListener(new RecyclerListView.OnItemClickListener(this) {
+                                public final ChatAttachAlertDocumentLayout f$0;
+
+                                {
+                                    this.f$0 = this;
+                                }
+
+                                @Override
+                                public final void onItemClick(int i7, View view) throws Throwable {
+                                    switch (i6) {
+                                        case 0:
+                                            this.f$0.lambda$new$1$11(i7, view);
+                                            break;
+                                        default:
+                                            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = this.f$0;
+                                            FiltersView filtersView = chatAttachAlertDocumentLayout.filtersView;
+                                            filtersView.cancelClickRunnables(true);
+                                            ArrayList arrayList = filtersView.usersFilters;
+                                            FiltersView.MediaFilterData mediaFilterData = arrayList.isEmpty() ? FiltersView.filters[i7] : (FiltersView.MediaFilterData) arrayList.get(i7);
+                                            ChatAttachAlertDocumentLayout.SearchAdapter searchAdapter = chatAttachAlertDocumentLayout.searchAdapter;
+                                            boolean zIsEmpty = searchAdapter.currentSearchFilters.isEmpty();
+                                            ArrayList arrayList2 = searchAdapter.currentSearchFilters;
+                                            if (!zIsEmpty) {
+                                                for (int i8 = 0; i8 < arrayList2.size(); i8++) {
+                                                    FiltersView.MediaFilterData mediaFilterData2 = (FiltersView.MediaFilterData) arrayList2.get(i8);
+                                                    if (mediaFilterData.filterType != mediaFilterData2.filterType) {
+                                                        if (mediaFilterData.isMedia() && mediaFilterData2.isMedia()) {
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            arrayList2.add(mediaFilterData);
+                                            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout2 = ChatAttachAlertDocumentLayout.this;
+                                            chatAttachAlertDocumentLayout2.parentAlert.actionBar.setSearchFilter(mediaFilterData);
+                                            chatAttachAlertDocumentLayout2.parentAlert.actionBar.setSearchFieldText("");
+                                            searchAdapter.updateFiltersView(null, null, true);
+                                            break;
+                                    }
+                                }
+                            });
+                            r7.setOnItemLongClickListener(new ColorPicker$$ExternalSyntheticLambda6(this, 14));
+                            FiltersView filtersView = new FiltersView(context, resourcesProvider);
+                            this.filtersView = filtersView;
+                            final int i7 = 1;
+                            filtersView.setOnItemClickListener(new RecyclerListView.OnItemClickListener(this) {
+                                public final ChatAttachAlertDocumentLayout f$0;
+
+                                {
+                                    this.f$0 = this;
+                                }
+
+                                @Override
+                                public final void onItemClick(int i8, View view) throws Throwable {
+                                    switch (i7) {
+                                        case 0:
+                                            this.f$0.lambda$new$1$11(i8, view);
+                                            break;
+                                        default:
+                                            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = this.f$0;
+                                            FiltersView filtersView2 = chatAttachAlertDocumentLayout.filtersView;
+                                            filtersView2.cancelClickRunnables(true);
+                                            ArrayList arrayList = filtersView2.usersFilters;
+                                            FiltersView.MediaFilterData mediaFilterData = arrayList.isEmpty() ? FiltersView.filters[i8] : (FiltersView.MediaFilterData) arrayList.get(i8);
+                                            ChatAttachAlertDocumentLayout.SearchAdapter searchAdapter = chatAttachAlertDocumentLayout.searchAdapter;
+                                            boolean zIsEmpty = searchAdapter.currentSearchFilters.isEmpty();
+                                            ArrayList arrayList2 = searchAdapter.currentSearchFilters;
+                                            if (!zIsEmpty) {
+                                                for (int i9 = 0; i9 < arrayList2.size(); i9++) {
+                                                    FiltersView.MediaFilterData mediaFilterData2 = (FiltersView.MediaFilterData) arrayList2.get(i9);
+                                                    if (mediaFilterData.filterType != mediaFilterData2.filterType) {
+                                                        if (mediaFilterData.isMedia() && mediaFilterData2.isMedia()) {
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            arrayList2.add(mediaFilterData);
+                                            ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout2 = ChatAttachAlertDocumentLayout.this;
+                                            chatAttachAlertDocumentLayout2.parentAlert.actionBar.setSearchFilter(mediaFilterData);
+                                            chatAttachAlertDocumentLayout2.parentAlert.actionBar.setSearchFieldText("");
+                                            searchAdapter.updateFiltersView(null, null, true);
+                                            break;
+                                    }
+                                }
+                            });
+                            filtersView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+                            addView(filtersView, LayoutHelper.createFrame(-1, 44, 48));
+                            filtersView.setTranslationY(-AndroidUtilities.dp(44.0f));
+                            filtersView.setVisibility(4);
+                            listRoots();
+                            updateSearchButton();
+                            updateEmptyView$6();
+                        }
+                    }
+                    cursorQuery.close();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            } else {
+                checkDirectory(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+                Collections.sort(listAdapter.recentItems, new ChatAttachAlertDocumentLayout$$ExternalSyntheticLambda3(this, 1));
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+        }
         this.searching = false;
         if (!this.receiverRegistered) {
             this.receiverRegistered = true;
-            IntentFilter intentFilter = new IntentFilter();
+            intentFilter = new IntentFilter();
             intentFilter.addAction("android.intent.action.MEDIA_BAD_REMOVAL");
             intentFilter.addAction("android.intent.action.MEDIA_CHECKING");
             intentFilter.addAction("android.intent.action.MEDIA_EJECT");
@@ -243,810 +1190,294 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 ApplicationLoader.applicationContext.registerReceiver(this.receiver, intentFilter);
             }
         }
-        ActionBarMenu actionBarMenuCreateMenu = this.parentAlert.actionBar.createMenu();
-        ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
-            @Override
-            public void onSearchExpand() {
-                ChatAttachAlertDocumentLayout.this.searching = true;
-                ChatAttachAlertDocumentLayout.this.sortItem.setVisibility(8);
-                ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
-                chatAttachAlertDocumentLayout.parentAlert.makeFocusable(chatAttachAlertDocumentLayout.searchItem.getSearchField(), true);
-            }
+        ActionBarMenu actionBarMenuCreateMenu2 = this.parentAlert.actionBar.createMenu();
+        ActionBarMenuItem actionBarMenuItemAddItem3 = actionBarMenuCreateMenu2.addItem(0, R.drawable.outline_header_search);
+        actionBarMenuItemAddItem3.setIsSearchField$1();
+        actionBarMenuItemAddItem3.listener = new TopicsFragment.AnonymousClass3(this, 6);
+        this.searchItem = actionBarMenuItemAddItem3;
+        int i8 = R.string.Search;
+        actionBarMenuItemAddItem3.setSearchFieldHint(LocaleController.getString(i8));
+        actionBarMenuItemAddItem3.setContentDescription(LocaleController.getString(i8));
+        EditTextBoldCursor searchField2 = actionBarMenuItemAddItem3.getSearchField();
+        int i9 = Theme.key_dialogTextBlack;
+        searchField2.setTextColor(Theme.getColor(i9, this.resourcesProvider));
+        searchField2.setCursorColor(Theme.getColor(i9, this.resourcesProvider));
+        searchField2.setHintTextColor(Theme.getColor(Theme.key_chat_messagePanelHint, this.resourcesProvider));
+        if (this.sortByName) {
+            i2 = R.drawable.msg_contacts_time;
+        } else {
+            i2 = R.drawable.msg_contacts_name;
+        }
+        ActionBarMenuItem actionBarMenuItemAddItem4 = actionBarMenuCreateMenu2.addItem(6, i2);
+        this.sortItem = actionBarMenuItemAddItem4;
+        actionBarMenuItemAddItem4.setContentDescription(LocaleController.getString(R.string.AccDescrContactSorting));
+        FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(context, resourcesProvider);
+        this.loadingView = flickerLoadingView2;
+        addView(flickerLoadingView2);
+        AnonymousClass3 anonymousClass5 = new AnonymousClass3(context, flickerLoadingView2, resourcesProvider);
+        this.emptyView = anonymousClass5;
+        addView(anonymousClass5, LayoutHelper.createFrame(-1.0f, -1));
+        anonymousClass5.setVisibility(8);
+        anonymousClass5.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(13));
+        ?? r8 = new RecyclerListView(this, context, resourcesProvider, 0) {
+            public final int $r8$classId;
+            public final Paint paint;
+            public final ChatAttachAlertDocumentLayout this$0;
 
-            @Override
-            public void onSearchCollapse() {
-                ChatAttachAlertDocumentLayout.this.searching = false;
-                ChatAttachAlertDocumentLayout.this.sortItem.setVisibility(0);
-                if (ChatAttachAlertDocumentLayout.this.listView.getAdapter() != ChatAttachAlertDocumentLayout.this.listAdapter) {
-                    ChatAttachAlertDocumentLayout.this.listView.setAdapter(ChatAttachAlertDocumentLayout.this.listAdapter);
+            {
+                super(context, resourcesProvider);
+                this.$r8$classId = i;
+                switch (i) {
+                    case 1:
+                        this.this$0 = this;
+                        super(context, resourcesProvider);
+                        this.paint = new Paint();
+                        break;
+                    default:
+                        this.this$0 = this;
+                        this.paint = new Paint();
+                        break;
                 }
-                ChatAttachAlertDocumentLayout.this.listAdapter.notifyDataSetChanged();
-                ChatAttachAlertDocumentLayout.this.searchAdapter.search(null, true);
             }
 
             @Override
-            public void onTextChanged(EditText editText) {
-                ChatAttachAlertDocumentLayout.this.searchAdapter.search(editText.getText().toString(), false);
-            }
-
-            @Override
-            public void onSearchFilterCleared(FiltersView.MediaFilterData mediaFilterData) {
-                ChatAttachAlertDocumentLayout.this.searchAdapter.removeSearchFilter(mediaFilterData);
-                ChatAttachAlertDocumentLayout.this.searchAdapter.search(ChatAttachAlertDocumentLayout.this.searchItem.getSearchField().getText().toString(), false);
-                ChatAttachAlertDocumentLayout.this.searchAdapter.updateFiltersView(true, null, null, true);
-            }
-        });
-        this.searchItem = actionBarMenuItemSearchListener;
-        int i2 = R.string.Search;
-        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(i2));
-        this.searchItem.setContentDescription(LocaleController.getString(i2));
-        EditTextBoldCursor searchField = this.searchItem.getSearchField();
-        int i3 = Theme.key_dialogTextBlack;
-        searchField.setTextColor(getThemedColor(i3));
-        searchField.setCursorColor(getThemedColor(i3));
-        searchField.setHintTextColor(getThemedColor(Theme.key_chat_messagePanelHint));
-        ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateMenu.addItem(6, this.sortByName ? R.drawable.msg_contacts_time : R.drawable.msg_contacts_name);
-        this.sortItem = actionBarMenuItemAddItem;
-        actionBarMenuItemAddItem.setContentDescription(LocaleController.getString(R.string.AccDescrContactSorting));
-        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, resourcesProvider);
-        this.loadingView = flickerLoadingView;
-        addView(flickerLoadingView);
-        StickerEmptyView stickerEmptyView = new StickerEmptyView(context, this.loadingView, 1, resourcesProvider) {
-            @Override
-            public void setTranslationY(float f) {
-                super.setTranslationY(f + ChatAttachAlertDocumentLayout.this.additionalTranslationY);
-            }
-
-            @Override
-            public float getTranslationY() {
-                return super.getTranslationY() - ChatAttachAlertDocumentLayout.this.additionalTranslationY;
-            }
-        };
-        this.emptyView = stickerEmptyView;
-        addView(stickerEmptyView, LayoutHelper.createFrame(-1, -1.0f));
-        this.emptyView.setVisibility(8);
-        this.emptyView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return ChatAttachAlertDocumentLayout.$r8$lambda$qP60ZdA4oSS_tOn_64X7emq6heE(view, motionEvent);
-            }
-        });
-        RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
-            Paint paint = new Paint();
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                if (ChatAttachAlertDocumentLayout.this.currentAnimationType == 2 && getChildCount() > 0) {
-                    float y = 2.1474836E9f;
-                    for (int i4 = 0; i4 < getChildCount(); i4++) {
-                        if (getChildAt(i4).getY() < y) {
-                            y = getChildAt(i4).getY();
+            public final void dispatchDraw(Canvas canvas) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        if (this.this$0.currentAnimationType == 2 && getChildCount() > 0) {
+                            float y = 2.1474836E9f;
+                            for (int i10 = 0; i10 < getChildCount(); i10++) {
+                                if (getChildAt(i10).getY() < y) {
+                                    y = getChildAt(i10).getY();
+                                }
+                            }
+                            this.paint.setColor(Theme.getColor(null, Theme.key_dialogBackground, false));
                         }
-                    }
-                    this.paint.setColor(Theme.getColor(Theme.key_dialogBackground));
+                        super.dispatchDraw(canvas);
+                        break;
+                    default:
+                        if (this.this$0.currentAnimationType == 1 && getChildCount() > 0) {
+                            float y2 = 2.1474836E9f;
+                            for (int i11 = 0; i11 < getChildCount(); i11++) {
+                                if (getChildAt(i11).getY() < y2) {
+                                    y2 = getChildAt(i11).getY();
+                                }
+                            }
+                            this.paint.setColor(Theme.getColor(null, Theme.key_dialogBackground, false));
+                        }
+                        super.dispatchDraw(canvas);
+                        break;
                 }
-                super.dispatchDraw(canvas);
             }
 
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (ChatAttachAlertDocumentLayout.this.currentAnimationType != 0) {
-                    return false;
+                switch (this.$r8$classId) {
+                    case 0:
+                        if (this.this$0.currentAnimationType != 0) {
+                            return false;
+                        }
+                        return super.onTouchEvent(motionEvent);
+                    default:
+                        return super.onTouchEvent(motionEvent);
                 }
-                return super.onTouchEvent(motionEvent);
             }
         };
-        this.backgroundListView = recyclerListView;
-        recyclerListView.setSectionsType(2);
-        this.backgroundListView.setVerticalScrollBarEnabled(false);
-        RecyclerListView recyclerListView2 = this.backgroundListView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.dp(56.0f), this.backgroundListView);
-        this.backgroundLayoutManager = fillLastLinearLayoutManager;
-        recyclerListView2.setLayoutManager(fillLastLinearLayoutManager);
-        this.backgroundListView.setClipToPadding(false);
-        RecyclerListView recyclerListView3 = this.backgroundListView;
-        ListAdapter listAdapter = new ListAdapter(context);
-        this.backgroundListAdapter = listAdapter;
-        recyclerListView3.setAdapter(listAdapter);
-        addView(this.backgroundListView, LayoutHelper.createFrame(-1, -1.0f));
-        this.backgroundListView.setVisibility(8);
-        RecyclerListView recyclerListView4 = new RecyclerListView(context, resourcesProvider) {
-            Paint paint = new Paint();
+        this.backgroundListView = r8;
+        r8.setSectionsType(2);
+        r8.setVerticalScrollBarEnabled(false);
+        FillLastLinearLayoutManager fillLastLinearLayoutManager2 = new FillLastLinearLayoutManager(AndroidUtilities.dp(56.0f), 0, r8);
+        this.backgroundLayoutManager = fillLastLinearLayoutManager2;
+        r8.setLayoutManager(fillLastLinearLayoutManager2);
+        r8.setClipToPadding(false);
+        ListAdapter listAdapter3 = new ListAdapter(context);
+        this.backgroundListAdapter = listAdapter3;
+        r8.setAdapter(listAdapter3);
+        addView((View) r8, LayoutHelper.createFrame(-1.0f, -1));
+        r8.setVisibility(8);
+        ?? r9 = new RecyclerListView(this, context, resourcesProvider, 1) {
+            public final int $r8$classId;
+            public final Paint paint;
+            public final ChatAttachAlertDocumentLayout this$0;
+
+            {
+                super(context, resourcesProvider);
+                this.$r8$classId = i;
+                switch (i) {
+                    case 1:
+                        this.this$0 = this;
+                        super(context, resourcesProvider);
+                        this.paint = new Paint();
+                        break;
+                    default:
+                        this.this$0 = this;
+                        this.paint = new Paint();
+                        break;
+                }
+            }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
-                if (ChatAttachAlertDocumentLayout.this.currentAnimationType == 1 && getChildCount() > 0) {
-                    float y = 2.1474836E9f;
-                    for (int i4 = 0; i4 < getChildCount(); i4++) {
-                        if (getChildAt(i4).getY() < y) {
-                            y = getChildAt(i4).getY();
+            public final void dispatchDraw(Canvas canvas) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        if (this.this$0.currentAnimationType == 2 && getChildCount() > 0) {
+                            float y = 2.1474836E9f;
+                            for (int i10 = 0; i10 < getChildCount(); i10++) {
+                                if (getChildAt(i10).getY() < y) {
+                                    y = getChildAt(i10).getY();
+                                }
+                            }
+                            this.paint.setColor(Theme.getColor(null, Theme.key_dialogBackground, false));
                         }
-                    }
-                    this.paint.setColor(Theme.getColor(Theme.key_dialogBackground));
+                        super.dispatchDraw(canvas);
+                        break;
+                    default:
+                        if (this.this$0.currentAnimationType == 1 && getChildCount() > 0) {
+                            float y2 = 2.1474836E9f;
+                            for (int i11 = 0; i11 < getChildCount(); i11++) {
+                                if (getChildAt(i11).getY() < y2) {
+                                    y2 = getChildAt(i11).getY();
+                                }
+                            }
+                            this.paint.setColor(Theme.getColor(null, Theme.key_dialogBackground, false));
+                        }
+                        super.dispatchDraw(canvas);
+                        break;
                 }
-                super.dispatchDraw(canvas);
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        if (this.this$0.currentAnimationType != 0) {
+                            return false;
+                        }
+                        return super.onTouchEvent(motionEvent);
+                    default:
+                        return super.onTouchEvent(motionEvent);
+                }
             }
         };
-        this.listView = recyclerListView4;
-        recyclerListView4.setSections();
-        RecyclerListView recyclerListView5 = this.listView;
-        this.iBlur3Capture = recyclerListView5;
-        this.iBlur3CaptureView = recyclerListView5;
+        this.listView = r9;
+        r9.setSections();
+        this.iBlur3Capture = r9;
+        this.iBlur3CaptureView = r9;
         this.occupyStatusBar = true;
         this.occupyNavigationBar = true;
-        recyclerListView5.setSectionsType(2);
-        this.listView.setVerticalScrollBarEnabled(false);
-        RecyclerListView recyclerListView6 = this.listView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager2 = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight, this.listView) {
-            @Override
-            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i4) {
-                LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
-                    @Override
-                    public int calculateDyToMakeVisible(View view, int i5) {
-                        return super.calculateDyToMakeVisible(view, i5) - ((ChatAttachAlertDocumentLayout.this.listView.getPaddingTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(56.0f));
-                    }
-
-                    @Override
-                    protected int calculateTimeForDeceleration(int i5) {
-                        return super.calculateTimeForDeceleration(i5) * 2;
-                    }
-                };
-                linearSmoothScroller.setTargetPosition(i4);
-                startSmoothScroll(linearSmoothScroller);
-            }
-        };
-        this.layoutManager = fillLastLinearLayoutManager2;
-        recyclerListView6.setLayoutManager(fillLastLinearLayoutManager2);
-        this.listView.setClipToPadding(false);
-        this.listView.setAdapter(this.listAdapter);
-        addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        r9.setSectionsType(2);
+        r9.setVerticalScrollBarEnabled(false);
+        ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass6 = new ChatAttachAlertPollLayout.AnonymousClass4(this, AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight, r9, 3);
+        this.layoutManager = anonymousClass6;
+        r9.setLayoutManager(anonymousClass6);
+        r9.setClipToPadding(false);
+        r9.setAdapter(this.listAdapter);
+        addView((View) r9, LayoutHelper.createFrame(-1.0f, -1));
         this.searchAdapter = new SearchAdapter(context);
-        this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
-                ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = ChatAttachAlertDocumentLayout.this;
-                chatAttachAlertDocumentLayout.parentAlert.updateLayout(chatAttachAlertDocumentLayout, true, i5);
-                ChatAttachAlertDocumentLayout.this.updateEmptyViewPosition();
-                if (ChatAttachAlertDocumentLayout.this.listView.getAdapter() == ChatAttachAlertDocumentLayout.this.searchAdapter) {
-                    int iFindFirstVisibleItemPosition = ChatAttachAlertDocumentLayout.this.layoutManager.findFirstVisibleItemPosition();
-                    int iFindLastVisibleItemPosition = ChatAttachAlertDocumentLayout.this.layoutManager.findLastVisibleItemPosition();
-                    int iAbs = Math.abs(iFindLastVisibleItemPosition - iFindFirstVisibleItemPosition) + 1;
-                    int itemCount = recyclerView.getAdapter().getItemCount();
-                    if (iAbs <= 0 || iFindLastVisibleItemPosition < itemCount - 10) {
-                        return;
-                    }
-                    ChatAttachAlertDocumentLayout.this.searchAdapter.loadMore();
-                }
+        r9.setOnScrollListener(new ChatActivity.AnonymousClass53(this, 18));
+        final int i10 = 0;
+        r9.setOnItemClickListener(new RecyclerListView.OnItemClickListener(this) {
+            public final ChatAttachAlertDocumentLayout f$0;
+
+            {
+                this.f$0 = this;
             }
 
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i4) {
-                RecyclerListView.Holder holder;
-                int top;
-                if (i4 == 0) {
-                    int iDp = AndroidUtilities.dp(13.0f);
-                    int backgroundPaddingTop = ChatAttachAlertDocumentLayout.this.parentAlert.getBackgroundPaddingTop();
-                    if (((ChatAttachAlertDocumentLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - iDp) + backgroundPaddingTop < ActionBar.getCurrentActionBarHeight() && (holder = (RecyclerListView.Holder) ChatAttachAlertDocumentLayout.this.listView.findViewHolderForAdapterPosition(0)) != null && (top = (holder.itemView.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(56.0f)) > 0) {
-                        ChatAttachAlertDocumentLayout.this.listView.smoothScrollBy(0, top);
-                    }
+            public final void onItemClick(int i11, View view) throws Throwable {
+                switch (i10) {
+                    case 0:
+                        this.f$0.lambda$new$1$11(i11, view);
+                        break;
+                    default:
+                        ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = this.f$0;
+                        FiltersView filtersView2 = chatAttachAlertDocumentLayout.filtersView;
+                        filtersView2.cancelClickRunnables(true);
+                        ArrayList arrayList = filtersView2.usersFilters;
+                        FiltersView.MediaFilterData mediaFilterData = arrayList.isEmpty() ? FiltersView.filters[i11] : (FiltersView.MediaFilterData) arrayList.get(i11);
+                        ChatAttachAlertDocumentLayout.SearchAdapter searchAdapter = chatAttachAlertDocumentLayout.searchAdapter;
+                        boolean zIsEmpty = searchAdapter.currentSearchFilters.isEmpty();
+                        ArrayList arrayList2 = searchAdapter.currentSearchFilters;
+                        if (!zIsEmpty) {
+                            for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                                FiltersView.MediaFilterData mediaFilterData2 = (FiltersView.MediaFilterData) arrayList2.get(i12);
+                                if (mediaFilterData.filterType != mediaFilterData2.filterType) {
+                                    if (mediaFilterData.isMedia() && mediaFilterData2.isMedia()) {
+                                    }
+                                }
+                            }
+                        }
+                        arrayList2.add(mediaFilterData);
+                        ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout2 = ChatAttachAlertDocumentLayout.this;
+                        chatAttachAlertDocumentLayout2.parentAlert.actionBar.setSearchFilter(mediaFilterData);
+                        chatAttachAlertDocumentLayout2.parentAlert.actionBar.setSearchFieldText("");
+                        searchAdapter.updateFiltersView(null, null, true);
+                        break;
                 }
-                if (i4 == 1 && ChatAttachAlertDocumentLayout.this.searching && ChatAttachAlertDocumentLayout.this.listView.getAdapter() == ChatAttachAlertDocumentLayout.this.searchAdapter) {
-                    AndroidUtilities.hideKeyboard(ChatAttachAlertDocumentLayout.this.parentAlert.getCurrentFocus());
+            }
+        });
+        r9.setOnItemLongClickListener(new ColorPicker$$ExternalSyntheticLambda6(this, 14));
+        FiltersView filtersView2 = new FiltersView(context, resourcesProvider);
+        this.filtersView = filtersView2;
+        final int i11 = 1;
+        filtersView2.setOnItemClickListener(new RecyclerListView.OnItemClickListener(this) {
+            public final ChatAttachAlertDocumentLayout f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void onItemClick(int i12, View view) throws Throwable {
+                switch (i11) {
+                    case 0:
+                        this.f$0.lambda$new$1$11(i12, view);
+                        break;
+                    default:
+                        ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = this.f$0;
+                        FiltersView filtersView3 = chatAttachAlertDocumentLayout.filtersView;
+                        filtersView3.cancelClickRunnables(true);
+                        ArrayList arrayList = filtersView3.usersFilters;
+                        FiltersView.MediaFilterData mediaFilterData = arrayList.isEmpty() ? FiltersView.filters[i12] : (FiltersView.MediaFilterData) arrayList.get(i12);
+                        ChatAttachAlertDocumentLayout.SearchAdapter searchAdapter = chatAttachAlertDocumentLayout.searchAdapter;
+                        boolean zIsEmpty = searchAdapter.currentSearchFilters.isEmpty();
+                        ArrayList arrayList2 = searchAdapter.currentSearchFilters;
+                        if (!zIsEmpty) {
+                            for (int i13 = 0; i13 < arrayList2.size(); i13++) {
+                                FiltersView.MediaFilterData mediaFilterData2 = (FiltersView.MediaFilterData) arrayList2.get(i13);
+                                if (mediaFilterData.filterType != mediaFilterData2.filterType) {
+                                    if (mediaFilterData.isMedia() && mediaFilterData2.isMedia()) {
+                                    }
+                                }
+                            }
+                        }
+                        arrayList2.add(mediaFilterData);
+                        ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout2 = ChatAttachAlertDocumentLayout.this;
+                        chatAttachAlertDocumentLayout2.parentAlert.actionBar.setSearchFilter(mediaFilterData);
+                        chatAttachAlertDocumentLayout2.parentAlert.actionBar.setSearchFieldText("");
+                        searchAdapter.updateFiltersView(null, null, true);
+                        break;
                 }
-                ChatAttachAlertDocumentLayout.this.scrolling = i4 != 0;
             }
         });
-        this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-            @Override
-            public final void onItemClick(View view, int i4) throws Throwable {
-                ChatAttachAlertDocumentLayout.m2169$r8$lambda$89TLNu9HHXMzEaDt8bFSZtA_Zw(this.f$0, view, i4);
-            }
-        });
-        this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
-            @Override
-            public final boolean onItemClick(View view, int i4) {
-                return ChatAttachAlertDocumentLayout.$r8$lambda$Ty8xMzF9TiVzkZ5oa27eFdjqgEE(this.f$0, view, i4);
-            }
-        });
-        FiltersView filtersView = new FiltersView(context, resourcesProvider);
-        this.filtersView = filtersView;
-        filtersView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-            @Override
-            public final void onItemClick(View view, int i4) {
-                ChatAttachAlertDocumentLayout.$r8$lambda$bJTrGtwpS0xdIrP5Jvx4bcV6Jkc(this.f$0, view, i4);
-            }
-        });
-        this.filtersView.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
-        addView(this.filtersView, LayoutHelper.createFrame(-1, 44, 48));
-        this.filtersView.setTranslationY(-AndroidUtilities.dp(44.0f));
-        this.filtersView.setVisibility(4);
+        filtersView2.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+        addView(filtersView2, LayoutHelper.createFrame(-1, 44, 48));
+        filtersView2.setTranslationY(-AndroidUtilities.dp(44.0f));
+        filtersView2.setVisibility(4);
         listRoots();
         updateSearchButton();
-        updateEmptyView();
+        updateEmptyView$6();
     }
 
-    public static void m2169$r8$lambda$89TLNu9HHXMzEaDt8bFSZtA_Zw(ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout, View view, int i) throws Throwable {
-        Object item;
-        int i2;
-        RecyclerView.Adapter adapter = chatAttachAlertDocumentLayout.listView.getAdapter();
-        ListAdapter listAdapter = chatAttachAlertDocumentLayout.listAdapter;
-        if (adapter == listAdapter) {
-            item = listAdapter.getItem(i);
-        } else {
-            item = chatAttachAlertDocumentLayout.searchAdapter.getItem(i);
-        }
-        if (item instanceof ListItem) {
-            ListItem listItem = (ListItem) item;
-            File file = listItem.file;
-            boolean zIsExternalStorageManager = Build.VERSION.SDK_INT >= 30 ? Environment.isExternalStorageManager() : false;
-            if (!BuildVars.NO_SCOPED_STORAGE && (((i2 = listItem.icon) == R.drawable.files_storage || i2 == R.drawable.files_internal) && !zIsExternalStorageManager)) {
-                chatAttachAlertDocumentLayout.delegate.startDocumentSelectActivity();
-                return;
-            }
-            Object[] objArr = 0;
-            if (file == null) {
-                int i3 = listItem.icon;
-                if (i3 == R.drawable.files_gallery) {
-                    final HashMap map = new HashMap();
-                    final ArrayList arrayList = new ArrayList();
-                    BaseFragment baseFragment = chatAttachAlertDocumentLayout.parentAlert.baseFragment;
-                    ChatActivity chatActivity = baseFragment instanceof ChatActivity ? (ChatActivity) baseFragment : null;
-                    PhotoPickerActivity photoPickerActivity = new PhotoPickerActivity(0, MediaController.allMediaAlbumEntry, map, arrayList, 0, chatActivity != null, chatActivity, false);
-                    photoPickerActivity.setDocumentsPicker(true);
-                    photoPickerActivity.setDelegate(new PhotoPickerActivity.PhotoPickerActivityDelegate() {
-                        @Override
-                        public boolean canFinishFragment() {
-                            return PhotoPickerActivity.PhotoPickerActivityDelegate.CC.$default$canFinishFragment(this);
-                        }
-
-                        @Override
-                        public void onCaptionChanged(CharSequence charSequence) {
-                        }
-
-                        @Override
-                        public void selectedPhotosChanged() {
-                        }
-
-                        @Override
-                        public void actionButtonPressed(boolean z, boolean z2, int i4, int i5) {
-                            if (z) {
-                                return;
-                            }
-                            ChatAttachAlertDocumentLayout.this.sendSelectedPhotos(map, arrayList, z2, i4);
-                        }
-
-                        @Override
-                        public void onOpenInPressed() {
-                            ChatAttachAlertDocumentLayout.this.delegate.startDocumentSelectActivity();
-                        }
-                    });
-                    photoPickerActivity.setMaxSelectedPhotos(chatAttachAlertDocumentLayout.maxSelectedFiles, false);
-                    chatAttachAlertDocumentLayout.parentAlert.presentFragment(photoPickerActivity);
-                    chatAttachAlertDocumentLayout.parentAlert.dismiss(true);
-                    return;
-                }
-                if (i3 == R.drawable.files_music) {
-                    DocumentSelectActivityDelegate documentSelectActivityDelegate = chatAttachAlertDocumentLayout.delegate;
-                    if (documentSelectActivityDelegate != null) {
-                        documentSelectActivityDelegate.startMusicSelectActivity();
-                        return;
-                    }
-                    return;
-                }
-                int topForScroll = chatAttachAlertDocumentLayout.getTopForScroll();
-                chatAttachAlertDocumentLayout.prepareAnimation();
-                HistoryEntry historyEntry = (HistoryEntry) chatAttachAlertDocumentLayout.listAdapter.history.remove(chatAttachAlertDocumentLayout.listAdapter.history.size() - 1);
-                chatAttachAlertDocumentLayout.parentAlert.actionBar.setTitle(historyEntry.title);
-                File file2 = historyEntry.dir;
-                if (file2 != null) {
-                    chatAttachAlertDocumentLayout.listFiles(file2);
-                } else {
-                    chatAttachAlertDocumentLayout.listRoots();
-                }
-                chatAttachAlertDocumentLayout.updateSearchButton();
-                chatAttachAlertDocumentLayout.layoutManager.scrollToPositionWithOffset(0, topForScroll);
-                chatAttachAlertDocumentLayout.runAnimation(2);
-                return;
-            }
-            if (file.isDirectory()) {
-                HistoryEntry historyEntry2 = new HistoryEntry(objArr == true ? 1 : 0);
-                View childAt = chatAttachAlertDocumentLayout.listView.getChildAt(0);
-                RecyclerView.ViewHolder viewHolderFindContainingViewHolder = chatAttachAlertDocumentLayout.listView.findContainingViewHolder(childAt);
-                if (viewHolderFindContainingViewHolder != null) {
-                    historyEntry2.scrollItem = viewHolderFindContainingViewHolder.getAdapterPosition();
-                    historyEntry2.scrollOffset = childAt.getTop();
-                    historyEntry2.dir = chatAttachAlertDocumentLayout.currentDir;
-                    historyEntry2.title = chatAttachAlertDocumentLayout.parentAlert.actionBar.getTitle();
-                    chatAttachAlertDocumentLayout.prepareAnimation();
-                    chatAttachAlertDocumentLayout.listAdapter.history.add(historyEntry2);
-                    if (chatAttachAlertDocumentLayout.listFiles(file)) {
-                        chatAttachAlertDocumentLayout.runAnimation(1);
-                        chatAttachAlertDocumentLayout.parentAlert.actionBar.setTitle(listItem.title);
-                        return;
-                    } else {
-                        chatAttachAlertDocumentLayout.listAdapter.history.remove(historyEntry2);
-                        return;
-                    }
-                }
-                return;
-            }
-            chatAttachAlertDocumentLayout.onItemClick(view, listItem);
-            return;
-        }
-        chatAttachAlertDocumentLayout.onItemClick(view, item);
+    private int getTopForScroll() {
+        AnonymousClass4 anonymousClass4 = this.listView;
+        View childAt = anonymousClass4.getChildAt(0);
+        RecyclerView.ViewHolder viewHolderFindContainingViewHolder = anonymousClass4.findContainingViewHolder(childAt);
+        int i = -anonymousClass4.getPaddingTop();
+        return (viewHolderFindContainingViewHolder == null || viewHolderFindContainingViewHolder.getAdapterPosition() != 0) ? i : childAt.getTop() + i;
     }
 
-    public static boolean $r8$lambda$Ty8xMzF9TiVzkZ5oa27eFdjqgEE(ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout, View view, int i) {
-        Object item;
-        RecyclerView.Adapter adapter = chatAttachAlertDocumentLayout.listView.getAdapter();
-        ListAdapter listAdapter = chatAttachAlertDocumentLayout.listAdapter;
-        if (adapter == listAdapter) {
-            item = listAdapter.getItem(i);
-        } else {
-            item = chatAttachAlertDocumentLayout.searchAdapter.getItem(i);
-        }
-        return chatAttachAlertDocumentLayout.onItemClick(view, item);
-    }
-
-    public static void $r8$lambda$bJTrGtwpS0xdIrP5Jvx4bcV6Jkc(ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout, View view, int i) {
-        chatAttachAlertDocumentLayout.filtersView.cancelClickRunnables(true);
-        chatAttachAlertDocumentLayout.searchAdapter.addSearchFilter(chatAttachAlertDocumentLayout.filtersView.getFilterAt(i));
-    }
-
-    private void runAnimation(final int i) {
-        final float fDp;
-        ValueAnimator valueAnimator = this.listAnimation;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        this.currentAnimationType = i;
-        int i2 = 0;
-        while (true) {
-            if (i2 >= getChildCount()) {
-                i2 = 0;
-                break;
-            } else if (getChildAt(i2) == this.listView) {
-                break;
-            } else {
-                i2++;
-            }
-        }
-        if (i == 1) {
-            fDp = AndroidUtilities.dp(150.0f);
-            this.backgroundListView.setAlpha(1.0f);
-            this.backgroundListView.setScaleX(1.0f);
-            this.backgroundListView.setScaleY(1.0f);
-            this.backgroundListView.setTranslationX(0.0f);
-            removeView(this.backgroundListView);
-            addView(this.backgroundListView, i2);
-            this.backgroundListView.setVisibility(0);
-            this.listView.setTranslationX(fDp);
-            this.listView.setAlpha(0.0f);
-            this.listAnimation = ValueAnimator.ofFloat(1.0f, 0.0f);
-        } else {
-            fDp = AndroidUtilities.dp(150.0f);
-            this.listView.setAlpha(0.0f);
-            this.listView.setScaleX(0.95f);
-            this.listView.setScaleY(0.95f);
-            this.backgroundListView.setScaleX(1.0f);
-            this.backgroundListView.setScaleY(1.0f);
-            this.backgroundListView.setTranslationX(0.0f);
-            this.backgroundListView.setAlpha(1.0f);
-            removeView(this.backgroundListView);
-            addView(this.backgroundListView, i2 + 1);
-            this.backgroundListView.setVisibility(0);
-            this.listAnimation = ValueAnimator.ofFloat(0.0f, 1.0f);
-        }
-        this.listAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ChatAttachAlertDocumentLayout.$r8$lambda$JsIjcTPif45BLVVOp1dAphW0WOM(this.f$0, i, fDp, valueAnimator2);
-            }
-        });
-        this.listAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                super.onAnimationEnd(animator);
-                ChatAttachAlertDocumentLayout.this.backgroundListView.setVisibility(8);
-                ChatAttachAlertDocumentLayout.this.currentAnimationType = 0;
-                ChatAttachAlertDocumentLayout.this.listView.setAlpha(1.0f);
-                ChatAttachAlertDocumentLayout.this.listView.setScaleX(1.0f);
-                ChatAttachAlertDocumentLayout.this.listView.setScaleY(1.0f);
-                ChatAttachAlertDocumentLayout.this.listView.setTranslationX(0.0f);
-                ChatAttachAlertDocumentLayout.this.listView.invalidate();
-            }
-        });
-        if (i == 1) {
-            this.listAnimation.setDuration(220L);
-        } else {
-            this.listAnimation.setDuration(200L);
-        }
-        this.listAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.listAnimation.start();
-    }
-
-    public static void $r8$lambda$JsIjcTPif45BLVVOp1dAphW0WOM(ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout, int i, float f, ValueAnimator valueAnimator) {
-        chatAttachAlertDocumentLayout.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        if (i == 1) {
-            chatAttachAlertDocumentLayout.listView.setTranslationX(f * fFloatValue);
-            chatAttachAlertDocumentLayout.listView.setAlpha(1.0f - fFloatValue);
-            chatAttachAlertDocumentLayout.listView.invalidate();
-            chatAttachAlertDocumentLayout.backgroundListView.setAlpha(fFloatValue);
-            float f2 = (fFloatValue * 0.05f) + 0.95f;
-            chatAttachAlertDocumentLayout.backgroundListView.setScaleX(f2);
-            chatAttachAlertDocumentLayout.backgroundListView.setScaleY(f2);
-            return;
-        }
-        chatAttachAlertDocumentLayout.backgroundListView.setTranslationX(f * fFloatValue);
-        chatAttachAlertDocumentLayout.backgroundListView.setAlpha(Math.max(0.0f, 1.0f - fFloatValue));
-        chatAttachAlertDocumentLayout.backgroundListView.invalidate();
-        chatAttachAlertDocumentLayout.listView.setAlpha(fFloatValue);
-        float f3 = (fFloatValue * 0.05f) + 0.95f;
-        chatAttachAlertDocumentLayout.listView.setScaleX(f3);
-        chatAttachAlertDocumentLayout.listView.setScaleY(f3);
-        chatAttachAlertDocumentLayout.backgroundListView.invalidate();
-    }
-
-    private void prepareAnimation() {
-        View viewFindViewByPosition;
-        this.backgroundListAdapter.history.clear();
-        this.backgroundListAdapter.history.addAll(this.listAdapter.history);
-        this.backgroundListAdapter.items.clear();
-        this.backgroundListAdapter.items.addAll(this.listAdapter.items);
-        this.backgroundListAdapter.recentItems.clear();
-        this.backgroundListAdapter.recentItems.addAll(this.listAdapter.recentItems);
-        this.backgroundListAdapter.notifyDataSetChanged();
-        this.backgroundListView.setVisibility(0);
-        this.backgroundListView.setPadding(this.listView.getPaddingLeft(), this.listView.getPaddingTop(), this.listView.getPaddingRight(), this.listView.getPaddingBottom());
-        int iFindFirstVisibleItemPosition = this.layoutManager.findFirstVisibleItemPosition();
-        if (iFindFirstVisibleItemPosition < 0 || (viewFindViewByPosition = this.layoutManager.findViewByPosition(iFindFirstVisibleItemPosition)) == null) {
-            return;
-        }
-        this.backgroundLayoutManager.scrollToPositionWithOffset(iFindFirstVisibleItemPosition, viewFindViewByPosition.getTop() - this.backgroundListView.getPaddingTop());
-    }
-
-    @Override
-    public void onDestroy() {
-        try {
-            if (this.receiverRegistered) {
-                ApplicationLoader.applicationContext.unregisterReceiver(this.receiver);
-                this.receiverRegistered = false;
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        this.parentAlert.actionBar.closeSearchField();
-        ActionBarMenu actionBarMenuCreateMenu = this.parentAlert.actionBar.createMenu();
-        actionBarMenuCreateMenu.removeView(this.sortItem);
-        actionBarMenuCreateMenu.removeView(this.searchItem);
-    }
-
-    @Override
-    public void onMenuItemClick(int i) {
-        if (i == 6) {
-            SharedConfig.toggleSortFilesByName();
-            this.sortByName = SharedConfig.sortFilesByName;
-            sortRecentItems();
-            sortFileItems();
-            this.listAdapter.notifyDataSetChanged();
-            this.sortItem.setIcon(this.sortByName ? R.drawable.msg_contacts_time : R.drawable.msg_contacts_name);
-        }
-    }
-
-    @Override
-    public int getCurrentItemTop() {
-        if (this.listView.getChildCount() <= 0) {
-            return Integer.MAX_VALUE;
-        }
-        int i = 0;
-        View childAt = this.listView.getChildAt(0);
-        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int y = ((((int) childAt.getY()) - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(4.0f)) - AndroidUtilities.dp(8.0f);
-        if (y > 0 && holder != null && holder.getAdapterPosition() == 0) {
-            i = y;
-        }
-        if (y < 0 || holder == null || holder.getAdapterPosition() != 0) {
-            y = i;
-        }
-        return y + AndroidUtilities.dp(13.0f);
-    }
-
-    @Override
-    public void setTranslationY(float f) {
-        super.setTranslationY(f);
-        this.parentAlert.getSheetContainer().invalidate();
-    }
-
-    @Override
-    public int getListTopPadding() {
-        return this.listView.getPaddingTop();
-    }
-
-    @Override
-    public int getFirstOffset() {
-        return getListTopPadding() + AndroidUtilities.dp(5.0f);
-    }
-
-    @Override
-    public void onPreMeasure(int i, int i2) {
-        int iDp;
-        int i3;
-        if (this.parentAlert.actionBar.isSearchFieldVisible() || this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
-            iDp = AndroidUtilities.dp(56.0f);
-            this.parentAlert.setAllowNestedScroll(false);
-        } else {
-            if (AndroidUtilities.isTablet()) {
-                i3 = (i2 / 5) * 2;
-            } else {
-                Point point = AndroidUtilities.displaySize;
-                if (point.x > point.y) {
-                    i3 = (int) (i2 / 3.5f);
-                } else {
-                    i3 = (i2 / 5) * 2;
-                }
-            }
-            iDp = i3 - AndroidUtilities.dp(1.0f);
-            if (iDp < 0) {
-                iDp = 0;
-            }
-            this.parentAlert.setAllowNestedScroll(true);
-        }
-        this.listView.setPaddingWithoutRequestLayout(0, iDp + AndroidUtilities.statusBarHeight, 0, this.listPaddingBottom);
-        ((FrameLayout.LayoutParams) this.filtersView.getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight();
-    }
-
-    @Override
-    public int getButtonsHideOffset() {
-        return AndroidUtilities.dp(62.0f);
-    }
-
-    @Override
-    public void scrollToTop() {
-        this.listView.smoothScrollToPosition(0);
-    }
-
-    @Override
-    public int getSelectedItemsCount() {
-        return this.selectedFiles.size() + this.selectedMessages.size();
-    }
-
-    @Override
-    public boolean sendSelectedItems(final boolean z, final int i, int i2, final long j, final boolean z2) {
-        if ((this.selectedFiles.size() == 0 && this.selectedMessages.size() == 0) || this.delegate == null || this.sendPressed) {
-            return false;
-        }
-        final ArrayList arrayList = new ArrayList();
-        Iterator it = this.selectedMessages.keySet().iterator();
-        while (it.hasNext()) {
-            arrayList.add((MessageObject) this.selectedMessages.get((FilteredSearchView.MessageHashId) it.next()));
-        }
-        final ArrayList arrayList2 = new ArrayList(this.selectedFilesOrder);
-        CharSequence[] charSequenceArr = {this.parentAlert.getCommentView().getText()};
-        final ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr, true);
-        final String string = charSequenceArr[0].toString();
-        ChatAttachAlert chatAttachAlert = this.parentAlert;
-        return AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), (1 ^ (TextUtils.isEmpty(string) ? 1 : 0)) + arrayList2.size() + this.parentAlert.getAdditionalMessagesCount(), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChatAttachAlertDocumentLayout.$r8$lambda$8uIcy68L7bm04k5YJ4hZk9ijWEM(this.f$0, arrayList2, string, entities, arrayList, z, i, j, z2, (Long) obj);
-            }
-        });
-    }
-
-    public static void $r8$lambda$8uIcy68L7bm04k5YJ4hZk9ijWEM(ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout, ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, long j, boolean z2, Long l) {
-        chatAttachAlertDocumentLayout.sendPressed = true;
-        chatAttachAlertDocumentLayout.delegate.didSelectFiles(arrayList, str, arrayList2, arrayList3, z, i, 0, j, z2, l.longValue());
-        chatAttachAlertDocumentLayout.parentAlert.dismiss(true);
-    }
-
-    private boolean onItemClick(View view, Object obj) {
-        boolean z;
-        boolean z2 = false;
-        if (obj instanceof ListItem) {
-            ListItem listItem = (ListItem) obj;
-            File file = listItem.file;
-            if (file == null || file.isDirectory()) {
-                return false;
-            }
-            String absolutePath = listItem.file.getAbsolutePath();
-            if (this.selectedFiles.containsKey(absolutePath)) {
-                this.selectedFiles.remove(absolutePath);
-                this.selectedFilesOrder.remove(absolutePath);
-                z = false;
-            } else {
-                if (!listItem.file.canRead()) {
-                    showErrorBox(LocaleController.getString(R.string.AccessError));
-                    return false;
-                }
-                if (this.canSelectOnlyImageFiles && listItem.thumb == null) {
-                    showErrorBox(LocaleController.formatString("PassportUploadNotImage", R.string.PassportUploadNotImage, new Object[0]));
-                    return false;
-                }
-                if ((listItem.file.length() > 2097152000 && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) || listItem.file.length() > 4194304000L) {
-                    ChatAttachAlert chatAttachAlert = this.parentAlert;
-                    LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(chatAttachAlert.baseFragment, chatAttachAlert.getContainer().getContext(), 6, UserConfig.selectedAccount, null);
-                    limitReachedBottomSheet.setVeryLargeFile(true);
-                    limitReachedBottomSheet.show();
-                    return false;
-                }
-                if (this.maxSelectedFiles >= 0) {
-                    int size = this.selectedFiles.size();
-                    int i = this.maxSelectedFiles;
-                    if (size >= i) {
-                        showErrorBox(LocaleController.formatString("PassportUploadMaxReached", R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", i, new Object[0])));
-                        return false;
-                    }
-                }
-                if ((this.isSoundPicker && !isRingtone(listItem.file)) || listItem.file.length() == 0) {
-                    return false;
-                }
-                boolean z3 = this.parentAlert.storyMediaPicker;
-                this.selectedFiles.put(absolutePath, listItem);
-                this.selectedFilesOrder.add(absolutePath);
-                z = true;
-            }
-            this.scrolling = false;
-            z2 = z;
-        } else {
-            if (!(obj instanceof MessageObject)) {
-                return false;
-            }
-            MessageObject messageObject = (MessageObject) obj;
-            FilteredSearchView.MessageHashId messageHashId = new FilteredSearchView.MessageHashId(messageObject.getId(), messageObject.getDialogId());
-            if (this.selectedMessages.containsKey(messageHashId)) {
-                this.selectedMessages.remove(messageHashId);
-            } else {
-                if (this.selectedMessages.size() >= 100) {
-                    return false;
-                }
-                this.selectedMessages.put(messageHashId, messageObject);
-                z2 = true;
-            }
-        }
-        if (this.parentAlert.isPollAttach) {
-            if ((!this.selectedFiles.isEmpty() || !this.selectedMessages.isEmpty()) && this.delegate != null && !this.sendPressed) {
-                ArrayList arrayList = new ArrayList();
-                Iterator it = this.selectedMessages.keySet().iterator();
-                while (it.hasNext()) {
-                    arrayList.add((MessageObject) this.selectedMessages.get((FilteredSearchView.MessageHashId) it.next()));
-                }
-                this.delegate.didSelectFiles(new ArrayList(this.selectedFilesOrder), null, null, arrayList, false, 0, 0, 0L, false, 0L);
-            }
-            return true;
-        }
-        if (view instanceof SharedDocumentCell) {
-            ((SharedDocumentCell) view).setChecked(z2, true);
-        }
-        this.parentAlert.updateCountButton(z2 ? 1 : 2);
-        return true;
-    }
-
-    public boolean isRingtone(File file) {
-        int i;
-        String fileExtension = FileLoader.getFileExtension(file);
-        String mimeTypeFromExtension = fileExtension != null ? MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension) : null;
-        if (file.length() == 0 || mimeTypeFromExtension == null || !RingtoneDataStore.ringtoneSupportedMimeType.contains(mimeTypeFromExtension)) {
-            BulletinFactory.of(this.parentAlert.getContainer(), null).createErrorBulletinSubtitle(LocaleController.formatString("InvalidFormatError", R.string.InvalidFormatError, new Object[0]), LocaleController.getString(R.string.ErrorRingtoneInvalidFormat), null).show();
-            return false;
-        }
-        if (file.length() > MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax) {
-            BulletinFactory.of(this.parentAlert.getContainer(), null).createErrorBulletinSubtitle(LocaleController.formatString("TooLargeError", R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax / 1024)), null).show();
-            return false;
-        }
-        try {
-            MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-            mediaMetadataRetriever.setDataSource(ApplicationLoader.applicationContext, Uri.fromFile(file));
-            i = Integer.parseInt(mediaMetadataRetriever.extractMetadata(9));
-        } catch (Exception unused) {
-            i = Integer.MAX_VALUE;
-        }
-        if (i <= MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax * 1000) {
-            return true;
-        }
-        BulletinFactory.of(this.parentAlert.getContainer(), null).createErrorBulletinSubtitle(LocaleController.formatString("TooLongError", R.string.TooLongError, new Object[0]), LocaleController.formatString("ErrorRingtoneDurationTooLong", R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax)), null).show();
-        return false;
-    }
-
-    public void setMaxSelectedFiles(int i) {
-        this.maxSelectedFiles = i;
-    }
-
-    public void setCanSelectOnlyImageFiles(boolean z) {
-        this.canSelectOnlyImageFiles = z;
-    }
-
-    public void sendSelectedPhotos(HashMap map, ArrayList arrayList, final boolean z, final int i) {
-        if (map.isEmpty() || this.delegate == null || this.sendPressed) {
-            return;
-        }
-        this.sendPressed = true;
-        final ArrayList arrayList2 = new ArrayList();
-        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            Object obj = map.get(arrayList.get(i2));
-            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-            arrayList2.add(sendingMediaInfo);
-            if (obj instanceof MediaController.PhotoEntry) {
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                String str = photoEntry.imagePath;
-                if (str != null) {
-                    sendingMediaInfo.path = str;
-                } else {
-                    sendingMediaInfo.path = photoEntry.path;
-                }
-                sendingMediaInfo.thumbPath = photoEntry.thumbPath;
-                sendingMediaInfo.coverPath = photoEntry.coverPath;
-                sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
-                sendingMediaInfo.isVideo = photoEntry.isVideo;
-                CharSequence charSequence = photoEntry.caption;
-                sendingMediaInfo.caption = charSequence != null ? charSequence.toString() : null;
-                sendingMediaInfo.entities = photoEntry.entities;
-                sendingMediaInfo.masks = photoEntry.stickers;
-                sendingMediaInfo.ttl = photoEntry.ttl;
-            }
-        }
-        ChatAttachAlert chatAttachAlert = this.parentAlert;
-        AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), arrayList2.size() + this.parentAlert.getAdditionalMessagesCount(), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj2) {
-                this.f$0.delegate.didSelectPhotos(arrayList2, z, i, 0, ((Long) obj2).longValue());
-            }
-        });
-    }
-
-    public void loadRecentFiles() {
-        try {
-            if (this.isSoundPicker) {
-                try {
-                    Cursor cursorQuery = ApplicationLoader.applicationContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{"_id", "_data", "duration", "_size", "mime_type"}, "is_music != 0", null, "date_added DESC");
-                    while (cursorQuery.moveToNext()) {
-                        try {
-                            File file = new File(cursorQuery.getString(1));
-                            long j = cursorQuery.getLong(2);
-                            long j2 = cursorQuery.getLong(3);
-                            String string = cursorQuery.getString(4);
-                            if (j <= MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax * 1000 && j2 <= MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax && (TextUtils.isEmpty(string) || "audio/mpeg".equals(string) || !"audio/mpeg4".equals(string))) {
-                                ListItem listItem = new ListItem(null);
-                                listItem.title = file.getName();
-                                listItem.file = file;
-                                String name = file.getName();
-                                String[] strArrSplit = name.split("\\.");
-                                listItem.ext = strArrSplit.length > 1 ? strArrSplit[strArrSplit.length - 1] : "?";
-                                listItem.subtitle = AndroidUtilities.formatFileSize(file.length());
-                                String lowerCase = name.toLowerCase();
-                                if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
-                                    listItem.thumb = file.getAbsolutePath();
-                                }
-                                this.listAdapter.recentItems.add(listItem);
-                            }
-                        } catch (Throwable th) {
-                            if (cursorQuery == null) {
-                                throw th;
-                            }
-                            try {
-                                cursorQuery.close();
-                                throw th;
-                            } catch (Throwable th2) {
-                                th.addSuppressed(th2);
-                                throw th;
-                            }
-                        }
-                    }
-                    cursorQuery.close();
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            }
-            checkDirectory(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-            sortRecentItems();
-        } catch (Exception e2) {
-            FileLog.e(e2);
-        }
-    }
-
-    private void checkDirectory(File file) {
+    public final void checkDirectory(File file) {
         File[] fileArrListFiles = file.listFiles();
         File fileCheckDirectory = FileLoader.checkDirectory(6);
         if (fileArrListFiles != null) {
@@ -1054,7 +1485,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 if (file2.isDirectory() && file2.getName().equals("Telegram")) {
                     checkDirectory(file2);
                 } else if (!file2.equals(fileCheckDirectory)) {
-                    ListItem listItem = new ListItem(null);
+                    ListItem listItem = new ListItem();
                     listItem.title = file2.getName();
                     listItem.file = file2;
                     String name = file2.getName();
@@ -1071,205 +1502,258 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    private void sortRecentItems() {
-        Collections.sort(this.listAdapter.recentItems, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                return ChatAttachAlertDocumentLayout.$r8$lambda$Fo4Kacz55YTZm6elg6YaTjUeKRo(this.f$0, (ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
+    @Override
+    public int getButtonsHideOffset() {
+        return AndroidUtilities.dp(62.0f);
+    }
+
+    @Override
+    public int getCurrentItemTop() {
+        AnonymousClass4 anonymousClass4 = this.listView;
+        if (anonymousClass4.getChildCount() <= 0) {
+            return Integer.MAX_VALUE;
+        }
+        int i = 0;
+        View childAt = anonymousClass4.getChildAt(0);
+        RecyclerListView.Holder holder = (RecyclerListView.Holder) anonymousClass4.findContainingViewHolder(childAt);
+        int y = ((((int) childAt.getY()) - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(4.0f)) - AndroidUtilities.dp(8.0f);
+        if (y > 0 && holder != null && holder.getAdapterPosition() == 0) {
+            i = y;
+        }
+        if (y < 0 || holder == null || holder.getAdapterPosition() != 0) {
+            y = i;
+        }
+        return AndroidUtilities.dp(13.0f) + y;
+    }
+
+    @Override
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(5.0f) + getListTopPadding();
+    }
+
+    @Override
+    public int getListTopPadding() {
+        return getPaddingTop();
+    }
+
+    @Override
+    public int getSelectedItemsCount() {
+        return this.selectedMessages.size() + this.selectedFiles.size();
+    }
+
+    @Override
+    public ArrayList<ThemeDescription> getThemeDescriptions() {
+        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
+        arrayList.add(new ThemeDescription(this.searchItem.getSearchField(), 16777216, null, null, null, null, Theme.key_dialogTextBlack));
+        arrayList.add(new ThemeDescription(this.listView, 32768, null, null, null, null, Theme.key_dialogScrollGlow));
+        arrayList.add(new ThemeDescription(this.listView, 32, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
+        arrayList.add(new ThemeDescription(this.listView, 48, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGray));
+        arrayList.add(new ThemeDescription(this.listView, 4096, null, null, null, null, Theme.key_listSelector));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
+        arrayList.add(new ThemeDescription(this.listView, 4, new Class[]{SharedDocumentCell.class}, new String[]{"nameTextView"}, null, null, -1, null, Theme.key_windowBackgroundWhiteBlackText));
+        arrayList.add(new ThemeDescription(this.listView, 4, new Class[]{SharedDocumentCell.class}, new String[]{"dateTextView"}, null, null, -1, null, Theme.key_windowBackgroundWhiteGrayText3));
+        arrayList.add(new ThemeDescription(this.listView, 8192, new Class[]{SharedDocumentCell.class}, new String[]{"checkBox"}, null, null, -1, null, Theme.key_checkbox));
+        arrayList.add(new ThemeDescription(this.listView, 16384, new Class[]{SharedDocumentCell.class}, new String[]{"checkBox"}, null, null, -1, null, Theme.key_checkboxCheck));
+        arrayList.add(new ThemeDescription(this.listView, 8, new Class[]{SharedDocumentCell.class}, new String[]{"thumbImageView"}, null, null, -1, null, Theme.key_files_folderIcon));
+        arrayList.add(new ThemeDescription(this.listView, 40, new Class[]{SharedDocumentCell.class}, new String[]{"thumbImageView"}, null, null, -1, null, Theme.key_files_folderIconBackground));
+        arrayList.add(new ThemeDescription(this.listView, 4, new Class[]{SharedDocumentCell.class}, new String[]{"extTextView"}, null, null, -1, null, Theme.key_files_iconText));
+        return arrayList;
+    }
+
+    public final boolean isRingtone(File file) {
+        int i;
+        String fileExtension = FileLoader.getFileExtension(file);
+        String mimeTypeFromExtension = fileExtension != null ? MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension) : null;
+        if (file.length() == 0 || mimeTypeFromExtension == null || !RingtoneDataStore.ringtoneSupportedMimeType.contains(mimeTypeFromExtension)) {
+            BottomSheet.ContainerView container = this.parentAlert.getContainer();
+            String string = LocaleController.formatString("InvalidFormatError", R.string.InvalidFormatError, new Object[0]);
+            String string2 = LocaleController.getString(R.string.ErrorRingtoneInvalidFormat);
+            Context context = container != null ? container.getContext() : null;
+            if (context == null) {
+                context = ApplicationLoader.applicationContext;
             }
-        });
-    }
-
-    public static int $r8$lambda$Fo4Kacz55YTZm6elg6YaTjUeKRo(ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout, ListItem listItem, ListItem listItem2) {
-        if (chatAttachAlertDocumentLayout.sortByName) {
-            return listItem.file.getName().compareToIgnoreCase(listItem2.file.getName());
+            Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(context, null);
+            twoLineLottieLayout.setAnimation(R.raw.chats_infotip, 32, 32, new String[0]);
+            twoLineLottieLayout.titleTextView.setText(string);
+            twoLineLottieLayout.subtitleTextView.setText(string2);
+            Bulletin.make(container, twoLineLottieLayout, 1500).show();
+            return false;
         }
-        long jLastModified = listItem.file.lastModified();
-        long jLastModified2 = listItem2.file.lastModified();
-        if (jLastModified == jLastModified2) {
-            return 0;
-        }
-        return jLastModified > jLastModified2 ? -1 : 1;
-    }
-
-    private void sortFileItems() {
-        if (this.currentDir == null) {
-            return;
-        }
-        Collections.sort(this.listAdapter.items, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                return ChatAttachAlertDocumentLayout.$r8$lambda$DF2sUiPliJSWPwf2eemJDoU4Xvg(this.f$0, (ChatAttachAlertDocumentLayout.ListItem) obj, (ChatAttachAlertDocumentLayout.ListItem) obj2);
+        if (file.length() > MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax) {
+            BottomSheet.ContainerView container2 = this.parentAlert.getContainer();
+            String string3 = LocaleController.formatString("TooLargeError", R.string.TooLargeError, new Object[0]);
+            String string4 = LocaleController.formatString("ErrorRingtoneSizeTooBig", R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax / 1024));
+            Context context2 = container2 != null ? container2.getContext() : null;
+            if (context2 == null) {
+                context2 = ApplicationLoader.applicationContext;
             }
-        });
-    }
-
-    public static int $r8$lambda$DF2sUiPliJSWPwf2eemJDoU4Xvg(ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout, ListItem listItem, ListItem listItem2) {
-        chatAttachAlertDocumentLayout.getClass();
-        File file = listItem.file;
-        if (file == null) {
-            return -1;
+            Bulletin.TwoLineLottieLayout twoLineLottieLayout2 = new Bulletin.TwoLineLottieLayout(context2, null);
+            twoLineLottieLayout2.setAnimation(R.raw.chats_infotip, 32, 32, new String[0]);
+            twoLineLottieLayout2.titleTextView.setText(string3);
+            twoLineLottieLayout2.subtitleTextView.setText(string4);
+            Bulletin.make(container2, twoLineLottieLayout2, 1500).show();
+            return false;
         }
-        if (listItem2.file == null) {
-            return 1;
+        try {
+            MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+            mediaMetadataRetriever.setDataSource(ApplicationLoader.applicationContext, Uri.fromFile(file));
+            i = Integer.parseInt(mediaMetadataRetriever.extractMetadata(9));
+        } catch (Exception unused) {
+            i = Integer.MAX_VALUE;
         }
-        boolean zIsDirectory = file.isDirectory();
-        if (zIsDirectory != listItem2.file.isDirectory()) {
-            return zIsDirectory ? -1 : 1;
-        }
-        if (zIsDirectory || chatAttachAlertDocumentLayout.sortByName) {
-            return listItem.file.getName().compareToIgnoreCase(listItem2.file.getName());
-        }
-        long jLastModified = listItem.file.lastModified();
-        long jLastModified2 = listItem2.file.lastModified();
-        if (jLastModified == jLastModified2) {
-            return 0;
-        }
-        return jLastModified > jLastModified2 ? -1 : 1;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ListAdapter listAdapter = this.listAdapter;
-        if (listAdapter != null) {
-            listAdapter.notifyDataSetChanged();
-        }
-        SearchAdapter searchAdapter = this.searchAdapter;
-        if (searchAdapter != null) {
-            searchAdapter.notifyDataSetChanged();
-        }
-    }
-
-    @Override
-    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) throws Throwable {
-        this.selectedFiles.clear();
-        this.selectedMessages.clear();
-        this.searchAdapter.currentSearchFilters.clear();
-        this.selectedFilesOrder.clear();
-        this.listAdapter.history.clear();
-        listRoots();
-        updateSearchButton();
-        updateEmptyView();
-        this.parentAlert.actionBar.setTitle(LocaleController.getString(R.string.SelectFile));
-        this.sortItem.setVisibility(0);
-        this.layoutManager.scrollToPositionWithOffset(0, 0);
-    }
-
-    @Override
-    public void onHide() {
-        this.sortItem.setVisibility(8);
-        this.searchItem.setVisibility(8);
-    }
-
-    public void updateEmptyViewPosition() {
-        View childAt;
-        if (this.emptyView.getVisibility() == 0 && (childAt = this.listView.getChildAt(0)) != null) {
-            float translationY = this.emptyView.getTranslationY();
-            this.additionalTranslationY = ((this.emptyView.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2;
-            this.emptyView.setTranslationY(translationY);
-        }
-    }
-
-    public void updateEmptyView() {
-        RecyclerView.Adapter adapter = this.listView.getAdapter();
-        SearchAdapter searchAdapter = this.searchAdapter;
-        boolean z = true;
-        if (adapter != searchAdapter ? this.listAdapter.getItemCount() != 1 : !searchAdapter.searchResult.isEmpty() || !this.searchAdapter.sections.isEmpty()) {
-            z = false;
-        }
-        this.emptyView.setVisibility(z ? 0 : 8);
-        updateEmptyViewPosition();
-    }
-
-    public void updateSearchButton() {
-        ActionBarMenuItem actionBarMenuItem = this.searchItem;
-        if (actionBarMenuItem == null || actionBarMenuItem.isSearchFieldVisible()) {
-            return;
-        }
-        this.searchItem.setVisibility((this.hasFiles || this.listAdapter.history.isEmpty()) ? 0 : 8);
-    }
-
-    private int getTopForScroll() {
-        View childAt = this.listView.getChildAt(0);
-        RecyclerView.ViewHolder viewHolderFindContainingViewHolder = this.listView.findContainingViewHolder(childAt);
-        int i = -this.listView.getPaddingTop();
-        return (viewHolderFindContainingViewHolder == null || viewHolderFindContainingViewHolder.getAdapterPosition() != 0) ? i : i + childAt.getTop();
-    }
-
-    private boolean canClosePicker() throws Throwable {
-        if (this.listAdapter.history.size() <= 0) {
+        if (i <= MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax * 1000) {
             return true;
         }
-        prepareAnimation();
-        HistoryEntry historyEntry = (HistoryEntry) this.listAdapter.history.remove(this.listAdapter.history.size() - 1);
-        this.parentAlert.actionBar.setTitle(historyEntry.title);
-        int topForScroll = getTopForScroll();
-        File file = historyEntry.dir;
+        BottomSheet.ContainerView container3 = this.parentAlert.getContainer();
+        String string5 = LocaleController.formatString("TooLongError", R.string.TooLongError, new Object[0]);
+        String string6 = LocaleController.formatString("ErrorRingtoneDurationTooLong", R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax));
+        Context context3 = container3 != null ? container3.getContext() : null;
+        if (context3 == null) {
+            context3 = ApplicationLoader.applicationContext;
+        }
+        Bulletin.TwoLineLottieLayout twoLineLottieLayout3 = new Bulletin.TwoLineLottieLayout(context3, null);
+        twoLineLottieLayout3.setAnimation(R.raw.chats_infotip, 32, 32, new String[0]);
+        twoLineLottieLayout3.titleTextView.setText(string5);
+        twoLineLottieLayout3.subtitleTextView.setText(string6);
+        Bulletin.make(container3, twoLineLottieLayout3, 1500).show();
+        return false;
+    }
+
+    public final void lambda$new$1$11(int i, View view) throws Throwable {
+        Object item;
+        int i2;
+        AnonymousClass4 anonymousClass4 = this.listView;
+        RecyclerView.Adapter adapter = anonymousClass4.getAdapter();
+        ListAdapter listAdapter = this.listAdapter;
+        if (adapter == listAdapter) {
+            item = listAdapter.getItem(i);
+        } else {
+            SearchAdapter searchAdapter = this.searchAdapter;
+            item = searchAdapter.getItem(searchAdapter.getSectionForPosition(i), searchAdapter.getPositionInSectionForPosition(i));
+        }
+        if (!(item instanceof ListItem)) {
+            onItemClick(view, item);
+            return;
+        }
+        ListItem listItem = (ListItem) item;
+        File file = listItem.file;
+        boolean zIsExternalStorageManager = Build.VERSION.SDK_INT >= 30 ? Environment.isExternalStorageManager() : false;
+        if (!BuildVars.NO_SCOPED_STORAGE && (((i2 = listItem.icon) == R.drawable.files_storage || i2 == R.drawable.files_internal) && !zIsExternalStorageManager)) {
+            this.delegate.startDocumentSelectActivity();
+            return;
+        }
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
         if (file != null) {
-            listFiles(file);
+            if (!file.isDirectory()) {
+                onItemClick(view, listItem);
+                return;
+            }
+            HistoryEntry historyEntry = new HistoryEntry();
+            View childAt = anonymousClass4.getChildAt(0);
+            RecyclerView.ViewHolder viewHolderFindContainingViewHolder = anonymousClass4.findContainingViewHolder(childAt);
+            if (viewHolderFindContainingViewHolder != null) {
+                viewHolderFindContainingViewHolder.getAdapterPosition();
+                childAt.getTop();
+                historyEntry.dir = this.currentDir;
+                historyEntry.title = chatAttachAlert.actionBar.getTitle();
+                prepareAnimation();
+                listAdapter.history.add(historyEntry);
+                if (!listFiles(file)) {
+                    listAdapter.history.remove(historyEntry);
+                    return;
+                } else {
+                    runAnimation(1);
+                    chatAttachAlert.actionBar.setTitle(listItem.title);
+                    return;
+                }
+            }
+            return;
+        }
+        int i3 = listItem.icon;
+        if (i3 == R.drawable.files_gallery) {
+            HashMap map = new HashMap();
+            ArrayList arrayList = new ArrayList();
+            BaseFragment baseFragment = chatAttachAlert.baseFragment;
+            ChatActivity chatActivity = baseFragment instanceof ChatActivity ? (ChatActivity) baseFragment : null;
+            PhotoPickerActivity photoPickerActivity = new PhotoPickerActivity(0, MediaController.allMediaAlbumEntry, map, arrayList, 0, chatActivity != null, chatActivity, false);
+            photoPickerActivity.isDocumentsPicker = true;
+            photoPickerActivity.delegate = new ChatActivity.AnonymousClass117(this, map, arrayList);
+            photoPickerActivity.setMaxSelectedPhotos(this.maxSelectedFiles, false);
+            BaseFragment baseFragment2 = chatAttachAlert.baseFragment;
+            if (baseFragment2 != null) {
+                baseFragment2.presentFragment(photoPickerActivity);
+            } else {
+                BaseFragment lastFragment = LaunchActivity.getLastFragment();
+                if (lastFragment != null) {
+                    lastFragment.presentFragment(photoPickerActivity);
+                }
+            }
+            chatAttachAlert.dismiss(true);
+            return;
+        }
+        if (i3 == R.drawable.files_music) {
+            DocumentSelectActivityDelegate documentSelectActivityDelegate = this.delegate;
+            if (documentSelectActivityDelegate != null) {
+                documentSelectActivityDelegate.startMusicSelectActivity();
+                return;
+            }
+            return;
+        }
+        int topForScroll = getTopForScroll();
+        prepareAnimation();
+        HistoryEntry historyEntry2 = (HistoryEntry) DiffUtil.m(listAdapter.history);
+        chatAttachAlert.actionBar.setTitle(historyEntry2.title);
+        File file2 = historyEntry2.dir;
+        if (file2 != null) {
+            listFiles(file2);
         } else {
             listRoots();
         }
         updateSearchButton();
-        this.layoutManager.scrollToPositionWithOffset(0, topForScroll);
+        ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass5 = this.layoutManager;
+        anonymousClass5.scrollToPositionWithOffset(0, topForScroll, anonymousClass5.mShouldReverseLayout);
         runAnimation(2);
-        return false;
     }
 
-    @Override
-    public boolean onBackPressed() {
-        if (canClosePicker()) {
-            return super.onBackPressed();
-        }
-        return true;
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        updateEmptyViewPosition();
-    }
-
-    public void setDelegate(DocumentSelectActivityDelegate documentSelectActivityDelegate) {
-        this.delegate = documentSelectActivityDelegate;
-    }
-
-    public boolean listFiles(File file) {
-        AnonymousClass1 anonymousClass1;
+    public final boolean listFiles(File file) {
+        ArrayList arrayList;
         File file2;
         this.hasFiles = false;
-        if (!file.canRead()) {
-            if ((file.getAbsolutePath().startsWith(Environment.getExternalStorageDirectory().toString()) || file.getAbsolutePath().startsWith("/sdcard") || file.getAbsolutePath().startsWith("/mnt/sdcard")) && !Environment.getExternalStorageState().equals("mounted") && !Environment.getExternalStorageState().equals("mounted_ro")) {
-                this.currentDir = file;
-                this.listAdapter.items.clear();
-                Environment.getExternalStorageState();
-                AndroidUtilities.clearDrawableAnimation(this.listView);
-                this.scrolling = true;
-                this.listAdapter.notifyDataSetChanged();
-                return true;
+        boolean zCanRead = file.canRead();
+        AnonymousClass4 anonymousClass4 = this.listView;
+        ListAdapter listAdapter = this.listAdapter;
+        if (!zCanRead) {
+            if ((!file.getAbsolutePath().startsWith(Environment.getExternalStorageDirectory().toString()) && !file.getAbsolutePath().startsWith("/sdcard") && !file.getAbsolutePath().startsWith("/mnt/sdcard")) || Environment.getExternalStorageState().equals("mounted") || Environment.getExternalStorageState().equals("mounted_ro")) {
+                showErrorBox$2(LocaleController.getString(R.string.AccessError));
+                return false;
             }
-            showErrorBox(LocaleController.getString(R.string.AccessError));
-            return false;
+            this.currentDir = file;
+            listAdapter.items.clear();
+            Environment.getExternalStorageState();
+            AndroidUtilities.clearDrawableAnimation(anonymousClass4);
+            this.scrolling = true;
+            listAdapter.notifyDataSetChanged();
+            return true;
         }
         try {
             File[] fileArrListFiles = file.listFiles();
             if (fileArrListFiles == null) {
-                showErrorBox(LocaleController.getString(R.string.UnknownError));
+                showErrorBox$2(LocaleController.getString(R.string.UnknownError));
                 return false;
             }
             this.currentDir = file;
-            this.listAdapter.items.clear();
+            listAdapter.items.clear();
             File fileCheckDirectory = FileLoader.checkDirectory(6);
             int i = 0;
             while (true) {
-                anonymousClass1 = null;
-                if (i >= fileArrListFiles.length) {
+                int length = fileArrListFiles.length;
+                arrayList = listAdapter.items;
+                if (i >= length) {
                     break;
                 }
                 File file3 = fileArrListFiles[i];
                 if (file3.getName().indexOf(46) != 0 && !file3.equals(fileCheckDirectory)) {
-                    ListItem listItem = new ListItem(anonymousClass1);
+                    ListItem listItem = new ListItem();
                     listItem.title = file3.getName();
                     listItem.file = file3;
                     if (file3.isDirectory()) {
@@ -1286,49 +1770,43 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                             listItem.thumb = file3.getAbsolutePath();
                         }
                     }
-                    this.listAdapter.items.add(listItem);
+                    arrayList.add(listItem);
                 }
                 i++;
             }
-            ListItem listItem2 = new ListItem(anonymousClass1);
+            ListItem listItem2 = new ListItem();
             listItem2.title = "..";
-            if (this.listAdapter.history.size() <= 0 || (file2 = ((HistoryEntry) this.listAdapter.history.get(this.listAdapter.history.size() - 1)).dir) == null) {
+            ArrayList arrayList2 = listAdapter.history;
+            if (arrayList2.size() <= 0 || (file2 = ((HistoryEntry) zziq.m(1, arrayList2)).dir) == null) {
                 listItem2.subtitle = LocaleController.getString(R.string.Folder);
             } else {
                 listItem2.subtitle = file2.toString();
             }
             listItem2.icon = R.drawable.files_folder;
             listItem2.file = null;
-            this.listAdapter.items.add(0, listItem2);
-            sortFileItems();
+            arrayList.add(0, listItem2);
+            if (this.currentDir != null) {
+                Collections.sort(listAdapter.items, new ChatAttachAlertDocumentLayout$$ExternalSyntheticLambda3(this, 0));
+            }
             updateSearchButton();
-            AndroidUtilities.clearDrawableAnimation(this.listView);
+            AndroidUtilities.clearDrawableAnimation(anonymousClass4);
             this.scrolling = true;
             int topForScroll = getTopForScroll();
-            this.listAdapter.notifyDataSetChanged();
-            this.layoutManager.scrollToPositionWithOffset(0, topForScroll);
+            listAdapter.notifyDataSetChanged();
+            ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass5 = this.layoutManager;
+            anonymousClass5.scrollToPositionWithOffset(0, topForScroll, anonymousClass5.mShouldReverseLayout);
             return true;
         } catch (Exception e) {
-            showErrorBox(e.getLocalizedMessage());
+            showErrorBox$2(e.getLocalizedMessage());
             return false;
         }
     }
 
-    private void showErrorBox(String str) {
-        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
-    }
-
-    public void listRoots() throws Throwable {
+    public final void listRoots() throws Throwable {
         BufferedReader bufferedReader;
         ChatAttachAlert chatAttachAlert;
-        File file;
         int iLastIndexOf;
         BufferedReader bufferedReader2 = null;
-        Object[] objArr = 0;
-        Object[] objArr2 = 0;
-        Object[] objArr3 = 0;
-        Object[] objArr4 = 0;
-        Object[] objArr5 = 0;
         this.currentDir = null;
         this.hasFiles = false;
         this.listAdapter.items.clear();
@@ -1339,7 +1817,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         String path = Environment.getExternalStorageDirectory().getPath();
         String externalStorageState = Environment.getExternalStorageState();
         if (externalStorageState.equals("mounted") || externalStorageState.equals("mounted_ro")) {
-            ListItem listItem = new ListItem(objArr == true ? 1 : 0);
+            ListItem listItem = new ListItem();
             if (Environment.isExternalStorageRemovable()) {
                 listItem.title = LocaleController.getString(R.string.SdCard);
                 listItem.icon = R.drawable.files_internal;
@@ -1354,108 +1832,78 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             hashSet.add(path);
         }
         try {
-            bufferedReader = new BufferedReader(new FileReader("/proc/mounts"));
-            while (true) {
-                try {
+            try {
+                bufferedReader = new BufferedReader(new FileReader("/proc/mounts"));
+                while (true) {
                     try {
-                        String line = bufferedReader.readLine();
-                        if (line == null) {
-                            break;
-                        }
-                        if (line.contains("vfat") || line.contains("/mnt")) {
-                            if (BuildVars.LOGS_ENABLED) {
-                                FileLog.d(line);
+                        try {
+                            String line = bufferedReader.readLine();
+                            if (line == null) {
+                                break;
                             }
-                            StringTokenizer stringTokenizer = new StringTokenizer(line, " ");
-                            stringTokenizer.nextToken();
-                            String strNextToken = stringTokenizer.nextToken();
-                            if (!hashSet.contains(strNextToken) && line.contains("/dev/block/vold") && !line.contains("/mnt/secure") && !line.contains("/mnt/asec") && !line.contains("/mnt/obb") && !line.contains("/dev/mapper") && !line.contains("tmpfs")) {
-                                if (!new File(strNextToken).isDirectory() && (iLastIndexOf = strNextToken.lastIndexOf(47)) != -1) {
-                                    String str = "/storage/" + strNextToken.substring(iLastIndexOf + 1);
-                                    if (new File(str).isDirectory()) {
-                                        strNextToken = str;
+                            if (line.contains("vfat") || line.contains("/mnt")) {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    FileLog.d(line);
+                                }
+                                StringTokenizer stringTokenizer = new StringTokenizer(line, " ");
+                                stringTokenizer.nextToken();
+                                String strNextToken = stringTokenizer.nextToken();
+                                if (!hashSet.contains(strNextToken) && line.contains("/dev/block/vold") && !line.contains("/mnt/secure") && !line.contains("/mnt/asec") && !line.contains("/mnt/obb") && !line.contains("/dev/mapper") && !line.contains("tmpfs")) {
+                                    if (!new File(strNextToken).isDirectory() && (iLastIndexOf = strNextToken.lastIndexOf(47)) != -1) {
+                                        String str = "/storage/" + strNextToken.substring(iLastIndexOf + 1);
+                                        if (new File(str).isDirectory()) {
+                                            strNextToken = str;
+                                        }
+                                    }
+                                    hashSet.add(strNextToken);
+                                    try {
+                                        ListItem listItem2 = new ListItem();
+                                        if (strNextToken.toLowerCase().contains("sd")) {
+                                            listItem2.title = LocaleController.getString(R.string.SdCard);
+                                        } else {
+                                            listItem2.title = LocaleController.getString(R.string.ExternalStorage);
+                                        }
+                                        listItem2.subtitle = LocaleController.getString(R.string.ExternalFolderInfo);
+                                        listItem2.icon = R.drawable.files_internal;
+                                        listItem2.file = new File(strNextToken);
+                                        this.listAdapter.items.add(listItem2);
+                                    } catch (Exception e) {
+                                        FileLog.e(e);
                                     }
                                 }
-                                hashSet.add(strNextToken);
+                            }
+                        } catch (Throwable th) {
+                            th = th;
+                            if (bufferedReader != null) {
                                 try {
-                                    ListItem listItem2 = new ListItem(objArr5 == true ? 1 : 0);
-                                    if (strNextToken.toLowerCase().contains("sd")) {
-                                        listItem2.title = LocaleController.getString(R.string.SdCard);
-                                    } else {
-                                        listItem2.title = LocaleController.getString(R.string.ExternalStorage);
-                                    }
-                                    listItem2.subtitle = LocaleController.getString(R.string.ExternalFolderInfo);
-                                    listItem2.icon = R.drawable.files_internal;
-                                    listItem2.file = new File(strNextToken);
-                                    this.listAdapter.items.add(listItem2);
-                                } catch (Exception e) {
-                                    FileLog.e(e);
+                                    bufferedReader.close();
+                                } catch (Exception e2) {
+                                    FileLog.e(e2);
                                 }
                             }
+                            throw th;
                         }
-                    } catch (Throwable th) {
-                        th = th;
-                        if (bufferedReader != null) {
-                            try {
+                    } catch (Exception e3) {
+                        e = e3;
+                        try {
+                            FileLog.e(e);
+                            if (bufferedReader != null) {
                                 bufferedReader.close();
-                            } catch (Exception e2) {
-                                FileLog.e(e2);
                             }
-                        }
-                        throw th;
-                    }
-                } catch (Exception e3) {
-                    e = e3;
-                    try {
-                        FileLog.e(e);
-                        if (bufferedReader != null) {
-                            try {
+                        } catch (Throwable th2) {
+                            th = th2;
+                            bufferedReader2 = bufferedReader;
+                            bufferedReader = bufferedReader2;
+                            if (bufferedReader != null) {
                                 bufferedReader.close();
-                            } catch (Exception e4) {
-                                FileLog.e(e4);
                             }
+                            throw th;
                         }
-                        file = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "Telegram");
-                        if (file.exists()) {
-                            ListItem listItem3 = new ListItem(objArr4 == true ? 1 : 0);
-                            listItem3.title = "Telegram";
-                            listItem3.subtitle = LocaleController.getString(R.string.AppFolderInfo);
-                            listItem3.icon = R.drawable.files_folder;
-                            listItem3.file = file;
-                            this.listAdapter.items.add(listItem3);
-                        }
-                        if (!this.isSoundPicker) {
-                            ListItem listItem4 = new ListItem(objArr3 == true ? 1 : 0);
-                            listItem4.title = LocaleController.getString(R.string.Gallery);
-                            listItem4.subtitle = LocaleController.getString(R.string.GalleryInfo);
-                            listItem4.icon = R.drawable.files_gallery;
-                            listItem4.file = null;
-                            this.listAdapter.items.add(listItem4);
-                        }
-                        if (this.allowMusic) {
-                            ListItem listItem5 = new ListItem(objArr2 == true ? 1 : 0);
-                            listItem5.title = LocaleController.getString(R.string.AttachMusic);
-                            listItem5.subtitle = LocaleController.getString(R.string.MusicInfo);
-                            listItem5.icon = R.drawable.files_music;
-                            listItem5.file = null;
-                            this.listAdapter.items.add(listItem5);
-                        }
-                        if (!this.listAdapter.recentItems.isEmpty()) {
-                            this.hasFiles = true;
-                        }
-                        AndroidUtilities.clearDrawableAnimation(this.listView);
-                        this.scrolling = true;
-                        this.listAdapter.notifyDataSetChanged();
-                    } catch (Throwable th2) {
-                        th = th2;
-                        bufferedReader2 = bufferedReader;
-                        bufferedReader = bufferedReader2;
-                        if (bufferedReader != null) {
-                            bufferedReader.close();
-                        }
-                        throw th;
                     }
                 }
+                bufferedReader.close();
+            } catch (Exception e4) {
+                FileLog.e(e4);
             }
         } catch (Exception e5) {
             e = e5;
@@ -1468,35 +1916,34 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
             throw th;
         }
-        bufferedReader.close();
         try {
-            file = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "Telegram");
+            File file = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "Telegram");
             if (file.exists()) {
-                ListItem listItem6 = new ListItem(objArr4 == true ? 1 : 0);
-                listItem6.title = "Telegram";
-                listItem6.subtitle = LocaleController.getString(R.string.AppFolderInfo);
-                listItem6.icon = R.drawable.files_folder;
-                listItem6.file = file;
-                this.listAdapter.items.add(listItem6);
+                ListItem listItem3 = new ListItem();
+                listItem3.title = "Telegram";
+                listItem3.subtitle = LocaleController.getString(R.string.AppFolderInfo);
+                listItem3.icon = R.drawable.files_folder;
+                listItem3.file = file;
+                this.listAdapter.items.add(listItem3);
             }
         } catch (Exception e6) {
             FileLog.e(e6);
         }
         if (!this.isSoundPicker && ((chatAttachAlert = this.parentAlert) == null || !chatAttachAlert.isPollAttach)) {
-            ListItem listItem7 = new ListItem(objArr3 == true ? 1 : 0);
-            listItem7.title = LocaleController.getString(R.string.Gallery);
-            listItem7.subtitle = LocaleController.getString(R.string.GalleryInfo);
-            listItem7.icon = R.drawable.files_gallery;
-            listItem7.file = null;
-            this.listAdapter.items.add(listItem7);
+            ListItem listItem4 = new ListItem();
+            listItem4.title = LocaleController.getString(R.string.Gallery);
+            listItem4.subtitle = LocaleController.getString(R.string.GalleryInfo);
+            listItem4.icon = R.drawable.files_gallery;
+            listItem4.file = null;
+            this.listAdapter.items.add(listItem4);
         }
         if (this.allowMusic) {
-            ListItem listItem8 = new ListItem(objArr2 == true ? 1 : 0);
-            listItem8.title = LocaleController.getString(R.string.AttachMusic);
-            listItem8.subtitle = LocaleController.getString(R.string.MusicInfo);
-            listItem8.icon = R.drawable.files_music;
-            listItem8.file = null;
-            this.listAdapter.items.add(listItem8);
+            ListItem listItem5 = new ListItem();
+            listItem5.title = LocaleController.getString(R.string.AttachMusic);
+            listItem5.subtitle = LocaleController.getString(R.string.MusicInfo);
+            listItem5.icon = R.drawable.files_music;
+            listItem5.file = null;
+            this.listAdapter.items.add(listItem5);
         }
         if (!this.listAdapter.recentItems.isEmpty()) {
             this.hasFiles = true;
@@ -1506,906 +1953,425 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.listAdapter.notifyDataSetChanged();
     }
 
-    class ListAdapter extends RecyclerListView.SelectionAdapter {
-        private Context mContext;
-        private ArrayList items = new ArrayList();
-        private ArrayList history = new ArrayList();
-        private ArrayList recentItems = new ArrayList();
-
-        public ListAdapter(Context context) {
-            this.mContext = context;
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 1;
-        }
-
-        @Override
-        public int getItemCount() {
-            int size = this.items.size();
-            if (this.history.isEmpty() && !this.recentItems.isEmpty()) {
-                size += this.recentItems.size() + 2;
-            }
-            return size + 1;
-        }
-
-        public ListItem getItem(int i) {
-            int size;
-            int size2 = this.items.size();
-            if (i < size2) {
-                return (ListItem) this.items.get(i);
-            }
-            if (!this.history.isEmpty() || this.recentItems.isEmpty() || i == size2 || i == size2 + 1 || (size = i - (this.items.size() + 2)) >= this.recentItems.size()) {
-                return null;
-            }
-            return (ListItem) this.recentItems.get(size);
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            if (i == getItemCount() - 1) {
-                return 3;
-            }
-            int size = this.items.size();
-            if (i == size) {
-                return 2;
-            }
-            return i == size + 1 ? 0 : 1;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View headerCell;
-            if (i == 0) {
-                headerCell = new HeaderCell(this.mContext, ChatAttachAlertDocumentLayout.this.resourcesProvider);
-            } else if (i == 1) {
-                headerCell = new SharedDocumentCell(this.mContext, 1, ChatAttachAlertDocumentLayout.this.resourcesProvider);
-            } else if (i == 2) {
-                headerCell = new ShadowSectionCell(this.mContext);
-            } else {
-                headerCell = new View(this.mContext);
-                headerCell.setTag(-33024);
-            }
-            return new RecyclerListView.Holder(headerCell);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            int itemViewType = viewHolder.getItemViewType();
-            if (itemViewType == 0) {
-                HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
-                if (ChatAttachAlertDocumentLayout.this.sortByName) {
-                    headerCell.setText(LocaleController.getString(R.string.RecentFilesAZ));
-                    return;
-                } else {
-                    headerCell.setText(LocaleController.getString(R.string.RecentFiles));
-                    return;
-                }
-            }
-            if (itemViewType != 1) {
-                return;
-            }
-            ListItem item = getItem(i);
-            SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) viewHolder.itemView;
-            int i2 = item.icon;
-            if (i2 != 0) {
-                sharedDocumentCell.setTextAndValueAndTypeAndThumb(item.title, item.subtitle, null, null, i2, i != this.items.size() - 1);
-            } else {
-                sharedDocumentCell.setTextAndValueAndTypeAndThumb(item.title, item.subtitle, item.ext.toUpperCase().substring(0, Math.min(item.ext.length(), 4)), item.thumb, 0, false);
-            }
-            if (item.file != null) {
-                sharedDocumentCell.setChecked(ChatAttachAlertDocumentLayout.this.selectedFiles.containsKey(item.file.toString()), !ChatAttachAlertDocumentLayout.this.scrolling);
-            } else {
-                sharedDocumentCell.setChecked(false, !ChatAttachAlertDocumentLayout.this.scrolling);
-            }
-        }
-
-        @Override
-        public void notifyDataSetChanged() {
-            super.notifyDataSetChanged();
-            ChatAttachAlertDocumentLayout.this.updateEmptyView();
-        }
+    @Override
+    public final int needsActionBar() {
+        return 1;
     }
 
-    public class SearchAdapter extends RecyclerListView.SectionsAdapter {
-        private String currentDataQuery;
-        private long currentSearchDialogId;
-        private FiltersView.MediaFilterData currentSearchFilter;
-        private long currentSearchMaxDate;
-        private long currentSearchMinDate;
-        private boolean endReached;
-        private boolean isLoading;
-        private String lastMessagesSearchString;
-        private String lastSearchFilterQueryString;
-        private Runnable localSearchRunnable;
-        private Context mContext;
-        private int nextSearchRate;
-        private int requestIndex;
-        private Runnable searchRunnable;
-        private ArrayList searchResult = new ArrayList();
-        private final FilteredSearchView.MessageHashId messageHashIdTmp = new FilteredSearchView.MessageHashId(0, 0);
-        private ArrayList localTipChats = new ArrayList();
-        private ArrayList localTipDates = new ArrayList();
-        public ArrayList messages = new ArrayList();
-        public SparseArray messagesById = new SparseArray();
-        public ArrayList sections = new ArrayList();
-        public HashMap sectionArrays = new HashMap();
-        private ArrayList currentSearchFilters = new ArrayList();
-        private boolean firstLoading = true;
-        private AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker();
-        private Runnable clearCurrentResultsRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (SearchAdapter.this.isLoading) {
-                    SearchAdapter.this.messages.clear();
-                    SearchAdapter.this.sections.clear();
-                    SearchAdapter.this.sectionArrays.clear();
-                    SearchAdapter.this.notifyDataSetChanged();
-                }
-            }
-        };
-
-        @Override
-        public String getLetter(int i) {
-            return null;
+    @Override
+    public final boolean onBackPressed() throws Throwable {
+        ListAdapter listAdapter = this.listAdapter;
+        if (listAdapter.history.size() <= 0) {
+            return false;
         }
-
-        public SearchAdapter(Context context) {
-            this.mContext = context;
+        prepareAnimation();
+        HistoryEntry historyEntry = (HistoryEntry) DiffUtil.m(listAdapter.history);
+        this.parentAlert.actionBar.setTitle(historyEntry.title);
+        int topForScroll = getTopForScroll();
+        File file = historyEntry.dir;
+        if (file != null) {
+            listFiles(file);
+        } else {
+            listRoots();
         }
+        updateSearchButton();
+        ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass4 = this.layoutManager;
+        anonymousClass4.scrollToPositionWithOffset(0, topForScroll, anonymousClass4.mShouldReverseLayout);
+        runAnimation(2);
+        return true;
+    }
 
-        public void search(final String str, boolean z) {
-            long j;
-            Runnable runnable = this.localSearchRunnable;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.localSearchRunnable = null;
+    @Override
+    public final void onDestroy() {
+        try {
+            if (this.receiverRegistered) {
+                ApplicationLoader.applicationContext.unregisterReceiver(this.receiver);
+                this.receiverRegistered = false;
             }
-            if (TextUtils.isEmpty(str)) {
-                if (!this.searchResult.isEmpty()) {
-                    this.searchResult.clear();
-                }
-                if (ChatAttachAlertDocumentLayout.this.listView.getAdapter() != ChatAttachAlertDocumentLayout.this.listAdapter) {
-                    ChatAttachAlertDocumentLayout.this.listView.setAdapter(ChatAttachAlertDocumentLayout.this.listAdapter);
-                }
-                notifyDataSetChanged();
-            } else {
-                Runnable runnable2 = new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatAttachAlertDocumentLayout.SearchAdapter.$r8$lambda$GnbHCg5vkJILxeAdIKOCe8A1dec(this.f$0, str);
-                    }
-                };
-                this.localSearchRunnable = runnable2;
-                AndroidUtilities.runOnUIThread(runnable2, 300L);
-            }
-            if (ChatAttachAlertDocumentLayout.this.canSelectOnlyImageFiles || !ChatAttachAlertDocumentLayout.this.listAdapter.history.isEmpty()) {
-                return;
-            }
-            long j2 = 0;
-            long j3 = 0;
-            long j4 = 0;
-            for (int i = 0; i < this.currentSearchFilters.size(); i++) {
-                FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) this.currentSearchFilters.get(i);
-                int i2 = mediaFilterData.filterType;
-                if (i2 == 4) {
-                    TLObject tLObject = mediaFilterData.chat;
-                    if (tLObject instanceof TLRPC.User) {
-                        j = ((TLRPC.User) tLObject).id;
-                    } else if (tLObject instanceof TLRPC.Chat) {
-                        j = -((TLRPC.Chat) tLObject).id;
-                    }
-                    j2 = j;
-                } else if (i2 == 6) {
-                    FiltersView.DateData dateData = mediaFilterData.dateData;
-                    j3 = dateData.minDate;
-                    j4 = dateData.maxDate;
-                }
-            }
-            searchGlobal(j2, j3, j4, FiltersView.filters[2], str, z);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
+        this.parentAlert.actionBar.closeSearchField(true);
+        ActionBarMenu actionBarMenuCreateMenu = this.parentAlert.actionBar.createMenu();
+        actionBarMenuCreateMenu.removeView(this.sortItem);
+        actionBarMenuCreateMenu.removeView(this.searchItem);
+    }
 
-        public static void $r8$lambda$GnbHCg5vkJILxeAdIKOCe8A1dec(final SearchAdapter searchAdapter, final String str) {
-            searchAdapter.getClass();
-            final ArrayList arrayList = new ArrayList(ChatAttachAlertDocumentLayout.this.listAdapter.items);
-            if (ChatAttachAlertDocumentLayout.this.listAdapter.history.isEmpty()) {
-                arrayList.addAll(0, ChatAttachAlertDocumentLayout.this.listAdapter.recentItems);
-            }
-            final boolean z = !searchAdapter.currentSearchFilters.isEmpty();
-            Utilities.searchQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertDocumentLayout.SearchAdapter.m2170$r8$lambda$kcgaKq2sjBkOLhfYcjrN2VE7mo(this.f$0, str, z, arrayList);
-                }
-            });
-        }
+    @Override
+    public final void onHide() {
+        this.sortItem.setVisibility(8);
+        this.searchItem.setVisibility(8);
+    }
 
-        public static void m2170$r8$lambda$kcgaKq2sjBkOLhfYcjrN2VE7mo(SearchAdapter searchAdapter, String str, boolean z, ArrayList arrayList) {
-            searchAdapter.getClass();
-            String lowerCase = str.trim().toLowerCase();
-            if (lowerCase.length() == 0) {
-                searchAdapter.updateSearchResults(new ArrayList(), str);
-                return;
-            }
-            String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-            if (lowerCase.equals(translitString) || translitString.length() == 0) {
-                translitString = null;
-            }
-            int i = (translitString != null ? 1 : 0) + 1;
-            String[] strArr = new String[i];
-            strArr[0] = lowerCase;
-            if (translitString != null) {
-                strArr[1] = translitString;
-            }
-            ArrayList arrayList2 = new ArrayList();
-            if (!z) {
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    ListItem listItem = (ListItem) arrayList.get(i2);
-                    File file = listItem.file;
-                    if (file != null && !file.isDirectory()) {
-                        for (int i3 = 0; i3 < i; i3++) {
-                            String str2 = strArr[i3];
-                            String str3 = listItem.title;
-                            if (str3 != null ? str3.toLowerCase().contains(str2) : false) {
-                                arrayList2.add(listItem);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            searchAdapter.updateSearchResults(arrayList2, str);
-        }
-
-        public void loadMore() {
-            FiltersView.MediaFilterData mediaFilterData;
-            if (ChatAttachAlertDocumentLayout.this.searchAdapter.isLoading || ChatAttachAlertDocumentLayout.this.searchAdapter.endReached || (mediaFilterData = this.currentSearchFilter) == null) {
-                return;
-            }
-            searchGlobal(this.currentSearchDialogId, this.currentSearchMinDate, this.currentSearchMaxDate, mediaFilterData, this.lastMessagesSearchString, false);
-        }
-
-        public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
-            this.currentSearchFilters.remove(mediaFilterData);
-        }
-
-        public void addSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
-            if (!this.currentSearchFilters.isEmpty()) {
-                for (int i = 0; i < this.currentSearchFilters.size(); i++) {
-                    if (mediaFilterData.isSameType((FiltersView.MediaFilterData) this.currentSearchFilters.get(i))) {
-                        return;
-                    }
-                }
-            }
-            this.currentSearchFilters.add(mediaFilterData);
-            ChatAttachAlertDocumentLayout.this.parentAlert.actionBar.setSearchFilter(mediaFilterData);
-            ChatAttachAlertDocumentLayout.this.parentAlert.actionBar.setSearchFieldText("");
-            updateFiltersView(true, null, null, true);
-        }
-
-        public void updateFiltersView(boolean z, ArrayList arrayList, ArrayList arrayList2, boolean z2) {
-            boolean z3;
-            boolean z4 = false;
-            boolean z5 = false;
-            boolean z6 = false;
-            for (int i = 0; i < this.currentSearchFilters.size(); i++) {
-                if (((FiltersView.MediaFilterData) this.currentSearchFilters.get(i)).isMedia()) {
-                    z4 = true;
-                } else if (((FiltersView.MediaFilterData) this.currentSearchFilters.get(i)).filterType == 4) {
-                    z5 = true;
-                } else if (((FiltersView.MediaFilterData) this.currentSearchFilters.get(i)).filterType == 6) {
-                    z6 = true;
-                }
-            }
-            boolean z7 = ((arrayList == null || arrayList.isEmpty()) && (arrayList2 == null || arrayList2.isEmpty())) ? false : true;
-            if ((z4 || z7 || !z) && z7) {
-                if (arrayList == null || arrayList.isEmpty() || z5) {
-                    arrayList = null;
-                }
-                if (arrayList2 == null || arrayList2.isEmpty() || z6) {
-                    arrayList2 = null;
-                }
-                if (arrayList == null && arrayList2 == null) {
-                    z3 = false;
-                } else {
-                    ChatAttachAlertDocumentLayout.this.filtersView.setUsersAndDates(arrayList, arrayList2, false);
+    public final boolean onItemClick(View view, Object obj) {
+        int i;
+        ArrayList arrayList;
+        Iterator it;
+        boolean z;
+        boolean z2 = obj instanceof ListItem;
+        ArrayList arrayList2 = this.selectedFilesOrder;
+        HashMap map = this.selectedFiles;
+        HashMap map2 = this.selectedMessages;
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        boolean z3 = false;
+        if (!z2) {
+            if (obj instanceof MessageObject) {
+                MessageObject messageObject = (MessageObject) obj;
+                FilteredSearchView.MessageHashId messageHashId = new FilteredSearchView.MessageHashId(messageObject.getId(), messageObject.getDialogId());
+                if (map2.containsKey(messageHashId)) {
+                    map2.remove(messageHashId);
+                } else if (map2.size() < 100) {
+                    map2.put(messageHashId, messageObject);
                     z3 = true;
                 }
+                if (chatAttachAlert.isPollAttach) {
+                    if (view instanceof SharedDocumentCell) {
+                        ((SharedDocumentCell) view).setChecked(z3, true);
+                    }
+                    if (z3) {
+                        i = 1;
+                    } else {
+                        i = 2;
+                    }
+                    chatAttachAlert.updateCountButton(i);
+                    return true;
+                }
+                if (map.isEmpty()) {
+                    arrayList = new ArrayList();
+                    it = map2.keySet().iterator();
+                    while (it.hasNext()) {
+                        arrayList.add((MessageObject) map2.get((FilteredSearchView.MessageHashId) it.next()));
+                    }
+                    this.delegate.didSelectFiles(new ArrayList(arrayList2), null, null, arrayList, false, 0, 0L, false, 0L);
+                } else {
+                    arrayList = new ArrayList();
+                    it = map2.keySet().iterator();
+                    while (it.hasNext()) {
+                        arrayList.add((MessageObject) map2.get((FilteredSearchView.MessageHashId) it.next()));
+                    }
+                    this.delegate.didSelectFiles(new ArrayList(arrayList2), null, null, arrayList, false, 0, 0L, false, 0L);
+                }
+                return true;
+            }
+            return false;
+        }
+        ListItem listItem = (ListItem) obj;
+        File file = listItem.file;
+        if (file != null && !file.isDirectory()) {
+            String absolutePath = listItem.file.getAbsolutePath();
+            if (map.containsKey(absolutePath)) {
+                map.remove(absolutePath);
+                arrayList2.remove(absolutePath);
+                z = false;
             } else {
-                z3 = false;
-            }
-            if (!z3) {
-                ChatAttachAlertDocumentLayout.this.filtersView.setUsersAndDates(null, null, false);
-            }
-            ChatAttachAlertDocumentLayout.this.filtersView.setEnabled(z3);
-            if (!z3 || ChatAttachAlertDocumentLayout.this.filtersView.getTag() == null) {
-                if (z3 || ChatAttachAlertDocumentLayout.this.filtersView.getTag() != null) {
-                    ChatAttachAlertDocumentLayout.this.filtersView.setTag(z3 ? 1 : null);
-                    if (ChatAttachAlertDocumentLayout.this.filtersViewAnimator != null) {
-                        ChatAttachAlertDocumentLayout.this.filtersViewAnimator.cancel();
-                    }
-                    if (z2) {
-                        if (z3) {
-                            ChatAttachAlertDocumentLayout.this.filtersView.setVisibility(0);
-                        }
-                        ChatAttachAlertDocumentLayout.this.filtersViewAnimator = new AnimatorSet();
-                        AnimatorSet animatorSet = ChatAttachAlertDocumentLayout.this.filtersViewAnimator;
-                        RecyclerListView recyclerListView = ChatAttachAlertDocumentLayout.this.listView;
-                        Property property = View.TRANSLATION_Y;
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) property, z3 ? AndroidUtilities.dp(44.0f) : 0.0f), ObjectAnimator.ofFloat(ChatAttachAlertDocumentLayout.this.filtersView, (Property<FiltersView, Float>) property, z3 ? 0.0f : -AndroidUtilities.dp(44.0f)), ObjectAnimator.ofFloat(ChatAttachAlertDocumentLayout.this.loadingView, (Property<FlickerLoadingView, Float>) property, z3 ? AndroidUtilities.dp(44.0f) : 0.0f), ObjectAnimator.ofFloat(ChatAttachAlertDocumentLayout.this.emptyView, (Property<StickerEmptyView, Float>) property, z3 ? AndroidUtilities.dp(44.0f) : 0.0f));
-                        ChatAttachAlertDocumentLayout.this.filtersViewAnimator.addListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animator) {
-                                if (ChatAttachAlertDocumentLayout.this.filtersView.getTag() == null) {
-                                    ChatAttachAlertDocumentLayout.this.filtersView.setVisibility(4);
-                                }
-                                ChatAttachAlertDocumentLayout.this.filtersViewAnimator = null;
-                            }
-                        });
-                        ChatAttachAlertDocumentLayout.this.filtersViewAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-                        ChatAttachAlertDocumentLayout.this.filtersViewAnimator.setDuration(180L);
-                        ChatAttachAlertDocumentLayout.this.filtersViewAnimator.start();
-                        return;
-                    }
-                    ChatAttachAlertDocumentLayout.this.filtersView.getAdapter().notifyDataSetChanged();
-                    ChatAttachAlertDocumentLayout.this.listView.setTranslationY(z3 ? AndroidUtilities.dp(44.0f) : 0.0f);
-                    ChatAttachAlertDocumentLayout.this.filtersView.setTranslationY(z3 ? 0.0f : -AndroidUtilities.dp(44.0f));
-                    ChatAttachAlertDocumentLayout.this.loadingView.setTranslationY(z3 ? AndroidUtilities.dp(44.0f) : 0.0f);
-                    ChatAttachAlertDocumentLayout.this.emptyView.setTranslationY(z3 ? AndroidUtilities.dp(44.0f) : 0.0f);
-                    ChatAttachAlertDocumentLayout.this.filtersView.setVisibility(z3 ? 0 : 4);
+                if (!listItem.file.canRead()) {
+                    showErrorBox$2(LocaleController.getString(R.string.AccessError));
+                    return false;
                 }
-            }
-        }
-
-        private void searchGlobal(final long j, final long j2, final long j3, FiltersView.MediaFilterData mediaFilterData, final String str, boolean z) {
-            final String str2 = String.format(Locale.ENGLISH, "%d%d%d%d%s", Long.valueOf(j), Long.valueOf(j2), Long.valueOf(j3), Integer.valueOf(mediaFilterData.filterType), str);
-            String str3 = this.lastSearchFilterQueryString;
-            final boolean z2 = str3 != null && str3.equals(str2);
-            boolean z3 = !z2 && z;
-            this.currentSearchFilter = mediaFilterData;
-            this.currentSearchDialogId = j;
-            this.currentSearchMinDate = j2;
-            this.currentSearchMaxDate = j3;
-            Runnable runnable = this.searchRunnable;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-            }
-            AndroidUtilities.cancelRunOnUIThread(this.clearCurrentResultsRunnable);
-            if (z2 && z) {
-                return;
-            }
-            if (z3) {
-                this.messages.clear();
-                this.sections.clear();
-                this.sectionArrays.clear();
-                this.isLoading = true;
-                ChatAttachAlertDocumentLayout.this.emptyView.setVisibility(0);
-                notifyDataSetChanged();
-                this.requestIndex++;
-                this.firstLoading = true;
-                if (ChatAttachAlertDocumentLayout.this.listView.getPinnedHeader() != null) {
-                    ChatAttachAlertDocumentLayout.this.listView.getPinnedHeader().setAlpha(0.0f);
+                if (this.canSelectOnlyImageFiles && listItem.thumb == null) {
+                    showErrorBox$2(LocaleController.formatString("PassportUploadNotImage", R.string.PassportUploadNotImage, new Object[0]));
+                    return false;
                 }
-                this.localTipChats.clear();
-                this.localTipDates.clear();
-            }
-            this.isLoading = true;
-            notifyDataSetChanged();
-            if (!z2) {
-                this.clearCurrentResultsRunnable.run();
-                ChatAttachAlertDocumentLayout.this.emptyView.showProgress(true, !z);
-            }
-            if (TextUtils.isEmpty(str)) {
-                this.localTipDates.clear();
-                this.localTipChats.clear();
-                updateFiltersView(false, null, null, true);
-                return;
-            }
-            final int i = this.requestIndex + 1;
-            this.requestIndex = i;
-            final AccountInstance accountInstance = AccountInstance.getInstance(UserConfig.selectedAccount);
-            Runnable runnable2 = new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertDocumentLayout.SearchAdapter.$r8$lambda$KeqFGStBfiRHBNclSveLJyMOpTQ(this.f$0, j, str, accountInstance, j2, j3, z2, str2, i);
+                if ((listItem.file.length() > 2097152000 && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) || listItem.file.length() > 4194304000L) {
+                    LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(6, UserConfig.selectedAccount, chatAttachAlert.getContainer().getContext(), chatAttachAlert.baseFragment, null);
+                    limitReachedBottomSheet.isVeryLargeFile = true;
+                    limitReachedBottomSheet.updatePremiumButtonText();
+                    limitReachedBottomSheet.show();
+                    return false;
                 }
-            };
-            this.searchRunnable = runnable2;
-            AndroidUtilities.runOnUIThread(runnable2, (!z2 || this.messages.isEmpty()) ? 350L : 0L);
-            ChatAttachAlertDocumentLayout.this.loadingView.setViewType(3);
-        }
-
-        public static void $r8$lambda$KeqFGStBfiRHBNclSveLJyMOpTQ(final SearchAdapter searchAdapter, final long j, final String str, final AccountInstance accountInstance, final long j2, long j3, final boolean z, String str2, final int i) {
-            long j4;
-            TLObject tLObject;
-            searchAdapter.getClass();
-            ArrayList<Object> arrayList = null;
-            if (j != 0) {
-                TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
-                tL_messages_search.q = str;
-                tL_messages_search.limit = 20;
-                tL_messages_search.filter = searchAdapter.currentSearchFilter.filter;
-                tL_messages_search.peer = accountInstance.getMessagesController().getInputPeer(j);
-                if (j2 > 0) {
-                    tL_messages_search.min_date = (int) (j2 / 1000);
-                }
-                if (j3 > 0) {
-                    tL_messages_search.max_date = (int) (j3 / 1000);
-                }
-                if (z && str.equals(searchAdapter.lastMessagesSearchString) && !searchAdapter.messages.isEmpty()) {
-                    ArrayList arrayList2 = searchAdapter.messages;
-                    tL_messages_search.offset_id = ((MessageObject) arrayList2.get(arrayList2.size() - 1)).getId();
-                    tLObject = tL_messages_search;
-                } else {
-                    tL_messages_search.offset_id = 0;
-                    tLObject = tL_messages_search;
-                }
-            } else {
-                if (!TextUtils.isEmpty(str)) {
-                    ArrayList<Object> arrayList3 = new ArrayList<>();
-                    accountInstance.getMessagesStorage().localSearch(0, str, arrayList3, new ArrayList<>(), new ArrayList<>(), null, -1);
-                    arrayList = arrayList3;
-                }
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
-                tL_messages_searchGlobal.limit = 20;
-                tL_messages_searchGlobal.q = str;
-                tL_messages_searchGlobal.filter = searchAdapter.currentSearchFilter.filter;
-                if (j2 > 0) {
-                    tL_messages_searchGlobal.min_date = (int) (j2 / 1000);
-                }
-                if (j3 > 0) {
-                    tL_messages_searchGlobal.max_date = (int) (j3 / 1000);
-                }
-                if (z && str.equals(searchAdapter.lastMessagesSearchString) && !searchAdapter.messages.isEmpty()) {
-                    ArrayList arrayList4 = searchAdapter.messages;
-                    MessageObject messageObject = (MessageObject) arrayList4.get(arrayList4.size() - 1);
-                    tL_messages_searchGlobal.offset_id = messageObject.getId();
-                    tL_messages_searchGlobal.offset_rate = searchAdapter.nextSearchRate;
-                    TLRPC.Peer peer = messageObject.messageOwner.peer_id;
-                    long j5 = peer.channel_id;
-                    if (j5 != 0) {
-                        j4 = -j5;
-                    } else {
-                        j5 = peer.chat_id;
-                        if (j5 != 0) {
-                            j4 = -j5;
-                        } else {
-                            j4 = peer.user_id;
-                        }
-                    }
-                    tL_messages_searchGlobal.offset_peer = accountInstance.getMessagesController().getInputPeer(j4);
-                    tLObject = tL_messages_searchGlobal;
-                } else {
-                    tL_messages_searchGlobal.offset_rate = 0;
-                    tL_messages_searchGlobal.offset_id = 0;
-                    tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                    tLObject = tL_messages_searchGlobal;
-                }
-            }
-            TLObject tLObject2 = tLObject;
-            searchAdapter.lastMessagesSearchString = str;
-            searchAdapter.lastSearchFilterQueryString = str2;
-            final ArrayList arrayList5 = new ArrayList();
-            FiltersView.fillTipDates(searchAdapter.lastMessagesSearchString, arrayList5);
-            final ArrayList<Object> arrayList6 = arrayList;
-            accountInstance.getConnectionsManager().sendRequest(tLObject2, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
-                    ChatAttachAlertDocumentLayout.SearchAdapter.$r8$lambda$NKYEcEfBAJnp_84U8739SOLvYLA(this.f$0, accountInstance, str, i, z, j, j2, arrayList6, arrayList5, tLObject3, tL_error);
-                }
-            });
-        }
-
-        public static void $r8$lambda$NKYEcEfBAJnp_84U8739SOLvYLA(final SearchAdapter searchAdapter, final AccountInstance accountInstance, final String str, final int i, final boolean z, final long j, final long j2, final ArrayList arrayList, final ArrayList arrayList2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-            searchAdapter.getClass();
-            final ArrayList arrayList3 = new ArrayList();
-            if (tL_error == null) {
-                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                int size = messages_messages.messages.size();
-                for (int i2 = 0; i2 < size; i2++) {
-                    MessageObject messageObject = new MessageObject(accountInstance.getCurrentAccount(), messages_messages.messages.get(i2), false, true);
-                    messageObject.setQuery(str);
-                    arrayList3.add(messageObject);
-                }
-            }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertDocumentLayout.SearchAdapter.$r8$lambda$02JwIZyJ8dsgvm7_5_03zIq29Og(this.f$0, i, tL_error, tLObject, accountInstance, z, str, arrayList3, j, j2, arrayList, arrayList2);
-                }
-            });
-        }
-
-        public static void $r8$lambda$02JwIZyJ8dsgvm7_5_03zIq29Og(SearchAdapter searchAdapter, int i, TLRPC.TL_error tL_error, TLObject tLObject, AccountInstance accountInstance, boolean z, String str, ArrayList arrayList, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
-            if (i != searchAdapter.requestIndex) {
-                return;
-            }
-            searchAdapter.isLoading = false;
-            if (tL_error != null) {
-                ChatAttachAlertDocumentLayout.this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
-                ChatAttachAlertDocumentLayout.this.emptyView.subtitle.setVisibility(0);
-                ChatAttachAlertDocumentLayout.this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                ChatAttachAlertDocumentLayout.this.emptyView.showProgress(false, true);
-                return;
-            }
-            ChatAttachAlertDocumentLayout.this.emptyView.showProgress(false);
-            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-            searchAdapter.nextSearchRate = messages_messages.next_rate;
-            accountInstance.getMessagesStorage().putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
-            accountInstance.getMessagesController().putUsers(messages_messages.users, false);
-            accountInstance.getMessagesController().putChats(messages_messages.chats, false);
-            if (!z) {
-                searchAdapter.messages.clear();
-                searchAdapter.messagesById.clear();
-                searchAdapter.sections.clear();
-                searchAdapter.sectionArrays.clear();
-            }
-            int size = messages_messages.count;
-            searchAdapter.currentDataQuery = str;
-            int size2 = arrayList.size();
-            for (int i2 = 0; i2 < size2; i2++) {
-                MessageObject messageObject = (MessageObject) arrayList.get(i2);
-                ArrayList arrayList4 = (ArrayList) searchAdapter.sectionArrays.get(messageObject.monthKey);
-                if (arrayList4 == null) {
-                    arrayList4 = new ArrayList();
-                    searchAdapter.sectionArrays.put(messageObject.monthKey, arrayList4);
-                    searchAdapter.sections.add(messageObject.monthKey);
-                }
-                arrayList4.add(messageObject);
-                searchAdapter.messages.add(messageObject);
-                searchAdapter.messagesById.put(messageObject.getId(), messageObject);
-            }
-            if (searchAdapter.messages.size() > size) {
-                size = searchAdapter.messages.size();
-            }
-            searchAdapter.endReached = searchAdapter.messages.size() >= size;
-            if (searchAdapter.messages.isEmpty()) {
-                if (!TextUtils.isEmpty(searchAdapter.currentDataQuery) || j != 0 || j2 != 0) {
-                    ChatAttachAlertDocumentLayout.this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
-                    ChatAttachAlertDocumentLayout.this.emptyView.subtitle.setVisibility(0);
-                    ChatAttachAlertDocumentLayout.this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                } else {
-                    ChatAttachAlertDocumentLayout.this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle));
-                    ChatAttachAlertDocumentLayout.this.emptyView.subtitle.setVisibility(0);
-                    ChatAttachAlertDocumentLayout.this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitleFiles));
-                }
-            }
-            if (!z) {
-                searchAdapter.localTipChats.clear();
-                if (arrayList2 != null) {
-                    searchAdapter.localTipChats.addAll(arrayList2);
-                }
-                if (str.length() >= 3 && (LocaleController.getString(R.string.SavedMessages).toLowerCase().startsWith(str) || "saved messages".startsWith(str))) {
-                    int i3 = 0;
-                    while (true) {
-                        if (i3 < searchAdapter.localTipChats.size()) {
-                            if ((searchAdapter.localTipChats.get(i3) instanceof TLRPC.User) && UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == ((TLRPC.User) searchAdapter.localTipChats.get(i3)).id) {
-                                break;
-                            } else {
-                                i3++;
-                            }
-                        } else {
-                            searchAdapter.localTipChats.add(0, UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
-                            break;
-                        }
+                if (this.maxSelectedFiles >= 0) {
+                    int size = map.size();
+                    int i2 = this.maxSelectedFiles;
+                    if (size >= i2) {
+                        showErrorBox$2(LocaleController.formatString("PassportUploadMaxReached", R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", i2, new Object[0])));
+                        return false;
                     }
                 }
-                searchAdapter.localTipDates.clear();
-                searchAdapter.localTipDates.addAll(arrayList3);
-                searchAdapter.updateFiltersView(TextUtils.isEmpty(searchAdapter.currentDataQuery), searchAdapter.localTipChats, searchAdapter.localTipDates, true);
-            }
-            searchAdapter.firstLoading = false;
-            final View view = null;
-            final int childAdapterPosition = -1;
-            for (int i4 = 0; i4 < size2; i4++) {
-                View childAt = ChatAttachAlertDocumentLayout.this.listView.getChildAt(i4);
-                if (childAt instanceof FlickerLoadingView) {
-                    childAdapterPosition = ChatAttachAlertDocumentLayout.this.listView.getChildAdapterPosition(childAt);
-                    view = childAt;
-                }
-            }
-            if (view != null) {
-                ChatAttachAlertDocumentLayout.this.listView.removeView(view);
-            }
-            if ((ChatAttachAlertDocumentLayout.this.loadingView.getVisibility() == 0 && ChatAttachAlertDocumentLayout.this.listView.getChildCount() <= 1) || view != null) {
-                ChatAttachAlertDocumentLayout.this.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                    public boolean onPreDraw() {
-                        ChatAttachAlertDocumentLayout.this.getViewTreeObserver().removeOnPreDrawListener(this);
-                        int childCount = ChatAttachAlertDocumentLayout.this.listView.getChildCount();
-                        AnimatorSet animatorSet = new AnimatorSet();
-                        for (int i5 = 0; i5 < childCount; i5++) {
-                            View childAt2 = ChatAttachAlertDocumentLayout.this.listView.getChildAt(i5);
-                            if (view == null || ChatAttachAlertDocumentLayout.this.listView.getChildAdapterPosition(childAt2) >= childAdapterPosition) {
-                                childAt2.setAlpha(0.0f);
-                                int iMin = (int) ((Math.min(ChatAttachAlertDocumentLayout.this.listView.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / ChatAttachAlertDocumentLayout.this.listView.getMeasuredHeight()) * 100.0f);
-                                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(childAt2, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
-                                objectAnimatorOfFloat.setStartDelay(iMin);
-                                objectAnimatorOfFloat.setDuration(200L);
-                                animatorSet.playTogether(objectAnimatorOfFloat);
-                            }
-                        }
-                        animatorSet.addListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animator) {
-                                SearchAdapter.this.notificationsLocker.unlock();
-                            }
-                        });
-                        SearchAdapter.this.notificationsLocker.lock();
-                        animatorSet.start();
-                        View view2 = view;
-                        if (view2 != null && view2.getParent() == null) {
-                            ChatAttachAlertDocumentLayout.this.listView.addView(view);
-                            final RecyclerView.LayoutManager layoutManager = ChatAttachAlertDocumentLayout.this.listView.getLayoutManager();
-                            if (layoutManager != null) {
-                                layoutManager.ignoreView(view);
-                                View view3 = view;
-                                ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(view3, (Property<View, Float>) View.ALPHA, view3.getAlpha(), 0.0f);
-                                objectAnimatorOfFloat2.addListener(new AnimatorListenerAdapter() {
-                                    @Override
-                                    public void onAnimationEnd(Animator animator) {
-                                        view.setAlpha(1.0f);
-                                        layoutManager.stopIgnoringView(view);
-                                        ChatAttachAlertDocumentLayout.this.listView.removeView(view);
-                                    }
-                                });
-                                objectAnimatorOfFloat2.start();
-                            }
-                        }
-                        return true;
-                    }
-                });
-            }
-            searchAdapter.notifyDataSetChanged();
-        }
-
-        private void updateSearchResults(final ArrayList arrayList, String str) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertDocumentLayout.SearchAdapter.m2171$r8$lambda$p_3c5_kyxC2Ckh8RSXS4WIGAE(this.f$0, arrayList);
-                }
-            });
-        }
-
-        public static void m2171$r8$lambda$p_3c5_kyxC2Ckh8RSXS4WIGAE(SearchAdapter searchAdapter, ArrayList arrayList) {
-            if (ChatAttachAlertDocumentLayout.this.searching && ChatAttachAlertDocumentLayout.this.listView.getAdapter() != ChatAttachAlertDocumentLayout.this.searchAdapter) {
-                ChatAttachAlertDocumentLayout.this.listView.setAdapter(ChatAttachAlertDocumentLayout.this.searchAdapter);
-            }
-            searchAdapter.searchResult = arrayList;
-            searchAdapter.notifyDataSetChanged();
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder, int i, int i2) {
-            int itemViewType = viewHolder.getItemViewType();
-            return itemViewType == 1 || itemViewType == 4;
-        }
-
-        @Override
-        public int getSectionCount() {
-            if (this.sections.isEmpty()) {
-                return 2;
-            }
-            return this.sections.size() + (!this.endReached ? 1 : 0) + 2;
-        }
-
-        @Override
-        public Object getItem(int i, int i2) {
-            ArrayList arrayList;
-            if (i == 0) {
-                if (i2 < this.searchResult.size()) {
-                    return this.searchResult.get(i2);
-                }
-                return null;
-            }
-            int i3 = i - 1;
-            if (i3 >= this.sections.size() || (arrayList = (ArrayList) this.sectionArrays.get(this.sections.get(i3))) == null) {
-                return null;
-            }
-            int i4 = i2 - ((i3 == 0 && this.searchResult.isEmpty()) ? 0 : 1);
-            if (i4 < 0 || i4 >= arrayList.size()) {
-                return null;
-            }
-            return arrayList.get(i4);
-        }
-
-        @Override
-        public int getCountForSection(int i) {
-            if (i == 0) {
-                return this.searchResult.size();
-            }
-            int i2 = i - 1;
-            int i3 = 1;
-            if (i2 >= this.sections.size()) {
-                return 1;
-            }
-            ArrayList arrayList = (ArrayList) this.sectionArrays.get(this.sections.get(i2));
-            if (arrayList == null) {
-                return 0;
-            }
-            int size = arrayList.size();
-            if (i2 == 0 && this.searchResult.isEmpty()) {
-                i3 = 0;
-            }
-            return size + i3;
-        }
-
-        @Override
-        public View getSectionHeaderView(int i, View view) {
-            String sectionDate;
-            GraySectionCell graySectionCell = (GraySectionCell) view;
-            if (graySectionCell == null) {
-                graySectionCell = new GraySectionCell(this.mContext, ChatAttachAlertDocumentLayout.this.resourcesProvider);
-                graySectionCell.setBackgroundColor(ChatAttachAlertDocumentLayout.this.getThemedColor(Theme.key_graySection) & (-218103809));
-            }
-            if (i == 0 || (i == 1 && this.searchResult.isEmpty())) {
-                graySectionCell.setAlpha(0.0f);
-                return graySectionCell;
-            }
-            int i2 = i - 1;
-            if (i2 < this.sections.size()) {
-                graySectionCell.setAlpha(1.0f);
-                ArrayList arrayList = (ArrayList) this.sectionArrays.get((String) this.sections.get(i2));
-                if (arrayList != null) {
-                    MessageObject messageObject = (MessageObject) arrayList.get(0);
-                    if (i2 == 0 && !this.searchResult.isEmpty()) {
-                        sectionDate = LocaleController.getString(R.string.GlobalSearch);
-                    } else {
-                        sectionDate = LocaleController.formatSectionDate(messageObject.messageOwner.date);
-                    }
-                    graySectionCell.setText(sectionDate);
-                }
-            }
-            return view;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View graySectionCell;
-            if (i != 0) {
-                if (i == 1) {
-                    SharedDocumentCell sharedDocumentCell = new SharedDocumentCell(this.mContext, i == 1 ? 1 : 2, ChatAttachAlertDocumentLayout.this.resourcesProvider);
-                    sharedDocumentCell.setDrawDownloadIcon(false);
-                    graySectionCell = sharedDocumentCell;
-                } else if (i == 2) {
-                    FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext, ChatAttachAlertDocumentLayout.this.resourcesProvider);
-                    flickerLoadingView.setViewType(3);
-                    flickerLoadingView.setIsSingleCell(true);
-                    graySectionCell = flickerLoadingView;
-                } else if (i == 4) {
-                    SharedDocumentCell sharedDocumentCell2 = new SharedDocumentCell(this.mContext, i == 1 ? 1 : 2, ChatAttachAlertDocumentLayout.this.resourcesProvider);
-                    sharedDocumentCell2.setDrawDownloadIcon(false);
-                    graySectionCell = sharedDocumentCell2;
-                } else {
-                    View view = new View(this.mContext);
-                    view.setTag(-33024);
-                    graySectionCell = view;
-                }
-            } else {
-                graySectionCell = new GraySectionCell(this.mContext, ChatAttachAlertDocumentLayout.this.resourcesProvider);
-            }
-            graySectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(graySectionCell);
-        }
-
-        @Override
-        public void onBindViewHolder(int i, int i2, RecyclerView.ViewHolder viewHolder) {
-            String sectionDate;
-            int itemViewType = viewHolder.getItemViewType();
-            if (itemViewType == 2 || itemViewType == 3) {
-                return;
-            }
-            boolean z = false;
-            if (itemViewType == 0) {
-                int i3 = i - 1;
-                ArrayList arrayList = (ArrayList) this.sectionArrays.get((String) this.sections.get(i3));
-                if (arrayList == null) {
-                    return;
-                }
-                MessageObject messageObject = (MessageObject) arrayList.get(0);
-                if (i3 == 0 && !this.searchResult.isEmpty()) {
-                    sectionDate = LocaleController.getString(R.string.GlobalSearch);
-                } else {
-                    sectionDate = LocaleController.formatSectionDate(messageObject.messageOwner.date);
-                }
-                ((GraySectionCell) viewHolder.itemView).setText(sectionDate);
-                return;
-            }
-            if (itemViewType == 1 || itemViewType == 4) {
-                final SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) viewHolder.itemView;
-                if (i == 0) {
-                    ListItem listItem = (ListItem) getItem(i2);
-                    SharedDocumentCell sharedDocumentCell2 = (SharedDocumentCell) viewHolder.itemView;
-                    int i4 = listItem.icon;
-                    if (i4 != 0) {
-                        sharedDocumentCell2.setTextAndValueAndTypeAndThumb(listItem.title, listItem.subtitle, null, null, i4, false);
-                    } else {
-                        sharedDocumentCell2.setTextAndValueAndTypeAndThumb(listItem.title, listItem.subtitle, listItem.ext.toUpperCase().substring(0, Math.min(listItem.ext.length(), 4)), listItem.thumb, 0, false);
-                    }
-                    if (listItem.file != null) {
-                        sharedDocumentCell2.setChecked(ChatAttachAlertDocumentLayout.this.selectedFiles.containsKey(listItem.file.toString()), !ChatAttachAlertDocumentLayout.this.scrolling);
-                        return;
-                    } else {
-                        sharedDocumentCell2.setChecked(false, !ChatAttachAlertDocumentLayout.this.scrolling);
-                        return;
-                    }
-                }
-                int i5 = i - 1;
-                if (i5 != 0 || !this.searchResult.isEmpty()) {
-                    i2--;
-                }
-                ArrayList arrayList2 = (ArrayList) this.sectionArrays.get((String) this.sections.get(i5));
-                if (arrayList2 == null) {
-                    return;
-                }
-                final MessageObject messageObject2 = (MessageObject) arrayList2.get(i2);
-                final boolean z2 = sharedDocumentCell.getMessage() != null && sharedDocumentCell.getMessage().getId() == messageObject2.getId();
-                if (i2 != arrayList2.size() - 1 || (i5 == this.sections.size() - 1 && this.isLoading)) {
+                if ((!this.isSoundPicker || isRingtone(listItem.file)) && listItem.file.length() != 0) {
+                    boolean z4 = chatAttachAlert.storyMediaPicker;
+                    map.put(absolutePath, listItem);
+                    arrayList2.add(absolutePath);
                     z = true;
                 }
-                sharedDocumentCell.setDocument(messageObject2, z);
-                sharedDocumentCell.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                    public boolean onPreDraw() {
-                        sharedDocumentCell.getViewTreeObserver().removeOnPreDrawListener(this);
-                        if (ChatAttachAlertDocumentLayout.this.parentAlert.actionBar.isActionModeShowed()) {
-                            SearchAdapter.this.messageHashIdTmp.set(messageObject2.getId(), messageObject2.getDialogId());
-                            sharedDocumentCell.setChecked(ChatAttachAlertDocumentLayout.this.selectedMessages.containsKey(SearchAdapter.this.messageHashIdTmp), z2);
-                            return true;
-                        }
-                        sharedDocumentCell.setChecked(false, z2);
-                        return true;
-                    }
-                });
             }
+            this.scrolling = false;
+            z3 = z;
+            if (chatAttachAlert.isPollAttach) {
+                if (view instanceof SharedDocumentCell) {
+                    ((SharedDocumentCell) view).setChecked(z3, true);
+                }
+                if (z3) {
+                    i = 1;
+                } else {
+                    i = 2;
+                }
+                chatAttachAlert.updateCountButton(i);
+                return true;
+            }
+            if ((map.isEmpty() || !map2.isEmpty()) && this.delegate != null && !this.sendPressed) {
+                arrayList = new ArrayList();
+                it = map2.keySet().iterator();
+                while (it.hasNext()) {
+                    arrayList.add((MessageObject) map2.get((FilteredSearchView.MessageHashId) it.next()));
+                }
+                this.delegate.didSelectFiles(new ArrayList(arrayList2), null, null, arrayList, false, 0, 0L, false, 0L);
+            }
+            return true;
         }
+        return false;
+    }
 
-        @Override
-        public int getItemViewType(int i, int i2) {
-            if (i == 0) {
-                return 1;
-            }
-            if (i == getSectionCount() - 1) {
-                return 3;
-            }
-            int i3 = i - 1;
-            if (i3 < this.sections.size()) {
-                return (!(i3 == 0 && this.searchResult.isEmpty()) && i2 == 0) ? 0 : 4;
-            }
-            return 2;
-        }
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        updateEmptyViewPosition$3();
+    }
 
-        @Override
-        public void notifyDataSetChanged() {
-            super.notifyDataSetChanged();
-            ChatAttachAlertDocumentLayout.this.updateEmptyView();
-        }
-
-        @Override
-        public void getPositionForScrollProgress(RecyclerListView recyclerListView, float f, int[] iArr) {
-            iArr[0] = 0;
-            iArr[1] = 0;
+    @Override
+    public final void onMenuItemClick(int i) {
+        if (i == 6) {
+            SharedConfig.toggleSortFilesByName();
+            this.sortByName = SharedConfig.sortFilesByName;
+            ListAdapter listAdapter = this.listAdapter;
+            Collections.sort(listAdapter.recentItems, new ChatAttachAlertDocumentLayout$$ExternalSyntheticLambda3(this, 1));
+            if (this.currentDir != null) {
+                Collections.sort(listAdapter.items, new ChatAttachAlertDocumentLayout$$ExternalSyntheticLambda3(this, 0));
+            }
+            listAdapter.notifyDataSetChanged();
+            this.sortItem.setIcon(this.sortByName ? R.drawable.msg_contacts_time : R.drawable.msg_contacts_name);
         }
     }
 
     @Override
-    public ArrayList<ThemeDescription> getThemeDescriptions() {
-        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.searchItem.getSearchField(), ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, Theme.key_dialogTextBlack));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_dialogScrollGlow));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGray));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{SharedDocumentCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlackText));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{SharedDocumentCell.class}, new String[]{"dateTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText3));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKBOX, new Class[]{SharedDocumentCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_checkbox));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CHECKBOXCHECK, new Class[]{SharedDocumentCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_checkboxCheck));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{SharedDocumentCell.class}, new String[]{"thumbImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_files_folderIcon));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{SharedDocumentCell.class}, new String[]{"thumbImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_files_folderIconBackground));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{SharedDocumentCell.class}, new String[]{"extTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_files_iconText));
-        return arrayList;
+    public final void onPreMeasure(int i, int i2) {
+        int iDp;
+        int i3;
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        if (chatAttachAlert.actionBar.isSearchFieldVisible || chatAttachAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
+            iDp = AndroidUtilities.dp(56.0f);
+            chatAttachAlert.setAllowNestedScroll(false);
+        } else {
+            if (AndroidUtilities.isTablet()) {
+                i3 = (i2 / 5) * 2;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    i3 = (int) (i2 / 3.5f);
+                } else {
+                    i3 = (i2 / 5) * 2;
+                }
+            }
+            iDp = i3 - AndroidUtilities.dp(1.0f);
+            if (iDp < 0) {
+                iDp = 0;
+            }
+            chatAttachAlert.setAllowNestedScroll(true);
+        }
+        setPaddingWithoutRequestLayout(0, iDp + AndroidUtilities.statusBarHeight, 0, this.listPaddingBottom);
+        ((FrameLayout.LayoutParams) this.filtersView.getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight();
+    }
+
+    @Override
+    public final void onResume() {
+        ListAdapter listAdapter = this.listAdapter;
+        if (listAdapter != null) {
+            listAdapter.notifyDataSetChanged();
+        }
+        SearchAdapter searchAdapter = this.searchAdapter;
+        if (searchAdapter != null) {
+            searchAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public final void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) throws Throwable {
+        this.selectedFiles.clear();
+        this.selectedMessages.clear();
+        this.searchAdapter.currentSearchFilters.clear();
+        this.selectedFilesOrder.clear();
+        this.listAdapter.history.clear();
+        listRoots();
+        updateSearchButton();
+        updateEmptyView$6();
+        this.parentAlert.actionBar.setTitle(LocaleController.getString(R.string.SelectFile));
+        this.sortItem.setVisibility(0);
+        ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass4 = this.layoutManager;
+        anonymousClass4.scrollToPositionWithOffset(0, 0, anonymousClass4.mShouldReverseLayout);
+    }
+
+    public final void prepareAnimation() {
+        View viewFindViewByPosition;
+        ListAdapter listAdapter = this.backgroundListAdapter;
+        listAdapter.history.clear();
+        ArrayList arrayList = listAdapter.history;
+        ListAdapter listAdapter2 = this.listAdapter;
+        arrayList.addAll(listAdapter2.history);
+        listAdapter.items.clear();
+        listAdapter.items.addAll(listAdapter2.items);
+        listAdapter.recentItems.clear();
+        listAdapter.recentItems.addAll(listAdapter2.recentItems);
+        listAdapter.notifyDataSetChanged();
+        AnonymousClass4 anonymousClass4 = this.backgroundListView;
+        anonymousClass4.setVisibility(0);
+        AnonymousClass4 anonymousClass5 = this.listView;
+        anonymousClass4.setPadding(anonymousClass5.getPaddingLeft(), anonymousClass5.getPaddingTop(), anonymousClass5.getPaddingRight(), anonymousClass5.getPaddingBottom());
+        ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass6 = this.layoutManager;
+        int iFindFirstVisibleItemPosition = anonymousClass6.findFirstVisibleItemPosition();
+        if (iFindFirstVisibleItemPosition < 0 || (viewFindViewByPosition = anonymousClass6.findViewByPosition(iFindFirstVisibleItemPosition)) == null) {
+            return;
+        }
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = this.backgroundLayoutManager;
+        fillLastLinearLayoutManager.scrollToPositionWithOffset(iFindFirstVisibleItemPosition, viewFindViewByPosition.getTop() - anonymousClass4.getPaddingTop(), fillLastLinearLayoutManager.mShouldReverseLayout);
+    }
+
+    public final void runAnimation(int i) {
+        AnonymousClass4 anonymousClass4;
+        float fDp;
+        ValueAnimator valueAnimator = this.listAnimation;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        this.currentAnimationType = i;
+        int i2 = 0;
+        while (true) {
+            int childCount = getChildCount();
+            anonymousClass4 = this.listView;
+            if (i2 >= childCount) {
+                i2 = 0;
+                break;
+            } else if (getChildAt(i2) == anonymousClass4) {
+                break;
+            } else {
+                i2++;
+            }
+        }
+        AnonymousClass4 anonymousClass5 = this.backgroundListView;
+        if (i == 1) {
+            fDp = AndroidUtilities.dp(150.0f);
+            anonymousClass5.setAlpha(1.0f);
+            anonymousClass5.setScaleX(1.0f);
+            anonymousClass5.setScaleY(1.0f);
+            anonymousClass5.setTranslationX(0.0f);
+            removeView(anonymousClass5);
+            addView(anonymousClass5, i2);
+            anonymousClass5.setVisibility(0);
+            anonymousClass4.setTranslationX(fDp);
+            anonymousClass4.setAlpha(0.0f);
+            this.listAnimation = ValueAnimator.ofFloat(1.0f, 0.0f);
+        } else {
+            fDp = AndroidUtilities.dp(150.0f);
+            anonymousClass4.setAlpha(0.0f);
+            anonymousClass4.setScaleX(0.95f);
+            anonymousClass4.setScaleY(0.95f);
+            anonymousClass5.setScaleX(1.0f);
+            anonymousClass5.setScaleY(1.0f);
+            anonymousClass5.setTranslationX(0.0f);
+            anonymousClass5.setAlpha(1.0f);
+            removeView(anonymousClass5);
+            addView(anonymousClass5, i2 + 1);
+            anonymousClass5.setVisibility(0);
+            this.listAnimation = ValueAnimator.ofFloat(0.0f, 1.0f);
+        }
+        this.listAnimation.addUpdateListener(new MessagePreviewView$Page$$ExternalSyntheticLambda0(this, i, fDp, 1));
+        this.listAnimation.addListener(new CheckBox.AnonymousClass1(this, 16));
+        if (i == 1) {
+            this.listAnimation.setDuration(220L);
+        } else {
+            this.listAnimation.setDuration(200L);
+        }
+        this.listAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        this.listAnimation.start();
+    }
+
+    @Override
+    public final void scrollToTop() {
+        smoothScrollToPosition(0);
+    }
+
+    @Override
+    public final boolean sendSelectedItems(final int i, final boolean z, int i2, final boolean z2, final long j) {
+        int size = this.selectedFiles.size();
+        HashMap map = this.selectedMessages;
+        if ((size == 0 && map.size() == 0) || this.delegate == null || this.sendPressed) {
+            return false;
+        }
+        final ArrayList arrayList = new ArrayList();
+        Iterator it = map.keySet().iterator();
+        while (it.hasNext()) {
+            arrayList.add((MessageObject) map.get((FilteredSearchView.MessageHashId) it.next()));
+        }
+        final ArrayList arrayList2 = new ArrayList(this.selectedFilesOrder);
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        CharSequence[] charSequenceArr = {chatAttachAlert.getCommentView().getText()};
+        final ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(chatAttachAlert.currentAccount).getEntities(charSequenceArr, true);
+        final String string = charSequenceArr[0].toString();
+        return AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), chatAttachAlert.getAdditionalMessagesCount() + arrayList2.size() + (1 ^ (TextUtils.isEmpty(string) ? 1 : 0)), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ChatAttachAlertDocumentLayout chatAttachAlertDocumentLayout = this.f$0;
+                chatAttachAlertDocumentLayout.sendPressed = true;
+                chatAttachAlertDocumentLayout.delegate.didSelectFiles(arrayList2, string, entities, arrayList, z, i, j, z2, ((Long) obj).longValue());
+                chatAttachAlertDocumentLayout.parentAlert.dismiss(true);
+            }
+        }, 0L);
+    }
+
+    public void setCanSelectOnlyImageFiles(boolean z) {
+        this.canSelectOnlyImageFiles = z;
+    }
+
+    public void setDelegate(DocumentSelectActivityDelegate documentSelectActivityDelegate) {
+        this.delegate = documentSelectActivityDelegate;
+    }
+
+    public void setMaxSelectedFiles(int i) {
+        this.maxSelectedFiles = i;
+    }
+
+    @Override
+    public void setTranslationY(float f) {
+        super.setTranslationY(f);
+        this.parentAlert.getSheetContainer().invalidate();
+    }
+
+    public final void showErrorBox$2(String str) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider);
+        String string = LocaleController.getString(R.string.AppName);
+        AlertDialog alertDialog = builder.alertDialog;
+        alertDialog.title = string;
+        alertDialog.message = str;
+        ChatActivity$$ExternalSyntheticOutline1.m(R.string.OK, builder);
+    }
+
+    public final void updateEmptyView$6() {
+        RecyclerView.Adapter adapter = getAdapter();
+        boolean z = true;
+        SearchAdapter searchAdapter = this.searchAdapter;
+        if (adapter != searchAdapter ? this.listAdapter.getItemCount() != 1 : !searchAdapter.searchResult.isEmpty() || !searchAdapter.sections.isEmpty()) {
+            z = false;
+        }
+        this.emptyView.setVisibility(z ? 0 : 8);
+        updateEmptyViewPosition$3();
+    }
+
+    public final void updateEmptyViewPosition$3() {
+        View childAt;
+        AnonymousClass3 anonymousClass3 = this.emptyView;
+        if (anonymousClass3.getVisibility() == 0 && (childAt = getChildAt(0)) != null) {
+            float translationY = anonymousClass3.getTranslationY();
+            this.additionalTranslationY = (childAt.getTop() + (anonymousClass3.getMeasuredHeight() - getMeasuredHeight())) / 2;
+            anonymousClass3.setTranslationY(translationY);
+        }
+    }
+
+    public final void updateSearchButton() {
+        ActionBarMenuItem actionBarMenuItem = this.searchItem;
+        if (actionBarMenuItem == null) {
+            return;
+        }
+        ActionBarMenuItem.AnonymousClass7 anonymousClass7 = actionBarMenuItem.searchContainer;
+        if (anonymousClass7 == null || anonymousClass7.getVisibility() != 0) {
+            actionBarMenuItem.setVisibility((this.hasFiles || this.listAdapter.history.isEmpty()) ? 0 : 8);
+        }
     }
 }

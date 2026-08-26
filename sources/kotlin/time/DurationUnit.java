@@ -1,10 +1,9 @@
 package kotlin.time;
 
 import java.util.concurrent.TimeUnit;
-import kotlin.enums.EnumEntries;
 import kotlin.enums.EnumEntriesKt;
 
-public enum DurationUnit {
+public final class DurationUnit {
     NANOSECONDS(TimeUnit.NANOSECONDS),
     MICROSECONDS(TimeUnit.MICROSECONDS),
     MILLISECONDS(TimeUnit.MILLISECONDS),
@@ -13,14 +12,22 @@ public enum DurationUnit {
     HOURS(TimeUnit.HOURS),
     DAYS(TimeUnit.DAYS);
 
-    private static final EnumEntries $ENTRIES = EnumEntriesKt.enumEntries(values());
-    private final TimeUnit timeUnit;
+    public final TimeUnit timeUnit;
 
-    DurationUnit(TimeUnit timeUnit) {
+    static {
+        EnumEntriesKt.enumEntries(durationUnitArr);
+    }
+
+    public DurationUnit(TimeUnit timeUnit) {
+        super(str, i);
         this.timeUnit = timeUnit;
     }
 
-    public final TimeUnit getTimeUnit$kotlin_stdlib() {
-        return this.timeUnit;
+    public static DurationUnit valueOf(String str) {
+        return (DurationUnit) Enum.valueOf(DurationUnit.class, str);
+    }
+
+    public static DurationUnit[] values() {
+        return (DurationUnit[]) $VALUES.clone();
     }
 }

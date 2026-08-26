@@ -6,6 +6,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+import androidx.recyclerview.widget.DiffUtil;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
@@ -15,230 +16,60 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 
 public class RLottieImageView extends ImageView {
-    private boolean attachedToWindow;
-    private boolean autoRepeat;
-    public boolean cached;
-    private RLottieDrawable drawable;
-    private ImageReceiver imageReceiver;
-    private HashMap layerColors;
-    private Integer layerNum;
-    private boolean onlyLastFrame;
-    private boolean playing;
-    private boolean startOnAttach;
-
-    protected void onLoaded() {
-    }
+    public boolean attachedToWindow;
+    public boolean autoRepeat;
+    public RLottieDrawable drawable;
+    public AnonymousClass1 imageReceiver;
+    public HashMap layerColors;
+    public Integer layerNum;
+    public boolean onlyLastFrame;
+    public boolean playing;
 
     public RLottieImageView(Context context) {
         super(context);
     }
 
-    public void clearLayerColors() {
-        this.layerColors.clear();
-    }
-
-    public void setLayerNum(Integer num) {
-        this.layerNum = num;
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (imageReceiver != null) {
-            imageReceiver.setLayerNum(num.intValue());
-        }
-    }
-
-    public void setLayerColor(String str, int i) {
-        if (this.layerColors == null) {
-            this.layerColors = new HashMap();
-        }
-        this.layerColors.put(str, Integer.valueOf(i));
+    public final void clearAnimationDrawable() {
         RLottieDrawable rLottieDrawable = this.drawable;
         if (rLottieDrawable != null) {
-            rLottieDrawable.setLayerColor(str, i);
+            rLottieDrawable.isRunning = false;
+            rLottieDrawable.checkChoreographer$1();
         }
-    }
-
-    public void replaceColors(int[] iArr) {
-        RLottieDrawable rLottieDrawable = this.drawable;
-        if (rLottieDrawable != null) {
-            rLottieDrawable.replaceColors(iArr);
-        }
-    }
-
-    public void setAnimation(int i, int i2, int i3) {
-        setAnimation(i, i2, i3, null);
-    }
-
-    public void setAnimation(int i, int i2, int i3, int[] iArr) {
-        setAnimation(new RLottieDrawable(i, "" + i, AndroidUtilities.dp(i2), AndroidUtilities.dp(i3), false, iArr));
-    }
-
-    public void setOnAnimationEndListener(Runnable runnable) {
-        RLottieDrawable rLottieDrawable = this.drawable;
-        if (rLottieDrawable != null) {
-            rLottieDrawable.setOnAnimationEndListener(runnable);
-        }
-    }
-
-    public void setAnimation(RLottieDrawable rLottieDrawable) {
-        if (this.drawable == rLottieDrawable) {
-            return;
-        }
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
-            this.imageReceiver = null;
-        }
-        this.drawable = rLottieDrawable;
-        rLottieDrawable.setMasterParent(this);
-        if (this.autoRepeat) {
-            this.drawable.setAutoRepeat(1);
-        }
-        if (this.layerColors != null) {
-            this.drawable.beginApplyLayerColors();
-            for (Map.Entry entry : this.layerColors.entrySet()) {
-                this.drawable.setLayerColor((String) entry.getKey(), ((Integer) entry.getValue()).intValue());
-            }
-            this.drawable.commitApplyLayerColors();
-        }
-        this.drawable.setAllowDecodeSingleFrame(true);
-        setImageDrawable(this.drawable);
-    }
-
-    public void setOnlyLastFrame(boolean z) {
-        this.onlyLastFrame = z;
-    }
-
-    public void setAnimation(TLRPC.Document document, final int i, final int i2) {
-        ImageLocation forDocument;
-        String str;
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
-            this.imageReceiver = null;
-        }
-        if (document == null) {
-            return;
-        }
-        ImageReceiver imageReceiver2 = new ImageReceiver() {
-            @Override
-            protected boolean setImageBitmapByKey(Drawable drawable, String str2, int i3, boolean z, int i4) {
-                if (drawable != null) {
-                    RLottieImageView.this.onLoaded();
-                }
-                return super.setImageBitmapByKey(drawable, str2, i3, z, i4);
-            }
-        };
-        this.imageReceiver = imageReceiver2;
-        imageReceiver2.setAllowLoadingOnAttachedOnly(true);
-        String str2 = document.localThumbPath;
-        if (str2 != null) {
-            str = i + "_" + i2;
-            forDocument = ImageLocation.getForPath(str2);
-        } else {
-            forDocument = null;
-            str = null;
-        }
-        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-        if (this.onlyLastFrame) {
-            this.imageReceiver.setImage(ImageLocation.getForDocument(document), i + "_" + i2 + "_lastframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), i + "_" + i2, forDocument, str, null, 0L, null, document, 1);
-        } else {
-            if ("video/webm".equals(document.mime_type)) {
-                ImageReceiver imageReceiver3 = this.imageReceiver;
-                ImageLocation forDocument2 = ImageLocation.getForDocument(document);
-                StringBuilder sb = new StringBuilder();
-                sb.append(i);
-                sb.append("_");
-                sb.append(i2);
-                sb.append(this.cached ? "_pcache" : "");
-                sb.append("_");
-                sb.append("g");
-                String string = sb.toString();
-                if (forDocument == null) {
-                    forDocument = ImageLocation.getForDocument(closestPhotoSizeWithSize, document);
-                }
-                imageReceiver3.setImage(forDocument2, string, forDocument, str, null, document.size, null, document, 1);
-            } else {
-                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
-                if (svgThumb != null) {
-                    svgThumb.overrideWidthAndHeight(512, 512);
-                }
-                ImageReceiver imageReceiver4 = this.imageReceiver;
-                ImageLocation forDocument3 = ImageLocation.getForDocument(document);
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(i);
-                sb2.append("_");
-                sb2.append(i2);
-                sb2.append(this.cached ? "_pcache" : "");
-                imageReceiver4.setImage(forDocument3, sb2.toString(), ImageLocation.getForDocument(closestPhotoSizeWithSize, document), i + "_" + i2, forDocument, str, svgThumb, 0L, null, document, 1);
-            }
-        }
-        this.imageReceiver.setAspectFit(true);
-        this.imageReceiver.setParentView(this);
-        if (this.autoRepeat) {
-            this.imageReceiver.setAutoRepeat(1);
-            this.imageReceiver.setAllowStartLottieAnimation(true);
-            this.imageReceiver.setAllowStartAnimation(true);
-        } else {
-            this.imageReceiver.setAutoRepeat(0);
-        }
-        ImageReceiver imageReceiver5 = this.imageReceiver;
-        Integer num = this.layerNum;
-        imageReceiver5.setLayerNum(num != null ? num.intValue() : 7);
-        this.imageReceiver.clip = false;
-        setImageDrawable(new Drawable() {
-            @Override
-            public int getOpacity() {
-                return -2;
-            }
-
-            @Override
-            public void draw(Canvas canvas) {
-                Rect rect = AndroidUtilities.rectTmp2;
-                rect.set(getBounds().centerX() - (AndroidUtilities.dp(i) / 2), getBounds().centerY() - (AndroidUtilities.dp(i2) / 2), getBounds().centerX() + (AndroidUtilities.dp(i) / 2), getBounds().centerY() + (AndroidUtilities.dp(i2) / 2));
-                RLottieImageView.this.imageReceiver.setImageCoords(rect);
-                RLottieImageView.this.imageReceiver.draw(canvas);
-            }
-
-            @Override
-            public void setAlpha(int i3) {
-                RLottieImageView.this.imageReceiver.setAlpha(i3 / 255.0f);
-            }
-
-            @Override
-            public void setColorFilter(ColorFilter colorFilter) {
-                RLottieImageView.this.imageReceiver.setColorFilter(colorFilter);
-            }
-        });
-        if (this.attachedToWindow) {
-            this.imageReceiver.onAttachedToWindow();
-        }
-    }
-
-    public void clearAnimationDrawable() {
-        RLottieDrawable rLottieDrawable = this.drawable;
-        if (rLottieDrawable != null) {
-            rLottieDrawable.stop();
-        }
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
+        AnonymousClass1 anonymousClass1 = this.imageReceiver;
+        if (anonymousClass1 != null) {
+            anonymousClass1.onDetachedFromWindow();
             this.imageReceiver = null;
         }
         this.drawable = null;
         setImageDrawable(null);
     }
 
+    public RLottieDrawable getAnimatedDrawable() {
+        return this.drawable;
+    }
+
+    public ImageReceiver getImageReceiver() {
+        return this.imageReceiver;
+    }
+
+    public final boolean isPlaying() {
+        RLottieDrawable rLottieDrawable = this.drawable;
+        return rLottieDrawable != null && rLottieDrawable.isRunning;
+    }
+
     @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attachedToWindow = true;
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (imageReceiver != null) {
-            imageReceiver.onAttachedToWindow();
+        AnonymousClass1 anonymousClass1 = this.imageReceiver;
+        if (anonymousClass1 != null) {
+            anonymousClass1.onAttachedToWindow();
             if (this.playing) {
-                this.imageReceiver.startAnimation();
+                startAnimation();
             }
         }
         RLottieDrawable rLottieDrawable = this.drawable;
@@ -251,46 +82,24 @@ public class RLottieImageView extends ImageView {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attachedToWindow = false;
         RLottieDrawable rLottieDrawable = this.drawable;
         if (rLottieDrawable != null) {
-            rLottieDrawable.stop();
+            rLottieDrawable.isRunning = false;
+            rLottieDrawable.checkChoreographer$1();
         }
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
-        }
-    }
-
-    public boolean isPlaying() {
-        RLottieDrawable rLottieDrawable = this.drawable;
-        return rLottieDrawable != null && rLottieDrawable.isRunning();
-    }
-
-    public void setAutoRepeat(boolean z) {
-        this.autoRepeat = z;
-    }
-
-    public void setProgress(float f) {
-        RLottieDrawable rLottieDrawable = this.drawable;
-        if (rLottieDrawable != null) {
-            rLottieDrawable.setProgress(f);
+        AnonymousClass1 anonymousClass1 = this.imageReceiver;
+        if (anonymousClass1 != null) {
+            anonymousClass1.onDetachedFromWindow();
         }
     }
 
-    public ImageReceiver getImageReceiver() {
-        return this.imageReceiver;
+    public void onLoaded() {
     }
 
-    @Override
-    public void setImageResource(int i) {
-        super.setImageResource(i);
-        this.drawable = null;
-    }
-
-    public void playAnimation() {
+    public final void playAnimation() {
         RLottieDrawable rLottieDrawable = this.drawable;
         if (rLottieDrawable == null && this.imageReceiver == null) {
             return;
@@ -300,17 +109,65 @@ public class RLottieImageView extends ImageView {
             if (rLottieDrawable != null) {
                 rLottieDrawable.start();
             }
-            ImageReceiver imageReceiver = this.imageReceiver;
-            if (imageReceiver != null) {
-                imageReceiver.startAnimation();
-                return;
+            AnonymousClass1 anonymousClass1 = this.imageReceiver;
+            if (anonymousClass1 != null) {
+                anonymousClass1.startAnimation();
             }
-            return;
         }
-        this.startOnAttach = true;
     }
 
-    public void stopAnimation() {
+    public final void setAnimation(int i, int i2, int i3) {
+        setAnimation(i, i2, i3, null);
+    }
+
+    public void setAutoRepeat(boolean z) {
+        this.autoRepeat = z;
+    }
+
+    @Override
+    public void setImageResource(int i) {
+        super.setImageResource(i);
+        this.drawable = null;
+    }
+
+    public final void setLayerColor(int i, String str) {
+        if (this.layerColors == null) {
+            this.layerColors = new HashMap();
+        }
+        this.layerColors.put(str, Integer.valueOf(i));
+        RLottieDrawable rLottieDrawable = this.drawable;
+        if (rLottieDrawable != null) {
+            OKLCH.m(i, rLottieDrawable.newColorUpdates, str, rLottieDrawable);
+        }
+    }
+
+    public void setLayerNum(Integer num) {
+        this.layerNum = num;
+        AnonymousClass1 anonymousClass1 = this.imageReceiver;
+        if (anonymousClass1 != null) {
+            anonymousClass1.setLayerNum(num.intValue());
+        }
+    }
+
+    public void setOnAnimationEndListener(Runnable runnable) {
+        RLottieDrawable rLottieDrawable = this.drawable;
+        if (rLottieDrawable != null) {
+            rLottieDrawable.onAnimationEndListener = runnable;
+        }
+    }
+
+    public void setOnlyLastFrame(boolean z) {
+        this.onlyLastFrame = z;
+    }
+
+    public void setProgress(float f) {
+        RLottieDrawable rLottieDrawable = this.drawable;
+        if (rLottieDrawable != null) {
+            rLottieDrawable.setProgress(f, true);
+        }
+    }
+
+    public final void stopAnimation() {
         RLottieDrawable rLottieDrawable = this.drawable;
         if (rLottieDrawable == null && this.imageReceiver == null) {
             return;
@@ -318,19 +175,147 @@ public class RLottieImageView extends ImageView {
         this.playing = false;
         if (this.attachedToWindow) {
             if (rLottieDrawable != null) {
-                rLottieDrawable.stop();
+                rLottieDrawable.isRunning = false;
+                rLottieDrawable.checkChoreographer$1();
             }
-            ImageReceiver imageReceiver = this.imageReceiver;
-            if (imageReceiver != null) {
-                imageReceiver.stopAnimation();
-                return;
+            AnonymousClass1 anonymousClass1 = this.imageReceiver;
+            if (anonymousClass1 != null) {
+                anonymousClass1.stopAnimation();
             }
-            return;
         }
-        this.startOnAttach = false;
     }
 
-    public RLottieDrawable getAnimatedDrawable() {
-        return this.drawable;
+    public final void setAnimation(int i, int i2, int i3, int[] iArr) {
+        setAnimation(new RLottieDrawable(i, DiffUtil.m(i, ""), AndroidUtilities.dp(i2), AndroidUtilities.dp(i3), false, iArr));
+    }
+
+    public void setAnimation(RLottieDrawable rLottieDrawable) {
+        if (this.drawable == rLottieDrawable) {
+            return;
+        }
+        AnonymousClass1 anonymousClass1 = this.imageReceiver;
+        if (anonymousClass1 != null) {
+            anonymousClass1.onDetachedFromWindow();
+            this.imageReceiver = null;
+        }
+        this.drawable = rLottieDrawable;
+        rLottieDrawable.masterParent = this;
+        if (this.autoRepeat) {
+            rLottieDrawable.setAutoRepeat(1);
+        }
+        HashMap map = this.layerColors;
+        if (map != null) {
+            this.drawable.applyingLayerColors = true;
+            for (Map.Entry entry : map.entrySet()) {
+                RLottieDrawable rLottieDrawable2 = this.drawable;
+                String str = (String) entry.getKey();
+                Integer num = (Integer) entry.getValue();
+                num.getClass();
+                rLottieDrawable2.newColorUpdates.put(str, num);
+                rLottieDrawable2.requestRedrawColors();
+            }
+            this.drawable.commitApplyLayerColors();
+        }
+        RLottieDrawable rLottieDrawable3 = this.drawable;
+        rLottieDrawable3.decodeSingleFrame = true;
+        rLottieDrawable3.scheduleNextGetFrame();
+        setImageDrawable(this.drawable);
+    }
+
+    public final void setAnimation(final int i, final int i2, TLRPC.Document document) {
+        ImageLocation forDocument;
+        String strM;
+        AnonymousClass1 anonymousClass1 = this.imageReceiver;
+        if (anonymousClass1 != null) {
+            anonymousClass1.onDetachedFromWindow();
+            this.imageReceiver = null;
+        }
+        if (document == null) {
+            return;
+        }
+        ?? r3 = new ImageReceiver() {
+            @Override
+            public final boolean setImageBitmapByKey(Drawable drawable, String str, int i3, boolean z, int i4) {
+                if (drawable != null) {
+                    RLottieImageView.this.onLoaded();
+                }
+                return super.setImageBitmapByKey(drawable, str, i3, z, i4);
+            }
+        };
+        this.imageReceiver = r3;
+        r3.setAllowLoadingOnAttachedOnly(true);
+        String str = document.localThumbPath;
+        if (str != null) {
+            ImageLocation forPath = ImageLocation.getForPath(str);
+            strM = DiffUtil.m(i, i2, "_");
+            forDocument = forPath;
+        } else {
+            forDocument = null;
+            strM = null;
+        }
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+        if (this.onlyLastFrame) {
+            setImage(ImageLocation.getForDocument(document), i + "_" + i2 + "_lastframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), DiffUtil.m(i, i2, "_"), forDocument, strM, null, 0L, null, document, 1);
+        } else if ("video/webm".equals(document.mime_type)) {
+            AnonymousClass1 anonymousClass2 = this.imageReceiver;
+            ImageLocation forDocument2 = ImageLocation.getForDocument(document);
+            String str2 = i + "_" + i2 + "_g";
+            if (forDocument == null) {
+                forDocument = ImageLocation.getForDocument(closestPhotoSizeWithSize, document);
+            }
+            anonymousClass2.setImage(forDocument2, str2, forDocument, strM, null, document.size, null, document, 1);
+        } else {
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
+            if (svgThumb != null) {
+                svgThumb.overrideWidthAndHeight(512, 512);
+            }
+            setImage(ImageLocation.getForDocument(document), i + "_" + i2 + "", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), DiffUtil.m(i, i2, "_"), forDocument, strM, svgThumb, 0L, null, document, 1);
+        }
+        setAspectFit(true);
+        setParentView(this);
+        if (this.autoRepeat) {
+            setAutoRepeat(1);
+            setAllowStartLottieAnimation(true);
+            setAllowStartAnimation(true);
+        } else {
+            setAutoRepeat(0);
+        }
+        AnonymousClass1 anonymousClass3 = this.imageReceiver;
+        Integer num = this.layerNum;
+        anonymousClass3.setLayerNum(num != null ? num.intValue() : 7);
+        this.imageReceiver.clip = false;
+        setImageDrawable(new Drawable() {
+            @Override
+            public final void draw(Canvas canvas) {
+                Rect rect = AndroidUtilities.rectTmp2;
+                int iCenterX = getBounds().centerX();
+                float f = i;
+                int iDp = iCenterX - (AndroidUtilities.dp(f) / 2);
+                int iCenterY = getBounds().centerY();
+                float f2 = i2;
+                rect.set(iDp, iCenterY - (AndroidUtilities.dp(f2) / 2), (AndroidUtilities.dp(f) / 2) + getBounds().centerX(), (AndroidUtilities.dp(f2) / 2) + getBounds().centerY());
+                RLottieImageView rLottieImageView = RLottieImageView.this;
+                rLottieImageView.imageReceiver.setImageCoords(rect);
+                rLottieImageView.imageReceiver.draw(canvas);
+            }
+
+            @Override
+            public final int getOpacity() {
+                return -2;
+            }
+
+            @Override
+            public final void setAlpha(int i3) {
+                setAlpha(i3 / 255.0f);
+            }
+
+            @Override
+            public final void setColorFilter(ColorFilter colorFilter) {
+                setColorFilter(colorFilter);
+            }
+        });
+        if (this.attachedToWindow) {
+            onAttachedToWindow();
+        }
     }
 }

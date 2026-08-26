@@ -2,6 +2,12 @@ package org.webrtc;
 
 public interface VideoEncoderFactory {
 
+    public abstract class CC {
+        public static VideoEncoderSelector $default$getEncoderSelector(VideoEncoderFactory videoEncoderFactory) {
+            return null;
+        }
+    }
+
     public interface VideoEncoderSelector {
 
         public abstract class CC {
@@ -26,10 +32,4 @@ public interface VideoEncoderFactory {
     VideoCodecInfo[] getImplementations();
 
     VideoCodecInfo[] getSupportedCodecs();
-
-    public abstract class CC {
-        public static VideoEncoderSelector $default$getEncoderSelector(VideoEncoderFactory videoEncoderFactory) {
-            return null;
-        }
-    }
 }

@@ -1,7 +1,5 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
@@ -17,12 +15,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextPaint;
@@ -37,10 +32,10 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -54,6 +49,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.utils.ViewOutlineProviderImpl;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
+import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda77;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AttachableDrawable;
 import org.telegram.ui.Components.EffectsTextView;
@@ -65,299 +63,485 @@ import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda16;
+import org.telegram.ui.LoginActivity;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda89;
 import org.telegram.ui.Stars.BalanceCloud;
 import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.iv.RichEditor;
+import org.telegram.ui.iv.RichInlineButtonEditor$$ExternalSyntheticLambda0;
 
 public class AlertDialog extends Dialog implements Drawable.Callback, NotificationCenter.NotificationCenterDelegate {
-    private View aboveMessageView;
-    private int additioanalHorizontalPadding;
-    private float aspectRatio;
-    private int backgroundColor;
-    private Rect backgroundPaddings;
-    float blurAlpha;
-    private boolean blurBehind;
-    private Bitmap blurBitmap;
-    private Matrix blurMatrix;
-    private float blurOpacity;
-    private Paint blurPaint;
-    private BitmapShader blurShader;
-    private boolean blurredBackground;
-    private boolean blurredNativeBackground;
-    private View bottomView;
-    private boolean buttonsInTwoRows;
-    protected ViewGroup buttonsLayout;
-    private boolean canCacnel;
-    private AlertDialog cancelDialog;
-    private boolean checkFocusable;
-    private AlertDialogView containerView;
-    private int[] containerViewLocation;
-    private ScrollView contentScrollView;
-    private int currentProgress;
-    private boolean customMaxHeight;
-    private View customView;
-    private int customViewHeight;
-    private int customViewOffset;
-    private int customWidth;
-    private int dialogButtonColorKey;
-    private float dimAlpha;
-    private Paint dimBlurPaint;
-    private boolean dimCustom;
-    private boolean dimEnabled;
-    private boolean dismissDialogByButtons;
-    private Runnable dismissRunnable;
-    private boolean dismissed;
-    private boolean drawBackground;
-    private boolean focusable;
-    private FrameLayout fullscreenContainerView;
-    private int[] itemIcons;
-    private ArrayList itemViews;
-    private CharSequence[] items;
-    private int lastScreenWidth;
-    private LineProgressView lineProgressView;
-    private TextView lineProgressViewPercent;
-    private CharSequence message;
-    private TextView messageTextView;
-    private boolean messageTextViewClickable;
-    private boolean needStarsBalance;
-    private OnButtonClickListener negative2ButtonListener;
-    private CharSequence negative2ButtonText;
-    private OnButtonClickListener negativeButtonListener;
-    private CharSequence negativeButtonText;
-    private OnButtonClickListener neutralButtonListener;
-    private CharSequence neutralButtonText;
-    private boolean notDrawBackgroundOnTopView;
-    private OnButtonClickListener onBackButtonListener;
-    private DialogInterface.OnCancelListener onCancelListener;
-    private DialogInterface.OnClickListener onClickListener;
-    private DialogInterface.OnDismissListener onDismissListener;
-    private ViewTreeObserver.OnScrollChangedListener onScrollChangedListener;
-    private Utilities.Callback overridenDissmissListener;
-    private OnButtonClickListener positiveButtonListener;
-    private CharSequence positiveButtonText;
-    private FrameLayout progressViewContainer;
-    private int progressViewStyle;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private LinearLayout scrollContainer;
-    private CharSequence secondTitle;
-    private TextView secondTitleTextView;
-    private BitmapDrawable[] shadow;
-    private AnimatorSet[] shadowAnimation;
-    private Drawable shadowDrawable;
-    private boolean[] shadowVisibility;
-    private Runnable showRunnable;
-    private long shownAt;
-    private BalanceCloud starsBalanceCloud;
-    private CharSequence subtitle;
-    private TextView subtitleTextView;
-    private CharSequence title;
-    private FrameLayout titleContainer;
-    private SpoilersTextView titleTextView;
-    private boolean topAnimationAutoRepeat;
-    private int topAnimationId;
-    private boolean topAnimationIsNew;
-    private Map topAnimationLayerColors;
-    private int topAnimationSize;
-    private int topBackgroundColor;
-    private Drawable topDrawable;
-    private int topHeight;
-    private RLottieImageView topImageView;
-    private int topResId;
-    private View topView;
-    private boolean twoRowsButtonsWhenNeeded;
-    private boolean verticalButtons;
-    private boolean withCancelDialog;
+    public static final int $r8$clinit = 0;
+    public EffectsTextView aboveMessageView;
+    public int additioanalHorizontalPadding;
+    public float aspectRatio;
+    public int backgroundColor;
+    public final Rect backgroundPaddings;
+    public Bitmap blurBitmap;
+    public Matrix blurMatrix;
+    public final float blurOpacity;
+    public Paint blurPaint;
+    public BitmapShader blurShader;
+    public boolean blurredBackground;
+    public TextView bottomView;
+    public boolean buttonsInTwoRows;
+    public ViewGroup buttonsLayout;
+    public boolean canCacnel;
+    public AlertDialog cancelDialog;
+    public boolean checkFocusable;
+    public AlertDialogView containerView;
+    public final int[] containerViewLocation;
+    public LoginActivity.AnonymousClass3 contentScrollView;
+    public int currentProgress;
+    public View customView;
+    public int customViewHeight;
+    public int customViewOffset;
+    public int customWidth;
+    public int dialogButtonColorKey;
+    public float dimAlpha;
+    public Paint dimBlurPaint;
+    public boolean dimEnabled;
+    public boolean dismissDialogByButtons;
+    public final AlertDialog$$ExternalSyntheticLambda1 dismissRunnable;
+    public boolean dismissed;
+    public boolean drawBackground;
+    public boolean focusable;
+    public FrameLayout fullscreenContainerView;
+    public int[] itemIcons;
+    public final ArrayList itemViews;
+    public CharSequence[] items;
+    public int lastScreenWidth;
+    public LineProgressView lineProgressView;
+    public TextView lineProgressViewPercent;
+    public CharSequence message;
+    public EffectsTextView messageTextView;
+    public boolean messageTextViewClickable;
+    public boolean needStarsBalance;
+    public RichInlineButtonEditor$$ExternalSyntheticLambda0 negative2ButtonListener;
+    public String negative2ButtonText;
+    public OnButtonClickListener negativeButtonListener;
+    public String negativeButtonText;
+    public OnButtonClickListener neutralButtonListener;
+    public String neutralButtonText;
+    public boolean notDrawBackgroundOnTopView;
+    public LaunchActivity$$ExternalSyntheticLambda16 onBackButtonListener;
+    public DialogInterface.OnCancelListener onCancelListener;
+    public DialogInterface.OnClickListener onClickListener;
+    public DialogInterface.OnDismissListener onDismissListener;
+    public AlertDialog$AlertDialogView$$ExternalSyntheticLambda0 onScrollChangedListener;
+    public Utilities.Callback overridenDissmissListener;
+    public OnButtonClickListener positiveButtonListener;
+    public CharSequence positiveButtonText;
+    public FrameLayout progressViewContainer;
+    public final int progressViewStyle;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public LinearLayout scrollContainer;
+    public final BitmapDrawable[] shadow;
+    public final AnimatorSet[] shadowAnimation;
+    public final Drawable shadowDrawable;
+    public final boolean[] shadowVisibility;
+    public final AlertDialog$$ExternalSyntheticLambda1 showRunnable;
+    public long shownAt;
+    public BalanceCloud starsBalanceCloud;
+    public String subtitle;
+    public TextView subtitleTextView;
+    public CharSequence title;
+    public FrameLayout titleContainer;
+    public SpoilersTextView titleTextView;
+    public boolean topAnimationAutoRepeat;
+    public int topAnimationId;
+    public boolean topAnimationIsNew;
+    public HashMap topAnimationLayerColors;
+    public int topAnimationSize;
+    public int topBackgroundColor;
+    public Drawable topDrawable;
+    public int topHeight;
+    public RLottieImageView topImageView;
+    public View topView;
+    public boolean twoRowsButtonsWhenNeeded;
+    public boolean verticalButtons;
+    public boolean withCancelDialog;
 
-    public interface OnButtonClickListener {
-        void onClick(AlertDialog alertDialog, int i);
-    }
-
-    public ArrayList getThemeDescriptions() {
-        return null;
-    }
-
-    protected boolean supportsNativeBlur() {
-        return false;
-    }
-
-    public TextView getMessageTextView() {
-        return this.messageTextView;
-    }
-
-    public static void $r8$lambda$h8sPHjylDgoiCKjfuRpnhzuOz3Q(AlertDialog alertDialog) {
-        if (alertDialog.isShowing()) {
-            return;
+    public final class AnonymousClass5 extends TextViewWithLoading {
+        @Override
+        public final void setEnabled(boolean z) {
+            super.setEnabled(z);
+            setAlpha(z ? 1.0f : 0.5f);
         }
-        try {
-            alertDialog.show();
-        } catch (Exception unused) {
+
+        @Override
+        public final void setTextColor(int i) {
+            super.setTextColor(i);
+            setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i));
         }
     }
 
-    public void setBlurParams(float f, boolean z, boolean z2) {
-        this.blurAlpha = f;
-        this.blurBehind = z;
-        this.blurredBackground = z2;
-    }
+    public final class AnonymousClass6 extends TextViewWithLoading {
+        @Override
+        public final void setEnabled(boolean z) {
+            super.setEnabled(z);
+            setAlpha(z ? 1.0f : 0.5f);
+        }
 
-    public void redPositive() {
-        TextView textView = (TextView) getButton(-1);
-        if (textView != null) {
-            textView.setTextColor(getThemedColor(Theme.key_text_RedBold));
+        @Override
+        public final void setTextColor(int i) {
+            super.setTextColor(i);
+            setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i));
         }
     }
 
-    public static class AlertDialogCell extends FrameLayout {
-        private ImageView imageView;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private TextView textView;
+    public final class AnonymousClass7 extends TextViewWithLoading {
+        @Override
+        public final void setEnabled(boolean z) {
+            super.setEnabled(z);
+            setAlpha(z ? 1.0f : 0.5f);
+        }
+
+        @Override
+        public final void setTextColor(int i) {
+            super.setTextColor(i);
+            setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i));
+        }
+    }
+
+    public final class AnonymousClass8 extends TextViewWithLoading {
+        @Override
+        public final void setEnabled(boolean z) {
+            super.setEnabled(z);
+            setAlpha(z ? 1.0f : 0.5f);
+        }
+
+        @Override
+        public final void setTextColor(int i) {
+            super.setTextColor(i);
+            setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i));
+        }
+    }
+
+    public final class AlertDialogCell extends FrameLayout {
+        public final ImageView imageView;
+        public final TextView textView;
 
         public AlertDialogCell(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            this.resourcesProvider = resourcesProvider;
-            setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_dialogButtonSelector), 2));
+            setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider), 2, -1));
             setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogIcon), PorterDuff.Mode.MULTIPLY));
-            addView(this.imageView, LayoutHelper.createFrame(-2, 40, (LocaleController.isRTL ? 5 : 3) | 16));
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            addView(imageView, LayoutHelper.createFrame(-2, 40, (LocaleController.isRTL ? 5 : 3) | 16));
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setLines(1);
-            this.textView.setSingleLine(true);
-            this.textView.setGravity(1);
-            this.textView.setEllipsize(TextUtils.TruncateAt.END);
-            this.textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-            this.textView.setTextSize(1, 16.0f);
-            addView(this.textView, LayoutHelper.createFrame(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
+            textView.setSingleLine(true);
+            textView.setGravity(1);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            OKLCH.m(Theme.key_dialogTextBlack, resourcesProvider, textView, 16.0f);
+            addView(textView, LayoutHelper.createFrame(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public final void onMeasure(int i, int i2) {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-        }
-
-        public void setTextColor(int i) {
-            this.textView.setTextColor(i);
         }
 
         public void setGravity(int i) {
             this.textView.setGravity(i);
         }
 
-        public void setTextAndIcon(CharSequence charSequence, int i) {
-            this.textView.setText(charSequence);
-            if (i != 0) {
-                this.imageView.setImageResource(i);
-                this.imageView.setVisibility(0);
-                this.textView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.dp(56.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(56.0f) : 0, 0);
+        public final void setTextAndIcon(int i, CharSequence charSequence) {
+            TextView textView = this.textView;
+            textView.setText(charSequence);
+            ImageView imageView = this.imageView;
+            if (i == 0) {
+                imageView.setVisibility(4);
+                textView.setPadding(0, 0, 0, 0);
             } else {
-                this.imageView.setVisibility(4);
-                this.textView.setPadding(0, 0, 0, 0);
+                imageView.setImageResource(i);
+                imageView.setVisibility(0);
+                textView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.dp(56.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(56.0f) : 0, 0);
             }
         }
 
-        protected int getThemedColor(int i) {
-            return Theme.getColor(i, this.resourcesProvider);
+        public void setTextColor(int i) {
+            this.textView.setTextColor(i);
         }
     }
 
-    public AlertDialog(Context context, int i) {
-        this(context, i, null);
-    }
+    public final class AlertDialogView extends LinearLayout {
+        public final Paint backgroundPaint;
+        public final AnimatedFloat blurPaintAlpha;
+        public boolean inLayout;
+        public final AlertDialog this$0;
 
-    public AlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context, R.style.TransparentDialog);
-        this.customWidth = -1;
-        this.customViewHeight = -2;
-        this.shadow = new BitmapDrawable[2];
-        this.shadowVisibility = new boolean[2];
-        this.shadowAnimation = new AnimatorSet[2];
-        this.customViewOffset = 12;
-        this.dialogButtonColorKey = Theme.key_dialogButton;
-        this.topHeight = 132;
-        this.messageTextViewClickable = true;
-        this.canCacnel = true;
-        this.dismissDialogByButtons = true;
-        this.containerViewLocation = new int[2];
-        this.checkFocusable = true;
-        this.dismissRunnable = new AlertDialog$$ExternalSyntheticLambda2(this);
-        this.showRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                AlertDialog.$r8$lambda$h8sPHjylDgoiCKjfuRpnhzuOz3Q(this.f$0);
-            }
-        };
-        this.itemViews = new ArrayList();
-        this.dimEnabled = true;
-        this.dimAlpha = 0.5f;
-        this.dimCustom = false;
-        this.topAnimationAutoRepeat = true;
-        float f = 0.8f;
-        this.blurAlpha = 0.8f;
-        this.resourcesProvider = resourcesProvider;
-        this.progressViewStyle = i;
-        int themedColor = getThemedColor(Theme.key_dialogBackground);
-        this.backgroundColor = themedColor;
-        boolean z = AndroidUtilities.computePerceivedBrightness(themedColor) < 0.721f;
-        boolean z2 = supportsNativeBlur() && this.progressViewStyle == 0;
-        this.blurredNativeBackground = z2;
-        this.blurredBackground = (z2 || (!supportsNativeBlur() && SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(256))) && z;
-        this.backgroundPaddings = new Rect();
-        if (i != 3 || this.blurredBackground) {
-            Drawable drawableMutate = context.getResources().getDrawable(R.drawable.popup_fixed_alert4).mutate();
-            this.shadowDrawable = drawableMutate;
-            if (i == 3) {
-                f = 0.55f;
-            } else if (!z) {
-                f = 0.985f;
-            }
-            this.blurOpacity = f;
-            drawableMutate.setColorFilter(new PorterDuffColorFilter(this.backgroundColor, PorterDuff.Mode.MULTIPLY));
-            this.shadowDrawable.getPadding(this.backgroundPaddings);
-        }
-        this.withCancelDialog = this.progressViewStyle == 3;
-    }
-
-    @Override
-    public void show() {
-        if (AndroidUtilities.isSafeToShow(getContext())) {
-            this.dismissed = false;
-            super.show();
-            FrameLayout frameLayout = this.progressViewContainer;
-            if (frameLayout != null && this.progressViewStyle == 3) {
-                frameLayout.setScaleX(0.0f);
-                this.progressViewContainer.setScaleY(0.0f);
-                this.progressViewContainer.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.3f)).setDuration(190L).start();
-            }
-            this.shownAt = System.currentTimeMillis();
-        }
-    }
-
-    public void setCancelDialog(boolean z) {
-        this.withCancelDialog = z;
-    }
-
-    public class AlertDialogView extends LinearLayout {
-        private Paint backgroundPaint;
-        private AnimatedFloat blurPaintAlpha;
-        private boolean inLayout;
-
-        @Override
-        public boolean hasOverlappingRendering() {
-            return false;
-        }
-
-        public AlertDialogView(Context context) {
+        public AlertDialogView(Context context, AlertDialog alertDialog) {
             super(context);
-            this.blurPaintAlpha = new AnimatedFloat(0.0f, this);
+            this.this$0 = alertDialog;
+            this.blurPaintAlpha = new AnimatedFloat(this);
             this.backgroundPaint = new Paint(1);
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            if (AlertDialog.this.withCancelDialog) {
-                AlertDialog.this.showCancelAlert();
+        public final void dispatchDraw(Canvas canvas) {
+            AlertDialog alertDialog = this.this$0;
+            if (alertDialog.drawBackground && !alertDialog.blurredBackground) {
+                int measuredWidth = getMeasuredWidth();
+                int measuredHeight = getMeasuredHeight();
+                Drawable drawable = alertDialog.shadowDrawable;
+                drawable.setBounds(0, 0, measuredWidth, measuredHeight);
+                View view = alertDialog.topView;
+                if (view == null || !alertDialog.notDrawBackgroundOnTopView) {
+                    drawable.draw(canvas);
+                } else {
+                    int bottom = view.getBottom();
+                    canvas.save();
+                    canvas.clipRect(0, bottom, getMeasuredWidth(), getMeasuredHeight());
+                    drawable.draw(canvas);
+                    canvas.restore();
+                }
+            }
+            super.dispatchDraw(canvas);
+        }
+
+        @Override
+        public final void draw(Canvas canvas) {
+            float fDp;
+            AlertDialog alertDialog = this.this$0;
+            if (alertDialog.blurredBackground) {
+                if (alertDialog.progressViewStyle != 3 || alertDialog.progressViewContainer == null) {
+                    fDp = AndroidUtilities.dp(20.0f);
+                    AndroidUtilities.rectTmp.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+                } else {
+                    fDp = AndroidUtilities.dp(18.0f);
+                    float scaleX = alertDialog.progressViewContainer.getScaleX() * alertDialog.progressViewContainer.getWidth();
+                    float scaleY = alertDialog.progressViewContainer.getScaleY() * alertDialog.progressViewContainer.getHeight();
+                    AndroidUtilities.rectTmp.set((getWidth() - scaleX) / 2.0f, (getHeight() - scaleY) / 2.0f, (getWidth() + scaleX) / 2.0f, (getHeight() + scaleY) / 2.0f);
+                }
+                float f = this.blurPaintAlpha.set(alertDialog.blurPaint != null ? 1.0f : 0.0f, false);
+                Paint paint = alertDialog.blurPaint;
+                if (paint != null) {
+                    paint.setAlpha((int) (f * 255.0f));
+                    canvas.drawRoundRect(AndroidUtilities.rectTmp, fDp, fDp, alertDialog.blurPaint);
+                }
+                if (alertDialog.dimBlurPaint == null) {
+                    Paint paint2 = new Paint(1);
+                    alertDialog.dimBlurPaint = paint2;
+                    paint2.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (alertDialog.dimAlpha * 255.0f)));
+                }
+                RectF rectF = AndroidUtilities.rectTmp;
+                canvas.drawRoundRect(rectF, fDp, fDp, alertDialog.dimBlurPaint);
+                Paint paint3 = this.backgroundPaint;
+                paint3.setColor(alertDialog.backgroundColor);
+                paint3.setAlpha((int) ((((alertDialog.blurOpacity - 1.0f) * f) + 1.0f) * paint3.getAlpha()));
+                canvas.drawRoundRect(rectF, fDp, fDp, paint3);
+            }
+            super.draw(canvas);
+        }
+
+        @Override
+        public final boolean hasOverlappingRendering() {
+            return false;
+        }
+
+        @Override
+        public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            AlertDialog alertDialog = this.this$0;
+            if (!alertDialog.withCancelDialog) {
+                return super.onInterceptTouchEvent(motionEvent);
+            }
+            alertDialog.showCancelAlert();
+            return false;
+        }
+
+        @Override
+        public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+            AlertDialog alertDialog = this.this$0;
+            if (alertDialog.progressViewStyle == 3) {
+                int measuredWidth = ((i3 - i) - alertDialog.progressViewContainer.getMeasuredWidth()) / 2;
+                int measuredHeight = ((i4 - i2) - alertDialog.progressViewContainer.getMeasuredHeight()) / 2;
+                FrameLayout frameLayout = alertDialog.progressViewContainer;
+                frameLayout.layout(measuredWidth, measuredHeight, frameLayout.getMeasuredWidth() + measuredWidth, alertDialog.progressViewContainer.getMeasuredHeight() + measuredHeight);
+            } else {
+                LoginActivity.AnonymousClass3 anonymousClass3 = alertDialog.contentScrollView;
+                if (anonymousClass3 != null) {
+                    if (alertDialog.onScrollChangedListener == null) {
+                        alertDialog.onScrollChangedListener = new ViewTreeObserver.OnScrollChangedListener() {
+                            @Override
+                            public final void onScrollChanged() {
+                                AlertDialog alertDialog2 = this.f$0.this$0;
+                                boolean z2 = false;
+                                AlertDialog.access$3600(alertDialog2.titleTextView != null && alertDialog2.contentScrollView.getScrollY() > alertDialog2.scrollContainer.getTop(), alertDialog2, 0);
+                                if (alertDialog2.buttonsLayout != null) {
+                                    if (alertDialog2.contentScrollView.getHeight() + alertDialog2.contentScrollView.getScrollY() < alertDialog2.scrollContainer.getBottom()) {
+                                        z2 = true;
+                                    }
+                                }
+                                AlertDialog.access$3600(z2, alertDialog2, 1);
+                                alertDialog2.contentScrollView.invalidate();
+                            }
+                        };
+                        anonymousClass3.getViewTreeObserver().addOnScrollChangedListener(alertDialog.onScrollChangedListener);
+                    }
+                    alertDialog.onScrollChangedListener.onScrollChanged();
+                }
+            }
+            int[] iArr = alertDialog.containerViewLocation;
+            getLocationOnScreen(iArr);
+            Matrix matrix = alertDialog.blurMatrix;
+            if (matrix == null || alertDialog.blurShader == null) {
+                return;
+            }
+            matrix.reset();
+            alertDialog.blurMatrix.postScale(8.0f, 8.0f);
+            alertDialog.blurMatrix.postTranslate(-iArr[0], -iArr[1]);
+            alertDialog.blurShader.setLocalMatrix(alertDialog.blurMatrix);
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            int measuredHeight;
+            int measuredHeight2;
+            int i3;
+            LineProgressView lineProgressView;
+            AlertDialog alertDialog = this.this$0;
+            if (alertDialog.progressViewStyle == 3) {
+                alertDialog.progressViewContainer.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
+                setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
+                return;
+            }
+            this.inLayout = true;
+            int size = View.MeasureSpec.getSize(i);
+            int size2 = View.MeasureSpec.getSize(i2);
+            int i4 = alertDialog.customWidth;
+            if (i4 > 0) {
+                Rect rect = alertDialog.backgroundPaddings;
+                size = rect.right + i4 + rect.left;
+            }
+            int paddingTop = (size2 - getPaddingTop()) - getPaddingBottom();
+            int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
+            int iM = OKLCH.m(paddingLeft, 48.0f, 1073741824);
+            int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(paddingLeft, 1073741824);
+            ViewGroup viewGroup = alertDialog.buttonsLayout;
+            if (viewGroup != null) {
+                int childCount = viewGroup.getChildCount();
+                for (int i5 = 0; i5 < childCount; i5++) {
+                    View childAt = alertDialog.buttonsLayout.getChildAt(i5);
+                    if (childAt instanceof TextView) {
+                        ((TextView) childAt).setMaxWidth(AndroidUtilities.dp(OKLCH.m$2(24.0f, paddingLeft, 2)));
+                    }
+                }
+                alertDialog.buttonsLayout.measure(iMakeMeasureSpec, i2);
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) alertDialog.buttonsLayout.getLayoutParams();
+                measuredHeight = paddingTop - ((alertDialog.buttonsLayout.getMeasuredHeight() + layoutParams.bottomMargin) + layoutParams.topMargin);
+            } else {
+                measuredHeight = paddingTop;
+            }
+            SpoilersTextView spoilersTextView = alertDialog.titleTextView;
+            if (spoilersTextView != null) {
+                spoilersTextView.measure(iM, i2);
+            }
+            FrameLayout frameLayout = alertDialog.titleContainer;
+            if (frameLayout != null) {
+                frameLayout.measure(iM, i2);
+                LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) alertDialog.titleContainer.getLayoutParams();
+                measuredHeight -= (alertDialog.titleContainer.getMeasuredHeight() + layoutParams2.bottomMargin) + layoutParams2.topMargin;
+            }
+            TextView textView = alertDialog.subtitleTextView;
+            if (textView != null) {
+                textView.measure(iM, i2);
+                LinearLayout.LayoutParams layoutParams3 = (LinearLayout.LayoutParams) alertDialog.subtitleTextView.getLayoutParams();
+                measuredHeight -= (alertDialog.subtitleTextView.getMeasuredHeight() + layoutParams3.bottomMargin) + layoutParams3.topMargin;
+            }
+            RLottieImageView rLottieImageView = alertDialog.topImageView;
+            if (rLottieImageView != null) {
+                rLottieImageView.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(alertDialog.topHeight), 1073741824));
+                measuredHeight -= alertDialog.topImageView.getMeasuredHeight();
+            }
+            View view = alertDialog.topView;
+            if (view != null) {
+                float f = alertDialog.aspectRatio;
+                if (f >= 0.0f) {
+                    float f2 = size;
+                    if (f == 0.0f) {
+                        f2 /= 936.0f;
+                        f = 354.0f;
+                    }
+                    int i6 = (int) (f2 * f);
+                    view.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(i6, 1073741824));
+                    alertDialog.topView.getLayoutParams().height = i6;
+                } else {
+                    view.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
+                }
+                measuredHeight -= alertDialog.topView.getMeasuredHeight();
+            }
+            if (alertDialog.progressViewStyle == 0) {
+                LinearLayout.LayoutParams layoutParams4 = (LinearLayout.LayoutParams) alertDialog.contentScrollView.getLayoutParams();
+                if (alertDialog.customView != null) {
+                    layoutParams4.topMargin = (alertDialog.titleTextView == null && alertDialog.messageTextView.getVisibility() == 8 && alertDialog.items == null) ? AndroidUtilities.dp(16.0f) : 0;
+                    layoutParams4.bottomMargin = alertDialog.buttonsLayout == null ? AndroidUtilities.dp(8.0f) : 0;
+                } else if (alertDialog.items != null) {
+                    layoutParams4.topMargin = (alertDialog.titleTextView == null && alertDialog.messageTextView.getVisibility() == 8) ? AndroidUtilities.dp(8.0f) : 0;
+                    layoutParams4.bottomMargin = AndroidUtilities.dp(8.0f);
+                } else if (alertDialog.messageTextView.getVisibility() == 0) {
+                    layoutParams4.topMargin = alertDialog.titleTextView == null ? AndroidUtilities.dp(19.0f) : 0;
+                    layoutParams4.bottomMargin = AndroidUtilities.dp(20.0f);
+                }
+                int i7 = measuredHeight - (layoutParams4.bottomMargin + layoutParams4.topMargin);
+                alertDialog.contentScrollView.measure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i7, Integer.MIN_VALUE));
+                measuredHeight = i7 - alertDialog.contentScrollView.getMeasuredHeight();
+            } else {
+                FrameLayout frameLayout2 = alertDialog.progressViewContainer;
+                if (frameLayout2 != null) {
+                    frameLayout2.measure(iM, View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
+                    LinearLayout.LayoutParams layoutParams5 = (LinearLayout.LayoutParams) alertDialog.progressViewContainer.getLayoutParams();
+                    measuredHeight2 = alertDialog.progressViewContainer.getMeasuredHeight() + layoutParams5.bottomMargin;
+                    i3 = layoutParams5.topMargin;
+                } else {
+                    EffectsTextView effectsTextView = alertDialog.messageTextView;
+                    if (effectsTextView != null) {
+                        effectsTextView.measure(iM, View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
+                        if (alertDialog.messageTextView.getVisibility() != 8) {
+                            LinearLayout.LayoutParams layoutParams6 = (LinearLayout.LayoutParams) alertDialog.messageTextView.getLayoutParams();
+                            measuredHeight2 = alertDialog.messageTextView.getMeasuredHeight() + layoutParams6.bottomMargin;
+                            i3 = layoutParams6.topMargin;
+                        }
+                    }
+                    lineProgressView = alertDialog.lineProgressView;
+                    if (lineProgressView != null) {
+                        lineProgressView.measure(iM, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
+                        LinearLayout.LayoutParams layoutParams7 = (LinearLayout.LayoutParams) alertDialog.lineProgressView.getLayoutParams();
+                        int measuredHeight3 = measuredHeight - ((alertDialog.lineProgressView.getMeasuredHeight() + layoutParams7.bottomMargin) + layoutParams7.topMargin);
+                        alertDialog.lineProgressViewPercent.measure(iM, View.MeasureSpec.makeMeasureSpec(measuredHeight3, Integer.MIN_VALUE));
+                        LinearLayout.LayoutParams layoutParams8 = (LinearLayout.LayoutParams) alertDialog.lineProgressViewPercent.getLayoutParams();
+                        measuredHeight = measuredHeight3 - ((alertDialog.lineProgressViewPercent.getMeasuredHeight() + layoutParams8.bottomMargin) + layoutParams8.topMargin);
+                    }
+                }
+                measuredHeight -= measuredHeight2 + i3;
+                lineProgressView = alertDialog.lineProgressView;
+                if (lineProgressView != null) {
+                    lineProgressView.measure(iM, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
+                    LinearLayout.LayoutParams layoutParams9 = (LinearLayout.LayoutParams) alertDialog.lineProgressView.getLayoutParams();
+                    int measuredHeight4 = measuredHeight - ((alertDialog.lineProgressView.getMeasuredHeight() + layoutParams9.bottomMargin) + layoutParams9.topMargin);
+                    alertDialog.lineProgressViewPercent.measure(iM, View.MeasureSpec.makeMeasureSpec(measuredHeight4, Integer.MIN_VALUE));
+                    LinearLayout.LayoutParams layoutParams10 = (LinearLayout.LayoutParams) alertDialog.lineProgressViewPercent.getLayoutParams();
+                    measuredHeight = measuredHeight4 - ((alertDialog.lineProgressViewPercent.getMeasuredHeight() + layoutParams10.bottomMargin) + layoutParams10.topMargin);
+                }
+            }
+            setMeasuredDimension(size, (getPaddingBottom() + (getPaddingTop() + (paddingTop - measuredHeight))) - (alertDialog.topAnimationIsNew ? AndroidUtilities.dp(8.0f) : 0));
+            this.inLayout = false;
+            if (alertDialog.lastScreenWidth != AndroidUtilities.displaySize.x) {
+                AndroidUtilities.runOnUIThread(new Theme$$ExternalSyntheticLambda8(this, 7));
+            }
+        }
+
+        @Override
+        public final boolean onTouchEvent(MotionEvent motionEvent) {
+            AlertDialog alertDialog = this.this$0;
+            if (alertDialog.withCancelDialog) {
+                alertDialog.showCancelAlert();
                 return false;
             }
             super.onTouchEvent(motionEvent);
@@ -365,1421 +549,174 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
 
         @Override
-        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-            if (AlertDialog.this.withCancelDialog) {
-                AlertDialog.this.showCancelAlert();
-                return false;
-            }
-            return super.onInterceptTouchEvent(motionEvent);
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            int measuredHeight;
-            int measuredHeight2;
-            int i3;
-            float f;
-            float f2;
-            if (AlertDialog.this.progressViewStyle == 3) {
-                AlertDialog.this.progressViewContainer.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
-                setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
-                return;
-            }
-            this.inLayout = true;
-            int size = View.MeasureSpec.getSize(i);
-            int size2 = View.MeasureSpec.getSize(i2);
-            if (AlertDialog.this.customWidth > 0) {
-                size = AlertDialog.this.customWidth + AlertDialog.this.backgroundPaddings.left + AlertDialog.this.backgroundPaddings.right;
-            }
-            int paddingTop = (size2 - getPaddingTop()) - getPaddingBottom();
-            int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-            int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(paddingLeft - AndroidUtilities.dp(48.0f), 1073741824);
-            int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(paddingLeft, 1073741824);
-            ViewGroup viewGroup = AlertDialog.this.buttonsLayout;
-            if (viewGroup != null) {
-                int childCount = viewGroup.getChildCount();
-                for (int i4 = 0; i4 < childCount; i4++) {
-                    View childAt = AlertDialog.this.buttonsLayout.getChildAt(i4);
-                    if (childAt instanceof TextView) {
-                        ((TextView) childAt).setMaxWidth(AndroidUtilities.dp((paddingLeft - AndroidUtilities.dp(24.0f)) / 2));
-                    }
-                }
-                AlertDialog.this.buttonsLayout.measure(iMakeMeasureSpec2, i2);
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) AlertDialog.this.buttonsLayout.getLayoutParams();
-                measuredHeight = paddingTop - ((AlertDialog.this.buttonsLayout.getMeasuredHeight() + layoutParams.bottomMargin) + layoutParams.topMargin);
-            } else {
-                measuredHeight = paddingTop;
-            }
-            if (AlertDialog.this.secondTitleTextView != null) {
-                AlertDialog.this.secondTitleTextView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(iMakeMeasureSpec), Integer.MIN_VALUE), i2);
-            }
-            if (AlertDialog.this.titleTextView != null) {
-                if (AlertDialog.this.secondTitleTextView != null) {
-                    AlertDialog.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(iMakeMeasureSpec) - AlertDialog.this.secondTitleTextView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f), 1073741824), i2);
-                } else {
-                    AlertDialog.this.titleTextView.measure(iMakeMeasureSpec, i2);
-                }
-            }
-            if (AlertDialog.this.titleContainer != null) {
-                AlertDialog.this.titleContainer.measure(iMakeMeasureSpec, i2);
-                LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) AlertDialog.this.titleContainer.getLayoutParams();
-                measuredHeight -= (AlertDialog.this.titleContainer.getMeasuredHeight() + layoutParams2.bottomMargin) + layoutParams2.topMargin;
-            }
-            if (AlertDialog.this.subtitleTextView != null) {
-                AlertDialog.this.subtitleTextView.measure(iMakeMeasureSpec, i2);
-                LinearLayout.LayoutParams layoutParams3 = (LinearLayout.LayoutParams) AlertDialog.this.subtitleTextView.getLayoutParams();
-                measuredHeight -= (AlertDialog.this.subtitleTextView.getMeasuredHeight() + layoutParams3.bottomMargin) + layoutParams3.topMargin;
-            }
-            if (AlertDialog.this.topImageView != null) {
-                AlertDialog.this.topImageView.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(AlertDialog.this.topHeight), 1073741824));
-                measuredHeight -= AlertDialog.this.topImageView.getMeasuredHeight();
-            }
-            if (AlertDialog.this.topView != null) {
-                if (AlertDialog.this.aspectRatio >= 0.0f) {
-                    if (AlertDialog.this.aspectRatio == 0.0f) {
-                        f = size / 936.0f;
-                        f2 = 354.0f;
-                    } else {
-                        f = size;
-                        f2 = AlertDialog.this.aspectRatio;
-                    }
-                    int i5 = (int) (f * f2);
-                    AlertDialog.this.topView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(i5, 1073741824));
-                    AlertDialog.this.topView.getLayoutParams().height = i5;
-                } else {
-                    AlertDialog.this.topView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
-                }
-                measuredHeight -= AlertDialog.this.topView.getMeasuredHeight();
-            }
-            if (AlertDialog.this.progressViewStyle == 0) {
-                LinearLayout.LayoutParams layoutParams4 = (LinearLayout.LayoutParams) AlertDialog.this.contentScrollView.getLayoutParams();
-                if (AlertDialog.this.customView != null) {
-                    layoutParams4.topMargin = (AlertDialog.this.titleTextView == null && AlertDialog.this.messageTextView.getVisibility() == 8 && AlertDialog.this.items == null) ? AndroidUtilities.dp(16.0f) : 0;
-                    layoutParams4.bottomMargin = AlertDialog.this.buttonsLayout == null ? AndroidUtilities.dp(8.0f) : 0;
-                } else if (AlertDialog.this.items != null) {
-                    layoutParams4.topMargin = (AlertDialog.this.titleTextView == null && AlertDialog.this.messageTextView.getVisibility() == 8) ? AndroidUtilities.dp(8.0f) : 0;
-                    layoutParams4.bottomMargin = AndroidUtilities.dp(8.0f);
-                } else if (AlertDialog.this.messageTextView.getVisibility() == 0) {
-                    layoutParams4.topMargin = AlertDialog.this.titleTextView == null ? AndroidUtilities.dp(19.0f) : 0;
-                    layoutParams4.bottomMargin = AndroidUtilities.dp(20.0f);
-                }
-                int i6 = measuredHeight - (layoutParams4.bottomMargin + layoutParams4.topMargin);
-                AlertDialog.this.contentScrollView.measure(iMakeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(i6, Integer.MIN_VALUE));
-                measuredHeight = i6 - AlertDialog.this.contentScrollView.getMeasuredHeight();
-            } else {
-                if (AlertDialog.this.progressViewContainer != null) {
-                    AlertDialog.this.progressViewContainer.measure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
-                    LinearLayout.LayoutParams layoutParams5 = (LinearLayout.LayoutParams) AlertDialog.this.progressViewContainer.getLayoutParams();
-                    measuredHeight2 = AlertDialog.this.progressViewContainer.getMeasuredHeight() + layoutParams5.bottomMargin;
-                    i3 = layoutParams5.topMargin;
-                } else {
-                    if (AlertDialog.this.messageTextView != null) {
-                        AlertDialog.this.messageTextView.measure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
-                        if (AlertDialog.this.messageTextView.getVisibility() != 8) {
-                            LinearLayout.LayoutParams layoutParams6 = (LinearLayout.LayoutParams) AlertDialog.this.messageTextView.getLayoutParams();
-                            measuredHeight2 = AlertDialog.this.messageTextView.getMeasuredHeight() + layoutParams6.bottomMargin;
-                            i3 = layoutParams6.topMargin;
-                        }
-                    }
-                    if (AlertDialog.this.lineProgressView != null) {
-                        AlertDialog.this.lineProgressView.measure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
-                        LinearLayout.LayoutParams layoutParams7 = (LinearLayout.LayoutParams) AlertDialog.this.lineProgressView.getLayoutParams();
-                        int measuredHeight3 = measuredHeight - ((AlertDialog.this.lineProgressView.getMeasuredHeight() + layoutParams7.bottomMargin) + layoutParams7.topMargin);
-                        AlertDialog.this.lineProgressViewPercent.measure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(measuredHeight3, Integer.MIN_VALUE));
-                        LinearLayout.LayoutParams layoutParams8 = (LinearLayout.LayoutParams) AlertDialog.this.lineProgressViewPercent.getLayoutParams();
-                        measuredHeight = measuredHeight3 - ((AlertDialog.this.lineProgressViewPercent.getMeasuredHeight() + layoutParams8.bottomMargin) + layoutParams8.topMargin);
-                    }
-                }
-                measuredHeight -= measuredHeight2 + i3;
-                if (AlertDialog.this.lineProgressView != null) {
-                    AlertDialog.this.lineProgressView.measure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
-                    LinearLayout.LayoutParams layoutParams9 = (LinearLayout.LayoutParams) AlertDialog.this.lineProgressView.getLayoutParams();
-                    int measuredHeight4 = measuredHeight - ((AlertDialog.this.lineProgressView.getMeasuredHeight() + layoutParams9.bottomMargin) + layoutParams9.topMargin);
-                    AlertDialog.this.lineProgressViewPercent.measure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(measuredHeight4, Integer.MIN_VALUE));
-                    LinearLayout.LayoutParams layoutParams10 = (LinearLayout.LayoutParams) AlertDialog.this.lineProgressViewPercent.getLayoutParams();
-                    measuredHeight = measuredHeight4 - ((AlertDialog.this.lineProgressViewPercent.getMeasuredHeight() + layoutParams10.bottomMargin) + layoutParams10.topMargin);
-                }
-            }
-            setMeasuredDimension(size, (((paddingTop - measuredHeight) + getPaddingTop()) + getPaddingBottom()) - (AlertDialog.this.topAnimationIsNew ? AndroidUtilities.dp(8.0f) : 0));
-            this.inLayout = false;
-            if (AlertDialog.this.lastScreenWidth != AndroidUtilities.displaySize.x) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        AlertDialog.AlertDialogView.$r8$lambda$NtNNi2Yc6sucXdQMvtFeLNBUijU(this.f$0);
-                    }
-                });
-            }
-        }
-
-        public static void $r8$lambda$NtNNi2Yc6sucXdQMvtFeLNBUijU(AlertDialogView alertDialogView) {
-            int iDp;
-            AlertDialog.this.lastScreenWidth = AndroidUtilities.displaySize.x;
-            int iDp2 = AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f);
-            if (AndroidUtilities.isTablet()) {
-                if (AndroidUtilities.isSmallTablet()) {
-                    iDp = AndroidUtilities.dp(446.0f);
-                } else {
-                    iDp = AndroidUtilities.dp(496.0f);
-                }
-            } else {
-                iDp = AndroidUtilities.dp(356.0f);
-            }
-            Window window = AlertDialog.this.getWindow();
-            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-            layoutParams.copyFrom(window.getAttributes());
-            layoutParams.width = Math.min(iDp, iDp2) + AlertDialog.this.backgroundPaddings.left + AlertDialog.this.backgroundPaddings.right;
-            try {
-                window.setAttributes(layoutParams);
-            } catch (Throwable th) {
-                FileLog.e(th);
-            }
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            if (AlertDialog.this.progressViewStyle == 3) {
-                int measuredWidth = ((i3 - i) - AlertDialog.this.progressViewContainer.getMeasuredWidth()) / 2;
-                int measuredHeight = ((i4 - i2) - AlertDialog.this.progressViewContainer.getMeasuredHeight()) / 2;
-                AlertDialog.this.progressViewContainer.layout(measuredWidth, measuredHeight, AlertDialog.this.progressViewContainer.getMeasuredWidth() + measuredWidth, AlertDialog.this.progressViewContainer.getMeasuredHeight() + measuredHeight);
-            } else if (AlertDialog.this.contentScrollView != null) {
-                if (AlertDialog.this.onScrollChangedListener == null) {
-                    AlertDialog.this.onScrollChangedListener = new ViewTreeObserver.OnScrollChangedListener() {
-                        @Override
-                        public final void onScrollChanged() {
-                            AlertDialog.AlertDialogView.m1253$r8$lambda$oQYLZN14vydiliTDSL1RTeqes(this.f$0);
-                        }
-                    };
-                    AlertDialog.this.contentScrollView.getViewTreeObserver().addOnScrollChangedListener(AlertDialog.this.onScrollChangedListener);
-                }
-                AlertDialog.this.onScrollChangedListener.onScrollChanged();
-            }
-            getLocationOnScreen(AlertDialog.this.containerViewLocation);
-            if (AlertDialog.this.blurMatrix == null || AlertDialog.this.blurShader == null) {
-                return;
-            }
-            AlertDialog.this.blurMatrix.reset();
-            AlertDialog.this.blurMatrix.postScale(8.0f, 8.0f);
-            AlertDialog.this.blurMatrix.postTranslate(-AlertDialog.this.containerViewLocation[0], -AlertDialog.this.containerViewLocation[1]);
-            AlertDialog.this.blurShader.setLocalMatrix(AlertDialog.this.blurMatrix);
-        }
-
-        public static void m1253$r8$lambda$oQYLZN14vydiliTDSL1RTeqes(AlertDialogView alertDialogView) {
-            AlertDialog alertDialog = AlertDialog.this;
-            boolean z = false;
-            alertDialog.runShadowAnimation(0, alertDialog.titleTextView != null && AlertDialog.this.contentScrollView.getScrollY() > AlertDialog.this.scrollContainer.getTop());
-            AlertDialog alertDialog2 = AlertDialog.this;
-            if (alertDialog2.buttonsLayout != null && alertDialog2.contentScrollView.getScrollY() + AlertDialog.this.contentScrollView.getHeight() < AlertDialog.this.scrollContainer.getBottom()) {
-                z = true;
-            }
-            alertDialog2.runShadowAnimation(1, z);
-            AlertDialog.this.contentScrollView.invalidate();
-        }
-
-        @Override
-        public void requestLayout() {
+        public final void requestLayout() {
             if (this.inLayout) {
                 return;
             }
             super.requestLayout();
         }
-
-        @Override
-        public void draw(Canvas canvas) {
-            float fDp;
-            if (AlertDialog.this.blurredBackground && !AlertDialog.this.blurredNativeBackground) {
-                if (AlertDialog.this.progressViewStyle == 3 && AlertDialog.this.progressViewContainer != null) {
-                    fDp = AndroidUtilities.dp(18.0f);
-                    float width = AlertDialog.this.progressViewContainer.getWidth() * AlertDialog.this.progressViewContainer.getScaleX();
-                    float height = AlertDialog.this.progressViewContainer.getHeight() * AlertDialog.this.progressViewContainer.getScaleY();
-                    AndroidUtilities.rectTmp.set((getWidth() - width) / 2.0f, (getHeight() - height) / 2.0f, (getWidth() + width) / 2.0f, (getHeight() + height) / 2.0f);
-                } else {
-                    fDp = AndroidUtilities.dp(20.0f);
-                    AndroidUtilities.rectTmp.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
-                }
-                float f = this.blurPaintAlpha.set(AlertDialog.this.blurPaint != null ? 1.0f : 0.0f);
-                if (AlertDialog.this.blurPaint != null) {
-                    AlertDialog.this.blurPaint.setAlpha((int) (f * 255.0f));
-                    canvas.drawRoundRect(AndroidUtilities.rectTmp, fDp, fDp, AlertDialog.this.blurPaint);
-                }
-                if (AlertDialog.this.dimBlurPaint == null) {
-                    AlertDialog.this.dimBlurPaint = new Paint(1);
-                    AlertDialog.this.dimBlurPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (AlertDialog.this.dimAlpha * 255.0f)));
-                }
-                RectF rectF = AndroidUtilities.rectTmp;
-                canvas.drawRoundRect(rectF, fDp, fDp, AlertDialog.this.dimBlurPaint);
-                this.backgroundPaint.setColor(AlertDialog.this.backgroundColor);
-                Paint paint = this.backgroundPaint;
-                paint.setAlpha((int) (paint.getAlpha() * ((f * (AlertDialog.this.blurOpacity - 1.0f)) + 1.0f)));
-                canvas.drawRoundRect(rectF, fDp, fDp, this.backgroundPaint);
-            }
-            super.draw(canvas);
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            if (AlertDialog.this.drawBackground && !AlertDialog.this.blurredBackground) {
-                AlertDialog.this.shadowDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                if (AlertDialog.this.topView == null || !AlertDialog.this.notDrawBackgroundOnTopView) {
-                    AlertDialog.this.shadowDrawable.draw(canvas);
-                } else {
-                    int bottom = AlertDialog.this.topView.getBottom();
-                    canvas.save();
-                    canvas.clipRect(0, bottom, getMeasuredWidth(), getMeasuredHeight());
-                    AlertDialog.this.shadowDrawable.draw(canvas);
-                    canvas.restore();
-                }
-            }
-            super.dispatchDraw(canvas);
-        }
     }
 
-    public AlertDialog setShowStarsBalance(boolean z) {
-        this.needStarsBalance = z;
-        return this;
-    }
+    public class Builder {
+        public final AlertDialog alertDialog;
+        public final boolean[] red;
 
-    public FrameLayout getFullscreenContainerView() {
-        return this.fullscreenContainerView;
-    }
-
-    public BalanceCloud getStarsBalanceCloud() {
-        return this.starsBalanceCloud;
-    }
-
-    public AlertDialogView getContainerView() {
-        return this.containerView;
-    }
-
-    protected View inflateContent(boolean z) {
-        char c;
-        float f;
-        float f2;
-        float f3;
-        int iDp;
-        int iMeasureText;
-        float f4;
-        AlertDialogView alertDialogView = new AlertDialogView(getContext());
-        this.containerView = alertDialogView;
-        alertDialogView.setOrientation(1);
-        if ((this.blurredBackground || this.progressViewStyle == 3) && this.progressViewStyle != 2) {
-            this.containerView.setBackground(null);
-            this.containerView.setPadding(0, 0, 0, 0);
-            if (this.blurredBackground && !this.blurredNativeBackground) {
-                this.containerView.setWillNotDraw(false);
-            }
-            this.drawBackground = false;
-            c = 5;
-            f = 8.0f;
-        } else if (this.notDrawBackgroundOnTopView) {
-            Rect rect = new Rect();
-            this.shadowDrawable.getPadding(rect);
-            c = 5;
-            f = 8.0f;
-            this.containerView.setPadding(rect.left, rect.top, rect.right, rect.bottom);
-            this.drawBackground = true;
-        } else {
-            c = 5;
-            f = 8.0f;
-            this.containerView.setBackground(null);
-            this.containerView.setPadding(0, 0, 0, 0);
-            this.containerView.setBackground(this.shadowDrawable);
-            this.containerView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f)));
-            this.containerView.setClipToOutline(true);
-            this.drawBackground = false;
+        public Builder(Context context) {
+            this(context, 0, null);
         }
-        View view = this.containerView;
-        if (this.needStarsBalance) {
-            if (this.fullscreenContainerView == null) {
-                FrameLayout frameLayout = new FrameLayout(getContext());
-                this.fullscreenContainerView = frameLayout;
-                frameLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        this.f$0.dismiss();
-                    }
-                });
-            }
-            if (this.starsBalanceCloud == null) {
-                BalanceCloud balanceCloud = new BalanceCloud(getContext(), UserConfig.selectedAccount, this.resourcesProvider);
-                this.starsBalanceCloud = balanceCloud;
-                ScaleStateListAnimator.apply(balanceCloud);
-                this.starsBalanceCloud.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        AlertDialog alertDialog = this.f$0;
-                        new StarsIntroActivity.StarsOptionsSheet(alertDialog.getContext(), alertDialog.resourcesProvider).show();
-                    }
-                });
-            }
-            AndroidUtilities.removeFromParent(this.containerView);
-            AndroidUtilities.removeFromParent(this.starsBalanceCloud);
-            this.fullscreenContainerView.addView(this.containerView, LayoutHelper.createFrame(-2, -2, 17));
-            this.fullscreenContainerView.addView(this.starsBalanceCloud, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
-            view = this.fullscreenContainerView;
-        }
-        if (z) {
-            if (this.needStarsBalance) {
-                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -1);
-                layoutParams.gravity = 119;
-                setContentView(view, layoutParams);
-            } else if (this.customWidth > 0) {
-                FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-2, -2);
-                layoutParams2.gravity = 17;
-                setContentView(view, layoutParams2);
-            } else {
-                setContentView(view);
-            }
-        }
-        boolean z2 = (this.positiveButtonText == null && this.negativeButtonText == null && this.negative2ButtonText == null && this.neutralButtonText == null) ? false : true;
-        if (this.topResId != 0 || this.topAnimationId != 0 || this.topDrawable != null) {
-            RLottieImageView rLottieImageView = new RLottieImageView(getContext());
-            this.topImageView = rLottieImageView;
-            Drawable drawable = this.topDrawable;
-            if (drawable != null) {
-                rLottieImageView.setImageDrawable(drawable);
-                Drawable drawable2 = this.topDrawable;
-                if (drawable2 instanceof AttachableDrawable) {
-                    final AttachableDrawable attachableDrawable = (AttachableDrawable) drawable2;
-                    this.topImageView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-                        @Override
-                        public void onViewAttachedToWindow(View view2) {
-                            attachableDrawable.onAttachedToWindow(null);
-                        }
 
-                        @Override
-                        public void onViewDetachedFromWindow(View view2) {
-                            attachableDrawable.onDetachedFromWindow(null);
-                        }
-                    });
-                    attachableDrawable.setParent(this.topImageView);
+        public final AlertDialog create() {
+            return this.alertDialog;
+        }
+
+        public AlertDialog createAlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+            return new AlertDialog(context, i, resourcesProvider);
+        }
+
+        public final void makeCustomMaxHeight() {
+            int i = AlertDialog.$r8$clinit;
+            this.alertDialog.getClass();
+        }
+
+        public final void makeRed(int i) {
+            int i2 = (-i) - 1;
+            if (i2 >= 0) {
+                boolean[] zArr = this.red;
+                if (i2 < zArr.length) {
+                    zArr[i2] = true;
                 }
-            } else {
-                int i = this.topResId;
-                if (i != 0) {
-                    rLottieImageView.setImageResource(i);
-                } else {
-                    rLottieImageView.setAutoRepeat(this.topAnimationAutoRepeat);
-                    RLottieImageView rLottieImageView2 = this.topImageView;
-                    int i2 = this.topAnimationId;
-                    int i3 = this.topAnimationSize;
-                    rLottieImageView2.setAnimation(i2, i3, i3);
-                    if (this.topAnimationLayerColors != null) {
-                        RLottieDrawable animatedDrawable = this.topImageView.getAnimatedDrawable();
-                        for (Map.Entry entry : this.topAnimationLayerColors.entrySet()) {
-                            animatedDrawable.setLayerColor((String) entry.getKey(), ((Integer) entry.getValue()).intValue());
-                        }
-                    }
-                    f2 = 16.0f;
-                    this.topImageView.playAnimation();
-                }
-                this.topImageView.setScaleType(ImageView.ScaleType.CENTER);
-                if (this.topAnimationIsNew) {
-                    final GradientDrawable gradientDrawable = new GradientDrawable();
-                    gradientDrawable.setColor(this.topBackgroundColor);
-                    gradientDrawable.setCornerRadius(AndroidUtilities.dp(128.0f));
-                    this.topImageView.setBackground(new Drawable() {
-                        int size;
-
-                        {
-                            this.size = AlertDialog.this.topAnimationSize + AndroidUtilities.dp(52.0f);
-                        }
-
-                        @Override
-                        public void draw(Canvas canvas) {
-                            gradientDrawable.setBounds((int) ((AlertDialog.this.topImageView.getWidth() - this.size) / 2.0f), (int) ((AlertDialog.this.topImageView.getHeight() - this.size) / 2.0f), (int) ((AlertDialog.this.topImageView.getWidth() + this.size) / 2.0f), (int) ((AlertDialog.this.topImageView.getHeight() + this.size) / 2.0f));
-                            gradientDrawable.draw(canvas);
-                        }
-
-                        @Override
-                        public void setAlpha(int i4) {
-                            gradientDrawable.setAlpha(i4);
-                        }
-
-                        @Override
-                        public void setColorFilter(ColorFilter colorFilter) {
-                            gradientDrawable.setColorFilter(colorFilter);
-                        }
-
-                        @Override
-                        public int getOpacity() {
-                            return gradientDrawable.getOpacity();
-                        }
-                    });
-                    this.topHeight = 92;
-                } else {
-                    this.topImageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), 0, this.topBackgroundColor));
-                }
-                if (this.topAnimationIsNew) {
-                    this.topImageView.setTranslationY(AndroidUtilities.dp(f2));
-                } else {
-                    this.topImageView.setTranslationY(0.0f);
-                }
-                this.topImageView.setPadding(0, 0, 0, 0);
-                this.containerView.addView(this.topImageView, LayoutHelper.createLinear(-1, this.topHeight, 51, 0, 0, 0, 0));
-            }
-            f2 = 16.0f;
-            this.topImageView.setScaleType(ImageView.ScaleType.CENTER);
-            if (this.topAnimationIsNew) {
-                final GradientDrawable gradientDrawable2 = new GradientDrawable();
-                gradientDrawable2.setColor(this.topBackgroundColor);
-                gradientDrawable2.setCornerRadius(AndroidUtilities.dp(128.0f));
-                this.topImageView.setBackground(new Drawable() {
-                    int size;
-
-                    {
-                        this.size = AlertDialog.this.topAnimationSize + AndroidUtilities.dp(52.0f);
-                    }
-
-                    @Override
-                    public void draw(Canvas canvas) {
-                        gradientDrawable2.setBounds((int) ((AlertDialog.this.topImageView.getWidth() - this.size) / 2.0f), (int) ((AlertDialog.this.topImageView.getHeight() - this.size) / 2.0f), (int) ((AlertDialog.this.topImageView.getWidth() + this.size) / 2.0f), (int) ((AlertDialog.this.topImageView.getHeight() + this.size) / 2.0f));
-                        gradientDrawable2.draw(canvas);
-                    }
-
-                    @Override
-                    public void setAlpha(int i4) {
-                        gradientDrawable2.setAlpha(i4);
-                    }
-
-                    @Override
-                    public void setColorFilter(ColorFilter colorFilter) {
-                        gradientDrawable2.setColorFilter(colorFilter);
-                    }
-
-                    @Override
-                    public int getOpacity() {
-                        return gradientDrawable2.getOpacity();
-                    }
-                });
-                this.topHeight = 92;
-            } else {
-                this.topImageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), 0, this.topBackgroundColor));
-            }
-            if (this.topAnimationIsNew) {
-                this.topImageView.setTranslationY(AndroidUtilities.dp(f2));
-            } else {
-                this.topImageView.setTranslationY(0.0f);
-            }
-            this.topImageView.setPadding(0, 0, 0, 0);
-            this.containerView.addView(this.topImageView, LayoutHelper.createLinear(-1, this.topHeight, 51, 0, 0, 0, 0));
-        } else {
-            View view2 = this.topView;
-            if (view2 != null) {
-                view2.setPadding(0, 0, 0, 0);
-                this.containerView.addView(this.topView, LayoutHelper.createLinear(-1, this.topHeight, 51, 0, 0, 0, 0));
             }
         }
-        if (this.title != null) {
-            FrameLayout frameLayout2 = new FrameLayout(getContext());
-            this.titleContainer = frameLayout2;
-            this.containerView.addView(frameLayout2, LayoutHelper.createLinear(-2, -2, this.topAnimationIsNew ? 1 : 0, 24, 0, 24, 0));
-            SpoilersTextView spoilersTextView = new SpoilersTextView(getContext(), false);
-            this.titleTextView = spoilersTextView;
-            NotificationCenter.listenEmojiLoading(spoilersTextView);
-            SpoilersTextView spoilersTextView2 = this.titleTextView;
-            spoilersTextView2.cacheType = 3;
-            spoilersTextView2.setText(this.title);
-            this.titleTextView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-            this.titleTextView.setTextSize(1, 20.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.bold());
-            this.titleTextView.setGravity((this.topAnimationIsNew ? 1 : LocaleController.isRTL ? 5 : 3) | 48);
-            FrameLayout frameLayout3 = this.titleContainer;
-            SpoilersTextView spoilersTextView3 = this.titleTextView;
-            boolean z3 = this.topAnimationIsNew;
-            int i4 = (z3 ? 1 : LocaleController.isRTL ? 5 : 3) | 48;
-            if (z3) {
-                f4 = 4.0f;
-            } else {
-                f4 = this.subtitle != null ? 2 : this.items != null ? 14 : 10;
-            }
-            frameLayout3.addView(spoilersTextView3, LayoutHelper.createFrame(-2, -2.0f, i4, 0.0f, 19.0f, 0.0f, f4));
+
+        public final void setDimAlpha() {
+            this.alertDialog.dimAlpha = 0.5f;
         }
-        if (this.secondTitle != null && this.title != null) {
-            TextView textView = new TextView(getContext());
-            this.secondTitleTextView = textView;
-            textView.setText(this.secondTitle);
-            this.secondTitleTextView.setTextColor(getThemedColor(Theme.key_dialogTextGray3));
-            this.secondTitleTextView.setTextSize(1, 18.0f);
-            this.secondTitleTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
-            this.titleContainer.addView(this.secondTitleTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 48, 0.0f, 21.0f, 0.0f, 0.0f));
+
+        public final void setItems(CharSequence[] charSequenceArr, DialogInterface.OnClickListener onClickListener) {
+            AlertDialog alertDialog = this.alertDialog;
+            alertDialog.items = charSequenceArr;
+            alertDialog.onClickListener = onClickListener;
         }
-        if (this.subtitle != null) {
-            TextView textView2 = new TextView(getContext());
-            this.subtitleTextView = textView2;
-            textView2.setText(this.subtitle);
-            this.subtitleTextView.setTextColor(getThemedColor(Theme.key_dialogIcon));
-            this.subtitleTextView.setTextSize(1, 14.0f);
-            this.subtitleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            this.containerView.addView(this.subtitleTextView, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 24, 0, 24, this.items != null ? 14 : 10));
+
+        public final void setMessage(CharSequence charSequence) {
+            this.alertDialog.message = charSequence;
         }
-        if (this.progressViewStyle == 0) {
-            this.shadow[0] = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.header_shadow).mutate();
-            this.shadow[1] = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.header_shadow_reverse).mutate();
-            this.shadow[0].setAlpha(0);
-            this.shadow[1].setAlpha(0);
-            this.shadow[0].setCallback(this);
-            this.shadow[1].setCallback(this);
-            ScrollView scrollView = new ScrollView(getContext()) {
-                @Override
-                protected boolean drawChild(Canvas canvas, View view3, long j) {
-                    boolean zDrawChild = super.drawChild(canvas, view3, j);
-                    if (AlertDialog.this.shadow[0].getPaint().getAlpha() != 0) {
-                        AlertDialog.this.shadow[0].setBounds(0, getScrollY(), getMeasuredWidth(), getScrollY() + AndroidUtilities.dp(3.0f));
-                        AlertDialog.this.shadow[0].draw(canvas);
-                    }
-                    if (AlertDialog.this.shadow[1].getPaint().getAlpha() != 0) {
-                        AlertDialog.this.shadow[1].setBounds(0, (getScrollY() + getMeasuredHeight()) - AndroidUtilities.dp(3.0f), getMeasuredWidth(), getScrollY() + getMeasuredHeight());
-                        AlertDialog.this.shadow[1].draw(canvas);
-                    }
-                    return zDrawChild;
-                }
-            };
-            this.contentScrollView = scrollView;
-            scrollView.setVerticalScrollBarEnabled(false);
-            AndroidUtilities.setScrollViewEdgeEffectColor(this.contentScrollView, getThemedColor(Theme.key_dialogScrollGlow));
-            this.containerView.addView(this.contentScrollView, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 0.0f));
-            LinearLayout linearLayout = new LinearLayout(getContext());
-            this.scrollContainer = linearLayout;
-            linearLayout.setOrientation(1);
-            this.contentScrollView.addView(this.scrollContainer, new FrameLayout.LayoutParams(-1, -2));
+
+        public final void setNegativeButton(String str, OnButtonClickListener onButtonClickListener) {
+            AlertDialog alertDialog = this.alertDialog;
+            alertDialog.negativeButtonText = str;
+            alertDialog.negativeButtonListener = onButtonClickListener;
         }
-        EffectsTextView effectsTextView = new EffectsTextView(getContext());
-        this.messageTextView = effectsTextView;
-        NotificationCenter.listenEmojiLoading(effectsTextView);
-        this.messageTextView.setTextColor(getThemedColor(this.topAnimationIsNew ? Theme.key_windowBackgroundWhiteGrayText : Theme.key_dialogTextBlack));
-        this.messageTextView.setTextSize(1, 16.0f);
-        this.messageTextView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        this.messageTextView.setLinkTextColor(getThemedColor(Theme.key_dialogTextLink));
-        if (!this.messageTextViewClickable) {
-            this.messageTextView.setClickable(false);
-            this.messageTextView.setEnabled(false);
+
+        public final void setNeutralButton(String str, OnButtonClickListener onButtonClickListener) {
+            AlertDialog alertDialog = this.alertDialog;
+            alertDialog.neutralButtonText = str;
+            alertDialog.neutralButtonListener = onButtonClickListener;
         }
-        this.messageTextView.setGravity((this.topAnimationIsNew ? 1 : LocaleController.isRTL ? 5 : 3) | 48);
-        int i5 = this.progressViewStyle;
-        if (i5 == 2) {
-            this.containerView.addView(this.messageTextView, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 24, this.title == null ? 19 : 0, 24, 20));
-            LineProgressView lineProgressView = new LineProgressView(getContext());
-            this.lineProgressView = lineProgressView;
-            lineProgressView.setProgress(this.currentProgress / 100.0f, false);
-            this.lineProgressView.setProgressColor(getThemedColor(Theme.key_dialogLineProgress));
-            this.lineProgressView.setBackColor(getThemedColor(Theme.key_dialogLineProgressBackground));
-            this.containerView.addView(this.lineProgressView, LayoutHelper.createLinear(-1, 4, 19, 24, 0, 24, 0));
-            TextView textView3 = new TextView(getContext());
-            this.lineProgressViewPercent = textView3;
-            textView3.setTypeface(AndroidUtilities.bold());
-            this.lineProgressViewPercent.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            this.lineProgressViewPercent.setTextColor(getThemedColor(Theme.key_dialogTextGray2));
-            this.lineProgressViewPercent.setTextSize(1, 14.0f);
-            this.containerView.addView(this.lineProgressViewPercent, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 23, 4, 23, 24));
-            updateLineProgressTextView();
-        } else if (i5 == 3) {
-            setCanceledOnTouchOutside(false);
-            setCancelable(false);
-            this.progressViewContainer = new FrameLayout(getContext());
-            this.backgroundColor = getThemedColor(Theme.key_dialog_inlineProgressBackground);
-            if (!this.blurredBackground || this.blurredNativeBackground) {
-                this.progressViewContainer.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), this.backgroundColor));
-            }
-            this.containerView.addView(this.progressViewContainer, LayoutHelper.createLinear(86, 86, 17));
-            RadialProgressView radialProgressView = new RadialProgressView(getContext(), this.resourcesProvider);
-            radialProgressView.setSize(AndroidUtilities.dp(32.0f));
-            radialProgressView.setProgressColor(getThemedColor(Theme.key_dialog_inlineProgress));
-            this.progressViewContainer.addView(radialProgressView, LayoutHelper.createFrame(86, 86, 17));
-        } else {
-            View view3 = this.aboveMessageView;
-            if (view3 != null) {
-                this.scrollContainer.addView(view3, LayoutHelper.createLinear(-1, -2, 22.0f, 4.0f, 22.0f, 12.0f));
-            }
-            this.scrollContainer.addView(this.messageTextView, LayoutHelper.createLinear(-2, -2, (this.topAnimationIsNew ? 1 : LocaleController.isRTL ? 5 : 3) | 48, 24, 0, 24, (this.customView == null && this.items == null) ? 0 : this.customViewOffset));
-            View view4 = this.bottomView;
-            if (view4 != null) {
-                this.scrollContainer.addView(view4, LayoutHelper.createLinear(-1, -2, 22.0f, 12.0f, 22.0f, 0.0f));
-            }
+
+        public final void setOnBackButtonListener(LaunchActivity$$ExternalSyntheticLambda16 launchActivity$$ExternalSyntheticLambda16) {
+            this.alertDialog.onBackButtonListener = launchActivity$$ExternalSyntheticLambda16;
         }
-        if (!TextUtils.isEmpty(this.message)) {
-            this.messageTextView.setText(this.message);
-            this.messageTextView.setVisibility(0);
-        } else {
-            this.messageTextView.setVisibility(8);
+
+        public final void setPositiveButton(CharSequence charSequence, OnButtonClickListener onButtonClickListener) {
+            AlertDialog alertDialog = this.alertDialog;
+            alertDialog.positiveButtonText = charSequence;
+            alertDialog.positiveButtonListener = onButtonClickListener;
         }
-        if (this.items != null) {
-            int i6 = 0;
+
+        public final void setTitle(CharSequence charSequence) {
+            this.alertDialog.title = charSequence;
+        }
+
+        public final void setTopAnimation(int i, int i2) {
+            setTopAnimation(i, 72, i2, null);
+        }
+
+        public final void setView(View view) {
+            AlertDialog alertDialog = this.alertDialog;
+            alertDialog.customView = view;
+            alertDialog.customViewHeight = -2;
+        }
+
+        public final AlertDialog show() {
+            TextView textView;
+            AlertDialog alertDialog = this.alertDialog;
+            alertDialog.show();
+            int i = 0;
             while (true) {
-                CharSequence[] charSequenceArr = this.items;
-                if (i6 >= charSequenceArr.length) {
-                    break;
+                boolean[] zArr = this.red;
+                if (i >= zArr.length) {
+                    return alertDialog;
                 }
-                if (charSequenceArr[i6] != null) {
-                    AlertDialogCell alertDialogCell = new AlertDialogCell(getContext(), this.resourcesProvider);
-                    CharSequence charSequence = this.items[i6];
-                    int[] iArr = this.itemIcons;
-                    alertDialogCell.setTextAndIcon(charSequence, iArr != null ? iArr[i6] : 0);
-                    alertDialogCell.setTag(Integer.valueOf(i6));
-                    this.itemViews.add(alertDialogCell);
-                    this.scrollContainer.addView(alertDialogCell, LayoutHelper.createLinear(-1, 50));
-                    alertDialogCell.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view5) {
-                            AlertDialog.m1250$r8$lambda$WVYQWMlM7ABxmekBKqP6lSkYDc(this.f$0, view5);
-                        }
-                    });
+                if (zArr[i] && (textView = (TextView) alertDialog.getButton(-(i + 1))) != null) {
+                    textView.setTextColor(alertDialog.getThemedColor(Theme.key_text_RedBold));
                 }
-                i6++;
+                i++;
             }
         }
-        View view5 = this.customView;
-        if (view5 != null) {
-            if (view5.getParent() != null) {
-                ((ViewGroup) this.customView.getParent()).removeView(this.customView);
-            }
-            this.scrollContainer.addView(this.customView, LayoutHelper.createLinear(-1, this.customViewHeight));
-        }
-        if (z2) {
-            if (this.verticalButtons) {
-                f3 = 12.0f;
-            } else {
-                TextPaint textPaint = new TextPaint();
-                textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-                textPaint.setTypeface(AndroidUtilities.bold());
-                CharSequence charSequence2 = this.positiveButtonText;
-                if (charSequence2 != null) {
-                    f3 = 12.0f;
-                    iMeasureText = (int) (0 + textPaint.measureText(charSequence2, 0, charSequence2.length()) + AndroidUtilities.dp(24.0f));
-                } else {
-                    f3 = 12.0f;
-                    iMeasureText = 0;
-                }
-                if (this.negativeButtonText != null) {
-                    if (iMeasureText > 0) {
-                        iMeasureText += AndroidUtilities.dp(f);
-                    }
-                    CharSequence charSequence3 = this.negativeButtonText;
-                    iMeasureText = (int) (iMeasureText + textPaint.measureText(charSequence3, 0, charSequence3.length()) + AndroidUtilities.dp(24.0f));
-                }
-                if (this.negative2ButtonText != null) {
-                    if (iMeasureText > 0) {
-                        iMeasureText += AndroidUtilities.dp(f);
-                    }
-                    CharSequence charSequence4 = this.negative2ButtonText;
-                    iMeasureText = (int) (iMeasureText + textPaint.measureText(charSequence4, 0, charSequence4.length()) + AndroidUtilities.dp(24.0f));
-                }
-                if (this.neutralButtonText != null) {
-                    if (iMeasureText > 0) {
-                        iMeasureText += AndroidUtilities.dp(f);
-                    }
-                    CharSequence charSequence5 = this.neutralButtonText;
-                    iMeasureText = (int) (iMeasureText + textPaint.measureText(charSequence5, 0, charSequence5.length()) + AndroidUtilities.dp(24.0f));
-                }
-                if (iMeasureText > AndroidUtilities.displaySize.x - AndroidUtilities.dp(64.0f)) {
-                    if (this.twoRowsButtonsWhenNeeded && this.positiveButtonText != null && this.negativeButtonText != null && this.negative2ButtonText != null && this.neutralButtonText != null) {
-                        this.buttonsInTwoRows = true;
-                    } else {
-                        this.verticalButtons = true;
-                    }
-                }
-            }
-            if (this.verticalButtons) {
-                LinearLayout linearLayout2 = new LinearLayout(getContext());
-                linearLayout2.setOrientation(1);
-                this.buttonsLayout = linearLayout2;
-            } else {
-                this.buttonsLayout = new FrameLayout(getContext()) {
-                    @Override
-                    protected void onLayout(boolean z4, int i7, int i8, int i9, int i10) {
-                        int left;
-                        int top;
-                        int right;
-                        int left2;
-                        int measuredWidth;
-                        int childCount = getChildCount();
-                        int i11 = i9 - i7;
-                        int i12 = -1;
-                        if (AlertDialog.this.buttonsInTwoRows) {
-                            View viewFindViewWithTag = findViewWithTag(-3);
-                            View viewFindViewWithTag2 = findViewWithTag(-4);
-                            View viewFindViewWithTag3 = findViewWithTag(-2);
-                            View viewFindViewWithTag4 = findViewWithTag(-1);
-                            int paddingLeft = getPaddingLeft();
-                            int paddingRight = i11 - getPaddingRight();
-                            int iMax = Math.max(0, ((paddingRight - paddingLeft) - AndroidUtilities.dp(8.0f)) / 2);
-                            boolean z5 = LocaleController.isRTL;
-                            int i13 = z5 ? paddingRight - iMax : paddingLeft;
-                            if (!z5) {
-                                paddingLeft = paddingRight - iMax;
-                            }
-                            int paddingTop = getPaddingTop();
-                            int iDp2 = AndroidUtilities.dp(44.0f) + paddingTop;
-                            if (viewFindViewWithTag != null) {
-                                viewFindViewWithTag.layout(i13, paddingTop, i13 + iMax, AndroidUtilities.dp(40.0f) + paddingTop);
-                            }
-                            if (viewFindViewWithTag2 != null) {
-                                viewFindViewWithTag2.layout(paddingLeft, paddingTop, paddingLeft + iMax, AndroidUtilities.dp(40.0f) + paddingTop);
-                            }
-                            if (viewFindViewWithTag3 != null) {
-                                viewFindViewWithTag3.layout(i13, iDp2, i13 + iMax, AndroidUtilities.dp(40.0f) + iDp2);
-                            }
-                            if (viewFindViewWithTag4 != null) {
-                                viewFindViewWithTag4.layout(paddingLeft, iDp2, iMax + paddingLeft, AndroidUtilities.dp(40.0f) + iDp2);
-                                return;
-                            }
-                            return;
-                        }
-                        View view6 = null;
-                        int i14 = 0;
-                        while (i14 < childCount) {
-                            View childAt = getChildAt(i14);
-                            Integer num = (Integer) childAt.getTag();
-                            if (num != null) {
-                                if (num.intValue() == i12) {
-                                    if (LocaleController.isRTL) {
-                                        childAt.layout(getPaddingLeft(), getPaddingTop(), getPaddingLeft() + childAt.getMeasuredWidth(), getPaddingTop() + childAt.getMeasuredHeight());
-                                    } else {
-                                        childAt.layout((i11 - getPaddingRight()) - childAt.getMeasuredWidth(), getPaddingTop(), i11 - getPaddingRight(), getPaddingTop() + childAt.getMeasuredHeight());
-                                    }
-                                    view6 = childAt;
-                                } else if (num.intValue() == -2) {
-                                    if (LocaleController.isRTL) {
-                                        int paddingLeft2 = getPaddingLeft();
-                                        if (view6 != null) {
-                                            paddingLeft2 += view6.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
-                                        }
-                                        childAt.layout(paddingLeft2, getPaddingTop(), childAt.getMeasuredWidth() + paddingLeft2, getPaddingTop() + childAt.getMeasuredHeight());
-                                    } else {
-                                        int paddingRight2 = (i11 - getPaddingRight()) - childAt.getMeasuredWidth();
-                                        if (view6 != null) {
-                                            paddingRight2 -= view6.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
-                                        }
-                                        childAt.layout(paddingRight2, getPaddingTop(), childAt.getMeasuredWidth() + paddingRight2, getPaddingTop() + childAt.getMeasuredHeight());
-                                    }
-                                } else if (num.intValue() == -4) {
-                                    View viewFindViewWithTag5 = findViewWithTag(-3);
-                                    if (LocaleController.isRTL) {
-                                        if (viewFindViewWithTag5 == null) {
-                                            left2 = i11 - getPaddingRight();
-                                            measuredWidth = childAt.getMeasuredWidth();
-                                        } else {
-                                            left2 = viewFindViewWithTag5.getLeft() - AndroidUtilities.dp(8.0f);
-                                            measuredWidth = childAt.getMeasuredWidth();
-                                        }
-                                        int i15 = left2 - measuredWidth;
-                                        childAt.layout(i15, getPaddingTop(), childAt.getMeasuredWidth() + i15, getPaddingTop() + childAt.getMeasuredHeight());
-                                    } else {
-                                        if (viewFindViewWithTag5 == null) {
-                                            right = getPaddingLeft();
-                                        } else {
-                                            right = viewFindViewWithTag5.getRight() + AndroidUtilities.dp(8.0f);
-                                        }
-                                        childAt.layout(right, getPaddingTop(), childAt.getMeasuredWidth() + right, getPaddingTop() + childAt.getMeasuredHeight());
-                                    }
-                                } else if (num.intValue() == -3) {
-                                    if (LocaleController.isRTL) {
-                                        childAt.layout((i11 - getPaddingRight()) - childAt.getMeasuredWidth(), getPaddingTop(), i11 - getPaddingRight(), getPaddingTop() + childAt.getMeasuredHeight());
-                                    } else {
-                                        childAt.layout(getPaddingLeft(), getPaddingTop(), getPaddingLeft() + childAt.getMeasuredWidth(), getPaddingTop() + childAt.getMeasuredHeight());
-                                    }
-                                }
-                            } else {
-                                int measuredWidth2 = childAt.getMeasuredWidth();
-                                int measuredHeight = childAt.getMeasuredHeight();
-                                if (view6 != null) {
-                                    left = view6.getLeft() + ((view6.getMeasuredWidth() - measuredWidth2) / 2);
-                                    top = view6.getTop() + ((view6.getMeasuredHeight() - measuredHeight) / 2);
-                                } else {
-                                    left = 0;
-                                    top = 0;
-                                }
-                                childAt.layout(left, top, measuredWidth2 + left, measuredHeight + top);
-                            }
-                            i14++;
-                            i12 = -1;
-                        }
-                    }
 
-                    @Override
-                    protected void onMeasure(int i7, int i8) {
-                        super.onMeasure(i7, i8);
-                        int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-                        int childCount = getChildCount();
-                        int i9 = 0;
-                        if (AlertDialog.this.buttonsInTwoRows) {
-                            int iMax = Math.max(0, (measuredWidth - AndroidUtilities.dp(8.0f)) / 2);
-                            while (i9 < childCount) {
-                                View childAt = getChildAt(i9);
-                                if (childAt.getTag() != null) {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(iMax, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
-                                }
-                                i9++;
-                            }
-                            return;
-                        }
-                        int measuredWidth2 = 0;
-                        while (i9 < childCount) {
-                            View childAt2 = getChildAt(i9);
-                            if ((childAt2 instanceof TextView) && childAt2.getTag() != null) {
-                                measuredWidth2 += childAt2.getMeasuredWidth();
-                            }
-                            i9++;
-                        }
-                        if (measuredWidth2 > measuredWidth) {
-                            View viewFindViewWithTag = findViewWithTag(-2);
-                            View viewFindViewWithTag2 = findViewWithTag(-4);
-                            View viewFindViewWithTag3 = findViewWithTag(-3);
-                            if (viewFindViewWithTag != null && viewFindViewWithTag3 != null) {
-                                if (viewFindViewWithTag.getMeasuredWidth() < viewFindViewWithTag3.getMeasuredWidth()) {
-                                    viewFindViewWithTag3.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag3.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag3.getMeasuredHeight(), 1073741824));
-                                    return;
-                                } else {
-                                    viewFindViewWithTag.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag.getMeasuredHeight(), 1073741824));
-                                    return;
-                                }
-                            }
-                            if (viewFindViewWithTag2 == null || viewFindViewWithTag3 == null) {
-                                return;
-                            }
-                            if (viewFindViewWithTag2.getMeasuredWidth() < viewFindViewWithTag3.getMeasuredWidth()) {
-                                viewFindViewWithTag3.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag3.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag3.getMeasuredHeight(), 1073741824));
-                            } else {
-                                viewFindViewWithTag2.measure(View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag2.getMeasuredWidth() - (measuredWidth2 - measuredWidth), 1073741824), View.MeasureSpec.makeMeasureSpec(viewFindViewWithTag2.getMeasuredHeight(), 1073741824));
-                            }
-                        }
-                    }
-                };
-            }
-            if (this.bottomView != null) {
-                this.buttonsLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
-                this.buttonsLayout.setTranslationY(-AndroidUtilities.dp(6.0f));
-            } else {
-                this.buttonsLayout.setPadding(AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f));
-            }
-            this.containerView.addView(this.buttonsLayout, LayoutHelper.createLinear(-1, this.buttonsInTwoRows ? 96 : 52));
-            if (this.topAnimationIsNew) {
-                this.buttonsLayout.setTranslationY(-AndroidUtilities.dp(f));
-            }
-            if (this.positiveButtonText != null) {
-                final TextViewWithLoading textViewWithLoading = new TextViewWithLoading(getContext()) {
-                    @Override
-                    public void setEnabled(boolean z4) {
-                        super.setEnabled(z4);
-                        setAlpha(z4 ? 1.0f : 0.5f);
-                    }
-
-                    @Override
-                    public void setTextColor(int i7) {
-                        super.setTextColor(i7);
-                        setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i7));
-                    }
-                };
-                textViewWithLoading.setMinWidth(AndroidUtilities.dp(64.0f));
-                textViewWithLoading.setTag(-1);
-                textViewWithLoading.setTextSize(1, 16.0f);
-                textViewWithLoading.setTextColor(getThemedColor(this.dialogButtonColorKey));
-                textViewWithLoading.setGravity(17);
-                textViewWithLoading.setTypeface(AndroidUtilities.bold());
-                textViewWithLoading.setText(this.positiveButtonText);
-                textViewWithLoading.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), getThemedColor(this.dialogButtonColorKey)));
-                textViewWithLoading.setPadding(AndroidUtilities.dp(f3), 0, AndroidUtilities.dp(f3), 0);
-                if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading, LayoutHelper.createLinear(-1, 40, 7));
-                } else {
-                    this.buttonsLayout.addView(textViewWithLoading, LayoutHelper.createFrame(-2, 40, 53));
-                }
-                textViewWithLoading.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view6) {
-                        AlertDialog.m1247$r8$lambda$MXta1oMDTzNyG08HSfDBgZ2dNo(this.f$0, textViewWithLoading, view6);
-                    }
-                });
-            }
-            if (this.negativeButtonText != null) {
-                final TextViewWithLoading textViewWithLoading2 = new TextViewWithLoading(getContext()) {
-                    @Override
-                    public void setEnabled(boolean z4) {
-                        super.setEnabled(z4);
-                        setAlpha(z4 ? 1.0f : 0.5f);
-                    }
-
-                    @Override
-                    public void setTextColor(int i7) {
-                        super.setTextColor(i7);
-                        setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i7));
-                    }
-                };
-                textViewWithLoading2.setMinWidth(AndroidUtilities.dp(64.0f));
-                textViewWithLoading2.setTag(-2);
-                textViewWithLoading2.setTextSize(1, 16.0f);
-                textViewWithLoading2.setTextColor(getThemedColor(this.dialogButtonColorKey));
-                textViewWithLoading2.setGravity(17);
-                textViewWithLoading2.setTypeface(AndroidUtilities.bold());
-                textViewWithLoading2.setEllipsize(TextUtils.TruncateAt.END);
-                textViewWithLoading2.setSingleLine(true);
-                textViewWithLoading2.setText(this.negativeButtonText.toString());
-                textViewWithLoading2.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), getThemedColor(this.dialogButtonColorKey)));
-                textViewWithLoading2.setPadding(AndroidUtilities.dp(f3), 0, AndroidUtilities.dp(f3), 0);
-                if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading2, 0, LayoutHelper.createLinear(-1, 40, 7));
-                } else {
-                    this.buttonsLayout.addView(textViewWithLoading2, LayoutHelper.createFrame(-2, 40, 53));
-                }
-                textViewWithLoading2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view6) {
-                        AlertDialog.$r8$lambda$6mEBdgfYbHCdhFTWsgfgiSwk6ys(this.f$0, textViewWithLoading2, view6);
-                    }
-                });
-            }
-            if (this.neutralButtonText != null) {
-                final TextViewWithLoading textViewWithLoading3 = new TextViewWithLoading(getContext()) {
-                    @Override
-                    public void setEnabled(boolean z4) {
-                        super.setEnabled(z4);
-                        setAlpha(z4 ? 1.0f : 0.5f);
-                    }
-
-                    @Override
-                    public void setTextColor(int i7) {
-                        super.setTextColor(i7);
-                        setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i7));
-                    }
-                };
-                textViewWithLoading3.setMinWidth(AndroidUtilities.dp(64.0f));
-                textViewWithLoading3.setTag(-3);
-                textViewWithLoading3.setTextSize(1, 16.0f);
-                textViewWithLoading3.setTextColor(getThemedColor(this.dialogButtonColorKey));
-                textViewWithLoading3.setGravity(17);
-                textViewWithLoading3.setTypeface(AndroidUtilities.bold());
-                textViewWithLoading3.setEllipsize(TextUtils.TruncateAt.END);
-                textViewWithLoading3.setSingleLine(true);
-                textViewWithLoading3.setText(this.neutralButtonText.toString());
-                textViewWithLoading3.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), getThemedColor(this.dialogButtonColorKey)));
-                textViewWithLoading3.setPadding(AndroidUtilities.dp(f3), 0, AndroidUtilities.dp(f3), 0);
-                if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading3, 1, LayoutHelper.createLinear(-1, 40, 7));
-                } else {
-                    this.buttonsLayout.addView(textViewWithLoading3, LayoutHelper.createFrame(-2, 40, 51));
-                }
-                textViewWithLoading3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view6) {
-                        AlertDialog.m1245$r8$lambda$Ah8gMoIAeLYYHalA89i6n1_nE(this.f$0, textViewWithLoading3, view6);
-                    }
-                });
-            }
-            if (this.negative2ButtonText != null) {
-                final TextViewWithLoading textViewWithLoading4 = new TextViewWithLoading(getContext()) {
-                    @Override
-                    public void setEnabled(boolean z4) {
-                        super.setEnabled(z4);
-                        setAlpha(z4 ? 1.0f : 0.5f);
-                    }
-
-                    @Override
-                    public void setTextColor(int i7) {
-                        super.setTextColor(i7);
-                        setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), i7));
-                    }
-                };
-                textViewWithLoading4.setMinWidth(AndroidUtilities.dp(64.0f));
-                textViewWithLoading4.setTag(-4);
-                textViewWithLoading4.setTextSize(1, 16.0f);
-                textViewWithLoading4.setTextColor(getThemedColor(this.dialogButtonColorKey));
-                textViewWithLoading4.setGravity(17);
-                textViewWithLoading4.setTypeface(AndroidUtilities.bold());
-                textViewWithLoading4.setEllipsize(TextUtils.TruncateAt.END);
-                textViewWithLoading4.setSingleLine(true);
-                textViewWithLoading4.setText(this.negative2ButtonText.toString());
-                textViewWithLoading4.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(20.0f), getThemedColor(this.dialogButtonColorKey)));
-                textViewWithLoading4.setPadding(AndroidUtilities.dp(f3), 0, AndroidUtilities.dp(f3), 0);
-                if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading4, 0, LayoutHelper.createLinear(-1, 40, 7));
-                } else {
-                    this.buttonsLayout.addView(textViewWithLoading4, LayoutHelper.createFrame(-2, 40, 53));
-                }
-                textViewWithLoading4.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view6) {
-                        AlertDialog.m1249$r8$lambda$RjbgrOgj3a0QBanvPE8EX_IaDs(this.f$0, textViewWithLoading4, view6);
-                    }
-                });
-            }
-            if (this.verticalButtons) {
-                for (int i7 = 1; i7 < this.buttonsLayout.getChildCount(); i7++) {
-                    ((ViewGroup.MarginLayoutParams) this.buttonsLayout.getChildAt(i7).getLayoutParams()).topMargin = AndroidUtilities.dp(6.0f);
-                }
-            }
-        } else {
-            f3 = 12.0f;
+        public Builder(Context context, Theme.ResourcesProvider resourcesProvider) {
+            this(context, 0, resourcesProvider);
         }
-        Window window = getWindow();
-        WindowManager.LayoutParams layoutParams3 = new WindowManager.LayoutParams();
-        layoutParams3.copyFrom(window.getAttributes());
-        if (this.needStarsBalance) {
-            layoutParams3.height = -1;
-            layoutParams3.flags |= 1024;
-            window.setWindowAnimations(R.style.DialogNoAnimation);
-        } else if (this.progressViewStyle == 3) {
-            layoutParams3.width = -1;
-        } else {
-            if (this.dimEnabled && !this.dimCustom) {
-                layoutParams3.dimAmount = this.dimAlpha;
-                layoutParams3.flags |= 2;
-            } else {
-                layoutParams3.dimAmount = 0.0f;
-                layoutParams3.flags ^= 2;
+
+        public final void setTopAnimation(int i, int i2, int i3, HashMap map) {
+            AlertDialog alertDialog = this.alertDialog;
+            alertDialog.topAnimationId = i;
+            alertDialog.topAnimationSize = i2;
+            alertDialog.topAnimationAutoRepeat = false;
+            alertDialog.topBackgroundColor = i3;
+            alertDialog.topAnimationLayerColors = map;
+        }
+
+        public Builder(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+            this.red = new boolean[3];
+            if (context == null && (context = AndroidUtilities.findActivity(LaunchActivity.instance)) == null) {
+                context = ApplicationLoader.applicationContext;
             }
-            int i8 = AndroidUtilities.displaySize.x;
-            this.lastScreenWidth = i8;
-            int iDp2 = (i8 - AndroidUtilities.dp(48.0f)) - (this.additioanalHorizontalPadding * 2);
-            if (AndroidUtilities.isTablet()) {
-                if (AndroidUtilities.isSmallTablet()) {
-                    iDp = AndroidUtilities.dp(446.0f);
-                } else {
-                    iDp = AndroidUtilities.dp(496.0f);
-                }
-            } else {
-                iDp = AndroidUtilities.dp(356.0f);
-            }
-            int iMin = Math.min(iDp, iDp2);
-            Rect rect2 = this.backgroundPaddings;
-            layoutParams3.width = iMin + rect2.left + rect2.right;
+            this.alertDialog = createAlertDialog(context, i, resourcesProvider);
         }
-        View view6 = this.customView;
-        if (view6 == null || !this.checkFocusable || !canTextInput(view6)) {
-            layoutParams3.flags |= 131072;
-        } else {
-            layoutParams3.flags &= -131073;
-            layoutParams3.softInputMode = 16;
-        }
-        if (Build.VERSION.SDK_INT >= 28) {
-            layoutParams3.layoutInDisplayCutoutMode = 0;
-        }
-        if (this.blurredBackground) {
-            if (supportsNativeBlur()) {
-                if (this.progressViewStyle == 0) {
-                    this.blurredNativeBackground = true;
-                    window.setBackgroundBlurRadius(50);
-                    float fDp = AndroidUtilities.dp(f3);
-                    float[] fArr = new float[8];
-                    fArr[0] = fDp;
-                    fArr[1] = fDp;
-                    fArr[2] = fDp;
-                    fArr[3] = fDp;
-                    fArr[4] = fDp;
-                    fArr[c] = fDp;
-                    fArr[6] = fDp;
-                    fArr[7] = fDp;
-                    ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(fArr, null, null));
-                    shapeDrawable.getPaint().setColor(ColorUtils.setAlphaComponent(this.backgroundColor, (int) (this.blurAlpha * 255.0f)));
-                    window.setBackgroundDrawable(shapeDrawable);
-                    if (this.blurBehind) {
-                        layoutParams3.flags |= 4;
-                        layoutParams3.setBlurBehindRadius(20);
-                    }
-                }
-            } else {
-                AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        AlertDialog.m1252$r8$lambda$nZDdnXJLc0jrQ3c3A863LSGuvk(this.f$0, (Bitmap) obj);
-                    }
-                }, 8.0f);
+    }
+
+    public interface OnButtonClickListener {
+        void onClick(AlertDialog alertDialog, int i);
+    }
+
+    public AlertDialog(Context context) {
+        this(context, 3, null);
+    }
+
+    public static void access$3600(boolean z, AlertDialog alertDialog, int i) {
+        int i2 = 1;
+        if (!z || alertDialog.shadowVisibility[i]) {
+            if (z) {
+                alertDialog.getClass();
+                return;
+            } else if (!alertDialog.shadowVisibility[i]) {
+                return;
             }
         }
-        window.setAttributes(layoutParams3);
-        return view;
-    }
-
-    public static void m1250$r8$lambda$WVYQWMlM7ABxmekBKqP6lSkYDc(AlertDialog alertDialog, View view) {
-        DialogInterface.OnClickListener onClickListener = alertDialog.onClickListener;
-        if (onClickListener != null) {
-            onClickListener.onClick(alertDialog, ((Integer) view.getTag()).intValue());
-        }
-        alertDialog.dismiss();
-    }
-
-    public static void m1247$r8$lambda$MXta1oMDTzNyG08HSfDBgZ2dNo(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
-        alertDialog.getClass();
-        if (textViewWithLoading.isLoading()) {
-            return;
-        }
-        OnButtonClickListener onButtonClickListener = alertDialog.positiveButtonListener;
-        if (onButtonClickListener != null) {
-            onButtonClickListener.onClick(alertDialog, -1);
-        }
-        if (alertDialog.dismissDialogByButtons) {
-            alertDialog.dismiss();
-        }
-    }
-
-    public static void $r8$lambda$6mEBdgfYbHCdhFTWsgfgiSwk6ys(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
-        alertDialog.getClass();
-        if (textViewWithLoading.isLoading()) {
-            return;
-        }
-        OnButtonClickListener onButtonClickListener = alertDialog.negativeButtonListener;
-        if (onButtonClickListener != null) {
-            onButtonClickListener.onClick(alertDialog, -2);
-        }
-        if (alertDialog.dismissDialogByButtons) {
-            alertDialog.cancel();
-        }
-    }
-
-    public static void m1245$r8$lambda$Ah8gMoIAeLYYHalA89i6n1_nE(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
-        alertDialog.getClass();
-        if (textViewWithLoading.isLoading()) {
-            return;
-        }
-        OnButtonClickListener onButtonClickListener = alertDialog.neutralButtonListener;
-        if (onButtonClickListener != null) {
-            onButtonClickListener.onClick(alertDialog, -2);
-        }
-        if (alertDialog.dismissDialogByButtons) {
-            alertDialog.dismiss();
-        }
-    }
-
-    public static void m1249$r8$lambda$RjbgrOgj3a0QBanvPE8EX_IaDs(AlertDialog alertDialog, TextViewWithLoading textViewWithLoading, View view) {
-        alertDialog.getClass();
-        if (textViewWithLoading.isLoading()) {
-            return;
-        }
-        OnButtonClickListener onButtonClickListener = alertDialog.negative2ButtonListener;
-        if (onButtonClickListener != null) {
-            onButtonClickListener.onClick(alertDialog, -2);
-        }
-        if (alertDialog.dismissDialogByButtons) {
-            alertDialog.cancel();
-        }
-    }
-
-    public static void m1252$r8$lambda$nZDdnXJLc0jrQ3c3A863LSGuvk(AlertDialog alertDialog, Bitmap bitmap) {
-        if (bitmap == null) {
-            alertDialog.getClass();
-            return;
-        }
-        if (alertDialog.blurPaint == null) {
-            alertDialog.blurPaint = new Paint(1);
-        }
-        alertDialog.blurBitmap = bitmap;
-        Bitmap bitmap2 = alertDialog.blurBitmap;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-        alertDialog.blurShader = bitmapShader;
-        alertDialog.blurPaint.setShader(bitmapShader);
-        Matrix matrix = new Matrix();
-        alertDialog.blurMatrix = matrix;
-        matrix.postScale(8.0f, 8.0f);
-        Matrix matrix2 = alertDialog.blurMatrix;
-        int[] iArr = alertDialog.containerViewLocation;
-        matrix2.postTranslate(-iArr[0], -iArr[1]);
-        alertDialog.blurShader.setLocalMatrix(alertDialog.blurMatrix);
-        alertDialog.containerView.invalidate();
-    }
-
-    public Browser.Progress makeButtonLoading(int i) {
-        return makeButtonLoading(i, true, true);
-    }
-
-    public Browser.Progress makeButtonLoading(int i, final boolean z, boolean z2) {
-        final View button = getButton(i);
-        if (z2) {
-            this.dismissDialogByButtons = false;
-        }
-        return new Browser.Progress(new Runnable() {
-            @Override
-            public final void run() {
-                AlertDialog.m1246$r8$lambda$B4fp4rFk_mbEvWTBZXG5SwPoB0(button);
-            }
-        }, new Runnable() {
-            @Override
-            public final void run() {
-                AlertDialog.m1248$r8$lambda$QYG6eHoCC4QS5lmdjXDM96Zf40(this.f$0, button, z);
-            }
-        });
-    }
-
-    public static void m1246$r8$lambda$B4fp4rFk_mbEvWTBZXG5SwPoB0(View view) {
-        if (view instanceof TextViewWithLoading) {
-            ((TextViewWithLoading) view).setLoading(true, true);
-        }
-    }
-
-    public static void m1248$r8$lambda$QYG6eHoCC4QS5lmdjXDM96Zf40(AlertDialog alertDialog, View view, boolean z) {
-        alertDialog.getClass();
-        if (view instanceof TextViewWithLoading) {
-            ((TextViewWithLoading) view).setLoading(false, true);
-        }
-        if (z) {
-            alertDialog.dismiss();
-        }
-    }
-
-    @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        inflateContent(true);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        OnButtonClickListener onButtonClickListener = this.onBackButtonListener;
-        if (onButtonClickListener != null) {
-            onButtonClickListener.onClick(this, -2);
-        }
-    }
-
-    public void setFocusable(boolean z) {
-        if (this.focusable == z) {
-            return;
-        }
-        this.focusable = z;
-        Window window = getWindow();
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        if (this.focusable) {
-            attributes.softInputMode = 16;
-            attributes.flags &= -131073;
-        } else {
-            attributes.softInputMode = 48;
-            attributes.flags |= 131072;
-        }
-        window.setAttributes(attributes);
-    }
-
-    public void setBackgroundColor(int i) {
-        this.backgroundColor = i;
-        Drawable drawable = this.shadowDrawable;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(this.backgroundColor, PorterDuff.Mode.MULTIPLY));
-        }
-    }
-
-    public void setTextColor(int i) {
-        SpoilersTextView spoilersTextView = this.titleTextView;
-        if (spoilersTextView != null) {
-            spoilersTextView.setTextColor(i);
-        }
-        TextView textView = this.messageTextView;
-        if (textView != null) {
-            textView.setTextColor(i);
-        }
-    }
-
-    public void setTextSize(int i, int i2) {
-        SpoilersTextView spoilersTextView = this.titleTextView;
-        if (spoilersTextView != null) {
-            spoilersTextView.setTextSize(1, i);
-        }
-        TextView textView = this.messageTextView;
-        if (textView != null) {
-            textView.setTextSize(1, i2);
-        }
-    }
-
-    public void setMessageLineSpacing(float f) {
-        TextView textView = this.messageTextView;
-        if (textView != null) {
-            textView.setLineSpacing(AndroidUtilities.dp(f), 1.0f);
-        }
-    }
-
-    public void showCancelAlert() {
-        if (this.canCacnel && this.cancelDialog == null) {
-            Builder builder = new Builder(getContext(), this.resourcesProvider);
-            builder.setTitle(LocaleController.getString(R.string.StopLoadingTitle));
-            builder.setMessage(LocaleController.getString(R.string.StopLoading));
-            builder.setPositiveButton(LocaleController.getString(R.string.WaitMore), null);
-            builder.setNegativeButton(LocaleController.getString(R.string.Stop), new OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    AlertDialog.m1251$r8$lambda$_E7pt5tNL0mmrtb5rtksHAkdG4(this.f$0, alertDialog, i);
-                }
-            });
-            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.cancelDialog = null;
-                }
-            });
-            try {
-                this.cancelDialog = builder.show();
-            } catch (Exception unused) {
-            }
-        }
-    }
-
-    public static void m1251$r8$lambda$_E7pt5tNL0mmrtb5rtksHAkdG4(AlertDialog alertDialog, AlertDialog alertDialog2, int i) {
-        DialogInterface.OnCancelListener onCancelListener = alertDialog.onCancelListener;
-        if (onCancelListener != null) {
-            onCancelListener.onCancel(alertDialog);
-        }
-        alertDialog.dismiss();
-    }
-
-    public void runShadowAnimation(final int i, boolean z) {
-        if ((!z || this.shadowVisibility[i]) && (z || !this.shadowVisibility[i])) {
-            return;
-        }
-        this.shadowVisibility[i] = z;
-        AnimatorSet animatorSet = this.shadowAnimation[i];
+        alertDialog.shadowVisibility[i] = z;
+        AnimatorSet[] animatorSetArr = alertDialog.shadowAnimation;
+        AnimatorSet animatorSet = animatorSetArr[i];
         if (animatorSet != null) {
             animatorSet.cancel();
         }
-        this.shadowAnimation[i] = new AnimatorSet();
-        BitmapDrawable bitmapDrawable = this.shadow[i];
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        animatorSetArr[i] = animatorSet2;
+        BitmapDrawable bitmapDrawable = alertDialog.shadow[i];
         if (bitmapDrawable != null) {
-            this.shadowAnimation[i].playTogether(ObjectAnimator.ofInt(bitmapDrawable, "alpha", z ? 255 : 0));
+            animatorSet2.playTogether(ObjectAnimator.ofInt(bitmapDrawable, "alpha", z ? 255 : 0));
         }
-        this.shadowAnimation[i].setDuration(150L);
-        this.shadowAnimation[i].addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (AlertDialog.this.shadowAnimation[i] == null || !AlertDialog.this.shadowAnimation[i].equals(animator)) {
-                    return;
-                }
-                AlertDialog.this.shadowAnimation[i] = null;
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                if (AlertDialog.this.shadowAnimation[i] == null || !AlertDialog.this.shadowAnimation[i].equals(animator)) {
-                    return;
-                }
-                AlertDialog.this.shadowAnimation[i] = null;
-            }
-        });
+        animatorSetArr[i].setDuration(150L);
+        animatorSetArr[i].addListener(new BottomSheet.AnonymousClass6(alertDialog, i, i2));
         try {
-            this.shadowAnimation[i].start();
+            animatorSetArr[i].start();
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
-    public void setDismissDialogByButtons(boolean z) {
-        this.dismissDialogByButtons = z;
-    }
-
-    public void setProgress(int i) {
-        this.currentProgress = i;
-        LineProgressView lineProgressView = this.lineProgressView;
-        if (lineProgressView != null) {
-            lineProgressView.setProgress(i / 100.0f, true);
-            updateLineProgressTextView();
-        }
-    }
-
-    private void updateLineProgressTextView() {
-        this.lineProgressViewPercent.setText(String.format("%d%%", Integer.valueOf(this.currentProgress)));
-    }
-
-    public void setCanCancel(boolean z) {
-        this.canCacnel = z;
-    }
-
-    private boolean canTextInput(View view) {
+    public static boolean canTextInput(View view) {
         if (view.onCheckIsTextEditor()) {
             return true;
         }
@@ -1798,21 +735,12 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        TextView textView;
-        if (i != NotificationCenter.emojiLoaded || (textView = this.messageTextView) == null) {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        EffectsTextView effectsTextView;
+        if (i != NotificationCenter.emojiLoaded || (effectsTextView = this.messageTextView) == null) {
             return;
         }
-        textView.invalidate();
-    }
-
-    public void dismissUnless(long j) {
-        long jCurrentTimeMillis = System.currentTimeMillis() - this.shownAt;
-        if (jCurrentTimeMillis < j) {
-            AndroidUtilities.runOnUIThread(new AlertDialog$$ExternalSyntheticLambda2(this), jCurrentTimeMillis - j);
-        } else {
-            dismiss();
-        }
+        effectsTextView.invalidate();
     }
 
     @Override
@@ -1821,7 +749,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         Utilities.Callback callback = this.overridenDissmissListener;
         if (callback != null) {
             this.overridenDissmissListener = null;
-            callback.run(new AlertDialog$$ExternalSyntheticLambda2(this));
+            callback.run(new AlertDialog$$ExternalSyntheticLambda1(this, 0));
             return;
         }
         if (this.dismissed) {
@@ -1851,61 +779,16 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.blurBitmap = null;
     }
 
-    @Override
-    public void setCanceledOnTouchOutside(boolean z) {
-        super.setCanceledOnTouchOutside(z);
-    }
-
-    @Override
-    public void setTitle(CharSequence charSequence) {
-        this.title = charSequence;
-        SpoilersTextView spoilersTextView = this.titleTextView;
-        if (spoilersTextView != null) {
-            spoilersTextView.setText(charSequence);
+    public final void dismissUnless(long j) {
+        long jCurrentTimeMillis = System.currentTimeMillis() - this.shownAt;
+        if (jCurrentTimeMillis < j) {
+            AndroidUtilities.runOnUIThread(new AlertDialog$$ExternalSyntheticLambda1(this, 0), jCurrentTimeMillis - j);
+        } else {
+            dismiss();
         }
     }
 
-    public void setPositiveButton(CharSequence charSequence, OnButtonClickListener onButtonClickListener) {
-        this.positiveButtonText = charSequence;
-        this.positiveButtonListener = onButtonClickListener;
-    }
-
-    public void setNegativeButton(CharSequence charSequence, OnButtonClickListener onButtonClickListener) {
-        this.negativeButtonText = charSequence;
-        this.negativeButtonListener = onButtonClickListener;
-    }
-
-    public void setNeutralButton(CharSequence charSequence, OnButtonClickListener onButtonClickListener) {
-        this.neutralButtonText = charSequence;
-        this.neutralButtonListener = onButtonClickListener;
-    }
-
-    public void setItemColor(int i, int i2, int i3) {
-        if (i < 0 || i >= this.itemViews.size()) {
-            return;
-        }
-        AlertDialogCell alertDialogCell = (AlertDialogCell) this.itemViews.get(i);
-        alertDialogCell.textView.setTextColor(i2);
-        alertDialogCell.imageView.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.MULTIPLY));
-    }
-
-    public int getItemsCount() {
-        return this.itemViews.size();
-    }
-
-    public void setMessage(CharSequence charSequence) {
-        this.message = charSequence;
-        if (this.messageTextView != null) {
-            if (!TextUtils.isEmpty(charSequence)) {
-                this.messageTextView.setText(this.message);
-                this.messageTextView.setVisibility(0);
-            } else {
-                this.messageTextView.setVisibility(8);
-            }
-        }
-    }
-
-    public View getButton(int i) {
+    public final View getButton(int i) {
         ViewGroup viewGroup = this.buttonsLayout;
         if (viewGroup != null) {
             return viewGroup.findViewWithTag(Integer.valueOf(i));
@@ -1913,322 +796,809 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return null;
     }
 
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public final ViewGroup inflateContent(boolean z) {
+        float f;
+        float f2;
+        float f3;
+        int i;
+        float f4;
+        AlertDialogView alertDialogView = new AlertDialogView(getContext(), this);
+        this.containerView = alertDialogView;
+        final int i2 = 1;
+        alertDialogView.setOrientation(1);
+        boolean z2 = this.blurredBackground;
+        int i3 = this.progressViewStyle;
+        final int i4 = 0;
+        if ((z2 || i3 == 3) && i3 != 2) {
+            this.containerView.setBackground(null);
+            this.containerView.setPadding(0, 0, 0, 0);
+            if (this.blurredBackground) {
+                this.containerView.setWillNotDraw(false);
+            }
+            this.drawBackground = false;
+            f = 8.0f;
+        } else {
+            boolean z3 = this.notDrawBackgroundOnTopView;
+            Drawable drawable = this.shadowDrawable;
+            if (z3) {
+                Rect rect = new Rect();
+                drawable.getPadding(rect);
+                f = 8.0f;
+                this.containerView.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+                this.drawBackground = true;
+            } else {
+                f = 8.0f;
+                this.containerView.setBackground(null);
+                this.containerView.setPadding(0, 0, 0, 0);
+                this.containerView.setBackground(drawable);
+                AlertDialogView alertDialogView2 = this.containerView;
+                int iDp = AndroidUtilities.dp(8.0f);
+                float fDp = AndroidUtilities.dp(20.0f);
+                RichEditor.AnonymousClass5 anonymousClass5 = ViewOutlineProviderImpl.BOUNDS_OVAL;
+                alertDialogView2.setOutlineProvider(new ViewOutlineProviderImpl.AnonymousClass5(iDp, fDp));
+                this.containerView.setClipToOutline(true);
+                this.drawBackground = false;
+            }
+        }
+        ViewGroup viewGroup = this.containerView;
+        boolean z4 = this.needStarsBalance;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (z4) {
+            if (this.fullscreenContainerView == null) {
+                FrameLayout frameLayout = new FrameLayout(getContext());
+                this.fullscreenContainerView = frameLayout;
+                frameLayout.setOnClickListener(new View.OnClickListener(this) {
+                    public final AlertDialog f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view) {
+                        switch (i4) {
+                            case 0:
+                                this.f$0.dismiss();
+                                break;
+                            case 1:
+                                AlertDialog alertDialog = this.f$0;
+                                new StarsIntroActivity.StarsOptionsSheet(alertDialog.getContext(), alertDialog.resourcesProvider).show();
+                                break;
+                            default:
+                                AlertDialog alertDialog2 = this.f$0;
+                                DialogInterface.OnClickListener onClickListener = alertDialog2.onClickListener;
+                                if (onClickListener != null) {
+                                    onClickListener.onClick(alertDialog2, ((Integer) view.getTag()).intValue());
+                                }
+                                alertDialog2.dismiss();
+                                break;
+                        }
+                    }
+                });
+            }
+            if (this.starsBalanceCloud == null) {
+                BalanceCloud balanceCloud = new BalanceCloud(getContext(), UserConfig.selectedAccount, AmountUtils$Currency.STARS, resourcesProvider);
+                this.starsBalanceCloud = balanceCloud;
+                ScaleStateListAnimator.apply(balanceCloud, 0.1f, 1.5f);
+                this.starsBalanceCloud.setOnClickListener(new View.OnClickListener(this) {
+                    public final AlertDialog f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view) {
+                        switch (i2) {
+                            case 0:
+                                this.f$0.dismiss();
+                                break;
+                            case 1:
+                                AlertDialog alertDialog = this.f$0;
+                                new StarsIntroActivity.StarsOptionsSheet(alertDialog.getContext(), alertDialog.resourcesProvider).show();
+                                break;
+                            default:
+                                AlertDialog alertDialog2 = this.f$0;
+                                DialogInterface.OnClickListener onClickListener = alertDialog2.onClickListener;
+                                if (onClickListener != null) {
+                                    onClickListener.onClick(alertDialog2, ((Integer) view.getTag()).intValue());
+                                }
+                                alertDialog2.dismiss();
+                                break;
+                        }
+                    }
+                });
+            }
+            AndroidUtilities.removeFromParent(this.containerView);
+            AndroidUtilities.removeFromParent(this.starsBalanceCloud);
+            this.fullscreenContainerView.addView(this.containerView, LayoutHelper.createFrame(-2, -2, 17));
+            this.fullscreenContainerView.addView(this.starsBalanceCloud, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
+            viewGroup = this.fullscreenContainerView;
+        }
+        if (z) {
+            if (this.needStarsBalance) {
+                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -1);
+                layoutParams.gravity = 119;
+                setContentView(viewGroup, layoutParams);
+            } else if (this.customWidth > 0) {
+                FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-2, -2);
+                layoutParams2.gravity = 17;
+                setContentView(viewGroup, layoutParams2);
+            } else {
+                setContentView(viewGroup);
+            }
+        }
+        boolean z5 = (this.positiveButtonText == null && this.negativeButtonText == null && this.negative2ButtonText == null && this.neutralButtonText == null) ? false : true;
+        if (this.topAnimationId == 0 && this.topDrawable == null) {
+            View view = this.topView;
+            if (view != null) {
+                view.setPadding(0, 0, 0, 0);
+                this.containerView.addView(this.topView, LayoutHelper.createLinear(-1, this.topHeight, 51, 0, 0, 0, 0));
+            }
+        } else {
+            RLottieImageView rLottieImageView = new RLottieImageView(getContext());
+            this.topImageView = rLottieImageView;
+            Drawable drawable2 = this.topDrawable;
+            if (drawable2 != null) {
+                rLottieImageView.setImageDrawable(drawable2);
+                Drawable drawable3 = this.topDrawable;
+                if (drawable3 instanceof AttachableDrawable) {
+                    final AttachableDrawable attachableDrawable = (AttachableDrawable) drawable3;
+                    this.topImageView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                        @Override
+                        public final void onViewAttachedToWindow(View view2) {
+                            attachableDrawable.onAttachedToWindow(null);
+                        }
+
+                        @Override
+                        public final void onViewDetachedFromWindow(View view2) {
+                            attachableDrawable.onDetachedFromWindow(null);
+                        }
+                    });
+                    attachableDrawable.setParent(this.topImageView);
+                }
+            } else {
+                rLottieImageView.setAutoRepeat(this.topAnimationAutoRepeat);
+                RLottieImageView rLottieImageView2 = this.topImageView;
+                int i5 = this.topAnimationId;
+                int i6 = this.topAnimationSize;
+                rLottieImageView2.setAnimation(i5, i6, i6, null);
+                if (this.topAnimationLayerColors != null) {
+                    RLottieDrawable animatedDrawable = this.topImageView.getAnimatedDrawable();
+                    for (Map.Entry entry : this.topAnimationLayerColors.entrySet()) {
+                        String str = (String) entry.getKey();
+                        Integer num = (Integer) entry.getValue();
+                        num.getClass();
+                        animatedDrawable.newColorUpdates.put(str, num);
+                        animatedDrawable.requestRedrawColors();
+                    }
+                }
+                this.topImageView.playAnimation();
+            }
+            this.topImageView.setScaleType(ImageView.ScaleType.CENTER);
+            if (this.topAnimationIsNew) {
+                final GradientDrawable gradientDrawable = new GradientDrawable();
+                gradientDrawable.setColor(this.topBackgroundColor);
+                gradientDrawable.setCornerRadius(AndroidUtilities.dp(128.0f));
+                this.topImageView.setBackground(new Drawable() {
+                    public final int size;
+
+                    {
+                        this.size = AndroidUtilities.dp(52.0f) + AlertDialog.this.topAnimationSize;
+                    }
+
+                    @Override
+                    public final void draw(Canvas canvas) {
+                        AlertDialog alertDialog = AlertDialog.this;
+                        int width = alertDialog.topImageView.getWidth();
+                        int i7 = this.size;
+                        int i8 = (int) ((width - i7) / 2.0f);
+                        int height = (int) ((alertDialog.topImageView.getHeight() - i7) / 2.0f);
+                        int width2 = (int) ((alertDialog.topImageView.getWidth() + i7) / 2.0f);
+                        int height2 = (int) ((alertDialog.topImageView.getHeight() + i7) / 2.0f);
+                        GradientDrawable gradientDrawable2 = gradientDrawable;
+                        gradientDrawable2.setBounds(i8, height, width2, height2);
+                        gradientDrawable2.draw(canvas);
+                    }
+
+                    @Override
+                    public final int getOpacity() {
+                        return gradientDrawable.getOpacity();
+                    }
+
+                    @Override
+                    public final void setAlpha(int i7) {
+                        gradientDrawable.setAlpha(i7);
+                    }
+
+                    @Override
+                    public final void setColorFilter(ColorFilter colorFilter) {
+                        gradientDrawable.setColorFilter(colorFilter);
+                    }
+                });
+                this.topHeight = 92;
+            } else {
+                this.topImageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), 0, this.topBackgroundColor));
+            }
+            if (this.topAnimationIsNew) {
+                this.topImageView.setTranslationY(AndroidUtilities.dp(16.0f));
+            } else {
+                this.topImageView.setTranslationY(0.0f);
+            }
+            this.topImageView.setPadding(0, 0, 0, 0);
+            this.containerView.addView(this.topImageView, LayoutHelper.createLinear(-1, this.topHeight, 51, 0, 0, 0, 0));
+        }
+        if (this.title != null) {
+            FrameLayout frameLayout2 = new FrameLayout(getContext());
+            this.titleContainer = frameLayout2;
+            this.containerView.addView(frameLayout2, LayoutHelper.createLinear(-2, -2, this.topAnimationIsNew ? 1 : 0, 24, 0, 24, 0));
+            SpoilersTextView spoilersTextView = new SpoilersTextView(getContext(), null, false);
+            this.titleTextView = spoilersTextView;
+            NotificationCenter.listenEmojiLoading(spoilersTextView);
+            SpoilersTextView spoilersTextView2 = this.titleTextView;
+            spoilersTextView2.cacheType = 3;
+            spoilersTextView2.setText(this.title);
+            this.titleTextView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
+            this.titleTextView.setTextSize(1, 20.0f);
+            this.titleTextView.setTypeface(AndroidUtilities.bold());
+            this.titleTextView.setGravity((this.topAnimationIsNew ? 1 : LocaleController.isRTL ? 5 : 3) | 48);
+            FrameLayout frameLayout3 = this.titleContainer;
+            SpoilersTextView spoilersTextView3 = this.titleTextView;
+            boolean z6 = this.topAnimationIsNew;
+            int i7 = (z6 ? 1 : LocaleController.isRTL ? 5 : 3) | 48;
+            if (z6) {
+                f4 = 4.0f;
+            } else {
+                f4 = this.subtitle != null ? 2 : this.items != null ? 14 : 10;
+            }
+            frameLayout3.addView(spoilersTextView3, LayoutHelper.createFrame(-2, -2.0f, i7, 0.0f, 19.0f, 0.0f, f4));
+        }
+        if (this.subtitle != null) {
+            TextView textView = new TextView(getContext());
+            this.subtitleTextView = textView;
+            textView.setText(this.subtitle);
+            this.subtitleTextView.setTextColor(getThemedColor(Theme.key_dialogIcon));
+            this.subtitleTextView.setTextSize(1, 14.0f);
+            this.subtitleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+            this.containerView.addView(this.subtitleTextView, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 24, 0, 24, this.items != null ? 14 : 10));
+        }
+        if (i3 == 0) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.header_shadow).mutate();
+            BitmapDrawable[] bitmapDrawableArr = this.shadow;
+            bitmapDrawableArr[0] = bitmapDrawable;
+            bitmapDrawableArr[1] = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.header_shadow_reverse).mutate();
+            bitmapDrawableArr[0].setAlpha(0);
+            bitmapDrawableArr[1].setAlpha(0);
+            bitmapDrawableArr[0].setCallback(this);
+            bitmapDrawableArr[1].setCallback(this);
+            LoginActivity.AnonymousClass3 anonymousClass3 = new LoginActivity.AnonymousClass3(this, getContext(), i2);
+            this.contentScrollView = anonymousClass3;
+            anonymousClass3.setVerticalScrollBarEnabled(false);
+            AndroidUtilities.setScrollViewEdgeEffectColor(this.contentScrollView, getThemedColor(Theme.key_dialogScrollGlow));
+            this.containerView.addView(this.contentScrollView, LayoutHelper.createLinear(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+            LinearLayout linearLayout = new LinearLayout(getContext());
+            this.scrollContainer = linearLayout;
+            linearLayout.setOrientation(1);
+            f2 = 20.0f;
+            this.contentScrollView.addView(this.scrollContainer, new FrameLayout.LayoutParams(-1, -2));
+        } else {
+            f2 = 20.0f;
+        }
+        EffectsTextView effectsTextView = new EffectsTextView(getContext());
+        this.messageTextView = effectsTextView;
+        NotificationCenter.listenEmojiLoading(effectsTextView);
+        this.messageTextView.setTextColor(getThemedColor(this.topAnimationIsNew ? Theme.key_windowBackgroundWhiteGrayText : Theme.key_dialogTextBlack));
+        this.messageTextView.setTextSize(1, 16.0f);
+        this.messageTextView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
+        this.messageTextView.setLinkTextColor(getThemedColor(Theme.key_dialogTextLink));
+        if (!this.messageTextViewClickable) {
+            this.messageTextView.setClickable(false);
+            this.messageTextView.setEnabled(false);
+        }
+        this.messageTextView.setGravity((this.topAnimationIsNew ? 1 : LocaleController.isRTL ? 5 : 3) | 48);
+        if (i3 == 2) {
+            this.containerView.addView(this.messageTextView, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 24, this.title == null ? 19 : 0, 24, 20));
+            LineProgressView lineProgressView = new LineProgressView(getContext());
+            this.lineProgressView = lineProgressView;
+            lineProgressView.setProgress(this.currentProgress / 100.0f, false);
+            this.lineProgressView.setProgressColor(getThemedColor(Theme.key_dialogLineProgress));
+            this.lineProgressView.setBackColor(getThemedColor(Theme.key_dialogLineProgressBackground));
+            this.containerView.addView(this.lineProgressView, LayoutHelper.createLinear(-1, 4, 19, 24, 0, 24, 0));
+            TextView textView2 = new TextView(getContext());
+            this.lineProgressViewPercent = textView2;
+            textView2.setTypeface(AndroidUtilities.bold());
+            this.lineProgressViewPercent.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+            this.lineProgressViewPercent.setTextColor(getThemedColor(Theme.key_dialogTextGray2));
+            this.lineProgressViewPercent.setTextSize(1, 14.0f);
+            this.containerView.addView(this.lineProgressViewPercent, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 23, 4, 23, 24));
+            this.lineProgressViewPercent.setText(String.format("%d%%", Integer.valueOf(this.currentProgress)));
+        } else if (i3 == 3) {
+            super.setCanceledOnTouchOutside(false);
+            setCancelable(false);
+            this.progressViewContainer = new FrameLayout(getContext());
+            this.backgroundColor = getThemedColor(Theme.key_dialog_inlineProgressBackground);
+            if (!this.blurredBackground) {
+                this.progressViewContainer.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), this.backgroundColor));
+            }
+            this.containerView.addView(this.progressViewContainer, LayoutHelper.createLinear(86, 86, 17));
+            RadialProgressView radialProgressView = new RadialProgressView(getContext(), resourcesProvider);
+            radialProgressView.setSize(AndroidUtilities.dp(32.0f));
+            radialProgressView.setProgressColor(getThemedColor(Theme.key_dialog_inlineProgress));
+            this.progressViewContainer.addView(radialProgressView, LayoutHelper.createFrame(86, 86, 17));
+        } else {
+            EffectsTextView effectsTextView2 = this.aboveMessageView;
+            if (effectsTextView2 != null) {
+                this.scrollContainer.addView(effectsTextView2, LayoutHelper.createLinear(22.0f, 4.0f, 22.0f, 12.0f, -1, -2));
+            }
+            this.scrollContainer.addView(this.messageTextView, LayoutHelper.createLinear(-2, -2, (this.topAnimationIsNew ? 1 : LocaleController.isRTL ? 5 : 3) | 48, 24, 0, 24, (this.customView == null && this.items == null) ? 0 : this.customViewOffset));
+            TextView textView3 = this.bottomView;
+            if (textView3 != null) {
+                this.scrollContainer.addView(textView3, LayoutHelper.createLinear(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
+            }
+        }
+        if (TextUtils.isEmpty(this.message)) {
+            this.messageTextView.setVisibility(8);
+        } else {
+            this.messageTextView.setText(this.message);
+            this.messageTextView.setVisibility(0);
+        }
+        if (this.items != null) {
+            int i8 = 0;
+            while (true) {
+                CharSequence[] charSequenceArr = this.items;
+                if (i8 >= charSequenceArr.length) {
+                    break;
+                }
+                if (charSequenceArr[i8] != null) {
+                    AlertDialogCell alertDialogCell = new AlertDialogCell(getContext(), resourcesProvider);
+                    CharSequence charSequence = this.items[i8];
+                    int[] iArr = this.itemIcons;
+                    alertDialogCell.setTextAndIcon(iArr != null ? iArr[i8] : 0, charSequence);
+                    alertDialogCell.setTag(Integer.valueOf(i8));
+                    this.itemViews.add(alertDialogCell);
+                    this.scrollContainer.addView(alertDialogCell, LayoutHelper.createLinear(-1, 50));
+                    final int i9 = 2;
+                    alertDialogCell.setOnClickListener(new View.OnClickListener(this) {
+                        public final AlertDialog f$0;
+
+                        {
+                            this.f$0 = this;
+                        }
+
+                        @Override
+                        public final void onClick(View view2) {
+                            switch (i9) {
+                                case 0:
+                                    this.f$0.dismiss();
+                                    break;
+                                case 1:
+                                    AlertDialog alertDialog = this.f$0;
+                                    new StarsIntroActivity.StarsOptionsSheet(alertDialog.getContext(), alertDialog.resourcesProvider).show();
+                                    break;
+                                default:
+                                    AlertDialog alertDialog2 = this.f$0;
+                                    DialogInterface.OnClickListener onClickListener = alertDialog2.onClickListener;
+                                    if (onClickListener != null) {
+                                        onClickListener.onClick(alertDialog2, ((Integer) view2.getTag()).intValue());
+                                    }
+                                    alertDialog2.dismiss();
+                                    break;
+                            }
+                        }
+                    });
+                }
+                i8++;
+            }
+        }
+        View view2 = this.customView;
+        if (view2 != null) {
+            if (view2.getParent() != null) {
+                ((ViewGroup) this.customView.getParent()).removeView(this.customView);
+            }
+            this.scrollContainer.addView(this.customView, LayoutHelper.createLinear(-1, this.customViewHeight));
+        }
+        if (z5) {
+            if (!this.verticalButtons) {
+                TextPaint textPaint = new TextPaint();
+                textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+                textPaint.setTypeface(AndroidUtilities.bold());
+                CharSequence charSequence2 = this.positiveButtonText;
+                int iMeasureText = charSequence2 != null ? (int) (textPaint.measureText(charSequence2, 0, charSequence2.length()) + AndroidUtilities.dp(24.0f) + 0) : 0;
+                if (this.negativeButtonText != null) {
+                    if (iMeasureText > 0) {
+                        iMeasureText += AndroidUtilities.dp(f);
+                    }
+                    String str2 = this.negativeButtonText;
+                    iMeasureText = (int) (textPaint.measureText((CharSequence) str2, 0, str2.length()) + AndroidUtilities.dp(24.0f) + iMeasureText);
+                }
+                if (this.negative2ButtonText != null) {
+                    if (iMeasureText > 0) {
+                        iMeasureText += AndroidUtilities.dp(f);
+                    }
+                    String str3 = this.negative2ButtonText;
+                    iMeasureText = (int) (textPaint.measureText((CharSequence) str3, 0, str3.length()) + AndroidUtilities.dp(24.0f) + iMeasureText);
+                }
+                if (this.neutralButtonText != null) {
+                    if (iMeasureText > 0) {
+                        iMeasureText += AndroidUtilities.dp(f);
+                    }
+                    String str4 = this.neutralButtonText;
+                    iMeasureText = (int) (textPaint.measureText((CharSequence) str4, 0, str4.length()) + AndroidUtilities.dp(24.0f) + iMeasureText);
+                }
+                if (iMeasureText > AndroidUtilities.displaySize.x - AndroidUtilities.dp(64.0f)) {
+                    if (!this.twoRowsButtonsWhenNeeded || this.positiveButtonText == null || this.negativeButtonText == null || this.negative2ButtonText == null || this.neutralButtonText == null) {
+                        this.verticalButtons = true;
+                    } else {
+                        this.buttonsInTwoRows = true;
+                    }
+                }
+            }
+            if (this.verticalButtons) {
+                LinearLayout linearLayout2 = new LinearLayout(getContext());
+                linearLayout2.setOrientation(1);
+                this.buttonsLayout = linearLayout2;
+            } else {
+                this.buttonsLayout = new ChatActivity.AnonymousClass60(this, getContext(), i2);
+            }
+            if (this.bottomView != null) {
+                this.buttonsLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
+                this.buttonsLayout.setTranslationY(-AndroidUtilities.dp(6.0f));
+            } else {
+                this.buttonsLayout.setPadding(AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f));
+            }
+            this.containerView.addView(this.buttonsLayout, LayoutHelper.createLinear(-1, this.buttonsInTwoRows ? 96 : 52));
+            if (this.topAnimationIsNew) {
+                this.buttonsLayout.setTranslationY(-AndroidUtilities.dp(f));
+            }
+            if (this.positiveButtonText != null) {
+                AnonymousClass5 anonymousClass6 = new AnonymousClass5(getContext());
+                anonymousClass6.setMinWidth(AndroidUtilities.dp(64.0f));
+                anonymousClass6.setTag(-1);
+                anonymousClass6.setTextSize(1, 16.0f);
+                anonymousClass6.setTextColor(getThemedColor(this.dialogButtonColorKey));
+                anonymousClass6.setGravity(17);
+                anonymousClass6.setTypeface(AndroidUtilities.bold());
+                anonymousClass6.setText(this.positiveButtonText);
+                anonymousClass6.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(f2), getThemedColor(this.dialogButtonColorKey)));
+                anonymousClass6.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+                if (this.verticalButtons) {
+                    f3 = 64.0f;
+                    this.buttonsLayout.addView(anonymousClass6, LayoutHelper.createLinear(-1, 40, 7));
+                } else {
+                    f3 = 64.0f;
+                    this.buttonsLayout.addView(anonymousClass6, LayoutHelper.createFrame(-2, 40, 53));
+                }
+                anonymousClass6.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda77(5, this, anonymousClass6));
+            } else {
+                f3 = 64.0f;
+            }
+            if (this.negativeButtonText != null) {
+                AnonymousClass6 anonymousClass7 = new AnonymousClass6(getContext());
+                anonymousClass7.setMinWidth(AndroidUtilities.dp(f3));
+                anonymousClass7.setTag(-2);
+                anonymousClass7.setTextSize(1, 16.0f);
+                anonymousClass7.setTextColor(getThemedColor(this.dialogButtonColorKey));
+                anonymousClass7.setGravity(17);
+                anonymousClass7.setTypeface(AndroidUtilities.bold());
+                anonymousClass7.setEllipsize(TextUtils.TruncateAt.END);
+                anonymousClass7.setSingleLine(true);
+                anonymousClass7.setText(this.negativeButtonText.toString());
+                anonymousClass7.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(f2), getThemedColor(this.dialogButtonColorKey)));
+                anonymousClass7.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+                if (this.verticalButtons) {
+                    this.buttonsLayout.addView(anonymousClass7, 0, LayoutHelper.createLinear(-1, 40, 7));
+                } else {
+                    this.buttonsLayout.addView(anonymousClass7, LayoutHelper.createFrame(-2, 40, 53));
+                }
+                anonymousClass7.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda77(6, this, anonymousClass7));
+            }
+            if (this.neutralButtonText != null) {
+                AnonymousClass7 anonymousClass8 = new AnonymousClass7(getContext());
+                anonymousClass8.setMinWidth(AndroidUtilities.dp(f3));
+                anonymousClass8.setTag(-3);
+                anonymousClass8.setTextSize(1, 16.0f);
+                anonymousClass8.setTextColor(getThemedColor(this.dialogButtonColorKey));
+                anonymousClass8.setGravity(17);
+                anonymousClass8.setTypeface(AndroidUtilities.bold());
+                anonymousClass8.setEllipsize(TextUtils.TruncateAt.END);
+                anonymousClass8.setSingleLine(true);
+                anonymousClass8.setText(this.neutralButtonText.toString());
+                anonymousClass8.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(f2), getThemedColor(this.dialogButtonColorKey)));
+                anonymousClass8.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+                if (this.verticalButtons) {
+                    i = 7;
+                    this.buttonsLayout.addView(anonymousClass8, 1, LayoutHelper.createLinear(-1, 40, 7));
+                } else {
+                    i = 7;
+                    this.buttonsLayout.addView(anonymousClass8, LayoutHelper.createFrame(-2, 40, 51));
+                }
+                anonymousClass8.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda77(i, this, anonymousClass8));
+            }
+            if (this.negative2ButtonText != null) {
+                AnonymousClass8 anonymousClass9 = new AnonymousClass8(getContext());
+                anonymousClass9.setMinWidth(AndroidUtilities.dp(f3));
+                anonymousClass9.setTag(-4);
+                anonymousClass9.setTextSize(1, 16.0f);
+                anonymousClass9.setTextColor(getThemedColor(this.dialogButtonColorKey));
+                anonymousClass9.setGravity(17);
+                anonymousClass9.setTypeface(AndroidUtilities.bold());
+                anonymousClass9.setEllipsize(TextUtils.TruncateAt.END);
+                anonymousClass9.setSingleLine(true);
+                anonymousClass9.setText(this.negative2ButtonText.toString());
+                anonymousClass9.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(f2), getThemedColor(this.dialogButtonColorKey)));
+                anonymousClass9.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+                if (this.verticalButtons) {
+                    this.buttonsLayout.addView(anonymousClass9, 0, LayoutHelper.createLinear(-1, 40, 7));
+                } else {
+                    this.buttonsLayout.addView(anonymousClass9, LayoutHelper.createFrame(-2, 40, 53));
+                }
+                anonymousClass9.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda77(8, this, anonymousClass9));
+            }
+            if (this.verticalButtons) {
+                for (int i10 = 1; i10 < this.buttonsLayout.getChildCount(); i10++) {
+                    ((ViewGroup.MarginLayoutParams) this.buttonsLayout.getChildAt(i10).getLayoutParams()).topMargin = AndroidUtilities.dp(6.0f);
+                }
+            }
+        }
+        Window window = getWindow();
+        WindowManager.LayoutParams layoutParams3 = new WindowManager.LayoutParams();
+        layoutParams3.copyFrom(window.getAttributes());
+        if (this.needStarsBalance) {
+            layoutParams3.height = -1;
+            layoutParams3.flags |= 1024;
+            window.setWindowAnimations(R.style.DialogNoAnimation);
+        } else if (i3 == 3) {
+            layoutParams3.width = -1;
+        } else {
+            if (this.dimEnabled) {
+                layoutParams3.dimAmount = this.dimAlpha;
+                layoutParams3.flags |= 2;
+            } else {
+                layoutParams3.dimAmount = 0.0f;
+                layoutParams3.flags ^= 2;
+            }
+            int i11 = AndroidUtilities.displaySize.x;
+            this.lastScreenWidth = i11;
+            int iDp2 = (i11 - AndroidUtilities.dp(48.0f)) - (this.additioanalHorizontalPadding * 2);
+            int iMin = Math.min(AndroidUtilities.isTablet() ? AndroidUtilities.isSmallTablet() ? AndroidUtilities.dp(446.0f) : AndroidUtilities.dp(496.0f) : AndroidUtilities.dp(356.0f), iDp2);
+            Rect rect2 = this.backgroundPaddings;
+            layoutParams3.width = iMin + rect2.left + rect2.right;
+        }
+        View view3 = this.customView;
+        if (view3 != null && this.checkFocusable && canTextInput(view3)) {
+            layoutParams3.flags &= -131073;
+            layoutParams3.softInputMode = 16;
+        } else {
+            layoutParams3.flags |= 131072;
+        }
+        if (Build.VERSION.SDK_INT >= 28) {
+            layoutParams3.layoutInDisplayCutoutMode = 0;
+        }
+        if (this.blurredBackground) {
+            AndroidUtilities.makeGlobalBlurBitmap(new AlertDialog$$ExternalSyntheticLambda9(this, i4), 8.0f);
+        }
+        window.setAttributes(layoutParams3);
+        return viewGroup;
+    }
+
     @Override
-    public void invalidateDrawable(Drawable drawable) {
+    public final void invalidateDrawable(Drawable drawable) {
         this.contentScrollView.invalidate();
         this.scrollContainer.invalidate();
     }
 
+    public final Browser.Progress makeButtonLoading(int i, boolean z, boolean z2) {
+        View button = getButton(i);
+        if (z2) {
+            this.dismissDialogByButtons = false;
+        }
+        Theme$$ExternalSyntheticLambda8 theme$$ExternalSyntheticLambda8 = new Theme$$ExternalSyntheticLambda8(button, 6);
+        PhotoViewer$$ExternalSyntheticLambda89 photoViewer$$ExternalSyntheticLambda89 = new PhotoViewer$$ExternalSyntheticLambda89(this, button, z, 4);
+        Browser.Progress progress = new Browser.Progress();
+        progress.onInitListener = theme$$ExternalSyntheticLambda8;
+        progress.onEndListener = photoViewer$$ExternalSyntheticLambda89;
+        return progress;
+    }
+
     @Override
-    public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
-        ScrollView scrollView = this.contentScrollView;
-        if (scrollView != null) {
-            scrollView.postDelayed(runnable, j);
+    public final void onBackPressed() {
+        super.onBackPressed();
+        LaunchActivity$$ExternalSyntheticLambda16 launchActivity$$ExternalSyntheticLambda16 = this.onBackButtonListener;
+        if (launchActivity$$ExternalSyntheticLambda16 != null) {
+            launchActivity$$ExternalSyntheticLambda16.onClick(this, -2);
         }
     }
 
     @Override
-    public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        ScrollView scrollView = this.contentScrollView;
-        if (scrollView != null) {
-            scrollView.removeCallbacks(runnable);
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        inflateContent(true);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+    }
+
+    public final void redPositive() {
+        TextView textView = (TextView) getButton(-1);
+        if (textView != null) {
+            textView.setTextColor(getThemedColor(Theme.key_text_RedBold));
         }
     }
 
     @Override
-    public void setOnCancelListener(DialogInterface.OnCancelListener onCancelListener) {
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+        LoginActivity.AnonymousClass3 anonymousClass3 = this.contentScrollView;
+        if (anonymousClass3 != null) {
+            anonymousClass3.postDelayed(runnable, j);
+        }
+    }
+
+    public final void setBackgroundColor(int i) {
+        this.backgroundColor = i;
+        Drawable drawable = this.shadowDrawable;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(this.backgroundColor, PorterDuff.Mode.MULTIPLY));
+        }
+    }
+
+    public final void setCanCancel() {
+        this.canCacnel = false;
+    }
+
+    public final void setFocusable(boolean z) {
+        if (this.focusable) {
+            return;
+        }
+        this.focusable = true;
+        Window window = getWindow();
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        if (this.focusable) {
+            attributes.softInputMode = 16;
+            attributes.flags &= -131073;
+        } else {
+            attributes.softInputMode = 48;
+            attributes.flags |= 131072;
+        }
+        window.setAttributes(attributes);
+    }
+
+    public final void setMessage(String str) {
+        this.message = str;
+        if (this.messageTextView != null) {
+            if (TextUtils.isEmpty(str)) {
+                this.messageTextView.setVisibility(8);
+            } else {
+                this.messageTextView.setText(this.message);
+                this.messageTextView.setVisibility(0);
+            }
+        }
+    }
+
+    @Override
+    public final void setOnCancelListener(DialogInterface.OnCancelListener onCancelListener) {
         this.onCancelListener = onCancelListener;
         super.setOnCancelListener(onCancelListener);
     }
 
-    public void setPositiveButtonListener(OnButtonClickListener onButtonClickListener) {
-        this.positiveButtonListener = onButtonClickListener;
+    public final void setProgress(int i) {
+        this.currentProgress = i;
+        LineProgressView lineProgressView = this.lineProgressView;
+        if (lineProgressView != null) {
+            lineProgressView.setProgress(i / 100.0f, true);
+            this.lineProgressViewPercent.setText(String.format("%d%%", Integer.valueOf(this.currentProgress)));
+        }
     }
 
-    protected int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public final void setTextColor(int i) {
+        SpoilersTextView spoilersTextView = this.titleTextView;
+        if (spoilersTextView != null) {
+            spoilersTextView.setTextColor(i);
+        }
+        EffectsTextView effectsTextView = this.messageTextView;
+        if (effectsTextView != null) {
+            effectsTextView.setTextColor(i);
+        }
+    }
+
+    @Override
+    public final void setTitle(CharSequence charSequence) {
+        this.title = charSequence;
+        SpoilersTextView spoilersTextView = this.titleTextView;
+        if (spoilersTextView != null) {
+            spoilersTextView.setText(charSequence);
+        }
+    }
+
+    @Override
+    public void show() {
+        if (AndroidUtilities.isSafeToShow(getContext())) {
+            this.dismissed = false;
+            super.show();
+            FrameLayout frameLayout = this.progressViewContainer;
+            if (frameLayout != null && this.progressViewStyle == 3) {
+                frameLayout.setScaleX(0.0f);
+                this.progressViewContainer.setScaleY(0.0f);
+                this.progressViewContainer.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.3f)).setDuration(190L).start();
+            }
+            this.shownAt = System.currentTimeMillis();
+        }
+    }
+
+    public final void showCancelAlert() {
+        if (this.canCacnel && this.cancelDialog == null) {
+            Builder builder = new Builder(getContext(), 0, this.resourcesProvider);
+            String string = LocaleController.getString(R.string.StopLoadingTitle);
+            AlertDialog alertDialog = builder.alertDialog;
+            alertDialog.title = string;
+            alertDialog.message = LocaleController.getString(R.string.StopLoading);
+            builder.setPositiveButton(LocaleController.getString(R.string.WaitMore), null);
+            builder.setNegativeButton(LocaleController.getString(R.string.Stop), new AlertDialog$$ExternalSyntheticLambda11(this, 0));
+            alertDialog.setOnDismissListener(new BottomSheet$$ExternalSyntheticLambda4(this, 1));
+            try {
+                this.cancelDialog = builder.show();
+            } catch (Exception unused) {
+            }
+        }
     }
 
     public void showDelayed(long j) {
-        AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
-        AndroidUtilities.runOnUIThread(this.showRunnable, j);
+        AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = this.showRunnable;
+        AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
+        AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, j);
     }
 
-    public ViewGroup getButtonsLayout() {
-        return this.buttonsLayout;
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        LoginActivity.AnonymousClass3 anonymousClass3 = this.contentScrollView;
+        if (anonymousClass3 != null) {
+            anonymousClass3.removeCallbacks(runnable);
+        }
     }
 
-    public static class Builder {
-        private AlertDialog alertDialog;
-        private final boolean[] red;
-
-        protected Builder(AlertDialog alertDialog) {
-            this.red = new boolean[3];
-            this.alertDialog = alertDialog;
-        }
-
-        public Builder(Context context) {
-            this(context, null);
-        }
-
-        public Builder(Context context, Theme.ResourcesProvider resourcesProvider) {
-            this(context, 0, resourcesProvider);
-        }
-
-        public Builder(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-            this.red = new boolean[3];
-            if (context == null && (context = AndroidUtilities.findActivity(LaunchActivity.instance)) == null) {
-                context = ApplicationLoader.applicationContext;
+    public AlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        float f;
+        super(context, R.style.TransparentDialog);
+        this.customWidth = -1;
+        this.customViewHeight = -2;
+        this.shadow = new BitmapDrawable[2];
+        this.shadowVisibility = new boolean[2];
+        this.shadowAnimation = new AnimatorSet[2];
+        this.customViewOffset = 12;
+        this.dialogButtonColorKey = Theme.key_dialogButton;
+        this.topHeight = 132;
+        this.messageTextViewClickable = true;
+        this.canCacnel = true;
+        this.dismissDialogByButtons = true;
+        this.containerViewLocation = new int[2];
+        this.checkFocusable = true;
+        this.dismissRunnable = new AlertDialog$$ExternalSyntheticLambda1(this, 0);
+        this.showRunnable = new AlertDialog$$ExternalSyntheticLambda1(this, 1);
+        this.itemViews = new ArrayList();
+        this.dimEnabled = true;
+        this.dimAlpha = 0.5f;
+        this.topAnimationAutoRepeat = true;
+        this.resourcesProvider = resourcesProvider;
+        this.progressViewStyle = i;
+        int themedColor = getThemedColor(Theme.key_dialogBackground);
+        this.backgroundColor = themedColor;
+        boolean z = AndroidUtilities.computePerceivedBrightness(themedColor) < 0.721f;
+        this.blurredBackground = SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(256) && z;
+        Rect rect = new Rect();
+        this.backgroundPaddings = rect;
+        if (i != 3 || this.blurredBackground) {
+            Drawable drawableMutate = context.getResources().getDrawable(R.drawable.popup_fixed_alert4).mutate();
+            this.shadowDrawable = drawableMutate;
+            if (i == 3) {
+                f = 0.55f;
+            } else {
+                f = z ? 0.8f : 0.985f;
             }
-            this.alertDialog = createAlertDialog(context, i, resourcesProvider);
+            this.blurOpacity = f;
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(this.backgroundColor, PorterDuff.Mode.MULTIPLY));
+            drawableMutate.getPadding(rect);
         }
-
-        protected AlertDialog createAlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-            return new AlertDialog(context, i, resourcesProvider);
-        }
-
-        public Context getContext() {
-            return this.alertDialog.getContext();
-        }
-
-        public Builder twoRowsButtonsWhenNeeded() {
-            this.alertDialog.twoRowsButtonsWhenNeeded = true;
-            return this;
-        }
-
-        public Builder setItems(CharSequence[] charSequenceArr, DialogInterface.OnClickListener onClickListener) {
-            this.alertDialog.items = charSequenceArr;
-            this.alertDialog.onClickListener = onClickListener;
-            return this;
-        }
-
-        public Builder setCheckFocusable(boolean z) {
-            this.alertDialog.checkFocusable = z;
-            return this;
-        }
-
-        public Builder setItems(CharSequence[] charSequenceArr, int[] iArr, DialogInterface.OnClickListener onClickListener) {
-            this.alertDialog.items = charSequenceArr;
-            this.alertDialog.itemIcons = iArr;
-            this.alertDialog.onClickListener = onClickListener;
-            return this;
-        }
-
-        public Builder setView(View view) {
-            return setView(view, -2);
-        }
-
-        public Builder setView(View view, int i) {
-            this.alertDialog.customView = view;
-            this.alertDialog.customViewHeight = i;
-            return this;
-        }
-
-        public Builder setWidth(int i) {
-            this.alertDialog.customWidth = i;
-            return this;
-        }
-
-        public Builder aboveMessageView(View view) {
-            this.alertDialog.aboveMessageView = view;
-            return this;
-        }
-
-        public Builder addBottomView(View view) {
-            this.alertDialog.bottomView = view;
-            return this;
-        }
-
-        public Builder setTitle(CharSequence charSequence) {
-            this.alertDialog.title = charSequence;
-            return this;
-        }
-
-        public Builder setSubtitle(CharSequence charSequence) {
-            this.alertDialog.subtitle = charSequence;
-            return this;
-        }
-
-        public Builder setTopView(View view) {
-            this.alertDialog.topView = view;
-            return this;
-        }
-
-        public Builder setDialogButtonColorKey(int i) {
-            this.alertDialog.dialogButtonColorKey = i;
-            return this;
-        }
-
-        public Builder setTopAnimation(int i, int i2, boolean z, int i3) {
-            return setTopAnimation(i, i2, z, i3, null);
-        }
-
-        public Builder setTopAnimation(int i, int i2, boolean z, int i3, Map map) {
-            this.alertDialog.topAnimationId = i;
-            this.alertDialog.topAnimationSize = i2;
-            this.alertDialog.topAnimationAutoRepeat = z;
-            this.alertDialog.topBackgroundColor = i3;
-            this.alertDialog.topAnimationLayerColors = map;
-            return this;
-        }
-
-        public Builder setTopAnimationIsNew(boolean z) {
-            this.alertDialog.topAnimationIsNew = z;
-            return this;
-        }
-
-        public Builder setTopImage(Drawable drawable, int i) {
-            this.alertDialog.topDrawable = drawable;
-            this.alertDialog.topBackgroundColor = i;
-            return this;
-        }
-
-        public Builder setMessage(CharSequence charSequence) {
-            this.alertDialog.message = charSequence;
-            return this;
-        }
-
-        public Builder setButton(int i, CharSequence charSequence, OnButtonClickListener onButtonClickListener) {
-            if (i == -4) {
-                this.alertDialog.negative2ButtonText = charSequence;
-                this.alertDialog.negative2ButtonListener = onButtonClickListener;
-                return this;
-            }
-            if (i == -3) {
-                setNeutralButton(charSequence, onButtonClickListener);
-                return this;
-            }
-            if (i == -2) {
-                setNegativeButton(charSequence, onButtonClickListener);
-                return this;
-            }
-            if (i != -1) {
-                return this;
-            }
-            setPositiveButton(charSequence, onButtonClickListener);
-            return this;
-        }
-
-        public Builder setPositiveButton(CharSequence charSequence, OnButtonClickListener onButtonClickListener) {
-            this.alertDialog.positiveButtonText = charSequence;
-            this.alertDialog.positiveButtonListener = onButtonClickListener;
-            return this;
-        }
-
-        public Builder setNegativeButton(CharSequence charSequence, OnButtonClickListener onButtonClickListener) {
-            this.alertDialog.negativeButtonText = charSequence;
-            this.alertDialog.negativeButtonListener = onButtonClickListener;
-            return this;
-        }
-
-        public Builder setNeutralButton(CharSequence charSequence, OnButtonClickListener onButtonClickListener) {
-            this.alertDialog.neutralButtonText = charSequence;
-            this.alertDialog.neutralButtonListener = onButtonClickListener;
-            return this;
-        }
-
-        public Builder setOnBackButtonListener(OnButtonClickListener onButtonClickListener) {
-            this.alertDialog.onBackButtonListener = onButtonClickListener;
-            return this;
-        }
-
-        public Builder setOnCancelListener(DialogInterface.OnCancelListener onCancelListener) {
-            this.alertDialog.setOnCancelListener(onCancelListener);
-            return this;
-        }
-
-        public Builder setCustomViewOffset(int i) {
-            this.alertDialog.customViewOffset = i;
-            return this;
-        }
-
-        public Builder setMessageTextViewClickable(boolean z) {
-            this.alertDialog.messageTextViewClickable = z;
-            return this;
-        }
-
-        public AlertDialog create() {
-            return this.alertDialog;
-        }
-
-        public Builder makeRed(int i) {
-            int i2 = (-i) - 1;
-            if (i2 >= 0) {
-                boolean[] zArr = this.red;
-                if (i2 < zArr.length) {
-                    zArr[i2] = true;
-                }
-            }
-            return this;
-        }
-
-        public AlertDialog show() {
-            TextView textView;
-            this.alertDialog.show();
-            int i = 0;
-            while (true) {
-                boolean[] zArr = this.red;
-                if (i < zArr.length) {
-                    if (zArr[i] && (textView = (TextView) this.alertDialog.getButton(-(i + 1))) != null) {
-                        textView.setTextColor(this.alertDialog.getThemedColor(Theme.key_text_RedBold));
-                    }
-                    i++;
-                } else {
-                    return this.alertDialog;
-                }
-            }
-        }
-
-        public Runnable getDismissRunnable() {
-            return this.alertDialog.dismissRunnable;
-        }
-
-        public Builder setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-            this.alertDialog.setOnDismissListener(onDismissListener);
-            return this;
-        }
-
-        public void setTopViewAspectRatio(float f) {
-            this.alertDialog.aspectRatio = f;
-        }
-
-        public Builder setDimEnabled(boolean z) {
-            this.alertDialog.dimEnabled = z;
-            return this;
-        }
-
-        public Builder setDimAlpha(float f) {
-            this.alertDialog.dimAlpha = f;
-            return this;
-        }
-
-        public void notDrawBackgroundOnTopView(boolean z) {
-            this.alertDialog.notDrawBackgroundOnTopView = z;
-            this.alertDialog.blurredBackground = false;
-        }
-
-        public void setButtonsVertical(boolean z) {
-            this.alertDialog.verticalButtons = z;
-        }
-
-        public Builder setOnPreDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-            this.alertDialog.onDismissListener = onDismissListener;
-            return this;
-        }
-
-        public Builder overrideDismissListener(Utilities.Callback callback) {
-            this.alertDialog.overridenDissmissListener = callback;
-            return this;
-        }
-
-        public Builder setAdditionalHorizontalPadding(int i) {
-            this.alertDialog.additioanalHorizontalPadding = i;
-            return this;
-        }
-
-        public Builder makeCustomMaxHeight() {
-            this.alertDialog.customMaxHeight = true;
-            return this;
-        }
+        this.withCancelDialog = i == 3;
     }
 }

@@ -9,11 +9,14 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
-import android.opengl.GLUtils;
-import android.os.Looper;
-import android.view.MotionEvent;
 import android.view.TextureView;
-import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import com.stripe.android.Stripe;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -24,570 +27,127 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.camera.CameraView$CameraGLThread$$ExternalSyntheticOutline0;
+import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.BlurringShader;
+import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda2;
+import org.telegram.ui.Components.Paint.ShapeInput.CornerPoint;
 import org.telegram.ui.Components.Size;
+import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda116;
 
 public class RenderView extends TextureView {
-    private Bitmap bitmap;
-    private Bitmap blurBitmap;
-    private Brush brush;
-    private int color;
-    private RenderViewDelegate delegate;
-    private boolean firstDrawSent;
-    private Input input;
-    private CanvasInternal internal;
-    private Painting painting;
-    private DispatchQueue queue;
-    private ShapeInput shapeInput;
-    private boolean shuttingDown;
-    private boolean transformedBitmap;
-    private UndoStore undoStore;
-    private float weight;
+    public Bitmap bitmap;
+    public Bitmap blurBitmap;
+    public Brush brush;
+    public int color;
+    public RenderViewDelegate delegate;
+    public boolean firstDrawSent;
+    public final Input input;
+    public CanvasInternal internal;
+    public final Painting painting;
+    public final ShapeInput shapeInput;
+    public boolean shuttingDown;
+    public boolean transformedBitmap;
+    public UndoStore undoStore;
+    public float weight;
 
-    public interface RenderViewDelegate {
+    public final class AnonymousClass1 implements TextureView.SurfaceTextureListener {
+        public final BlurringShader.BlurManager val$blurManager;
 
-        public abstract class CC {
-            public static void $default$invalidateInputView(RenderViewDelegate renderViewDelegate) {
-            }
-        }
-
-        void invalidateInputView();
-
-        void onBeganDrawing();
-
-        void onFinishedDrawing(boolean z);
-
-        void onFirstDraw();
-
-        void resetBrush();
-
-        boolean shouldDraw();
-    }
-
-    protected void selectBrush(Brush brush) {
-    }
-
-    public RenderView(Context context, Painting painting, Bitmap bitmap, Bitmap bitmap2, BlurringShader.BlurManager blurManager) {
-        super(context);
-        setOpaque(false);
-        this.bitmap = bitmap;
-        this.blurBitmap = bitmap2;
-        this.painting = painting;
-        painting.setRenderView(this);
-        setSurfaceTextureListener(new AnonymousClass1(blurManager));
-        this.input = new Input(this);
-        this.shapeInput = new ShapeInput(this, new Runnable() {
-            @Override
-            public final void run() {
-                RenderView.m2487$r8$lambda$wzXQDLrcF6BiMx654uDxkc67J0(this.f$0);
-            }
-        });
-        this.painting.setDelegate(new Painting.PaintingDelegate() {
-            @Override
-            public void contentChanged() {
-                if (RenderView.this.internal != null) {
-                    RenderView.this.internal.scheduleRedraw();
-                }
-            }
-
-            @Override
-            public UndoStore requestUndoStore() {
-                return RenderView.this.undoStore;
-            }
-
-            @Override
-            public DispatchQueue requestDispatchQueue() {
-                return RenderView.this.queue;
-            }
-        });
-    }
-
-    class AnonymousClass1 implements TextureView.SurfaceTextureListener {
-        final BlurringShader.BlurManager val$blurManager;
-
-        @Override
-        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        }
-
-        AnonymousClass1(BlurringShader.BlurManager blurManager) {
+        public AnonymousClass1(BlurringShader.BlurManager blurManager) {
             this.val$blurManager = blurManager;
         }
 
         @Override
-        public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-            if (surfaceTexture == null || RenderView.this.internal != null) {
-                return;
-            }
-            RenderView.this.internal = RenderView.this.new CanvasInternal(surfaceTexture, this.val$blurManager);
-            RenderView.this.internal.setBufferSize(i, i2);
-            RenderView.this.updateTransform();
-            RenderView.this.post(new Runnable() {
-                @Override
-                public final void run() {
-                    RenderView.AnonymousClass1.m2488$r8$lambda$LJbNVf5C620YHTq_OTymRHeg6M(this.f$0);
+        public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+            if (surfaceTexture != null) {
+                RenderView renderView = RenderView.this;
+                if (renderView.internal != null) {
+                    return;
                 }
-            });
-            if (RenderView.this.painting.isPaused()) {
-                RenderView.this.painting.onResume();
-            }
-        }
-
-        public static void m2488$r8$lambda$LJbNVf5C620YHTq_OTymRHeg6M(AnonymousClass1 anonymousClass1) {
-            if (RenderView.this.internal != null) {
-                RenderView.this.internal.requestRender();
+                CanvasInternal canvasInternal = renderView.new CanvasInternal(surfaceTexture, this.val$blurManager);
+                renderView.internal = canvasInternal;
+                canvasInternal.bufferWidth = i;
+                canvasInternal.bufferHeight = i2;
+                renderView.updateTransform();
+                renderView.post(new RenderView$1$$ExternalSyntheticLambda0(this, 1));
+                Painting painting = renderView.painting;
+                if (painting.paused) {
+                    painting.renderView.performInContext(new Painting$$ExternalSyntheticLambda4(painting, painting.backupSlice, 0));
+                    painting.backupSlice = null;
+                    painting.paused = false;
+                }
             }
         }
 
         @Override
-        public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
-            if (RenderView.this.internal == null) {
-                return;
-            }
-            RenderView.this.internal.setBufferSize(i, i2);
-            RenderView.this.updateTransform();
-            RenderView.this.internal.requestRender();
-            RenderView.this.internal.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    RenderView.AnonymousClass1.m2489$r8$lambda$LcdpUUSgReGVSyRjKfudWRcaf4(this.f$0);
-                }
-            });
-        }
-
-        public static void m2489$r8$lambda$LcdpUUSgReGVSyRjKfudWRcaf4(AnonymousClass1 anonymousClass1) {
-            if (RenderView.this.internal != null) {
-                RenderView.this.internal.requestRender();
-            }
-        }
-
-        @Override
-        public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-            if (RenderView.this.internal != null && !RenderView.this.shuttingDown) {
-                RenderView.this.painting.onPause(new Runnable() {
-                    @Override
-                    public final void run() {
-                        RenderView.AnonymousClass1.$r8$lambda$gtC29xJL3fU37c_25qOt1qQJaAg(this.f$0);
-                    }
-                });
+        public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+            RenderView renderView = RenderView.this;
+            if (renderView.internal != null && !renderView.shuttingDown) {
+                RenderView$1$$ExternalSyntheticLambda0 renderView$1$$ExternalSyntheticLambda0 = new RenderView$1$$ExternalSyntheticLambda0(this, 2);
+                Painting painting = renderView.painting;
+                painting.renderView.performInContext(new ImageUpdater$$ExternalSyntheticLambda2(11, painting, renderView$1$$ExternalSyntheticLambda0));
             }
             return true;
         }
 
-        public static void $r8$lambda$gtC29xJL3fU37c_25qOt1qQJaAg(AnonymousClass1 anonymousClass1) {
-            RenderView.this.internal.shutdown();
-            RenderView.this.internal = null;
-        }
-    }
-
-    public static void m2487$r8$lambda$wzXQDLrcF6BiMx654uDxkc67J0(RenderView renderView) {
-        RenderViewDelegate renderViewDelegate = renderView.delegate;
-        if (renderViewDelegate != null) {
-            renderViewDelegate.invalidateInputView();
-        }
-    }
-
-    public void redraw() {
-        CanvasInternal canvasInternal = this.internal;
-        if (canvasInternal == null) {
-            return;
-        }
-        canvasInternal.requestRender();
-    }
-
-    public boolean onTouch(MotionEvent motionEvent) {
-        if (motionEvent.getPointerCount() > 1) {
-            return false;
-        }
-        CanvasInternal canvasInternal = this.internal;
-        if (canvasInternal != null && canvasInternal.initialized && this.internal.ready) {
-            if (this.brush instanceof Brush.Shape) {
-                this.shapeInput.process(motionEvent, getScaleX());
-            } else {
-                this.input.process(motionEvent, getScaleX());
+        @Override
+        public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+            RenderView renderView = RenderView.this;
+            CanvasInternal canvasInternal = renderView.internal;
+            if (canvasInternal == null) {
+                return;
             }
+            canvasInternal.bufferWidth = i;
+            canvasInternal.bufferHeight = i2;
+            renderView.updateTransform();
+            CanvasInternal canvasInternal2 = renderView.internal;
+            canvasInternal2.postRunnable(canvasInternal2.drawRunnable);
+            renderView.internal.postRunnable(new RenderView$1$$ExternalSyntheticLambda0(this, 0));
         }
-        return true;
-    }
 
-    public void onDrawForInput(Canvas canvas) {
-        if (this.brush instanceof Brush.Shape) {
-            this.shapeInput.dispatchDraw(canvas);
-        }
-    }
-
-    public void setUndoStore(UndoStore undoStore) {
-        this.undoStore = undoStore;
-    }
-
-    public void setQueue(DispatchQueue dispatchQueue) {
-        this.queue = dispatchQueue;
-    }
-
-    public void setDelegate(RenderViewDelegate renderViewDelegate) {
-        this.delegate = renderViewDelegate;
-    }
-
-    public Painting getPainting() {
-        return this.painting;
-    }
-
-    public float brushWeightForSize(float f) {
-        float f2 = this.painting.getSize().width;
-        return (0.00390625f * f2) + (f2 * 0.043945312f * f);
-    }
-
-    public int getCurrentColor() {
-        return this.color;
-    }
-
-    public void setColor(int i) {
-        this.color = i;
-        if (this.brush instanceof Brush.Shape) {
-            this.shapeInput.onColorChange();
+        @Override
+        public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
     }
 
-    public float getCurrentWeight() {
-        return this.weight;
-    }
-
-    public void setBrushSize(float f) {
-        this.weight = brushWeightForSize(f);
-        if (this.brush instanceof Brush.Shape) {
-            this.shapeInput.onWeightChange();
-        }
-    }
-
-    public Brush getCurrentBrush() {
-        return this.brush;
-    }
-
-    public UndoStore getUndoStore() {
-        return this.undoStore;
-    }
-
-    public void setBrush(Brush brush) {
-        if (this.brush instanceof Brush.Shape) {
-            this.shapeInput.stop();
-        }
-        this.brush = brush;
-        updateTransform();
-        this.painting.setBrush(this.brush);
-        Brush brush2 = this.brush;
-        if (brush2 instanceof Brush.Shape) {
-            this.shapeInput.start(((Brush.Shape) brush2).getShapeShaderType());
-        }
-    }
-
-    public void resetBrush() {
-        RenderViewDelegate renderViewDelegate = this.delegate;
-        if (renderViewDelegate != null) {
-            renderViewDelegate.resetBrush();
-        }
-        this.input.ignoreOnce();
-    }
-
-    public void clearShape() {
-        ShapeInput shapeInput = this.shapeInput;
-        if (shapeInput != null) {
-            shapeInput.clear();
-        }
-    }
-
-    public void updateTransform() {
-        if (this.internal == null) {
-            return;
-        }
-        Matrix matrix = new Matrix();
-        float width = this.painting != null ? getWidth() / this.painting.getSize().width : 1.0f;
-        float f = width > 0.0f ? width : 1.0f;
-        Size size = getPainting().getSize();
-        matrix.preTranslate(getWidth() / 2.0f, getHeight() / 2.0f);
-        matrix.preScale(f, -f);
-        matrix.preTranslate((-size.width) / 2.0f, (-size.height) / 2.0f);
-        if (this.brush instanceof Brush.Shape) {
-            this.shapeInput.setMatrix(matrix);
-        } else {
-            this.input.setMatrix(matrix);
-        }
-        this.painting.setRenderProjection(GLMatrix.MultiplyMat4f(GLMatrix.LoadOrtho(0.0f, this.internal.bufferWidth, 0.0f, this.internal.bufferHeight, -1.0f, 1.0f), GLMatrix.LoadGraphicsMatrix(matrix)));
-    }
-
-    public boolean shouldDraw() {
-        RenderViewDelegate renderViewDelegate = this.delegate;
-        return renderViewDelegate == null || renderViewDelegate.shouldDraw();
-    }
-
-    public void onBeganDrawing() {
-        RenderViewDelegate renderViewDelegate = this.delegate;
-        if (renderViewDelegate != null) {
-            renderViewDelegate.onBeganDrawing();
-        }
-    }
-
-    public void onFinishedDrawing(boolean z) {
-        RenderViewDelegate renderViewDelegate = this.delegate;
-        if (renderViewDelegate != null) {
-            renderViewDelegate.onFinishedDrawing(z);
-        }
-    }
-
-    public void shutdown() {
-        this.shuttingDown = true;
-        if (this.internal != null) {
-            performInContext(new Runnable() {
-                @Override
-                public final void run() {
-                    RenderView.m2484$r8$lambda$KkJBdjWtg7kPr0OgL33b0Y8D4k(this.f$0);
-                }
-            });
-        }
-        setVisibility(8);
-    }
-
-    public static void m2484$r8$lambda$KkJBdjWtg7kPr0OgL33b0Y8D4k(RenderView renderView) {
-        renderView.painting.cleanResources(renderView.transformedBitmap);
-        renderView.internal.shutdown();
-        renderView.internal = null;
-    }
-
-    public void clearAll() {
-        this.input.clear(new Runnable() {
-            @Override
-            public final void run() {
-                RenderView renderView = this.f$0;
-                renderView.painting.setBrush(renderView.brush);
-            }
-        });
-    }
-
-    class CanvasInternal extends DispatchQueue {
-        private final BlurringShader.BlurManager blurManager;
-        private int bufferHeight;
-        private int bufferWidth;
-        private Runnable drawRunnable;
-        private EGL10 egl10;
-        private EGLContext eglContext;
-        private EGLDisplay eglDisplay;
-        private EGLSurface eglSurface;
-        private boolean initialized;
-        private volatile boolean ready;
-        public Runnable safeRequestRender;
-        private Runnable scheduledRunnable;
-        private SurfaceTexture surfaceTexture;
+    public final class CanvasInternal extends DispatchQueue {
+        public final BlurringShader.BlurManager blurManager;
+        public int bufferHeight;
+        public int bufferWidth;
+        public final BubbleActivity.AnonymousClass1 drawRunnable;
+        public EGL10 egl10;
+        public EGLContext eglContext;
+        public EGLDisplay eglDisplay;
+        public EGLSurface eglSurface;
+        public boolean initialized;
+        public volatile boolean ready;
+        public final RenderView$CanvasInternal$$ExternalSyntheticLambda1 safeRequestRender;
+        public RenderView$CanvasInternal$$ExternalSyntheticLambda1 scheduledRunnable;
+        public final SurfaceTexture surfaceTexture;
 
         public CanvasInternal(SurfaceTexture surfaceTexture, BlurringShader.BlurManager blurManager) {
             super("CanvasInternal");
-            this.drawRunnable = new AnonymousClass1();
-            this.safeRequestRender = new Runnable() {
-                @Override
-                public final void run() {
-                    RenderView.CanvasInternal.$r8$lambda$FA6VVbRbZBwch6GqyevhJ1GmFmo(this.f$0);
-                }
-            };
+            this.drawRunnable = new BubbleActivity.AnonymousClass1(this, 23);
+            this.safeRequestRender = new RenderView$CanvasInternal$$ExternalSyntheticLambda1(this, 0);
             this.blurManager = blurManager;
             this.surfaceTexture = surfaceTexture;
         }
 
-        @Override
-        public void run() {
-            if (RenderView.this.bitmap == null || RenderView.this.bitmap.isRecycled()) {
-                return;
-            }
-            this.initialized = initGL();
-            super.run();
-        }
-
-        private boolean initGL() {
-            EGL10 egl10 = (EGL10) EGLContext.getEGL();
-            this.egl10 = egl10;
-            EGLDisplay eGLDisplayEglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-            this.eglDisplay = eGLDisplayEglGetDisplay;
-            if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e("eglGetDisplay failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
-                }
-                finish();
-                return false;
-            }
-            if (!this.egl10.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e("eglInitialize failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
-                }
-                finish();
-                return false;
-            }
-            int[] iArr = new int[1];
-            EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            if (!this.egl10.eglChooseConfig(this.eglDisplay, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e("eglChooseConfig failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
-                }
-                finish();
-                return false;
-            }
-            if (iArr[0] > 0) {
-                EGLConfig eGLConfig = eGLConfigArr[0];
-                int[] iArr2 = {12440, 2, 12344};
-                BlurringShader.BlurManager blurManager = this.blurManager;
-                EGLContext eGLContextEglCreateContext = this.egl10.eglCreateContext(this.eglDisplay, eGLConfig, blurManager != null ? blurManager.getParentContext() : EGL10.EGL_NO_CONTEXT, iArr2);
-                this.eglContext = eGLContextEglCreateContext;
-                if (eGLContextEglCreateContext == null) {
-                    if (BuildVars.LOGS_ENABLED) {
-                        FileLog.e("eglCreateContext failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
-                    }
-                    finish();
-                    return false;
-                }
-                BlurringShader.BlurManager blurManager2 = this.blurManager;
-                if (blurManager2 != null) {
-                    blurManager2.acquiredContext(eGLContextEglCreateContext);
-                    this.blurManager.attach(this.safeRequestRender);
-                }
-                SurfaceTexture surfaceTexture = this.surfaceTexture;
-                if (OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(surfaceTexture)) {
-                    EGLSurface eGLSurfaceEglCreateWindowSurface = this.egl10.eglCreateWindowSurface(this.eglDisplay, eGLConfig, surfaceTexture, null);
-                    this.eglSurface = eGLSurfaceEglCreateWindowSurface;
-                    if (eGLSurfaceEglCreateWindowSurface == null || eGLSurfaceEglCreateWindowSurface == EGL10.EGL_NO_SURFACE) {
-                        if (BuildVars.LOGS_ENABLED) {
-                            FileLog.e("createWindowSurface failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
-                        }
-                        finish();
-                        return false;
-                    }
-                    if (!this.egl10.eglMakeCurrent(this.eglDisplay, eGLSurfaceEglCreateWindowSurface, eGLSurfaceEglCreateWindowSurface, this.eglContext)) {
-                        if (BuildVars.LOGS_ENABLED) {
-                            FileLog.e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
-                        }
-                        finish();
-                        return false;
-                    }
-                    GLES20.glEnable(3042);
-                    GLES20.glDisable(3024);
-                    GLES20.glDisable(2960);
-                    GLES20.glDisable(2929);
-                    RenderView.this.painting.setupShaders();
-                    checkBitmap();
-                    RenderView.this.painting.setBitmap(RenderView.this.bitmap, RenderView.this.blurBitmap);
-                    Utils.HasGLError();
-                    return true;
-                }
-                finish();
-                return false;
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("eglConfig not initialized");
-            }
-            finish();
-            return false;
-        }
-
-        private void checkBitmap() {
-            Size size = RenderView.this.painting.getSize();
-            if (RenderView.this.bitmap.getWidth() != size.width || RenderView.this.bitmap.getHeight() != size.height) {
-                Bitmap bitmapCreateBitmap = Bitmap.createBitmap((int) size.width, (int) size.height, Bitmap.Config.ARGB_8888);
-                new Canvas(bitmapCreateBitmap).drawBitmap(RenderView.this.bitmap, (Rect) null, new RectF(0.0f, 0.0f, size.width, size.height), (Paint) null);
-                RenderView.this.bitmap = bitmapCreateBitmap;
-                RenderView.this.transformedBitmap = true;
-            }
-            if (RenderView.this.blurBitmap != null) {
-                if (RenderView.this.blurBitmap.getWidth() == size.width && RenderView.this.blurBitmap.getHeight() == size.height) {
+        public static void access$1300(CanvasInternal canvasInternal) {
+            if (canvasInternal.initialized) {
+                if (canvasInternal.eglContext.equals(canvasInternal.egl10.eglGetCurrentContext()) && canvasInternal.eglSurface.equals(canvasInternal.egl10.eglGetCurrentSurface(12377))) {
                     return;
                 }
-                Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap((int) size.width, (int) size.height, Bitmap.Config.ARGB_8888);
-                new Canvas(bitmapCreateBitmap2).drawBitmap(RenderView.this.blurBitmap, (Rect) null, new RectF(0.0f, 0.0f, size.width, size.height), (Paint) null);
-                RenderView.this.blurBitmap = bitmapCreateBitmap2;
-                RenderView.this.transformedBitmap = true;
+                EGL10 egl10 = canvasInternal.egl10;
+                EGLDisplay eGLDisplay = canvasInternal.eglDisplay;
+                EGLSurface eGLSurface = canvasInternal.eglSurface;
+                egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, canvasInternal.eglContext);
             }
         }
 
-        public boolean setCurrentContext() {
-            if (!this.initialized) {
-                return false;
-            }
-            if (this.eglContext.equals(this.egl10.eglGetCurrentContext()) && this.eglSurface.equals(this.egl10.eglGetCurrentSurface(12377))) {
-                return true;
-            }
-            EGL10 egl10 = this.egl10;
-            EGLDisplay eGLDisplay = this.eglDisplay;
-            EGLSurface eGLSurface = this.eglSurface;
-            return egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext);
-        }
-
-        class AnonymousClass1 implements Runnable {
-            AnonymousClass1() {
-            }
-
-            @Override
-            public void run() {
-                if (!CanvasInternal.this.initialized || RenderView.this.shuttingDown) {
-                    return;
-                }
-                CanvasInternal.this.setCurrentContext();
-                GLES20.glBindFramebuffer(36160, 0);
-                GLES20.glViewport(0, 0, CanvasInternal.this.bufferWidth, CanvasInternal.this.bufferHeight);
-                GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                GLES20.glClear(16384);
-                RenderView.this.painting.render();
-                GLES20.glBlendFunc(1, 771);
-                CanvasInternal.this.egl10.eglSwapBuffers(CanvasInternal.this.eglDisplay, CanvasInternal.this.eglSurface);
-                if (!RenderView.this.firstDrawSent) {
-                    RenderView.this.firstDrawSent = true;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            RenderView.this.delegate.onFirstDraw();
-                        }
-                    });
-                }
-                if (CanvasInternal.this.ready) {
-                    return;
-                }
-                CanvasInternal.this.ready = true;
-            }
-        }
-
-        public void setBufferSize(int i, int i2) {
-            this.bufferWidth = i;
-            this.bufferHeight = i2;
-        }
-
-        public void requestRender() {
-            postRunnable(this.drawRunnable);
-        }
-
-        public static void $r8$lambda$FA6VVbRbZBwch6GqyevhJ1GmFmo(CanvasInternal canvasInternal) {
-            Runnable runnable = canvasInternal.scheduledRunnable;
-            if (runnable != null) {
-                canvasInternal.cancelRunnable(runnable);
-                canvasInternal.scheduledRunnable = null;
-            }
-            canvasInternal.cancelRunnable(canvasInternal.drawRunnable);
-            canvasInternal.postRunnable(canvasInternal.drawRunnable);
-        }
-
-        public void scheduleRedraw() {
-            Runnable runnable = this.scheduledRunnable;
-            if (runnable != null) {
-                cancelRunnable(runnable);
-                this.scheduledRunnable = null;
-            }
-            Runnable runnable2 = new Runnable() {
-                @Override
-                public final void run() {
-                    RenderView.CanvasInternal.m2490$r8$lambda$7qG9Fc64ltnMpamgcBHkAv5BY(this.f$0);
-                }
-            };
-            this.scheduledRunnable = runnable2;
-            postRunnable(runnable2, 1L);
-        }
-
-        public static void m2490$r8$lambda$7qG9Fc64ltnMpamgcBHkAv5BY(CanvasInternal canvasInternal) {
-            canvasInternal.scheduledRunnable = null;
-            canvasInternal.drawRunnable.run();
-        }
-
-        public void finish() {
+        public final void finish() {
             if (this.eglSurface != null) {
                 EGL10 egl10 = this.egl10;
                 EGLDisplay eGLDisplay = this.eglDisplay;
@@ -600,7 +160,15 @@ public class RenderView extends TextureView {
             if (eGLContext != null) {
                 BlurringShader.BlurManager blurManager = this.blurManager;
                 if (blurManager != null) {
-                    blurManager.destroyedContext(eGLContext);
+                    synchronized (blurManager.contextLock) {
+                        try {
+                            if (blurManager.context == eGLContext) {
+                                blurManager.context = null;
+                            }
+                        } catch (Throwable th) {
+                            throw th;
+                        }
+                    }
                 }
                 this.egl10.eglDestroyContext(this.eglDisplay, this.eglContext);
                 this.eglContext = null;
@@ -612,91 +180,564 @@ public class RenderView extends TextureView {
             }
             BlurringShader.BlurManager blurManager2 = this.blurManager;
             if (blurManager2 != null) {
-                blurManager2.detach(this.safeRequestRender);
-            }
-        }
-
-        public void shutdown() {
-            postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    RenderView.CanvasInternal.$r8$lambda$YdRdX0FzJIp8vgnGWrhnn4rxP7U(this.f$0);
+                blurManager2.invalidateHolders.remove(this.safeRequestRender);
+                if (blurManager2.invalidateHolders.isEmpty() && blurManager2.holders.isEmpty()) {
+                    blurManager2.thumbBlurer.destroy();
                 }
-            });
-        }
-
-        public static void $r8$lambda$YdRdX0FzJIp8vgnGWrhnn4rxP7U(CanvasInternal canvasInternal) {
-            canvasInternal.finish();
-            Looper looperMyLooper = Looper.myLooper();
-            if (looperMyLooper != null) {
-                looperMyLooper.quit();
             }
         }
 
-        public Bitmap getTexture(final boolean z, final boolean z2) {
-            if (!this.initialized) {
-                return null;
+        @Override
+        public final void run() {
+            EGLContext eGLContext;
+            boolean z = false;
+            Bitmap bitmap = RenderView.this.bitmap;
+            if (bitmap == null || bitmap.isRecycled()) {
+                return;
             }
-            final CountDownLatch countDownLatch = new CountDownLatch(1);
-            final Bitmap[] bitmapArr = new Bitmap[1];
-            try {
-                try {
-                    postRunnable(new Runnable() {
-                        @Override
-                        public final void run() {
-                            RenderView.CanvasInternal.$r8$lambda$ozHTjMukf70F7u0T6IwQMnKraWU(this.f$0, z, z2, bitmapArr, countDownLatch);
+            EGL10 egl10 = (EGL10) EGLContext.getEGL();
+            this.egl10 = egl10;
+            EGLDisplay eGLDisplayEglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+            this.eglDisplay = eGLDisplayEglGetDisplay;
+            if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+                if (BuildVars.LOGS_ENABLED) {
+                    CameraView$CameraGLThread$$ExternalSyntheticOutline0.m(this.egl10, new StringBuilder("eglGetDisplay failed "));
+                }
+                finish();
+            } else {
+                if (this.egl10.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
+                    int[] iArr = new int[1];
+                    EGLConfig[] eGLConfigArr = new EGLConfig[1];
+                    if (!this.egl10.eglChooseConfig(this.eglDisplay, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
+                        if (BuildVars.LOGS_ENABLED) {
+                            CameraView$CameraGLThread$$ExternalSyntheticOutline0.m(this.egl10, new StringBuilder("eglChooseConfig failed "));
                         }
-                    });
-                    countDownLatch.await();
-                } catch (Exception e) {
-                    e = e;
-                    FileLog.e(e);
+                        finish();
+                    } else if (iArr[0] > 0) {
+                        EGLConfig eGLConfig = eGLConfigArr[0];
+                        int[] iArr2 = {12440, 2, 12344};
+                        BlurringShader.BlurManager blurManager = this.blurManager;
+                        if (blurManager != null) {
+                            synchronized (blurManager.contextLock) {
+                                try {
+                                    eGLContext = blurManager.context;
+                                    if (eGLContext == null) {
+                                        eGLContext = EGL10.EGL_NO_CONTEXT;
+                                    }
+                                } catch (Throwable th) {
+                                    throw th;
+                                }
+                            }
+                        } else {
+                            eGLContext = EGL10.EGL_NO_CONTEXT;
+                        }
+                        EGLContext eGLContextEglCreateContext = this.egl10.eglCreateContext(this.eglDisplay, eGLConfig, eGLContext, iArr2);
+                        this.eglContext = eGLContextEglCreateContext;
+                        if (eGLContextEglCreateContext == null) {
+                            if (BuildVars.LOGS_ENABLED) {
+                                CameraView$CameraGLThread$$ExternalSyntheticOutline0.m(this.egl10, new StringBuilder("eglCreateContext failed "));
+                            }
+                            finish();
+                        } else {
+                            BlurringShader.BlurManager blurManager2 = this.blurManager;
+                            if (blurManager2 != null) {
+                                blurManager2.acquiredContext(eGLContextEglCreateContext);
+                                this.blurManager.invalidateHolders.add(this.safeRequestRender);
+                            }
+                            SurfaceTexture surfaceTexture = this.surfaceTexture;
+                            if (surfaceTexture != null) {
+                                EGLSurface eGLSurfaceEglCreateWindowSurface = this.egl10.eglCreateWindowSurface(this.eglDisplay, eGLConfig, surfaceTexture, null);
+                                this.eglSurface = eGLSurfaceEglCreateWindowSurface;
+                                if (eGLSurfaceEglCreateWindowSurface == null || eGLSurfaceEglCreateWindowSurface == EGL10.EGL_NO_SURFACE) {
+                                    if (BuildVars.LOGS_ENABLED) {
+                                        CameraView$CameraGLThread$$ExternalSyntheticOutline0.m(this.egl10, new StringBuilder("createWindowSurface failed "));
+                                    }
+                                    finish();
+                                } else if (this.egl10.eglMakeCurrent(this.eglDisplay, eGLSurfaceEglCreateWindowSurface, eGLSurfaceEglCreateWindowSurface, this.eglContext)) {
+                                    GLES20.glEnable(3042);
+                                    GLES20.glDisable(3024);
+                                    GLES20.glDisable(2960);
+                                    GLES20.glDisable(2929);
+                                    Painting painting = RenderView.this.painting;
+                                    painting.getClass();
+                                    Map map = ShaderSet.AVAILABLE_SHADERS;
+                                    HashMap map2 = new HashMap();
+                                    for (Map.Entry entry : ShaderSet.AVAILABLE_SHADERS.entrySet()) {
+                                        Map map3 = (Map) entry.getValue();
+                                        map2.put((String) entry.getKey(), new Shader((String) map3.get("vertex"), (String) map3.get("fragment"), (String[]) map3.get("attributes"), (String[]) map3.get("uniforms")));
+                                    }
+                                    painting.shaders = DesugarCollections.unmodifiableMap(map2);
+                                    RenderView renderView = RenderView.this;
+                                    Size size = renderView.painting.size;
+                                    if (renderView.bitmap.getWidth() != size.width || RenderView.this.bitmap.getHeight() != size.height) {
+                                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap((int) size.width, (int) size.height, Bitmap.Config.ARGB_8888);
+                                        new Canvas(bitmapCreateBitmap).drawBitmap(RenderView.this.bitmap, (Rect) null, new RectF(0.0f, 0.0f, size.width, size.height), (Paint) null);
+                                        RenderView renderView2 = RenderView.this;
+                                        renderView2.bitmap = bitmapCreateBitmap;
+                                        renderView2.transformedBitmap = true;
+                                    }
+                                    Bitmap bitmap2 = RenderView.this.blurBitmap;
+                                    if (bitmap2 != null && (bitmap2.getWidth() != size.width || RenderView.this.blurBitmap.getHeight() != size.height)) {
+                                        Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap((int) size.width, (int) size.height, Bitmap.Config.ARGB_8888);
+                                        new Canvas(bitmapCreateBitmap2).drawBitmap(RenderView.this.blurBitmap, (Rect) null, new RectF(0.0f, 0.0f, size.width, size.height), (Paint) null);
+                                        RenderView renderView3 = RenderView.this;
+                                        renderView3.blurBitmap = bitmapCreateBitmap2;
+                                        renderView3.transformedBitmap = true;
+                                    }
+                                    RenderView renderView4 = RenderView.this;
+                                    Painting painting2 = renderView4.painting;
+                                    Bitmap bitmap3 = renderView4.bitmap;
+                                    Bitmap bitmap4 = renderView4.blurBitmap;
+                                    if (painting2.bitmapTexture == null) {
+                                        painting2.bitmapTexture = new Texture(bitmap3);
+                                    }
+                                    if (painting2.bitmapBlurTexture == null) {
+                                        painting2.bitmapBlurTexture = new Texture(bitmap4);
+                                    }
+                                    if (painting2.masking && painting2.originalBitmapTexture == null) {
+                                        painting2.originalBitmapTexture = new Texture(painting2.imageBitmap);
+                                    }
+                                    Utils.HasGLError();
+                                    z = true;
+                                } else {
+                                    if (BuildVars.LOGS_ENABLED) {
+                                        CameraView$CameraGLThread$$ExternalSyntheticOutline0.m(this.egl10, new StringBuilder("eglMakeCurrent failed "));
+                                    }
+                                    finish();
+                                }
+                            } else {
+                                finish();
+                            }
+                        }
+                    } else {
+                        if (BuildVars.LOGS_ENABLED) {
+                            FileLog.e("eglConfig not initialized");
+                        }
+                        finish();
+                    }
+                } else {
+                    if (BuildVars.LOGS_ENABLED) {
+                        CameraView$CameraGLThread$$ExternalSyntheticOutline0.m(this.egl10, new StringBuilder("eglInitialize failed "));
+                    }
+                    finish();
                 }
-            } catch (Exception e2) {
-                e = e2;
             }
-            return bitmapArr[0];
-        }
-
-        public static void $r8$lambda$ozHTjMukf70F7u0T6IwQMnKraWU(CanvasInternal canvasInternal, boolean z, boolean z2, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
-            Painting.PaintingData paintingData = RenderView.this.painting.getPaintingData(new RectF(0.0f, 0.0f, RenderView.this.painting.getSize().width, RenderView.this.painting.getSize().height), false, z, z2);
-            if (paintingData != null) {
-                bitmapArr[0] = paintingData.bitmap;
-            }
-            countDownLatch.countDown();
+            this.initialized = z;
+            super.run();
         }
     }
 
-    public Bitmap getResultBitmap(boolean z, boolean z2) {
+    public interface RenderViewDelegate {
+        void invalidateInputView();
+
+        void onBeganDrawing();
+
+        void onFinishedDrawing();
+
+        void onFirstDraw();
+
+        void resetBrush();
+
+        boolean shouldDraw();
+    }
+
+    public RenderView(Context context, Painting painting, Bitmap bitmap, Bitmap bitmap2, BlurringShader.BlurManager blurManager) {
+        super(context);
+        setOpaque(false);
+        this.bitmap = bitmap;
+        this.blurBitmap = bitmap2;
+        this.painting = painting;
+        painting.renderView = this;
+        setSurfaceTextureListener(new AnonymousClass1(blurManager));
+        this.input = new Input(this);
+        this.shapeInput = new ShapeInput(this, new RenderView$$ExternalSyntheticLambda0(this, 0));
+        painting.delegate = new Stripe.AnonymousClass1(this, 27);
+    }
+
+    public final void clearAll() {
+        RenderView$$ExternalSyntheticLambda0 renderView$$ExternalSyntheticLambda0 = new RenderView$$ExternalSyntheticLambda0(this, 2);
+        Input input = this.input;
+        input.lastLocation = new Point(input.renderView.getPainting().size.width, 0.0d, 1.0d);
+        input.canFill = true;
+        input.fill(new Brush.Eraser(), false, renderView$$ExternalSyntheticLambda0);
+    }
+
+    public final void clearShape() {
+        RenderView renderView;
+        ShapeInput shapeInput = this.shapeInput;
+        if (shapeInput == null || (renderView = shapeInput.renderView) == null || renderView.getPainting() == null || shapeInput.shape == null) {
+            return;
+        }
+        Painting painting = renderView.getPainting();
+        painting.renderView.performInContext(new Painting$$ExternalSyntheticLambda2(painting, 0));
+        shapeInput.allPoints.clear();
+        shapeInput.movingPoints.clear();
+        shapeInput.shape = null;
+    }
+
+    public Brush getCurrentBrush() {
+        return this.brush;
+    }
+
+    public int getCurrentColor() {
+        return this.color;
+    }
+
+    public float getCurrentWeight() {
+        return this.weight;
+    }
+
+    public Painting getPainting() {
+        return this.painting;
+    }
+
+    public final Bitmap getResultBitmap(boolean z, boolean z2) {
         if (this.brush instanceof Brush.Shape) {
             this.shapeInput.stop();
         }
         CanvasInternal canvasInternal = this.internal;
-        if (canvasInternal != null) {
-            return canvasInternal.getTexture(z, z2);
+        if (canvasInternal == null || !canvasInternal.initialized) {
+            return null;
         }
-        return null;
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        Bitmap[] bitmapArr = new Bitmap[1];
+        try {
+            canvasInternal.postRunnable(new ProfileActivity$$ExternalSyntheticLambda116(canvasInternal, z, z2, bitmapArr, countDownLatch));
+            countDownLatch.await();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        return bitmapArr[0];
     }
 
-    public void performInContext(final Runnable runnable) {
+    public UndoStore getUndoStore() {
+        return this.undoStore;
+    }
+
+    public final void onDrawForInput(Canvas canvas) {
+        ShapeInput shapeInput;
+        RenderView renderView;
+        ArrayList arrayList;
+        if (!(this.brush instanceof Brush.Shape) || (renderView = (shapeInput = this.shapeInput).renderView) == null || renderView.getPainting() == null) {
+            return;
+        }
+        Size size = shapeInput.renderView.getPainting().size;
+        int i = 0;
+        while (true) {
+            arrayList = shapeInput.allPoints;
+            if (i >= arrayList.size()) {
+                break;
+            }
+            ShapeInput.Point point = (ShapeInput.Point) arrayList.get(i);
+            if (point.draw && !point.rotate) {
+                shapeInput.drawPoint(canvas, size, point);
+            }
+            i++;
+        }
+        Shape shape = shapeInput.shape;
+        if (shape != null && shape.rotation != 0.0f) {
+            canvas.save();
+            Shape shape2 = shapeInput.shape;
+            canvas.rotate((float) ((((double) (-shape2.rotation)) / 3.141592653589793d) * 180.0d), (shape2.centerX / size.width) * canvas.getWidth(), (shapeInput.shape.centerY / size.height) * canvas.getHeight());
+        }
+        Shape shape3 = shapeInput.shape;
+        if (shape3 != null && shape3.brush.getShapeShaderType() == 4) {
+            float width = (shapeInput.shape.centerX / size.width) * canvas.getWidth();
+            float height = (shapeInput.shape.centerY / size.height) * canvas.getHeight();
+            float width2 = (shapeInput.shape.middleX / size.width) * canvas.getWidth();
+            float height2 = (shapeInput.shape.middleY / size.height) * canvas.getHeight();
+            Paint paint = shapeInput.linePaint;
+            canvas.drawLine(width, height, width2, height2, paint);
+            canvas.drawLine(canvas.getWidth() * (shapeInput.shape.radiusX / size.width), canvas.getHeight() * (shapeInput.shape.radiusY / size.height), canvas.getWidth() * (shapeInput.shape.middleX / size.width), canvas.getHeight() * (shapeInput.shape.middleY / size.height), paint);
+        }
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            ShapeInput.Point point2 = (ShapeInput.Point) arrayList.get(i2);
+            if (point2.draw && point2.rotate) {
+                shapeInput.drawPoint(canvas, size, point2);
+            }
+        }
+        Shape shape4 = shapeInput.shape;
+        if (shape4 == null || shape4.rotation == 0.0f) {
+            return;
+        }
+        canvas.restore();
+    }
+
+    public final void onTouch(android.view.MotionEvent r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.RenderView.onTouch(android.view.MotionEvent):void");
+    }
+
+    public final void performInContext(Runnable runnable) {
         CanvasInternal canvasInternal = this.internal;
         if (canvasInternal == null) {
             return;
         }
-        canvasInternal.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                RenderView.m2486$r8$lambda$YwcIaCgxCuATp_OnbIlHgEm7Zo(this.f$0, runnable);
-            }
-        });
+        canvasInternal.postRunnable(new ImageUpdater$$ExternalSyntheticLambda2(12, this, runnable));
     }
 
-    public static void m2486$r8$lambda$YwcIaCgxCuATp_OnbIlHgEm7Zo(RenderView renderView, Runnable runnable) {
-        CanvasInternal canvasInternal = renderView.internal;
-        if (canvasInternal == null || !canvasInternal.initialized) {
+    public void selectBrush(Brush brush) {
+    }
+
+    public void setBrush(Brush brush) {
+        boolean z = this.brush instanceof Brush.Shape;
+        final ShapeInput shapeInput = this.shapeInput;
+        if (z) {
+            shapeInput.stop();
+        }
+        this.brush = brush;
+        updateTransform();
+        this.painting.setBrush(this.brush);
+        Brush brush2 = this.brush;
+        if (brush2 instanceof Brush.Shape) {
+            int shapeShaderType = ((Brush.Shape) brush2).getShapeShaderType();
+            RenderView renderView = shapeInput.renderView;
+            if (renderView == null || renderView.getPainting() == null) {
+                return;
+            }
+            ArrayList arrayList = shapeInput.allPoints;
+            arrayList.clear();
+            ArrayList arrayList2 = shapeInput.movingPoints;
+            arrayList2.clear();
+            if (shapeShaderType >= 0) {
+                List list = Brush.Shape.SHAPES_LIST;
+                if (shapeShaderType <= list.size()) {
+                    shapeInput.shape = new Shape((Brush.Shape) list.get(shapeShaderType));
+                    RenderView renderView2 = shapeInput.renderView;
+                    Size size = renderView2.getPainting().size;
+                    Shape shape = shapeInput.shape;
+                    float f = size.width;
+                    shape.centerX = f / 2.0f;
+                    float f2 = size.height;
+                    shape.centerY = f2 / 2.0f;
+                    float fMin = Math.min(f, f2) / 5.0f;
+                    shape.radiusY = fMin;
+                    shape.radiusX = fMin;
+                    shapeInput.shape.thickness = renderView2.getCurrentWeight();
+                    shapeInput.shape.rounding = AndroidUtilities.dp(32.0f);
+                    shapeInput.shape.fill = PersistColorPalette.getInstance(UserConfig.selectedAccount).fillShapes;
+                    if (shapeInput.shape.brush.getShapeShaderType() == 4) {
+                        Shape shape2 = shapeInput.shape;
+                        float f3 = size.width / 2.0f;
+                        shape2.radiusX = f3;
+                        shape2.centerX = f3;
+                        shape2.middleX = f3 + 1.0f;
+                        float f4 = size.height;
+                        float f5 = f4 / 3.0f;
+                        float f6 = 1.0f * f5;
+                        shape2.centerY = f6;
+                        float f7 = f4 / 2.0f;
+                        shape2.middleY = f7;
+                        shape2.radiusY = f5 * 2.0f;
+                        shape2.arrowTriangleLength = Math.abs(f6 - f7);
+                        final ShapeInput.AnonymousClass1 anonymousClass1 = new ShapeInput.AnonymousClass1(shapeInput, 0);
+                        arrayList.add(anonymousClass1);
+                        final int i = 0;
+                        ShapeInput.Point point = new ShapeInput.Point() {
+                            @Override
+                            public final void set() {
+                                switch (i) {
+                                    case 0:
+                                        Shape shape3 = shapeInput.shape;
+                                        float f8 = shape3.middleX;
+                                        float f9 = shape3.middleY;
+                                        this.x = f8;
+                                        this.y = f9;
+                                        break;
+                                    default:
+                                        Shape shape4 = shapeInput.shape;
+                                        float f10 = shape4.radiusX;
+                                        float f11 = shape4.radiusY;
+                                        this.x = f10;
+                                        this.y = f11;
+                                        break;
+                                }
+                            }
+
+                            @Override
+                            public final void update(float f8, float f9) {
+                                switch (i) {
+                                    case 0:
+                                        Shape shape3 = shapeInput.shape;
+                                        shape3.middleX = f8;
+                                        shape3.middleY = f9;
+                                        this.x = f8;
+                                        this.y = f9;
+                                        anonymousClass1.set();
+                                        break;
+                                    default:
+                                        Shape shape4 = shapeInput.shape;
+                                        shape4.radiusX = f8;
+                                        shape4.radiusY = f9;
+                                        this.x = f8;
+                                        this.y = f9;
+                                        anonymousClass1.set();
+                                        break;
+                                }
+                            }
+                        };
+                        arrayList.add(point);
+                        arrayList2.add(point);
+                        final int i2 = 1;
+                        ShapeInput.Point point2 = new ShapeInput.Point() {
+                            @Override
+                            public final void set() {
+                                switch (i2) {
+                                    case 0:
+                                        Shape shape3 = shapeInput.shape;
+                                        float f8 = shape3.middleX;
+                                        float f9 = shape3.middleY;
+                                        this.x = f8;
+                                        this.y = f9;
+                                        break;
+                                    default:
+                                        Shape shape4 = shapeInput.shape;
+                                        float f10 = shape4.radiusX;
+                                        float f11 = shape4.radiusY;
+                                        this.x = f10;
+                                        this.y = f11;
+                                        break;
+                                }
+                            }
+
+                            @Override
+                            public final void update(float f8, float f9) {
+                                switch (i2) {
+                                    case 0:
+                                        Shape shape3 = shapeInput.shape;
+                                        shape3.middleX = f8;
+                                        shape3.middleY = f9;
+                                        this.x = f8;
+                                        this.y = f9;
+                                        anonymousClass1.set();
+                                        break;
+                                    default:
+                                        Shape shape4 = shapeInput.shape;
+                                        shape4.radiusX = f8;
+                                        shape4.radiusY = f9;
+                                        this.x = f8;
+                                        this.y = f9;
+                                        anonymousClass1.set();
+                                        break;
+                                }
+                            }
+                        };
+                        arrayList.add(point2);
+                        arrayList2.add(point2);
+                    }
+                    if (shapeInput.shape.brush.getShapeShaderType() == 0) {
+                        arrayList.add(new ShapeInput.AnonymousClass1(shapeInput, 1));
+                    }
+                    if (shapeInput.shape.brush.getShapeShaderType() == 2) {
+                        arrayList.add(new ShapeInput.AnonymousClass1(shapeInput, 2));
+                    }
+                    if (shapeInput.shape.brush.getShapeShaderType() == 1 || shapeInput.shape.brush.getShapeShaderType() == 3) {
+                        arrayList.add(shapeInput.new CornerPoint(shapeInput.shape, false, false));
+                        arrayList.add(shapeInput.new CornerPoint(shapeInput.shape, true, false));
+                        arrayList.add(shapeInput.new CornerPoint(shapeInput.shape, false, true));
+                        arrayList.add(shapeInput.new CornerPoint(shapeInput.shape, true, true));
+                        arrayList.add(new ShapeInput.AnonymousClass1(shapeInput, 3, false));
+                    }
+                    if (shapeInput.shape.brush.getShapeShaderType() == 3) {
+                        Shape shape3 = shapeInput.shape;
+                        shape3.middleX = (shape3.radiusX * 0.8f) + shape3.centerX;
+                        shape3.middleY = (shape3.radiusY * 1.2f) + shape3.centerY + shape3.thickness;
+                        ShapeInput.AnonymousClass1 anonymousClass2 = new ShapeInput.AnonymousClass1(shapeInput, 4);
+                        arrayList.add(anonymousClass2);
+                        anonymousClass2.rotate = false;
+                        arrayList2.add(anonymousClass2);
+                    }
+                    shapeInput.center = new ShapeInput.AnonymousClass1(shapeInput, 5, false);
+                    if (shapeInput.shape.brush.getShapeShaderType() != 4) {
+                        shapeInput.center.draw = false;
+                    }
+                    ShapeInput.AnonymousClass1 anonymousClass3 = shapeInput.center;
+                    anonymousClass3.rotate = false;
+                    arrayList2.add(anonymousClass3);
+                    arrayList.add(shapeInput.center);
+                    renderView2.getPainting().paintShape(shapeInput.shape);
+                    return;
+                }
+            }
+            throw new IndexOutOfBoundsException("Shape type must be in range from 0 to " + (Brush.Shape.SHAPES_LIST.size() - 1) + ", but got " + shapeShaderType);
+        }
+    }
+
+    public void setBrushSize(float f) {
+        ShapeInput shapeInput;
+        Shape shape;
+        float f2 = this.painting.size.width;
+        this.weight = SurfaceContainer$$ExternalSyntheticOutline0.m(f2, 0.043945312f, f, 0.00390625f * f2);
+        if (!(this.brush instanceof Brush.Shape) || (shape = (shapeInput = this.shapeInput).shape) == null) {
             return;
         }
-        renderView.internal.setCurrentContext();
-        runnable.run();
+        float f3 = shape.thickness;
+        RenderView renderView = shapeInput.renderView;
+        if (f3 != renderView.getCurrentWeight()) {
+            shapeInput.shape.thickness = renderView.getCurrentWeight();
+            renderView.getPainting().paintShape(shapeInput.shape);
+        }
+    }
+
+    public void setColor(int i) {
+        this.color = i;
+        if (this.brush instanceof Brush.Shape) {
+            ShapeInput shapeInput = this.shapeInput;
+            if (shapeInput.shape != null) {
+                shapeInput.renderView.getPainting().paintShape(shapeInput.shape);
+            }
+        }
+    }
+
+    public void setDelegate(RenderViewDelegate renderViewDelegate) {
+        this.delegate = renderViewDelegate;
+    }
+
+    public void setQueue(DispatchQueue dispatchQueue) {
+    }
+
+    public void setUndoStore(UndoStore undoStore) {
+        this.undoStore = undoStore;
+    }
+
+    public final void shutdown() {
+        this.shuttingDown = true;
+        if (this.internal != null) {
+            performInContext(new RenderView$$ExternalSyntheticLambda0(this, 1));
+        }
+        setVisibility(8);
+    }
+
+    public final void updateTransform() {
+        if (this.internal == null) {
+            return;
+        }
+        Matrix matrix = new Matrix();
+        Painting painting = this.painting;
+        float width = painting != null ? getWidth() / painting.size.width : 1.0f;
+        if (width <= 0.0f) {
+            width = 1.0f;
+        }
+        Size size = getPainting().size;
+        matrix.preTranslate(getWidth() / 2.0f, getHeight() / 2.0f);
+        matrix.preScale(width, -width);
+        matrix.preTranslate((-size.width) / 2.0f, (-size.height) / 2.0f);
+        if (this.brush instanceof Brush.Shape) {
+            ShapeInput shapeInput = this.shapeInput;
+            shapeInput.getClass();
+            Matrix matrix2 = new Matrix();
+            shapeInput.invertMatrix = matrix2;
+            matrix.invert(matrix2);
+        } else {
+            Input input = this.input;
+            input.getClass();
+            Matrix matrix3 = new Matrix();
+            input.invertMatrix = matrix3;
+            matrix.invert(matrix3);
+        }
+        CanvasInternal canvasInternal = this.internal;
+        float[] fArrLoadOrtho = GLMatrix.LoadOrtho(canvasInternal.bufferWidth, canvasInternal.bufferHeight);
+        float[] fArr = new float[9];
+        matrix.getValues(fArr);
+        painting.renderProjection = GLMatrix.MultiplyMat4f(fArrLoadOrtho, new float[]{fArr[0], fArr[1], 0.0f, 0.0f, fArr[3], fArr[4], 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, fArr[2], fArr[5], 0.0f, 1.0f});
     }
 }

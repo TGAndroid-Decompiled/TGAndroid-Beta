@@ -33,12 +33,7 @@ public class ANRDetector implements ForegroundDetector.Listener {
         ForegroundDetector foregroundDetector = ForegroundDetector.getInstance();
         this.foreground = foregroundDetector.isForeground();
         foregroundDetector.addListener(this);
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.run();
-            }
-        }, "ANRDetector");
+        Thread thread = new Thread(new ANRDetector$$ExternalSyntheticLambda0(this, 0), "ANRDetector");
         this.detectorThread = thread;
         thread.start();
     }
@@ -78,17 +73,18 @@ public class ANRDetector implements ForegroundDetector.Listener {
         }
     }
 
-    @Override
-    public void onBecameForeground() {
+    public void destroy() {
         synchronized (this.lock) {
             try {
                 if (this.destroyed) {
                     return;
                 }
+                this.destroyed = true;
+                this.foreground = false;
                 this.generation++;
-                this.foreground = true;
-                this.anrReported = false;
                 this.lock.notifyAll();
+                ForegroundDetector.getInstance().removeListener(this);
+                this.mainHandler.removeMessages(1);
                 this.detectorThread.interrupt();
             } catch (Throwable th) {
                 throw th;
@@ -113,18 +109,17 @@ public class ANRDetector implements ForegroundDetector.Listener {
         }
     }
 
-    public void destroy() {
+    @Override
+    public void onBecameForeground() {
         synchronized (this.lock) {
             try {
                 if (this.destroyed) {
                     return;
                 }
-                this.destroyed = true;
-                this.foreground = false;
                 this.generation++;
+                this.foreground = true;
+                this.anrReported = false;
                 this.lock.notifyAll();
-                ForegroundDetector.getInstance().removeListener(this);
-                this.mainHandler.removeMessages(1);
                 this.detectorThread.interrupt();
             } catch (Throwable th) {
                 throw th;

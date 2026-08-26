@@ -9,41 +9,19 @@ import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
 public abstract class TextViewWithLoading extends TextView {
-    private final AnimatedFloat animatedLoading;
-    private boolean loading;
-    private CircularProgressDrawable spinner;
+    public final AnimatedFloat animatedLoading;
+    public boolean loading;
+    public final CircularProgressDrawable spinner;
 
     public TextViewWithLoading(Context context) {
         super(context);
         this.loading = false;
-        this.animatedLoading = new AnimatedFloat(this, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.spinner = new CircularProgressDrawable();
+        this.animatedLoading = new AnimatedFloat(320L, this, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.spinner = new CircularProgressDrawable(-1);
     }
 
     @Override
-    public void setTextColor(int i) {
-        super.setTextColor(i);
-        this.spinner.setColor(i);
-    }
-
-    public void setLoading(boolean z, boolean z2) {
-        if (this.loading == z) {
-            return;
-        }
-        this.loading = z;
-        invalidate();
-        if (z2) {
-            return;
-        }
-        this.animatedLoading.force(z);
-    }
-
-    public boolean isLoading() {
-        return this.loading;
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         Canvas canvas2;
         float f = this.animatedLoading.set(this.loading);
         if (f < 1.0f) {
@@ -63,12 +41,19 @@ public abstract class TextViewWithLoading extends TextView {
         if (f > 0.0f) {
             int width = getWidth() / 2;
             int height = getHeight() / 2;
-            int iDp = width - ((int) (AndroidUtilities.dp(6.0f) * (1.0f - f)));
-            this.spinner.setAlpha((int) (f * 255.0f));
+            int iDp = width - ((int) ((1.0f - f) * AndroidUtilities.dp(6.0f)));
             CircularProgressDrawable circularProgressDrawable = this.spinner;
-            circularProgressDrawable.setBounds(iDp - (circularProgressDrawable.getIntrinsicWidth() / 2), height - (this.spinner.getIntrinsicWidth() / 2), iDp + (this.spinner.getIntrinsicWidth() / 2), height + (this.spinner.getIntrinsicHeight() / 2));
-            this.spinner.draw(canvas2);
+            circularProgressDrawable.paint.setAlpha((int) (f * 255.0f));
+            int i = ((int) (circularProgressDrawable.size + circularProgressDrawable.thickness)) / 2;
+            circularProgressDrawable.setBounds(iDp - i, height - i, iDp + i, i + height);
+            circularProgressDrawable.draw(canvas2);
             invalidate();
         }
+    }
+
+    @Override
+    public void setTextColor(int i) {
+        super.setTextColor(i);
+        this.spinner.paint.setColor(i);
     }
 }

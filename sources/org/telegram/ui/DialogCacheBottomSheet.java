@@ -1,136 +1,134 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.zxing.BinaryBitmap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.NestedSizeNotifierLayout;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.StorageDiagramView;
 import org.telegram.ui.Storage.CacheModel;
 
-public class DialogCacheBottomSheet extends BottomSheetWithRecyclerListView {
-    private CacheControlActivity.ClearCacheButton button;
-    private final Delegate cacheDelegate;
-    private final CacheModel cacheModel;
-    CachedMediaLayout cachedMediaLayout;
-    CheckBoxCell[] checkBoxes;
-    private final StorageDiagramView circleDiagramView;
-    private StorageDiagramView.ClearViewData[] clearViewData;
-    long dialogId;
-    CacheControlActivity.DialogFileEntities entities;
-    LinearLayout linearLayout;
+public final class DialogCacheBottomSheet extends BottomSheetWithRecyclerListView {
+    public CacheControlActivity.ClearCacheButton button;
+    public final BinaryBitmap cacheDelegate;
+    public final CacheModel cacheModel;
+    public final AnonymousClass3 cachedMediaLayout;
+    public final CheckBoxCell[] checkBoxes;
+    public final AnonymousClass2 circleDiagramView;
+    public final StorageDiagramView.ClearViewData[] clearViewData;
+    public final long dialogId;
+    public final CacheControlActivity.DialogFileEntities entities;
+    public final LinearLayout linearLayout;
 
-    public interface Delegate {
-        void cleanupDialogFiles(CacheControlActivity.DialogFileEntities dialogFileEntities, StorageDiagramView.ClearViewData[] clearViewDataArr, CacheModel cacheModel);
+    public final class AnonymousClass2 extends StorageDiagramView {
+        public final BinaryBitmap val$delegate;
 
-        void onAvatarClick();
+        public AnonymousClass2(Context context, long j, BinaryBitmap binaryBitmap) {
+            super(context);
+            this.val$delegate = binaryBitmap;
+            this.dialogId = Long.valueOf(j);
+            AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            avatarDrawable.scaleSize = 1.5f;
+            ImageReceiver imageReceiver = new ImageReceiver();
+            this.avatarImageReceiver = imageReceiver;
+            imageReceiver.setParentView(this);
+            if (j == Long.MAX_VALUE) {
+                this.dialogText = LocaleController.getString(R.string.CacheOtherChats);
+                avatarDrawable.setAvatarType(14);
+                imageReceiver.setForUserOrChat(null, avatarDrawable);
+            } else {
+                String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(imageReceiver, avatarDrawable, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j));
+                this.dialogText = dialogPhotoTitle;
+                this.dialogText = Emoji.replaceEmoji(dialogPhotoTitle, null, false);
+            }
+        }
     }
 
-    @Override
-    protected boolean canDismissWithSwipe() {
-        return false;
+    public final class AnonymousClass3 extends CachedMediaLayout {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass3(Object obj, Context context, BaseFragment baseFragment, int i) {
+            super(context, baseFragment);
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            switch (this.$r8$classId) {
+                case 0:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((((DialogCacheBottomSheet) this.this$0).contentHeight - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
+                    break;
+                default:
+                    super.onMeasure(i, OKLCH.m(View.MeasureSpec.getSize(i2) - (ActionBar.getCurrentActionBarHeight() / 2), 12.0f, 1073741824));
+                    break;
+            }
+        }
+
+        public void showActionMode(boolean z) {
+            CacheControlActivity cacheControlActivity = CacheControlActivity.this;
+            if (!z) {
+                ((BaseFragment) cacheControlActivity).actionBar.hideActionMode$1();
+            } else {
+                cacheControlActivity.updateActionBar(true);
+                ((BaseFragment) cacheControlActivity).actionBar.showActionMode(null, null);
+            }
+        }
     }
 
-    @Override
-    protected CharSequence getTitle() {
-        return getBaseFragment().getMessagesController().getFullName(this.dialogId);
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        return new RecyclerListView.SelectionAdapter() {
-            @Override
-            public int getItemViewType(int i) {
-                return i;
-            }
-
-            @Override
-            public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                return false;
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                View view;
-                if (i == 0) {
-                    view = DialogCacheBottomSheet.this.linearLayout;
-                } else if (i == 2) {
-                    view = DialogCacheBottomSheet.this.cachedMediaLayout;
-                    RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-1, -2);
-                    ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = ((BottomSheet) DialogCacheBottomSheet.this).backgroundPaddingLeft;
-                    ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = ((BottomSheet) DialogCacheBottomSheet.this).backgroundPaddingLeft;
-                    view.setLayoutParams(layoutParams);
-                } else {
-                    TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(viewGroup.getContext());
-                    textInfoPrivacyCell.setFixedSize(12);
-                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                    combinedDrawable.setFullsize(true);
-                    textInfoPrivacyCell.setBackgroundDrawable(combinedDrawable);
-                    view = textInfoPrivacyCell;
-                }
-                return new RecyclerListView.Holder(view);
-            }
-
-            @Override
-            public int getItemCount() {
-                return DialogCacheBottomSheet.this.cacheModel.isEmpty() ? 1 : 3;
-            }
-        };
-    }
-
-    public DialogCacheBottomSheet(CacheControlActivity cacheControlActivity, CacheControlActivity.DialogFileEntities dialogFileEntities, final CacheModel cacheModel, final Delegate delegate) {
+    public DialogCacheBottomSheet(CacheControlActivity cacheControlActivity, CacheControlActivity.DialogFileEntities dialogFileEntities, CacheModel cacheModel, BinaryBitmap binaryBitmap) {
         String string;
         int i;
-        boolean z;
         long j;
-        super(cacheControlActivity, false, false, !cacheModel.isEmpty(), null);
+        long j2;
+        super(cacheControlActivity.getParentActivity(), cacheControlActivity, false, false, !cacheModel.isEmpty(), null);
         this.clearViewData = new StorageDiagramView.ClearViewData[8];
         this.checkBoxes = new CheckBoxCell[8];
-        this.cacheDelegate = delegate;
+        this.cacheDelegate = binaryBitmap;
         this.entities = dialogFileEntities;
         this.cacheModel = cacheModel;
         this.dialogId = dialogFileEntities.dialogId;
         this.allowNestedScroll = false;
-        updateTitle();
+        updateTitle$1();
         setAllowNestedScroll(true);
         this.topPadding = 0.2f;
-        Context context = cacheControlActivity.getContext();
+        Activity parentActivity = cacheControlActivity.getParentActivity();
         fixNavigationBar();
         setApplyBottomPadding(false);
-        LinearLayout linearLayout = new LinearLayout(context);
+        LinearLayout linearLayout = new LinearLayout(parentActivity);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);
-        StorageDiagramView storageDiagramView = new StorageDiagramView(getContext(), dialogFileEntities.dialogId) {
-            @Override
-            protected void onAvatarClick() {
-                delegate.onAvatarClick();
-            }
-        };
-        this.circleDiagramView = storageDiagramView;
-        this.linearLayout.addView(storageDiagramView, LayoutHelper.createLinear(-2, -2, 1, 0, 16, 0, 16));
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2(getContext(), dialogFileEntities.dialogId, binaryBitmap);
+        this.circleDiagramView = anonymousClass2;
+        linearLayout.addView(anonymousClass2, LayoutHelper.createLinear(-2, -2, 1, 0, 16, 0, 16));
         CheckBoxCell checkBoxCell = null;
-        int i2 = 0;
-        for (int i3 = 8; i2 < i3; i3 = 8) {
+        for (int i2 = 0; i2 < 8; i2++) {
             if (i2 == 0) {
                 string = LocaleController.getString(R.string.LocalPhotoCache);
                 i = Theme.key_statisticChartLine_lightblue;
@@ -158,205 +156,139 @@ public class DialogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             }
             CacheControlActivity.FileEntities fileEntities = (CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.get(i2);
             if (fileEntities != null) {
-                z = false;
-                j = fileEntities.totalSize;
-            } else {
-                z = false;
                 j = 0;
+                j2 = fileEntities.totalSize;
+            } else {
+                j = 0;
+                j2 = 0;
             }
-            if (j > 0) {
-                this.clearViewData[i2] = new StorageDiagramView.ClearViewData(this.circleDiagramView);
+            if (j2 > j) {
+                this.clearViewData[i2] = new StorageDiagramView.ClearViewData();
                 StorageDiagramView.ClearViewData clearViewData = this.clearViewData[i2];
-                clearViewData.size = j;
+                clearViewData.size = j2;
                 clearViewData.colorKey = i;
-                checkBoxCell = new CheckBoxCell(context, 4, 21, null);
-                checkBoxCell.setTag(Integer.valueOf(i2));
-                checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(z));
-                this.linearLayout.addView(checkBoxCell, LayoutHelper.createLinear(-1, 50));
-                checkBoxCell.setText(string, AndroidUtilities.formatFileSize(j), true, true);
-                checkBoxCell.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-                checkBoxCell.setCheckBoxColor(i, Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_checkboxCheck);
-                checkBoxCell.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        DialogCacheBottomSheet.$r8$lambda$j4midKh8B0PunqD09LBStWeP0mk(this.f$0, cacheModel, view);
-                    }
-                });
-                this.checkBoxes[i2] = checkBoxCell;
+                int i3 = i;
+                CheckBoxCell checkBoxCell2 = new CheckBoxCell(parentActivity, 4, 21, false, null);
+                checkBoxCell2.setTag(Integer.valueOf(i2));
+                checkBoxCell2.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                this.linearLayout.addView(checkBoxCell2, LayoutHelper.createLinear(-1, 50));
+                checkBoxCell2.setText(string, AndroidUtilities.formatFileSize(j2), true, true, false);
+                checkBoxCell2.setTextColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
+                int i4 = Theme.key_checkboxCheck;
+                CheckBox2 checkBox2 = checkBoxCell2.checkBoxRound;
+                if (checkBox2 != null) {
+                    checkBox2.checkBoxBase.setColor(i3, i3, i4);
+                }
+                checkBoxCell2.setOnClickListener(new IntroActivity$$ExternalSyntheticLambda1(1, this, cacheModel));
+                this.checkBoxes[i2] = checkBoxCell2;
+                checkBoxCell = checkBoxCell2;
             } else {
                 this.clearViewData[i2] = null;
                 this.checkBoxes[i2] = null;
             }
-            i2++;
         }
         if (checkBoxCell != null) {
             checkBoxCell.setNeedDivider(false);
         }
-        this.circleDiagramView.setData(cacheModel, this.clearViewData);
-        CachedMediaLayout cachedMediaLayout = new CachedMediaLayout(getContext(), cacheControlActivity) {
-            @Override
-            protected void onMeasure(int i4, int i5) {
-                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec((((BottomSheetWithRecyclerListView) DialogCacheBottomSheet.this).contentHeight - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
-            }
-        };
-        this.cachedMediaLayout = cachedMediaLayout;
-        cachedMediaLayout.setBottomPadding(AndroidUtilities.dp(80.0f));
-        this.cachedMediaLayout.setCacheModel(cacheModel);
-        this.cachedMediaLayout.setDelegate(new CachedMediaLayout.Delegate() {
-            @Override
-            public void clear() {
-            }
-
-            @Override
-            public void clearSelection() {
-            }
-
-            @Override
-            public void onItemSelected(CacheControlActivity.DialogFileEntities dialogFileEntities2, CacheModel.FileInfo fileInfo, boolean z2) {
-                if (fileInfo != null) {
-                    cacheModel.toggleSelect(fileInfo);
-                    DialogCacheBottomSheet.this.cachedMediaLayout.updateVisibleRows();
-                    DialogCacheBottomSheet.this.syncCheckBoxes();
-                    DialogCacheBottomSheet.this.button.setSize(true, DialogCacheBottomSheet.this.circleDiagramView.updateDescription());
-                    DialogCacheBottomSheet.this.circleDiagramView.update(true);
-                }
-            }
-
-            @Override
-            public void dismiss() {
-                DialogCacheBottomSheet.this.dismiss();
-            }
-        });
-        NestedSizeNotifierLayout nestedSizeNotifierLayout = this.nestedSizeNotifierLayout;
-        if (nestedSizeNotifierLayout != null) {
-            nestedSizeNotifierLayout.setChildLayout(this.cachedMediaLayout);
+        AnonymousClass2 anonymousClass3 = this.circleDiagramView;
+        StorageDiagramView.ClearViewData[] clearViewDataArr = this.clearViewData;
+        anonymousClass3.data = clearViewDataArr;
+        anonymousClass3.cacheModel = cacheModel;
+        anonymousClass3.invalidate();
+        anonymousClass3.drawingPercentage = new float[clearViewDataArr.length];
+        anonymousClass3.animateToPercentage = new float[clearViewDataArr.length];
+        anonymousClass3.startFromPercentage = new float[clearViewDataArr.length];
+        anonymousClass3.update(false);
+        if (anonymousClass3.enabledCount > 1) {
+            anonymousClass3.singleProgress = 0.0f;
         } else {
-            createButton();
+            anonymousClass3.singleProgress = 1.0f;
+        }
+        AnonymousClass3 anonymousClass4 = new AnonymousClass3(this, getContext(), cacheControlActivity, 0);
+        this.cachedMediaLayout = anonymousClass4;
+        anonymousClass4.setBottomPadding(AndroidUtilities.dp(80.0f));
+        anonymousClass4.setCacheModel(cacheModel);
+        anonymousClass4.setDelegate(new PhotoViewer.AnonymousClass14(4, this, cacheModel));
+        BottomSheetWithRecyclerListView.AnonymousClass1 anonymousClass1 = this.nestedSizeNotifierLayout;
+        if (anonymousClass1 != null) {
+            anonymousClass1.setChildLayout(anonymousClass4);
+        } else {
+            createButton$1();
             this.linearLayout.addView(this.button, LayoutHelper.createLinear(-1, 72, 80));
         }
         if (this.button != null) {
-            this.button.setSize(true, this.circleDiagramView.calculateSize());
-        }
-    }
-
-    public static void $r8$lambda$j4midKh8B0PunqD09LBStWeP0mk(DialogCacheBottomSheet dialogCacheBottomSheet, CacheModel cacheModel, View view) {
-        int i = 0;
-        while (true) {
-            StorageDiagramView.ClearViewData[] clearViewDataArr = dialogCacheBottomSheet.clearViewData;
-            if (i < clearViewDataArr.length) {
-                StorageDiagramView.ClearViewData clearViewData = clearViewDataArr[i];
-                i++;
-            } else {
-                CheckBoxCell checkBoxCell = (CheckBoxCell) view;
-                int iIntValue = ((Integer) checkBoxCell.getTag()).intValue();
-                StorageDiagramView.ClearViewData clearViewData2 = dialogCacheBottomSheet.clearViewData[iIntValue];
-                clearViewData2.setClear(!clearViewData2.clear);
-                checkBoxCell.setChecked(dialogCacheBottomSheet.clearViewData[iIntValue].clear, true);
-                cacheModel.allFilesSelcetedByType(iIntValue, dialogCacheBottomSheet.clearViewData[iIntValue].clear);
-                dialogCacheBottomSheet.cachedMediaLayout.update();
-                dialogCacheBottomSheet.button.setSize(true, dialogCacheBottomSheet.circleDiagramView.updateDescription());
-                dialogCacheBottomSheet.circleDiagramView.update(true);
-                return;
-            }
-        }
-    }
-
-    public void syncCheckBoxes() {
-        CheckBoxCell checkBoxCell = this.checkBoxes[0];
-        if (checkBoxCell != null) {
-            StorageDiagramView.ClearViewData clearViewData = this.clearViewData[0];
-            boolean z = this.cacheModel.allPhotosSelected;
-            clearViewData.clear = z;
-            checkBoxCell.setChecked(z, true);
-        }
-        CheckBoxCell checkBoxCell2 = this.checkBoxes[1];
-        if (checkBoxCell2 != null) {
-            StorageDiagramView.ClearViewData clearViewData2 = this.clearViewData[1];
-            boolean z2 = this.cacheModel.allVideosSelected;
-            clearViewData2.clear = z2;
-            checkBoxCell2.setChecked(z2, true);
-        }
-        CheckBoxCell checkBoxCell3 = this.checkBoxes[2];
-        if (checkBoxCell3 != null) {
-            StorageDiagramView.ClearViewData clearViewData3 = this.clearViewData[2];
-            boolean z3 = this.cacheModel.allDocumentsSelected;
-            clearViewData3.clear = z3;
-            checkBoxCell3.setChecked(z3, true);
-        }
-        CheckBoxCell checkBoxCell4 = this.checkBoxes[3];
-        if (checkBoxCell4 != null) {
-            StorageDiagramView.ClearViewData clearViewData4 = this.clearViewData[3];
-            boolean z4 = this.cacheModel.allMusicSelected;
-            clearViewData4.clear = z4;
-            checkBoxCell4.setChecked(z4, true);
-        }
-        CheckBoxCell checkBoxCell5 = this.checkBoxes[4];
-        if (checkBoxCell5 != null) {
-            StorageDiagramView.ClearViewData clearViewData5 = this.clearViewData[4];
-            boolean z5 = this.cacheModel.allVoiceSelected;
-            clearViewData5.clear = z5;
-            checkBoxCell5.setChecked(z5, true);
+            this.button.setSize(this.circleDiagramView.calculateSize(), true);
         }
     }
 
     @Override
-    public void onViewCreated(FrameLayout frameLayout) {
-        super.onViewCreated(frameLayout);
-        this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+    public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        return new RecyclerListView.SelectionAdapter() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-                super.onScrolled(recyclerView, i, i2);
-                DialogCacheBottomSheet dialogCacheBottomSheet = DialogCacheBottomSheet.this;
-                NestedSizeNotifierLayout nestedSizeNotifierLayout = dialogCacheBottomSheet.nestedSizeNotifierLayout;
-                if (nestedSizeNotifierLayout != null) {
-                    dialogCacheBottomSheet.setShowShadow(!nestedSizeNotifierLayout.isPinnedToTop());
-                }
+            public final int getItemCount() {
+                return DialogCacheBottomSheet.this.cacheModel.isEmpty() ? 1 : 3;
             }
-        });
-        if (this.nestedSizeNotifierLayout != null) {
-            createButton();
-            frameLayout.addView(this.button, LayoutHelper.createFrame(-1, 72, 80));
-        }
+
+            @Override
+            public final int getItemViewType(int i) {
+                return i;
+            }
+
+            @Override
+            public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+                return false;
+            }
+
+            @Override
+            public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            }
+
+            @Override
+            public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                View view;
+                DialogCacheBottomSheet dialogCacheBottomSheet = DialogCacheBottomSheet.this;
+                if (i == 0) {
+                    view = dialogCacheBottomSheet.linearLayout;
+                } else if (i == 2) {
+                    view = dialogCacheBottomSheet.cachedMediaLayout;
+                    RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-1, -2);
+                    ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = ((BottomSheet) dialogCacheBottomSheet).backgroundPaddingLeft;
+                    ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = ((BottomSheet) dialogCacheBottomSheet).backgroundPaddingLeft;
+                    view.setLayoutParams(layoutParams);
+                } else {
+                    TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(viewGroup.getContext(), 24, null);
+                    textInfoPrivacyCell.setFixedSize(12);
+                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(null, Theme.key_windowBackgroundGray, false)), Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    combinedDrawable.fullSize = true;
+                    textInfoPrivacyCell.setBackgroundDrawable(combinedDrawable);
+                    view = textInfoPrivacyCell;
+                }
+                return new RecyclerListView.Holder(view);
+            }
+        };
     }
 
-    private void createButton() {
+    public final void createButton$1() {
         CacheControlActivity.ClearCacheButton clearCacheButton = new CacheControlActivity.ClearCacheButton(getContext());
         this.button = clearCacheButton;
-        clearCacheButton.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                DialogCacheBottomSheet.$r8$lambda$rbEIrJNUnQi1guVuSgIDp3CGBno(this.f$0, view);
-            }
-        });
-        StorageDiagramView storageDiagramView = this.circleDiagramView;
-        if (storageDiagramView != null) {
-            this.button.setSize(true, storageDiagramView.calculateSize());
+        clearCacheButton.button.setOnClickListener(new GroupCallSheet$$ExternalSyntheticLambda5(this, 16));
+        AnonymousClass2 anonymousClass2 = this.circleDiagramView;
+        if (anonymousClass2 != null) {
+            this.button.setSize(anonymousClass2.calculateSize(), true);
         }
     }
 
-    public static void $r8$lambda$rbEIrJNUnQi1guVuSgIDp3CGBno(final DialogCacheBottomSheet dialogCacheBottomSheet, View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(dialogCacheBottomSheet.getContext());
-        builder.setTitle(LocaleController.getString(R.string.ClearCache));
-        builder.setMessage(LocaleController.getString(R.string.ClearCacheForChat));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.dismiss();
-            }
-        });
-        builder.setPositiveButton(LocaleController.getString(R.string.Clear), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                DialogCacheBottomSheet.$r8$lambda$0aCzb0vE6ZjdNcw36nfVugOxIf8(this.f$0, alertDialog, i);
-            }
-        });
-        AlertDialog alertDialogCreate = builder.create();
-        alertDialogCreate.show();
-        alertDialogCreate.redPositive();
+    @Override
+    public final CharSequence getTitle() {
+        return this.baseFragment.getMessagesController().getFullName(this.dialogId);
     }
 
-    public static void $r8$lambda$0aCzb0vE6ZjdNcw36nfVugOxIf8(DialogCacheBottomSheet dialogCacheBottomSheet, AlertDialog alertDialog, int i) {
-        dialogCacheBottomSheet.dismiss();
-        dialogCacheBottomSheet.cacheDelegate.cleanupDialogFiles(dialogCacheBottomSheet.entities, dialogCacheBottomSheet.clearViewData, dialogCacheBottomSheet.cacheModel);
+    @Override
+    public final void onViewCreated(SizeNotifierFrameLayout sizeNotifierFrameLayout) {
+        this.recyclerListView.addOnScrollListener(new LocationActivity.AnonymousClass10(this, 16));
+        if (this.nestedSizeNotifierLayout != null) {
+            createButton$1();
+            sizeNotifierFrameLayout.addView(this.button, LayoutHelper.createFrame(-1, 72, 80));
+        }
     }
 }

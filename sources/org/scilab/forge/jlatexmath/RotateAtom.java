@@ -19,6 +19,14 @@ public class RotateAtom extends Atom {
         this.option = RotateBox.getOrigin(str2);
     }
 
+    @Override
+    public Box createBox(TeXEnvironment teXEnvironment) {
+        if (this.option != -1) {
+            return new RotateBox(this.base.createBox(teXEnvironment), this.angle, this.option);
+        }
+        return new RotateBox(this.base.createBox(teXEnvironment), this.angle, SpaceAtom.getFactor(this.xunit, teXEnvironment) * this.x, SpaceAtom.getFactor(this.yunit, teXEnvironment) * this.y);
+    }
+
     public RotateAtom(Atom atom, double d, String str) {
         this.option = -1;
         this.type = atom.type;
@@ -45,13 +53,5 @@ public class RotateAtom extends Atom {
             this.yunit = 3;
             this.y = 0.0f;
         }
-    }
-
-    @Override
-    public Box createBox(TeXEnvironment teXEnvironment) {
-        if (this.option != -1) {
-            return new RotateBox(this.base.createBox(teXEnvironment), this.angle, this.option);
-        }
-        return new RotateBox(this.base.createBox(teXEnvironment), this.angle, this.x * SpaceAtom.getFactor(this.xunit, teXEnvironment), this.y * SpaceAtom.getFactor(this.yunit, teXEnvironment));
     }
 }

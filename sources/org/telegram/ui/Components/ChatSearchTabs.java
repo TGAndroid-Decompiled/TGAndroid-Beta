@@ -1,29 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ChatActivity;
 
 public abstract class ChatSearchTabs extends FrameLayout {
-    private ValueAnimator actionBarTagsAnimator;
-    private float actionBarTagsT;
-    private boolean shown;
+    public ValueAnimator actionBarTagsAnimator;
+    public float actionBarTagsT;
+    public boolean shown;
     public float shownT;
     public ViewPagerFixed.TabsView tabs;
 
-    protected abstract void onShownUpdate(boolean z);
-
-    public ChatSearchTabs(Context context) {
-        super(context);
+    public int getCurrentHeight() {
+        return (int) (getMeasuredHeight() * this.shownT);
     }
 
-    public void setTabs(ViewPagerFixed.TabsView tabsView) {
-        this.tabs = tabsView;
-        addView(tabsView, LayoutHelper.createFrame(-1, -1.0f));
+    @Override
+    public final boolean isShown() {
+        return this.shown;
     }
+
+    public abstract void onShownUpdate(boolean z);
 
     public void setShown(float f) {
         this.shownT = f;
@@ -38,7 +36,12 @@ public abstract class ChatSearchTabs extends FrameLayout {
         invalidate();
     }
 
-    public void show(final boolean z) {
+    public void setTabs(ViewPagerFixed.TabsView tabsView) {
+        this.tabs = tabsView;
+        addView(tabsView, LayoutHelper.createFrame(-1.0f, -1));
+    }
+
+    public final void show(boolean z) {
         this.shown = z;
         ValueAnimator valueAnimator = this.actionBarTagsAnimator;
         if (valueAnimator != null) {
@@ -50,50 +53,10 @@ public abstract class ChatSearchTabs extends FrameLayout {
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.actionBarTagsT, z ? 1.0f : 0.0f);
         this.actionBarTagsAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ChatSearchTabs.$r8$lambda$MHL0umdnSNcJoPX6I6OzNFWBCiE(this.f$0, valueAnimator2);
-            }
-        });
+        valueAnimatorOfFloat.addUpdateListener(new ItemOptions$$ExternalSyntheticLambda4(this, 1));
         this.actionBarTagsAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.actionBarTagsAnimator.setDuration(320L);
-        this.actionBarTagsAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (animator != ChatSearchTabs.this.actionBarTagsAnimator) {
-                    return;
-                }
-                ChatSearchTabs.this.actionBarTagsT = z ? 1.0f : 0.0f;
-                ChatSearchTabs chatSearchTabs = ChatSearchTabs.this;
-                chatSearchTabs.setShown(chatSearchTabs.actionBarTagsT);
-                if (!z) {
-                    ChatSearchTabs.this.setVisibility(8);
-                }
-                ChatSearchTabs.this.onShownUpdate(true);
-            }
-        });
+        this.actionBarTagsAnimator.addListener(new ChatActivity.AnonymousClass77(17, this, z));
         this.actionBarTagsAnimator.start();
-    }
-
-    public static void $r8$lambda$MHL0umdnSNcJoPX6I6OzNFWBCiE(ChatSearchTabs chatSearchTabs, ValueAnimator valueAnimator) {
-        chatSearchTabs.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        chatSearchTabs.actionBarTagsT = fFloatValue;
-        chatSearchTabs.setShown(fFloatValue);
-        chatSearchTabs.onShownUpdate(false);
-    }
-
-    @Override
-    public boolean isShown() {
-        return this.shown;
-    }
-
-    public boolean shown() {
-        return this.shownT > 0.5f;
-    }
-
-    public int getCurrentHeight() {
-        return (int) (getMeasuredHeight() * this.shownT);
     }
 }

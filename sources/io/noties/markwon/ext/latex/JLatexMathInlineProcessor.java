@@ -1,28 +1,26 @@
 package io.noties.markwon.ext.latex;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import io.noties.markwon.inlineparser.InlineProcessor;
 import java.util.regex.Pattern;
 import org.commonmark.node.Node;
 
-class JLatexMathInlineProcessor extends InlineProcessor {
-    private static final Pattern RE = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
+public final class JLatexMathInlineProcessor extends InlineProcessor {
+    public static final Pattern RE = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
 
     @Override
-    public char specialCharacter() {
-        return '$';
-    }
-
-    JLatexMathInlineProcessor() {
-    }
-
-    @Override
-    protected Node parse() {
+    public final Node parse() {
         String strMatch = match(RE);
         if (strMatch == null) {
             return null;
         }
         JLatexMathNode jLatexMathNode = new JLatexMathNode();
-        jLatexMathNode.latex(strMatch.substring(2, strMatch.length() - 2));
+        jLatexMathNode.latex = SurfaceContainer$$ExternalSyntheticOutline0.m(2, 2, strMatch);
         return jLatexMathNode;
+    }
+
+    @Override
+    public final char specialCharacter() {
+        return '$';
     }
 }

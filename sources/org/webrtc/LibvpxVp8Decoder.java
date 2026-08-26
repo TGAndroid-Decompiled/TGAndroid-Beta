@@ -1,7 +1,7 @@
 package org.webrtc;
 
 public class LibvpxVp8Decoder extends WrappedNativeVideoDecoder {
-    static native long nativeCreateDecoder(long j);
+    public static native long nativeCreateDecoder(long j);
 
     @Override
     public long createNative(long j) {

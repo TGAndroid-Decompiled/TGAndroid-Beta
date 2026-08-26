@@ -8,55 +8,111 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 
-public class BackDrawable extends Drawable {
-    private boolean alwaysClose;
-    private int arrowRotation;
-    private int currentAnimationTime;
-    private float currentRotation;
-    private float finalRotation;
-    private long lastFrameTime;
-    private boolean reverseAngle;
-    private Paint paint = new Paint(1);
-    private Paint prevPaint = new Paint(1);
-    private DecelerateInterpolator interpolator = new DecelerateInterpolator();
-    private int color = -1;
-    private int rotatedColor = -9079435;
-    private float animationTime = 300.0f;
-    private boolean rotated = true;
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    public float getRotation() {
-        return this.finalRotation;
-    }
+public final class BackDrawable extends Drawable {
+    public final boolean alwaysClose;
+    public float animationTime;
+    public int arrowRotation;
+    public int color;
+    public int currentAnimationTime;
+    public float currentRotation;
+    public float finalRotation;
+    public final DecelerateInterpolator interpolator;
+    public long lastFrameTime;
+    public final Paint paint;
+    public boolean reverseAngle;
+    public int rotatedColor;
 
     public BackDrawable(boolean z) {
-        this.paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.paint.setStrokeCap(Paint.Cap.ROUND);
-        this.prevPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.prevPaint.setColor(-65536);
+        Paint paint = new Paint(1);
+        this.paint = paint;
+        Paint paint2 = new Paint(1);
+        this.interpolator = new DecelerateInterpolator();
+        this.color = -1;
+        this.rotatedColor = -9079435;
+        this.animationTime = 300.0f;
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint2.setColor(-65536);
         this.alwaysClose = z;
     }
 
-    public void setColor(int i) {
-        this.color = i;
-        invalidateSelf();
+    @Override
+    public final void draw(Canvas canvas) {
+        if (this.currentRotation != this.finalRotation) {
+            if (this.lastFrameTime != 0) {
+                int iCurrentTimeMillis = this.currentAnimationTime + ((int) (System.currentTimeMillis() - this.lastFrameTime));
+                this.currentAnimationTime = iCurrentTimeMillis;
+                float f = iCurrentTimeMillis;
+                float f2 = this.animationTime;
+                if (f >= f2) {
+                    this.currentRotation = this.finalRotation;
+                } else {
+                    float f3 = this.currentRotation;
+                    float f4 = this.finalRotation;
+                    DecelerateInterpolator decelerateInterpolator = this.interpolator;
+                    if (f3 < f4) {
+                        this.currentRotation = decelerateInterpolator.getInterpolation(f / f2) * this.finalRotation;
+                    } else {
+                        this.currentRotation = 1.0f - decelerateInterpolator.getInterpolation(f / f2);
+                    }
+                }
+            }
+            this.lastFrameTime = System.currentTimeMillis();
+            invalidateSelf();
+        }
+        Paint paint = this.paint;
+        paint.setColor(ColorUtils.blendARGB(this.currentRotation, this.color, this.rotatedColor));
+        canvas.save();
+        canvas.translate(AndroidUtilities.dp(24.0f) / 2.0f, AndroidUtilities.dp(24.0f) / 2.0f);
+        int i = this.arrowRotation;
+        if (i != 0) {
+            canvas.rotate(i);
+        }
+        float f5 = this.currentRotation;
+        canvas.translate(-AndroidUtilities.dp(0.66f), 0.0f);
+        if (this.alwaysClose) {
+            canvas.rotate((this.currentRotation * (this.reverseAngle ? -180 : 180)) + 135.0f);
+            f5 = 1.0f;
+        } else {
+            canvas.rotate(this.currentRotation * (this.reverseAngle ? -225 : 135));
+        }
+        float f6 = 1.0f - f5;
+        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f5)), 0.0f, AndroidUtilities.dp(8.0f) - ((paint.getStrokeWidth() / 2.0f) * f6), 0.0f, paint);
+        float fDp = AndroidUtilities.dp(-0.25f);
+        float fDp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f5)) - ((paint.getStrokeWidth() / 4.0f) * f6);
+        float fDp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f5));
+        canvas.drawLine(fDp3, -fDp, 0.0f, -fDp2, paint);
+        canvas.drawLine(fDp3, fDp, 0.0f, fDp2, paint);
+        canvas.restore();
     }
 
-    public void setRotatedColor(int i) {
-        this.rotatedColor = i;
-        invalidateSelf();
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 
-    public void setArrowRotation(int i) {
-        this.arrowRotation = i;
-        invalidateSelf();
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
     }
 
-    public void setRotation(float f, boolean z) {
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.paint.setAlpha(i);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.paint.setColorFilter(colorFilter);
+    }
+
+    public final void setRotation(float f, boolean z) {
         this.lastFrameTime = 0L;
         float f2 = this.currentRotation;
         if (f2 == 1.0f) {
@@ -78,75 +134,5 @@ public class BackDrawable extends Drawable {
             this.finalRotation = f;
         }
         invalidateSelf();
-    }
-
-    public void setAnimationTime(float f) {
-        this.animationTime = f;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        float f;
-        if (this.currentRotation != this.finalRotation) {
-            if (this.lastFrameTime != 0) {
-                int iCurrentTimeMillis = this.currentAnimationTime + ((int) (System.currentTimeMillis() - this.lastFrameTime));
-                this.currentAnimationTime = iCurrentTimeMillis;
-                float f2 = iCurrentTimeMillis;
-                float f3 = this.animationTime;
-                if (f2 >= f3) {
-                    this.currentRotation = this.finalRotation;
-                } else if (this.currentRotation < this.finalRotation) {
-                    this.currentRotation = this.interpolator.getInterpolation(f2 / f3) * this.finalRotation;
-                } else {
-                    this.currentRotation = 1.0f - this.interpolator.getInterpolation(f2 / f3);
-                }
-            }
-            this.lastFrameTime = System.currentTimeMillis();
-            invalidateSelf();
-        }
-        this.paint.setColor(ColorUtils.blendARGB(this.color, this.rotatedColor, this.currentRotation));
-        canvas.save();
-        canvas.translate(getIntrinsicWidth() / 2.0f, getIntrinsicHeight() / 2.0f);
-        int i = this.arrowRotation;
-        if (i != 0) {
-            canvas.rotate(i);
-        }
-        float f4 = this.currentRotation;
-        canvas.translate(-AndroidUtilities.dp(0.66f), 0.0f);
-        if (this.alwaysClose) {
-            canvas.rotate((this.currentRotation * (this.reverseAngle ? -180 : 180)) + 135.0f);
-            f = 1.0f;
-        } else {
-            canvas.rotate(this.currentRotation * (this.reverseAngle ? -225 : 135));
-            f = f4;
-        }
-        float f5 = 1.0f - f;
-        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f)), 0.0f, AndroidUtilities.dp(8.0f) - ((this.paint.getStrokeWidth() / 2.0f) * f5), 0.0f, this.paint);
-        float fDp = AndroidUtilities.dp(-0.25f);
-        float fDp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f)) - ((this.paint.getStrokeWidth() / 4.0f) * f5);
-        float fDp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f));
-        canvas.drawLine(fDp3, -fDp, 0.0f, -fDp2, this.paint);
-        canvas.drawLine(fDp3, fDp, 0.0f, fDp2, this.paint);
-        canvas.restore();
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        this.paint.setAlpha(i);
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.paint.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
     }
 }

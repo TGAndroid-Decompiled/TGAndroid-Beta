@@ -10,8 +10,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.recyclerview.widget.DiffUtil;
+import com.google.android.gms.internal.mlkit_vision_common.zzkk;
+import com.google.android.gms.internal.mlkit_vision_common.zzlm;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
@@ -22,41 +24,342 @@ import org.telegram.ui.Components.Crop.CropTransform;
 import org.telegram.ui.Components.Crop.CropView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Paint.Views.EntityView;
 import org.telegram.ui.Components.Paint.Views.PhotoView;
+import org.telegram.ui.Components.PhotoCropView;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
 
 public abstract class CropInlineEditor extends FrameLayout {
-    private final AnimatedFloat animatedMirror;
-    private final AnimatedFloat animatedOrientation;
-    private float appearProgress;
-    public boolean applied;
+    public final AnimatedFloat animatedMirror;
+    public final AnimatedFloat animatedOrientation;
+    public float appearProgress;
     public final FrameLayout buttonsLayout;
-    public final TextView cancelButton;
     public boolean closing;
     public final ContentView contentView;
     public final FrameLayout controlsLayout;
-    public final TextView cropButton;
-    private final CropTransform cropTransform;
-    public final CropView cropView;
-    private int lastOrientation;
-    private PhotoView photoView;
-    private final int[] photoViewLocation;
-    private final PreviewView previewContainer;
-    private final int[] previewLocation;
-    public final TextView resetButton;
-    private final Theme.ResourcesProvider resourcesProvider;
-    public final LinearLayout shapesLayout;
-    private final int[] thisLocation;
+    public final CropTransform cropTransform;
+    public final AnonymousClass1 cropView;
+    public PhotoView photoView;
+    public final int[] photoViewLocation;
+    public final StoryRecorder.AnonymousClass7 previewContainer;
+    public final int[] previewLocation;
+    public final int[] thisLocation;
     public final CropRotationWheel wheel;
 
-    public abstract void close();
+    public final class ContentView extends View {
+        public final Paint dimPaint;
+        public final Path previewClipPath;
+        public final RectF previewClipRect;
+        public final StoryRecorder.AnonymousClass37 this$0;
 
-    public int getCurrentWidth() {
-        PhotoView photoView = this.photoView;
-        if (photoView == null) {
-            return 1;
+        public ContentView(StoryRecorder.AnonymousClass37 anonymousClass37, Context context) {
+            super(context);
+            this.this$0 = anonymousClass37;
+            this.dimPaint = new Paint(1);
+            this.previewClipPath = new Path();
+            this.previewClipRect = new RectF();
+            new Matrix();
+            new Matrix();
+            new Matrix();
         }
-        return (photoView.getOrientation() == 90 || this.photoView.getOrientation() == 270) ? this.photoView.getContentHeight() : this.photoView.getContentWidth();
+
+        private float getContainerHeight() {
+            boolean z = getContext() instanceof BubbleActivity;
+            AnonymousClass1 anonymousClass1 = this.this$0.cropView;
+            return ((getHeight() - (anonymousClass1.topPadding + (!z ? AndroidUtilities.statusBarHeight : 0))) - anonymousClass1.bottomPadding) - AndroidUtilities.dp(32.0f);
+        }
+
+        private float getContainerWidth() {
+            return getWidth() - AndroidUtilities.dp(32.0f);
+        }
+
+        @Override
+        public final void dispatchDraw(Canvas canvas) {
+            boolean z;
+            MediaController.CropState cropState;
+            float f;
+            float f2;
+            StoryRecorder.AnonymousClass37 anonymousClass37 = this.this$0;
+            if (anonymousClass37.photoView == null) {
+                return;
+            }
+            canvas.save();
+            Paint paint = this.dimPaint;
+            paint.setColor(-16777216);
+            paint.setAlpha((int) (anonymousClass37.appearProgress * 255.0f));
+            canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+            float f3 = anonymousClass37.appearProgress;
+            StoryRecorder.AnonymousClass7 anonymousClass7 = anonymousClass37.previewContainer;
+            if (f3 < 1.0f) {
+                Path path = this.previewClipPath;
+                path.rewind();
+                RectF rectF = this.previewClipRect;
+                rectF.set(0.0f, 0.0f, anonymousClass7.getWidth(), anonymousClass7.getHeight());
+                int[] iArr = anonymousClass37.previewLocation;
+                rectF.offset(iArr[0], iArr[1]);
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
+                AndroidUtilities.lerp(rectF, rectF2, anonymousClass37.appearProgress, rectF);
+                float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), 0, anonymousClass37.appearProgress);
+                path.addRoundRect(rectF, fLerp, fLerp, Path.Direction.CW);
+                canvas.clipPath(path);
+            }
+            float f4 = anonymousClass37.appearProgress;
+            float f5 = 1.0f - f4;
+            int[] iArr2 = anonymousClass37.thisLocation;
+            canvas.translate((-iArr2[0]) * f5, (-iArr2[1]) * f5);
+            if (f5 > 0.0f) {
+                boolean z2 = anonymousClass37.closing;
+                int[] iArr3 = anonymousClass37.photoViewLocation;
+                if (z2) {
+                    anonymousClass37.photoView.getLocationOnScreen(iArr3);
+                }
+                canvas.translate(iArr3[0] * f5, iArr3[1] * f5);
+                PhotoView photoView = anonymousClass37.photoView;
+                MediaController.CropState cropState2 = photoView.crop;
+                if (cropState2 != null) {
+                    f2 = cropState2.cropPw;
+                    f = cropState2.cropPh;
+                } else {
+                    f = 1.0f;
+                    f2 = 1.0f;
+                }
+                float fLerp2 = AndroidUtilities.lerp(1.0f, (anonymousClass37.photoView.getScaleX() * (photoView.getWidth() / f2)) / anonymousClass7.getWidth(), f5);
+                canvas.scale(fLerp2, fLerp2);
+                canvas.rotate(anonymousClass37.photoView.getRotation() * f5);
+                canvas.translate(((anonymousClass37.photoView.getContentWidth() * f2) / 2.0f) * f5, ((anonymousClass37.photoView.getContentHeight() * f) / 2.0f) * f5);
+            }
+            boolean z3 = getContext() instanceof BubbleActivity;
+            AnonymousClass1 anonymousClass1 = anonymousClass37.cropView;
+            canvas.translate(((getContainerWidth() / 2.0f) + AndroidUtilities.dp(16.0f)) * f4, (((getContainerHeight() + AndroidUtilities.dp(32.0f)) / 2.0f) + anonymousClass1.topPadding + (!z3 ? AndroidUtilities.statusBarHeight : 0)) * f4);
+            if (f5 > 0.0f) {
+                float contentWidth = anonymousClass37.photoView.getContentWidth();
+                float contentHeight = anonymousClass37.photoView.getContentHeight();
+                MediaController.CropState cropState3 = anonymousClass37.photoView.crop;
+                float f6 = cropState3 != null ? cropState3.cropPw : 1.0f;
+                float f7 = cropState3 != null ? cropState3.cropPh : 1.0f;
+                float fLerp3 = (AndroidUtilities.lerp(1.0f, f6, f5) * contentWidth) / 2.0f;
+                float fLerp4 = (AndroidUtilities.lerp(1.0f, f7, f5) * contentHeight) / 2.0f;
+                float fLerp5 = AndroidUtilities.lerp(1.0f, 4.0f, f4);
+                canvas.clipRect((-fLerp3) * fLerp5, (-fLerp4) * fLerp5, fLerp3 * fLerp5, fLerp4 * fLerp5);
+            }
+            int currentWidth = anonymousClass37.getCurrentWidth();
+            int currentHeight = anonymousClass37.getCurrentHeight();
+            CropTransform cropTransform = anonymousClass37.cropTransform;
+            int i = cropTransform.cropOrientation;
+            if (i == 90 || i == 270) {
+                currentHeight = currentWidth;
+                currentWidth = currentHeight;
+            }
+            float fM = DiffUtil.m(cropTransform.trueCropScale, 1.0f, f5, 1.0f);
+            float f8 = currentWidth;
+            float containerWidth = getContainerWidth() / f8;
+            float f9 = currentHeight;
+            if (containerWidth * f9 > getContainerHeight()) {
+                containerWidth = getContainerHeight() / f9;
+            }
+            canvas.translate(cropTransform.cropAreaX * 1.0f, cropTransform.cropAreaY * 1.0f);
+            float f10 = (cropTransform.cropScale / fM) * containerWidth;
+            PhotoView photoView2 = anonymousClass37.photoView;
+            float fLerp6 = (photoView2 == null || (cropState = photoView2.crop) == null) ? AndroidUtilities.lerp(1.0f, f10, f4) : AndroidUtilities.lerp(cropState.cropScale, f10, f4);
+            canvas.scale(fLerp6, fLerp6);
+            canvas.translate(cropTransform.cropPx * f8 * 1.0f, cropTransform.cropPy * f9 * 1.0f);
+            float orientation = anonymousClass37.animatedOrientation.set(i, false) + anonymousClass37.photoView.getOrientation() + cropTransform.cropRotation;
+            MediaController.CropState cropState4 = anonymousClass37.photoView.crop;
+            canvas.rotate(cropState4 == null ? AndroidUtilities.lerp(0.0f, orientation, anonymousClass37.appearProgress) : AndroidUtilities.lerp(cropState4.cropRotate + cropState4.transformRotation, orientation, anonymousClass37.appearProgress));
+            canvas.rotate(anonymousClass37.photoView.getOrientation());
+            if (anonymousClass37.closing) {
+                MediaController.CropState cropState5 = anonymousClass37.photoView.crop;
+                if (cropState5 == null || !cropState5.mirrored) {
+                    z = false;
+                } else {
+                    z = true;
+                }
+            } else {
+                CropView.CropState cropState6 = anonymousClass1.state;
+                if (cropState6 == null) {
+                    z = false;
+                } else {
+                    z = cropState6.mirrored;
+                }
+            }
+            canvas.scale(AndroidUtilities.lerp(1.0f, -1.0f, anonymousClass37.animatedMirror.set(z)), 1.0f);
+            canvas.translate((-anonymousClass37.photoView.getContentWidth()) / 2.0f, (-anonymousClass37.photoView.getContentHeight()) / 2.0f);
+            PhotoView photoView3 = anonymousClass37.photoView;
+            if (photoView3.bitmap != null) {
+                Paint paint2 = photoView3.bitmapPaint;
+                paint2.setAlpha(255);
+                canvas.drawBitmap(photoView3.bitmap, 0.0f, 0.0f, paint2);
+            }
+            canvas.restore();
+        }
+    }
+
+    public CropInlineEditor(Context context, StoryRecorder.AnonymousClass7 anonymousClass7) {
+        super(context);
+        this.appearProgress = 0.0f;
+        this.thisLocation = new int[2];
+        this.previewLocation = new int[2];
+        this.photoViewLocation = new int[2];
+        this.cropTransform = new CropTransform();
+        this.previewContainer = anonymousClass7;
+        final StoryRecorder.AnonymousClass37 anonymousClass37 = (StoryRecorder.AnonymousClass37) this;
+        ContentView contentView = new ContentView(anonymousClass37, context);
+        this.contentView = contentView;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.animatedMirror = new AnimatedFloat(contentView, 0L, 320L, cubicBezierInterpolator);
+        this.animatedOrientation = new AnimatedFloat(contentView, 0L, 320L, cubicBezierInterpolator);
+        ?? r0 = new CropView(context) {
+            @Override
+            public final int getCurrentHeight() {
+                return anonymousClass37.getCurrentHeight();
+            }
+
+            @Override
+            public final int getCurrentWidth() {
+                return anonymousClass37.getCurrentWidth();
+            }
+        };
+        this.cropView = r0;
+        r0.setListener(new PhotoViewer.AnonymousClass24(anonymousClass37, 6));
+        addView(r0);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.controlsLayout = frameLayout;
+        addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
+        CropRotationWheel cropRotationWheel = new CropRotationWheel(context);
+        this.wheel = cropRotationWheel;
+        cropRotationWheel.setListener(new PhotoCropView.AnonymousClass4(anonymousClass37, 2));
+        frameLayout.addView(cropRotationWheel, LayoutHelper.createFrame(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 52.0f));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.buttonsLayout = frameLayout2;
+        frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 52.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        zzkk.m(14.0f, 1, textView);
+        textView.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
+        textView.setTextColor(-1);
+        textView.setPadding(zzlm.m(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -1, 115));
+        final StoryRecorder.AnonymousClass37 anonymousClass38 = (StoryRecorder.AnonymousClass37) this;
+        final int i = 0;
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                switch (i) {
+                    case 0:
+                        StoryRecorder.this.switchToEditMode(-1, false, true);
+                        break;
+                    case 1:
+                        StoryRecorder.AnonymousClass37 anonymousClass39 = anonymousClass38;
+                        anonymousClass39.cropView.reset(true);
+                        CropRotationWheel cropRotationWheel2 = anonymousClass39.wheel;
+                        cropRotationWheel2.setRotated(false);
+                        cropRotationWheel2.setMirrored(false);
+                        cropRotationWheel2.setRotation$1(0.0f);
+                        break;
+                    default:
+                        StoryRecorder.AnonymousClass37 anonymousClass310 = anonymousClass38;
+                        PhotoView photoView = anonymousClass310.photoView;
+                        if (photoView != null) {
+                            photoView.crop = new MediaController.CropState();
+                            anonymousClass310.cropView.applyToCropState(anonymousClass310.photoView.crop);
+                            PhotoView photoView2 = anonymousClass310.photoView;
+                            photoView2.crop.orientation = photoView2.getOrientation();
+                            anonymousClass310.photoView.updatePosition();
+                            anonymousClass310.photoView.requestLayout();
+                            anonymousClass310.photoView.containerView.requestLayout();
+                            anonymousClass310.photoView.containerView.invalidate();
+                            anonymousClass310.photoView.containerView.post(new VoIPFragment$12$$ExternalSyntheticLambda0(anonymousClass310, 2));
+                        }
+                        StoryRecorder.this.switchToEditMode(-1, false, true);
+                        break;
+                }
+            }
+        });
+        TextView textView2 = new TextView(context);
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
+        textView2.setTextColor(-1);
+        textView2.setPadding(zzlm.m(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView2, LayoutHelper.createFrame(-2, -1, 113));
+        final int i2 = 1;
+        textView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                switch (i2) {
+                    case 0:
+                        StoryRecorder.this.switchToEditMode(-1, false, true);
+                        break;
+                    case 1:
+                        StoryRecorder.AnonymousClass37 anonymousClass39 = anonymousClass38;
+                        anonymousClass39.cropView.reset(true);
+                        CropRotationWheel cropRotationWheel2 = anonymousClass39.wheel;
+                        cropRotationWheel2.setRotated(false);
+                        cropRotationWheel2.setMirrored(false);
+                        cropRotationWheel2.setRotation$1(0.0f);
+                        break;
+                    default:
+                        StoryRecorder.AnonymousClass37 anonymousClass310 = anonymousClass38;
+                        PhotoView photoView = anonymousClass310.photoView;
+                        if (photoView != null) {
+                            photoView.crop = new MediaController.CropState();
+                            anonymousClass310.cropView.applyToCropState(anonymousClass310.photoView.crop);
+                            PhotoView photoView2 = anonymousClass310.photoView;
+                            photoView2.crop.orientation = photoView2.getOrientation();
+                            anonymousClass310.photoView.updatePosition();
+                            anonymousClass310.photoView.requestLayout();
+                            anonymousClass310.photoView.containerView.requestLayout();
+                            anonymousClass310.photoView.containerView.invalidate();
+                            anonymousClass310.photoView.containerView.post(new VoIPFragment$12$$ExternalSyntheticLambda0(anonymousClass310, 2));
+                        }
+                        StoryRecorder.this.switchToEditMode(-1, false, true);
+                        break;
+                }
+            }
+        });
+        TextView textView3 = new TextView(context);
+        textView3.setTextSize(1, 14.0f);
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
+        textView3.setTextColor(-15098625);
+        textView3.setPadding(zzlm.m(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView3, LayoutHelper.createFrame(-2, -1, 117));
+        final int i3 = 2;
+        textView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                switch (i3) {
+                    case 0:
+                        StoryRecorder.this.switchToEditMode(-1, false, true);
+                        break;
+                    case 1:
+                        StoryRecorder.AnonymousClass37 anonymousClass39 = anonymousClass38;
+                        anonymousClass39.cropView.reset(true);
+                        CropRotationWheel cropRotationWheel2 = anonymousClass39.wheel;
+                        cropRotationWheel2.setRotated(false);
+                        cropRotationWheel2.setMirrored(false);
+                        cropRotationWheel2.setRotation$1(0.0f);
+                        break;
+                    default:
+                        StoryRecorder.AnonymousClass37 anonymousClass310 = anonymousClass38;
+                        PhotoView photoView = anonymousClass310.photoView;
+                        if (photoView != null) {
+                            photoView.crop = new MediaController.CropState();
+                            anonymousClass310.cropView.applyToCropState(anonymousClass310.photoView.crop);
+                            PhotoView photoView2 = anonymousClass310.photoView;
+                            photoView2.crop.orientation = photoView2.getOrientation();
+                            anonymousClass310.photoView.updatePosition();
+                            anonymousClass310.photoView.requestLayout();
+                            anonymousClass310.photoView.containerView.requestLayout();
+                            anonymousClass310.photoView.containerView.invalidate();
+                            anonymousClass310.photoView.containerView.post(new VoIPFragment$12$$ExternalSyntheticLambda0(anonymousClass310, 2));
+                        }
+                        StoryRecorder.this.switchToEditMode(-1, false, true);
+                        break;
+                }
+            }
+        });
+        new LinearLayout(context);
     }
 
     public int getCurrentHeight() {
@@ -67,160 +370,29 @@ public abstract class CropInlineEditor extends FrameLayout {
         return (photoView.getOrientation() == 90 || this.photoView.getOrientation() == 270) ? this.photoView.getContentWidth() : this.photoView.getContentHeight();
     }
 
-    public CropInlineEditor(Context context, PreviewView previewView, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
-        this.lastOrientation = 0;
-        this.appearProgress = 0.0f;
-        this.thisLocation = new int[2];
-        this.previewLocation = new int[2];
-        this.photoViewLocation = new int[2];
-        this.cropTransform = new CropTransform();
-        this.previewContainer = previewView;
-        this.resourcesProvider = resourcesProvider;
-        ContentView contentView = new ContentView(context);
-        this.contentView = contentView;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.animatedMirror = new AnimatedFloat(contentView, 0L, 320L, cubicBezierInterpolator);
-        this.animatedOrientation = new AnimatedFloat(contentView, 0L, 320L, cubicBezierInterpolator);
-        CropView cropView = new CropView(context) {
-            @Override
-            public int getCurrentWidth() {
-                return CropInlineEditor.this.getCurrentWidth();
-            }
-
-            @Override
-            public int getCurrentHeight() {
-                return CropInlineEditor.this.getCurrentHeight();
-            }
-        };
-        this.cropView = cropView;
-        cropView.setListener(new CropView.CropViewListener() {
-            @Override
-            public void onAspectLock(boolean z) {
-            }
-
-            @Override
-            public void onChange(boolean z) {
-            }
-
-            @Override
-            public void onTapUp() {
-            }
-
-            @Override
-            public void onUpdate() {
-                CropInlineEditor.this.contentView.invalidate();
-            }
-        });
-        addView(cropView);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.controlsLayout = frameLayout;
-        addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
-        CropRotationWheel cropRotationWheel = new CropRotationWheel(context);
-        this.wheel = cropRotationWheel;
-        cropRotationWheel.setListener(new CropRotationWheel.RotationWheelListener() {
-            @Override
-            public void onStart() {
-                CropInlineEditor.this.cropView.onRotationBegan();
-            }
-
-            @Override
-            public void onChange(float f) {
-                CropInlineEditor.this.cropView.setRotation(f);
-            }
-
-            @Override
-            public void onEnd(float f) {
-                CropInlineEditor.this.cropView.onRotationEnded();
-            }
-
-            @Override
-            public void aspectRatioPressed() {
-                CropInlineEditor.this.cropView.showAspectRatioDialog();
-            }
-
-            @Override
-            public boolean rotate90Pressed() {
-                boolean zRotate = CropInlineEditor.this.cropView.rotate(-90.0f);
-                CropInlineEditor.this.cropView.maximize(true);
-                CropInlineEditor.this.contentView.invalidate();
-                return zRotate;
-            }
-
-            @Override
-            public boolean mirror() {
-                CropInlineEditor.this.contentView.invalidate();
-                return CropInlineEditor.this.cropView.mirror();
-            }
-        });
-        frameLayout.addView(cropRotationWheel, LayoutHelper.createFrame(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 52.0f));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.buttonsLayout = frameLayout2;
-        frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 52.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.cancelButton = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setBackground(Theme.createSelectorDrawable(-12763843, 0));
-        textView.setTextColor(-1);
-        textView.setText(LocaleController.getString(R.string.Cancel));
-        textView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -1, 115));
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.close();
-            }
-        });
-        TextView textView2 = new TextView(context);
-        this.resetButton = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setBackground(Theme.createSelectorDrawable(-12763843, 0));
-        textView2.setTextColor(-1);
-        textView2.setText(LocaleController.getString(R.string.CropReset));
-        textView2.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        frameLayout2.addView(textView2, LayoutHelper.createFrame(-2, -1, 113));
-        textView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                CropInlineEditor.m4485$r8$lambda$qJX8RxU0Lrm6P1q7BYN6tO1wCE(this.f$0, view);
-            }
-        });
-        TextView textView3 = new TextView(context);
-        this.cropButton = textView3;
-        textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setBackground(Theme.createSelectorDrawable(-12763843, 0));
-        textView3.setTextColor(-15098625);
-        textView3.setText(LocaleController.getString(R.string.StoryCrop));
-        textView3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        frameLayout2.addView(textView3, LayoutHelper.createFrame(-2, -1, 117));
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                CropInlineEditor.m4484$r8$lambda$mLhTaRudlM7ytsoxAbv8R86FZQ(this.f$0, view);
-            }
-        });
-        this.shapesLayout = new LinearLayout(context);
-    }
-
-    public static void m4485$r8$lambda$qJX8RxU0Lrm6P1q7BYN6tO1wCE(CropInlineEditor cropInlineEditor, View view) {
-        cropInlineEditor.cropView.reset(true);
-        cropInlineEditor.wheel.setRotated(false);
-        cropInlineEditor.wheel.setMirrored(false);
-        cropInlineEditor.wheel.setRotation(0.0f, true);
-    }
-
-    public static void m4484$r8$lambda$mLhTaRudlM7ytsoxAbv8R86FZQ(CropInlineEditor cropInlineEditor, View view) {
-        cropInlineEditor.apply();
-        cropInlineEditor.close();
+    public int getCurrentWidth() {
+        PhotoView photoView = this.photoView;
+        if (photoView == null) {
+            return 1;
+        }
+        return (photoView.getOrientation() == 90 || this.photoView.getOrientation() == 270) ? this.photoView.getContentHeight() : this.photoView.getContentWidth();
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        this.cropView.setTopPadding(AndroidUtilities.dp(52.0f));
-        this.cropView.setBottomPadding(this.controlsLayout.getPaddingBottom() + AndroidUtilities.dp(116.0f));
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+    }
+
+    public float getAppearProgress() {
+        return this.appearProgress;
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        float fDp = AndroidUtilities.dp(52.0f);
+        AnonymousClass1 anonymousClass1 = this.cropView;
+        anonymousClass1.setTopPadding(fDp);
+        anonymousClass1.setBottomPadding(AndroidUtilities.dp(116.0f) + this.controlsLayout.getPaddingBottom());
         super.onLayout(z, i, i2, i3, i4);
     }
 
@@ -230,9 +402,9 @@ public abstract class CropInlineEditor extends FrameLayout {
         }
         this.photoView = photoView;
         setVisibility(0);
-        this.applied = false;
         this.closing = false;
-        this.cropView.onShow();
+        AnonymousClass1 anonymousClass1 = this.cropView;
+        anonymousClass1.isVisible = true;
         getLocationOnScreen(this.thisLocation);
         this.previewContainer.getLocationOnScreen(this.previewLocation);
         photoView.getLocationOnScreen(this.photoViewLocation);
@@ -240,69 +412,27 @@ public abstract class CropInlineEditor extends FrameLayout {
         if (cropState == null) {
             cropState = null;
         }
-        MediaController.CropState cropState2 = cropState;
-        this.cropView.start(photoView.getOrientation(), true, false, this.cropTransform, cropState2);
-        this.wheel.setRotation(this.cropView.getRotation());
-        if (cropState2 != null) {
-            this.wheel.setRotation(cropState2.cropRotate, false);
-            this.wheel.setRotated(cropState2.transformRotation != 0);
-            this.wheel.setMirrored(cropState2.mirrored);
-            this.animatedMirror.set(cropState2.mirrored, false);
+        anonymousClass1.start(photoView.getOrientation(), this.cropTransform, cropState);
+        float rotation = anonymousClass1.getRotation();
+        CropRotationWheel cropRotationWheel = this.wheel;
+        cropRotationWheel.setRotation(rotation);
+        AnimatedFloat animatedFloat = this.animatedMirror;
+        if (cropState != null) {
+            cropRotationWheel.setRotation$1(cropState.cropRotate);
+            cropRotationWheel.setRotated(cropState.transformRotation != 0);
+            cropRotationWheel.setMirrored(cropState.mirrored);
+            animatedFloat.set(cropState.mirrored, false);
         } else {
-            this.wheel.setRotation(0.0f, false);
-            this.wheel.setRotated(false);
-            this.wheel.setMirrored(false);
-            this.animatedMirror.set(false, false);
+            cropRotationWheel.setRotation$1(0.0f);
+            cropRotationWheel.setRotated(false);
+            cropRotationWheel.setMirrored(false);
+            animatedFloat.getClass();
+            animatedFloat.set(0.0f, false);
         }
-        this.cropView.updateMatrix();
-        this.contentView.setVisibility(0);
-        this.contentView.invalidate();
-    }
-
-    public void disappearStarts() {
-        this.closing = true;
-    }
-
-    public void stop() {
-        this.photoView = null;
-        this.cropView.stop();
-        this.cropView.onHide();
-        this.contentView.setVisibility(8);
-        setVisibility(8);
-    }
-
-    public void apply() {
-        PhotoView photoView = this.photoView;
-        if (photoView == null) {
-            return;
-        }
-        this.applied = true;
-        photoView.crop = new MediaController.CropState();
-        this.cropView.applyToCropState(this.photoView.crop);
-        PhotoView photoView2 = this.photoView;
-        photoView2.crop.orientation = photoView2.getOrientation();
-        this.photoView.updatePosition();
-        this.photoView.requestLayout();
-        this.photoView.containerView.requestLayout();
-        this.photoView.containerView.invalidate();
-        this.photoView.containerView.post(new Runnable() {
-            @Override
-            public final void run() {
-                CropInlineEditor.$r8$lambda$Zmi0VjOXwK3iY_duU7tmLskfkgM(this.f$0);
-            }
-        });
-    }
-
-    public static void $r8$lambda$Zmi0VjOXwK3iY_duU7tmLskfkgM(CropInlineEditor cropInlineEditor) {
-        EntityView.SelectionView selectionView = cropInlineEditor.photoView.selectionView;
-        if (selectionView != null) {
-            selectionView.updatePosition();
-        }
-        cropInlineEditor.photoView.updatePosition();
-    }
-
-    public float getAppearProgress() {
-        return this.appearProgress;
+        anonymousClass1.updateMatrix(false);
+        ContentView contentView = this.contentView;
+        contentView.setVisibility(0);
+        contentView.invalidate();
     }
 
     public void setAppearProgress(float f) {
@@ -311,141 +441,9 @@ public abstract class CropInlineEditor extends FrameLayout {
         }
         this.appearProgress = f;
         this.contentView.invalidate();
-        this.cropView.areaView.setDimAlpha(0.5f * f);
-        this.cropView.areaView.setFrameAlpha(f);
-        this.cropView.areaView.invalidate();
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-    }
-
-    public class ContentView extends View {
-        private final Paint dimPaint;
-        private final Matrix identityMatrix;
-        private final Matrix matrix;
-        private final Path previewClipPath;
-        private final RectF previewClipRect;
-        private final Matrix previewMatrix;
-
-        public ContentView(Context context) {
-            super(context);
-            this.dimPaint = new Paint(1);
-            this.previewClipPath = new Path();
-            this.previewClipRect = new RectF();
-            this.previewMatrix = new Matrix();
-            this.identityMatrix = new Matrix();
-            this.matrix = new Matrix();
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            float f;
-            float f2;
-            if (CropInlineEditor.this.photoView == null) {
-                return;
-            }
-            canvas.save();
-            this.dimPaint.setColor(-16777216);
-            this.dimPaint.setAlpha((int) (CropInlineEditor.this.appearProgress * 255.0f));
-            canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.dimPaint);
-            boolean zIsMirrored = true;
-            if (CropInlineEditor.this.appearProgress < 1.0f) {
-                this.previewClipPath.rewind();
-                this.previewClipRect.set(0.0f, 0.0f, CropInlineEditor.this.previewContainer.getWidth(), CropInlineEditor.this.previewContainer.getHeight());
-                this.previewClipRect.offset(CropInlineEditor.this.previewLocation[0], CropInlineEditor.this.previewLocation[1]);
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                AndroidUtilities.lerp(this.previewClipRect, rectF, CropInlineEditor.this.appearProgress, this.previewClipRect);
-                float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), 0, CropInlineEditor.this.appearProgress);
-                this.previewClipPath.addRoundRect(this.previewClipRect, fLerp, fLerp, Path.Direction.CW);
-                canvas.clipPath(this.previewClipPath);
-            }
-            float f3 = 1.0f - CropInlineEditor.this.appearProgress;
-            float f4 = CropInlineEditor.this.appearProgress;
-            canvas.translate((-CropInlineEditor.this.thisLocation[0]) * f3, (-CropInlineEditor.this.thisLocation[1]) * f3);
-            if (f3 > 0.0f) {
-                CropInlineEditor cropInlineEditor = CropInlineEditor.this;
-                if (cropInlineEditor.closing) {
-                    cropInlineEditor.photoView.getLocationOnScreen(CropInlineEditor.this.photoViewLocation);
-                }
-                canvas.translate(CropInlineEditor.this.photoViewLocation[0] * f3, CropInlineEditor.this.photoViewLocation[1] * f3);
-                if (CropInlineEditor.this.photoView.crop != null) {
-                    f = CropInlineEditor.this.photoView.crop.cropPw;
-                    f2 = CropInlineEditor.this.photoView.crop.cropPh;
-                } else {
-                    f = 1.0f;
-                    f2 = 1.0f;
-                }
-                float fLerp2 = AndroidUtilities.lerp(1.0f, ((CropInlineEditor.this.photoView.getWidth() / f) * CropInlineEditor.this.photoView.getScaleX()) / CropInlineEditor.this.previewContainer.getWidth(), f3);
-                canvas.scale(fLerp2, fLerp2);
-                canvas.rotate(CropInlineEditor.this.photoView.getRotation() * f3);
-                canvas.translate(((CropInlineEditor.this.photoView.getContentWidth() * f) / 2.0f) * f3, ((CropInlineEditor.this.photoView.getContentHeight() * f2) / 2.0f) * f3);
-            }
-            canvas.translate((AndroidUtilities.dp(16.0f) + (getContainerWidth() / 2.0f)) * f4, (CropInlineEditor.this.cropView.topPadding + (!(getContext() instanceof BubbleActivity) ? AndroidUtilities.statusBarHeight : 0) + ((getContainerHeight() + AndroidUtilities.dp(32.0f)) / 2.0f)) * f4);
-            if (f3 > 0.0f) {
-                float contentWidth = CropInlineEditor.this.photoView.getContentWidth();
-                float contentHeight = CropInlineEditor.this.photoView.getContentHeight();
-                float f5 = CropInlineEditor.this.photoView.crop != null ? CropInlineEditor.this.photoView.crop.cropPw : 1.0f;
-                float f6 = CropInlineEditor.this.photoView.crop != null ? CropInlineEditor.this.photoView.crop.cropPh : 1.0f;
-                float fLerp3 = (contentWidth * AndroidUtilities.lerp(1.0f, f5, f3)) / 2.0f;
-                float fLerp4 = (contentHeight * AndroidUtilities.lerp(1.0f, f6, f3)) / 2.0f;
-                float fLerp5 = AndroidUtilities.lerp(1.0f, 4.0f, f4);
-                canvas.clipRect((-fLerp3) * fLerp5, (-fLerp4) * fLerp5, fLerp3 * fLerp5, fLerp4 * fLerp5);
-            }
-            applyCrop(canvas, f4, f3, 1.0f);
-            canvas.rotate(CropInlineEditor.this.photoView.getOrientation());
-            AnimatedFloat animatedFloat = CropInlineEditor.this.animatedMirror;
-            CropInlineEditor cropInlineEditor2 = CropInlineEditor.this;
-            if (!cropInlineEditor2.closing) {
-                zIsMirrored = cropInlineEditor2.cropView.isMirrored();
-            } else if (cropInlineEditor2.photoView.crop == null || !CropInlineEditor.this.photoView.crop.mirrored) {
-                zIsMirrored = false;
-            }
-            canvas.scale(AndroidUtilities.lerp(1.0f, -1.0f, animatedFloat.set(zIsMirrored)), 1.0f);
-            canvas.translate((-CropInlineEditor.this.photoView.getContentWidth()) / 2.0f, (-CropInlineEditor.this.photoView.getContentHeight()) / 2.0f);
-            CropInlineEditor.this.photoView.drawContent(canvas);
-            canvas.restore();
-        }
-
-        private float getContainerWidth() {
-            return getWidth() - AndroidUtilities.dp(32.0f);
-        }
-
-        private float getContainerHeight() {
-            boolean z = getContext() instanceof BubbleActivity;
-            CropView cropView = CropInlineEditor.this.cropView;
-            return ((getHeight() - (cropView.topPadding + (!z ? AndroidUtilities.statusBarHeight : 0))) - cropView.bottomPadding) - AndroidUtilities.dp(32.0f);
-        }
-
-        private void applyCrop(Canvas canvas, float f, float f2, float f3) {
-            float fLerp;
-            int currentWidth = CropInlineEditor.this.getCurrentWidth();
-            int currentHeight = CropInlineEditor.this.getCurrentHeight();
-            int orientation = CropInlineEditor.this.cropTransform.getOrientation();
-            if (orientation == 90 || orientation == 270) {
-                currentHeight = currentWidth;
-                currentWidth = currentHeight;
-            }
-            float trueCropScale = ((CropInlineEditor.this.cropTransform.getTrueCropScale() - 1.0f) * (1.0f - f)) + 1.0f;
-            float f4 = currentWidth;
-            float containerWidth = getContainerWidth() / f4;
-            float f5 = currentHeight;
-            if (containerWidth * f5 > getContainerHeight()) {
-                containerWidth = getContainerHeight() / f5;
-            }
-            canvas.translate(CropInlineEditor.this.cropTransform.getCropAreaX() * f3, CropInlineEditor.this.cropTransform.getCropAreaY() * f3);
-            float scale = (CropInlineEditor.this.cropTransform.getScale() / trueCropScale) * containerWidth;
-            if (CropInlineEditor.this.photoView != null && CropInlineEditor.this.photoView.crop != null) {
-                fLerp = AndroidUtilities.lerp(CropInlineEditor.this.photoView.crop.cropScale, scale, f);
-            } else {
-                fLerp = AndroidUtilities.lerp(1.0f, scale, f);
-            }
-            canvas.scale(fLerp, fLerp);
-            canvas.translate(CropInlineEditor.this.cropTransform.getCropPx() * f4 * f3, CropInlineEditor.this.cropTransform.getCropPy() * f5 * f3);
-            float orientation2 = CropInlineEditor.this.photoView.getOrientation() + CropInlineEditor.this.cropTransform.getRotation() + CropInlineEditor.this.animatedOrientation.set(((CropInlineEditor.this.lastOrientation / 360) * 360) + orientation);
-            canvas.rotate(CropInlineEditor.this.photoView.crop == null ? AndroidUtilities.lerp(0.0f, orientation2, CropInlineEditor.this.appearProgress) : AndroidUtilities.lerp(CropInlineEditor.this.photoView.crop.cropRotate + CropInlineEditor.this.photoView.crop.transformRotation, orientation2, CropInlineEditor.this.appearProgress));
-        }
+        AnonymousClass1 anonymousClass1 = this.cropView;
+        anonymousClass1.areaView.setDimAlpha(0.5f * f);
+        anonymousClass1.areaView.setFrameAlpha(f);
+        anonymousClass1.areaView.invalidate();
     }
 }

@@ -14,108 +14,68 @@ import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.BaseCell;
 
 public abstract class BottomPagerTabs extends View {
-    private Utilities.Callback onTabClick;
-    private float progress;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private boolean scrolling;
-    private AnimatedFloat scrollingT;
-    private final Paint selectPaint;
-    private final Tab[] tabs;
-    private boolean touchDown;
-    private int value;
+    public Utilities.Callback onTabClick;
+    public float progress;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public boolean scrolling;
+    public final AnimatedFloat scrollingT;
+    public final Paint selectPaint;
+    public final Tab[] tabs;
+    public boolean touchDown;
+    public int value;
 
-    public abstract Tab[] createTabs();
+    public final class Tab {
+        public boolean active;
+        public final RectF clickRect;
+        public final int customEndFrameEnd;
+        public final int customEndFrameMid;
+        public final RLottieDrawable drawable;
+        public int drawableColor;
+        public final int i;
+        public final StaticLayout layout;
+        public final float layoutLeft;
+        public final float layoutWidth;
+        public final AnimatedFloat nonscrollingT;
+        public final TextPaint paint;
+        public final BaseCell.RippleDrawableSafe ripple;
+        public final MediaActivity.StoriesTabsView this$0;
 
-    protected class Tab {
-        private boolean active;
-        final RectF clickRect;
-        public int customEndFrameEnd;
-        public int customEndFrameMid;
-        public boolean customFrameInvert;
-        final RLottieDrawable drawable;
-        private int drawableColor;
-        final int i;
-        final StaticLayout layout;
-        final float layoutLeft;
-        final float layoutWidth;
-        final AnimatedFloat nonscrollingT;
-        final TextPaint paint;
-        final Drawable ripple;
-
-        public Tab(int i, int i2, int i3, int i4, CharSequence charSequence) {
+        public Tab(MediaActivity.StoriesTabsView storiesTabsView, int i, int i2, int i3, int i4, String str) {
+            this.this$0 = storiesTabsView;
             TextPaint textPaint = new TextPaint(1);
             this.paint = textPaint;
             this.clickRect = new RectF();
-            this.nonscrollingT = new AnimatedFloat(BottomPagerTabs.this, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.nonscrollingT = new AnimatedFloat(storiesTabsView, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.drawableColor = -1;
             this.i = i;
             this.customEndFrameMid = i3;
             this.customEndFrameEnd = i4;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f));
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, DiffUtil.m(i2, ""), AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), true, null);
             this.drawable = rLottieDrawable;
-            rLottieDrawable.setMasterParent(BottomPagerTabs.this);
-            rLottieDrawable.setAllowDecodeSingleFrame(true);
-            rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
+            rLottieDrawable.masterParent = storiesTabsView;
+            rLottieDrawable.decodeSingleFrame = true;
+            rLottieDrawable.scheduleNextGetFrame();
+            rLottieDrawable.playInDirectionOfCustomEndFrame = true;
             rLottieDrawable.setAutoRepeat(0);
             textPaint.setTypeface(AndroidUtilities.bold());
             textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             int i5 = Theme.key_windowBackgroundWhiteBlackText;
-            textPaint.setColor(Theme.getColor(i5, BottomPagerTabs.this.resourcesProvider));
-            StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            Theme.ResourcesProvider resourcesProvider = storiesTabsView.resourcesProvider;
+            textPaint.setColor(Theme.getColor(i5, resourcesProvider));
+            StaticLayout staticLayout = new StaticLayout(str, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.layout = staticLayout;
             this.layoutWidth = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
             this.layoutLeft = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
-            this.ripple = Theme.createSelectorDrawable(Theme.multAlpha(Theme.getColor(i5, BottomPagerTabs.this.resourcesProvider), 0.1f), 7, AndroidUtilities.dp(16.0f));
-        }
-
-        public void setActive(boolean z, boolean z2) {
-            if (this.customFrameInvert) {
-                z = !z;
-            }
-            if (this.active == z) {
-                return;
-            }
-            if (BottomPagerTabs.this.tabs[this.i].customEndFrameMid != 0) {
-                if (z) {
-                    this.drawable.setCustomEndFrame(this.customEndFrameMid);
-                    if (this.drawable.getCurrentFrame() >= this.customEndFrameEnd - 2) {
-                        this.drawable.setCurrentFrame(0, false);
-                    }
-                    int currentFrame = this.drawable.getCurrentFrame();
-                    int i = this.customEndFrameMid;
-                    if (currentFrame <= i) {
-                        this.drawable.start();
-                    } else {
-                        this.drawable.setCurrentFrame(i);
-                    }
-                } else if (this.drawable.getCurrentFrame() >= this.customEndFrameMid - 1) {
-                    this.drawable.setCustomEndFrame(this.customEndFrameEnd - 1);
-                    this.drawable.start();
-                } else {
-                    this.drawable.setCustomEndFrame(0);
-                    this.drawable.setCurrentFrame(0);
-                }
-            } else if (z) {
-                this.drawable.setCurrentFrame(0);
-                if (z2) {
-                    this.drawable.start();
-                }
-            }
-            this.active = z;
-        }
-
-        public void setColor(int i) {
-            this.paint.setColor(i);
-            if (this.drawableColor != i) {
-                RLottieDrawable rLottieDrawable = this.drawable;
-                this.drawableColor = i;
-                rLottieDrawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-            }
+            this.ripple = Theme.createSelectorDrawable(Theme.multAlpha(0.1f, Theme.getColor(i5, resourcesProvider)), 7, AndroidUtilities.dp(16.0f));
         }
     }
 
@@ -124,118 +84,125 @@ public abstract class BottomPagerTabs extends View {
         this.selectPaint = new Paint(1);
         this.scrollingT = new AnimatedFloat(this, 0L, 210L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.resourcesProvider = resourcesProvider;
-        this.tabs = createTabs();
+        MediaActivity.StoriesTabsView storiesTabsView = (MediaActivity.StoriesTabsView) this;
+        this.tabs = new Tab[]{new Tab(storiesTabsView, 0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new Tab(storiesTabsView, 1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
         setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         setProgress(0.0f, false);
     }
 
-    public void setScrolling(boolean z) {
-        if (this.scrolling == z) {
-            return;
-        }
-        this.scrolling = z;
-        invalidate();
-    }
-
-    public void setProgress(float f) {
-        setProgress(f, true);
-    }
-
-    private void setProgress(float f, boolean z) {
-        float fClamp = Utilities.clamp(f, this.tabs.length, 0.0f);
-        this.progress = fClamp;
-        this.value = Math.round(fClamp);
-        int i = 0;
-        while (true) {
-            Tab[] tabArr = this.tabs;
-            if (i < tabArr.length) {
-                tabArr[i].setActive(((float) Math.abs(this.value - i)) < (this.tabs[i].active ? 0.25f : 0.35f), z);
-                i++;
-            } else {
-                invalidate();
-                return;
-            }
-        }
-    }
-
-    public void setOnTabClick(Utilities.Callback<Integer> callback) {
-        this.onTabClick = callback;
-    }
-
     @Override
-    protected void dispatchDraw(Canvas canvas) {
-        canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
-        canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.getShadowHeight(), Theme.dividerPaint);
-        int width = ((getWidth() - getPaddingLeft()) - getPaddingRight()) / this.tabs.length;
-        int iMin = Math.min(AndroidUtilities.dp(64.0f), width);
-        float f = this.scrollingT.set(this.scrolling);
-        float f2 = 2.0f;
-        float f3 = 0.0f;
-        if (f > 0.0f) {
-            this.selectPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), (int) (((Math.abs((Math.floor(this.progress) + 0.5d) - ((double) this.progress)) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * ((double) f))));
-            float paddingLeft = getPaddingLeft();
-            float f4 = width;
-            float f5 = f4 / 2.0f;
-            float fFloor = (((float) Math.floor(this.progress)) * f4) + f5;
-            float fCeil = (f4 * ((float) Math.ceil(this.progress))) + f5;
-            float f6 = this.progress;
-            float fLerp = paddingLeft + AndroidUtilities.lerp(fFloor, fCeil, f6 - ((int) f6));
+    public final void dispatchDraw(Canvas canvas) {
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        BottomPagerTabs bottomPagerTabs = this;
+        int i = Theme.key_windowBackgroundWhite;
+        Theme.ResourcesProvider resourcesProvider = bottomPagerTabs.resourcesProvider;
+        canvas.drawColor(Theme.getColor(i, resourcesProvider));
+        canvas.drawRect(0.0f, 0.0f, bottomPagerTabs.getWidth(), AndroidUtilities.getShadowHeight(), Theme.dividerPaint);
+        int width = (bottomPagerTabs.getWidth() - bottomPagerTabs.getPaddingLeft()) - bottomPagerTabs.getPaddingRight();
+        Tab[] tabArr = bottomPagerTabs.tabs;
+        int length = width / tabArr.length;
+        int iMin = Math.min(AndroidUtilities.dp(64.0f), length);
+        float f5 = bottomPagerTabs.scrollingT.set(bottomPagerTabs.scrolling);
+        Paint paint = bottomPagerTabs.selectPaint;
+        float f6 = 0.0f;
+        if (f5 > 0.0f) {
+            f = 9.0f;
+            f2 = 16.0f;
+            paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), (int) (((Math.abs((Math.floor(bottomPagerTabs.progress) + 0.5d) - ((double) bottomPagerTabs.progress)) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * ((double) f5))));
+            float paddingLeft = bottomPagerTabs.getPaddingLeft();
+            float f7 = length;
+            float f8 = f7 / 2.0f;
+            float fFloor = (((float) Math.floor(bottomPagerTabs.progress)) * f7) + f8;
+            f3 = 41.0f;
+            float fCeil = (f7 * ((float) Math.ceil(bottomPagerTabs.progress))) + f8;
+            float f9 = bottomPagerTabs.progress;
+            float fLerp = AndroidUtilities.lerp(fFloor, fCeil, f9 - ((int) f9)) + paddingLeft;
             RectF rectF = AndroidUtilities.rectTmp;
-            float f7 = iMin / 2.0f;
-            rectF.set(fLerp - f7, AndroidUtilities.dp(9.0f), fLerp + f7, AndroidUtilities.dp(41.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.selectPaint);
+            float f10 = iMin / 2.0f;
+            rectF.set(fLerp - f10, AndroidUtilities.dp(9.0f), fLerp + f10, AndroidUtilities.dp(41.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint);
+        } else {
+            f = 9.0f;
+            f2 = 16.0f;
+            f3 = 41.0f;
         }
-        int i = 0;
-        while (true) {
-            Tab[] tabArr = this.tabs;
-            if (i >= tabArr.length) {
-                return;
+        int i2 = 0;
+        while (i2 < tabArr.length) {
+            Tab tab = tabArr[i2];
+            int paddingLeft2 = (i2 * length) + bottomPagerTabs.getPaddingLeft();
+            tab.clickRect.set(paddingLeft2, f6, paddingLeft2 + length, bottomPagerTabs.getHeight());
+            float fMin = 1.0f - Math.min(1.0f, Math.abs(bottomPagerTabs.progress - i2));
+            Theme.ResourcesProvider resourcesProvider2 = resourcesProvider;
+            int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6, resourcesProvider2);
+            int i3 = Theme.key_windowBackgroundWhiteBlackText;
+            int iBlendARGB = ColorUtils.blendARGB(fMin, color, Theme.getColor(i3, resourcesProvider2));
+            tab.paint.setColor(iBlendARGB);
+            int i4 = tab.drawableColor;
+            RLottieDrawable rLottieDrawable = tab.drawable;
+            if (i4 != iBlendARGB) {
+                tab.drawableColor = iBlendARGB;
+                f4 = 1.0f;
+                rLottieDrawable.setColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
+            } else {
+                f4 = 1.0f;
             }
-            Tab tab = tabArr[i];
-            int paddingLeft2 = getPaddingLeft() + (i * width);
-            tab.clickRect.set(paddingLeft2, f3, paddingLeft2 + width, getHeight());
-            float fMin = 1.0f - Math.min(1.0f, Math.abs(this.progress - i));
-            int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6, this.resourcesProvider);
-            int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            tab.setColor(ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), fMin));
             Rect rect = AndroidUtilities.rectTmp2;
-            float f8 = iMin / f2;
-            rect.set((int) (tab.clickRect.centerX() - f8), AndroidUtilities.dp(9.0f), (int) (tab.clickRect.centerX() + f8), AndroidUtilities.dp(41.0f));
-            float f9 = tab.nonscrollingT.set(fMin > 0.6f);
-            if (f < 1.0f) {
-                this.selectPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(i2, this.resourcesProvider), (int) (f9 * 18.0f * (1.0f - f))));
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(rect);
-                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.selectPaint);
+            RectF rectF2 = tab.clickRect;
+            float f11 = iMin / 2.0f;
+            int i5 = length;
+            Tab[] tabArr2 = tabArr;
+            rect.set((int) (rectF2.centerX() - f11), AndroidUtilities.dp(f), (int) (rectF2.centerX() + f11), AndroidUtilities.dp(f3));
+            float f12 = tab.nonscrollingT.set(fMin > 0.6f);
+            if (f5 < f4) {
+                paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(i3, resourcesProvider2), (int) ((f4 - f5) * f12 * 18.0f)));
+                RectF rectF3 = AndroidUtilities.rectTmp;
+                rectF3.set(rect);
+                canvas.drawRoundRect(rectF3, AndroidUtilities.dp(f2), AndroidUtilities.dp(f2), paint);
             }
-            tab.ripple.setBounds(rect);
-            tab.ripple.draw(canvas);
+            BaseCell.RippleDrawableSafe rippleDrawableSafe = tab.ripple;
+            rippleDrawableSafe.setBounds(rect);
+            rippleDrawableSafe.draw(canvas);
             float fDp = AndroidUtilities.dp(29.0f) / 2.0f;
-            rect.set((int) (tab.clickRect.centerX() - fDp), (int) (AndroidUtilities.dpf2(24.66f) - fDp), (int) (tab.clickRect.centerX() + fDp), (int) (AndroidUtilities.dpf2(24.66f) + fDp));
-            tab.drawable.setBounds(rect);
-            tab.drawable.draw(canvas);
+            rect.set((int) (rectF2.centerX() - fDp), (int) (AndroidUtilities.dpf2(24.66f) - fDp), (int) (rectF2.centerX() + fDp), (int) (AndroidUtilities.dpf2(24.66f) + fDp));
+            rLottieDrawable.setBounds(rect);
+            rLottieDrawable.draw(canvas);
             canvas.save();
-            canvas.translate((tab.clickRect.centerX() - (tab.layoutWidth / 2.0f)) - tab.layoutLeft, AndroidUtilities.dp(50.0f) - (tab.layout.getHeight() / 2.0f));
-            tab.layout.draw(canvas);
+            float fCenterX = (rectF2.centerX() - (tab.layoutWidth / 2.0f)) - tab.layoutLeft;
+            float fDp2 = AndroidUtilities.dp(50.0f);
+            StaticLayout staticLayout = tab.layout;
+            canvas.translate(fCenterX, fDp2 - (staticLayout.getHeight() / 2.0f));
+            staticLayout.draw(canvas);
             canvas.restore();
-            i++;
-            f2 = 2.0f;
-            f3 = 0.0f;
+            i2++;
+            bottomPagerTabs = this;
+            resourcesProvider = resourcesProvider2;
+            tabArr = tabArr2;
+            length = i5;
+            f6 = 0.0f;
         }
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
+    public final void onMeasure(int i, int i2) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.getShadowHeight() + AndroidUtilities.dp(64.0f));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
         Utilities.Callback callback;
         if (motionEvent.getAction() == 0) {
             this.touchDown = true;
             return true;
         }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 2) {
+        int action = motionEvent.getAction();
+        Tab[] tabArr = this.tabs;
+        if (action == 1 || motionEvent.getAction() == 2) {
             float x = motionEvent.getX();
             int i = 0;
             while (true) {
-                Tab[] tabArr = this.tabs;
                 if (i >= tabArr.length) {
                     i = -1;
                     break;
@@ -246,16 +213,16 @@ public abstract class BottomPagerTabs extends View {
                         break;
                     }
                     if (this.touchDown) {
-                        this.tabs[i].ripple.setState(new int[0]);
+                        tabArr[i].ripple.setState(new int[0]);
                     }
-                    this.tabs[i].ripple.setState(new int[]{16842919, 16842910});
+                    tabArr[i].ripple.setState(new int[]{16842919, 16842910});
                     break;
                 }
                 i++;
             }
-            for (int i2 = 0; i2 < this.tabs.length; i2++) {
+            for (int i2 = 0; i2 < tabArr.length; i2++) {
                 if (i2 != i || motionEvent.getAction() == 1) {
-                    this.tabs[i2].ripple.setState(new int[0]);
+                    tabArr[i2].ripple.setState(new int[0]);
                 }
             }
             if (i >= 0 && this.value != i && (callback = this.onTabClick) != null) {
@@ -263,39 +230,86 @@ public abstract class BottomPagerTabs extends View {
             }
             this.touchDown = false;
         } else if (motionEvent.getAction() == 3) {
-            int i3 = 0;
-            while (true) {
-                Tab[] tabArr2 = this.tabs;
-                if (i3 < tabArr2.length) {
-                    tabArr2[i3].ripple.setState(new int[0]);
-                    i3++;
-                } else {
-                    this.touchDown = false;
-                    return true;
-                }
+            for (Tab tab : tabArr) {
+                tab.ripple.setState(new int[0]);
             }
+            this.touchDown = false;
+            return true;
         }
         return super.onTouchEvent(motionEvent);
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(64.0f) + AndroidUtilities.getShadowHeight());
+    public void setOnTabClick(Utilities.Callback<Integer> callback) {
+        this.onTabClick = callback;
+    }
+
+    public void setProgress(float f) {
+        setProgress(f, true);
+    }
+
+    public void setScrolling(boolean z) {
+        if (this.scrolling == z) {
+            return;
+        }
+        this.scrolling = z;
+        invalidate();
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable drawable) {
+    public final boolean verifyDrawable(Drawable drawable) {
         int i = 0;
         while (true) {
             Tab[] tabArr = this.tabs;
-            if (i < tabArr.length) {
-                if (tabArr[i].ripple == drawable) {
-                    return true;
-                }
-                i++;
-            } else {
+            if (i >= tabArr.length) {
                 return super.verifyDrawable(drawable);
             }
+            if (tabArr[i].ripple == drawable) {
+                return true;
+            }
+            i++;
         }
+    }
+
+    public final void setProgress(float f, boolean z) {
+        Tab[] tabArr = this.tabs;
+        float fClamp = Utilities.clamp(f, tabArr.length, 0.0f);
+        this.progress = fClamp;
+        this.value = Math.round(fClamp);
+        for (int i = 0; i < tabArr.length; i++) {
+            Tab tab = tabArr[i];
+            boolean z2 = ((float) Math.abs(this.value - i)) < (tabArr[i].active ? 0.25f : 0.35f);
+            if (tab.active != z2) {
+                int i2 = tab.this$0.tabs[tab.i].customEndFrameMid;
+                RLottieDrawable rLottieDrawable = tab.drawable;
+                if (i2 != 0) {
+                    int i3 = tab.customEndFrameEnd;
+                    int i4 = tab.customEndFrameMid;
+                    if (z2) {
+                        rLottieDrawable.setCustomEndFrame(i4);
+                        if (rLottieDrawable.currentFrame >= i3 - 2) {
+                            rLottieDrawable.setCurrentFrame(0, false, false);
+                        }
+                        if (rLottieDrawable.currentFrame <= i4) {
+                            rLottieDrawable.start();
+                        } else {
+                            rLottieDrawable.setCurrentFrame(i4, true, false);
+                        }
+                    } else if (rLottieDrawable.currentFrame >= i4 - 1) {
+                        rLottieDrawable.setCustomEndFrame(i3 - 1);
+                        rLottieDrawable.start();
+                    } else {
+                        rLottieDrawable.setCustomEndFrame(0);
+                        rLottieDrawable.setCurrentFrame(0, true, false);
+                    }
+                } else if (z2) {
+                    rLottieDrawable.setCurrentFrame(0, true, false);
+                    if (z) {
+                        rLottieDrawable.start();
+                    }
+                }
+                tab.active = z2;
+            }
+        }
+        invalidate();
     }
 }

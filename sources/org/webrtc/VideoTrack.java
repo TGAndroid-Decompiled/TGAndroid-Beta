@@ -6,6 +6,11 @@ import java.util.Iterator;
 public class VideoTrack extends MediaStreamTrack {
     private final IdentityHashMap<VideoSink, Long> sinks;
 
+    public VideoTrack(long j) {
+        super(j);
+        this.sinks = new IdentityHashMap<>();
+    }
+
     private static native void nativeAddSink(long j, long j2);
 
     private static native void nativeFreeSink(long j);
@@ -13,11 +18,6 @@ public class VideoTrack extends MediaStreamTrack {
     private static native void nativeRemoveSink(long j, long j2);
 
     private static native long nativeWrapSink(VideoSink videoSink);
-
-    public VideoTrack(long j) {
-        super(j);
-        this.sinks = new IdentityHashMap<>();
-    }
 
     public void addSink(VideoSink videoSink) {
         if (videoSink == null) {
@@ -29,14 +29,6 @@ public class VideoTrack extends MediaStreamTrack {
         long jNativeWrapSink = nativeWrapSink(videoSink);
         this.sinks.put(videoSink, Long.valueOf(jNativeWrapSink));
         nativeAddSink(getNativeMediaStreamTrack(), jNativeWrapSink);
-    }
-
-    public void removeSink(VideoSink videoSink) {
-        Long lRemove = this.sinks.remove(videoSink);
-        if (lRemove != null) {
-            nativeRemoveSink(getNativeMediaStreamTrack(), lRemove.longValue());
-            nativeFreeSink(lRemove.longValue());
-        }
     }
 
     @Override
@@ -53,5 +45,13 @@ public class VideoTrack extends MediaStreamTrack {
 
     public long getNativeVideoTrack() {
         return getNativeMediaStreamTrack();
+    }
+
+    public void removeSink(VideoSink videoSink) {
+        Long lRemove = this.sinks.remove(videoSink);
+        if (lRemove != null) {
+            nativeRemoveSink(getNativeMediaStreamTrack(), lRemove.longValue());
+            nativeFreeSink(lRemove.longValue());
+        }
     }
 }

@@ -1,112 +1,63 @@
 package org.telegram.ui.Components.Premium.boosts;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.text.TextPaint;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.ItemOptions;
+import org.telegram.ui.Components.ScrimOptions$$ExternalSyntheticLambda2;
 
-public class BoostCounterView extends View {
-    private final Paint bgPaint;
-    private ValueAnimator countAnimator;
-    private float countScale;
-    private final AnimatedTextView.AnimatedTextDrawable countText;
-    private int lastCount;
+public final class BoostCounterView extends View {
+    public final Paint bgPaint;
+    public ValueAnimator countAnimator;
+    public float countScale;
+    public final AnimatedTextView.AnimatedTextDrawable countText;
+    public int lastCount;
 
-    public BoostCounterView(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public BoostCounterView(Context context) {
         super(context);
         this.countScale = 1.0f;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, true, false);
         this.countText = animatedTextDrawable;
-        animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        animatedTextDrawable.moveAmplitude = 0.3f;
+        animatedTextDrawable.animateDuration = 250L;
+        animatedTextDrawable.animateWave = 1.0f;
+        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.5f));
-        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
-        animatedTextDrawable.setTextColor(-1);
-        animatedTextDrawable.setText("");
-        animatedTextDrawable.setGravity(17);
+        Typeface typefaceBold = AndroidUtilities.bold();
+        TextPaint textPaint = animatedTextDrawable.textPaint;
+        textPaint.setTypeface(typefaceBold);
+        textPaint.setColor(-1);
+        animatedTextDrawable.alpha = Color.alpha(-1);
+        animatedTextDrawable.setText("", true, true);
+        animatedTextDrawable.gravity = 17;
         Paint paint = new Paint(1);
         this.bgPaint = paint;
         paint.setColor(-6915073);
         setVisibility(8);
     }
 
-    private void animateCount() {
-        ValueAnimator valueAnimator = this.countAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.countAnimator = null;
-        }
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.countAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                BoostCounterView.$r8$lambda$aJESGgsPM9CMtfm2YLl0K_7USeM(this.f$0, valueAnimator2);
-            }
-        });
-        this.countAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                BoostCounterView.this.countScale = 1.0f;
-                BoostCounterView.this.invalidate();
-            }
-        });
-        this.countAnimator.setInterpolator(new OvershootInterpolator(2.0f));
-        this.countAnimator.setDuration(200L);
-        this.countAnimator.start();
-    }
-
-    public static void $r8$lambda$aJESGgsPM9CMtfm2YLl0K_7USeM(BoostCounterView boostCounterView, ValueAnimator valueAnimator) {
-        boostCounterView.getClass();
-        boostCounterView.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        boostCounterView.invalidate();
-    }
-
-    public void setCount(int i, boolean z) {
-        if (!BoostRepository.isMultiBoostsAvailable()) {
-            i = 0;
-        }
-        if (i > 0) {
-            setVisibility(0);
-        }
-        if (z) {
-            this.countText.cancelAnimation();
-        }
-        if (z && i != this.lastCount && i > 0) {
-            animateCount();
-        }
-        this.lastCount = i;
-        int length = this.countText.getText().length();
-        this.countText.setText("x" + i, z);
-        int length2 = this.countText.getText().length();
-        invalidate();
-        if (length != length2) {
-            requestLayout();
-        }
-    }
-
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.dp(15.0f) + this.countText.getWidth()), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
         canvas.translate(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, AndroidUtilities.dp(8.0f) + ((int) this.countText.getCurrentWidth()), AndroidUtilities.dp(20.0f));
+        int iDp = AndroidUtilities.dp(8.0f);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
+        rect.set(0, 0, iDp + ((int) animatedTextDrawable.getCurrentWidth()), AndroidUtilities.dp(20.0f));
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         if (this.countScale != 1.0f) {
@@ -116,11 +67,53 @@ public class BoostCounterView extends View {
         }
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.bgPaint);
         rect.set(0, 0, (int) rectF.width(), AndroidUtilities.dp(19.0f));
-        this.countText.setBounds(rect);
-        this.countText.draw(canvas);
+        animatedTextDrawable.setBounds(rect);
+        animatedTextDrawable.draw(canvas);
         if (this.countScale != 1.0f) {
             canvas.restore();
         }
         canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        float fDp = AndroidUtilities.dp(15.0f);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (Math.max(animatedTextDrawable.currentWidth, animatedTextDrawable.oldWidth) + fDp), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
+    }
+
+    public final void setCount(int i, boolean z) {
+        if (!BoostRepository.isMultiBoostsAvailable()) {
+            i = 0;
+        }
+        if (i > 0) {
+            setVisibility(0);
+        }
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
+        if (z) {
+            animatedTextDrawable.cancelAnimation();
+        }
+        if (z && i != this.lastCount && i > 0) {
+            ValueAnimator valueAnimator = this.countAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.countAnimator = null;
+            }
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.countAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 1));
+            this.countAnimator.addListener(new ItemOptions.AnonymousClass3(this, 20));
+            this.countAnimator.setInterpolator(new OvershootInterpolator(2.0f));
+            this.countAnimator.setDuration(200L);
+            this.countAnimator.start();
+        }
+        this.lastCount = i;
+        int length = animatedTextDrawable.currentText.length();
+        animatedTextDrawable.setText("x" + i, z, true);
+        int length2 = animatedTextDrawable.currentText.length();
+        invalidate();
+        if (length != length2) {
+            requestLayout();
+        }
     }
 }

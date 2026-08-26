@@ -5,13 +5,13 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Charts.data.ChartData;
 
-public class BarViewData extends LineViewData {
+public final class BarViewData extends LineViewData {
     public int blendColor;
-    private Theme.ResourcesProvider resourcesProvider;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final Paint unselectedPaint;
 
     public BarViewData(ChartData.Line line, Theme.ResourcesProvider resourcesProvider) {
-        super(line, false);
+        super(line, false, null);
         Paint paint = new Paint();
         this.unselectedPaint = paint;
         this.blendColor = 0;
@@ -24,8 +24,8 @@ public class BarViewData extends LineViewData {
     }
 
     @Override
-    public void updateColors() {
+    public final void updateColors() {
         super.updateColors();
-        this.blendColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), this.lineColor, 0.3f);
+        this.blendColor = ColorUtils.blendARGB(0.3f, Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), this.lineColor);
     }
 }

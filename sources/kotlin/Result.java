@@ -1,84 +1,12 @@
 package kotlin;
 
 import java.io.Serializable;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 
 public final class Result implements Serializable {
-    public static final Companion Companion = new Companion(null);
-    private final Object value;
+    public final Object value;
 
-    public static final Result m282boximpl(Object obj) {
-        return new Result(obj);
-    }
-
-    public static Object m283constructorimpl(Object obj) {
-        return obj;
-    }
-
-    public static boolean m284equalsimpl(Object obj, Object obj2) {
-        return (obj2 instanceof Result) && Intrinsics.areEqual(obj, ((Result) obj2).m290unboximpl());
-    }
-
-    public static int m286hashCodeimpl(Object obj) {
-        if (obj == null) {
-            return 0;
-        }
-        return obj.hashCode();
-    }
-
-    public boolean equals(Object obj) {
-        return m284equalsimpl(this.value, obj);
-    }
-
-    public int hashCode() {
-        return m286hashCodeimpl(this.value);
-    }
-
-    public final Object m290unboximpl() {
-        return this.value;
-    }
-
-    private Result(Object obj) {
-        this.value = obj;
-    }
-
-    public static final boolean m288isSuccessimpl(Object obj) {
-        return !(obj instanceof Failure);
-    }
-
-    public static final boolean m287isFailureimpl(Object obj) {
-        return obj instanceof Failure;
-    }
-
-    public static final Throwable m285exceptionOrNullimpl(Object obj) {
-        if (obj instanceof Failure) {
-            return ((Failure) obj).exception;
-        }
-        return null;
-    }
-
-    public String toString() {
-        return m289toStringimpl(this.value);
-    }
-
-    public static String m289toStringimpl(Object obj) {
-        if (obj instanceof Failure) {
-            return ((Failure) obj).toString();
-        }
-        return "Success(" + obj + ')';
-    }
-
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
-    }
-
-    public static final class Failure implements Serializable {
+    public final class Failure implements Serializable {
         public final Throwable exception;
 
         public Failure(Throwable exception) {
@@ -86,16 +14,49 @@ public final class Result implements Serializable {
             this.exception = exception;
         }
 
-        public boolean equals(Object obj) {
-            return (obj instanceof Failure) && Intrinsics.areEqual(this.exception, ((Failure) obj).exception);
+        public final boolean equals(Object obj) {
+            if (obj instanceof Failure) {
+                return Intrinsics.areEqual(this.exception, ((Failure) obj).exception);
+            }
+            return false;
         }
 
-        public int hashCode() {
+        public final int hashCode() {
             return this.exception.hashCode();
         }
 
-        public String toString() {
+        public final String toString() {
             return "Failure(" + this.exception + ')';
         }
+    }
+
+    public static final Throwable m139exceptionOrNullimpl(Object obj) {
+        if (obj instanceof Failure) {
+            return ((Failure) obj).exception;
+        }
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof Result) {
+            return Intrinsics.areEqual(this.value, ((Result) obj).value);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        Object obj = this.value;
+        if (obj == null) {
+            return 0;
+        }
+        return obj.hashCode();
+    }
+
+    public final String toString() {
+        Object obj = this.value;
+        if (obj instanceof Failure) {
+            return ((Failure) obj).toString();
+        }
+        return "Success(" + obj + ')';
     }
 }

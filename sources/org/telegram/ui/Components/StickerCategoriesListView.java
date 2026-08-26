@@ -18,199 +18,460 @@ import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
-import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.CacheFetcher;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.EmojiThemes$$ExternalSyntheticLambda0;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatLinkActivity$$ExternalSyntheticLambda4;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda17;
+import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda17;
+import org.telegram.ui.QrActivity;
+import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 
 public abstract class StickerCategoriesListView extends RecyclerListView {
-    private static EmojiGroupFetcher fetcher;
-    public static CacheFetcher search;
-    private Adapter adapter;
-    private Paint backgroundPaint;
-    private EmojiCategory[] categories;
-    private boolean categoriesShouldShow;
-    private ValueAnimator categoriesShownAnimator;
-    private float categoriesShownT;
-    private int categoriesType;
-    private int dontOccupyWidth;
+    public static final EmojiGroupFetcher fetcher = new EmojiGroupFetcher();
+    public static final EmojiSearch search = new EmojiSearch();
+    public final Adapter adapter;
+    public Paint backgroundPaint;
+    public EmojiCategory[] categories;
+    public boolean categoriesShouldShow;
+    public ValueAnimator categoriesShownAnimator;
+    public float categoriesShownT;
+    public int dontOccupyWidth;
     public boolean isGlassDesign;
-    public Integer layerNum;
-    private LinearLayoutManager layoutManager;
-    private AnimatedFloat leftBoundAlpha;
-    private Drawable leftBoundDrawable;
-    private Utilities.Callback onCategoryClick;
-    private Utilities.Callback onScrollFully;
-    private Utilities.Callback onScrollIntoOccupiedWidth;
-    private View paddingView;
-    private int paddingWidth;
-    private final RectF rect1;
-    private final RectF rect2;
-    private final RectF rect3;
-    private AnimatedFloat rightBoundAlpha;
-    private Drawable rightBoundDrawable;
-    private boolean scrolledFully;
-    private boolean scrolledIntoOccupiedWidth;
-    private AnimatedFloat selectedAlpha;
-    private int selectedCategoryIndex;
-    private AnimatedFloat selectedIndex;
-    private Paint selectedPaint;
-    private float shownButtonsAtStart;
-    private static Set loadedIconsType = new HashSet();
-    static int loadedCategoryIcons = 0;
+    public final AnimatedFloat leftBoundAlpha;
+    public Drawable leftBoundDrawable;
+    public Utilities.Callback onCategoryClick;
+    public Utilities.Callback onScrollFully;
+    public Utilities.Callback onScrollIntoOccupiedWidth;
+    public QrActivity.AnonymousClass2 paddingView;
+    public int paddingWidth;
+    public final RectF rect1;
+    public final RectF rect2;
+    public final RectF rect3;
+    public Drawable rightBoundDrawable;
+    public boolean scrolledFully;
+    public boolean scrolledIntoOccupiedWidth;
+    public final AnimatedFloat selectedAlpha;
+    public int selectedCategoryIndex;
+    public final AnimatedFloat selectedIndex;
+    public final Paint selectedPaint;
+    public float shownButtonsAtStart;
 
-    protected abstract boolean isTabIconsAnimationEnabled(boolean z);
+    public final class Adapter extends RecyclerListView.SelectionAdapter {
+        public int lastItemCount;
 
-    protected EmojiCategory[] preprocessCategories(EmojiCategory[] emojiCategoryArr) {
-        return emojiCategoryArr;
+        public Adapter() {
+        }
+
+        @Override
+        public final int getItemCount() {
+            StickerCategoriesListView stickerCategoriesListView = StickerCategoriesListView.this;
+            EmojiCategory[] emojiCategoryArr = stickerCategoriesListView.categories;
+            int length = (emojiCategoryArr == null ? 0 : emojiCategoryArr.length) + 1;
+            if (length != this.lastItemCount) {
+                QrActivity.AnonymousClass2 anonymousClass2 = stickerCategoriesListView.paddingView;
+                if (anonymousClass2 != null) {
+                    anonymousClass2.requestLayout();
+                }
+                this.lastItemCount = length;
+            }
+            return length;
+        }
+
+        @Override
+        public final int getItemViewType(int i) {
+            return i == 0 ? 0 : 1;
+        }
+
+        @Override
+        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.mItemViewType == 1;
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            StickerCategoriesListView stickerCategoriesListView;
+            EmojiCategory[] emojiCategoryArr;
+            if (viewHolder.mItemViewType != 1 || (emojiCategoryArr = (stickerCategoriesListView = StickerCategoriesListView.this).categories) == null) {
+                return;
+            }
+            int i2 = i - 1;
+            EmojiCategory emojiCategory = emojiCategoryArr[i2];
+            final CategoryButton categoryButton = (CategoryButton) viewHolder.itemView;
+            boolean z = stickerCategoriesListView.selectedCategoryIndex == i2;
+            categoryButton.getClass();
+            if (!TextUtils.isEmpty(emojiCategory.title)) {
+                categoryButton.setContentDescription(emojiCategory.title);
+            } else if (TextUtils.isEmpty(emojiCategory.emojis)) {
+                categoryButton.setContentDescription(null);
+            } else {
+                categoryButton.setContentDescription(emojiCategory.emojis);
+            }
+            ValueAnimator valueAnimator = categoryButton.loadAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                categoryButton.loadAnimator = null;
+            }
+            categoryButton.setImageResource(0);
+            categoryButton.clearAnimationDrawable();
+            final boolean zIsTabIconsAnimationEnabled = StickerCategoriesListView.this.isTabIconsAnimationEnabled();
+            categoryButton.loaded = false;
+            categoryButton.loadProgress = 1.0f;
+            AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).fetchDocument(emojiCategory.documentId, new AnimatedEmojiDrawable.ReceivedDocument() {
+                @Override
+                public final void run(TLRPC.Document document) {
+                    boolean z2 = !zIsTabIconsAnimationEnabled;
+                    StickerCategoriesListView.CategoryButton categoryButton2 = categoryButton;
+                    categoryButton2.setOnlyLastFrame(z2);
+                    categoryButton2.setAnimation(24, 24, document);
+                    categoryButton2.playAnimation();
+                }
+            });
+            AndroidUtilities.runOnUIThread(new SeekBarView$$ExternalSyntheticLambda1(categoryButton, 24), 60L);
+            categoryButton.setSelected(z, false);
+            categoryButton.setAlpha(stickerCategoriesListView.categoriesShownT);
+            categoryButton.setScaleX(stickerCategoriesListView.categoriesShownT);
+            categoryButton.setScaleY(stickerCategoriesListView.categoriesShownT);
+            categoryButton.play();
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View categoryButton;
+            StickerCategoriesListView stickerCategoriesListView = StickerCategoriesListView.this;
+            if (i == 0) {
+                QrActivity.AnonymousClass2 anonymousClass2 = new QrActivity.AnonymousClass2(this, stickerCategoriesListView.getContext(), 17);
+                stickerCategoriesListView.paddingView = anonymousClass2;
+                categoryButton = anonymousClass2;
+            } else {
+                categoryButton = stickerCategoriesListView.new CategoryButton(stickerCategoriesListView.getContext());
+            }
+            return new RecyclerListView.Holder(categoryButton);
+        }
+
+        @Override
+        public final void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+            if (viewHolder.mItemViewType == 1) {
+                CategoryButton categoryButton = (CategoryButton) viewHolder.itemView;
+                categoryButton.setSelected(StickerCategoriesListView.this.selectedCategoryIndex == viewHolder.getAdapterPosition() - 1, false);
+                categoryButton.play();
+            }
+        }
+    }
+
+    public final class CategoryButton extends RLottieImageView {
+        public ValueAnimator backAnimator;
+        public int imageColor;
+        public long lastPlayed;
+        public ValueAnimator loadAnimator;
+        public float loadProgress;
+        public boolean loaded;
+        public float pressedProgress;
+        public ValueAnimator selectedAnimator;
+        public float selectedT;
+
+        public final class AnonymousClass1 extends AnimatorListenerAdapter {
+            public final int $r8$classId;
+            public final CategoryButton this$1;
+
+            public AnonymousClass1(CategoryButton categoryButton, int i) {
+                this.$r8$classId = i;
+                this.this$1 = categoryButton;
+            }
+
+            @Override
+            public final void onAnimationEnd(Animator animator) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        CategoryButton categoryButton = this.this$1;
+                        categoryButton.loadProgress = 1.0f;
+                        categoryButton.invalidate();
+                        categoryButton.loadAnimator = null;
+                        break;
+                    case 1:
+                        CategoryButton categoryButton2 = this.this$1;
+                        categoryButton2.updateSelectedT(((Float) categoryButton2.selectedAnimator.getAnimatedValue()).floatValue());
+                        categoryButton2.selectedAnimator = null;
+                        break;
+                    default:
+                        super.onAnimationEnd(animator);
+                        this.this$1.backAnimator = null;
+                        break;
+                }
+            }
+        }
+
+        public CategoryButton(Context context) {
+            super(context);
+            this.loaded = false;
+            this.loadProgress = 1.0f;
+            boolean z = StickerCategoriesListView.this.isGlassDesign;
+            Theme.ResourcesProvider resourcesProvider = StickerCategoriesListView.this.resourcesProvider;
+            int alphaComponent = z ? ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_glass_defaultIcon, resourcesProvider), (int) 102.0f) : Theme.getColor(Theme.key_chat_emojiPanelIcon, resourcesProvider);
+            if (this.imageColor != alphaComponent) {
+                this.imageColor = alphaComponent;
+                setColorFilter(new PorterDuffColorFilter(alphaComponent, PorterDuff.Mode.SRC_IN));
+            }
+            setScaleType(ImageView.ScaleType.CENTER);
+            setLayerNum(null);
+        }
+
+        @Override
+        public final void draw(Canvas canvas) {
+            if (isPressed()) {
+                float f = this.pressedProgress;
+                if (f != 1.0f) {
+                    this.pressedProgress = Utilities.clamp(((1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f) + f, 1.0f, 0.0f);
+                    invalidate();
+                    StickerCategoriesListView.this.invalidate();
+                }
+            }
+            float fM = DiffUtil.m(1.0f, this.pressedProgress, 0.15f, 0.85f) * this.loadProgress;
+            if (fM != 1.0f) {
+                canvas.save();
+                canvas.scale(fM, fM, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+            }
+            super.draw(canvas);
+            if (fM != 1.0f) {
+                canvas.restore();
+            }
+        }
+
+        @Override
+        public final void onLoaded() {
+            int i = 0;
+            this.loaded = true;
+            if (this.loadProgress < 1.0f) {
+                ValueAnimator valueAnimator = this.loadAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    this.loadAnimator = null;
+                }
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.loadProgress, 1.0f);
+                this.loadAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new StickerCategoriesListView$CategoryButton$$ExternalSyntheticLambda0(this, 2));
+                this.loadAnimator.addListener(new AnonymousClass1(this, i));
+                this.loadAnimator.setDuration(320L);
+                this.loadAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.loadAnimator.start();
+            }
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            int size = View.MeasureSpec.getSize(i2);
+            super.onMeasure(OKLCH.m(size, 4.0f, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+        }
+
+        public final void play() {
+            if (System.currentTimeMillis() - this.lastPlayed <= 250) {
+                return;
+            }
+            this.lastPlayed = System.currentTimeMillis();
+            RLottieDrawable animatedDrawable = getAnimatedDrawable();
+            if (animatedDrawable == null && getImageReceiver() != null) {
+                animatedDrawable = getImageReceiver().getLottieAnimation();
+            }
+            if (animatedDrawable != null) {
+                animatedDrawable.isRunning = false;
+                animatedDrawable.checkChoreographer$1();
+                animatedDrawable.setCurrentFrame(0, true, false);
+                animatedDrawable.restart(true);
+                return;
+            }
+            if (animatedDrawable == null) {
+                setProgress(0.0f);
+                playAnimation();
+            }
+        }
+
+        @Override
+        public final void setPressed(boolean z) {
+            ValueAnimator valueAnimator;
+            int i = 2;
+            if (isPressed() != z) {
+                super.setPressed(z);
+                invalidate();
+                StickerCategoriesListView.this.invalidate();
+                if (z && (valueAnimator = this.backAnimator) != null) {
+                    valueAnimator.removeAllListeners();
+                    this.backAnimator.cancel();
+                }
+                if (z) {
+                    return;
+                }
+                float f = this.pressedProgress;
+                if (f != 0.0f) {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
+                    this.backAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new StickerCategoriesListView$CategoryButton$$ExternalSyntheticLambda0(this, 0));
+                    this.backAnimator.addListener(new AnonymousClass1(this, i));
+                    this.backAnimator.setInterpolator(new OvershootInterpolator(3.0f));
+                    this.backAnimator.setDuration(350L);
+                    this.backAnimator.start();
+                }
+            }
+        }
+
+        public final void setSelected(boolean z, boolean z2) {
+            int i = 1;
+            if (Math.abs(this.selectedT - (z ? 1.0f : 0.0f)) > 0.01f) {
+                ValueAnimator valueAnimator = this.selectedAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    this.selectedAnimator = null;
+                }
+                if (!z2) {
+                    updateSelectedT(z ? 1.0f : 0.0f);
+                    return;
+                }
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectedT, z ? 1.0f : 0.0f);
+                this.selectedAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new StickerCategoriesListView$CategoryButton$$ExternalSyntheticLambda0(this, 1));
+                this.selectedAnimator.addListener(new AnonymousClass1(this, i));
+                this.selectedAnimator.setDuration(350L);
+                this.selectedAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.selectedAnimator.start();
+            }
+        }
+
+        public final void updateSelectedT(float f) {
+            this.selectedT = f;
+            StickerCategoriesListView stickerCategoriesListView = StickerCategoriesListView.this;
+            boolean z = stickerCategoriesListView.isGlassDesign;
+            Theme.ResourcesProvider resourcesProvider = stickerCategoriesListView.resourcesProvider;
+            if (z) {
+                int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_glass_defaultIcon, resourcesProvider), (int) (AndroidUtilities.lerp(0.4f, 0.8f, f) * 255.0f));
+                if (this.imageColor != alphaComponent) {
+                    this.imageColor = alphaComponent;
+                    setColorFilter(new PorterDuffColorFilter(alphaComponent, PorterDuff.Mode.SRC_IN));
+                }
+            } else {
+                int iBlendARGB = ColorUtils.blendARGB(this.selectedT, Theme.getColor(Theme.key_chat_emojiPanelIcon, resourcesProvider), Theme.getColor(Theme.key_chat_emojiPanelIconSelected, stickerCategoriesListView.resourcesProvider));
+                if (this.imageColor != iBlendARGB) {
+                    this.imageColor = iBlendARGB;
+                    setColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
+                }
+            }
+            invalidate();
+        }
+    }
+
+    public final class EmojiCategory {
+        public long documentId;
+        public String emojis;
+        public boolean greeting;
+        public String title;
+    }
+
+    public final class EmojiGroupFetcher extends CacheFetcher {
+        @Override
+        public final void getLocal(int i, Object obj, Utilities.Callback2 callback2) {
+            MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new PollItemMenu$$ExternalSyntheticLambda17(i, (Integer) obj, callback2, 10));
+        }
+
+        @Override
+        public final void getRemote(int i, Object obj, long j, Utilities.Callback4 callback4) {
+            TLObject tLObject;
+            Integer num = (Integer) obj;
+            if (num.intValue() == 1) {
+                TLRPC.TL_messages_getEmojiStatusGroups tL_messages_getEmojiStatusGroups = new TLRPC.TL_messages_getEmojiStatusGroups();
+                tL_messages_getEmojiStatusGroups.hash = (int) j;
+                tLObject = tL_messages_getEmojiStatusGroups;
+            } else if (num.intValue() == 2) {
+                TLRPC.TL_messages_getEmojiProfilePhotoGroups tL_messages_getEmojiProfilePhotoGroups = new TLRPC.TL_messages_getEmojiProfilePhotoGroups();
+                tL_messages_getEmojiProfilePhotoGroups.hash = (int) j;
+                tLObject = tL_messages_getEmojiProfilePhotoGroups;
+            } else if (num.intValue() == 3) {
+                TLRPC.TL_messages_getEmojiStickerGroups tL_messages_getEmojiStickerGroups = new TLRPC.TL_messages_getEmojiStickerGroups();
+                tL_messages_getEmojiStickerGroups.hash = (int) j;
+                tLObject = tL_messages_getEmojiStickerGroups;
+            } else {
+                TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups = new TLRPC.TL_messages_getEmojiGroups();
+                tL_messages_getEmojiGroups.hash = (int) j;
+                tLObject = tL_messages_getEmojiGroups;
+            }
+            ConnectionsManager.getInstance(i).sendRequest(tLObject, new StickerCategoriesListView$EmojiSearch$$ExternalSyntheticLambda0(callback4, 1));
+        }
+
+        @Override
+        public final void setLocal(int i, Object obj, Object obj2, long j) {
+            MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new PollItemMenu$$ExternalSyntheticLambda17(i, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 9));
+        }
+    }
+
+    public final class EmojiSearch extends CacheFetcher {
+        @Override
+        public final void getRemote(int i, Object obj, long j, Utilities.Callback4 callback4) {
+            TLRPC.TL_messages_searchCustomEmoji tL_messages_searchCustomEmoji = new TLRPC.TL_messages_searchCustomEmoji();
+            tL_messages_searchCustomEmoji.emoticon = (String) obj;
+            tL_messages_searchCustomEmoji.hash = j;
+            ConnectionsManager.getInstance(i).sendRequest(tL_messages_searchCustomEmoji, new StickerCategoriesListView$EmojiSearch$$ExternalSyntheticLambda0(callback4, 0));
+        }
     }
 
     static {
-        fetcher = new EmojiGroupFetcher();
-        search = new EmojiSearch();
-    }
-
-    public static void preload(final int i, int i2) {
-        fetcher.fetch(i, Integer.valueOf(i2), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                StickerCategoriesListView.m2833$r8$lambda$ZDQ_VKiRHbBVs7puOYEMcaxZQ(i, (TLRPC.TL_messages_emojiGroups) obj);
-            }
-        });
-    }
-
-    public static void m2833$r8$lambda$ZDQ_VKiRHbBVs7puOYEMcaxZQ(int i, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
-        ArrayList<TLRPC.EmojiGroup> arrayList;
-        if (tL_messages_emojiGroups == null || (arrayList = tL_messages_emojiGroups.groups) == null) {
-            return;
-        }
-        int size = arrayList.size();
-        int i2 = 0;
-        while (i2 < size) {
-            TLRPC.EmojiGroup emojiGroup = arrayList.get(i2);
-            i2++;
-            AnimatedEmojiDrawable.getDocumentFetcher(i).fetchDocument(emojiGroup.icon_emoji_id, null);
-        }
+        new HashSet();
     }
 
     public StickerCategoriesListView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        this(context, null, i, resourcesProvider);
-    }
-
-    public StickerCategoriesListView(Context context, final EmojiCategory[] emojiCategoryArr, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
         this.shownButtonsAtStart = 6.5f;
         this.categories = null;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.leftBoundAlpha = new AnimatedFloat(this, 360L, cubicBezierInterpolator);
-        this.rightBoundAlpha = new AnimatedFloat(this, 360L, cubicBezierInterpolator);
-        this.selectedPaint = new Paint(1);
+        this.leftBoundAlpha = new AnimatedFloat(360L, this, cubicBezierInterpolator);
+        Paint paint = new Paint(1);
+        this.selectedPaint = paint;
         this.selectedCategoryIndex = -1;
         this.categoriesShownT = 0.0f;
         this.categoriesShouldShow = true;
-        this.selectedAlpha = new AnimatedFloat(this, 350L, cubicBezierInterpolator);
-        this.selectedIndex = new AnimatedFloat(this, 350L, cubicBezierInterpolator);
+        this.selectedAlpha = new AnimatedFloat(350L, this, cubicBezierInterpolator);
+        this.selectedIndex = new AnimatedFloat(350L, this, cubicBezierInterpolator);
         this.rect1 = new RectF();
         this.rect2 = new RectF();
         this.rect3 = new RectF();
-        this.categoriesType = i;
         setPadding(0, 0, AndroidUtilities.dp(2.0f), 0);
         Adapter adapter = new Adapter();
         this.adapter = adapter;
         setAdapter(adapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        this.layoutManager = linearLayoutManager;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(1, false);
         setLayoutManager(linearLayoutManager);
-        this.layoutManager.setOrientation(0);
+        linearLayoutManager.setOrientation(0);
         setSelectorRadius(AndroidUtilities.dp(15.0f));
         setSelectorType(1);
         int i2 = Theme.key_listSelector;
-        setSelectorDrawableColor(getThemedColor(i2));
-        this.selectedPaint.setColor(getThemedColor(i2));
+        setSelectorDrawableColor(Theme.getColor(i2, this.resourcesProvider));
+        paint.setColor(Theme.getColor(i2, this.resourcesProvider));
         setWillNotDraw(false);
-        setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-            @Override
-            public final void onItemClick(View view, int i3) {
-                this.f$0.onItemClick(i3, view);
-            }
-        });
-        final long jCurrentTimeMillis = System.currentTimeMillis();
-        fetcher.fetch(UserConfig.selectedAccount, Integer.valueOf(i), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                StickerCategoriesListView.m2834$r8$lambda$ebTGacH_rg6j1j9Z08XhIZUViI(this.f$0, emojiCategoryArr, jCurrentTimeMillis, (TLRPC.TL_messages_emojiGroups) obj);
-            }
-        });
+        setOnItemClickListener(new ChatLinkActivity$$ExternalSyntheticLambda4(this, 29));
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        fetcher.fetch(UserConfig.selectedAccount, Integer.valueOf(i), new EmojiThemes$$ExternalSyntheticLambda0(this, jCurrentTimeMillis, 1));
     }
 
-    public static void m2834$r8$lambda$ebTGacH_rg6j1j9Z08XhIZUViI(final StickerCategoriesListView stickerCategoriesListView, final EmojiCategory[] emojiCategoryArr, final long j, final TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups) {
-        stickerCategoriesListView.getClass();
-        if (tL_messages_emojiGroups != null) {
-            NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new Runnable() {
-                @Override
-                public final void run() {
-                    StickerCategoriesListView.$r8$lambda$m2HdIcq8gv4PxwYaq1vSwfIxu3k(this.f$0, emojiCategoryArr, tL_messages_emojiGroups, j);
-                }
-            });
+    public static void getChildBounds(View view, RectF rectF) {
+        float left = (view.getLeft() + view.getRight()) / 2.0f;
+        float top = (view.getTop() + view.getBottom()) / 2.0f;
+        float fM = 1.0f;
+        float width = (view.getWidth() / 2.0f) - AndroidUtilities.dp(1.0f);
+        if (view instanceof CategoryButton) {
+            CategoryButton categoryButton = (CategoryButton) view;
+            fM = DiffUtil.m(1.0f, categoryButton.pressedProgress, 0.15f, 0.85f) * categoryButton.loadProgress;
         }
-    }
-
-    public static void $r8$lambda$m2HdIcq8gv4PxwYaq1vSwfIxu3k(StickerCategoriesListView stickerCategoriesListView, EmojiCategory[] emojiCategoryArr, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, long j) {
-        stickerCategoriesListView.getClass();
-        stickerCategoriesListView.categories = new EmojiCategory[(emojiCategoryArr == null ? 0 : emojiCategoryArr.length) + tL_messages_emojiGroups.groups.size()];
-        int i = 0;
-        if (emojiCategoryArr != null) {
-            while (i < emojiCategoryArr.length) {
-                stickerCategoriesListView.categories[i] = emojiCategoryArr[i];
-                i++;
-            }
-        }
-        for (int i2 = 0; i2 < tL_messages_emojiGroups.groups.size(); i2++) {
-            stickerCategoriesListView.categories[i + i2] = EmojiCategory.remote(tL_messages_emojiGroups.groups.get(i2));
-        }
-        stickerCategoriesListView.categories = stickerCategoriesListView.preprocessCategories(stickerCategoriesListView.categories);
-        stickerCategoriesListView.adapter.notifyDataSetChanged();
-        stickerCategoriesListView.setCategoriesShownT(0.0f);
-        stickerCategoriesListView.updateCategoriesShown(stickerCategoriesListView.categoriesShouldShow, System.currentTimeMillis() - j > 16);
-    }
-
-    public void setShownButtonsAtStart(float f) {
-        this.shownButtonsAtStart = f;
-    }
-
-    public void onItemClick(int i, View view) {
-        EmojiCategory[] emojiCategoryArr;
-        if (i >= 1 && (emojiCategoryArr = this.categories) != null) {
-            EmojiCategory emojiCategory = emojiCategoryArr[i - 1];
-            int iDp = AndroidUtilities.dp(64.0f);
-            if (getMeasuredWidth() - view.getRight() < iDp) {
-                smoothScrollBy(iDp - (getMeasuredWidth() - view.getRight()), 0, CubicBezierInterpolator.EASE_OUT_QUINT);
-            } else if (view.getLeft() < iDp) {
-                smoothScrollBy(-(iDp - view.getLeft()), 0, CubicBezierInterpolator.EASE_OUT_QUINT);
-            }
-            Utilities.Callback callback = this.onCategoryClick;
-            if (callback != null) {
-                callback.run(emojiCategory);
-            }
-        }
+        float f = width * fM;
+        rectF.set(left - f, top - f, left + f, top + f);
     }
 
     private int getScrollToStartWidth() {
@@ -218,58 +479,124 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             return 0;
         }
         View childAt = getChildAt(0);
-        if (childAt instanceof CategoryButton) {
-            return this.paddingWidth + Math.max(0, (getChildAdapterPosition(childAt) - 1) * getHeight()) + (-childAt.getLeft());
+        if (!(childAt instanceof CategoryButton)) {
+            return -childAt.getLeft();
         }
-        return -childAt.getLeft();
+        return Math.max(0, getHeight() * (RecyclerView.getChildAdapterPosition(childAt) - 1)) + this.paddingWidth + (-childAt.getLeft());
     }
 
-    public void scrollToStart() {
-        smoothScrollBy(-getScrollToStartWidth(), 0, CubicBezierInterpolator.EASE_OUT_QUINT);
-    }
-
-    public void scrollToSelected() {
-        final int iMax = ((-getScrollToStartWidth()) - Math.max(0, this.dontOccupyWidth)) + (this.selectedCategoryIndex * AndroidUtilities.dp(34.0f));
-        scrollBy(iMax, 0);
-        post(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.onScrolled(iMax, 0);
-            }
-        });
-    }
-
-    public void selectCategory(EmojiCategory emojiCategory) {
-        int i;
-        if (this.categories != null) {
-            i = 0;
-            while (true) {
-                EmojiCategory[] emojiCategoryArr = this.categories;
-                if (i >= emojiCategoryArr.length) {
-                    break;
-                } else if (emojiCategoryArr[i] != emojiCategory) {
-                    i++;
-                }
-            }
-            i = -1;
-        } else {
-            i = -1;
-        }
-        selectCategory(i);
-    }
-
-    public void selectCategory(int i) {
-        if (this.selectedCategoryIndex < 0 && i >= 0) {
-            this.selectedIndex.set(i, true);
-        }
-        this.selectedCategoryIndex = i;
-        for (int i2 = 0; i2 < getChildCount(); i2++) {
-            View childAt = getChildAt(i2);
+    public void setCategoriesShownT(float f) {
+        this.categoriesShownT = f;
+        for (int i = 0; i < getChildCount(); i++) {
+            View childAt = getChildAt(i);
             if (childAt instanceof CategoryButton) {
-                ((CategoryButton) childAt).setSelected(this.selectedCategoryIndex == getChildAdapterPosition(childAt) - 1, true);
+                float fCascade = AndroidUtilities.cascade(f, (getChildCount() - 1) - RecyclerView.getChildAdapterPosition(childAt), getChildCount() - 1, 3.0f);
+                if (fCascade > 0.0f && childAt.getAlpha() <= 0.0f) {
+                    ((CategoryButton) childAt).play();
+                }
+                childAt.setAlpha(fCascade);
+                childAt.setScaleX(fCascade);
+                childAt.setScaleY(fCascade);
             }
         }
         invalidate();
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            View viewFindChildViewUnder = findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+            if (!(viewFindChildViewUnder instanceof CategoryButton) || viewFindChildViewUnder.getAlpha() < 0.5f) {
+                return false;
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Canvas canvas2;
+        Drawable drawable;
+        if (this.backgroundPaint != null) {
+            int iMin = Integer.MAX_VALUE;
+            int iMax = Integer.MIN_VALUE;
+            for (int i = 0; i < getChildCount(); i++) {
+                View childAt = getChildAt(i);
+                if (childAt instanceof CategoryButton) {
+                    iMin = Math.min(iMin, childAt.getLeft());
+                    iMax = Math.max(iMax, childAt.getRight());
+                }
+            }
+            if (iMin < iMax) {
+                int iM = (int) DiffUtil.m(1.0f, this.categoriesShownT, AndroidUtilities.dp(32.0f) + getWidth(), iMin);
+                int iM2 = (int) DiffUtil.m(1.0f, this.categoriesShownT, AndroidUtilities.dp(32.0f) + getWidth(), iMax);
+                canvas2 = canvas;
+                canvas2.drawRect(iM, 0.0f, iM2, getHeight(), this.backgroundPaint);
+                if (iM2 < getWidth() && (drawable = this.leftBoundDrawable) != null) {
+                    drawable.setAlpha(255);
+                    Drawable drawable2 = this.leftBoundDrawable;
+                    drawable2.setBounds(iM2, 0, drawable2.getIntrinsicWidth() + iM2, getHeight());
+                    this.leftBoundDrawable.draw(canvas2);
+                }
+            } else {
+                canvas2 = canvas;
+            }
+        } else {
+            canvas2 = canvas;
+        }
+        float f = this.selectedAlpha.set(this.selectedCategoryIndex >= 0 ? 1.0f : 0.0f, false);
+        int i2 = this.selectedCategoryIndex;
+        AnimatedFloat animatedFloat = this.selectedIndex;
+        float f2 = i2 >= 0 ? animatedFloat.set(i2, false) : animatedFloat.value;
+        if (f > 0.0f) {
+            float f3 = f2 + 1.0f;
+            double d = f3;
+            int iMax2 = Math.max(1, (int) Math.floor(d));
+            int iMax3 = Math.max(1, (int) Math.ceil(d));
+            View view = null;
+            View view2 = null;
+            for (int i3 = 0; i3 < getChildCount(); i3++) {
+                View childAt2 = getChildAt(i3);
+                int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt2);
+                if (childAdapterPosition == iMax2) {
+                    view = childAt2;
+                }
+                if (childAdapterPosition == iMax3) {
+                    view2 = childAt2;
+                }
+                if (view != null && view2 != null) {
+                    break;
+                }
+            }
+            Paint paint = this.selectedPaint;
+            int alpha = paint.getAlpha();
+            paint.setAlpha((int) (alpha * f));
+            if (view != null && view2 != null) {
+                float f4 = iMax2 == iMax3 ? 0.5f : (f3 - iMax2) / (iMax3 - iMax2);
+                RectF rectF = this.rect1;
+                getChildBounds(view, rectF);
+                RectF rectF2 = this.rect2;
+                getChildBounds(view2, rectF2);
+                RectF rectF3 = this.rect3;
+                AndroidUtilities.lerp(rectF, rectF2, f4, rectF3);
+                canvas2.drawRoundRect(rectF3, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), paint);
+            }
+            paint.setAlpha(alpha);
+        }
+        super.draw(canvas2);
+        Drawable drawable3 = this.leftBoundDrawable;
+        if (drawable3 != null) {
+            drawable3.setAlpha((int) (this.leftBoundAlpha.set((canScrollHorizontally(-1) && this.scrolledFully) ? 1.0f : 0.0f, false) * 255.0f * this.categoriesShownT));
+            if (this.leftBoundDrawable.getAlpha() > 0) {
+                Drawable drawable4 = this.leftBoundDrawable;
+                drawable4.setBounds(0, 0, drawable4.getIntrinsicWidth(), getHeight());
+                this.leftBoundDrawable.draw(canvas2);
+            }
+        }
+    }
+
+    public int getCategoryIndex() {
+        return this.selectedCategoryIndex;
     }
 
     public EmojiCategory getSelectedCategory() {
@@ -281,98 +608,54 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         return emojiCategoryArr[i];
     }
 
-    public int getCategoryIndex() {
-        return this.selectedCategoryIndex;
+    public abstract boolean isTabIconsAnimationEnabled();
+
+    public final void lambda$new$2(TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, long j) {
+        this.categories = new EmojiCategory[tL_messages_emojiGroups.groups.size()];
+        for (int i = 0; i < tL_messages_emojiGroups.groups.size(); i++) {
+            EmojiCategory[] emojiCategoryArr = this.categories;
+            TLRPC.EmojiGroup emojiGroup = tL_messages_emojiGroups.groups.get(i);
+            EmojiCategory emojiCategory = new EmojiCategory();
+            emojiCategory.documentId = emojiGroup.icon_emoji_id;
+            if (emojiGroup instanceof TLRPC.TL_emojiGroupPremium) {
+                emojiCategory.emojis = "premium";
+            } else {
+                emojiCategory.emojis = TextUtils.concat((CharSequence[]) emojiGroup.emoticons.toArray(new String[0])).toString();
+            }
+            emojiCategory.greeting = emojiGroup instanceof TLRPC.TL_emojiGroupGreeting;
+            emojiCategory.title = emojiGroup.title;
+            emojiCategoryArr[i] = emojiCategory;
+        }
+        this.categories = preprocessCategories(this.categories);
+        this.adapter.mObservable.notifyChanged();
+        setCategoriesShownT(0.0f);
+        updateCategoriesShown(this.categoriesShouldShow, System.currentTimeMillis() - j > 16);
+    }
+
+    public final void lambda$updateCategoriesShown$5(ValueAnimator valueAnimator) {
+        setCategoriesShownT(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         updateCategoriesShown(this.categoriesShouldShow, false);
     }
 
     @Override
-    protected void onConfigurationChanged(Configuration configuration) {
+    public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        View view = this.paddingView;
-        if (view != null) {
-            view.requestLayout();
+        QrActivity.AnonymousClass2 anonymousClass2 = this.paddingView;
+        if (anonymousClass2 != null) {
+            anonymousClass2.requestLayout();
         }
-    }
-
-    public void updateCategoriesShown(boolean z, boolean z2) {
-        this.categoriesShouldShow = z;
-        ?? r5 = z;
-        if (this.categories == null) {
-            r5 = 0;
-        }
-        if (this.categoriesShownT == ((float) r5)) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.categoriesShownAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.categoriesShownAnimator = null;
-        }
-        if (z2) {
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.categoriesShownT, r5 != 0 ? 1.0f : 0.0f);
-            this.categoriesShownAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    StickerCategoriesListView.m2830$r8$lambda$6JNOjg6kUpFBK4YSQL_woFWINc(this.f$0, valueAnimator2);
-                }
-            });
-            this.categoriesShownAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    StickerCategoriesListView stickerCategoriesListView = StickerCategoriesListView.this;
-                    stickerCategoriesListView.setCategoriesShownT(((Float) stickerCategoriesListView.categoriesShownAnimator.getAnimatedValue()).floatValue());
-                    StickerCategoriesListView.this.categoriesShownAnimator = null;
-                }
-            });
-            this.categoriesShownAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ValueAnimator valueAnimator2 = this.categoriesShownAnimator;
-            EmojiCategory[] emojiCategoryArr = this.categories;
-            valueAnimator2.setDuration(((long) (emojiCategoryArr == null ? 5 : emojiCategoryArr.length)) * 120);
-            this.categoriesShownAnimator.start();
-            return;
-        }
-        setCategoriesShownT(r5 != 0 ? 1.0f : 0.0f);
-    }
-
-    public static void m2830$r8$lambda$6JNOjg6kUpFBK4YSQL_woFWINc(StickerCategoriesListView stickerCategoriesListView, ValueAnimator valueAnimator) {
-        stickerCategoriesListView.getClass();
-        stickerCategoriesListView.setCategoriesShownT(((Float) valueAnimator.getAnimatedValue()).floatValue());
-    }
-
-    public void setCategoriesShownT(float f) {
-        this.categoriesShownT = f;
-        for (int i = 0; i < getChildCount(); i++) {
-            View childAt = getChildAt(i);
-            if (childAt instanceof CategoryButton) {
-                float fCascade = AndroidUtilities.cascade(f, (getChildCount() - 1) - getChildAdapterPosition(childAt), getChildCount() - 1, 3.0f);
-                if (fCascade > 0.0f && childAt.getAlpha() <= 0.0f) {
-                    ((CategoryButton) childAt).play(false);
-                }
-                childAt.setAlpha(fCascade);
-                childAt.setScaleX(fCascade);
-                childAt.setScaleY(fCascade);
-            }
-        }
-        invalidate();
-    }
-
-    public boolean isCategoriesShown() {
-        return this.categoriesShownT > 0.5f;
     }
 
     @Override
-    public void onScrolled(int i, int i2) {
+    public final void onScrolled(int i, int i2) {
         boolean z;
         boolean z2;
         Utilities.Callback callback;
-        super.onScrolled(i, i2);
         if (getChildCount() > 0) {
             View childAt = getChildAt(0);
             z2 = true;
@@ -409,24 +692,37 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         }
     }
 
-    public void setDontOccupyWidth(int i) {
-        this.dontOccupyWidth = i;
+    public EmojiCategory[] preprocessCategories(EmojiCategory[] emojiCategoryArr) {
+        return emojiCategoryArr;
     }
 
-    public void setOnScrollIntoOccupiedWidth(Utilities.Callback<Integer> callback) {
-        this.onScrollIntoOccupiedWidth = callback;
+    public final void scrollToSelected() {
+        int iDp = (AndroidUtilities.dp(34.0f) * this.selectedCategoryIndex) + ((-getScrollToStartWidth()) - Math.max(0, this.dontOccupyWidth));
+        scrollBy(iDp, 0);
+        post(new OAuthSheet$$ExternalSyntheticLambda17((EmojiBottomSheet.SearchField.AnonymousClass5) this, iDp, 7));
     }
 
-    public void setOnScrollFully(Utilities.Callback<Boolean> callback) {
-        this.onScrollFully = callback;
+    public final void scrollToStart() {
+        smoothScrollBy(-getScrollToStartWidth(), 0, CubicBezierInterpolator.EASE_OUT_QUINT);
     }
 
-    public void setOnCategoryClick(Utilities.Callback<EmojiCategory> callback) {
-        this.onCategoryClick = callback;
-    }
-
-    public boolean isScrolledIntoOccupiedWidth() {
-        return this.scrolledIntoOccupiedWidth;
+    public final void selectCategory(EmojiCategory emojiCategory) {
+        int i;
+        if (this.categories != null) {
+            i = 0;
+            while (true) {
+                EmojiCategory[] emojiCategoryArr = this.categories;
+                if (i >= emojiCategoryArr.length) {
+                    break;
+                } else if (emojiCategoryArr[i] != emojiCategory) {
+                    i++;
+                }
+            }
+            i = -1;
+        } else {
+            i = -1;
+        }
+        selectCategory(i);
     }
 
     @Override
@@ -444,668 +740,66 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         drawableMutate2.setColorFilter(new PorterDuffColorFilter(i, mode));
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        Canvas canvas2;
-        Drawable drawable;
-        if (this.backgroundPaint != null) {
-            int iMin = Integer.MAX_VALUE;
-            int iMax = Integer.MIN_VALUE;
-            for (int i = 0; i < getChildCount(); i++) {
-                View childAt = getChildAt(i);
-                if (childAt instanceof CategoryButton) {
-                    iMin = Math.min(iMin, childAt.getLeft());
-                    iMax = Math.max(iMax, childAt.getRight());
-                }
-            }
-            if (iMin < iMax) {
-                int width = (int) (iMin + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
-                int width2 = (int) (iMax + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
-                canvas2 = canvas;
-                canvas2.drawRect(width, 0.0f, width2, getHeight(), this.backgroundPaint);
-                if (width2 < getWidth() && (drawable = this.leftBoundDrawable) != null) {
-                    drawable.setAlpha(255);
-                    Drawable drawable2 = this.leftBoundDrawable;
-                    drawable2.setBounds(width2, 0, drawable2.getIntrinsicWidth() + width2, getHeight());
-                    this.leftBoundDrawable.draw(canvas2);
-                }
-            } else {
-                canvas2 = canvas;
-            }
-        } else {
-            canvas2 = canvas;
-        }
-        drawSelectedHighlight(canvas2);
-        super.draw(canvas2);
-        Drawable drawable3 = this.leftBoundDrawable;
-        if (drawable3 != null) {
-            drawable3.setAlpha((int) (255.0f * this.leftBoundAlpha.set((canScrollHorizontally(-1) && this.scrolledFully) ? 1.0f : 0.0f) * this.categoriesShownT));
-            if (this.leftBoundDrawable.getAlpha() > 0) {
-                Drawable drawable4 = this.leftBoundDrawable;
-                drawable4.setBounds(0, 0, drawable4.getIntrinsicWidth(), getHeight());
-                this.leftBoundDrawable.draw(canvas2);
-            }
-        }
+    public void setDontOccupyWidth(int i) {
+        this.dontOccupyWidth = i;
     }
 
-    private void drawSelectedHighlight(Canvas canvas) {
-        float f = this.selectedAlpha.set(this.selectedCategoryIndex >= 0 ? 1.0f : 0.0f);
-        int i = this.selectedCategoryIndex;
-        float f2 = i >= 0 ? this.selectedIndex.set(i) : this.selectedIndex.get();
-        if (f <= 0.0f) {
+    public void setOnCategoryClick(Utilities.Callback<EmojiCategory> callback) {
+        this.onCategoryClick = callback;
+    }
+
+    public void setOnScrollFully(Utilities.Callback<Boolean> callback) {
+        this.onScrollFully = callback;
+    }
+
+    public void setOnScrollIntoOccupiedWidth(Utilities.Callback<Integer> callback) {
+        this.onScrollIntoOccupiedWidth = callback;
+    }
+
+    public void setShownButtonsAtStart(float f) {
+        this.shownButtonsAtStart = f;
+    }
+
+    public final void updateCategoriesShown(boolean z, boolean z2) {
+        this.categoriesShouldShow = z;
+        ?? r5 = z;
+        if (this.categories == null) {
+            r5 = 0;
+        }
+        if (this.categoriesShownT == ((float) r5)) {
             return;
         }
-        float f3 = f2 + 1.0f;
-        double d = f3;
-        int iMax = Math.max(1, (int) Math.floor(d));
-        int iMax2 = Math.max(1, (int) Math.ceil(d));
-        View view = null;
-        View view2 = null;
+        ValueAnimator valueAnimator = this.categoriesShownAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.categoriesShownAnimator = null;
+        }
+        if (!z2) {
+            setCategoriesShownT(r5 != 0 ? 1.0f : 0.0f);
+            return;
+        }
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.categoriesShownT, r5 != 0 ? 1.0f : 0.0f);
+        this.categoriesShownAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 22));
+        this.categoriesShownAnimator.addListener(new Tooltip.AnonymousClass1(this, 7));
+        this.categoriesShownAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        ValueAnimator valueAnimator2 = this.categoriesShownAnimator;
+        EmojiCategory[] emojiCategoryArr = this.categories;
+        valueAnimator2.setDuration(((long) (emojiCategoryArr == null ? 5 : emojiCategoryArr.length)) * 120);
+        this.categoriesShownAnimator.start();
+    }
+
+    public void selectCategory(int i) {
+        if (this.selectedCategoryIndex < 0 && i >= 0) {
+            this.selectedIndex.set(i, true);
+        }
+        this.selectedCategoryIndex = i;
         for (int i2 = 0; i2 < getChildCount(); i2++) {
             View childAt = getChildAt(i2);
-            int childAdapterPosition = getChildAdapterPosition(childAt);
-            if (childAdapterPosition == iMax) {
-                view = childAt;
-            }
-            if (childAdapterPosition == iMax2) {
-                view2 = childAt;
-            }
-            if (view != null && view2 != null) {
-                break;
+            if (childAt instanceof CategoryButton) {
+                ((CategoryButton) childAt).setSelected(this.selectedCategoryIndex == RecyclerView.getChildAdapterPosition(childAt) - 1, true);
             }
         }
-        int alpha = this.selectedPaint.getAlpha();
-        this.selectedPaint.setAlpha((int) (alpha * f));
-        if (view != null && view2 != null) {
-            float f4 = iMax == iMax2 ? 0.5f : (f3 - iMax) / (iMax2 - iMax);
-            getChildBounds(view, this.rect1);
-            getChildBounds(view2, this.rect2);
-            AndroidUtilities.lerp(this.rect1, this.rect2, f4, this.rect3);
-            canvas.drawRoundRect(this.rect3, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.selectedPaint);
-        }
-        this.selectedPaint.setAlpha(alpha);
-    }
-
-    private void getChildBounds(View view, RectF rectF) {
-        float right = (view.getRight() + view.getLeft()) / 2.0f;
-        float bottom = (view.getBottom() + view.getTop()) / 2.0f;
-        float width = ((view.getWidth() / 2.0f) - AndroidUtilities.dp(1.0f)) * (view instanceof CategoryButton ? ((CategoryButton) view).getScale() : 1.0f);
-        rectF.set(right - width, bottom - width, right + width, bottom + width);
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            View viewFindChildViewUnder = findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-            if (!(viewFindChildViewUnder instanceof CategoryButton) || viewFindChildViewUnder.getAlpha() < 0.5f) {
-                return false;
-            }
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    class Adapter extends RecyclerListView.SelectionAdapter {
-        private int lastItemCount;
-
-        @Override
-        public int getItemViewType(int i) {
-            return i == 0 ? 0 : 1;
-        }
-
-        private Adapter() {
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View categoryButton;
-            if (i == 0) {
-                categoryButton = StickerCategoriesListView.this.paddingView = new View(StickerCategoriesListView.this.getContext()) {
-                    @Override
-                    protected void onMeasure(int i2, int i3) {
-                        int size = View.MeasureSpec.getSize(i2);
-                        if (size <= 0) {
-                            size = ((View) getParent()).getMeasuredWidth();
-                        }
-                        int size2 = View.MeasureSpec.getSize(i3) - AndroidUtilities.dp(4.0f);
-                        StickerCategoriesListView stickerCategoriesListView = StickerCategoriesListView.this;
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(stickerCategoriesListView.paddingWidth = Math.max(stickerCategoriesListView.dontOccupyWidth > 0 ? StickerCategoriesListView.this.dontOccupyWidth + AndroidUtilities.dp(4.0f) : 0, (int) (size - Math.min(((Adapter.this.getItemCount() - 1) * size2) + AndroidUtilities.dp(4.0f), StickerCategoriesListView.this.shownButtonsAtStart * size2))), 1073741824), i3);
-                    }
-                };
-            } else {
-                StickerCategoriesListView stickerCategoriesListView = StickerCategoriesListView.this;
-                categoryButton = stickerCategoriesListView.new CategoryButton(stickerCategoriesListView.getContext());
-            }
-            return new RecyclerListView.Holder(categoryButton);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            if (viewHolder.getItemViewType() != 1 || StickerCategoriesListView.this.categories == null) {
-                return;
-            }
-            int i2 = i - 1;
-            EmojiCategory emojiCategory = StickerCategoriesListView.this.categories[i2];
-            CategoryButton categoryButton = (CategoryButton) viewHolder.itemView;
-            categoryButton.set(emojiCategory, i2, StickerCategoriesListView.this.selectedCategoryIndex == i2);
-            categoryButton.setAlpha(StickerCategoriesListView.this.categoriesShownT);
-            categoryButton.setScaleX(StickerCategoriesListView.this.categoriesShownT);
-            categoryButton.setScaleY(StickerCategoriesListView.this.categoriesShownT);
-            categoryButton.play(false);
-        }
-
-        @Override
-        public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
-            if (viewHolder.getItemViewType() == 1) {
-                CategoryButton categoryButton = (CategoryButton) viewHolder.itemView;
-                categoryButton.setSelected(StickerCategoriesListView.this.selectedCategoryIndex == viewHolder.getAdapterPosition() - 1, false);
-                categoryButton.play(false);
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            int length = (StickerCategoriesListView.this.categories == null ? 0 : StickerCategoriesListView.this.categories.length) + 1;
-            if (length != this.lastItemCount) {
-                if (StickerCategoriesListView.this.paddingView != null) {
-                    StickerCategoriesListView.this.paddingView.requestLayout();
-                }
-                this.lastItemCount = length;
-            }
-            return length;
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 1;
-        }
-    }
-
-    public int getGlassIconColor(float f) {
-        return ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_glass_defaultIcon, this.resourcesProvider), (int) (f * 255.0f));
-    }
-
-    class CategoryButton extends RLottieImageView {
-        ValueAnimator backAnimator;
-        private int imageColor;
-        private int index;
-        private long lastPlayed;
-        ValueAnimator loadAnimator;
-        float loadProgress;
-        private boolean loaded;
-        float pressedProgress;
-        private ValueAnimator selectedAnimator;
-        private float selectedT;
-
-        public CategoryButton(Context context) {
-            super(context);
-            this.loaded = false;
-            this.loadProgress = 1.0f;
-            setImageColor(StickerCategoriesListView.this.isGlassDesign ? StickerCategoriesListView.this.getGlassIconColor(0.4f) : StickerCategoriesListView.this.getThemedColor(Theme.key_chat_emojiPanelIcon));
-            setScaleType(ImageView.ScaleType.CENTER);
-            setLayerNum(StickerCategoriesListView.this.layerNum);
-        }
-
-        public void set(EmojiCategory emojiCategory, int i, boolean z) {
-            this.index = i;
-            if (!TextUtils.isEmpty(emojiCategory.title)) {
-                setContentDescription(emojiCategory.title);
-            } else if (!TextUtils.isEmpty(emojiCategory.emojis)) {
-                setContentDescription(emojiCategory.emojis);
-            } else {
-                setContentDescription(null);
-            }
-            ValueAnimator valueAnimator = this.loadAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.loadAnimator = null;
-            }
-            if (emojiCategory.remote) {
-                setImageResource(0);
-                clearAnimationDrawable();
-                final boolean zIsTabIconsAnimationEnabled = StickerCategoriesListView.this.isTabIconsAnimationEnabled(true);
-                this.loaded = false;
-                this.loadProgress = 1.0f;
-                AnimatedEmojiDrawable.getDocumentFetcher(UserConfig.selectedAccount).fetchDocument(emojiCategory.documentId, new AnimatedEmojiDrawable.ReceivedDocument() {
-                    @Override
-                    public final void run(TLRPC.Document document) {
-                        StickerCategoriesListView.CategoryButton.$r8$lambda$5E4_ogyFdNd56291g2oNdZyDnZ4(this.f$0, zIsTabIconsAnimationEnabled, document);
-                    }
-                });
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StickerCategoriesListView.CategoryButton.$r8$lambda$gEMFKTsWBVlNDwS0LHZUSf6OYfs(this.f$0);
-                    }
-                }, 60L);
-            } else if (emojiCategory.animated) {
-                this.cached = false;
-                setImageResource(0);
-                setAnimation(emojiCategory.iconResId, 24, 24);
-                playAnimation();
-                this.loadProgress = 1.0f;
-            } else {
-                clearAnimationDrawable();
-                setImageResource(emojiCategory.iconResId);
-                this.loadProgress = 1.0f;
-            }
-            setSelected(z, false);
-        }
-
-        public static void $r8$lambda$5E4_ogyFdNd56291g2oNdZyDnZ4(CategoryButton categoryButton, boolean z, TLRPC.Document document) {
-            categoryButton.setOnlyLastFrame(!z);
-            categoryButton.setAnimation(document, 24, 24);
-            categoryButton.playAnimation();
-        }
-
-        public static void $r8$lambda$gEMFKTsWBVlNDwS0LHZUSf6OYfs(CategoryButton categoryButton) {
-            if (categoryButton.loaded) {
-                return;
-            }
-            categoryButton.loadProgress = 0.0f;
-        }
-
-        @Override
-        protected void onLoaded() {
-            this.loaded = true;
-            if (this.loadProgress < 1.0f) {
-                ValueAnimator valueAnimator = this.loadAnimator;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.loadAnimator = null;
-                }
-                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.loadProgress, 1.0f);
-                this.loadAnimator = valueAnimatorOfFloat;
-                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StickerCategoriesListView.CategoryButton.m2835$r8$lambda$U5F_BfWS_GPWXrSJCnEY6lDDYw(this.f$0, valueAnimator2);
-                    }
-                });
-                this.loadAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        CategoryButton categoryButton = CategoryButton.this;
-                        categoryButton.loadProgress = 1.0f;
-                        categoryButton.invalidate();
-                        CategoryButton.this.loadAnimator = null;
-                    }
-                });
-                this.loadAnimator.setDuration(320L);
-                this.loadAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                this.loadAnimator.start();
-            }
-        }
-
-        public static void m2835$r8$lambda$U5F_BfWS_GPWXrSJCnEY6lDDYw(CategoryButton categoryButton, ValueAnimator valueAnimator) {
-            categoryButton.getClass();
-            categoryButton.loadProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            categoryButton.invalidate();
-        }
-
-        public void setSelected(boolean z, boolean z2) {
-            if (Math.abs(this.selectedT - (z ? 1.0f : 0.0f)) > 0.01f) {
-                ValueAnimator valueAnimator = this.selectedAnimator;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.selectedAnimator = null;
-                }
-                if (z2) {
-                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectedT, z ? 1.0f : 0.0f);
-                    this.selectedAnimator = valueAnimatorOfFloat;
-                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            StickerCategoriesListView.CategoryButton.m2836$r8$lambda$aA2TeOugb7SPCGBt3SF2PnedcQ(this.f$0, valueAnimator2);
-                        }
-                    });
-                    this.selectedAnimator.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            CategoryButton categoryButton = CategoryButton.this;
-                            categoryButton.updateSelectedT(((Float) categoryButton.selectedAnimator.getAnimatedValue()).floatValue());
-                            CategoryButton.this.selectedAnimator = null;
-                        }
-                    });
-                    this.selectedAnimator.setDuration(350L);
-                    this.selectedAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                    this.selectedAnimator.start();
-                    return;
-                }
-                updateSelectedT(z ? 1.0f : 0.0f);
-            }
-        }
-
-        public static void m2836$r8$lambda$aA2TeOugb7SPCGBt3SF2PnedcQ(CategoryButton categoryButton, ValueAnimator valueAnimator) {
-            categoryButton.getClass();
-            categoryButton.updateSelectedT(((Float) valueAnimator.getAnimatedValue()).floatValue());
-        }
-
-        public void updateSelectedT(float f) {
-            this.selectedT = f;
-            StickerCategoriesListView stickerCategoriesListView = StickerCategoriesListView.this;
-            if (stickerCategoriesListView.isGlassDesign) {
-                setImageColor(stickerCategoriesListView.getGlassIconColor(AndroidUtilities.lerp(0.4f, 0.8f, f)));
-            } else {
-                setImageColor(ColorUtils.blendARGB(stickerCategoriesListView.getThemedColor(Theme.key_chat_emojiPanelIcon), StickerCategoriesListView.this.getThemedColor(Theme.key_chat_emojiPanelIconSelected), this.selectedT));
-            }
-            invalidate();
-        }
-
-        public void setImageColor(int i) {
-            if (this.imageColor != i) {
-                this.imageColor = i;
-                setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-            }
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            updatePressedProgress();
-            float scale = getScale();
-            if (scale != 1.0f) {
-                canvas.save();
-                canvas.scale(scale, scale, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-            }
-            super.draw(canvas);
-            if (scale != 1.0f) {
-                canvas.restore();
-            }
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            int size = View.MeasureSpec.getSize(i2);
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(4.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        }
-
-        public void play(boolean z) {
-            if (System.currentTimeMillis() - this.lastPlayed > 250 || z) {
-                this.lastPlayed = System.currentTimeMillis();
-                RLottieDrawable animatedDrawable = getAnimatedDrawable();
-                if (animatedDrawable == null && getImageReceiver() != null) {
-                    animatedDrawable = getImageReceiver().getLottieAnimation();
-                }
-                if (animatedDrawable != null) {
-                    animatedDrawable.stop();
-                    animatedDrawable.setCurrentFrame(0);
-                    animatedDrawable.restart(true);
-                } else if (animatedDrawable == null) {
-                    setProgress(0.0f);
-                    playAnimation();
-                }
-            }
-        }
-
-        public void updatePressedProgress() {
-            if (isPressed()) {
-                float f = this.pressedProgress;
-                if (f != 1.0f) {
-                    this.pressedProgress = Utilities.clamp(f + ((1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f), 1.0f, 0.0f);
-                    invalidate();
-                    StickerCategoriesListView.this.invalidate();
-                }
-            }
-        }
-
-        public float getScale() {
-            return (((1.0f - this.pressedProgress) * 0.15f) + 0.85f) * this.loadProgress;
-        }
-
-        @Override
-        public void setPressed(boolean z) {
-            ValueAnimator valueAnimator;
-            if (isPressed() != z) {
-                super.setPressed(z);
-                invalidate();
-                StickerCategoriesListView.this.invalidate();
-                if (z && (valueAnimator = this.backAnimator) != null) {
-                    valueAnimator.removeAllListeners();
-                    this.backAnimator.cancel();
-                }
-                if (z) {
-                    return;
-                }
-                float f = this.pressedProgress;
-                if (f != 0.0f) {
-                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
-                    this.backAnimator = valueAnimatorOfFloat;
-                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            StickerCategoriesListView.CategoryButton.$r8$lambda$W9Qj9Xa7YvSGwcVW4kyx2BHAnC8(this.f$0, valueAnimator2);
-                        }
-                    });
-                    this.backAnimator.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            super.onAnimationEnd(animator);
-                            CategoryButton.this.backAnimator = null;
-                        }
-                    });
-                    this.backAnimator.setInterpolator(new OvershootInterpolator(3.0f));
-                    this.backAnimator.setDuration(350L);
-                    this.backAnimator.start();
-                }
-            }
-        }
-
-        public static void $r8$lambda$W9Qj9Xa7YvSGwcVW4kyx2BHAnC8(CategoryButton categoryButton, ValueAnimator valueAnimator) {
-            categoryButton.getClass();
-            categoryButton.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            categoryButton.invalidate();
-        }
-    }
-
-    public static class EmojiCategory {
-        public boolean animated;
-        public long documentId;
-        public String emojis;
-        public boolean greeting;
-        public int iconResId;
-        public boolean premium;
-        public boolean remote;
-        public String title;
-
-        public static EmojiCategory remote(TLRPC.EmojiGroup emojiGroup) {
-            EmojiCategory emojiCategory = new EmojiCategory();
-            emojiCategory.remote = true;
-            emojiCategory.documentId = emojiGroup.icon_emoji_id;
-            if (emojiGroup instanceof TLRPC.TL_emojiGroupPremium) {
-                emojiCategory.emojis = "premium";
-                emojiCategory.premium = true;
-            } else {
-                emojiCategory.emojis = TextUtils.concat((CharSequence[]) emojiGroup.emoticons.toArray(new String[0])).toString();
-            }
-            emojiCategory.greeting = emojiGroup instanceof TLRPC.TL_emojiGroupGreeting;
-            emojiCategory.title = emojiGroup.title;
-            return emojiCategory;
-        }
-    }
-
-    static class EmojiGroupFetcher extends CacheFetcher {
-        private EmojiGroupFetcher() {
-        }
-
-        @Override
-        public void getRemote(int i, Integer num, long j, final Utilities.Callback4 callback4) {
-            TLObject tLObject;
-            if (num.intValue() == 1) {
-                TLRPC.TL_messages_getEmojiStatusGroups tL_messages_getEmojiStatusGroups = new TLRPC.TL_messages_getEmojiStatusGroups();
-                tL_messages_getEmojiStatusGroups.hash = (int) j;
-                tLObject = tL_messages_getEmojiStatusGroups;
-            } else if (num.intValue() == 2) {
-                TLRPC.TL_messages_getEmojiProfilePhotoGroups tL_messages_getEmojiProfilePhotoGroups = new TLRPC.TL_messages_getEmojiProfilePhotoGroups();
-                tL_messages_getEmojiProfilePhotoGroups.hash = (int) j;
-                tLObject = tL_messages_getEmojiProfilePhotoGroups;
-            } else if (num.intValue() == 3) {
-                TLRPC.TL_messages_getEmojiStickerGroups tL_messages_getEmojiStickerGroups = new TLRPC.TL_messages_getEmojiStickerGroups();
-                tL_messages_getEmojiStickerGroups.hash = (int) j;
-                tLObject = tL_messages_getEmojiStickerGroups;
-            } else {
-                TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups = new TLRPC.TL_messages_getEmojiGroups();
-                tL_messages_getEmojiGroups.hash = (int) j;
-                tLObject = tL_messages_getEmojiGroups;
-            }
-            ConnectionsManager.getInstance(i).sendRequest(tLObject, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    StickerCategoriesListView.EmojiGroupFetcher.$r8$lambda$hoVrwIB0C7JCXIxZyF899CAsQ48(callback4, tLObject2, tL_error);
-                }
-            });
-        }
-
-        public static void $r8$lambda$hoVrwIB0C7JCXIxZyF899CAsQ48(Utilities.Callback4 callback4, TLObject tLObject, TLRPC.TL_error tL_error) {
-            if (tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified) {
-                Boolean bool = Boolean.TRUE;
-                callback4.run(bool, null, 0L, bool);
-            } else if (!(tLObject instanceof TLRPC.TL_messages_emojiGroups)) {
-                callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-            } else {
-                TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
-                callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
-            }
-        }
-
-        @Override
-        public void getLocal(final int i, final Integer num, final Utilities.Callback2 callback2) {
-            MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
-                @Override
-                public final void run() throws Throwable {
-                    StickerCategoriesListView.EmojiGroupFetcher.$r8$lambda$d9VgXuQKrOQ1qkFLkDr7Mpark10(i, num, callback2);
-                }
-            });
-        }
-
-        public static void $r8$lambda$d9VgXuQKrOQ1qkFLkDr7Mpark10(int i, Integer num, Utilities.Callback2 callback2) throws Throwable {
-            SQLiteCursor sQLiteCursorQueryFinalized;
-            TLRPC.messages_EmojiGroups messages_emojigroupsTLdeserialize;
-            NativeByteBuffer nativeByteBufferByteBufferValue;
-            SQLiteCursor sQLiteCursor = 0;
-            sQLiteCursor = 0;
-            SQLiteCursor sQLiteCursor2 = null;
-            try {
-                try {
-                    SQLiteDatabase database = MessagesStorage.getInstance(i).getDatabase();
-                    if (database != null) {
-                        try {
-                            sQLiteCursorQueryFinalized = database.queryFinalized("SELECT data FROM emoji_groups WHERE type = ?", num);
-                            try {
-                                if (!sQLiteCursorQueryFinalized.next() || (nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0)) == null) {
-                                    messages_emojigroupsTLdeserialize = null;
-                                } else {
-                                    messages_emojigroupsTLdeserialize = TLRPC.messages_EmojiGroups.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), true);
-                                    nativeByteBufferByteBufferValue.reuse();
-                                }
-                                if (!(messages_emojigroupsTLdeserialize instanceof TLRPC.TL_messages_emojiGroups)) {
-                                    callback2.run(0L, null);
-                                } else {
-                                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) messages_emojigroupsTLdeserialize;
-                                    callback2.run(Long.valueOf(tL_messages_emojiGroups.hash), tL_messages_emojiGroups);
-                                }
-                                sQLiteCursor2 = sQLiteCursorQueryFinalized;
-                            } catch (Exception e) {
-                                e = e;
-                                FileLog.e(e);
-                                callback2.run(0L, null);
-                                if (sQLiteCursorQueryFinalized != null) {
-                                    sQLiteCursorQueryFinalized.dispose();
-                                    return;
-                                }
-                                return;
-                            }
-                        } catch (Exception e2) {
-                            e = e2;
-                            sQLiteCursorQueryFinalized = null;
-                            FileLog.e(e);
-                            callback2.run(0L, null);
-                            if (sQLiteCursorQueryFinalized != null) {
-                                sQLiteCursorQueryFinalized.dispose();
-                                return;
-                            }
-                            return;
-                        } catch (Throwable th) {
-                            th = th;
-                            if (sQLiteCursor != 0) {
-                                sQLiteCursor.dispose();
-                            }
-                            throw th;
-                        }
-                    }
-                    if (sQLiteCursor2 != null) {
-                        sQLiteCursor2.dispose();
-                    }
-                } catch (Throwable th2) {
-                    th = th2;
-                    sQLiteCursor = i;
-                }
-            } catch (Exception e3) {
-                e = e3;
-            } catch (Throwable th3) {
-                th = th3;
-            }
-        }
-
-        @Override
-        public void setLocal(final int i, final Integer num, final TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, long j) {
-            MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    StickerCategoriesListView.EmojiGroupFetcher.$r8$lambda$ItTxN5yQgcyJ0ciauXDJGTpsOXk(i, tL_messages_emojiGroups, num);
-                }
-            });
-        }
-
-        public static void $r8$lambda$ItTxN5yQgcyJ0ciauXDJGTpsOXk(int i, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, Integer num) {
-            try {
-                SQLiteDatabase database = MessagesStorage.getInstance(i).getDatabase();
-                if (database != null) {
-                    if (tL_messages_emojiGroups == null) {
-                        database.executeFast("DELETE FROM emoji_groups WHERE type = " + num).stepThis().dispose();
-                        return;
-                    }
-                    SQLitePreparedStatement sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO emoji_groups VALUES(?, ?)");
-                    sQLitePreparedStatementExecuteFast.requery();
-                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_messages_emojiGroups.getObjectSize());
-                    tL_messages_emojiGroups.serializeToStream(nativeByteBuffer);
-                    sQLitePreparedStatementExecuteFast.bindInteger(1, num.intValue());
-                    sQLitePreparedStatementExecuteFast.bindByteBuffer(2, nativeByteBuffer);
-                    sQLitePreparedStatementExecuteFast.step();
-                    nativeByteBuffer.reuse();
-                    sQLitePreparedStatementExecuteFast.dispose();
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-    }
-
-    static class EmojiSearch extends CacheFetcher {
-        private EmojiSearch() {
-        }
-
-        @Override
-        public void getRemote(int i, String str, long j, final Utilities.Callback4 callback4) {
-            TLRPC.TL_messages_searchCustomEmoji tL_messages_searchCustomEmoji = new TLRPC.TL_messages_searchCustomEmoji();
-            tL_messages_searchCustomEmoji.emoticon = str;
-            tL_messages_searchCustomEmoji.hash = j;
-            ConnectionsManager.getInstance(i).sendRequest(tL_messages_searchCustomEmoji, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickerCategoriesListView.EmojiSearch.m2837$r8$lambda$S8qTPEYrUlxmW8suBrCSOYi_S0(callback4, tLObject, tL_error);
-                }
-            });
-        }
-
-        public static void m2837$r8$lambda$S8qTPEYrUlxmW8suBrCSOYi_S0(Utilities.Callback4 callback4, TLObject tLObject, TLRPC.TL_error tL_error) {
-            if (tLObject instanceof TLRPC.TL_emojiListNotModified) {
-                Boolean bool = Boolean.TRUE;
-                callback4.run(bool, null, 0L, bool);
-            } else if (!(tLObject instanceof TLRPC.TL_emojiList)) {
-                callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-            } else {
-                TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
-                callback4.run(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
-            }
-        }
+        invalidate();
     }
 }

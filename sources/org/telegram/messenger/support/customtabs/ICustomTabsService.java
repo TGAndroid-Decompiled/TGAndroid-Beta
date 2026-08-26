@@ -6,39 +6,29 @@ import android.os.IInterface;
 import android.os.Parcel;
 
 public interface ICustomTabsService extends IInterface {
-    boolean newSession(ICustomTabsCallback iCustomTabsCallback);
 
-    boolean warmup(long j);
+    public abstract class Stub extends Binder implements ICustomTabsService {
+        public static final int $r8$clinit = 0;
 
-    public static abstract class Stub extends Binder implements ICustomTabsService {
-        public static ICustomTabsService asInterface(IBinder iBinder) {
-            if (iBinder == null) {
-                return null;
-            }
-            IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
-            return (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof ICustomTabsService)) ? new Proxy(iBinder) : (ICustomTabsService) iInterfaceQueryLocalInterface;
-        }
+        public final class Proxy implements ICustomTabsService {
+            public final IBinder mRemote;
 
-        private static class Proxy implements ICustomTabsService {
-            private IBinder mRemote;
-
-            Proxy(IBinder iBinder) {
+            public Proxy(IBinder iBinder) {
                 this.mRemote = iBinder;
             }
 
             @Override
-            public IBinder asBinder() {
+            public final IBinder asBinder() {
                 return this.mRemote;
             }
 
-            @Override
-            public boolean warmup(long j) {
+            public final boolean newSession(CustomTabsClient$2 customTabsClient$2) {
                 Parcel parcelObtain = Parcel.obtain();
                 Parcel parcelObtain2 = Parcel.obtain();
                 try {
                     parcelObtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
-                    parcelObtain.writeLong(j);
-                    this.mRemote.transact(2, parcelObtain, parcelObtain2, 0);
+                    parcelObtain.writeStrongBinder(customTabsClient$2);
+                    this.mRemote.transact(3, parcelObtain, parcelObtain2, 0);
                     parcelObtain2.readException();
                     return parcelObtain2.readInt() != 0;
                 } finally {
@@ -47,16 +37,15 @@ public interface ICustomTabsService extends IInterface {
                 }
             }
 
-            @Override
-            public boolean newSession(ICustomTabsCallback iCustomTabsCallback) {
+            public final void warmup() {
                 Parcel parcelObtain = Parcel.obtain();
                 Parcel parcelObtain2 = Parcel.obtain();
                 try {
                     parcelObtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
-                    parcelObtain.writeStrongBinder(iCustomTabsCallback != null ? iCustomTabsCallback.asBinder() : null);
-                    this.mRemote.transact(3, parcelObtain, parcelObtain2, 0);
+                    parcelObtain.writeLong(0L);
+                    this.mRemote.transact(2, parcelObtain, parcelObtain2, 0);
                     parcelObtain2.readException();
-                    return parcelObtain2.readInt() != 0;
+                    parcelObtain2.readInt();
                 } finally {
                     parcelObtain2.recycle();
                     parcelObtain.recycle();

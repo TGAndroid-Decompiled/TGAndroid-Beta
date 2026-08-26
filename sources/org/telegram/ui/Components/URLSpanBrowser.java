@@ -6,25 +6,21 @@ import android.text.style.URLSpan;
 import android.view.View;
 import org.telegram.messenger.browser.Browser;
 
-public class URLSpanBrowser extends URLSpan {
-    private TextStyleSpan.TextStyleRun style;
+public final class URLSpanBrowser extends URLSpan {
+    public final TextStyleSpan.TextStyleRun style;
 
     public URLSpanBrowser(String str, TextStyleSpan.TextStyleRun textStyleRun) {
         super(str != null ? str.replace((char) 8238, ' ') : str);
         this.style = textStyleRun;
     }
 
-    public TextStyleSpan.TextStyleRun getStyle() {
-        return this.style;
+    @Override
+    public final void onClick(View view) {
+        Browser.openUrl(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
     @Override
-    public void onClick(View view) {
-        Browser.openUrl(view.getContext(), Uri.parse(getURL()));
-    }
-
-    @Override
-    public void updateDrawState(TextPaint textPaint) {
+    public final void updateDrawState(TextPaint textPaint) {
         super.updateDrawState(textPaint);
         TextStyleSpan.TextStyleRun textStyleRun = this.style;
         if (textStyleRun != null) {

@@ -1,140 +1,165 @@
 package kotlin.collections;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.RandomAccess;
 import kotlin.jvm.internal.Intrinsics;
-import kotlin.ranges.RangesKt;
 
-final class RingBuffer extends AbstractList implements RandomAccess {
-    private final Object[] buffer;
-    private final int capacity;
-    private int size;
-    private int startIndex;
+public final class RingBuffer extends AbstractList implements RandomAccess {
+    public final Object[] buffer;
+    public final int capacity;
+    public int size;
+    public int startIndex;
 
-    public RingBuffer(Object[] buffer, int i) {
-        Intrinsics.checkNotNullParameter(buffer, "buffer");
-        this.buffer = buffer;
+    public RingBuffer(int i, Object[] objArr) {
+        this.buffer = objArr;
         if (i < 0) {
-            throw new IllegalArgumentException(("ring buffer filled size should not be negative but it is " + i).toString());
+            throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, "ring buffer filled size should not be negative but it is ").toString());
         }
-        if (i > buffer.length) {
-            throw new IllegalArgumentException(("ring buffer filled size: " + i + " cannot be larger than the buffer size: " + buffer.length).toString());
+        if (i <= objArr.length) {
+            this.capacity = objArr.length;
+            this.size = i;
+        } else {
+            throw new IllegalArgumentException(("ring buffer filled size: " + i + " cannot be larger than the buffer size: " + objArr.length).toString());
         }
-        this.capacity = buffer.length;
-        this.size = i;
-    }
-
-    public RingBuffer(int i) {
-        this(new Object[i], 0);
     }
 
     @Override
-    public int getSize() {
+    public final Object get(int i) {
+        int size = getSize();
+        if (i < 0 || i >= size) {
+            throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, size, "index: ", ", size: "));
+        }
+        return this.buffer[(this.startIndex + i) % this.capacity];
+    }
+
+    @Override
+    public final int getSize() {
         return this.size;
     }
 
     @Override
-    public Object get(int i) {
-        AbstractList.Companion.checkElementIndex$kotlin_stdlib(i, size());
-        return this.buffer[(this.startIndex + i) % this.capacity];
-    }
-
-    public final boolean isFull() {
-        return size() == this.capacity;
-    }
-
-    @Override
-    public Iterator iterator() {
-        return new AbstractIterator() {
-            private int count;
-            private int index;
+    public final Iterator iterator() {
+        return new Iterator() {
+            public int count;
+            public int index;
+            public Object nextValue;
+            public int state;
 
             {
-                this.count = RingBuffer.this.size();
+                this.count = RingBuffer.this.size;
                 this.index = RingBuffer.this.startIndex;
             }
 
             @Override
-            protected void computeNext() {
-                if (this.count != 0) {
-                    setNext(RingBuffer.this.buffer[this.index]);
-                    this.index = (this.index + 1) % RingBuffer.this.capacity;
-                    this.count--;
-                    return;
+            public final boolean hasNext() {
+                int i = this.state;
+                if (i == 0) {
+                    return tryToComputeNext();
                 }
-                done();
+                if (i == 1) {
+                    return true;
+                }
+                if (i == 2) {
+                    return false;
+                }
+                throw new IllegalArgumentException("hasNext called when the iterator is in the FAILED state.");
+            }
+
+            @Override
+            public final Object next() {
+                int i = this.state;
+                if (i == 1) {
+                    this.state = 0;
+                    return this.nextValue;
+                }
+                if (i == 2 || !tryToComputeNext()) {
+                    throw new NoSuchElementException();
+                }
+                this.state = 0;
+                return this.nextValue;
+            }
+
+            @Override
+            public final void remove() {
+                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+            }
+
+            public final boolean tryToComputeNext() {
+                this.state = 3;
+                int i = this.count;
+                if (i == 0) {
+                    this.state = 2;
+                } else {
+                    RingBuffer ringBuffer = RingBuffer.this;
+                    Object[] objArr = ringBuffer.buffer;
+                    int i2 = this.index;
+                    this.nextValue = objArr[i2];
+                    this.state = 1;
+                    this.index = (i2 + 1) % ringBuffer.capacity;
+                    this.count = i - 1;
+                }
+                return this.state == 1;
             }
         };
     }
 
-    @Override
-    public Object[] toArray(Object[] array) {
-        Intrinsics.checkNotNullParameter(array, "array");
-        if (array.length < size()) {
-            array = Arrays.copyOf(array, size());
-            Intrinsics.checkNotNullExpressionValue(array, "copyOf(...)");
+    public final void removeFirst() {
+        if (20 > this.size) {
+            throw new IllegalArgumentException(("n shouldn't be greater than the buffer size: n = 20, size = " + this.size).toString());
         }
-        int size = size();
-        int i = 0;
-        int i2 = 0;
-        for (int i3 = this.startIndex; i2 < size && i3 < this.capacity; i3++) {
-            array[i2] = this.buffer[i3];
-            i2++;
-        }
-        while (i2 < size) {
-            array[i2] = this.buffer[i];
-            i2++;
-            i++;
-        }
-        return CollectionsKt__CollectionsJVMKt.terminateCollectionToArray(size, array);
-    }
-
-    @Override
-    public Object[] toArray() {
-        return toArray(new Object[size()]);
-    }
-
-    public final RingBuffer expanded(int i) {
-        Object[] array;
+        int i = this.startIndex;
         int i2 = this.capacity;
-        int iCoerceAtMost = RangesKt.coerceAtMost(i2 + (i2 >> 1) + 1, i);
-        if (this.startIndex == 0) {
-            array = Arrays.copyOf(this.buffer, iCoerceAtMost);
-            Intrinsics.checkNotNullExpressionValue(array, "copyOf(...)");
+        int i3 = (i + 20) % i2;
+        Object[] objArr = this.buffer;
+        if (i > i3) {
+            ArraysKt.fill(i, i2, objArr);
+            ArraysKt.fill(0, i3, objArr);
         } else {
-            array = toArray(new Object[iCoerceAtMost]);
+            ArraysKt.fill(i, i3, objArr);
         }
-        return new RingBuffer(array, size());
+        this.startIndex = i3;
+        this.size -= 20;
     }
 
     @Override
-    public final void add(Object obj) {
-        if (isFull()) {
-            throw new IllegalStateException("ring buffer is full");
-        }
-        this.buffer[(this.startIndex + size()) % this.capacity] = obj;
-        this.size = size() + 1;
+    public final Object[] toArray() {
+        return toArray(new Object[getSize()]);
     }
 
-    public final void removeFirst(int i) {
-        if (i < 0) {
-            throw new IllegalArgumentException(("n shouldn't be negative but it is " + i).toString());
+    @Override
+    public final Object[] toArray(Object[] array) {
+        Object[] objArr;
+        Intrinsics.checkNotNullParameter(array, "array");
+        int length = array.length;
+        int i = this.size;
+        if (length < i) {
+            array = Arrays.copyOf(array, i);
+            Intrinsics.checkNotNullExpressionValue(array, "copyOf(...)");
         }
-        if (i > size()) {
-            throw new IllegalArgumentException(("n shouldn't be greater than the buffer size: n = " + i + ", size = " + size()).toString());
-        }
-        if (i > 0) {
-            int i2 = this.startIndex;
-            int i3 = (i2 + i) % this.capacity;
-            if (i2 > i3) {
-                ArraysKt___ArraysJvmKt.fill(this.buffer, null, i2, this.capacity);
-                ArraysKt___ArraysJvmKt.fill(this.buffer, null, 0, i3);
-            } else {
-                ArraysKt___ArraysJvmKt.fill(this.buffer, null, i2, i3);
+        int i2 = this.size;
+        int i3 = this.startIndex;
+        int i4 = 0;
+        int i5 = 0;
+        while (true) {
+            objArr = this.buffer;
+            if (i5 >= i2 || i3 >= this.capacity) {
+                break;
             }
-            this.startIndex = i3;
-            this.size = size() - i;
+            array[i5] = objArr[i3];
+            i5++;
+            i3++;
         }
+        while (i5 < i2) {
+            array[i5] = objArr[i4];
+            i5++;
+            i4++;
+        }
+        if (i2 < array.length) {
+            array[i2] = null;
+        }
+        return array;
     }
 }

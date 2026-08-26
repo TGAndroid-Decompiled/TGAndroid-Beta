@@ -1,4 +1,4 @@
 package kotlin.text;
 
-abstract class StringsKt__RegexExtensionsKt extends StringsKt__RegexExtensionsJVMKt {
+public abstract class StringsKt__RegexExtensionsKt extends StringsKt__RegexExtensionsJVMKt {
 }

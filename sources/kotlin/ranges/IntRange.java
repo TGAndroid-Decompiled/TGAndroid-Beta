@@ -1,30 +1,9 @@
 package kotlin.ranges;
 
-import kotlin.jvm.internal.DefaultConstructorMarker;
-
 public final class IntRange extends IntProgression {
-    public static final Companion Companion = new Companion(null);
-    private static final IntRange EMPTY = new IntRange(1, 0);
+    public static final IntRange EMPTY = new IntRange(1, 0, 1);
 
-    public IntRange(int i, int i2) {
-        super(i, i2, 1);
-    }
-
-    public Integer getStart() {
-        return Integer.valueOf(getFirst());
-    }
-
-    public Integer getEndInclusive() {
-        return Integer.valueOf(getLast());
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return getFirst() > getLast();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (!(obj instanceof IntRange)) {
             return false;
         }
@@ -32,32 +11,24 @@ public final class IntRange extends IntProgression {
             return true;
         }
         IntRange intRange = (IntRange) obj;
-        return getFirst() == intRange.getFirst() && getLast() == intRange.getLast();
+        if (this.first == intRange.first) {
+            return this.last == intRange.last;
+        }
+        return false;
     }
 
-    @Override
-    public int hashCode() {
+    public final int hashCode() {
         if (isEmpty()) {
             return -1;
         }
-        return (getFirst() * 31) + getLast();
+        return (this.first * 31) + this.last;
     }
 
-    @Override
-    public String toString() {
-        return getFirst() + ".." + getLast();
+    public final boolean isEmpty() {
+        return this.first > this.last;
     }
 
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
-
-        public final IntRange getEMPTY() {
-            return IntRange.EMPTY;
-        }
+    public final String toString() {
+        return this.first + ".." + this.last;
     }
 }

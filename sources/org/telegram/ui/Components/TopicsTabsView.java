@@ -3,26 +3,29 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -30,109 +33,964 @@ import java.util.HashSet;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.core.BitwiseUtils;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.LocationController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsController;
+import org.telegram.messenger.NotificationsController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TopicsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
-import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.AvatarSpan;
+import org.telegram.ui.CalendarActivity;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda11;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.GradientClip;
-import org.telegram.ui.TopicCreateFragment;
+import org.telegram.ui.GroupCallActivity;
+import org.telegram.ui.GroupCreateActivity;
+import org.telegram.ui.LoginActivity;
+import org.telegram.ui.StickersActivity;
 import org.telegram.ui.recyclerview.ChatListItemAnimator;
 
-public class TopicsTabsView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
-    private boolean allTopicsHidden;
-    private long animateFromSelectedTopicId;
-    private ValueAnimator animator;
-    private final BoolAnimator animatorCloseButtonVisibility;
-    private final BoolAnimator animatorTopicsVisibility;
-    private final boolean bot;
-    private final HorizontalTabView botCreateTopicButtonHorizontal;
-    private final VerticalTabView botCreateTopicButtonVertical;
-    private final boolean canShowProgress;
-    private final ImageView closeButtonSide;
-    private final ImageView closeButtonTop;
-    private final int currentAccount;
-    private long currentTopicId;
-    private final long dialogId;
-    private final HashSet excludeTopics;
-    private final BaseFragment fragment;
-    private long lastSelectedTopicId;
-    private final boolean mono;
-    private boolean notificationsAttached;
-    private Utilities.Callback2 onDialogSelected;
-    private Runnable onTopicCreated;
-    private Utilities.Callback2 onTopicSelected;
-    private Runnable onUpdateSideMenuPosition;
-    private Boolean pendingSidemenu;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private BlurredBackgroundDrawable sideMenuBackgroundDrawable;
-    private float sideMenuBackgroundMarginBottom;
-    private float sideMenuBackgroundMarginTop;
-    private final UniversalRecyclerView sideTabs;
-    private final FrameLayout sideTabsContainer;
-    private boolean sidemenuAnimating;
-    private boolean sidemenuEnabled;
-    private float sidemenuT;
-    private final ImageView toggleButtonSide;
-    private final ImageView toggleButtonTop;
-    private BlurredBackgroundDrawable topMenuBackgroundDrawable;
-    private final UniversalRecyclerView topTabs;
-    private final FrameLayout topTabsContainer;
-    private boolean topicBottom;
+public final class TopicsTabsView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
+    public static final int $r8$clinit = 0;
+    public boolean allTopicsHidden;
+    public long animateFromSelectedTopicId;
+    public ValueAnimator animator;
+    public final BoolAnimator animatorCloseButtonVisibility;
+    public final BoolAnimator animatorTopicsVisibility;
+    public final boolean bot;
+    public final VerticalTabView botCreateTopicButtonVertical;
+    public final boolean canShowProgress;
+    public final ImageView closeButtonSide;
+    public final ImageView closeButtonTop;
+    public final int currentAccount;
+    public long currentTopicId;
+    public final long dialogId;
+    public final HashSet excludeTopics;
+    public final ChatActivity fragment;
+    public long lastSelectedTopicId;
+    public final boolean mono;
+    public boolean notificationsAttached;
+    public Utilities.Callback2 onDialogSelected;
+    public Runnable onTopicCreated;
+    public Utilities.Callback2 onTopicSelected;
+    public ChatActivity$$ExternalSyntheticLambda11 onUpdateSideMenuPosition;
+    public Boolean pendingSidemenu;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public BlurredBackgroundDrawable sideMenuBackgroundDrawable;
+    public float sideMenuBackgroundMarginBottom;
+    public float sideMenuBackgroundMarginTop;
+    public final AnonymousClass3 sideTabs;
+    public final FrameLayout sideTabsContainer;
+    public boolean sidemenuAnimating;
+    public boolean sidemenuEnabled;
+    public float sidemenuT;
+    public final ImageView toggleButtonSide;
+    public final ImageView toggleButtonTop;
+    public BlurredBackgroundDrawable topMenuBackgroundDrawable;
+    public final AnonymousClass1 topTabs;
+    public final FrameLayout topTabsContainer;
+    public boolean topicBottom;
 
-    public enum Position {
-        TOP,
-        LEFT,
-        BOTTOM
+    public final class AnonymousClass5 extends AnimatorListenerAdapter {
+        public final boolean val$side;
+
+        public AnonymousClass5(boolean z) {
+            this.val$side = z;
+        }
+
+        @Override
+        public final void onAnimationEnd(Animator animator) {
+            TopicsTabsView topicsTabsView = TopicsTabsView.this;
+            if (topicsTabsView.animator == animator) {
+                boolean z = this.val$side;
+                topicsTabsView.sidemenuT = z ? 1.0f : 0.0f;
+                topicsTabsView.updateSidemenuPosition();
+                topicsTabsView.sidemenuAnimating = false;
+                topicsTabsView.toggleButtonSide.setImageResource(topicsTabsView.topicBottom ? R.drawable.menu_sidebar_top : R.drawable.menu_sidebar_bottom);
+                topicsTabsView.animator = null;
+                SharedPreferences.Editor editorM = AiTonesController$$ExternalSyntheticOutline0.m(topicsTabsView.currentAccount);
+                StringBuilder sb = new StringBuilder("topicssidetabs");
+                long j = topicsTabsView.dialogId;
+                sb.append(j);
+                editorM.putBoolean(sb.toString(), topicsTabsView.sidemenuEnabled).putBoolean("topicssidetabsb" + j, topicsTabsView.topicBottom).apply();
+                Boolean bool = topicsTabsView.pendingSidemenu;
+                if (bool != null && z != bool.booleanValue()) {
+                    boolean zBooleanValue = topicsTabsView.pendingSidemenu.booleanValue();
+                    topicsTabsView.pendingSidemenu = null;
+                    topicsTabsView.animateSidemenuTo(zBooleanValue);
+                }
+                AndroidUtilities.runOnUIThread(new Tooltip$$ExternalSyntheticLambda0(this, 3));
+            }
+        }
     }
 
-    public static void $r8$lambda$whz9_2q0Ul6L4zdHpqUqnJxFQVc() {
+    public final class BotNewTopicDrawable extends Drawable {
+        public final Drawable drawable;
+        public final Paint paint = new Paint(1);
+        public final RectF rectF = new RectF();
+
+        public BotNewTopicDrawable(Context context) {
+            this.drawable = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
+        }
+
+        @Override
+        public final void draw(Canvas canvas) {
+            canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
+            this.drawable.draw(canvas);
+        }
+
+        @Override
+        public final int getOpacity() {
+            return 0;
+        }
+
+        @Override
+        public final void onBoundsChange(Rect rect) {
+            super.onBoundsChange(rect);
+            this.rectF.set(rect);
+            int iCenterX = rect.centerX() - AndroidUtilities.dp(12.0f);
+            int iCenterY = rect.centerY() - AndroidUtilities.dp(12.0f);
+            this.drawable.setBounds(iCenterX, iCenterY, AndroidUtilities.dp(24.0f) + iCenterX, AndroidUtilities.dp(24.0f) + iCenterY);
+        }
+
+        @Override
+        public final void setAlpha(int i) {
+            this.paint.setAlpha(i);
+            this.drawable.setAlpha(i);
+        }
+
+        @Override
+        public final void setColorFilter(ColorFilter colorFilter) {
+        }
     }
 
-    @Override
-    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-        FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
+    public final class HorizontalTabView extends FrameLayout {
+        public int addW;
+        public AvatarSpan avatarSpan;
+        public ValueAnimator counterAnimator;
+        public int counterBackgroundColorKey;
+        public final AnimatedTextView.AnimatedTextDrawable counterText;
+        public final CalendarActivity.AnonymousClass5 counterView;
+        public int counterViewX;
+        public final int currentAccount;
+        public final ImageView imageView;
+        public boolean isAdd;
+        public int lastUnread;
+        public boolean mono;
+        public boolean pinned;
+        public boolean reorder;
+        public final Theme.ResourcesProvider resourcesProvider;
+        public ValueAnimator selectAnimator;
+        public float selectT;
+        public boolean selected;
+        public final AnimatedFloat shakeAlpha;
+        public Shaker shaker;
+        public final LinkSpanDrawable.LinksTextView textView;
+        public long topicId;
+
+        public final class Factory extends UItem.UItemFactory {
+            public static final int $r8$clinit = 0;
+
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            @Override
+            public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                HorizontalTabView horizontalTabView = (HorizontalTabView) view;
+                boolean z2 = false;
+                if (uItem.red) {
+                    horizontalTabView.setLoading();
+                } else {
+                    Object obj = uItem.object;
+                    if (obj == null) {
+                        if (uItem.id == -2) {
+                            horizontalTabView.setAdd();
+                        } else {
+                            horizontalTabView.setAll((uItem.flags & 1) != 0, uItem.accent, uItem.checked);
+                        }
+                    } else if (obj instanceof TLRPC.TL_forumTopic) {
+                        if (uItem.withUsername) {
+                            horizontalTabView.set(uItem.dialogId, (TLRPC.TL_forumTopic) obj, uItem.checked);
+                        } else {
+                            horizontalTabView.setMf(uItem.dialogId, (TLRPC.TL_forumTopic) obj, uItem.checked);
+                        }
+                    }
+                }
+                horizontalTabView.addW = BitwiseUtils.hasFlag(uItem.flags, 8) ? AndroidUtilities.dp(10.0f) : 0;
+                if (universalRecyclerView != null && universalRecyclerView.reorderingAllowed && horizontalTabView.pinned) {
+                    z2 = true;
+                }
+                horizontalTabView.setReorder(z2);
+            }
+
+            @Override
+            public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new HorizontalTabView(context, i, resourcesProvider);
+            }
+        }
+
+        public HorizontalTabView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.shakeAlpha = new AnimatedFloat(360L, this, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.pinned = false;
+            this.isAdd = false;
+            this.mono = false;
+            this.counterBackgroundColorKey = Theme.key_chats_unreadCounter;
+            this.addW = 0;
+            this.currentAccount = i;
+            this.resourcesProvider = resourcesProvider;
+            setClipChildren(false);
+            setClipToPadding(false);
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
+            this.textView = linksTextView;
+            linksTextView.setTextSize(1, 14.0f);
+            linksTextView.setTypeface(AndroidUtilities.bold());
+            addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, 19, 11.0f, 0.0f, 11.0f, 0.0f));
+            ScaleStateListAnimator.apply(linksTextView, 0.1f, 1.5f);
+            ImageView imageView = new ImageView(context);
+            this.imageView = imageView;
+            addView(imageView, LayoutHelper.createFrame(34, 34, 17));
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, false, false);
+            this.counterText = animatedTextDrawable;
+            animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.0f));
+            animatedTextDrawable.textPaint.setTypeface(AndroidUtilities.bold());
+            animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
+            animatedTextDrawable.gravity = 17;
+            CalendarActivity.AnonymousClass5 anonymousClass5 = new CalendarActivity.AnonymousClass5(this, context, resourcesProvider);
+            this.counterView = anonymousClass5;
+            addView(anonymousClass5, LayoutHelper.createFrame(-2, -2.0f, 21, 4.66f, 0.0f, 11.0f, 0.0f));
+            ScaleStateListAnimator.apply(anonymousClass5, 0.1f, 1.5f);
+            updateTextColor();
+        }
+
+        private int getMeasuringWidth() {
+            float fDp = AndroidUtilities.dp(16.66f);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.counterText;
+            return AndroidUtilities.dp(11.0f) + this.textView.getMeasuredWidth() + AndroidUtilities.dp(11.0f) + (animatedTextDrawable.currentWidth > 0.0f ? AndroidUtilities.dp(4.66f) + ((int) Math.max(fDp, animatedTextDrawable.currentWidth + AndroidUtilities.dp(10.0f))) : 0) + this.addW;
+        }
+
+        public int getTextColor() {
+            int i = Theme.key_windowBackgroundWhiteGrayText2;
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            return ColorUtils.blendARGB(this.isAdd ? 1.0f : this.selectT, Theme.getColor(i, resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
+        }
+
+        private void setLayout(boolean z) {
+            if (this.mono == z) {
+                return;
+            }
+            this.mono = z;
+        }
+
+        @Override
+        public final boolean drawChild(Canvas canvas, View view, long j) {
+            if (view != this.textView) {
+                return super.drawChild(canvas, view, j);
+            }
+            canvas.save();
+            float f = this.shakeAlpha.set(this.reorder);
+            if (f > 0.0f) {
+                if (this.shaker == null) {
+                    this.shaker = new Shaker(this);
+                }
+                canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
+                this.shaker.concat(canvas, f);
+                canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
+            }
+            boolean zDrawChild = super.drawChild(canvas, view, j);
+            canvas.restore();
+            return zDrawChild;
+        }
+
+        public long getTopicId() {
+            return this.topicId;
+        }
+
+        @Override
+        public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            int i5 = i3 - i;
+            int i6 = i4 - i2;
+            ImageView imageView = this.imageView;
+            int measuredWidth = (i5 - imageView.getMeasuredWidth()) / 2;
+            int measuredHeight = (i6 - imageView.getMeasuredHeight()) / 2;
+            imageView.layout(measuredWidth, measuredHeight, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight() + measuredHeight);
+            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+            int i7 = i6 / 2;
+            linksTextView.layout(AndroidUtilities.dp(11.0f), i7 - (linksTextView.getMeasuredHeight() / 2), linksTextView.getMeasuredWidth() + AndroidUtilities.dp(11.0f), (linksTextView.getMeasuredHeight() / 2) + i7);
+            float f = this.counterText.currentWidth;
+            CalendarActivity.AnonymousClass5 anonymousClass5 = this.counterView;
+            if (f > 0.0f) {
+                anonymousClass5.layout((i5 - AndroidUtilities.dp(11.0f)) - anonymousClass5.getMeasuredWidth(), i7 - (anonymousClass5.getMeasuredHeight() / 2), i5 - AndroidUtilities.dp(11.0f), (anonymousClass5.getMeasuredHeight() / 2) + i7);
+            } else {
+                anonymousClass5.layout(AndroidUtilities.dp(4.66f) + linksTextView.getMeasuredWidth() + AndroidUtilities.dp(11.0f), i7 - (anonymousClass5.getMeasuredHeight() / 2), anonymousClass5.getMeasuredWidth() + AndroidUtilities.dp(4.66f) + linksTextView.getMeasuredWidth() + AndroidUtilities.dp(11.0f), (anonymousClass5.getMeasuredHeight() / 2) + i7);
+            }
+            if (this.counterViewX != 0 && anonymousClass5.getLeft() != this.counterViewX) {
+                anonymousClass5.setTranslationX((-anonymousClass5.getLeft()) + this.counterViewX);
+                anonymousClass5.animate().translationX(0.0f).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            }
+            this.counterViewX = anonymousClass5.getLeft();
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            this.textView.measure(i, i2);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(getMeasuringWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+        }
+
+        public final void set(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+            setLayout(false);
+            long j2 = this.topicId;
+            long j3 = tL_forumTopic.id;
+            boolean z2 = j2 == j3;
+            this.topicId = j3;
+            this.imageView.setVisibility(8);
+            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+            linksTextView.setVisibility(0);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            if (tL_forumTopic.id == 1) {
+                spannableStringBuilder.append((CharSequence) "#");
+                spannableStringBuilder.append((CharSequence) (tL_forumTopic.hidden ? "\u200b" : " "));
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_filled_general);
+                coloredImageSpan.setScale(0.66f, 0.66f);
+                spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 18);
+            } else if (tL_forumTopic.icon_emoji_id != 0) {
+                spannableStringBuilder.append((CharSequence) "x ");
+                spannableStringBuilder.setSpan(new AnimatedEmojiSpan(tL_forumTopic.icon_emoji_id, 1.2f, linksTextView.getPaint().getFontMetricsInt()), 0, 1, 33);
+            }
+            if (!tL_forumTopic.hidden) {
+                spannableStringBuilder.append((CharSequence) tL_forumTopic.title);
+            }
+            linksTextView.setText(spannableStringBuilder);
+            setSelected(z);
+            updateTextColor();
+            setCounter(tL_forumTopic.unread_count, MessagesController.getInstance(this.currentAccount).isDialogMuted(j, this.topicId), z2);
+            boolean z3 = tL_forumTopic.pinned;
+            if (this.pinned != z3) {
+                this.pinned = z3;
+            }
+        }
+
+        public final void setAdd() {
+            setLayout(false);
+            this.topicId = 0L;
+            this.isAdd = true;
+            this.imageView.setVisibility(8);
+            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+            linksTextView.setVisibility(0);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("e\u200b");
+            spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.menu_topic_add), 0, 1, 33);
+            linksTextView.setText(spannableStringBuilder);
+            setSelected(false);
+            updateTextColor();
+            setCounter(0, true, false);
+            if (this.pinned) {
+                this.pinned = false;
+            }
+        }
+
+        public final void setAll(boolean z, boolean z2, boolean z3) {
+            setLayout(z2);
+            this.topicId = 0L;
+            this.isAdd = false;
+            ImageView imageView = this.imageView;
+            imageView.setVisibility(z ? 0 : 8);
+            if (z) {
+                BotNewTopicDrawable botNewTopicDrawable = new BotNewTopicDrawable(getContext());
+                botNewTopicDrawable.paint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
+                imageView.setImageDrawable(botNewTopicDrawable);
+            }
+            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+            linksTextView.setText(LocaleController.getString(z ? R.string.BotForumNewTopic : R.string.AllTopicsShort));
+            linksTextView.setVisibility(z ? 8 : 0);
+            setSelected(z3);
+            updateTextColor();
+            setCounter(0, true, false);
+            if (this.pinned) {
+                this.pinned = false;
+            }
+        }
+
+        public final void setCounter(int i, boolean z, boolean z2) {
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.counterText;
+            if (i > 0) {
+                this.counterBackgroundColorKey = z ? Theme.key_chats_unreadCounterMuted : Theme.key_chats_unreadCounter;
+                animatedTextDrawable.setText(LocaleController.formatNumber(i, ','), z2, true);
+            } else {
+                this.counterBackgroundColorKey = Theme.key_chats_unreadCounterMuted;
+                animatedTextDrawable.setText("", z2, true);
+            }
+            if (z2 && this.lastUnread < i) {
+                ValueAnimator valueAnimator = this.counterAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    this.counterAnimator = null;
+                }
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.counterAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new TopicsTabsView$HorizontalTabView$$ExternalSyntheticLambda0(this, 0));
+                this.counterAnimator.addListener(new Tooltip.AnonymousClass1(this, 13));
+                this.counterAnimator.setInterpolator(new OvershootInterpolator(2.0f));
+                this.counterAnimator.setDuration(200L);
+                this.counterAnimator.start();
+            }
+            this.lastUnread = i;
+            this.counterView.invalidate();
+            if (getMeasuringWidth() != getMeasuredWidth()) {
+                requestLayout();
+            }
+        }
+
+        public final void setLoading() {
+            setLayout(false);
+            this.topicId = -1L;
+            this.imageView.setVisibility(8);
+            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+            linksTextView.setVisibility(0);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x");
+            LoadingSpan loadingSpan = new LoadingSpan(AndroidUtilities.dp(42.0f), linksTextView);
+            loadingSpan.scaleY = 0.95f;
+            spannableStringBuilder.setSpan(loadingSpan, 0, 1, 33);
+            linksTextView.setText(spannableStringBuilder);
+            setSelected(false);
+            updateTextColor();
+            setCounter(0, true, false);
+            if (this.pinned) {
+                this.pinned = false;
+            }
+        }
+
+        public final void setMf(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+            setLayout(true);
+            long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
+            boolean z2 = this.topicId == peerDialogId;
+            this.topicId = peerDialogId;
+            this.imageView.setVisibility(8);
+            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+            linksTextView.setVisibility(0);
+            AvatarSpan avatarSpan = this.avatarSpan;
+            int i = this.currentAccount;
+            if (avatarSpan == null) {
+                AvatarSpan avatarSpan2 = new AvatarSpan(linksTextView, 18.0f, i);
+                this.avatarSpan = avatarSpan2;
+                avatarSpan2.usePaintAlpha = false;
+            }
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            TLObject userOrChat = MessagesController.getInstance(i).getUserOrChat(peerDialogId);
+            if (userOrChat != null) {
+                spannableStringBuilder.append((CharSequence) "x  ");
+                AvatarSpan avatarSpan3 = this.avatarSpan;
+                avatarSpan3.avatarDrawable.setInfo(avatarSpan3.currentAccount, userOrChat);
+                avatarSpan3.imageReceiver.setForUserOrChat(userOrChat, avatarSpan3.avatarDrawable);
+                spannableStringBuilder.setSpan(this.avatarSpan, 0, 1, 33);
+            }
+            spannableStringBuilder.append((CharSequence) DialogObject.getName(peerDialogId));
+            linksTextView.setText(TextUtils.ellipsize(spannableStringBuilder, linksTextView.getPaint(), AndroidUtilities.dp(150.0f), TextUtils.TruncateAt.END));
+            setSelected(z);
+            setCounter(tL_forumTopic.unread_count, MessagesController.getInstance(i).isDialogMuted(j, peerDialogId), z2);
+            if (this.pinned) {
+                this.pinned = false;
+            }
+        }
+
+        public void setReorder(boolean z) {
+            this.reorder = z;
+            invalidate();
+        }
+
+        @Override
+        public void setSelected(boolean z) {
+            int i = 1;
+            if (this.selected == z) {
+                return;
+            }
+            this.selected = z;
+            ValueAnimator valueAnimator = this.selectAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectT, z ? 1.0f : 0.0f);
+            this.selectAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new TopicsTabsView$HorizontalTabView$$ExternalSyntheticLambda0(this, i));
+            this.selectAnimator.addListener(new LoginActivity.AnonymousClass9(11, this, z));
+            this.selectAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.selectAnimator.setDuration(320L);
+            this.selectAnimator.start();
+        }
+
+        public final void updateTextColor() {
+            int textColor = getTextColor();
+            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+            linksTextView.setTextColor(textColor);
+            linksTextView.setEmojiColor(textColor);
+            this.counterView.invalidate();
+        }
     }
 
-    public TopicsTabsView(Context context, BaseFragment baseFragment, int i, long j, Theme.ResourcesProvider resourcesProvider) {
+    public final class Position {
+        public static final Position[] $VALUES;
+        public static final Position BOTTOM;
+        public static final Position LEFT;
+        public static final Position TOP;
+
+        static {
+            Position position = new Position("TOP", 0);
+            TOP = position;
+            Position position2 = new Position("LEFT", 1);
+            LEFT = position2;
+            Position position3 = new Position("BOTTOM", 2);
+            BOTTOM = position3;
+            $VALUES = new Position[]{position, position2, position3};
+        }
+
+        public static Position valueOf(String str) {
+            return (Position) Enum.valueOf(Position.class, str);
+        }
+
+        public static Position[] values() {
+            return (Position[]) $VALUES.clone();
+        }
+    }
+
+    public final class VerticalTabView extends FrameLayout {
+        public final AvatarDrawable avatarDrawable;
+        public float countScale;
+        public ValueAnimator counterAnimator;
+        public int counterBackgroundColorKey;
+        public final AnimatedTextView.AnimatedTextDrawable counterText;
+        public final int currentAccount;
+        public final GroupCreateActivity.AnonymousClass7 imageLayoutView;
+        public final BackupImageView imageView;
+        public final FrameLayout.LayoutParams imageViewParams;
+        public boolean isAdd;
+        public boolean lastMention;
+        public boolean lastReactions;
+        public int lastUnread;
+        public final GroupCallActivity.AnonymousClass61 layout;
+        public final ImageView lineView;
+        public LoadingDrawable loadingDrawable;
+        public SpannableStringBuilder mentionString;
+        public boolean mono;
+        public boolean pinned;
+        public SpannableStringBuilder reactionString;
+        public boolean reorder;
+        public final Theme.ResourcesProvider resourcesProvider;
+        public ValueAnimator selectAnimator;
+        public float selectT;
+        public boolean selected;
+        public Shaker shaker;
+        public boolean staticImage;
+        public final TextView textView;
+        public long topicId;
+
+        public final class Factory extends UItem.UItemFactory {
+            public static final int $r8$clinit = 0;
+
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            @Override
+            public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                VerticalTabView verticalTabView = (VerticalTabView) view;
+                boolean z2 = false;
+                if (uItem.red) {
+                    verticalTabView.setLoading();
+                } else {
+                    Object obj = uItem.object;
+                    if (obj == null) {
+                        if (uItem.longValue == -2) {
+                            verticalTabView.setAdd(uItem.accent, uItem.checked);
+                        } else {
+                            verticalTabView.setAll((uItem.flags & 1) != 0, uItem.accent, uItem.checked);
+                        }
+                    } else if (obj instanceof TLRPC.TL_forumTopic) {
+                        if (uItem.withUsername) {
+                            verticalTabView.set(uItem.dialogId, (TLRPC.TL_forumTopic) obj, uItem.checked);
+                        } else {
+                            verticalTabView.setMf((TLRPC.TL_forumTopic) obj, uItem.checked);
+                        }
+                    }
+                }
+                if (universalRecyclerView != null && universalRecyclerView.reorderingAllowed && verticalTabView.pinned) {
+                    z2 = true;
+                }
+                verticalTabView.setReorder(z2);
+            }
+
+            @Override
+            public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new VerticalTabView(context, i, resourcesProvider);
+            }
+        }
+
+        public VerticalTabView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.mono = false;
+            this.pinned = false;
+            this.counterBackgroundColorKey = Theme.key_chats_unreadCounter;
+            this.countScale = 1.0f;
+            this.topicId = 0L;
+            this.isAdd = false;
+            this.staticImage = false;
+            this.currentAccount = i;
+            this.resourcesProvider = resourcesProvider;
+            GroupCallActivity.AnonymousClass61 anonymousClass61 = new GroupCallActivity.AnonymousClass61(this, context);
+            this.layout = anonymousClass61;
+            anonymousClass61.setWillNotDraw(false);
+            anonymousClass61.setOrientation(1);
+            addView(anonymousClass61, LayoutHelper.createFrame(-1, -1.0f, 119, 1.0f, 0.0f, 0.0f, 0.0f));
+            ScaleStateListAnimator.apply(anonymousClass61, 0.1f, 1.5f);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, false, false);
+            this.counterText = animatedTextDrawable;
+            animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.0f));
+            Typeface typefaceBold = AndroidUtilities.bold();
+            TextPaint textPaint = animatedTextDrawable.textPaint;
+            textPaint.setTypeface(typefaceBold);
+            int color = Theme.getColor(Theme.key_chats_unreadCounterText, resourcesProvider);
+            textPaint.setColor(color);
+            animatedTextDrawable.alpha = Color.alpha(color);
+            animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
+            animatedTextDrawable.gravity = 17;
+            GroupCreateActivity.AnonymousClass7 anonymousClass7 = new GroupCreateActivity.AnonymousClass7(this, context, resourcesProvider);
+            this.imageLayoutView = anonymousClass7;
+            anonymousClass7.setWillNotDraw(false);
+            anonymousClass7.setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
+            anonymousClass61.addView(anonymousClass7, LayoutHelper.createLinear(-1, -2, 17));
+            BackupImageView backupImageView = new BackupImageView(context);
+            this.imageView = backupImageView;
+            FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(34, 34, 17);
+            this.imageViewParams = layoutParamsCreateFrame;
+            anonymousClass7.addView(backupImageView, layoutParamsCreateFrame);
+            this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            TextView textView = new TextView(context);
+            this.textView = textView;
+            int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider);
+            int i2 = Theme.key_featuredStickers_addButton;
+            textView.setTextColor(ColorUtils.blendARGB(this.selectT, color2, Theme.getColor(i2, resourcesProvider)));
+            textView.setTextSize(1, 10.0f);
+            textView.setGravity(17);
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setMaxLines(3);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            anonymousClass61.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 4, 0, 4, 0));
+            anonymousClass61.setPadding(0, 0, 0, AndroidUtilities.dp(4.0f));
+            ImageView imageView = new ImageView(context);
+            this.lineView = imageView;
+            imageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(2.33f), Theme.getColor(i2, resourcesProvider)));
+            addView(imageView, LayoutHelper.createFrame(6, -1.0f, 115, -3.0f, 3.0f, 0.0f, 3.0f));
+            imageView.setTranslationX(-AndroidUtilities.dp(3.0f));
+            imageView.setVisibility(8);
+        }
+
+        private void setLayout(boolean z) {
+            if (this.mono == z) {
+                return;
+            }
+            this.mono = z;
+            this.imageView.setRoundRadius(AndroidUtilities.dp(z ? 36.0f : 3.0f));
+            this.imageLayoutView.setPadding(0, AndroidUtilities.dp(z ? 7.0f : 4.0f), 0, 0);
+            FrameLayout.LayoutParams layoutParams = this.imageViewParams;
+            layoutParams.width = z ? AndroidUtilities.dp(28.0f) : AndroidUtilities.dp(30.0f);
+            layoutParams.height = z ? AndroidUtilities.dp(28.0f) : AndroidUtilities.dp(30.0f);
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), i2);
+        }
+
+        public final void set(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+            setLayout(false);
+            long j2 = this.topicId;
+            long j3 = tL_forumTopic.id;
+            boolean z2 = j2 == j3;
+            this.staticImage = false;
+            this.topicId = j3;
+            this.isAdd = false;
+            TextView textView = this.textView;
+            textView.setText(tL_forumTopic.title);
+            textView.setVisibility(0);
+            int i = tL_forumTopic.id;
+            BackupImageView backupImageView = this.imageView;
+            if (i == 1) {
+                this.staticImage = true;
+                backupImageView.imageReceiver.clearImage();
+                backupImageView.setAnimatedEmojiDrawable(null);
+                backupImageView.setImageResource(R.drawable.msg_filled_general);
+                backupImageView.setScaleX(0.66f);
+                backupImageView.setScaleY(0.66f);
+            } else if (tL_forumTopic.icon_emoji_id != 0) {
+                backupImageView.imageReceiver.clearImage();
+                backupImageView.setAnimatedEmojiDrawable(AnimatedEmojiDrawable.make(UserConfig.selectedAccount, tL_forumTopic.icon_emoji_id, null, 3));
+                backupImageView.setScaleX(1.0f);
+                backupImageView.setScaleY(1.0f);
+            } else {
+                backupImageView.setAnimatedEmojiDrawable(null);
+                backupImageView.setImageDrawable(ForumUtilities.createTopicDrawable(tL_forumTopic));
+                backupImageView.setScaleX(1.0f);
+                backupImageView.setScaleY(1.0f);
+            }
+            setSelected(z);
+            updateImageColor();
+            setCounter(tL_forumTopic.unread_count, MessagesController.getInstance(this.currentAccount).isDialogMuted(j, tL_forumTopic.id), tL_forumTopic.unread_mentions_count > 0, tL_forumTopic.unread_reactions_count > 0, z2);
+            boolean z3 = tL_forumTopic.pinned;
+            if (this.pinned != z3) {
+                this.pinned = z3;
+            }
+            updateState();
+        }
+
+        public final void setAdd(boolean z, boolean z2) {
+            setLayout(z);
+            this.staticImage = true;
+            this.isAdd = true;
+            TextView textView = this.textView;
+            textView.setText(LocaleController.getString(R.string.NewTopic));
+            textView.setVisibility(0);
+            BackupImageView backupImageView = this.imageView;
+            backupImageView.imageReceiver.clearImage();
+            backupImageView.setAnimatedEmojiDrawable(null);
+            backupImageView.setImageResource(R.drawable.emoji_tabs_new3);
+            backupImageView.setScaleX(1.0f);
+            backupImageView.setScaleY(1.0f);
+            setSelected(z2);
+            updateImageColor();
+            updateState();
+            setCounter(0, true, false, false, false);
+            if (this.pinned) {
+                this.pinned = false;
+            }
+        }
+
+        public final void setAll(boolean z, boolean z2, boolean z3) {
+            setLayout(z2);
+            this.topicId = -1L;
+            this.staticImage = true;
+            this.isAdd = false;
+            TextView textView = this.textView;
+            textView.setText(LocaleController.getString(z ? R.string.BotForumNewTopic : R.string.AllTopicsSide));
+            textView.setVisibility(z ? 8 : 0);
+            BackupImageView backupImageView = this.imageView;
+            backupImageView.imageReceiver.clearImage();
+            backupImageView.setAnimatedEmojiDrawable(null);
+            if (z) {
+                BotNewTopicDrawable botNewTopicDrawable = new BotNewTopicDrawable(getContext());
+                botNewTopicDrawable.paint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
+                backupImageView.setImageDrawable(botNewTopicDrawable);
+            } else {
+                backupImageView.setImageResource(R.drawable.other_chats);
+            }
+            backupImageView.setScaleX(1.0f);
+            backupImageView.setScaleY(1.0f);
+            setSelected(z3);
+            updateImageColor();
+            updateState();
+            setCounter(0, true, false, false, false);
+            if (this.pinned) {
+                this.pinned = false;
+            }
+        }
+
+        public final void setCounter(int i, boolean z, boolean z2, boolean z3, boolean z4) {
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.counterText;
+            int i2 = 1;
+            if (z3) {
+                this.counterBackgroundColorKey = Theme.key_dialogReactionMentionBackground;
+                if (this.reactionString == null) {
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("❤️");
+                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_like_filled);
+                    coloredImageSpan.setScale(0.8f, 0.8f);
+                    coloredImageSpan.spaceScaleX = 0.5f;
+                    coloredImageSpan.translate(-AndroidUtilities.dp(3.0f), 0.0f);
+                    spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 33);
+                    this.reactionString = spannableStringBuilder;
+                }
+                animatedTextDrawable.setText(this.reactionString, z4, true);
+            } else if (z2) {
+                this.counterBackgroundColorKey = z ? Theme.key_chats_unreadCounterMuted : Theme.key_chats_unreadCounter;
+                if (this.mentionString == null) {
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("@");
+                    ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.mini_mention_filled_16);
+                    coloredImageSpan2.setScale(0.8f, 0.8f);
+                    coloredImageSpan2.spaceScaleX = 0.5f;
+                    coloredImageSpan2.translate(-AndroidUtilities.dp(3.0f), 0.0f);
+                    spannableStringBuilder2.setSpan(coloredImageSpan2, 0, 1, 33);
+                    this.mentionString = spannableStringBuilder2;
+                }
+                animatedTextDrawable.setText(this.mentionString, z4, true);
+            } else if (i > 0) {
+                this.counterBackgroundColorKey = z ? Theme.key_chats_unreadCounterMuted : Theme.key_chats_unreadCounter;
+                animatedTextDrawable.setText(LocaleController.formatNumber(i, ','), z4, true);
+            } else {
+                this.counterBackgroundColorKey = Theme.key_chats_unreadCounterMuted;
+                animatedTextDrawable.setText("", z4, true);
+            }
+            if (z4 && (this.lastUnread < i || ((!this.lastMention && z2) || (!this.lastReactions && z3)))) {
+                ValueAnimator valueAnimator = this.counterAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    this.counterAnimator = null;
+                }
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.counterAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new TopicsTabsView$VerticalTabView$$ExternalSyntheticLambda0(this, i2));
+                this.counterAnimator.addListener(new Tooltip.AnonymousClass1(this, 14));
+                this.counterAnimator.setInterpolator(new OvershootInterpolator(2.0f));
+                this.counterAnimator.setDuration(200L);
+                this.counterAnimator.start();
+            }
+            this.lastUnread = i;
+            this.lastMention = z2;
+            this.lastReactions = z3;
+            this.imageLayoutView.invalidate();
+        }
+
+        public final void setLoading() {
+            setLayout(false);
+            this.topicId = -1L;
+            this.staticImage = true;
+            this.isAdd = false;
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x");
+            TextView textView = this.textView;
+            LoadingSpan loadingSpan = new LoadingSpan(AndroidUtilities.dp(38.0f), textView);
+            loadingSpan.scaleY = 0.75f;
+            spannableStringBuilder.setSpan(loadingSpan, 0, 1, 33);
+            textView.setText(spannableStringBuilder);
+            textView.setVisibility(0);
+            BackupImageView backupImageView = this.imageView;
+            backupImageView.imageReceiver.clearImage();
+            backupImageView.setAnimatedEmojiDrawable(null);
+            if (this.loadingDrawable == null) {
+                LoadingDrawable loadingDrawable = new LoadingDrawable();
+                Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+                loadingDrawable.resourcesProvider = resourcesProvider;
+                this.loadingDrawable = loadingDrawable;
+                loadingDrawable.setRadii(AndroidUtilities.dp(38.0f));
+                this.loadingDrawable.setCallback(backupImageView);
+                int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider);
+                this.loadingDrawable.setColors(Theme.multAlpha(0.15f, color), Theme.multAlpha(0.5f, color), Theme.multAlpha(0.6f, color), Theme.multAlpha(0.15f, color));
+                this.loadingDrawable.stroke = false;
+            }
+            backupImageView.setImageDrawable(this.loadingDrawable);
+            backupImageView.setScaleX(1.0f);
+            backupImageView.setScaleY(1.0f);
+            setSelected(false);
+            updateImageColor();
+            setCounter(0, true, false, false, false);
+            if (this.pinned) {
+                this.pinned = false;
+            }
+            updateState();
+        }
+
+        public final void setMf(TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+            setLayout(true);
+            this.isAdd = false;
+            this.staticImage = false;
+            long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
+            boolean z2 = peerDialogId == this.topicId;
+            this.topicId = peerDialogId;
+            TextView textView = this.textView;
+            textView.setText(DialogObject.getName(peerDialogId));
+            textView.setVisibility(0);
+            BackupImageView backupImageView = this.imageView;
+            AvatarDrawable avatarDrawable = this.avatarDrawable;
+            int i = this.currentAccount;
+            if (peerDialogId >= 0) {
+                TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(peerDialogId));
+                avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+                backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
+                backupImageView.onNewImageSet();
+            } else {
+                TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-peerDialogId));
+                avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
+                backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
+                backupImageView.onNewImageSet();
+            }
+            backupImageView.setScaleX(1.0f);
+            backupImageView.setScaleY(1.0f);
+            updateState();
+            setSelected(z);
+            setCounter(tL_forumTopic.unread_count, false, false, tL_forumTopic.unread_reactions_count > 0, z2);
+            if (this.pinned) {
+                this.pinned = false;
+            }
+        }
+
+        public void setReorder(boolean z) {
+            this.reorder = z;
+            this.layout.invalidate();
+        }
+
+        @Override
+        public void setSelected(boolean z) {
+            int i = 0;
+            if (this.selected == z) {
+                return;
+            }
+            this.selected = z;
+            ValueAnimator valueAnimator = this.selectAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectT, z ? 1.0f : 0.0f);
+            this.selectAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new TopicsTabsView$VerticalTabView$$ExternalSyntheticLambda0(this, i));
+            this.selectAnimator.addListener(new LoginActivity.AnonymousClass9(12, this, z));
+            this.selectAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.selectAnimator.setDuration(320L);
+            this.selectAnimator.start();
+        }
+
+        public final void updateImageColor() {
+            int i = Theme.key_windowBackgroundWhiteGrayText2;
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            int iBlendARGB = ColorUtils.blendARGB(this.isAdd ? 1.0f : this.selectT, Theme.getColor(i, resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
+            boolean z = this.staticImage;
+            BackupImageView backupImageView = this.imageView;
+            if (z) {
+                backupImageView.setColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
+            } else {
+                backupImageView.setColorFilter(null);
+            }
+            backupImageView.setEmojiColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
+            backupImageView.invalidate();
+        }
+
+        public final void updateState() {
+            ImageView imageView = this.lineView;
+            imageView.setTranslationX((1.0f - this.selectT) * (-AndroidUtilities.dp(3.0f)));
+            imageView.setVisibility(this.selectT <= 0.0f ? 8 : 0);
+            TextView textView = this.textView;
+            int i = Theme.key_windowBackgroundWhiteGrayText2;
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            textView.setTextColor(ColorUtils.blendARGB(this.isAdd ? 1.0f : this.selectT, Theme.getColor(i, resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
+        }
+    }
+
+    public TopicsTabsView(int i, long j, Activity activity, Theme.ResourcesProvider resourcesProvider, ChatActivity chatActivity) {
         ViewGroup viewGroup;
-        super(context);
+        super(activity);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorTopicsVisibility = new BoolAnimator(0, this, cubicBezierInterpolator, 380L, true);
-        this.animatorCloseButtonVisibility = new BoolAnimator(0, new FactorAnimator.Target() {
-            @Override
-            public void onFactorChangeFinished(int i2, float f, FactorAnimator factorAnimator) {
-                FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i2, f, factorAnimator);
-            }
-
-            @Override
-            public final void onFactorChanged(int i2, float f, float f2, FactorAnimator factorAnimator) {
-                this.f$0.checkUi_closeButtonVisibility();
-            }
-        }, cubicBezierInterpolator, 320L);
+        this.animatorCloseButtonVisibility = new BoolAnimator(0, new TopicsTabsView$$ExternalSyntheticLambda1(this), cubicBezierInterpolator, 320L, false);
         this.sidemenuT = 0.0f;
         this.excludeTopics = new HashSet();
-        this.fragment = baseFragment;
+        this.fragment = chatActivity;
         this.currentAccount = i;
         this.dialogId = j;
         this.resourcesProvider = resourcesProvider;
@@ -140,221 +998,985 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         this.mono = ChatObject.isMonoForum(MessagesController.getInstance(i).getChat(Long.valueOf(j2)));
         boolean zIsBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
         this.bot = zIsBotForumWithEditableTopics;
-        this.canShowProgress = !UserConfig.getInstance(i).getPreferences().getBoolean("topics_end_reached_" + j2, false);
+        this.canShowProgress = !NotificationsController$$ExternalSyntheticOutline0.m("topics_end_reached_", j2, UserConfig.getInstance(i).getPreferences(), false);
         setClipChildren(true);
         setClipToPadding(true);
         setWillNotDraw(false);
-        FrameLayout frameLayout = new FrameLayout(context);
+        FrameLayout frameLayout = new FrameLayout(activity);
         this.topTabsContainer = frameLayout;
         addView(frameLayout, LayoutHelper.createFrame(-1, 36.0f, 55, 7.0f, 7.0f, 7.0f, 7.0f));
-        FrameLayout frameLayout2 = new FrameLayout(context);
+        FrameLayout frameLayout2 = new FrameLayout(activity);
         this.sideTabsContainer = frameLayout2;
         addView(frameLayout2, LayoutHelper.createFrame(64, -1.0f, 115, 7.0f, 7.0f, 7.0f, 7.0f));
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i, 0, new Utilities.Callback2() {
+        final int i2 = 0;
+        ?? r0 = new UniversalRecyclerView(activity, i, new Utilities.Callback2(this) {
+            public final TopicsTabsView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.fillHorizontalTabs((ArrayList) obj, (UniversalAdapter) obj2);
+                boolean z;
+                TLRPC.User user;
+                TopicsTabsView topicsTabsView;
+                boolean z2;
+                boolean z3;
+                TopicsTabsView topicsTabsView2 = this.f$0;
+                switch (i2) {
+                    case 0:
+                        ArrayList arrayList = (ArrayList) obj;
+                        UniversalAdapter universalAdapter = (UniversalAdapter) obj2;
+                        int i3 = topicsTabsView2.currentAccount;
+                        MessagesController messagesController = MessagesController.getInstance(i3);
+                        long j3 = topicsTabsView2.dialogId;
+                        long j4 = -j3;
+                        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j4));
+                        TLRPC.User user2 = MessagesController.getInstance(i3).getUser(Long.valueOf(j3));
+                        TopicsController topicsController = MessagesController.getInstance(i3).getTopicsController();
+                        ArrayList<TLRPC.TL_forumTopic> topics = topicsController.getTopics(j4);
+                        int i4 = TopicsTabsView.HorizontalTabView.Factory.$r8$clinit;
+                        UItem uItemOfFactory = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                        uItemOfFactory.id = 0;
+                        uItemOfFactory.longValue = 0L;
+                        uItemOfFactory.object = null;
+                        boolean z4 = topicsTabsView2.mono;
+                        uItemOfFactory.accent = z4;
+                        uItemOfFactory.setChecked(topicsTabsView2.currentTopicId == 0);
+                        arrayList.add(uItemOfFactory);
+                        boolean z5 = topicsTabsView2.bot;
+                        if (topics != null) {
+                            int size = topics.size();
+                            int i5 = 0;
+                            z = false;
+                            while (i5 < size) {
+                                TLRPC.TL_forumTopic tL_forumTopic = topics.get(i5);
+                                universalAdapter = universalAdapter;
+                                i5++;
+                                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
+                                chat = chat;
+                                if (z5) {
+                                    user = user2;
+                                    if (tL_forumTopic2.id == 1) {
+                                    }
+                                    user2 = user;
+                                } else {
+                                    user = user2;
+                                }
+                                if (topicsTabsView2.excludeTopics.contains(Integer.valueOf(tL_forumTopic2.id))) {
+                                    user2 = user;
+                                } else {
+                                    boolean z6 = tL_forumTopic2.pinned;
+                                    if (!z6 && z) {
+                                        if (!arrayList.isEmpty()) {
+                                            ((UItem) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList)).flags |= 8;
+                                        }
+                                        universalAdapter.reorderSectionEnd();
+                                        z = false;
+                                    } else if (z6 && !z) {
+                                        universalAdapter.reorderSectionStart();
+                                        z = true;
+                                    }
+                                    UItem uItemOfFactory2 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                                    uItemOfFactory2.dialogId = j3;
+                                    uItemOfFactory2.id = tL_forumTopic2.id;
+                                    uItemOfFactory2.object = tL_forumTopic2;
+                                    if (z4) {
+                                        uItemOfFactory2.longValue = DialogObject.getPeerDialogId(tL_forumTopic2.from_id);
+                                        uItemOfFactory2.withUsername = false;
+                                    }
+                                    uItemOfFactory2.setChecked(topicsTabsView2.currentTopicId == (z4 ? DialogObject.getPeerDialogId(tL_forumTopic2.from_id) : (long) tL_forumTopic2.id));
+                                    arrayList.add(uItemOfFactory2);
+                                    user2 = user;
+                                    j3 = j3;
+                                }
+                            }
+                        } else {
+                            z = false;
+                        }
+                        UniversalAdapter universalAdapter2 = universalAdapter;
+                        TLRPC.Chat chat2 = chat;
+                        TLRPC.User user3 = user2;
+                        if (z) {
+                            universalAdapter2.reorderSectionEnd();
+                        }
+                        if (topics != null && !topics.isEmpty() && !topicsController.endIsReached(j4) && topicsTabsView2.canShowProgress) {
+                            UItem uItemOfFactory3 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory3.id = -2;
+                            uItemOfFactory3.red = true;
+                            arrayList.add(uItemOfFactory3);
+                            UItem uItemOfFactory4 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory4.id = -3;
+                            uItemOfFactory4.red = true;
+                            arrayList.add(uItemOfFactory4);
+                            UItem uItemOfFactory5 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory5.id = -4;
+                            uItemOfFactory5.red = true;
+                            arrayList.add(uItemOfFactory5);
+                        }
+                        if (!z5 && !z4) {
+                            if ((chat2 != null && ChatObject.canCreateTopic(chat2)) || UserObject.isBotForumWithEditableTopics(user3)) {
+                                UItem uItemOfFactory6 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                                uItemOfFactory6.id = -2;
+                                uItemOfFactory6.longValue = -2L;
+                                uItemOfFactory6.object = null;
+                                arrayList.add(uItemOfFactory6);
+                                break;
+                            }
+                        }
+                        break;
+                    case 1:
+                        ((Integer) obj).getClass();
+                        ArrayList arrayList2 = (ArrayList) obj2;
+                        TopicsController topicsController2 = MessagesController.getInstance(topicsTabsView2.currentAccount).getTopicsController();
+                        ArrayList<Integer> arrayList3 = new ArrayList<>();
+                        for (int iM = 0; iM < arrayList2.size(); iM = LocationController$$ExternalSyntheticOutline0.m(((UItem) arrayList2.get(iM)).id, iM, 1, arrayList3)) {
+                        }
+                        long j5 = -topicsTabsView2.dialogId;
+                        topicsController2.reorderPinnedTopics(j5, arrayList3);
+                        topicsController2.sortTopics(j5, false);
+                        break;
+                    default:
+                        ArrayList arrayList4 = (ArrayList) obj;
+                        UniversalAdapter universalAdapter3 = (UniversalAdapter) obj2;
+                        int i6 = topicsTabsView2.currentAccount;
+                        MessagesController messagesController2 = MessagesController.getInstance(i6);
+                        long j6 = topicsTabsView2.dialogId;
+                        long j7 = -j6;
+                        TLRPC.Chat chat3 = messagesController2.getChat(Long.valueOf(j7));
+                        TLRPC.User user4 = MessagesController.getInstance(i6).getUser(Long.valueOf(j6));
+                        TopicsController topicsController3 = MessagesController.getInstance(i6).getTopicsController();
+                        ArrayList<TLRPC.TL_forumTopic> topics2 = topicsController3.getTopics(j7);
+                        boolean z7 = topicsTabsView2.mono;
+                        boolean z8 = topicsTabsView2.bot;
+                        if (z8) {
+                            topicsTabsView = topicsTabsView2;
+                        } else {
+                            int i7 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                            UItem uItemOfFactory7 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory7.id = 0;
+                            uItemOfFactory7.longValue = 0L;
+                            uItemOfFactory7.object = null;
+                            uItemOfFactory7.accent = z7;
+                            uItemOfFactory7.flags = z8 ? 1 : 0;
+                            topicsTabsView = topicsTabsView2;
+                            uItemOfFactory7.setChecked(topicsTabsView.currentTopicId == 0);
+                            arrayList4.add(uItemOfFactory7);
+                        }
+                        if (topics2 != null) {
+                            int size2 = topics2.size();
+                            boolean z9 = false;
+                            int i8 = 0;
+                            while (i8 < size2) {
+                                TLRPC.TL_forumTopic tL_forumTopic3 = topics2.get(i8);
+                                i8++;
+                                TLRPC.TL_forumTopic tL_forumTopic4 = tL_forumTopic3;
+                                size2 = size2;
+                                if (z8) {
+                                    z3 = z9;
+                                    if (tL_forumTopic4.id == 1) {
+                                        z9 = z3;
+                                    }
+                                } else {
+                                    z3 = z9;
+                                }
+                                if (topicsTabsView.excludeTopics.contains(Integer.valueOf(tL_forumTopic4.id))) {
+                                    z9 = z3;
+                                } else {
+                                    boolean z10 = tL_forumTopic4.pinned;
+                                    if (!z10 && z3) {
+                                        universalAdapter3.reorderSectionEnd();
+                                        z9 = false;
+                                    } else if (!z10 || z3) {
+                                        z9 = z3;
+                                    } else {
+                                        universalAdapter3.reorderSectionStart();
+                                        z9 = true;
+                                    }
+                                    int i9 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                                    UItem uItemOfFactory8 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                                    uItemOfFactory8.dialogId = j6;
+                                    long j8 = j6;
+                                    uItemOfFactory8.id = tL_forumTopic4.id;
+                                    uItemOfFactory8.object = tL_forumTopic4;
+                                    if (z7) {
+                                        uItemOfFactory8.longValue = DialogObject.getPeerDialogId(tL_forumTopic4.from_id);
+                                        uItemOfFactory8.withUsername = false;
+                                    }
+                                    uItemOfFactory8.setChecked(topicsTabsView.currentTopicId == (z7 ? DialogObject.getPeerDialogId(tL_forumTopic4.from_id) : (long) tL_forumTopic4.id));
+                                    arrayList4.add(uItemOfFactory8);
+                                    j6 = j8;
+                                }
+                            }
+                            z2 = z9;
+                        } else {
+                            z2 = false;
+                        }
+                        if (z2) {
+                            universalAdapter3.reorderSectionEnd();
+                        }
+                        if (topics2 != null && !topics2.isEmpty() && !topicsController3.endIsReached(j7) && topicsTabsView.canShowProgress) {
+                            int i10 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                            UItem uItemOfFactory9 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory9.id = -2;
+                            uItemOfFactory9.red = true;
+                            uItemOfFactory9.checked = false;
+                            arrayList4.add(uItemOfFactory9);
+                            UItem uItemOfFactory10 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory10.id = -3;
+                            uItemOfFactory10.red = true;
+                            uItemOfFactory10.checked = false;
+                            arrayList4.add(uItemOfFactory10);
+                            UItem uItemOfFactory11 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory11.id = -4;
+                            uItemOfFactory11.red = true;
+                            uItemOfFactory11.checked = false;
+                            arrayList4.add(uItemOfFactory11);
+                        }
+                        if (z8 == 0 && !z7) {
+                            if ((chat3 != 0 && ChatObject.canCreateTopic(chat3)) || UserObject.isBotForumWithEditableTopics(user4)) {
+                                int i11 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                                UItem uItemOfFactory12 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                                uItemOfFactory12.id = -2;
+                                uItemOfFactory12.longValue = -2L;
+                                uItemOfFactory12.object = null;
+                                uItemOfFactory12.accent = false;
+                                arrayList4.add(uItemOfFactory12);
+                                break;
+                            }
+                        }
+                        break;
+                }
             }
-        }, new Utilities.Callback5() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                this.f$0.onTabClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-            }
-        }, new Utilities.Callback5Return() {
-            @Override
-            public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                return Boolean.valueOf(this.f$0.onTabLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
-            }
-        }, resourcesProvider) {
-            private final AnimatedFloat animateTab;
-            private final AnimatedFloat animatedClipL;
-            private final AnimatedFloat animatedClipR;
-            private final GradientClip clip = new GradientClip();
-            private final Paint linePaint;
-            private final RectF lineRect;
-            private Drawable pinIcon;
-            private int pinIconColor;
-            private final Paint pinnedBackgroundPaint;
+        }, new TopicsTabsView$$ExternalSyntheticLambda1(this), new TopicsTabsView$$ExternalSyntheticLambda1(this), resourcesProvider) {
+            public final AnimatedFloat animateTab;
+            public final AnimatedFloat animatedClipL;
+            public final AnimatedFloat animatedClipR;
+            public final GradientClip clip = new GradientClip();
+            public final Paint linePaint;
+            public final RectF lineRect;
+            public Drawable pinIcon;
+            public int pinIconColor;
+            public final Paint pinnedBackgroundPaint;
 
             {
                 CubicBezierInterpolator cubicBezierInterpolator2 = CubicBezierInterpolator.EASE_OUT_QUINT;
-                this.animatedClipL = new AnimatedFloat(this, 320L, cubicBezierInterpolator2);
-                this.animatedClipR = new AnimatedFloat(this, 320L, cubicBezierInterpolator2);
+                this.animatedClipL = new AnimatedFloat(320L, this, cubicBezierInterpolator2);
+                this.animatedClipR = new AnimatedFloat(320L, this, cubicBezierInterpolator2);
                 this.lineRect = new RectF();
                 this.linePaint = new Paint(1);
-                this.animateTab = new AnimatedFloat(this, 420L, cubicBezierInterpolator2);
+                this.animateTab = new AnimatedFloat(420L, this, cubicBezierInterpolator2);
                 this.pinnedBackgroundPaint = new Paint(1);
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            public final void dispatchDraw(Canvas canvas) {
                 Canvas canvas2;
-                float f = this.animatedClipL.set(canScrollHorizontally(-1));
-                float f2 = this.animatedClipR.set(canScrollHorizontally(1));
-                boolean z = f > 0.0f || f2 > 0.0f;
+                float f;
+                float f2;
+                float f3;
+                float f4;
+                int i3;
+                float f5 = this.animatedClipL.set(canScrollHorizontally(-1));
+                float f6 = this.animatedClipR.set(canScrollHorizontally(1));
+                int i4 = (f5 > 0.0f ? 1 : (f5 == 0.0f ? 0 : -1));
+                boolean z = i4 > 0 || f6 > 0.0f;
                 if (z) {
                     canvas2 = canvas;
                     canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
                 } else {
                     canvas2 = canvas;
                 }
-                drawPinnedBackground(canvas);
-                super.dispatchDraw(canvas);
-                if (TopicsTabsView.this.lastSelectedTopicId != TopicsTabsView.this.currentTopicId) {
-                    TopicsTabsView topicsTabsView = TopicsTabsView.this;
-                    topicsTabsView.animateFromSelectedTopicId = topicsTabsView.lastSelectedTopicId;
-                    this.animateTab.force(0.0f);
-                }
-                TopicsTabsView topicsTabsView2 = TopicsTabsView.this;
-                topicsTabsView2.lastSelectedTopicId = topicsTabsView2.currentTopicId;
-                HorizontalTabView horizontalTabView = null;
-                HorizontalTabView horizontalTabView2 = null;
-                for (int i2 = 0; i2 < getChildCount(); i2++) {
-                    View childAt = getChildAt(i2);
-                    if (childAt instanceof HorizontalTabView) {
-                        HorizontalTabView horizontalTabView3 = (HorizontalTabView) childAt;
-                        if (!horizontalTabView3.isAdd) {
-                            if (horizontalTabView3.getTopicId() == TopicsTabsView.this.currentTopicId) {
-                                horizontalTabView = horizontalTabView3;
-                            }
-                            if (horizontalTabView3.getTopicId() == TopicsTabsView.this.animateFromSelectedTopicId) {
-                                horizontalTabView2 = horizontalTabView3;
-                            }
-                        }
-                    }
-                }
-                if (horizontalTabView != null) {
-                    this.lineRect.set(horizontalTabView.getX() + AndroidUtilities.dp(1.0f), horizontalTabView.getY() + AndroidUtilities.dp(4.0f), (horizontalTabView.getX() + horizontalTabView.getWidth()) - AndroidUtilities.dp(1.0f), (horizontalTabView.getY() + getHeight()) - AndroidUtilities.dp(4.0f));
-                    if (horizontalTabView2 != null) {
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        rectF.set(horizontalTabView2.getX() + AndroidUtilities.dp(1.0f), horizontalTabView2.getY() + AndroidUtilities.dp(4.0f), (horizontalTabView2.getX() + horizontalTabView2.getWidth()) - AndroidUtilities.dp(1.0f), (horizontalTabView2.getY() + getHeight()) - AndroidUtilities.dp(4.0f));
-                        AndroidUtilities.lerp(rectF, this.lineRect, this.animateTab.set(1.0f), this.lineRect);
-                    }
-                    this.linePaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), 31));
-                    canvas2.drawRoundRect(this.lineRect, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.linePaint);
-                }
-                if (z) {
-                    canvas2.save();
-                    if (f > 0.0f) {
-                        RectF rectF2 = AndroidUtilities.rectTmp;
-                        rectF2.set(0.0f, 0.0f, AndroidUtilities.dp(12.0f), getHeight());
-                        this.clip.draw(canvas2, rectF2, 0, f);
-                    }
-                    if (f2 > 0.0f) {
-                        RectF rectF3 = AndroidUtilities.rectTmp;
-                        rectF3.set(getWidth() - AndroidUtilities.dp(12.0f), 0.0f, getWidth(), getHeight());
-                        this.clip.draw(canvas2, rectF3, 2, f2);
-                    }
-                    canvas2.restore();
-                    canvas2.restore();
-                }
-            }
-
-            private void drawPinnedBackground(Canvas canvas) {
                 float width = getWidth();
                 float x = 0.0f;
-                for (int i2 = 0; i2 < getChildCount(); i2++) {
-                    View childAt = getChildAt(i2);
+                for (int i5 = 0; i5 < getChildCount(); i5++) {
+                    View childAt = getChildAt(i5);
                     if (childAt instanceof HorizontalTabView) {
                         HorizontalTabView horizontalTabView = (HorizontalTabView) childAt;
                         if (horizontalTabView.pinned) {
                             if (width > horizontalTabView.getX()) {
                                 width = horizontalTabView.getX();
-                                getChildAdapterPosition(horizontalTabView);
+                                RecyclerView.getChildAdapterPosition(horizontalTabView);
                             }
                             if (x < horizontalTabView.getX() + horizontalTabView.getWidth()) {
                                 x = horizontalTabView.getX() + horizontalTabView.getWidth();
-                                getChildAdapterPosition(horizontalTabView);
+                                RecyclerView.getChildAdapterPosition(horizontalTabView);
                             }
                         }
                     }
                 }
+                Theme.ResourcesProvider resourcesProvider2 = this.resourcesProvider;
                 if (x > width) {
-                    this.pinnedBackgroundPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), 0.06f));
+                    Paint paint = this.pinnedBackgroundPaint;
+                    f = 14.0f;
+                    paint.setColor(Theme.multAlpha(0.06f, Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider2)));
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(width + AndroidUtilities.dp(1.0f), (getHeight() - AndroidUtilities.dp(28.0f)) / 2.0f, x - AndroidUtilities.dp(1.0f), (getHeight() + AndroidUtilities.dp(28.0f)) / 2.0f);
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.pinnedBackgroundPaint);
+                    f2 = 1.0f;
+                    rectF.set(width + AndroidUtilities.dp(1.0f), (getHeight() - AndroidUtilities.dp(28.0f)) / 2.0f, x - AndroidUtilities.dp(1.0f), (AndroidUtilities.dp(28.0f) + getHeight()) / 2.0f);
+                    canvas2.drawRoundRect(rectF, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), paint);
                     if (this.pinIcon == null) {
                         this.pinIcon = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
                     }
-                    int color = Theme.getColor(Theme.key_chats_pinnedIcon, this.resourcesProvider);
+                    int color = Theme.getColor(Theme.key_chats_pinnedIcon, resourcesProvider2);
                     if (this.pinIconColor != color) {
                         Drawable drawable = this.pinIcon;
                         this.pinIconColor = color;
                         drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
                     }
                     this.pinIcon.setBounds((int) (AndroidUtilities.dp(-17.0f) + x), (int) (rectF.top + AndroidUtilities.dp(10.0f)), (int) (x + AndroidUtilities.dp(-7.0f)), (int) (rectF.top + AndroidUtilities.dp(20.0f)));
-                    this.pinIcon.draw(canvas);
+                    this.pinIcon.draw(canvas2);
+                } else {
+                    f = 14.0f;
+                    f2 = 1.0f;
+                }
+                super.dispatchDraw(canvas);
+                TopicsTabsView topicsTabsView = TopicsTabsView.this;
+                long j3 = topicsTabsView.lastSelectedTopicId;
+                long j4 = topicsTabsView.currentTopicId;
+                AnimatedFloat animatedFloat = this.animateTab;
+                if (j3 != j4) {
+                    topicsTabsView.animateFromSelectedTopicId = j3;
+                    animatedFloat.set(0.0f, true);
+                }
+                topicsTabsView.lastSelectedTopicId = topicsTabsView.currentTopicId;
+                HorizontalTabView horizontalTabView2 = null;
+                HorizontalTabView horizontalTabView3 = null;
+                int i6 = 0;
+                while (i6 < getChildCount()) {
+                    View childAt2 = getChildAt(i6);
+                    if (childAt2 instanceof HorizontalTabView) {
+                        HorizontalTabView horizontalTabView4 = (HorizontalTabView) childAt2;
+                        if (horizontalTabView4.isAdd) {
+                            f4 = f6;
+                            i3 = i4;
+                        } else {
+                            i3 = i4;
+                            if (horizontalTabView4.getTopicId() == topicsTabsView.currentTopicId) {
+                                horizontalTabView2 = horizontalTabView4;
+                            }
+                            f4 = f6;
+                            if (horizontalTabView4.getTopicId() == topicsTabsView.animateFromSelectedTopicId) {
+                                horizontalTabView3 = horizontalTabView4;
+                            }
+                        }
+                    } else {
+                        f4 = f6;
+                        i3 = i4;
+                    }
+                    i6++;
+                    i4 = i3;
+                    f6 = f4;
+                }
+                float f7 = f6;
+                int i7 = i4;
+                if (horizontalTabView2 != null) {
+                    RectF rectF2 = this.lineRect;
+                    rectF2.set(horizontalTabView2.getX() + AndroidUtilities.dp(f2), horizontalTabView2.getY() + AndroidUtilities.dp(4.0f), (horizontalTabView2.getX() + horizontalTabView2.getWidth()) - AndroidUtilities.dp(f2), (horizontalTabView2.getY() + getHeight()) - AndroidUtilities.dp(4.0f));
+                    if (horizontalTabView3 != null) {
+                        RectF rectF3 = AndroidUtilities.rectTmp;
+                        rectF3.set(horizontalTabView3.getX() + AndroidUtilities.dp(f2), horizontalTabView3.getY() + AndroidUtilities.dp(4.0f), (horizontalTabView3.getX() + horizontalTabView3.getWidth()) - AndroidUtilities.dp(f2), (horizontalTabView3.getY() + getHeight()) - AndroidUtilities.dp(4.0f));
+                        AndroidUtilities.lerp(rectF3, rectF2, animatedFloat.set(1.0f, false), rectF2);
+                    }
+                    Paint paint2 = this.linePaint;
+                    paint2.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider2), 31));
+                    canvas2.drawRoundRect(rectF2, AndroidUtilities.dp(f), AndroidUtilities.dp(f), paint2);
+                }
+                if (z) {
+                    canvas2.save();
+                    GradientClip gradientClip = this.clip;
+                    if (i7 > 0) {
+                        RectF rectF4 = AndroidUtilities.rectTmp;
+                        f3 = 0.0f;
+                        rectF4.set(0.0f, 0.0f, AndroidUtilities.dp(12.0f), getHeight());
+                        gradientClip.draw(canvas2, rectF4, 0, f5);
+                    } else {
+                        f3 = 0.0f;
+                    }
+                    if (f7 > f3) {
+                        RectF rectF5 = AndroidUtilities.rectTmp;
+                        rectF5.set(getWidth() - AndroidUtilities.dp(12.0f), f3, getWidth(), getHeight());
+                        gradientClip.draw(canvas2, rectF5, 2, f7);
+                    }
+                    canvas2.restore();
+                    canvas2.restore();
                 }
             }
 
             @Override
-            public Integer getSelectorColor(int i2) {
+            public final Integer getSelectorColor(int i3) {
                 return 0;
             }
         };
-        this.topTabs = universalRecyclerView;
-        universalRecyclerView.listenReorder(new Utilities.Callback2() {
+        this.topTabs = r0;
+        final int i3 = 1;
+        r0.listenReorder(new Utilities.Callback2(this) {
+            public final TopicsTabsView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
+                boolean z;
+                TLRPC.User user;
+                TopicsTabsView topicsTabsView;
+                boolean z2;
+                boolean z3;
+                TopicsTabsView topicsTabsView2 = this.f$0;
+                switch (i3) {
+                    case 0:
+                        ArrayList arrayList = (ArrayList) obj;
+                        UniversalAdapter universalAdapter = (UniversalAdapter) obj2;
+                        int i4 = topicsTabsView2.currentAccount;
+                        MessagesController messagesController = MessagesController.getInstance(i4);
+                        long j3 = topicsTabsView2.dialogId;
+                        long j4 = -j3;
+                        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j4));
+                        TLRPC.User user2 = MessagesController.getInstance(i4).getUser(Long.valueOf(j3));
+                        TopicsController topicsController = MessagesController.getInstance(i4).getTopicsController();
+                        ArrayList<TLRPC.TL_forumTopic> topics = topicsController.getTopics(j4);
+                        int i5 = TopicsTabsView.HorizontalTabView.Factory.$r8$clinit;
+                        UItem uItemOfFactory = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                        uItemOfFactory.id = 0;
+                        uItemOfFactory.longValue = 0L;
+                        uItemOfFactory.object = null;
+                        boolean z4 = topicsTabsView2.mono;
+                        uItemOfFactory.accent = z4;
+                        uItemOfFactory.setChecked(topicsTabsView2.currentTopicId == 0);
+                        arrayList.add(uItemOfFactory);
+                        boolean z5 = topicsTabsView2.bot;
+                        if (topics != null) {
+                            int size = topics.size();
+                            int i6 = 0;
+                            z = false;
+                            while (i6 < size) {
+                                TLRPC.TL_forumTopic tL_forumTopic = topics.get(i6);
+                                universalAdapter = universalAdapter;
+                                i6++;
+                                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
+                                chat = chat;
+                                if (z5) {
+                                    user = user2;
+                                    if (tL_forumTopic2.id == 1) {
+                                    }
+                                    user2 = user;
+                                } else {
+                                    user = user2;
+                                }
+                                if (topicsTabsView2.excludeTopics.contains(Integer.valueOf(tL_forumTopic2.id))) {
+                                    user2 = user;
+                                } else {
+                                    boolean z6 = tL_forumTopic2.pinned;
+                                    if (!z6 && z) {
+                                        if (!arrayList.isEmpty()) {
+                                            ((UItem) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList)).flags |= 8;
+                                        }
+                                        universalAdapter.reorderSectionEnd();
+                                        z = false;
+                                    } else if (z6 && !z) {
+                                        universalAdapter.reorderSectionStart();
+                                        z = true;
+                                    }
+                                    UItem uItemOfFactory2 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                                    uItemOfFactory2.dialogId = j3;
+                                    uItemOfFactory2.id = tL_forumTopic2.id;
+                                    uItemOfFactory2.object = tL_forumTopic2;
+                                    if (z4) {
+                                        uItemOfFactory2.longValue = DialogObject.getPeerDialogId(tL_forumTopic2.from_id);
+                                        uItemOfFactory2.withUsername = false;
+                                    }
+                                    uItemOfFactory2.setChecked(topicsTabsView2.currentTopicId == (z4 ? DialogObject.getPeerDialogId(tL_forumTopic2.from_id) : (long) tL_forumTopic2.id));
+                                    arrayList.add(uItemOfFactory2);
+                                    user2 = user;
+                                    j3 = j3;
+                                }
+                            }
+                        } else {
+                            z = false;
+                        }
+                        UniversalAdapter universalAdapter2 = universalAdapter;
+                        TLRPC.Chat chat2 = chat;
+                        TLRPC.User user3 = user2;
+                        if (z) {
+                            universalAdapter2.reorderSectionEnd();
+                        }
+                        if (topics != null && !topics.isEmpty() && !topicsController.endIsReached(j4) && topicsTabsView2.canShowProgress) {
+                            UItem uItemOfFactory3 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory3.id = -2;
+                            uItemOfFactory3.red = true;
+                            arrayList.add(uItemOfFactory3);
+                            UItem uItemOfFactory4 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory4.id = -3;
+                            uItemOfFactory4.red = true;
+                            arrayList.add(uItemOfFactory4);
+                            UItem uItemOfFactory5 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory5.id = -4;
+                            uItemOfFactory5.red = true;
+                            arrayList.add(uItemOfFactory5);
+                        }
+                        if (!z5 && !z4) {
+                            if ((chat2 != null && ChatObject.canCreateTopic(chat2)) || UserObject.isBotForumWithEditableTopics(user3)) {
+                                UItem uItemOfFactory6 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                                uItemOfFactory6.id = -2;
+                                uItemOfFactory6.longValue = -2L;
+                                uItemOfFactory6.object = null;
+                                arrayList.add(uItemOfFactory6);
+                                break;
+                            }
+                        }
+                        break;
+                    case 1:
+                        ((Integer) obj).getClass();
+                        ArrayList arrayList2 = (ArrayList) obj2;
+                        TopicsController topicsController2 = MessagesController.getInstance(topicsTabsView2.currentAccount).getTopicsController();
+                        ArrayList<Integer> arrayList3 = new ArrayList<>();
+                        for (int iM = 0; iM < arrayList2.size(); iM = LocationController$$ExternalSyntheticOutline0.m(((UItem) arrayList2.get(iM)).id, iM, 1, arrayList3)) {
+                        }
+                        long j5 = -topicsTabsView2.dialogId;
+                        topicsController2.reorderPinnedTopics(j5, arrayList3);
+                        topicsController2.sortTopics(j5, false);
+                        break;
+                    default:
+                        ArrayList arrayList4 = (ArrayList) obj;
+                        UniversalAdapter universalAdapter3 = (UniversalAdapter) obj2;
+                        int i7 = topicsTabsView2.currentAccount;
+                        MessagesController messagesController2 = MessagesController.getInstance(i7);
+                        long j6 = topicsTabsView2.dialogId;
+                        long j7 = -j6;
+                        TLRPC.Chat chat3 = messagesController2.getChat(Long.valueOf(j7));
+                        TLRPC.User user4 = MessagesController.getInstance(i7).getUser(Long.valueOf(j6));
+                        TopicsController topicsController3 = MessagesController.getInstance(i7).getTopicsController();
+                        ArrayList<TLRPC.TL_forumTopic> topics2 = topicsController3.getTopics(j7);
+                        boolean z7 = topicsTabsView2.mono;
+                        boolean z8 = topicsTabsView2.bot;
+                        if (z8) {
+                            topicsTabsView = topicsTabsView2;
+                        } else {
+                            int i8 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                            UItem uItemOfFactory7 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory7.id = 0;
+                            uItemOfFactory7.longValue = 0L;
+                            uItemOfFactory7.object = null;
+                            uItemOfFactory7.accent = z7;
+                            uItemOfFactory7.flags = z8 ? 1 : 0;
+                            topicsTabsView = topicsTabsView2;
+                            uItemOfFactory7.setChecked(topicsTabsView.currentTopicId == 0);
+                            arrayList4.add(uItemOfFactory7);
+                        }
+                        if (topics2 != null) {
+                            int size2 = topics2.size();
+                            boolean z9 = false;
+                            int i9 = 0;
+                            while (i9 < size2) {
+                                TLRPC.TL_forumTopic tL_forumTopic3 = topics2.get(i9);
+                                i9++;
+                                TLRPC.TL_forumTopic tL_forumTopic4 = tL_forumTopic3;
+                                size2 = size2;
+                                if (z8) {
+                                    z3 = z9;
+                                    if (tL_forumTopic4.id == 1) {
+                                        z9 = z3;
+                                    }
+                                } else {
+                                    z3 = z9;
+                                }
+                                if (topicsTabsView.excludeTopics.contains(Integer.valueOf(tL_forumTopic4.id))) {
+                                    z9 = z3;
+                                } else {
+                                    boolean z10 = tL_forumTopic4.pinned;
+                                    if (!z10 && z3) {
+                                        universalAdapter3.reorderSectionEnd();
+                                        z9 = false;
+                                    } else if (!z10 || z3) {
+                                        z9 = z3;
+                                    } else {
+                                        universalAdapter3.reorderSectionStart();
+                                        z9 = true;
+                                    }
+                                    int i10 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                                    UItem uItemOfFactory8 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                                    uItemOfFactory8.dialogId = j6;
+                                    long j8 = j6;
+                                    uItemOfFactory8.id = tL_forumTopic4.id;
+                                    uItemOfFactory8.object = tL_forumTopic4;
+                                    if (z7) {
+                                        uItemOfFactory8.longValue = DialogObject.getPeerDialogId(tL_forumTopic4.from_id);
+                                        uItemOfFactory8.withUsername = false;
+                                    }
+                                    uItemOfFactory8.setChecked(topicsTabsView.currentTopicId == (z7 ? DialogObject.getPeerDialogId(tL_forumTopic4.from_id) : (long) tL_forumTopic4.id));
+                                    arrayList4.add(uItemOfFactory8);
+                                    j6 = j8;
+                                }
+                            }
+                            z2 = z9;
+                        } else {
+                            z2 = false;
+                        }
+                        if (z2) {
+                            universalAdapter3.reorderSectionEnd();
+                        }
+                        if (topics2 != null && !topics2.isEmpty() && !topicsController3.endIsReached(j7) && topicsTabsView.canShowProgress) {
+                            int i11 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                            UItem uItemOfFactory9 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory9.id = -2;
+                            uItemOfFactory9.red = true;
+                            uItemOfFactory9.checked = false;
+                            arrayList4.add(uItemOfFactory9);
+                            UItem uItemOfFactory10 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory10.id = -3;
+                            uItemOfFactory10.red = true;
+                            uItemOfFactory10.checked = false;
+                            arrayList4.add(uItemOfFactory10);
+                            UItem uItemOfFactory11 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory11.id = -4;
+                            uItemOfFactory11.red = true;
+                            uItemOfFactory11.checked = false;
+                            arrayList4.add(uItemOfFactory11);
+                        }
+                        if (z8 == 0 && !z7) {
+                            if ((chat3 != 0 && ChatObject.canCreateTopic(chat3)) || UserObject.isBotForumWithEditableTopics(user4)) {
+                                int i12 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                                UItem uItemOfFactory12 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                                uItemOfFactory12.id = -2;
+                                uItemOfFactory12.longValue = -2L;
+                                uItemOfFactory12.object = null;
+                                uItemOfFactory12.accent = false;
+                                arrayList4.add(uItemOfFactory12);
+                                break;
+                            }
+                        }
+                        break;
+                }
             }
-        });
-        universalRecyclerView.setWillNotDraw(false);
-        universalRecyclerView.adapter.setApplyBackground(false);
-        universalRecyclerView.makeHorizontal();
-        frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f, 119, 41.0f, 0.0f, 0.0f, 0.0f));
-        universalRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        }, false);
+        r0.setWillNotDraw(false);
+        r0.adapter.applyBackground = false;
+        r0.getContext();
+        StickersActivity.AnonymousClass2 anonymousClass2 = new StickersActivity.AnonymousClass2((ViewGroup) r0, 7);
+        r0.layoutManager = anonymousClass2;
+        r0.setLayoutManager(anonymousClass2);
+        frameLayout.addView((View) r0, LayoutHelper.createFrame(-1, -1.0f, 119, 41.0f, 0.0f, 0.0f, 0.0f));
+        final int i4 = 0;
+        r0.addOnScrollListener(new RecyclerView.OnScrollListener(this) {
+            public final TopicsTabsView this$0;
+
+            {
+                this.this$0 = this;
+            }
+
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                if (TopicsTabsView.this.isLoadingVisible()) {
-                    TopicsTabsView.this.loadMore();
+            public final void onScrolled(RecyclerView recyclerView, int i5, int i6) {
+                switch (i4) {
+                    case 0:
+                        TopicsTabsView topicsTabsView = this.this$0;
+                        if (topicsTabsView.isLoadingVisible()) {
+                            topicsTabsView.loadMore();
+                        }
+                        break;
+                    default:
+                        TopicsTabsView topicsTabsView2 = this.this$0;
+                        if (topicsTabsView2.isLoadingVisible()) {
+                            topicsTabsView2.loadMore();
+                        }
+                        break;
                 }
             }
         });
         if (zIsBotForumWithEditableTopics) {
-            this.botCreateTopicButtonHorizontal = null;
-            VerticalTabView verticalTabView = new VerticalTabView(context, i, resourcesProvider);
+            VerticalTabView verticalTabView = new VerticalTabView(activity, i, resourcesProvider);
             this.botCreateTopicButtonVertical = verticalTabView;
             verticalTabView.setAll(true, false, this.currentTopicId == 0);
-            verticalTabView.setOnClickListener(new View.OnClickListener() {
+            final int i5 = 2;
+            verticalTabView.setOnClickListener(new View.OnClickListener(this) {
+                public final TopicsTabsView f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.onTopicSelected.run(0, Boolean.FALSE);
+                    switch (i5) {
+                        case 0:
+                            TopicsTabsView topicsTabsView = this.f$0;
+                            Boolean bool = topicsTabsView.pendingSidemenu;
+                            topicsTabsView.animateSidemenuTo(bool == null ? !topicsTabsView.sidemenuEnabled : !bool.booleanValue());
+                            break;
+                        case 1:
+                            TopicsTabsView topicsTabsView2 = this.f$0;
+                            TopicsTabsView.AnonymousClass3 anonymousClass3 = topicsTabsView2.sideTabs;
+                            anonymousClass3.allowReorder(false);
+                            TopicsTabsView.AnonymousClass1 anonymousClass1 = topicsTabsView2.topTabs;
+                            anonymousClass1.allowReorder(false);
+                            topicsTabsView2.animatorCloseButtonVisibility.setValue(false, true);
+                            AndroidUtilities.updateVisibleRows(anonymousClass3);
+                            AndroidUtilities.updateVisibleRows(anonymousClass1);
+                            break;
+                        default:
+                            this.f$0.onTopicSelected.run(0, Boolean.FALSE);
+                            break;
+                    }
                 }
             });
             viewGroup = frameLayout2;
             viewGroup.addView(verticalTabView, LayoutHelper.createFrame(64, 42.0f, 51, 0.0f, 48.0f, 0.0f, 0.0f));
         } else {
             viewGroup = frameLayout2;
-            this.botCreateTopicButtonHorizontal = null;
             this.botCreateTopicButtonVertical = null;
         }
+        final int i6 = 2;
         ViewGroup viewGroup2 = viewGroup;
-        UniversalRecyclerView universalRecyclerView2 = new UniversalRecyclerView(context, i, 0, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillVerticalTabs((ArrayList) obj, (UniversalAdapter) obj2);
+        ?? r1 = new UniversalRecyclerView(activity, i, new Utilities.Callback2(this) {
+            public final TopicsTabsView f$0;
+
+            {
+                this.f$0 = this;
             }
-        }, new Utilities.Callback5() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                this.f$0.onTabClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-            }
-        }, new Utilities.Callback5Return() {
-            @Override
-            public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                return Boolean.valueOf(this.f$0.onTabLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
-            }
-        }, resourcesProvider) {
-            private Drawable pinIcon;
-            private int pinIconColor;
-            private final GradientClip clip = new GradientClip();
-            private final AnimatedFloat animatedClip = new AnimatedFloat(this, 320, CubicBezierInterpolator.EASE_OUT_QUINT);
-            private final Paint pinnedBackgroundPaint = new Paint(1);
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            public final void run(Object obj, Object obj2) {
+                boolean z;
+                TLRPC.User user;
+                TopicsTabsView topicsTabsView;
+                boolean z2;
+                boolean z3;
+                TopicsTabsView topicsTabsView2 = this.f$0;
+                switch (i6) {
+                    case 0:
+                        ArrayList arrayList = (ArrayList) obj;
+                        UniversalAdapter universalAdapter = (UniversalAdapter) obj2;
+                        int i7 = topicsTabsView2.currentAccount;
+                        MessagesController messagesController = MessagesController.getInstance(i7);
+                        long j3 = topicsTabsView2.dialogId;
+                        long j4 = -j3;
+                        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j4));
+                        TLRPC.User user2 = MessagesController.getInstance(i7).getUser(Long.valueOf(j3));
+                        TopicsController topicsController = MessagesController.getInstance(i7).getTopicsController();
+                        ArrayList<TLRPC.TL_forumTopic> topics = topicsController.getTopics(j4);
+                        int i8 = TopicsTabsView.HorizontalTabView.Factory.$r8$clinit;
+                        UItem uItemOfFactory = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                        uItemOfFactory.id = 0;
+                        uItemOfFactory.longValue = 0L;
+                        uItemOfFactory.object = null;
+                        boolean z4 = topicsTabsView2.mono;
+                        uItemOfFactory.accent = z4;
+                        uItemOfFactory.setChecked(topicsTabsView2.currentTopicId == 0);
+                        arrayList.add(uItemOfFactory);
+                        boolean z5 = topicsTabsView2.bot;
+                        if (topics != null) {
+                            int size = topics.size();
+                            int i9 = 0;
+                            z = false;
+                            while (i9 < size) {
+                                TLRPC.TL_forumTopic tL_forumTopic = topics.get(i9);
+                                universalAdapter = universalAdapter;
+                                i9++;
+                                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
+                                chat = chat;
+                                if (z5) {
+                                    user = user2;
+                                    if (tL_forumTopic2.id == 1) {
+                                    }
+                                    user2 = user;
+                                } else {
+                                    user = user2;
+                                }
+                                if (topicsTabsView2.excludeTopics.contains(Integer.valueOf(tL_forumTopic2.id))) {
+                                    user2 = user;
+                                } else {
+                                    boolean z6 = tL_forumTopic2.pinned;
+                                    if (!z6 && z) {
+                                        if (!arrayList.isEmpty()) {
+                                            ((UItem) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList)).flags |= 8;
+                                        }
+                                        universalAdapter.reorderSectionEnd();
+                                        z = false;
+                                    } else if (z6 && !z) {
+                                        universalAdapter.reorderSectionStart();
+                                        z = true;
+                                    }
+                                    UItem uItemOfFactory2 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                                    uItemOfFactory2.dialogId = j3;
+                                    uItemOfFactory2.id = tL_forumTopic2.id;
+                                    uItemOfFactory2.object = tL_forumTopic2;
+                                    if (z4) {
+                                        uItemOfFactory2.longValue = DialogObject.getPeerDialogId(tL_forumTopic2.from_id);
+                                        uItemOfFactory2.withUsername = false;
+                                    }
+                                    uItemOfFactory2.setChecked(topicsTabsView2.currentTopicId == (z4 ? DialogObject.getPeerDialogId(tL_forumTopic2.from_id) : (long) tL_forumTopic2.id));
+                                    arrayList.add(uItemOfFactory2);
+                                    user2 = user;
+                                    j3 = j3;
+                                }
+                            }
+                        } else {
+                            z = false;
+                        }
+                        UniversalAdapter universalAdapter2 = universalAdapter;
+                        TLRPC.Chat chat2 = chat;
+                        TLRPC.User user3 = user2;
+                        if (z) {
+                            universalAdapter2.reorderSectionEnd();
+                        }
+                        if (topics != null && !topics.isEmpty() && !topicsController.endIsReached(j4) && topicsTabsView2.canShowProgress) {
+                            UItem uItemOfFactory3 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory3.id = -2;
+                            uItemOfFactory3.red = true;
+                            arrayList.add(uItemOfFactory3);
+                            UItem uItemOfFactory4 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory4.id = -3;
+                            uItemOfFactory4.red = true;
+                            arrayList.add(uItemOfFactory4);
+                            UItem uItemOfFactory5 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory5.id = -4;
+                            uItemOfFactory5.red = true;
+                            arrayList.add(uItemOfFactory5);
+                        }
+                        if (!z5 && !z4) {
+                            if ((chat2 != null && ChatObject.canCreateTopic(chat2)) || UserObject.isBotForumWithEditableTopics(user3)) {
+                                UItem uItemOfFactory6 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                                uItemOfFactory6.id = -2;
+                                uItemOfFactory6.longValue = -2L;
+                                uItemOfFactory6.object = null;
+                                arrayList.add(uItemOfFactory6);
+                                break;
+                            }
+                        }
+                        break;
+                    case 1:
+                        ((Integer) obj).getClass();
+                        ArrayList arrayList2 = (ArrayList) obj2;
+                        TopicsController topicsController2 = MessagesController.getInstance(topicsTabsView2.currentAccount).getTopicsController();
+                        ArrayList<Integer> arrayList3 = new ArrayList<>();
+                        for (int iM = 0; iM < arrayList2.size(); iM = LocationController$$ExternalSyntheticOutline0.m(((UItem) arrayList2.get(iM)).id, iM, 1, arrayList3)) {
+                        }
+                        long j5 = -topicsTabsView2.dialogId;
+                        topicsController2.reorderPinnedTopics(j5, arrayList3);
+                        topicsController2.sortTopics(j5, false);
+                        break;
+                    default:
+                        ArrayList arrayList4 = (ArrayList) obj;
+                        UniversalAdapter universalAdapter3 = (UniversalAdapter) obj2;
+                        int i10 = topicsTabsView2.currentAccount;
+                        MessagesController messagesController2 = MessagesController.getInstance(i10);
+                        long j6 = topicsTabsView2.dialogId;
+                        long j7 = -j6;
+                        TLRPC.Chat chat3 = messagesController2.getChat(Long.valueOf(j7));
+                        TLRPC.User user4 = MessagesController.getInstance(i10).getUser(Long.valueOf(j6));
+                        TopicsController topicsController3 = MessagesController.getInstance(i10).getTopicsController();
+                        ArrayList<TLRPC.TL_forumTopic> topics2 = topicsController3.getTopics(j7);
+                        boolean z7 = topicsTabsView2.mono;
+                        boolean z8 = topicsTabsView2.bot;
+                        if (z8) {
+                            topicsTabsView = topicsTabsView2;
+                        } else {
+                            int i11 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                            UItem uItemOfFactory7 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory7.id = 0;
+                            uItemOfFactory7.longValue = 0L;
+                            uItemOfFactory7.object = null;
+                            uItemOfFactory7.accent = z7;
+                            uItemOfFactory7.flags = z8 ? 1 : 0;
+                            topicsTabsView = topicsTabsView2;
+                            uItemOfFactory7.setChecked(topicsTabsView.currentTopicId == 0);
+                            arrayList4.add(uItemOfFactory7);
+                        }
+                        if (topics2 != null) {
+                            int size2 = topics2.size();
+                            boolean z9 = false;
+                            int i12 = 0;
+                            while (i12 < size2) {
+                                TLRPC.TL_forumTopic tL_forumTopic3 = topics2.get(i12);
+                                i12++;
+                                TLRPC.TL_forumTopic tL_forumTopic4 = tL_forumTopic3;
+                                size2 = size2;
+                                if (z8) {
+                                    z3 = z9;
+                                    if (tL_forumTopic4.id == 1) {
+                                        z9 = z3;
+                                    }
+                                } else {
+                                    z3 = z9;
+                                }
+                                if (topicsTabsView.excludeTopics.contains(Integer.valueOf(tL_forumTopic4.id))) {
+                                    z9 = z3;
+                                } else {
+                                    boolean z10 = tL_forumTopic4.pinned;
+                                    if (!z10 && z3) {
+                                        universalAdapter3.reorderSectionEnd();
+                                        z9 = false;
+                                    } else if (!z10 || z3) {
+                                        z9 = z3;
+                                    } else {
+                                        universalAdapter3.reorderSectionStart();
+                                        z9 = true;
+                                    }
+                                    int i13 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                                    UItem uItemOfFactory8 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                                    uItemOfFactory8.dialogId = j6;
+                                    long j8 = j6;
+                                    uItemOfFactory8.id = tL_forumTopic4.id;
+                                    uItemOfFactory8.object = tL_forumTopic4;
+                                    if (z7) {
+                                        uItemOfFactory8.longValue = DialogObject.getPeerDialogId(tL_forumTopic4.from_id);
+                                        uItemOfFactory8.withUsername = false;
+                                    }
+                                    uItemOfFactory8.setChecked(topicsTabsView.currentTopicId == (z7 ? DialogObject.getPeerDialogId(tL_forumTopic4.from_id) : (long) tL_forumTopic4.id));
+                                    arrayList4.add(uItemOfFactory8);
+                                    j6 = j8;
+                                }
+                            }
+                            z2 = z9;
+                        } else {
+                            z2 = false;
+                        }
+                        if (z2) {
+                            universalAdapter3.reorderSectionEnd();
+                        }
+                        if (topics2 != null && !topics2.isEmpty() && !topicsController3.endIsReached(j7) && topicsTabsView.canShowProgress) {
+                            int i14 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                            UItem uItemOfFactory9 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory9.id = -2;
+                            uItemOfFactory9.red = true;
+                            uItemOfFactory9.checked = false;
+                            arrayList4.add(uItemOfFactory9);
+                            UItem uItemOfFactory10 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory10.id = -3;
+                            uItemOfFactory10.red = true;
+                            uItemOfFactory10.checked = false;
+                            arrayList4.add(uItemOfFactory10);
+                            UItem uItemOfFactory11 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory11.id = -4;
+                            uItemOfFactory11.red = true;
+                            uItemOfFactory11.checked = false;
+                            arrayList4.add(uItemOfFactory11);
+                        }
+                        if (z8 == 0 && !z7) {
+                            if ((chat3 != 0 && ChatObject.canCreateTopic(chat3)) || UserObject.isBotForumWithEditableTopics(user4)) {
+                                int i15 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                                UItem uItemOfFactory12 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                                uItemOfFactory12.id = -2;
+                                uItemOfFactory12.longValue = -2L;
+                                uItemOfFactory12.object = null;
+                                uItemOfFactory12.accent = false;
+                                arrayList4.add(uItemOfFactory12);
+                                break;
+                            }
+                        }
+                        break;
+                }
+            }
+        }, new TopicsTabsView$$ExternalSyntheticLambda1(this), new TopicsTabsView$$ExternalSyntheticLambda1(this), resourcesProvider) {
+            public Drawable pinIcon;
+            public int pinIconColor;
+            public final GradientClip clip = new GradientClip();
+            public final AnimatedFloat animatedClip = new AnimatedFloat(320, this, CubicBezierInterpolator.EASE_OUT_QUINT);
+            public final Paint pinnedBackgroundPaint = new Paint(1);
+
+            @Override
+            public final void dispatchDraw(Canvas canvas) {
                 Canvas canvas2;
                 float f = this.animatedClip.set(canScrollVertically(-1));
                 if (f > 0.0f) {
@@ -363,280 +1985,521 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
                 } else {
                     canvas2 = canvas;
                 }
-                drawPinnedBackground(canvas2);
-                super.dispatchDraw(canvas2);
-                if (f > 0.0f) {
-                    canvas2.save();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f));
-                    this.clip.draw(canvas2, rectF, 1, f);
-                    canvas2.restore();
-                    canvas2.restore();
-                }
-            }
-
-            private void drawPinnedBackground(Canvas canvas) {
                 float height = getHeight();
                 float y = 0.0f;
-                for (int i2 = 0; i2 < getChildCount(); i2++) {
-                    View childAt = getChildAt(i2);
+                for (int i7 = 0; i7 < getChildCount(); i7++) {
+                    View childAt = getChildAt(i7);
                     if (childAt instanceof VerticalTabView) {
                         VerticalTabView verticalTabView2 = (VerticalTabView) childAt;
                         if (verticalTabView2.pinned) {
                             if (height > verticalTabView2.getY()) {
                                 height = verticalTabView2.getY();
-                                getChildAdapterPosition(verticalTabView2);
+                                RecyclerView.getChildAdapterPosition(verticalTabView2);
                             }
                             if (y < verticalTabView2.getY() + verticalTabView2.getHeight()) {
                                 y = verticalTabView2.getY() + verticalTabView2.getHeight();
-                                getChildAdapterPosition(verticalTabView2);
+                                RecyclerView.getChildAdapterPosition(verticalTabView2);
                             }
                         }
                     }
                 }
                 if (y > height) {
-                    this.pinnedBackgroundPaint.setColor(Theme.getColor(Theme.key_chats_pinnedOverlay, this.resourcesProvider));
+                    Paint paint = this.pinnedBackgroundPaint;
+                    int i8 = Theme.key_chats_pinnedOverlay;
+                    Theme.ResourcesProvider resourcesProvider2 = this.resourcesProvider;
+                    paint.setColor(Theme.getColor(i8, resourcesProvider2));
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set((getWidth() - AndroidUtilities.dp(56.0f)) / 2.0f, height, (getWidth() + AndroidUtilities.dp(56.0f)) / 2.0f, y);
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.pinnedBackgroundPaint);
+                    rectF.set((getWidth() - AndroidUtilities.dp(56.0f)) / 2.0f, height, (AndroidUtilities.dp(56.0f) + getWidth()) / 2.0f, y);
+                    canvas2.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
                     if (this.pinIcon == null) {
                         this.pinIcon = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
                     }
-                    int color = Theme.getColor(Theme.key_chats_pinnedIcon, this.resourcesProvider);
+                    int color = Theme.getColor(Theme.key_chats_pinnedIcon, resourcesProvider2);
                     if (this.pinIconColor != color) {
                         Drawable drawable = this.pinIcon;
                         this.pinIconColor = color;
                         drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
                     }
                     this.pinIcon.setBounds((int) (rectF.left + AndroidUtilities.dp(4.0f)), (int) (rectF.top + AndroidUtilities.dp(2.66f)), (int) (rectF.left + AndroidUtilities.dp(13.66f)), (int) (rectF.top + AndroidUtilities.dp(12.32f)));
-                    this.pinIcon.draw(canvas);
+                    this.pinIcon.draw(canvas2);
+                }
+                super.dispatchDraw(canvas2);
+                if (f > 0.0f) {
+                    canvas2.save();
+                    RectF rectF2 = AndroidUtilities.rectTmp;
+                    rectF2.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f));
+                    this.clip.draw(canvas2, rectF2, 1, f);
+                    canvas2.restore();
+                    canvas2.restore();
                 }
             }
         };
-        this.sideTabs = universalRecyclerView2;
-        universalRecyclerView2.listenReorder(new Utilities.Callback2() {
+        this.sideTabs = r1;
+        final int i7 = 1;
+        r1.listenReorder(new Utilities.Callback2(this) {
+            public final TopicsTabsView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
+                boolean z;
+                TLRPC.User user;
+                TopicsTabsView topicsTabsView;
+                boolean z2;
+                boolean z3;
+                TopicsTabsView topicsTabsView2 = this.f$0;
+                switch (i7) {
+                    case 0:
+                        ArrayList arrayList = (ArrayList) obj;
+                        UniversalAdapter universalAdapter = (UniversalAdapter) obj2;
+                        int i8 = topicsTabsView2.currentAccount;
+                        MessagesController messagesController = MessagesController.getInstance(i8);
+                        long j3 = topicsTabsView2.dialogId;
+                        long j4 = -j3;
+                        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j4));
+                        TLRPC.User user2 = MessagesController.getInstance(i8).getUser(Long.valueOf(j3));
+                        TopicsController topicsController = MessagesController.getInstance(i8).getTopicsController();
+                        ArrayList<TLRPC.TL_forumTopic> topics = topicsController.getTopics(j4);
+                        int i9 = TopicsTabsView.HorizontalTabView.Factory.$r8$clinit;
+                        UItem uItemOfFactory = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                        uItemOfFactory.id = 0;
+                        uItemOfFactory.longValue = 0L;
+                        uItemOfFactory.object = null;
+                        boolean z4 = topicsTabsView2.mono;
+                        uItemOfFactory.accent = z4;
+                        uItemOfFactory.setChecked(topicsTabsView2.currentTopicId == 0);
+                        arrayList.add(uItemOfFactory);
+                        boolean z5 = topicsTabsView2.bot;
+                        if (topics != null) {
+                            int size = topics.size();
+                            int i10 = 0;
+                            z = false;
+                            while (i10 < size) {
+                                TLRPC.TL_forumTopic tL_forumTopic = topics.get(i10);
+                                universalAdapter = universalAdapter;
+                                i10++;
+                                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
+                                chat = chat;
+                                if (z5) {
+                                    user = user2;
+                                    if (tL_forumTopic2.id == 1) {
+                                    }
+                                    user2 = user;
+                                } else {
+                                    user = user2;
+                                }
+                                if (topicsTabsView2.excludeTopics.contains(Integer.valueOf(tL_forumTopic2.id))) {
+                                    user2 = user;
+                                } else {
+                                    boolean z6 = tL_forumTopic2.pinned;
+                                    if (!z6 && z) {
+                                        if (!arrayList.isEmpty()) {
+                                            ((UItem) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList)).flags |= 8;
+                                        }
+                                        universalAdapter.reorderSectionEnd();
+                                        z = false;
+                                    } else if (z6 && !z) {
+                                        universalAdapter.reorderSectionStart();
+                                        z = true;
+                                    }
+                                    UItem uItemOfFactory2 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                                    uItemOfFactory2.dialogId = j3;
+                                    uItemOfFactory2.id = tL_forumTopic2.id;
+                                    uItemOfFactory2.object = tL_forumTopic2;
+                                    if (z4) {
+                                        uItemOfFactory2.longValue = DialogObject.getPeerDialogId(tL_forumTopic2.from_id);
+                                        uItemOfFactory2.withUsername = false;
+                                    }
+                                    uItemOfFactory2.setChecked(topicsTabsView2.currentTopicId == (z4 ? DialogObject.getPeerDialogId(tL_forumTopic2.from_id) : (long) tL_forumTopic2.id));
+                                    arrayList.add(uItemOfFactory2);
+                                    user2 = user;
+                                    j3 = j3;
+                                }
+                            }
+                        } else {
+                            z = false;
+                        }
+                        UniversalAdapter universalAdapter2 = universalAdapter;
+                        TLRPC.Chat chat2 = chat;
+                        TLRPC.User user3 = user2;
+                        if (z) {
+                            universalAdapter2.reorderSectionEnd();
+                        }
+                        if (topics != null && !topics.isEmpty() && !topicsController.endIsReached(j4) && topicsTabsView2.canShowProgress) {
+                            UItem uItemOfFactory3 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory3.id = -2;
+                            uItemOfFactory3.red = true;
+                            arrayList.add(uItemOfFactory3);
+                            UItem uItemOfFactory4 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory4.id = -3;
+                            uItemOfFactory4.red = true;
+                            arrayList.add(uItemOfFactory4);
+                            UItem uItemOfFactory5 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                            uItemOfFactory5.id = -4;
+                            uItemOfFactory5.red = true;
+                            arrayList.add(uItemOfFactory5);
+                        }
+                        if (!z5 && !z4) {
+                            if ((chat2 != null && ChatObject.canCreateTopic(chat2)) || UserObject.isBotForumWithEditableTopics(user3)) {
+                                UItem uItemOfFactory6 = UItem.ofFactory(TopicsTabsView.HorizontalTabView.Factory.class);
+                                uItemOfFactory6.id = -2;
+                                uItemOfFactory6.longValue = -2L;
+                                uItemOfFactory6.object = null;
+                                arrayList.add(uItemOfFactory6);
+                                break;
+                            }
+                        }
+                        break;
+                    case 1:
+                        ((Integer) obj).getClass();
+                        ArrayList arrayList2 = (ArrayList) obj2;
+                        TopicsController topicsController2 = MessagesController.getInstance(topicsTabsView2.currentAccount).getTopicsController();
+                        ArrayList<Integer> arrayList3 = new ArrayList<>();
+                        for (int iM = 0; iM < arrayList2.size(); iM = LocationController$$ExternalSyntheticOutline0.m(((UItem) arrayList2.get(iM)).id, iM, 1, arrayList3)) {
+                        }
+                        long j5 = -topicsTabsView2.dialogId;
+                        topicsController2.reorderPinnedTopics(j5, arrayList3);
+                        topicsController2.sortTopics(j5, false);
+                        break;
+                    default:
+                        ArrayList arrayList4 = (ArrayList) obj;
+                        UniversalAdapter universalAdapter3 = (UniversalAdapter) obj2;
+                        int i11 = topicsTabsView2.currentAccount;
+                        MessagesController messagesController2 = MessagesController.getInstance(i11);
+                        long j6 = topicsTabsView2.dialogId;
+                        long j7 = -j6;
+                        TLRPC.Chat chat3 = messagesController2.getChat(Long.valueOf(j7));
+                        TLRPC.User user4 = MessagesController.getInstance(i11).getUser(Long.valueOf(j6));
+                        TopicsController topicsController3 = MessagesController.getInstance(i11).getTopicsController();
+                        ArrayList<TLRPC.TL_forumTopic> topics2 = topicsController3.getTopics(j7);
+                        boolean z7 = topicsTabsView2.mono;
+                        boolean z8 = topicsTabsView2.bot;
+                        if (z8) {
+                            topicsTabsView = topicsTabsView2;
+                        } else {
+                            int i12 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                            UItem uItemOfFactory7 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory7.id = 0;
+                            uItemOfFactory7.longValue = 0L;
+                            uItemOfFactory7.object = null;
+                            uItemOfFactory7.accent = z7;
+                            uItemOfFactory7.flags = z8 ? 1 : 0;
+                            topicsTabsView = topicsTabsView2;
+                            uItemOfFactory7.setChecked(topicsTabsView.currentTopicId == 0);
+                            arrayList4.add(uItemOfFactory7);
+                        }
+                        if (topics2 != null) {
+                            int size2 = topics2.size();
+                            boolean z9 = false;
+                            int i13 = 0;
+                            while (i13 < size2) {
+                                TLRPC.TL_forumTopic tL_forumTopic3 = topics2.get(i13);
+                                i13++;
+                                TLRPC.TL_forumTopic tL_forumTopic4 = tL_forumTopic3;
+                                size2 = size2;
+                                if (z8) {
+                                    z3 = z9;
+                                    if (tL_forumTopic4.id == 1) {
+                                        z9 = z3;
+                                    }
+                                } else {
+                                    z3 = z9;
+                                }
+                                if (topicsTabsView.excludeTopics.contains(Integer.valueOf(tL_forumTopic4.id))) {
+                                    z9 = z3;
+                                } else {
+                                    boolean z10 = tL_forumTopic4.pinned;
+                                    if (!z10 && z3) {
+                                        universalAdapter3.reorderSectionEnd();
+                                        z9 = false;
+                                    } else if (!z10 || z3) {
+                                        z9 = z3;
+                                    } else {
+                                        universalAdapter3.reorderSectionStart();
+                                        z9 = true;
+                                    }
+                                    int i14 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                                    UItem uItemOfFactory8 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                                    uItemOfFactory8.dialogId = j6;
+                                    long j8 = j6;
+                                    uItemOfFactory8.id = tL_forumTopic4.id;
+                                    uItemOfFactory8.object = tL_forumTopic4;
+                                    if (z7) {
+                                        uItemOfFactory8.longValue = DialogObject.getPeerDialogId(tL_forumTopic4.from_id);
+                                        uItemOfFactory8.withUsername = false;
+                                    }
+                                    uItemOfFactory8.setChecked(topicsTabsView.currentTopicId == (z7 ? DialogObject.getPeerDialogId(tL_forumTopic4.from_id) : (long) tL_forumTopic4.id));
+                                    arrayList4.add(uItemOfFactory8);
+                                    j6 = j8;
+                                }
+                            }
+                            z2 = z9;
+                        } else {
+                            z2 = false;
+                        }
+                        if (z2) {
+                            universalAdapter3.reorderSectionEnd();
+                        }
+                        if (topics2 != null && !topics2.isEmpty() && !topicsController3.endIsReached(j7) && topicsTabsView.canShowProgress) {
+                            int i15 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                            UItem uItemOfFactory9 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory9.id = -2;
+                            uItemOfFactory9.red = true;
+                            uItemOfFactory9.checked = false;
+                            arrayList4.add(uItemOfFactory9);
+                            UItem uItemOfFactory10 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory10.id = -3;
+                            uItemOfFactory10.red = true;
+                            uItemOfFactory10.checked = false;
+                            arrayList4.add(uItemOfFactory10);
+                            UItem uItemOfFactory11 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                            uItemOfFactory11.id = -4;
+                            uItemOfFactory11.red = true;
+                            uItemOfFactory11.checked = false;
+                            arrayList4.add(uItemOfFactory11);
+                        }
+                        if (z8 == 0 && !z7) {
+                            if ((chat3 != 0 && ChatObject.canCreateTopic(chat3)) || UserObject.isBotForumWithEditableTopics(user4)) {
+                                int i16 = TopicsTabsView.VerticalTabView.Factory.$r8$clinit;
+                                UItem uItemOfFactory12 = UItem.ofFactory(TopicsTabsView.VerticalTabView.Factory.class);
+                                uItemOfFactory12.id = -2;
+                                uItemOfFactory12.longValue = -2L;
+                                uItemOfFactory12.object = null;
+                                uItemOfFactory12.accent = false;
+                                arrayList4.add(uItemOfFactory12);
+                                break;
+                            }
+                        }
+                        break;
+                }
             }
-        });
-        universalRecyclerView2.adapter.setApplyBackground(false);
-        universalRecyclerView2.setClipToPadding(false);
-        universalRecyclerView2.setClipChildren(false);
-        viewGroup2.addView(universalRecyclerView2, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, zIsBotForumWithEditableTopics ? 90.0f : 48.0f, 0.0f, 0.0f));
-        universalRecyclerView2.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        }, false);
+        r1.adapter.applyBackground = false;
+        r1.setClipToPadding(false);
+        r1.setClipChildren(false);
+        viewGroup2.addView((View) r1, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, zIsBotForumWithEditableTopics ? 90.0f : 48.0f, 0.0f, 0.0f));
+        final int i8 = 1;
+        r1.addOnScrollListener(new RecyclerView.OnScrollListener(this) {
+            public final TopicsTabsView this$0;
+
+            {
+                this.this$0 = this;
+            }
+
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                if (TopicsTabsView.this.isLoadingVisible()) {
-                    TopicsTabsView.this.loadMore();
+            public final void onScrolled(RecyclerView recyclerView, int i9, int i10) {
+                switch (i8) {
+                    case 0:
+                        TopicsTabsView topicsTabsView = this.this$0;
+                        if (topicsTabsView.isLoadingVisible()) {
+                            topicsTabsView.loadMore();
+                        }
+                        break;
+                    default:
+                        TopicsTabsView topicsTabsView2 = this.this$0;
+                        if (topicsTabsView2.isLoadingVisible()) {
+                            topicsTabsView2.loadMore();
+                        }
+                        break;
                 }
             }
         });
-        int i2 = R.drawable.menu_sidebar_left;
-        ImageView imageViewCreateButton = createButton(context, i2, new View.OnClickListener() {
+        int i9 = R.drawable.menu_sidebar_left;
+        final int i10 = 0;
+        View.OnClickListener onClickListener = new View.OnClickListener(this) {
+            public final TopicsTabsView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                this.f$0.onSideMenuButtonClick(view);
+                switch (i10) {
+                    case 0:
+                        TopicsTabsView topicsTabsView = this.f$0;
+                        Boolean bool = topicsTabsView.pendingSidemenu;
+                        topicsTabsView.animateSidemenuTo(bool == null ? !topicsTabsView.sidemenuEnabled : !bool.booleanValue());
+                        break;
+                    case 1:
+                        TopicsTabsView topicsTabsView2 = this.f$0;
+                        TopicsTabsView.AnonymousClass3 anonymousClass3 = topicsTabsView2.sideTabs;
+                        anonymousClass3.allowReorder(false);
+                        TopicsTabsView.AnonymousClass1 anonymousClass1 = topicsTabsView2.topTabs;
+                        anonymousClass1.allowReorder(false);
+                        topicsTabsView2.animatorCloseButtonVisibility.setValue(false, true);
+                        AndroidUtilities.updateVisibleRows(anonymousClass3);
+                        AndroidUtilities.updateVisibleRows(anonymousClass1);
+                        break;
+                    default:
+                        this.f$0.onTopicSelected.run(0, Boolean.FALSE);
+                        break;
+                }
             }
-        });
-        this.toggleButtonTop = imageViewCreateButton;
-        ImageView imageViewCreateButton2 = createButton(context, i2, new View.OnClickListener() {
+        };
+        ImageView imageView = new ImageView(activity);
+        imageView.setImageResource(i9);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setOnClickListener(onClickListener);
+        ScaleStateListAnimator.apply(imageView, 0.1f, 1.5f);
+        this.toggleButtonTop = imageView;
+        final int i11 = 0;
+        View.OnClickListener onClickListener2 = new View.OnClickListener(this) {
+            public final TopicsTabsView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                this.f$0.onSideMenuButtonClick(view);
+                switch (i11) {
+                    case 0:
+                        TopicsTabsView topicsTabsView = this.f$0;
+                        Boolean bool = topicsTabsView.pendingSidemenu;
+                        topicsTabsView.animateSidemenuTo(bool == null ? !topicsTabsView.sidemenuEnabled : !bool.booleanValue());
+                        break;
+                    case 1:
+                        TopicsTabsView topicsTabsView2 = this.f$0;
+                        TopicsTabsView.AnonymousClass3 anonymousClass3 = topicsTabsView2.sideTabs;
+                        anonymousClass3.allowReorder(false);
+                        TopicsTabsView.AnonymousClass1 anonymousClass1 = topicsTabsView2.topTabs;
+                        anonymousClass1.allowReorder(false);
+                        topicsTabsView2.animatorCloseButtonVisibility.setValue(false, true);
+                        AndroidUtilities.updateVisibleRows(anonymousClass3);
+                        AndroidUtilities.updateVisibleRows(anonymousClass1);
+                        break;
+                    default:
+                        this.f$0.onTopicSelected.run(0, Boolean.FALSE);
+                        break;
+                }
             }
-        });
-        this.toggleButtonSide = imageViewCreateButton2;
-        frameLayout.addView(imageViewCreateButton, LayoutHelper.createFrame(44, 36, 51));
-        viewGroup2.addView(imageViewCreateButton2, LayoutHelper.createFrame(64, 48, 51));
-        int i3 = R.drawable.msg_select;
-        ImageView imageViewCreateButton3 = createButton(context, i3, new View.OnClickListener() {
+        };
+        ImageView imageView2 = new ImageView(activity);
+        imageView2.setImageResource(i9);
+        imageView2.setScaleType(scaleType);
+        imageView2.setOnClickListener(onClickListener2);
+        ScaleStateListAnimator.apply(imageView2, 0.1f, 1.5f);
+        this.toggleButtonSide = imageView2;
+        frameLayout.addView(imageView, LayoutHelper.createFrame(44, 36, 51));
+        viewGroup2.addView(imageView2, LayoutHelper.createFrame(64, 48, 51));
+        int i12 = R.drawable.msg_select;
+        final int i13 = 1;
+        View.OnClickListener onClickListener3 = new View.OnClickListener(this) {
+            public final TopicsTabsView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                this.f$0.onCloseButtonClick(view);
+                switch (i13) {
+                    case 0:
+                        TopicsTabsView topicsTabsView = this.f$0;
+                        Boolean bool = topicsTabsView.pendingSidemenu;
+                        topicsTabsView.animateSidemenuTo(bool == null ? !topicsTabsView.sidemenuEnabled : !bool.booleanValue());
+                        break;
+                    case 1:
+                        TopicsTabsView topicsTabsView2 = this.f$0;
+                        TopicsTabsView.AnonymousClass3 anonymousClass3 = topicsTabsView2.sideTabs;
+                        anonymousClass3.allowReorder(false);
+                        TopicsTabsView.AnonymousClass1 anonymousClass1 = topicsTabsView2.topTabs;
+                        anonymousClass1.allowReorder(false);
+                        topicsTabsView2.animatorCloseButtonVisibility.setValue(false, true);
+                        AndroidUtilities.updateVisibleRows(anonymousClass3);
+                        AndroidUtilities.updateVisibleRows(anonymousClass1);
+                        break;
+                    default:
+                        this.f$0.onTopicSelected.run(0, Boolean.FALSE);
+                        break;
+                }
             }
-        });
-        this.closeButtonTop = imageViewCreateButton3;
-        ImageView imageViewCreateButton4 = createButton(context, i3, new View.OnClickListener() {
+        };
+        ImageView imageView3 = new ImageView(activity);
+        imageView3.setImageResource(i12);
+        imageView3.setScaleType(scaleType);
+        imageView3.setOnClickListener(onClickListener3);
+        ScaleStateListAnimator.apply(imageView3, 0.1f, 1.5f);
+        this.closeButtonTop = imageView3;
+        final int i14 = 1;
+        View.OnClickListener onClickListener4 = new View.OnClickListener(this) {
+            public final TopicsTabsView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                this.f$0.onCloseButtonClick(view);
+                switch (i14) {
+                    case 0:
+                        TopicsTabsView topicsTabsView = this.f$0;
+                        Boolean bool = topicsTabsView.pendingSidemenu;
+                        topicsTabsView.animateSidemenuTo(bool == null ? !topicsTabsView.sidemenuEnabled : !bool.booleanValue());
+                        break;
+                    case 1:
+                        TopicsTabsView topicsTabsView2 = this.f$0;
+                        TopicsTabsView.AnonymousClass3 anonymousClass3 = topicsTabsView2.sideTabs;
+                        anonymousClass3.allowReorder(false);
+                        TopicsTabsView.AnonymousClass1 anonymousClass1 = topicsTabsView2.topTabs;
+                        anonymousClass1.allowReorder(false);
+                        topicsTabsView2.animatorCloseButtonVisibility.setValue(false, true);
+                        AndroidUtilities.updateVisibleRows(anonymousClass3);
+                        AndroidUtilities.updateVisibleRows(anonymousClass1);
+                        break;
+                    default:
+                        this.f$0.onTopicSelected.run(0, Boolean.FALSE);
+                        break;
+                }
             }
-        });
-        this.closeButtonSide = imageViewCreateButton4;
-        frameLayout.addView(imageViewCreateButton3, LayoutHelper.createFrame(44, 36, 51));
-        viewGroup2.addView(imageViewCreateButton4, LayoutHelper.createFrame(64, 48, 51));
+        };
+        ImageView imageView4 = new ImageView(activity);
+        imageView4.setImageResource(i12);
+        imageView4.setScaleType(scaleType);
+        imageView4.setOnClickListener(onClickListener4);
+        ScaleStateListAnimator.apply(imageView4, 0.1f, 1.5f);
+        this.closeButtonSide = imageView4;
+        frameLayout.addView(imageView3, LayoutHelper.createFrame(44, 36, 51));
+        viewGroup2.addView(imageView4, LayoutHelper.createFrame(64, 48, 51));
         MessagesController.getInstance(i).getTopicsController().loadTopics(j2, false, 3);
         SharedPreferences mainSettings = MessagesController.getInstance(i).getMainSettings();
-        if (mainSettings.getBoolean("topicssidetabs" + j, false)) {
+        if (NotificationsController$$ExternalSyntheticOutline0.m("topicssidetabs", j, mainSettings, false)) {
             this.sidemenuT = 1.0f;
             this.sidemenuEnabled = true;
         }
-        boolean z = mainSettings.getBoolean("topicssidetabsb" + j, false);
-        this.topicBottom = z;
-        imageViewCreateButton2.setImageResource(z ? R.drawable.menu_sidebar_top : R.drawable.menu_sidebar_bottom);
+        boolean zM = NotificationsController$$ExternalSyntheticOutline0.m("topicssidetabsb", j, mainSettings, false);
+        this.topicBottom = zM;
+        imageView2.setImageResource(zM ? R.drawable.menu_sidebar_top : R.drawable.menu_sidebar_bottom);
         checkTopicsVisibility(false);
         checkUi_closeButtonVisibility();
         updateSidemenuPosition();
-        updateTabs();
+        updateTabs$1();
     }
 
-    private void checkTopicsVisibility(boolean z) {
-        ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-this.dialogId);
-        this.animatorTopicsVisibility.setValue((topics == null || topics.isEmpty() || this.allTopicsHidden) ? false : true, z);
-    }
-
-    public void onSideMenuButtonClick(View view) {
-        Boolean bool = this.pendingSidemenu;
-        animateSidemenuTo(bool == null ? !this.sidemenuEnabled : !bool.booleanValue());
-    }
-
-    public void onCloseButtonClick(View view) {
-        this.sideTabs.allowReorder(false);
-        this.topTabs.allowReorder(false);
-        this.animatorCloseButtonVisibility.setValue(false, true);
-        AndroidUtilities.updateVisibleRows(this.sideTabs);
-        AndroidUtilities.updateVisibleRows(this.topTabs);
-    }
-
-    private ImageView createButton(Context context, int i, View.OnClickListener onClickListener) {
-        ImageView imageView = new ImageView(context);
-        imageView.setImageResource(i);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setOnClickListener(onClickListener);
-        ScaleStateListAnimator.apply(imageView);
-        return imageView;
-    }
-
-    public void checkUi_closeButtonVisibility() {
-        float floatValue = this.animatorCloseButtonVisibility.getFloatValue();
-        this.closeButtonTop.setAlpha(floatValue);
-        this.closeButtonTop.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
-        this.closeButtonTop.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
-        this.closeButtonTop.setVisibility(floatValue > 0.0f ? 0 : 8);
-        this.closeButtonSide.setAlpha(floatValue);
-        this.closeButtonSide.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
-        this.closeButtonSide.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
-        this.closeButtonSide.setVisibility(floatValue > 0.0f ? 0 : 8);
-        float floatValue2 = 1.0f - this.animatorCloseButtonVisibility.getFloatValue();
-        this.toggleButtonTop.setAlpha(floatValue2);
-        this.toggleButtonTop.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, floatValue2));
-        this.toggleButtonTop.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, floatValue2));
-        this.toggleButtonTop.setVisibility(floatValue2 > 0.0f ? 0 : 8);
-        this.toggleButtonSide.setAlpha(floatValue2);
-        this.toggleButtonSide.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, floatValue2));
-        this.toggleButtonSide.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, floatValue2));
-        this.toggleButtonSide.setVisibility(floatValue2 > 0.0f ? 0 : 8);
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        if (this.sideTabsContainer.getVisibility() == 0) {
-            this.sideMenuBackgroundDrawable.setBounds((int) this.sideTabsContainer.getTranslationX(), (int) this.sideMenuBackgroundMarginTop, (int) (this.sideTabsContainer.getTranslationX() + AndroidUtilities.dp(78.0f)), (int) (getMeasuredHeight() - this.sideMenuBackgroundMarginBottom));
-            this.sideMenuBackgroundDrawable.draw(canvas);
-        }
-        if (this.topTabsContainer.getVisibility() == 0) {
-            this.topMenuBackgroundDrawable.setAlpha((int) (this.topTabsContainer.getAlpha() * 255.0f));
-            this.topMenuBackgroundDrawable.setBounds(0, (int) this.topTabsContainer.getTranslationY(), getMeasuredWidth(), (int) (this.topTabsContainer.getTranslationY() + AndroidUtilities.dp(50.0f)));
-            this.topMenuBackgroundDrawable.draw(canvas);
-        }
-        canvas.save();
-        canvas.clipRect(0, 0, getWidth(), getHeight());
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        canvas.save();
-        if (view == this.sideTabsContainer) {
-            canvas.clipPath(this.sideMenuBackgroundDrawable.getPath());
-        }
-        if (view == this.topTabsContainer) {
-            canvas.clipPath(this.topMenuBackgroundDrawable.getPath());
-        }
-        boolean zDrawChild = super.drawChild(canvas, view, j);
-        canvas.restore();
-        return zDrawChild;
-    }
-
-    public void setSideMenuBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
-        this.sideMenuBackgroundDrawable = blurredBackgroundDrawable;
-        blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(16.0f));
-        this.sideMenuBackgroundDrawable.setPadding(AndroidUtilities.dp(7.0f));
-    }
-
-    public void setTopMenuBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
-        this.topMenuBackgroundDrawable = blurredBackgroundDrawable;
-        blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(18.0f));
-        this.topMenuBackgroundDrawable.setPadding(AndroidUtilities.dp(7.0f));
-    }
-
-    public void setSideMenuBackgroundMarginBottom(float f) {
-        this.sideMenuBackgroundMarginBottom = f;
-        checkUi_topicsVerticalPosition();
-        checkSideTabsPadding(true);
-        invalidate();
-    }
-
-    public void setSideMenuBackgroundMarginTop(float f) {
-        this.sideMenuBackgroundMarginTop = f;
-        this.sideTabsContainer.setTranslationY(f);
-        checkUi_topicsVerticalPosition();
-        checkSideTabsPadding(true);
-        invalidate();
-    }
-
-    private void checkSideTabsPadding(boolean z) {
-        int paddingBottom = this.sideTabsContainer.getPaddingBottom();
-        int iRound = Math.round(this.sideMenuBackgroundMarginBottom + this.sideMenuBackgroundMarginTop);
-        if (paddingBottom == iRound) {
+    private void setAttached(boolean z) {
+        if (this.notificationsAttached == z) {
             return;
         }
+        this.notificationsAttached = z;
+        long j = this.dialogId;
+        int i = this.currentAccount;
         if (z) {
-            this.sideTabsContainer.setPadding(0, 0, 0, iRound);
-        } else if (iRound < paddingBottom) {
-            this.sideTabsContainer.setPadding(0, 0, 0, 0);
-        }
-    }
-
-    public void doOnUpdateSideMenuPosition(Runnable runnable) {
-        this.onUpdateSideMenuPosition = runnable;
-    }
-
-    public void updateSidemenuPosition() {
-        Runnable runnable = this.onUpdateSideMenuPosition;
-        if (runnable != null) {
-            runnable.run();
-        }
-        checkUi_topicsVerticalPosition();
-        float tabsVisibility = getTabsVisibility(Position.LEFT);
-        this.sideTabsContainer.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(78.0f), 0, tabsVisibility));
-        this.sideTabsContainer.setVisibility(tabsVisibility <= 0.0f ? 8 : 0);
-        ImageView imageView = this.toggleButtonTop;
-        int i = Theme.key_windowBackgroundWhiteGrayText2;
-        int color = Theme.getColor(i, this.resourcesProvider);
-        int i2 = Theme.key_featuredStickers_addButton;
-        int iBlendARGB = ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), 1.0f - this.sidemenuT);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(iBlendARGB, mode));
-        this.toggleButtonSide.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(Theme.getColor(i, this.resourcesProvider), Theme.getColor(i2, this.resourcesProvider), this.sidemenuT), mode));
-        this.closeButtonTop.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourcesProvider), mode));
-        this.closeButtonSide.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourcesProvider), mode));
-        invalidate();
-    }
-
-    private void checkUi_topicsVerticalPosition() {
-        this.topTabsContainer.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, this.sidemenuT));
-        this.topTabsContainer.setVisibility((1.0f - this.sidemenuT) * this.animatorTopicsVisibility.getFloatValue() > 0.0f ? 0 : 8);
-        if (this.topicBottom) {
-            this.topTabsContainer.setTranslationY(((getMeasuredHeight() - AndroidUtilities.dp(50.0f)) - this.sideMenuBackgroundMarginBottom) + AndroidUtilities.lerp(AndroidUtilities.dp(43.0f), 0, getTabsVisibility(Position.BOTTOM)));
+            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.topicsDidLoaded);
+            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.updateInterfaces);
+            MessagesController.getInstance(i).getTopicsController().onTopicFragmentResume(-j);
         } else {
-            this.topTabsContainer.setTranslationY(this.sideMenuBackgroundMarginTop + AndroidUtilities.lerp(-AndroidUtilities.dp(43.0f), 0, getTabsVisibility(Position.TOP)));
+            MessagesController.getInstance(i).getTopicsController().onTopicFragmentPause(-j);
+            NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.topicsDidLoaded);
+            NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.updateInterfaces);
         }
     }
 
-    public void animateSidemenuTo(boolean z) {
+    public final void animateSidemenuTo(boolean z) {
         if (this.sidemenuEnabled == z) {
             return;
         }
@@ -655,630 +2518,200 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         this.sidemenuAnimating = true;
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.sidemenuT, z ? 1.0f : 0.0f);
         this.animator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                TopicsTabsView.m2898$r8$lambda$Ouv9jPHE0DZAjZ_M6zd3mS0s(this.f$0, valueAnimator2);
-            }
-        });
+        valueAnimatorOfFloat.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 27));
         this.animator.addListener(new AnonymousClass5(z));
         this.animator.setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR);
         this.animator.setDuration(250L);
         this.animator.start();
     }
 
-    public static void m2898$r8$lambda$Ouv9jPHE0DZAjZ_M6zd3mS0s(TopicsTabsView topicsTabsView, ValueAnimator valueAnimator) {
-        topicsTabsView.getClass();
-        topicsTabsView.sidemenuT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        topicsTabsView.updateSidemenuPosition();
+    public final void checkTopicsVisibility(boolean z) {
+        ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-this.dialogId);
+        this.animatorTopicsVisibility.setValue((topics == null || topics.isEmpty() || this.allTopicsHidden) ? false : true, z);
     }
 
-    class AnonymousClass5 extends AnimatorListenerAdapter {
-        final boolean val$side;
-
-        AnonymousClass5(boolean z) {
-            this.val$side = z;
-        }
-
-        @Override
-        public void onAnimationEnd(Animator animator) {
-            if (TopicsTabsView.this.animator == animator) {
-                TopicsTabsView.this.sidemenuT = this.val$side ? 1.0f : 0.0f;
-                TopicsTabsView.this.updateSidemenuPosition();
-                TopicsTabsView.this.sidemenuAnimating = false;
-                TopicsTabsView.this.toggleButtonSide.setImageResource(TopicsTabsView.this.topicBottom ? R.drawable.menu_sidebar_top : R.drawable.menu_sidebar_bottom);
-                TopicsTabsView.this.animator = null;
-                MessagesController.getInstance(TopicsTabsView.this.currentAccount).getMainSettings().edit().putBoolean("topicssidetabs" + TopicsTabsView.this.dialogId, TopicsTabsView.this.sidemenuEnabled).putBoolean("topicssidetabsb" + TopicsTabsView.this.dialogId, TopicsTabsView.this.topicBottom).apply();
-                if (TopicsTabsView.this.pendingSidemenu != null && this.val$side != TopicsTabsView.this.pendingSidemenu.booleanValue()) {
-                    boolean zBooleanValue = TopicsTabsView.this.pendingSidemenu.booleanValue();
-                    TopicsTabsView.this.pendingSidemenu = null;
-                    TopicsTabsView.this.animateSidemenuTo(zBooleanValue);
-                }
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        TopicsTabsView.AnonymousClass5.$r8$lambda$qkMRXbWslKDkei0DJsDToQDQOL8(this.f$0);
-                    }
-                });
-            }
-        }
-
-        public static void $r8$lambda$qkMRXbWslKDkei0DJsDToQDQOL8(AnonymousClass5 anonymousClass5) {
-            if (TopicsTabsView.this.isLoadingVisible()) {
-                TopicsTabsView.this.loadMore();
-            }
-        }
+    public final void checkUi_closeButtonVisibility() {
+        BoolAnimator boolAnimator = this.animatorCloseButtonVisibility;
+        float f = boolAnimator.floatValue;
+        ImageView imageView = this.closeButtonTop;
+        imageView.setAlpha(f);
+        imageView.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f));
+        imageView.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f));
+        imageView.setVisibility(f > 0.0f ? 0 : 8);
+        ImageView imageView2 = this.closeButtonSide;
+        imageView2.setAlpha(f);
+        imageView2.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f));
+        imageView2.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f));
+        imageView2.setVisibility(f > 0.0f ? 0 : 8);
+        float f2 = 1.0f - boolAnimator.floatValue;
+        ImageView imageView3 = this.toggleButtonTop;
+        imageView3.setAlpha(f2);
+        imageView3.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f2));
+        imageView3.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f2));
+        imageView3.setVisibility(f2 > 0.0f ? 0 : 8);
+        ImageView imageView4 = this.toggleButtonSide;
+        imageView4.setAlpha(f2);
+        imageView4.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f2));
+        imageView4.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f2));
+        imageView4.setVisibility(f2 > 0.0f ? 0 : 8);
     }
 
-    private void updateTabs() {
-        checkTopicsVisibility(true);
-        boolean zCanScrollHorizontally = this.topTabs.canScrollHorizontally(-1);
-        this.topTabs.adapter.update(true);
-        if (!zCanScrollHorizontally) {
-            this.topTabs.scrollToPosition(0);
-        }
-        boolean zCanScrollVertically = this.sideTabs.canScrollVertically(-1);
-        this.sideTabs.adapter.update(true);
-        if (!zCanScrollVertically) {
-            this.sideTabs.scrollToPosition(0);
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                TopicsTabsView.m2900$r8$lambda$chbCGYqgTG1VKxaseTE3IqgPAU(this.f$0);
-            }
-        });
-    }
-
-    public static void m2900$r8$lambda$chbCGYqgTG1VKxaseTE3IqgPAU(TopicsTabsView topicsTabsView) {
-        if (topicsTabsView.isLoadingVisible()) {
-            topicsTabsView.loadMore();
+    public final void checkUi_topicsVerticalPosition() {
+        float fLerp = AndroidUtilities.lerp(1.0f, 0.0f, this.sidemenuT);
+        FrameLayout frameLayout = this.topTabsContainer;
+        frameLayout.setAlpha(fLerp);
+        frameLayout.setVisibility((1.0f - this.sidemenuT) * this.animatorTopicsVisibility.floatValue > 0.0f ? 0 : 8);
+        if (this.topicBottom) {
+            frameLayout.setTranslationY(((getMeasuredHeight() - AndroidUtilities.dp(50.0f)) - this.sideMenuBackgroundMarginBottom) + AndroidUtilities.lerp(AndroidUtilities.dp(43.0f), 0, getTabsVisibility(Position.BOTTOM)));
+        } else {
+            frameLayout.setTranslationY(this.sideMenuBackgroundMarginTop + AndroidUtilities.lerp(-AndroidUtilities.dp(43.0f), 0, getTabsVisibility(Position.TOP)));
         }
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.topicsDidLoaded) {
-            if (((Long) objArr[0]).longValue() != (-this.dialogId)) {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        int i3 = NotificationCenter.topicsDidLoaded;
+        long j = this.dialogId;
+        if (i == i3) {
+            if (((Long) objArr[0]).longValue() != (-j)) {
                 return;
             }
-            updateTabs();
+            updateTabs$1();
         } else {
             if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_SELECT_DIALOG) <= 0) {
                 return;
             }
-            MessagesController.getInstance(this.currentAccount).getTopicsController().sortTopics(-this.dialogId, false);
-            updateTabs();
+            MessagesController.getInstance(this.currentAccount).getTopicsController().sortTopics(-j, false);
+            updateTabs$1();
         }
-    }
-
-    public void whenReordered(int i, ArrayList arrayList) {
-        TopicsController topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController();
-        ArrayList<Integer> arrayList2 = new ArrayList<>();
-        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            arrayList2.add(Integer.valueOf(((UItem) arrayList.get(i2)).id));
-        }
-        topicsController.reorderPinnedTopics(-this.dialogId, arrayList2);
-        topicsController.sortTopics(-this.dialogId, false);
     }
 
     @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        setAttached(true);
+    public final void dispatchDraw(Canvas canvas) {
+        FrameLayout frameLayout = this.sideTabsContainer;
+        if (frameLayout.getVisibility() == 0) {
+            this.sideMenuBackgroundDrawable.setBounds((int) frameLayout.getTranslationX(), (int) this.sideMenuBackgroundMarginTop, (int) (frameLayout.getTranslationX() + AndroidUtilities.dp(78.0f)), (int) (getMeasuredHeight() - this.sideMenuBackgroundMarginBottom));
+            this.sideMenuBackgroundDrawable.draw(canvas);
+        }
+        FrameLayout frameLayout2 = this.topTabsContainer;
+        if (frameLayout2.getVisibility() == 0) {
+            this.topMenuBackgroundDrawable.setAlpha((int) (frameLayout2.getAlpha() * 255.0f));
+            this.topMenuBackgroundDrawable.setBounds(0, (int) frameLayout2.getTranslationY(), getMeasuredWidth(), (int) (frameLayout2.getTranslationY() + AndroidUtilities.dp(50.0f)));
+            this.topMenuBackgroundDrawable.draw(canvas);
+        }
+        canvas.save();
+        canvas.clipRect(0, 0, getWidth(), getHeight());
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        setAttached(false);
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        canvas.save();
+        if (view == this.sideTabsContainer) {
+            canvas.clipPath(this.sideMenuBackgroundDrawable.boundProps.path);
+        }
+        if (view == this.topTabsContainer) {
+            canvas.clipPath(this.topMenuBackgroundDrawable.boundProps.path);
+        }
+        boolean zDrawChild = super.drawChild(canvas, view, j);
+        canvas.restore();
+        return zDrawChild;
     }
 
-    private void setAttached(boolean z) {
-        if (this.notificationsAttached == z) {
-            return;
+    public Position getCurrentTabsPosition() {
+        if (this.sidemenuEnabled) {
+            return Position.LEFT;
         }
-        this.notificationsAttached = z;
-        if (z) {
-            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.topicsDidLoaded);
-            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
-            MessagesController.getInstance(this.currentAccount).getTopicsController().onTopicFragmentResume(-this.dialogId);
-        } else {
-            MessagesController.getInstance(this.currentAccount).getTopicsController().onTopicFragmentPause(-this.dialogId);
-            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.topicsDidLoaded);
-            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateInterfaces);
-        }
+        return this.topicBottom ? Position.BOTTOM : Position.TOP;
     }
 
-    public void fillVerticalTabs(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        boolean z;
-        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
-        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
-        TopicsController topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController();
-        ArrayList<TLRPC.TL_forumTopic> topics = topicsController.getTopics(-this.dialogId);
-        boolean z2 = this.bot;
-        if (!z2) {
-            arrayList.add(VerticalTabView.Factory.asAll(z2, this.mono).setChecked(this.currentTopicId == 0));
-        }
-        if (topics != null) {
-            int size = topics.size();
-            int i = 0;
-            z = false;
-            while (i < size) {
-                TLRPC.TL_forumTopic tL_forumTopic = topics.get(i);
-                i++;
-                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
-                if (!this.bot || tL_forumTopic2.id != 1) {
-                    if (!this.excludeTopics.contains(Integer.valueOf(tL_forumTopic2.id))) {
-                        boolean z3 = tL_forumTopic2.pinned;
-                        if (!z3 && z) {
-                            universalAdapter.reorderSectionEnd();
-                            z = false;
-                        } else if (z3 && !z) {
-                            universalAdapter.reorderSectionStart();
-                            z = true;
-                        }
-                        arrayList.add(VerticalTabView.Factory.asTab(this.dialogId, tL_forumTopic2, this.mono).setChecked(this.currentTopicId == getTopicId(tL_forumTopic2)));
-                    }
-                }
-            }
-        } else {
-            z = false;
-        }
-        if (z) {
-            universalAdapter.reorderSectionEnd();
-        }
-        if (topics != null && !topics.isEmpty() && !topicsController.endIsReached(-this.dialogId) && this.canShowProgress) {
-            arrayList.add(VerticalTabView.Factory.asLoading(-2));
-            arrayList.add(VerticalTabView.Factory.asLoading(-3));
-            arrayList.add(VerticalTabView.Factory.asLoading(-4));
-        }
-        if (this.bot || this.mono) {
-            return;
-        }
-        if ((chat == null || !ChatObject.canCreateTopic(chat)) && !UserObject.isBotForumWithEditableTopics(user)) {
-            return;
-        }
-        arrayList.add(VerticalTabView.Factory.asAdd(false));
+    public float getSideMenuT() {
+        return this.sidemenuT * this.animatorTopicsVisibility.floatValue;
     }
 
-    public void fillHorizontalTabs(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
-        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
-        TopicsController topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController();
-        ArrayList<TLRPC.TL_forumTopic> topics = topicsController.getTopics(-this.dialogId);
-        boolean z = false;
-        arrayList.add(HorizontalTabView.Factory.asAll(this.bot, this.mono).setChecked(this.currentTopicId == 0));
-        if (topics != null) {
-            int size = topics.size();
-            int i = 0;
-            boolean z2 = false;
-            while (i < size) {
-                TLRPC.TL_forumTopic tL_forumTopic = topics.get(i);
-                i++;
-                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
-                if (!this.bot || tL_forumTopic2.id != 1) {
-                    if (!this.excludeTopics.contains(Integer.valueOf(tL_forumTopic2.id))) {
-                        boolean z3 = tL_forumTopic2.pinned;
-                        if (!z3 && z2) {
-                            if (!arrayList.isEmpty()) {
-                                ((UItem) arrayList.get(arrayList.size() - 1)).flags |= 8;
-                            }
-                            universalAdapter.reorderSectionEnd();
-                            z2 = false;
-                        } else if (z3 && !z2) {
-                            universalAdapter.reorderSectionStart();
-                            z2 = true;
-                        }
-                        arrayList.add(HorizontalTabView.Factory.asTab(this.dialogId, tL_forumTopic2, this.mono).setChecked(this.currentTopicId == getTopicId(tL_forumTopic2)));
-                    }
-                }
-            }
-            z = z2;
+    public final float getTabsVisibility(Position position) {
+        float f = this.animatorTopicsVisibility.floatValue;
+        if (position == Position.LEFT) {
+            return this.sidemenuT * f;
         }
-        if (z) {
-            universalAdapter.reorderSectionEnd();
+        if ((position != Position.TOP || this.topicBottom) && !(position == Position.BOTTOM && this.topicBottom)) {
+            return 0.0f;
         }
-        if (topics != null && !topics.isEmpty() && !topicsController.endIsReached(-this.dialogId) && this.canShowProgress) {
-            arrayList.add(HorizontalTabView.Factory.asLoading(-2));
-            arrayList.add(HorizontalTabView.Factory.asLoading(-3));
-            arrayList.add(HorizontalTabView.Factory.asLoading(-4));
-        }
-        if (this.bot || this.mono) {
-            return;
-        }
-        if ((chat == null || !ChatObject.canCreateTopic(chat)) && !UserObject.isBotForumWithEditableTopics(user)) {
-            return;
-        }
-        arrayList.add(HorizontalTabView.Factory.asAdd());
+        return (1.0f - this.sidemenuT) * f;
     }
 
-    public boolean isLoadingVisible() {
+    public final boolean isLoadingVisible() {
         if (this.sidemenuT > 0.5f) {
-            for (int i = 0; i < this.sideTabs.getChildCount(); i++) {
-                UItem item = this.sideTabs.adapter.getItem(this.sideTabs.getChildAdapterPosition(this.sideTabs.getChildAt(i)));
+            int i = 0;
+            while (true) {
+                AnonymousClass3 anonymousClass3 = this.sideTabs;
+                if (i >= anonymousClass3.getChildCount()) {
+                    break;
+                }
+                View childAt = anonymousClass3.getChildAt(i);
+                anonymousClass3.getClass();
+                UItem item = anonymousClass3.adapter.getItem(RecyclerView.getChildAdapterPosition(childAt));
                 if (item != null && item.red) {
                     return true;
                 }
+                i++;
             }
         } else {
-            for (int i2 = 0; i2 < this.topTabs.getChildCount(); i2++) {
-                UItem item2 = this.topTabs.adapter.getItem(this.topTabs.getChildAdapterPosition(this.topTabs.getChildAt(i2)));
-                if (item2 != null && item2.red) {
-                    return true;
+            int i2 = 0;
+            while (true) {
+                AnonymousClass1 anonymousClass1 = this.topTabs;
+                if (i2 < anonymousClass1.getChildCount()) {
+                    View childAt2 = anonymousClass1.getChildAt(i2);
+                    anonymousClass1.getClass();
+                    UItem item2 = anonymousClass1.adapter.getItem(RecyclerView.getChildAdapterPosition(childAt2));
+                    if (item2 != null && item2.red) {
+                        return true;
+                    }
+                    i2++;
                 }
             }
         }
         return false;
     }
 
-    public void loadMore() {
+    public final void loadMore() {
         TopicsController topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController();
-        if (topicsController.endIsReached(-this.dialogId)) {
+        long j = this.dialogId;
+        if (topicsController.endIsReached(-j)) {
             return;
         }
-        topicsController.loadTopics(-this.dialogId);
+        topicsController.loadTopics(-j);
     }
 
-    public void onTabClick(UItem uItem, View view, int i, float f, float f2) {
-        if (this.mono) {
-            Utilities.Callback2 callback2 = this.onDialogSelected;
-            if (callback2 != null) {
-                callback2.run(Long.valueOf(uItem.longValue), Boolean.FALSE);
-                return;
-            }
-            return;
-        }
-        if (uItem.longValue == -2) {
-            Runnable runnable = this.onTopicCreated;
-            if (runnable != null) {
-                runnable.run();
-                return;
-            }
-            return;
-        }
-        Utilities.Callback2 callback3 = this.onTopicSelected;
-        if (callback3 != null) {
-            callback3.run(Integer.valueOf(uItem.id), Boolean.FALSE);
-        }
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        setAttached(true);
     }
 
-    public boolean onTabLongClick(UItem uItem, View view, int i, float f, float f2) {
-        long j;
-        final TLRPC.Chat chat;
-        final TLRPC.User user;
-        if (this.sideTabs.isReorderAllowed() || this.topTabs.isReorderAllowed()) {
-            return false;
-        }
-        Object obj = uItem.object;
-        if (!(obj instanceof TLRPC.TL_forumTopic)) {
-            return false;
-        }
-        final TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj;
-        final MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-        long j2 = this.dialogId;
-        final TLRPC.Chat chat2 = j2 < 0 ? messagesController.getChat(Long.valueOf(-j2)) : null;
-        long j3 = this.dialogId;
-        TLRPC.User user2 = j3 > 0 ? messagesController.getUser(Long.valueOf(j3)) : null;
-        final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.fragment, view, true);
-        if (ChatObject.isMonoForum(chat2)) {
-            final long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-            if (peerDialogId == 0 || !ChatObject.canManageMonoForum(this.currentAccount, chat2)) {
-                return false;
-            }
-            TLRPC.Chat chat3 = chat2;
-            itemOptionsMakeOptions.add(R.drawable.msg_clear, LocaleController.getString(R.string.ClearHistory), new Runnable() {
-                @Override
-                public final void run() {
-                    TopicsTabsView.$r8$lambda$H3pg8oaliy71k8nUnLqYB3e0N5s(this.f$0, itemOptionsMakeOptions, peerDialogId, chat2);
-                }
-            });
-            long j4 = chat3.id;
-            if (ChatObject.isMonoForum(chat3) && ChatObject.canManageMonoForum(this.currentAccount, chat3)) {
-                long j5 = chat3.linked_monoforum_id;
-                if (j5 != 0) {
-                    j = j5;
-                }
-                chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
-                user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
-                if (user != null && ChatObject.canBlockUsers(chat)) {
-                    itemOptionsMakeOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
-                    final ActionBarMenuSubItem last = itemOptionsMakeOptions.getLast();
-                    last.setVisibility(8);
-                    final long j6 = j;
-                    MessagesController.getInstance(this.currentAccount).checkIsInChat(true, chat, user, new MessagesController.IsInChatCheckedCallback() {
-                        @Override
-                        public final void run(boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-                            TopicsTabsView.$r8$lambda$CHEE0iteoykqD1u0nq_vfkeDmI4(this.f$0, last, itemOptionsMakeOptions, j6, user, chat, z, tL_chatAdminRights, str);
-                        }
-                    });
-                }
-            }
-            j = j4;
-            chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
-            user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
-            if (user != null) {
-                itemOptionsMakeOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
-                final ActionBarMenuSubItem last2 = itemOptionsMakeOptions.getLast();
-                last2.setVisibility(8);
-                final long j7 = j;
-                MessagesController.getInstance(this.currentAccount).checkIsInChat(true, chat, user, new MessagesController.IsInChatCheckedCallback() {
-                    @Override
-                    public final void run(boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-                        TopicsTabsView.$r8$lambda$CHEE0iteoykqD1u0nq_vfkeDmI4(this.f$0, last2, itemOptionsMakeOptions, j7, user, chat, z, tL_chatAdminRights, str);
-                    }
-                });
-            }
-        } else {
-            TLRPC.Chat chat4 = chat2;
-            if (ChatObject.canManageTopics(chat4) || UserObject.isBotForumWithEditableTopics(user2)) {
-                boolean z = tL_forumTopic.pinned;
-                itemOptionsMakeOptions.add(z ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z ? R.string.DialogUnpin : R.string.DialogPin), new Runnable() {
-                    @Override
-                    public final void run() {
-                        TopicsTabsView.$r8$lambda$pqwEVMPm1UjEaaFUSeApc4D0y78(this.f$0, itemOptionsMakeOptions, messagesController, tL_forumTopic);
-                    }
-                });
-                if (tL_forumTopic.pinned) {
-                    itemOptionsMakeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.FilterReorder), new Runnable() {
-                        @Override
-                        public final void run() {
-                            TopicsTabsView.$r8$lambda$H_PX4rLQwsiyGCicQEU78JRZFso(this.f$0);
-                        }
-                    });
-                }
-            }
-            if (ChatObject.canManageTopics(chat4) || UserObject.isBotForumWithEditableTopics(user2)) {
-                itemOptionsMakeOptions.add(R.drawable.outline_profile_edit_24, LocaleController.getString(R.string.EditTopic), new Runnable() {
-                    @Override
-                    public final void run() {
-                        TopicsTabsView.$r8$lambda$0bkULLEAuZg9k06eb2dTmzKDyeA(this.f$0, itemOptionsMakeOptions, tL_forumTopic);
-                    }
-                });
-            }
-            final ItemOptions itemOptionsAddAsItemOptions = ChatNotificationsPopupWrapper.addAsItemOptions(this.fragment, itemOptionsMakeOptions, this.dialogId, tL_forumTopic.id);
-            boolean zIsDialogMuted = messagesController.isDialogMuted(this.dialogId, tL_forumTopic.id);
-            itemOptionsMakeOptions.add(zIsDialogMuted ? R.drawable.msg_unmute : R.drawable.msg_mute, LocaleController.getString(zIsDialogMuted ? R.string.Unmute : R.string.Mute), new Runnable() {
-                @Override
-                public final void run() {
-                    TopicsTabsView.$r8$lambda$htwAUMZ30Grzge039tXNQqnqgnI(this.f$0, messagesController, tL_forumTopic, itemOptionsMakeOptions, itemOptionsAddAsItemOptions);
-                }
-            });
-            if (ChatObject.canManageTopic(this.currentAccount, chat4, tL_forumTopic) && !UserObject.isBotForum(user2)) {
-                boolean z2 = tL_forumTopic.closed;
-                itemOptionsMakeOptions.add(z2 ? R.drawable.msg_topic_restart : R.drawable.msg_topic_close, LocaleController.getString(z2 ? R.string.RestartTopic : R.string.CloseTopic), new Runnable() {
-                    @Override
-                    public final void run() {
-                        TopicsTabsView.$r8$lambda$OKOumX3GJZh5HAalSTnlZuV7xpc(this.f$0, itemOptionsMakeOptions, tL_forumTopic);
-                    }
-                });
-            }
-            if (ChatObject.canDeleteTopic(this.currentAccount, chat4, tL_forumTopic)) {
-                itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getPluralString("DeleteTopics", 1), new Runnable() {
-                    @Override
-                    public final void run() {
-                        TopicsTabsView.m2901$r8$lambda$xefYQ3LMmbHgrxWAmYharA3yVQ(this.f$0, itemOptionsMakeOptions, tL_forumTopic);
-                    }
-                });
-            }
-        }
-        if (view instanceof HorizontalTabView) {
-            itemOptionsMakeOptions.setScrimViewBackground(new Drawable() {
-                private Paint paint = new Paint(1);
-                private RectF bound = new RectF();
-
-                @Override
-                public int getOpacity() {
-                    return -2;
-                }
-
-                @Override
-                public void setColorFilter(ColorFilter colorFilter) {
-                }
-
-                {
-                    this.paint.setColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, TopicsTabsView.this.resourcesProvider));
-                }
-
-                @Override
-                public void draw(Canvas canvas) {
-                    this.bound.set(getBounds());
-                    this.bound.inset(AndroidUtilities.dp(1.0f), (this.bound.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
-                    canvas.drawRoundRect(this.bound, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.paint);
-                }
-
-                @Override
-                public void setAlpha(int i2) {
-                    this.paint.setAlpha(i2);
-                }
-            });
-            itemOptionsMakeOptions.translate(AndroidUtilities.dp(16.0f), 0.0f);
-        } else {
-            itemOptionsMakeOptions.setScrimViewBackground(Theme.createRoundRectDrawable(0, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), 0, Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)));
-        }
-        itemOptionsMakeOptions.show();
-        return true;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        setAttached(false);
     }
 
-    public static void $r8$lambda$H3pg8oaliy71k8nUnLqYB3e0N5s(final TopicsTabsView topicsTabsView, ItemOptions itemOptions, final long j, TLRPC.Chat chat) {
-        topicsTabsView.getClass();
-        itemOptions.dismiss();
-        TLRPC.User user = MessagesController.getInstance(topicsTabsView.currentAccount).getUser(Long.valueOf(j));
-        if (user != null) {
-            AlertsCreator.createClearDaysDialogAlert(topicsTabsView.fragment, -1, user, chat, true, new MessagesStorage.BooleanCallback() {
-                @Override
-                public final void run(boolean z) {
-                    TopicsTabsView.$r8$lambda$j9bSSRoBD7GWgREN02JpHt3eE0w(this.f$0, j, z);
-                }
-            }, topicsTabsView.fragment.getResourceProvider());
-        }
+    @Override
+    public final void onFactorChangeFinished(float f, int i) {
     }
 
-    public static void $r8$lambda$j9bSSRoBD7GWgREN02JpHt3eE0w(TopicsTabsView topicsTabsView, long j, boolean z) {
-        BaseFragment baseFragment = topicsTabsView.fragment;
-        if (baseFragment instanceof ChatActivity) {
-            ((ChatActivity) baseFragment).performHistoryClear(j, false, true);
-        }
+    @Override
+    public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        updateSidemenuPosition();
     }
 
-    public static void $r8$lambda$CHEE0iteoykqD1u0nq_vfkeDmI4(final TopicsTabsView topicsTabsView, final ActionBarMenuSubItem actionBarMenuSubItem, final ItemOptions itemOptions, final long j, final TLRPC.User user, final TLRPC.Chat chat, final boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        topicsTabsView.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                TopicsTabsView.$r8$lambda$M7WNlu3iI_DVX_SgSEj9sKBOh7A(this.f$0, z, actionBarMenuSubItem, itemOptions, j, user, chat);
-            }
-        });
+    @Override
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        super.onSizeChanged(i, i2, i3, i4);
+        checkUi_topicsVerticalPosition();
     }
 
-    public static void $r8$lambda$M7WNlu3iI_DVX_SgSEj9sKBOh7A(final TopicsTabsView topicsTabsView, boolean z, ActionBarMenuSubItem actionBarMenuSubItem, final ItemOptions itemOptions, final long j, final TLRPC.User user, final TLRPC.Chat chat) {
-        topicsTabsView.getClass();
-        final boolean z2 = !z;
-        actionBarMenuSubItem.setVisibility(0);
-        actionBarMenuSubItem.setText(LocaleController.getString(!z ? R.string.UnbanUserMonoforum : R.string.BanUserMonoforum));
-        actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                TopicsTabsView.$r8$lambda$9Dgzy8NZ8X8PbgIJ5oU8CK4Pgek(this.f$0, itemOptions, z2, j, user, chat, view);
-            }
-        });
-    }
-
-    public static void $r8$lambda$9Dgzy8NZ8X8PbgIJ5oU8CK4Pgek(final TopicsTabsView topicsTabsView, ItemOptions itemOptions, boolean z, long j, TLRPC.User user, TLRPC.Chat chat, View view) {
-        topicsTabsView.getClass();
-        itemOptions.dismiss();
-        if (!z) {
-            MessagesController.getInstance(topicsTabsView.currentAccount).deleteParticipantFromChat(j, user, (TLRPC.Chat) null, false, false);
-            return;
-        }
-        TLRPC.TL_channels_editBanned tL_channels_editBanned = new TLRPC.TL_channels_editBanned();
-        tL_channels_editBanned.participant = MessagesController.getInputPeer(user);
-        tL_channels_editBanned.channel = MessagesController.getInputChannel(chat);
-        tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
-        ConnectionsManager.getInstance(topicsTabsView.currentAccount).sendRequest(tL_channels_editBanned, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TopicsTabsView.$r8$lambda$CqwX8pfku09eHuRDy6_JO9_d5QM(this.f$0, tLObject, tL_error);
-            }
-        });
-    }
-
-    public static void $r8$lambda$CqwX8pfku09eHuRDy6_JO9_d5QM(final TopicsTabsView topicsTabsView, TLObject tLObject, TLRPC.TL_error tL_error) {
-        topicsTabsView.getClass();
-        if (tLObject != null) {
-            final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            MessagesController.getInstance(topicsTabsView.currentAccount).processUpdates(updates, false);
-            if (updates.chats.isEmpty()) {
-                return;
-            }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    TopicsTabsView.m2902$r8$lambda$zIF3WS6gBDJ7yjSwFuk0hefuu4(this.f$0, updates);
-                }
-            }, 1000L);
-        }
-    }
-
-    public static void m2902$r8$lambda$zIF3WS6gBDJ7yjSwFuk0hefuu4(TopicsTabsView topicsTabsView, TLRPC.Updates updates) {
-        topicsTabsView.getClass();
-        MessagesController.getInstance(topicsTabsView.currentAccount).loadFullChat(updates.chats.get(0).id, 0, true);
-    }
-
-    public static void $r8$lambda$pqwEVMPm1UjEaaFUSeApc4D0y78(TopicsTabsView topicsTabsView, ItemOptions itemOptions, MessagesController messagesController, TLRPC.TL_forumTopic tL_forumTopic) {
-        topicsTabsView.getClass();
-        itemOptions.dismiss();
-        messagesController.getTopicsController().pinTopic(-topicsTabsView.dialogId, tL_forumTopic.id, !tL_forumTopic.pinned, topicsTabsView.fragment);
-    }
-
-    public static void $r8$lambda$H_PX4rLQwsiyGCicQEU78JRZFso(TopicsTabsView topicsTabsView) {
-        topicsTabsView.sideTabs.allowReorder(true);
-        topicsTabsView.topTabs.allowReorder(true);
-        topicsTabsView.animatorCloseButtonVisibility.setValue(true, true);
-        AndroidUtilities.updateVisibleRows(topicsTabsView.topTabs);
-        AndroidUtilities.updateVisibleRows(topicsTabsView.sideTabs);
-    }
-
-    public static void $r8$lambda$0bkULLEAuZg9k06eb2dTmzKDyeA(TopicsTabsView topicsTabsView, ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
-        topicsTabsView.getClass();
-        itemOptions.dismiss();
-        topicsTabsView.fragment.presentFragment(TopicCreateFragment.create(-topicsTabsView.dialogId, tL_forumTopic.id));
-    }
-
-    public static void $r8$lambda$htwAUMZ30Grzge039tXNQqnqgnI(TopicsTabsView topicsTabsView, MessagesController messagesController, TLRPC.TL_forumTopic tL_forumTopic, ItemOptions itemOptions, ItemOptions itemOptions2) {
-        if (messagesController.isDialogMuted(topicsTabsView.dialogId, tL_forumTopic.id)) {
-            itemOptions.dismiss();
-            NotificationsController.getInstance(topicsTabsView.currentAccount).muteDialog(topicsTabsView.dialogId, tL_forumTopic.id, false);
-            if (BulletinFactory.canShowBulletin(topicsTabsView.fragment)) {
-                BulletinFactory.createMuteBulletin(topicsTabsView.fragment, 4, 0, topicsTabsView.resourcesProvider).show();
-                return;
-            }
-            return;
-        }
-        itemOptions.openSwipeback(itemOptions2);
-    }
-
-    public static void $r8$lambda$OKOumX3GJZh5HAalSTnlZuV7xpc(TopicsTabsView topicsTabsView, ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
-        topicsTabsView.getClass();
-        itemOptions.dismiss();
-        MessagesController.getInstance(topicsTabsView.currentAccount).getTopicsController().toggleCloseTopic(-topicsTabsView.dialogId, tL_forumTopic.id, !tL_forumTopic.closed);
-    }
-
-    public static void m2901$r8$lambda$xefYQ3LMmbHgrxWAmYharA3yVQ(TopicsTabsView topicsTabsView, ItemOptions itemOptions, TLRPC.TL_forumTopic tL_forumTopic) {
-        topicsTabsView.getClass();
-        itemOptions.dismiss();
-        HashSet hashSet = new HashSet();
-        hashSet.add(Integer.valueOf(tL_forumTopic.id));
-        topicsTabsView.deleteTopics(hashSet, new Runnable() {
-            @Override
-            public final void run() {
-                TopicsTabsView.$r8$lambda$whz9_2q0Ul6L4zdHpqUqnJxFQVc();
-            }
-        });
-    }
-
-    public TLRPC.TL_forumTopic getTopic(long j) {
-        ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-this.dialogId);
-        if (topics == null) {
-            return null;
-        }
-        int size = topics.size();
-        int i = 0;
-        while (i < size) {
-            TLRPC.TL_forumTopic tL_forumTopic = topics.get(i);
-            i++;
-            TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
-            if (tL_forumTopic2.id == j) {
-                return tL_forumTopic2;
-            }
-        }
-        return null;
-    }
-
-    public void setCurrentTopic(long j) {
-        this.currentTopicId = j;
-        this.topTabs.adapter.update(true);
-        this.topTabs.invalidate();
-        this.sideTabs.adapter.update(true);
-        VerticalTabView verticalTabView = this.botCreateTopicButtonVertical;
-        if (verticalTabView != null) {
-            verticalTabView.setAll(true, false, j == 0);
-        }
-        HorizontalTabView horizontalTabView = this.botCreateTopicButtonHorizontal;
-        if (horizontalTabView != null) {
-            horizontalTabView.setAll(true, false, j == 0);
-        }
-    }
-
-    public void setOnTopicSelected(Utilities.Callback2<Integer, Boolean> callback2) {
-        this.onTopicSelected = callback2;
-    }
-
-    public void setOnNewTopicSelected(Runnable runnable) {
-        this.onTopicCreated = runnable;
-    }
-
-    public void selectTopic(long j, boolean z) {
+    public final void selectTopic(long j, boolean z) {
         if (this.mono) {
             Utilities.Callback2 callback2 = this.onDialogSelected;
             if (callback2 != null) {
@@ -1293,1046 +2726,6 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         }
     }
 
-    public void setOnDialogSelected(Utilities.Callback2<Long, Boolean> callback2) {
-        this.onDialogSelected = callback2;
-    }
-
-    public static class VerticalTabView extends FrameLayout {
-        private final AvatarDrawable avatarDrawable;
-        private float countScale;
-        private ValueAnimator counterAnimator;
-        private int counterBackgroundColorKey;
-        private final AnimatedTextView.AnimatedTextDrawable counterText;
-        private final int currentAccount;
-        private final FrameLayout imageLayoutView;
-        private final BackupImageView imageView;
-        private final FrameLayout.LayoutParams imageViewParams;
-        private boolean isAdd;
-        private boolean lastMention;
-        private boolean lastReactions;
-        private int lastUnread;
-        private final LinearLayout layout;
-        private final View lineView;
-        private LoadingDrawable loadingDrawable;
-        private CharSequence mentionString;
-        private boolean mono;
-        private boolean pinned;
-        private CharSequence reactionString;
-        private boolean reorder;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private ValueAnimator selectAnimator;
-        private float selectT;
-        private boolean selected;
-        private Shaker shaker;
-        private boolean staticImage;
-        private final TextView textView;
-        private long topicId;
-
-        public void setReorder(boolean z) {
-            this.reorder = z;
-            this.layout.invalidate();
-        }
-
-        public VerticalTabView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            this.mono = false;
-            this.pinned = false;
-            this.counterBackgroundColorKey = Theme.key_chats_unreadCounter;
-            this.countScale = 1.0f;
-            this.topicId = 0L;
-            this.isAdd = false;
-            this.staticImage = false;
-            this.currentAccount = i;
-            this.resourcesProvider = resourcesProvider;
-            LinearLayout linearLayout = new LinearLayout(context) {
-                private final AnimatedFloat shakeAlpha = new AnimatedFloat(this, 360, CubicBezierInterpolator.EASE_OUT_QUINT);
-
-                @Override
-                protected void dispatchDraw(Canvas canvas) {
-                    canvas.save();
-                    float f = this.shakeAlpha.set(VerticalTabView.this.reorder);
-                    if (f > 0.0f) {
-                        if (VerticalTabView.this.shaker == null) {
-                            VerticalTabView.this.shaker = new Shaker(this);
-                        }
-                        canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                        VerticalTabView.this.shaker.concat(canvas, f);
-                        canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
-                    }
-                    super.dispatchDraw(canvas);
-                    canvas.restore();
-                }
-            };
-            this.layout = linearLayout;
-            linearLayout.setWillNotDraw(false);
-            linearLayout.setOrientation(1);
-            addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 119, 1.0f, 0.0f, 0.0f, 0.0f));
-            ScaleStateListAnimator.apply(linearLayout);
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
-            this.counterText = animatedTextDrawable;
-            animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.0f));
-            animatedTextDrawable.setTypeface(AndroidUtilities.bold());
-            animatedTextDrawable.setTextColor(Theme.getColor(Theme.key_chats_unreadCounterText, resourcesProvider));
-            animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
-            animatedTextDrawable.setGravity(17);
-            FrameLayout frameLayout = new FrameLayout(context, resourcesProvider) {
-                private final AnimatedPaint backgroundPaint;
-                private final Paint clipPaint;
-                final Theme.ResourcesProvider val$resourcesProvider;
-
-                {
-                    this.val$resourcesProvider = resourcesProvider;
-                    Paint paint = new Paint(1);
-                    this.clipPaint = paint;
-                    this.backgroundPaint = new AnimatedPaint(this, resourcesProvider);
-                    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                    VerticalTabView.this.counterText.setCallback(this);
-                }
-
-                @Override
-                protected boolean verifyDrawable(Drawable drawable) {
-                    return VerticalTabView.this.counterText == drawable || super.verifyDrawable(drawable);
-                }
-
-                @Override
-                protected void dispatchDraw(Canvas canvas) {
-                    Canvas canvas2;
-                    float f;
-                    float f2;
-                    float fIsNotEmpty = VerticalTabView.this.counterText.isNotEmpty();
-                    boolean z = fIsNotEmpty > 0.0f;
-                    float fLerp = AndroidUtilities.lerp(0.5f, 1.0f, fIsNotEmpty) * VerticalTabView.this.countScale;
-                    float fDp = AndroidUtilities.dp(10.0f);
-                    float fDp2 = AndroidUtilities.dp(8.33f);
-                    float width = (getWidth() / 2.0f) + AndroidUtilities.dp(12.0f);
-                    float fDp3 = AndroidUtilities.dp(12.0f);
-                    float fMax = Math.max(fDp2 + fDp2, VerticalTabView.this.counterText.getCurrentWidth() + AndroidUtilities.dp(10.0f));
-                    if (z) {
-                        f = fDp3;
-                        f2 = 2.0f;
-                        canvas2 = canvas;
-                        canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                    } else {
-                        canvas2 = canvas;
-                        f = fDp3;
-                        f2 = 2.0f;
-                    }
-                    super.dispatchDraw(canvas);
-                    if (z) {
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        float f3 = fMax / f2;
-                        rectF.set((width - f3) - AndroidUtilities.dp(1.33f), f - fDp, f3 + width + AndroidUtilities.dp(1.33f), f + fDp);
-                        AndroidUtilities.scaleRect(rectF, fIsNotEmpty);
-                        float f4 = fDp * fIsNotEmpty;
-                        canvas2.drawRoundRect(rectF, f4, f4, this.clipPaint);
-                        canvas2.restore();
-                    }
-                    if (fIsNotEmpty > 0.0f) {
-                        canvas2.save();
-                        canvas2.scale(fLerp, fLerp, width, f);
-                        RectF rectF2 = AndroidUtilities.rectTmp;
-                        float f5 = fMax / f2;
-                        rectF2.set(width - f5, f - fDp2, width + f5, f + fDp2);
-                        canvas2.drawRoundRect(rectF2, fDp2, fDp2, this.backgroundPaint.setByKey(VerticalTabView.this.counterBackgroundColorKey, fIsNotEmpty));
-                        VerticalTabView.this.counterText.setBounds(rectF2);
-                        VerticalTabView.this.counterText.setAlpha((int) (fIsNotEmpty * 255.0f));
-                        VerticalTabView.this.counterText.draw(canvas2);
-                        canvas2.restore();
-                    }
-                }
-            };
-            this.imageLayoutView = frameLayout;
-            frameLayout.setWillNotDraw(false);
-            frameLayout.setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
-            linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 17));
-            BackupImageView backupImageView = new BackupImageView(context);
-            this.imageView = backupImageView;
-            FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(34, 34, 17);
-            this.imageViewParams = layoutParamsCreateFrame;
-            frameLayout.addView(backupImageView, layoutParamsCreateFrame);
-            this.avatarDrawable = new AvatarDrawable();
-            TextView textView = new TextView(context);
-            this.textView = textView;
-            int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider);
-            int i2 = Theme.key_featuredStickers_addButton;
-            textView.setTextColor(ColorUtils.blendARGB(color, Theme.getColor(i2, resourcesProvider), this.selectT));
-            textView.setTextSize(1, 10.0f);
-            textView.setGravity(17);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setMaxLines(3);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
-            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 4, 0, 4, 0));
-            linearLayout.setPadding(0, 0, 0, AndroidUtilities.dp(4.0f));
-            View imageView = new ImageView(context);
-            this.lineView = imageView;
-            imageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(2.33f), Theme.getColor(i2, resourcesProvider)));
-            addView(imageView, LayoutHelper.createFrame(6, -1.0f, 115, -3.0f, 3.0f, 0.0f, 3.0f));
-            imageView.setTranslationX(-AndroidUtilities.dp(3.0f));
-            imageView.setVisibility(8);
-        }
-
-        private void setLayout(boolean z) {
-            if (this.mono == z) {
-                return;
-            }
-            this.mono = z;
-            this.imageView.setRoundRadius(AndroidUtilities.dp(z ? 36.0f : 3.0f));
-            this.imageLayoutView.setPadding(0, AndroidUtilities.dp(z ? 7.0f : 4.0f), 0, 0);
-            this.imageViewParams.width = z ? AndroidUtilities.dp(28.0f) : AndroidUtilities.dp(30.0f);
-            this.imageViewParams.height = z ? AndroidUtilities.dp(28.0f) : AndroidUtilities.dp(30.0f);
-        }
-
-        private void setPinned(boolean z, boolean z2) {
-            if (this.pinned != z) {
-                this.pinned = z;
-            }
-        }
-
-        private void setCounter(boolean z, int i, boolean z2, boolean z3, boolean z4) {
-            if (z3) {
-                this.counterBackgroundColorKey = Theme.key_dialogReactionMentionBackground;
-                if (this.reactionString == null) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("❤️");
-                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_like_filled);
-                    coloredImageSpan.setScale(0.8f, 0.8f);
-                    coloredImageSpan.spaceScaleX = 0.5f;
-                    coloredImageSpan.translate(-AndroidUtilities.dp(3.0f), 0.0f);
-                    spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 33);
-                    this.reactionString = spannableStringBuilder;
-                }
-                this.counterText.setText(this.reactionString, z4);
-            } else if (z2) {
-                this.counterBackgroundColorKey = z ? Theme.key_chats_unreadCounterMuted : Theme.key_chats_unreadCounter;
-                if (this.mentionString == null) {
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("@");
-                    ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.mini_mention_filled_16);
-                    coloredImageSpan2.setScale(0.8f, 0.8f);
-                    coloredImageSpan2.spaceScaleX = 0.5f;
-                    coloredImageSpan2.translate(-AndroidUtilities.dp(3.0f), 0.0f);
-                    spannableStringBuilder2.setSpan(coloredImageSpan2, 0, 1, 33);
-                    this.mentionString = spannableStringBuilder2;
-                }
-                this.counterText.setText(this.mentionString, z4);
-            } else if (i > 0) {
-                this.counterBackgroundColorKey = z ? Theme.key_chats_unreadCounterMuted : Theme.key_chats_unreadCounter;
-                this.counterText.setText(LocaleController.formatNumber(i, ','), z4);
-            } else {
-                this.counterBackgroundColorKey = Theme.key_chats_unreadCounterMuted;
-                this.counterText.setText("", z4);
-            }
-            if (z4 && (this.lastUnread < i || ((!this.lastMention && z2) || (!this.lastReactions && z3)))) {
-                animateCounterBounce();
-            }
-            this.lastUnread = i;
-            this.lastMention = z2;
-            this.lastReactions = z3;
-            this.imageLayoutView.invalidate();
-        }
-
-        private void animateCounterBounce() {
-            ValueAnimator valueAnimator = this.counterAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.counterAnimator = null;
-            }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.counterAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    TopicsTabsView.VerticalTabView.$r8$lambda$nUmeB4RAwrPjocveR25TZsEApvg(this.f$0, valueAnimator2);
-                }
-            });
-            this.counterAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    VerticalTabView.this.countScale = 1.0f;
-                    VerticalTabView.this.imageLayoutView.invalidate();
-                }
-            });
-            this.counterAnimator.setInterpolator(new OvershootInterpolator(2.0f));
-            this.counterAnimator.setDuration(200L);
-            this.counterAnimator.start();
-        }
-
-        public static void $r8$lambda$nUmeB4RAwrPjocveR25TZsEApvg(VerticalTabView verticalTabView, ValueAnimator valueAnimator) {
-            verticalTabView.getClass();
-            verticalTabView.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            verticalTabView.imageLayoutView.invalidate();
-        }
-
-        public void setAll(boolean z, boolean z2, boolean z3) {
-            setLayout(z2);
-            this.topicId = -1L;
-            this.staticImage = true;
-            this.isAdd = false;
-            this.textView.setText(LocaleController.getString(z ? R.string.BotForumNewTopic : R.string.AllTopicsSide));
-            this.textView.setVisibility(z ? 8 : 0);
-            this.imageView.clearImage();
-            this.imageView.setAnimatedEmojiDrawable(null);
-            if (z) {
-                BotNewTopicDrawable botNewTopicDrawable = new BotNewTopicDrawable(getContext());
-                botNewTopicDrawable.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
-                this.imageView.setImageDrawable(botNewTopicDrawable);
-            } else {
-                this.imageView.setImageResource(R.drawable.other_chats);
-            }
-            this.imageView.setScaleX(1.0f);
-            this.imageView.setScaleY(1.0f);
-            setSelected(z3);
-            updateImageColor();
-            updateState();
-            setCounter(true, 0, false, false, false);
-            setPinned(false, false);
-        }
-
-        public void setAdd(boolean z, boolean z2) {
-            setLayout(z);
-            this.staticImage = true;
-            this.isAdd = true;
-            this.textView.setText(LocaleController.getString(R.string.NewTopic));
-            this.textView.setVisibility(0);
-            this.imageView.clearImage();
-            this.imageView.setAnimatedEmojiDrawable(null);
-            this.imageView.setImageResource(R.drawable.emoji_tabs_new3);
-            this.imageView.setScaleX(1.0f);
-            this.imageView.setScaleY(1.0f);
-            setSelected(z2);
-            updateImageColor();
-            updateState();
-            setCounter(true, 0, false, false, false);
-            setPinned(false, false);
-        }
-
-        public void setLoading() {
-            setLayout(false);
-            this.topicId = -1L;
-            this.staticImage = true;
-            this.isAdd = false;
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x");
-            LoadingSpan loadingSpan = new LoadingSpan(this.textView, AndroidUtilities.dp(38.0f));
-            loadingSpan.setScaleY(0.75f);
-            spannableStringBuilder.setSpan(loadingSpan, 0, 1, 33);
-            this.textView.setText(spannableStringBuilder);
-            this.textView.setVisibility(0);
-            this.imageView.clearImage();
-            this.imageView.setAnimatedEmojiDrawable(null);
-            if (this.loadingDrawable == null) {
-                LoadingDrawable loadingDrawable = new LoadingDrawable(this.resourcesProvider);
-                this.loadingDrawable = loadingDrawable;
-                loadingDrawable.setRadiiDp(38.0f);
-                this.loadingDrawable.setCallback(this.imageView);
-                int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider);
-                this.loadingDrawable.setColors(Theme.multAlpha(color, 0.15f), Theme.multAlpha(color, 0.5f), Theme.multAlpha(color, 0.6f), Theme.multAlpha(color, 0.15f));
-                this.loadingDrawable.stroke = false;
-            }
-            this.imageView.setImageDrawable(this.loadingDrawable);
-            this.imageView.setScaleX(1.0f);
-            this.imageView.setScaleY(1.0f);
-            setSelected(false);
-            updateImageColor();
-            setCounter(true, 0, false, false, false);
-            setPinned(false, false);
-            updateState();
-        }
-
-        public void set(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-            setLayout(false);
-            long j2 = this.topicId;
-            long j3 = tL_forumTopic.id;
-            boolean z2 = j2 == j3;
-            this.staticImage = false;
-            this.topicId = j3;
-            this.isAdd = false;
-            this.textView.setText(tL_forumTopic.title);
-            this.textView.setVisibility(0);
-            if (tL_forumTopic.id == 1) {
-                this.staticImage = true;
-                this.imageView.clearImage();
-                this.imageView.setAnimatedEmojiDrawable(null);
-                this.imageView.setImageResource(R.drawable.msg_filled_general);
-                this.imageView.setScaleX(0.66f);
-                this.imageView.setScaleY(0.66f);
-            } else if (tL_forumTopic.icon_emoji_id != 0) {
-                this.imageView.clearImage();
-                this.imageView.setAnimatedEmojiDrawable(AnimatedEmojiDrawable.make(UserConfig.selectedAccount, 3, tL_forumTopic.icon_emoji_id));
-                this.imageView.setScaleX(1.0f);
-                this.imageView.setScaleY(1.0f);
-            } else {
-                this.imageView.setAnimatedEmojiDrawable(null);
-                this.imageView.setImageDrawable(ForumUtilities.createTopicDrawable(tL_forumTopic, false));
-                this.imageView.setScaleX(1.0f);
-                this.imageView.setScaleY(1.0f);
-            }
-            setSelected(z);
-            updateImageColor();
-            boolean z3 = z2;
-            setCounter(MessagesController.getInstance(this.currentAccount).isDialogMuted(j, tL_forumTopic.id), tL_forumTopic.unread_count, tL_forumTopic.unread_mentions_count > 0, tL_forumTopic.unread_reactions_count > 0, z3);
-            setPinned(tL_forumTopic.pinned, z3);
-            updateState();
-        }
-
-        public void updateImageColor() {
-            int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), this.isAdd ? 1.0f : this.selectT);
-            if (!this.staticImage) {
-                this.imageView.setColorFilter(null);
-            } else {
-                this.imageView.setColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
-            }
-            this.imageView.setEmojiColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
-            this.imageView.invalidate();
-        }
-
-        public void setMf(TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-            setLayout(true);
-            this.isAdd = false;
-            this.staticImage = false;
-            long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-            boolean z2 = peerDialogId == this.topicId;
-            this.topicId = peerDialogId;
-            this.textView.setText(DialogObject.getName(peerDialogId));
-            this.textView.setVisibility(0);
-            if (peerDialogId >= 0) {
-                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
-                this.avatarDrawable.setInfo(user);
-                this.imageView.setForUserOrChat(user, this.avatarDrawable);
-            } else {
-                TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerDialogId));
-                this.avatarDrawable.setInfo(chat);
-                this.imageView.setForUserOrChat(chat, this.avatarDrawable);
-            }
-            this.imageView.setScaleX(1.0f);
-            this.imageView.setScaleY(1.0f);
-            updateState();
-            setSelected(z);
-            setCounter(false, tL_forumTopic.unread_count, false, tL_forumTopic.unread_reactions_count > 0, z2);
-            setPinned(false, z2);
-        }
-
-        @Override
-        public void setSelected(final boolean z) {
-            if (this.selected == z) {
-                return;
-            }
-            this.selected = z;
-            ValueAnimator valueAnimator = this.selectAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectT, z ? 1.0f : 0.0f);
-            this.selectAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    TopicsTabsView.VerticalTabView.$r8$lambda$oLmUvK2qIKlO7Aj_gF3CkoVIUHw(this.f$0, valueAnimator2);
-                }
-            });
-            this.selectAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    VerticalTabView.this.selectT = z ? 1.0f : 0.0f;
-                    VerticalTabView.this.updateState();
-                    VerticalTabView.this.updateImageColor();
-                }
-            });
-            this.selectAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.selectAnimator.setDuration(320L);
-            this.selectAnimator.start();
-        }
-
-        public static void $r8$lambda$oLmUvK2qIKlO7Aj_gF3CkoVIUHw(VerticalTabView verticalTabView, ValueAnimator valueAnimator) {
-            verticalTabView.getClass();
-            verticalTabView.selectT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            verticalTabView.updateState();
-            verticalTabView.updateImageColor();
-        }
-
-        public void updateState() {
-            this.lineView.setTranslationX((-AndroidUtilities.dp(3.0f)) * (1.0f - this.selectT));
-            this.lineView.setVisibility(this.selectT <= 0.0f ? 8 : 0);
-            this.textView.setTextColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), this.isAdd ? 1.0f : this.selectT));
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), i2);
-        }
-
-        public static class Factory extends UItem.UItemFactory {
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
-
-            @Override
-            public VerticalTabView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new VerticalTabView(context, i, resourcesProvider);
-            }
-
-            @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                VerticalTabView verticalTabView = (VerticalTabView) view;
-                boolean z2 = false;
-                if (uItem.red) {
-                    verticalTabView.setLoading();
-                } else {
-                    Object obj = uItem.object;
-                    if (obj == null) {
-                        if (uItem.longValue == -2) {
-                            verticalTabView.setAdd(uItem.accent, uItem.checked);
-                        } else {
-                            verticalTabView.setAll((uItem.flags & 1) != 0, uItem.accent, uItem.checked);
-                        }
-                    } else if (obj instanceof TLRPC.TL_forumTopic) {
-                        if (!uItem.withUsername) {
-                            verticalTabView.setMf((TLRPC.TL_forumTopic) obj, uItem.checked);
-                        } else {
-                            verticalTabView.set(uItem.dialogId, (TLRPC.TL_forumTopic) obj, uItem.checked);
-                        }
-                    }
-                }
-                if (universalRecyclerView != null && universalRecyclerView.isReorderAllowed() && verticalTabView.pinned) {
-                    z2 = true;
-                }
-                verticalTabView.setReorder(z2);
-            }
-
-            public static UItem asAll(boolean z, boolean z2) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.id = 0;
-                uItemOfFactory.longValue = 0L;
-                uItemOfFactory.object = null;
-                uItemOfFactory.accent = z2;
-                uItemOfFactory.flags = z ? 1 : 0;
-                return uItemOfFactory;
-            }
-
-            public static UItem asAdd(boolean z) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.id = -2;
-                uItemOfFactory.longValue = -2L;
-                uItemOfFactory.object = null;
-                uItemOfFactory.accent = z;
-                return uItemOfFactory;
-            }
-
-            public static UItem asTab(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.dialogId = j;
-                uItemOfFactory.id = tL_forumTopic.id;
-                uItemOfFactory.object = tL_forumTopic;
-                if (z) {
-                    uItemOfFactory.longValue = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-                    uItemOfFactory.withUsername = false;
-                }
-                return uItemOfFactory;
-            }
-
-            public static UItem asLoading(int i) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.id = i;
-                uItemOfFactory.red = true;
-                uItemOfFactory.checked = false;
-                return uItemOfFactory;
-            }
-        }
-    }
-
-    public static class HorizontalTabView extends FrameLayout {
-        private int addW;
-        private AvatarSpan avatarSpan;
-        private ValueAnimator counterAnimator;
-        private int counterBackgroundColorKey;
-        private final AnimatedTextView.AnimatedTextDrawable counterText;
-        private final View counterView;
-        int counterViewX;
-        private final int currentAccount;
-        private final ImageView imageView;
-        private boolean isAdd;
-        private boolean lastMention;
-        private boolean lastReactions;
-        private int lastUnread;
-        private CharSequence mentionString;
-        private boolean mono;
-        private boolean pinned;
-        private CharSequence reactionString;
-        private boolean reorder;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private ValueAnimator selectAnimator;
-        private float selectT;
-        private boolean selected;
-        private final AnimatedFloat shakeAlpha;
-        private Shaker shaker;
-        private boolean staticImage;
-        private final LinkSpanDrawable.LinksTextView textView;
-        private long topicId;
-
-        public void setReorder(boolean z) {
-            this.reorder = z;
-            invalidate();
-        }
-
-        @Override
-        protected boolean drawChild(Canvas canvas, View view, long j) {
-            if (view == this.textView) {
-                canvas.save();
-                float f = this.shakeAlpha.set(this.reorder);
-                if (f > 0.0f) {
-                    if (this.shaker == null) {
-                        this.shaker = new Shaker(this);
-                    }
-                    canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                    this.shaker.concat(canvas, f);
-                    canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
-                }
-                boolean zDrawChild = super.drawChild(canvas, view, j);
-                canvas.restore();
-                return zDrawChild;
-            }
-            return super.drawChild(canvas, view, j);
-        }
-
-        public HorizontalTabView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            this.shakeAlpha = new AnimatedFloat(this, 360L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.pinned = false;
-            this.isAdd = false;
-            this.mono = false;
-            this.staticImage = false;
-            this.counterBackgroundColorKey = Theme.key_chats_unreadCounter;
-            this.addW = 0;
-            this.currentAccount = i;
-            this.resourcesProvider = resourcesProvider;
-            setClipChildren(false);
-            setClipToPadding(false);
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-            this.textView = linksTextView;
-            linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setTypeface(AndroidUtilities.bold());
-            addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, 19, 11.0f, 0.0f, 11.0f, 0.0f));
-            ScaleStateListAnimator.apply(linksTextView);
-            ImageView imageView = new ImageView(context);
-            this.imageView = imageView;
-            addView(imageView, LayoutHelper.createFrame(34, 34, 17));
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
-            this.counterText = animatedTextDrawable;
-            animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.0f));
-            animatedTextDrawable.setTypeface(AndroidUtilities.bold());
-            animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
-            animatedTextDrawable.setGravity(17);
-            View view = new View(context, resourcesProvider) {
-                private final AnimatedPaint backgroundPaint;
-                final Theme.ResourcesProvider val$resourcesProvider;
-
-                {
-                    this.val$resourcesProvider = resourcesProvider;
-                    this.backgroundPaint = new AnimatedPaint(this, resourcesProvider);
-                    HorizontalTabView.this.counterText.setCallback(this);
-                }
-
-                @Override
-                protected boolean verifyDrawable(Drawable drawable) {
-                    return HorizontalTabView.this.counterText == drawable || super.verifyDrawable(drawable);
-                }
-
-                @Override
-                protected void dispatchDraw(Canvas canvas) {
-                    float fIsNotEmpty = HorizontalTabView.this.counterText.isNotEmpty();
-                    if (fIsNotEmpty > 0.0f) {
-                        float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, fIsNotEmpty);
-                        float fMax = Math.max(AndroidUtilities.dp(16.66f), HorizontalTabView.this.counterText.getCurrentWidth() + AndroidUtilities.dp(10.0f));
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        rectF.set(0.0f, 0.0f, fMax, getHeight());
-                        canvas.save();
-                        canvas.scale(fLerp, fLerp, rectF.centerX(), rectF.centerY());
-                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.33f), AndroidUtilities.dp(8.33f), this.backgroundPaint.setByKey(HorizontalTabView.this.counterBackgroundColorKey).blendTo(HorizontalTabView.this.getTextColor(), HorizontalTabView.this.selectT).multAlpha(fIsNotEmpty));
-                        HorizontalTabView.this.counterText.setBounds(rectF);
-                        HorizontalTabView.this.counterText.setAlpha((int) (fIsNotEmpty * 255.0f));
-                        HorizontalTabView.this.counterText.setTextColor(Theme.getColor(Theme.key_chats_unreadCounterText, this.val$resourcesProvider));
-                        HorizontalTabView.this.counterText.draw(canvas);
-                        canvas.restore();
-                    }
-                    super.dispatchDraw(canvas);
-                }
-
-                @Override
-                protected void onMeasure(int i2, int i3) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.max(AndroidUtilities.dp(16.66f), HorizontalTabView.this.counterText.getAnimateToWidth() + AndroidUtilities.dp(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.66f), 1073741824));
-                }
-            };
-            this.counterView = view;
-            addView(view, LayoutHelper.createFrame(-2, -2.0f, 21, 4.66f, 0.0f, 11.0f, 0.0f));
-            ScaleStateListAnimator.apply(view);
-            updateTextColor();
-        }
-
-        private void setPinned(boolean z, boolean z2) {
-            if (this.pinned != z) {
-                this.pinned = z;
-            }
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            int i5 = i3 - i;
-            int i6 = i4 - i2;
-            int measuredWidth = (i5 - this.imageView.getMeasuredWidth()) / 2;
-            int measuredHeight = (i6 - this.imageView.getMeasuredHeight()) / 2;
-            ImageView imageView = this.imageView;
-            imageView.layout(measuredWidth, measuredHeight, imageView.getMeasuredWidth() + measuredWidth, this.imageView.getMeasuredHeight() + measuredHeight);
-            int i7 = i6 / 2;
-            this.textView.layout(AndroidUtilities.dp(11.0f), i7 - (this.textView.getMeasuredHeight() / 2), AndroidUtilities.dp(11.0f) + this.textView.getMeasuredWidth(), (this.textView.getMeasuredHeight() / 2) + i7);
-            if (this.counterText.getAnimateToWidth() > 0.0f) {
-                this.counterView.layout((i5 - AndroidUtilities.dp(11.0f)) - this.counterView.getMeasuredWidth(), i7 - (this.counterView.getMeasuredHeight() / 2), i5 - AndroidUtilities.dp(11.0f), i7 + (this.counterView.getMeasuredHeight() / 2));
-            } else {
-                this.counterView.layout(AndroidUtilities.dp(11.0f) + this.textView.getMeasuredWidth() + AndroidUtilities.dp(4.66f), i7 - (this.counterView.getMeasuredHeight() / 2), AndroidUtilities.dp(11.0f) + this.textView.getMeasuredWidth() + AndroidUtilities.dp(4.66f) + this.counterView.getMeasuredWidth(), i7 + (this.counterView.getMeasuredHeight() / 2));
-            }
-            if (this.counterViewX != 0 && this.counterView.getLeft() != this.counterViewX) {
-                View view = this.counterView;
-                view.setTranslationX((-view.getLeft()) + this.counterViewX);
-                this.counterView.animate().translationX(0.0f).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
-            }
-            this.counterViewX = this.counterView.getLeft();
-        }
-
-        private void setLayout(boolean z) {
-            if (this.mono == z) {
-                return;
-            }
-            this.mono = z;
-        }
-
-        public long getTopicId() {
-            return this.topicId;
-        }
-
-        public void setAll(boolean z, boolean z2, boolean z3) {
-            setLayout(z2);
-            this.topicId = 0L;
-            this.isAdd = false;
-            this.staticImage = true;
-            this.imageView.setVisibility(z ? 0 : 8);
-            if (z) {
-                BotNewTopicDrawable botNewTopicDrawable = new BotNewTopicDrawable(getContext());
-                botNewTopicDrawable.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
-                this.imageView.setImageDrawable(botNewTopicDrawable);
-            }
-            this.textView.setText(LocaleController.getString(z ? R.string.BotForumNewTopic : R.string.AllTopicsShort));
-            this.textView.setVisibility(z ? 8 : 0);
-            setSelected(z3);
-            updateTextColor();
-            setCounter(true, 0, false, false, false);
-            setPinned(false, false);
-        }
-
-        public void setAdd() {
-            setLayout(false);
-            this.topicId = 0L;
-            this.isAdd = true;
-            this.staticImage = false;
-            this.imageView.setVisibility(8);
-            this.textView.setVisibility(0);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("e\u200b");
-            spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.menu_topic_add), 0, 1, 33);
-            this.textView.setText(spannableStringBuilder);
-            setSelected(false);
-            updateTextColor();
-            setCounter(true, 0, false, false, false);
-            setPinned(false, false);
-        }
-
-        public void setLoading() {
-            setLayout(false);
-            this.topicId = -1L;
-            this.staticImage = true;
-            this.imageView.setVisibility(8);
-            this.textView.setVisibility(0);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x");
-            LoadingSpan loadingSpan = new LoadingSpan(this.textView, AndroidUtilities.dp(42.0f));
-            loadingSpan.setScaleY(0.95f);
-            spannableStringBuilder.setSpan(loadingSpan, 0, 1, 33);
-            this.textView.setText(spannableStringBuilder);
-            setSelected(false);
-            updateTextColor();
-            setCounter(true, 0, false, false, false);
-            setPinned(false, false);
-        }
-
-        public void set(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-            setLayout(false);
-            long j2 = this.topicId;
-            long j3 = tL_forumTopic.id;
-            boolean z2 = j2 == j3;
-            this.topicId = j3;
-            this.staticImage = false;
-            this.imageView.setVisibility(8);
-            this.textView.setVisibility(0);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            if (tL_forumTopic.id == 1) {
-                spannableStringBuilder.append((CharSequence) "#");
-                spannableStringBuilder.append((CharSequence) (tL_forumTopic.hidden ? "\u200b" : " "));
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_filled_general);
-                coloredImageSpan.setScale(0.66f, 0.66f);
-                spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 18);
-            } else if (tL_forumTopic.icon_emoji_id != 0) {
-                spannableStringBuilder.append((CharSequence) "x ");
-                spannableStringBuilder.setSpan(new AnimatedEmojiSpan(tL_forumTopic.icon_emoji_id, this.textView.getPaint().getFontMetricsInt()), 0, 1, 33);
-            }
-            if (!tL_forumTopic.hidden) {
-                spannableStringBuilder.append((CharSequence) tL_forumTopic.title);
-            }
-            this.textView.setText(spannableStringBuilder);
-            setSelected(z);
-            updateTextColor();
-            boolean z3 = z2;
-            setCounter(MessagesController.getInstance(this.currentAccount).isDialogMuted(j, this.topicId), tL_forumTopic.unread_count, false, false, z3);
-            setPinned(tL_forumTopic.pinned, z3);
-        }
-
-        public void updateTextColor() {
-            int textColor = getTextColor();
-            this.textView.setTextColor(textColor);
-            this.textView.setEmojiColor(textColor);
-            this.counterView.invalidate();
-        }
-
-        public int getTextColor() {
-            return ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), this.isAdd ? 1.0f : this.selectT);
-        }
-
-        public void setMf(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-            setLayout(true);
-            long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-            boolean z2 = this.topicId == peerDialogId;
-            this.topicId = peerDialogId;
-            this.staticImage = false;
-            this.imageView.setVisibility(8);
-            this.textView.setVisibility(0);
-            if (this.avatarSpan == null) {
-                AvatarSpan avatarSpan = new AvatarSpan(this.textView, this.currentAccount, 18.0f);
-                this.avatarSpan = avatarSpan;
-                avatarSpan.usePaintAlpha = false;
-            }
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(peerDialogId);
-            if (userOrChat != null) {
-                spannableStringBuilder.append((CharSequence) "x  ");
-                this.avatarSpan.setObject(userOrChat);
-                spannableStringBuilder.setSpan(this.avatarSpan, 0, 1, 33);
-            }
-            spannableStringBuilder.append((CharSequence) DialogObject.getName(peerDialogId));
-            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
-            linksTextView.setText(TextUtils.ellipsize(spannableStringBuilder, linksTextView.getPaint(), AndroidUtilities.dp(150.0f), TextUtils.TruncateAt.END));
-            setSelected(z);
-            setCounter(MessagesController.getInstance(this.currentAccount).isDialogMuted(j, peerDialogId), tL_forumTopic.unread_count, false, false, z2);
-            setPinned(false, z2);
-        }
-
-        @Override
-        public void setSelected(final boolean z) {
-            if (this.selected == z) {
-                return;
-            }
-            this.selected = z;
-            ValueAnimator valueAnimator = this.selectAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectT, z ? 1.0f : 0.0f);
-            this.selectAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    TopicsTabsView.HorizontalTabView.m2903$r8$lambda$TDsOFi3FwdP_MUlURVFg_7rA(this.f$0, valueAnimator2);
-                }
-            });
-            this.selectAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    HorizontalTabView.this.selectT = z ? 1.0f : 0.0f;
-                    HorizontalTabView.this.updateTextColor();
-                }
-            });
-            this.selectAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.selectAnimator.setDuration(320L);
-            this.selectAnimator.start();
-        }
-
-        public static void m2903$r8$lambda$TDsOFi3FwdP_MUlURVFg_7rA(HorizontalTabView horizontalTabView, ValueAnimator valueAnimator) {
-            horizontalTabView.getClass();
-            horizontalTabView.selectT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            horizontalTabView.updateTextColor();
-        }
-
-        private void setCounter(boolean z, int i, boolean z2, boolean z3, boolean z4) {
-            if (z3) {
-                this.counterBackgroundColorKey = Theme.key_dialogReactionMentionBackground;
-                if (this.reactionString == null) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("❤️");
-                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_like_filled);
-                    coloredImageSpan.setScale(0.8f, 0.8f);
-                    coloredImageSpan.spaceScaleX = 0.5f;
-                    coloredImageSpan.translate(-AndroidUtilities.dp(3.0f), 0.0f);
-                    spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 33);
-                    this.reactionString = spannableStringBuilder;
-                }
-                this.counterText.setText(this.reactionString, z4);
-            } else if (z2) {
-                this.counterBackgroundColorKey = z ? Theme.key_chats_unreadCounterMuted : Theme.key_chats_unreadCounter;
-                if (this.mentionString == null) {
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("@");
-                    ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.mini_mention_filled_16);
-                    coloredImageSpan2.setScale(0.8f, 0.8f);
-                    coloredImageSpan2.spaceScaleX = 0.5f;
-                    coloredImageSpan2.translate(-AndroidUtilities.dp(3.0f), 0.0f);
-                    spannableStringBuilder2.setSpan(coloredImageSpan2, 0, 1, 33);
-                    this.mentionString = spannableStringBuilder2;
-                }
-                this.counterText.setText(this.mentionString, z4);
-            } else if (i > 0) {
-                this.counterBackgroundColorKey = z ? Theme.key_chats_unreadCounterMuted : Theme.key_chats_unreadCounter;
-                this.counterText.setText(LocaleController.formatNumber(i, ','), z4);
-            } else {
-                this.counterBackgroundColorKey = Theme.key_chats_unreadCounterMuted;
-                this.counterText.setText("", z4);
-            }
-            if (z4 && (this.lastUnread < i || ((!this.lastMention && z2) || (!this.lastReactions && z3)))) {
-                animateCounterBounce();
-            }
-            this.lastUnread = i;
-            this.lastMention = z2;
-            this.lastReactions = z3;
-            this.counterView.invalidate();
-            if (getMeasuringWidth() != getMeasuredWidth()) {
-                requestLayout();
-            }
-        }
-
-        private void animateCounterBounce() {
-            ValueAnimator valueAnimator = this.counterAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.counterAnimator = null;
-            }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.counterAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    TopicsTabsView.HorizontalTabView.$r8$lambda$CAUY9cu7iJQQ5ROLvCeKkqJLX6E(this.f$0, valueAnimator2);
-                }
-            });
-            this.counterAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    HorizontalTabView.this.counterView.setScaleX(1.0f);
-                    HorizontalTabView.this.counterView.setScaleY(1.0f);
-                    HorizontalTabView.this.counterView.invalidate();
-                }
-            });
-            this.counterAnimator.setInterpolator(new OvershootInterpolator(2.0f));
-            this.counterAnimator.setDuration(200L);
-            this.counterAnimator.start();
-        }
-
-        public static void $r8$lambda$CAUY9cu7iJQQ5ROLvCeKkqJLX6E(HorizontalTabView horizontalTabView, ValueAnimator valueAnimator) {
-            horizontalTabView.counterView.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-            horizontalTabView.counterView.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-            horizontalTabView.counterView.invalidate();
-        }
-
-        private int getMeasuringWidth() {
-            return AndroidUtilities.dp(11.0f) + this.textView.getMeasuredWidth() + (this.counterText.getAnimateToWidth() > 0.0f ? AndroidUtilities.dp(4.66f) + ((int) Math.max(AndroidUtilities.dp(16.66f), this.counterText.getAnimateToWidth() + AndroidUtilities.dp(10.0f))) : 0) + AndroidUtilities.dp(11.0f) + this.addW;
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            this.textView.measure(i, i2);
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(getMeasuringWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-        }
-
-        public static class Factory extends UItem.UItemFactory {
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
-
-            @Override
-            public HorizontalTabView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new HorizontalTabView(context, i, resourcesProvider);
-            }
-
-            @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                HorizontalTabView horizontalTabView = (HorizontalTabView) view;
-                boolean z2 = false;
-                if (uItem.red) {
-                    horizontalTabView.setLoading();
-                } else {
-                    Object obj = uItem.object;
-                    if (obj == null) {
-                        if (uItem.id == -2) {
-                            horizontalTabView.setAdd();
-                        } else {
-                            horizontalTabView.setAll((uItem.flags & 1) != 0, uItem.accent, uItem.checked);
-                        }
-                    } else if (obj instanceof TLRPC.TL_forumTopic) {
-                        if (!uItem.withUsername) {
-                            horizontalTabView.setMf(uItem.dialogId, (TLRPC.TL_forumTopic) obj, uItem.checked);
-                        } else {
-                            horizontalTabView.set(uItem.dialogId, (TLRPC.TL_forumTopic) obj, uItem.checked);
-                        }
-                    }
-                }
-                horizontalTabView.addW = BitwiseUtils.hasFlag(uItem.flags, 8) ? AndroidUtilities.dp(10.0f) : 0;
-                if (universalRecyclerView != null && universalRecyclerView.isReorderAllowed() && horizontalTabView.pinned) {
-                    z2 = true;
-                }
-                horizontalTabView.setReorder(z2);
-            }
-
-            public static UItem asAll(boolean z, boolean z2) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.id = 0;
-                uItemOfFactory.longValue = 0L;
-                uItemOfFactory.object = null;
-                uItemOfFactory.accent = z2;
-                return uItemOfFactory;
-            }
-
-            public static UItem asTab(long j, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.dialogId = j;
-                uItemOfFactory.id = tL_forumTopic.id;
-                uItemOfFactory.object = tL_forumTopic;
-                if (z) {
-                    uItemOfFactory.longValue = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-                    uItemOfFactory.withUsername = false;
-                }
-                return uItemOfFactory;
-            }
-
-            public static UItem asLoading(int i) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.id = i;
-                uItemOfFactory.red = true;
-                return uItemOfFactory;
-            }
-
-            public static UItem asAdd() {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.id = -2;
-                uItemOfFactory.longValue = -2L;
-                uItemOfFactory.object = null;
-                return uItemOfFactory;
-            }
-        }
-    }
-
-    @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        checkUi_topicsVerticalPosition();
-    }
-
     public void setAllTopicsHidden(boolean z) {
         if (this.allTopicsHidden != z) {
             this.allTopicsHidden = z;
@@ -2340,168 +2733,105 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         }
     }
 
-    private void deleteTopics(final HashSet hashSet, final Runnable runnable) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(LocaleController.getPluralString("DeleteTopics", hashSet.size()));
-        final ArrayList arrayList = new ArrayList(hashSet);
-        final long j = this.currentTopicId;
-        if (hashSet.size() == 1) {
-            builder.setMessage(LocaleController.formatString(R.string.DeleteSelectedTopic, MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-this.dialogId, ((Integer) arrayList.get(0)).intValue()).title));
-        } else {
-            builder.setMessage(LocaleController.getString(R.string.DeleteSelectedTopics));
-        }
-        builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                TopicsTabsView.$r8$lambda$mNQdYxCjpevtYZt4zGmssfjlZ8U(this.f$0, arrayList, j, hashSet, runnable, alertDialog, i);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                alertDialog.dismiss();
-            }
-        });
-        AlertDialog alertDialogCreate = builder.create();
-        alertDialogCreate.show();
-        TextView textView = (TextView) alertDialogCreate.getButton(-1);
-        if (textView != null) {
-            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+    public void setCurrentTopic(long j) {
+        this.currentTopicId = j;
+        AnonymousClass1 anonymousClass1 = this.topTabs;
+        anonymousClass1.adapter.update(true);
+        anonymousClass1.invalidate();
+        this.sideTabs.adapter.update(true);
+        VerticalTabView verticalTabView = this.botCreateTopicButtonVertical;
+        if (verticalTabView != null) {
+            verticalTabView.setAll(true, false, j == 0);
         }
     }
 
-    public static void $r8$lambda$mNQdYxCjpevtYZt4zGmssfjlZ8U(final TopicsTabsView topicsTabsView, final ArrayList arrayList, final long j, final HashSet hashSet, final Runnable runnable, AlertDialog alertDialog, int i) {
-        topicsTabsView.getClass();
-        int size = arrayList.size();
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            if (j == ((Integer) obj).intValue()) {
-                topicsTabsView.selectTopic(0L, false);
-            }
-        }
-        topicsTabsView.excludeTopics.addAll(hashSet);
-        topicsTabsView.updateTabs();
-        BulletinFactory.of(topicsTabsView.fragment).createUndoBulletin(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), new Runnable() {
-            @Override
-            public final void run() {
-                TopicsTabsView.m2896$r8$lambda$J9vP3WN3JX9LdWejzzbScFixRI(this.f$0, hashSet, arrayList, j);
-            }
-        }, new Runnable() {
-            @Override
-            public final void run() {
-                TopicsTabsView.$r8$lambda$1m4OhoONJqhkVLEuLvPndGXLWUo(this.f$0, arrayList, runnable);
-            }
-        }).show();
-        alertDialog.dismiss();
+    public void setOnDialogSelected(Utilities.Callback2<Long, Boolean> callback2) {
+        this.onDialogSelected = callback2;
     }
 
-    public static void m2896$r8$lambda$J9vP3WN3JX9LdWejzzbScFixRI(TopicsTabsView topicsTabsView, HashSet hashSet, ArrayList arrayList, long j) {
-        topicsTabsView.excludeTopics.removeAll(hashSet);
-        topicsTabsView.updateTabs();
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            long jIntValue = ((Integer) obj).intValue();
-            if (j == jIntValue) {
-                topicsTabsView.selectTopic(jIntValue, false);
-                return;
-            }
-        }
+    public void setOnNewTopicSelected(Runnable runnable) {
+        this.onTopicCreated = runnable;
     }
 
-    public static void $r8$lambda$1m4OhoONJqhkVLEuLvPndGXLWUo(TopicsTabsView topicsTabsView, ArrayList arrayList, Runnable runnable) {
-        MessagesController.getInstance(topicsTabsView.currentAccount).getTopicsController().deleteTopics(-topicsTabsView.dialogId, arrayList);
-        runnable.run();
+    public void setOnTopicSelected(Utilities.Callback2<Integer, Boolean> callback2) {
+        this.onTopicSelected = callback2;
     }
 
-    private long getTopicId(TLRPC.TL_forumTopic tL_forumTopic) {
-        return this.mono ? DialogObject.getPeerDialogId(tL_forumTopic.from_id) : tL_forumTopic.id;
+    public void setSideMenuBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+        this.sideMenuBackgroundDrawable = blurredBackgroundDrawable;
+        blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(16.0f));
+        this.sideMenuBackgroundDrawable.setPadding(AndroidUtilities.dp(7.0f));
     }
 
-    private static class BotNewTopicDrawable extends Drawable {
-        private final Drawable drawable;
-        private final Paint paint = new Paint(1);
-        private final RectF rectF = new RectF();
-
-        @Override
-        public int getOpacity() {
-            return 0;
+    public void setSideMenuBackgroundMarginBottom(float f) {
+        this.sideMenuBackgroundMarginBottom = f;
+        checkUi_topicsVerticalPosition();
+        FrameLayout frameLayout = this.sideTabsContainer;
+        int paddingBottom = frameLayout.getPaddingBottom();
+        int iRound = Math.round(this.sideMenuBackgroundMarginBottom + this.sideMenuBackgroundMarginTop);
+        if (paddingBottom != iRound) {
+            frameLayout.setPadding(0, 0, 0, iRound);
         }
-
-        @Override
-        public void setColorFilter(ColorFilter colorFilter) {
-        }
-
-        public BotNewTopicDrawable(Context context) {
-            this.drawable = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
-        }
-
-        public void setColor(int i) {
-            this.paint.setColor(i);
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
-            this.drawable.draw(canvas);
-        }
-
-        @Override
-        protected void onBoundsChange(Rect rect) {
-            super.onBoundsChange(rect);
-            this.rectF.set(rect);
-            int iCenterX = rect.centerX() - AndroidUtilities.dp(12.0f);
-            int iCenterY = rect.centerY() - AndroidUtilities.dp(12.0f);
-            this.drawable.setBounds(iCenterX, iCenterY, AndroidUtilities.dp(24.0f) + iCenterX, AndroidUtilities.dp(24.0f) + iCenterY);
-        }
-
-        @Override
-        public void setAlpha(int i) {
-            this.paint.setAlpha(i);
-            this.drawable.setAlpha(i);
-        }
+        invalidate();
     }
 
-    private static int getTabsSize(Position position) {
-        return AndroidUtilities.dp(position == Position.LEFT ? 64.0f : 36.0f);
-    }
-
-    public float getSideMenuT() {
-        return this.sidemenuT * this.animatorTopicsVisibility.getFloatValue();
-    }
-
-    public boolean isSideMenuEnabled() {
-        return this.sidemenuEnabled && this.animatorTopicsVisibility.getValue();
-    }
-
-    private float getTabsVisibility(Position position) {
-        float floatValue = this.animatorTopicsVisibility.getFloatValue();
-        if (position == Position.LEFT) {
-            return this.sidemenuT * floatValue;
+    public void setSideMenuBackgroundMarginTop(float f) {
+        this.sideMenuBackgroundMarginTop = f;
+        FrameLayout frameLayout = this.sideTabsContainer;
+        frameLayout.setTranslationY(f);
+        checkUi_topicsVerticalPosition();
+        int paddingBottom = frameLayout.getPaddingBottom();
+        int iRound = Math.round(this.sideMenuBackgroundMarginBottom + this.sideMenuBackgroundMarginTop);
+        if (paddingBottom != iRound) {
+            frameLayout.setPadding(0, 0, 0, iRound);
         }
-        if ((position != Position.TOP || this.topicBottom) && !(position == Position.BOTTOM && this.topicBottom)) {
-            return 0.0f;
+        invalidate();
+    }
+
+    public void setTopMenuBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+        this.topMenuBackgroundDrawable = blurredBackgroundDrawable;
+        blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(18.0f));
+        this.topMenuBackgroundDrawable.setPadding(AndroidUtilities.dp(7.0f));
+    }
+
+    public final void updateSidemenuPosition() {
+        ChatActivity$$ExternalSyntheticLambda11 chatActivity$$ExternalSyntheticLambda11 = this.onUpdateSideMenuPosition;
+        if (chatActivity$$ExternalSyntheticLambda11 != null) {
+            chatActivity$$ExternalSyntheticLambda11.run();
         }
-        return (1.0f - this.sidemenuT) * floatValue;
+        checkUi_topicsVerticalPosition();
+        float tabsVisibility = getTabsVisibility(Position.LEFT);
+        float fLerp = AndroidUtilities.lerp(-AndroidUtilities.dp(78.0f), 0, tabsVisibility);
+        FrameLayout frameLayout = this.sideTabsContainer;
+        frameLayout.setTranslationX(fLerp);
+        frameLayout.setVisibility(tabsVisibility <= 0.0f ? 8 : 0);
+        int i = Theme.key_windowBackgroundWhiteGrayText2;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        int color = Theme.getColor(i, resourcesProvider);
+        int i2 = Theme.key_featuredStickers_addButton;
+        int iBlendARGB = ColorUtils.blendARGB(1.0f - this.sidemenuT, color, Theme.getColor(i2, resourcesProvider));
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.toggleButtonTop.setColorFilter(new PorterDuffColorFilter(iBlendARGB, mode));
+        this.toggleButtonSide.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(this.sidemenuT, Theme.getColor(i, resourcesProvider), Theme.getColor(i2, resourcesProvider)), mode));
+        this.closeButtonTop.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), mode));
+        this.closeButtonSide.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), mode));
+        invalidate();
     }
 
-    public Position getCurrentTabsPosition() {
-        if (this.sidemenuEnabled) {
-            return Position.LEFT;
+    public final void updateTabs$1() {
+        checkTopicsVisibility(true);
+        AnonymousClass1 anonymousClass1 = this.topTabs;
+        boolean zCanScrollHorizontally = anonymousClass1.canScrollHorizontally(-1);
+        anonymousClass1.adapter.update(true);
+        if (!zCanScrollHorizontally) {
+            anonymousClass1.scrollToPosition(0);
         }
-        return this.topicBottom ? Position.BOTTOM : Position.TOP;
-    }
-
-    public float getTabsVisibleSpaceWithPadding(Position position, float f) {
-        return (getTabsSize(position) + f) * getTabsVisibility(position);
-    }
-
-    @Override
-    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-        updateSidemenuPosition();
+        AnonymousClass3 anonymousClass3 = this.sideTabs;
+        boolean zCanScrollVertically = anonymousClass3.canScrollVertically(-1);
+        anonymousClass3.adapter.update(true);
+        if (!zCanScrollVertically) {
+            anonymousClass3.scrollToPosition(0);
+        }
+        AndroidUtilities.runOnUIThread(new TopicsTabsView$$ExternalSyntheticLambda0(this, 0));
     }
 }

@@ -20,44 +20,10 @@ public class ArrayOfAtoms extends TeXFormula {
         this.root = null;
     }
 
-    public void addCol(int i) {
-        if (i < 1) {
-            i = 1;
-        } else if (i > 4096) {
-            i = 4096;
-        }
-        this.array.get(this.row).add(this.root);
-        for (int i2 = 1; i2 < i - 1; i2++) {
-            this.array.get(this.row).add(null);
-        }
-        this.root = null;
-    }
-
     public void addRow() {
         addCol();
         this.array.add(new LinkedList<>());
         this.row++;
-    }
-
-    public int getRows() {
-        return this.row;
-    }
-
-    public int getCols() {
-        return this.col;
-    }
-
-    public VRowAtom getAsVRow() {
-        VRowAtom vRowAtom = new VRowAtom();
-        vRowAtom.setAddInterline(true);
-        Iterator<LinkedList<Atom>> it = this.array.iterator();
-        while (it.hasNext()) {
-            Iterator<Atom> it2 = it.next().iterator();
-            while (it2.hasNext()) {
-                vRowAtom.append(it2.next());
-            }
-        }
-        return vRowAtom;
     }
 
     public void checkDimensions() {
@@ -81,5 +47,39 @@ public class ArrayOfAtoms extends TeXFormula {
                 }
             }
         }
+    }
+
+    public VRowAtom getAsVRow() {
+        VRowAtom vRowAtom = new VRowAtom();
+        vRowAtom.setAddInterline(true);
+        Iterator<LinkedList<Atom>> it = this.array.iterator();
+        while (it.hasNext()) {
+            Iterator<Atom> it2 = it.next().iterator();
+            while (it2.hasNext()) {
+                vRowAtom.append(it2.next());
+            }
+        }
+        return vRowAtom;
+    }
+
+    public int getCols() {
+        return this.col;
+    }
+
+    public int getRows() {
+        return this.row;
+    }
+
+    public void addCol(int i) {
+        if (i < 1) {
+            i = 1;
+        } else if (i > 4096) {
+            i = 4096;
+        }
+        this.array.get(this.row).add(this.root);
+        for (int i2 = 1; i2 < i - 1; i2++) {
+            this.array.get(this.row).add(null);
+        }
+        this.root = null;
     }
 }

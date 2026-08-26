@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -13,305 +12,161 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.ActionBar.Theme;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.InstantCameraView;
+import org.telegram.ui.Components.ReactionsContainerLayout;
+import org.telegram.ui.LaunchActivity;
 
 public abstract class StoriesViewPager extends ViewPager {
-    int currentAccount;
+    public int currentAccount;
     public int currentState;
-    ArrayList days;
-    long daysDialogId;
-    PeerStoriesView.Delegate delegate;
-    ArrayList dialogs;
-    public boolean dissallowInterceptCalled;
-    Runnable doOnNextIdle;
-    int keyboardHeight;
-    float lastProgressToDismiss;
-    Runnable lockTouchRunnable;
-    PagerAdapter pagerAdapter;
-    float progress;
-    PeerStoriesView.SharedResources resources;
-    int selectedPosition;
-    private int selectedPositionInPage;
-    StoryViewer storyViewer;
-    int toPosition;
-    boolean touchEnabled;
-    private boolean touchLocked;
-    boolean updateDelegate;
-    private int updateVisibleItemPosition;
+    public ArrayList days;
+    public long daysDialogId;
+    public PeerStoriesView.Delegate delegate;
+    public ArrayList dialogs;
+    public Runnable doOnNextIdle;
+    public int keyboardHeight;
+    public float lastProgressToDismiss;
+    public final LaunchActivity.AnonymousClass18 lockTouchRunnable;
+    public final AnonymousClass2 pagerAdapter;
+    public float progress;
+    public final PeerStoriesView.SharedResources resources;
+    public int selectedPosition;
+    public final StoryViewer storyViewer;
+    public int toPosition;
+    public boolean touchEnabled;
+    public boolean touchLocked;
+    public boolean updateDelegate;
+    public int updateVisibleItemPosition;
 
-    public abstract void onStateChanged();
+    public final class PageLayout extends FrameLayout {
+        public ArrayList day;
+        public long dialogId;
+        public boolean isVisible;
+        public PeerStoriesView peerStoryView;
+        public final HwStoriesViewPager this$0;
 
-    public StoriesViewPager(int i, final Context context, final StoryViewer storyViewer, final Theme.ResourcesProvider resourcesProvider) {
+        public PageLayout(HwStoriesViewPager hwStoriesViewPager, Context context) {
+            super(context);
+            this.this$0 = hwStoriesViewPager;
+        }
+
+        @Override
+        public final void dispatchDraw(Canvas canvas) {
+            if (this.isVisible) {
+                super.dispatchDraw(canvas);
+            }
+        }
+    }
+
+    public StoriesViewPager(int i, Context context, final StoryViewer storyViewer, DarkThemeResourceProvider darkThemeResourceProvider) {
         super(context);
         this.dialogs = new ArrayList();
         this.touchEnabled = true;
-        this.lockTouchRunnable = new Runnable() {
-            @Override
-            public void run() {
-                StoriesViewPager.this.touchLocked = false;
-            }
-        };
+        final HwStoriesViewPager hwStoriesViewPager = (HwStoriesViewPager) this;
+        this.lockTouchRunnable = new LaunchActivity.AnonymousClass18(hwStoriesViewPager, 20);
         this.updateVisibleItemPosition = -1;
         this.currentAccount = i;
         this.resources = new PeerStoriesView.SharedResources(context);
         this.storyViewer = storyViewer;
-        PagerAdapter pagerAdapter = new PagerAdapter() {
-            private final ArrayList cachedViews = new ArrayList();
-
-            @Override
-            public boolean isViewFromObject(View view, Object obj) {
-                return view == obj;
-            }
-
-            @Override
-            public int getCount() {
-                StoriesViewPager storiesViewPager = StoriesViewPager.this;
-                ArrayList arrayList = storiesViewPager.days;
-                if (arrayList != null) {
-                    return arrayList.size();
-                }
-                return storiesViewPager.dialogs.size();
-            }
-
-            @Override
-            public Object instantiateItem(ViewGroup viewGroup, int i2) {
-                AnonymousClass2 anonymousClass2;
-                PeerStoriesView peerStoriesView;
-                PageLayout pageLayout = StoriesViewPager.this.new PageLayout(context);
-                if (!this.cachedViews.isEmpty()) {
-                    peerStoriesView = (PeerStoriesView) this.cachedViews.remove(0);
-                    peerStoriesView.reset();
-                    anonymousClass2 = this;
-                } else {
-                    anonymousClass2 = this;
-                    peerStoriesView = new HwPeerStoriesView(context, storyViewer, StoriesViewPager.this.resources, resourcesProvider) {
-                        @Override
-                        public boolean isSelectedPeer() {
-                            return getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == StoriesViewPager.this.getCurrentItem();
-                        }
-                    };
-                }
-                pageLayout.peerStoryView = peerStoriesView;
-                peerStoriesView.setAccount(StoriesViewPager.this.currentAccount);
-                peerStoriesView.setDelegate(StoriesViewPager.this.delegate);
-                peerStoriesView.setLongpressed(storyViewer.isLongpressed);
-                pageLayout.setTag(Integer.valueOf(i2));
-                StoriesViewPager storiesViewPager = StoriesViewPager.this;
-                ArrayList arrayList = storiesViewPager.days;
-                if (arrayList != null) {
-                    if (storyViewer.reversed) {
-                        i2 = (arrayList.size() - 1) - i2;
-                    }
-                    ArrayList arrayList2 = (ArrayList) arrayList.get(i2);
-                    pageLayout.day = arrayList2;
-                    StoriesController.StoriesList storiesList = storyViewer.storiesList;
-                    if ((storiesList instanceof StoriesController.SearchStoriesList) || (storiesList instanceof StoriesController.StoryRepostsList)) {
-                        MessageObject messageObjectFindMessageObject = storiesList.findMessageObject(((Integer) arrayList2.get(0)).intValue());
-                        pageLayout.dialogId = messageObjectFindMessageObject == null ? StoriesViewPager.this.daysDialogId : messageObjectFindMessageObject.getDialogId();
-                    } else {
-                        pageLayout.dialogId = StoriesViewPager.this.daysDialogId;
-                    }
-                } else {
-                    pageLayout.day = null;
-                    pageLayout.dialogId = ((Long) storiesViewPager.dialogs.get(i2)).longValue();
-                }
-                pageLayout.addView(peerStoriesView);
-                peerStoriesView.requestLayout();
-                viewGroup.addView(pageLayout);
-                return pageLayout;
-            }
-
-            @Override
-            public void destroyItem(ViewGroup viewGroup, int i2, Object obj) {
-                FrameLayout frameLayout = (FrameLayout) obj;
-                viewGroup.removeView(frameLayout);
-                PeerStoriesView peerStoriesView = (PeerStoriesView) frameLayout.getChildAt(0);
-                AndroidUtilities.removeFromParent(peerStoriesView);
-                this.cachedViews.add(peerStoriesView);
-            }
-        };
-        this.pagerAdapter = pagerAdapter;
-        setAdapter(pagerAdapter);
-        setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override
-            public final void transformPage(View view, float f) {
-                StoriesViewPager.$r8$lambda$fz22C2XjwxT_G95OHZuTTOQPrEg(this.f$0, view, f);
-            }
-        });
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2(hwStoriesViewPager, context, storyViewer, darkThemeResourceProvider);
+        this.pagerAdapter = anonymousClass2;
+        setAdapter(anonymousClass2);
+        StoriesViewPager$$ExternalSyntheticLambda0 storiesViewPager$$ExternalSyntheticLambda0 = new StoriesViewPager$$ExternalSyntheticLambda0((HwStoriesViewPager) this, 0);
+        boolean z = this.mPageTransformer == null;
+        this.mPageTransformer = storiesViewPager$$ExternalSyntheticLambda0;
+        setChildrenDrawingOrderEnabled(true);
+        this.mDrawingOrder = 1;
+        this.mPageTransformerLayerType = 2;
+        if (z) {
+            populate();
+        }
         setOffscreenPageLimit(0);
         addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int r3, float r4, int r5) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesViewPager.AnonymousClass3.onPageScrolled(int, float, int):void");
+            public final void onPageScrollStateChanged(int i2) {
+                HwStoriesViewPager hwStoriesViewPager2 = hwStoriesViewPager;
+                StoryViewer storyViewer2 = StoryViewer.this;
+                storyViewer2.getClass();
+                storyViewer2.updatePlayingMode();
+                Runnable runnable = hwStoriesViewPager2.doOnNextIdle;
+                if (runnable != null && i2 == 0) {
+                    runnable.run();
+                    hwStoriesViewPager2.doOnNextIdle = null;
+                }
+                hwStoriesViewPager2.currentState = i2;
+                StoryViewer storyViewer3 = StoryViewer.this;
+                if (storyViewer3.storiesViewPager.currentState == 1) {
+                    AndroidUtilities.cancelRunOnUIThread(storyViewer3.longPressRunnable);
+                }
             }
 
             @Override
-            public void onPageSelected(int i2) {
-                PeerStoriesView currentPeerView = StoriesViewPager.this.getCurrentPeerView();
+            public final void onPageScrolled(float f, int i2, int i3) {
+                HwStoriesViewPager hwStoriesViewPager2 = hwStoriesViewPager;
+                hwStoriesViewPager2.selectedPosition = i2;
+                hwStoriesViewPager2.toPosition = i3 > 0 ? i2 + 1 : i2 - 1;
+                hwStoriesViewPager2.progress = f;
+                long j = UserConfig.getInstance(hwStoriesViewPager2.currentAccount).clientUserId;
+                int i4 = hwStoriesViewPager2.selectedPosition;
+                if (i4 >= 0 && (hwStoriesViewPager2.days != null ? hwStoriesViewPager2.daysDialogId == j : !(i4 >= hwStoriesViewPager2.dialogs.size() || ((Long) hwStoriesViewPager2.dialogs.get(hwStoriesViewPager2.selectedPosition)).longValue() != j))) {
+                    PeerStoriesView.Delegate delegate = hwStoriesViewPager2.delegate;
+                    float f2 = 1.0f - hwStoriesViewPager2.progress;
+                    StoryViewer storyViewer2 = StoryViewer.this;
+                    if (storyViewer2.hideEnterViewProgress != f2) {
+                        storyViewer2.hideEnterViewProgress = f2;
+                        storyViewer2.containerView.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                int i5 = hwStoriesViewPager2.toPosition;
+                if (i5 < 0 || (hwStoriesViewPager2.days != null ? hwStoriesViewPager2.daysDialogId != j : i5 >= hwStoriesViewPager2.dialogs.size() || ((Long) hwStoriesViewPager2.dialogs.get(hwStoriesViewPager2.toPosition)).longValue() != j)) {
+                    StoryViewer storyViewer3 = StoryViewer.this;
+                    if (storyViewer3.hideEnterViewProgress != 0.0f) {
+                        storyViewer3.hideEnterViewProgress = 0.0f;
+                        storyViewer3.containerView.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                PeerStoriesView.Delegate delegate2 = hwStoriesViewPager2.delegate;
+                float f3 = hwStoriesViewPager2.progress;
+                StoryViewer storyViewer4 = StoryViewer.this;
+                if (storyViewer4.hideEnterViewProgress != f3) {
+                    storyViewer4.hideEnterViewProgress = f3;
+                    storyViewer4.containerView.invalidate();
+                }
+            }
+
+            @Override
+            public final void onPageSelected(int i2) {
+                HwStoriesViewPager hwStoriesViewPager2 = hwStoriesViewPager;
+                PeerStoriesView currentPeerView = hwStoriesViewPager2.getCurrentPeerView();
                 if (currentPeerView == null) {
                     return;
                 }
-                StoriesViewPager.this.delegate.onPeerSelected(currentPeerView.getCurrentPeer(), currentPeerView.getSelectedPosition());
-                StoriesViewPager.this.updateActiveStory();
-                StoryViewer.PlaceProvider placeProvider = storyViewer.placeProvider;
+                PeerStoriesView.Delegate delegate = hwStoriesViewPager2.delegate;
+                long currentPeer = currentPeerView.getCurrentPeer();
+                int selectedPosition = currentPeerView.getSelectedPosition();
+                StoryViewer storyViewer2 = StoryViewer.this;
+                if (storyViewer2.lastPosition != selectedPosition || storyViewer2.lastDialogId != currentPeer) {
+                    storyViewer2.lastDialogId = currentPeer;
+                    storyViewer2.lastPosition = selectedPosition;
+                }
+                hwStoriesViewPager2.updateActiveStory();
+                StoryViewer storyViewer3 = storyViewer;
+                StoryViewer.PlaceProvider placeProvider = storyViewer3.placeProvider;
                 if (placeProvider != null) {
                     if (i2 < 3) {
                         placeProvider.loadNext(false);
-                    } else if (i2 > StoriesViewPager.this.pagerAdapter.getCount() - 4) {
-                        storyViewer.placeProvider.loadNext(true);
+                    } else if (i2 > hwStoriesViewPager2.pagerAdapter.getCount() - 4) {
+                        storyViewer3.placeProvider.loadNext(true);
                     }
                 }
             }
-
-            @Override
-            public void onPageScrollStateChanged(int i2) {
-                StoriesViewPager.this.delegate.setAllowTouchesByViewPager(i2 != 0);
-                Runnable runnable = StoriesViewPager.this.doOnNextIdle;
-                if (runnable != null && i2 == 0) {
-                    runnable.run();
-                    StoriesViewPager.this.doOnNextIdle = null;
-                }
-                StoriesViewPager storiesViewPager = StoriesViewPager.this;
-                storiesViewPager.currentState = i2;
-                storiesViewPager.onStateChanged();
-            }
         });
         setOverScrollMode(2);
-    }
-
-    public static void $r8$lambda$fz22C2XjwxT_G95OHZuTTOQPrEg(StoriesViewPager storiesViewPager, View view, float f) {
-        storiesViewPager.getClass();
-        final PageLayout pageLayout = (PageLayout) view;
-        if (Math.abs(f) >= 1.0f) {
-            pageLayout.setVisible(false);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    StoriesViewPager.$r8$lambda$9CHsGpUu_NGtik9WFwY0kDWgpxw(pageLayout);
-                }
-            }, 16L);
-            return;
-        }
-        if (!pageLayout.isVisible) {
-            pageLayout.setVisible(true);
-            if (storiesViewPager.days != null) {
-                pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day, -1);
-            } else {
-                pageLayout.peerStoryView.setDialogId(pageLayout.dialogId, -1);
-            }
-        }
-        pageLayout.peerStoryView.setOffset(f);
-        view.setCameraDistance(view.getWidth() * 15);
-        view.setPivotX(f < 0.0f ? view.getWidth() : 0.0f);
-        view.setPivotY(view.getHeight() * 0.5f);
-        view.setRotationY(f * 90.0f);
-    }
-
-    public static void $r8$lambda$9CHsGpUu_NGtik9WFwY0kDWgpxw(PageLayout pageLayout) {
-        ArrayList arrayList = pageLayout.day;
-        if (arrayList != null) {
-            pageLayout.peerStoryView.day = arrayList;
-        }
-        pageLayout.peerStoryView.preloadMainImage(pageLayout.dialogId);
-    }
-
-    public void updateActiveStory() {
-        for (int i = 0; i < getChildCount(); i++) {
-            PeerStoriesView peerStoriesView = (PeerStoriesView) ((FrameLayout) getChildAt(i)).getChildAt(0);
-            peerStoriesView.setActive(((Integer) getChildAt(i).getTag()).intValue() == getCurrentItem() && !peerStoriesView.editOpened);
-        }
-    }
-
-    public void checkAllowScreenshots() {
-        boolean z = false;
-        for (int i = 0; i < getChildCount(); i++) {
-            PageLayout pageLayout = (PageLayout) getChildAt(i);
-            if (pageLayout.isVisible && !pageLayout.peerStoryView.currentStory.allowScreenshots()) {
-                this.storyViewer.allowScreenshots(z);
-            }
-        }
-        z = true;
-        this.storyViewer.allowScreenshots(z);
-    }
-
-    public boolean canScroll(float f) {
-        int i = this.selectedPosition;
-        if (i == 0 && this.progress == 0.0f && f < 0.0f) {
-            return false;
-        }
-        return (i == getAdapter().getCount() - 1 && this.progress == 0.0f && f > 0.0f) ? false : true;
-    }
-
-    public PeerStoriesView getCurrentPeerView() {
-        for (int i = 0; i < getChildCount(); i++) {
-            if (((Integer) getChildAt(i).getTag()).intValue() == getCurrentItem()) {
-                return (PeerStoriesView) ((FrameLayout) getChildAt(i)).getChildAt(0);
-            }
-        }
-        return null;
-    }
-
-    public void setPeerIds(ArrayList arrayList, int i, int i2) {
-        this.dialogs = arrayList;
-        this.currentAccount = i;
-        setAdapter(null);
-        setAdapter(this.pagerAdapter);
-        setCurrentItem(i2);
-        this.updateDelegate = true;
-    }
-
-    public void setDays(long j, ArrayList arrayList, int i) {
-        PagerAdapter pagerAdapter;
-        if (this.daysDialogId == j && eqA(this.days, arrayList) && this.currentAccount == i) {
-            return;
-        }
-        int size = 0;
-        boolean z = this.daysDialogId == j && this.currentAccount == i && isPrefix(this.days, arrayList);
-        this.daysDialogId = j;
-        this.days = arrayList;
-        this.currentAccount = i;
-        if (z && (pagerAdapter = this.pagerAdapter) != null) {
-            pagerAdapter.notifyDataSetChanged();
-            this.updateDelegate = true;
-            return;
-        }
-        setAdapter(null);
-        setAdapter(this.pagerAdapter);
-        while (size < arrayList.size() && !((ArrayList) arrayList.get(size)).contains(Integer.valueOf(this.storyViewer.dayStoryId))) {
-            size++;
-        }
-        if (this.storyViewer.reversed) {
-            size = (arrayList.size() - 1) - size;
-        }
-        setCurrentItem(size);
-        this.updateDelegate = true;
-    }
-
-    private static boolean isPrefix(ArrayList arrayList, ArrayList arrayList2) {
-        if (arrayList == null || arrayList2 == null || arrayList2.size() <= arrayList.size()) {
-            return false;
-        }
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (!eq((ArrayList) arrayList.get(i), (ArrayList) arrayList2.get(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static boolean eqA(ArrayList arrayList, ArrayList arrayList2) {
-        if (arrayList == null && arrayList2 == null) {
-            return true;
-        }
-        if (arrayList == null || arrayList2 == null || arrayList.size() != arrayList2.size()) {
-            return false;
-        }
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (!eq((ArrayList) arrayList.get(i), (ArrayList) arrayList2.get(i))) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public static boolean eq(ArrayList arrayList, ArrayList arrayList2) {
@@ -329,96 +184,46 @@ public abstract class StoriesViewPager extends ViewPager {
         return true;
     }
 
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        if (this.updateDelegate) {
-            this.updateDelegate = false;
-            PeerStoriesView currentPeerView = getCurrentPeerView();
-            if (currentPeerView != null) {
-                this.delegate.onPeerSelected(currentPeerView.getCurrentPeer(), currentPeerView.getSelectedPosition());
-            }
-        }
-        checkPageVisibility();
-        updateActiveStory();
-    }
-
-    public void checkPageVisibility() {
+    public final void checkPageVisibility() {
+        PageLayout pageLayout;
+        boolean z;
+        HwStoriesViewPager hwStoriesViewPager;
         if (this.updateVisibleItemPosition >= 0) {
             for (int i = 0; i < getChildCount(); i++) {
-                if (((Integer) getChildAt(i).getTag()).intValue() == getCurrentItem() && getCurrentItem() == this.updateVisibleItemPosition) {
-                    PageLayout pageLayout = (PageLayout) getChildAt(i);
-                    if (!pageLayout.isVisible) {
-                        this.updateVisibleItemPosition = -1;
-                        pageLayout.setVisible(true);
-                        if (this.days != null) {
-                            pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day, this.selectedPositionInPage);
-                        } else {
-                            pageLayout.peerStoryView.setDialogId(pageLayout.dialogId, this.selectedPositionInPage);
+                if (((Integer) getChildAt(i).getTag()).intValue() == getCurrentItem() && getCurrentItem() == this.updateVisibleItemPosition && !(z = (pageLayout = (PageLayout) getChildAt(i)).isVisible)) {
+                    this.updateVisibleItemPosition = -1;
+                    boolean z2 = true;
+                    if (!z) {
+                        pageLayout.isVisible = true;
+                        pageLayout.invalidate();
+                        pageLayout.peerStoryView.setIsVisible(true);
+                        int i2 = 0;
+                        while (true) {
+                            hwStoriesViewPager = pageLayout.this$0;
+                            if (i2 >= hwStoriesViewPager.getChildCount()) {
+                                break;
+                            }
+                            PageLayout pageLayout2 = (PageLayout) hwStoriesViewPager.getChildAt(i2);
+                            if (pageLayout2.isVisible && !pageLayout2.peerStoryView.currentStory.allowScreenshots()) {
+                                z2 = false;
+                                break;
+                            }
+                            i2++;
                         }
+                        hwStoriesViewPager.storyViewer.allowScreenshots(z2);
+                    }
+                    if (this.days != null) {
+                        PeerStoriesView peerStoriesView = pageLayout.peerStoryView;
+                        long j = pageLayout.dialogId;
+                        ArrayList arrayList = pageLayout.day;
+                        peerStoriesView.dialogId = j;
+                        peerStoriesView.day = arrayList;
+                        peerStoriesView.bindInternal(0);
+                    } else {
+                        pageLayout.peerStoryView.setDialogId(0, pageLayout.dialogId);
                     }
                 }
             }
-        }
-    }
-
-    public void setDelegate(PeerStoriesView.Delegate delegate) {
-        this.delegate = delegate;
-    }
-
-    public boolean useSurfaceInViewPagerWorkAround() {
-        return this.storyViewer.USE_SURFACE_VIEW && Build.VERSION.SDK_INT < 33;
-    }
-
-    public boolean switchToNext(boolean z) {
-        if (z) {
-            int currentItem = getCurrentItem();
-            ArrayList arrayList = this.days;
-            if (arrayList == null) {
-                arrayList = this.dialogs;
-            }
-            if (currentItem < arrayList.size() - 1) {
-                setCurrentItem(getCurrentItem() + 1, !useSurfaceInViewPagerWorkAround());
-                return true;
-            }
-        }
-        if (z || getCurrentItem() <= 0) {
-            return false;
-        }
-        setCurrentItem(getCurrentItem() - 1, !useSurfaceInViewPagerWorkAround());
-        return true;
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.touchEnabled && !this.touchLocked) {
-            try {
-                return super.onInterceptTouchEvent(motionEvent);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.touchEnabled || this.touchLocked) {
-            if (this.touchLocked) {
-                return motionEvent.getAction() == 0 || motionEvent.getAction() == 2;
-            }
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    public void enableTouch(boolean z) {
-        this.touchEnabled = z;
-    }
-
-    public void setPaused(boolean z) {
-        for (int i = 0; i < getChildCount(); i++) {
-            ((PeerStoriesView) ((FrameLayout) getChildAt(i)).getChildAt(0)).setPaused(z);
         }
     }
 
@@ -432,18 +237,134 @@ public abstract class StoriesViewPager extends ViewPager {
         return 0L;
     }
 
-    public void onNextIdle(Runnable runnable) {
-        this.doOnNextIdle = runnable;
-    }
-
-    public void setKeyboardHeight(int i) {
-        if (this.keyboardHeight != i) {
-            this.keyboardHeight = i;
-            PeerStoriesView currentPeerView = getCurrentPeerView();
-            if (currentPeerView != null) {
-                currentPeerView.requestLayout();
+    public PeerStoriesView getCurrentPeerView() {
+        for (int i = 0; i < getChildCount(); i++) {
+            if (((Integer) getChildAt(i).getTag()).intValue() == getCurrentItem()) {
+                return (PeerStoriesView) ((FrameLayout) getChildAt(i)).getChildAt(0);
             }
         }
+        return null;
+    }
+
+    public ArrayList<Long> getDialogIds() {
+        return this.dialogs;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.touchEnabled && !this.touchLocked) {
+            try {
+                return super.onInterceptTouchEvent(motionEvent);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        if (this.updateDelegate) {
+            this.updateDelegate = false;
+            PeerStoriesView currentPeerView = getCurrentPeerView();
+            if (currentPeerView != null) {
+                PeerStoriesView.Delegate delegate = this.delegate;
+                long currentPeer = currentPeerView.getCurrentPeer();
+                int selectedPosition = currentPeerView.getSelectedPosition();
+                StoryViewer storyViewer = StoryViewer.this;
+                if (storyViewer.lastPosition != selectedPosition || storyViewer.lastDialogId != currentPeer) {
+                    storyViewer.lastDialogId = currentPeer;
+                    storyViewer.lastPosition = selectedPosition;
+                }
+            }
+        }
+        checkPageVisibility();
+        updateActiveStory();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.touchEnabled && !this.touchLocked) {
+            return super.onTouchEvent(motionEvent);
+        }
+        if (this.touchLocked) {
+            return motionEvent.getAction() == 0 || motionEvent.getAction() == 2;
+        }
+        return false;
+    }
+
+    public final void setDays(int i, long j, ArrayList arrayList) {
+        boolean z;
+        StoryViewer storyViewer;
+        ArrayList arrayList2;
+        int size = 0;
+        if (this.daysDialogId == j) {
+            ArrayList arrayList3 = this.days;
+            if (arrayList3 == null && arrayList == null) {
+                if (this.currentAccount == i) {
+                    return;
+                }
+            } else if (arrayList3 != null && arrayList != null && arrayList3.size() == arrayList.size()) {
+                int i2 = 0;
+                while (true) {
+                    if (i2 < arrayList3.size()) {
+                        if (eq((ArrayList) arrayList3.get(i2), (ArrayList) arrayList.get(i2))) {
+                            i2++;
+                        }
+                    } else if (this.currentAccount == i) {
+                        return;
+                    }
+                }
+            }
+        }
+        if (this.daysDialogId == j && this.currentAccount == i && (arrayList2 = this.days) != null && arrayList != null && arrayList.size() > arrayList2.size()) {
+            int i3 = 0;
+            while (true) {
+                if (i3 >= arrayList2.size()) {
+                    z = true;
+                    break;
+                } else {
+                    if (!eq((ArrayList) arrayList2.get(i3), (ArrayList) arrayList.get(i3))) {
+                        z = false;
+                        break;
+                    }
+                    i3++;
+                }
+            }
+        } else {
+            z = false;
+            break;
+        }
+        this.daysDialogId = j;
+        this.days = arrayList;
+        this.currentAccount = i;
+        AnonymousClass2 anonymousClass2 = this.pagerAdapter;
+        if (z && anonymousClass2 != null) {
+            anonymousClass2.notifyDataSetChanged();
+            this.updateDelegate = true;
+            return;
+        }
+        setAdapter(null);
+        setAdapter(anonymousClass2);
+        while (true) {
+            int size2 = arrayList.size();
+            storyViewer = this.storyViewer;
+            if (size >= size2 || ((ArrayList) arrayList.get(size)).contains(Integer.valueOf(storyViewer.dayStoryId))) {
+                break;
+            } else {
+                size++;
+            }
+        }
+        if (storyViewer.reversed) {
+            size = (arrayList.size() - 1) - size;
+        }
+        setCurrentItem(size);
+        this.updateDelegate = true;
+    }
+
+    public void setDelegate(PeerStoriesView.Delegate delegate) {
+        this.delegate = delegate;
     }
 
     public void setHorizontalProgressToDismiss(float f) {
@@ -457,85 +378,183 @@ public abstract class StoriesViewPager extends ViewPager {
         setRotationY(f * 90.0f);
     }
 
-    @Override
-    public void requestDisallowInterceptTouchEvent(boolean z) {
-        if (z) {
-            this.dissallowInterceptCalled = true;
+    public void setKeyboardHeight(int i) {
+        if (this.keyboardHeight != i) {
+            this.keyboardHeight = i;
+            PeerStoriesView currentPeerView = getCurrentPeerView();
+            if (currentPeerView != null) {
+                currentPeerView.requestLayout();
+            }
         }
-        super.requestDisallowInterceptTouchEvent(z);
     }
 
-    public void lockTouchEvent(long j) {
-        this.touchLocked = true;
-        onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-        AndroidUtilities.cancelRunOnUIThread(this.lockTouchRunnable);
-        AndroidUtilities.runOnUIThread(this.lockTouchRunnable, j);
+    public void setPaused(boolean z) {
+        for (int i = 0; i < getChildCount(); i++) {
+            ((PeerStoriesView) ((FrameLayout) getChildAt(i)).getChildAt(0)).setPaused(z);
+        }
     }
 
-    public ArrayList<Long> getDialogIds() {
-        return this.dialogs;
+    public final boolean switchToNext(boolean z) {
+        StoryViewer storyViewer = this.storyViewer;
+        boolean z2 = false;
+        if (z) {
+            int currentItem = getCurrentItem();
+            ArrayList arrayList = this.days;
+            if (arrayList == null) {
+                arrayList = this.dialogs;
+            }
+            if (currentItem < arrayList.size() - 1) {
+                int currentItem2 = getCurrentItem() + 1;
+                if (storyViewer.USE_SURFACE_VIEW && Build.VERSION.SDK_INT < 33) {
+                    z2 = true;
+                }
+                setCurrentItem(currentItem2, !z2);
+                return true;
+            }
+        }
+        if (z || getCurrentItem() <= 0) {
+            return false;
+        }
+        int currentItem3 = getCurrentItem() - 1;
+        if (storyViewer.USE_SURFACE_VIEW && Build.VERSION.SDK_INT < 33) {
+            z2 = true;
+        }
+        setCurrentItem(currentItem3, !z2);
+        return true;
     }
 
-    class PageLayout extends FrameLayout {
-        ArrayList day;
-        long dialogId;
-        boolean isVisible;
-        public PeerStoriesView peerStoryView;
+    public final void updateActiveStory() {
+        for (int i = 0; i < getChildCount(); i++) {
+            PeerStoriesView peerStoriesView = (PeerStoriesView) ((FrameLayout) getChildAt(i)).getChildAt(0);
+            peerStoriesView.setActive(((Integer) getChildAt(i).getTag()).intValue() == getCurrentItem() && !peerStoriesView.editOpened);
+        }
+    }
 
-        public PageLayout(Context context) {
-            super(context);
+    public final class AnonymousClass2 extends PagerAdapter {
+        public final ArrayList cachedViews = new ArrayList();
+        public final HwStoriesViewPager this$0;
+        public final Context val$context;
+        public final DarkThemeResourceProvider val$resourcesProvider;
+        public final StoryViewer val$storyViewer;
+
+        public AnonymousClass2(HwStoriesViewPager hwStoriesViewPager, Context context, StoryViewer storyViewer, DarkThemeResourceProvider darkThemeResourceProvider) {
+            this.this$0 = hwStoriesViewPager;
+            this.val$context = context;
+            this.val$storyViewer = storyViewer;
+            this.val$resourcesProvider = darkThemeResourceProvider;
         }
 
         @Override
-        protected void dispatchDraw(Canvas canvas) {
-            if (this.isVisible) {
-                super.dispatchDraw(canvas);
-            }
+        public final void destroyItem(ViewPager viewPager, Object obj) {
+            FrameLayout frameLayout = (FrameLayout) obj;
+            viewPager.removeView(frameLayout);
+            PeerStoriesView peerStoriesView = (PeerStoriesView) frameLayout.getChildAt(0);
+            AndroidUtilities.removeFromParent(peerStoriesView);
+            this.cachedViews.add(peerStoriesView);
         }
 
-        public void setVisible(boolean z) {
-            if (this.isVisible != z) {
-                this.isVisible = z;
-                invalidate();
-                this.peerStoryView.setIsVisible(z);
-                StoriesViewPager.this.checkAllowScreenshots();
-            }
+        @Override
+        public final int getCount() {
+            HwStoriesViewPager hwStoriesViewPager = this.this$0;
+            ArrayList arrayList = hwStoriesViewPager.days;
+            return arrayList != null ? arrayList.size() : hwStoriesViewPager.dialogs.size();
         }
-    }
 
-    public void setCurrentDate(long j, int i) {
-        for (int i2 = 0; i2 < this.days.size(); i2++) {
-            if (j == StoriesController.StoriesList.day(this.storyViewer.storiesList.findMessageObject(((Integer) ((ArrayList) this.days.get(i2)).get(0)).intValue()))) {
-                int size = this.storyViewer.reversed ? (this.days.size() - 1) - i2 : i2;
-                int i3 = 0;
-                while (true) {
-                    if (i3 >= ((ArrayList) this.days.get(i2)).size()) {
-                        i3 = 0;
-                        break;
-                    } else if (((Integer) ((ArrayList) this.days.get(i2)).get(i3)).intValue() == i) {
-                        break;
-                    } else {
-                        i3++;
-                    }
+        @Override
+        public final Object instantiateItem(ViewPager viewPager, int i) {
+            PeerStoriesView anonymousClass1;
+            HwStoriesViewPager hwStoriesViewPager = this.this$0;
+            PageLayout pageLayout = new PageLayout(hwStoriesViewPager, this.val$context);
+            ArrayList arrayList = this.cachedViews;
+            if (arrayList.isEmpty()) {
+                anonymousClass1 = new AnonymousClass1(this.val$context, this.val$storyViewer, hwStoriesViewPager.resources, this.val$resourcesProvider);
+            } else {
+                anonymousClass1 = (PeerStoriesView) arrayList.remove(0);
+                anonymousClass1.headerView.backupImageView.getImageReceiver().setVisible(true, true);
+                if (anonymousClass1.changeBoundAnimator != null) {
+                    anonymousClass1.chatActivityEnterView.reset();
+                    anonymousClass1.chatActivityEnterView.setAlpha(1.0f - anonymousClass1.outT);
                 }
-                if (getCurrentPeerView() == null || getCurrentItem() != size) {
-                    setCurrentItem(size, false);
-                    PeerStoriesView currentPeerView = getCurrentPeerView();
-                    if (currentPeerView != null) {
-                        PageLayout pageLayout = (PageLayout) currentPeerView.getParent();
-                        pageLayout.setVisible(true);
-                        if (this.days != null) {
-                            pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day, i3);
-                            return;
-                        } else {
-                            pageLayout.peerStoryView.setDialogId(pageLayout.dialogId, i3);
-                            return;
-                        }
-                    }
-                    return;
+                ReactionsContainerLayout reactionsContainerLayout = anonymousClass1.reactionsContainerLayout;
+                if (reactionsContainerLayout != null) {
+                    reactionsContainerLayout.reset();
                 }
-                getCurrentPeerView().selectPosition(i3);
-                return;
+                ReactionsContainerLayout reactionsContainerLayout2 = anonymousClass1.likesReactionLayout;
+                if (reactionsContainerLayout2 != null) {
+                    reactionsContainerLayout2.reset();
+                }
+                InstantCameraView instantCameraView = anonymousClass1.instantCameraView;
+                if (instantCameraView != null) {
+                    AndroidUtilities.removeFromParent(instantCameraView);
+                    anonymousClass1.instantCameraView.hideCamera(true);
+                    anonymousClass1.instantCameraView = null;
+                }
+                anonymousClass1.setActive(false);
+                anonymousClass1.setIsVisible(false);
+                anonymousClass1.isLongPressed = false;
+                anonymousClass1.progressToHideInterface.set(0.0f, false);
+                anonymousClass1.viewsThumbImageReceiver = null;
+                anonymousClass1.messageSent = false;
+                anonymousClass1.cancelTextSelection();
+            }
+            pageLayout.peerStoryView = anonymousClass1;
+            anonymousClass1.setAccount(hwStoriesViewPager.currentAccount);
+            anonymousClass1.setDelegate(hwStoriesViewPager.delegate);
+            StoryViewer storyViewer = this.val$storyViewer;
+            anonymousClass1.setLongpressed(storyViewer.isLongpressed);
+            pageLayout.setTag(Integer.valueOf(i));
+            ArrayList arrayList2 = hwStoriesViewPager.days;
+            if (arrayList2 != null) {
+                ArrayList arrayList3 = (ArrayList) arrayList2.get(storyViewer.reversed ? (arrayList2.size() - 1) - i : i);
+                pageLayout.day = arrayList3;
+                StoriesController.StoriesList storiesList = storyViewer.storiesList;
+                if ((storiesList instanceof StoriesController.SearchStoriesList) || (storiesList instanceof StoriesController.StoryRepostsList)) {
+                    MessageObject messageObjectFindMessageObject = storiesList.findMessageObject(((Integer) arrayList3.get(0)).intValue());
+                    pageLayout.dialogId = messageObjectFindMessageObject == null ? hwStoriesViewPager.daysDialogId : messageObjectFindMessageObject.getDialogId();
+                } else {
+                    pageLayout.dialogId = hwStoriesViewPager.daysDialogId;
+                }
+            } else {
+                pageLayout.day = null;
+                pageLayout.dialogId = ((Long) hwStoriesViewPager.dialogs.get(i)).longValue();
+            }
+            pageLayout.addView(anonymousClass1);
+            anonymousClass1.requestLayout();
+            viewPager.addView(pageLayout);
+            return pageLayout;
+        }
+
+        @Override
+        public final boolean isViewFromObject(View view, Object obj) {
+            return view == obj;
+        }
+
+        public final class AnonymousClass1 extends PeerStoriesView {
+            public AnonymousClass1(Context context, StoryViewer storyViewer, PeerStoriesView.SharedResources sharedResources, DarkThemeResourceProvider darkThemeResourceProvider) {
+                super(context, storyViewer, sharedResources, darkThemeResourceProvider);
+            }
+
+            @Override
+            public final void invalidate() {
+                if (HwFrameLayout.hwEnabled) {
+                    HwFrameLayout.hwViews.add(this);
+                } else {
+                    super.invalidate();
+                }
+            }
+
+            @Override
+            public final boolean isSelectedPeer() {
+                return getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == AnonymousClass2.this.this$0.getCurrentItem();
+            }
+
+            @Override
+            public final void invalidate(int i, int i2, int i3, int i4) {
+                if (HwFrameLayout.hwEnabled) {
+                    HwFrameLayout.hwViews.add(this);
+                } else {
+                    super.invalidate(i, i2, i3, i4);
+                }
             }
         }
     }

@@ -12,15 +12,15 @@ public class TypedAtom extends Atom {
         this.type_limits = atom.type_limits;
     }
 
+    @Override
+    public Box createBox(TeXEnvironment teXEnvironment) {
+        return this.atom.createBox(teXEnvironment);
+    }
+
     public Atom getBase() {
         Atom atom = this.atom;
         atom.type_limits = this.type_limits;
         return atom;
-    }
-
-    @Override
-    public Box createBox(TeXEnvironment teXEnvironment) {
-        return this.atom.createBox(teXEnvironment);
     }
 
     @Override

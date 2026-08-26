@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.blur3;
 
-import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,38 +10,26 @@ import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRender
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
+import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stories.StoriesViewPager;
 
-public class BlurredBackgroundDrawableViewFactory {
-    private boolean isLiquidGlassEffectAllowed;
-    private ReferenceList linkedDrawables;
-    private ReferenceList linkedViews;
-    private ViewGroup parent;
-    private final BlurredBackgroundSource source;
-    private ViewPositionWatcher viewPositionWatcher;
+public final class BlurredBackgroundDrawableViewFactory {
+    public boolean isLiquidGlassEffectAllowed;
+    public ReferenceList linkedDrawables;
+    public ReferenceList linkedViews;
+    public ViewGroup parent;
+    public final BlurredBackgroundSource source;
+    public ViewPositionWatcher viewPositionWatcher;
 
     public BlurredBackgroundDrawableViewFactory(BlurredBackgroundSource blurredBackgroundSource) {
         this.source = blurredBackgroundSource;
     }
 
-    public BlurredBackgroundDrawableViewFactory(ViewPositionWatcher viewPositionWatcher, ViewGroup viewGroup, BlurredBackgroundSource blurredBackgroundSource) {
-        this(blurredBackgroundSource);
-        setSourceRootView(viewPositionWatcher, viewGroup);
+    public final BlurredBackgroundDrawable create(View view) {
+        return create(view, null, false);
     }
 
-    public void setSourceRootView(ViewPositionWatcher viewPositionWatcher, ViewGroup viewGroup) {
-        this.viewPositionWatcher = viewPositionWatcher;
-        this.parent = viewGroup;
-    }
-
-    public void setLinkedViewsRef(ReferenceList referenceList) {
-        this.linkedViews = referenceList;
-    }
-
-    public void setLinkedDrawablesRef(ReferenceList referenceList) {
-        this.linkedDrawables = referenceList;
-    }
-
-    public void invalidateAllLinkedViews() {
+    public final void invalidateAllLinkedViews() {
         ReferenceList referenceList = this.linkedViews;
         if (referenceList != null) {
             Iterator it = referenceList.iterator();
@@ -52,31 +39,31 @@ public class BlurredBackgroundDrawableViewFactory {
         }
     }
 
-    public void setLiquidGlassEffectAllowed(boolean z) {
-        this.isLiquidGlassEffectAllowed = z;
+    public final void setLinkedViewsRef(ReferenceList referenceList) {
+        this.linkedViews = referenceList;
     }
 
-    public BlurredBackgroundDrawable create() {
-        return create(null);
+    public final void setSourceRootView(ViewPositionWatcher viewPositionWatcher, ViewGroup viewGroup) {
+        this.viewPositionWatcher = viewPositionWatcher;
+        this.parent = viewGroup;
     }
 
-    public BlurredBackgroundDrawable create(View view) {
-        return create(view, (BlurredBackgroundColorProvider) null);
-    }
-
-    public BlurredBackgroundDrawable create(View view, boolean z) {
-        return create(view, null, z);
-    }
-
-    public BlurredBackgroundDrawable create(View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
+    public final BlurredBackgroundDrawable create(View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         return create(view, blurredBackgroundColorProvider, false);
     }
 
-    public BlurredBackgroundDrawable create(final View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider, boolean z) {
+    public BlurredBackgroundDrawableViewFactory(ViewPositionWatcher viewPositionWatcher, StoriesViewPager.AnonymousClass2.AnonymousClass1 anonymousClass1, BlurredBackgroundSource blurredBackgroundSource) {
+        this.source = blurredBackgroundSource;
+        this.viewPositionWatcher = viewPositionWatcher;
+        this.parent = anonymousClass1;
+    }
+
+    public final BlurredBackgroundDrawable create(View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider, boolean z) {
         ViewGroup viewGroup;
-        final BlurredBackgroundDrawable blurredBackgroundDrawableCreateDrawable = this.source.createDrawable();
+        BlurredBackgroundDrawable blurredBackgroundDrawableCreateDrawable = this.source.createDrawable();
         if (this.isLiquidGlassEffectAllowed && Build.VERSION.SDK_INT >= 33 && (blurredBackgroundDrawableCreateDrawable instanceof BlurredBackgroundDrawableRenderNode)) {
-            ((BlurredBackgroundDrawableRenderNode) blurredBackgroundDrawableCreateDrawable).setLiquidGlassEffectAllowed();
+            BlurredBackgroundDrawableRenderNode blurredBackgroundDrawableRenderNode = (BlurredBackgroundDrawableRenderNode) blurredBackgroundDrawableCreateDrawable;
+            blurredBackgroundDrawableRenderNode.liquidGlassEffect = new LiquidGlassEffect(blurredBackgroundDrawableRenderNode.renderNodeFill);
         }
         blurredBackgroundDrawableCreateDrawable.setColorProvider(blurredBackgroundColorProvider);
         ReferenceList referenceList = this.linkedViews;
@@ -85,22 +72,12 @@ public class BlurredBackgroundDrawableViewFactory {
         }
         ViewPositionWatcher viewPositionWatcher = this.viewPositionWatcher;
         if (viewPositionWatcher != null && (viewGroup = this.parent) != null && view != null) {
-            viewPositionWatcher.subscribe(view, viewGroup, new ViewPositionWatcher.OnChangedListener() {
-                @Override
-                public final void onPositionChanged(View view2, RectF rectF) {
-                    BlurredBackgroundDrawableViewFactory.$r8$lambda$KlkDkPNqm1NlPxDBLpOPdS98yZM(blurredBackgroundDrawableCreateDrawable, view, view2, rectF);
-                }
-            }, z);
+            viewPositionWatcher.subscribe(view, viewGroup, new RateCallLayout$$ExternalSyntheticLambda1(22, blurredBackgroundDrawableCreateDrawable, view), z);
         }
         ReferenceList referenceList2 = this.linkedDrawables;
         if (referenceList2 != null) {
             referenceList2.add(blurredBackgroundDrawableCreateDrawable);
         }
         return blurredBackgroundDrawableCreateDrawable;
-    }
-
-    public static void $r8$lambda$KlkDkPNqm1NlPxDBLpOPdS98yZM(BlurredBackgroundDrawable blurredBackgroundDrawable, View view, View view2, RectF rectF) {
-        blurredBackgroundDrawable.setSourceOffset(rectF.left, rectF.top);
-        view.invalidate();
     }
 }

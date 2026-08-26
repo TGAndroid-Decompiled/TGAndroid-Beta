@@ -4,18 +4,18 @@ import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CoroutineScope;
 
 public final class ContextScope implements CoroutineScope {
-    private final CoroutineContext coroutineContext;
+    public final CoroutineContext coroutineContext;
 
     public ContextScope(CoroutineContext coroutineContext) {
         this.coroutineContext = coroutineContext;
     }
 
     @Override
-    public CoroutineContext getCoroutineContext() {
+    public final CoroutineContext getCoroutineContext() {
         return this.coroutineContext;
     }
 
-    public String toString() {
-        return "CoroutineScope(coroutineContext=" + getCoroutineContext() + ')';
+    public final String toString() {
+        return "CoroutineScope(coroutineContext=" + this.coroutineContext + ')';
     }
 }

@@ -1,18 +1,14 @@
 package kotlin.random;
 
+import com.google.android.gms.dynamite.zzd;
 import kotlin.jvm.internal.Intrinsics;
 
 public final class FallbackThreadLocalRandom extends AbstractPlatformRandom {
-    private final FallbackThreadLocalRandom$implStorage$1 implStorage = new ThreadLocal() {
-        @Override
-        public java.util.Random initialValue() {
-            return new java.util.Random();
-        }
-    };
+    public final zzd implStorage = new zzd(2);
 
     @Override
-    public java.util.Random getImpl() {
-        Object obj = get();
+    public final java.util.Random getImpl() {
+        Object obj = this.implStorage.get();
         Intrinsics.checkNotNullExpressionValue(obj, "get(...)");
         return (java.util.Random) obj;
     }

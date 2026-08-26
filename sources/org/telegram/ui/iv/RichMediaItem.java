@@ -1,13 +1,11 @@
 package org.telegram.ui.iv;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.view.View;
+import androidx.recyclerview.widget.DiffUtil;
+import com.google.android.exoplayer2.util.Log;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
@@ -17,263 +15,161 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 
-public class RichMediaItem {
-    private static ColorMatrixColorFilter fancyBlurFilter;
-    private boolean attached;
-    private final ImageReceiver blurImageReceiver;
-    private Bitmap blurSource;
-    private final ImageReceiver imageReceiver;
-    private String loadedKey;
-    private MediaUploadState media;
-    private final View parent;
-    private final RadialProgress2 radialProgress;
+public final class RichMediaItem {
+    public static ColorMatrixColorFilter fancyBlurFilter;
+    public final ImageReceiver blurImageReceiver;
+    public Bitmap blurSource;
+    public final ImageReceiver imageReceiver;
+    public MediaUploadState media;
+    public final RadialProgress2 radialProgress;
 
-    public RichMediaItem(View view, Theme.ResourcesProvider resourcesProvider) {
-        this.parent = view;
-        this.imageReceiver = new ImageReceiver(view);
-        this.blurImageReceiver = new ImageReceiver(view);
-        RadialProgress2 radialProgress2 = new RadialProgress2(view, resourcesProvider);
+    public RichMediaItem(RichMediaCell richMediaCell, Theme.ResourcesProvider resourcesProvider) {
+        this.imageReceiver = new ImageReceiver(richMediaCell);
+        this.blurImageReceiver = new ImageReceiver(richMediaCell);
+        RadialProgress2 radialProgress2 = new RadialProgress2(resourcesProvider, richMediaCell);
         this.radialProgress = radialProgress2;
-        radialProgress2.setProgressColor(-1);
+        radialProgress2.progressColor = -1;
         radialProgress2.setColors(1711276032, 2130706432, -1, -2500135);
         radialProgress2.setIcon(3, false, false);
     }
 
-    public void setMedia(MediaUploadState mediaUploadState) {
-        this.media = mediaUploadState;
-        applyImage();
-    }
-
-    public MediaUploadState getMedia() {
-        return this.media;
-    }
-
-    public boolean hasImage() {
+    public final void applyImage() {
+        String string;
+        TLRPC.Photo photo;
+        TLRPC.Document document;
+        TLRPC.PhotoSize photoSize;
+        int iAbs;
         MediaUploadState mediaUploadState = this.media;
-        if (mediaUploadState != null) {
-            return mediaUploadState.localPath != null || mediaUploadState.isReady();
-        }
-        return false;
-    }
-
-    public void setRoundRadius(int i, int i2, int i3, int i4) {
-        this.imageReceiver.setRoundRadius(i, i2, i3, i4);
-        this.blurImageReceiver.setRoundRadius(i, i2, i3, i4);
-    }
-
-    public int getWidth() {
-        if (this.media == null) {
-            return 0;
-        }
-        return isLocalRotated90() ? this.media.height : this.media.width;
-    }
-
-    public int getHeight() {
-        if (this.media == null) {
-            return 0;
-        }
-        return isLocalRotated90() ? this.media.width : this.media.height;
-    }
-
-    private boolean isLocalRotated90() {
-        MediaUploadState mediaUploadState = this.media;
-        if (mediaUploadState == null || mediaUploadState.isVideo || mediaUploadState.isReady()) {
-            return false;
-        }
-        int i = this.media.orientation;
-        return i == 90 || i == 270;
-    }
-
-    public void attach() {
-        this.attached = true;
-        this.imageReceiver.onAttachedToWindow();
-        this.blurImageReceiver.onAttachedToWindow();
-        this.loadedKey = null;
-        applyImage();
-    }
-
-    private String imageKey() {
-        String str;
-        MediaUploadState mediaUploadState = this.media;
+        ImageReceiver imageReceiver = this.imageReceiver;
+        TLRPC.PhotoSize photoSize2 = null;
         if (mediaUploadState == null) {
-            return "null";
+            imageReceiver.setImageBitmap((Drawable) null);
+            return;
         }
-        if (mediaUploadState.isVideo) {
-            str = "v";
+        int i = AndroidUtilities.displaySize.x;
+        String strM = DiffUtil.m(i, i, "_");
+        StringBuilder sb = new StringBuilder();
+        MediaUploadState mediaUploadState2 = this.media;
+        if (mediaUploadState2 == null) {
+            string = "null";
         } else {
-            str = mediaUploadState.isAudio ? "a" : "p";
-        }
-        if (mediaUploadState.localPath != null) {
-            return str + ":local:" + this.media.localPath;
-        }
-        long j = 0;
-        if (mediaUploadState.isReady()) {
-            MediaUploadState mediaUploadState2 = this.media;
-            TLRPC.Document document = mediaUploadState2.document;
-            if (document != null) {
-                j = document.id;
+            String str = mediaUploadState2.isVideo ? "v" : mediaUploadState2.isAudio ? "a" : "p";
+            if (mediaUploadState2.localPath != null) {
+                StringBuilder sbM = Log.m(str, ":local:");
+                sbM.append(this.media.localPath);
+                string = sbM.toString();
             } else {
-                TLRPC.Photo photo = mediaUploadState2.photo;
-                if (photo != null) {
-                    j = photo.id;
+                long j = 0;
+                if (mediaUploadState2.isReady()) {
+                    MediaUploadState mediaUploadState3 = this.media;
+                    TLRPC.Document document2 = mediaUploadState3.document;
+                    if (document2 != null) {
+                        j = document2.id;
+                    } else {
+                        TLRPC.Photo photo2 = mediaUploadState3.photo;
+                        if (photo2 != null) {
+                            j = photo2.id;
+                        }
+                    }
+                }
+                StringBuilder sbM2 = Log.m(str, ":");
+                sbM2.append(this.media.state);
+                sbM2.append(":");
+                sbM2.append(j);
+                string = sbM2.toString();
+            }
+        }
+        sb.append(string);
+        sb.append("@");
+        sb.append(strM);
+        if (sb.toString().equals(null)) {
+            return;
+        }
+        this.media.getClass();
+        MediaUploadState mediaUploadState4 = this.media;
+        if (!mediaUploadState4.isVideo) {
+            if (mediaUploadState4.localPath != null) {
+                imageReceiver.setOrientation(mediaUploadState4.orientation, mediaUploadState4.invert, true);
+                imageReceiver.setImage(ImageLocation.getForPath(this.media.localPath), strM, null, null, null, 0);
+                return;
+            } else {
+                if (!mediaUploadState4.isReady() || (photo = this.media.photo) == null) {
+                    imageReceiver.setImageBitmap((Drawable) null);
+                    return;
+                }
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(this.media.photo.sizes, 100);
+                imageReceiver.setOrientation(0, 0, false);
+                imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, this.media.photo), strM, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, this.media.photo), strM, null, 0L, null, this.media.photo, 0);
+                return;
+            }
+        }
+        if (mediaUploadState4.localPath != null) {
+            imageReceiver.setOrientation(0, 0, false);
+            imageReceiver.setImage(ImageLocation.getForVideoPath(this.media.localPath), "g", null, strM, null, strM, null, 0L, null, null, 0);
+            return;
+        }
+        if (!mediaUploadState4.isReady() || (document = this.media.document) == null) {
+            imageReceiver.setImageBitmap((Drawable) null);
+            return;
+        }
+        ArrayList<TLRPC.PhotoSize> arrayList = document.thumbs;
+        int photoSize3 = AndroidUtilities.getPhotoSize();
+        if (arrayList == null) {
+            photoSize = null;
+        } else {
+            int i2 = Integer.MAX_VALUE;
+            photoSize = null;
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                TLRPC.PhotoSize photoSize4 = arrayList.get(i3);
+                if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (iAbs = Math.abs(Math.max(photoSize4.w, photoSize4.h) - photoSize3)) < i2) {
+                    photoSize = photoSize4;
+                    i2 = iAbs;
                 }
             }
         }
-        return str + ":" + this.media.state + ":" + j;
+        ArrayList<TLRPC.PhotoSize> arrayList2 = this.media.document.thumbs;
+        if (arrayList2 != null) {
+            for (int i4 = 0; i4 < arrayList2.size(); i4++) {
+                if (arrayList2.get(i4) instanceof TLRPC.TL_photoStrippedSize) {
+                    photoSize2 = arrayList2.get(i4);
+                    break;
+                }
+            }
+        }
+        imageReceiver.setOrientation(0, 0, false);
+        imageReceiver.setImage(ImageLocation.getForDocument(this.media.document), "g", ImageLocation.getForDocument(photoSize, this.media.document), strM, ImageLocation.getForDocument(photoSize2, this.media.document), strM, null, 0L, null, this.media.document, 0);
     }
 
-    public void detach() {
-        this.attached = false;
-        this.imageReceiver.onDetachedFromWindow();
-        this.blurImageReceiver.onDetachedFromWindow();
-        this.blurSource = null;
-    }
-
-    private boolean ensureBlur() {
+    public final boolean ensureBlur() {
+        ImageReceiver imageReceiver;
         Bitmap bitmap;
-        if (hasImage() && (bitmap = this.imageReceiver.getBitmap()) != null && !bitmap.isRecycled()) {
-            if ((this.blurImageReceiver.getBitmap() == null || this.imageReceiver.getAnimation() == null) && (bitmap != this.blurSource || this.blurImageReceiver.getBitmap() == null)) {
+        if (hasImage() && (bitmap = (imageReceiver = this.imageReceiver).getBitmap()) != null && !bitmap.isRecycled()) {
+            ImageReceiver imageReceiver2 = this.blurImageReceiver;
+            if ((imageReceiver2.getBitmap() == null || imageReceiver.getAnimation() == null) && (bitmap != this.blurSource || imageReceiver2.getBitmap() == null)) {
                 this.blurSource = bitmap;
-                this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap, false));
+                imageReceiver2.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap, false));
                 if (fancyBlurFilter == null) {
                     ColorMatrix colorMatrix = new ColorMatrix();
                     AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.9f);
                     AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.6f);
                     fancyBlurFilter = new ColorMatrixColorFilter(colorMatrix);
                 }
-                this.blurImageReceiver.setColorFilter(fancyBlurFilter);
+                imageReceiver2.setColorFilter(fancyBlurFilter);
             }
-            if (this.blurImageReceiver.getBitmap() != null) {
+            if (imageReceiver2.getBitmap() != null) {
                 return true;
             }
         }
         return false;
     }
 
-    public void drawBlurBackground(Canvas canvas, RectF rectF) {
-        if (ensureBlur()) {
-            this.blurImageReceiver.setImageCoords(rectF);
-            this.blurImageReceiver.setAlpha(this.imageReceiver.getCurrentAlpha());
-            this.blurImageReceiver.draw(canvas);
-        }
-    }
-
-    public void draw(Canvas canvas, RectF rectF) {
-        this.imageReceiver.setImageCoords(Math.round(rectF.left), Math.round(rectF.top), Math.round(rectF.width()), Math.round(rectF.height()));
-        if (hasImage()) {
-            this.imageReceiver.draw(canvas);
-        }
-        drawProgress(canvas, rectF);
-    }
-
-    public void drawSpoiler(Canvas canvas, RectF rectF, SpoilerEffect2 spoilerEffect2, View view) {
-        Canvas canvas2;
-        canvas.save();
-        canvas.clipRect(rectF);
-        if (ensureBlur()) {
-            this.blurImageReceiver.setImageCoords(rectF);
-            this.blurImageReceiver.setAlpha(this.imageReceiver.getCurrentAlpha());
-            this.blurImageReceiver.draw(canvas);
-        }
-        if (spoilerEffect2 != null) {
-            canvas.translate(rectF.left, rectF.top);
-            canvas2 = canvas;
-            spoilerEffect2.draw(canvas2, view, Math.round(rectF.width()), Math.round(rectF.height()), this.imageReceiver.getCurrentAlpha());
-        } else {
-            canvas2 = canvas;
-        }
-        canvas2.restore();
-    }
-
-    private void drawProgress(Canvas canvas, RectF rectF) {
+    public final boolean hasImage() {
         MediaUploadState mediaUploadState = this.media;
-        if (mediaUploadState == null || !mediaUploadState.isPending()) {
-            return;
+        if (mediaUploadState != null) {
+            return mediaUploadState.localPath != null || mediaUploadState.isReady();
         }
-        int iDp = AndroidUtilities.dp(48.0f);
-        int iRound = Math.round(rectF.centerX());
-        int iRound2 = Math.round(rectF.centerY());
-        int i = iDp / 2;
-        this.radialProgress.setProgressRect(iRound - i, iRound2 - i, iRound + i, iRound2 + i);
-        this.radialProgress.setProgress(this.media.progress, true);
-        this.radialProgress.draw(canvas);
-    }
-
-    private void applyImage() {
-        TLRPC.Photo photo;
-        TLRPC.Document document;
-        if (this.media == null) {
-            this.loadedKey = null;
-            this.imageReceiver.setImageBitmap((Drawable) null);
-            return;
-        }
-        int i = AndroidUtilities.displaySize.x;
-        String str = i + "_" + i;
-        if ((imageKey() + "@" + str).equals(this.loadedKey)) {
-            return;
-        }
-        BitmapDrawable bitmapDrawable = this.media.localThumbBitmap != null ? new BitmapDrawable(this.parent.getResources(), this.media.localThumbBitmap) : null;
-        MediaUploadState mediaUploadState = this.media;
-        if (mediaUploadState.isVideo) {
-            if (mediaUploadState.localPath != null) {
-                this.imageReceiver.setOrientation(0, 0, false);
-                this.imageReceiver.setImage(ImageLocation.getForVideoPath(this.media.localPath), "g", null, str, null, str, bitmapDrawable, 0L, null, null, 0);
-                return;
-            } else {
-                if (mediaUploadState.isReady() && (document = this.media.document) != null) {
-                    TLRPC.PhotoSize photoSizePickNonStrippedClosest = pickNonStrippedClosest(document.thumbs, AndroidUtilities.getPhotoSize());
-                    TLRPC.PhotoSize photoSizePickStripped = pickStripped(this.media.document.thumbs);
-                    this.imageReceiver.setOrientation(0, 0, false);
-                    this.imageReceiver.setImage(ImageLocation.getForDocument(this.media.document), "g", ImageLocation.getForDocument(photoSizePickNonStrippedClosest, this.media.document), str, ImageLocation.getForDocument(photoSizePickStripped, this.media.document), str, bitmapDrawable, 0L, null, this.media.document, 0);
-                    return;
-                }
-                this.imageReceiver.setImageBitmap((Drawable) null);
-                return;
-            }
-        }
-        if (mediaUploadState.localPath != null) {
-            this.imageReceiver.setOrientation(mediaUploadState.orientation, mediaUploadState.invert, true);
-            this.imageReceiver.setImage(ImageLocation.getForPath(this.media.localPath), str, null, null, null, 0);
-        } else {
-            if (mediaUploadState.isReady() && (photo = this.media.photo) != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
-                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(this.media.photo.sizes, 100);
-                this.imageReceiver.setOrientation(0, 0, false);
-                this.imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, this.media.photo), str, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, this.media.photo), str, null, 0L, null, this.media.photo, 0);
-                return;
-            }
-            this.imageReceiver.setImageBitmap((Drawable) null);
-        }
-    }
-
-    private static TLRPC.PhotoSize pickNonStrippedClosest(ArrayList arrayList, int i) {
-        int iAbs;
-        TLRPC.PhotoSize photoSize = null;
-        if (arrayList == null) {
-            return null;
-        }
-        int i2 = Integer.MAX_VALUE;
-        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            TLRPC.PhotoSize photoSize2 = (TLRPC.PhotoSize) arrayList.get(i3);
-            if (!(photoSize2 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize2 instanceof TLRPC.TL_photoPathSize) && (iAbs = Math.abs(Math.max(photoSize2.w, photoSize2.h) - i)) < i2) {
-                photoSize = photoSize2;
-                i2 = iAbs;
-            }
-        }
-        return photoSize;
-    }
-
-    private static TLRPC.PhotoSize pickStripped(ArrayList arrayList) {
-        if (arrayList == null) {
-            return null;
-        }
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i) instanceof TLRPC.TL_photoStrippedSize) {
-                return (TLRPC.PhotoSize) arrayList.get(i);
-            }
-        }
-        return null;
+        return false;
     }
 }

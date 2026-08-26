@@ -1,37 +1,37 @@
 package org.aspectj.runtime.reflect;
 
+import androidx.recyclerview.widget.AdapterHelper;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
-import org.aspectj.lang.reflect.MethodSignature;
-import org.aspectj.lang.reflect.SourceLocation;
+import org.commonmark.parser.Parser;
+import org.telegram.ui.PhotoViewer;
 
 public final class Factory {
-    private static Object[] NO_ARGS;
-    static Class class$java$lang$ClassNotFoundException;
-    static Hashtable prims;
-    int count = 0;
-    String filename;
-    Class lexicalClass;
-    ClassLoader lookupClassLoader;
+    public static final Object[] NO_ARGS;
+    public static Class class$java$lang$ClassNotFoundException;
+    public static final Hashtable prims;
+    public final ClassLoader lookupClassLoader;
 
     static {
         Hashtable hashtable = new Hashtable();
         prims = hashtable;
         hashtable.put("void", Void.TYPE);
-        prims.put("boolean", Boolean.TYPE);
-        prims.put("byte", Byte.TYPE);
-        prims.put("char", Character.TYPE);
-        prims.put("short", Short.TYPE);
-        prims.put("int", Integer.TYPE);
-        prims.put("long", Long.TYPE);
-        prims.put("float", Float.TYPE);
-        prims.put("double", Double.TYPE);
+        hashtable.put("boolean", Boolean.TYPE);
+        hashtable.put("byte", Byte.TYPE);
+        hashtable.put("char", Character.TYPE);
+        hashtable.put("short", Short.TYPE);
+        hashtable.put("int", Integer.TYPE);
+        hashtable.put("long", Long.TYPE);
+        hashtable.put("float", Float.TYPE);
+        hashtable.put("double", Double.TYPE);
         NO_ARGS = new Object[0];
     }
 
-    static Class makeClass(String str, ClassLoader classLoader) {
+    public Factory(Class cls, String str) {
+        this.lookupClassLoader = cls.getClassLoader();
+    }
+
+    public static Class makeClass(ClassLoader classLoader, String str) {
         if (str.equals("*")) {
             return null;
         }
@@ -40,74 +40,64 @@ public final class Factory {
             return cls;
         }
         try {
-            if (classLoader == null) {
-                return Class.forName(str);
-            }
-            return Class.forName(str, false, classLoader);
+            return classLoader == null ? Class.forName(str) : Class.forName(str, false, classLoader);
         } catch (ClassNotFoundException unused) {
-            Class cls2 = class$java$lang$ClassNotFoundException;
-            if (cls2 != null) {
-                return cls2;
+            Class<?> cls2 = class$java$lang$ClassNotFoundException;
+            if (cls2 == null) {
+                try {
+                    cls2 = Class.forName("java.lang.ClassNotFoundException");
+                    class$java$lang$ClassNotFoundException = cls2;
+                } catch (ClassNotFoundException e) {
+                    throw new NoClassDefFoundError(e.getMessage());
+                }
             }
-            Class clsClass$ = class$("java.lang.ClassNotFoundException");
-            class$java$lang$ClassNotFoundException = clsClass$;
-            return clsClass$;
+            return cls2;
         }
     }
 
-    static Class class$(String str) {
-        try {
-            return Class.forName(str);
-        } catch (ClassNotFoundException e) {
-            throw new NoClassDefFoundError(e.getMessage());
-        }
+    public static Parser makeJP(PhotoViewer.AnonymousClass18 anonymousClass18, Object obj, Object obj2) {
+        return new Parser(anonymousClass18, obj, obj2, NO_ARGS);
     }
 
-    public Factory(String str, Class cls) {
-        this.filename = str;
-        this.lexicalClass = cls;
-        this.lookupClassLoader = cls.getClassLoader();
-    }
-
-    public JoinPoint.StaticPart makeSJP(String str, Signature signature, int i) {
-        int i2 = this.count;
-        this.count = i2 + 1;
-        return new JoinPointImpl.StaticPartImpl(i2, str, signature, makeSourceLoc(i, -1));
-    }
-
-    public static JoinPoint makeJP(JoinPoint.StaticPart staticPart, Object obj, Object obj2) {
-        return new JoinPointImpl(staticPart, obj, obj2, NO_ARGS);
-    }
-
-    public static JoinPoint makeJP(JoinPoint.StaticPart staticPart, Object obj, Object obj2, Object obj3) {
-        return new JoinPointImpl(staticPart, obj, obj2, new Object[]{obj3});
-    }
-
-    public MethodSignature makeMethodSig(String str, String str2, String str3, String str4, String str5, String str6, String str7) {
-        int i = Integer.parseInt(str, 16);
-        Class clsMakeClass = makeClass(str3, this.lookupClassLoader);
-        StringTokenizer stringTokenizer = new StringTokenizer(str4, ":");
+    public final AdapterHelper makeMethodSig(String str, String str2, String str3, String str4, String str5) {
+        int i = Integer.parseInt("1", 16);
+        ClassLoader classLoader = this.lookupClassLoader;
+        Class clsMakeClass = makeClass(classLoader, str2);
+        StringTokenizer stringTokenizer = new StringTokenizer(str3, ":");
         int iCountTokens = stringTokenizer.countTokens();
         Class[] clsArr = new Class[iCountTokens];
         for (int i2 = 0; i2 < iCountTokens; i2++) {
-            clsArr[i2] = makeClass(stringTokenizer.nextToken(), this.lookupClassLoader);
+            clsArr[i2] = makeClass(classLoader, stringTokenizer.nextToken());
         }
-        StringTokenizer stringTokenizer2 = new StringTokenizer(str5, ":");
+        StringTokenizer stringTokenizer2 = new StringTokenizer(str4, ":");
         int iCountTokens2 = stringTokenizer2.countTokens();
         String[] strArr = new String[iCountTokens2];
         for (int i3 = 0; i3 < iCountTokens2; i3++) {
             strArr[i3] = stringTokenizer2.nextToken();
         }
-        StringTokenizer stringTokenizer3 = new StringTokenizer(str6, ":");
+        StringTokenizer stringTokenizer3 = new StringTokenizer("", ":");
         int iCountTokens3 = stringTokenizer3.countTokens();
         Class[] clsArr2 = new Class[iCountTokens3];
         for (int i4 = 0; i4 < iCountTokens3; i4++) {
-            clsArr2[i4] = makeClass(stringTokenizer3.nextToken(), this.lookupClassLoader);
+            clsArr2[i4] = makeClass(classLoader, stringTokenizer3.nextToken());
         }
-        return new MethodSignatureImpl(i, str2, clsMakeClass, clsArr, strArr, clsArr2, makeClass(str7, this.lookupClassLoader));
+        Class clsMakeClass2 = makeClass(classLoader, str5);
+        AdapterHelper adapterHelper = new AdapterHelper(2);
+        adapterHelper.mExistingUpdateTypes = i;
+        adapterHelper.mUpdateOpPool = str;
+        adapterHelper.mPostponedList = clsMakeClass;
+        adapterHelper.mCallback = clsArr;
+        adapterHelper.mOpReorderer = clsMakeClass2;
+        return adapterHelper;
     }
 
-    public SourceLocation makeSourceLoc(int i, int i2) {
-        return new SourceLocationImpl(this.lexicalClass, this.filename, i);
+    public final PhotoViewer.AnonymousClass18 makeSJP(AdapterHelper adapterHelper) {
+        PhotoViewer.AnonymousClass18 anonymousClass18 = new PhotoViewer.AnonymousClass18(8, false);
+        anonymousClass18.this$0 = adapterHelper;
+        return anonymousClass18;
+    }
+
+    public static Parser makeJP(PhotoViewer.AnonymousClass18 anonymousClass18, Object obj, Object obj2, Object obj3) {
+        return new Parser(anonymousClass18, obj, obj2, new Object[]{obj3});
     }
 }

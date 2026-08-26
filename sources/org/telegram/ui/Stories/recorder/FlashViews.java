@@ -1,7 +1,5 @@
 package org.telegram.ui.Stories.recorder;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
@@ -26,40 +24,42 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticApiModelOutline3;
+import org.telegram.ui.Stars.StarReactionsOverlay;
+import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
 
-public class FlashViews {
-    public static final int[] COLORS = {-1, -70004, -7544833};
-    private ValueAnimator animator;
-    public final View backgroundView;
-    private int color;
-    private final Context context;
-    public final View foregroundView;
-    private RadialGradient gradient;
-    private int lastColor;
-    private int lastHeight;
-    private float lastInvert;
-    private int lastWidth;
-    private final Paint paint;
-    private final WindowManager windowManager;
-    private final View windowView;
-    private final WindowManager.LayoutParams windowViewParams;
-    private final ArrayList invertableViews = new ArrayList();
-    private float invert = 0.0f;
+public final class FlashViews {
+    public ValueAnimator animator;
+    public final AnonymousClass1 backgroundView;
+    public int color;
+    public final Context context;
+    public final AnonymousClass1 foregroundView;
+    public RadialGradient gradient;
+    public int lastColor;
+    public int lastHeight;
+    public float lastInvert;
+    public int lastWidth;
+    public final Paint paint;
+    public final WindowManager windowManager;
+    public final View windowView;
+    public final WindowManager.LayoutParams windowViewParams;
+    public final ArrayList invertableViews = new ArrayList();
+    public float invert = 0.0f;
     public float warmth = 0.75f;
     public float intensity = 1.0f;
-    private final Matrix gradientMatrix = new Matrix();
+    public final Matrix gradientMatrix = new Matrix();
+
+    public final class ImageViewInvertable extends ImageView implements Invertable {
+        @Override
+        public void setInvert(float f) {
+            setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(f, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        }
+    }
 
     public interface Invertable {
         void invalidate();
 
         void setInvert(float f);
-    }
-
-    public static int getColor(float f) {
-        if (f < 0.5f) {
-            return ColorUtils.blendARGB(-7544833, -1, Utilities.clamp(f / 0.5f, 1.0f, 0.0f));
-        }
-        return ColorUtils.blendARGB(-1, -70004, Utilities.clamp((f - 0.5f) / 0.5f, 1.0f, 0.0f));
     }
 
     public FlashViews(Context context, WindowManager windowManager, View view, WindowManager.LayoutParams layoutParams) {
@@ -69,72 +69,164 @@ public class FlashViews {
         this.windowManager = windowManager;
         this.windowView = view;
         this.windowViewParams = layoutParams;
+        final int i = 0;
         this.backgroundView = new View(context) {
             @Override
-            protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, i2);
-                FlashViews.this.invalidateGradient();
+            public final void dispatchDraw(Canvas canvas) {
+                switch (i) {
+                    case 0:
+                        FlashViews flashViews = this;
+                        flashViews.gradientMatrix.reset();
+                        flashViews.drawGradient(canvas, true);
+                        break;
+                    default:
+                        FlashViews flashViews2 = this;
+                        flashViews2.gradientMatrix.reset();
+                        flashViews2.gradientMatrix.postTranslate(-getX(), (-getY()) + AndroidUtilities.statusBarHeight);
+                        flashViews2.gradientMatrix.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
+                        flashViews2.drawGradient(canvas, false);
+                        break;
+                }
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
-                FlashViews.this.gradientMatrix.reset();
-                FlashViews.this.drawGradient(canvas, true);
+            public void onMeasure(int i2, int i3) {
+                switch (i) {
+                    case 0:
+                        super.onMeasure(i2, i3);
+                        this.invalidateGradient();
+                        break;
+                    default:
+                        super.onMeasure(i2, i3);
+                        break;
+                }
             }
         };
+        final int i2 = 1;
         this.foregroundView = new View(context) {
             @Override
-            protected void dispatchDraw(Canvas canvas) {
-                FlashViews.this.gradientMatrix.reset();
-                FlashViews.this.gradientMatrix.postTranslate(-getX(), (-getY()) + AndroidUtilities.statusBarHeight);
-                FlashViews.this.gradientMatrix.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
-                FlashViews.this.drawGradient(canvas, false);
+            public final void dispatchDraw(Canvas canvas) {
+                switch (i2) {
+                    case 0:
+                        FlashViews flashViews = this;
+                        flashViews.gradientMatrix.reset();
+                        flashViews.drawGradient(canvas, true);
+                        break;
+                    default:
+                        FlashViews flashViews2 = this;
+                        flashViews2.gradientMatrix.reset();
+                        flashViews2.gradientMatrix.postTranslate(-getX(), (-getY()) + AndroidUtilities.statusBarHeight);
+                        flashViews2.gradientMatrix.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
+                        flashViews2.drawGradient(canvas, false);
+                        break;
+                }
+            }
+
+            @Override
+            public void onMeasure(int i3, int i4) {
+                switch (i2) {
+                    case 0:
+                        super.onMeasure(i3, i4);
+                        this.invalidateGradient();
+                        break;
+                    default:
+                        super.onMeasure(i3, i4);
+                        break;
+                }
             }
         };
         paint.setAlpha(0);
     }
 
-    public void flash(final Utilities.Callback callback) {
-        setScreenBrightness(intensityValue());
-        flashTo(1.0f, 320L, new Runnable() {
-            @Override
-            public final void run() {
-                FlashViews.$r8$lambda$R08TOrHUpyDLFbpjF4ZVOXU5rzw(this.f$0, callback);
-            }
-        });
+    public static int getColor(float f) {
+        return f < 0.5f ? ColorUtils.blendARGB(Utilities.clamp(f / 0.5f, 1.0f, 0.0f), -7544833, -1) : ColorUtils.blendARGB(Utilities.clamp((f - 0.5f) / 0.5f, 1.0f, 0.0f), -1, -70004);
     }
 
-    public static void $r8$lambda$R08TOrHUpyDLFbpjF4ZVOXU5rzw(final FlashViews flashViews, final Utilities.Callback callback) {
-        flashViews.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                FlashViews.$r8$lambda$YsGBG9l6lJie_KgZSTuJU0GjGJQ(this.f$0, callback);
+    public final void drawGradient(Canvas canvas, boolean z) {
+        if (this.gradient != null) {
+            invalidateGradient();
+            this.gradient.setLocalMatrix(this.gradientMatrix);
+            Paint paint = this.paint;
+            if (z) {
+                canvas.drawRect(0.0f, 0.0f, this.lastWidth, this.lastHeight, paint);
+                return;
             }
-        }, 320L);
+            RectF rectF = AndroidUtilities.rectTmp;
+            AnonymousClass1 anonymousClass1 = this.foregroundView;
+            rectF.set(0.0f, 0.0f, anonymousClass1.getMeasuredWidth(), anonymousClass1.getMeasuredHeight());
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) - 2, AndroidUtilities.dp(12.0f) - 2, paint);
+        }
     }
 
-    public static void $r8$lambda$YsGBG9l6lJie_KgZSTuJU0GjGJQ(final FlashViews flashViews, Utilities.Callback callback) {
-        flashViews.getClass();
-        callback.run(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                FlashViews.m4500$r8$lambda$3ObZRIGMTKpzqpmiu2tFCI0xNU(this.f$0, (Runnable) obj);
-            }
-        });
+    public final void flashOut() {
+        setScreenBrightness(-1.0f);
+        flashTo(0.0f, 240L, null);
     }
 
-    public static void m4500$r8$lambda$3ObZRIGMTKpzqpmiu2tFCI0xNU(final FlashViews flashViews, final Runnable runnable) {
-        flashViews.setScreenBrightness(-1.0f);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.flashTo(0.0f, 240L, runnable);
+    public final void flashTo(float f, long j, Runnable runnable) {
+        ValueAnimator valueAnimator = this.animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.animator = null;
+        }
+        if (j <= 0) {
+            this.invert = f;
+            update();
+            if (runnable != null) {
+                runnable.run();
+                return;
             }
-        }, 80L);
+            return;
+        }
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.invert, f);
+        this.animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 7));
+        this.animator.addListener(new StarReactionsOverlay.AnonymousClass1(this, f, runnable, 3));
+        this.animator.setDuration(j);
+        this.animator.setInterpolator(CubicBezierInterpolator.EASE_IN);
+        this.animator.start();
     }
 
-    private void setScreenBrightness(float f) {
+    public final void invalidateGradient() {
+        int i = this.lastColor;
+        int i2 = this.color;
+        AnonymousClass1 anonymousClass1 = this.backgroundView;
+        if (i == i2 && this.lastWidth == anonymousClass1.getMeasuredWidth() && this.lastHeight == anonymousClass1.getMeasuredHeight() && Math.abs(this.lastInvert - this.invert) <= 0.005f) {
+            return;
+        }
+        this.lastColor = this.color;
+        this.lastWidth = anonymousClass1.getMeasuredWidth();
+        int measuredHeight = anonymousClass1.getMeasuredHeight();
+        this.lastHeight = measuredHeight;
+        this.lastInvert = this.invert;
+        if (this.lastWidth <= 0 || measuredHeight <= 0) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 29) {
+            int i3 = this.lastWidth;
+            float f = i3 * 0.5f;
+            int i4 = this.lastHeight;
+            float f2 = i4 * 0.4f;
+            float fMin = (2.0f - this.invert) * (Math.min(i3, i4) / 2.0f) * 1.35f;
+            float fRed = Color.red(this.color) / 255.0f;
+            float fGreen = Color.green(this.color) / 255.0f;
+            float fBlue = Color.blue(this.color) / 255.0f;
+            ColorSpace.Named named = ColorSpace.Named.EXTENDED_SRGB;
+            long[] jArr = {Color.valueOf(fRed, fGreen, fBlue, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(named)).pack()};
+            float[] fArr = {AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f};
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            this.gradient = PhotoViewer$$ExternalSyntheticApiModelOutline3.m(f, f2, fMin, jArr, fArr);
+        } else {
+            int i5 = this.lastWidth;
+            int i6 = this.lastHeight;
+            this.gradient = new RadialGradient(i5 * 0.5f, i6 * 0.4f, (2.0f - this.invert) * (Math.min(i5, i6) / 2.0f) * 1.35f, new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+        }
+        this.paint.setShader(this.gradient);
+        anonymousClass1.invalidate();
+        invalidate();
+    }
+
+    public final void setScreenBrightness(float f) {
         Window window;
         WindowManager.LayoutParams layoutParams;
         View view = this.windowView;
@@ -159,161 +251,20 @@ public class FlashViews {
         window.setAttributes(attributes);
     }
 
-    public void previewStart() {
-        flashTo(0.85f, 240L, null);
-    }
-
-    public void previewEnd() {
-        flashTo(0.0f, 240L, null);
-    }
-
-    public void flashIn(Runnable runnable) {
-        setScreenBrightness(intensityValue());
-        flashTo(1.0f, 320L, runnable);
-    }
-
-    public void flashOut() {
-        setScreenBrightness(-1.0f);
-        flashTo(0.0f, 240L, null);
-    }
-
-    public void flashTo(final float f, long j, final Runnable runnable) {
-        ValueAnimator valueAnimator = this.animator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.animator = null;
-        }
-        if (j <= 0) {
-            this.invert = f;
-            update();
-            if (runnable != null) {
-                runnable.run();
+    public final void update() {
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.invertableViews;
+            if (i >= arrayList.size()) {
+                this.paint.setAlpha((int) (this.intensity * 255.0f * this.invert));
+                invalidate();
+                invalidate();
                 return;
+            } else {
+                ((Invertable) arrayList.get(i)).setInvert(this.invert);
+                ((Invertable) arrayList.get(i)).invalidate();
+                i++;
             }
-            return;
-        }
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.invert, f);
-        this.animator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                FlashViews.$r8$lambda$7KhwyhqbluvfMfmdkYhyrOcH6HY(this.f$0, valueAnimator2);
-            }
-        });
-        this.animator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                FlashViews.this.invert = f;
-                FlashViews.this.update();
-                Runnable runnable2 = runnable;
-                if (runnable2 != null) {
-                    runnable2.run();
-                }
-            }
-        });
-        this.animator.setDuration(j);
-        this.animator.setInterpolator(CubicBezierInterpolator.EASE_IN);
-        this.animator.start();
-    }
-
-    public static void $r8$lambda$7KhwyhqbluvfMfmdkYhyrOcH6HY(FlashViews flashViews, ValueAnimator valueAnimator) {
-        flashViews.getClass();
-        flashViews.invert = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        flashViews.update();
-    }
-
-    public void update() {
-        for (int i = 0; i < this.invertableViews.size(); i++) {
-            ((Invertable) this.invertableViews.get(i)).setInvert(this.invert);
-            ((Invertable) this.invertableViews.get(i)).invalidate();
-        }
-        this.paint.setAlpha((int) (intensityValue() * 255.0f * this.invert));
-        this.backgroundView.invalidate();
-        this.foregroundView.invalidate();
-    }
-
-    private float intensityValue() {
-        return this.intensity;
-    }
-
-    public void add(Invertable invertable) {
-        invertable.setInvert(this.invert);
-        this.invertableViews.add(invertable);
-    }
-
-    public void remove(Invertable invertable) {
-        this.invertableViews.remove(invertable);
-    }
-
-    public void setIntensity(float f) {
-        this.intensity = f;
-        update();
-    }
-
-    public void setWarmth(float f) {
-        this.warmth = f;
-        this.color = getColor(f);
-        invalidateGradient();
-    }
-
-    public void invalidateGradient() {
-        if (this.lastColor == this.color && this.lastWidth == this.backgroundView.getMeasuredWidth() && this.lastHeight == this.backgroundView.getMeasuredHeight() && Math.abs(this.lastInvert - this.invert) <= 0.005f) {
-            return;
-        }
-        this.lastColor = this.color;
-        this.lastWidth = this.backgroundView.getMeasuredWidth();
-        int measuredHeight = this.backgroundView.getMeasuredHeight();
-        this.lastHeight = measuredHeight;
-        this.lastInvert = this.invert;
-        if (this.lastWidth <= 0 || measuredHeight <= 0) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= 29) {
-            FlashViews$$ExternalSyntheticApiModelOutline1.m();
-            int i = this.lastWidth;
-            int i2 = this.lastHeight;
-            float fMin = (Math.min(i, i2) / 2.0f) * 1.35f * (2.0f - this.invert);
-            float fRed = Color.red(this.color) / 255.0f;
-            float fGreen = Color.green(this.color) / 255.0f;
-            float fBlue = Color.blue(this.color) / 255.0f;
-            ColorSpace.Named named = ColorSpace.Named.EXTENDED_SRGB;
-            this.gradient = FlashViews$$ExternalSyntheticApiModelOutline0.m(i * 0.5f, i2 * 0.4f, fMin, new long[]{Color.valueOf(fRed, fGreen, fBlue, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
-        } else {
-            int i3 = this.lastWidth;
-            int i4 = this.lastHeight;
-            this.gradient = new RadialGradient(i3 * 0.5f, i4 * 0.4f, (Math.min(i3, i4) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
-        }
-        this.paint.setShader(this.gradient);
-        invalidate();
-    }
-
-    private void invalidate() {
-        this.backgroundView.invalidate();
-        this.foregroundView.invalidate();
-    }
-
-    public void drawGradient(Canvas canvas, boolean z) {
-        if (this.gradient != null) {
-            invalidateGradient();
-            this.gradient.setLocalMatrix(this.gradientMatrix);
-            if (z) {
-                canvas.drawRect(0.0f, 0.0f, this.lastWidth, this.lastHeight, this.paint);
-                return;
-            }
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, this.foregroundView.getMeasuredWidth(), this.foregroundView.getMeasuredHeight());
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) - 2, AndroidUtilities.dp(12.0f) - 2, this.paint);
-        }
-    }
-
-    public static class ImageViewInvertable extends ImageView implements Invertable {
-        public ImageViewInvertable(Context context) {
-            super(context);
-        }
-
-        @Override
-        public void setInvert(float f) {
-            setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
         }
     }
 }

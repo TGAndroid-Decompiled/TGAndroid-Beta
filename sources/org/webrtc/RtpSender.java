@@ -8,6 +8,23 @@ public class RtpSender {
     private long nativeRtpSender;
     private boolean ownsTrack = true;
 
+    public RtpSender(long j) {
+        this.nativeRtpSender = j;
+        this.cachedTrack = MediaStreamTrack.createMediaStreamTrack(nativeGetTrack(j));
+        if (!nativeGetMediaType(j).equalsIgnoreCase("audio")) {
+            this.dtmfSender = null;
+        } else {
+            long jNativeGetDtmfSender = nativeGetDtmfSender(j);
+            this.dtmfSender = jNativeGetDtmfSender != 0 ? new DtmfSender(jNativeGetDtmfSender) : null;
+        }
+    }
+
+    private void checkRtpSenderExists() {
+        if (this.nativeRtpSender == 0) {
+            throw new IllegalStateException("RtpSender has been disposed.");
+        }
+    }
+
     private static native long nativeGetDtmfSender(long j);
 
     private static native String nativeGetId(long j);
@@ -28,15 +45,57 @@ public class RtpSender {
 
     private static native boolean nativeSetTrack(long j, long j2);
 
-    public RtpSender(long j) {
-        this.nativeRtpSender = j;
-        this.cachedTrack = MediaStreamTrack.createMediaStreamTrack(nativeGetTrack(j));
-        if (nativeGetMediaType(j).equalsIgnoreCase("audio")) {
-            long jNativeGetDtmfSender = nativeGetDtmfSender(j);
-            this.dtmfSender = jNativeGetDtmfSender != 0 ? new DtmfSender(jNativeGetDtmfSender) : null;
-        } else {
-            this.dtmfSender = null;
+    public void dispose() {
+        checkRtpSenderExists();
+        DtmfSender dtmfSender = this.dtmfSender;
+        if (dtmfSender != null) {
+            dtmfSender.dispose();
         }
+        MediaStreamTrack mediaStreamTrack = this.cachedTrack;
+        if (mediaStreamTrack != null && this.ownsTrack) {
+            mediaStreamTrack.dispose();
+        }
+        JniCommon.nativeReleaseRef(this.nativeRtpSender);
+        this.nativeRtpSender = 0L;
+    }
+
+    public DtmfSender dtmf() {
+        return this.dtmfSender;
+    }
+
+    public long getNativeRtpSender() {
+        checkRtpSenderExists();
+        return this.nativeRtpSender;
+    }
+
+    public RtpParameters getParameters() {
+        checkRtpSenderExists();
+        return nativeGetParameters(this.nativeRtpSender);
+    }
+
+    public List<String> getStreams() {
+        checkRtpSenderExists();
+        return nativeGetStreams(this.nativeRtpSender);
+    }
+
+    public String id() {
+        checkRtpSenderExists();
+        return nativeGetId(this.nativeRtpSender);
+    }
+
+    public void setFrameEncryptor(FrameEncryptor frameEncryptor) {
+        checkRtpSenderExists();
+        nativeSetFrameEncryptor(this.nativeRtpSender, frameEncryptor.getNativeFrameEncryptor());
+    }
+
+    public boolean setParameters(RtpParameters rtpParameters) {
+        checkRtpSenderExists();
+        return nativeSetParameters(this.nativeRtpSender, rtpParameters);
+    }
+
+    public void setStreams(List<String> list) {
+        checkRtpSenderExists();
+        nativeSetStreams(this.nativeRtpSender, list);
     }
 
     public boolean setTrack(MediaStreamTrack mediaStreamTrack, boolean z) {
@@ -55,64 +114,5 @@ public class RtpSender {
 
     public MediaStreamTrack track() {
         return this.cachedTrack;
-    }
-
-    public void setStreams(List<String> list) {
-        checkRtpSenderExists();
-        nativeSetStreams(this.nativeRtpSender, list);
-    }
-
-    public List<String> getStreams() {
-        checkRtpSenderExists();
-        return nativeGetStreams(this.nativeRtpSender);
-    }
-
-    public boolean setParameters(RtpParameters rtpParameters) {
-        checkRtpSenderExists();
-        return nativeSetParameters(this.nativeRtpSender, rtpParameters);
-    }
-
-    public RtpParameters getParameters() {
-        checkRtpSenderExists();
-        return nativeGetParameters(this.nativeRtpSender);
-    }
-
-    public String id() {
-        checkRtpSenderExists();
-        return nativeGetId(this.nativeRtpSender);
-    }
-
-    public DtmfSender dtmf() {
-        return this.dtmfSender;
-    }
-
-    public void setFrameEncryptor(FrameEncryptor frameEncryptor) {
-        checkRtpSenderExists();
-        nativeSetFrameEncryptor(this.nativeRtpSender, frameEncryptor.getNativeFrameEncryptor());
-    }
-
-    public void dispose() {
-        checkRtpSenderExists();
-        DtmfSender dtmfSender = this.dtmfSender;
-        if (dtmfSender != null) {
-            dtmfSender.dispose();
-        }
-        MediaStreamTrack mediaStreamTrack = this.cachedTrack;
-        if (mediaStreamTrack != null && this.ownsTrack) {
-            mediaStreamTrack.dispose();
-        }
-        JniCommon.nativeReleaseRef(this.nativeRtpSender);
-        this.nativeRtpSender = 0L;
-    }
-
-    long getNativeRtpSender() {
-        checkRtpSenderExists();
-        return this.nativeRtpSender;
-    }
-
-    private void checkRtpSenderExists() {
-        if (this.nativeRtpSender == 0) {
-            throw new IllegalStateException("RtpSender has been disposed.");
-        }
     }
 }

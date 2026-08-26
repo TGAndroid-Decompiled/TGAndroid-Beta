@@ -20,16 +20,12 @@ public class LineViewData {
     public boolean enabled;
     public final ChartData.Line line;
     public int lineColor;
-    public float[] linesPath;
-    public float[] linesPathBottom;
+    public final float[] linesPath;
+    public final float[] linesPathBottom;
     public int linesPathBottomSize;
     public final Paint paint;
-    private Theme.ResourcesProvider resourcesProvider;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final Paint selectionPaint;
-
-    public LineViewData(ChartData.Line line, boolean z) {
-        this(line, z, null);
-    }
 
     public LineViewData(ChartData.Line line, boolean z, Theme.ResourcesProvider resourcesProvider) {
         Paint paint = new Paint(1);
@@ -64,11 +60,13 @@ public class LineViewData {
     }
 
     public void updateColors() {
-        int i = this.line.colorKey;
-        if (i >= 0 && Theme.hasThemeKey(i)) {
-            this.lineColor = Theme.getColor(this.line.colorKey, this.resourcesProvider);
+        ChartData.Line line = this.line;
+        int i = line.colorKey;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (i < 0 || !Theme.hasThemeKey(i)) {
+            this.lineColor = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider)) < 0.5d ? line.colorDark : line.color;
         } else {
-            this.lineColor = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)) < 0.5d ? this.line.colorDark : this.line.color;
+            this.lineColor = Theme.getColor(line.colorKey, resourcesProvider);
         }
         this.paint.setColor(this.lineColor);
         this.bottomLinePaint.setColor(this.lineColor);

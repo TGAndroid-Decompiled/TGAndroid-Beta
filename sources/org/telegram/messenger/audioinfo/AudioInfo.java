@@ -9,112 +9,23 @@ import org.telegram.messenger.audioinfo.m4a.M4AInfo;
 import org.telegram.messenger.audioinfo.mp3.MP3Info;
 
 public abstract class AudioInfo {
-    protected String album;
-    protected String albumArtist;
-    protected String artist;
-    protected String brand;
-    protected String comment;
-    protected boolean compilation;
-    protected String composer;
-    protected String copyright;
-    protected Bitmap cover;
-    private File coverFile;
-    protected short disc;
-    protected short discs;
-    protected long duration;
-    protected String genre;
-    protected String grouping;
-    protected String lyrics;
-    protected Bitmap smallCover;
-    protected String title;
-    protected short track;
-    protected short tracks;
-    protected String version;
-    protected short year;
-
-    public long getDuration() {
-        return this.duration;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public String getArtist() {
-        return this.artist;
-    }
-
-    public String getAlbumArtist() {
-        return this.albumArtist;
-    }
-
-    public String getAlbum() {
-        return this.album;
-    }
-
-    public short getYear() {
-        return this.year;
-    }
-
-    public String getGenre() {
-        return this.genre;
-    }
-
-    public String getComment() {
-        return this.comment;
-    }
-
-    public short getTrack() {
-        return this.track;
-    }
-
-    public short getTracks() {
-        return this.tracks;
-    }
-
-    public short getDisc() {
-        return this.disc;
-    }
-
-    public short getDiscs() {
-        return this.discs;
-    }
-
-    public String getCopyright() {
-        return this.copyright;
-    }
-
-    public String getComposer() {
-        return this.composer;
-    }
-
-    public String getGrouping() {
-        return this.grouping;
-    }
-
-    public boolean isCompilation() {
-        return this.compilation;
-    }
-
-    public String getLyrics() {
-        return this.lyrics;
-    }
-
-    public Bitmap getCover() {
-        return this.cover;
-    }
-
-    public File getCoverFile() {
-        return this.coverFile;
-    }
-
-    public void setCoverFile(File file) {
-        this.coverFile = file;
-    }
-
-    public Bitmap getSmallCover() {
-        return this.smallCover;
-    }
+    public String album;
+    public String albumArtist;
+    public String artist;
+    public String brand;
+    public String comment;
+    public String composer;
+    public String copyright;
+    public Bitmap cover;
+    public File coverFile;
+    public short disc;
+    public long duration;
+    public String genre;
+    public String lyrics;
+    public Bitmap smallCover;
+    public String title;
+    public short track;
+    public short year;
 
     public static AudioInfo getAudioInfo(File file) {
         byte b;

@@ -11,16 +11,20 @@ public class GeoGebraLogoBox extends Box {
     private static final Color blue = new Color(153, 153, 255);
     private static final BasicStroke st = new BasicStroke(3.8f, 0, 0, 4.0f);
 
-    @Override
-    public int getLastFontId() {
-        return 0;
-    }
-
     public GeoGebraLogoBox(float f, float f2) {
         this.depth = 0.0f;
         this.height = f2;
         this.width = f;
         this.shift = 0.0f;
+    }
+
+    private static void drawCircle(Graphics2D graphics2D, float f, float f2) {
+        graphics2D.setColor(blue);
+        graphics2D.translate(f, f2);
+        graphics2D.fillArc(0, 0, 8, 8, 0, 360);
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawArc(0, 0, 8, 8, 0, 360);
+        graphics2D.translate(-f, -f2);
     }
 
     @Override
@@ -48,12 +52,8 @@ public class GeoGebraLogoBox extends Box {
         graphics2D.setColor(color);
     }
 
-    private static void drawCircle(Graphics2D graphics2D, float f, float f2) {
-        graphics2D.setColor(blue);
-        graphics2D.translate(f, f2);
-        graphics2D.fillArc(0, 0, 8, 8, 0, 360);
-        graphics2D.setColor(Color.BLACK);
-        graphics2D.drawArc(0, 0, 8, 8, 0, 360);
-        graphics2D.translate(-f, -f2);
+    @Override
+    public int getLastFontId() {
+        return 0;
     }
 }

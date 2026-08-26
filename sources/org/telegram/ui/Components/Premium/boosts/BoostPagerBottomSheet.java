@@ -1,15 +1,14 @@
 package org.telegram.ui.Components.Premium.boosts;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.MotionEvent;
-import android.view.View;
 import androidx.core.graphics.ColorUtils;
-import java.util.List;
+import com.google.zxing.BinaryBitmap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -17,63 +16,112 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Gifts.SendGiftSheet;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PollItemMenu;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 
-public class BoostPagerBottomSheet extends BottomSheet {
-    private static BoostPagerBottomSheet instance;
-    private boolean isLandscapeOrientation;
-    private final SelectorBottomSheet rightSheet;
-    private final ViewPagerFixed viewPager;
+public final class BoostPagerBottomSheet extends BottomSheet {
+    public static BoostPagerBottomSheet instance;
+    public boolean isLandscapeOrientation;
+    public final SelectorBottomSheet rightSheet;
+    public final AnonymousClass1 viewPager;
 
-    @Override
-    protected boolean canDismissWithSwipe() {
-        return false;
-    }
+    public final class AnonymousClass4 {
+        public final BoostViaGiftsBottomSheet val$leftSheet;
+        public final Theme.ResourcesProvider val$resourcesProvider;
 
-    public static void show(BaseFragment baseFragment, long j, Theme.ResourcesProvider resourcesProvider) {
-        show(baseFragment, resourcesProvider, j, null);
-    }
-
-    public static void show(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, long j, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        if (instance != null) {
-            return;
+        public AnonymousClass4(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, Theme.ResourcesProvider resourcesProvider) {
+            this.val$leftSheet = boostViaGiftsBottomSheet;
+            this.val$resourcesProvider = resourcesProvider;
         }
-        boolean z = resourcesProvider instanceof DarkThemeResourceProvider;
-        BaseFragment darkFragmentWrapper = z ? new DarkFragmentWrapper(baseFragment) : baseFragment;
-        BoostPagerBottomSheet boostPagerBottomSheet = new BoostPagerBottomSheet(baseFragment.getParentActivity(), true, new BoostViaGiftsBottomSheet(darkFragmentWrapper, false, false, j, prepaidGiveaway), new SelectorBottomSheet(darkFragmentWrapper, false, j), darkFragmentWrapper.getResourceProvider(), z);
-        boostPagerBottomSheet.show();
-        instance = boostPagerBottomSheet;
     }
 
-    public static BoostPagerBottomSheet getInstance() {
-        return instance;
-    }
-
-    public BoostPagerBottomSheet(Context context, boolean z, final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final SelectorBottomSheet selectorBottomSheet, final Theme.ResourcesProvider resourcesProvider, boolean z2) {
-        super(context, z, resourcesProvider);
+    public BoostPagerBottomSheet(Activity activity, final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final SelectorBottomSheet selectorBottomSheet, final Theme.ResourcesProvider resourcesProvider, boolean z) {
+        super(activity, resourcesProvider, true, false);
         this.rightSheet = selectorBottomSheet;
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
         this.useBackgroundTopPadding = false;
         setBackgroundColor(0);
         fixNavigationBar();
-        AndroidUtilities.setLightStatusBar(this, isLightStatusBar());
-        checkScreenOrientation();
-        ViewPagerFixed viewPagerFixed = new ViewPagerFixed(getContext()) {
-            private boolean isKeyboardVisible;
-            private boolean isScrolling;
-            private final Path path = new Path();
-            private final Paint backgroundPaint = new Paint(1);
-            private final boolean isTablet = AndroidUtilities.isTablet();
+        AndroidUtilities.setLightStatusBar(this, ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider)) > 0.699999988079071d);
+        this.isLandscapeOrientation = getContext().getResources().getConfiguration().orientation == 2;
+        ?? r3 = new ViewPagerFixed(getContext()) {
+            public boolean isKeyboardVisible;
+            public boolean isScrolling;
+            public final Path path = new Path();
+            public final Paint backgroundPaint = new Paint(1);
+            public final boolean isTablet = AndroidUtilities.isTablet();
 
             @Override
-            protected void onLayout(boolean z3, int i, int i2, int i3, int i4) {
-                super.onLayout(z3, i, i2, i3, i4);
-                if (this.isKeyboardVisible != BoostPagerBottomSheet.this.isKeyboardVisible()) {
-                    boolean zIsKeyboardVisible = BoostPagerBottomSheet.this.isKeyboardVisible();
+            public final boolean canScroll(MotionEvent motionEvent) {
+                return getCurrentPosition() == 1;
+            }
+
+            @Override
+            public final void dispatchDraw(Canvas canvas) {
+                int iDp;
+                float f;
+                Paint paint = this.backgroundPaint;
+                paint.setColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+                boolean z2 = this.isScrolling;
+                BoostPagerBottomSheet boostPagerBottomSheet = BoostPagerBottomSheet.this;
+                if (!z2) {
+                    if (this.isTablet || boostPagerBottomSheet.isLandscapeOrientation) {
+                        canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                    }
+                    super.dispatchDraw(canvas);
+                    return;
+                }
+                int i = -AndroidUtilities.dp(16.0f);
+                BoostViaGiftsBottomSheet boostViaGiftsBottomSheet2 = boostViaGiftsBottomSheet;
+                int i2 = boostViaGiftsBottomSheet2.top;
+                if (boostViaGiftsBottomSheet2.actionBar.getVisibility() == 0) {
+                    iDp = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
+                } else {
+                    iDp = 0;
+                }
+                int iDp2 = AndroidUtilities.dp(10.0f) + Math.max(i, i2 - iDp);
+                SelectorBottomSheet selectorBottomSheet2 = selectorBottomSheet;
+                int iMax = Math.max(0, selectorBottomSheet2.top - (selectorBottomSheet2.statusBarT.value == 1.0f ? AndroidUtilities.statusBarHeight : 0));
+                int iAbs = Math.abs(iDp2 - iMax);
+                int currentPosition = boostPagerBottomSheet.viewPager.getCurrentPosition();
+                AnonymousClass1 anonymousClass1 = boostPagerBottomSheet.viewPager;
+                if (currentPosition == 0) {
+                    float positionAnimated = anonymousClass1.getPositionAnimated() * iAbs;
+                    f = iDp2 < iMax ? iDp2 + positionAnimated : iDp2 - positionAnimated;
+                } else {
+                    float positionAnimated2 = (1.0f - anonymousClass1.getPositionAnimated()) * iAbs;
+                    f = iMax < iDp2 ? iMax + positionAnimated2 : iMax - positionAnimated2;
+                }
+                int i3 = (int) f;
+                float fDp = AndroidUtilities.dp(14.0f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, i3, getWidth(), AndroidUtilities.dp(8.0f) + getHeight());
+                canvas.drawRoundRect(rectF, fDp, fDp, paint);
+                canvas.save();
+                Path path = this.path;
+                path.rewind();
+                path.addRoundRect(rectF, fDp, fDp, Path.Direction.CW);
+                canvas.clipPath(path);
+                super.dispatchDraw(canvas);
+                canvas.restore();
+            }
+
+            @Override
+            public final float getAvailableTranslationX() {
+                return (this.isTablet || BoostPagerBottomSheet.this.isLandscapeOrientation) ? getMeasuredWidth() : super.getAvailableTranslationX();
+            }
+
+            @Override
+            public final void onLayout(boolean z2, int i, int i2, int i3, int i4) {
+                super.onLayout(z2, i, i2, i3, i4);
+                boolean z3 = this.isKeyboardVisible;
+                BoostPagerBottomSheet boostPagerBottomSheet = BoostPagerBottomSheet.this;
+                if (z3 != boostPagerBottomSheet.isKeyboardVisible()) {
+                    boolean zIsKeyboardVisible = boostPagerBottomSheet.isKeyboardVisible();
                     this.isKeyboardVisible = zIsKeyboardVisible;
                     if (zIsKeyboardVisible) {
                         selectorBottomSheet.scrollToTop(true);
@@ -82,258 +130,89 @@ public class BoostPagerBottomSheet extends BottomSheet {
             }
 
             @Override
-            public void onTabAnimationUpdate(boolean z3) {
-                float positionAnimated = BoostPagerBottomSheet.this.viewPager.getPositionAnimated();
-                if (positionAnimated > 0.0f && positionAnimated < 1.0f) {
-                    if (!this.isScrolling) {
-                        this.isScrolling = true;
-                        BoostPagerBottomSheet.this.hideKeyboardIfVisible();
-                    }
-                } else {
-                    this.isScrolling = false;
-                }
-                BoostPagerBottomSheet.this.viewPager.invalidate();
-            }
-
-            @Override
-            protected void onScrollEnd() {
+            public final void onScrollEnd() {
                 this.isScrolling = false;
-                BoostPagerBottomSheet.this.viewPager.invalidate();
+                invalidate();
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
-                float positionAnimated;
-                float f;
-                float f2;
-                float f3;
-                this.backgroundPaint.setColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
-                if (this.isScrolling) {
-                    int top = boostViaGiftsBottomSheet.getTop() + AndroidUtilities.dp(10.0f);
-                    int top2 = selectorBottomSheet.getTop();
-                    int iAbs = Math.abs(top - top2);
-                    if (BoostPagerBottomSheet.this.viewPager.getCurrentPosition() == 0) {
-                        positionAnimated = iAbs * BoostPagerBottomSheet.this.viewPager.getPositionAnimated();
-                        if (top < top2) {
-                            f2 = top;
-                            f3 = f2 + positionAnimated;
-                        } else {
-                            f = top;
-                            f3 = f - positionAnimated;
-                        }
-                    } else {
-                        positionAnimated = iAbs * (1.0f - BoostPagerBottomSheet.this.viewPager.getPositionAnimated());
-                        if (top2 < top) {
-                            f2 = top2;
-                            f3 = f2 + positionAnimated;
-                        } else {
-                            f = top2;
-                            f3 = f - positionAnimated;
-                        }
+            public final void onTabAnimationUpdate(boolean z2) {
+                BoostPagerBottomSheet boostPagerBottomSheet = BoostPagerBottomSheet.this;
+                float positionAnimated = boostPagerBottomSheet.viewPager.getPositionAnimated();
+                if (positionAnimated <= 0.0f || positionAnimated >= 1.0f) {
+                    this.isScrolling = false;
+                } else if (!this.isScrolling) {
+                    this.isScrolling = true;
+                    if (boostPagerBottomSheet.isKeyboardVisible()) {
+                        AndroidUtilities.hideKeyboard(boostPagerBottomSheet.rightSheet.getContainerView());
                     }
-                    int i = (int) f3;
-                    float fDp = AndroidUtilities.dp(14.0f);
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, i, getWidth(), getHeight() + AndroidUtilities.dp(8.0f));
-                    canvas.drawRoundRect(rectF, fDp, fDp, this.backgroundPaint);
-                    canvas.save();
-                    this.path.rewind();
-                    this.path.addRoundRect(rectF, fDp, fDp, Path.Direction.CW);
-                    canvas.clipPath(this.path);
-                    super.dispatchDraw(canvas);
-                    canvas.restore();
-                    return;
                 }
-                if (this.isTablet || BoostPagerBottomSheet.this.isLandscapeOrientation) {
-                    canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                }
-                super.dispatchDraw(canvas);
-            }
-
-            @Override
-            protected float getAvailableTranslationX() {
-                if (this.isTablet || BoostPagerBottomSheet.this.isLandscapeOrientation) {
-                    return getMeasuredWidth();
-                }
-                return super.getAvailableTranslationX();
-            }
-
-            @Override
-            protected boolean canScroll(MotionEvent motionEvent) {
-                return BoostPagerBottomSheet.this.viewPager.getCurrentPosition() == 1;
+                boostPagerBottomSheet.viewPager.invalidate();
             }
         };
-        this.viewPager = viewPagerFixed;
-        viewPagerFixed.setOverScrollMode(2);
-        viewPagerFixed.setClipToPadding(false);
-        viewPagerFixed.setAdapter(new ViewPagerFixed.Adapter() {
-            @Override
-            public void bindView(View view, int i, int i2) {
-            }
-
-            @Override
-            public int getItemCount() {
-                return 2;
-            }
-
-            @Override
-            public int getItemViewType(int i) {
-                return i;
-            }
-
-            @Override
-            public View createView(int i) {
-                if (i == 0) {
-                    return boostViaGiftsBottomSheet.getContainerView();
-                }
-                return selectorBottomSheet.getContainerView();
-            }
-        });
-        viewPagerFixed.setPosition(0);
-        setCustomView(viewPagerFixed);
-        boostViaGiftsBottomSheet.setOnCloseClick(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.dismiss();
-            }
-        });
-        boostViaGiftsBottomSheet.setActionListener(new BoostViaGiftsBottomSheet.ActionListener() {
-            @Override
-            public void onAddChat(List list) {
-                selectorBottomSheet.prepare(list, 2);
-                BoostPagerBottomSheet.this.viewPager.scrollToPosition(1);
-            }
-
-            @Override
-            public void onSelectUser(List list) {
-                selectorBottomSheet.prepare(list, 1);
-                BoostPagerBottomSheet.this.viewPager.scrollToPosition(1);
-            }
-
-            @Override
-            public void onSelectCountries(List list) {
-                selectorBottomSheet.prepare(list, 3);
-                BoostPagerBottomSheet.this.viewPager.scrollToPosition(1);
-            }
-        });
-        selectorBottomSheet.setSelectedObjectsListener(new SelectorBottomSheet.SelectedObjectsListener() {
-            @Override
-            public void onChatsSelected(List list, boolean z3) {
-                BoostPagerBottomSheet.this.viewPager.scrollToPosition(0);
-                boostViaGiftsBottomSheet.onChatsSelected(list, !BoostPagerBottomSheet.this.isKeyboardVisible());
-            }
-
-            @Override
-            public void onUsersSelected(List list) {
-                BoostPagerBottomSheet.this.viewPager.scrollToPosition(0);
-                boostViaGiftsBottomSheet.onUsersSelected(list);
-            }
-
-            @Override
-            public void onCountrySelected(List list) {
-                BoostPagerBottomSheet.this.viewPager.scrollToPosition(0);
-                boostViaGiftsBottomSheet.onCountrySelected(list);
-            }
-
-            @Override
-            public void onShowToast(String str) {
-                BulletinFactory.of(BoostPagerBottomSheet.this.container, resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, str).show(true);
-            }
-        });
-        selectorBottomSheet.setOnCloseClick(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.onBackPressed();
-            }
-        });
-        loadData(z2);
-        Bulletin.addDelegate(this.container, new Bulletin.Delegate() {
-            @Override
-            public boolean allowLayoutChanges() {
-                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
-            }
-
-            @Override
-            public boolean bottomOffsetAnimated() {
-                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
-            }
-
-            @Override
-            public boolean clipWithGradient(int i) {
-                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
-            }
-
-            @Override
-            public int getBottomOffset(int i) {
-                return Bulletin.Delegate.CC.$default$getBottomOffset(this, i);
-            }
-
-            @Override
-            public void onBottomOffsetChange(float f) {
-                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
-            }
-
-            @Override
-            public void onHide(Bulletin bulletin) {
-                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
-            }
-
-            @Override
-            public void onShow(Bulletin bulletin) {
-                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
-            }
-
-            @Override
-            public int getTopOffset(int i) {
-                return AndroidUtilities.statusBarHeight;
-            }
-        });
+        this.viewPager = r3;
+        r3.setOverScrollMode(2);
+        r3.setClipToPadding(false);
+        r3.setAdapter(new PollItemMenu.AnonymousClass4(boostViaGiftsBottomSheet, selectorBottomSheet));
+        r3.setPosition(0);
+        setCustomView(r3);
+        boostViaGiftsBottomSheet.onCloseClick = new BoostPagerBottomSheet$$ExternalSyntheticLambda0(this, 0);
+        boostViaGiftsBottomSheet.actionListener = new BinaryBitmap(28, this, selectorBottomSheet);
+        selectorBottomSheet.selectedObjectsListener = new AnonymousClass4(boostViaGiftsBottomSheet, resourcesProvider);
+        selectorBottomSheet.onCloseClick = new BoostPagerBottomSheet$$ExternalSyntheticLambda0(this, 1);
+        if (!z) {
+            MessagesController.getInstance(this.currentAccount).getStoriesController().loadSendAs();
+        }
+        BottomSheet.ContainerView containerView = this.container;
+        LaunchActivity.AnonymousClass7 anonymousClass7 = new LaunchActivity.AnonymousClass7(5);
+        if (containerView != null) {
+            containerView.setTag(R.id.bulletin_delegate_tag, anonymousClass7);
+        }
     }
 
-    private void checkScreenOrientation() {
-        this.isLandscapeOrientation = getContext().getResources().getConfiguration().orientation == 2;
+    public static void show(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, long j, TL_stories.PrepaidGiveaway prepaidGiveaway) {
+        if (instance != null) {
+            return;
+        }
+        boolean z = resourcesProvider instanceof DarkThemeResourceProvider;
+        BaseFragment anonymousClass8 = z ? new SendGiftSheet.AnonymousClass8(baseFragment) : baseFragment;
+        BoostPagerBottomSheet boostPagerBottomSheet = new BoostPagerBottomSheet(baseFragment.getParentActivity(), new BoostViaGiftsBottomSheet(j, prepaidGiveaway, anonymousClass8), new SelectorBottomSheet(anonymousClass8, j), anonymousClass8.getResourceProvider(), z);
+        boostPagerBottomSheet.show();
+        instance = boostPagerBottomSheet;
     }
 
     @Override
-    public void dismissInternal() {
+    public final boolean canDismissWithSwipe() {
+        return false;
+    }
+
+    @Override
+    public final void dismissInternal() {
         super.dismissInternal();
         instance = null;
     }
 
     @Override
-    public void onConfigurationChanged(Configuration configuration) {
-        this.rightSheet.onConfigurationChanged(configuration);
-        checkScreenOrientation();
-        super.onConfigurationChanged(configuration);
-    }
-
-    private void loadData(boolean z) {
-        if (z) {
+    public final void lambda$openCrafting$8() {
+        AnonymousClass1 anonymousClass1 = this.viewPager;
+        if (anonymousClass1.getCurrentPosition() <= 0) {
+            super.lambda$openCrafting$8();
             return;
         }
-        MessagesController.getInstance(this.currentAccount).getStoriesController().loadSendAs();
-    }
-
-    public void hideKeyboardIfVisible() {
-        if (isKeyboardVisible()) {
-            AndroidUtilities.hideKeyboard(this.rightSheet.getContainerView());
+        SelectorBottomSheet selectorBottomSheet = this.rightSheet;
+        if (selectorBottomSheet.hasChanges()) {
+            return;
         }
+        if (isKeyboardVisible()) {
+            AndroidUtilities.hideKeyboard(selectorBottomSheet.getContainerView());
+        }
+        anonymousClass1.scrollToPosition$1(0);
     }
 
     @Override
-    public void onBackPressed() {
-        if (this.viewPager.getCurrentPosition() > 0) {
-            if (this.rightSheet.hasChanges()) {
-                return;
-            }
-            hideKeyboardIfVisible();
-            this.viewPager.scrollToPosition(0);
-            return;
-        }
-        super.onBackPressed();
-    }
-
-    private boolean isLightStatusBar() {
-        return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider)) > 0.699999988079071d;
+    public final void onConfigurationChanged(Configuration configuration) {
+        this.rightSheet.onConfigurationChanged(configuration);
+        this.isLandscapeOrientation = getContext().getResources().getConfiguration().orientation == 2;
+        super.onConfigurationChanged(configuration);
     }
 }

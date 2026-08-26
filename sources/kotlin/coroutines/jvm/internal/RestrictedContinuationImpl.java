@@ -13,7 +13,7 @@ public abstract class RestrictedContinuationImpl extends BaseContinuationImpl {
     }
 
     @Override
-    public CoroutineContext getContext() {
+    public final CoroutineContext getContext() {
         return EmptyCoroutineContext.INSTANCE;
     }
 }

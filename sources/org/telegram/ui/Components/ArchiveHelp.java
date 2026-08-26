@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.gms.internal.mlkit_vision_common.zzlp;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
@@ -18,14 +19,16 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity$16$$ExternalSyntheticLambda4;
+import org.telegram.ui.ComposeDrawable$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-public class ArchiveHelp extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    private int currentAccount;
-    private Runnable linkCallback;
-    private LinkSpanDrawable.LinksTextView subtitleTextView;
+public final class ArchiveHelp extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public final int currentAccount;
+    public final Runnable linkCallback;
+    public final LinkSpanDrawable.LinksTextView subtitleTextView;
 
-    public ArchiveHelp(Context context, int i, Theme.ResourcesProvider resourcesProvider, Runnable runnable, final Runnable runnable2) {
+    public ArchiveHelp(int i, Context context, Runnable runnable, ComposeDrawable$$ExternalSyntheticLambda0 composeDrawable$$ExternalSyntheticLambda0, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.currentAccount = i;
         this.linkCallback = runnable;
@@ -37,7 +40,7 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(80.0f), Theme.getColor(Theme.key_avatar_backgroundSaved, resourcesProvider)));
         imageView.setImageResource(R.drawable.large_archive);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        linearLayout.addView(imageView, LayoutHelper.createLinear(80, 80, 49, 0, runnable2 != null ? 14 : 0, 0, 14));
+        linearLayout.addView(imageView, LayoutHelper.createLinear(80, 80, 49, 0, composeDrawable$$ExternalSyntheticLambda0 != null ? 14 : 0, 0, 14));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
@@ -45,52 +48,32 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         textView.setGravity(1);
         textView.setText(LocaleController.getString(R.string.ArchiveHintHeader1));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 32, 0, 32, 9));
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, null);
         this.subtitleTextView = linksTextView;
         linksTextView.setTextSize(1, 14.0f);
-        this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-        this.subtitleTextView.setGravity(1);
+        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+        linksTextView.setGravity(1);
         updateText();
-        linearLayout.addView(this.subtitleTextView, LayoutHelper.createLinear(-1, -2, 1, 32, 0, 32, 25));
+        linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 1, 32, 0, 32, 25));
         linearLayout.addView(makeHint(R.drawable.msg_archive_archive, LocaleController.getString("ArchiveHintSection1"), LocaleController.getString("ArchiveHintSection1Info"), resourcesProvider), LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 16));
         linearLayout.addView(makeHint(R.drawable.msg_archive_hide, LocaleController.getString("ArchiveHintSection2"), LocaleController.getString("ArchiveHintSection2Info"), resourcesProvider), LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 16));
         linearLayout.addView(makeHint(R.drawable.msg_archive_stories, LocaleController.getString("ArchiveHintSection3"), LocaleController.getString("ArchiveHintSection3Info"), resourcesProvider), LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 16));
-        if (runnable2 != null) {
-            ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
-            round.setText(LocaleController.getString("GotIt"), false);
-            round.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    runnable2.run();
-                }
-            });
-            linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 14.0f, 18.0f, 14.0f, 0.0f));
+        if (composeDrawable$$ExternalSyntheticLambda0 != null) {
+            ButtonWithCounterView buttonWithCounterViewM = zzlp.m(context, resourcesProvider, true);
+            buttonWithCounterViewM.setText(LocaleController.getString("GotIt"), false, true);
+            buttonWithCounterViewM.setOnClickListener(new ChatActivity$16$$ExternalSyntheticLambda4(composeDrawable$$ExternalSyntheticLambda0, 5));
+            linearLayout.addView(buttonWithCounterViewM, LayoutHelper.createLinear(14.0f, 18.0f, 14.0f, 0.0f, -1, 48));
         }
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(400.0f), View.MeasureSpec.getSize(i)), 1073741824), i2);
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.privacyRulesUpdated) {
+            updateText();
+        }
     }
 
-    private void updateText() {
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.currentAccount).getGlobalPrivacySettings();
-        String string = LocaleController.getString(globalPrivacySettings != null ? globalPrivacySettings.keep_archived_unmuted : true ? "ArchiveHintSubtitle" : "ArchiveHintSubtitleUnmutedMove");
-        int i = Theme.key_chat_messageLinkIn;
-        SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(string, i, 0, this.linkCallback);
-        SpannableString spannableString = new SpannableString(">");
-        Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(drawableMutate);
-        coloredImageSpan.setColorKey(i);
-        coloredImageSpan.setSize(AndroidUtilities.dp(18.0f));
-        coloredImageSpan.setWidth(AndroidUtilities.dp(11.0f));
-        coloredImageSpan.setTranslateX(-AndroidUtilities.dp(5.0f));
-        spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-        this.subtitleTextView.setText(AndroidUtilities.replaceCharSequence(">", spannableStringBuilderReplaceSingleTag, spannableString));
-    }
-
-    private FrameLayout makeHint(int i, CharSequence charSequence, CharSequence charSequence2, Theme.ResourcesProvider resourcesProvider) {
+    public final FrameLayout makeHint(int i, String str, String str2, Theme.ResourcesProvider resourcesProvider) {
         FrameLayout frameLayout = new FrameLayout(getContext());
         ImageView imageView = new ImageView(getContext());
         int i2 = Theme.key_dialogTextBlack;
@@ -103,34 +86,49 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(0, AndroidUtilities.dp(14.0f));
-        textView.setText(charSequence);
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 2.6f, 0.0f, 0.0f));
+        textView.setText(str);
+        linearLayout.addView(textView, LayoutHelper.createLinear(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
         TextView textView2 = new TextView(getContext());
         textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         textView2.setTextSize(0, AndroidUtilities.dp(14.0f));
-        textView2.setText(charSequence2);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 2.6f, 0.0f, 0.0f));
+        textView2.setText(str2);
+        linearLayout.addView(textView2, LayoutHelper.createLinear(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
         frameLayout.addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 41.0f, 0.0f, 0.0f, 0.0f));
         return frameLayout;
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.privacyRulesUpdated);
         updateText();
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.privacyRulesUpdated);
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.privacyRulesUpdated) {
-            updateText();
-        }
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(400.0f), View.MeasureSpec.getSize(i)), 1073741824), i2);
+    }
+
+    public final void updateText() {
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.currentAccount).getGlobalPrivacySettings();
+        String string = LocaleController.getString(globalPrivacySettings != null ? globalPrivacySettings.keep_archived_unmuted : true ? "ArchiveHintSubtitle" : "ArchiveHintSubtitleUnmutedMove");
+        int i = Theme.key_chat_messageLinkIn;
+        SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(string, i, 0, this.linkCallback);
+        SpannableString spannableString = new SpannableString(">");
+        Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(0, drawableMutate);
+        coloredImageSpan.setColorKey(i);
+        coloredImageSpan.setSize(AndroidUtilities.dp(18.0f));
+        coloredImageSpan.setWidth(AndroidUtilities.dp(11.0f));
+        coloredImageSpan.setTranslateX(-AndroidUtilities.dp(5.0f));
+        spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
+        this.subtitleTextView.setText(AndroidUtilities.replaceCharSequence(">", spannableStringBuilderReplaceSingleTag, spannableString));
     }
 }

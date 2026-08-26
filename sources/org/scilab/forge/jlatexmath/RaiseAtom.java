@@ -20,6 +20,29 @@ public class RaiseAtom extends Atom {
     }
 
     @Override
+    public Box createBox(TeXEnvironment teXEnvironment) {
+        Box boxCreateBox = this.base.createBox(teXEnvironment);
+        int i = this.runit;
+        if (i == -1) {
+            boxCreateBox.setShift(0.0f);
+        } else {
+            boxCreateBox.setShift(SpaceAtom.getFactor(i, teXEnvironment) * (-this.r));
+        }
+        if (this.hunit == -1) {
+            return boxCreateBox;
+        }
+        HorizontalBox horizontalBox = new HorizontalBox(boxCreateBox);
+        horizontalBox.setHeight(SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h);
+        int i2 = this.dunit;
+        if (i2 == -1) {
+            horizontalBox.setDepth(0.0f);
+            return horizontalBox;
+        }
+        horizontalBox.setDepth(SpaceAtom.getFactor(i2, teXEnvironment) * this.d);
+        return horizontalBox;
+    }
+
+    @Override
     public int getLeftType() {
         return this.base.getLeftType();
     }
@@ -27,28 +50,5 @@ public class RaiseAtom extends Atom {
     @Override
     public int getRightType() {
         return this.base.getRightType();
-    }
-
-    @Override
-    public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = this.base.createBox(teXEnvironment);
-        int i = this.runit;
-        if (i == -1) {
-            boxCreateBox.setShift(0.0f);
-        } else {
-            boxCreateBox.setShift((-this.r) * SpaceAtom.getFactor(i, teXEnvironment));
-        }
-        if (this.hunit == -1) {
-            return boxCreateBox;
-        }
-        HorizontalBox horizontalBox = new HorizontalBox(boxCreateBox);
-        horizontalBox.setHeight(this.h * SpaceAtom.getFactor(this.hunit, teXEnvironment));
-        int i2 = this.dunit;
-        if (i2 == -1) {
-            horizontalBox.setDepth(0.0f);
-            return horizontalBox;
-        }
-        horizontalBox.setDepth(this.d * SpaceAtom.getFactor(i2, teXEnvironment));
-        return horizontalBox;
     }
 }

@@ -20,21 +20,22 @@ public class FBoxAtom extends Atom {
         }
     }
 
-    public FBoxAtom(Atom atom, Color color, Color color2) {
-        this(atom);
-        this.bg = color;
-        this.line = color2;
-    }
-
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box boxCreateBox = this.base.createBox(teXEnvironment);
         float defaultRuleThickness = teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle());
-        float factor = this.INTERSPACE * SpaceAtom.getFactor(0, teXEnvironment);
-        if (this.bg == null) {
+        float factor = SpaceAtom.getFactor(0, teXEnvironment) * this.INTERSPACE;
+        Color color = this.bg;
+        if (color == null) {
             return new FramedBox(boxCreateBox, defaultRuleThickness, factor);
         }
         teXEnvironment.isColored = true;
-        return new FramedBox(boxCreateBox, defaultRuleThickness, factor, this.line, this.bg);
+        return new FramedBox(boxCreateBox, defaultRuleThickness, factor, this.line, color);
+    }
+
+    public FBoxAtom(Atom atom, Color color, Color color2) {
+        this(atom);
+        this.bg = color;
+        this.line = color2;
     }
 }

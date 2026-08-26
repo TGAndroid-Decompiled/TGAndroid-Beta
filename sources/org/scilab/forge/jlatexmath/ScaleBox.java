@@ -18,11 +18,6 @@ public class ScaleBox extends Box {
         this.shift = box.shift * ((float) d3);
     }
 
-    public ScaleBox(Box box, float f) {
-        double d = f;
-        this(box, d, d);
-    }
-
     @Override
     public void draw(Graphics2D graphics2D, float f, float f2) {
         drawDebug(graphics2D, f, f2);
@@ -41,5 +36,10 @@ public class ScaleBox extends Box {
     @Override
     public int getLastFontId() {
         return this.box.getLastFontId();
+    }
+
+    public ScaleBox(Box box, float f) {
+        double d = f;
+        this(box, d, d);
     }
 }

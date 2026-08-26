@@ -22,11 +22,11 @@ public class SessionDescription {
         this.description = str;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return this.description;
     }
 
-    String getTypeInCanonicalForm() {
+    public String getTypeInCanonicalForm() {
         return this.type.canonicalForm();
     }
 }

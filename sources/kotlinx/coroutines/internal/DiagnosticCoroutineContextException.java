@@ -3,20 +3,20 @@ package kotlinx.coroutines.internal;
 import kotlin.coroutines.CoroutineContext;
 
 public final class DiagnosticCoroutineContextException extends RuntimeException {
-    private final transient CoroutineContext context;
+    public final transient CoroutineContext context;
 
     public DiagnosticCoroutineContextException(CoroutineContext coroutineContext) {
         this.context = coroutineContext;
     }
 
     @Override
-    public String getLocalizedMessage() {
-        return this.context.toString();
+    public final Throwable fillInStackTrace() {
+        setStackTrace(new StackTraceElement[0]);
+        return this;
     }
 
     @Override
-    public Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
+    public final String getLocalizedMessage() {
+        return this.context.toString();
     }
 }

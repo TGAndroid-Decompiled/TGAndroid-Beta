@@ -1,7 +1,7 @@
 package kotlinx.coroutines.flow;
 
-import kotlin.coroutines.Continuation;
+import kotlin.coroutines.jvm.internal.ContinuationImpl;
 
 public interface Flow {
-    Object collect(FlowCollector flowCollector, Continuation continuation);
+    Object collect(FlowCollector flowCollector, ContinuationImpl continuationImpl);
 }

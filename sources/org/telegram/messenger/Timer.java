@@ -1,5 +1,6 @@
 package org.telegram.messenger;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 
 public class Timer {
@@ -8,6 +9,51 @@ public class Timer {
     public ArrayList<Task> tasks = new ArrayList<>();
     final long startTime = System.currentTimeMillis();
 
+    public class Log extends Task {
+        public Log(String str) {
+            super(str);
+        }
+
+        @Override
+        public String toString() {
+            return this.task;
+        }
+    }
+
+    public class Task {
+        int pad;
+        final String task;
+        long endTime = -1;
+        final long startTime = System.currentTimeMillis();
+
+        public Task(String str) {
+            this.task = str;
+            Timer.this.pad++;
+        }
+
+        public void done() {
+            if (this.endTime < 0) {
+                Timer timer = Timer.this;
+                int i = timer.pad;
+                timer.pad = i - 1;
+                this.pad = i;
+            }
+            this.endTime = System.currentTimeMillis();
+        }
+
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append(this.task);
+            sb.append(": ");
+            sb.append(this.endTime < 0 ? "not done" : SurfaceContainer$$ExternalSyntheticOutline0.m(new StringBuilder(), this.endTime - this.startTime, "ms"));
+            return sb.toString();
+        }
+    }
+
+    public Timer(String str) {
+        this.name = str;
+    }
+
     public static Timer create(String str) {
         if (BuildVars.LOGS_ENABLED) {
             return new Timer(str);
@@ -15,16 +61,9 @@ public class Timer {
         return null;
     }
 
-    public static Task start(Timer timer, String str) {
-        if (timer != null) {
-            return timer.start(str);
-        }
-        return null;
-    }
-
-    public static void log(Timer timer, String str) {
-        if (timer != null) {
-            timer.log(str);
+    public static void done(Task task) {
+        if (task != null) {
+            task.done();
         }
     }
 
@@ -34,24 +73,17 @@ public class Timer {
         }
     }
 
-    public static void done(Task task) {
-        if (task != null) {
-            task.done();
+    public static void log(Timer timer, String str) {
+        if (timer != null) {
+            timer.log(str);
         }
     }
 
-    public Timer(String str) {
-        this.name = str;
-    }
-
-    private Task start(String str) {
-        Task task = new Task(str);
-        this.tasks.add(task);
-        return task;
-    }
-
-    private void log(String str) {
-        this.tasks.add(new Log(str));
+    public static Task start(Timer timer, String str) {
+        if (timer != null) {
+            return timer.start(str);
+        }
+        return null;
     }
 
     private void finish() {
@@ -77,50 +109,13 @@ public class Timer {
         FileLog.d(sb.toString());
     }
 
-    public class Task {
-        int pad;
-        final String task;
-        long endTime = -1;
-        final long startTime = System.currentTimeMillis();
-
-        public Task(String str) {
-            this.task = str;
-            Timer.this.pad++;
-        }
-
-        public void done() {
-            if (this.endTime < 0) {
-                Timer timer = Timer.this;
-                int i = timer.pad;
-                timer.pad = i - 1;
-                this.pad = i;
-            }
-            this.endTime = System.currentTimeMillis();
-        }
-
-        public String toString() {
-            String str;
-            StringBuilder sb = new StringBuilder();
-            sb.append(this.task);
-            sb.append(": ");
-            if (this.endTime < 0) {
-                str = "not done";
-            } else {
-                str = (this.endTime - this.startTime) + "ms";
-            }
-            sb.append(str);
-            return sb.toString();
-        }
+    private void log(String str) {
+        this.tasks.add(new Log(str));
     }
 
-    public class Log extends Task {
-        public Log(String str) {
-            super(str);
-        }
-
-        @Override
-        public String toString() {
-            return this.task;
-        }
+    private Task start(String str) {
+        Task task = new Task(str);
+        this.tasks.add(task);
+        return task;
     }
 }

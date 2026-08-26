@@ -8,149 +8,318 @@ import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Components.glass.GlassTabView;
 
 public abstract class ViewPagerActivity extends BaseFragment {
-    protected FrameLayout contentView;
-    private boolean isFullyVisible;
-    private boolean isResumed;
-    private String titleOverlay;
-    private Runnable titleOverlayAction;
-    private int titleOverlayId;
-    protected ViewPagerActivityPagerLayout viewPager;
-    protected final SparseArray fragmentsArr = new SparseArray();
-    private int initialFragmentPosition = -1;
-    private float visibilityByParent = 0.0f;
+    public LoginActivity.AnonymousClass4 contentView;
+    public final SparseArray fragmentsArr;
+    public int initialFragmentPosition;
+    public boolean isFullyVisible;
+    public boolean isResumed;
+    public String titleOverlay;
+    public Runnable titleOverlayAction;
+    public int titleOverlayId;
+    public ViewPagerActivityPagerLayout viewPager;
+    public float visibilityByParent;
 
-    protected abstract boolean canScrollBackward(MotionEvent motionEvent);
+    public final class FragmentState {
+        public final BaseFragment fragment;
+        public boolean isFullyVisible;
+        public boolean isInAnimation;
+        public boolean isResumed;
+        public float lastVisibility;
+        public boolean onCreateCalled;
 
-    protected abstract boolean canScrollForward(MotionEvent motionEvent);
+        public FragmentState(BaseFragment baseFragment) {
+            this.fragment = baseFragment;
+        }
+    }
+
+    public final class ViewPagerActivityPagerLayout extends ViewPagerFixed {
+        public final Path clipPath;
+        public boolean tabletLayout;
+
+        public ViewPagerActivityPagerLayout(Context context) {
+            super(context, null);
+            this.clipPath = new Path();
+        }
+
+        @Override
+        public final boolean canScrollBackward(MotionEvent motionEvent) {
+            Object currentVisibleFragment = ((MainTabsActivity) ViewPagerActivity.this).getCurrentVisibleFragment();
+            if (currentVisibleFragment instanceof MainTabsActivity.TabFragmentDelegate) {
+                return ((MainTabsActivity.TabFragmentDelegate) currentVisibleFragment).canParentTabsSlide(motionEvent, false);
+            }
+            return false;
+        }
+
+        @Override
+        public final boolean canScrollForward(MotionEvent motionEvent) {
+            Object currentVisibleFragment = ((MainTabsActivity) ViewPagerActivity.this).getCurrentVisibleFragment();
+            if (currentVisibleFragment instanceof MainTabsActivity.TabFragmentDelegate) {
+                return ((MainTabsActivity.TabFragmentDelegate) currentVisibleFragment).canParentTabsSlide(motionEvent, true);
+            }
+            return false;
+        }
+
+        @Override
+        public final void dispatchDraw(Canvas canvas) {
+            if (this.tabletLayout) {
+                Path path = this.clipPath;
+                path.rewind();
+                float fDpf2 = AndroidUtilities.dpf2(24.0f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, AndroidUtilities.statusBarHeight, getWidth(), getHeight());
+                path.addRoundRect(rectF, fDpf2, fDpf2, Path.Direction.CW);
+                canvas.save();
+                canvas.clipPath(path);
+            }
+            super.dispatchDraw(canvas);
+            if (this.tabletLayout) {
+                canvas.restore();
+            }
+        }
+
+        @Override
+        public float getAvailableTranslationX() {
+            return getMeasuredWidth();
+        }
+
+        @Override
+        public long getManualScrollDuration() {
+            return 320L;
+        }
+
+        @Override
+        public final void onItemSelected(View view, View view2, int i, int i2) {
+            ViewPagerActivity.this.checkFragmentsVisibility();
+        }
+
+        @Override
+        public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+        }
+
+        @Override
+        public final void onScrollEnd() {
+            DialogsActivity dialogsActivity;
+            ViewPagerActivity viewPagerActivity = ViewPagerActivity.this;
+            MainTabsActivity mainTabsActivity = (MainTabsActivity) viewPagerActivity;
+            if (mainTabsActivity.tabsView != null) {
+                mainTabsActivity.selectTab(mainTabsActivity.viewPager.getCurrentPosition(), true);
+                int i = 0;
+                while (i < mainTabsActivity.tabs.length) {
+                    float fMax = Math.max(0.0f, 1.0f - Math.abs((i > 2 ? i - 1 : i) - 0.0f));
+                    GlassTabView glassTabView = mainTabsActivity.tabs[i];
+                    glassTabView.gestureSelectedOverride = fMax;
+                    glassTabView.hasGestureSelectedOverride = false;
+                    glassTabView.invalidate();
+                    i++;
+                }
+                mainTabsActivity.tabsView.invalidate();
+            }
+            mainTabsActivity.blur3_invalidateBlur();
+            ViewPagerActivityPagerLayout viewPagerActivityPagerLayout = mainTabsActivity.viewPager;
+            if (viewPagerActivityPagerLayout != null) {
+                int currentPosition = viewPagerActivityPagerLayout.getCurrentPosition();
+                if (currentPosition != 2 && mainTabsActivity.dropCallsFragmentAfterPageScroll) {
+                    mainTabsActivity.dropFragmentAtPosition(2);
+                    mainTabsActivity.dropCallsFragmentAfterPageScroll = false;
+                }
+                if (currentPosition != 3) {
+                    mainTabsActivity.dropFragmentAtPosition(3);
+                }
+                Integer num = mainTabsActivity.pendingFolderId;
+                if (num != null && currentPosition == 0 && (dialogsActivity = mainTabsActivity.dialogsActivity) != null) {
+                    dialogsActivity.scrollToFolder(num.intValue());
+                    mainTabsActivity.pendingFolderId = null;
+                }
+            }
+            viewPagerActivity.checkFragmentsVisibility();
+        }
+
+        @Override
+        public final void onTabAnimationUpdate(boolean z) {
+            ViewPagerActivity viewPagerActivity = ViewPagerActivity.this;
+            MainTabsActivity mainTabsActivity = (MainTabsActivity) viewPagerActivity;
+            boolean z2 = !z;
+            if (mainTabsActivity.tabsView != null) {
+                float positionAnimated = mainTabsActivity.viewPager.getPositionAnimated();
+                int i = 0;
+                while (i < mainTabsActivity.tabs.length) {
+                    float fMax = Math.max(0.0f, 1.0f - Math.abs((i > 2 ? i - 1 : i) - positionAnimated));
+                    GlassTabView glassTabView = mainTabsActivity.tabs[i];
+                    glassTabView.gestureSelectedOverride = fMax;
+                    glassTabView.hasGestureSelectedOverride = z2;
+                    glassTabView.invalidate();
+                    i++;
+                }
+                mainTabsActivity.tabsView.invalidate();
+                if (!z) {
+                    mainTabsActivity.selectTab(Math.round(positionAnimated), true);
+                }
+            }
+            mainTabsActivity.checkUi_fadeView$1();
+            mainTabsActivity.blur3_invalidateBlur();
+            mainTabsActivity.contentView.invalidate();
+            viewPagerActivity.checkFragmentsVisibility();
+            viewPagerActivity.checkSystemBarColors();
+        }
+
+        @Override
+        public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
+            super.setLayoutParams(layoutParams);
+        }
+
+        public void setTabletLayout(boolean z) {
+            if (this.tabletLayout == z) {
+                return;
+            }
+            this.tabletLayout = z;
+            invalidate();
+        }
+    }
+
+    public ViewPagerActivity() {
+        super(null);
+        this.fragmentsArr = new SparseArray();
+        this.initialFragmentPosition = -1;
+        this.visibilityByParent = 0.0f;
+    }
+
+    public final void checkFragmentsVisibility() {
+        SparseArray sparseArray = this.fragmentsArr;
+        int size = sparseArray.size();
+        for (int i = 0; i < size; i++) {
+            FragmentState fragmentState = (FragmentState) sparseArray.valueAt(i);
+            int iKeyAt = sparseArray.keyAt(i);
+            if (fragmentState != null) {
+                BaseFragment baseFragment = fragmentState.fragment;
+                if (baseFragment.fragmentView != null) {
+                    ViewPagerActivityPagerLayout viewPagerActivityPagerLayout = this.viewPager;
+                    float fClamp = viewPagerActivityPagerLayout.getMeasuredWidth() == 0 ? MathUtils.clamp(1 - Math.abs(viewPagerActivityPagerLayout.getCurrentPosition() - iKeyAt), 0, 1) : MathUtils.clamp(1.0f - Math.abs(viewPagerActivityPagerLayout.getPositionAnimated() - iKeyAt), 0.0f, 1.0f);
+                    boolean z = this.isResumed;
+                    float f = z ? this.visibilityByParent : 0.0f;
+                    boolean z2 = this.isFullyVisible;
+                    float f2 = fragmentState.lastVisibility;
+                    float f3 = f * fClamp;
+                    fragmentState.lastVisibility = f3;
+                    boolean z3 = f3 > f2;
+                    if (!fragmentState.isResumed && fClamp > 0.0f && z && baseFragment.fragmentView != null) {
+                        baseFragment.onResume();
+                        fragmentState.isResumed = true;
+                    }
+                    if (!fragmentState.isInAnimation && ((f2 == 0.0f || f2 == 1.0f) && f2 != f3 && Math.abs(f2 - f3) != 1.0f)) {
+                        baseFragment.onTransitionAnimationStart(z3, false);
+                        fragmentState.isInAnimation = true;
+                    }
+                    if (fragmentState.isInAnimation && f2 != f3) {
+                        baseFragment.onTransitionAnimationProgress(z3, z3 ? f3 : 1.0f - f3);
+                    }
+                    if (fragmentState.isInAnimation && (f3 == 0.0f || f3 == 1.0f)) {
+                        baseFragment.onTransitionAnimationEnd(z3, false);
+                        fragmentState.isInAnimation = false;
+                    }
+                    if (!fragmentState.isFullyVisible && f3 >= 1.0f) {
+                        baseFragment.onBecomeFullyVisible();
+                        fragmentState.isFullyVisible = true;
+                    }
+                    if (fragmentState.isFullyVisible && ((f3 == 0.0f && !z2) || fClamp == 0.0f)) {
+                        baseFragment.onBecomeFullyHidden();
+                        fragmentState.isFullyVisible = false;
+                    }
+                    if (fragmentState.isResumed && ((f3 == 0.0f && !z) || fClamp == 0.0f)) {
+                        baseFragment.onPause();
+                        fragmentState.isResumed = false;
+                    }
+                }
+            }
+        }
+    }
 
     @Override
-    public ActionBar createActionBar(Context context) {
+    public final void clearViews() {
+        ViewPagerActivityPagerLayout viewPagerActivityPagerLayout = this.viewPager;
+        if (viewPagerActivityPagerLayout != null) {
+            this.initialFragmentPosition = viewPagerActivityPagerLayout.getCurrentPosition();
+        }
+        SparseArray sparseArray = this.fragmentsArr;
+        int size = sparseArray.size();
+        for (int i = 0; i < size; i++) {
+            FragmentState fragmentState = (FragmentState) sparseArray.valueAt(i);
+            if (fragmentState != null) {
+                boolean z = fragmentState.isResumed;
+                BaseFragment baseFragment = fragmentState.fragment;
+                if (z) {
+                    baseFragment.onPause();
+                    fragmentState.isResumed = false;
+                }
+                baseFragment.clearViews();
+            }
+        }
+        super.clearViews();
+    }
+
+    @Override
+    public final ActionBar createActionBar(Context context) {
         return null;
     }
 
-    protected abstract BaseFragment createBaseFragmentAt(int i);
-
-    protected abstract FrameLayout createContentView(Context context);
+    public abstract BaseFragment createBaseFragmentAt(int i);
 
     @Override
-    public boolean drawEdgeNavigationBar() {
-        return false;
-    }
-
-    protected abstract int getFragmentsCount();
-
-    protected abstract int getStartPosition();
-
-    @Override
-    public boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    protected abstract void onViewPagerScrollEnd();
-
-    protected abstract void onViewPagerTabAnimationUpdate(boolean z);
-
-    @Override
-    public View createView(final Context context) {
+    public View createView(Context context) {
         this.hasOwnBackground = true;
-        this.contentView = createContentView(context);
-        this.viewPager = new ViewPagerActivityPagerLayout(context);
+        this.contentView = new LoginActivity.AnonymousClass4((MainTabsActivity) this, context, 10);
+        ViewPagerActivityPagerLayout viewPagerActivityPagerLayout = new ViewPagerActivityPagerLayout(context);
+        this.viewPager = viewPagerActivityPagerLayout;
         if (this.initialFragmentPosition == -1) {
-            this.initialFragmentPosition = getStartPosition();
+            this.initialFragmentPosition = 0;
         }
-        this.viewPager.setPosition(this.initialFragmentPosition);
-        this.viewPager.setAdapter(new ViewPagerFixed.Adapter() {
-            @Override
-            public int getItemCount() {
-                return ViewPagerActivity.this.getFragmentsCount();
-            }
-
-            @Override
-            public View createView(int i) {
-                return new ViewPagerFragmentRootLayout(context);
-            }
-
-            @Override
-            public void bindView(View view, int i, int i2) {
-                BaseFragment baseFragment;
-                FragmentState fragmentState = (FragmentState) ViewPagerActivity.this.fragmentsArr.get(i);
-                if (fragmentState != null) {
-                    baseFragment = fragmentState.fragment;
-                } else {
-                    BaseFragment baseFragmentCreateBaseFragmentAt = ViewPagerActivity.this.createBaseFragmentAt(i);
-                    FragmentState fragmentState2 = new FragmentState(baseFragmentCreateBaseFragmentAt);
-                    ViewPagerActivity.this.fragmentsArr.put(i, fragmentState2);
-                    baseFragment = baseFragmentCreateBaseFragmentAt;
-                    fragmentState = fragmentState2;
-                }
-                if (!fragmentState.onCreateCalled) {
-                    baseFragment.onFragmentCreate();
-                    fragmentState.onCreateCalled = true;
-                }
-                baseFragment.setParentLayout(ViewPagerActivity.this.getParentLayout());
-                if (baseFragment.getFragmentView() == null) {
-                    baseFragment.performCreateView(context);
-                    baseFragment.setTitleOverlayText(ViewPagerActivity.this.titleOverlay, ViewPagerActivity.this.titleOverlayId, ViewPagerActivity.this.titleOverlayAction);
-                }
-                FrameLayout frameLayout = (FrameLayout) view;
-                frameLayout.removeAllViews();
-                View fragmentView = baseFragment.getFragmentView();
-                AndroidUtilities.removeFromParent(fragmentView);
-                if (!baseFragment.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    fragmentView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                }
-                frameLayout.addView(fragmentView, LayoutHelper.createFrame(-1, -1.0f));
-                if (baseFragment.getActionBar() != null && baseFragment.getActionBar().shouldAddToContainer()) {
-                    AndroidUtilities.removeFromParent(baseFragment.getActionBar());
-                    frameLayout.addView(baseFragment.getActionBar());
-                }
-                ViewCompat.requestApplyInsets(frameLayout);
-                ViewPagerActivity.this.checkSystemBarColors();
-                ViewPagerActivity.this.checkFragmentsVisibility();
-            }
-        });
-        this.contentView.addView(this.viewPager, LayoutHelper.createFrame(-1, -1.0f));
-        FrameLayout frameLayout = this.contentView;
-        this.fragmentView = frameLayout;
-        ViewCompat.setOnApplyWindowInsetsListener(frameLayout, new OnApplyWindowInsetsListener() {
-            @Override
-            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                return this.f$0.onApplyWindowInsets(view, windowInsetsCompat);
-            }
-        });
+        viewPagerActivityPagerLayout.setPosition(this.initialFragmentPosition);
+        this.viewPager.setAdapter(new PollItemMenu.AnonymousClass4(this, context, 5));
+        this.contentView.addView(this.viewPager, LayoutHelper.createFrame(-1.0f, -1));
+        LoginActivity.AnonymousClass4 anonymousClass4 = this.contentView;
+        this.fragmentView = anonymousClass4;
+        TodoItemMenu$$ExternalSyntheticLambda3 todoItemMenu$$ExternalSyntheticLambda3 = new TodoItemMenu$$ExternalSyntheticLambda3(this, 6);
+        WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
+        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(anonymousClass4, todoItemMenu$$ExternalSyntheticLambda3);
         return this.fragmentView;
     }
 
-    protected void putFragmentAtPosition(int i, BaseFragment baseFragment) {
-        this.fragmentsArr.put(i, new FragmentState(baseFragment));
+    @Override
+    public final boolean drawEdgeNavigationBar() {
+        return false;
     }
 
-    protected WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-        View fragmentView;
-        int size = this.fragmentsArr.size();
-        for (int i = 0; i < size; i++) {
-            FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i);
-            if (fragmentState != null && (fragmentView = fragmentState.fragment.getFragmentView()) != null) {
-                ViewCompat.dispatchApplyWindowInsets(fragmentView, windowInsetsCompat);
+    public final void dropFragmentAtPosition(int i) {
+        SparseArray sparseArray = this.fragmentsArr;
+        FragmentState fragmentState = (FragmentState) sparseArray.get(i);
+        if (fragmentState != null) {
+            boolean z = fragmentState.isFullyVisible;
+            BaseFragment baseFragment = fragmentState.fragment;
+            if (z) {
+                baseFragment.onBecomeFullyHidden();
             }
+            if (fragmentState.isResumed) {
+                baseFragment.onPause();
+            }
+            baseFragment.onFragmentDestroy();
+            baseFragment.setParentLayout(null);
         }
-        return WindowInsetsCompat.CONSUMED;
+        sparseArray.remove(i);
     }
 
-    public BaseFragment getCurrentVisibleFragment() {
+    public final BaseFragment getCurrentVisibleFragment() {
         ViewPagerActivityPagerLayout viewPagerActivityPagerLayout = this.viewPager;
         if (viewPagerActivityPagerLayout == null) {
             return null;
@@ -163,48 +332,31 @@ public abstract class ViewPagerActivity extends BaseFragment {
     }
 
     @Override
-    public void clearViews() {
-        ViewPagerActivityPagerLayout viewPagerActivityPagerLayout = this.viewPager;
-        if (viewPagerActivityPagerLayout != null) {
-            this.initialFragmentPosition = viewPagerActivityPagerLayout.getCurrentPosition();
-        }
-        int size = this.fragmentsArr.size();
+    public ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        SparseArray sparseArray = this.fragmentsArr;
+        int size = sparseArray.size();
         for (int i = 0; i < size; i++) {
-            FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i);
+            FragmentState fragmentState = (FragmentState) sparseArray.valueAt(i);
             if (fragmentState != null) {
-                if (fragmentState.isResumed) {
-                    fragmentState.fragment.onPause();
-                    fragmentState.isResumed = false;
+                BaseFragment baseFragment = fragmentState.fragment;
+                if (baseFragment.fragmentView != null) {
+                    arrayList.addAll(baseFragment.getThemeDescriptions());
                 }
-                fragmentState.fragment.clearViews();
             }
         }
-        super.clearViews();
-    }
-
-    protected void clearAllHiddenFragments() {
-        int currentPosition = this.viewPager.getCurrentPosition();
-        int size = this.fragmentsArr.size();
-        for (int i = 0; i < size; i++) {
-            FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i);
-            if (this.fragmentsArr.keyAt(i) != currentPosition && fragmentState != null) {
-                fragmentState.fragment.clearViews();
-            }
-        }
+        return arrayList;
     }
 
     @Override
-    public boolean isLightStatusBar() {
+    public final boolean isLightStatusBar() {
         BaseFragment currentVisibleFragment = getCurrentVisibleFragment();
         return (currentVisibleFragment == null || currentVisibleFragment.fragmentView == null) ? super.isLightStatusBar() : currentVisibleFragment.isLightStatusBar();
     }
 
     @Override
-    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
-        BaseFragment currentVisibleFragment = getCurrentVisibleFragment();
-        if (currentVisibleFragment != null) {
-            currentVisibleFragment.onRequestPermissionsResultFragment(i, strArr, iArr);
-        }
+    public final boolean isSupportEdgeToEdge() {
+        return true;
     }
 
     @Override
@@ -223,19 +375,36 @@ public abstract class ViewPagerActivity extends BaseFragment {
     }
 
     @Override
-    public ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        int size = this.fragmentsArr.size();
+    public final void onBecomeFullyHidden() {
+        super.onBecomeFullyHidden();
+        this.visibilityByParent = 0.0f;
+        this.isFullyVisible = false;
+        checkFragmentsVisibility();
+    }
+
+    @Override
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        this.visibilityByParent = 1.0f;
+        this.isFullyVisible = true;
+        checkFragmentsVisibility();
+        checkSystemBarColors();
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        SparseArray sparseArray = this.fragmentsArr;
+        int size = sparseArray.size();
         for (int i = 0; i < size; i++) {
-            FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i);
-            if (fragmentState != null) {
+            FragmentState fragmentState = (FragmentState) sparseArray.valueAt(i);
+            if (fragmentState.onCreateCalled) {
                 BaseFragment baseFragment = fragmentState.fragment;
-                if (baseFragment.fragmentView != null) {
-                    arrayList.addAll(baseFragment.getThemeDescriptions());
-                }
+                baseFragment.onFragmentDestroy();
+                baseFragment.setParentLayout(null);
             }
         }
-        return arrayList;
+        sparseArray.clear();
     }
 
     @Override
@@ -243,6 +412,14 @@ public abstract class ViewPagerActivity extends BaseFragment {
         super.onPause();
         this.isResumed = false;
         checkFragmentsVisibility();
+    }
+
+    @Override
+    public final void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
+        BaseFragment currentVisibleFragment = getCurrentVisibleFragment();
+        if (currentVisibleFragment != null) {
+            currentVisibleFragment.onRequestPermissionsResultFragment(i, strArr, iArr);
+        }
     }
 
     @Override
@@ -254,7 +431,7 @@ public abstract class ViewPagerActivity extends BaseFragment {
     }
 
     @Override
-    public void onTransitionAnimationProgress(boolean z, float f) {
+    public final void onTransitionAnimationProgress(boolean z, float f) {
         super.onTransitionAnimationProgress(z, f);
         if (!z) {
             f = 1.0f - f;
@@ -264,226 +441,23 @@ public abstract class ViewPagerActivity extends BaseFragment {
     }
 
     @Override
-    public void onBecomeFullyHidden() {
-        super.onBecomeFullyHidden();
-        this.visibilityByParent = 0.0f;
-        this.isFullyVisible = false;
-        checkFragmentsVisibility();
-    }
-
-    @Override
-    public void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        this.visibilityByParent = 1.0f;
-        this.isFullyVisible = true;
-        checkFragmentsVisibility();
-        checkSystemBarColors();
-    }
-
-    public void checkFragmentsVisibility() {
-        int size = this.fragmentsArr.size();
-        for (int i = 0; i < size; i++) {
-            FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i);
-            int iKeyAt = this.fragmentsArr.keyAt(i);
-            if (fragmentState != null && fragmentState.fragment.fragmentView != null) {
-                float positionVisibility = this.viewPager.getPositionVisibility(iKeyAt);
-                boolean z = this.isResumed;
-                fragmentState.setVisibility(positionVisibility, z ? this.visibilityByParent : 0.0f, this.isFullyVisible, z);
-            }
-        }
-    }
-
-    protected void dropFragmentAtPosition(int i) {
-        FragmentState fragmentState = (FragmentState) this.fragmentsArr.get(i);
-        if (fragmentState != null) {
-            if (fragmentState.isFullyVisible) {
-                fragmentState.fragment.onBecomeFullyHidden();
-            }
-            if (fragmentState.isResumed) {
-                fragmentState.fragment.onPause();
-            }
-            fragmentState.fragment.onFragmentDestroy();
-            fragmentState.fragment.setParentLayout(null);
-        }
-        this.fragmentsArr.remove(i);
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        int size = this.fragmentsArr.size();
-        for (int i = 0; i < size; i++) {
-            FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i);
-            if (fragmentState.onCreateCalled) {
-                fragmentState.fragment.onFragmentDestroy();
-                fragmentState.fragment.setParentLayout(null);
-            }
-        }
-        this.fragmentsArr.clear();
-    }
-
-    @Override
-    public void setTitleOverlayTextIfActionBarAttached(String str, int i, Runnable runnable) {
-        setTitleOverlayText(str, i, runnable);
-    }
-
-    @Override
-    public void setTitleOverlayText(String str, int i, Runnable runnable) {
+    public final void setTitleOverlayText(String str, int i, Runnable runnable) {
         super.setTitleOverlayText(str, i, runnable);
         this.titleOverlay = str;
         this.titleOverlayId = i;
         this.titleOverlayAction = runnable;
-        int size = this.fragmentsArr.size();
+        SparseArray sparseArray = this.fragmentsArr;
+        int size = sparseArray.size();
         for (int i2 = 0; i2 < size; i2++) {
-            FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i2);
+            FragmentState fragmentState = (FragmentState) sparseArray.valueAt(i2);
             if (fragmentState != null) {
                 fragmentState.fragment.setTitleOverlayText(str, i, runnable);
             }
         }
     }
 
-    protected static class FragmentState {
-        public final BaseFragment fragment;
-        private boolean isFullyVisible;
-        private boolean isInAnimation;
-        private boolean isResumed;
-        private float lastVisibility;
-        private boolean onCreateCalled;
-
-        public void setVisibility(float f, float f2, boolean z, boolean z2) {
-            float f3 = this.lastVisibility;
-            float f4 = f2 * f;
-            this.lastVisibility = f4;
-            boolean z3 = f4 > f3;
-            if (!this.isResumed && f > 0.0f && z2) {
-                BaseFragment baseFragment = this.fragment;
-                if (baseFragment.fragmentView != null) {
-                    baseFragment.onResume();
-                    this.isResumed = true;
-                }
-            }
-            if (!this.isInAnimation && ((f3 == 0.0f || f3 == 1.0f) && f3 != f4 && Math.abs(f3 - f4) != 1.0f)) {
-                this.fragment.onTransitionAnimationStart(z3, false);
-                this.isInAnimation = true;
-            }
-            if (this.isInAnimation && f3 != f4) {
-                this.fragment.onTransitionAnimationProgress(z3, z3 ? f4 : 1.0f - f4);
-            }
-            if (this.isInAnimation && (f4 == 0.0f || f4 == 1.0f)) {
-                this.fragment.onTransitionAnimationEnd(z3, false);
-                this.isInAnimation = false;
-            }
-            if (!this.isFullyVisible && f4 >= 1.0f) {
-                this.fragment.onBecomeFullyVisible();
-                this.isFullyVisible = true;
-            }
-            if (this.isFullyVisible && ((f4 == 0.0f && !z) || f == 0.0f)) {
-                this.fragment.onBecomeFullyHidden();
-                this.isFullyVisible = false;
-            }
-            if (this.isResumed) {
-                if ((f4 != 0.0f || z2) && f != 0.0f) {
-                    return;
-                }
-                this.fragment.onPause();
-                this.isResumed = false;
-            }
-        }
-
-        private FragmentState(BaseFragment baseFragment) {
-            this.fragment = baseFragment;
-        }
-    }
-
-    public class ViewPagerActivityPagerLayout extends ViewPagerFixed {
-        private final Path clipPath;
-        private boolean tabletLayout;
-
-        @Override
-        protected long getManualScrollDuration() {
-            return 320L;
-        }
-
-        public ViewPagerActivityPagerLayout(Context context) {
-            super(context);
-            this.clipPath = new Path();
-        }
-
-        public void setTabletLayout(boolean z) {
-            if (this.tabletLayout == z) {
-                return;
-            }
-            this.tabletLayout = z;
-            invalidate();
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            if (this.tabletLayout) {
-                this.clipPath.rewind();
-                float fDpf2 = AndroidUtilities.dpf2(24.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, AndroidUtilities.statusBarHeight, getWidth(), getHeight());
-                this.clipPath.addRoundRect(rectF, fDpf2, fDpf2, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(this.clipPath);
-            }
-            super.dispatchDraw(canvas);
-            if (this.tabletLayout) {
-                canvas.restore();
-            }
-        }
-
-        @Override
-        protected void onScrollEnd() {
-            super.onScrollEnd();
-            ViewPagerActivity.this.onViewPagerScrollEnd();
-            ViewPagerActivity.this.checkFragmentsVisibility();
-        }
-
-        @Override
-        protected float getAvailableTranslationX() {
-            return getMeasuredWidth();
-        }
-
-        @Override
-        protected void onItemSelected(View view, View view2, int i, int i2) {
-            super.onItemSelected(view, view2, i, i2);
-            ViewPagerActivity.this.checkFragmentsVisibility();
-        }
-
-        @Override
-        public void onTabAnimationUpdate(boolean z) {
-            super.onTabAnimationUpdate(z);
-            ViewPagerActivity.this.onViewPagerTabAnimationUpdate(z);
-            ViewPagerActivity.this.checkFragmentsVisibility();
-            ViewPagerActivity.this.checkSystemBarColors();
-        }
-
-        @Override
-        protected boolean canScrollBackward(MotionEvent motionEvent) {
-            return ViewPagerActivity.this.canScrollBackward(motionEvent);
-        }
-
-        @Override
-        protected boolean canScrollForward(MotionEvent motionEvent) {
-            return ViewPagerActivity.this.canScrollForward(motionEvent);
-        }
-
-        @Override
-        public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
-            super.setLayoutParams(layoutParams);
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-        }
-    }
-
-    private static class ViewPagerFragmentRootLayout extends FrameLayout {
-        public ViewPagerFragmentRootLayout(Context context) {
-            super(context);
-        }
+    @Override
+    public final void setTitleOverlayTextIfActionBarAttached(String str, int i, Runnable runnable) {
+        setTitleOverlayText(str, i, runnable);
     }
 }

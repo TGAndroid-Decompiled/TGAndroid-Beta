@@ -33,11 +33,11 @@ public class FontInfo {
     private final Map<CharCouple, Float> kern = new HashMap();
     private char skewChar = 65535;
 
-    private class CharCouple {
+    public class CharCouple {
         private final char left;
         private final char right;
 
-        CharCouple(char c, char c2) {
+        public CharCouple(char c, char c2) {
             this.left = c;
             this.right = c2;
         }
@@ -85,12 +85,32 @@ public class FontInfo {
         this.lig.put(new CharCouple(c, c2), new Character(c3));
     }
 
+    public int getBoldId() {
+        return this.boldId;
+    }
+
     public int[] getExtension(char c) {
         HashMap<Character, Character> map = this.unicode;
-        if (map == null) {
-            return this.extensions[c];
+        return map == null ? this.extensions[c] : this.extensions[map.get(Character.valueOf(c)).charValue()];
+    }
+
+    public Font getFont() {
+        if (this.font == null) {
+            if (this.base == null) {
+                this.font = DefaultTeXFontParser.createFont(this.path);
+            } else {
+                this.font = DefaultTeXFontParser.createFont(this.path);
+            }
         }
-        return this.extensions[map.get(Character.valueOf(c)).charValue()];
+        return this.font;
+    }
+
+    public int getId() {
+        return this.fontId;
+    }
+
+    public int getItId() {
+        return this.itId;
     }
 
     public float getKern(char c, char c2, float f) {
@@ -111,22 +131,20 @@ public class FontInfo {
 
     public float[] getMetrics(char c) {
         HashMap<Character, Character> map = this.unicode;
-        if (map == null) {
-            return this.metrics[c];
-        }
-        return this.metrics[map.get(Character.valueOf(c)).charValue()];
+        return map == null ? this.metrics[c] : this.metrics[map.get(Character.valueOf(c)).charValue()];
     }
 
     public CharFont getNextLarger(char c) {
         HashMap<Character, Character> map = this.unicode;
-        if (map == null) {
-            return this.nextLarger[c];
-        }
-        return this.nextLarger[map.get(Character.valueOf(c)).charValue()];
+        return map == null ? this.nextLarger[c] : this.nextLarger[map.get(Character.valueOf(c)).charValue()];
     }
 
     public float getQuad(float f) {
         return this.quad * f;
+    }
+
+    public int getRomanId() {
+        return this.romanId;
     }
 
     public char getSkewChar() {
@@ -137,6 +155,14 @@ public class FontInfo {
         return this.space * f;
     }
 
+    public int getSsId() {
+        return this.ssId;
+    }
+
+    public int getTtId() {
+        return this.ttId;
+    }
+
     public float getXHeight(float f) {
         return this.xHeight * f;
     }
@@ -145,19 +171,33 @@ public class FontInfo {
         return this.space > 1.0E-7f;
     }
 
+    public void setBoldId(int i) {
+        if (i == -1) {
+            i = this.fontId;
+        }
+        this.boldId = i;
+    }
+
     public void setExtension(char c, int[] iArr) {
         HashMap<Character, Character> map = this.unicode;
         if (map == null) {
             this.extensions[c] = iArr;
         } else {
-            if (!map.containsKey(Character.valueOf(c))) {
-                char size = (char) this.unicode.size();
-                this.unicode.put(Character.valueOf(c), Character.valueOf(size));
-                this.extensions[size] = iArr;
+            if (map.containsKey(Character.valueOf(c))) {
+                this.extensions[this.unicode.get(Character.valueOf(c)).charValue()] = iArr;
                 return;
             }
-            this.extensions[this.unicode.get(Character.valueOf(c)).charValue()] = iArr;
+            char size = (char) this.unicode.size();
+            this.unicode.put(Character.valueOf(c), Character.valueOf(size));
+            this.extensions[size] = iArr;
         }
+    }
+
+    public void setItId(int i) {
+        if (i == -1) {
+            i = this.fontId;
+        }
+        this.itId = i;
     }
 
     public void setMetrics(char c, float[] fArr) {
@@ -165,13 +205,13 @@ public class FontInfo {
         if (map == null) {
             this.metrics[c] = fArr;
         } else {
-            if (!map.containsKey(Character.valueOf(c))) {
-                char size = (char) this.unicode.size();
-                this.unicode.put(Character.valueOf(c), Character.valueOf(size));
-                this.metrics[size] = fArr;
+            if (map.containsKey(Character.valueOf(c))) {
+                this.metrics[this.unicode.get(Character.valueOf(c)).charValue()] = fArr;
                 return;
             }
-            this.metrics[this.unicode.get(Character.valueOf(c)).charValue()] = fArr;
+            char size = (char) this.unicode.size();
+            this.unicode.put(Character.valueOf(c), Character.valueOf(size));
+            this.metrics[size] = fArr;
         }
     }
 
@@ -180,42 +220,25 @@ public class FontInfo {
         if (map == null) {
             this.nextLarger[c] = new CharFont(c2, i);
         } else {
-            if (!map.containsKey(Character.valueOf(c))) {
-                char size = (char) this.unicode.size();
-                this.unicode.put(Character.valueOf(c), Character.valueOf(size));
-                this.nextLarger[size] = new CharFont(c2, i);
+            if (map.containsKey(Character.valueOf(c))) {
+                this.nextLarger[this.unicode.get(Character.valueOf(c)).charValue()] = new CharFont(c2, i);
                 return;
             }
-            this.nextLarger[this.unicode.get(Character.valueOf(c)).charValue()] = new CharFont(c2, i);
+            char size = (char) this.unicode.size();
+            this.unicode.put(Character.valueOf(c), Character.valueOf(size));
+            this.nextLarger[size] = new CharFont(c2, i);
         }
+    }
+
+    public void setRomanId(int i) {
+        if (i == -1) {
+            i = this.fontId;
+        }
+        this.romanId = i;
     }
 
     public void setSkewChar(char c) {
         this.skewChar = c;
-    }
-
-    public int getId() {
-        return this.fontId;
-    }
-
-    public int getBoldId() {
-        return this.boldId;
-    }
-
-    public int getRomanId() {
-        return this.romanId;
-    }
-
-    public int getTtId() {
-        return this.ttId;
-    }
-
-    public int getItId() {
-        return this.itId;
-    }
-
-    public int getSsId() {
-        return this.ssId;
     }
 
     public void setSsId(int i) {
@@ -230,38 +253,6 @@ public class FontInfo {
             i = this.fontId;
         }
         this.ttId = i;
-    }
-
-    public void setItId(int i) {
-        if (i == -1) {
-            i = this.fontId;
-        }
-        this.itId = i;
-    }
-
-    public void setRomanId(int i) {
-        if (i == -1) {
-            i = this.fontId;
-        }
-        this.romanId = i;
-    }
-
-    public void setBoldId(int i) {
-        if (i == -1) {
-            i = this.fontId;
-        }
-        this.boldId = i;
-    }
-
-    public Font getFont() {
-        if (this.font == null) {
-            if (this.base == null) {
-                this.font = DefaultTeXFontParser.createFont(this.path);
-            } else {
-                this.font = DefaultTeXFontParser.createFont(this.path);
-            }
-        }
-        return this.font;
     }
 
     public static Font getFont(int i) {

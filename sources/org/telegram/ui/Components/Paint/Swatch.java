@@ -1,17 +1,15 @@
 package org.telegram.ui.Components.Paint;
 
-public class Swatch {
+public final class Swatch {
     public float brushWeight;
     public int color;
-    public float colorLocation;
 
-    public Swatch(int i, float f, float f2) {
+    public Swatch(float f, int i) {
         this.color = i;
-        this.colorLocation = f;
-        this.brushWeight = f2;
+        this.brushWeight = f;
     }
 
-    public Swatch clone() {
-        return new Swatch(this.color, this.colorLocation, this.brushWeight);
+    public final Object clone() {
+        return new Swatch(this.brushWeight, this.color);
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,18 +16,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CacheControlActivity;
 
-public class DownloadsInfoBottomSheet extends BottomSheet {
-    public static void show(Activity activity, BaseFragment baseFragment) {
-        if (baseFragment == null || activity == null) {
-            return;
-        }
-        new DownloadsInfoBottomSheet(activity, baseFragment, false).show();
-    }
+public final class DownloadsInfoBottomSheet extends BottomSheet {
+    public static final int $r8$clinit = 0;
 
-    public DownloadsInfoBottomSheet(Context context, final BaseFragment baseFragment, boolean z) {
-        super(context, z);
+    public DownloadsInfoBottomSheet(Context context, BaseFragment baseFragment) {
+        super(context, null, false, false);
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
         int i = Theme.key_windowBackgroundWhite;
@@ -38,13 +31,27 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.addView(linearLayout);
         ImageView imageView = new ImageView(context);
-        imageView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
+        imageView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, -1));
         imageView.setColorFilter(getThemedColor(Theme.key_sheet_other));
         imageView.setImageResource(R.drawable.ic_layer_close);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        final int i2 = 0;
+        imageView.setOnClickListener(new View.OnClickListener(this) {
+            public final DownloadsInfoBottomSheet f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                this.f$0.dismiss();
+                switch (i2) {
+                    case 0:
+                        this.f$0.lambda$new$0$43(view);
+                        break;
+                    default:
+                        this.f$0.lambda$new$2$21();
+                        break;
+                }
             }
         });
         int iDp = AndroidUtilities.dp(8.0f);
@@ -56,15 +63,15 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         linearLayout.addView(stickerImageView, LayoutHelper.createLinear(110, 110, 1, 0, 26, 0, 0));
         TextView textView = new TextView(context);
         textView.setGravity(1);
-        int i2 = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i2));
+        int i3 = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(null, i3, false));
         textView.setTextSize(1, 20.0f);
         textView.setText(LocaleController.getString(R.string.DownloadedFiles));
         linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
         textView2.setGravity(1);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(Theme.getColor(i2));
+        textView2.setTextColor(Theme.getColor(null, i3, false));
         textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
         textView2.setText(LocaleController.formatString("DownloadedFilesMessage", R.string.DownloadedFilesMessage, new Object[0]));
         linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 28.0f, 7.0f, 28.0f, 0.0f));
@@ -76,10 +83,12 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString(R.string.ManageDeviceStorage));
-        textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        textView3.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
         int iDp2 = AndroidUtilities.dp(8.0f);
-        int i3 = Theme.key_featuredStickers_addButton;
-        textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp2, Theme.getColor(i3), ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
+        int i4 = Theme.key_featuredStickers_addButton;
+        int color = Theme.getColor(null, i4, false);
+        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(null, i, false), 120);
+        textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp2, iDp2, iDp2, iDp2, color, alphaComponent, alphaComponent));
         linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 14.0f, 28.0f, 14.0f, 6.0f));
         TextView textView4 = new TextView(context);
         textView4.setGravity(17);
@@ -88,34 +97,40 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView4.setTextSize(1, 14.0f);
         textView4.setTypeface(AndroidUtilities.bold());
         textView4.setText(LocaleController.getString(R.string.ClearDownloadsList));
-        textView4.setTextColor(Theme.getColor(i3));
-        textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i3), 120)));
+        textView4.setTextColor(Theme.getColor(null, i4, false));
+        int iDp3 = AndroidUtilities.dp(8.0f);
+        int alphaComponent2 = ColorUtils.setAlphaComponent(Theme.getColor(null, i4, false), 120);
+        textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp3, iDp3, iDp3, iDp3, 0, alphaComponent2, alphaComponent2));
         textView4.setLetterSpacing(0.025f);
         linearLayout.addView(textView4, LayoutHelper.createFrame(-1, 48.0f, 0, 14.0f, 0.0f, 14.0f, 6.0f));
-        NestedScrollView nestedScrollView = new NestedScrollView(context);
+        NestedScrollView nestedScrollView = new NestedScrollView(context, null);
         nestedScrollView.addView(frameLayout);
         setCustomView(nestedScrollView);
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                DownloadsInfoBottomSheet.$r8$lambda$nBRcZ_f5zj5hhAEmowDcgtkn4gs(this.f$0, baseFragment, view);
+        textView3.setOnClickListener(new ItemOptions$$ExternalSyntheticLambda7(22, this, baseFragment));
+        final int i5 = 1;
+        textView4.setOnClickListener(new View.OnClickListener(this) {
+            public final DownloadsInfoBottomSheet f$0;
+
+            {
+                this.f$0 = this;
             }
-        });
-        textView4.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public final void onClick(View view) {
-                DownloadsInfoBottomSheet.$r8$lambda$cSwXXXPeBxdrgqrqbP1BaMvCESs(this.f$0, view);
+                switch (i5) {
+                    case 0:
+                        this.f$0.lambda$new$0$43(view);
+                        break;
+                    default:
+                        this.f$0.lambda$new$2$21();
+                        break;
+                }
             }
         });
     }
 
-    public static void $r8$lambda$nBRcZ_f5zj5hhAEmowDcgtkn4gs(DownloadsInfoBottomSheet downloadsInfoBottomSheet, BaseFragment baseFragment, View view) {
-        downloadsInfoBottomSheet.dismiss();
-        baseFragment.presentFragment(new CacheControlActivity());
-    }
-
-    public static void $r8$lambda$cSwXXXPeBxdrgqrqbP1BaMvCESs(DownloadsInfoBottomSheet downloadsInfoBottomSheet, View view) {
-        downloadsInfoBottomSheet.dismiss();
-        DownloadController.getInstance(downloadsInfoBottomSheet.currentAccount).clearRecentDownloadedFiles();
+    public final void lambda$new$2$21() {
+        lambda$showGiftOfferSheet$15();
+        DownloadController.getInstance(this.currentAccount).clearRecentDownloadedFiles();
     }
 }

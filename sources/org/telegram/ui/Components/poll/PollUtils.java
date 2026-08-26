@@ -1,6 +1,8 @@
 package org.telegram.ui.Components.poll;
 
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 import me.vkryl.core.BitwiseUtils;
 import org.telegram.messenger.AndroidUtilities;
@@ -46,63 +48,51 @@ public abstract class PollUtils {
         return i2;
     }
 
-    public static CharSequence getVoteRestrictedToastText(MessageObject messageObject, int i) {
-        int i2;
-        int i3;
+    public static SpannableStringBuilder getVoteRestrictedToastText(MessageObject messageObject, int i) {
         if (messageObject.type != 17) {
             return null;
         }
         TLRPC.Message message = messageObject.messageOwner;
-        int i4 = messageObject.currentAccount;
+        int i2 = messageObject.currentAccount;
         TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) MessageObject.getMedia(message, TLRPC.TL_messageMediaPoll.class);
         if (tL_messageMediaPoll == null) {
             return null;
         }
-        if (BitwiseUtils.hasFlag(i, 4)) {
-            ArrayList arrayList = new ArrayList(tL_messageMediaPoll.poll.countries_iso2.size());
-            ArrayList<String> arrayList2 = tL_messageMediaPoll.poll.countries_iso2;
-            int size = arrayList2.size();
-            int i5 = 0;
-            while (i5 < size) {
-                String str = arrayList2.get(i5);
-                i5++;
-                String str2 = str;
-                String countryName = LocaleController.getCountryName(str2);
-                if (!TextUtils.isEmpty(countryName)) {
-                    str2 = countryName;
-                }
-                arrayList.add(str2);
+        if (!BitwiseUtils.hasFlag(i, 4)) {
+            if (BitwiseUtils.hasFlag(i, 1)) {
+                TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
+                return AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2ToastOnlySubscribersCanVote, DialogObject.getShortName(MessagesController.getInstance(i2).getChat(Long.valueOf(-(messageFwdHeader != null ? DialogObject.getPeerDialogId(messageFwdHeader.from_id) : messageObject.getDialogId()))))));
             }
-            boolean z = tL_messageMediaPoll.poll.subscribers_only;
-            if (arrayList.size() == 1) {
-                if (z) {
-                    i3 = R.string.PollV2ToastOnlySubscribersFromCountriesCanVoteOne;
-                } else {
-                    i3 = R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOne;
-                }
-                return AndroidUtilities.replaceTags(LocaleController.formatString(i3, arrayList.get(0)));
+            if (BitwiseUtils.hasFlag(i, 2)) {
+                return AndroidUtilities.replaceTags(LocaleController.getString(R.string.PollV2ToastOnlySubscribersJoined24hCanVote));
             }
-            StringBuffer stringBuffer = new StringBuffer();
-            for (int i6 = 0; i6 < arrayList.size() - 1; i6++) {
-                if (stringBuffer.length() > 0) {
-                    stringBuffer.append(", ");
-                }
-                stringBuffer.append((String) arrayList.get(i6));
-            }
-            if (z) {
-                i2 = R.string.PollV2ToastOnlySubscribersFromCountriesCanVoteOther;
-            } else {
-                i2 = R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOther;
-            }
-            return AndroidUtilities.replaceTags(LocaleController.formatString(i2, stringBuffer, arrayList.get(arrayList.size() - 1)));
+            return null;
         }
-        if (BitwiseUtils.hasFlag(i, 1)) {
-            TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
-            return AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2ToastOnlySubscribersCanVote, DialogObject.getShortName(MessagesController.getInstance(i4).getChat(Long.valueOf(-(messageFwdHeader != null ? DialogObject.getPeerDialogId(messageFwdHeader.from_id) : messageObject.getDialogId()))))));
+        ArrayList arrayList = new ArrayList(tL_messageMediaPoll.poll.countries_iso2.size());
+        ArrayList<String> arrayList2 = tL_messageMediaPoll.poll.countries_iso2;
+        int size = arrayList2.size();
+        int i3 = 0;
+        while (i3 < size) {
+            String str = arrayList2.get(i3);
+            i3++;
+            String str2 = str;
+            String countryName = LocaleController.getCountryName(str2);
+            if (!TextUtils.isEmpty(countryName)) {
+                str2 = countryName;
+            }
+            arrayList.add(str2);
         }
-        if (BitwiseUtils.hasFlag(i, 2)) {
-            return AndroidUtilities.replaceTags(LocaleController.getString(R.string.PollV2ToastOnlySubscribersJoined24hCanVote));
+        boolean z = tL_messageMediaPoll.poll.subscribers_only;
+        if (arrayList.size() == 1) {
+            return AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PollV2ToastOnlySubscribersFromCountriesCanVoteOne : R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOne, arrayList.get(0)));
         }
-        return null;
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i4 = 0; i4 < arrayList.size() - 1; i4++) {
+            if (stringBuffer.length() > 0) {
+                stringBuffer.append(", ");
+            }
+            stringBuffer.append((String) arrayList.get(i4));
+        }
+        return AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PollV2ToastOnlySubscribersFromCountriesCanVoteOther : R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOther, stringBuffer, SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList)));
     }
 }

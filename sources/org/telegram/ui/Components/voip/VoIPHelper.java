@@ -1,19 +1,19 @@
 package org.telegram.ui.Components.voip;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
+import com.google.android.gms.internal.mlkit_vision_common.zzkr;
+import com.google.android.gms.internal.mlkit_vision_common.zzlm;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,314 +31,61 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda61;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.TextCheckCell;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BetterRatingView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.JoinCallAlert;
 import org.telegram.ui.Components.JoinCallByUrlAlert;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.RadialProgress2$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.ShareAlert$$ExternalSyntheticLambda15;
+import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda8;
 import org.telegram.ui.GroupCallActivity;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda11;
+import org.telegram.ui.PhotoPickerActivity$$ExternalSyntheticLambda9;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda161;
+import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
+import org.telegram.ui.bots.BotLocation$$ExternalSyntheticLambda7;
 
 public abstract class VoIPHelper {
     public static long lastCallTime;
 
-    public static void $r8$lambda$xnMlA0qHzx_eZwdg6IbAtpJAqf4(AlertDialog alertDialog, int i) {
-    }
-
-    public static void startCall(TLRPC.User user, boolean z, boolean z2, final Activity activity, TLRPC.UserFull userFull, AccountInstance accountInstance) {
-        if (accountInstance != null ? accountInstance.getMessagesController().isFrozen() : MessagesController.getInstance(UserConfig.selectedAccount).isFrozen()) {
-            AccountFrozenAlert.show(accountInstance == null ? UserConfig.selectedAccount : accountInstance.getCurrentAccount());
-            return;
-        }
-        if (userFull != null && userFull.phone_calls_private) {
-            AlertsCreator.showCallsForbidden(activity, accountInstance.getCurrentAccount(), user.id, null);
-            return;
-        }
-        if (ConnectionsManager.getInstance(UserConfig.selectedAccount).getConnectionState() != 3) {
-            boolean z3 = Settings.System.getInt(activity.getContentResolver(), "airplane_mode_on", 0) != 0;
-            AlertDialog.Builder positiveButton = new AlertDialog.Builder(activity).setTitle(LocaleController.getString(z3 ? R.string.VoipOfflineAirplaneTitle : R.string.VoipOfflineTitle)).setMessage(LocaleController.getString(z3 ? R.string.VoipOfflineAirplane : R.string.VoipOffline)).setPositiveButton(LocaleController.getString(R.string.OK), null);
-            if (z3) {
-                final Intent intent = new Intent("android.settings.AIRPLANE_MODE_SETTINGS");
-                if (intent.resolveActivity(activity.getPackageManager()) != null) {
-                    positiveButton.setNeutralButton(LocaleController.getString(R.string.VoipOfflineOpenSettings), new AlertDialog.OnButtonClickListener() {
-                        @Override
-                        public final void onClick(AlertDialog alertDialog, int i) {
-                            activity.startActivity(intent);
-                        }
-                    });
-                }
-            }
-            try {
-                positiveButton.show();
-                return;
-            } catch (Exception e) {
-                FileLog.e(e);
-                return;
-            }
-        }
-        if (Build.VERSION.SDK_INT >= 23) {
-            ArrayList arrayList = new ArrayList();
-            if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
-                arrayList.add("android.permission.RECORD_AUDIO");
-            }
-            if (z && activity.checkSelfPermission("android.permission.CAMERA") != 0) {
-                arrayList.add("android.permission.CAMERA");
-            }
-            if (arrayList.isEmpty()) {
-                initiateCall(user, null, null, z, z2, false, null, activity, null, accountInstance);
-                return;
-            } else {
-                activity.requestPermissions((String[]) arrayList.toArray(new String[0]), z ? 102 : 101);
-                return;
-            }
-        }
-        initiateCall(user, null, null, z, z2, false, null, activity, null, accountInstance);
-    }
-
-    public static void startCall(TLRPC.Chat chat, TLRPC.InputPeer inputPeer, String str, boolean z, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
-        startCall(chat, inputPeer, str, z, null, activity, baseFragment, accountInstance);
-    }
-
-    public static void startCall(TLRPC.Chat chat, TLRPC.InputPeer inputPeer, String str, boolean z, Boolean bool, final Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
-        if (activity == null) {
-            return;
-        }
-        if (ConnectionsManager.getInstance(UserConfig.selectedAccount).getConnectionState() != 3) {
-            boolean z2 = Settings.System.getInt(activity.getContentResolver(), "airplane_mode_on", 0) != 0;
-            AlertDialog.Builder positiveButton = new AlertDialog.Builder(activity).setTitle(LocaleController.getString(z2 ? R.string.VoipOfflineAirplaneTitle : R.string.VoipOfflineTitle)).setMessage(LocaleController.getString(z2 ? R.string.VoipGroupOfflineAirplane : R.string.VoipGroupOffline)).setPositiveButton(LocaleController.getString(R.string.OK), null);
-            if (z2) {
-                final Intent intent = new Intent("android.settings.AIRPLANE_MODE_SETTINGS");
-                if (intent.resolveActivity(activity.getPackageManager()) != null) {
-                    positiveButton.setNeutralButton(LocaleController.getString(R.string.VoipOfflineOpenSettings), new AlertDialog.OnButtonClickListener() {
-                        @Override
-                        public final void onClick(AlertDialog alertDialog, int i) {
-                            activity.startActivity(intent);
-                        }
-                    });
-                }
-            }
-            try {
-                positiveButton.show();
-                return;
-            } catch (Exception e) {
-                FileLog.e(e);
-                return;
-            }
-        }
-        initiateCall(null, chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
-    }
-
-    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) {
-        char c;
-        long j;
-        String name;
-        int i;
-        String name2;
-        int i2;
-        if (activity != null) {
-            if (user == null && chat == null) {
-                return;
-            }
-            VoIPService sharedInstance = VoIPService.getSharedInstance();
-            if (sharedInstance != null) {
-                long j2 = user != null ? user.id : -chat.id;
-                long callerId = sharedInstance.getCallerId();
-                if (callerId != j2 || sharedInstance.getAccount() != accountInstance.getCurrentAccount()) {
-                    if (sharedInstance.isConference()) {
-                        StringBuilder sb = new StringBuilder();
-                        if (sharedInstance.groupCall != null) {
-                            int account = sharedInstance.getAccount();
-                            int i3 = 0;
-                            c = 1;
-                            int i4 = 0;
-                            j = 0;
-                            while (true) {
-                                if (i3 >= sharedInstance.groupCall.participants.size()) {
-                                    i2 = i4;
-                                    break;
-                                }
-                                long peerDialogId = DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) sharedInstance.groupCall.participants.valueAt(i3)).peer);
-                                if (peerDialogId != UserConfig.getInstance(account).getClientUserId()) {
-                                    i2 = i4 + 1;
-                                    if (sb.length() > 0) {
-                                        sb.append(", ");
-                                    }
-                                    sb.append(DialogObject.getShortName(account, peerDialogId));
-                                    if (i2 >= 2) {
-                                        break;
-                                    } else {
-                                        i4 = i2;
-                                    }
-                                }
-                                i3++;
-                            }
-                            if (i2 < sharedInstance.groupCall.participants.size() - 1) {
-                                sb.append(LocaleController.formatPluralString("AndOther", (sharedInstance.groupCall.participants.size() - 1) - i2, new Object[0]));
-                            }
-                        } else {
-                            c = 1;
-                            j = 0;
-                        }
-                        if (j2 > j) {
-                            i = R.string.VoipOngoingConferenceChatAlert;
-                        } else {
-                            i = R.string.VoipOngoingConferenceChatAlert2;
-                        }
-                        name = sb.toString();
-                    } else {
-                        c = 1;
-                        j = 0;
-                        if (callerId > 0) {
-                            TLRPC.User user2 = sharedInstance.getUser();
-                            name = ContactsController.formatName(user2.first_name, user2.last_name);
-                            if (j2 > 0) {
-                                i = R.string.VoipOngoingAlert;
-                            } else {
-                                i = R.string.VoipOngoingAlert2;
-                            }
-                        } else {
-                            name = sharedInstance.getChat().title;
-                            if (j2 > 0) {
-                                i = R.string.VoipOngoingChatAlert2;
-                            } else {
-                                i = R.string.VoipOngoingChatAlert;
-                            }
-                        }
-                    }
-                    if (user != null) {
-                        name2 = ContactsController.formatName(user.first_name, user.last_name);
-                    } else {
-                        name2 = chat.title;
-                    }
-                    AlertDialog.Builder title = new AlertDialog.Builder(activity).setTitle(LocaleController.getString(callerId < j ? R.string.VoipOngoingChatAlertTitle : R.string.VoipOngoingAlertTitle));
-                    Object[] objArr = new Object[2];
-                    objArr[0] = name;
-                    objArr[c] = name2;
-                    title.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, objArr))).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
-                        @Override
-                        public final void onClick(AlertDialog alertDialog, int i5) {
-                            VoIPHelper.m2999$r8$lambda$3GMa3hKZd7eKIbVcOcnpSYULo(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance, alertDialog, i5);
-                        }
-                    }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
-                    return;
-                }
-                if (user != null || !(activity instanceof LaunchActivity)) {
-                    activity.startActivity(new Intent(activity, (Class<?>) LaunchActivity.class).setAction(user != null ? "voip" : "voip_chat"));
-                    return;
-                }
-                if (!TextUtils.isEmpty(str)) {
-                    sharedInstance.setGroupCallHash(str);
-                }
-                GroupCallActivity.create((LaunchActivity) activity, AccountInstance.getInstance(UserConfig.selectedAccount), null, null, false, null);
-                return;
-            }
-            if (VoIPService.callIShouldHavePutIntoIntent == null) {
-                doInitiateCall(user, chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, bool != null ? bool.booleanValue() : true, true);
-            }
-        }
-    }
-
-    public static void m2999$r8$lambda$3GMa3hKZd7eKIbVcOcnpSYULo(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) {
-        if (VoIPService.getSharedInstance() != null) {
-            VoIPService.getSharedInstance().hangUp(new Runnable() {
-                @Override
-                public final void run() {
-                    VoIPHelper.m3000$r8$lambda$7KXQyz01xjcfi5gz80JsoQnDao(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance);
-                }
-            });
-        } else {
-            doInitiateCall(user, chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, true, true);
-        }
-    }
-
-    public static void m3000$r8$lambda$7KXQyz01xjcfi5gz80JsoQnDao(TLRPC.User user, TLRPC.Chat chat, String str, boolean z, boolean z2, boolean z3, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
-        lastCallTime = 0L;
-        doInitiateCall(user, chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, true, true);
-    }
-
-    public static void doInitiateCall(TLRPC.User user, TLRPC.Chat chat, String str, TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3, boolean z4, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance, boolean z5, boolean z6) {
-        doInitiateCall(user, chat, str, inputPeer, z, z2, z3, z4, activity, baseFragment, accountInstance, z5, z6, false);
-    }
-
-    public static void joinConference(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall) {
-        joinConference(activity, i, inputGroupCall, z, groupCall, null);
-    }
-
-    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) {
-        if (activity == null) {
-            return;
-        }
-        if (VoIPService.getSharedInstance() != null) {
-            VoIPService.getSharedInstance().hangUp(new Runnable() {
-                @Override
-                public final void run() {
-                    VoIPHelper.$r8$lambda$Zot_BVY_wR6YUwOD4KisCMnlB1c(activity, i, inputGroupCall, z, groupCall, hashSet);
-                }
-            });
-            return;
-        }
-        lastCallTime = SystemClock.elapsedRealtime();
-        Intent intent = new Intent(activity, (Class<?>) VoIPService.class);
-        intent.putExtra("chat_id", 0L);
-        int i2 = 0;
-        intent.putExtra("createGroupCall", false);
-        intent.putExtra("hasFewPeers", false);
-        intent.putExtra("isRtmpStream", false);
-        intent.putExtra("hash", (String) null);
-        intent.putExtra("is_outgoing", true);
-        intent.putExtra("start_incall_activity", true);
-        intent.putExtra("video_call", false);
-        SerializedData serializedData = new SerializedData(inputGroupCall.getObjectSize());
-        inputGroupCall.serializeToStream(serializedData);
-        intent.putExtra("joinConference", serializedData.toByteArray());
-        if (groupCall != null) {
-            SerializedData serializedData2 = new SerializedData(groupCall.getObjectSize());
-            groupCall.serializeToStream(serializedData2);
-            intent.putExtra("joinConferenceCall", serializedData2.toByteArray());
-        }
-        if (hashSet != null) {
-            long[] jArr = new long[hashSet.size()];
-            Iterator it = hashSet.iterator();
+    public static boolean canRateCall(TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
+        TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = tL_messageActionPhoneCall.reason;
+        if (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed)) {
+            Iterator<String> it = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).getStringSet("calls_access_hashes", Collections.EMPTY_SET).iterator();
             while (it.hasNext()) {
-                jArr[i2] = ((Long) it.next()).longValue();
-                i2++;
+                String[] strArrSplit = it.next().split(" ");
+                if (strArrSplit.length >= 2) {
+                    if (strArrSplit[0].equals(tL_messageActionPhoneCall.call_id + "")) {
+                        return true;
+                    }
+                }
             }
-            intent.putExtra("inviteUsers", jArr);
         }
-        intent.putExtra("account", i);
-        intent.putExtra("video_call", z);
-        intent.putExtra("can_video_call", true);
-        try {
-            activity.startService(intent);
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
-    }
-
-    public static void $r8$lambda$Zot_BVY_wR6YUwOD4KisCMnlB1c(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) {
-        lastCallTime = 0L;
-        joinConference(activity, i, inputGroupCall, z, groupCall, hashSet);
+        return false;
     }
 
     public static void doInitiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final TLRPC.InputPeer inputPeer, boolean z, final boolean z2, final boolean z3, final boolean z4, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z5, boolean z6, boolean z7) {
@@ -358,27 +105,49 @@ public abstract class VoIPHelper {
                 JoinCallAlert.checkFewUsers(activity, -chat.id, accountInstance, new MessagesStorage.BooleanCallback() {
                     @Override
                     public final void run(boolean z8) {
-                        VoIPHelper.$r8$lambda$tAYfOx6f4zxFcRF_VdkkDlujSXE(str, activity, chat, user, inputPeer2, z2, z3, baseFragment, accountInstance, z8);
+                        final String str2 = str;
+                        final Activity activity2 = activity;
+                        final TLRPC.Chat chat2 = chat;
+                        final TLRPC.User user2 = user;
+                        final TLRPC.InputPeer inputPeer3 = inputPeer2;
+                        final boolean z9 = z2;
+                        final boolean z10 = z3;
+                        final BaseFragment baseFragment2 = baseFragment;
+                        final AccountInstance accountInstance2 = accountInstance;
+                        if (z8 || str2 == null) {
+                            VoIPHelper.doInitiateCall(user2, chat2, str2, inputPeer3, !z8, z9, z10, false, activity2, baseFragment2, accountInstance2, false, false, false);
+                            return;
+                        }
+                        JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity2, chat2) {
+                            @Override
+                            public final void onJoin() {
+                                VoIPHelper.doInitiateCall(user2, chat2, str2, inputPeer3, true, z9, z10, false, activity2, baseFragment2, accountInstance2, false, false, false);
+                            }
+                        };
+                        if (baseFragment2 != null) {
+                            baseFragment2.showDialog(joinCallByUrlAlert);
+                        }
                     }
                 });
                 return;
             }
             if (z5 && chat != null) {
-                JoinCallAlert.open(activity, -chat.id, accountInstance, baseFragment, !z4 ? 1 : 0, null, new JoinCallAlert.JoinCallAlertDelegate() {
-                    @Override
-                    public final void didSelectChat(TLRPC.InputPeer inputPeer3, boolean z8, boolean z9, boolean z10) {
-                        VoIPHelper.$r8$lambda$ughoGj68usXSB2IOxLqz6uhBjN8(z4, activity, accountInstance, chat, str, user, z2, z3, baseFragment, inputPeer3, z8, z9, z10);
-                    }
-                });
+                JoinCallAlert.open(activity, -chat.id, accountInstance, baseFragment, !z4 ? 1 : 0, null, new VoIPHelper$$ExternalSyntheticLambda14(z4, activity, accountInstance, chat, str, user, z2, z3, baseFragment));
                 return;
             }
             if (z6 && !z && (inputPeer instanceof TLRPC.TL_inputPeerUser) && ChatObject.shouldSendAnonymously(chat) && (!ChatObject.isChannel(chat) || chat.megagroup)) {
-                new AlertDialog.Builder(activity).setTitle(LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelVoiceChat : R.string.VoipGroupVoiceChat)).setMessage(LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelJoinAnonymouseAlert : R.string.VoipGroupJoinAnonymouseAlert)).setPositiveButton(LocaleController.getString(R.string.VoipChatJoin), new AlertDialog.OnButtonClickListener() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, null);
+                String string = LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelVoiceChat : R.string.VoipGroupVoiceChat);
+                AlertDialog alertDialog = builder.alertDialog;
+                alertDialog.title = string;
+                alertDialog.message = LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelJoinAnonymouseAlert : R.string.VoipGroupJoinAnonymouseAlert);
+                builder.setPositiveButton(LocaleController.getString(R.string.VoipChatJoin), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i) {
-                        VoIPHelper.doInitiateCall(user, chat, str, inputPeer, false, z2, z3, z4, activity, baseFragment, accountInstance, false, false);
+                    public final void onClick(AlertDialog alertDialog2, int i) {
+                        VoIPHelper.doInitiateCall(user, chat, str, inputPeer, false, z2, z3, z4, activity, baseFragment, accountInstance, false, false, false);
                     }
-                }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
+                });
+                ArticleViewer.IBlock.CC.m(R.string.Cancel, builder, (AlertDialog.OnButtonClickListener) null);
                 return;
             }
             if (chat != null && inputPeer != null && (chatFull = accountInstance.getMessagesController().getChatFull(chat.id)) != null) {
@@ -435,449 +204,6 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void $r8$lambda$tAYfOx6f4zxFcRF_VdkkDlujSXE(final String str, final Activity activity, final TLRPC.Chat chat, final TLRPC.User user, final TLRPC.InputPeer inputPeer, final boolean z, final boolean z2, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z3) {
-        if (!z3 && str != null) {
-            JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity, chat) {
-                @Override
-                protected void onJoin() {
-                    VoIPHelper.doInitiateCall(user, chat, str, inputPeer, true, z, z2, false, activity, baseFragment, accountInstance, false, false);
-                }
-            };
-            if (baseFragment != null) {
-                baseFragment.showDialog(joinCallByUrlAlert);
-                return;
-            }
-            return;
-        }
-        doInitiateCall(user, chat, str, inputPeer, !z3, z, z2, false, activity, baseFragment, accountInstance, false, false);
-    }
-
-    public static void $r8$lambda$ughoGj68usXSB2IOxLqz6uhBjN8(final boolean z, final Activity activity, final AccountInstance accountInstance, final TLRPC.Chat chat, final String str, final TLRPC.User user, final boolean z2, final boolean z3, final BaseFragment baseFragment, final TLRPC.InputPeer inputPeer, boolean z4, boolean z5, final boolean z6) {
-        if (z && z5) {
-            GroupCallActivity.create((LaunchActivity) activity, accountInstance, chat, inputPeer, z4, str);
-            return;
-        }
-        if (!z4 && str != null) {
-            JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity, chat) {
-                @Override
-                protected void onJoin() {
-                    VoIPHelper.doInitiateCall(user, chat, str, inputPeer, false, z2, z3, z, activity, baseFragment, accountInstance, false, true, z6);
-                }
-            };
-            if (baseFragment != null) {
-                baseFragment.showDialog(joinCallByUrlAlert);
-                return;
-            }
-            return;
-        }
-        doInitiateCall(user, chat, str, inputPeer, z4, z2, z3, z, activity, baseFragment, accountInstance, false, true, z6);
-    }
-
-    public static void permissionDenied(final Activity activity, final Runnable runnable, int i) {
-        boolean z = i == 102;
-        if (!activity.shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO") || (z && !activity.shouldShowRequestPermissionRationale("android.permission.CAMERA"))) {
-            new AlertDialog.Builder(activity).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(z ? R.string.VoipNeedMicCameraPermissionWithHint : R.string.VoipNeedMicPermissionWithHint))).setPositiveButton(LocaleController.getString(R.string.Settings), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i2) {
-                    VoIPHelper.$r8$lambda$LQkupkbvOnTxhUG1iYs7odOkR3Y(activity, alertDialog, i2);
-                }
-            }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    VoIPHelper.$r8$lambda$xP7Nq6k27RDMaIBj6wg36i6EIP0(runnable, dialogInterface);
-                }
-            }).setTopAnimation(z ? R.raw.permission_request_camera : R.raw.permission_request_microphone, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).show();
-        }
-    }
-
-    public static void $r8$lambda$LQkupkbvOnTxhUG1iYs7odOkR3Y(Activity activity, AlertDialog alertDialog, int i) {
-        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-        intent.setData(Uri.fromParts("package", activity.getPackageName(), null));
-        activity.startActivity(intent);
-    }
-
-    public static void $r8$lambda$xP7Nq6k27RDMaIBj6wg36i6EIP0(Runnable runnable, DialogInterface dialogInterface) {
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public static File getLogsDir() {
-        File file = new File(ApplicationLoader.applicationContext.getCacheDir(), "voip_logs");
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return file;
-    }
-
-    public static boolean canRateCall(TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
-        TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = tL_messageActionPhoneCall.reason;
-        if (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed)) {
-            Iterator<String> it = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).getStringSet("calls_access_hashes", Collections.EMPTY_SET).iterator();
-            while (it.hasNext()) {
-                String[] strArrSplit = it.next().split(" ");
-                if (strArrSplit.length >= 2) {
-                    if (strArrSplit[0].equals(tL_messageActionPhoneCall.call_id + "")) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    public static void sendCallRating(long j, long j2, int i, int i2) {
-        final int i3 = UserConfig.selectedAccount;
-        TL_phone.setCallRating setcallrating = new TL_phone.setCallRating();
-        setcallrating.rating = i2;
-        setcallrating.comment = "";
-        TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
-        setcallrating.peer = tL_inputPhoneCall;
-        tL_inputPhoneCall.access_hash = j2;
-        tL_inputPhoneCall.id = j;
-        setcallrating.user_initiative = false;
-        ConnectionsManager.getInstance(i).sendRequest(setcallrating, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                VoIPHelper.$r8$lambda$sGMxExiFipC_lKgMmu9ERiHOWvw(i3, tLObject, tL_error);
-            }
-        });
-    }
-
-    public static void $r8$lambda$sGMxExiFipC_lKgMmu9ERiHOWvw(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (tLObject instanceof TLRPC.TL_updates) {
-            MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
-        }
-    }
-
-    public static void showRateAlert(Context context, TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
-        Iterator<String> it = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).getStringSet("calls_access_hashes", Collections.EMPTY_SET).iterator();
-        while (it.hasNext()) {
-            String[] strArrSplit = it.next().split(" ");
-            if (strArrSplit.length >= 2) {
-                if (strArrSplit[0].equals(tL_messageActionPhoneCall.call_id + "")) {
-                    try {
-                        showRateAlert(context, null, tL_messageActionPhoneCall.video, tL_messageActionPhoneCall.call_id, Long.parseLong(strArrSplit[1]), UserConfig.selectedAccount, true);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
-    public static void showRateAlert(final Context context, final Runnable runnable, boolean z, final long j, final long j2, final int i, final boolean z2) {
-        String string;
-        final File logFile = getLogFile(j);
-        final int[] iArr = {0};
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        int iDp = AndroidUtilities.dp(16.0f);
-        linearLayout.setPadding(iDp, iDp, iDp, 0);
-        final TextView textView = new TextView(context);
-        textView.setTextSize(2, 16.0f);
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        textView.setGravity(17);
-        textView.setText(LocaleController.getString(R.string.VoipRateCallAlert));
-        linearLayout.addView(textView);
-        final BetterRatingView betterRatingView = new BetterRatingView(context);
-        linearLayout.addView(betterRatingView, LayoutHelper.createLinear(-2, -2, 1, 0, 16, 0, 0));
-        final LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setOrientation(1);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                VoIPHelper.$r8$lambda$n6KOmKqZ5QwCdjJvnWLyzWzLbY4(view);
-            }
-        };
-        String[] strArr = {z ? "distorted_video" : null, z ? "pixelated_video" : null, "echo", "noise", "interruptions", "distorted_speech", "silent_local", "silent_remote", "dropped"};
-        for (int i2 = 0; i2 < 9; i2++) {
-            if (strArr[i2] != null) {
-                CheckBoxCell checkBoxCell = new CheckBoxCell(context, 1);
-                checkBoxCell.setClipToPadding(false);
-                checkBoxCell.setTag(strArr[i2]);
-                switch (i2) {
-                    case 0:
-                        string = LocaleController.getString(R.string.RateCallVideoDistorted);
-                        break;
-                    case 1:
-                        string = LocaleController.getString(R.string.RateCallVideoPixelated);
-                        break;
-                    case 2:
-                        string = LocaleController.getString(R.string.RateCallEcho);
-                        break;
-                    case 3:
-                        string = LocaleController.getString(R.string.RateCallNoise);
-                        break;
-                    case 4:
-                        string = LocaleController.getString(R.string.RateCallInterruptions);
-                        break;
-                    case 5:
-                        string = LocaleController.getString(R.string.RateCallDistorted);
-                        break;
-                    case 6:
-                        string = LocaleController.getString(R.string.RateCallSilentLocal);
-                        break;
-                    case 7:
-                        string = LocaleController.getString(R.string.RateCallSilentRemote);
-                        break;
-                    case 8:
-                        string = LocaleController.getString(R.string.RateCallDropped);
-                        break;
-                    default:
-                        string = null;
-                        break;
-                }
-                checkBoxCell.setText(string, null, false, false);
-                checkBoxCell.setOnClickListener(onClickListener);
-                checkBoxCell.setTag(strArr[i2]);
-                linearLayout2.addView(checkBoxCell);
-            }
-        }
-        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, -8.0f, 0.0f, -8.0f, 0.0f));
-        linearLayout2.setVisibility(8);
-        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        editTextBoldCursor.setHint(LocaleController.getString(R.string.VoipFeedbackCommentHint));
-        editTextBoldCursor.setInputType(147457);
-        editTextBoldCursor.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        editTextBoldCursor.setHintTextColor(Theme.getColor(Theme.key_dialogTextHint));
-        editTextBoldCursor.setBackground(null);
-        editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_dialogInputField), Theme.getColor(Theme.key_dialogInputFieldActivated), Theme.getColor(Theme.key_text_RedBold));
-        editTextBoldCursor.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-        editTextBoldCursor.setTextSize(1, 18.0f);
-        editTextBoldCursor.setVisibility(8);
-        linearLayout.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 8.0f, 8.0f, 8.0f, 0.0f));
-        final boolean[] zArr = {true};
-        final CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 1);
-        View.OnClickListener onClickListener2 = new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                VoIPHelper.$r8$lambda$0kWTlzM1M5MSQKwMb4D1Jv8V5gc(zArr, checkBoxCell2, view);
-            }
-        };
-        checkBoxCell2.setText(LocaleController.getString(R.string.CallReportIncludeLogs), null, true, false);
-        checkBoxCell2.setClipToPadding(false);
-        checkBoxCell2.setOnClickListener(onClickListener2);
-        linearLayout.addView(checkBoxCell2, LayoutHelper.createLinear(-1, -2, -8.0f, 0.0f, -8.0f, 0.0f));
-        final TextView textView2 = new TextView(context);
-        textView2.setTextSize(2, 14.0f);
-        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
-        textView2.setText(LocaleController.getString(R.string.CallReportLogsExplain));
-        textView2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        textView2.setOnClickListener(onClickListener2);
-        linearLayout.addView(textView2);
-        checkBoxCell2.setVisibility(8);
-        textView2.setVisibility(8);
-        if (!logFile.exists()) {
-            zArr[0] = false;
-        }
-        final AlertDialog alertDialogCreate = new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.CallMessageReportProblem)).setView(linearLayout).setPositiveButton(LocaleController.getString(R.string.Send), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i3) {
-                VoIPHelper.$r8$lambda$xnMlA0qHzx_eZwdg6IbAtpJAqf4(alertDialog, i3);
-            }
-        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public final void onDismiss(DialogInterface dialogInterface) {
-                VoIPHelper.$r8$lambda$R3Z9SKtbcvtQj4pSaqFwYp3ObMA(runnable, dialogInterface);
-            }
-        }).create();
-        if (BuildVars.LOGS_ENABLED && logFile.exists()) {
-            alertDialogCreate.setNeutralButton("Send log", new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i3) {
-                    VoIPHelper.$r8$lambda$pIyYqwERhIj7RBJmIwxwhVz91rM(context, logFile, alertDialog, i3);
-                }
-            });
-        }
-        alertDialogCreate.show();
-        alertDialogCreate.getWindow().setSoftInputMode(3);
-        final View button = alertDialogCreate.getButton(-1);
-        button.setEnabled(false);
-        betterRatingView.setOnRatingChangeListener(new BetterRatingView.OnRatingChangeListener() {
-            @Override
-            public final void onRatingChanged(int i3) {
-                VoIPHelper.$r8$lambda$TsJm6mZiInRlsZAcxmdcnU5r8IU(button, i3);
-            }
-        });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                VoIPHelper.m2998$r8$lambda$2o7tLPhFx5PtbnDRgrzU5sWjIg(betterRatingView, iArr, linearLayout2, editTextBoldCursor, zArr, j2, j, z2, i, logFile, context, alertDialogCreate, textView, checkBoxCell2, textView2, button, view);
-            }
-        });
-    }
-
-    public static void $r8$lambda$n6KOmKqZ5QwCdjJvnWLyzWzLbY4(View view) {
-        CheckBoxCell checkBoxCell = (CheckBoxCell) view;
-        checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
-    }
-
-    public static void $r8$lambda$0kWTlzM1M5MSQKwMb4D1Jv8V5gc(boolean[] zArr, CheckBoxCell checkBoxCell, View view) {
-        boolean z = !zArr[0];
-        zArr[0] = z;
-        checkBoxCell.setChecked(z, true);
-    }
-
-    public static void $r8$lambda$R3Z9SKtbcvtQj4pSaqFwYp3ObMA(Runnable runnable, DialogInterface dialogInterface) {
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public static void $r8$lambda$pIyYqwERhIj7RBJmIwxwhVz91rM(Context context, File file, AlertDialog alertDialog, int i) {
-        Intent intent = new Intent(context, (Class<?>) LaunchActivity.class);
-        intent.setAction("android.intent.action.SEND");
-        intent.putExtra("android.intent.extra.STREAM", Uri.fromFile(file));
-        context.startActivity(intent);
-    }
-
-    public static void $r8$lambda$TsJm6mZiInRlsZAcxmdcnU5r8IU(View view, int i) {
-        view.setEnabled(i > 0);
-        ((TextView) view).setText(LocaleController.getString(i < 4 ? R.string.Next : R.string.Send).toUpperCase());
-    }
-
-    public static void m2998$r8$lambda$2o7tLPhFx5PtbnDRgrzU5sWjIg(BetterRatingView betterRatingView, int[] iArr, LinearLayout linearLayout, EditTextBoldCursor editTextBoldCursor, final boolean[] zArr, long j, long j2, boolean z, int i, final File file, final Context context, AlertDialog alertDialog, TextView textView, CheckBoxCell checkBoxCell, TextView textView2, View view, View view2) {
-        if (betterRatingView.getRating() >= 4 || iArr[0] == 1) {
-            final int i2 = UserConfig.selectedAccount;
-            final TL_phone.setCallRating setcallrating = new TL_phone.setCallRating();
-            setcallrating.rating = betterRatingView.getRating();
-            final ArrayList arrayList = new ArrayList();
-            for (int i3 = 0; i3 < linearLayout.getChildCount(); i3++) {
-                CheckBoxCell checkBoxCell2 = (CheckBoxCell) linearLayout.getChildAt(i3);
-                if (checkBoxCell2.isChecked()) {
-                    arrayList.add("#" + checkBoxCell2.getTag());
-                }
-            }
-            if (setcallrating.rating < 5) {
-                setcallrating.comment = editTextBoldCursor.getText().toString();
-            } else {
-                setcallrating.comment = "";
-            }
-            if (!arrayList.isEmpty() && !zArr[0]) {
-                setcallrating.comment += " " + TextUtils.join(" ", arrayList);
-            }
-            TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
-            setcallrating.peer = tL_inputPhoneCall;
-            tL_inputPhoneCall.access_hash = j;
-            tL_inputPhoneCall.id = j2;
-            setcallrating.user_initiative = z;
-            ConnectionsManager.getInstance(i).sendRequest(setcallrating, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    VoIPHelper.m3003$r8$lambda$_IMzZcdN3bYb4XsU6s2akXo1Wk(i2, zArr, file, setcallrating, arrayList, context, tLObject, tL_error);
-                }
-            });
-            alertDialog.dismiss();
-            return;
-        }
-        iArr[0] = 1;
-        betterRatingView.setVisibility(8);
-        textView.setVisibility(8);
-        alertDialog.setTitle(LocaleController.getString(R.string.CallReportHint));
-        editTextBoldCursor.setVisibility(0);
-        if (file.exists()) {
-            checkBoxCell.setVisibility(0);
-            textView2.setVisibility(0);
-        }
-        linearLayout.setVisibility(0);
-        ((TextView) view).setText(LocaleController.getString(R.string.Send).toUpperCase());
-    }
-
-    public static void m3003$r8$lambda$_IMzZcdN3bYb4XsU6s2akXo1Wk(int i, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (tLObject instanceof TLRPC.TL_updates) {
-            MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
-        }
-        if (zArr[0] && file.exists() && setcallrating.rating < 4) {
-            SendMessagesHelper.prepareSendingDocument(AccountInstance.getInstance(UserConfig.selectedAccount), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, null, true, 0, null, null, false);
-            Toast.makeText(context, LocaleController.getString(R.string.CallReportSent), 1).show();
-        }
-    }
-
-    private static File getLogFile(long j) {
-        File file;
-        String[] list;
-        if (BuildVars.DEBUG_VERSION && (list = (file = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "logs")).list()) != null) {
-            for (String str : list) {
-                if (str.endsWith("voip" + j + ".txt")) {
-                    return new File(file, str);
-                }
-            }
-        }
-        return new File(getLogsDir(), j + ".log");
-    }
-
-    public static void showCallDebugSettings(Context context) {
-        final SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 15.0f);
-        textView.setText("Please only change these settings if you know exactly what they do.");
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 16.0f, 8.0f, 16.0f, 8.0f));
-        final TextCheckCell textCheckCell = new TextCheckCell(context);
-        textCheckCell.setTextAndCheck("Force TCP", globalMainSettings.getBoolean("dbg_force_tcp_in_calls", false), false);
-        textCheckCell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                VoIPHelper.$r8$lambda$NcM93ipqfAV8nIwMmscu1aQaf9g(globalMainSettings, textCheckCell, view);
-            }
-        });
-        linearLayout.addView(textCheckCell);
-        if (BuildVars.DEBUG_VERSION && BuildVars.LOGS_ENABLED) {
-            final TextCheckCell textCheckCell2 = new TextCheckCell(context);
-            textCheckCell2.setTextAndCheck("Dump detailed stats", globalMainSettings.getBoolean("dbg_dump_call_stats", false), false);
-            textCheckCell2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    VoIPHelper.$r8$lambda$2LXwkBEgWvcEr0X1w5eAF4NUtc0(globalMainSettings, textCheckCell2, view);
-                }
-            });
-            linearLayout.addView(textCheckCell2);
-        }
-        if (Build.VERSION.SDK_INT >= 26) {
-            final TextCheckCell textCheckCell3 = new TextCheckCell(context);
-            textCheckCell3.setTextAndCheck("Enable ConnectionService", globalMainSettings.getBoolean("dbg_force_connection_service", false), false);
-            textCheckCell3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    VoIPHelper.m3001$r8$lambda$FOFDPztKGTZ_breLHbon9i3KBo(globalMainSettings, textCheckCell3, view);
-                }
-            });
-            linearLayout.addView(textCheckCell3);
-        }
-        new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.DebugMenuCallSettings)).setView(linearLayout).show();
-    }
-
-    public static void $r8$lambda$NcM93ipqfAV8nIwMmscu1aQaf9g(SharedPreferences sharedPreferences, TextCheckCell textCheckCell, View view) {
-        boolean z = sharedPreferences.getBoolean("dbg_force_tcp_in_calls", false);
-        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
-        boolean z2 = !z;
-        editorEdit.putBoolean("dbg_force_tcp_in_calls", z2);
-        editorEdit.commit();
-        textCheckCell.setChecked(z2);
-    }
-
-    public static void $r8$lambda$2LXwkBEgWvcEr0X1w5eAF4NUtc0(SharedPreferences sharedPreferences, TextCheckCell textCheckCell, View view) {
-        boolean z = sharedPreferences.getBoolean("dbg_dump_call_stats", false);
-        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
-        boolean z2 = !z;
-        editorEdit.putBoolean("dbg_dump_call_stats", z2);
-        editorEdit.commit();
-        textCheckCell.setChecked(z2);
-    }
-
-    public static void m3001$r8$lambda$FOFDPztKGTZ_breLHbon9i3KBo(SharedPreferences sharedPreferences, TextCheckCell textCheckCell, View view) {
-        boolean z = sharedPreferences.getBoolean("dbg_force_connection_service", false);
-        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
-        boolean z2 = !z;
-        editorEdit.putBoolean("dbg_force_connection_service", z2);
-        editorEdit.commit();
-        textCheckCell.setChecked(z2);
-    }
-
     public static int getDataSavingDefault() {
         boolean z = DownloadController.getInstance(0).lowPreset.lessCallData;
         boolean z2 = DownloadController.getInstance(0).mediumPreset.lessCallData;
@@ -900,50 +226,627 @@ public abstract class VoIPHelper {
         return 0;
     }
 
+    public static String getLogFilePath(String str, boolean z) {
+        File[] fileArrListFiles;
+        File file = new File(ApplicationLoader.applicationContext.getCacheDir(), "voip_logs");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        if (!BuildVars.DEBUG_VERSION && (fileArrListFiles = file.listFiles()) != null) {
+            ArrayList arrayList = new ArrayList(Arrays.asList(fileArrListFiles));
+            while (arrayList.size() > 20) {
+                int i = 0;
+                File file2 = (File) arrayList.get(0);
+                int size = arrayList.size();
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    File file3 = (File) obj;
+                    if (file3.getName().endsWith(".log") && file3.lastModified() < file2.lastModified()) {
+                        file2 = file3;
+                    }
+                }
+                file2.delete();
+                arrayList.remove(file2);
+            }
+        }
+        return z ? new File(file, zzhr.m(str, "_stats.log")).getAbsolutePath() : new File(file, zzhr.m(str, ".log")).getAbsolutePath();
+    }
+
+    public static void initiateCall(TLRPC.User user, TLRPC.Chat chat, String str, boolean z, boolean z2, boolean z3, Boolean bool, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
+        char c;
+        long j;
+        String name;
+        int i;
+        int i2;
+        if (activity != null) {
+            if (user == null && chat == null) {
+                return;
+            }
+            VoIPService sharedInstance = VoIPService.getSharedInstance();
+            if (sharedInstance == null) {
+                if (VoIPService.callIShouldHavePutIntoIntent == null) {
+                    doInitiateCall(user, chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, bool != null ? bool.booleanValue() : true, true, false);
+                    return;
+                }
+                return;
+            }
+            long j2 = user != null ? user.id : -chat.id;
+            long callerId = sharedInstance.getCallerId();
+            if (callerId == j2 && sharedInstance.getAccount() == accountInstance.getCurrentAccount()) {
+                if (user != null || !(activity instanceof LaunchActivity)) {
+                    activity.startActivity(new Intent(activity, (Class<?>) LaunchActivity.class).setAction(user != null ? "voip" : "voip_chat"));
+                    return;
+                }
+                if (!TextUtils.isEmpty(str)) {
+                    sharedInstance.setGroupCallHash(str);
+                }
+                GroupCallActivity.create((LaunchActivity) activity, AccountInstance.getInstance(UserConfig.selectedAccount), null, null, false, null);
+                return;
+            }
+            if (sharedInstance.isConference()) {
+                StringBuilder sb = new StringBuilder();
+                if (sharedInstance.groupCall != null) {
+                    int account = sharedInstance.getAccount();
+                    int i3 = 0;
+                    c = 1;
+                    int i4 = 0;
+                    j = 0;
+                    while (true) {
+                        if (i3 >= sharedInstance.groupCall.participants.size()) {
+                            i2 = i4;
+                            break;
+                        }
+                        long peerDialogId = DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) sharedInstance.groupCall.participants.valueAt(i3)).peer);
+                        if (peerDialogId != UserConfig.getInstance(account).getClientUserId()) {
+                            i2 = i4 + 1;
+                            if (sb.length() > 0) {
+                                sb.append(", ");
+                            }
+                            sb.append(DialogObject.getShortName(account, peerDialogId));
+                            if (i2 >= 2) {
+                                break;
+                            } else {
+                                i4 = i2;
+                            }
+                        }
+                        i3++;
+                    }
+                    if (i2 < sharedInstance.groupCall.participants.size() - 1) {
+                        sb.append(LocaleController.formatPluralString("AndOther", (sharedInstance.groupCall.participants.size() - 1) - i2, new Object[0]));
+                    }
+                } else {
+                    c = 1;
+                    j = 0;
+                }
+                i = j2 > j ? R.string.VoipOngoingConferenceChatAlert : R.string.VoipOngoingConferenceChatAlert2;
+                name = sb.toString();
+            } else {
+                c = 1;
+                j = 0;
+                if (callerId > 0) {
+                    TLRPC.User user2 = sharedInstance.getUser();
+                    name = ContactsController.formatName(user2.first_name, user2.last_name);
+                    i = j2 > 0 ? R.string.VoipOngoingAlert : R.string.VoipOngoingAlert2;
+                } else {
+                    name = sharedInstance.getChat().title;
+                    i = j2 > 0 ? R.string.VoipOngoingChatAlert2 : R.string.VoipOngoingChatAlert;
+                }
+            }
+            String name2 = user != null ? ContactsController.formatName(user.first_name, user.last_name) : chat.title;
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, null);
+            String string = LocaleController.getString(callerId < j ? R.string.VoipOngoingChatAlertTitle : R.string.VoipOngoingAlertTitle);
+            AlertDialog alertDialog = builder.alertDialog;
+            alertDialog.title = string;
+            Object[] objArr = new Object[2];
+            objArr[0] = name;
+            objArr[c] = name2;
+            alertDialog.message = AndroidUtilities.replaceTags(LocaleController.formatString(i, objArr));
+            builder.setPositiveButton(LocaleController.getString(R.string.OK), new VoIPHelper$$ExternalSyntheticLambda14(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance));
+            ArticleViewer.IBlock.CC.m(R.string.Cancel, builder, (AlertDialog.OnButtonClickListener) null);
+        }
+    }
+
+    public static void joinConference(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) {
+        if (activity == null) {
+            return;
+        }
+        if (VoIPService.getSharedInstance() != null) {
+            VoIPService.getSharedInstance().hangUp(new PhotoPickerActivity$$ExternalSyntheticLambda9(activity, i, inputGroupCall, z, groupCall, hashSet));
+            return;
+        }
+        lastCallTime = SystemClock.elapsedRealtime();
+        Intent intent = new Intent(activity, (Class<?>) VoIPService.class);
+        intent.putExtra("chat_id", 0L);
+        int i2 = 0;
+        intent.putExtra("createGroupCall", false);
+        intent.putExtra("hasFewPeers", false);
+        intent.putExtra("isRtmpStream", false);
+        intent.putExtra("hash", (String) null);
+        intent.putExtra("is_outgoing", true);
+        intent.putExtra("start_incall_activity", true);
+        intent.putExtra("video_call", false);
+        SerializedData serializedData = new SerializedData(inputGroupCall.getObjectSize());
+        inputGroupCall.serializeToStream(serializedData);
+        intent.putExtra("joinConference", serializedData.toByteArray());
+        if (groupCall != null) {
+            SerializedData serializedData2 = new SerializedData(groupCall.getObjectSize());
+            groupCall.serializeToStream(serializedData2);
+            intent.putExtra("joinConferenceCall", serializedData2.toByteArray());
+        }
+        if (hashSet != null) {
+            long[] jArr = new long[hashSet.size()];
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                jArr[i2] = ((Long) it.next()).longValue();
+                i2++;
+            }
+            intent.putExtra("inviteUsers", jArr);
+        }
+        intent.putExtra("account", i);
+        intent.putExtra("video_call", z);
+        intent.putExtra("can_video_call", true);
+        try {
+            activity.startService(intent);
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+    }
+
+    public static void permissionDenied(int i, Activity activity, Runnable runnable) {
+        boolean z = i == 102;
+        if (!activity.shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO") || (z && !activity.shouldShowRequestPermissionRationale("android.permission.CAMERA"))) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, null);
+            SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.getString(z ? R.string.VoipNeedMicCameraPermissionWithHint : R.string.VoipNeedMicPermissionWithHint));
+            AlertDialog alertDialog = builder.alertDialog;
+            alertDialog.message = spannableStringBuilderReplaceTags;
+            builder.setPositiveButton(LocaleController.getString(R.string.Settings), new BotLocation$$ExternalSyntheticLambda7(activity, 6));
+            builder.setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
+            alertDialog.setOnDismissListener(new PhotoViewer$$ExternalSyntheticLambda161(2, runnable));
+            builder.setTopAnimation(z ? R.raw.permission_request_camera : R.raw.permission_request_microphone, 72, Theme.getColor(null, Theme.key_dialogTopBackground, false), null);
+            builder.show();
+        }
+    }
+
+    public static void showCallDebugSettings(Activity activity) {
+        final SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+        LinearLayout linearLayoutM = FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(activity, 1);
+        TextView textView = new TextView(activity);
+        textView.setTextSize(1, 15.0f);
+        textView.setText("Please only change these settings if you know exactly what they do.");
+        textView.setTextColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
+        linearLayoutM.addView(textView, LayoutHelper.createLinear(16.0f, 8.0f, 16.0f, 8.0f, -1, -2));
+        final TextCheckCell textCheckCell = new TextCheckCell(activity);
+        textCheckCell.setTextAndCheck("Force TCP", globalMainSettings.getBoolean("dbg_force_tcp_in_calls", false), false);
+        final int i = 0;
+        textCheckCell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                switch (i) {
+                    case 0:
+                        SharedPreferences sharedPreferences = globalMainSettings;
+                        boolean z = sharedPreferences.getBoolean("dbg_force_tcp_in_calls", false);
+                        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+                        boolean z2 = !z;
+                        editorEdit.putBoolean("dbg_force_tcp_in_calls", z2);
+                        editorEdit.commit();
+                        textCheckCell.setChecked(z2);
+                        break;
+                    case 1:
+                        SharedPreferences sharedPreferences2 = globalMainSettings;
+                        boolean z3 = sharedPreferences2.getBoolean("dbg_dump_call_stats", false);
+                        SharedPreferences.Editor editorEdit2 = sharedPreferences2.edit();
+                        boolean z4 = !z3;
+                        editorEdit2.putBoolean("dbg_dump_call_stats", z4);
+                        editorEdit2.commit();
+                        textCheckCell.setChecked(z4);
+                        break;
+                    default:
+                        SharedPreferences sharedPreferences3 = globalMainSettings;
+                        boolean z5 = sharedPreferences3.getBoolean("dbg_force_connection_service", false);
+                        SharedPreferences.Editor editorEdit3 = sharedPreferences3.edit();
+                        boolean z6 = !z5;
+                        editorEdit3.putBoolean("dbg_force_connection_service", z6);
+                        editorEdit3.commit();
+                        textCheckCell.setChecked(z6);
+                        break;
+                }
+            }
+        });
+        linearLayoutM.addView(textCheckCell);
+        if (BuildVars.DEBUG_VERSION && BuildVars.LOGS_ENABLED) {
+            final TextCheckCell textCheckCell2 = new TextCheckCell(activity);
+            textCheckCell2.setTextAndCheck("Dump detailed stats", globalMainSettings.getBoolean("dbg_dump_call_stats", false), false);
+            final int i2 = 1;
+            textCheckCell2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    switch (i2) {
+                        case 0:
+                            SharedPreferences sharedPreferences = globalMainSettings;
+                            boolean z = sharedPreferences.getBoolean("dbg_force_tcp_in_calls", false);
+                            SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+                            boolean z2 = !z;
+                            editorEdit.putBoolean("dbg_force_tcp_in_calls", z2);
+                            editorEdit.commit();
+                            textCheckCell2.setChecked(z2);
+                            break;
+                        case 1:
+                            SharedPreferences sharedPreferences2 = globalMainSettings;
+                            boolean z3 = sharedPreferences2.getBoolean("dbg_dump_call_stats", false);
+                            SharedPreferences.Editor editorEdit2 = sharedPreferences2.edit();
+                            boolean z4 = !z3;
+                            editorEdit2.putBoolean("dbg_dump_call_stats", z4);
+                            editorEdit2.commit();
+                            textCheckCell2.setChecked(z4);
+                            break;
+                        default:
+                            SharedPreferences sharedPreferences3 = globalMainSettings;
+                            boolean z5 = sharedPreferences3.getBoolean("dbg_force_connection_service", false);
+                            SharedPreferences.Editor editorEdit3 = sharedPreferences3.edit();
+                            boolean z6 = !z5;
+                            editorEdit3.putBoolean("dbg_force_connection_service", z6);
+                            editorEdit3.commit();
+                            textCheckCell2.setChecked(z6);
+                            break;
+                    }
+                }
+            });
+            linearLayoutM.addView(textCheckCell2);
+        }
+        if (Build.VERSION.SDK_INT >= 26) {
+            final TextCheckCell textCheckCell3 = new TextCheckCell(activity);
+            textCheckCell3.setTextAndCheck("Enable ConnectionService", globalMainSettings.getBoolean("dbg_force_connection_service", false), false);
+            final int i3 = 2;
+            textCheckCell3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    switch (i3) {
+                        case 0:
+                            SharedPreferences sharedPreferences = globalMainSettings;
+                            boolean z = sharedPreferences.getBoolean("dbg_force_tcp_in_calls", false);
+                            SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+                            boolean z2 = !z;
+                            editorEdit.putBoolean("dbg_force_tcp_in_calls", z2);
+                            editorEdit.commit();
+                            textCheckCell3.setChecked(z2);
+                            break;
+                        case 1:
+                            SharedPreferences sharedPreferences2 = globalMainSettings;
+                            boolean z3 = sharedPreferences2.getBoolean("dbg_dump_call_stats", false);
+                            SharedPreferences.Editor editorEdit2 = sharedPreferences2.edit();
+                            boolean z4 = !z3;
+                            editorEdit2.putBoolean("dbg_dump_call_stats", z4);
+                            editorEdit2.commit();
+                            textCheckCell3.setChecked(z4);
+                            break;
+                        default:
+                            SharedPreferences sharedPreferences3 = globalMainSettings;
+                            boolean z5 = sharedPreferences3.getBoolean("dbg_force_connection_service", false);
+                            SharedPreferences.Editor editorEdit3 = sharedPreferences3.edit();
+                            boolean z6 = !z5;
+                            editorEdit3.putBoolean("dbg_force_connection_service", z6);
+                            editorEdit3.commit();
+                            textCheckCell3.setChecked(z6);
+                            break;
+                    }
+                }
+            });
+            linearLayoutM.addView(textCheckCell3);
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, null);
+        builder.alertDialog.title = LocaleController.getString(R.string.DebugMenuCallSettings);
+        builder.setView(linearLayoutM);
+        builder.show();
+    }
+
+    public static void showRateAlert(Activity activity, TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
+        Iterator<String> it = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).getStringSet("calls_access_hashes", Collections.EMPTY_SET).iterator();
+        while (it.hasNext()) {
+            String[] strArrSplit = it.next().split(" ");
+            if (strArrSplit.length >= 2) {
+                if (strArrSplit[0].equals(tL_messageActionPhoneCall.call_id + "")) {
+                    try {
+                        showRateAlert(activity, null, tL_messageActionPhoneCall.video, tL_messageActionPhoneCall.call_id, Long.parseLong(strArrSplit[1]), UserConfig.selectedAccount, true);
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    public static void startCall(TLRPC.User user, boolean z, boolean z2, Activity activity, TLRPC.UserFull userFull, AccountInstance accountInstance) {
+        if (accountInstance != null ? accountInstance.getMessagesController().isFrozen() : MessagesController.getInstance(UserConfig.selectedAccount).isFrozen()) {
+            AccountFrozenAlert.show(accountInstance == null ? UserConfig.selectedAccount : accountInstance.getCurrentAccount());
+            return;
+        }
+        if (userFull != null && userFull.phone_calls_private) {
+            AlertsCreator.showCallsForbidden(activity, accountInstance.getCurrentAccount(), user.id);
+            return;
+        }
+        if (ConnectionsManager.getInstance(UserConfig.selectedAccount).getConnectionState() == 3) {
+            if (Build.VERSION.SDK_INT < 23) {
+                initiateCall(user, null, null, z, z2, false, null, activity, null, accountInstance);
+                return;
+            }
+            ArrayList arrayList = new ArrayList();
+            if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
+                arrayList.add("android.permission.RECORD_AUDIO");
+            }
+            if (z && activity.checkSelfPermission("android.permission.CAMERA") != 0) {
+                arrayList.add("android.permission.CAMERA");
+            }
+            if (arrayList.isEmpty()) {
+                initiateCall(user, null, null, z, z2, false, null, activity, null, accountInstance);
+                return;
+            } else {
+                activity.requestPermissions((String[]) arrayList.toArray(new String[0]), z ? 102 : 101);
+                return;
+            }
+        }
+        boolean z3 = Settings.System.getInt(activity.getContentResolver(), "airplane_mode_on", 0) != 0;
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, null);
+        String string = LocaleController.getString(z3 ? R.string.VoipOfflineAirplaneTitle : R.string.VoipOfflineTitle);
+        AlertDialog alertDialog = builder.alertDialog;
+        alertDialog.title = string;
+        alertDialog.message = LocaleController.getString(z3 ? R.string.VoipOfflineAirplane : R.string.VoipOffline);
+        builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
+        if (z3) {
+            Intent intent = new Intent("android.settings.AIRPLANE_MODE_SETTINGS");
+            if (intent.resolveActivity(activity.getPackageManager()) != null) {
+                builder.setNeutralButton(LocaleController.getString(R.string.VoipOfflineOpenSettings), new VoIPHelper$$ExternalSyntheticLambda4(activity, intent, 0));
+            }
+        }
+        try {
+            builder.show();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public static void showRateAlert(final Activity activity, VoIPFragment$12$$ExternalSyntheticLambda0 voIPFragment$12$$ExternalSyntheticLambda0, boolean z, final long j, final long j2, final int i, final boolean z2) {
+        File file;
+        File file2;
+        String string;
+        String str;
+        File file3;
+        String[] list;
+        if (BuildVars.DEBUG_VERSION && (list = (file3 = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "logs")).list()) != null) {
+            int length = list.length;
+            int i2 = 0;
+            while (true) {
+                if (i2 < length) {
+                    String str2 = list[i2];
+                    if (str2.endsWith("voip" + j + ".txt")) {
+                        file = new File(file3, str2);
+                    } else {
+                        i2++;
+                    }
+                } else {
+                    file2 = new File(ApplicationLoader.applicationContext.getCacheDir(), "voip_logs");
+                    if (!file2.exists()) {
+                        file2.mkdirs();
+                    }
+                    file = new File(file2, j + ".log");
+                }
+            }
+        } else {
+            file2 = new File(ApplicationLoader.applicationContext.getCacheDir(), "voip_logs");
+            if (!file2.exists()) {
+                file2.mkdirs();
+            }
+            file = new File(file2, j + ".log");
+        }
+        final File file4 = file;
+        final int[] iArr = {0};
+        int i3 = 1;
+        LinearLayout linearLayoutM = FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(activity, 1);
+        int iDp = AndroidUtilities.dp(16.0f);
+        linearLayoutM.setPadding(iDp, iDp, iDp, 0);
+        final TextView textView = new TextView(activity);
+        textView.setTextSize(2, 16.0f);
+        zzkr.m(Theme.key_dialogTextBlack, textView, 17);
+        textView.setText(LocaleController.getString(R.string.VoipRateCallAlert));
+        linearLayoutM.addView(textView);
+        final BetterRatingView betterRatingView = new BetterRatingView(activity);
+        linearLayoutM.addView(betterRatingView, LayoutHelper.createLinear(-2, -2, 1, 0, 16, 0, 0));
+        final LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(1);
+        ChatActivity$$ExternalSyntheticLambda267 chatActivity$$ExternalSyntheticLambda267 = new ChatActivity$$ExternalSyntheticLambda267(12);
+        String[] strArr = {z ? "distorted_video" : null, z ? "pixelated_video" : null, "echo", "noise", "interruptions", "distorted_speech", "silent_local", "silent_remote", "dropped"};
+        int i4 = 0;
+        while (i4 < 9) {
+            if (strArr[i4] != null) {
+                CheckBoxCell checkBoxCell = new CheckBoxCell(activity, i3);
+                checkBoxCell.setClipToPadding(false);
+                checkBoxCell.setTag(strArr[i4]);
+                switch (i4) {
+                    case 0:
+                        string = LocaleController.getString(R.string.RateCallVideoDistorted);
+                        str = string;
+                        break;
+                    case 1:
+                        string = LocaleController.getString(R.string.RateCallVideoPixelated);
+                        str = string;
+                        break;
+                    case 2:
+                        string = LocaleController.getString(R.string.RateCallEcho);
+                        str = string;
+                        break;
+                    case 3:
+                        string = LocaleController.getString(R.string.RateCallNoise);
+                        str = string;
+                        break;
+                    case 4:
+                        string = LocaleController.getString(R.string.RateCallInterruptions);
+                        str = string;
+                        break;
+                    case 5:
+                        string = LocaleController.getString(R.string.RateCallDistorted);
+                        str = string;
+                        break;
+                    case 6:
+                        string = LocaleController.getString(R.string.RateCallSilentLocal);
+                        str = string;
+                        break;
+                    case 7:
+                        string = LocaleController.getString(R.string.RateCallSilentRemote);
+                        str = string;
+                        break;
+                    case 8:
+                        string = LocaleController.getString(R.string.RateCallDropped);
+                        str = string;
+                        break;
+                    default:
+                        str = null;
+                        break;
+                }
+                checkBoxCell.setText(str, null, false, false, false);
+                checkBoxCell.setOnClickListener(chatActivity$$ExternalSyntheticLambda267);
+                checkBoxCell.setTag(strArr[i4]);
+                linearLayout.addView(checkBoxCell);
+            }
+            i4++;
+            i3 = 1;
+        }
+        linearLayoutM.addView(linearLayout, LayoutHelper.createLinear(-8.0f, 0.0f, -8.0f, 0.0f, -1, -2));
+        linearLayout.setVisibility(8);
+        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(activity);
+        editTextBoldCursor.setHint(LocaleController.getString(R.string.VoipFeedbackCommentHint));
+        editTextBoldCursor.setInputType(147457);
+        editTextBoldCursor.setTextColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
+        editTextBoldCursor.setHintTextColor(Theme.getColor(null, Theme.key_dialogTextHint, false));
+        editTextBoldCursor.setBackground(null);
+        editTextBoldCursor.setLineColors(Theme.getColor(null, Theme.key_dialogInputField, false), Theme.getColor(null, Theme.key_dialogInputFieldActivated, false), Theme.getColor(null, Theme.key_text_RedBold, false));
+        editTextBoldCursor.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+        editTextBoldCursor.setTextSize(1, 18.0f);
+        editTextBoldCursor.setVisibility(8);
+        linearLayoutM.addView(editTextBoldCursor, LayoutHelper.createLinear(8.0f, 8.0f, 8.0f, 0.0f, -1, -2));
+        final boolean[] zArr = {true};
+        final CheckBoxCell checkBoxCell2 = new CheckBoxCell(activity, 1);
+        ContactAddActivity$$ExternalSyntheticLambda8 contactAddActivity$$ExternalSyntheticLambda8 = new ContactAddActivity$$ExternalSyntheticLambda8(28, zArr, checkBoxCell2);
+        checkBoxCell2.setText(LocaleController.getString(R.string.CallReportIncludeLogs), null, true, false, false);
+        checkBoxCell2.setClipToPadding(false);
+        checkBoxCell2.setOnClickListener(contactAddActivity$$ExternalSyntheticLambda8);
+        linearLayoutM.addView(checkBoxCell2, LayoutHelper.createLinear(-8.0f, 0.0f, -8.0f, 0.0f, -1, -2));
+        final TextView textView2 = new TextView(activity);
+        textView2.setTextSize(2, 14.0f);
+        textView2.setTextColor(Theme.getColor(null, Theme.key_dialogTextGray3, false));
+        textView2.setPadding(zzlm.m(8.0f, R.string.CallReportLogsExplain, textView2), 0, AndroidUtilities.dp(8.0f), 0);
+        textView2.setOnClickListener(contactAddActivity$$ExternalSyntheticLambda8);
+        linearLayoutM.addView(textView2);
+        checkBoxCell2.setVisibility(8);
+        textView2.setVisibility(8);
+        if (!file4.exists()) {
+            zArr[0] = false;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, null);
+        builder.alertDialog.title = LocaleController.getString(R.string.CallMessageReportProblem);
+        builder.setView(linearLayoutM);
+        builder.setPositiveButton(LocaleController.getString(R.string.Send), new ShareAlert$$ExternalSyntheticLambda15(24));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        builder.alertDialog.setOnDismissListener(new OAuthSheet$$ExternalSyntheticLambda11(voIPFragment$12$$ExternalSyntheticLambda0, 20));
+        final AlertDialog alertDialog = builder.alertDialog;
+        if (BuildVars.LOGS_ENABLED && file4.exists()) {
+            RateCallLayout$$ExternalSyntheticLambda1 rateCallLayout$$ExternalSyntheticLambda1 = new RateCallLayout$$ExternalSyntheticLambda1(activity, file4);
+            alertDialog.neutralButtonText = "Send log";
+            alertDialog.neutralButtonListener = rateCallLayout$$ExternalSyntheticLambda1;
+        }
+        alertDialog.show();
+        alertDialog.getWindow().setSoftInputMode(3);
+        final View button = alertDialog.getButton(-1);
+        button.setEnabled(false);
+        betterRatingView.setOnRatingChangeListener(new RadialProgress2$$ExternalSyntheticLambda0(button));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                BetterRatingView betterRatingView2 = betterRatingView;
+                int rating = betterRatingView2.getRating();
+                LinearLayout linearLayout2 = linearLayout;
+                EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
+                File file5 = file4;
+                AlertDialog alertDialog2 = alertDialog;
+                if (rating < 4) {
+                    int[] iArr2 = iArr;
+                    if (iArr2[0] != 1) {
+                        iArr2[0] = 1;
+                        betterRatingView2.setVisibility(8);
+                        textView.setVisibility(8);
+                        alertDialog2.setTitle(LocaleController.getString(R.string.CallReportHint));
+                        editTextBoldCursor2.setVisibility(0);
+                        if (file5.exists()) {
+                            checkBoxCell2.setVisibility(0);
+                            textView2.setVisibility(0);
+                        }
+                        linearLayout2.setVisibility(0);
+                        ((TextView) button).setText(LocaleController.getString(R.string.Send).toUpperCase());
+                        return;
+                    }
+                }
+                int i5 = UserConfig.selectedAccount;
+                TL_phone.setCallRating setcallrating = new TL_phone.setCallRating();
+                setcallrating.rating = betterRatingView2.getRating();
+                ArrayList arrayList = new ArrayList();
+                for (int i6 = 0; i6 < linearLayout2.getChildCount(); i6++) {
+                    CheckBoxCell checkBoxCell3 = (CheckBoxCell) linearLayout2.getChildAt(i6);
+                    if (checkBoxCell3.isChecked()) {
+                        arrayList.add("#" + checkBoxCell3.getTag());
+                    }
+                }
+                if (setcallrating.rating < 5) {
+                    setcallrating.comment = editTextBoldCursor2.getText().toString();
+                } else {
+                    setcallrating.comment = "";
+                }
+                boolean zIsEmpty = arrayList.isEmpty();
+                boolean[] zArr2 = zArr;
+                if (!zIsEmpty && !zArr2[0]) {
+                    setcallrating.comment += " " + TextUtils.join(" ", arrayList);
+                }
+                TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
+                setcallrating.peer = tL_inputPhoneCall;
+                tL_inputPhoneCall.access_hash = j2;
+                tL_inputPhoneCall.id = j;
+                setcallrating.user_initiative = z2;
+                ConnectionsManager.getInstance(i).sendRequest(setcallrating, new ArticleViewer$$ExternalSyntheticLambda61(i5, zArr2, file5, setcallrating, arrayList, activity));
+                alertDialog2.dismiss();
+            }
+        });
+    }
+
     public static String getLogFilePath(String str) {
         Calendar calendar = Calendar.getInstance();
         return new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), String.format(Locale.US, "logs/%02d_%02d_%04d_%02d_%02d_%02d_%s.txt", Integer.valueOf(calendar.get(5)), Integer.valueOf(calendar.get(2) + 1), Integer.valueOf(calendar.get(1)), Integer.valueOf(calendar.get(11)), Integer.valueOf(calendar.get(12)), Integer.valueOf(calendar.get(13)), str)).getAbsolutePath();
     }
 
-    public static String getLogFilePath(String str, boolean z) {
-        File[] fileArrListFiles;
-        File logsDir = getLogsDir();
-        if (!BuildVars.DEBUG_VERSION && (fileArrListFiles = logsDir.listFiles()) != null) {
-            ArrayList arrayList = new ArrayList(Arrays.asList(fileArrListFiles));
-            while (arrayList.size() > 20) {
-                int i = 0;
-                File file = (File) arrayList.get(0);
-                int size = arrayList.size();
-                while (i < size) {
-                    Object obj = arrayList.get(i);
-                    i++;
-                    File file2 = (File) obj;
-                    if (file2.getName().endsWith(".log") && file2.lastModified() < file.lastModified()) {
-                        file = file2;
-                    }
-                }
-                file.delete();
-                arrayList.remove(file);
-            }
-        }
-        if (z) {
-            return new File(logsDir, str + "_stats.log").getAbsolutePath();
-        }
-        return new File(logsDir, str + ".log").getAbsolutePath();
-    }
-
-    public static void showGroupCallAlert(final BaseFragment baseFragment, final TLRPC.Chat chat, final TLRPC.InputPeer inputPeer, boolean z, final AccountInstance accountInstance) {
-        if (baseFragment == null || baseFragment.getParentActivity() == null) {
+    public static void startCall(TLRPC.Chat chat, String str, boolean z, Boolean bool, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
+        if (activity == null) {
             return;
         }
-        JoinCallAlert.checkFewUsers(baseFragment.getParentActivity(), -chat.id, accountInstance, new MessagesStorage.BooleanCallback() {
-            @Override
-            public final void run(boolean z2) {
-                TLRPC.Chat chat2 = chat;
-                TLRPC.InputPeer inputPeer2 = inputPeer;
-                BaseFragment baseFragment2 = baseFragment;
-                VoIPHelper.startCall(chat2, inputPeer2, null, true, baseFragment2.getParentActivity(), baseFragment2, accountInstance);
+        if (ConnectionsManager.getInstance(UserConfig.selectedAccount).getConnectionState() != 3) {
+            boolean z2 = Settings.System.getInt(activity.getContentResolver(), "airplane_mode_on", 0) != 0;
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, null);
+            String string = LocaleController.getString(z2 ? R.string.VoipOfflineAirplaneTitle : R.string.VoipOfflineTitle);
+            AlertDialog alertDialog = builder.alertDialog;
+            alertDialog.title = string;
+            alertDialog.message = LocaleController.getString(z2 ? R.string.VoipGroupOfflineAirplane : R.string.VoipGroupOffline);
+            builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
+            if (z2) {
+                Intent intent = new Intent("android.settings.AIRPLANE_MODE_SETTINGS");
+                if (intent.resolveActivity(activity.getPackageManager()) != null) {
+                    builder.setNeutralButton(LocaleController.getString(R.string.VoipOfflineOpenSettings), new VoIPHelper$$ExternalSyntheticLambda4(activity, intent, 1));
+                }
             }
-        });
+            try {
+                builder.show();
+                return;
+            } catch (Exception e) {
+                FileLog.e(e);
+                return;
+            }
+        }
+        initiateCall(null, chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
     }
 }

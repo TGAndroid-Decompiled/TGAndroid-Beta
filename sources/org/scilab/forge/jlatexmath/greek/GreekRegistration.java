@@ -9,12 +9,12 @@ public class GreekRegistration implements AlphabetRegistration {
     }
 
     @Override
-    public Character.UnicodeBlock[] getUnicodeBlock() {
-        return new Character.UnicodeBlock[]{Character.UnicodeBlock.GREEK, Character.UnicodeBlock.GREEK_EXTENDED};
+    public String getTeXFontFileName() {
+        return "fonts/language_greek.xml";
     }
 
     @Override
-    public String getTeXFontFileName() {
-        return "fonts/language_greek.xml";
+    public Character.UnicodeBlock[] getUnicodeBlock() {
+        return new Character.UnicodeBlock[]{Character.UnicodeBlock.GREEK, Character.UnicodeBlock.GREEK_EXTENDED};
     }
 }

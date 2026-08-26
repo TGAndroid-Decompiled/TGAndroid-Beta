@@ -3,89 +3,78 @@ package org.telegram.ui.Components.Paint.Views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkm;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.RecyclerListView;
 
-public class PaintTypefaceListView extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate {
-    private Path mask;
-    private Consumer maskProvider;
+public final class PaintTypefaceListView extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate {
+    public final Path mask;
+    public Consumer maskProvider;
+
+    public final class AnonymousClass1 extends RecyclerListView.SelectionAdapter {
+        @Override
+        public final int getItemCount() {
+            return PaintTypeface.get().size();
+        }
+
+        @Override
+        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return true;
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            PaintTextOptionsView.TypefaceCell typefaceCell = (PaintTextOptionsView.TypefaceCell) viewHolder.itemView;
+            PaintTypeface paintTypeface = (PaintTypeface) PaintTypeface.get().get(i);
+            typefaceCell.getClass();
+            typefaceCell.setTypeface(paintTypeface.getTypeface());
+            String string = paintTypeface.name;
+            if (string == null) {
+                string = LocaleController.getString(paintTypeface.nameKey);
+            }
+            typefaceCell.setText(string);
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            PaintTextOptionsView.TypefaceCell typefaceCell = new PaintTextOptionsView.TypefaceCell(viewGroup.getContext());
+            typefaceCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(typefaceCell);
+        }
+    }
 
     public PaintTypefaceListView(Context context) {
-        super(context);
+        super(context, null);
         this.mask = new Path();
         setWillNotDraw(false);
-        setLayoutManager(new LinearLayoutManager(context));
-        setAdapter(new RecyclerListView.SelectionAdapter() {
-            @Override
-            public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                return true;
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                PaintTextOptionsView.TypefaceCell typefaceCell = new PaintTextOptionsView.TypefaceCell(viewGroup.getContext());
-                typefaceCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                return new RecyclerListView.Holder(typefaceCell);
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                ((PaintTextOptionsView.TypefaceCell) viewHolder.itemView).bind((PaintTypeface) PaintTypeface.get().get(i));
-            }
-
-            @Override
-            public int getItemCount() {
-                return PaintTypeface.get().size();
-            }
-        });
+        setLayoutManager(new LinearLayoutManager(1, false));
+        setAdapter(new AnonymousClass1());
         setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         setClipToPadding(false);
     }
 
     @Override
-    public Integer getSelectorColor(int i) {
-        return 285212671;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.customTypefacesLoaded) {
             getAdapter().notifyDataSetChanged();
         }
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((Math.min(PaintTypeface.get().size(), 6) * AndroidUtilities.dp(48.0f)) + AndroidUtilities.dp(16.0f), 1073741824));
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         Consumer consumer = this.maskProvider;
         if (consumer != null) {
-            consumer.accept(this.mask);
+            Path path = this.mask;
+            consumer.accept(path);
             canvas.save();
-            canvas.clipPath(this.mask);
+            canvas.clipPath(path);
         }
         super.draw(canvas);
         if (this.maskProvider != null) {
@@ -93,18 +82,30 @@ public class PaintTypefaceListView extends RecyclerListView implements Notificat
         }
     }
 
+    @Override
+    public final Integer getSelectorColor(int i) {
+        return 285212671;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, zzkm.m(16.0f, AndroidUtilities.dp(48.0f) * Math.min(PaintTypeface.get().size(), 6)));
+    }
+
     public void setMaskProvider(Consumer consumer) {
         this.maskProvider = consumer;
         invalidate();
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        return super.onTouchEvent(motionEvent);
     }
 }

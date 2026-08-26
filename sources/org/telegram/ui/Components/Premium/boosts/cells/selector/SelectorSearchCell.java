@@ -1,16 +1,12 @@
 package org.telegram.ui.Components.Premium.boosts.cells.selector;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -20,59 +16,52 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Property;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 import android.widget.ScrollView;
+import com.google.android.gms.internal.mlkit_language_id_common.zziq;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda62;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.GroupCreateSpan;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
+import org.telegram.ui.UsersSelectActivity;
 
 public abstract class SelectorSearchCell extends ScrollView {
-    public ArrayList allSpans;
-    private final LinearGradient bottomGradient;
-    private final AnimatedFloat bottomGradientAlpha;
-    private final Matrix bottomGradientMatrix;
-    private final Paint bottomGradientPaint;
+    public final ArrayList allSpans;
+    public final LinearGradient bottomGradient;
+    public final AnimatedFloat bottomGradientAlpha;
+    public final Matrix bottomGradientMatrix;
+    public final Paint bottomGradientPaint;
     public float containerHeight;
-    private GroupCreateSpan currentDeletingSpan;
-    private EditTextBoldCursor editText;
-    private int fieldY;
-    private int hintTextWidth;
-    private boolean ignoreScrollEvent;
-    private boolean ignoreTextChange;
-    private Utilities.Callback onSearchTextChange;
-    private int prevResultContainerHeight;
-    private final Theme.ResourcesProvider resourcesProvider;
-    public int resultContainerHeight;
-    private boolean scroll;
-    public SpansContainer spansContainer;
-    private final LinearGradient topGradient;
-    private final AnimatedFloat topGradientAlpha;
-    private final Matrix topGradientMatrix;
-    private final Paint topGradientPaint;
-    private Runnable updateHeight;
+    public GroupCreateSpan currentDeletingSpan;
+    public final UsersSelectActivity.AnonymousClass4 editText;
+    public int fieldY;
+    public final int hintTextWidth;
+    public boolean ignoreScrollEvent;
+    public boolean ignoreTextChange;
+    public Utilities.Callback onSearchTextChange;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final StoryPrivacyBottomSheet.SearchUsersCell.SpansContainer spansContainer;
+    public final LinearGradient topGradient;
+    public final AnimatedFloat topGradientAlpha;
+    public final Matrix topGradientMatrix;
+    public final Paint topGradientPaint;
 
-    public EditTextBoldCursor getEditText() {
-        return this.editText;
-    }
-
-    public SelectorSearchCell(Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+    public SelectorSearchCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.allSpans = new ArrayList();
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -95,205 +84,115 @@ public abstract class SelectorSearchCell extends ScrollView {
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
         this.resourcesProvider = resourcesProvider;
-        this.updateHeight = runnable;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, Theme.getColor(Theme.key_windowBackgroundWhite));
-        SpansContainer spansContainer = new SpansContainer(context);
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+        StoryPrivacyBottomSheet.SearchUsersCell.SpansContainer spansContainer = new StoryPrivacyBottomSheet.SearchUsersCell.SpansContainer(this, context);
         this.spansContainer = spansContainer;
-        addView(spansContainer, LayoutHelper.createFrame(-1, -2.0f));
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
-            @Override
-            public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (SelectorSearchCell.this.currentDeletingSpan != null) {
-                    SelectorSearchCell.this.currentDeletingSpan.cancelDeleteAnimation();
-                    SelectorSearchCell.this.currentDeletingSpan = null;
-                }
-                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
-                    SelectorSearchCell.this.fullScroll(130);
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
-            }
-        };
-        this.editText = editTextBoldCursor;
+        addView(spansContainer, LayoutHelper.createFrame(-2.0f, -1));
+        UsersSelectActivity.AnonymousClass4 anonymousClass4 = new UsersSelectActivity.AnonymousClass4(this, context, 5);
+        this.editText = anonymousClass4;
         if (Build.VERSION.SDK_INT >= 25) {
-            editTextBoldCursor.setRevealOnFocusHint(false);
+            anonymousClass4.setRevealOnFocusHint(false);
         }
-        this.editText.setTextSize(1, 16.0f);
-        this.editText.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
-        this.editText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-        EditTextBoldCursor editTextBoldCursor2 = this.editText;
+        anonymousClass4.setTextSize(1, 16.0f);
+        anonymousClass4.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
+        anonymousClass4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         int i = Theme.key_groupcreate_cursor;
-        editTextBoldCursor2.setCursorColor(Theme.getColor(i, resourcesProvider));
-        this.editText.setHandlesColor(Theme.getColor(i, resourcesProvider));
-        this.editText.setCursorWidth(1.5f);
-        EditTextBoldCursor editTextBoldCursor3 = this.editText;
-        editTextBoldCursor3.setInputType(editTextBoldCursor3.getInputType() | 176);
-        this.editText.setSingleLine(true);
-        this.editText.setBackgroundDrawable(null);
-        this.editText.setVerticalScrollBarEnabled(false);
-        this.editText.setHorizontalScrollBarEnabled(false);
-        this.editText.setTextIsSelectable(false);
-        this.editText.setPadding(0, 0, 0, 0);
-        this.editText.setImeOptions(268435462);
-        this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.spansContainer.addView(this.editText);
-        EditTextBoldCursor editTextBoldCursor4 = this.editText;
+        anonymousClass4.setCursorColor(Theme.getColor(i, resourcesProvider));
+        anonymousClass4.setHandlesColor(Theme.getColor(i, resourcesProvider));
+        anonymousClass4.setCursorWidth(1.5f);
+        anonymousClass4.setInputType(anonymousClass4.getInputType() | 176);
+        anonymousClass4.setSingleLine(true);
+        anonymousClass4.setBackgroundDrawable(null);
+        anonymousClass4.setVerticalScrollBarEnabled(false);
+        anonymousClass4.setHorizontalScrollBarEnabled(false);
+        anonymousClass4.setTextIsSelectable(false);
+        anonymousClass4.setPadding(0, 0, 0, 0);
+        anonymousClass4.setImeOptions(268435462);
+        anonymousClass4.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        spansContainer.addView(anonymousClass4);
         int i2 = R.string.Search;
-        editTextBoldCursor4.setHintText(LocaleController.getString(i2));
-        this.hintTextWidth = (int) this.editText.getPaint().measureText(LocaleController.getString(i2));
-        this.editText.addTextChangedListener(new TextWatcher() {
+        anonymousClass4.setHintText(LocaleController.getString(i2));
+        this.hintTextWidth = (int) anonymousClass4.getPaint().measureText(LocaleController.getString(i2));
+        anonymousClass4.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (SelectorSearchCell.this.ignoreTextChange || SelectorSearchCell.this.onSearchTextChange == null || editable == null) {
+            public final void afterTextChanged(Editable editable) {
+                Utilities.Callback callback;
+                SelectorSearchCell selectorSearchCell = SelectorSearchCell.this;
+                if (selectorSearchCell.ignoreTextChange || (callback = selectorSearchCell.onSearchTextChange) == null || editable == null) {
                     return;
                 }
-                SelectorSearchCell.this.onSearchTextChange.run(editable.toString());
+                callback.run(editable.toString());
             }
-        });
-    }
-
-    public void setHintText(String str, boolean z) {
-        this.editText.setHintText(str, z);
-    }
-
-    public void updateSpans(boolean z, final HashSet hashSet, final Runnable runnable, List list) {
-        Object chat;
-        Object obj;
-        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        for (int i = 0; i < this.allSpans.size(); i++) {
-            GroupCreateSpan groupCreateSpan = (GroupCreateSpan) this.allSpans.get(i);
-            if (!hashSet.contains(Long.valueOf(groupCreateSpan.getUid()))) {
-                arrayList.add(groupCreateSpan);
-            }
-        }
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()) {
-            Long l = (Long) it.next();
-            long jLongValue = l.longValue();
-            int i2 = 0;
-            while (true) {
-                if (i2 >= this.allSpans.size()) {
-                    if (jLongValue >= 0) {
-                        chat = messagesController.getUser(l);
-                    } else {
-                        chat = messagesController.getChat(Long.valueOf(-jLongValue));
-                    }
-                    if (list == null) {
-                        obj = chat;
-                        break;
-                    }
-                    Iterator it2 = list.iterator();
-                    while (true) {
-                        if (!it2.hasNext()) {
-                            obj = chat;
-                            break;
-                        }
-                        TLRPC.TL_help_country tL_help_country = (TLRPC.TL_help_country) it2.next();
-                        if (tL_help_country.default_name.hashCode() == jLongValue) {
-                            obj = tL_help_country;
-                            break;
-                        }
-                    }
-                    if (obj != null) {
-                        GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(getContext(), obj, null, true, this.resourcesProvider);
-                        groupCreateSpan2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view) {
-                                this.f$0.onDeleteSpanClicked(view, hashSet, runnable);
-                            }
-                        });
-                        arrayList2.add(groupCreateSpan2);
-                        break;
-                    }
-                    break;
-                }
-                if (((GroupCreateSpan) this.allSpans.get(i2)).getUid() == jLongValue) {
-                    break;
-                } else {
-                    i2++;
-                }
-            }
-        }
-        if (!arrayList.isEmpty() || !arrayList2.isEmpty()) {
-            this.spansContainer.updateSpans(arrayList, arrayList2, z);
-        }
-        this.editText.setOnKeyListener(new View.OnKeyListener() {
-            private boolean wasEmpty;
 
             @Override
-            public boolean onKey(View view, int i3, KeyEvent keyEvent) {
-                if (i3 == 67) {
-                    if (keyEvent.getAction() == 0) {
-                        this.wasEmpty = SelectorSearchCell.this.editText.length() == 0;
-                    } else if (keyEvent.getAction() == 1 && this.wasEmpty && !SelectorSearchCell.this.allSpans.isEmpty()) {
-                        ArrayList arrayList3 = SelectorSearchCell.this.allSpans;
-                        SelectorSearchCell.this.onDeleteSpanClicked((GroupCreateSpan) arrayList3.get(arrayList3.size() - 1), hashSet, runnable);
-                        return true;
-                    }
-                }
-                return false;
+            public final void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+            }
+
+            @Override
+            public final void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
             }
         });
-    }
-
-    public void onDeleteSpanClicked(View view, HashSet hashSet, Runnable runnable) {
-        if (this.allSpans.contains(view)) {
-            GroupCreateSpan groupCreateSpan = (GroupCreateSpan) view;
-            if (groupCreateSpan.isDeleting()) {
-                this.currentDeletingSpan = null;
-                this.spansContainer.removeSpan(groupCreateSpan);
-                hashSet.remove(Long.valueOf(groupCreateSpan.getUid()));
-                runnable.run();
-                return;
-            }
-            GroupCreateSpan groupCreateSpan2 = this.currentDeletingSpan;
-            if (groupCreateSpan2 != null) {
-                groupCreateSpan2.cancelDeleteAnimation();
-                this.currentDeletingSpan = null;
-            }
-            this.currentDeletingSpan = groupCreateSpan;
-            groupCreateSpan.startDeleteAnimation();
-        }
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         int scrollY = getScrollY();
         float f = scrollY;
         canvas.saveLayerAlpha(0.0f, f, getWidth(), getHeight() + scrollY, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
         float f2 = this.topGradientAlpha.set(canScrollVertically(-1));
-        this.topGradientMatrix.reset();
-        this.topGradientMatrix.postTranslate(0.0f, f);
-        this.topGradient.setLocalMatrix(this.topGradientMatrix);
-        this.topGradientPaint.setAlpha((int) (f2 * 255.0f));
-        canvas.drawRect(0.0f, f, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, this.topGradientPaint);
+        Matrix matrix = this.topGradientMatrix;
+        matrix.reset();
+        matrix.postTranslate(0.0f, f);
+        this.topGradient.setLocalMatrix(matrix);
+        Paint paint = this.topGradientPaint;
+        paint.setAlpha((int) (f2 * 255.0f));
+        canvas.drawRect(0.0f, f, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, paint);
         float f3 = this.bottomGradientAlpha.set(canScrollVertically(1));
-        this.bottomGradientMatrix.reset();
-        this.bottomGradientMatrix.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
-        this.bottomGradient.setLocalMatrix(this.bottomGradientMatrix);
-        this.bottomGradientPaint.setAlpha((int) (f3 * 255.0f));
-        canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), scrollY + getHeight(), this.bottomGradientPaint);
+        Matrix matrix2 = this.bottomGradientMatrix;
+        matrix2.reset();
+        matrix2.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
+        this.bottomGradient.setLocalMatrix(matrix2);
+        Paint paint2 = this.bottomGradientPaint;
+        paint2.setAlpha((int) (f3 * 255.0f));
+        canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), getHeight() + scrollY, paint2);
         canvas.restore();
         canvas.restore();
     }
 
+    public EditTextBoldCursor getEditText() {
+        return this.editText;
+    }
+
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return super.dispatchTouchEvent(motionEvent);
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(150.0f), Integer.MIN_VALUE));
+    }
+
+    @Override
+    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
+        if (this.ignoreScrollEvent) {
+            this.ignoreScrollEvent = false;
+            return false;
+        }
+        rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+        rect.top = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(this.fieldY, 20.0f, rect.top);
+        rect.bottom = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(this.fieldY, 50.0f, rect.bottom);
+        return super.requestChildRectangleOnScreen(view, rect, z);
+    }
+
+    public void setContainerHeight(float f) {
+        this.containerHeight = f;
+        StoryPrivacyBottomSheet.SearchUsersCell.SpansContainer spansContainer = this.spansContainer;
+        if (spansContainer != null) {
+            spansContainer.requestLayout();
+        }
+    }
+
+    public void setOnSearchTextChange(Utilities.Callback<String> callback) {
+        this.onSearchTextChange = callback;
     }
 
     public void setText(CharSequence charSequence) {
@@ -302,411 +201,182 @@ public abstract class SelectorSearchCell extends ScrollView {
         this.ignoreTextChange = false;
     }
 
-    public void setOnSearchTextChange(Utilities.Callback<String> callback) {
-        this.onSearchTextChange = callback;
-    }
-
-    @Override
-    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
-        if (this.ignoreScrollEvent) {
-            this.ignoreScrollEvent = false;
-            return false;
-        }
-        rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-        rect.top += this.fieldY + AndroidUtilities.dp(20.0f);
-        rect.bottom += this.fieldY + AndroidUtilities.dp(50.0f);
-        return super.requestChildRectangleOnScreen(view, rect, z);
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(150.0f), Integer.MIN_VALUE));
-    }
-
-    public void setContainerHeight(float f) {
-        this.containerHeight = f;
-        SpansContainer spansContainer = this.spansContainer;
-        if (spansContainer != null) {
-            spansContainer.requestLayout();
-        }
-    }
-
-    protected Animator getContainerHeightAnimator(float f) {
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.containerHeight, f);
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                SelectorSearchCell.$r8$lambda$GHOy8WQyguNqUkRMm8oqYQoNwOI(this.f$0, valueAnimator);
+    public final void updateSpans(boolean z, final HashSet hashSet, final Runnable runnable, ArrayList arrayList) {
+        ArrayList arrayList2;
+        int i;
+        int i2;
+        Property property;
+        Property property2;
+        Property property3;
+        Object obj;
+        ArrayList arrayList3 = arrayList;
+        int i3 = 1;
+        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
+        ArrayList arrayList4 = new ArrayList();
+        ArrayList arrayList5 = new ArrayList();
+        int i4 = 0;
+        while (true) {
+            arrayList2 = this.allSpans;
+            if (i4 >= arrayList2.size()) {
+                break;
             }
-        });
-        return valueAnimatorOfFloat;
-    }
-
-    public static void $r8$lambda$GHOy8WQyguNqUkRMm8oqYQoNwOI(SelectorSearchCell selectorSearchCell, ValueAnimator valueAnimator) {
-        selectorSearchCell.getClass();
-        selectorSearchCell.setContainerHeight(((Float) valueAnimator.getAnimatedValue()).floatValue());
-    }
-
-    public class SpansContainer extends ViewGroup {
-        private View addingSpan;
-        private ArrayList animAddingSpans;
-        private ArrayList animRemovingSpans;
-        private boolean animationStarted;
-        private ArrayList animators;
-        private AnimatorSet currentAnimation;
-        private final int heightDp;
-        private final int padDp;
-        private final int padXDp;
-        private final int padYDp;
-        private final ArrayList removingSpans;
-
-        public SpansContainer(Context context) {
-            super(context);
-            this.animAddingSpans = new ArrayList();
-            this.animRemovingSpans = new ArrayList();
-            this.animators = new ArrayList();
-            this.removingSpans = new ArrayList();
-            this.padDp = 14;
-            this.padYDp = 4;
-            this.padXDp = 6;
-            this.heightDp = 28;
+            GroupCreateSpan groupCreateSpan = (GroupCreateSpan) arrayList2.get(i4);
+            if (!hashSet.contains(Long.valueOf(groupCreateSpan.getUid()))) {
+                arrayList4.add(groupCreateSpan);
+            }
+            i4++;
         }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            Property property;
-            Property property2;
-            int iMin;
-            int childCount = getChildCount();
-            int size = View.MeasureSpec.getSize(i);
-            int iDp = size - AndroidUtilities.dp(28.0f);
-            int iDp2 = AndroidUtilities.dp(10.0f);
-            int iDp3 = AndroidUtilities.dp(10.0f);
-            int i3 = 0;
-            int measuredWidth = 0;
-            int measuredWidth2 = 0;
+        Iterator it = hashSet.iterator();
+        while (it.hasNext()) {
+            Long l = (Long) it.next();
+            long jLongValue = l.longValue();
+            int i5 = 0;
             while (true) {
-                property = View.TRANSLATION_Y;
-                property2 = View.TRANSLATION_X;
-                if (i3 >= childCount) {
+                if (i5 >= arrayList2.size()) {
+                    Object user = jLongValue >= 0 ? messagesController.getUser(l) : messagesController.getChat(Long.valueOf(-jLongValue));
+                    if (arrayList3 == null) {
+                        obj = user;
+                        break;
+                    }
+                    int size = arrayList3.size();
+                    int i6 = 0;
+                    while (true) {
+                        if (i6 >= size) {
+                            obj = user;
+                            break;
+                        }
+                        Object obj2 = arrayList3.get(i6);
+                        i6 += i3;
+                        TLRPC.TL_help_country tL_help_country = (TLRPC.TL_help_country) obj2;
+                        if (tL_help_country.default_name.hashCode() == jLongValue) {
+                            obj = tL_help_country;
+                            break;
+                        } else {
+                            arrayList3 = arrayList;
+                            i3 = 1;
+                        }
+                    }
+                    if (obj != null) {
+                        GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(getContext(), obj, null, true, this.resourcesProvider);
+                        groupCreateSpan2.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda62(this, hashSet, runnable, 28));
+                        arrayList5.add(groupCreateSpan2);
+                    }
+                    arrayList3 = arrayList;
+                    it = it;
+                    i3 = 1;
                     break;
                 }
-                View childAt = getChildAt(i3);
-                if (childAt instanceof GroupCreateSpan) {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
-                    boolean zContains = this.removingSpans.contains(childAt);
-                    if (!zContains && childAt.getMeasuredWidth() + measuredWidth > iDp) {
-                        iDp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(4.0f);
-                        measuredWidth = 0;
-                    }
-                    if (childAt.getMeasuredWidth() + measuredWidth2 > iDp) {
-                        iDp3 += childAt.getMeasuredHeight() + AndroidUtilities.dp(4.0f);
-                        measuredWidth2 = 0;
-                    }
-                    int iDp4 = AndroidUtilities.dp(14.0f) + measuredWidth;
-                    if (this.animationStarted) {
-                        childCount = childCount;
-                    } else if (zContains) {
-                        childAt.setTranslationX(AndroidUtilities.dp(14.0f) + measuredWidth2);
-                        childAt.setTranslationY(iDp3);
-                        childCount = childCount;
-                    } else if (this.removingSpans.isEmpty()) {
-                        childCount = childCount;
-                        childAt.setTranslationX(iDp4);
-                        childAt.setTranslationY(iDp2);
-                    } else {
-                        float f = iDp4;
-                        if (childAt.getTranslationX() != f) {
-                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property2, f));
-                        }
-                        float f2 = iDp2;
-                        if (childAt.getTranslationY() != f2) {
-                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property, f2));
-                        }
-                    }
-                    if (!zContains) {
-                        measuredWidth += childAt.getMeasuredWidth() + AndroidUtilities.dp(6.0f);
-                    }
-                    measuredWidth2 += childAt.getMeasuredWidth() + AndroidUtilities.dp(6.0f);
+                if (((GroupCreateSpan) arrayList2.get(i5)).getUid() == jLongValue) {
+                    break;
                 } else {
-                    childCount = childCount;
+                    i5 += i3;
                 }
-                i3++;
-                childCount = childCount;
-            }
-            if (AndroidUtilities.isTablet()) {
-                iMin = AndroidUtilities.dp(376.0f) / 3;
-            } else {
-                Point point = AndroidUtilities.displaySize;
-                iMin = (Math.min(point.x, point.y) - AndroidUtilities.dp(154.0f)) / 3;
-            }
-            if (iDp - measuredWidth < iMin) {
-                iDp2 += AndroidUtilities.dp(36.0f);
-                measuredWidth = 0;
-            }
-            if (iDp - measuredWidth2 < iMin) {
-                iDp3 += AndroidUtilities.dp(36.0f);
-            }
-            SelectorSearchCell.this.editText.measure(View.MeasureSpec.makeMeasureSpec(iDp - measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
-            SelectorSearchCell.this.editText.setHintVisible(SelectorSearchCell.this.editText.getMeasuredWidth() > SelectorSearchCell.this.hintTextWidth, true);
-            if (!this.animationStarted) {
-                int iDp5 = iDp3 + AndroidUtilities.dp(38.0f);
-                int iDp6 = measuredWidth + AndroidUtilities.dp(16.0f);
-                SelectorSearchCell.this.fieldY = iDp2;
-                if (this.currentAnimation != null) {
-                    int iDp7 = iDp2 + AndroidUtilities.dp(38.0f);
-                    SelectorSearchCell selectorSearchCell = SelectorSearchCell.this;
-                    selectorSearchCell.resultContainerHeight = iDp7;
-                    float f3 = iDp7;
-                    if (selectorSearchCell.containerHeight != f3) {
-                        this.animators.add(selectorSearchCell.getContainerHeightAnimator(f3));
-                    }
-                    float f4 = iDp6;
-                    if (SelectorSearchCell.this.editText.getTranslationX() != f4) {
-                        this.animators.add(ObjectAnimator.ofFloat(SelectorSearchCell.this.editText, (Property<EditTextBoldCursor, Float>) property2, f4));
-                    }
-                    if (SelectorSearchCell.this.editText.getTranslationY() != SelectorSearchCell.this.fieldY) {
-                        this.animators.add(ObjectAnimator.ofFloat(SelectorSearchCell.this.editText, (Property<EditTextBoldCursor, Float>) property, SelectorSearchCell.this.fieldY));
-                    }
-                    SelectorSearchCell.this.editText.setAllowDrawCursor(false);
-                    this.currentAnimation.playTogether(this.animators);
-                    this.currentAnimation.setDuration(180L);
-                    this.currentAnimation.setInterpolator(new LinearInterpolator());
-                    this.currentAnimation.start();
-                    this.animationStarted = true;
-                    if (SelectorSearchCell.this.updateHeight != null) {
-                        SelectorSearchCell.this.updateHeight.run();
-                    }
-                } else {
-                    SelectorSearchCell selectorSearchCell2 = SelectorSearchCell.this;
-                    selectorSearchCell2.resultContainerHeight = iDp5;
-                    selectorSearchCell2.containerHeight = iDp5;
-                    selectorSearchCell2.editText.setTranslationX(iDp6);
-                    SelectorSearchCell.this.editText.setTranslationY(SelectorSearchCell.this.fieldY);
-                    if (SelectorSearchCell.this.updateHeight != null) {
-                        SelectorSearchCell.this.updateHeight.run();
-                    }
-                    if (SelectorSearchCell.this.scroll) {
-                        post(new Runnable() {
-                            @Override
-                            public final void run() {
-                                SelectorSearchCell.this.fullScroll(130);
-                            }
-                        });
-                        SelectorSearchCell.this.scroll = false;
-                    }
-                }
-                SelectorSearchCell selectorSearchCell3 = SelectorSearchCell.this;
-                selectorSearchCell3.prevResultContainerHeight = selectorSearchCell3.resultContainerHeight;
-            } else if (this.currentAnimation != null) {
-                if (!SelectorSearchCell.this.ignoreScrollEvent && this.removingSpans.isEmpty()) {
-                    SelectorSearchCell.this.editText.bringPointIntoView(SelectorSearchCell.this.editText.getSelectionStart());
-                }
-                if (SelectorSearchCell.this.scroll) {
-                    SelectorSearchCell.this.fullScroll(130);
-                    SelectorSearchCell.this.scroll = false;
-                }
-            }
-            setMeasuredDimension(size, (int) SelectorSearchCell.this.containerHeight);
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            int childCount = getChildCount();
-            for (int i5 = 0; i5 < childCount; i5++) {
-                View childAt = getChildAt(i5);
-                childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
             }
         }
-
-        public void removeSpan(final GroupCreateSpan groupCreateSpan) {
-            SelectorSearchCell.this.ignoreScrollEvent = true;
-            SelectorSearchCell.this.allSpans.remove(groupCreateSpan);
-            groupCreateSpan.setOnClickListener(null);
-            setupEndValues();
-            this.animationStarted = false;
-            AnimatorSet animatorSet = new AnimatorSet();
-            this.currentAnimation = animatorSet;
-            animatorSet.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    SpansContainer.this.removeView(groupCreateSpan);
-                    SpansContainer.this.removingSpans.clear();
-                    SpansContainer.this.currentAnimation = null;
-                    SpansContainer.this.animationStarted = false;
-                    SelectorSearchCell.this.editText.setAllowDrawCursor(true);
-                    if (SelectorSearchCell.this.updateHeight != null) {
-                        SelectorSearchCell.this.updateHeight.run();
-                    }
-                    if (SelectorSearchCell.this.scroll) {
-                        SelectorSearchCell.this.fullScroll(130);
-                        SelectorSearchCell.this.scroll = false;
-                    }
-                }
-            });
-            this.removingSpans.clear();
-            this.removingSpans.add(groupCreateSpan);
-            this.animAddingSpans.clear();
-            this.animRemovingSpans.clear();
-            this.animAddingSpans.add(groupCreateSpan);
-            this.animators.clear();
-            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
-            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
-            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
-            requestLayout();
-        }
-
-        public void updateSpans(final ArrayList arrayList, ArrayList arrayList2, boolean z) {
-            Property property;
-            Property property2;
-            Property property3;
-            SelectorSearchCell.this.ignoreScrollEvent = true;
-            SelectorSearchCell.this.allSpans.removeAll(arrayList);
-            SelectorSearchCell.this.allSpans.addAll(arrayList2);
-            this.removingSpans.clear();
-            this.removingSpans.addAll(arrayList);
-            for (int i = 0; i < arrayList.size(); i++) {
-                ((GroupCreateSpan) arrayList.get(i)).setOnClickListener(null);
+        if (!arrayList4.isEmpty() || !arrayList5.isEmpty()) {
+            StoryPrivacyBottomSheet.SearchUsersCell.SpansContainer spansContainer = this.spansContainer;
+            SelectorSearchCell selectorSearchCell = (SelectorSearchCell) spansContainer.this$0;
+            selectorSearchCell.ignoreScrollEvent = true;
+            ArrayList arrayList6 = selectorSearchCell.allSpans;
+            arrayList6.removeAll(arrayList4);
+            arrayList6.addAll(arrayList5);
+            ArrayList arrayList7 = spansContainer.removingSpans;
+            arrayList7.clear();
+            arrayList7.addAll(arrayList4);
+            for (int i7 = 0; i7 < arrayList4.size(); i7++) {
+                ((GroupCreateSpan) arrayList4.get(i7)).setOnClickListener(null);
             }
-            setupEndValues();
+            spansContainer.setupEndValues();
             if (z) {
-                this.animationStarted = false;
+                spansContainer.animationStarted = false;
                 AnimatorSet animatorSet = new AnimatorSet();
-                this.currentAnimation = animatorSet;
-                animatorSet.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                            SpansContainer.this.removeView((View) arrayList.get(i2));
-                        }
-                        SpansContainer.this.addingSpan = null;
-                        SpansContainer.this.removingSpans.clear();
-                        SpansContainer.this.currentAnimation = null;
-                        SpansContainer.this.animationStarted = false;
-                        SelectorSearchCell.this.editText.setAllowDrawCursor(true);
-                        if (SelectorSearchCell.this.updateHeight != null) {
-                            SelectorSearchCell.this.updateHeight.run();
-                        }
-                        if (SelectorSearchCell.this.scroll) {
-                            SelectorSearchCell.this.fullScroll(130);
-                            SelectorSearchCell.this.scroll = false;
-                        }
-                    }
-                });
-                this.animators.clear();
-                this.animAddingSpans.clear();
-                this.animRemovingSpans.clear();
-                int i2 = 0;
+                spansContainer.currentAnimation = animatorSet;
+                animatorSet.addListener(new SelectorSearchCell$SpansContainer$2(spansContainer, arrayList4, 0));
+                ArrayList arrayList8 = spansContainer.animators;
+                arrayList8.clear();
+                ArrayList arrayList9 = spansContainer.animAddingSpans;
+                arrayList9.clear();
+                ArrayList arrayList10 = spansContainer.animRemovingSpans;
+                arrayList10.clear();
+                int i8 = 0;
                 while (true) {
-                    int size = arrayList.size();
+                    int size2 = arrayList4.size();
                     property = View.ALPHA;
                     property2 = View.SCALE_Y;
                     property3 = View.SCALE_X;
-                    if (i2 >= size) {
+                    if (i8 >= size2) {
                         break;
                     }
-                    GroupCreateSpan groupCreateSpan = (GroupCreateSpan) arrayList.get(i2);
-                    this.animRemovingSpans.add(groupCreateSpan);
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) property3, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) property2, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) property, 1.0f, 0.0f));
-                    i2++;
+                    GroupCreateSpan groupCreateSpan3 = (GroupCreateSpan) arrayList4.get(i8);
+                    arrayList10.add(groupCreateSpan3);
+                    arrayList8.add(ObjectAnimator.ofFloat(groupCreateSpan3, (Property<GroupCreateSpan, Float>) property3, 1.0f, 0.01f));
+                    arrayList8.add(ObjectAnimator.ofFloat(groupCreateSpan3, (Property<GroupCreateSpan, Float>) property2, 1.0f, 0.01f));
+                    arrayList8.add(ObjectAnimator.ofFloat(groupCreateSpan3, (Property<GroupCreateSpan, Float>) property, 1.0f, 0.0f));
+                    i8++;
                 }
-                for (int i3 = 0; i3 < arrayList2.size(); i3++) {
-                    GroupCreateSpan groupCreateSpan2 = (GroupCreateSpan) arrayList2.get(i3);
-                    this.animAddingSpans.add(groupCreateSpan2);
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) property3, 0.01f, 1.0f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) property2, 0.01f, 1.0f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) property, 0.0f, 1.0f));
+                for (int i9 = 0; i9 < arrayList5.size(); i9++) {
+                    GroupCreateSpan groupCreateSpan4 = (GroupCreateSpan) arrayList5.get(i9);
+                    arrayList9.add(groupCreateSpan4);
+                    arrayList8.add(ObjectAnimator.ofFloat(groupCreateSpan4, (Property<GroupCreateSpan, Float>) property3, 0.01f, 1.0f));
+                    arrayList8.add(ObjectAnimator.ofFloat(groupCreateSpan4, (Property<GroupCreateSpan, Float>) property2, 0.01f, 1.0f));
+                    arrayList8.add(ObjectAnimator.ofFloat(groupCreateSpan4, (Property<GroupCreateSpan, Float>) property, 0.0f, 1.0f));
                 }
+                i = 1;
+                i2 = 0;
             } else {
-                for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                    removeView((View) arrayList.get(i4));
+                i = 1;
+                for (int i10 = 0; i10 < arrayList4.size(); i10++) {
+                    spansContainer.removeView((View) arrayList4.get(i10));
                 }
-                this.addingSpan = null;
-                this.removingSpans.clear();
-                this.currentAnimation = null;
-                this.animationStarted = false;
-                SelectorSearchCell.this.editText.setAllowDrawCursor(true);
+                arrayList7.clear();
+                spansContainer.currentAnimation = null;
+                i2 = 0;
+                spansContainer.animationStarted = false;
+                selectorSearchCell.editText.setAllowDrawCursor(true);
             }
-            for (int i5 = 0; i5 < arrayList2.size(); i5++) {
-                addView((View) arrayList2.get(i5));
+            while (i2 < arrayList5.size()) {
+                spansContainer.addView((View) arrayList5.get(i2));
+                i2 += i;
             }
-            requestLayout();
+            spansContainer.requestLayout();
         }
+        this.editText.setOnKeyListener(new View.OnKeyListener() {
+            public boolean wasEmpty;
 
-        public void removeAllSpans(boolean z) {
-            SelectorSearchCell.this.ignoreScrollEvent = true;
-            final ArrayList arrayList = new ArrayList(SelectorSearchCell.this.allSpans);
-            this.removingSpans.clear();
-            this.removingSpans.addAll(SelectorSearchCell.this.allSpans);
-            SelectorSearchCell.this.allSpans.clear();
-            for (int i = 0; i < arrayList.size(); i++) {
-                ((GroupCreateSpan) arrayList.get(i)).setOnClickListener(null);
-            }
-            setupEndValues();
-            if (z) {
-                this.animationStarted = false;
-                AnimatorSet animatorSet = new AnimatorSet();
-                this.currentAnimation = animatorSet;
-                animatorSet.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                            SpansContainer.this.removeView((View) arrayList.get(i2));
-                        }
-                        SpansContainer.this.removingSpans.clear();
-                        SpansContainer.this.currentAnimation = null;
-                        SpansContainer.this.animationStarted = false;
-                        SelectorSearchCell.this.editText.setAllowDrawCursor(true);
-                        if (SelectorSearchCell.this.updateHeight != null) {
-                            SelectorSearchCell.this.updateHeight.run();
-                        }
-                        if (SelectorSearchCell.this.scroll) {
-                            SelectorSearchCell.this.fullScroll(130);
-                            SelectorSearchCell.this.scroll = false;
-                        }
+            @Override
+            public final boolean onKey(View view, int i11, KeyEvent keyEvent) {
+                if (i11 == 67) {
+                    int action = keyEvent.getAction();
+                    SelectorSearchCell selectorSearchCell2 = SelectorSearchCell.this;
+                    if (action == 0) {
+                        this.wasEmpty = selectorSearchCell2.editText.length() == 0;
+                        return false;
                     }
-                });
-                this.animators.clear();
-                this.animAddingSpans.clear();
-                this.animRemovingSpans.clear();
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    GroupCreateSpan groupCreateSpan = (GroupCreateSpan) arrayList.get(i2);
-                    this.animAddingSpans.add(groupCreateSpan);
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
+                    if (keyEvent.getAction() == 1 && this.wasEmpty && !selectorSearchCell2.allSpans.isEmpty()) {
+                        ArrayList arrayList11 = selectorSearchCell2.allSpans;
+                        GroupCreateSpan groupCreateSpan5 = (GroupCreateSpan) zziq.m(1, arrayList11);
+                        if (!arrayList11.contains(groupCreateSpan5)) {
+                            return true;
+                        }
+                        if (groupCreateSpan5.deleting) {
+                            selectorSearchCell2.currentDeletingSpan = null;
+                            selectorSearchCell2.spansContainer.removeSpan(groupCreateSpan5);
+                            hashSet.remove(Long.valueOf(groupCreateSpan5.getUid()));
+                            runnable.run();
+                            return true;
+                        }
+                        GroupCreateSpan groupCreateSpan6 = selectorSearchCell2.currentDeletingSpan;
+                        if (groupCreateSpan6 != null) {
+                            groupCreateSpan6.cancelDeleteAnimation();
+                            selectorSearchCell2.currentDeletingSpan = null;
+                        }
+                        selectorSearchCell2.currentDeletingSpan = groupCreateSpan5;
+                        groupCreateSpan5.startDeleteAnimation();
+                        return true;
+                    }
                 }
-            } else {
-                for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                    removeView((View) arrayList.get(i3));
-                }
-                this.removingSpans.clear();
-                this.currentAnimation = null;
-                this.animationStarted = false;
-                SelectorSearchCell.this.editText.setAllowDrawCursor(true);
+                return false;
             }
-            requestLayout();
-        }
-
-        private void setupEndValues() {
-            AnimatorSet animatorSet = this.currentAnimation;
-            if (animatorSet != null) {
-                animatorSet.cancel();
-            }
-            for (int i = 0; i < this.animAddingSpans.size(); i++) {
-                ((View) this.animAddingSpans.get(i)).setScaleX(1.0f);
-                ((View) this.animAddingSpans.get(i)).setScaleY(1.0f);
-                ((View) this.animAddingSpans.get(i)).setAlpha(1.0f);
-            }
-            for (int i2 = 0; i2 < this.animRemovingSpans.size(); i2++) {
-                ((View) this.animRemovingSpans.get(i2)).setScaleX(0.0f);
-                ((View) this.animRemovingSpans.get(i2)).setScaleY(0.0f);
-                ((View) this.animRemovingSpans.get(i2)).setAlpha(0.0f);
-            }
-            this.animAddingSpans.clear();
-            this.animRemovingSpans.clear();
-        }
+        });
     }
 }

@@ -6,120 +6,100 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.Utilities;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceWrapped;
-import org.telegram.ui.Components.blur3.utils.BitmapMemoizedMetadata;
+import org.telegram.ui.ContactsActivity$$ExternalSyntheticLambda18;
 
-public class WallpaperBitmapProvider {
-    private static final Rect tmpRect = new Rect();
-    private final BlurredBackgroundSourceColor sourceColor = new BlurredBackgroundSourceColor();
-    private final BlurredBackgroundSourceBitmap sourceBitmap = new BlurredBackgroundSourceBitmap();
-    private final BitmapMemoizedMetadata blurredFromBitmap = new BitmapMemoizedMetadata(new BitmapMemoizedMetadata.Provider() {
-        @Override
-        public final Object get(Bitmap bitmap) {
-            return WallpaperBitmapProvider.blurBitmap(bitmap);
-        }
-    });
-    private final BitmapMemoizedMetadata navbarColorFromBitmap = new BitmapMemoizedMetadata(new BitmapMemoizedMetadata.Provider() {
-        @Override
-        public final Object get(Bitmap bitmap) {
-            return Integer.valueOf(WallpaperBitmapProvider.averageBottomColor(bitmap));
-        }
-    });
-    private final BitmapMemoizedMetadata statusBarColorFromBitmap = new BitmapMemoizedMetadata(new BitmapMemoizedMetadata.Provider() {
-        @Override
-        public final Object get(Bitmap bitmap) {
-            return Integer.valueOf(WallpaperBitmapProvider.averageTopColor(bitmap));
-        }
-    });
+public final class WallpaperBitmapProvider {
+    public static final Rect tmpRect = new Rect();
+    public final BlurredBackgroundSourceColor sourceColor = new BlurredBackgroundSourceColor();
+    public final BlurredBackgroundSourceBitmap sourceBitmap = new BlurredBackgroundSourceBitmap();
+    public final ChatActivity.AnonymousClass117 blurredFromBitmap = new ChatActivity.AnonymousClass117(new ContactsActivity$$ExternalSyntheticLambda18(23));
+    public final ChatActivity.AnonymousClass117 navbarColorFromBitmap = new ChatActivity.AnonymousClass117(new ContactsActivity$$ExternalSyntheticLambda18(24));
+    public final ChatActivity.AnonymousClass117 statusBarColorFromBitmap = new ChatActivity.AnonymousClass117(new ContactsActivity$$ExternalSyntheticLambda18(25));
 
-    public BlurredBackgroundSource updateSourceFromBackgroundViewDrawable(Drawable drawable) {
-        if (drawable instanceof ColorDrawable) {
-            this.sourceColor.setColor(((ColorDrawable) drawable).getColor());
-            return this.sourceColor;
+    public final int getNavigationBarColor(BlurredBackgroundSource blurredBackgroundSource) {
+        if (blurredBackgroundSource instanceof BlurredBackgroundSourceColor) {
+            return ((BlurredBackgroundSourceColor) blurredBackgroundSource).paint.getColor();
         }
-        if (drawable instanceof MotionBackgroundDrawable) {
+        if (blurredBackgroundSource instanceof BlurredBackgroundSourceBitmap) {
+            return ((Integer) this.navbarColorFromBitmap.get(((BlurredBackgroundSourceBitmap) blurredBackgroundSource).bitmap)).intValue();
+        }
+        if (blurredBackgroundSource instanceof BlurredBackgroundSourceWrapped) {
+            return getNavigationBarColor(((BlurredBackgroundSourceWrapped) blurredBackgroundSource).sourceInternal);
+        }
+        return 0;
+    }
+
+    public final int getStatusBarColor(BlurredBackgroundSource blurredBackgroundSource) {
+        if (blurredBackgroundSource instanceof BlurredBackgroundSourceColor) {
+            return ((BlurredBackgroundSourceColor) blurredBackgroundSource).paint.getColor();
+        }
+        if (blurredBackgroundSource instanceof BlurredBackgroundSourceBitmap) {
+            return ((Integer) this.statusBarColorFromBitmap.get(((BlurredBackgroundSourceBitmap) blurredBackgroundSource).bitmap)).intValue();
+        }
+        if (blurredBackgroundSource instanceof BlurredBackgroundSourceWrapped) {
+            return getStatusBarColor(((BlurredBackgroundSourceWrapped) blurredBackgroundSource).sourceInternal);
+        }
+        return 0;
+    }
+
+    public final BlurredBackgroundSource updateSourceFromBackgroundViewDrawable(Drawable drawable) {
+        boolean z = drawable instanceof ColorDrawable;
+        BlurredBackgroundSourceColor blurredBackgroundSourceColor = this.sourceColor;
+        if (z) {
+            blurredBackgroundSourceColor.paint.setColor(((ColorDrawable) drawable).getColor());
+            return blurredBackgroundSourceColor;
+        }
+        boolean z2 = drawable instanceof MotionBackgroundDrawable;
+        BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = this.sourceBitmap;
+        if (z2) {
             MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) drawable;
-            if (motionBackgroundDrawable.getIntensity() < 0) {
-                this.sourceColor.setColor(-16777216);
-                return this.sourceColor;
+            if (motionBackgroundDrawable.intensity < 0) {
+                blurredBackgroundSourceColor.paint.setColor(-16777216);
+                return blurredBackgroundSourceColor;
             }
-            this.sourceBitmap.setBitmap(motionBackgroundDrawable.getBitmap());
-            return this.sourceBitmap;
+            blurredBackgroundSourceBitmap.setBitmap(motionBackgroundDrawable.currentBitmap);
+            return blurredBackgroundSourceBitmap;
         }
-        if (drawable instanceof BitmapDrawable) {
-            this.sourceBitmap.setBitmap((Bitmap) this.blurredFromBitmap.get(((BitmapDrawable) drawable).getBitmap()));
-            return this.sourceBitmap;
+        boolean z3 = drawable instanceof BitmapDrawable;
+        ChatActivity.AnonymousClass117 anonymousClass117 = this.blurredFromBitmap;
+        if (z3) {
+            blurredBackgroundSourceBitmap.setBitmap((Bitmap) anonymousClass117.get(((BitmapDrawable) drawable).getBitmap()));
+            return blurredBackgroundSourceBitmap;
         }
         if (drawable instanceof ChatBackgroundDrawable) {
             return updateSourceFromBackgroundViewDrawable(((ChatBackgroundDrawable) drawable).getDrawable(false));
         }
         if (drawable != null) {
-            Canvas canvasBeginRecording = this.sourceBitmap.beginRecording(120, 160);
+            blurredBackgroundSourceBitmap.getClass();
+            float f = 120;
+            float f2 = f / 1.0f;
+            int iRound = Math.round(f2);
+            int iRound2 = Math.round(f2);
+            Bitmap bitmap = blurredBackgroundSourceBitmap.bitmapInternal;
+            if (bitmap == null || bitmap.isRecycled() || blurredBackgroundSourceBitmap.bitmapInternal.getWidth() != iRound2 || blurredBackgroundSourceBitmap.bitmapInternal.getHeight() != iRound2) {
+                blurredBackgroundSourceBitmap.bitmapInternal = Bitmap.createBitmap(iRound, iRound2, Bitmap.Config.ARGB_8888);
+            } else {
+                blurredBackgroundSourceBitmap.bitmapInternal.eraseColor(0);
+            }
+            Canvas canvas = new Canvas(blurredBackgroundSourceBitmap.bitmapInternal);
+            canvas.scale(f / iRound, 160 / iRound2);
+            Rect bounds = drawable.getBounds();
             Rect rect = tmpRect;
-            rect.set(drawable.getBounds());
+            rect.set(bounds);
             drawable.setBounds(0, 0, 120, 160);
-            drawable.draw(canvasBeginRecording);
+            drawable.draw(canvas);
             drawable.setBounds(rect);
-            this.sourceBitmap.endRecording();
-            BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = this.sourceBitmap;
-            blurredBackgroundSourceBitmap.setBitmap((Bitmap) this.blurredFromBitmap.get(blurredBackgroundSourceBitmap.getBitmap()));
+            blurredBackgroundSourceBitmap.setBitmap(blurredBackgroundSourceBitmap.bitmapInternal);
+            blurredBackgroundSourceBitmap.bitmapInternal = null;
+            blurredBackgroundSourceBitmap.setBitmap((Bitmap) anonymousClass117.get(blurredBackgroundSourceBitmap.bitmap));
         }
-        return this.sourceBitmap;
-    }
-
-    public int getNavigationBarColor(BlurredBackgroundSource blurredBackgroundSource) {
-        if (blurredBackgroundSource instanceof BlurredBackgroundSourceColor) {
-            return ((BlurredBackgroundSourceColor) blurredBackgroundSource).getColor();
-        }
-        if (blurredBackgroundSource instanceof BlurredBackgroundSourceBitmap) {
-            return ((Integer) this.navbarColorFromBitmap.get(((BlurredBackgroundSourceBitmap) blurredBackgroundSource).getBitmap())).intValue();
-        }
-        if (blurredBackgroundSource instanceof BlurredBackgroundSourceWrapped) {
-            return getNavigationBarColor(((BlurredBackgroundSourceWrapped) blurredBackgroundSource).getSource());
-        }
-        return 0;
-    }
-
-    public int getStatusBarColor(BlurredBackgroundSource blurredBackgroundSource) {
-        if (blurredBackgroundSource instanceof BlurredBackgroundSourceColor) {
-            return ((BlurredBackgroundSourceColor) blurredBackgroundSource).getColor();
-        }
-        if (blurredBackgroundSource instanceof BlurredBackgroundSourceBitmap) {
-            return ((Integer) this.statusBarColorFromBitmap.get(((BlurredBackgroundSourceBitmap) blurredBackgroundSource).getBitmap())).intValue();
-        }
-        if (blurredBackgroundSource instanceof BlurredBackgroundSourceWrapped) {
-            return getStatusBarColor(((BlurredBackgroundSourceWrapped) blurredBackgroundSource).getSource());
-        }
-        return 0;
-    }
-
-    public static Bitmap blurBitmap(Bitmap bitmap) {
-        if (bitmap == null || bitmap.isRecycled()) {
-            return null;
-        }
-        Bitmap bitmapStackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
-        bitmapStackBlurBitmapWithScaleFactor.setHasAlpha(false);
-        return bitmapStackBlurBitmapWithScaleFactor;
-    }
-
-    public static int averageTopColor(Bitmap bitmap) {
-        if (bitmap == null || bitmap.isRecycled()) {
-            return 0;
-        }
-        return Utilities.averageBitmapColor(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight() / 10);
-    }
-
-    public static int averageBottomColor(Bitmap bitmap) {
-        if (bitmap == null || bitmap.isRecycled()) {
-            return 0;
-        }
-        int height = bitmap.getHeight();
-        return Utilities.averageBitmapColor(bitmap, 0, (height * 9) / 10, bitmap.getWidth(), height);
+        return blurredBackgroundSourceBitmap;
     }
 }

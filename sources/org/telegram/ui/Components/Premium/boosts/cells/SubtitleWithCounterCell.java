@@ -8,25 +8,24 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class SubtitleWithCounterCell extends org.telegram.ui.Cells.HeaderCell {
-    private final AnimatedTextView counterTextView;
+public final class SubtitleWithCounterCell extends org.telegram.ui.Cells.HeaderCell {
+    public final AnimatedTextView counterTextView;
 
     public SubtitleWithCounterCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
         this.counterTextView = animatedTextView;
-        animatedTextView.setAnimationProperties(0.45f, 0L, 240L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = animatedTextView.drawable;
+        animatedTextDrawable.moveAmplitude = 0.45f;
+        animatedTextDrawable.animateDuration = 240L;
+        animatedTextDrawable.animateWave = 1.0f;
+        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
         animatedTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
         animatedTextView.setTypeface(AndroidUtilities.bold());
         animatedTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
         addView(animatedTextView, LayoutHelper.createFrame(-2, 24.0f, (LocaleController.isRTL ? 3 : 5) | 80, 24.0f, 0.0f, 24.0f, 0.0f));
         setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
-    }
-
-    public void updateCounter(boolean z, int i) {
-        String pluralString = i <= 0 ? "" : LocaleController.formatPluralString("BoostingBoostsCountTitle", i, Integer.valueOf(i));
-        this.counterTextView.cancelAnimation();
-        this.counterTextView.setText(pluralString, z);
     }
 }

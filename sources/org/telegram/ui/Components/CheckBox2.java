@@ -7,83 +7,96 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-import androidx.core.content.ContextCompat;
+import com.google.android.gms.internal.mlkit_vision_common.zzld;
+import com.google.android.gms.internal.mlkit_vision_common.zzle;
+import com.google.android.gms.internal.mlkit_vision_common.zzlg;
+import com.google.android.gms.internal.mlkit_vision_common.zzlh;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
 
 public class CheckBox2 extends View {
-    private CheckBoxBase checkBoxBase;
-    int currentIcon;
-    Drawable iconDrawable;
+    public final CheckBoxBase checkBoxBase;
+    public int currentIcon;
+    public Drawable iconDrawable;
 
     public CheckBox2(Context context, int i) {
-        this(context, i, null);
-    }
-
-    public CheckBox2(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.checkBoxBase = new CheckBoxBase(this, i, resourcesProvider);
-    }
-
-    public void setCirclePaintProvider(GenericProvider<Void, Paint> genericProvider) {
-        this.checkBoxBase.setCirclePaintProvider(genericProvider);
-    }
-
-    public void setProgressDelegate(CheckBoxBase.ProgressDelegate progressDelegate) {
-        this.checkBoxBase.setProgressDelegate(progressDelegate);
-    }
-
-    public void setChecked(int i, boolean z, boolean z2) {
-        this.checkBoxBase.setChecked(i, z, z2);
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        this.checkBoxBase.setChecked(z, z2);
+        this.checkBoxBase = new CheckBoxBase(null, this, i);
     }
 
     public CheckBoxBase getCheckBoxBase() {
         return this.checkBoxBase;
     }
 
-    public void setNum(int i) {
-        this.checkBoxBase.setNum(i);
+    public boolean getDrawUnchecked() {
+        return this.checkBoxBase.drawUnchecked;
     }
 
-    public boolean isChecked() {
-        return this.checkBoxBase.isChecked();
-    }
-
-    public void setColor(int i, int i2, int i3) {
-        this.checkBoxBase.setColor(i, i2, i3);
+    public float getProgress() {
+        return this.checkBoxBase.progress;
     }
 
     @Override
-    public void setEnabled(boolean z) {
-        this.checkBoxBase.setEnabled(z);
-        super.setEnabled(z);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.checkBoxBase.attachedToWindow = true;
     }
 
-    public void setDrawUnchecked(boolean z) {
-        this.checkBoxBase.setDrawUnchecked(z);
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.checkBoxBase.attachedToWindow = false;
     }
 
-    public boolean getDrawUnchecked() {
-        return this.checkBoxBase.getDrawUnchecked();
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.iconDrawable == null) {
+            this.checkBoxBase.draw(canvas);
+            return;
+        }
+        int measuredWidth = getMeasuredWidth() >> 1;
+        int measuredHeight = getMeasuredHeight() >> 1;
+        Drawable drawable = this.iconDrawable;
+        drawable.setBounds(zzle.m(measuredWidth, drawable), zzld.m(measuredHeight, this.iconDrawable), zzlh.m(measuredWidth, this.iconDrawable), zzlg.m(measuredHeight, this.iconDrawable));
+        this.iconDrawable.draw(canvas);
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.2f));
+        paint.setColor(Theme.getColor(null, Theme.key_switch2Track, false));
+        canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth - AndroidUtilities.dp(1.5f), paint);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Switch");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.checkBoxBase.isChecked);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        int i5 = i4 - i2;
+        this.checkBoxBase.setBounds(0, 0, i3 - i, i5);
+    }
+
+    public void setCirclePaintProvider(GenericProvider<Void, Paint> genericProvider) {
+        CheckBoxBase checkBoxBase = this.checkBoxBase;
+        if (checkBoxBase.circlePaintProvider == genericProvider) {
+            return;
+        }
+        checkBoxBase.circlePaintProvider = genericProvider;
+        checkBoxBase.invalidate();
     }
 
     public void setDrawBackgroundAsArc(int i) {
         this.checkBoxBase.setBackgroundType(i);
     }
 
-    public float getProgress() {
-        return this.checkBoxBase.getProgress();
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.checkBoxBase.onAttachedToWindow();
+    public void setDrawUnchecked(boolean z) {
+        this.checkBoxBase.setDrawUnchecked(z);
     }
 
     public void setDuration(long j) {
@@ -91,45 +104,22 @@ public class CheckBox2 extends View {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.checkBoxBase.onDetachedFromWindow();
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.checkBoxBase.setBounds(0, 0, i3 - i, i4 - i2);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.iconDrawable != null) {
-            int measuredWidth = getMeasuredWidth() >> 1;
-            int measuredHeight = getMeasuredHeight() >> 1;
-            Drawable drawable = this.iconDrawable;
-            drawable.setBounds(measuredWidth - (drawable.getIntrinsicWidth() / 2), measuredHeight - (this.iconDrawable.getIntrinsicHeight() / 2), (this.iconDrawable.getIntrinsicWidth() / 2) + measuredWidth, (this.iconDrawable.getIntrinsicHeight() / 2) + measuredHeight);
-            this.iconDrawable.draw(canvas);
-            Paint paint = new Paint();
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(AndroidUtilities.dp(1.2f));
-            paint.setColor(Theme.getColor(Theme.key_switch2Track));
-            canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth - AndroidUtilities.dp(1.5f), paint);
-            return;
+    public void setEnabled(boolean z) {
+        CheckBoxBase checkBoxBase = this.checkBoxBase;
+        if (checkBoxBase.enabled != z) {
+            checkBoxBase.enabled = z;
+            checkBoxBase.invalidate();
         }
-        this.checkBoxBase.draw(canvas);
+        super.setEnabled(z);
     }
 
     public void setForbidden(boolean z) {
-        this.checkBoxBase.setForbidden(z);
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Switch");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(isChecked());
+        CheckBoxBase checkBoxBase = this.checkBoxBase;
+        if (checkBoxBase.forbidden == z) {
+            return;
+        }
+        checkBoxBase.forbidden = z;
+        checkBoxBase.invalidate();
     }
 
     public void setIcon(int i) {
@@ -139,13 +129,39 @@ public class CheckBox2 extends View {
                 this.iconDrawable = null;
                 return;
             }
-            Drawable drawableMutate = ContextCompat.getDrawable(getContext(), i).mutate();
+            Drawable drawableMutate = getContext().getDrawable(i).mutate();
             this.iconDrawable = drawableMutate;
-            drawableMutate.setColorFilter(Theme.getColor(Theme.key_switch2Track), PorterDuff.Mode.MULTIPLY);
+            drawableMutate.setColorFilter(Theme.getColor(null, Theme.key_switch2Track, false), PorterDuff.Mode.MULTIPLY);
         }
     }
 
-    public boolean hasIcon() {
-        return this.iconDrawable != null;
+    public void setNum(int i) {
+        String str;
+        CheckBoxBase checkBoxBase = this.checkBoxBase;
+        if (i >= 0) {
+            checkBoxBase.getClass();
+            str = "" + (i + 1);
+        } else {
+            str = checkBoxBase.checkAnimator != null ? checkBoxBase.checkedText : null;
+        }
+        String str2 = checkBoxBase.checkedText;
+        if (str2 == null) {
+            if (str == null) {
+                return;
+            }
+        } else if (str2.equals(str)) {
+            return;
+        }
+        checkBoxBase.checkedText = str;
+        checkBoxBase.invalidate();
+    }
+
+    public void setProgressDelegate(CheckBoxBase.ProgressDelegate progressDelegate) {
+        this.checkBoxBase.progressDelegate = progressDelegate;
+    }
+
+    public CheckBox2(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
+        this.checkBoxBase = new CheckBoxBase(resourcesProvider, this, i);
     }
 }

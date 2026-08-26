@@ -18,62 +18,61 @@ import org.telegram.messenger.utils.DrawableUtils;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
-public class PollAddButtonDrawable extends PollButtonDrawableBase implements FactorAnimator.Target {
-    private int addAnOptionLastWidth;
-    private StaticLayout addAnOptionText;
-    private final TextPaint addAnOptionTextPaint;
-    private final Drawable addDrawable;
-    private final BoolAnimator animatorIsEnabled;
-    private final int[] pressedState;
-    private int textLastColor;
-
-    @Override
-    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-        FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
-    }
+public final class PollAddButtonDrawable extends PollButtonDrawableBase implements FactorAnimator.Target {
+    public int addAnOptionLastWidth;
+    public StaticLayout addAnOptionText;
+    public final TextPaint addAnOptionTextPaint;
+    public final Drawable addDrawable;
+    public final BoolAnimator animatorIsEnabled;
+    public final int[] pressedState;
+    public int textLastColor;
 
     public PollAddButtonDrawable(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(resourcesProvider);
-        this.animatorIsEnabled = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 320L);
+        BoolAnimator boolAnimator = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 320L, false);
+        this.animatorIsEnabled = boolAnimator;
         this.pressedState = new int[]{16842910, 16842919};
-        this.addDrawable = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
+        this.addDrawable = drawableMutate;
         this.addAnOptionTextPaint = new TextPaint(Theme.chat_audioPerformerPaint);
-        setSelectorsColor(Theme.getColor(Theme.key_listSelector, resourcesProvider));
-        checkIconsAlpha();
+        int color = Theme.getColor(Theme.key_listSelector, resourcesProvider);
+        if (this.selectorDrawableColor != color) {
+            Theme.setSelectorDrawableColor(this.selectorDrawable, color, false);
+            this.selectorDrawableColor = color;
+        }
+        drawableMutate.setAlpha((int) ((1.0f - boolAnimator.floatValue) * this.alpha));
         checkTextAlpha();
     }
 
-    public void setIsEditEnabled(boolean z, boolean z2) {
-        this.animatorIsEnabled.setValue(z, z2);
+    public final void checkTextAlpha() {
+        this.addAnOptionTextPaint.setAlpha((int) ((1.0f - this.animatorIsEnabled.floatValue) * this.alpha));
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        getSelectorDrawable().draw(canvas);
-        DrawableUtils.drawWithScale(canvas, this.addDrawable, 1.0f - this.animatorIsEnabled.getFloatValue());
+        this.selectorDrawable.draw(canvas);
+        DrawableUtils.drawWithScale(canvas, this.addDrawable, 1.0f - this.animatorIsEnabled.floatValue);
         if (this.addAnOptionText != null) {
             canvas.save();
-            canvas.translate(bounds.left + AndroidUtilities.dp(44.0f), bounds.top + AndroidUtilities.dp(13.66f));
+            canvas.translate(AndroidUtilities.dp(44.0f) + bounds.left, AndroidUtilities.dp(13.66f) + bounds.top);
             this.addAnOptionText.draw(canvas);
             canvas.restore();
         }
     }
 
-    public void setTextColor(int i) {
-        if (this.textLastColor != i) {
-            this.textLastColor = i;
-            this.addAnOptionTextPaint.setColor(i);
-            this.addDrawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-            checkTextAlpha();
-        }
+    @Override
+    public final void onAlphaChanged(int i) {
+        this.selectorDrawable.setAlpha(i);
+        this.addDrawable.setAlpha((int) ((1.0f - this.animatorIsEnabled.floatValue) * this.alpha));
+        checkTextAlpha();
     }
 
     @Override
-    protected void onBoundsChange(Rect rect) {
+    public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
         float fExactCenterY = rect.exactCenterY();
-        float fDp = rect.left + AndroidUtilities.dp(22.33f);
+        float fDp = AndroidUtilities.dp(22.33f) + rect.left;
         AndroidUtilities.dp(27.0f);
         AndroidUtilities.dp(44.0f);
         DrawableUtils.setBounds(this.addDrawable, fDp, fExactCenterY, 17);
@@ -84,34 +83,27 @@ public class PollAddButtonDrawable extends PollButtonDrawableBase implements Fac
         }
     }
 
-    private void checkTextAlpha() {
-        this.addAnOptionTextPaint.setAlpha((int) (getAlpha() * (1.0f - this.animatorIsEnabled.getFloatValue())));
-    }
-
-    private void checkIconsAlpha() {
-        this.addDrawable.setAlpha((int) (getAlpha() * (1.0f - this.animatorIsEnabled.getFloatValue())));
+    @Override
+    public final void onFactorChangeFinished(float f, int i) {
     }
 
     @Override
-    protected void onAlphaChanged(int i) {
-        super.onAlphaChanged(i);
-        checkIconsAlpha();
-        checkTextAlpha();
-    }
-
-    @Override
-    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-        checkIconsAlpha();
+    public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        this.addDrawable.setAlpha((int) ((1.0f - this.animatorIsEnabled.floatValue) * this.alpha));
         checkTextAlpha();
         invalidateSelf();
     }
 
-    public int checkMotionPressed(int i, int i2) {
-        if (!getBounds().contains(i, i2)) {
-            return -1;
+    public final void setIsEditEnabled(boolean z, boolean z2) {
+        this.animatorIsEnabled.setValue(z, z2);
+    }
+
+    public final void setTextColor(int i) {
+        if (this.textLastColor != i) {
+            this.textLastColor = i;
+            this.addAnOptionTextPaint.setColor(i);
+            this.addDrawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+            checkTextAlpha();
         }
-        getSelectorDrawable().setHotspot(i, i2);
-        getSelectorDrawable().setState(this.pressedState);
-        return 0;
     }
 }

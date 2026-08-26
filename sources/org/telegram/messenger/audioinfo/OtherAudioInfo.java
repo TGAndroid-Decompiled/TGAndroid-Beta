@@ -3,22 +3,27 @@ package org.telegram.messenger.audioinfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
-import androidx.core.provider.FontProvider$ContentQueryWrapperApi24Impl$$ExternalSyntheticAutoCloseableDispatcher0;
 import java.io.File;
 import org.telegram.messenger.FileLog;
+import org.telegram.ui.ArticleViewer;
 
-public class OtherAudioInfo extends AudioInfo {
-    public boolean failed;
-    private final MediaMetadataRetriever r;
+public final class OtherAudioInfo extends AudioInfo {
+    public final boolean failed;
+    public final MediaMetadataRetriever r;
 
     public OtherAudioInfo(File file) {
+        long j;
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
         this.r = mediaMetadataRetriever;
         try {
             mediaMetadataRetriever.setDataSource(file.getAbsolutePath());
             this.brand = "OTHER";
-            this.version = "0";
-            this.duration = getLong(9);
+            try {
+                j = Long.parseLong(mediaMetadataRetriever.extractMetadata(9));
+            } catch (Exception unused) {
+                j = 0;
+            }
+            this.duration = j;
             this.title = getString(7);
             this.artist = getString(2);
             this.albumArtist = getString(13);
@@ -26,10 +31,10 @@ public class OtherAudioInfo extends AudioInfo {
             this.year = getShort(8);
             this.genre = getString(6);
             this.track = getShort(0);
-            this.tracks = getShort(10);
+            getShort(10);
             this.disc = getShort(14);
             this.composer = getString(4);
-            byte[] embeddedPicture = mediaMetadataRetriever.getEmbeddedPicture();
+            byte[] embeddedPicture = this.r.getEmbeddedPicture();
             if (embeddedPicture != null) {
                 this.cover = BitmapFactory.decodeByteArray(embeddedPicture, 0, embeddedPicture.length);
             }
@@ -50,22 +55,14 @@ public class OtherAudioInfo extends AudioInfo {
         try {
             MediaMetadataRetriever mediaMetadataRetriever2 = this.r;
             if (mediaMetadataRetriever2 != null) {
-                FontProvider$ContentQueryWrapperApi24Impl$$ExternalSyntheticAutoCloseableDispatcher0.m(mediaMetadataRetriever2);
+                ArticleViewer.IBlock.CC.m(mediaMetadataRetriever2);
             }
         } catch (Exception e2) {
             FileLog.e(e2);
         }
     }
 
-    private String getString(int i) {
-        try {
-            return this.r.extractMetadata(i);
-        } catch (Exception unused) {
-            return null;
-        }
-    }
-
-    private short getShort(int i) {
+    public final short getShort(int i) {
         try {
             return Short.parseShort(this.r.extractMetadata(i));
         } catch (Exception unused) {
@@ -73,11 +70,11 @@ public class OtherAudioInfo extends AudioInfo {
         }
     }
 
-    private long getLong(int i) {
+    public final String getString(int i) {
         try {
-            return Long.parseLong(this.r.extractMetadata(i));
+            return this.r.extractMetadata(i);
         } catch (Exception unused) {
-            return 0L;
+            return null;
         }
     }
 }

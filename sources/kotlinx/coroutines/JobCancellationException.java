@@ -14,12 +14,7 @@ public final class JobCancellationException extends CancellationException {
         }
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + "; job=" + this.job;
-    }
-
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
@@ -30,17 +25,22 @@ public final class JobCancellationException extends CancellationException {
         return Intrinsics.areEqual(jobCancellationException.getMessage(), getMessage()) && Intrinsics.areEqual(jobCancellationException.job, this.job) && Intrinsics.areEqual(jobCancellationException.getCause(), getCause());
     }
 
-    public int hashCode() {
+    @Override
+    public final Throwable fillInStackTrace() {
+        setStackTrace(new StackTraceElement[0]);
+        return this;
+    }
+
+    public final int hashCode() {
         String message = getMessage();
         Intrinsics.checkNotNull(message);
-        int iHashCode = ((message.hashCode() * 31) + this.job.hashCode()) * 31;
+        int iHashCode = (this.job.hashCode() + (message.hashCode() * 31)) * 31;
         Throwable cause = getCause();
         return iHashCode + (cause != null ? cause.hashCode() : 0);
     }
 
     @Override
-    public Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
+    public final String toString() {
+        return super.toString() + "; job=" + this.job;
     }
 }

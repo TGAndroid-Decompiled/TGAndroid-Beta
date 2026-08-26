@@ -18,7 +18,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
+import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.HashtagSearchController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -29,37 +31,161 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.MessagesSearchAdapter;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$16$$ExternalSyntheticLambda4;
 import org.telegram.ui.ChatActivityContainer;
+import org.telegram.ui.LoginActivity;
 import org.telegram.ui.Stories.StoriesController;
 
-public class HashtagActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    private ChatActivityContainer chatContainer;
-    private FrameLayout contentView;
-    private ValueAnimator contentViewAnimator;
-    private float contentViewValue;
-    private final String hashtag;
-    private final String query;
-    private SharedMediaLayout sharedMediaLayout;
-    private FrameLayout sharedMediaLayoutContainer;
-    private final StoriesController.SearchStoriesList storiesList;
-    private FrameLayout storiesTotal;
-    private TextView storiesTotalTextView;
-    private MessagesSearchAdapter.StoriesView storiesView;
-    private boolean storiesVisible;
-    private ValueAnimator transitAnimator;
-    private float transitValue;
-    private final String username;
+public final class HashtagActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    public ChatActivity.AnonymousClass37.AnonymousClass1 chatContainer;
+    public AnonymousClass2 contentView;
+    public ValueAnimator contentViewAnimator;
+    public float contentViewValue;
+    public final String hashtag;
+    public final String query;
+    public AnonymousClass5 sharedMediaLayout;
+    public FrameLayout sharedMediaLayoutContainer;
+    public final StoriesController.SearchStoriesList storiesList;
+    public FrameLayout storiesTotal;
+    public TextView storiesTotalTextView;
+    public MessagesSearchAdapter.StoriesView storiesView;
+    public boolean storiesVisible;
+    public ValueAnimator transitAnimator;
+    public float transitValue;
+    public final String username;
 
-    public HashtagActivity(String str) {
-        this(str, null);
+    public final class AnonymousClass2 extends FrameLayout {
+        @Override
+        public final void setTranslationY(float f) {
+            super.setTranslationY(f);
+            setPadding(0, 0, (int) f, 0);
+        }
+    }
+
+    public final class AnonymousClass4 implements SharedMediaLayout.Delegate {
+        @Override
+        public final boolean canSearchMembers() {
+            return false;
+        }
+
+        @Override
+        public final TLRPC.Chat getCurrentChat() {
+            return null;
+        }
+
+        @Override
+        public final RecyclerListView getListView() {
+            return null;
+        }
+
+        @Override
+        public final boolean isFragmentOpened() {
+            return true;
+        }
+
+        @Override
+        public final boolean onMemberClick(TLRPC.ChatParticipant chatParticipant, boolean z, boolean z2, View view) {
+            return false;
+        }
+
+        @Override
+        public final void scrollToSharedMedia() {
+        }
+
+        @Override
+        public final void updateSelectedMediaTabText() {
+        }
+    }
+
+    public final class AnonymousClass6 implements ValueAnimator.AnimatorUpdateListener {
+        public final int $r8$classId;
+        public final HashtagActivity this$0;
+
+        public AnonymousClass6(HashtagActivity hashtagActivity, int i) {
+            this.$r8$classId = i;
+            this.this$0 = hashtagActivity;
+        }
+
+        @Override
+        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+            ChatActivityContainer.AnonymousClass1 anonymousClass1;
+            ChatActivity.AnonymousClass34 anonymousClass34;
+            switch (this.$r8$classId) {
+                case 0:
+                    float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    HashtagActivity hashtagActivity = this.this$0;
+                    hashtagActivity.contentViewValue = fFloatValue;
+                    hashtagActivity.contentView.setTranslationY(hashtagActivity.contentViewValue * AndroidUtilities.dp(48.0f));
+                    hashtagActivity.contentView.setPadding(0, 0, 0, (int) (hashtagActivity.contentViewValue * AndroidUtilities.dp(48.0f)));
+                    break;
+                default:
+                    float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    HashtagActivity hashtagActivity2 = this.this$0;
+                    hashtagActivity2.transitValue = fFloatValue2;
+                    hashtagActivity2.sharedMediaLayout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, hashtagActivity2.transitValue));
+                    hashtagActivity2.sharedMediaLayout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, hashtagActivity2.transitValue));
+                    ChatActivity.AnonymousClass37.AnonymousClass1 anonymousClass2 = hashtagActivity2.chatContainer;
+                    if (anonymousClass2 != null && (anonymousClass1 = anonymousClass2.chatActivity) != null && (anonymousClass34 = anonymousClass1.messagesSearchListView) != null) {
+                        anonymousClass34.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, hashtagActivity2.transitValue));
+                        hashtagActivity2.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, hashtagActivity2.transitValue));
+                    }
+                    hashtagActivity2.sharedMediaLayoutContainer.setAlpha(hashtagActivity2.transitValue);
+                    break;
+            }
+        }
+    }
+
+    public final class AnonymousClass7 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final HashtagActivity this$0;
+        public final boolean val$visible;
+
+        public AnonymousClass7(HashtagActivity hashtagActivity, boolean z, int i) {
+            this.$r8$classId = i;
+            this.this$0 = hashtagActivity;
+            this.val$visible = z;
+        }
+
+        @Override
+        public final void onAnimationEnd(Animator animator) {
+            ChatActivityContainer.AnonymousClass1 anonymousClass1;
+            ChatActivity.AnonymousClass34 anonymousClass34;
+            switch (this.$r8$classId) {
+                case 0:
+                    float f = this.val$visible ? 1.0f : 0.0f;
+                    HashtagActivity hashtagActivity = this.this$0;
+                    hashtagActivity.contentViewValue = f;
+                    hashtagActivity.contentView.setTranslationY(f * AndroidUtilities.dp(48.0f));
+                    hashtagActivity.contentView.setPadding(0, 0, 0, (int) (hashtagActivity.contentViewValue * AndroidUtilities.dp(48.0f)));
+                    break;
+                default:
+                    boolean z = this.val$visible;
+                    float f2 = z ? 1.0f : 0.0f;
+                    HashtagActivity hashtagActivity2 = this.this$0;
+                    hashtagActivity2.transitValue = f2;
+                    hashtagActivity2.sharedMediaLayout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, f2));
+                    hashtagActivity2.sharedMediaLayout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, hashtagActivity2.transitValue));
+                    ChatActivity.AnonymousClass37.AnonymousClass1 anonymousClass2 = hashtagActivity2.chatContainer;
+                    if (anonymousClass2 != null && (anonymousClass1 = anonymousClass2.chatActivity) != null && (anonymousClass34 = anonymousClass1.messagesSearchListView) != null) {
+                        anonymousClass34.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, hashtagActivity2.transitValue));
+                        hashtagActivity2.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, hashtagActivity2.transitValue));
+                    }
+                    hashtagActivity2.sharedMediaLayoutContainer.setAlpha(hashtagActivity2.transitValue);
+                    if (!z) {
+                        hashtagActivity2.sharedMediaLayoutContainer.setVisibility(8);
+                    }
+                    break;
+            }
+        }
     }
 
     public HashtagActivity(String str, Theme.ResourcesProvider resourcesProvider) {
+        super(null);
         setResourceProvider(resourcesProvider);
         String str2 = "";
         String strTrim = (str == null ? "" : str).trim();
         if (!strTrim.startsWith("#") && !strTrim.startsWith("$")) {
-            strTrim = "#" + strTrim;
+            strTrim = "#".concat(strTrim);
         }
         int iIndexOf = strTrim.indexOf("@");
         if (iIndexOf > 0) {
@@ -80,280 +206,228 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public boolean onFragmentCreate() {
-        getMessagesController().getStoriesController().attachedSearchLists.add(this.storiesList);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.hashtagSearchUpdated);
-        this.storiesList.load(true, 18);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        getMessagesController().getStoriesController().attachedSearchLists.remove(this.storiesList);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.hashtagSearchUpdated);
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        ChatActivityContainer chatActivityContainer;
-        if (i == NotificationCenter.storiesListUpdated) {
-            Object obj = objArr[0];
-            StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
-            if (obj == searchStoriesList) {
-                MessagesSearchAdapter.StoriesView storiesView = this.storiesView;
-                if (storiesView != null) {
-                    updateStoriesVisible(storiesView.set(searchStoriesList), true);
-                }
-                TextView textView = this.storiesTotalTextView;
-                if (textView != null) {
-                    textView.setText(LocaleController.formatPluralString("FoundStories", this.storiesList.getCount(), new Object[0]));
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        if (i != NotificationCenter.hashtagSearchUpdated || (chatActivityContainer = this.chatContainer) == null || chatActivityContainer.chatActivity == null || ((Integer) objArr[0]).intValue() != this.chatContainer.chatActivity.getClassGuid()) {
-            return;
-        }
-        int iIntValue = ((Integer) objArr[1]).intValue();
-        MessagesSearchAdapter.StoriesView storiesView2 = this.storiesView;
-        if (storiesView2 != null) {
-            storiesView2.setMessages(iIntValue, this.hashtag, this.username);
-        }
-    }
-
-    @Override
-    public View createView(Context context) {
+    public final View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(this.query);
         ActionBar actionBar = this.actionBar;
-        int i = Theme.key_windowBackgroundWhite;
-        actionBar.setBackgroundColor(getThemedColor(i));
+        String str = this.query;
+        actionBar.setTitle(str);
         ActionBar actionBar2 = this.actionBar;
+        int i = Theme.key_windowBackgroundWhite;
+        actionBar2.setBackgroundColor(getThemedColor(i));
+        ActionBar actionBar3 = this.actionBar;
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
-        actionBar2.setItemsColor(getThemedColor(i2), false);
+        actionBar3.setItemsColor(getThemedColor(i2), false);
         this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarWhiteSelector), false);
         this.actionBar.setTitleColor(getThemedColor(i2));
         this.actionBar.setCastShadows(true);
-        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            @Override
-            public void onItemClick(int i3) {
-                if (i3 == -1) {
-                    HashtagActivity.this.finishFragment();
-                }
-            }
-        });
+        this.actionBar.setActionBarMenuOnItemClick(new LoginActivity.AnonymousClass1(this, 1));
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(getThemedColor(i));
-        FrameLayout frameLayout2 = new FrameLayout(context) {
-            @Override
-            public void setTranslationY(float f) {
-                super.setTranslationY(f);
-                setPadding(0, 0, (int) f, 0);
-            }
-        };
-        this.contentView = frameLayout2;
-        frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -1, 119));
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2(context);
+        this.contentView = anonymousClass2;
+        frameLayout.addView(anonymousClass2, LayoutHelper.createFrame(-1, -1, 119));
         HashtagSearchController.getInstance(this.currentAccount).clearSearchResults(3);
         Bundle bundle = new Bundle();
         bundle.putInt("chatMode", 7);
         bundle.putInt("searchType", 3);
-        bundle.putString("searchHashtag", this.query);
-        ChatActivityContainer chatActivityContainer = new ChatActivityContainer(context, getParentLayout(), bundle) {
-            boolean activityCreated = false;
-
+        bundle.putString("searchHashtag", str);
+        ChatActivity.AnonymousClass37.AnonymousClass1 anonymousClass1 = new ChatActivity.AnonymousClass37.AnonymousClass1(context, getParentLayout(), bundle, 1);
+        anonymousClass1.activityCreated = false;
+        this.chatContainer = anonymousClass1;
+        this.contentView.addView(anonymousClass1, LayoutHelper.createFrame(-1, -1, 119));
+        ?? r0 = new SharedMediaLayout(context, new SharedMediaLayout.SharedMediaPreloader(null), this, new AnonymousClass4(), this.resourceProvider) {
             @Override
-            protected void initChatActivity() {
-                if (this.activityCreated) {
-                    return;
-                }
-                this.activityCreated = true;
-                super.initChatActivity();
-            }
-        };
-        this.chatContainer = chatActivityContainer;
-        this.contentView.addView(chatActivityContainer, LayoutHelper.createFrame(-1, -1, 119));
-        long j = 0;
-        int i3 = 0;
-        ArrayList arrayList = null;
-        TLRPC.ChatFull chatFull = null;
-        TLRPC.UserFull userFull = null;
-        int i4 = 8;
-        SharedMediaLayout sharedMediaLayout = new SharedMediaLayout(context, j, new SharedMediaLayout.SharedMediaPreloader(null), i3, arrayList, chatFull, userFull, i4, 0, this, new SharedMediaLayout.Delegate() {
-            @Override
-            public boolean canSearchMembers() {
-                return false;
+            public final void drawBackgroundWithBlur(Canvas canvas, float f, Rect rect, Paint paint) {
             }
 
             @Override
-            public TLRPC.Chat getCurrentChat() {
-                return null;
-            }
-
-            @Override
-            public RecyclerListView getListView() {
-                return null;
-            }
-
-            @Override
-            public boolean isFragmentOpened() {
-                return true;
-            }
-
-            @Override
-            public boolean onMemberClick(TLRPC.ChatParticipant chatParticipant, boolean z, boolean z2, View view) {
-                return false;
-            }
-
-            @Override
-            public void scrollToSharedMedia() {
-            }
-
-            @Override
-            public void updateSelectedMediaTabText() {
-            }
-        }, 0, this.resourceProvider) {
-            @Override
-            public boolean addActionButtons() {
-                return false;
-            }
-
-            @Override
-            protected boolean canShowSearchItem() {
-                return false;
-            }
-
-            @Override
-            protected boolean customTabs() {
-                return true;
-            }
-
-            @Override
-            protected void drawBackgroundWithBlur(Canvas canvas, float f, Rect rect, Paint paint) {
-            }
-
-            @Override
-            protected int getInitialTab() {
+            public final int getInitialTab() {
                 return 8;
             }
 
             @Override
-            protected boolean includeSavedDialogs() {
-                return false;
-            }
-
-            @Override
-            protected boolean includeStories() {
-                return false;
-            }
-
-            @Override
-            protected void invalidateBlur() {
-            }
-
-            @Override
-            protected boolean isArchivedOnlyStoriesView() {
-                return false;
-            }
-
-            @Override
-            public boolean isSearchingStories() {
-                return true;
-            }
-
-            @Override
-            protected boolean isStoriesView() {
-                return false;
-            }
-
-            @Override
-            protected void onActionModeSelectedUpdate(SparseArray sparseArray) {
-            }
-
-            @Override
-            protected void onSearchStateChanged(boolean z) {
-            }
-
-            @Override
-            public void onTabProgress(float f) {
-            }
-
-            @Override
-            protected void onTabScroll(boolean z) {
-            }
-
-            @Override
-            protected void showActionMode(boolean z) {
-            }
-
-            @Override
-            public String getStoriesHashtag() {
+            public final String getStoriesHashtag() {
                 return HashtagActivity.this.hashtag;
             }
 
             @Override
-            public String getStoriesHashtagUsername() {
+            public final String getStoriesHashtagUsername() {
                 return HashtagActivity.this.username;
             }
+
+            @Override
+            public final void invalidateBlur() {
+            }
+
+            @Override
+            public final boolean isSearchingStories() {
+                return true;
+            }
+
+            @Override
+            public final void onActionModeSelectedUpdate(SparseArray sparseArray) {
+            }
+
+            @Override
+            public final void onSearchStateChanged(boolean z) {
+            }
+
+            @Override
+            public final void onTabProgress(float f) {
+            }
+
+            @Override
+            public final void onTabScroll(boolean z) {
+            }
+
+            @Override
+            public final void showActionMode$1(boolean z) {
+            }
         };
-        this.sharedMediaLayout = sharedMediaLayout;
-        if (sharedMediaLayout.getSearchOptionsItem() != null) {
-            this.sharedMediaLayout.getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourceProvider), PorterDuff.Mode.SRC_IN));
+        this.sharedMediaLayout = r0;
+        if (r0.getSearchOptionsItem() != null) {
+            getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourceProvider), PorterDuff.Mode.SRC_IN));
         }
-        this.sharedMediaLayout.setPinnedToTop(true);
+        setPinnedToTop(true);
         this.sharedMediaLayout.photoVideoOptionsItem.setTranslationY(0.0f);
-        if (this.sharedMediaLayout.getSearchOptionsItem() != null) {
-            this.sharedMediaLayout.getSearchOptionsItem().setTranslationY(0.0f);
+        if (getSearchOptionsItem() != null) {
+            getSearchOptionsItem().setTranslationY(0.0f);
         }
-        this.sharedMediaLayout.setBackgroundColor(getThemedColor(i));
-        this.sharedMediaLayout.updateStoriesList(this.storiesList);
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.sharedMediaLayoutContainer = frameLayout3;
-        frameLayout3.setBackgroundColor(getThemedColor(i));
+        setBackgroundColor(getThemedColor(i));
+        AnonymousClass5 anonymousClass5 = this.sharedMediaLayout;
+        StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
+        anonymousClass5.searchStoriesList = searchStoriesList;
+        SharedMediaLayout.AnonymousClass9 anonymousClass9 = anonymousClass5.storiesAdapter;
+        anonymousClass9.storiesList = searchStoriesList;
+        anonymousClass9.notifyDataSetChanged();
+        SharedMediaLayout.StoriesAdapter storiesAdapter = anonymousClass5.animationSupportingStoriesAdapter;
+        storiesAdapter.storiesList = searchStoriesList;
+        storiesAdapter.notifyDataSetChanged();
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.sharedMediaLayoutContainer = frameLayout2;
+        frameLayout2.setBackgroundColor(getThemedColor(i));
         this.sharedMediaLayoutContainer.addView(this.sharedMediaLayout, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 49.0f));
-        FrameLayout frameLayout4 = new FrameLayout(context);
-        this.storiesTotal = frameLayout4;
-        frameLayout4.setBackgroundColor(getThemedColor(i));
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.storiesTotal = frameLayout3;
+        frameLayout3.setBackgroundColor(getThemedColor(i));
         TextView textView = new TextView(context);
         this.storiesTotalTextView = textView;
         textView.setTypeface(AndroidUtilities.bold());
         this.storiesTotalTextView.setTextSize(1, 15.0f);
         this.storiesTotalTextView.setTextColor(getThemedColor(Theme.key_chat_searchPanelText));
-        this.storiesTotalTextView.setText(LocaleController.formatPluralString("FoundStories", this.storiesList.getCount(), new Object[0]));
+        this.storiesTotalTextView.setText(LocaleController.formatPluralString("FoundStories", searchStoriesList.count, new Object[0]));
         this.storiesTotal.addView(this.storiesTotalTextView, LayoutHelper.createFrame(-1, -2.0f, 19, 18.0f, 0.0f, 18.0f, 0.0f));
         View view = new View(context);
         view.setBackgroundColor(Theme.getColor(Theme.key_divider, this.resourceProvider));
-        this.storiesTotal.addView(view, LayoutHelper.createFrame(-1.0f, 1.0f / AndroidUtilities.density, 55));
+        this.storiesTotal.addView(view, new FrameLayout.LayoutParams(LayoutHelper.getSize(-1.0f), LayoutHelper.getSize(1.0f / AndroidUtilities.density), 55));
         this.sharedMediaLayoutContainer.addView(this.storiesTotal, LayoutHelper.createFrame(-1, 49, 87));
         this.contentView.addView(this.sharedMediaLayoutContainer, LayoutHelper.createFrame(-1, -1, 119));
         MessagesSearchAdapter.StoriesView storiesView = new MessagesSearchAdapter.StoriesView(context, this.resourceProvider);
         this.storiesView = storiesView;
         storiesView.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor(i), getThemedColor(Theme.key_listSelector)));
-        this.storiesView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                HashtagActivity.$r8$lambda$IY1wmhXvyQbc4zldrYMRdtrBB_E(this.f$0, view2);
-            }
-        });
-        updateStoriesVisible(this.storiesView.set(this.storiesList), false);
+        this.storiesView.setOnClickListener(new ChatActivity$16$$ExternalSyntheticLambda4(this, 28));
+        updateStoriesVisible(this.storiesView.set(searchStoriesList), false);
         this.storiesView.setMessages(HashtagSearchController.getInstance(this.currentAccount).getCount(3), this.hashtag, this.username);
         frameLayout.addView(this.storiesView, LayoutHelper.createFrame(-1, 48, 55));
         transit(false, false);
         return this.fragmentView;
     }
 
-    public static void $r8$lambda$IY1wmhXvyQbc4zldrYMRdtrBB_E(HashtagActivity hashtagActivity, View view) {
-        hashtagActivity.transit(!hashtagActivity.storiesVisible, true);
-        hashtagActivity.storiesView.transition(hashtagActivity.storiesVisible);
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        ChatActivity.AnonymousClass37.AnonymousClass1 anonymousClass1;
+        if (i != NotificationCenter.storiesListUpdated) {
+            if (i != NotificationCenter.hashtagSearchUpdated || (anonymousClass1 = this.chatContainer) == null || anonymousClass1.chatActivity == null || ((Integer) objArr[0]).intValue() != this.chatContainer.chatActivity.getClassGuid()) {
+                return;
+            }
+            int iIntValue = ((Integer) objArr[1]).intValue();
+            MessagesSearchAdapter.StoriesView storiesView = this.storiesView;
+            if (storiesView != null) {
+                storiesView.setMessages(iIntValue, this.hashtag, this.username);
+                return;
+            }
+            return;
+        }
+        Object obj = objArr[0];
+        StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
+        if (obj == searchStoriesList) {
+            MessagesSearchAdapter.StoriesView storiesView2 = this.storiesView;
+            if (storiesView2 != null) {
+                updateStoriesVisible(storiesView2.set(searchStoriesList), true);
+            }
+            TextView textView = this.storiesTotalTextView;
+            if (textView != null) {
+                textView.setText(LocaleController.formatPluralString("FoundStories", searchStoriesList.count, new Object[0]));
+            }
+        }
     }
 
-    private void updateStoriesVisible(final boolean z, boolean z2) {
+    @Override
+    public final boolean isLightStatusBar() {
+        return ColorUtils.calculateLuminance(Theme.getColor(null, Theme.key_windowBackgroundWhite, true)) > 0.699999988079071d;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        ArrayList arrayList = getMessagesController().getStoriesController().attachedSearchLists;
+        StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
+        arrayList.add(searchStoriesList);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.hashtagSearchUpdated);
+        searchStoriesList.getClass();
+        searchStoriesList.load(18, Collections.EMPTY_LIST, true);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        getMessagesController().getStoriesController().attachedSearchLists.remove(this.storiesList);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.hashtagSearchUpdated);
+        super.onFragmentDestroy();
+    }
+
+    public final void transit(boolean z, boolean z2) {
+        ChatActivityContainer.AnonymousClass1 anonymousClass1;
+        ChatActivity.AnonymousClass34 anonymousClass34;
+        int i = 1;
+        ValueAnimator valueAnimator = this.transitAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        if (z2) {
+            if (this.storiesVisible == z) {
+                return;
+            }
+            this.storiesVisible = z;
+            this.sharedMediaLayoutContainer.setVisibility(0);
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.transitValue, z ? 1.0f : 0.0f);
+            this.transitAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new AnonymousClass6(this, i));
+            this.transitAnimator.addListener(new AnonymousClass7(this, z, i));
+            this.transitAnimator.setDuration(320L);
+            this.transitAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.transitAnimator.start();
+            return;
+        }
+        this.storiesVisible = z;
+        this.transitValue = z ? 1.0f : 0.0f;
+        setScaleX(z ? 1.0f : 0.95f);
+        setScaleY(z ? 1.0f : 0.95f);
+        this.sharedMediaLayoutContainer.setAlpha(z ? 1.0f : 0.0f);
+        this.sharedMediaLayoutContainer.setVisibility(z ? 0 : 8);
+        ChatActivity.AnonymousClass37.AnonymousClass1 anonymousClass2 = this.chatContainer;
+        if (anonymousClass2 == null || (anonymousClass1 = anonymousClass2.chatActivity) == null || (anonymousClass34 = anonymousClass1.messagesSearchListView) == null) {
+            return;
+        }
+        anonymousClass34.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, this.transitValue));
+        this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, this.transitValue));
+    }
+
+    public final void updateStoriesVisible(boolean z, boolean z2) {
+        int i = 0;
         this.storiesView.animate().cancel();
         ValueAnimator valueAnimator = this.contentViewAnimator;
         if (valueAnimator != null) {
@@ -367,111 +441,15 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
             return;
         }
         this.storiesView.setVisibility(0);
-        ViewPropertyAnimator duration = this.storiesView.animate().translationY(z ? 0.0f : -AndroidUtilities.dp(48.0f)).withEndAction(new Runnable() {
-            @Override
-            public final void run() {
-                HashtagActivity.$r8$lambda$GLQPBFBN7q_i4Pt0IeAmxM4mCuQ(this.f$0, z);
-            }
-        }).setDuration(320L);
+        ViewPropertyAnimator duration = this.storiesView.animate().translationY(z ? 0.0f : -AndroidUtilities.dp(48.0f)).withEndAction(new FileLoader$$ExternalSyntheticLambda1(17, this, z)).setDuration(320L);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         duration.setInterpolator(cubicBezierInterpolator).start();
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.contentViewValue, z ? 1.0f : 0.0f);
         this.contentViewAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                HashtagActivity.this.contentViewValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                HashtagActivity.this.contentView.setTranslationY(HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f));
-                HashtagActivity.this.contentView.setPadding(0, 0, 0, (int) (HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f)));
-            }
-        });
-        this.contentViewAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                HashtagActivity.this.contentViewValue = z ? 1.0f : 0.0f;
-                HashtagActivity.this.contentView.setTranslationY(HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f));
-                HashtagActivity.this.contentView.setPadding(0, 0, 0, (int) (HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f)));
-            }
-        });
+        valueAnimatorOfFloat.addUpdateListener(new AnonymousClass6(this, i));
+        this.contentViewAnimator.addListener(new AnonymousClass7(this, z, i));
         this.contentViewAnimator.setDuration(320L);
         this.contentViewAnimator.setInterpolator(cubicBezierInterpolator);
         this.contentViewAnimator.start();
-    }
-
-    public static void $r8$lambda$GLQPBFBN7q_i4Pt0IeAmxM4mCuQ(HashtagActivity hashtagActivity, boolean z) {
-        if (z) {
-            hashtagActivity.getClass();
-        } else {
-            hashtagActivity.storiesView.setVisibility(8);
-        }
-    }
-
-    private void transit(final boolean z, boolean z2) {
-        ChatActivity chatActivity;
-        RecyclerListView recyclerListView;
-        ValueAnimator valueAnimator = this.transitAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        if (!z2) {
-            this.storiesVisible = z;
-            this.transitValue = z ? 1.0f : 0.0f;
-            this.sharedMediaLayout.setScaleX(z ? 1.0f : 0.95f);
-            this.sharedMediaLayout.setScaleY(z ? 1.0f : 0.95f);
-            this.sharedMediaLayoutContainer.setAlpha(z ? 1.0f : 0.0f);
-            this.sharedMediaLayoutContainer.setVisibility(z ? 0 : 8);
-            ChatActivityContainer chatActivityContainer = this.chatContainer;
-            if (chatActivityContainer == null || (chatActivity = chatActivityContainer.chatActivity) == null || (recyclerListView = chatActivity.messagesSearchListView) == null) {
-                return;
-            }
-            recyclerListView.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, this.transitValue));
-            this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, this.transitValue));
-            return;
-        }
-        if (this.storiesVisible == z) {
-            return;
-        }
-        this.storiesVisible = z;
-        this.sharedMediaLayoutContainer.setVisibility(0);
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.transitValue, z ? 1.0f : 0.0f);
-        this.transitAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                HashtagActivity.this.transitValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                HashtagActivity.this.sharedMediaLayout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
-                HashtagActivity.this.sharedMediaLayout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
-                if (HashtagActivity.this.chatContainer != null && HashtagActivity.this.chatContainer.chatActivity != null && HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView != null) {
-                    HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
-                    HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
-                }
-                HashtagActivity.this.sharedMediaLayoutContainer.setAlpha(HashtagActivity.this.transitValue);
-            }
-        });
-        this.transitAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                HashtagActivity.this.transitValue = z ? 1.0f : 0.0f;
-                HashtagActivity.this.sharedMediaLayout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
-                HashtagActivity.this.sharedMediaLayout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
-                if (HashtagActivity.this.chatContainer != null && HashtagActivity.this.chatContainer.chatActivity != null && HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView != null) {
-                    HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
-                    HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
-                }
-                HashtagActivity.this.sharedMediaLayoutContainer.setAlpha(HashtagActivity.this.transitValue);
-                if (z) {
-                    return;
-                }
-                HashtagActivity.this.sharedMediaLayoutContainer.setVisibility(8);
-            }
-        });
-        this.transitAnimator.setDuration(320L);
-        this.transitAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.transitAnimator.start();
-    }
-
-    @Override
-    public boolean isLightStatusBar() {
-        return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) > 0.699999988079071d;
     }
 }

@@ -16,19 +16,15 @@ public class WebStartAlphabetRegistration implements AlphabetRegistration {
     }
 
     @Override
-    public Character.UnicodeBlock[] getUnicodeBlock() {
-        return this.blocks;
-    }
-
-    @Override
     public Object getPackage() throws AlphabetRegistrationException {
         Character.UnicodeBlock[] unicodeBlockArr = this.blocks;
         if (unicodeBlockArr == AlphabetRegistration.JLM_GREEK) {
             this.reg = new GreekRegistration();
-        } else if (unicodeBlockArr == AlphabetRegistration.JLM_CYRILLIC) {
-            this.reg = new CyrillicRegistration();
         } else {
-            throw new AlphabetRegistrationException("Invalid Unicode Block");
+            if (unicodeBlockArr != AlphabetRegistration.JLM_CYRILLIC) {
+                throw new AlphabetRegistrationException("Invalid Unicode Block");
+            }
+            this.reg = new CyrillicRegistration();
         }
         return this.reg;
     }
@@ -36,5 +32,10 @@ public class WebStartAlphabetRegistration implements AlphabetRegistration {
     @Override
     public String getTeXFontFileName() {
         return this.reg.getTeXFontFileName();
+    }
+
+    @Override
+    public Character.UnicodeBlock[] getUnicodeBlock() {
+        return this.blocks;
     }
 }

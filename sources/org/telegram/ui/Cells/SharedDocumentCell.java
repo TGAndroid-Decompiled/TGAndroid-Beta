@@ -2,7 +2,6 @@ package org.telegram.ui.Cells;
 
 import android.animation.TimeInterpolator;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -19,7 +18,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkc;
+import com.google.android.gms.internal.mlkit_vision_common.zzkf;
+import com.google.android.gms.internal.mlkit_vision_common.zzlj;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
@@ -32,9 +35,11 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BackupImageView;
@@ -49,45 +54,38 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.FilteredSearchView;
 
-public class SharedDocumentCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
-    private int TAG;
-    private CharSequence caption;
-    private TextView captionTextView;
-    private CheckBox2 checkBox;
-    private int currentAccount;
-    private AnimatedEmojiSpan.TextViewEmojis dateTextView;
-    private SpannableStringBuilder dotSpan;
-    private long downloadedSize;
-    private boolean drawDownloadIcon;
-    float enterAlpha;
-    private TextView extTextView;
-    FlickerLoadingView globalGradientView;
-    boolean ignoreRequestLayout;
-    private boolean loaded;
-    private boolean loading;
-    private MessageObject message;
-    private TextView nameTextView;
-    private boolean needDivider;
-    private ImageView placeholderImageView;
-    private LineProgressView progressView;
-    private final Theme.ResourcesProvider resourcesProvider;
-    public TextView rightDateTextView;
-    boolean showReorderIcon;
-    float showReorderIconProgress;
-    private RLottieDrawable statusDrawable;
-    private RLottieImageView statusImageView;
-    private BackupImageView thumbImageView;
-    private int viewType;
-
-    @Override
-    public void onProgressUpload(String str, long j, long j2, boolean z) {
-    }
-
-    public SharedDocumentCell(Context context, int i) {
-        this(context, i, null);
-    }
+public final class SharedDocumentCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
+    public final int TAG;
+    public CharSequence caption;
+    public final TextView captionTextView;
+    public final CheckBox2 checkBox;
+    public final int currentAccount;
+    public final AnimatedEmojiSpan.TextViewEmojis dateTextView;
+    public final SpannableStringBuilder dotSpan;
+    public long downloadedSize;
+    public boolean drawDownloadIcon;
+    public float enterAlpha;
+    public final TextView extTextView;
+    public FlickerLoadingView globalGradientView;
+    public boolean ignoreRequestLayout;
+    public boolean loaded;
+    public boolean loading;
+    public MessageObject message;
+    public final TextView nameTextView;
+    public boolean needDivider;
+    public final ImageView placeholderImageView;
+    public final LineProgressView progressView;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final TextView rightDateTextView;
+    public boolean showReorderIcon;
+    public float showReorderIconProgress;
+    public final RLottieDrawable statusDrawable;
+    public final RLottieImageView statusImageView;
+    public final UserCell.AnonymousClass2 thumbImageView;
+    public final int viewType;
 
     public SharedDocumentCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        float f;
         super(context);
         this.drawDownloadIcon = true;
         int i2 = UserConfig.selectedAccount;
@@ -107,154 +105,128 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         }
         TextView textView = new TextView(context);
         this.extTextView = textView;
-        textView.setTextColor(getThemedColor(Theme.key_files_iconText));
-        this.extTextView.setTextSize(1, 14.0f);
-        this.extTextView.setTypeface(AndroidUtilities.bold());
-        this.extTextView.setLines(1);
-        this.extTextView.setMaxLines(1);
-        this.extTextView.setSingleLine(true);
-        this.extTextView.setGravity(17);
-        TextView textView2 = this.extTextView;
+        zzlj.m(Theme.key_files_iconText, resourcesProvider, textView, 14.0f);
+        textView.setLines(1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(17);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView2.setEllipsize(truncateAt);
-        this.extTextView.setImportantForAccessibility(2);
+        textView.setEllipsize(truncateAt);
+        textView.setImportantForAccessibility(2);
         if (i == 1) {
-            View view = this.extTextView;
             boolean z3 = LocaleController.isRTL;
-            addView(view, LayoutHelper.createFrame(32, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : 20.0f, 28.0f, z3 ? 20.0f : 0.0f, 0.0f));
+            addView(textView, LayoutHelper.createFrame(32, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : 20.0f, 28.0f, z3 ? 20.0f : 0.0f, 0.0f));
         } else {
-            View view2 = this.extTextView;
             boolean z4 = LocaleController.isRTL;
-            addView(view2, LayoutHelper.createFrame(32, -2.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : 16.0f, 22.0f, z4 ? 16.0f : 0.0f, 0.0f));
+            addView(textView, LayoutHelper.createFrame(32, -2.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : 16.0f, 22.0f, z4 ? 16.0f : 0.0f, 0.0f));
         }
-        BackupImageView backupImageView = new BackupImageView(context) {
-            @Override
-            protected void onDraw(Canvas canvas) {
-                float currentAlpha = SharedDocumentCell.this.thumbImageView.getImageReceiver().hasBitmapImage() ? 1.0f - SharedDocumentCell.this.thumbImageView.getImageReceiver().getCurrentAlpha() : 1.0f;
-                SharedDocumentCell.this.extTextView.setAlpha(currentAlpha);
-                SharedDocumentCell.this.placeholderImageView.setAlpha(currentAlpha);
-                super.onDraw(canvas);
-            }
-        };
-        this.thumbImageView = backupImageView;
-        backupImageView.setRoundRadius(AndroidUtilities.dp(4.0f));
+        UserCell.AnonymousClass2 anonymousClass2 = new UserCell.AnonymousClass2(this, context, 2);
+        this.thumbImageView = anonymousClass2;
+        anonymousClass2.setRoundRadius(AndroidUtilities.dp(4.0f));
         if (i == 1) {
-            View view3 = this.thumbImageView;
             boolean z5 = LocaleController.isRTL;
-            addView(view3, LayoutHelper.createFrame(42, 42.0f, (z5 ? 5 : 3) | 48, z5 ? 0.0f : 16.0f, 12.0f, z5 ? 16.0f : 0.0f, 0.0f));
+            addView(anonymousClass2, LayoutHelper.createFrame(42, 42.0f, (z5 ? 5 : 3) | 48, z5 ? 0.0f : 16.0f, 12.0f, z5 ? 16.0f : 0.0f, 0.0f));
         } else {
-            View view4 = this.thumbImageView;
             boolean z6 = LocaleController.isRTL;
-            addView(view4, LayoutHelper.createFrame(40, 40.0f, (z6 ? 5 : 3) | 48, z6 ? 0.0f : 12.0f, 8.0f, z6 ? 12.0f : 0.0f, 0.0f));
+            addView(anonymousClass2, LayoutHelper.createFrame(40, 40.0f, (z6 ? 5 : 3) | 48, z6 ? 0.0f : 12.0f, 8.0f, z6 ? 12.0f : 0.0f, 0.0f));
         }
-        TextView textView3 = new TextView(context);
-        this.nameTextView = textView3;
+        TextView textView2 = new TextView(context);
+        this.nameTextView = textView2;
         int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        textView3.setTextColor(getThemedColor(i3));
-        this.nameTextView.setTextSize(1, 16.0f);
-        this.nameTextView.setTypeface(AndroidUtilities.bold());
-        this.nameTextView.setEllipsize(truncateAt);
-        this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        zzlj.m(i3, resourcesProvider, textView2, 16.0f);
+        textView2.setEllipsize(truncateAt);
+        textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         if (i == 1) {
-            this.nameTextView.setLines(1);
-            this.nameTextView.setMaxLines(1);
-            this.nameTextView.setSingleLine(true);
-            View view5 = this.nameTextView;
+            textView2.setLines(1);
+            textView2.setMaxLines(1);
+            textView2.setSingleLine(true);
             boolean z7 = LocaleController.isRTL;
-            addView(view5, LayoutHelper.createFrame(-1, -2.0f, (z7 ? 5 : 3) | 48, z7 ? 8.0f : 72.0f, 9.0f, z7 ? 72.0f : 8.0f, 0.0f));
+            addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z7 ? 5 : 3) | 48, z7 ? 8.0f : 72.0f, 9.0f, z7 ? 72.0f : 8.0f, 0.0f));
+            f = 14.0f;
         } else if (i == 2) {
-            LinearLayout linearLayout = new LinearLayout(context);
-            linearLayout.setOrientation(0);
+            LinearLayout linearLayoutM = zzkf.m(context, 0);
             boolean z8 = LocaleController.isRTL;
-            addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, (z8 ? 5 : 3) | 48, z8 ? 16.0f : 72.0f, 5.0f, z8 ? 72.0f : 16.0f, 0.0f));
-            TextView textView4 = new TextView(context);
-            this.rightDateTextView = textView4;
-            textView4.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
-            this.rightDateTextView.setTextSize(1, 14.0f);
-            if (!LocaleController.isRTL) {
-                linearLayout.addView(this.nameTextView, LayoutHelper.createLinear(-2, -2, 1.0f));
-                linearLayout.addView(this.rightDateTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 4, 0, 0, 0));
+            addView(linearLayoutM, LayoutHelper.createFrame(-1, -2.0f, (z8 ? 5 : 3) | 48, z8 ? 16.0f : 72.0f, 5.0f, z8 ? 72.0f : 16.0f, 0.0f));
+            TextView textView3 = new TextView(context);
+            this.rightDateTextView = textView3;
+            OKLCH.m(Theme.key_windowBackgroundWhiteGrayText3, resourcesProvider, textView3, 14.0f);
+            f = 14.0f;
+            if (LocaleController.isRTL) {
+                linearLayoutM.addView(textView3, LayoutHelper.createLinear(0.0f, -2, -2));
+                linearLayoutM.addView(textView2, LayoutHelper.createLinear(1.0f, -2, -2, 0, 4, 0));
             } else {
-                linearLayout.addView(this.rightDateTextView, LayoutHelper.createLinear(-2, -2, 0.0f));
-                linearLayout.addView(this.nameTextView, LayoutHelper.createLinear(-2, -2, 1.0f, 0, 0, 4, 0));
+                linearLayoutM.addView(textView2, LayoutHelper.createLinear(1.0f, -2, -2));
+                linearLayoutM.addView(textView3, LayoutHelper.createLinear(0.0f, -2, -2, 4, 0, 0));
             }
-            this.nameTextView.setMaxLines(2);
-            TextView textView5 = new TextView(context);
-            this.captionTextView = textView5;
-            textView5.setTextColor(getThemedColor(i3));
-            this.captionTextView.setLines(1);
-            this.captionTextView.setMaxLines(1);
-            this.captionTextView.setSingleLine(true);
-            this.captionTextView.setEllipsize(truncateAt);
-            this.captionTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            this.captionTextView.setTextSize(1, 13.0f);
-            View view6 = this.captionTextView;
+            textView2.setMaxLines(2);
+            TextView textView4 = new TextView(context);
+            this.captionTextView = textView4;
+            textView4.setTextColor(Theme.getColor(i3, resourcesProvider));
+            textView4.setLines(1);
+            textView4.setMaxLines(1);
+            textView4.setSingleLine(true);
+            textView4.setEllipsize(truncateAt);
+            textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+            textView4.setTextSize(1, 13.0f);
             boolean z9 = LocaleController.isRTL;
-            addView(view6, LayoutHelper.createFrame(-1, -2.0f, (z9 ? 5 : 3) | 48, z9 ? 8.0f : 72.0f, 30.0f, z9 ? 72.0f : 8.0f, 0.0f));
-            this.captionTextView.setVisibility(8);
+            addView(textView4, LayoutHelper.createFrame(-1, -2.0f, (z9 ? 5 : 3) | 48, z9 ? 8.0f : 72.0f, 30.0f, z9 ? 72.0f : 8.0f, 0.0f));
+            textView4.setVisibility(8);
         } else {
-            this.nameTextView.setMaxLines(1);
-            View view7 = this.nameTextView;
+            f = 14.0f;
+            textView2.setMaxLines(1);
             boolean z10 = LocaleController.isRTL;
-            addView(view7, LayoutHelper.createFrame(-1, -2.0f, (z10 ? 5 : 3) | 48, z10 ? 8.0f : 72.0f, 5.0f, z10 ? 72.0f : 8.0f, 0.0f));
+            addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z10 ? 5 : 3) | 48, z10 ? 8.0f : 72.0f, 5.0f, z10 ? 72.0f : 8.0f, 0.0f));
         }
-        this.statusDrawable = new RLottieDrawable(R.raw.download_arrow, "download_arrow", AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.download_arrow, "download_arrow", AndroidUtilities.dp(f), AndroidUtilities.dp(f), true, null);
+        this.statusDrawable = rLottieDrawable;
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.statusImageView = rLottieImageView;
-        rLottieImageView.setAnimation(this.statusDrawable);
-        this.statusImageView.setVisibility(4);
-        RLottieImageView rLottieImageView2 = this.statusImageView;
+        rLottieImageView.setAnimation(rLottieDrawable);
+        rLottieImageView.setVisibility(4);
         int i4 = Theme.key_sharedMedia_startStopLoadIcon;
-        rLottieImageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), PorterDuff.Mode.SRC_IN));
+        rLottieImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, resourcesProvider), PorterDuff.Mode.SRC_IN));
         if (i == 1) {
-            View view8 = this.statusImageView;
             boolean z11 = LocaleController.isRTL;
-            addView(view8, LayoutHelper.createFrame(14, 14.0f, (z11 ? 5 : 3) | 48, z11 ? 8.0f : 70.0f, 37.0f, z11 ? 72.0f : 8.0f, 0.0f));
+            addView(rLottieImageView, LayoutHelper.createFrame(14, 14.0f, (z11 ? 5 : 3) | 48, z11 ? 8.0f : 70.0f, 37.0f, z11 ? 72.0f : 8.0f, 0.0f));
         } else {
-            View view9 = this.statusImageView;
             boolean z12 = LocaleController.isRTL;
-            addView(view9, LayoutHelper.createFrame(14, 14.0f, (z12 ? 5 : 3) | 48, z12 ? 8.0f : 70.0f, 33.0f, z12 ? 72.0f : 8.0f, 0.0f));
+            addView(rLottieImageView, LayoutHelper.createFrame(14, 14.0f, (z12 ? 5 : 3) | 48, z12 ? 8.0f : 70.0f, 33.0f, z12 ? 72.0f : 8.0f, 0.0f));
         }
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(context);
         this.dateTextView = textViewEmojis;
-        textViewEmojis.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
-        this.dateTextView.setLines(1);
-        this.dateTextView.setMaxLines(1);
-        this.dateTextView.setSingleLine(true);
-        this.dateTextView.setEllipsize(truncateAt);
-        this.dateTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        NotificationCenter.listenEmojiLoading(this.dateTextView);
+        textViewEmojis.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, resourcesProvider));
+        textViewEmojis.setLines(1);
+        textViewEmojis.setMaxLines(1);
+        textViewEmojis.setSingleLine(true);
+        textViewEmojis.setEllipsize(truncateAt);
+        textViewEmojis.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        NotificationCenter.listenEmojiLoading(textViewEmojis);
         if (i == 1) {
-            this.dateTextView.setTextSize(1, 13.0f);
-            View view10 = this.dateTextView;
+            textViewEmojis.setTextSize(1, 13.0f);
             boolean z13 = LocaleController.isRTL;
-            addView(view10, LayoutHelper.createFrame(-1, -2.0f, (z13 ? 5 : 3) | 48, z13 ? 8.0f : 72.0f, 34.0f, z13 ? 72.0f : 8.0f, 0.0f));
+            addView(textViewEmojis, LayoutHelper.createFrame(-1, -2.0f, (z13 ? 5 : 3) | 48, z13 ? 8.0f : 72.0f, 34.0f, z13 ? 72.0f : 8.0f, 0.0f));
         } else {
-            this.dateTextView.setTextSize(1, 13.0f);
-            View view11 = this.dateTextView;
+            textViewEmojis.setTextSize(1, 13.0f);
             boolean z14 = LocaleController.isRTL;
-            addView(view11, LayoutHelper.createFrame(-1, -2.0f, (z14 ? 5 : 3) | 48, z14 ? 8.0f : 72.0f, 30.0f, z14 ? 72.0f : 8.0f, 0.0f));
+            addView(textViewEmojis, LayoutHelper.createFrame(-1, -2.0f, (z14 ? 5 : 3) | 48, z14 ? 8.0f : 72.0f, 30.0f, z14 ? 72.0f : 8.0f, 0.0f));
         }
         LineProgressView lineProgressView = new LineProgressView(context);
         this.progressView = lineProgressView;
-        lineProgressView.setProgressColor(getThemedColor(i4));
-        View view12 = this.progressView;
+        lineProgressView.setProgressColor(Theme.getColor(i4, resourcesProvider));
         boolean z15 = LocaleController.isRTL;
-        addView(view12, LayoutHelper.createFrame(-1, 2.0f, (z15 ? 5 : 3) | 48, z15 ? 0.0f : 72.0f, 54.0f, z15 ? 72.0f : 0.0f, 0.0f));
+        addView(lineProgressView, LayoutHelper.createFrame(-1, 2.0f, (z15 ? 5 : 3) | 48, z15 ? 0.0f : 72.0f, 54.0f, z15 ? 72.0f : 0.0f, 0.0f));
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
         this.checkBox = checkBox2;
         checkBox2.setVisibility(4);
-        this.checkBox.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
-        this.checkBox.setDrawUnchecked(false);
-        this.checkBox.setDrawBackgroundAsArc(2);
+        checkBox2.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+        checkBox2.setDrawUnchecked(false);
+        checkBox2.setDrawBackgroundAsArc(2);
         if (i == 1) {
-            View view13 = this.checkBox;
             boolean z16 = LocaleController.isRTL;
-            addView(view13, LayoutHelper.createFrame(24, 24.0f, (z16 ? 5 : 3) | 48, z16 ? 0.0f : 38.0f, 36.0f, z16 ? 38.0f : 0.0f, 0.0f));
+            addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, (z16 ? 5 : 3) | 48, z16 ? 0.0f : 38.0f, 36.0f, z16 ? 38.0f : 0.0f, 0.0f));
         } else {
-            View view14 = this.checkBox;
             boolean z17 = LocaleController.isRTL;
-            addView(view14, LayoutHelper.createFrame(24, 24.0f, (z17 ? 5 : 3) | 48, z17 ? 0.0f : 33.0f, 28.0f, z17 ? 33.0f : 0.0f, 0.0f));
+            addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, (z17 ? 5 : 3) | 48, z17 ? 0.0f : 33.0f, 28.0f, z17 ? 33.0f : 0.0f, 0.0f));
         }
         if (i == 2) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(".");
@@ -263,84 +235,351 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         }
     }
 
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f;
+        float f2 = this.enterAlpha;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (f2 == 1.0f || this.globalGradientView == null) {
+            super.dispatchDraw(canvas);
+            if (this.needDivider) {
+                canvas.drawLine(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.getThemePaint("paintDivider", resourcesProvider));
+            }
+        } else {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
+            this.globalGradientView.setViewType(3);
+            this.globalGradientView.updateColors$1();
+            this.globalGradientView.updateGradient();
+            this.globalGradientView.draw(canvas);
+            canvas.restore();
+            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (this.enterAlpha * 255.0f), 31);
+            super.dispatchDraw(canvas);
+            if (this.needDivider) {
+                canvas.drawLine(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.getThemePaint("paintDivider", resourcesProvider));
+            }
+            canvas.restore();
+        }
+        boolean z = this.showReorderIcon;
+        if (z || this.showReorderIconProgress != 0.0f) {
+            if (z) {
+                float f3 = this.showReorderIconProgress;
+                if (f3 != 1.0f) {
+                    this.showReorderIconProgress = f3 + 0.10666667f;
+                    invalidate();
+                } else if (!z) {
+                    f = this.showReorderIconProgress;
+                    if (f != 0.0f) {
+                        this.showReorderIconProgress = f - 0.10666667f;
+                        invalidate();
+                    }
+                }
+            } else if (!z) {
+                f = this.showReorderIconProgress;
+                if (f != 0.0f) {
+                    this.showReorderIconProgress = f - 0.10666667f;
+                    invalidate();
+                }
+            }
+            this.showReorderIconProgress = Utilities.clamp(this.showReorderIconProgress, 1.0f, 0.0f);
+            int measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
+            int measuredHeight = (getMeasuredHeight() - Theme.dialogs_reorderDrawable.getIntrinsicHeight()) >> 1;
+            canvas.save();
+            float f4 = this.showReorderIconProgress;
+            canvas.scale(f4, f4, (Theme.dialogs_reorderDrawable.getIntrinsicWidth() / 2.0f) + measuredWidth, (Theme.dialogs_reorderDrawable.getIntrinsicHeight() / 2.0f) + measuredHeight);
+            Drawable drawable = Theme.dialogs_reorderDrawable;
+            drawable.setBounds(measuredWidth, measuredHeight, drawable.getIntrinsicWidth() + measuredWidth, Theme.dialogs_reorderDrawable.getIntrinsicHeight() + measuredHeight);
+            Theme.dialogs_reorderDrawable.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    public BackupImageView getImageView() {
+        return this.thumbImageView;
+    }
+
+    public MessageObject getMessage() {
+        return this.message;
+    }
+
+    @Override
+    public int getObserverTag() {
+        return this.TAG;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.progressView.getVisibility() == 0) {
+            updateFileExistIcon(false);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z) {
+        updateFileExistIcon(true);
+        this.downloadedSize = 0L;
+        updateDateView();
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2.checkBoxBase.isChecked) {
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setChecked(checkBox2.checkBoxBase.isChecked);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        if (this.viewType != 1) {
+            TextView textView = this.nameTextView;
+            int lineCount = textView.getLineCount();
+            TextView textView2 = this.captionTextView;
+            if (lineCount > 1 || (textView2 != null && textView2.getVisibility() == 0)) {
+                int measuredHeight = textView.getMeasuredHeight() - AndroidUtilities.dp(22.0f);
+                if (textView2 != null && textView2.getVisibility() == 0) {
+                    textView2.layout(textView2.getLeft(), textView2.getTop() + measuredHeight, textView2.getRight(), textView2.getBottom() + measuredHeight);
+                    measuredHeight = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(textView2.getMeasuredHeight(), 3.0f, measuredHeight);
+                }
+                AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.dateTextView;
+                textViewEmojis.layout(textViewEmojis.getLeft(), textViewEmojis.getTop() + measuredHeight, textViewEmojis.getRight(), textViewEmojis.getBottom() + measuredHeight);
+                RLottieImageView rLottieImageView = this.statusImageView;
+                rLottieImageView.layout(rLottieImageView.getLeft(), rLottieImageView.getTop() + measuredHeight, rLottieImageView.getRight(), rLottieImageView.getBottom() + measuredHeight);
+                LineProgressView lineProgressView = this.progressView;
+                lineProgressView.layout(lineProgressView.getLeft(), (getMeasuredHeight() - lineProgressView.getMeasuredHeight()) - (this.needDivider ? 1 : 0), lineProgressView.getRight(), getMeasuredHeight() - (this.needDivider ? 1 : 0));
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        TextView textView;
+        int i3 = this.viewType;
+        if (i3 == 1) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+            return;
+        }
+        if (i3 == 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+            return;
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+        int measuredHeight = this.nameTextView.getMeasuredHeight() + AndroidUtilities.dp(34.0f) + (this.needDivider ? 1 : 0);
+        if (this.caption != null && (textView = this.captionTextView) != null && this.message.hasHighlightedWords()) {
+            this.ignoreRequestLayout = true;
+            textView.setText(AndroidUtilities.ellipsizeCenterEnd(this.caption, this.message.highlightedWords.get(0), textView.getMeasuredWidth(), textView.getPaint(), 130));
+            this.ignoreRequestLayout = false;
+            measuredHeight = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(textView.getMeasuredHeight(), 3.0f, measuredHeight);
+        }
+        setMeasuredDimension(getMeasuredWidth(), measuredHeight);
+    }
+
+    @Override
+    public final void onProgressDownload(String str, long j, long j2) {
+        LineProgressView lineProgressView = this.progressView;
+        if (lineProgressView.getVisibility() != 0) {
+            updateFileExistIcon(true);
+        }
+        this.downloadedSize = j;
+        updateDateView();
+        lineProgressView.setProgress(Math.min(1.0f, j / j2), true);
+    }
+
+    @Override
+    public final void onProgressUpload(String str, long j, long j2, boolean z) {
+    }
+
+    @Override
+    public final void onSuccessDownload(String str) {
+        this.progressView.setProgress(1.0f, true);
+        updateFileExistIcon(true);
+        this.downloadedSize = 0L;
+        updateDateView();
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.ignoreRequestLayout) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    public final void setChecked(boolean z, boolean z2) {
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2.getVisibility() != 0) {
+            checkBox2.setVisibility(0);
+        }
+        checkBox2.checkBoxBase.setChecked(-1, z, z2);
+    }
+
+    public final void setDocument(MessageObject messageObject, boolean z) {
+        String str;
+        Theme.ResourcesProvider resourcesProvider;
+        String str2;
+        String str3;
+        String str4;
+        MessageObject messageObject2 = this.message;
+        boolean z2 = (messageObject2 == null || messageObject == null || messageObject2.getId() == messageObject.getId()) ? false : true;
+        this.needDivider = z;
+        this.message = messageObject;
+        this.loaded = false;
+        this.loading = false;
+        if (!z2) {
+            this.downloadedSize = 0L;
+        }
+        TLRPC.Document document = messageObject.getDocument();
+        TextView textView = this.captionTextView;
+        TextView textView2 = this.nameTextView;
+        ImageView imageView = this.placeholderImageView;
+        TextView textView3 = this.extTextView;
+        UserCell.AnonymousClass2 anonymousClass2 = this.thumbImageView;
+        if (document != null) {
+            if (messageObject.isMusic()) {
+                str = null;
+                for (int i = 0; i < document.attributes.size(); i++) {
+                    TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
+                    if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && (((str3 = documentAttribute.performer) != null && str3.length() != 0) || ((str4 = documentAttribute.title) != null && str4.length() != 0))) {
+                        str = messageObject.getMusicAuthor() + " - " + messageObject.getMusicTitle();
+                    }
+                }
+            } else {
+                str = null;
+            }
+            String documentFileName = (messageObject.isVideo() || (messageObject.messageOwner.media instanceof TLRPC.TL_messageMediaPhoto) || MessageObject.isGifDocument(document)) ? null : FileLoader.getDocumentFileName(document);
+            if (TextUtils.isEmpty(documentFileName) && (str2 = document.mime_type) != null) {
+                if (str2.startsWith("video")) {
+                    documentFileName = MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachVideo);
+                } else if (document.mime_type.startsWith("image")) {
+                    documentFileName = MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachPhoto);
+                } else {
+                    documentFileName = document.mime_type.startsWith("audio") ? LocaleController.getString(R.string.AttachAudio) : LocaleController.getString(R.string.AttachDocument);
+                }
+            }
+            String str5 = str == null ? documentFileName : str;
+            ArrayList<String> arrayList = messageObject.highlightedWords;
+            Theme.ResourcesProvider resourcesProvider2 = this.resourcesProvider;
+            CharSequence charSequenceHighlightText = AndroidUtilities.highlightText(str5, arrayList, resourcesProvider2);
+            if (charSequenceHighlightText != null) {
+                textView2.setText(charSequenceHighlightText);
+            } else {
+                textView2.setText(str5);
+            }
+            imageView.setVisibility(0);
+            textView3.setVisibility(0);
+            imageView.setImageResource(AndroidUtilities.getThumbForNameOrMime(documentFileName, document.mime_type, false));
+            int iLastIndexOf = documentFileName.lastIndexOf(46);
+            textView3.setText(iLastIndexOf == -1 ? "" : documentFileName.substring(iLastIndexOf + 1).toLowerCase());
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320);
+            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 40);
+            if (closestPhotoSizeWithSize2 == closestPhotoSizeWithSize) {
+                closestPhotoSizeWithSize = null;
+            }
+            if ((closestPhotoSizeWithSize2 instanceof TLRPC.TL_photoSizeEmpty) || closestPhotoSizeWithSize2 == null) {
+                resourcesProvider = resourcesProvider2;
+                anonymousClass2.setVisibility(4);
+                anonymousClass2.setImageBitmap(null);
+                textView3.setAlpha(1.0f);
+                imageView.setAlpha(1.0f);
+            } else {
+                anonymousClass2.getImageReceiver().setNeedsQualityThumb(closestPhotoSizeWithSize == null);
+                anonymousClass2.getImageReceiver().setShouldGenerateQualityThumb(closestPhotoSizeWithSize == null);
+                anonymousClass2.setVisibility(0);
+                if (messageObject.strippedThumb != null) {
+                    resourcesProvider = resourcesProvider2;
+                    this.thumbImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", null, null, messageObject.strippedThumb, null, 1, messageObject);
+                } else {
+                    resourcesProvider = resourcesProvider2;
+                    anonymousClass2.imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), "40_40_b", null, 0L, null, messageObject, 1);
+                    anonymousClass2.onNewImageSet();
+                }
+            }
+            updateDateView();
+            if (messageObject.hasHighlightedWords() && !TextUtils.isEmpty(this.message.messageOwner.message)) {
+                CharSequence charSequenceHighlightText2 = AndroidUtilities.highlightText(this.message.messageOwner.message.replace("\n", " ").replaceAll(" +", " ").trim(), this.message.highlightedWords, resourcesProvider);
+                this.caption = charSequenceHighlightText2;
+                if (textView != 0) {
+                    textView.setVisibility(charSequenceHighlightText2 == null ? 8 : 0);
+                }
+            } else if (textView != 0) {
+                textView.setVisibility(8);
+            }
+        } else {
+            textView2.setText("");
+            textView3.setText("");
+            this.dateTextView.setText("");
+            imageView.setVisibility(0);
+            textView3.setVisibility(0);
+            textView3.setAlpha(1.0f);
+            imageView.setAlpha(1.0f);
+            anonymousClass2.setVisibility(4);
+            anonymousClass2.setImageBitmap(null);
+            this.caption = null;
+            if (textView != null) {
+                textView.setVisibility(8);
+            }
+        }
+        setWillNotDraw(!this.needDivider);
+        this.progressView.setProgress(0.0f, false);
+        updateFileExistIcon(z2);
+    }
+
     public void setDrawDownloadIcon(boolean z) {
         this.drawDownloadIcon = z;
     }
 
-    public void setTextAndValueAndTypeAndThumb(String str, String str2, String str3, String str4, int i, boolean z) {
-        int i2;
-        int i3;
-        this.nameTextView.setText(str);
-        this.dateTextView.setText(str2);
-        if (str3 != null) {
-            this.extTextView.setVisibility(0);
-            this.extTextView.setText(str3.toLowerCase());
-        } else {
-            this.extTextView.setVisibility(4);
+    public void setEnterAnimationAlpha(float f) {
+        if (this.enterAlpha != f) {
+            this.enterAlpha = f;
+            invalidate();
         }
-        this.needDivider = z;
-        if (i == 0) {
-            this.placeholderImageView.setImageResource(AndroidUtilities.getThumbForNameOrMime(str, str3, false));
-            this.placeholderImageView.setVisibility(0);
+    }
+
+    public void setGlobalGradientView(FlickerLoadingView flickerLoadingView) {
+        this.globalGradientView = flickerLoadingView;
+    }
+
+    public void setPhoto(String str) {
+        boolean zEndsWith = str.endsWith("mp4");
+        UserCell.AnonymousClass2 anonymousClass2 = this.thumbImageView;
+        if (zEndsWith) {
+            anonymousClass2.setImage("vthumb://0:".concat(str), null, null);
+            anonymousClass2.setVisibility(0);
+        } else if (!str.endsWith(".jpg") && !str.endsWith(".jpeg") && !str.endsWith(".png") && !str.endsWith(".gif")) {
+            anonymousClass2.setVisibility(8);
         } else {
-            this.placeholderImageView.setVisibility(4);
+            anonymousClass2.setImage("thumb://0:".concat(str), null, null);
+            anonymousClass2.setVisibility(0);
         }
-        if (str4 != null || i != 0) {
-            if (str4 != null) {
-                if (this.viewType != 3) {
-                    this.thumbImageView.setImage(str4, "42_42", null);
-                }
-            } else {
-                CombinedDrawable combinedDrawableCreateCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(42.0f), i);
-                if (i == R.drawable.files_storage) {
-                    i2 = Theme.key_chat_attachLocationBackground;
-                    i3 = Theme.key_chat_attachIcon;
-                } else if (i == R.drawable.files_gallery) {
-                    i2 = Theme.key_chat_attachContactBackground;
-                    i3 = Theme.key_chat_attachIcon;
-                } else if (i == R.drawable.files_music) {
-                    i2 = Theme.key_chat_attachAudioBackground;
-                    i3 = Theme.key_chat_attachIcon;
-                } else if (i == R.drawable.files_internal) {
-                    i2 = Theme.key_chat_attachGalleryBackground;
-                    i3 = Theme.key_chat_attachIcon;
-                } else {
-                    i2 = Theme.key_files_folderIconBackground;
-                    i3 = Theme.key_files_folderIcon;
-                }
-                Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon, getThemedColor(i2), false);
-                Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon, getThemedColor(i3), true);
-                this.thumbImageView.setImageDrawable(combinedDrawableCreateCircleDrawableWithIcon);
-            }
-            this.thumbImageView.setVisibility(0);
-        } else {
-            this.extTextView.setAlpha(1.0f);
-            this.placeholderImageView.setAlpha(1.0f);
-            if (this.viewType != 3) {
-                this.thumbImageView.setImageBitmap(null);
-                this.thumbImageView.setVisibility(4);
-            }
-        }
-        setWillNotDraw(true ^ this.needDivider);
     }
 
     public void setPhotoEntry(MediaController.PhotoEntry photoEntry) {
         String str;
         String str2 = photoEntry.thumbPath;
+        UserCell.AnonymousClass2 anonymousClass2 = this.thumbImageView;
         if (str2 != null) {
-            this.thumbImageView.setImage(str2, null, Theme.chat_attachEmptyDrawable);
+            anonymousClass2.setImage(str2, null, Theme.chat_attachEmptyDrawable);
             str = photoEntry.thumbPath;
         } else if (photoEntry.path != null) {
             if (photoEntry.isVideo) {
-                this.thumbImageView.setOrientation(0, true);
-                this.thumbImageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                anonymousClass2.imageReceiver.setOrientation(0, true);
+                anonymousClass2.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             } else {
-                this.thumbImageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
-                this.thumbImageView.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                anonymousClass2.imageReceiver.setOrientation(photoEntry.orientation, photoEntry.invert, true);
+                anonymousClass2.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             }
             str = photoEntry.path;
         } else {
-            this.thumbImageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
+            anonymousClass2.setImageDrawable(Theme.chat_attachEmptyDrawable);
             str = "";
         }
         File file = new File(str);
@@ -352,7 +591,8 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             if (sb.length() > 0) {
                 sb.append(", ");
             }
-            sb.append(String.format(Locale.US, "%dx%d", Integer.valueOf(photoEntry.width), Integer.valueOf(photoEntry.height)));
+            Locale locale = Locale.US;
+            sb.append(photoEntry.width + "x" + photoEntry.height);
         }
         if (photoEntry.isVideo) {
             if (sb.length() > 0) {
@@ -374,133 +614,68 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         this.placeholderImageView.setVisibility(8);
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.progressView.getVisibility() == 0) {
-            updateFileExistIcon(false);
+    public final void setTextAndValueAndTypeAndThumb(boolean z, String str, int i, String str2, String str3, String str4) {
+        int i2;
+        int i3;
+        this.nameTextView.setText(str);
+        this.dateTextView.setText(str2);
+        TextView textView = this.extTextView;
+        if (str3 != null) {
+            textView.setVisibility(0);
+            textView.setText(str3.toLowerCase());
+        } else {
+            textView.setVisibility(4);
         }
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        if (this.checkBox.getVisibility() != 0) {
-            this.checkBox.setVisibility(0);
-        }
-        this.checkBox.setChecked(z, z2);
-    }
-
-    public void setDocument(MessageObject messageObject, boolean z) {
-        String str;
-        String str2;
-        String str3;
-        MessageObject messageObject2 = this.message;
-        boolean z2 = (messageObject2 == null || messageObject == null || messageObject2.getId() == messageObject.getId()) ? false : true;
         this.needDivider = z;
-        this.message = messageObject;
-        this.loaded = false;
-        this.loading = false;
-        if (!z2) {
-            this.downloadedSize = 0L;
+        ImageView imageView = this.placeholderImageView;
+        if (i == 0) {
+            imageView.setImageResource(AndroidUtilities.getThumbForNameOrMime(str, str3, false));
+            imageView.setVisibility(0);
+        } else {
+            imageView.setVisibility(4);
         }
-        TLRPC.Document document = messageObject.getDocument();
-        if (document != null) {
-            String str4 = null;
-            if (messageObject.isMusic()) {
-                for (int i = 0; i < document.attributes.size(); i++) {
-                    TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
-                    if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && (((str2 = documentAttribute.performer) != null && str2.length() != 0) || ((str3 = documentAttribute.title) != null && str3.length() != 0))) {
-                        str4 = messageObject.getMusicAuthor() + " - " + messageObject.getMusicTitle();
-                    }
-                }
-            }
-            String documentFileName = (messageObject.isVideo() || (messageObject.messageOwner.media instanceof TLRPC.TL_messageMediaPhoto) || MessageObject.isGifDocument(document)) ? null : FileLoader.getDocumentFileName(document);
-            if (TextUtils.isEmpty(documentFileName) && (str = document.mime_type) != null) {
-                if (str.startsWith("video")) {
-                    documentFileName = MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachVideo);
-                } else if (document.mime_type.startsWith("image")) {
-                    documentFileName = MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachPhoto);
-                } else {
-                    documentFileName = document.mime_type.startsWith("audio") ? LocaleController.getString(R.string.AttachAudio) : LocaleController.getString(R.string.AttachDocument);
-                }
-            }
-            if (str4 == null) {
-                str4 = documentFileName;
-            }
-            CharSequence charSequenceHighlightText = AndroidUtilities.highlightText(str4, messageObject.highlightedWords, this.resourcesProvider);
-            if (charSequenceHighlightText != null) {
-                this.nameTextView.setText(charSequenceHighlightText);
-            } else {
-                this.nameTextView.setText(str4);
-            }
-            this.placeholderImageView.setVisibility(0);
-            this.extTextView.setVisibility(0);
-            this.placeholderImageView.setImageResource(AndroidUtilities.getThumbForNameOrMime(documentFileName, document.mime_type, false));
-            TextView textView = this.extTextView;
-            int iLastIndexOf = documentFileName.lastIndexOf(46);
-            textView.setText(iLastIndexOf != -1 ? documentFileName.substring(iLastIndexOf + 1).toLowerCase() : "");
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320);
-            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 40);
-            if (closestPhotoSizeWithSize2 == closestPhotoSizeWithSize) {
-                closestPhotoSizeWithSize = null;
-            }
-            if ((closestPhotoSizeWithSize2 instanceof TLRPC.TL_photoSizeEmpty) || closestPhotoSizeWithSize2 == null) {
-                this.thumbImageView.setVisibility(4);
-                this.thumbImageView.setImageBitmap(null);
-                this.extTextView.setAlpha(1.0f);
-                this.placeholderImageView.setAlpha(1.0f);
-            } else {
-                this.thumbImageView.getImageReceiver().setNeedsQualityThumb(closestPhotoSizeWithSize == null);
-                this.thumbImageView.getImageReceiver().setShouldGenerateQualityThumb(closestPhotoSizeWithSize == null);
-                this.thumbImageView.setVisibility(0);
-                if (messageObject.strippedThumb != null) {
-                    this.thumbImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", (ImageLocation) null, (String) null, messageObject.strippedThumb, (Bitmap) null, (String) null, 1, messageObject);
-                } else {
-                    this.thumbImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), "40_40_b", (String) null, 0L, 1, messageObject);
-                }
-            }
-            updateDateView();
-            if (messageObject.hasHighlightedWords() && !TextUtils.isEmpty(this.message.messageOwner.message)) {
-                CharSequence charSequenceHighlightText2 = AndroidUtilities.highlightText(this.message.messageOwner.message.replace("\n", " ").replaceAll(" +", " ").trim(), this.message.highlightedWords, this.resourcesProvider);
-                this.caption = charSequenceHighlightText2;
-                TextView textView2 = this.captionTextView;
-                if (textView2 != null) {
-                    textView2.setVisibility(charSequenceHighlightText2 != null ? 0 : 8);
-                }
-            } else {
-                TextView textView3 = this.captionTextView;
-                if (textView3 != null) {
-                    textView3.setVisibility(8);
-                }
+        int i4 = this.viewType;
+        UserCell.AnonymousClass2 anonymousClass2 = this.thumbImageView;
+        if (str4 == null && i == 0) {
+            textView.setAlpha(1.0f);
+            imageView.setAlpha(1.0f);
+            if (i4 != 3) {
+                anonymousClass2.setImageBitmap(null);
+                anonymousClass2.setVisibility(4);
             }
         } else {
-            this.nameTextView.setText("");
-            this.extTextView.setText("");
-            this.dateTextView.setText("");
-            this.placeholderImageView.setVisibility(0);
-            this.extTextView.setVisibility(0);
-            this.extTextView.setAlpha(1.0f);
-            this.placeholderImageView.setAlpha(1.0f);
-            this.thumbImageView.setVisibility(4);
-            this.thumbImageView.setImageBitmap(null);
-            this.caption = null;
-            TextView textView4 = this.captionTextView;
-            if (textView4 != null) {
-                textView4.setVisibility(8);
+            if (str4 == null) {
+                CombinedDrawable combinedDrawableCreateCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(42.0f), i);
+                if (i == R.drawable.files_storage) {
+                    i2 = Theme.key_chat_attachLocationBackground;
+                    i3 = Theme.key_chat_attachIcon;
+                } else if (i == R.drawable.files_gallery) {
+                    i2 = Theme.key_chat_attachContactBackground;
+                    i3 = Theme.key_chat_attachIcon;
+                } else if (i == R.drawable.files_music) {
+                    i2 = Theme.key_chat_attachAudioBackground;
+                    i3 = Theme.key_chat_attachIcon;
+                } else if (i == R.drawable.files_internal) {
+                    i2 = Theme.key_chat_attachGalleryBackground;
+                    i3 = Theme.key_chat_attachIcon;
+                } else {
+                    i2 = Theme.key_files_folderIconBackground;
+                    i3 = Theme.key_files_folderIcon;
+                }
+                Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+                Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon, Theme.getColor(i2, resourcesProvider), false);
+                Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon, Theme.getColor(i3, resourcesProvider), true);
+                anonymousClass2.setImageDrawable(combinedDrawableCreateCircleDrawableWithIcon);
+            } else if (i4 != 3) {
+                anonymousClass2.setImage(str4, "42_42", null);
             }
+            anonymousClass2.setVisibility(0);
         }
         setWillNotDraw(!this.needDivider);
-        this.progressView.setProgress(0.0f, false);
-        updateFileExistIcon(z2);
     }
 
-    private void updateDateView() {
-        String fileSize;
+    public final void updateDateView() {
+        String strM;
         MessageObject messageObject = this.message;
         if (messageObject == null || messageObject.getDocument() == null) {
             return;
@@ -509,19 +684,22 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         long j = ((long) messageObject2.messageOwner.date) * 1000;
         long j2 = this.downloadedSize;
         if (j2 == 0) {
-            fileSize = AndroidUtilities.formatFileSize(messageObject2.getDocument().size);
+            strM = AndroidUtilities.formatFileSize(messageObject2.getDocument().size);
         } else {
-            fileSize = String.format(Locale.ENGLISH, "%s / %s", AndroidUtilities.formatFileSize(j2), AndroidUtilities.formatFileSize(this.message.getDocument().size));
+            Locale locale = Locale.ENGLISH;
+            strM = zzkc.m(AndroidUtilities.formatFileSize(j2), " / ", AndroidUtilities.formatFileSize(this.message.getDocument().size));
         }
-        if (this.viewType == 2) {
-            this.dateTextView.setText(new SpannableStringBuilder().append((CharSequence) fileSize).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.message, true, 2, this.dateTextView.getPaint())));
+        int i = this.viewType;
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.dateTextView;
+        if (i == 2) {
+            textViewEmojis.setText(new SpannableStringBuilder().append((CharSequence) strM).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.message, true, 2, textViewEmojis.getPaint())));
             this.rightDateTextView.setText(LocaleController.stringForMessageListDate(this.message.messageOwner.date));
-        } else {
-            this.dateTextView.setText(String.format("%s, %s", fileSize, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(new Date(j)), LocaleController.getInstance().getFormatterDay().format(new Date(j)))));
+            return;
         }
+        textViewEmojis.setText(strM + ", " + LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(new Date(j)), LocaleController.getInstance().getFormatterDay().format(new Date(j))));
     }
 
-    public void updateFileExistIcon(boolean z) {
+    public final void updateFileExistIcon(boolean z) {
         if (z) {
             TransitionSet transitionSet = new TransitionSet();
             ChangeBounds changeBounds = new ChangeBounds();
@@ -532,269 +710,69 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             TransitionManager.beginDelayedTransition(this, transitionSet);
         }
         MessageObject messageObject = this.message;
-        if (messageObject != null && messageObject.messageOwner.media != null) {
-            this.loaded = false;
-            if (messageObject.attachPathExists || messageObject.mediaExists || !this.drawDownloadIcon) {
-                this.statusImageView.setVisibility(4);
-                this.progressView.setVisibility(4);
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.dateTextView.getLayoutParams();
-                if (layoutParams != null) {
-                    layoutParams.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : 72.0f);
-                    layoutParams.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 8.0f);
-                    this.dateTextView.requestLayout();
-                }
-                this.loading = false;
-                this.loaded = true;
-                DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-                return;
+        int i = this.currentAccount;
+        RLottieImageView rLottieImageView = this.statusImageView;
+        LineProgressView lineProgressView = this.progressView;
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.dateTextView;
+        if (messageObject == null || messageObject.messageOwner.media == null) {
+            this.loading = false;
+            this.loaded = true;
+            lineProgressView.setVisibility(4);
+            lineProgressView.setProgress(0.0f, false);
+            rLottieImageView.setVisibility(4);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textViewEmojis.getLayoutParams();
+            if (layoutParams != null) {
+                layoutParams.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : 72.0f);
+                layoutParams.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 8.0f);
+                textViewEmojis.requestLayout();
             }
-            String attachFileName = FileLoader.getAttachFileName(messageObject.getDocument());
-            DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(attachFileName, this.message, this);
-            this.loading = FileLoader.getInstance(this.currentAccount).isLoadingFile(attachFileName);
-            this.statusImageView.setVisibility(0);
-            this.statusDrawable.setCustomEndFrame(this.loading ? 15 : 0);
-            this.statusDrawable.setPlayInDirectionOfCustomEndFrame(true);
-            if (z) {
-                this.statusImageView.playAnimation();
-            } else {
-                this.statusDrawable.setCurrentFrame(this.loading ? 15 : 0);
-                this.statusImageView.invalidate();
-            }
-            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.dateTextView.getLayoutParams();
+            DownloadController.getInstance(i).removeLoadingFileObserver(this);
+            return;
+        }
+        this.loaded = false;
+        if (messageObject.attachPathExists || messageObject.mediaExists || !this.drawDownloadIcon) {
+            rLottieImageView.setVisibility(4);
+            lineProgressView.setVisibility(4);
+            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) textViewEmojis.getLayoutParams();
             if (layoutParams2 != null) {
-                layoutParams2.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : 86.0f);
-                layoutParams2.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 86.0f : 8.0f);
-                this.dateTextView.requestLayout();
+                layoutParams2.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : 72.0f);
+                layoutParams2.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 8.0f);
+                textViewEmojis.requestLayout();
             }
-            if (this.loading) {
-                this.progressView.setVisibility(0);
-                Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
-                if (fileProgress == null) {
-                    fileProgress = Float.valueOf(0.0f);
-                }
-                this.progressView.setProgress(fileProgress.floatValue(), false);
-                return;
-            }
-            this.progressView.setVisibility(4);
+            this.loading = false;
+            this.loaded = true;
+            DownloadController.getInstance(i).removeLoadingFileObserver(this);
             return;
         }
-        this.loading = false;
-        this.loaded = true;
-        this.progressView.setVisibility(4);
-        this.progressView.setProgress(0.0f, false);
-        this.statusImageView.setVisibility(4);
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.dateTextView.getLayoutParams();
-        if (layoutParams3 != null) {
-            layoutParams3.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : 72.0f);
-            layoutParams3.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 8.0f);
-            this.dateTextView.requestLayout();
-        }
-        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-    }
-
-    public MessageObject getMessage() {
-        return this.message;
-    }
-
-    public boolean isLoaded() {
-        return this.loaded;
-    }
-
-    public boolean isLoading() {
-        return this.loading;
-    }
-
-    public BackupImageView getImageView() {
-        return this.thumbImageView;
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int i3 = this.viewType;
-        if (i3 == 1) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
-            return;
-        }
-        if (i3 == 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-            return;
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-        int iDp = AndroidUtilities.dp(34.0f) + this.nameTextView.getMeasuredHeight() + (this.needDivider ? 1 : 0);
-        if (this.caption != null && this.captionTextView != null && this.message.hasHighlightedWords()) {
-            this.ignoreRequestLayout = true;
-            this.captionTextView.setText(AndroidUtilities.ellipsizeCenterEnd(this.caption, this.message.highlightedWords.get(0), this.captionTextView.getMeasuredWidth(), this.captionTextView.getPaint(), 130));
-            this.ignoreRequestLayout = false;
-            iDp += this.captionTextView.getMeasuredHeight() + AndroidUtilities.dp(3.0f);
-        }
-        setMeasuredDimension(getMeasuredWidth(), iDp);
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreRequestLayout) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        TextView textView;
-        super.onLayout(z, i, i2, i3, i4);
-        if (this.viewType != 1) {
-            if (this.nameTextView.getLineCount() > 1 || ((textView = this.captionTextView) != null && textView.getVisibility() == 0)) {
-                int measuredHeight = this.nameTextView.getMeasuredHeight() - AndroidUtilities.dp(22.0f);
-                TextView textView2 = this.captionTextView;
-                if (textView2 != null && textView2.getVisibility() == 0) {
-                    TextView textView3 = this.captionTextView;
-                    textView3.layout(textView3.getLeft(), this.captionTextView.getTop() + measuredHeight, this.captionTextView.getRight(), this.captionTextView.getBottom() + measuredHeight);
-                    measuredHeight += this.captionTextView.getMeasuredHeight() + AndroidUtilities.dp(3.0f);
-                }
-                AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.dateTextView;
-                textViewEmojis.layout(textViewEmojis.getLeft(), this.dateTextView.getTop() + measuredHeight, this.dateTextView.getRight(), this.dateTextView.getBottom() + measuredHeight);
-                RLottieImageView rLottieImageView = this.statusImageView;
-                rLottieImageView.layout(rLottieImageView.getLeft(), this.statusImageView.getTop() + measuredHeight, this.statusImageView.getRight(), measuredHeight + this.statusImageView.getBottom());
-                LineProgressView lineProgressView = this.progressView;
-                lineProgressView.layout(lineProgressView.getLeft(), (getMeasuredHeight() - this.progressView.getMeasuredHeight()) - (this.needDivider ? 1 : 0), this.progressView.getRight(), getMeasuredHeight() - (this.needDivider ? 1 : 0));
-            }
-        }
-    }
-
-    @Override
-    public void onFailedDownload(String str, boolean z) {
-        updateFileExistIcon(true);
-        this.downloadedSize = 0L;
-        updateDateView();
-    }
-
-    @Override
-    public void onSuccessDownload(String str) {
-        this.progressView.setProgress(1.0f, true);
-        updateFileExistIcon(true);
-        this.downloadedSize = 0L;
-        updateDateView();
-    }
-
-    @Override
-    public void onProgressDownload(String str, long j, long j2) {
-        if (this.progressView.getVisibility() != 0) {
-            updateFileExistIcon(true);
-        }
-        this.downloadedSize = j;
-        updateDateView();
-        this.progressView.setProgress(Math.min(1.0f, j / j2), true);
-    }
-
-    @Override
-    public int getObserverTag() {
-        return this.TAG;
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.checkBox.isChecked()) {
-            accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
-        }
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
-    public void setGlobalGradientView(FlickerLoadingView flickerLoadingView) {
-        this.globalGradientView = flickerLoadingView;
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        float f;
-        if (this.enterAlpha != 1.0f && this.globalGradientView != null) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
-            this.globalGradientView.setViewType(3);
-            this.globalGradientView.updateColors();
-            this.globalGradientView.updateGradient();
-            this.globalGradientView.draw(canvas);
-            canvas.restore();
-            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (this.enterAlpha * 255.0f), 31);
-            super.dispatchDraw(canvas);
-            drawDivider(canvas);
-            canvas.restore();
+        String attachFileName = FileLoader.getAttachFileName(messageObject.getDocument());
+        DownloadController.getInstance(i).addLoadingFileObserver(attachFileName, this.message, this);
+        this.loading = FileLoader.getInstance(i).isLoadingFile(attachFileName);
+        rLottieImageView.setVisibility(0);
+        int i2 = this.loading ? 15 : 0;
+        RLottieDrawable rLottieDrawable = this.statusDrawable;
+        rLottieDrawable.setCustomEndFrame(i2);
+        rLottieDrawable.playInDirectionOfCustomEndFrame = true;
+        if (z) {
+            rLottieImageView.playAnimation();
         } else {
-            super.dispatchDraw(canvas);
-            drawDivider(canvas);
+            rLottieDrawable.setCurrentFrame(this.loading ? 15 : 0, true, false);
+            rLottieImageView.invalidate();
         }
-        boolean z = this.showReorderIcon;
-        if (z || this.showReorderIconProgress != 0.0f) {
-            if (z) {
-                float f2 = this.showReorderIconProgress;
-                if (f2 != 1.0f) {
-                    this.showReorderIconProgress = f2 + 0.10666667f;
-                    invalidate();
-                } else if (!z) {
-                    f = this.showReorderIconProgress;
-                    if (f != 0.0f) {
-                        this.showReorderIconProgress = f - 0.10666667f;
-                        invalidate();
-                    }
-                }
-            } else if (!z) {
-                f = this.showReorderIconProgress;
-                if (f != 0.0f) {
-                    this.showReorderIconProgress = f - 0.10666667f;
-                    invalidate();
-                }
-            }
-            this.showReorderIconProgress = Utilities.clamp(this.showReorderIconProgress, 1.0f, 0.0f);
-            int measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
-            int measuredHeight = (getMeasuredHeight() - Theme.dialogs_reorderDrawable.getIntrinsicHeight()) >> 1;
-            canvas.save();
-            float f3 = this.showReorderIconProgress;
-            canvas.scale(f3, f3, measuredWidth + (Theme.dialogs_reorderDrawable.getIntrinsicWidth() / 2.0f), measuredHeight + (Theme.dialogs_reorderDrawable.getIntrinsicHeight() / 2.0f));
-            Drawable drawable = Theme.dialogs_reorderDrawable;
-            drawable.setBounds(measuredWidth, measuredHeight, drawable.getIntrinsicWidth() + measuredWidth, Theme.dialogs_reorderDrawable.getIntrinsicHeight() + measuredHeight);
-            Theme.dialogs_reorderDrawable.draw(canvas);
-            canvas.restore();
+        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) textViewEmojis.getLayoutParams();
+        if (layoutParams3 != null) {
+            layoutParams3.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : 86.0f);
+            layoutParams3.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 86.0f : 8.0f);
+            textViewEmojis.requestLayout();
         }
-    }
-
-    private void drawDivider(Canvas canvas) {
-        if (this.needDivider) {
-            canvas.drawLine(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.getThemePaint("paintDivider", this.resourcesProvider));
-        }
-    }
-
-    public void setEnterAnimationAlpha(float f) {
-        if (this.enterAlpha != f) {
-            this.enterAlpha = f;
-            invalidate();
-        }
-    }
-
-    public void showReorderIcon(boolean z, boolean z2) {
-        if (this.showReorderIcon == z) {
+        if (!this.loading) {
+            lineProgressView.setVisibility(4);
             return;
         }
-        this.showReorderIcon = z;
-        if (!z2) {
-            this.showReorderIconProgress = z ? 1.0f : 0.0f;
+        lineProgressView.setVisibility(0);
+        Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
+        if (fileProgress == null) {
+            fileProgress = Float.valueOf(0.0f);
         }
-        invalidate();
-    }
-
-    public void setPhoto(String str) {
-        if (str.endsWith("mp4")) {
-            this.thumbImageView.setImage("vthumb://0:" + str, null, null);
-            this.thumbImageView.setVisibility(0);
-            return;
-        }
-        if (str.endsWith(".jpg") || str.endsWith(".jpeg") || str.endsWith(".png") || str.endsWith(".gif")) {
-            this.thumbImageView.setImage("thumb://0:" + str, null, null);
-            this.thumbImageView.setVisibility(0);
-            return;
-        }
-        this.thumbImageView.setVisibility(8);
+        lineProgressView.setProgress(fileProgress.floatValue(), false);
     }
 }

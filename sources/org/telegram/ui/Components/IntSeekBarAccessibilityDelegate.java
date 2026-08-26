@@ -1,38 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-
 public abstract class IntSeekBarAccessibilityDelegate extends SeekBarAccessibilityDelegate {
-    protected int getDelta() {
-        return 1;
+    @Override
+    public final boolean canScrollBackward() {
+        return getProgress() > 0;
     }
-
-    protected abstract int getMaxValue();
-
-    protected int getMinValue() {
-        return 0;
-    }
-
-    protected abstract int getProgress();
-
-    protected abstract void setProgress(int i);
 
     @Override
-    protected void doScroll(View view, boolean z) {
+    public final boolean canScrollForward() {
+        return getProgress() < getMaxValue();
+    }
+
+    @Override
+    public final void doScroll(boolean z) {
         int delta = getDelta();
         if (z) {
             delta *= -1;
         }
-        setProgress(Math.min(getMaxValue(), Math.max(getMinValue(), getProgress() + delta)));
+        setProgress(Math.min(getMaxValue(), Math.max(0, getProgress() + delta)));
     }
 
-    @Override
-    protected boolean canScrollBackward(View view) {
-        return getProgress() > getMinValue();
+    public int getDelta() {
+        return 1;
     }
 
-    @Override
-    protected boolean canScrollForward(View view) {
-        return getProgress() < getMaxValue();
-    }
+    public abstract int getMaxValue();
+
+    public abstract int getProgress();
+
+    public abstract void setProgress(int i);
 }

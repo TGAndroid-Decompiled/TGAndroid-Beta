@@ -25,371 +25,360 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Cells.FeaturedStickerSetInfoCell;
 import org.telegram.ui.Cells.StickerEmojiCell;
 import org.telegram.ui.Cells.StickerSetNameCell;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda208;
+import org.telegram.ui.Components.CloseProgressDrawable2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.TrendingStickersLayout;
+import org.telegram.ui.LoginActivity$$ExternalSyntheticLambda42;
+import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda52;
 
-public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
-    boolean cleared;
-    private final Context context;
-    private final Delegate delegate;
-    private int emojiSearchId;
-    private ImageView emptyImageView;
-    private TextView emptyTextView;
-    private final LongSparseArray installingStickerSets;
-    private final TLRPC.StickerSetCovered[] primaryInstallingStickerSets;
-    private final LongSparseArray removingStickerSets;
-    private int reqId;
-    private int reqId2;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private String searchQuery;
-    private int totalItems;
-    private final int currentAccount = UserConfig.selectedAccount;
-    private SparseArray rowStartPack = new SparseArray();
-    private SparseArray cache = new SparseArray();
-    private SparseArray cacheParent = new SparseArray();
-    private SparseIntArray positionToRow = new SparseIntArray();
-    private SparseArray positionToEmoji = new SparseArray();
-    private ArrayList serverPacks = new ArrayList();
-    private ArrayList localPacks = new ArrayList();
-    private HashMap localPacksByShortName = new HashMap();
-    private HashMap localPacksByName = new HashMap();
-    private HashMap emojiStickers = new HashMap();
-    private ArrayList emojiArrays = new ArrayList();
-    private SparseArray positionsToSets = new SparseArray();
-    private Runnable searchRunnable = new AnonymousClass1();
+public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
+    public boolean cleared;
+    public final Context context;
+    public final TrendingStickersLayout.AnonymousClass1 delegate;
+    public int emojiSearchId;
+    public ImageView emptyImageView;
+    public TextView emptyTextView;
+    public final LongSparseArray installingStickerSets;
+    public final TLRPC.StickerSetCovered[] primaryInstallingStickerSets;
+    public final LongSparseArray removingStickerSets;
+    public int reqId;
+    public int reqId2;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public String searchQuery;
+    public int totalItems;
+    public final int currentAccount = UserConfig.selectedAccount;
+    public final SparseArray rowStartPack = new SparseArray();
+    public final SparseArray cache = new SparseArray();
+    public final SparseArray cacheParent = new SparseArray();
+    public final SparseIntArray positionToRow = new SparseIntArray();
+    public final SparseArray positionToEmoji = new SparseArray();
+    public final ArrayList serverPacks = new ArrayList();
+    public final ArrayList localPacks = new ArrayList();
+    public final HashMap localPacksByShortName = new HashMap();
+    public final HashMap localPacksByName = new HashMap();
+    public final HashMap emojiStickers = new HashMap();
+    public final ArrayList emojiArrays = new ArrayList();
+    public final SparseArray positionsToSets = new SparseArray();
+    public final AnonymousClass1 searchRunnable = new AnonymousClass1();
 
-    public interface Delegate {
-        String[] getLastSearchKeyboardLanguage();
-
-        int getStickersPerRow();
-
-        void onSearchStart();
-
-        void onSearchStop();
-
-        void onStickerSetAdd(TLRPC.StickerSetCovered stickerSetCovered, boolean z);
-
-        void onStickerSetRemove(TLRPC.StickerSetCovered stickerSetCovered);
-
-        void setAdapterVisible(boolean z);
-
-        void setLastSearchKeyboardLanguage(String[] strArr);
-    }
-
-    @Override
-    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        return false;
-    }
-
-    static int access$804(StickersSearchAdapter stickersSearchAdapter) {
-        int i = stickersSearchAdapter.emojiSearchId + 1;
-        stickersSearchAdapter.emojiSearchId = i;
-        return i;
-    }
-
-    class AnonymousClass1 implements Runnable {
-        AnonymousClass1() {
+    public final class AnonymousClass1 implements Runnable {
+        public AnonymousClass1() {
         }
 
-        private void clear() {
+        public final void clear() {
             StickersSearchAdapter stickersSearchAdapter = StickersSearchAdapter.this;
             if (stickersSearchAdapter.cleared) {
                 return;
             }
             stickersSearchAdapter.cleared = true;
             stickersSearchAdapter.emojiStickers.clear();
-            StickersSearchAdapter.this.emojiArrays.clear();
-            StickersSearchAdapter.this.localPacks.clear();
-            StickersSearchAdapter.this.serverPacks.clear();
-            StickersSearchAdapter.this.localPacksByShortName.clear();
-            StickersSearchAdapter.this.localPacksByName.clear();
+            stickersSearchAdapter.emojiArrays.clear();
+            stickersSearchAdapter.localPacks.clear();
+            stickersSearchAdapter.serverPacks.clear();
+            stickersSearchAdapter.localPacksByShortName.clear();
+            stickersSearchAdapter.localPacksByName.clear();
         }
 
         @Override
-        public void run() {
+        public final void run() {
+            HashMap map;
+            HashMap map2;
+            ArrayList arrayList;
+            ArrayList<TLRPC.TL_messages_stickerSet> arrayList2;
+            int i;
             int iIndexOfIgnoreCase;
             int iIndexOfIgnoreCase2;
-            int i;
-            if (TextUtils.isEmpty(StickersSearchAdapter.this.searchQuery)) {
+            CharSequence charSequence;
+            char c;
+            CharSequence charSequenceConcat;
+            StickersSearchAdapter stickersSearchAdapter = StickersSearchAdapter.this;
+            if (TextUtils.isEmpty(stickersSearchAdapter.searchQuery)) {
                 return;
             }
-            StickersSearchAdapter.this.delegate.onSearchStart();
-            StickersSearchAdapter stickersSearchAdapter = StickersSearchAdapter.this;
+            TrendingStickersLayout.AnonymousClass1 anonymousClass1 = stickersSearchAdapter.delegate;
+            CloseProgressDrawable2 progressDrawable = TrendingStickersLayout.this.searchView.getProgressDrawable();
+            progressDrawable.animating = true;
+            progressDrawable.lastFrameTime = System.currentTimeMillis();
+            progressDrawable.invalidateSelf();
             stickersSearchAdapter.cleared = false;
-            final int iAccess$804 = StickersSearchAdapter.access$804(stickersSearchAdapter);
-            final ArrayList arrayList = new ArrayList(0);
-            final LongSparseArray longSparseArray = new LongSparseArray(0);
-            final HashMap<String, ArrayList<TLRPC.Document>> allStickers = MediaDataController.getInstance(StickersSearchAdapter.this.currentAccount).getAllStickers();
-            if (StickersSearchAdapter.this.searchQuery.length() <= 14) {
-                CharSequence charSequenceConcat = StickersSearchAdapter.this.searchQuery;
-                int length = charSequenceConcat.length();
-                int i2 = 0;
-                while (i2 < length) {
-                    if (i2 < length - 1) {
-                        if (charSequenceConcat.charAt(i2) == 55356) {
-                            int i3 = i2 + 1;
-                            if (charSequenceConcat.charAt(i3) < 57339 || charSequenceConcat.charAt(i3) > 57343) {
-                                if (charSequenceConcat.charAt(i2) == 8205) {
-                                    i = i2 + 1;
-                                    if (charSequenceConcat.charAt(i) != 9792 || charSequenceConcat.charAt(i) == 9794) {
-                                    }
-                                    i2--;
-                                }
-                                if (charSequenceConcat.charAt(i2) == 65039) {
-                                    charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 1, charSequenceConcat.length()));
-                                    length--;
-                                    i2--;
-                                }
+            int i2 = stickersSearchAdapter.emojiSearchId + 1;
+            stickersSearchAdapter.emojiSearchId = i2;
+            ArrayList arrayList3 = new ArrayList(0);
+            LongSparseArray longSparseArray = new LongSparseArray(0);
+            int i3 = stickersSearchAdapter.currentAccount;
+            HashMap<String, ArrayList<TLRPC.Document>> allStickers = MediaDataController.getInstance(i3).getAllStickers();
+            int length = stickersSearchAdapter.searchQuery.length();
+            HashMap map3 = stickersSearchAdapter.emojiStickers;
+            if (length <= 14) {
+                String str = stickersSearchAdapter.searchQuery;
+                int length2 = str.length();
+                int i4 = 0;
+                while (i4 < length2) {
+                    if (i4 < length2 - 1) {
+                        c = 1;
+                        if (charSequence.charAt(i4) == 55356) {
+                            int i5 = i4 + 1;
+                            if (charSequence.charAt(i5) < 57339 || charSequence.charAt(i5) > 57343) {
                             }
-                            charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 2, charSequenceConcat.length()));
-                            length -= 2;
-                            i2--;
+                            charSequence = str;
+                            CharSequence[] charSequenceArr = {charSequence.subSequence(0, i4), charSequence.subSequence(i4 + 2, charSequence.length())};
+                            length2 -= 2;
+                            i4--;
+                            charSequenceConcat = TextUtils.concat(charSequenceArr);
+                            i4++;
+                            charSequence = charSequenceConcat;
                         } else {
-                            if (charSequenceConcat.charAt(i2) == 8205) {
-                                i = i2 + 1;
-                                if (charSequenceConcat.charAt(i) != 9792) {
-                                }
-                                charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 2, charSequenceConcat.length()));
-                                length -= 2;
-                                i2--;
-                            }
-                            if (charSequenceConcat.charAt(i2) == 65039) {
-                                charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 1, charSequenceConcat.length()));
-                                length--;
-                                i2--;
-                            }
+                            charSequence = str;
                         }
-                    } else if (charSequenceConcat.charAt(i2) == 65039) {
-                        charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 1, charSequenceConcat.length()));
-                        length--;
-                        i2--;
+                        charSequence = str;
+                        charSequence = str;
+                        if (charSequence.charAt(i4) == 8205) {
+                            int i6 = i4 + 1;
+                            if (charSequence.charAt(i6) == 9792 || charSequence.charAt(i6) == 9794) {
+                                charSequence = str;
+                                CharSequence[] charSequenceArr2 = {charSequence.subSequence(0, i4), charSequence.subSequence(i4 + 2, charSequence.length())};
+                                length2 -= 2;
+                                i4--;
+                                charSequenceConcat = TextUtils.concat(charSequenceArr2);
+                            }
+                            i4++;
+                            charSequence = charSequenceConcat;
+                        }
+                    } else {
+                        charSequence = str;
+                        c = 1;
                     }
-                    i2++;
+                    char cCharAt = charSequence.charAt(i4);
+                    charSequenceConcat = charSequence;
+                    if (cCharAt == 65039) {
+                        CharSequence charSequenceSubSequence = charSequence.subSequence(0, i4);
+                        CharSequence charSequenceSubSequence2 = charSequence.subSequence(i4 + 1, charSequence.length());
+                        CharSequence[] charSequenceArr3 = new CharSequence[2];
+                        charSequenceArr3[0] = charSequenceSubSequence;
+                        charSequenceArr3[c] = charSequenceSubSequence2;
+                        length2--;
+                        i4--;
+                        charSequenceConcat = TextUtils.concat(charSequenceArr3);
+                    }
+                    i4++;
+                    charSequence = charSequenceConcat;
                 }
-                ArrayList<TLRPC.Document> arrayList2 = allStickers != null ? allStickers.get(charSequenceConcat.toString()) : null;
-                if (arrayList2 != null && !arrayList2.isEmpty()) {
+                charSequence = str;
+                ArrayList<TLRPC.Document> arrayList4 = allStickers != null ? allStickers.get(charSequence.toString()) : null;
+                if (arrayList4 != null && !arrayList4.isEmpty()) {
                     clear();
-                    arrayList.addAll(arrayList2);
-                    int size = arrayList2.size();
-                    for (int i4 = 0; i4 < size; i4++) {
-                        TLRPC.Document document = arrayList2.get(i4);
+                    arrayList3.addAll(arrayList4);
+                    int size = arrayList4.size();
+                    for (int i7 = 0; i7 < size; i7++) {
+                        TLRPC.Document document = arrayList4.get(i7);
                         longSparseArray.put(document.id, document);
                     }
-                    StickersSearchAdapter.this.emojiStickers.put(arrayList, StickersSearchAdapter.this.searchQuery);
-                    StickersSearchAdapter.this.emojiArrays.add(arrayList);
+                    map3.put(arrayList3, stickersSearchAdapter.searchQuery);
+                    stickersSearchAdapter.emojiArrays.add(arrayList3);
                 }
             }
-            if (allStickers != null && !allStickers.isEmpty() && StickersSearchAdapter.this.searchQuery.length() > 1) {
+            if (allStickers != null && !allStickers.isEmpty() && stickersSearchAdapter.searchQuery.length() > 1) {
                 String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
-                if (!Arrays.equals(StickersSearchAdapter.this.delegate.getLastSearchKeyboardLanguage(), currentKeyboardLanguage)) {
-                    MediaDataController.getInstance(StickersSearchAdapter.this.currentAccount).fetchNewEmojiKeywords(currentKeyboardLanguage);
+                if (!Arrays.equals(anonymousClass1.val$delegate.getLastSearchKeyboardLanguage(), currentKeyboardLanguage)) {
+                    MediaDataController.getInstance(i3).fetchNewEmojiKeywords(currentKeyboardLanguage);
                 }
-                StickersSearchAdapter.this.delegate.setLastSearchKeyboardLanguage(currentKeyboardLanguage);
-                MediaDataController.getInstance(StickersSearchAdapter.this.currentAccount).getEmojiSuggestions(StickersSearchAdapter.this.delegate.getLastSearchKeyboardLanguage(), StickersSearchAdapter.this.searchQuery, false, new MediaDataController.KeywordResultCallback() {
-                    @Override
-                    public final void run(ArrayList arrayList3, String str) {
-                        StickersSearchAdapter.AnonymousClass1.m1315$r8$lambda$k6nzq7FZ5hRb6hIyb4EJyBiC0(this.f$0, iAccess$804, allStickers, arrayList3, str);
-                    }
-                }, false);
+                anonymousClass1.val$delegate.setLastSearchKeyboardLanguage(currentKeyboardLanguage);
+                MediaDataController.getInstance(i3).getEmojiSuggestions(anonymousClass1.val$delegate.getLastSearchKeyboardLanguage(), stickersSearchAdapter.searchQuery, false, new PassportActivity$$ExternalSyntheticLambda52(this, i2, allStickers, 4), false);
             }
-            ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(StickersSearchAdapter.this.currentAccount).getStickerSets(0);
+            ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i3).getStickerSets(0);
             int size2 = stickerSets.size();
-            for (int i5 = 0; i5 < size2; i5++) {
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSets.get(i5);
-                int iIndexOfIgnoreCase3 = AndroidUtilities.indexOfIgnoreCase(tL_messages_stickerSet.set.title, StickersSearchAdapter.this.searchQuery);
-                if (iIndexOfIgnoreCase3 >= 0) {
-                    if (iIndexOfIgnoreCase3 == 0 || tL_messages_stickerSet.set.title.charAt(iIndexOfIgnoreCase3 - 1) == ' ') {
-                        clear();
-                        StickersSearchAdapter.this.localPacks.add(tL_messages_stickerSet);
-                        StickersSearchAdapter.this.localPacksByName.put(tL_messages_stickerSet, Integer.valueOf(iIndexOfIgnoreCase3));
-                    }
-                } else {
-                    String str = tL_messages_stickerSet.set.short_name;
-                    if (str != null && (iIndexOfIgnoreCase2 = AndroidUtilities.indexOfIgnoreCase(str, StickersSearchAdapter.this.searchQuery)) >= 0 && (iIndexOfIgnoreCase2 == 0 || tL_messages_stickerSet.set.short_name.charAt(iIndexOfIgnoreCase2 - 1) == ' ')) {
-                        clear();
-                        StickersSearchAdapter.this.localPacks.add(tL_messages_stickerSet);
-                        StickersSearchAdapter.this.localPacksByShortName.put(tL_messages_stickerSet, Boolean.TRUE);
-                    }
+            int i8 = 0;
+            while (true) {
+                map = stickersSearchAdapter.localPacksByShortName;
+                map2 = stickersSearchAdapter.localPacksByName;
+                arrayList = stickersSearchAdapter.localPacks;
+                if (i8 >= size2) {
+                    break;
                 }
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSets.get(i8);
+                int iIndexOfIgnoreCase3 = AndroidUtilities.indexOfIgnoreCase(tL_messages_stickerSet.set.title, stickersSearchAdapter.searchQuery);
+                if (iIndexOfIgnoreCase3 < 0) {
+                    String str2 = tL_messages_stickerSet.set.short_name;
+                    if (str2 != null && (iIndexOfIgnoreCase2 = AndroidUtilities.indexOfIgnoreCase(str2, stickersSearchAdapter.searchQuery)) >= 0 && (iIndexOfIgnoreCase2 == 0 || tL_messages_stickerSet.set.short_name.charAt(iIndexOfIgnoreCase2 - 1) == ' ')) {
+                        clear();
+                        arrayList.add(tL_messages_stickerSet);
+                        map.put(tL_messages_stickerSet, Boolean.TRUE);
+                    }
+                } else if (iIndexOfIgnoreCase3 == 0 || tL_messages_stickerSet.set.title.charAt(iIndexOfIgnoreCase3 - 1) == ' ') {
+                    clear();
+                    arrayList.add(tL_messages_stickerSet);
+                    map2.put(tL_messages_stickerSet, Integer.valueOf(iIndexOfIgnoreCase3));
+                }
+                i8++;
             }
-            ArrayList<TLRPC.TL_messages_stickerSet> stickerSets2 = MediaDataController.getInstance(StickersSearchAdapter.this.currentAccount).getStickerSets(3);
+            ArrayList<TLRPC.TL_messages_stickerSet> stickerSets2 = MediaDataController.getInstance(i3).getStickerSets(3);
             int size3 = stickerSets2.size();
-            for (int i6 = 0; i6 < size3; i6++) {
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = stickerSets2.get(i6);
-                int iIndexOfIgnoreCase4 = AndroidUtilities.indexOfIgnoreCase(tL_messages_stickerSet2.set.title, StickersSearchAdapter.this.searchQuery);
+            int i9 = 0;
+            while (i9 < size3) {
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = stickerSets2.get(i9);
+                int iIndexOfIgnoreCase4 = AndroidUtilities.indexOfIgnoreCase(tL_messages_stickerSet2.set.title, stickersSearchAdapter.searchQuery);
                 if (iIndexOfIgnoreCase4 >= 0) {
-                    if (iIndexOfIgnoreCase4 == 0 || tL_messages_stickerSet2.set.title.charAt(iIndexOfIgnoreCase4 - 1) == ' ') {
-                        clear();
-                        StickersSearchAdapter.this.localPacks.add(tL_messages_stickerSet2);
-                        StickersSearchAdapter.this.localPacksByName.put(tL_messages_stickerSet2, Integer.valueOf(iIndexOfIgnoreCase4));
+                    if (iIndexOfIgnoreCase4 != 0) {
+                        arrayList2 = stickerSets2;
+                        if (tL_messages_stickerSet2.set.title.charAt(iIndexOfIgnoreCase4 - 1) == ' ') {
+                        }
+                        i = 1;
+                    } else {
+                        arrayList2 = stickerSets2;
                     }
+                    clear();
+                    arrayList.add(tL_messages_stickerSet2);
+                    map2.put(tL_messages_stickerSet2, Integer.valueOf(iIndexOfIgnoreCase4));
+                    i = 1;
                 } else {
-                    String str2 = tL_messages_stickerSet2.set.short_name;
-                    if (str2 != null && (iIndexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(str2, StickersSearchAdapter.this.searchQuery)) >= 0 && (iIndexOfIgnoreCase == 0 || tL_messages_stickerSet2.set.short_name.charAt(iIndexOfIgnoreCase - 1) == ' ')) {
-                        clear();
-                        StickersSearchAdapter.this.localPacks.add(tL_messages_stickerSet2);
-                        StickersSearchAdapter.this.localPacksByShortName.put(tL_messages_stickerSet2, Boolean.TRUE);
+                    arrayList2 = stickerSets2;
+                    String str3 = tL_messages_stickerSet2.set.short_name;
+                    if (str3 != null && (iIndexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(str3, stickersSearchAdapter.searchQuery)) >= 0) {
+                        if (iIndexOfIgnoreCase == 0 || tL_messages_stickerSet2.set.short_name.charAt(iIndexOfIgnoreCase - 1) == ' ') {
+                            clear();
+                            arrayList.add(tL_messages_stickerSet2);
+                            map.put(tL_messages_stickerSet2, Boolean.TRUE);
+                        }
                     }
+                    i = 1;
                 }
+                i9 += i;
+                stickerSets2 = arrayList2;
             }
-            if (!StickersSearchAdapter.this.localPacks.isEmpty() || !StickersSearchAdapter.this.emojiStickers.isEmpty()) {
-                StickersSearchAdapter.this.delegate.setAdapterVisible(true);
+            if (!arrayList.isEmpty() || !map3.isEmpty()) {
+                anonymousClass1.setAdapterVisible(true);
             }
-            final TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets = new TLRPC.TL_messages_searchStickerSets();
-            tL_messages_searchStickerSets.q = StickersSearchAdapter.this.searchQuery;
-            StickersSearchAdapter stickersSearchAdapter2 = StickersSearchAdapter.this;
-            stickersSearchAdapter2.reqId = ConnectionsManager.getInstance(stickersSearchAdapter2.currentAccount).sendRequest(tL_messages_searchStickerSets, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickersSearchAdapter.AnonymousClass1.$r8$lambda$sHZ01wZyxMRT1HEFrFjs9y1Zg2E(this.f$0, tL_messages_searchStickerSets, tLObject, tL_error);
-                }
-            });
-            if (Emoji.isValidEmoji(StickersSearchAdapter.this.searchQuery)) {
-                final TLRPC.TL_messages_getStickers tL_messages_getStickers = new TLRPC.TL_messages_getStickers();
-                tL_messages_getStickers.emoticon = StickersSearchAdapter.this.searchQuery;
+            TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets = new TLRPC.TL_messages_searchStickerSets();
+            tL_messages_searchStickerSets.q = stickersSearchAdapter.searchQuery;
+            stickersSearchAdapter.reqId = ConnectionsManager.getInstance(i3).sendRequest(tL_messages_searchStickerSets, new ChatActivity$$ExternalSyntheticLambda208(9, this, tL_messages_searchStickerSets));
+            if (Emoji.isValidEmoji(stickersSearchAdapter.searchQuery)) {
+                TLRPC.TL_messages_getStickers tL_messages_getStickers = new TLRPC.TL_messages_getStickers();
+                tL_messages_getStickers.emoticon = stickersSearchAdapter.searchQuery;
                 tL_messages_getStickers.hash = 0L;
-                StickersSearchAdapter stickersSearchAdapter3 = StickersSearchAdapter.this;
-                stickersSearchAdapter3.reqId2 = ConnectionsManager.getInstance(stickersSearchAdapter3.currentAccount).sendRequest(tL_messages_getStickers, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StickersSearchAdapter.AnonymousClass1.m1313$r8$lambda$MI08X5zQ6VvrvTXuaRphGzdoI(this.f$0, tL_messages_getStickers, arrayList, longSparseArray, tLObject, tL_error);
-                    }
-                });
+                stickersSearchAdapter.reqId2 = ConnectionsManager.getInstance(i3).sendRequest(tL_messages_getStickers, new LoginActivity$$ExternalSyntheticLambda42(this, tL_messages_getStickers, arrayList3, longSparseArray, 2));
             }
-            StickersSearchAdapter.this.notifyDataSetChanged();
+            stickersSearchAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public final class AnonymousClass2 extends StickerEmojiCell {
+        public final int $r8$classId;
+
+        public AnonymousClass2(int i, Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+            super(context, resourcesProvider, z);
+            this.$r8$classId = i;
         }
 
-        public static void m1315$r8$lambda$k6nzq7FZ5hRb6hIyb4EJyBiC0(AnonymousClass1 anonymousClass1, int i, HashMap map, ArrayList arrayList, String str) {
-            if (i != StickersSearchAdapter.this.emojiSearchId) {
-                return;
-            }
-            int size = arrayList.size();
-            boolean z = false;
-            for (int i2 = 0; i2 < size; i2++) {
-                String str2 = ((MediaDataController.KeywordResult) arrayList.get(i2)).emoji;
-                ArrayList arrayList2 = map != null ? (ArrayList) map.get(str2) : null;
-                if (arrayList2 != null && !arrayList2.isEmpty()) {
-                    anonymousClass1.clear();
-                    if (!StickersSearchAdapter.this.emojiStickers.containsKey(arrayList2)) {
-                        StickersSearchAdapter.this.emojiStickers.put(arrayList2, str2);
-                        StickersSearchAdapter.this.emojiArrays.add(arrayList2);
-                        z = true;
-                    }
-                }
-            }
-            if (z) {
-                StickersSearchAdapter.this.notifyDataSetChanged();
-            }
-        }
-
-        public static void $r8$lambda$sHZ01wZyxMRT1HEFrFjs9y1Zg2E(final AnonymousClass1 anonymousClass1, final TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            anonymousClass1.getClass();
-            if (tLObject instanceof TLRPC.TL_messages_foundStickerSets) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StickersSearchAdapter.AnonymousClass1.m1314$r8$lambda$PXolxkPj98siI4G_UbdSy4exE(this.f$0, tL_messages_searchStickerSets, tLObject);
-                    }
-                });
-            }
-        }
-
-        public static void m1314$r8$lambda$PXolxkPj98siI4G_UbdSy4exE(AnonymousClass1 anonymousClass1, TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets, TLObject tLObject) {
-            anonymousClass1.getClass();
-            if (tL_messages_searchStickerSets.q.equals(StickersSearchAdapter.this.searchQuery)) {
-                anonymousClass1.clear();
-                StickersSearchAdapter.this.delegate.onSearchStop();
-                StickersSearchAdapter.this.reqId = 0;
-                StickersSearchAdapter.this.delegate.setAdapterVisible(true);
-                StickersSearchAdapter.this.serverPacks.addAll(((TLRPC.TL_messages_foundStickerSets) tLObject).sets);
-                StickersSearchAdapter.this.notifyDataSetChanged();
-            }
-        }
-
-        public static void m1313$r8$lambda$MI08X5zQ6VvrvTXuaRphGzdoI(final AnonymousClass1 anonymousClass1, final TLRPC.TL_messages_getStickers tL_messages_getStickers, final ArrayList arrayList, final LongSparseArray longSparseArray, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            anonymousClass1.getClass();
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    StickersSearchAdapter.AnonymousClass1.$r8$lambda$IgbOXPl9pBkhFONx2dabZo89KMk(this.f$0, tL_messages_getStickers, tLObject, arrayList, longSparseArray);
-                }
-            });
-        }
-
-        public static void $r8$lambda$IgbOXPl9pBkhFONx2dabZo89KMk(AnonymousClass1 anonymousClass1, TLRPC.TL_messages_getStickers tL_messages_getStickers, TLObject tLObject, ArrayList arrayList, LongSparseArray longSparseArray) {
-            anonymousClass1.getClass();
-            if (tL_messages_getStickers.emoticon.equals(StickersSearchAdapter.this.searchQuery)) {
-                StickersSearchAdapter.this.reqId2 = 0;
-                if (tLObject instanceof TLRPC.TL_messages_stickers) {
-                    TLRPC.TL_messages_stickers tL_messages_stickers = (TLRPC.TL_messages_stickers) tLObject;
-                    int size = arrayList.size();
-                    int size2 = tL_messages_stickers.stickers.size();
-                    for (int i = 0; i < size2; i++) {
-                        TLRPC.Document document = tL_messages_stickers.stickers.get(i);
-                        if (longSparseArray.indexOfKey(document.id) < 0) {
-                            arrayList.add(document);
-                        }
-                    }
-                    if (size != arrayList.size()) {
-                        StickersSearchAdapter.this.emojiStickers.put(arrayList, StickersSearchAdapter.this.searchQuery);
-                        if (size == 0) {
-                            StickersSearchAdapter.this.emojiArrays.add(arrayList);
-                        }
-                        StickersSearchAdapter.this.notifyDataSetChanged();
-                    }
-                }
+        @Override
+        public final void onMeasure(int i, int i2) {
+            switch (this.$r8$classId) {
+                case 0:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                    break;
+                case 1:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                    break;
+                case 2:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                    break;
+                default:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
+                    break;
             }
         }
     }
 
-    public StickersSearchAdapter(Context context, Delegate delegate, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, Theme.ResourcesProvider resourcesProvider) {
+    public StickersSearchAdapter(Context context, TrendingStickersLayout.AnonymousClass1 anonymousClass1, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
-        this.delegate = delegate;
+        this.delegate = anonymousClass1;
         this.primaryInstallingStickerSets = stickerSetCoveredArr;
         this.installingStickerSets = longSparseArray;
         this.removingStickerSets = longSparseArray2;
         this.resourcesProvider = resourcesProvider;
     }
 
+    public final void bindFeaturedStickerSetInfoCell(FeaturedStickerSetInfoCell featuredStickerSetInfoCell, int i, boolean z) {
+        boolean z2;
+        FeaturedStickerSetInfoCell featuredStickerSetInfoCell2;
+        boolean z3;
+        int i2 = this.currentAccount;
+        MediaDataController mediaDataController = MediaDataController.getInstance(i2);
+        ArrayList<Long> unreadStickerSets = mediaDataController.getUnreadStickerSets();
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.cache.get(i);
+        boolean z4 = unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSetCovered.set.id));
+        int i3 = 0;
+        while (true) {
+            TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.primaryInstallingStickerSets;
+            if (i3 >= stickerSetCoveredArr.length) {
+                z2 = false;
+                break;
+            }
+            if (stickerSetCoveredArr[i3] != null) {
+                TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(i2).getStickerSetById(stickerSetCoveredArr[i3].set.id);
+                if (stickerSetById != null && !stickerSetById.set.archived) {
+                    stickerSetCoveredArr[i3] = null;
+                } else if (stickerSetCoveredArr[i3].set.id == stickerSetCovered.set.id) {
+                    z2 = true;
+                    break;
+                }
+            }
+            i3++;
+        }
+        int iIndexOfIgnoreCase = TextUtils.isEmpty(this.searchQuery) ? -1 : AndroidUtilities.indexOfIgnoreCase(stickerSetCovered.set.title, this.searchQuery);
+        if (iIndexOfIgnoreCase >= 0) {
+            featuredStickerSetInfoCell2 = featuredStickerSetInfoCell;
+            z3 = z;
+            featuredStickerSetInfoCell2.setStickerSet(stickerSetCovered, z4, z3, iIndexOfIgnoreCase, this.searchQuery.length(), z2);
+        } else {
+            featuredStickerSetInfoCell2 = featuredStickerSetInfoCell;
+            z3 = z;
+            featuredStickerSetInfoCell2.setStickerSet(stickerSetCovered, z4, z3, 0, 0, z2);
+            if (!TextUtils.isEmpty(this.searchQuery) && AndroidUtilities.indexOfIgnoreCase(stickerSetCovered.set.short_name, this.searchQuery) == 0) {
+                String str = stickerSetCovered.set.short_name;
+                int length = this.searchQuery.length();
+                featuredStickerSetInfoCell2.url = str;
+                featuredStickerSetInfoCell2.urlSearchLength = length;
+                featuredStickerSetInfoCell2.updateUrlSearchSpan();
+            }
+        }
+        if (z4) {
+            mediaDataController.markFeaturedStickersByIdAsRead(false, stickerSetCovered.set.id);
+        }
+        long j = stickerSetCovered.set.id;
+        LongSparseArray longSparseArray = this.installingStickerSets;
+        boolean z5 = longSparseArray.indexOfKey(j) >= 0;
+        long j2 = stickerSetCovered.set.id;
+        LongSparseArray longSparseArray2 = this.removingStickerSets;
+        boolean z6 = longSparseArray2.indexOfKey(j2) >= 0;
+        if (z5 || z6) {
+            if (z5 && featuredStickerSetInfoCell2.isInstalled) {
+                longSparseArray.remove(stickerSetCovered.set.id);
+                z5 = false;
+            } else if (z6 && !featuredStickerSetInfoCell2.isInstalled) {
+                longSparseArray2.remove(stickerSetCovered.set.id);
+            }
+        }
+        featuredStickerSetInfoCell2.setAddDrawProgress(!z2 && z5, z3);
+        mediaDataController.preloadStickerSetThumb(stickerSetCovered);
+        featuredStickerSetInfoCell2.setNeedDivider(i > 0);
+    }
+
     @Override
-    public int getItemCount() {
+    public final int getItemCount() {
         return Math.max(1, this.totalItems + 1);
     }
 
-    public void search(String str) {
-        if (this.reqId != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
-            this.reqId = 0;
-        }
-        if (this.reqId2 != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId2, true);
-            this.reqId2 = 0;
-        }
-        if (TextUtils.isEmpty(str)) {
-            this.searchQuery = null;
-            this.localPacks.clear();
-            this.emojiStickers.clear();
-            this.serverPacks.clear();
-            this.delegate.setAdapterVisible(false);
-            notifyDataSetChanged();
-        } else {
-            this.searchQuery = str.toLowerCase();
-        }
-        AndroidUtilities.cancelRunOnUIThread(this.searchRunnable);
-        AndroidUtilities.runOnUIThread(this.searchRunnable, 300L);
-    }
-
     @Override
-    public int getItemViewType(int i) {
+    public final int getItemViewType(int i) {
         if (i == 0 && this.totalItems == 0) {
             return 5;
         }
@@ -406,148 +395,21 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
         return obj instanceof TLRPC.StickerSetCovered ? 3 : 2;
     }
 
-    public static void $r8$lambda$4gX2q5ZNLvCrBSSo8VkZg4DfooY(StickersSearchAdapter stickersSearchAdapter, View view) {
-        stickersSearchAdapter.getClass();
-        FeaturedStickerSetInfoCell featuredStickerSetInfoCell = (FeaturedStickerSetInfoCell) view.getParent();
-        TLRPC.StickerSetCovered stickerSet = featuredStickerSetInfoCell.getStickerSet();
-        if (stickerSet == null || stickersSearchAdapter.installingStickerSets.indexOfKey(stickerSet.set.id) >= 0 || stickersSearchAdapter.removingStickerSets.indexOfKey(stickerSet.set.id) >= 0) {
-            return;
-        }
-        if (featuredStickerSetInfoCell.isInstalled()) {
-            stickersSearchAdapter.removingStickerSets.put(stickerSet.set.id, stickerSet);
-            stickersSearchAdapter.delegate.onStickerSetRemove(featuredStickerSetInfoCell.getStickerSet());
-        } else {
-            stickersSearchAdapter.installStickerSet(stickerSet, featuredStickerSetInfoCell);
-        }
-    }
-
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View stickerSetNameCell;
-        if (i == 0) {
-            StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this.context, false, this.resourcesProvider) {
-                @Override
-                public void onMeasure(int i2, int i3) {
-                    super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
-                }
-            };
-            stickerEmojiCell.getImageView().setLayerNum(3);
-            stickerSetNameCell = stickerEmojiCell;
-        } else if (i == 1) {
-            stickerSetNameCell = new EmptyCell(this.context);
-        } else if (i == 2) {
-            stickerSetNameCell = new StickerSetNameCell(this.context, false, true, this.resourcesProvider, false);
-        } else if (i == 3) {
-            FeaturedStickerSetInfoCell featuredStickerSetInfoCell = new FeaturedStickerSetInfoCell(this.context, 17, true, true, this.resourcesProvider);
-            featuredStickerSetInfoCell.setAddOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    StickersSearchAdapter.$r8$lambda$4gX2q5ZNLvCrBSSo8VkZg4DfooY(this.f$0, view);
-                }
-            });
-            stickerSetNameCell = featuredStickerSetInfoCell;
-        } else if (i == 4) {
-            stickerSetNameCell = new View(this.context);
-        } else if (i != 5) {
-            stickerSetNameCell = null;
-        } else {
-            LinearLayout linearLayout = new LinearLayout(this.context);
-            linearLayout.setOrientation(1);
-            linearLayout.setGravity(17);
-            ImageView imageView = new ImageView(this.context);
-            this.emptyImageView = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.emptyImageView.setImageResource(R.drawable.stickers_empty);
-            ImageView imageView2 = this.emptyImageView;
-            int i2 = Theme.key_chat_emojiPanelEmptyText;
-            imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
-            linearLayout.addView(this.emptyImageView, LayoutHelper.createLinear(-2, -2));
-            linearLayout.addView(new Space(this.context), LayoutHelper.createLinear(-1, 15));
-            TextView textView = new TextView(this.context);
-            this.emptyTextView = textView;
-            textView.setText(LocaleController.getString(R.string.NoStickersFound));
-            this.emptyTextView.setTextSize(1, 16.0f);
-            this.emptyTextView.setTextColor(getThemedColor(i2));
-            linearLayout.addView(this.emptyTextView, LayoutHelper.createLinear(-2, -2));
-            linearLayout.setMinimumHeight(AndroidUtilities.dp(112.0f));
-            linearLayout.setLayoutParams(LayoutHelper.createFrame(-1, -1.0f));
-            stickerSetNameCell = linearLayout;
-        }
-        return new RecyclerListView.Holder(stickerSetNameCell);
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        int itemViewType = viewHolder.getItemViewType();
-        if (itemViewType == 0) {
-            ((StickerEmojiCell) viewHolder.itemView).setSticker((TLRPC.Document) this.cache.get(i), null, this.cacheParent.get(i), (String) this.positionToEmoji.get(i), false);
-            return;
-        }
-        if (itemViewType == 1) {
-            ((EmptyCell) viewHolder.itemView).setHeight(0);
-            return;
-        }
-        if (itemViewType != 2) {
-            if (itemViewType != 3) {
-                return;
-            }
-            bindFeaturedStickerSetInfoCell((FeaturedStickerSetInfoCell) viewHolder.itemView, i, false);
-            return;
-        }
-        StickerSetNameCell stickerSetNameCell = (StickerSetNameCell) viewHolder.itemView;
-        Object obj = this.cache.get(i);
-        if (obj instanceof TLRPC.TL_messages_stickerSet) {
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-            if (!TextUtils.isEmpty(this.searchQuery) && this.localPacksByShortName.containsKey(tL_messages_stickerSet)) {
-                TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
-                if (stickerSet != null) {
-                    stickerSetNameCell.setText(stickerSet.title, 0);
-                }
-                stickerSetNameCell.setUrl(tL_messages_stickerSet.set.short_name, this.searchQuery.length());
-                return;
-            }
-            Integer num = (Integer) this.localPacksByName.get(tL_messages_stickerSet);
-            TLRPC.StickerSet stickerSet2 = tL_messages_stickerSet.set;
-            if (stickerSet2 != null && num != null) {
-                stickerSetNameCell.setText(stickerSet2.title, 0, num.intValue(), !TextUtils.isEmpty(this.searchQuery) ? this.searchQuery.length() : 0);
-            }
-            stickerSetNameCell.setUrl(null, 0);
-        }
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i, List list) {
-        if (list.contains(0) && viewHolder.getItemViewType() == 3) {
-            bindFeaturedStickerSetInfoCell((FeaturedStickerSetInfoCell) viewHolder.itemView, i, true);
-        } else {
-            super.onBindViewHolder(viewHolder, i, list);
-        }
-    }
-
-    public void installStickerSet(TLRPC.InputStickerSet inputStickerSet) {
-        for (int i = 0; i < this.serverPacks.size(); i++) {
-            TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.serverPacks.get(i);
-            if (stickerSetCovered.set.id == inputStickerSet.id) {
-                installStickerSet(stickerSetCovered, null);
-                return;
-            }
-        }
-    }
-
-    public void installStickerSet(TLRPC.StickerSetCovered stickerSetCovered, FeaturedStickerSetInfoCell featuredStickerSetInfoCell) {
+    public final void installStickerSet(TLRPC.StickerSetCovered stickerSetCovered, FeaturedStickerSetInfoCell featuredStickerSetInfoCell) {
+        TLRPC.StickerSetCovered[] stickerSetCoveredArr;
         boolean z;
         int i = 0;
         while (true) {
-            TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.primaryInstallingStickerSets;
+            stickerSetCoveredArr = this.primaryInstallingStickerSets;
             if (i >= stickerSetCoveredArr.length) {
                 break;
             }
             if (stickerSetCoveredArr[i] != null) {
-                TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(this.currentAccount).getStickerSetById(this.primaryInstallingStickerSets[i].set.id);
+                TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(this.currentAccount).getStickerSetById(stickerSetCoveredArr[i].set.id);
                 if (stickerSetById != null && !stickerSetById.set.archived) {
-                    this.primaryInstallingStickerSets[i] = null;
+                    stickerSetCoveredArr[i] = null;
                     break;
-                } else if (this.primaryInstallingStickerSets[i].set.id == stickerSetCovered.set.id) {
+                } else if (stickerSetCoveredArr[i].set.id == stickerSetCovered.set.id) {
                     return;
                 }
             }
@@ -555,13 +417,12 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
         }
         int i2 = 0;
         while (true) {
-            TLRPC.StickerSetCovered[] stickerSetCoveredArr2 = this.primaryInstallingStickerSets;
-            if (i2 >= stickerSetCoveredArr2.length) {
+            if (i2 >= stickerSetCoveredArr.length) {
                 z = false;
                 break;
             } else {
-                if (stickerSetCoveredArr2[i2] == null) {
-                    stickerSetCoveredArr2[i2] = stickerSetCovered;
+                if (stickerSetCoveredArr[i2] == null) {
+                    stickerSetCoveredArr[i2] = stickerSetCovered;
                     z = true;
                     break;
                 }
@@ -573,214 +434,274 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
         }
         this.installingStickerSets.put(stickerSetCovered.set.id, stickerSetCovered);
         if (featuredStickerSetInfoCell != null) {
-            this.delegate.onStickerSetAdd(featuredStickerSetInfoCell.getStickerSet(), z);
+            this.delegate.val$delegate.onStickerSetAdd(featuredStickerSetInfoCell.getStickerSet(), z);
             return;
         }
-        int size = this.positionsToSets.size();
+        SparseArray sparseArray = this.positionsToSets;
+        int size = sparseArray.size();
         for (int i3 = 0; i3 < size; i3++) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) this.positionsToSets.get(i3);
+            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) sparseArray.get(i3);
             if (stickerSetCovered2 != null && stickerSetCovered2.set.id == stickerSetCovered.set.id) {
-                notifyItemChanged(i3, 0);
+                this.mObservable.notifyItemRangeChanged(i3, 1, 0);
                 return;
             }
         }
     }
 
-    private void bindFeaturedStickerSetInfoCell(FeaturedStickerSetInfoCell featuredStickerSetInfoCell, int i, boolean z) {
-        boolean z2;
-        FeaturedStickerSetInfoCell featuredStickerSetInfoCell2;
-        boolean z3;
-        MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
-        ArrayList<Long> unreadStickerSets = mediaDataController.getUnreadStickerSets();
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.cache.get(i);
-        boolean z4 = unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSetCovered.set.id));
-        int i2 = 0;
-        while (true) {
-            TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.primaryInstallingStickerSets;
-            if (i2 >= stickerSetCoveredArr.length) {
-                z2 = false;
-                break;
-            }
-            if (stickerSetCoveredArr[i2] != null) {
-                TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(this.currentAccount).getStickerSetById(this.primaryInstallingStickerSets[i2].set.id);
-                if (stickerSetById != null && !stickerSetById.set.archived) {
-                    this.primaryInstallingStickerSets[i2] = null;
-                } else if (this.primaryInstallingStickerSets[i2].set.id == stickerSetCovered.set.id) {
-                    z2 = true;
-                    break;
-                }
-            }
-            i2++;
-        }
-        int iIndexOfIgnoreCase = TextUtils.isEmpty(this.searchQuery) ? -1 : AndroidUtilities.indexOfIgnoreCase(stickerSetCovered.set.title, this.searchQuery);
-        if (iIndexOfIgnoreCase >= 0) {
-            featuredStickerSetInfoCell2 = featuredStickerSetInfoCell;
-            z3 = z;
-            featuredStickerSetInfoCell2.setStickerSet(stickerSetCovered, z4, z3, iIndexOfIgnoreCase, this.searchQuery.length(), z2);
-        } else {
-            featuredStickerSetInfoCell2 = featuredStickerSetInfoCell;
-            z3 = z;
-            featuredStickerSetInfoCell2.setStickerSet(stickerSetCovered, z4, z3, 0, 0, z2);
-            if (!TextUtils.isEmpty(this.searchQuery) && AndroidUtilities.indexOfIgnoreCase(stickerSetCovered.set.short_name, this.searchQuery) == 0) {
-                featuredStickerSetInfoCell2.setUrl(stickerSetCovered.set.short_name, this.searchQuery.length());
-            }
-        }
-        if (z4) {
-            mediaDataController.markFeaturedStickersByIdAsRead(false, stickerSetCovered.set.id);
-        }
-        boolean z5 = this.installingStickerSets.indexOfKey(stickerSetCovered.set.id) >= 0;
-        boolean z6 = this.removingStickerSets.indexOfKey(stickerSetCovered.set.id) >= 0;
-        if (z5 || z6) {
-            if (z5 && featuredStickerSetInfoCell2.isInstalled()) {
-                this.installingStickerSets.remove(stickerSetCovered.set.id);
-                z5 = false;
-            } else if (z6 && !featuredStickerSetInfoCell2.isInstalled()) {
-                this.removingStickerSets.remove(stickerSetCovered.set.id);
-            }
-        }
-        featuredStickerSetInfoCell2.setAddDrawProgress(!z2 && z5, z3);
-        mediaDataController.preloadStickerSetThumb(stickerSetCovered);
-        featuredStickerSetInfoCell2.setNeedDivider(i > 0);
+    @Override
+    public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+        return false;
     }
 
     @Override
-    public void notifyDataSetChanged() {
+    public final void notifyDataSetChanged() {
+        TrendingStickersLayout.AnonymousClass1 anonymousClass1;
+        int i;
+        int i2;
         ArrayList<TLRPC.Document> arrayList;
+        ArrayList arrayList2;
         Object obj;
-        this.rowStartPack.clear();
-        this.positionToRow.clear();
-        this.cache.clear();
-        this.positionsToSets.clear();
-        this.positionToEmoji.clear();
+        SparseArray sparseArray = this.rowStartPack;
+        sparseArray.clear();
+        SparseIntArray sparseIntArray = this.positionToRow;
+        sparseIntArray.clear();
+        SparseArray sparseArray2 = this.cache;
+        sparseArray2.clear();
+        SparseArray sparseArray3 = this.positionsToSets;
+        sparseArray3.clear();
+        SparseArray sparseArray4 = this.positionToEmoji;
+        sparseArray4.clear();
         this.totalItems = 0;
-        int size = this.serverPacks.size();
-        int size2 = this.localPacks.size();
-        int i = !this.emojiArrays.isEmpty() ? 1 : 0;
-        int i2 = 0;
-        int i3 = 0;
-        while (i2 < size + size2 + i) {
-            if (i2 < size2) {
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.localPacks.get(i2);
+        ArrayList arrayList3 = this.serverPacks;
+        int size = arrayList3.size();
+        ArrayList arrayList4 = this.localPacks;
+        int size2 = arrayList4.size();
+        ArrayList arrayList5 = this.emojiArrays;
+        int i3 = !arrayList5.isEmpty() ? 1 : 0;
+        int i4 = 0;
+        int i5 = 0;
+        while (i4 < size + size2 + i3) {
+            SparseArray sparseArray5 = this.cacheParent;
+            TrendingStickersLayout.AnonymousClass1 anonymousClass2 = this.delegate;
+            if (i4 < size2) {
+                anonymousClass1 = anonymousClass2;
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList4.get(i4);
+                i = size;
                 arrayList = tL_messages_stickerSet.documents;
+                i2 = i3;
                 obj = tL_messages_stickerSet;
             } else {
-                int i4 = i2 - size2;
-                if (i4 < i) {
-                    int size3 = this.emojiArrays.size();
+                anonymousClass1 = anonymousClass2;
+                i = size;
+                int i6 = i4 - size2;
+                if (i6 < i3) {
+                    int size3 = arrayList5.size();
                     String str = "";
-                    int i5 = 0;
-                    for (int i6 = 0; i6 < size3; i6++) {
-                        ArrayList arrayList2 = (ArrayList) this.emojiArrays.get(i6);
-                        String str2 = (String) this.emojiStickers.get(arrayList2);
+                    arrayList4 = arrayList4;
+                    i2 = i3;
+                    int i7 = 0;
+                    int i8 = 0;
+                    while (i7 < size3) {
+                        int i9 = size3;
+                        ArrayList arrayList6 = (ArrayList) arrayList5.get(i7);
+                        int i10 = i7;
+                        String str2 = (String) this.emojiStickers.get(arrayList6);
                         if (str2 != null && !str.equals(str2)) {
-                            this.positionToEmoji.put(this.totalItems + i5, str2);
+                            sparseArray4.put(this.totalItems + i8, str2);
                             str = str2;
                         }
-                        int size4 = arrayList2.size();
-                        int i7 = 0;
-                        while (i7 < size4) {
-                            int i8 = this.totalItems + i5;
-                            int stickersPerRow = (i5 / this.delegate.getStickersPerRow()) + i3;
-                            TLRPC.Document document = (TLRPC.Document) arrayList2.get(i7);
-                            int i9 = size;
-                            this.cache.put(i8, document);
-                            int i10 = size3;
+                        int size4 = arrayList6.size();
+                        SparseArray sparseArray6 = sparseArray4;
+                        int i11 = 0;
+                        while (i11 < size4) {
                             String str3 = str;
+                            int i12 = this.totalItems + i8;
+                            int i13 = size4;
+                            int stickersPerRow = (i8 / anonymousClass1.getStickersPerRow()) + i5;
+                            int i14 = i11;
+                            TLRPC.Document document = (TLRPC.Document) arrayList6.get(i11);
+                            sparseArray2.put(i12, document);
+                            ArrayList arrayList7 = arrayList5;
+                            int i15 = i8;
                             TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(this.currentAccount).getStickerSetById(MediaDataController.getStickerSetId(document));
                             if (stickerSetById != null) {
-                                this.cacheParent.put(i8, stickerSetById);
+                                sparseArray5.put(i12, stickerSetById);
                             }
-                            this.positionToRow.put(i8, stickersPerRow);
-                            i5++;
-                            i7++;
-                            size = i9;
-                            size3 = i10;
+                            sparseIntArray.put(i12, stickersPerRow);
+                            i8 = i15 + 1;
+                            i11 = i14 + 1;
                             str = str3;
+                            size4 = i13;
+                            arrayList5 = arrayList7;
                         }
+                        i7 = i10 + 1;
+                        size3 = i9;
+                        sparseArray4 = sparseArray6;
                     }
-                    size = size;
-                    int iCeil = (int) Math.ceil(i5 / this.delegate.getStickersPerRow());
-                    for (int i11 = 0; i11 < iCeil; i11++) {
-                        this.rowStartPack.put(i3 + i11, Integer.valueOf(i5));
+                    sparseArray4 = sparseArray4;
+                    arrayList5 = arrayList5;
+                    int iCeil = (int) Math.ceil(i8 / anonymousClass1.getStickersPerRow());
+                    for (int i16 = 0; i16 < iCeil; i16++) {
+                        sparseArray.put(i5 + i16, Integer.valueOf(i8));
                     }
-                    this.totalItems += this.delegate.getStickersPerRow() * iCeil;
-                    i3 += iCeil;
+                    this.totalItems = (anonymousClass1.getStickersPerRow() * iCeil) + this.totalItems;
+                    i5 += iCeil;
                 } else {
-                    TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.serverPacks.get(i4 - i);
+                    i2 = i3;
+                    TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList3.get(i6 - i2);
                     arrayList = stickerSetCovered.covers;
                     obj = stickerSetCovered;
                 }
-                i2++;
-                size = size;
+                arrayList2 = arrayList3;
+                i4++;
+                size = i;
+                arrayList4 = arrayList4;
+                i3 = i2;
+                sparseArray4 = sparseArray4;
+                arrayList3 = arrayList2;
+                arrayList5 = arrayList5;
             }
-            if (!arrayList.isEmpty()) {
-                int iCeil2 = (int) Math.ceil(arrayList.size() / this.delegate.getStickersPerRow());
-                this.cache.put(this.totalItems, obj);
-                if (i2 >= size2 && (obj instanceof TLRPC.StickerSetCovered)) {
-                    this.positionsToSets.put(this.totalItems, (TLRPC.StickerSetCovered) obj);
+            if (arrayList.isEmpty()) {
+                arrayList2 = arrayList3;
+            } else {
+                int iCeil2 = (int) Math.ceil(arrayList.size() / anonymousClass1.getStickersPerRow());
+                sparseArray2.put(this.totalItems, obj);
+                if (i4 >= size2 && (obj instanceof TLRPC.StickerSetCovered)) {
+                    sparseArray3.put(this.totalItems, (TLRPC.StickerSetCovered) obj);
                 }
-                this.positionToRow.put(this.totalItems, i3);
+                sparseIntArray.put(this.totalItems, i5);
                 int size5 = arrayList.size();
-                int i12 = 0;
-                while (i12 < size5) {
-                    int i13 = i12 + 1;
-                    int i14 = this.totalItems + i13;
-                    int stickersPerRow2 = i3 + 1 + (i12 / this.delegate.getStickersPerRow());
-                    this.cache.put(i14, arrayList.get(i12));
-                    this.cacheParent.put(i14, obj);
-                    this.positionToRow.put(i14, stickersPerRow2);
-                    if (i2 >= size2 && (obj instanceof TLRPC.StickerSetCovered)) {
-                        this.positionsToSets.put(i14, (TLRPC.StickerSetCovered) obj);
+                int i17 = 0;
+                while (i17 < size5) {
+                    int i18 = i17 + 1;
+                    int i19 = iCeil2;
+                    int i20 = this.totalItems + i18;
+                    int stickersPerRow2 = i17 / anonymousClass1.getStickersPerRow();
+                    ArrayList arrayList8 = arrayList3;
+                    sparseArray2.put(i20, arrayList.get(i17));
+                    sparseArray5.put(i20, obj);
+                    sparseIntArray.put(i20, stickersPerRow2 + i5 + 1);
+                    if (i4 >= size2 && (obj instanceof TLRPC.StickerSetCovered)) {
+                        sparseArray3.put(i20, (TLRPC.StickerSetCovered) obj);
                     }
-                    i12 = i13;
+                    i17 = i18;
+                    iCeil2 = i19;
+                    arrayList3 = arrayList8;
                 }
-                int i15 = iCeil2 + 1;
-                for (int i16 = 0; i16 < i15; i16++) {
-                    this.rowStartPack.put(i3 + i16, obj);
+                int i21 = iCeil2;
+                arrayList2 = arrayList3;
+                int i22 = i21 + 1;
+                for (int i23 = 0; i23 < i22; i23++) {
+                    sparseArray.put(i5 + i23, obj);
                 }
-                this.totalItems += (iCeil2 * this.delegate.getStickersPerRow()) + 1;
-                i3 += i15;
+                this.totalItems = (anonymousClass1.getStickersPerRow() * i21) + 1 + this.totalItems;
+                i5 += i22;
             }
-            i2++;
-            size = size;
+            i4++;
+            size = i;
+            arrayList4 = arrayList4;
+            i3 = i2;
+            sparseArray4 = sparseArray4;
+            arrayList3 = arrayList2;
+            arrayList5 = arrayList5;
         }
-        super.notifyDataSetChanged();
+        this.mObservable.notifyChanged();
     }
 
-    public int getSpanSize(int i) {
-        if (i == this.totalItems || !(this.cache.get(i) == null || (this.cache.get(i) instanceof TLRPC.Document))) {
-            return this.delegate.getStickersPerRow();
+    @Override
+    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i, List list) {
+        if (list.contains(0) && viewHolder.mItemViewType == 3) {
+            bindFeaturedStickerSetInfoCell((FeaturedStickerSetInfoCell) viewHolder.itemView, i, true);
+        } else {
+            onBindViewHolder(viewHolder, i);
         }
-        return 1;
     }
 
-    public TLRPC.StickerSetCovered getSetForPosition(int i) {
-        return (TLRPC.StickerSetCovered) this.positionsToSets.get(i);
+    @Override
+    public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View stickerSetNameCell;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Context context = this.context;
+        if (i == 0) {
+            AnonymousClass2 anonymousClass2 = new AnonymousClass2(0, context, resourcesProvider, false);
+            anonymousClass2.getImageView().setLayerNum(3);
+            stickerSetNameCell = anonymousClass2;
+        } else if (i == 1) {
+            stickerSetNameCell = new EmptyCell(context);
+        } else if (i == 2) {
+            stickerSetNameCell = new StickerSetNameCell(this.context, false, true, this.resourcesProvider, false);
+        } else if (i == 3) {
+            FeaturedStickerSetInfoCell featuredStickerSetInfoCell = new FeaturedStickerSetInfoCell(17, this.context, this.resourcesProvider, true, true);
+            featuredStickerSetInfoCell.setAddOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 6));
+            stickerSetNameCell = featuredStickerSetInfoCell;
+        } else if (i == 4) {
+            stickerSetNameCell = new View(context);
+        } else if (i != 5) {
+            stickerSetNameCell = null;
+        } else {
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(1);
+            linearLayout.setGravity(17);
+            ImageView imageView = new ImageView(context);
+            this.emptyImageView = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            this.emptyImageView.setImageResource(R.drawable.stickers_empty);
+            ImageView imageView2 = this.emptyImageView;
+            int i2 = Theme.key_chat_emojiPanelEmptyText;
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            linearLayout.addView(this.emptyImageView, LayoutHelper.createLinear(-2, -2));
+            linearLayout.addView(new Space(context), LayoutHelper.createLinear(-1, 15));
+            TextView textView = new TextView(context);
+            this.emptyTextView = textView;
+            textView.setText(LocaleController.getString(R.string.NoStickersFound));
+            this.emptyTextView.setTextSize(1, 16.0f);
+            this.emptyTextView.setTextColor(Theme.getColor(i2, resourcesProvider));
+            linearLayout.addView(this.emptyTextView, LayoutHelper.createLinear(-2, -2));
+            linearLayout.setMinimumHeight(AndroidUtilities.dp(112.0f));
+            linearLayout.setLayoutParams(LayoutHelper.createFrame(-1.0f, -1));
+            stickerSetNameCell = linearLayout;
+        }
+        return new RecyclerListView.Holder(stickerSetNameCell);
     }
 
-    public void updateColors(RecyclerListView recyclerListView) {
-        int childCount = recyclerListView.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = recyclerListView.getChildAt(i);
-            if (childAt instanceof FeaturedStickerSetInfoCell) {
-                ((FeaturedStickerSetInfoCell) childAt).updateColors();
-            } else if (childAt instanceof StickerSetNameCell) {
-                ((StickerSetNameCell) childAt).updateColors();
+    @Override
+    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        int i2 = viewHolder.mItemViewType;
+        SparseArray sparseArray = this.cache;
+        View view = viewHolder.itemView;
+        if (i2 == 0) {
+            ((StickerEmojiCell) view).setSticker((TLRPC.Document) sparseArray.get(i), null, this.cacheParent.get(i), (String) this.positionToEmoji.get(i), false, false);
+            return;
+        }
+        if (i2 == 1) {
+            ((EmptyCell) view).setHeight(0);
+            return;
+        }
+        if (i2 != 2) {
+            if (i2 != 3) {
+                return;
             }
+            bindFeaturedStickerSetInfoCell((FeaturedStickerSetInfoCell) view, i, false);
+            return;
         }
-    }
-
-    public void getThemeDescriptions(List list, RecyclerListView recyclerListView, ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate) {
-        FeaturedStickerSetInfoCell.createThemeDescriptions(list, recyclerListView, themeDescriptionDelegate);
-        StickerSetNameCell.createThemeDescriptions(list, recyclerListView, themeDescriptionDelegate);
-        ImageView imageView = this.emptyImageView;
-        int i = ThemeDescription.FLAG_IMAGECOLOR;
-        int i2 = Theme.key_chat_emojiPanelEmptyText;
-        list.add(new ThemeDescription(imageView, i, null, null, null, null, i2));
-        list.add(new ThemeDescription(this.emptyTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+        StickerSetNameCell stickerSetNameCell = (StickerSetNameCell) view;
+        Object obj = sparseArray.get(i);
+        if (obj instanceof TLRPC.TL_messages_stickerSet) {
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
+            if (!TextUtils.isEmpty(this.searchQuery) && this.localPacksByShortName.containsKey(tL_messages_stickerSet)) {
+                TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+                if (stickerSet != null) {
+                    stickerSetNameCell.setText(stickerSet.title, 0, null, 0, 0);
+                }
+                stickerSetNameCell.setUrl(this.searchQuery.length(), tL_messages_stickerSet.set.short_name);
+                return;
+            }
+            Integer num = (Integer) this.localPacksByName.get(tL_messages_stickerSet);
+            TLRPC.StickerSet stickerSet2 = tL_messages_stickerSet.set;
+            if (stickerSet2 != null && num != null) {
+                stickerSetNameCell.setText(stickerSet2.title, 0, null, num.intValue(), !TextUtils.isEmpty(this.searchQuery) ? this.searchQuery.length() : 0);
+            }
+            stickerSetNameCell.setUrl(0, null);
+        }
     }
 }

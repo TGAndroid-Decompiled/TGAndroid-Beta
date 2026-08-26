@@ -23,28 +23,73 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.ChatActivity;
+import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda36;
 
-public class ChatActivityMessageMetricsView extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
-    private static final RectF tmpRect = new RectF();
-    private final boolean DRAW_DEBUG;
-    private int currentAccount;
-    private long dialogId;
-    private final LongSparseArray groupedPositions;
-    private long lastTime;
-    private long lastUserActivityTime;
-    private ViewGroup list;
-    private ViewTreeObserver observer;
-    private Runnable pendingFlush;
-    private final ArrayList pendingMetrics;
-    private ViewGroup root;
-    private final Runnable scheduledCheckRunnable;
-    private TextPaint tmpTextPaint;
-    private boolean updateInNextDraw;
-    private final RectF viewPort;
-    private final RectF viewPortInsets;
-    private final LongSparseArray watchers;
+public final class ChatActivityMessageMetricsView extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
+    public static final RectF tmpRect = new RectF();
+    public final boolean DRAW_DEBUG;
+    public int currentAccount;
+    public long dialogId;
+    public final LongSparseArray groupedPositions;
+    public long lastTime;
+    public long lastUserActivityTime;
+    public ChatActivity.AnonymousClass21 list;
+    public ViewTreeObserver observer;
+    public ChatActivityMessageMetricsView$$ExternalSyntheticLambda1 pendingFlush;
+    public final ArrayList pendingMetrics;
+    public ViewGroup root;
+    public final ChatActivityMessageMetricsView$$ExternalSyntheticLambda1 scheduledCheckRunnable;
+    public TextPaint tmpTextPaint;
+    public boolean updateInNextDraw;
+    public final RectF viewPort;
+    public final RectF viewPortInsets;
+    public final LongSparseArray watchers;
 
-    public static void $r8$lambda$OTgxqPY4rg_4WF2e8sYw8x4osdg(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public final class MessageWatcher {
+        public long activeTime;
+        public final long groupId;
+        public long lastUpdateMillis;
+        public long lastViewMillis;
+        public final int messageId;
+        public boolean visible;
+        public long visibleTime;
+        public final RectF position = new RectF();
+        public float maxPostTotalHeight = 0.0f;
+        public float maxViewPortHeight = 0.0f;
+        public float seenTopPx = Float.MAX_VALUE;
+        public float seenBottomPx = 0.0f;
+        public final long viewId = Utilities.random.nextLong();
+
+        public MessageWatcher(int i, long j) {
+            this.messageId = i;
+            this.groupId = j;
+        }
+
+        public final TLRPC.TL_inputMessageReadMetric buildMetrics() {
+            int iRound;
+            TLRPC.TL_inputMessageReadMetric tL_inputMessageReadMetric = new TLRPC.TL_inputMessageReadMetric();
+            tL_inputMessageReadMetric.msg_id = this.messageId;
+            tL_inputMessageReadMetric.view_id = this.viewId;
+            tL_inputMessageReadMetric.time_in_view_ms = (int) this.visibleTime;
+            tL_inputMessageReadMetric.active_time_in_view_ms = (int) this.activeTime;
+            float f = this.maxViewPortHeight;
+            tL_inputMessageReadMetric.height_to_viewport_ratio_permille = f == 0.0f ? 1000 : Math.round((this.maxPostTotalHeight / f) * 1000.0f);
+            float f2 = this.maxPostTotalHeight;
+            if (f2 != 0.0f) {
+                float f3 = this.seenTopPx;
+                float f4 = this.seenBottomPx;
+                if (f3 > f4) {
+                    iRound = 0;
+                } else {
+                    iRound = Math.round(((f4 - f3) / f2) * 1000.0f);
+                }
+            } else {
+                iRound = 0;
+            }
+            tL_inputMessageReadMetric.seen_range_ratio_permille = iRound;
+            return tL_inputMessageReadMetric;
+        }
     }
 
     public ChatActivityMessageMetricsView(Context context) {
@@ -54,324 +99,36 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
         this.pendingMetrics = new ArrayList();
         this.watchers = new LongSparseArray();
         this.groupedPositions = new LongSparseArray();
-        this.scheduledCheckRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.scheduledCheck();
-            }
-        };
+        this.scheduledCheckRunnable = new ChatActivityMessageMetricsView$$ExternalSyntheticLambda1(this, 1);
         this.DRAW_DEBUG = SharedConfig.debugViewMetrics;
     }
 
-    public void init(int i, long j, ViewGroup viewGroup, ViewGroup viewGroup2) {
-        this.dialogId = j;
-        this.currentAccount = i;
-        this.root = viewGroup;
-        this.list = viewGroup2;
-    }
-
-    public void setViewportPadding(float f, float f2, float f3, float f4) {
-        this.viewPortInsets.set(f, f2, f3, f4);
-        invalidateViewPort();
-    }
-
-    public void setIsUserActive() {
-        this.lastUserActivityTime = SystemClock.uptimeMillis();
-    }
-
-    private void invalidateViewPort() {
-        RectF rectF = this.viewPort;
-        RectF rectF2 = this.viewPortInsets;
-        rectF.set(rectF2.left, rectF2.top, getMeasuredWidth() - this.viewPortInsets.right, getMeasuredHeight() - this.viewPortInsets.bottom);
-    }
-
-    public void finish() {
-        int size = this.watchers.size();
-        for (int i = 0; i < size; i++) {
-            MessageWatcher messageWatcher = (MessageWatcher) this.watchers.valueAt(i);
-            if (messageWatcher.visible) {
-                this.pendingMetrics.add(messageWatcher.buildMetrics());
-            }
-        }
-        if (BuildVars.LOGS_ENABLED) {
-            Log.d("ViewMetrics", "finish");
-        }
-        this.watchers.clear();
-        flushImpl();
-    }
-
-    public void flushImpl() {
-        Runnable runnable = this.pendingFlush;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
+    public final void flushImpl() {
+        ChatActivityMessageMetricsView$$ExternalSyntheticLambda1 chatActivityMessageMetricsView$$ExternalSyntheticLambda1 = this.pendingFlush;
+        if (chatActivityMessageMetricsView$$ExternalSyntheticLambda1 != null) {
+            AndroidUtilities.cancelRunOnUIThread(chatActivityMessageMetricsView$$ExternalSyntheticLambda1);
             this.pendingFlush = null;
         }
-        if (this.pendingMetrics.isEmpty()) {
+        ArrayList arrayList = this.pendingMetrics;
+        if (arrayList.isEmpty()) {
             return;
         }
         TLRPC.TL_messages_reportReadMetrics tL_messages_reportReadMetrics = new TLRPC.TL_messages_reportReadMetrics();
         tL_messages_reportReadMetrics.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        tL_messages_reportReadMetrics.metrics = new ArrayList<>(this.pendingMetrics);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_reportReadMetrics, null, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                ChatActivityMessageMetricsView.$r8$lambda$OTgxqPY4rg_4WF2e8sYw8x4osdg((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-            }
-        });
-        this.pendingMetrics.clear();
+        tL_messages_reportReadMetrics.metrics = new ArrayList<>(arrayList);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_reportReadMetrics, null, new VoIPFragment$$ExternalSyntheticLambda36(2));
+        arrayList.clear();
     }
 
-    private void processCurrentFrame() {
-        boolean z;
-        long j;
-        long j2;
-        RectF rectF;
-        RectF rectF2;
-        MessageObject messageObject;
-        int i;
-        if (this.root == null || this.list == null) {
-            return;
-        }
-        long jUptimeMillis = SystemClock.uptimeMillis();
-        long j3 = this.lastTime;
-        long j4 = 0;
-        long j5 = j3 == 0 ? 0L : jUptimeMillis - j3;
-        this.lastTime = jUptimeMillis;
-        int size = this.groupedPositions.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            ((RectF) this.groupedPositions.valueAt(i2)).set(0.0f, 0.0f, 0.0f, 0.0f);
-        }
-        int childCount = this.list.getChildCount();
-        int i3 = 0;
-        while (i3 < childCount) {
-            View childAt = this.list.getChildAt(i3);
-            ViewGroup viewGroup = this.root;
-            long j6 = j4;
-            RectF rectF3 = tmpRect;
-            if (ViewPositionWatcher.computeRectInParent(childAt, viewGroup, rectF3)) {
-                if (childAt instanceof ChatMessageCell) {
-                    messageObject = ((ChatMessageCell) childAt).getMessageObject();
-                } else if (childAt instanceof ChatActionCell) {
-                    messageObject = ((ChatActionCell) childAt).getMessageObject();
-                } else {
-                    i = i3;
-                }
-                if (messageObject == null) {
-                    i = i3;
-                } else {
-                    long dialogId = messageObject.getDialogId();
-                    i = i3;
-                    if (dialogId == this.dialogId) {
-                        int id = messageObject.getId();
-                        long groupId = messageObject.getGroupId();
-                        if (dialogId != j6 && id > 0) {
-                            long j7 = id;
-                            MessageWatcher messageWatcher = (MessageWatcher) this.watchers.get(j7);
-                            if (messageWatcher == null) {
-                                messageWatcher = new MessageWatcher(id, groupId);
-                                this.watchers.put(j7, messageWatcher);
-                                if (BuildVars.LOGS_ENABLED) {
-                                    Log.d("ViewMetrics", id + " " + groupId + " in screen");
-                                }
-                            }
-                            messageWatcher.position.set(rectF3);
-                            if (groupId != j6) {
-                                RectF rectF4 = (RectF) this.groupedPositions.get(groupId);
-                                if (rectF4 == null) {
-                                    rectF4 = new RectF();
-                                    this.groupedPositions.put(groupId, rectF4);
-                                }
-                                rectF4.union(messageWatcher.position);
-                            }
-                            messageWatcher.lastUpdateMillis = jUptimeMillis;
-                        }
-                    }
-                }
-            } else {
-                i = i3;
-            }
-            i3 = i + 1;
-            j4 = j6;
-        }
-        long j8 = j4;
-        RectF rectF5 = null;
-        for (int size2 = this.groupedPositions.size() - 1; size2 >= 0; size2--) {
-            if (((RectF) this.groupedPositions.valueAt(size2)).isEmpty()) {
-                this.groupedPositions.removeAt(size2);
-            }
-        }
-        int size3 = this.watchers.size();
-        for (int i4 = 0; i4 < size3; i4++) {
-            MessageWatcher messageWatcher2 = (MessageWatcher) this.watchers.valueAt(i4);
-            long j9 = messageWatcher2.groupId;
-            if (j9 != j8 && (rectF2 = (RectF) this.groupedPositions.get(j9)) != null) {
-                messageWatcher2.position.set(rectF2);
-            }
-        }
-        int size4 = this.watchers.size() - 1;
-        while (size4 >= 0) {
-            MessageWatcher messageWatcher3 = (MessageWatcher) this.watchers.valueAt(size4);
-            long j10 = messageWatcher3.messageId;
-            long j11 = messageWatcher3.groupId;
-            RectF rectF6 = j11 != j8 ? (RectF) this.groupedPositions.get(j11) : rectF5;
-            if (messageWatcher3.lastUpdateMillis != jUptimeMillis && rectF6 == null) {
-                z = false;
-            } else if (RectF.intersects(this.viewPort, rectF6 != null ? rectF6 : messageWatcher3.position)) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (z) {
-                if (messageWatcher3.lastViewMillis != j8) {
-                    MessageWatcher.access$514(messageWatcher3, j5);
-                    rectF = rectF6;
-                    if (jUptimeMillis - this.lastUserActivityTime < 15000) {
-                        MessageWatcher.access$614(messageWatcher3, j5);
-                    }
-                } else {
-                    rectF = rectF6;
-                }
-                messageWatcher3.lastViewMillis = jUptimeMillis;
-                float fHeight = messageWatcher3.position.height();
-                j = jUptimeMillis;
-                float f = this.viewPort.top - messageWatcher3.position.top;
-                float f2 = fHeight - (messageWatcher3.position.bottom - this.viewPort.bottom);
-                j2 = j5;
-                messageWatcher3.seenTopPx = Math.min(messageWatcher3.seenTopPx, MathUtils.clamp(f, 0.0f, fHeight));
-                messageWatcher3.seenBottomPx = Math.max(messageWatcher3.seenBottomPx, MathUtils.clamp(f2, 0.0f, fHeight));
-                messageWatcher3.maxViewPortHeight = Math.max(messageWatcher3.maxViewPortHeight, this.viewPort.height());
-                messageWatcher3.maxPostTotalHeight = Math.max(messageWatcher3.maxPostTotalHeight, fHeight);
-                if (!messageWatcher3.visible && messageWatcher3.visibleTime > 300) {
-                    if (BuildVars.LOGS_ENABLED) {
-                        Log.d("ViewMetrics", j10 + " " + j11 + " in viewport");
-                    }
-                    messageWatcher3.visible = true;
-                }
-            } else {
-                j = jUptimeMillis;
-                j2 = j5;
-                rectF = rectF6;
-            }
-            if (z || messageWatcher3.visibleTime <= j8 || j - 300 <= messageWatcher3.lastViewMillis) {
-                if (messageWatcher3.visible && messageWatcher3.visibleTime > 300000) {
-                    this.pendingMetrics.add(messageWatcher3.buildMetrics());
-                    this.watchers.removeAt(size4);
-                    if (BuildVars.LOGS_ENABLED) {
-                        Log.d("ViewMetrics", j10 + " " + j11 + " out of time");
-                    }
-                } else if (!messageWatcher3.visible && messageWatcher3.lastUpdateMillis != j && (messageWatcher3.groupId == j8 || rectF == null)) {
-                    this.watchers.removeAt(size4);
-                    if (BuildVars.LOGS_ENABLED) {
-                        Log.d("ViewMetrics", j10 + " " + j11 + " out of screen");
-                    }
-                }
-            } else {
-                if (messageWatcher3.visible) {
-                    this.pendingMetrics.add(messageWatcher3.buildMetrics());
-                }
-                this.watchers.removeAt(size4);
-                if (BuildVars.LOGS_ENABLED) {
-                    Log.d("ViewMetrics", j10 + " " + j11 + " out of viewport: " + messageWatcher3.visibleTime);
-                }
-            }
-            size4--;
-            jUptimeMillis = j;
-            j5 = j2;
-            rectF5 = null;
-        }
-        if (!this.pendingMetrics.isEmpty() && this.pendingFlush == null) {
-            Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.flushImpl();
-                }
-            };
-            this.pendingFlush = runnable;
-            AndroidUtilities.runOnUIThread(runnable, 5000L);
-        }
-        if (this.DRAW_DEBUG) {
-            invalidate();
-        }
-    }
-
-    private static class MessageWatcher {
-        private long activeTime;
-        public final long groupId;
-        private long lastUpdateMillis;
-        private long lastViewMillis;
-        private float maxPostTotalHeight;
-        private float maxViewPortHeight;
-        public final int messageId;
-        private final RectF position;
-        private float seenBottomPx;
-        private float seenTopPx;
-        private final long viewId;
-        private boolean visible;
-        private long visibleTime;
-
-        static long access$514(MessageWatcher messageWatcher, long j) {
-            long j2 = messageWatcher.visibleTime + j;
-            messageWatcher.visibleTime = j2;
-            return j2;
-        }
-
-        static long access$614(MessageWatcher messageWatcher, long j) {
-            long j2 = messageWatcher.activeTime + j;
-            messageWatcher.activeTime = j2;
-            return j2;
-        }
-
-        private MessageWatcher(int i, long j) {
-            this.position = new RectF();
-            this.maxPostTotalHeight = 0.0f;
-            this.maxViewPortHeight = 0.0f;
-            this.seenTopPx = Float.MAX_VALUE;
-            this.seenBottomPx = 0.0f;
-            this.messageId = i;
-            this.groupId = j;
-            this.viewId = Utilities.random.nextLong();
-        }
-
-        public TLRPC.TL_inputMessageReadMetric buildMetrics() {
-            TLRPC.TL_inputMessageReadMetric tL_inputMessageReadMetric = new TLRPC.TL_inputMessageReadMetric();
-            tL_inputMessageReadMetric.msg_id = this.messageId;
-            tL_inputMessageReadMetric.view_id = this.viewId;
-            tL_inputMessageReadMetric.time_in_view_ms = (int) this.visibleTime;
-            tL_inputMessageReadMetric.active_time_in_view_ms = (int) this.activeTime;
-            tL_inputMessageReadMetric.height_to_viewport_ratio_permille = getHeightToViewportRatioPermille();
-            tL_inputMessageReadMetric.seen_range_ratio_permille = getSeenRangeRatioPermille();
-            return tL_inputMessageReadMetric;
-        }
-
-        public int getHeightToViewportRatioPermille() {
-            float f = this.maxViewPortHeight;
-            if (f == 0.0f) {
-                return 1000;
-            }
-            return Math.round((this.maxPostTotalHeight / f) * 1000.0f);
-        }
-
-        public int getSeenRangeRatioPermille() {
-            float f = this.maxPostTotalHeight;
-            if (f == 0.0f) {
-                return 0;
-            }
-            float f2 = this.seenTopPx;
-            float f3 = this.seenBottomPx;
-            if (f2 > f3) {
-                return 0;
-            }
-            return Math.round(((f3 - f2) / f) * 1000.0f);
-        }
-    }
-
-    public void scheduledCheck() {
-        AndroidUtilities.runOnUIThread(this.scheduledCheckRunnable, 400L);
-        processCurrentFrame();
+    public final void init(int i, long j, ViewGroup viewGroup, ChatActivity.AnonymousClass21 anonymousClass21) {
+        this.dialogId = j;
+        this.currentAccount = i;
+        this.root = viewGroup;
+        this.list = anonymousClass21;
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.lastTime = 0L;
         ViewTreeObserver viewTreeObserver = getViewTreeObserver();
@@ -386,7 +143,7 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         ViewTreeObserver viewTreeObserver = this.observer;
         if (viewTreeObserver != null && viewTreeObserver.isAlive()) {
             this.observer.removeOnPreDrawListener(this);
@@ -403,23 +160,76 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public final void onDraw(Canvas canvas) {
+        int iRound;
+        if (this.DRAW_DEBUG) {
+            if (this.tmpTextPaint == null) {
+                TextPaint textPaint = new TextPaint(1);
+                this.tmpTextPaint = textPaint;
+                textPaint.setColor(-16776961);
+                this.tmpTextPaint.setTextSize(AndroidUtilities.dp(10.0f));
+            }
+            super.onDraw(canvas);
+            RectF rectF = this.viewPort;
+            canvas.drawRect(rectF, Theme.DEBUG_RED_STROKE);
+            LongSparseArray longSparseArray = this.watchers;
+            int size = longSparseArray.size();
+            for (int i = 0; i < size; i++) {
+                MessageWatcher messageWatcher = (MessageWatcher) longSparseArray.valueAt(i);
+                canvas.drawRect(messageWatcher.position, Theme.DEBUG_GREEN_STROKE);
+                canvas.save();
+                RectF rectF2 = messageWatcher.position;
+                canvas.translate(rectF2.left, MathUtils.clamp(MathUtils.clamp(rectF2.centerY() - AndroidUtilities.dp(20.0f), rectF.top - AndroidUtilities.dp(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - AndroidUtilities.dp(40.0f)));
+                canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), Theme.DEBUG_GREEN_B0);
+                canvas.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
+                canvas.save();
+                canvas.drawText("time_in_view_ms: " + messageWatcher.visibleTime, 0.0f, 0.0f, this.tmpTextPaint);
+                canvas.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
+                canvas.drawText("active_time_in_view_ms: " + messageWatcher.activeTime, 0.0f, 0.0f, this.tmpTextPaint);
+                canvas.restore();
+                canvas.save();
+                canvas.translate(getWidth() / 2.0f, 0.0f);
+                StringBuilder sb = new StringBuilder("height_to_viewport_ratio_permille: ");
+                float f = messageWatcher.maxViewPortHeight;
+                sb.append(f == 0.0f ? 1000 : Math.round((messageWatcher.maxPostTotalHeight / f) * 1000.0f));
+                canvas.drawText(sb.toString(), 0.0f, 0.0f, this.tmpTextPaint);
+                canvas.translate(0.0f, AndroidUtilities.dp(16.0f));
+                StringBuilder sb2 = new StringBuilder("seen_range_ratio_permille: ");
+                float f2 = messageWatcher.maxPostTotalHeight;
+                if (f2 != 0.0f) {
+                    float f3 = messageWatcher.seenTopPx;
+                    float f4 = messageWatcher.seenBottomPx;
+                    if (f3 > f4) {
+                        iRound = 0;
+                    } else {
+                        iRound = Math.round(((f4 - f3) / f2) * 1000.0f);
+                    }
+                } else {
+                    iRound = 0;
+                }
+                sb2.append(iRound);
+                canvas.drawText(sb2.toString(), 0.0f, 0.0f, this.tmpTextPaint);
+                canvas.restore();
+                canvas.restore();
+            }
+        }
+    }
+
+    @Override
+    public final void onGlobalLayout() {
+        this.updateInNextDraw = true;
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        invalidateViewPort();
+        RectF rectF = this.viewPort;
+        RectF rectF2 = this.viewPortInsets;
+        rectF.set(rectF2.left, rectF2.top, getMeasuredWidth() - rectF2.right, getMeasuredHeight() - rectF2.bottom);
     }
 
     @Override
-    public void onScrollChanged() {
-        this.updateInNextDraw = true;
-    }
-
-    @Override
-    public void onGlobalLayout() {
-        this.updateInNextDraw = true;
-    }
-
-    @Override
-    public boolean onPreDraw() {
+    public final boolean onPreDraw() {
         if (!this.updateInNextDraw) {
             return true;
         }
@@ -429,41 +239,228 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.DRAW_DEBUG) {
-            if (this.tmpTextPaint == null) {
-                TextPaint textPaint = new TextPaint(1);
-                this.tmpTextPaint = textPaint;
-                textPaint.setColor(-16776961);
-                this.tmpTextPaint.setTextSize(AndroidUtilities.dp(10.0f));
+    public final void onScrollChanged() {
+        this.updateInNextDraw = true;
+    }
+
+    public final void processCurrentFrame() {
+        LongSparseArray longSparseArray;
+        String str;
+        ArrayList arrayList;
+        boolean z;
+        long j;
+        LongSparseArray longSparseArray2;
+        String str2;
+        RectF rectF;
+        MessageObject messageObject;
+        int i;
+        long j2;
+        long j3;
+        MessageWatcher messageWatcher;
+        if (this.root == null || this.list == null) {
+            return;
+        }
+        long jUptimeMillis = SystemClock.uptimeMillis();
+        long j4 = this.lastTime;
+        long j5 = 0;
+        long j6 = j4 == 0 ? 0L : jUptimeMillis - j4;
+        this.lastTime = jUptimeMillis;
+        LongSparseArray longSparseArray3 = this.groupedPositions;
+        int size = longSparseArray3.size();
+        for (int i2 = 0; i2 < size; i2++) {
+            ((RectF) longSparseArray3.valueAt(i2)).set(0.0f, 0.0f, 0.0f, 0.0f);
+        }
+        int childCount = this.list.getChildCount();
+        int i3 = 0;
+        while (true) {
+            longSparseArray = this.watchers;
+            str = "ViewMetrics";
+            if (i3 >= childCount) {
+                break;
             }
-            super.onDraw(canvas);
-            canvas.drawRect(this.viewPort, Theme.DEBUG_RED_STROKE);
-            int size = this.watchers.size();
-            int i = 0;
-            while (i < size) {
-                MessageWatcher messageWatcher = (MessageWatcher) this.watchers.valueAt(i);
-                canvas.drawRect(messageWatcher.position, Theme.DEBUG_GREEN_STROKE);
-                canvas.save();
-                canvas.translate(messageWatcher.position.left, MathUtils.clamp(MathUtils.clamp(messageWatcher.position.centerY() - AndroidUtilities.dp(20.0f), this.viewPort.top - AndroidUtilities.dp(40.0f), this.viewPort.bottom), messageWatcher.position.top, messageWatcher.position.bottom - AndroidUtilities.dp(40.0f)));
-                Canvas canvas2 = canvas;
-                canvas2.drawRect(0.0f, 0.0f, messageWatcher.position.width(), AndroidUtilities.dp(40.0f), Theme.DEBUG_GREEN_B0);
-                canvas2.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
-                canvas2.save();
-                canvas2.drawText("time_in_view_ms: " + messageWatcher.visibleTime, 0.0f, 0.0f, this.tmpTextPaint);
-                canvas2.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
-                canvas2.drawText("active_time_in_view_ms: " + messageWatcher.activeTime, 0.0f, 0.0f, this.tmpTextPaint);
-                canvas2.restore();
-                canvas2.save();
-                canvas2.translate(((float) getWidth()) / 2.0f, 0.0f);
-                canvas2.drawText("height_to_viewport_ratio_permille: " + messageWatcher.getHeightToViewportRatioPermille(), 0.0f, 0.0f, this.tmpTextPaint);
-                canvas2.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
-                canvas2.drawText("seen_range_ratio_permille: " + messageWatcher.getSeenRangeRatioPermille(), 0.0f, 0.0f, this.tmpTextPaint);
-                canvas2.restore();
-                canvas2.restore();
-                i++;
-                canvas = canvas2;
+            View childAt = this.list.getChildAt(i3);
+            long j7 = j5;
+            ViewGroup viewGroup = this.root;
+            RectF rectF2 = tmpRect;
+            if (ViewPositionWatcher.computeRectInParent(childAt, viewGroup, rectF2)) {
+                if (childAt instanceof ChatMessageCell) {
+                    messageObject = ((ChatMessageCell) childAt).getMessageObject();
+                } else if (childAt instanceof ChatActionCell) {
+                    messageObject = ((ChatActionCell) childAt).getMessageObject();
+                } else {
+                    j2 = j6;
+                    i = i3;
+                }
+                if (messageObject == null) {
+                    j2 = j6;
+                    i = i3;
+                } else {
+                    long dialogId = messageObject.getDialogId();
+                    i = i3;
+                    if (dialogId != this.dialogId) {
+                        j2 = j6;
+                    } else {
+                        int id = messageObject.getId();
+                        long groupId = messageObject.getGroupId();
+                        if (dialogId == j7 || id <= 0) {
+                            j2 = j6;
+                        } else {
+                            long j8 = id;
+                            MessageWatcher messageWatcher2 = (MessageWatcher) longSparseArray.get(j8);
+                            if (messageWatcher2 == null) {
+                                j2 = j6;
+                                j3 = groupId;
+                                messageWatcher = new MessageWatcher(id, j3);
+                                longSparseArray.put(j8, messageWatcher);
+                                if (BuildVars.LOGS_ENABLED) {
+                                    Log.d("ViewMetrics", id + " " + j3 + " in screen");
+                                }
+                            } else {
+                                j2 = j6;
+                                j3 = groupId;
+                                messageWatcher = messageWatcher2;
+                            }
+                            RectF rectF3 = messageWatcher.position;
+                            rectF3.set(rectF2);
+                            if (j3 != j7) {
+                                RectF rectF4 = (RectF) longSparseArray3.get(j3);
+                                if (rectF4 == null) {
+                                    rectF4 = new RectF();
+                                    longSparseArray3.put(j3, rectF4);
+                                }
+                                rectF4.union(rectF3);
+                            }
+                            messageWatcher.lastUpdateMillis = jUptimeMillis;
+                        }
+                    }
+                }
+            } else {
+                j2 = j6;
+                i = i3;
+            }
+            i3 = i + 1;
+            j5 = j7;
+            j6 = j2;
+        }
+        long j9 = j6;
+        long j10 = j5;
+        for (int size2 = longSparseArray3.size() - 1; size2 >= 0; size2--) {
+            if (((RectF) longSparseArray3.valueAt(size2)).isEmpty()) {
+                longSparseArray3.removeAt(size2);
             }
         }
+        int size3 = longSparseArray.size();
+        for (int i4 = 0; i4 < size3; i4++) {
+            MessageWatcher messageWatcher3 = (MessageWatcher) longSparseArray.valueAt(i4);
+            long j11 = messageWatcher3.groupId;
+            if (j11 != j10 && (rectF = (RectF) longSparseArray3.get(j11)) != null) {
+                messageWatcher3.position.set(rectF);
+            }
+        }
+        int size4 = longSparseArray.size() - 1;
+        while (true) {
+            arrayList = this.pendingMetrics;
+            if (size4 < 0) {
+                break;
+            }
+            MessageWatcher messageWatcher4 = (MessageWatcher) longSparseArray.valueAt(size4);
+            long j12 = messageWatcher4.messageId;
+            long j13 = messageWatcher4.groupId;
+            RectF rectF5 = j13 != j10 ? (RectF) longSparseArray3.get(j13) : null;
+            long j14 = messageWatcher4.lastUpdateMillis;
+            RectF rectF6 = this.viewPort;
+            RectF rectF7 = messageWatcher4.position;
+            if (j14 != jUptimeMillis && rectF5 == null) {
+                z = false;
+            } else if (RectF.intersects(rectF6, rectF5 != null ? rectF5 : rectF7)) {
+                z = true;
+            } else {
+                z = false;
+            }
+            if (z) {
+                longSparseArray2 = longSparseArray;
+                String str3 = str;
+                if (messageWatcher4.lastViewMillis != j10) {
+                    messageWatcher4.visibleTime += j9;
+                    if (jUptimeMillis - this.lastUserActivityTime < 15000) {
+                        messageWatcher4.activeTime += j9;
+                    }
+                }
+                messageWatcher4.lastViewMillis = jUptimeMillis;
+                float fHeight = rectF7.height();
+                j = jUptimeMillis;
+                float f = rectF6.top - rectF7.top;
+                float f2 = fHeight - (rectF7.bottom - rectF6.bottom);
+                messageWatcher4.seenTopPx = Math.min(messageWatcher4.seenTopPx, MathUtils.clamp(f, 0.0f, fHeight));
+                messageWatcher4.seenBottomPx = Math.max(messageWatcher4.seenBottomPx, MathUtils.clamp(f2, 0.0f, fHeight));
+                messageWatcher4.maxViewPortHeight = Math.max(messageWatcher4.maxViewPortHeight, rectF6.height());
+                messageWatcher4.maxPostTotalHeight = Math.max(messageWatcher4.maxPostTotalHeight, fHeight);
+                if (messageWatcher4.visible || messageWatcher4.visibleTime <= 300) {
+                    str2 = str3;
+                } else {
+                    if (BuildVars.LOGS_ENABLED) {
+                        str2 = str3;
+                        Log.d(str2, j12 + " " + j13 + " in viewport");
+                    } else {
+                        str2 = str3;
+                    }
+                    messageWatcher4.visible = true;
+                }
+            } else {
+                j = jUptimeMillis;
+                longSparseArray2 = longSparseArray;
+                str2 = str;
+            }
+            if (z || messageWatcher4.visibleTime <= j10 || j - 300 <= messageWatcher4.lastViewMillis) {
+                longSparseArray = longSparseArray2;
+                boolean z2 = messageWatcher4.visible;
+                if (z2) {
+                    String str4 = str2;
+                    if (messageWatcher4.visibleTime > 300000) {
+                        arrayList.add(messageWatcher4.buildMetrics());
+                        longSparseArray.removeAt(size4);
+                        if (BuildVars.LOGS_ENABLED) {
+                            str2 = str4;
+                            Log.d(str2, j12 + " " + j13 + " out of time");
+                        } else {
+                            str2 = str4;
+                        }
+                    } else {
+                        str2 = str4;
+                        if (z2 && messageWatcher4.lastUpdateMillis != j && (j13 == j10 || rectF5 == null)) {
+                            longSparseArray.removeAt(size4);
+                            if (BuildVars.LOGS_ENABLED) {
+                                Log.d(str2, j12 + " " + j13 + " out of screen");
+                            }
+                        }
+                    }
+                } else if (z2) {
+                }
+            } else {
+                if (messageWatcher4.visible) {
+                    arrayList.add(messageWatcher4.buildMetrics());
+                }
+                longSparseArray = longSparseArray2;
+                longSparseArray.removeAt(size4);
+                if (BuildVars.LOGS_ENABLED) {
+                    Log.d(str2, j12 + " " + j13 + " out of viewport: " + messageWatcher4.visibleTime);
+                }
+            }
+            size4--;
+            str = str2;
+            jUptimeMillis = j;
+        }
+        if (!arrayList.isEmpty() && this.pendingFlush == null) {
+            ChatActivityMessageMetricsView$$ExternalSyntheticLambda1 chatActivityMessageMetricsView$$ExternalSyntheticLambda1 = new ChatActivityMessageMetricsView$$ExternalSyntheticLambda1(this, 0);
+            this.pendingFlush = chatActivityMessageMetricsView$$ExternalSyntheticLambda1;
+            AndroidUtilities.runOnUIThread(chatActivityMessageMetricsView$$ExternalSyntheticLambda1, 5000L);
+        }
+        if (this.DRAW_DEBUG) {
+            invalidate();
+        }
+    }
+
+    public final void setIsUserActive() {
+        this.lastUserActivityTime = SystemClock.uptimeMillis();
     }
 }

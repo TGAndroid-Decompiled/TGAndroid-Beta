@@ -13,32 +13,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
-public class StoryReactionWidgetBackground extends Drawable {
-    Paint backgroundPaint;
-    private boolean mirror;
-    private final View parent;
-    AnimatedFloat progressToMirrored;
-    Paint shadowPaint;
-    int style;
-    private Paint xRefPaint;
-    private final int STYLE_FILLED = 0;
-    private final int STYLE_TRANSCLUENT = 1;
-    int alpha = 255;
-    float[] points = new float[15];
-    Path path = new Path();
-
-    @Override
-    public int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
+public final class StoryReactionWidgetBackground extends Drawable {
+    public final Paint backgroundPaint;
+    public boolean mirror;
+    public final View parent;
+    public final AnimatedFloat progressToMirrored;
+    public final Paint shadowPaint;
+    public int style;
+    public Paint xRefPaint;
+    public int alpha = 255;
+    public final float[] points = new float[15];
+    public final Path path = new Path();
 
     public StoryReactionWidgetBackground(View view) {
         this.parent = view;
-        this.progressToMirrored = new AnimatedFloat(view, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.progressToMirrored = new AnimatedFloat(350L, view, CubicBezierInterpolator.EASE_OUT_QUINT);
         Paint paint = new Paint(1);
         this.shadowPaint = paint;
         paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);
@@ -47,110 +36,112 @@ public class StoryReactionWidgetBackground extends Drawable {
         paint2.setColor(-1);
     }
 
-    public void updateShadowLayer(float f) {
-        this.shadowPaint.setShadowLayer(AndroidUtilities.dp(2.0f) / f, 0.0f, AndroidUtilities.dpf2(0.7f) / f, ColorUtils.setAlphaComponent(-16777216, 45));
-    }
-
     @Override
-    public void draw(Canvas canvas) {
-        this.points[0] = getBounds().centerX();
-        int i = 1;
-        this.points[1] = getBounds().centerY();
-        int i2 = 2;
-        this.points[2] = getBounds().height() / 2.0f;
-        this.points[3] = getBounds().left + (getBounds().width() * 1.027f);
-        this.points[4] = getBounds().top + (getBounds().height() * 0.956f);
-        this.points[5] = getBounds().height() * 0.055f;
-        this.points[6] = getBounds().left + (getBounds().width() * 0.843f);
-        this.points[7] = getBounds().top + (getBounds().height() * 0.812f);
-        this.points[8] = getBounds().height() * 0.132f;
-        this.points[9] = getBounds().left + (getBounds().width() * (-0.02699995f));
-        this.points[10] = getBounds().top + (getBounds().height() * 0.956f);
-        this.points[11] = getBounds().height() * 0.055f;
-        this.points[12] = getBounds().left + (getBounds().width() * 0.157f);
-        this.points[13] = getBounds().top + (getBounds().height() * 0.812f);
-        this.points[14] = getBounds().height() * 0.132f;
-        float f = this.progressToMirrored.set(this.mirror ? 1.0f : 0.0f);
-        int i3 = this.style;
-        if (i3 == 0) {
-            this.backgroundPaint.setColor(-1);
-        } else if (i3 == 1) {
+    public final void draw(Canvas canvas) {
+        float fCenterX = getBounds().centerX();
+        float[] fArr = this.points;
+        int i = 0;
+        fArr[0] = fCenterX;
+        int i2 = 1;
+        fArr[1] = getBounds().centerY();
+        int i3 = 2;
+        fArr[2] = getBounds().height() / 2.0f;
+        int i4 = 3;
+        fArr[3] = (getBounds().width() * 1.027f) + getBounds().left;
+        int i5 = 4;
+        fArr[4] = (getBounds().height() * 0.956f) + getBounds().top;
+        fArr[5] = getBounds().height() * 0.055f;
+        fArr[6] = (getBounds().width() * 0.843f) + getBounds().left;
+        fArr[7] = (getBounds().height() * 0.812f) + getBounds().top;
+        fArr[8] = getBounds().height() * 0.132f;
+        fArr[9] = (getBounds().width() * (-0.02699995f)) + getBounds().left;
+        fArr[10] = (getBounds().height() * 0.956f) + getBounds().top;
+        fArr[11] = getBounds().height() * 0.055f;
+        fArr[12] = (getBounds().width() * 0.157f) + getBounds().left;
+        fArr[13] = (getBounds().height() * 0.812f) + getBounds().top;
+        fArr[14] = getBounds().height() * 0.132f;
+        float f = this.progressToMirrored.set(this.mirror ? 1.0f : 0.0f, false);
+        int i6 = this.style;
+        Paint paint = this.backgroundPaint;
+        if (i6 == 0) {
+            paint.setColor(-1);
+        } else if (i6 == 1) {
             if (this.xRefPaint == null) {
-                Paint paint = new Paint(1);
-                this.xRefPaint = paint;
-                paint.setColor(-16777216);
+                Paint paint2 = new Paint(1);
+                this.xRefPaint = paint2;
+                paint2.setColor(-16777216);
                 this.xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 this.xRefPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
             }
-            this.backgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, 127));
+            paint.setColor(ColorUtils.setAlphaComponent(-16777216, 127));
         }
         if (this.alpha != 255 || this.style == 1) {
-            canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, getBounds().right + (getBounds().width() * 0.2f), getBounds().bottom + (getBounds().height() * 0.2f), this.alpha, 31);
+            canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.alpha, 31);
         } else {
             canvas.save();
         }
-        this.path.rewind();
-        int i4 = 0;
-        while (i4 < i2) {
-            if (this.style != i || i4 != 0) {
-                Paint paint2 = i4 == 0 ? this.shadowPaint : this.backgroundPaint;
-                int i5 = i4 == 0 ? 1 : 0;
-                int i6 = 0;
-                while (i6 < 5) {
-                    if (i6 == i || i6 == i2) {
+        Path path = this.path;
+        path.rewind();
+        int i7 = 0;
+        while (i7 < i3) {
+            if (this.style != i2 || i7 != 0) {
+                Paint paint3 = i7 == 0 ? this.shadowPaint : paint;
+                int i8 = i7 == 0 ? 1 : 0;
+                while (i < 5) {
+                    if (i == i2 || i == i3) {
                         if (f != 1.0f) {
-                            Path path = this.path;
-                            float[] fArr = this.points;
-                            int i7 = i6 * 3;
-                            path.addCircle(fArr[i7], fArr[i7 + 1], (fArr[i7 + 2] * (1.0f - f)) - i5, Path.Direction.CW);
+                            int i9 = i * 3;
+                            path.addCircle(fArr[i9], fArr[i9 + 1], ((1.0f - f) * fArr[i9 + 2]) - i8, Path.Direction.CW);
                         }
-                    } else if (i6 != 3 && i6 != 4) {
-                        Path path2 = this.path;
-                        float[] fArr2 = this.points;
-                        int i8 = i6 * 3;
-                        path2.addCircle(fArr2[i8], fArr2[i8 + 1], fArr2[i8 + 2] - i5, Path.Direction.CW);
+                    } else if (i != i4 && i != i5) {
+                        int i10 = i * 3;
+                        path.addCircle(fArr[i10], fArr[i10 + 1], fArr[i10 + 2] - i8, Path.Direction.CW);
                     } else if (f != 0.0f) {
-                        Path path3 = this.path;
-                        float[] fArr3 = this.points;
-                        int i9 = i6 * 3;
-                        path3.addCircle(fArr3[i9], fArr3[i9 + 1], (fArr3[i9 + 2] * f) - i5, Path.Direction.CW);
+                        int i11 = i * 3;
+                        path.addCircle(fArr[i11], fArr[i11 + 1], (fArr[i11 + 2] * f) - i8, Path.Direction.CW);
                     }
-                    i6++;
-                    i = 1;
-                    i2 = 2;
+                    i++;
+                    i4 = 3;
+                    i2 = 1;
+                    i3 = 2;
+                    i5 = 4;
                 }
-                canvas.drawPath(this.path, paint2);
+                canvas.drawPath(path, paint3);
             }
-            i4++;
-            i = 1;
-            i2 = 2;
+            i7++;
+            i4 = 3;
+            i = 0;
+            i2 = 1;
+            i3 = 2;
+            i5 = 4;
         }
         canvas.restore();
     }
 
     @Override
-    public void setAlpha(int i) {
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
         this.alpha = i;
     }
 
-    public void setMirror(boolean z, boolean z2) {
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public final void setMirror(boolean z, boolean z2) {
         this.mirror = z;
-        if (!z2) {
-            this.progressToMirrored.set(z ? 1.0f : 0.0f, true);
-        } else {
+        if (z2) {
             this.parent.invalidate();
+        } else {
+            this.progressToMirrored.set(z ? 1.0f : 0.0f, true);
         }
     }
 
-    public void nextStyle() {
-        int i = this.style + 1;
-        this.style = i;
-        if (i >= 2) {
-            this.style = 0;
-        }
-    }
-
-    public boolean isDarkStyle() {
-        return this.style == 1;
+    public final void updateShadowLayer(float f) {
+        this.shadowPaint.setShadowLayer(AndroidUtilities.dp(2.0f) / f, 0.0f, AndroidUtilities.dpf2(0.7f) / f, ColorUtils.setAlphaComponent(-16777216, 45));
     }
 }

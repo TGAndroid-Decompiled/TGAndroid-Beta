@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
@@ -13,9 +12,6 @@ import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -23,8 +19,11 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
+import org.telegram.ui.CallLogActivity;
+import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
 import org.telegram.ui.Components.LayoutHelper;
@@ -32,26 +31,26 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 
-public class GreetMessagesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+public final class GreetMessagesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public TL_account.TL_businessGreetingMessage currentValue;
-    private ActionBarMenuItem doneButton;
-    private CrossfadeDrawable doneButtonDrawable;
+    public final int[] daysOfInactivity;
+    public final String[] daysOfInactivityTexts;
+    public ActionBarMenuItem doneButton;
+    public CrossfadeDrawable doneButtonDrawable;
     public boolean enabled;
     public boolean exclude;
-    private UniversalRecyclerView listView;
-    private BusinessRecipientsHelper recipientsHelper;
-    private boolean valueSet;
-    private final int[] daysOfInactivity = {7, 14, 21, 28};
-    private int shiftDp = -4;
-    public int inactivityDays = 7;
-    private final String[] daysOfInactivityTexts = new String[4];
-
-    @Override
-    public boolean isSupportEdgeToEdge() {
-        return true;
-    }
+    public int inactivityDays;
+    public UniversalRecyclerView listView;
+    public BusinessRecipientsHelper recipientsHelper;
+    public int shiftDp;
+    public boolean valueSet;
 
     public GreetMessagesActivity() {
+        super(null);
+        this.daysOfInactivity = new int[]{7, 14, 21, 28};
+        this.shiftDp = -4;
+        this.inactivityDays = 7;
+        this.daysOfInactivityTexts = new String[4];
         int i = 0;
         while (true) {
             int[] iArr = this.daysOfInactivity;
@@ -63,117 +62,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         }
     }
 
-    @Override
-    public View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessGreet));
-        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
-                    if (GreetMessagesActivity.this.onBackPressed(true)) {
-                        GreetMessagesActivity.this.finishFragment();
-                    }
-                } else if (i == 1) {
-                    GreetMessagesActivity.this.processDone();
-                }
-            }
-        });
-        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i = Theme.key_actionBarDefaultIcon;
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
-        checkDone(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new Runnable() {
-            @Override
-            public final void run() {
-                GreetMessagesActivity.$r8$lambda$hOVqMCyHftDSOLCor86N2KpZlT8(this.f$0);
-            }
-        });
-        this.recipientsHelper = businessRecipientsHelper;
-        businessRecipientsHelper.doNotExcludeNewChats();
-        BusinessRecipientsHelper businessRecipientsHelper2 = this.recipientsHelper;
-        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.currentValue;
-        businessRecipientsHelper2.setValue(tL_businessGreetingMessage == null ? null : tL_businessGreetingMessage.recipients);
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, new Utilities.Callback5() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-            }
-        }, null);
-        this.listView = universalRecyclerView;
-        universalRecyclerView.setSections();
-        this.listView.adapter.setApplyBackground(false);
-        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        this.actionBar.setAdaptiveBackground(this.listView, true);
-        setValue();
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    public static void $r8$lambda$hOVqMCyHftDSOLCor86N2KpZlT8(GreetMessagesActivity greetMessagesActivity) {
-        greetMessagesActivity.listView.adapter.update(true);
-        greetMessagesActivity.checkDone(true);
-    }
-
-    private void setValue() {
-        UniversalAdapter universalAdapter;
-        if (this.valueSet) {
-            return;
-        }
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        if (userFull == null) {
-            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
-            return;
-        }
-        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = userFull.business_greeting_message;
-        this.currentValue = tL_businessGreetingMessage;
-        this.enabled = tL_businessGreetingMessage != null;
-        this.inactivityDays = tL_businessGreetingMessage != null ? tL_businessGreetingMessage.no_activity_days : 7;
-        this.exclude = tL_businessGreetingMessage != null ? tL_businessGreetingMessage.recipients.exclude_selected : true;
-        BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
-        if (businessRecipientsHelper != null) {
-            businessRecipientsHelper.setValue(tL_businessGreetingMessage == null ? null : tL_businessGreetingMessage.recipients);
-        }
-        UniversalRecyclerView universalRecyclerView = this.listView;
-        if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
-            universalAdapter.update(true);
-        }
-        checkDone(true);
-        this.valueSet = true;
-    }
-
-    public boolean hasChanges() {
-        if (!this.valueSet) {
-            return false;
-        }
-        boolean z = this.enabled;
-        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.currentValue;
-        if (z != (tL_businessGreetingMessage != null)) {
-            return true;
-        }
-        if (z && tL_businessGreetingMessage != null) {
-            if (tL_businessGreetingMessage.no_activity_days != this.inactivityDays || tL_businessGreetingMessage.recipients.exclude_selected != this.exclude) {
-                return true;
-            }
-            BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
-            if (businessRecipientsHelper != null && businessRecipientsHelper.hasChanges()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void checkDone(boolean z) {
+    public final void checkDone$1$1(boolean z) {
         if (this.doneButton == null) {
             return;
         }
@@ -188,8 +77,197 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
     }
 
-    public void processDone() {
-        if (this.doneButtonDrawable.getProgress() > 0.0f) {
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessGreet));
+        this.actionBar.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 8));
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        int i = Theme.key_actionBarDefaultIcon;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(null, i, false)));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.doneButtonDrawable);
+        checkDone$1$1(false);
+        FrameLayout frameLayout = new FrameLayout(context);
+        int i2 = Theme.key_windowBackgroundGray;
+        frameLayout.setBackgroundColor(Theme.getColor(null, i2, false));
+        BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new ArticleViewer$$ExternalSyntheticLambda3(this, 16));
+        this.recipientsHelper = businessRecipientsHelper;
+        businessRecipientsHelper.doNotExcludeNewChats = true;
+        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.currentValue;
+        businessRecipientsHelper.setValue(tL_businessGreetingMessage != null ? tL_businessGreetingMessage.recipients : null);
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new CallLogActivity$$ExternalSyntheticLambda3(this, 7), new GreetMessagesActivity$$ExternalSyntheticLambda0(this, 2), null, getResourceProvider());
+        this.listView = universalRecyclerView;
+        universalRecyclerView.setSections();
+        UniversalRecyclerView universalRecyclerView2 = this.listView;
+        universalRecyclerView2.adapter.applyBackground = false;
+        frameLayout.addView(universalRecyclerView2, LayoutHelper.createFrame(-1.0f, -1));
+        ActionBar actionBar = this.actionBar;
+        UniversalRecyclerView universalRecyclerView3 = this.listView;
+        actionBar.getClass();
+        actionBar.setAdaptiveBackground(universalRecyclerView3, true, i2, Theme.key_actionBarDefault);
+        setValue$2();
+        this.fragmentView = frameLayout;
+        return frameLayout;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        UniversalAdapter universalAdapter;
+        if (i != NotificationCenter.quickRepliesUpdated) {
+            if (i == NotificationCenter.userInfoDidLoad) {
+                setValue$2();
+            }
+        } else {
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
+                universalAdapter.update(true);
+            }
+            checkDone$1$1(true);
+        }
+    }
+
+    public final void fillItems$2(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        String string = LocaleController.getString(R.string.BusinessGreet);
+        String string2 = LocaleController.getString(R.string.BusinessGreetInfo);
+        UItem uItem = new UItem(2);
+        uItem.text = string;
+        uItem.animatedText = string2;
+        uItem.subtext = "RestrictedEmoji";
+        uItem.textValue = "👋";
+        arrayList.add(uItem);
+        UItem uItemAsCheck = UItem.asCheck(1, LocaleController.getString(R.string.BusinessGreetSend));
+        uItemAsCheck.setChecked(this.enabled);
+        arrayList.add(uItemAsCheck);
+        UItem uItem2 = new UItem(7);
+        uItem2.text = null;
+        arrayList.add(uItem2);
+        if (this.enabled) {
+            QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
+            if (quickReplyFindReply != null) {
+                UItem uItem3 = new UItem(17);
+                uItem3.object = quickReplyFindReply;
+                arrayList.add(uItem3);
+            } else {
+                UItem uItemAsButton = UItem.asButton(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessGreetCreate));
+                uItemAsButton.accent = true;
+                arrayList.add(uItemAsButton);
+            }
+            UItem uItem4 = new UItem(7);
+            uItem4.text = null;
+            arrayList.add(uItem4);
+            String string3 = LocaleController.getString(R.string.BusinessRecipients);
+            int i = 0;
+            UItem uItem5 = new UItem(0);
+            uItem5.text = string3;
+            arrayList.add(uItem5);
+            UItem uItemAsRadio = UItem.asRadio(3, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
+            uItemAsRadio.setChecked(this.exclude);
+            arrayList.add(uItemAsRadio);
+            UItem uItemAsRadio2 = UItem.asRadio(4, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
+            uItemAsRadio2.setChecked(!this.exclude);
+            arrayList.add(uItemAsRadio2);
+            UItem uItem6 = new UItem(7);
+            uItem6.text = null;
+            arrayList.add(uItem6);
+            this.recipientsHelper.fillItems(arrayList, universalAdapter, true);
+            String string4 = LocaleController.getString(R.string.BusinessGreetRecipientsInfo);
+            UItem uItem7 = new UItem(7);
+            uItem7.text = string4;
+            arrayList.add(uItem7);
+            String string5 = LocaleController.getString(R.string.BusinessGreetPeriod);
+            UItem uItem8 = new UItem(0);
+            uItem8.text = string5;
+            arrayList.add(uItem8);
+            while (true) {
+                int[] iArr = this.daysOfInactivity;
+                if (i >= iArr.length) {
+                    i = -1;
+                    break;
+                } else if (iArr[i] == this.inactivityDays) {
+                    break;
+                } else {
+                    i++;
+                }
+            }
+            DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda6 = new DialogCell$$ExternalSyntheticLambda6(this, 7);
+            UItem uItem9 = new UItem(14);
+            uItem9.texts = this.daysOfInactivityTexts;
+            uItem9.intValue = i;
+            uItem9.intCallback = dialogCell$$ExternalSyntheticLambda6;
+            uItem9.longValue = -1L;
+            arrayList.add(uItem9);
+            String string6 = LocaleController.getString(R.string.BusinessGreetPeriodInfo);
+            UItem uItem10 = new UItem(7);
+            uItem10.text = string6;
+            arrayList.add(uItem10);
+        }
+    }
+
+    public final boolean hasChanges() {
+        BusinessRecipientsHelper businessRecipientsHelper;
+        if (this.valueSet) {
+            boolean z = this.enabled;
+            TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = this.currentValue;
+            if (z != (tL_businessGreetingMessage != null) || (z && tL_businessGreetingMessage != null && (tL_businessGreetingMessage.no_activity_days != this.inactivityDays || tL_businessGreetingMessage.recipients.exclude_selected != this.exclude || ((businessRecipientsHelper = this.recipientsHelper) != null && businessRecipientsHelper.hasChanges())))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final boolean onBackPressed(boolean z) {
+        if (!hasChanges()) {
+            return super.onBackPressed(z);
+        }
+        if (z) {
+            if (!this.enabled) {
+                processDone$2();
+                return false;
+            }
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, null);
+            String string = LocaleController.getString(R.string.UnsavedChanges);
+            AlertDialog alertDialog = builder.alertDialog;
+            alertDialog.title = string;
+            alertDialog.message = LocaleController.getString(R.string.BusinessGreetUnsavedChanges);
+            builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new GreetMessagesActivity$$ExternalSyntheticLambda0(this, 0));
+            builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new GreetMessagesActivity$$ExternalSyntheticLambda0(this, 1));
+            showDialog(alertDialog);
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        getNotificationCenter().addObserver(this, NotificationCenter.quickRepliesUpdated);
+        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
+        QuickRepliesController.getInstance(this.currentAccount).load(null, true);
+        setValue$2();
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        getNotificationCenter().removeObserver(this, NotificationCenter.quickRepliesUpdated);
+        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
+    }
+
+    public final void processDone$2() {
+        if (this.doneButtonDrawable.progress > 0.0f) {
             return;
         }
         if (!hasChanges()) {
@@ -229,188 +307,35 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
                 userFull.flags2 &= -5;
                 userFull.business_greeting_message = null;
             }
-            getConnectionsManager().sendRequest(updatebusinessgreetingmessage, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    GreetMessagesActivity.m1392$r8$lambda$2NWWqTskuEvgkOmKq6Cb3MRL1A(this.f$0, tLObject, tL_error);
-                }
-            });
+            getConnectionsManager().sendRequest(updatebusinessgreetingmessage, new CallLogActivity$$ExternalSyntheticLambda1(this, 9));
             getMessagesStorage().updateUserInfo(userFull, false);
         }
     }
 
-    public static void m1392$r8$lambda$2NWWqTskuEvgkOmKq6Cb3MRL1A(final GreetMessagesActivity greetMessagesActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        greetMessagesActivity.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                GreetMessagesActivity.m1394$r8$lambda$ocAK9ho0b_IiRnb9DtqSL9xco(this.f$0, tL_error, tLObject);
-            }
-        });
-    }
-
-    public static void m1394$r8$lambda$ocAK9ho0b_IiRnb9DtqSL9xco(GreetMessagesActivity greetMessagesActivity, TLRPC.TL_error tL_error, TLObject tLObject) {
-        if (tL_error != null) {
-            greetMessagesActivity.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.showError(tL_error);
-            return;
-        }
-        greetMessagesActivity.getClass();
-        if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
-            greetMessagesActivity.finishFragment();
-        } else {
-            greetMessagesActivity.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.of(greetMessagesActivity).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
-        }
-    }
-
-    @Override
-    public boolean onBackPressed(boolean z) {
-        if (!hasChanges()) {
-            return super.onBackPressed(z);
-        }
-        if (z) {
-            if (!this.enabled) {
-                processDone();
-                return false;
-            }
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
-            builder.setMessage(LocaleController.getString(R.string.BusinessGreetUnsavedChanges));
-            builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.processDone();
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.finishFragment();
-                }
-            });
-            showDialog(builder.create());
-        }
-        return false;
-    }
-
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessGreet), LocaleController.getString(R.string.BusinessGreetInfo), "RestrictedEmoji", "👋"));
-        arrayList.add(UItem.asCheck(1, LocaleController.getString(R.string.BusinessGreetSend)).setChecked(this.enabled));
-        arrayList.add(UItem.asShadow(null));
-        if (this.enabled) {
-            QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
-            if (quickReplyFindReply != null) {
-                arrayList.add(UItem.asLargeQuickReply(quickReplyFindReply));
-            } else {
-                arrayList.add(UItem.asButton(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessGreetCreate)).accent());
-            }
-            arrayList.add(UItem.asShadow(null));
-            arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessRecipients)));
-            arrayList.add(UItem.asRadio(3, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2)).setChecked(this.exclude));
-            arrayList.add(UItem.asRadio(4, LocaleController.getString(R.string.BusinessChatsOnlySelected2)).setChecked(true ^ this.exclude));
-            arrayList.add(UItem.asShadow(null));
-            this.recipientsHelper.fillItems(arrayList, universalAdapter);
-            arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessGreetRecipientsInfo)));
-            arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessGreetPeriod)));
-            int i = 0;
-            while (true) {
-                int[] iArr = this.daysOfInactivity;
-                if (i >= iArr.length) {
-                    i = -1;
-                    break;
-                } else if (iArr[i] == this.inactivityDays) {
-                    break;
-                } else {
-                    i++;
-                }
-            }
-            arrayList.add(UItem.asSlideView(this.daysOfInactivityTexts, i, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    this.f$0.chooseInactivity(((Integer) obj).intValue());
-                }
-            }));
-            arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessGreetPeriodInfo)));
-        }
-    }
-
-    public void chooseInactivity(int i) {
-        this.inactivityDays = this.daysOfInactivity[i];
-        checkDone(true);
-    }
-
-    public void onClick(UItem uItem, View view, int i, float f, float f2) {
-        if (this.recipientsHelper.onClick(uItem)) {
-            return;
-        }
-        int i2 = uItem.id;
-        if (i2 == 2 || uItem.viewType == 17) {
-            Bundle bundle = new Bundle();
-            bundle.putLong("user_id", getUserConfig().getClientUserId());
-            bundle.putInt("chatMode", 5);
-            bundle.putString("quick_reply", "hello");
-            presentFragment(new ChatActivity(bundle));
-            return;
-        }
-        if (i2 == 1) {
-            this.enabled = !this.enabled;
-            this.listView.adapter.update(true);
-            checkDone(true);
-        } else {
-            if (i2 == 3) {
-                BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
-                this.exclude = true;
-                businessRecipientsHelper.setExclude(true);
-                this.listView.adapter.update(true);
-                checkDone(true);
-                return;
-            }
-            if (i2 == 4) {
-                BusinessRecipientsHelper businessRecipientsHelper2 = this.recipientsHelper;
-                this.exclude = false;
-                businessRecipientsHelper2.setExclude(false);
-                this.listView.adapter.update(true);
-                checkDone(true);
-            }
-        }
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public final void setValue$2() {
         UniversalAdapter universalAdapter;
-        if (i == NotificationCenter.quickRepliesUpdated) {
-            UniversalRecyclerView universalRecyclerView = this.listView;
-            if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
-                universalAdapter.update(true);
-            }
-            checkDone(true);
+        if (this.valueSet) {
             return;
         }
-        if (i == NotificationCenter.userInfoDidLoad) {
-            setValue();
+        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        if (userFull == null) {
+            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
+            return;
         }
-    }
-
-    @Override
-    public boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.quickRepliesUpdated);
-        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
-        QuickRepliesController.getInstance(this.currentAccount).load();
-        setValue();
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.quickRepliesUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public void onInsets(int i, int i2, int i3, int i4) {
-        this.listView.setPadding(0, 0, 0, i4);
-        this.listView.setClipToPadding(false);
+        TL_account.TL_businessGreetingMessage tL_businessGreetingMessage = userFull.business_greeting_message;
+        this.currentValue = tL_businessGreetingMessage;
+        this.enabled = tL_businessGreetingMessage != null;
+        this.inactivityDays = tL_businessGreetingMessage != null ? tL_businessGreetingMessage.no_activity_days : 7;
+        this.exclude = tL_businessGreetingMessage != null ? tL_businessGreetingMessage.recipients.exclude_selected : true;
+        BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
+        if (businessRecipientsHelper != null) {
+            businessRecipientsHelper.setValue(tL_businessGreetingMessage == null ? null : tL_businessGreetingMessage.recipients);
+        }
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
+            universalAdapter.update(true);
+        }
+        checkDone$1$1(true);
+        this.valueSet = true;
     }
 }

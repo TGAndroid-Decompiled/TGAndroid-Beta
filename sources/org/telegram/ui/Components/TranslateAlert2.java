@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -20,13 +21,10 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.core.content.ContextCompat;
 import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,6 +43,7 @@ import org.json.JSONTokener;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -54,10 +53,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.TranslateController;
+import org.telegram.messenger.UserNameResolver$$ExternalSyntheticOutline0;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
@@ -65,54 +64,567 @@ import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda57;
 import org.telegram.ui.Cells.TextSelectionHelper;
+import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda174;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda230;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda484;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda62;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
+import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda5;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.LinkManager$$ExternalSyntheticLambda3;
+import org.telegram.ui.LinkManager$$ExternalSyntheticLambda8;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda18;
+import org.telegram.ui.PaymentFormActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda98;
+import org.telegram.ui.VoIPFragment;
+import org.telegram.ui.web.WebActionBar$$ExternalSyntheticLambda9;
 
 public abstract class TranslateAlert2 extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
-    private static HashMap localesByCode;
+    public static HashMap localesByCode;
     public static final String[] userAgents = {"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36"};
-    private PaddedAdapter adapter;
-    private Boolean buttonShadowShown;
-    private View buttonShadowView;
-    private TextView buttonTextView;
-    private FrameLayout buttonView;
-    private boolean firstTranslation;
-    private BaseFragment fragment;
-    private String fromLanguage;
-    private HeaderView headerView;
-    private LinearLayoutManager layoutManager;
-    private RecyclerListView listView;
-    private LoadingTextView loadingTextView;
-    private Utilities.CallbackReturn onLinkPress;
-    private String prevToLanguage;
-    private Integer reqId;
-    private ArrayList reqMessageEntities;
-    private int reqMessageId;
-    private TLRPC.InputPeer reqPeer;
-    private TL_iv.RichMessage reqRichMessage;
-    private boolean reqSum;
-    private CharSequence reqText;
-    private RichMessageLayout.PreviewView richLoadingPreviewView;
-    private RichMessageLayout.PreviewView richPreviewView;
-    private AnimatedFloat sheetTopAnimated;
-    private boolean sheetTopNotAnimate;
-    private TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
-    private TextSelectionHelper.TextSelectionOverlay textSelectionOverlay;
-    private LinkSpanDrawable.LinksTextView textView;
-    private FrameLayout textViewContainer;
-    private String toLanguage;
+    public final PaddedAdapter adapter;
+    public Boolean buttonShadowShown;
+    public final View buttonShadowView;
+    public boolean firstTranslation;
+    public BaseFragment fragment;
+    public final String fromLanguage;
+    public final HeaderView headerView;
+    public final AnonymousClass2 listView;
+    public final LoadingTextView loadingTextView;
+    public Utilities.CallbackReturn onLinkPress;
+    public String prevToLanguage;
+    public Integer reqId;
+    public final int reqMessageId;
+    public final TLRPC.InputPeer reqPeer;
+    public final TL_iv.RichMessage reqRichMessage;
+    public final boolean reqSum;
+    public final CharSequence reqText;
+    public final RichMessageLayout.PreviewView richLoadingPreviewView;
+    public final RichMessageLayout.PreviewView richPreviewView;
+    public final AnimatedFloat sheetTopAnimated;
+    public boolean sheetTopNotAnimate;
+    public final TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+    public final TextSelectionHelper.TextSelectionOverlay textSelectionOverlay;
+    public final LinkSpanDrawable.LinksTextView textView;
+    public final AnonymousClass1 textViewContainer;
+    public String toLanguage;
 
-    @Override
-    protected boolean canDismissWithSwipe() {
-        return false;
+    public final class AnonymousClass1 extends FrameLayout {
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+        }
     }
 
-    public TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, Theme.ResourcesProvider resourcesProvider) {
-        this(context, str, str2, charSequence, arrayList, null, 0, false, null, resourcesProvider);
+    public final class ContainerView extends FrameLayout {
+        public final Paint bgPaint;
+        public final Path bgPath;
+        public Boolean lightStatusBarFull;
+
+        public ContainerView(Context context) {
+            super(context);
+            this.bgPath = new Path();
+            Paint paint = new Paint(1);
+            this.bgPaint = paint;
+            paint.setColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground));
+            paint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33f), Theme.default_shadow_color);
+        }
+
+        @Override
+        public final void dispatchDraw(Canvas canvas) {
+            TranslateAlert2 translateAlert2 = TranslateAlert2.this;
+            float sheetTop = translateAlert2.getSheetTop(true);
+            float fLerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(12.0f), MathUtils.clamp(sheetTop / AndroidUtilities.dpf2(24.0f), 0.0f, 1.0f));
+            translateAlert2.headerView.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, sheetTop));
+            boolean z = sheetTop <= ((float) AndroidUtilities.statusBarHeight) / 2.0f;
+            Boolean bool = this.lightStatusBarFull;
+            if (bool == null || bool.booleanValue() != z) {
+                this.lightStatusBarFull = Boolean.valueOf(z);
+                AndroidUtilities.setLightStatusBar(translateAlert2.getWindow(), AndroidUtilities.computePerceivedBrightness(z ? translateAlert2.getThemedColor(Theme.key_dialogBackground) : Theme.blendOver(translateAlert2.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f);
+            }
+            FrameLayout frameLayout = translateAlert2.topBulletinContainer;
+            frameLayout.setTranslationY(Math.max(translateAlert2.topBulletinContainer.getHeight() + AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight, sheetTop) + getTranslationY() + ((-frameLayout.getTop()) - translateAlert2.topBulletinContainer.getHeight()));
+            Path path = this.bgPath;
+            path.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, sheetTop, getWidth(), getHeight() + fLerp);
+            path.addRoundRect(rectF, fLerp, fLerp, Path.Direction.CW);
+            canvas.drawPath(path, this.bgPaint);
+            super.dispatchDraw(canvas);
+        }
+
+        @Override
+        public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            TranslateAlert2 translateAlert2 = TranslateAlert2.this;
+            if (translateAlert2.textSelectionHelper != null && translateAlert2.textSelectionOverlay != null) {
+                if (motionEvent.getAction() == 0 || motionEvent.getAction() == 1) {
+                    Log.d("TA2", "container dispatch act=" + motionEvent.getAction() + " inSel=" + translateAlert2.textSelectionHelper.isInSelectionMode());
+                }
+                if (translateAlert2.textSelectionHelper.isInSelectionMode() && translateAlert2.textSelectionOverlay.onTouchEvent(motionEvent)) {
+                    Log.d("TA2", "overlay consumed (handle)");
+                    return true;
+                }
+                boolean zCheckOnTap = translateAlert2.textSelectionOverlay.checkOnTap(motionEvent);
+                if (motionEvent.getAction() == 1) {
+                    Log.d("TA2", "checkOnTap=" + zCheckOnTap);
+                }
+                if (zCheckOnTap) {
+                    motionEvent.setAction(3);
+                }
+            }
+            return super.dispatchTouchEvent(motionEvent);
+        }
+
+        @Override
+        public final void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            Bulletin.addDelegate(this, new LaunchActivity.AnonymousClass7(8));
+        }
+
+        @Override
+        public final void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            Bulletin.removeDelegate(this);
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
+        }
+
+        @Override
+        public final void setTranslationY(float f) {
+            super.setTranslationY(f);
+            TranslateAlert2 translateAlert2 = TranslateAlert2.this;
+            FrameLayout frameLayout = translateAlert2.topBulletinContainer;
+            frameLayout.setTranslationY(Math.max(translateAlert2.topBulletinContainer.getHeight() + AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight, translateAlert2.getSheetTop(true)) + ((-frameLayout.getTop()) - translateAlert2.topBulletinContainer.getHeight()) + f);
+        }
     }
 
-    private TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, TLRPC.InputPeer inputPeer, int i, boolean z, TL_iv.RichMessage richMessage, Theme.ResourcesProvider resourcesProvider) {
-        super(context, false, resourcesProvider);
+    public final class HeaderView extends FrameLayout {
+        public final ImageView backButton;
+        public final TextView fromLanguageTextView;
+        public final View shadow;
+        public final PhotoViewer.AnonymousClass35 subtitleView;
+        public final VoIPFragment.AnonymousClass5 titleTextView;
+        public final AnonymousClass3 toLanguageTextView;
+
+        public final class AnonymousClass4 extends ActionBarPopupWindow.ActionBarPopupWindowLayout {
+            @Override
+            public final void onMeasure(int i, int i2) {
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.33f), View.MeasureSpec.getSize(i2)), 1073741824));
+            }
+        }
+
+        public HeaderView(Context context) {
+            super(context);
+            View view = new View(context);
+            view.setBackgroundColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground));
+            addView(view, LayoutHelper.createFrame(-1, 44.0f, 55, 0.0f, 12.0f, 0.0f, 0.0f));
+            ImageView imageView = new ImageView(context);
+            this.backButton = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            imageView.setImageResource(R.drawable.ic_ab_back);
+            int i = Theme.key_dialogTextBlack;
+            int themedColor = TranslateAlert2.this.getThemedColor(i);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            imageView.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
+            imageView.setBackground(Theme.createSelectorDrawable(TranslateAlert2.this.getThemedColor(Theme.key_listSelector), 1, -1));
+            imageView.setAlpha(0.0f);
+            final int i2 = 0;
+            imageView.setOnClickListener(new View.OnClickListener(this) {
+                public final TranslateAlert2.HeaderView f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void onClick(View view2) {
+                    int measuredHeight;
+                    switch (i2) {
+                        case 0:
+                            TranslateAlert2.this.lambda$showGiftOfferSheet$15();
+                            break;
+                        default:
+                            TranslateAlert2.HeaderView headerView = this.f$0;
+                            TranslateAlert2.HeaderView.AnonymousClass4 anonymousClass4 = new TranslateAlert2.HeaderView.AnonymousClass4(headerView.getContext());
+                            Drawable drawableMutate = headerView.getContext().getDrawable(R.drawable.popup_fixed_alert).mutate();
+                            int i3 = Theme.key_actionBarDefaultSubmenuBackground;
+                            TranslateAlert2 translateAlert2 = TranslateAlert2.this;
+                            drawableMutate.setColorFilter(new PorterDuffColorFilter(translateAlert2.getThemedColor(i3), PorterDuff.Mode.MULTIPLY));
+                            anonymousClass4.setBackground(drawableMutate);
+                            Runnable[] runnableArr = new Runnable[1];
+                            ArrayList<LocaleController.LocaleInfo> locales = TranslateController.getLocales();
+                            int i4 = 0;
+                            boolean z = true;
+                            while (i4 < locales.size()) {
+                                LocaleController.LocaleInfo localeInfo = locales.get(i4);
+                                if (!localeInfo.pluralLangCode.equals(translateAlert2.fromLanguage) && "remote".equals(localeInfo.pathToFile)) {
+                                    TextUtils.equals(translateAlert2.toLanguage, localeInfo.pluralLangCode);
+                                    ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(2, headerView.getContext(), ((BottomSheet) translateAlert2).resourcesProvider, z, i4 == locales.size() - 1);
+                                    actionBarMenuSubItem.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(localeInfo.pluralLangCode, null, null)));
+                                    actionBarMenuSubItem.setChecked(TextUtils.equals(translateAlert2.toLanguage, localeInfo.pluralLangCode));
+                                    actionBarMenuSubItem.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda62(headerView, runnableArr, localeInfo, 29));
+                                    anonymousClass4.linearLayout.addView(actionBarMenuSubItem);
+                                    z = false;
+                                }
+                                i4++;
+                            }
+                            ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(anonymousClass4);
+                            runnableArr[0] = new ChatActivity$$ExternalSyntheticLambda484(actionBarPopupWindow, 1);
+                            actionBarPopupWindow.pauseNotifications = true;
+                            actionBarPopupWindow.dismissAnimationDuration = 220;
+                            actionBarPopupWindow.setOutsideTouchable(true);
+                            actionBarPopupWindow.setClippingEnabled(true);
+                            actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
+                            actionBarPopupWindow.setFocusable(true);
+                            int[] iArr = new int[2];
+                            TranslateAlert2.HeaderView.AnonymousClass3 anonymousClass3 = headerView.toLanguageTextView;
+                            anonymousClass3.getLocationInWindow(iArr);
+                            anonymousClass4.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
+                            int measuredHeight2 = anonymousClass4.getMeasuredHeight();
+                            int i5 = iArr[1];
+                            if (i5 > (AndroidUtilities.displaySize.y * 0.9f) - measuredHeight2) {
+                                measuredHeight = AndroidUtilities.dp(8.0f) + (i5 - measuredHeight2);
+                            } else {
+                                measuredHeight = (anonymousClass3.getMeasuredHeight() + i5) - AndroidUtilities.dp(8.0f);
+                            }
+                            actionBarPopupWindow.showAtLocation(((BottomSheet) translateAlert2).containerView, 51, iArr[0] - AndroidUtilities.dp(8.0f), measuredHeight);
+                            break;
+                    }
+                }
+            });
+            addView(imageView, LayoutHelper.createFrame(54, 54.0f, 48, 1.0f, 1.0f, 1.0f, 1.0f));
+            VoIPFragment.AnonymousClass5 anonymousClass5 = new VoIPFragment.AnonymousClass5(this, context, 2);
+            this.titleTextView = anonymousClass5;
+            anonymousClass5.setTextColor(TranslateAlert2.this.getThemedColor(i));
+            anonymousClass5.setTextSize(1, 20.0f);
+            anonymousClass5.setTypeface(AndroidUtilities.bold());
+            anonymousClass5.setText(LocaleController.getString(R.string.AutomaticTranslation));
+            anonymousClass5.setPivotX(0.0f);
+            anonymousClass5.setPivotY(0.0f);
+            addView(anonymousClass5, LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 20.0f, 22.0f, 0.0f));
+            PhotoViewer.AnonymousClass35 anonymousClass35 = new PhotoViewer.AnonymousClass35(this, context, 8);
+            this.subtitleView = anonymousClass35;
+            if (LocaleController.isRTL) {
+                anonymousClass35.setGravity(5);
+            }
+            anonymousClass35.setPivotX(0.0f);
+            anonymousClass35.setPivotY(0.0f);
+            String str = TranslateAlert2.this.fromLanguage;
+            if (!TextUtils.isEmpty(str) && !"und".equals(str)) {
+                TextView textView = new TextView(context);
+                this.fromLanguageTextView = textView;
+                textView.setLines(1);
+                textView.setTextColor(TranslateAlert2.this.getThemedColor(Theme.key_player_actionBarSubtitle));
+                textView.setTextSize(1, 14.0f);
+                textView.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(str, null, null)));
+                textView.setPadding(0, AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f));
+            }
+            ImageView imageView2 = new ImageView(context);
+            imageView2.setImageResource(R.drawable.search_arrow);
+            int i3 = Theme.key_player_actionBarSubtitle;
+            imageView2.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(i3), mode));
+            if (LocaleController.isRTL) {
+                imageView2.setScaleX(-1.0f);
+            }
+            ?? r6 = new AnimatedTextView(context) {
+                public final Paint bgPaint = new Paint(1);
+                public final LinkSpanDrawable.LinkCollector links = new LinkSpanDrawable.LinkCollector();
+
+                @Override
+                public final void onDraw(Canvas canvas) {
+                    boolean z = LocaleController.isRTL;
+                    AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.drawable;
+                    if (z) {
+                        AndroidUtilities.rectTmp.set(getWidth() - (getPaddingRight() + (getPaddingLeft() + ((int) Math.ceil(animatedTextDrawable.getCurrentWidth())))), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+                    } else {
+                        AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(animatedTextDrawable.getCurrentWidth())), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+                    }
+                    Paint paint = this.bgPaint;
+                    TranslateAlert2 translateAlert2 = TranslateAlert2.this;
+                    int i4 = Theme.key_player_actionBarSubtitle;
+                    String[] strArr = TranslateAlert2.userAgents;
+                    paint.setColor(Theme.multAlpha(0.1175f, translateAlert2.getThemedColor(i4)));
+                    canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
+                    if (this.links.draw(canvas)) {
+                        invalidate();
+                    }
+                    super.onDraw(canvas);
+                }
+
+                @Override
+                public final boolean onTouchEvent(MotionEvent motionEvent) {
+                    int action = motionEvent.getAction();
+                    LinkSpanDrawable.LinkCollector linkCollector = this.links;
+                    if (action != 0) {
+                        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                            if (motionEvent.getAction() == 1) {
+                                performClick();
+                            }
+                            linkCollector.clear(true);
+                            invalidate();
+                        }
+                        return super.onTouchEvent(motionEvent);
+                    }
+                    HeaderView headerView = HeaderView.this;
+                    LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(null, ((BottomSheet) TranslateAlert2.this).resourcesProvider, motionEvent.getX(), motionEvent.getY());
+                    linkSpanDrawable.setColor(Theme.multAlpha(0.1175f, TranslateAlert2.this.getThemedColor(Theme.key_player_actionBarSubtitle)));
+                    LinkPath linkPathObtainNewPath = linkSpanDrawable.obtainNewPath();
+                    boolean z = LocaleController.isRTL;
+                    AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.drawable;
+                    if (z) {
+                        AndroidUtilities.rectTmp.set(getWidth() - (getPaddingRight() + (getPaddingLeft() + ((int) Math.ceil(animatedTextDrawable.getCurrentWidth())))), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+                    } else {
+                        AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(animatedTextDrawable.getCurrentWidth())), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+                    }
+                    linkPathObtainNewPath.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
+                    linkCollector.addLink(linkSpanDrawable, null);
+                    invalidate();
+                    return true;
+                }
+            };
+            this.toLanguageTextView = r6;
+            if (LocaleController.isRTL) {
+                r6.setGravity(5);
+            }
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = r6.drawable;
+            animatedTextDrawable.moveAmplitude = 0.25f;
+            animatedTextDrawable.animateDuration = 350L;
+            animatedTextDrawable.animateWave = 1.0f;
+            animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+            r6.setTextColor(TranslateAlert2.this.getThemedColor(i3));
+            r6.setTextSize(AndroidUtilities.dp(14.0f));
+            r6.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(TranslateAlert2.this.toLanguage, null, null)));
+            r6.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
+            final int i4 = 1;
+            r6.setOnClickListener(new View.OnClickListener(this) {
+                public final TranslateAlert2.HeaderView f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void onClick(View view2) {
+                    int measuredHeight;
+                    switch (i4) {
+                        case 0:
+                            TranslateAlert2.this.lambda$showGiftOfferSheet$15();
+                            break;
+                        default:
+                            TranslateAlert2.HeaderView headerView = this.f$0;
+                            TranslateAlert2.HeaderView.AnonymousClass4 anonymousClass4 = new TranslateAlert2.HeaderView.AnonymousClass4(headerView.getContext());
+                            Drawable drawableMutate = headerView.getContext().getDrawable(R.drawable.popup_fixed_alert).mutate();
+                            int i5 = Theme.key_actionBarDefaultSubmenuBackground;
+                            TranslateAlert2 translateAlert2 = TranslateAlert2.this;
+                            drawableMutate.setColorFilter(new PorterDuffColorFilter(translateAlert2.getThemedColor(i5), PorterDuff.Mode.MULTIPLY));
+                            anonymousClass4.setBackground(drawableMutate);
+                            Runnable[] runnableArr = new Runnable[1];
+                            ArrayList<LocaleController.LocaleInfo> locales = TranslateController.getLocales();
+                            int i6 = 0;
+                            boolean z = true;
+                            while (i6 < locales.size()) {
+                                LocaleController.LocaleInfo localeInfo = locales.get(i6);
+                                if (!localeInfo.pluralLangCode.equals(translateAlert2.fromLanguage) && "remote".equals(localeInfo.pathToFile)) {
+                                    TextUtils.equals(translateAlert2.toLanguage, localeInfo.pluralLangCode);
+                                    ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(2, headerView.getContext(), ((BottomSheet) translateAlert2).resourcesProvider, z, i6 == locales.size() - 1);
+                                    actionBarMenuSubItem.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(localeInfo.pluralLangCode, null, null)));
+                                    actionBarMenuSubItem.setChecked(TextUtils.equals(translateAlert2.toLanguage, localeInfo.pluralLangCode));
+                                    actionBarMenuSubItem.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda62(headerView, runnableArr, localeInfo, 29));
+                                    anonymousClass4.linearLayout.addView(actionBarMenuSubItem);
+                                    z = false;
+                                }
+                                i6++;
+                            }
+                            ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(anonymousClass4);
+                            runnableArr[0] = new ChatActivity$$ExternalSyntheticLambda484(actionBarPopupWindow, 1);
+                            actionBarPopupWindow.pauseNotifications = true;
+                            actionBarPopupWindow.dismissAnimationDuration = 220;
+                            actionBarPopupWindow.setOutsideTouchable(true);
+                            actionBarPopupWindow.setClippingEnabled(true);
+                            actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
+                            actionBarPopupWindow.setFocusable(true);
+                            int[] iArr = new int[2];
+                            TranslateAlert2.HeaderView.AnonymousClass3 anonymousClass3 = headerView.toLanguageTextView;
+                            anonymousClass3.getLocationInWindow(iArr);
+                            anonymousClass4.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
+                            int measuredHeight2 = anonymousClass4.getMeasuredHeight();
+                            int i7 = iArr[1];
+                            if (i7 > (AndroidUtilities.displaySize.y * 0.9f) - measuredHeight2) {
+                                measuredHeight = AndroidUtilities.dp(8.0f) + (i7 - measuredHeight2);
+                            } else {
+                                measuredHeight = (anonymousClass3.getMeasuredHeight() + i7) - AndroidUtilities.dp(8.0f);
+                            }
+                            actionBarPopupWindow.showAtLocation(((BottomSheet) translateAlert2).containerView, 51, iArr[0] - AndroidUtilities.dp(8.0f), measuredHeight);
+                            break;
+                    }
+                }
+            });
+            if (LocaleController.isRTL) {
+                anonymousClass35.addView((View) r6, LayoutHelper.createLinear(-2, -2, 16, 0, 0, this.fromLanguageTextView != null ? 3 : 0, 0));
+                if (this.fromLanguageTextView != null) {
+                    anonymousClass35.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 0, 1, 0, 0));
+                    anonymousClass35.addView(this.fromLanguageTextView, LayoutHelper.createLinear(-2, -2, 16, 4, 0, 0, 0));
+                }
+            } else {
+                TextView textView2 = this.fromLanguageTextView;
+                if (textView2 != null) {
+                    anonymousClass35.addView(textView2, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 4, 0));
+                    anonymousClass35.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 0, 1, 0, 0));
+                }
+                anonymousClass35.addView((View) r6, LayoutHelper.createLinear(-2, -2, 16, this.fromLanguageTextView != null ? 3 : 0, 0, 0, 0));
+            }
+            addView(anonymousClass35, LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 43.0f, 22.0f, 0.0f));
+            View view2 = new View(context);
+            this.shadow = view2;
+            view2.setBackgroundColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogShadowLine));
+            view2.setAlpha(0.0f);
+            addView(view2, LayoutHelper.createFrame(-1, AndroidUtilities.getShadowHeight() / AndroidUtilities.dpf2(1.0f), 55, 0.0f, 56.0f, 0.0f, 0.0f));
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f), 1073741824));
+        }
+
+        @Override
+        public final void setTranslationY(float f) {
+            super.setTranslationY(f);
+            float fClamp = MathUtils.clamp((f - AndroidUtilities.statusBarHeight) / AndroidUtilities.dp(64.0f), 0.0f, 1.0f);
+            if (!TranslateAlert2.access$600(TranslateAlert2.this)) {
+                fClamp = 1.0f;
+            }
+            float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(fClamp);
+            float fLerp = AndroidUtilities.lerp(0.85f, 1.0f, interpolation);
+            VoIPFragment.AnonymousClass5 anonymousClass5 = this.titleTextView;
+            anonymousClass5.setScaleX(fLerp);
+            anonymousClass5.setScaleY(AndroidUtilities.lerp(0.85f, 1.0f, interpolation));
+            anonymousClass5.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dpf2(-12.0f), 0.0f, interpolation));
+            boolean z = LocaleController.isRTL;
+            PhotoViewer.AnonymousClass35 anonymousClass35 = this.subtitleView;
+            if (!z) {
+                anonymousClass5.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dpf2(50.0f), 0.0f, interpolation));
+                anonymousClass35.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dpf2(50.0f), 0.0f, interpolation));
+            }
+            anonymousClass35.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dpf2(-22.0f), 0.0f, interpolation));
+            ImageView imageView = this.backButton;
+            imageView.setTranslationX(AndroidUtilities.lerp(0.0f, AndroidUtilities.dpf2(-25.0f), interpolation));
+            float f2 = 1.0f - interpolation;
+            imageView.setAlpha(f2);
+            View view = this.shadow;
+            view.setTranslationY(AndroidUtilities.lerp(0.0f, AndroidUtilities.dpf2(22.0f), interpolation));
+            view.setAlpha(f2);
+        }
+    }
+
+    public final class LoadingTextView extends TextView {
+        public final LoadingDrawable loadingDrawable;
+        public final LinkPath path;
+
+        public LoadingTextView(Context context) {
+            super(context);
+            LinkPath linkPath = new LinkPath(0);
+            this.path = linkPath;
+            LoadingDrawable loadingDrawable = new LoadingDrawable();
+            this.loadingDrawable = loadingDrawable;
+            loadingDrawable.usePath = linkPath;
+            loadingDrawable.speed = 0.65f;
+            loadingDrawable.setRadii(AndroidUtilities.dp(4.0f));
+            setBackground(loadingDrawable);
+        }
+
+        @Override
+        public final void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            this.loadingDrawable.start = -1L;
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            updateDrawable();
+        }
+
+        @Override
+        public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+            super.setText(charSequence, bufferType);
+            updateDrawable();
+        }
+
+        @Override
+        public final void setTextColor(int i) {
+            super.setTextColor(Theme.multAlpha(0.2f, i));
+            this.loadingDrawable.setColors(Theme.multAlpha(0.03f, i), Theme.multAlpha(0.175f, i), Theme.multAlpha(0.2f, i), Theme.multAlpha(0.45f, i));
+        }
+
+        public final void updateDrawable() {
+            LoadingDrawable loadingDrawable;
+            LinkPath linkPath = this.path;
+            if (linkPath == null || (loadingDrawable = this.loadingDrawable) == null) {
+                return;
+            }
+            linkPath.rewind();
+            if (getLayout() != null && getLayout().getText() != null) {
+                linkPath.setCurrentLayout(getLayout(), 0, getPaddingLeft(), getPaddingTop());
+                getLayout().getSelectionPath(0, getLayout().getText().length(), linkPath);
+            }
+            loadingDrawable.updateBounds();
+        }
+    }
+
+    public final class PaddedAdapter extends RecyclerView.Adapter {
+        public final Context mContext;
+        public View mMainView;
+        public int mainViewType = 1;
+
+        public PaddedAdapter(Context context, View view) {
+            this.mContext = context;
+            this.mMainView = view;
+        }
+
+        @Override
+        public final int getItemCount() {
+            return 2;
+        }
+
+        @Override
+        public final int getItemViewType(int i) {
+            if (i == 0) {
+                return 0;
+            }
+            return this.mainViewType;
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            return i == 0 ? new RecyclerListView.Holder(new PaymentFormActivity.AnonymousClass2(this.mContext, 13)) : new RecyclerListView.Holder(this.mMainView);
+        }
+
+        public final void updateMainView(View view) {
+            if (this.mMainView == view) {
+                return;
+            }
+            this.mainViewType++;
+            this.mMainView = view;
+            notifyItemChanged(1);
+        }
+    }
+
+    public TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i, boolean z, TL_iv.RichMessage richMessage) {
+        super(context, null, false, false);
         this.firstTranslation = true;
         this.backgroundPaddingLeft = 0;
         fixNavigationBar();
@@ -125,615 +637,478 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.toLanguage = str2;
         ContainerView containerView = new ContainerView(context);
         this.containerView = containerView;
-        this.sheetTopAnimated = new AnimatedFloat(containerView, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.sheetTopAnimated = new AnimatedFloat(320L, containerView, CubicBezierInterpolator.EASE_OUT_QUINT);
         LoadingTextView loadingTextView = new LoadingTextView(context);
         this.loadingTextView = loadingTextView;
         loadingTextView.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
-        this.loadingTextView.setTextSize(1, SharedConfig.fontSize);
-        LoadingTextView loadingTextView2 = this.loadingTextView;
+        loadingTextView.setTextSize(1, SharedConfig.fontSize);
         int i2 = Theme.key_dialogTextBlack;
-        loadingTextView2.setTextColor(getThemedColor(i2));
-        this.loadingTextView.setLinkTextColor(Theme.multAlpha(getThemedColor(i2), 0.2f));
-        this.loadingTextView.setText(Emoji.replaceEmoji(charSequence == null ? "" : charSequence.toString(), this.loadingTextView.getPaint().getFontMetricsInt(), true));
-        this.textViewContainer = new FrameLayout(context) {
-            @Override
-            protected void onMeasure(int i3, int i4) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
-            }
-        };
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
+        loadingTextView.setTextColor(getThemedColor(i2));
+        loadingTextView.setLinkTextColor(Theme.multAlpha(0.2f, getThemedColor(i2)));
+        loadingTextView.setText(Emoji.replaceEmoji(charSequence == null ? "" : charSequence.toString(), loadingTextView.getPaint().getFontMetricsInt(), true));
+        this.textViewContainer = new AnonymousClass1(context);
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, null);
         this.textView = linksTextView;
         linksTextView.setDisablePaddingsOffsetY(true);
-        this.textView.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
-        this.textView.setTextSize(1, SharedConfig.fontSize);
-        this.textView.setTextColor(getThemedColor(i2));
-        this.textView.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkIn));
-        this.textView.setTextIsSelectable(true);
-        this.textView.setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
+        linksTextView.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
+        linksTextView.setTextSize(1, SharedConfig.fontSize);
+        linksTextView.setTextColor(getThemedColor(i2));
+        linksTextView.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkIn));
+        linksTextView.setTextIsSelectable(true);
+        linksTextView.setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
         int themedColor = getThemedColor(Theme.key_chat_TextSelectionCursor);
         try {
             if (Build.VERSION.SDK_INT >= 29 && !XiaomiUtilities.isMIUI()) {
-                Drawable textSelectHandleLeft = this.textView.getTextSelectHandleLeft();
+                Drawable textSelectHandleLeft = linksTextView.getTextSelectHandleLeft();
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
                 textSelectHandleLeft.setColorFilter(themedColor, mode);
-                this.textView.setTextSelectHandleLeft(textSelectHandleLeft);
-                Drawable textSelectHandleRight = this.textView.getTextSelectHandleRight();
+                linksTextView.setTextSelectHandleLeft(textSelectHandleLeft);
+                Drawable textSelectHandleRight = linksTextView.getTextSelectHandleRight();
                 textSelectHandleRight.setColorFilter(themedColor, mode);
-                this.textView.setTextSelectHandleRight(textSelectHandleRight);
+                linksTextView.setTextSelectHandleRight(textSelectHandleRight);
             }
         } catch (Exception unused) {
         }
-        this.textViewContainer.addView(this.textView, LayoutHelper.createFrame(-1, -1.0f));
+        this.textViewContainer.addView(this.textView, LayoutHelper.createFrame(-1.0f, -1));
         if (this.reqRichMessage != null) {
-            RichMessageLayout.PreviewView previewView = new RichMessageLayout.PreviewView(context, this.currentAccount, resourcesProvider);
+            RichMessageLayout.PreviewView previewView = new RichMessageLayout.PreviewView(context, this.currentAccount, null);
             this.richLoadingPreviewView = previewView;
             previewView.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
-            this.richLoadingPreviewView.set(this.reqRichMessage);
-            this.richLoadingPreviewView.setTranslationLoading(true);
-            RichMessageLayout.PreviewView previewView2 = new RichMessageLayout.PreviewView(context, this.currentAccount, resourcesProvider);
+            previewView.set(this.reqRichMessage);
+            previewView.setTranslationLoading(true);
+            RichMessageLayout.PreviewView previewView2 = new RichMessageLayout.PreviewView(context, this.currentAccount, null);
             this.richPreviewView = previewView2;
             previewView2.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
         }
-        RecyclerListView recyclerListView = new RecyclerListView(context) {
+        ?? r9 = new RecyclerListView(context) {
             @Override
-            protected boolean onRequestFocusInDescendants(int i3, Rect rect) {
+            public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() == 0) {
+                    float y = motionEvent.getY();
+                    TranslateAlert2 translateAlert2 = TranslateAlert2.this;
+                    if (y < translateAlert2.getSheetTop(true) - getTop()) {
+                        translateAlert2.lambda$showGiftOfferSheet$15();
+                        return true;
+                    }
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            }
+
+            @Override
+            public final boolean onRequestFocusInDescendants(int i3, Rect rect) {
                 return true;
             }
 
             @Override
-            public void requestChildFocus(View view, View view2) {
-            }
-
-            @Override
-            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < TranslateAlert2.this.getSheetTop() - getTop()) {
-                    TranslateAlert2.this.dismiss();
-                    return true;
-                }
-                return super.dispatchTouchEvent(motionEvent);
+            public final void requestChildFocus(View view, View view2) {
             }
         };
-        this.listView = recyclerListView;
-        recyclerListView.setOverScrollMode(1);
-        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f), 0, AndroidUtilities.dp(80.0f));
-        this.listView.setClipToPadding(true);
-        RecyclerListView recyclerListView2 = this.listView;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        this.layoutManager = linearLayoutManager;
-        recyclerListView2.setLayoutManager(linearLayoutManager);
-        RecyclerListView recyclerListView3 = this.listView;
+        this.listView = r9;
+        r9.setOverScrollMode(1);
+        r9.setPadding(0, AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight, 0, AndroidUtilities.dp(80.0f));
+        r9.setClipToPadding(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(1, false);
+        r9.setLayoutManager(linearLayoutManager);
         PaddedAdapter paddedAdapter = new PaddedAdapter(context, this.reqRichMessage != null ? this.richLoadingPreviewView : this.loadingTextView);
         this.adapter = paddedAdapter;
-        recyclerListView3.setAdapter(paddedAdapter);
-        this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        r9.setAdapter(paddedAdapter);
+        r9.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
-                ((BottomSheet) TranslateAlert2.this).containerView.invalidate();
+            public final void onScrollStateChanged(RecyclerView recyclerView, int i3) {
                 TranslateAlert2 translateAlert2 = TranslateAlert2.this;
-                translateAlert2.updateButtonShadow(translateAlert2.listView.canScrollVertically(1));
+                if (i3 == 0) {
+                    translateAlert2.sheetTopNotAnimate = false;
+                }
+                if ((i3 == 0 || i3 == 2) && translateAlert2.getSheetTop(false) > 0.0f && translateAlert2.getSheetTop(false) < AndroidUtilities.dp(96.0f)) {
+                    AnonymousClass2 anonymousClass2 = translateAlert2.listView;
+                    if (anonymousClass2.canScrollVertically(1) && TranslateAlert2.access$600(translateAlert2)) {
+                        translateAlert2.sheetTopNotAnimate = true;
+                        anonymousClass2.smoothScrollBy(0, (int) translateAlert2.getSheetTop(false), null);
+                    }
+                }
             }
 
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
-                if (i3 == 0) {
-                    TranslateAlert2.this.sheetTopNotAnimate = false;
-                }
-                if ((i3 == 0 || i3 == 2) && TranslateAlert2.this.getSheetTop(false) > 0.0f && TranslateAlert2.this.getSheetTop(false) < AndroidUtilities.dp(96.0f) && TranslateAlert2.this.listView.canScrollVertically(1) && TranslateAlert2.this.hasEnoughHeight()) {
-                    TranslateAlert2.this.sheetTopNotAnimate = true;
-                    TranslateAlert2.this.listView.smoothScrollBy(0, (int) TranslateAlert2.this.getSheetTop(false));
+            public final void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                TranslateAlert2 translateAlert2 = TranslateAlert2.this;
+                ((BottomSheet) translateAlert2).containerView.invalidate();
+                boolean zCanScrollVertically = translateAlert2.listView.canScrollVertically(1);
+                Boolean bool = translateAlert2.buttonShadowShown;
+                if (bool == null || bool.booleanValue() != zCanScrollVertically) {
+                    translateAlert2.buttonShadowShown = Boolean.valueOf(zCanScrollVertically);
+                    View view = translateAlert2.buttonShadowView;
+                    view.animate().cancel();
+                    OKLCH.m(view.animate().alpha(zCanScrollVertically ? 1.0f : 0.0f), CubicBezierInterpolator.EASE_OUT_QUINT, 320L);
                 }
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
-            protected void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+            public final void onChangeAnimationUpdate() {
                 ((BottomSheet) TranslateAlert2.this).containerView.invalidate();
             }
 
             @Override
-            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+            public final void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                 ((BottomSheet) TranslateAlert2.this).containerView.invalidate();
             }
         };
         defaultItemAnimator.setDurations(180L);
-        defaultItemAnimator.setInterpolator(new LinearInterpolator());
-        this.listView.setItemAnimator(defaultItemAnimator);
-        this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -2, 80));
+        LinearInterpolator linearInterpolator = new LinearInterpolator();
+        defaultItemAnimator.mAddInterpolator = linearInterpolator;
+        defaultItemAnimator.mMoveInterpolator = linearInterpolator;
+        defaultItemAnimator.mRemoveInterpolator = linearInterpolator;
+        defaultItemAnimator.mChangeInterpolator = linearInterpolator;
+        r9.setItemAnimator(defaultItemAnimator);
+        this.containerView.addView((View) r9, LayoutHelper.createFrame(-1, -2, 80));
         TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = new TextSelectionHelper.ArticleTextSelectionHelper();
         this.textSelectionHelper = articleTextSelectionHelper;
-        articleTextSelectionHelper.setParentView(this.listView);
-        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper2 = this.textSelectionHelper;
-        articleTextSelectionHelper2.layoutManager = this.layoutManager;
-        TextSelectionHelper.TextSelectionOverlay overlayView = articleTextSelectionHelper2.getOverlayView(context);
+        articleTextSelectionHelper.setParentView(r9);
+        articleTextSelectionHelper.layoutManager = linearLayoutManager;
+        TextSelectionHelper.TextSelectionOverlay overlayView = articleTextSelectionHelper.getOverlayView(context);
         this.textSelectionOverlay = overlayView;
         AndroidUtilities.removeFromParent(overlayView);
-        this.containerView.addView(this.textSelectionOverlay, LayoutHelper.createFrame(-1, -1, 119));
+        this.containerView.addView(overlayView, LayoutHelper.createFrame(-1, -1, 119));
         RichMessageLayout.PreviewView previewView3 = this.richPreviewView;
         if (previewView3 != null) {
-            previewView3.setTextSelectionHelper(this.textSelectionHelper);
+            previewView3.setTextSelectionHelper(articleTextSelectionHelper);
         }
         HeaderView headerView = new HeaderView(context);
         this.headerView = headerView;
         this.containerView.addView(headerView, LayoutHelper.createFrame(-1, 78, 55));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.buttonView = frameLayout;
         frameLayout.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         View view = new View(context);
         this.buttonShadowView = view;
         view.setBackgroundColor(getThemedColor(Theme.key_dialogShadowLine));
-        this.buttonShadowView.setAlpha(0.0f);
-        this.buttonView.addView(this.buttonShadowView, LayoutHelper.createFrame(-1.0f, AndroidUtilities.getShadowHeight() / AndroidUtilities.dpf2(1.0f), 55));
+        view.setAlpha(0.0f);
+        frameLayout.addView(view, new FrameLayout.LayoutParams(LayoutHelper.getSize(-1.0f), LayoutHelper.getSize(AndroidUtilities.getShadowHeight() / AndroidUtilities.dpf2(1.0f)), 55));
         TextView textView = new TextView(context);
-        this.buttonTextView = textView;
         textView.setLines(1);
-        this.buttonTextView.setSingleLine(true);
-        this.buttonTextView.setGravity(1);
-        this.buttonTextView.setEllipsize(TextUtils.TruncateAt.END);
-        this.buttonTextView.setGravity(17);
-        this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        this.buttonTextView.setTypeface(AndroidUtilities.bold());
-        this.buttonTextView.setTextSize(1, 14.0f);
-        this.buttonTextView.setText(LocaleController.getString(R.string.CloseTranslation));
-        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_featuredStickers_addButton), 24.0f));
-        this.buttonTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                this.f$0.dismiss();
-            }
-        });
-        this.buttonView.addView(this.buttonTextView, LayoutHelper.createFrame(-1, 48.0f, 87, 16.0f, 16.0f, 16.0f, 16.0f));
-        this.containerView.addView(this.buttonView, LayoutHelper.createFrame(-1, -2, 87));
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setGravity(17);
+        textView.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 14.0f);
+        textView.setText(LocaleController.getString(R.string.CloseTranslation));
+        int color = Theme.getColor(null, Theme.key_featuredStickers_addButton, false);
+        textView.setBackground(Theme.AdaptiveRipple.createRect(new float[]{24.0f}, color, Theme.AdaptiveRipple.calcRippleColor(color)));
+        textView.setOnClickListener(new GroupCallSheet$$ExternalSyntheticLambda5(this, 7));
+        frameLayout.addView(textView, LayoutHelper.createFrame(-1, 48.0f, 87, 16.0f, 16.0f, 16.0f, 16.0f));
+        this.containerView.addView(frameLayout, LayoutHelper.createFrame(-1, -2, 87));
         translate();
     }
 
-    public boolean hasEnoughHeight() {
+    public static boolean access$600(TranslateAlert2 translateAlert2) {
+        AnonymousClass2 anonymousClass2;
         float height = 0.0f;
-        for (int i = 0; i < this.listView.getChildCount(); i++) {
-            View childAt = this.listView.getChildAt(i);
-            if (this.listView.getChildAdapterPosition(childAt) == 1) {
+        int i = 0;
+        while (true) {
+            anonymousClass2 = translateAlert2.listView;
+            if (i >= anonymousClass2.getChildCount()) {
+                break;
+            }
+            View childAt = anonymousClass2.getChildAt(i);
+            if (RecyclerView.getChildAdapterPosition(childAt) == 1) {
                 height += childAt.getHeight();
             }
+            i++;
         }
-        return height >= ((float) ((this.listView.getHeight() - this.listView.getPaddingTop()) - this.listView.getPaddingBottom()));
+        return height >= ((float) ((anonymousClass2.getHeight() - anonymousClass2.getPaddingTop()) - anonymousClass2.getPaddingBottom()));
     }
 
-    public void translate() {
-        if (this.reqId != null) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId.intValue(), true);
-            this.reqId = null;
-        }
-        if ("alternative".equalsIgnoreCase(MessagesController.getInstance(this.currentAccount).translationsManualEnabled)) {
-            translateAlt();
-            return;
-        }
-        String str = this.toLanguage;
-        if (str != null) {
-            str = str.split("_")[0];
-        }
-        if ("nb".equals(str)) {
-            str = "no";
-        }
-        if (this.reqRichMessage != null && this.reqPeer != null) {
-            TLRPC.TL_messages_translateRichMessage tL_messages_translateRichMessage = new TLRPC.TL_messages_translateRichMessage();
-            tL_messages_translateRichMessage.flags = 1 | tL_messages_translateRichMessage.flags;
-            tL_messages_translateRichMessage.peer = this.reqPeer;
-            tL_messages_translateRichMessage.id.add(Integer.valueOf(this.reqMessageId));
-            tL_messages_translateRichMessage.to_lang = TranslateController.normalizeLanguage(str);
-            this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateRichMessage, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    TranslateAlert2.$r8$lambda$MGgHgyWdrdSMiP952Ag7Vtq43Vc(this.f$0, tLObject, tL_error);
-                }
-            }));
-            return;
-        }
-        final TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        CharSequence charSequence = this.reqText;
-        tL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
-        ArrayList<TLRPC.MessageEntity> arrayList = this.reqMessageEntities;
-        if (arrayList != null) {
-            tL_textWithEntities.entities = arrayList;
-        }
-        if (this.reqSum && this.reqPeer != null) {
-            TLRPC.TL_messages_summarizeText tL_messages_summarizeText = new TLRPC.TL_messages_summarizeText();
-            tL_messages_summarizeText.flags = 1 | tL_messages_summarizeText.flags;
-            tL_messages_summarizeText.peer = this.reqPeer;
-            tL_messages_summarizeText.id = this.reqMessageId;
-            tL_messages_summarizeText.to_lang = TranslateController.normalizeLanguage(str);
-            this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
-                @Override
-                public final void run(Object obj, Object obj2) {
-                    TranslateAlert2.m2910$r8$lambda$hIQqDVFHyI4E16DO4jB6xnsgMk(this.f$0, tL_textWithEntities, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
-                }
-            }));
-            return;
-        }
-        TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
-        TLRPC.InputPeer inputPeer = this.reqPeer;
-        if (inputPeer != null) {
-            tL_messages_translateText.flags = 1 | tL_messages_translateText.flags;
-            tL_messages_translateText.peer = inputPeer;
-            tL_messages_translateText.id.add(Integer.valueOf(this.reqMessageId));
-        } else {
-            tL_messages_translateText.flags |= 2;
-            tL_messages_translateText.text.add(tL_textWithEntities);
-        }
-        tL_messages_translateText.to_lang = TranslateController.normalizeLanguage(str);
-        this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateText, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                TranslateAlert2.m2911$r8$lambda$pYSrfd0XHCLtHp5h97GxZkjRm4(this.f$0, tL_textWithEntities, tLObject, tL_error);
-            }
-        }));
-    }
-
-    public static void $r8$lambda$MGgHgyWdrdSMiP952Ag7Vtq43Vc(final TranslateAlert2 translateAlert2, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        translateAlert2.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                TranslateAlert2.$r8$lambda$h4bNLRT22kII1AFoqthd0y_Pe70(this.f$0, tLObject);
-            }
-        });
-    }
-
-    public static void $r8$lambda$h4bNLRT22kII1AFoqthd0y_Pe70(TranslateAlert2 translateAlert2, TLObject tLObject) {
-        translateAlert2.reqId = null;
-        if (tLObject instanceof TLRPC.TL_messages_translatedRichMessage) {
-            TLRPC.TL_messages_translatedRichMessage tL_messages_translatedRichMessage = (TLRPC.TL_messages_translatedRichMessage) tLObject;
-            if (!tL_messages_translatedRichMessage.result.isEmpty() && tL_messages_translatedRichMessage.result.get(0) != null) {
-                translateAlert2.firstTranslation = false;
-                TL_iv.RichMessage richMessage = tL_messages_translatedRichMessage.result.get(0);
-                RichMessageLayout.PreviewView previewView = translateAlert2.richPreviewView;
-                if (previewView != null) {
-                    previewView.set(richMessage);
-                    translateAlert2.adapter.updateMainView(translateAlert2.richPreviewView);
-                    return;
-                }
-                return;
-            }
-        }
-        if (translateAlert2.firstTranslation) {
-            translateAlert2.dismiss();
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.TranslationFailedAlert2));
-            return;
-        }
-        BulletinFactory.of((FrameLayout) translateAlert2.containerView, translateAlert2.resourcesProvider).createErrorBulletin(LocaleController.getString(R.string.TranslationFailedAlert2)).show();
-        AnimatedTextView animatedTextView = translateAlert2.headerView.toLanguageTextView;
-        String str = translateAlert2.prevToLanguage;
-        translateAlert2.toLanguage = str;
-        animatedTextView.setText(languageName(str));
-    }
-
-    public static void m2910$r8$lambda$hIQqDVFHyI4E16DO4jB6xnsgMk(TranslateAlert2 translateAlert2, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, TLRPC.TL_error tL_error) {
-        translateAlert2.reqId = null;
-        if (tL_error != null && "TRANSLATIONS_DISABLED_ALT".equalsIgnoreCase(tL_error.text)) {
-            translateAlert2.translateAlt();
-            return;
-        }
-        if (tL_textWithEntities2 != null) {
-            translateAlert2.firstTranslation = false;
-            TLRPC.TL_textWithEntities tL_textWithEntitiesPreprocess = preprocess(tL_textWithEntities, tL_textWithEntities2);
-            SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(tL_textWithEntitiesPreprocess.text);
-            MessageObject.addEntitiesToText(spannableStringBuilderValueOf, tL_textWithEntitiesPreprocess.entities, false, true, false, false);
-            translateAlert2.textView.setText(translateAlert2.preprocessText(spannableStringBuilderValueOf));
-            translateAlert2.adapter.updateMainView(translateAlert2.textViewContainer);
-            return;
-        }
-        if (translateAlert2.firstTranslation) {
-            translateAlert2.dismiss();
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.TranslationFailedAlert2));
-            return;
-        }
-        BulletinFactory.of((FrameLayout) translateAlert2.containerView, translateAlert2.resourcesProvider).createErrorBulletin(LocaleController.getString(R.string.TranslationFailedAlert2)).show();
-        AnimatedTextView animatedTextView = translateAlert2.headerView.toLanguageTextView;
-        String str = translateAlert2.prevToLanguage;
-        translateAlert2.toLanguage = str;
-        animatedTextView.setText(languageName(str));
-        translateAlert2.adapter.updateMainView(translateAlert2.textViewContainer);
-    }
-
-    public static void m2911$r8$lambda$pYSrfd0XHCLtHp5h97GxZkjRm4(final TranslateAlert2 translateAlert2, final TLRPC.TL_textWithEntities tL_textWithEntities, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        translateAlert2.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                TranslateAlert2.$r8$lambda$fgGNeDixBfwaqRAOcKBUglvCsRQ(this.f$0, tL_error, tLObject, tL_textWithEntities);
-            }
-        });
-    }
-
-    public static void $r8$lambda$fgGNeDixBfwaqRAOcKBUglvCsRQ(TranslateAlert2 translateAlert2, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        translateAlert2.reqId = null;
-        if (tL_error != null && "TRANSLATIONS_DISABLED_ALT".equalsIgnoreCase(tL_error.text)) {
-            translateAlert2.translateAlt();
-            return;
-        }
-        if (tLObject instanceof TLRPC.TL_messages_translateResult) {
-            TLRPC.TL_messages_translateResult tL_messages_translateResult = (TLRPC.TL_messages_translateResult) tLObject;
-            if (!tL_messages_translateResult.result.isEmpty() && tL_messages_translateResult.result.get(0) != null && tL_messages_translateResult.result.get(0).text != null) {
-                translateAlert2.firstTranslation = false;
-                TLRPC.TL_textWithEntities tL_textWithEntitiesPreprocess = preprocess(tL_textWithEntities, tL_messages_translateResult.result.get(0));
-                SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(tL_textWithEntitiesPreprocess.text);
-                MessageObject.addEntitiesToText(spannableStringBuilderValueOf, tL_textWithEntitiesPreprocess.entities, false, true, false, false);
-                translateAlert2.textView.setText(translateAlert2.preprocessText(spannableStringBuilderValueOf));
-                translateAlert2.adapter.updateMainView(translateAlert2.textViewContainer);
-                return;
-            }
-        }
-        if (translateAlert2.firstTranslation) {
-            translateAlert2.dismiss();
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.TranslationFailedAlert2));
-            return;
-        }
-        BulletinFactory.of((FrameLayout) translateAlert2.containerView, translateAlert2.resourcesProvider).createErrorBulletin(LocaleController.getString(R.string.TranslationFailedAlert2)).show();
-        AnimatedTextView animatedTextView = translateAlert2.headerView.toLanguageTextView;
-        String str = translateAlert2.prevToLanguage;
-        translateAlert2.toLanguage = str;
-        animatedTextView.setText(languageName(str));
-        translateAlert2.adapter.updateMainView(translateAlert2.textViewContainer);
-    }
-
-    private void translateAlt() {
-        CharSequence charSequence = this.reqText;
-        String string = charSequence == null ? "" : charSequence.toString();
-        String str = this.fromLanguage;
-        if (str != null) {
-            str = str.split("_")[0];
-        }
-        if ("nb".equals(str)) {
-            str = "no";
-        }
-        String str2 = this.toLanguage;
-        if (str2 != null) {
-            str2 = str2.split("_")[0];
-        }
-        alternativeTranslate(string, str, "nb".equals(str2) ? "no" : str2, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                TranslateAlert2.$r8$lambda$l4cNJw7QK6vW7Gmtp9dk0WWYVtk(this.f$0, (String) obj, (Boolean) obj2);
-            }
-        });
-    }
-
-    public static void $r8$lambda$l4cNJw7QK6vW7Gmtp9dk0WWYVtk(TranslateAlert2 translateAlert2, String str, Boolean bool) {
-        if (str != null) {
-            translateAlert2.firstTranslation = false;
-            translateAlert2.textView.setText(translateAlert2.preprocessText(str));
-            translateAlert2.adapter.updateMainView(translateAlert2.textViewContainer);
-        } else {
-            if (translateAlert2.isDismissed()) {
-                return;
-            }
-            if (translateAlert2.firstTranslation) {
-                translateAlert2.dismiss();
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 1, LocaleController.getString(bool.booleanValue() ? R.string.TranslationFailedAlert1 : R.string.TranslationFailedAlert2));
-                return;
-            }
-            BulletinFactory.of((FrameLayout) translateAlert2.containerView, translateAlert2.resourcesProvider).createErrorBulletin(LocaleController.getString(bool.booleanValue() ? R.string.TranslationFailedAlert1 : R.string.TranslationFailedAlert2)).show();
-            AnimatedTextView animatedTextView = translateAlert2.headerView.toLanguageTextView;
-            String str2 = translateAlert2.prevToLanguage;
-            translateAlert2.toLanguage = str2;
-            animatedTextView.setText(languageName(str2));
-            translateAlert2.adapter.updateMainView(translateAlert2.textViewContainer);
-        }
-    }
-
-    private static int lastIndexOfSafe(String str, String str2, int i, int i2) {
-        int iLastIndexOf = str.lastIndexOf(str2, i2 - 1);
-        if (iLastIndexOf >= i) {
-            return iLastIndexOf;
-        }
-        return -1;
-    }
-
-    public static ArrayList cut(String str, int i) {
-        ArrayList arrayList = new ArrayList();
-        int i2 = 0;
-        while (i2 < str.length()) {
-            int iMin = Math.min(i2 + i, str.length());
-            int iLastIndexOfSafe = lastIndexOfSafe(str, "%0A", i2, iMin);
-            if (iLastIndexOfSafe == -1) {
-                iLastIndexOfSafe = lastIndexOfSafe(str, "%20", i2, iMin);
-            }
-            if (iLastIndexOfSafe != -1) {
-                iMin = iLastIndexOfSafe + 3;
-            }
-            arrayList.add(str.substring(i2, iMin));
-            i2 = iMin;
-        }
-        return arrayList;
-    }
-
-    public static void alternativeTranslate(final String str, String str2, final String str3, final Utilities.Callback2 callback2) {
-        if (callback2 == null) {
-            return;
-        }
+    public static void alternativeTranslate(String str, final String str2, final Utilities.Callback2 callback2, final String str3) {
         if (str2 == null) {
-            LanguageDetector.detectLanguage(str, new LanguageDetector.StringCallback() {
+            LanguageDetector.detectLanguage(str, new TranslateAlert2$$ExternalSyntheticLambda4(str, str3, callback2), new TranslateAlert2$$ExternalSyntheticLambda4(str, str3, callback2));
+            return;
+        }
+        final String strEncode = Uri.encode(str);
+        if (strEncode.length() <= 5000) {
+            new Thread() {
                 @Override
-                public final void run(String str4) {
-                    TranslateAlert2.alternativeTranslate(str, str4, str3, callback2);
-                }
-            }, new LanguageDetector.ExceptionCallback() {
-                @Override
-                public final void run(Exception exc) {
-                    TranslateAlert2.alternativeTranslate(str, "en", str3, callback2);
-                }
-            });
-            return;
-        }
-        String strEncode = Uri.encode(str);
-        if (strEncode.length() > 5000) {
-            ArrayList arrayListCut = cut(strEncode, 5000);
-            final ArrayList arrayList = new ArrayList();
-            for (int i = 0; i < arrayListCut.size(); i++) {
-                arrayList.add(null);
-            }
-            final boolean[] zArr = new boolean[1];
-            for (final int i2 = 0; i2 < arrayListCut.size(); i2++) {
-                alternativeTranslateInternal((String) arrayListCut.get(i2), str2, str3, new Utilities.Callback2() {
-                    @Override
-                    public final void run(Object obj, Object obj2) {
-                        TranslateAlert2.$r8$lambda$0EnTe7f_rrxXwR3Kj5loBrXB1gw(zArr, arrayList, i2, callback2, (String) obj, (Boolean) obj2);
-                    }
-                });
-            }
-            return;
-        }
-        alternativeTranslateInternal(strEncode, str2, str3, callback2);
-    }
-
-    public static void $r8$lambda$0EnTe7f_rrxXwR3Kj5loBrXB1gw(boolean[] zArr, ArrayList arrayList, int i, Utilities.Callback2 callback2, String str, Boolean bool) {
-        if (zArr[0]) {
-            return;
-        }
-        if (str != null) {
-            arrayList.set(i, str);
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                if (arrayList.get(i2) == null) {
-                    return;
-                }
-            }
-            zArr[0] = true;
-            callback2.run(TextUtils.join("", arrayList), Boolean.FALSE);
-            return;
-        }
-        zArr[0] = true;
-        callback2.run(null, bool);
-    }
-
-    class AnonymousClass5 extends Thread {
-        final Utilities.Callback2 val$done;
-        final String val$fromLng;
-        final String val$text;
-        final String val$toLng;
-
-        AnonymousClass5(String str, String str2, String str3, Utilities.Callback2 callback2) {
-            this.val$fromLng = str;
-            this.val$toLng = str2;
-            this.val$text = str3;
-            this.val$done = callback2;
-        }
-
-        @Override
-        public void run() {
-            HttpURLConnection httpURLConnection;
-            String string;
-            final boolean z = true;
-            try {
-                httpURLConnection = (HttpURLConnection) new URI((((("https://translate.googleapis.com/transl") + "ate_a") + "/singl") + "e?client=gtx&sl=" + Uri.encode(this.val$fromLng) + "&tl=" + Uri.encode(this.val$toLng) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + this.val$text).toURL().openConnection();
-                try {
-                    httpURLConnection.setRequestMethod("GET");
-                    String[] strArr = TranslateAlert2.userAgents;
-                    httpURLConnection.setRequestProperty("User-Agent", strArr[(int) Math.round(Math.random() * ((double) (strArr.length - 1)))]);
-                    httpURLConnection.setRequestProperty("Content-Type", "application/json");
-                    StringBuilder sb = new StringBuilder();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), Charsets.UTF_8));
-                    while (true) {
+                public final void run() {
+                    HttpURLConnection httpURLConnection;
+                    String string;
+                    Utilities.Callback2 callback3 = callback2;
+                    String str4 = strEncode;
+                    boolean z = false;
+                    try {
+                        httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(str2) + "&tl=" + Uri.encode(str3) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str4).toURL().openConnection();
                         try {
-                            int i = bufferedReader.read();
-                            if (i == -1) {
-                                break;
-                            } else {
-                                sb.append((char) i);
-                            }
-                        } catch (Throwable th) {
-                            try {
-                                bufferedReader.close();
-                            } catch (Throwable th2) {
-                                th.addSuppressed(th2);
-                            }
-                            throw th;
-                        }
-                        e = e;
-                        try {
-                            StringBuilder sb2 = new StringBuilder();
-                            sb2.append("failed to translate a text ");
-                            sb2.append(httpURLConnection != null ? Integer.valueOf(httpURLConnection.getResponseCode()) : null);
-                            sb2.append(" ");
-                            sb2.append(httpURLConnection != null ? httpURLConnection.getResponseMessage() : null);
-                            Log.e("translate", sb2.toString());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        e.printStackTrace();
-                        if (httpURLConnection != null) {
-                            try {
-                                if (httpURLConnection.getResponseCode() != 429) {
-                                    z = false;
-                                }
-                            } catch (Exception unused) {
-                                final Utilities.Callback2 callback2 = this.val$done;
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        callback2.run(null, Boolean.FALSE);
+                            httpURLConnection.setRequestMethod("GET");
+                            httpURLConnection.setRequestProperty("User-Agent", TranslateAlert2.userAgents[(int) Math.round(Math.random() * ((double) 5))]);
+                            httpURLConnection.setRequestProperty("Content-Type", "application/json");
+                            StringBuilder sb = new StringBuilder();
+                            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), Charsets.UTF_8));
+                            while (true) {
+                                try {
+                                    int i = bufferedReader.read();
+                                    if (i == -1) {
+                                        break;
+                                    } else {
+                                        sb.append((char) i);
                                     }
-                                });
+                                } catch (Throwable th) {
+                                    try {
+                                        bufferedReader.close();
+                                    } catch (Throwable th2) {
+                                        th.addSuppressed(th2);
+                                    }
+                                    throw th;
+                                }
+                                e = e;
+                                try {
+                                    StringBuilder sb2 = new StringBuilder();
+                                    sb2.append("failed to translate a text ");
+                                    sb2.append(httpURLConnection != null ? Integer.valueOf(httpURLConnection.getResponseCode()) : null);
+                                    sb2.append(" ");
+                                    sb2.append(httpURLConnection != null ? httpURLConnection.getResponseMessage() : null);
+                                    Log.e("translate", sb2.toString());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                e.printStackTrace();
+                                if (httpURLConnection != null) {
+                                    try {
+                                        if (httpURLConnection.getResponseCode() == 429) {
+                                            z = true;
+                                        }
+                                    } catch (Exception unused) {
+                                        AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda98(1, callback3));
+                                        return;
+                                    }
+                                }
+                                AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda1(27, callback3, z));
                                 return;
                             }
-                        } else {
-                            z = false;
-                        }
-                        final Utilities.Callback2 callback3 = this.val$done;
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                callback3.run(null, Boolean.valueOf(z));
+                            bufferedReader.close();
+                            JSONArray jSONArray = new JSONArray(new JSONTokener(sb.toString()));
+                            JSONArray jSONArray2 = jSONArray.getJSONArray(0);
+                            try {
+                                string = jSONArray.getString(2);
+                            } catch (Exception unused2) {
+                                string = null;
                             }
-                        });
-                        return;
-                    }
-                    bufferedReader.close();
-                    JSONArray jSONArray = new JSONArray(new JSONTokener(sb.toString()));
-                    JSONArray jSONArray2 = jSONArray.getJSONArray(0);
-                    try {
-                        string = jSONArray.getString(2);
-                    } catch (Exception unused2) {
-                        string = null;
-                    }
-                    if (string != null && string.contains("-")) {
-                        string.substring(0, string.indexOf("-"));
-                    }
-                    final String str = "";
-                    for (int i2 = 0; i2 < jSONArray2.length(); i2++) {
-                        String string2 = jSONArray2.getJSONArray(i2).getString(0);
-                        if (string2 != null && !string2.equals("null")) {
-                            str = str + string2;
+                            if (string != null && string.contains("-")) {
+                                string.substring(0, string.indexOf("-"));
+                            }
+                            String str5 = "";
+                            for (int i2 = 0; i2 < jSONArray2.length(); i2++) {
+                                String string2 = jSONArray2.getJSONArray(i2).getString(0);
+                                if (string2 != null && !string2.equals("null")) {
+                                    str5 = str5 + string2;
+                                }
+                            }
+                            if (str4.length() > 0 && str4.charAt(0) == '\n') {
+                                str5 = "\n" + str5;
+                            }
+                            AndroidUtilities.runOnUIThread(new ShareAlert$$ExternalSyntheticLambda29(29, callback3, str5));
+                        } catch (Exception e2) {
+                            e = e2;
                         }
+                    } catch (Exception e3) {
+                        e = e3;
+                        httpURLConnection = null;
                     }
-                    if (this.val$text.length() > 0 && this.val$text.charAt(0) == '\n') {
-                        str = "\n" + str;
-                    }
-                    final Utilities.Callback2 callback4 = this.val$done;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            TranslateAlert2.AnonymousClass5.m2914$r8$lambda$EJo9S1zdx0isGruy5xMAQ05zgw(callback4, str);
-                        }
-                    });
-                } catch (Exception e2) {
-                    e = e2;
                 }
-            } catch (Exception e3) {
-                e = e3;
-                httpURLConnection = null;
-            }
+            }.start();
+            return;
         }
-
-        public static void m2914$r8$lambda$EJo9S1zdx0isGruy5xMAQ05zgw(Utilities.Callback2 callback2, String str) {
-            if (callback2 != null) {
-                callback2.run(str, Boolean.FALSE);
+        ArrayList arrayList = new ArrayList();
+        int i = 0;
+        while (i < strEncode.length()) {
+            int iMin = Math.min(i + 5000, strEncode.length());
+            int i2 = iMin - 1;
+            int iLastIndexOf = strEncode.lastIndexOf("%0A", i2);
+            if (iLastIndexOf < i) {
+                iLastIndexOf = -1;
             }
+            if (iLastIndexOf == -1 && (iLastIndexOf = strEncode.lastIndexOf("%20", i2)) < i) {
+                iLastIndexOf = -1;
+            }
+            if (iLastIndexOf != -1) {
+                iMin = iLastIndexOf + 3;
+            }
+            arrayList.add(strEncode.substring(i, iMin));
+            i = iMin;
+        }
+        ArrayList arrayList2 = new ArrayList();
+        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+            arrayList2.add(null);
+        }
+        boolean[] zArr = new boolean[1];
+        int i4 = 0;
+        while (i4 < arrayList.size()) {
+            final String str4 = (String) arrayList.get(i4);
+            Utilities.Callback2 callback3 = callback2;
+            final ArticleViewer$$ExternalSyntheticLambda57 articleViewer$$ExternalSyntheticLambda57 = new ArticleViewer$$ExternalSyntheticLambda57(zArr, arrayList2, i4, callback3, 3);
+            new Thread() {
+                @Override
+                public final void run() {
+                    HttpURLConnection httpURLConnection;
+                    String string;
+                    Utilities.Callback2 callback4 = articleViewer$$ExternalSyntheticLambda57;
+                    String str5 = str4;
+                    boolean z = false;
+                    try {
+                        httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(str2) + "&tl=" + Uri.encode(str3) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str5).toURL().openConnection();
+                        try {
+                            httpURLConnection.setRequestMethod("GET");
+                            httpURLConnection.setRequestProperty("User-Agent", TranslateAlert2.userAgents[(int) Math.round(Math.random() * ((double) 5))]);
+                            httpURLConnection.setRequestProperty("Content-Type", "application/json");
+                            StringBuilder sb = new StringBuilder();
+                            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), Charsets.UTF_8));
+                            while (true) {
+                                try {
+                                    int i5 = bufferedReader.read();
+                                    if (i5 == -1) {
+                                        break;
+                                    } else {
+                                        sb.append((char) i5);
+                                    }
+                                } catch (Throwable th) {
+                                    try {
+                                        bufferedReader.close();
+                                    } catch (Throwable th2) {
+                                        th.addSuppressed(th2);
+                                    }
+                                    throw th;
+                                }
+                                e = e2;
+                                try {
+                                    StringBuilder sb2 = new StringBuilder();
+                                    sb2.append("failed to translate a text ");
+                                    sb2.append(httpURLConnection != null ? Integer.valueOf(httpURLConnection.getResponseCode()) : null);
+                                    sb2.append(" ");
+                                    sb2.append(httpURLConnection != null ? httpURLConnection.getResponseMessage() : null);
+                                    Log.e("translate", sb2.toString());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                e.printStackTrace();
+                                if (httpURLConnection != null) {
+                                    try {
+                                        if (httpURLConnection.getResponseCode() == 429) {
+                                            z = true;
+                                        }
+                                    } catch (Exception unused) {
+                                        AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda98(1, callback4));
+                                        return;
+                                    }
+                                }
+                                AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda1(27, callback4, z));
+                                return;
+                            }
+                            bufferedReader.close();
+                            JSONArray jSONArray = new JSONArray(new JSONTokener(sb.toString()));
+                            JSONArray jSONArray2 = jSONArray.getJSONArray(0);
+                            try {
+                                string = jSONArray.getString(2);
+                            } catch (Exception unused2) {
+                                string = null;
+                            }
+                            if (string != null && string.contains("-")) {
+                                string.substring(0, string.indexOf("-"));
+                            }
+                            String str6 = "";
+                            for (int i6 = 0; i6 < jSONArray2.length(); i6++) {
+                                String string2 = jSONArray2.getJSONArray(i6).getString(0);
+                                if (string2 != null && !string2.equals("null")) {
+                                    str6 = str6 + string2;
+                                }
+                            }
+                            if (str5.length() > 0 && str5.charAt(0) == '\n') {
+                                str6 = "\n" + str6;
+                            }
+                            AndroidUtilities.runOnUIThread(new ShareAlert$$ExternalSyntheticLambda29(29, callback4, str6));
+                        } catch (Exception e2) {
+                            e = e2;
+                        }
+                    } catch (Exception e3) {
+                        e = e3;
+                        httpURLConnection = null;
+                    }
+                }
+            }.start();
+            i4++;
+            callback2 = callback3;
         }
     }
 
-    private static void alternativeTranslateInternal(String str, String str2, String str3, Utilities.Callback2 callback2) {
-        if (callback2 == null) {
-            return;
+    public static String capitalFirst(String str) {
+        if (str == null || str.length() <= 0) {
+            return null;
         }
-        new AnonymousClass5(str2, str3, str, callback2).start();
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public static String getToLanguage() {
+        return MessagesController.getGlobalMainSettings().getString("translate_to_language", LocaleController.getInstance().getCurrentLocale().getLanguage());
+    }
+
+    public static HashMap groupEmojiRanges(CharSequence charSequence) {
+        ArrayList<Emoji.EmojiSpanRange> emojis;
+        HashMap map = new HashMap();
+        if (charSequence != null && (emojis = Emoji.parseEmojis(charSequence)) != null) {
+            String string = charSequence.toString();
+            for (int i = 0; i < emojis.size(); i++) {
+                Emoji.EmojiSpanRange emojiSpanRange = emojis.get(i);
+                if (emojiSpanRange != null && emojiSpanRange.code != null) {
+                    String strSubstring = string.substring(emojiSpanRange.start, emojiSpanRange.end);
+                    ArrayList arrayList = (ArrayList) map.get(strSubstring);
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                        map.put(strSubstring, arrayList);
+                    }
+                    arrayList.add(emojiSpanRange);
+                }
+            }
+        }
+        return map;
+    }
+
+    public static String languageName(String str, boolean[] zArr, boolean[] zArr2) {
+        if (str == null || str.equals("und") || str.equals("auto")) {
+            return null;
+        }
+        String str2 = str.split("_")[0];
+        if ("nb".equals(str2)) {
+            str2 = "no";
+        }
+        if (zArr != null) {
+            String string = LocaleController.getString("TranslateLanguage" + str2.toUpperCase());
+            boolean z = (string == null || string.startsWith("LOC_ERR")) ? false : true;
+            zArr[0] = z;
+            if (z) {
+                return string;
+            }
+        }
+        if (zArr2 != null) {
+            String string2 = LocaleController.getString("TranslateLanguageGenitive" + str2.toUpperCase());
+            boolean z2 = (string2 == null || string2.startsWith("LOC_ERR")) ? false : true;
+            zArr2[0] = z2;
+            if (z2) {
+                return string2;
+            }
+        }
+        String strSystemLanguageName = systemLanguageName(str, false);
+        if (strSystemLanguageName == null) {
+            strSystemLanguageName = systemLanguageName(str2, false);
+        }
+        if (strSystemLanguageName != null) {
+            return strSystemLanguageName;
+        }
+        if ("no".equals(str)) {
+            str = "nb";
+        }
+        LocaleController.LocaleInfo currentLocaleInfo = LocaleController.getInstance().getCurrentLocaleInfo();
+        LocaleController.LocaleInfo builtinLanguageByPlural = LocaleController.getInstance().getBuiltinLanguageByPlural(str);
+        if (builtinLanguageByPlural == null) {
+            return null;
+        }
+        return (currentLocaleInfo == null || !"en".equals(currentLocaleInfo.pluralLangCode)) ? builtinLanguageByPlural.name : builtinLanguageByPlural.nameEnglish;
     }
 
     public static TLRPC.TL_textWithEntities preprocess(TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2) {
@@ -795,28 +1170,27 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                             if (i5 >= 0 && i5 < arrayList3.size() && (emojiSpanRange = (Emoji.EmojiSpanRange) arrayList3.get(i5)) != null) {
                                 int i8 = 0;
                                 while (true) {
-                                    if (i8 < tL_textWithEntities2.entities.size()) {
-                                        TLRPC.MessageEntity messageEntity3 = tL_textWithEntities2.entities.get(i8);
-                                        if (messageEntity3 instanceof TLRPC.TL_messageEntityCustomEmoji) {
-                                            int i9 = emojiSpanRange.start;
-                                            int i10 = emojiSpanRange.end;
-                                            int i11 = messageEntity3.offset;
-                                            if (AndroidUtilities.intersect1d(i9, i10, i11, messageEntity3.length + i11)) {
-                                                break;
-                                            }
-                                        }
-                                        i8++;
-                                    } else {
+                                    if (i8 >= tL_textWithEntities2.entities.size()) {
                                         TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
                                         TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji2 = (TLRPC.TL_messageEntityCustomEmoji) messageEntity2;
                                         tL_messageEntityCustomEmoji.document_id = tL_messageEntityCustomEmoji2.document_id;
                                         tL_messageEntityCustomEmoji.document = tL_messageEntityCustomEmoji2.document;
-                                        int i12 = emojiSpanRange.start;
-                                        tL_messageEntityCustomEmoji.offset = i12;
-                                        tL_messageEntityCustomEmoji.length = emojiSpanRange.end - i12;
+                                        int i9 = emojiSpanRange.start;
+                                        tL_messageEntityCustomEmoji.offset = i9;
+                                        tL_messageEntityCustomEmoji.length = emojiSpanRange.end - i9;
                                         tL_textWithEntities2.entities.add(tL_messageEntityCustomEmoji);
                                         break;
                                     }
+                                    TLRPC.MessageEntity messageEntity3 = tL_textWithEntities2.entities.get(i8);
+                                    if (messageEntity3 instanceof TLRPC.TL_messageEntityCustomEmoji) {
+                                        int i10 = emojiSpanRange.start;
+                                        int i11 = emojiSpanRange.end;
+                                        int i12 = messageEntity3.offset;
+                                        if (AndroidUtilities.intersect1d(i10, i11, i12, messageEntity3.length + i12)) {
+                                            break;
+                                        }
+                                    }
+                                    i8++;
                                 }
                             }
                         }
@@ -827,697 +1201,28 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         return tL_textWithEntities2;
     }
 
-    private static HashMap groupEmojiRanges(CharSequence charSequence) {
-        ArrayList<Emoji.EmojiSpanRange> emojis;
-        HashMap map = new HashMap();
-        if (charSequence != null && (emojis = Emoji.parseEmojis(charSequence)) != null) {
-            String string = charSequence.toString();
-            for (int i = 0; i < emojis.size(); i++) {
-                Emoji.EmojiSpanRange emojiSpanRange = emojis.get(i);
-                if (emojiSpanRange != null && emojiSpanRange.code != null) {
-                    String strSubstring = string.substring(emojiSpanRange.start, emojiSpanRange.end);
-                    ArrayList arrayList = (ArrayList) map.get(strSubstring);
-                    if (arrayList == null) {
-                        arrayList = new ArrayList();
-                        map.put(strSubstring, arrayList);
-                    }
-                    arrayList.add(emojiSpanRange);
-                }
-            }
-        }
-        return map;
+    public static void setToLanguage(String str) {
+        MessagesController.getGlobalMainSettings().edit().putString("translate_to_language", str).apply();
     }
 
-    private CharSequence preprocessText(CharSequence charSequence) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
-        if (this.onLinkPress != null || this.fragment != null) {
-            for (final URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
-                int spanStart = spannableStringBuilder.getSpanStart(uRLSpan);
-                int spanEnd = spannableStringBuilder.getSpanEnd(uRLSpan);
-                if (spanStart != -1 && spanEnd != -1) {
-                    spannableStringBuilder.removeSpan(uRLSpan);
-                    spannableStringBuilder.setSpan(new ClickableSpan() {
-                        @Override
-                        public void onClick(View view) {
-                            if (TranslateAlert2.this.onLinkPress != null) {
-                                if (((Boolean) TranslateAlert2.this.onLinkPress.run(uRLSpan)).booleanValue()) {
-                                    TranslateAlert2.this.dismiss();
-                                }
-                            } else if (TranslateAlert2.this.fragment != null) {
-                                AlertsCreator.showOpenUrlAlert(TranslateAlert2.this.fragment, uRLSpan.getURL(), false, false);
-                            }
-                        }
-
-                        @Override
-                        public void updateDrawState(TextPaint textPaint) {
-                            int iMin = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
-                            if (!(uRLSpan instanceof URLSpanNoUnderline)) {
-                                textPaint.setUnderlineText(true);
-                            }
-                            textPaint.setColor(Theme.getColor(Theme.key_dialogTextLink));
-                            textPaint.setAlpha(iMin);
-                        }
-                    }, spanStart, spanEnd, 33);
+    public static AnonymousClass7 showAlert(Activity activity, ChatActivity chatActivity, TLRPC.InputPeer inputPeer, int i, boolean z, String str, String str2, CharSequence charSequence, boolean z2, ChatActivity$$ExternalSyntheticLambda230 chatActivity$$ExternalSyntheticLambda230, final Runnable runnable) {
+        ?? r0 = new TranslateAlert2(activity, str, str2, charSequence, inputPeer, i, z) {
+            @Override
+            public final void lambda$showGiftOfferSheet$15() {
+                super.lambda$showGiftOfferSheet$15();
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
                 }
             }
+        };
+        r0.setNoforwards(z2);
+        r0.fragment = chatActivity;
+        r0.onLinkPress = chatActivity$$ExternalSyntheticLambda230;
+        if (chatActivity.getParentActivity() != null) {
+            chatActivity.showDialog(r0);
         }
-        return Emoji.replaceEmoji(spannableStringBuilder, this.textView.getPaint().getFontMetricsInt(), true);
-    }
-
-    @Override
-    public void dismissInternal() {
-        if (this.reqId != null) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId.intValue(), true);
-            this.reqId = null;
-        }
-        super.dismissInternal();
-    }
-
-    public void setFragment(BaseFragment baseFragment) {
-        this.fragment = baseFragment;
-    }
-
-    public void setOnLinkPress(Utilities.CallbackReturn callbackReturn) {
-        this.onLinkPress = callbackReturn;
-    }
-
-    public void setNoforwards(boolean z) {
-        LinkSpanDrawable.LinksTextView linksTextView = this.textView;
-        if (linksTextView != null) {
-            linksTextView.setTextIsSelectable(!z);
-        }
-        if (z) {
-            getWindow().addFlags(8192);
-            AndroidUtilities.logFlagSecure();
-        } else {
-            getWindow().clearFlags(8192);
-            AndroidUtilities.logFlagSecure();
-        }
-    }
-
-    class LoadingTextView extends TextView {
-        private final LoadingDrawable loadingDrawable;
-        private final LinkPath path;
-
-        public LoadingTextView(Context context) {
-            super(context);
-            LinkPath linkPath = new LinkPath(true);
-            this.path = linkPath;
-            LoadingDrawable loadingDrawable = new LoadingDrawable();
-            this.loadingDrawable = loadingDrawable;
-            loadingDrawable.usePath(linkPath);
-            loadingDrawable.setSpeed(0.65f);
-            loadingDrawable.setRadiiDp(4.0f);
-            setBackground(loadingDrawable);
-        }
-
-        @Override
-        public void setTextColor(int i) {
-            super.setTextColor(Theme.multAlpha(i, 0.2f));
-            this.loadingDrawable.setColors(Theme.multAlpha(i, 0.03f), Theme.multAlpha(i, 0.175f), Theme.multAlpha(i, 0.2f), Theme.multAlpha(i, 0.45f));
-        }
-
-        private void updateDrawable() {
-            LinkPath linkPath = this.path;
-            if (linkPath == null || this.loadingDrawable == null) {
-                return;
-            }
-            linkPath.rewind();
-            if (getLayout() != null && getLayout().getText() != null) {
-                this.path.setCurrentLayout(getLayout(), 0, getPaddingLeft(), getPaddingTop());
-                getLayout().getSelectionPath(0, getLayout().getText().length(), this.path);
-            }
-            this.loadingDrawable.updateBounds();
-        }
-
-        @Override
-        public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-            super.setText(charSequence, bufferType);
-            updateDrawable();
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-            updateDrawable();
-        }
-
-        @Override
-        protected void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-            this.loadingDrawable.reset();
-        }
-    }
-
-    static class PaddedAdapter extends RecyclerView.Adapter {
-        private Context mContext;
-        private View mMainView;
-        private int mainViewType = 1;
-
-        @Override
-        public int getItemCount() {
-            return 2;
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        }
-
-        public PaddedAdapter(Context context, View view) {
-            this.mContext = context;
-            this.mMainView = view;
-        }
-
-        public void updateMainView(View view) {
-            if (this.mMainView == view) {
-                return;
-            }
-            this.mainViewType++;
-            this.mMainView = view;
-            notifyItemChanged(1);
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            if (i == 0) {
-                return new RecyclerListView.Holder(new View(this.mContext) {
-                    @Override
-                    protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.displaySize.y * 0.4f), 1073741824));
-                    }
-                });
-            }
-            return new RecyclerListView.Holder(this.mMainView);
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            if (i == 0) {
-                return 0;
-            }
-            return this.mainViewType;
-        }
-    }
-
-    public float getSheetTop() {
-        return getSheetTop(true);
-    }
-
-    public float getSheetTop(boolean z) {
-        AnimatedFloat animatedFloat;
-        float top = this.listView.getTop();
-        if (this.listView.getChildCount() >= 1) {
-            RecyclerListView recyclerListView = this.listView;
-            top += Math.max(0, recyclerListView.getChildAt(recyclerListView.getChildCount() - 1).getTop());
-        }
-        float fMax = Math.max(0.0f, top - AndroidUtilities.dp(78.0f));
-        if (z && (animatedFloat = this.sheetTopAnimated) != null) {
-            if (!this.listView.scrollingByUser && !this.sheetTopNotAnimate) {
-                return animatedFloat.set(fMax);
-            }
-            animatedFloat.set(fMax, true);
-        }
-        return fMax;
-    }
-
-    class HeaderView extends FrameLayout {
-        private ImageView arrowView;
-        private ImageView backButton;
-        private View backgroundView;
-        private TextView fromLanguageTextView;
-        private View shadow;
-        private LinearLayout subtitleView;
-        private TextView titleTextView;
-        private AnimatedTextView toLanguageTextView;
-
-        public HeaderView(Context context) {
-            super(context);
-            View view = new View(context);
-            this.backgroundView = view;
-            view.setBackgroundColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground));
-            addView(this.backgroundView, LayoutHelper.createFrame(-1, 44.0f, 55, 0.0f, 12.0f, 0.0f, 0.0f));
-            ImageView imageView = new ImageView(context);
-            this.backButton = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.backButton.setImageResource(R.drawable.ic_ab_back);
-            ImageView imageView2 = this.backButton;
-            int i = Theme.key_dialogTextBlack;
-            int themedColor = TranslateAlert2.this.getThemedColor(i);
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            imageView2.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
-            this.backButton.setBackground(Theme.createSelectorDrawable(TranslateAlert2.this.getThemedColor(Theme.key_listSelector)));
-            this.backButton.setAlpha(0.0f);
-            this.backButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    TranslateAlert2.this.dismiss();
-                }
-            });
-            addView(this.backButton, LayoutHelper.createFrame(54, 54.0f, 48, 1.0f, 1.0f, 1.0f, 1.0f));
-            TextView textView = new TextView(context) {
-                @Override
-                protected void onMeasure(int i2, int i3) {
-                    super.onMeasure(i2, i3);
-                    if (LocaleController.isRTL) {
-                        HeaderView.this.titleTextView.setPivotX(getMeasuredWidth());
-                    }
-                }
-            };
-            this.titleTextView = textView;
-            textView.setTextColor(TranslateAlert2.this.getThemedColor(i));
-            this.titleTextView.setTextSize(1, 20.0f);
-            this.titleTextView.setTypeface(AndroidUtilities.bold());
-            this.titleTextView.setText(LocaleController.getString(R.string.AutomaticTranslation));
-            this.titleTextView.setPivotX(0.0f);
-            this.titleTextView.setPivotY(0.0f);
-            addView(this.titleTextView, LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 20.0f, 22.0f, 0.0f));
-            LinearLayout linearLayout = new LinearLayout(context) {
-                @Override
-                protected void onMeasure(int i2, int i3) {
-                    super.onMeasure(i2, i3);
-                    if (LocaleController.isRTL) {
-                        HeaderView.this.subtitleView.setPivotX(getMeasuredWidth());
-                    }
-                }
-            };
-            this.subtitleView = linearLayout;
-            if (LocaleController.isRTL) {
-                linearLayout.setGravity(5);
-            }
-            this.subtitleView.setPivotX(0.0f);
-            this.subtitleView.setPivotY(0.0f);
-            if (!TextUtils.isEmpty(TranslateAlert2.this.fromLanguage) && !"und".equals(TranslateAlert2.this.fromLanguage)) {
-                TextView textView2 = new TextView(context);
-                this.fromLanguageTextView = textView2;
-                textView2.setLines(1);
-                this.fromLanguageTextView.setTextColor(TranslateAlert2.this.getThemedColor(Theme.key_player_actionBarSubtitle));
-                this.fromLanguageTextView.setTextSize(1, 14.0f);
-                this.fromLanguageTextView.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(TranslateAlert2.this.fromLanguage)));
-                this.fromLanguageTextView.setPadding(0, AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f));
-            }
-            ImageView imageView3 = new ImageView(context);
-            this.arrowView = imageView3;
-            imageView3.setImageResource(R.drawable.search_arrow);
-            ImageView imageView4 = this.arrowView;
-            int i2 = Theme.key_player_actionBarSubtitle;
-            imageView4.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(i2), mode));
-            if (LocaleController.isRTL) {
-                this.arrowView.setScaleX(-1.0f);
-            }
-            AnimatedTextView animatedTextView = new AnimatedTextView(context) {
-                private Paint bgPaint = new Paint(1);
-                private LinkSpanDrawable.LinkCollector links = new LinkSpanDrawable.LinkCollector();
-
-                @Override
-                protected void onDraw(Canvas canvas) {
-                    if (LocaleController.isRTL) {
-                        AndroidUtilities.rectTmp.set(getWidth() - width(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (getHeight() + AndroidUtilities.dp(18.0f)) / 2.0f);
-                    } else {
-                        AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, width(), (getHeight() + AndroidUtilities.dp(18.0f)) / 2.0f);
-                    }
-                    this.bgPaint.setColor(Theme.multAlpha(TranslateAlert2.this.getThemedColor(Theme.key_player_actionBarSubtitle), 0.1175f));
-                    canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.bgPaint);
-                    if (this.links.draw(canvas)) {
-                        invalidate();
-                    }
-                    super.onDraw(canvas);
-                }
-
-                @Override
-                public boolean onTouchEvent(MotionEvent motionEvent) {
-                    if (motionEvent.getAction() == 0) {
-                        LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(null, ((BottomSheet) TranslateAlert2.this).resourcesProvider, motionEvent.getX(), motionEvent.getY());
-                        linkSpanDrawable.setColor(Theme.multAlpha(TranslateAlert2.this.getThemedColor(Theme.key_player_actionBarSubtitle), 0.1175f));
-                        LinkPath linkPathObtainNewPath = linkSpanDrawable.obtainNewPath();
-                        if (LocaleController.isRTL) {
-                            AndroidUtilities.rectTmp.set(getWidth() - width(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (getHeight() + AndroidUtilities.dp(18.0f)) / 2.0f);
-                        } else {
-                            AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, width(), (getHeight() + AndroidUtilities.dp(18.0f)) / 2.0f);
-                        }
-                        linkPathObtainNewPath.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
-                        this.links.addLink(linkSpanDrawable);
-                        invalidate();
-                        return true;
-                    }
-                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        if (motionEvent.getAction() == 1) {
-                            performClick();
-                        }
-                        this.links.clear();
-                        invalidate();
-                    }
-                    return super.onTouchEvent(motionEvent);
-                }
-            };
-            this.toLanguageTextView = animatedTextView;
-            if (LocaleController.isRTL) {
-                animatedTextView.setGravity(5);
-            }
-            this.toLanguageTextView.setAnimationProperties(0.25f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.toLanguageTextView.setTextColor(TranslateAlert2.this.getThemedColor(i2));
-            this.toLanguageTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.toLanguageTextView.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(TranslateAlert2.this.toLanguage)));
-            this.toLanguageTextView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
-            this.toLanguageTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    this.f$0.openLanguagesSelect();
-                }
-            });
-            if (LocaleController.isRTL) {
-                this.subtitleView.addView(this.toLanguageTextView, LayoutHelper.createLinear(-2, -2, 16, 0, 0, this.fromLanguageTextView != null ? 3 : 0, 0));
-                if (this.fromLanguageTextView != null) {
-                    this.subtitleView.addView(this.arrowView, LayoutHelper.createLinear(-2, -2, 16, 0, 1, 0, 0));
-                    this.subtitleView.addView(this.fromLanguageTextView, LayoutHelper.createLinear(-2, -2, 16, 4, 0, 0, 0));
-                }
-            } else {
-                TextView textView3 = this.fromLanguageTextView;
-                if (textView3 != null) {
-                    this.subtitleView.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 4, 0));
-                    this.subtitleView.addView(this.arrowView, LayoutHelper.createLinear(-2, -2, 16, 0, 1, 0, 0));
-                }
-                this.subtitleView.addView(this.toLanguageTextView, LayoutHelper.createLinear(-2, -2, 16, this.fromLanguageTextView != null ? 3 : 0, 0, 0, 0));
-            }
-            addView(this.subtitleView, LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 43.0f, 22.0f, 0.0f));
-            View view2 = new View(context);
-            this.shadow = view2;
-            view2.setBackgroundColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogShadowLine));
-            this.shadow.setAlpha(0.0f);
-            addView(this.shadow, LayoutHelper.createFrame(-1, AndroidUtilities.getShadowHeight() / AndroidUtilities.dpf2(1.0f), 55, 0.0f, 56.0f, 0.0f, 0.0f));
-        }
-
-        public void openLanguagesSelect() {
-            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext()) {
-                @Override
-                protected void onMeasure(int i, int i2) {
-                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.33f), View.MeasureSpec.getSize(i2)), 1073741824));
-                }
-            };
-            Drawable drawableMutate = ContextCompat.getDrawable(getContext(), R.drawable.popup_fixed_alert).mutate();
-            drawableMutate.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefaultSubmenuBackground), PorterDuff.Mode.MULTIPLY));
-            actionBarPopupWindowLayout.setBackground(drawableMutate);
-            final Runnable[] runnableArr = new Runnable[1];
-            ArrayList<LocaleController.LocaleInfo> locales = TranslateController.getLocales();
-            int i = 0;
-            boolean z = true;
-            while (i < locales.size()) {
-                final LocaleController.LocaleInfo localeInfo = locales.get(i);
-                if (!localeInfo.pluralLangCode.equals(TranslateAlert2.this.fromLanguage) && "remote".equals(localeInfo.pathToFile)) {
-                    TextUtils.equals(TranslateAlert2.this.toLanguage, localeInfo.pluralLangCode);
-                    ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), 2, z, i == locales.size() - 1, ((BottomSheet) TranslateAlert2.this).resourcesProvider);
-                    actionBarMenuSubItem.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(localeInfo.pluralLangCode)));
-                    actionBarMenuSubItem.setChecked(TextUtils.equals(TranslateAlert2.this.toLanguage, localeInfo.pluralLangCode));
-                    actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            TranslateAlert2.HeaderView.$r8$lambda$UblI6Bw1mBSi2LG49nRSYd2HcQc(this.f$0, runnableArr, localeInfo, view);
-                        }
-                    });
-                    actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
-                    z = false;
-                }
-                i++;
-            }
-            final ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
-            runnableArr[0] = new Runnable() {
-                @Override
-                public final void run() {
-                    actionBarPopupWindow.dismiss();
-                }
-            };
-            actionBarPopupWindow.setPauseNotifications(true);
-            actionBarPopupWindow.setDismissAnimationDuration(220);
-            actionBarPopupWindow.setOutsideTouchable(true);
-            actionBarPopupWindow.setClippingEnabled(true);
-            actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
-            actionBarPopupWindow.setFocusable(true);
-            int[] iArr = new int[2];
-            this.toLanguageTextView.getLocationInWindow(iArr);
-            actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
-            int measuredHeight = actionBarPopupWindowLayout.getMeasuredHeight();
-            int i2 = iArr[1];
-            actionBarPopupWindow.showAtLocation(((BottomSheet) TranslateAlert2.this).containerView, 51, iArr[0] - AndroidUtilities.dp(8.0f), ((float) i2) > (((float) AndroidUtilities.displaySize.y) * 0.9f) - ((float) measuredHeight) ? (i2 - measuredHeight) + AndroidUtilities.dp(8.0f) : (i2 + this.toLanguageTextView.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
-        }
-
-        public static void $r8$lambda$UblI6Bw1mBSi2LG49nRSYd2HcQc(HeaderView headerView, Runnable[] runnableArr, LocaleController.LocaleInfo localeInfo, View view) {
-            headerView.getClass();
-            Runnable runnable = runnableArr[0];
-            if (runnable != null) {
-                runnable.run();
-            }
-            if (TextUtils.equals(TranslateAlert2.this.toLanguage, localeInfo.pluralLangCode)) {
-                return;
-            }
-            if (TranslateAlert2.this.adapter.mMainView == TranslateAlert2.this.textViewContainer || TranslateAlert2.this.adapter.mMainView == TranslateAlert2.this.richPreviewView) {
-                TranslateAlert2 translateAlert2 = TranslateAlert2.this;
-                translateAlert2.prevToLanguage = translateAlert2.toLanguage;
-            }
-            headerView.toLanguageTextView.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(TranslateAlert2.this.toLanguage = localeInfo.pluralLangCode)));
-            TranslateAlert2.this.adapter.updateMainView(TranslateAlert2.this.reqRichMessage != null ? TranslateAlert2.this.richLoadingPreviewView : TranslateAlert2.this.loadingTextView);
-            TranslateAlert2.setToLanguage(TranslateAlert2.this.toLanguage);
-            TranslateAlert2.this.translate();
-        }
-
-        @Override
-        public void setTranslationY(float f) {
-            super.setTranslationY(f);
-            float fClamp = MathUtils.clamp((f - AndroidUtilities.statusBarHeight) / AndroidUtilities.dp(64.0f), 0.0f, 1.0f);
-            if (!TranslateAlert2.this.hasEnoughHeight()) {
-                fClamp = 1.0f;
-            }
-            float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(fClamp);
-            this.titleTextView.setScaleX(AndroidUtilities.lerp(0.85f, 1.0f, interpolation));
-            this.titleTextView.setScaleY(AndroidUtilities.lerp(0.85f, 1.0f, interpolation));
-            this.titleTextView.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dpf2(-12.0f), 0.0f, interpolation));
-            if (!LocaleController.isRTL) {
-                this.titleTextView.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dpf2(50.0f), 0.0f, interpolation));
-                this.subtitleView.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dpf2(50.0f), 0.0f, interpolation));
-            }
-            this.subtitleView.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dpf2(-22.0f), 0.0f, interpolation));
-            this.backButton.setTranslationX(AndroidUtilities.lerp(0.0f, AndroidUtilities.dpf2(-25.0f), interpolation));
-            float f2 = 1.0f - interpolation;
-            this.backButton.setAlpha(f2);
-            this.shadow.setTranslationY(AndroidUtilities.lerp(0.0f, AndroidUtilities.dpf2(22.0f), interpolation));
-            this.shadow.setAlpha(f2);
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f), 1073741824));
-        }
-    }
-
-    private class ContainerView extends FrameLayout {
-        private Paint bgPaint;
-        private Path bgPath;
-        private Boolean lightStatusBarFull;
-
-        public ContainerView(Context context) {
-            super(context);
-            this.bgPath = new Path();
-            Paint paint = new Paint(1);
-            this.bgPaint = paint;
-            paint.setColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground));
-            Theme.applyDefaultShadow(this.bgPaint);
-        }
-
-        @Override
-        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-            if (TranslateAlert2.this.textSelectionHelper != null && TranslateAlert2.this.textSelectionOverlay != null) {
-                if (motionEvent.getAction() == 0 || motionEvent.getAction() == 1) {
-                    Log.d("TA2", "container dispatch act=" + motionEvent.getAction() + " inSel=" + TranslateAlert2.this.textSelectionHelper.isInSelectionMode());
-                }
-                if (!TranslateAlert2.this.textSelectionHelper.isInSelectionMode() || !TranslateAlert2.this.textSelectionOverlay.onTouchEvent(motionEvent)) {
-                    boolean zCheckOnTap = TranslateAlert2.this.textSelectionOverlay.checkOnTap(motionEvent);
-                    if (motionEvent.getAction() == 1) {
-                        Log.d("TA2", "checkOnTap=" + zCheckOnTap);
-                    }
-                    if (zCheckOnTap) {
-                        motionEvent.setAction(3);
-                    }
-                } else {
-                    Log.d("TA2", "overlay consumed (handle)");
-                    return true;
-                }
-            }
-            return super.dispatchTouchEvent(motionEvent);
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            float sheetTop = TranslateAlert2.this.getSheetTop();
-            float fLerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(12.0f), MathUtils.clamp(sheetTop / AndroidUtilities.dpf2(24.0f), 0.0f, 1.0f));
-            TranslateAlert2.this.headerView.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, sheetTop));
-            updateLightStatusBar(sheetTop <= ((float) AndroidUtilities.statusBarHeight) / 2.0f);
-            FrameLayout frameLayout = TranslateAlert2.this.topBulletinContainer;
-            frameLayout.setTranslationY(((-frameLayout.getTop()) - TranslateAlert2.this.topBulletinContainer.getHeight()) + getTranslationY() + Math.max(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f) + TranslateAlert2.this.topBulletinContainer.getHeight(), sheetTop));
-            this.bgPath.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, sheetTop, getWidth(), getHeight() + fLerp);
-            this.bgPath.addRoundRect(rectF, fLerp, fLerp, Path.Direction.CW);
-            canvas.drawPath(this.bgPath, this.bgPaint);
-            super.dispatchDraw(canvas);
-        }
-
-        @Override
-        public void setTranslationY(float f) {
-            super.setTranslationY(f);
-            FrameLayout frameLayout = TranslateAlert2.this.topBulletinContainer;
-            frameLayout.setTranslationY(((-frameLayout.getTop()) - TranslateAlert2.this.topBulletinContainer.getHeight()) + f + Math.max(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f) + TranslateAlert2.this.topBulletinContainer.getHeight(), TranslateAlert2.this.getSheetTop()));
-        }
-
-        private void updateLightStatusBar(boolean z) {
-            int iBlendOver;
-            Boolean bool = this.lightStatusBarFull;
-            if (bool == null || bool.booleanValue() != z) {
-                this.lightStatusBarFull = Boolean.valueOf(z);
-                Window window = TranslateAlert2.this.getWindow();
-                if (z) {
-                    iBlendOver = TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground);
-                } else {
-                    iBlendOver = Theme.blendOver(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefault), 855638016);
-                }
-                AndroidUtilities.setLightStatusBar(window, AndroidUtilities.computePerceivedBrightness(iBlendOver) > 0.721f);
-            }
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
-        }
-
-        @Override
-        protected void onAttachedToWindow() {
-            super.onAttachedToWindow();
-            Bulletin.addDelegate(this, new Bulletin.Delegate() {
-                @Override
-                public boolean allowLayoutChanges() {
-                    return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
-                }
-
-                @Override
-                public boolean bottomOffsetAnimated() {
-                    return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
-                }
-
-                @Override
-                public boolean clipWithGradient(int i) {
-                    return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
-                }
-
-                @Override
-                public int getTopOffset(int i) {
-                    return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
-                }
-
-                @Override
-                public void onBottomOffsetChange(float f) {
-                    Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
-                }
-
-                @Override
-                public void onHide(Bulletin bulletin) {
-                    Bulletin.Delegate.CC.$default$onHide(this, bulletin);
-                }
-
-                @Override
-                public void onShow(Bulletin bulletin) {
-                    Bulletin.Delegate.CC.$default$onShow(this, bulletin);
-                }
-
-                @Override
-                public int getBottomOffset(int i) {
-                    return AndroidUtilities.dp(80.0f);
-                }
-            });
-        }
-
-        @Override
-        protected void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-            Bulletin.removeDelegate(this);
-        }
-    }
-
-    public static String capitalFirst(String str) {
-        if (str == null || str.length() <= 0) {
-            return null;
-        }
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
-    }
-
-    public static CharSequence capitalFirst(CharSequence charSequence) {
-        if (charSequence == null || charSequence.length() <= 0) {
-            return null;
-        }
-        SpannableStringBuilder spannableStringBuilderValueOf = charSequence instanceof SpannableStringBuilder ? (SpannableStringBuilder) charSequence : SpannableStringBuilder.valueOf(charSequence);
-        spannableStringBuilderValueOf.replace(0, 1, (CharSequence) spannableStringBuilderValueOf.toString().substring(0, 1).toUpperCase());
-        return spannableStringBuilderValueOf;
-    }
-
-    public static String languageName(String str) {
-        return languageName(str, null, null);
-    }
-
-    public static String languageName(String str, boolean[] zArr) {
-        return languageName(str, zArr, null);
-    }
-
-    public static String languageName(String str, boolean[] zArr, boolean[] zArr2) {
-        if (str == null || str.equals("und") || str.equals("auto")) {
-            return null;
-        }
-        String str2 = str.split("_")[0];
-        if ("nb".equals(str2)) {
-            str2 = "no";
-        }
-        if (zArr != null) {
-            String string = LocaleController.getString("TranslateLanguage" + str2.toUpperCase());
-            boolean z = (string == null || string.startsWith("LOC_ERR")) ? false : true;
-            zArr[0] = z;
-            if (z) {
-                return string;
-            }
-        }
-        if (zArr2 != null) {
-            String string2 = LocaleController.getString("TranslateLanguageGenitive" + str2.toUpperCase());
-            boolean z2 = (string2 == null || string2.startsWith("LOC_ERR")) ? false : true;
-            zArr2[0] = z2;
-            if (z2) {
-                return string2;
-            }
-        }
-        String strSystemLanguageName = systemLanguageName(str);
-        if (strSystemLanguageName == null) {
-            strSystemLanguageName = systemLanguageName(str2);
-        }
-        if (strSystemLanguageName != null) {
-            return strSystemLanguageName;
-        }
-        if ("no".equals(str)) {
-            str = "nb";
-        }
-        LocaleController.LocaleInfo currentLocaleInfo = LocaleController.getInstance().getCurrentLocaleInfo();
-        LocaleController.LocaleInfo builtinLanguageByPlural = LocaleController.getInstance().getBuiltinLanguageByPlural(str);
-        if (builtinLanguageByPlural == null) {
-            return null;
-        }
-        if (currentLocaleInfo != null && "en".equals(currentLocaleInfo.pluralLangCode)) {
-            return builtinLanguageByPlural.nameEnglish;
-        }
-        return builtinLanguageByPlural.name;
-    }
-
-    public static String languageNameCapital(String str) {
-        String strLanguageName = languageName(str);
-        if (strLanguageName == null) {
-            return null;
-        }
-        return strLanguageName.substring(0, 1).toUpperCase() + strLanguageName.substring(1);
-    }
-
-    public static String systemLanguageName(String str) {
-        return systemLanguageName(str, false);
+        return r0;
     }
 
     public static String systemLanguageName(String str, boolean z) {
@@ -1541,138 +1246,345 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         String lowerCase = str.replace("_", "-").toLowerCase();
         try {
             Locale locale = (Locale) localesByCode.get(lowerCase);
-            if (locale != null) {
-                String displayLanguage = locale.getDisplayLanguage(z ? locale : Locale.getDefault());
-                if (!lowerCase.contains("-")) {
-                    return displayLanguage;
-                }
-                String displayCountry = locale.getDisplayCountry(z ? locale : Locale.getDefault());
-                if (TextUtils.isEmpty(displayCountry)) {
-                    return displayLanguage;
-                }
-                return displayLanguage + " (" + displayCountry + ")";
+            if (locale == null) {
+                return null;
             }
+            String displayLanguage = locale.getDisplayLanguage(z ? locale : Locale.getDefault());
+            if (!lowerCase.contains("-")) {
+                return displayLanguage;
+            }
+            String displayCountry = locale.getDisplayCountry(z ? locale : Locale.getDefault());
+            if (TextUtils.isEmpty(displayCountry)) {
+                return displayLanguage;
+            }
+            return displayLanguage + " (" + displayCountry + ")";
         } catch (Exception unused2) {
+            return null;
         }
-        return null;
     }
 
     @Override
-    public void show() {
-        super.show();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.translationModelDownloaded);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.translationModelDownloading);
+    public final boolean canDismissWithSwipe() {
+        return false;
     }
 
     @Override
-    public void dismiss() {
-        super.dismiss();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.translationModelDownloaded);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.translationModelDownloading);
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.emojiLoaded) {
             this.loadingTextView.invalidate();
             this.textView.invalidate();
         }
     }
 
-    public void updateButtonShadow(boolean z) {
-        Boolean bool = this.buttonShadowShown;
-        if (bool == null || bool.booleanValue() != z) {
-            this.buttonShadowShown = Boolean.valueOf(z);
-            this.buttonShadowView.animate().cancel();
-            this.buttonShadowView.animate().alpha(z ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).start();
+    @Override
+    public void lambda$showGiftOfferSheet$15() {
+        super.lambda$showGiftOfferSheet$15();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.translationModelDownloaded);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.translationModelDownloading);
+    }
+
+    @Override
+    public final void dismissInternal() {
+        if (this.reqId != null) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId.intValue(), true);
+            this.reqId = null;
+        }
+        super.dismissInternal();
+    }
+
+    public final float getSheetTop(boolean z) {
+        AnimatedFloat animatedFloat;
+        AnonymousClass2 anonymousClass2 = this.listView;
+        float top = anonymousClass2.getTop();
+        if (anonymousClass2.getChildCount() >= 1) {
+            top += Math.max(0, anonymousClass2.getChildAt(anonymousClass2.getChildCount() - 1).getTop());
+        }
+        float fMax = Math.max(0.0f, top - AndroidUtilities.dp(78.0f));
+        if (z && (animatedFloat = this.sheetTopAnimated) != null) {
+            if (!anonymousClass2.scrollingByUser && !this.sheetTopNotAnimate) {
+                return animatedFloat.set(fMax, false);
+            }
+            animatedFloat.set(fMax, true);
+        }
+        return fMax;
+    }
+
+    public final void lambda$translate$1(TLObject tLObject) {
+        this.reqId = null;
+        if (tLObject instanceof TLRPC.TL_messages_translatedRichMessage) {
+            TLRPC.TL_messages_translatedRichMessage tL_messages_translatedRichMessage = (TLRPC.TL_messages_translatedRichMessage) tLObject;
+            if (!tL_messages_translatedRichMessage.result.isEmpty() && tL_messages_translatedRichMessage.result.get(0) != null) {
+                this.firstTranslation = false;
+                TL_iv.RichMessage richMessage = tL_messages_translatedRichMessage.result.get(0);
+                RichMessageLayout.PreviewView previewView = this.richPreviewView;
+                if (previewView != null) {
+                    previewView.set(richMessage);
+                    this.adapter.updateMainView(previewView);
+                    return;
+                }
+                return;
+            }
+        }
+        if (this.firstTranslation) {
+            lambda$showGiftOfferSheet$15();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.TranslationFailedAlert2));
+            return;
+        }
+        UserNameResolver$$ExternalSyntheticOutline0.m(R.string.TranslationFailedAlert2, new BulletinFactory((FrameLayout) this.containerView, this.resourcesProvider), null);
+        HeaderView.AnonymousClass3 anonymousClass3 = this.headerView.toLanguageTextView;
+        String str = this.prevToLanguage;
+        this.toLanguage = str;
+        anonymousClass3.setText(languageName(str, null, null));
+    }
+
+    public final void lambda$translate$3(TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, TLRPC.TL_error tL_error) {
+        this.reqId = null;
+        if (tL_error != null && "TRANSLATIONS_DISABLED_ALT".equalsIgnoreCase(tL_error.text)) {
+            translateAlt();
+            return;
+        }
+        AnonymousClass1 anonymousClass1 = this.textViewContainer;
+        PaddedAdapter paddedAdapter = this.adapter;
+        if (tL_textWithEntities2 != null) {
+            this.firstTranslation = false;
+            TLRPC.TL_textWithEntities tL_textWithEntitiesPreprocess = preprocess(tL_textWithEntities, tL_textWithEntities2);
+            SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(tL_textWithEntitiesPreprocess.text);
+            MessageObject.addEntitiesToText(spannableStringBuilderValueOf, tL_textWithEntitiesPreprocess.entities, false, true, false, false);
+            this.textView.setText(preprocessText(spannableStringBuilderValueOf));
+            paddedAdapter.updateMainView(anonymousClass1);
+            return;
+        }
+        if (this.firstTranslation) {
+            lambda$showGiftOfferSheet$15();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.TranslationFailedAlert2));
+            return;
+        }
+        UserNameResolver$$ExternalSyntheticOutline0.m(R.string.TranslationFailedAlert2, new BulletinFactory((FrameLayout) this.containerView, this.resourcesProvider), null);
+        HeaderView.AnonymousClass3 anonymousClass3 = this.headerView.toLanguageTextView;
+        String str = this.prevToLanguage;
+        this.toLanguage = str;
+        anonymousClass3.setText(languageName(str, null, null));
+        paddedAdapter.updateMainView(anonymousClass1);
+    }
+
+    public final void lambda$translate$4(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.reqId = null;
+        if (tL_error != null && "TRANSLATIONS_DISABLED_ALT".equalsIgnoreCase(tL_error.text)) {
+            translateAlt();
+            return;
+        }
+        boolean z = tLObject instanceof TLRPC.TL_messages_translateResult;
+        AnonymousClass1 anonymousClass1 = this.textViewContainer;
+        PaddedAdapter paddedAdapter = this.adapter;
+        if (z) {
+            TLRPC.TL_messages_translateResult tL_messages_translateResult = (TLRPC.TL_messages_translateResult) tLObject;
+            if (!tL_messages_translateResult.result.isEmpty() && tL_messages_translateResult.result.get(0) != null && tL_messages_translateResult.result.get(0).text != null) {
+                this.firstTranslation = false;
+                TLRPC.TL_textWithEntities tL_textWithEntitiesPreprocess = preprocess(tL_textWithEntities, tL_messages_translateResult.result.get(0));
+                SpannableStringBuilder spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(tL_textWithEntitiesPreprocess.text);
+                MessageObject.addEntitiesToText(spannableStringBuilderValueOf, tL_textWithEntitiesPreprocess.entities, false, true, false, false);
+                this.textView.setText(preprocessText(spannableStringBuilderValueOf));
+                paddedAdapter.updateMainView(anonymousClass1);
+                return;
+            }
+        }
+        if (this.firstTranslation) {
+            lambda$showGiftOfferSheet$15();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.TranslationFailedAlert2));
+            return;
+        }
+        UserNameResolver$$ExternalSyntheticOutline0.m(R.string.TranslationFailedAlert2, new BulletinFactory((FrameLayout) this.containerView, this.resourcesProvider), null);
+        HeaderView.AnonymousClass3 anonymousClass3 = this.headerView.toLanguageTextView;
+        String str = this.prevToLanguage;
+        this.toLanguage = str;
+        anonymousClass3.setText(languageName(str, null, null));
+        paddedAdapter.updateMainView(anonymousClass1);
+    }
+
+    public final void lambda$translateAlt$6(String str, Boolean bool) {
+        AnonymousClass1 anonymousClass1 = this.textViewContainer;
+        PaddedAdapter paddedAdapter = this.adapter;
+        if (str != null) {
+            this.firstTranslation = false;
+            this.textView.setText(preprocessText(str));
+            paddedAdapter.updateMainView(anonymousClass1);
+        } else {
+            if (isDismissed()) {
+                return;
+            }
+            if (this.firstTranslation) {
+                lambda$showGiftOfferSheet$15();
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(bool.booleanValue() ? R.string.TranslationFailedAlert1 : R.string.TranslationFailedAlert2));
+                return;
+            }
+            UserNameResolver$$ExternalSyntheticOutline0.m(bool.booleanValue() ? R.string.TranslationFailedAlert1 : R.string.TranslationFailedAlert2, new BulletinFactory((FrameLayout) this.containerView, this.resourcesProvider), null);
+            HeaderView.AnonymousClass3 anonymousClass3 = this.headerView.toLanguageTextView;
+            String str2 = this.prevToLanguage;
+            this.toLanguage = str2;
+            anonymousClass3.setText(languageName(str2, null, null));
+            paddedAdapter.updateMainView(anonymousClass1);
         }
     }
 
-    public static TranslateAlert2 showAlert(Context context, BaseFragment baseFragment, int i, TLRPC.InputPeer inputPeer, int i2, boolean z, String str, String str2, CharSequence charSequence, ArrayList arrayList, boolean z2, Utilities.CallbackReturn callbackReturn, final Runnable runnable) {
-        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, charSequence, arrayList, inputPeer, i2, z, null, null) {
-            @Override
-            public void dismiss() {
-                super.dismiss();
-                Runnable runnable2 = runnable;
-                if (runnable2 != null) {
-                    runnable2.run();
+    public final CharSequence preprocessText(CharSequence charSequence) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        if (this.onLinkPress != null || this.fragment != null) {
+            for (final URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
+                int spanStart = spannableStringBuilder.getSpanStart(uRLSpan);
+                int spanEnd = spannableStringBuilder.getSpanEnd(uRLSpan);
+                if (spanStart != -1 && spanEnd != -1) {
+                    spannableStringBuilder.removeSpan(uRLSpan);
+                    spannableStringBuilder.setSpan(new ClickableSpan() {
+                        @Override
+                        public final void onClick(View view) {
+                            TranslateAlert2 translateAlert2 = TranslateAlert2.this;
+                            Utilities.CallbackReturn callbackReturn = translateAlert2.onLinkPress;
+                            URLSpan uRLSpan2 = uRLSpan;
+                            if (callbackReturn != null) {
+                                if (((Boolean) callbackReturn.run(uRLSpan2)).booleanValue()) {
+                                    translateAlert2.lambda$showGiftOfferSheet$15();
+                                }
+                            } else {
+                                BaseFragment baseFragment = translateAlert2.fragment;
+                                if (baseFragment != null) {
+                                    AlertsCreator.showOpenUrlAlert(baseFragment, uRLSpan2.getURL(), false, false);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public final void updateDrawState(TextPaint textPaint) {
+                            int iMin = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
+                            if (!(uRLSpan instanceof URLSpanNoUnderline)) {
+                                textPaint.setUnderlineText(true);
+                            }
+                            textPaint.setColor(Theme.getColor(null, Theme.key_dialogTextLink, false));
+                            textPaint.setAlpha(iMin);
+                        }
+                    }, spanStart, spanEnd, 33);
                 }
             }
-        };
-        translateAlert2.setNoforwards(z2);
-        translateAlert2.setFragment(baseFragment);
-        translateAlert2.setOnLinkPress(callbackReturn);
-        if (baseFragment != null) {
-            if (baseFragment.getParentActivity() != null) {
-                baseFragment.showDialog(translateAlert2);
-            }
-            return translateAlert2;
         }
-        translateAlert2.show();
-        return translateAlert2;
+        return Emoji.replaceEmoji(spannableStringBuilder, this.textView.getPaint().getFontMetricsInt(), true);
     }
 
-    public static TranslateAlert2 showAlert(Context context, BaseFragment baseFragment, int i, TLRPC.InputPeer inputPeer, int i2, String str, String str2, TL_iv.RichMessage richMessage, boolean z, Utilities.CallbackReturn callbackReturn, final Runnable runnable) {
+    public final void setNoforwards(boolean z) {
+        LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+        if (linksTextView != null) {
+            linksTextView.setTextIsSelectable(!z);
+        }
+        if (z) {
+            getWindow().addFlags(8192);
+            AndroidUtilities.logFlagSecure();
+        } else {
+            getWindow().clearFlags(8192);
+            AndroidUtilities.logFlagSecure();
+        }
+    }
+
+    @Override
+    public final void show() {
+        super.show();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.translationModelDownloaded);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.translationModelDownloading);
+    }
+
+    public final void translate() {
+        if (this.reqId != null) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId.intValue(), true);
+            this.reqId = null;
+        }
+        if ("alternative".equalsIgnoreCase(MessagesController.getInstance(this.currentAccount).translationsManualEnabled)) {
+            translateAlt();
+            return;
+        }
+        String str = this.toLanguage;
+        if (str != null) {
+            str = str.split("_")[0];
+        }
+        if ("nb".equals(str)) {
+            str = "no";
+        }
+        TL_iv.RichMessage richMessage = this.reqRichMessage;
+        int i = this.reqMessageId;
+        TLRPC.InputPeer inputPeer = this.reqPeer;
+        if (richMessage != null && inputPeer != null) {
+            TLRPC.TL_messages_translateRichMessage tL_messages_translateRichMessage = new TLRPC.TL_messages_translateRichMessage();
+            tL_messages_translateRichMessage.flags = 1 | tL_messages_translateRichMessage.flags;
+            tL_messages_translateRichMessage.peer = inputPeer;
+            tL_messages_translateRichMessage.id.add(Integer.valueOf(i));
+            tL_messages_translateRichMessage.to_lang = TranslateController.normalizeLanguage(str);
+            this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateRichMessage, new LinkManager$$ExternalSyntheticLambda3(this, 5)));
+            return;
+        }
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        CharSequence charSequence = this.reqText;
+        tL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
+        if (this.reqSum && inputPeer != null) {
+            TLRPC.TL_messages_summarizeText tL_messages_summarizeText = new TLRPC.TL_messages_summarizeText();
+            tL_messages_summarizeText.flags = 1 | tL_messages_summarizeText.flags;
+            tL_messages_summarizeText.peer = inputPeer;
+            tL_messages_summarizeText.id = i;
+            tL_messages_summarizeText.to_lang = TranslateController.normalizeLanguage(str);
+            this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new AiTonesController$$ExternalSyntheticLambda0(), new OAuthSheet$$ExternalSyntheticLambda18(12, this, tL_textWithEntities)));
+            return;
+        }
+        TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
+        if (inputPeer != null) {
+            tL_messages_translateText.flags = 1 | tL_messages_translateText.flags;
+            tL_messages_translateText.peer = inputPeer;
+            tL_messages_translateText.id.add(Integer.valueOf(i));
+        } else {
+            tL_messages_translateText.flags |= 2;
+            tL_messages_translateText.text.add(tL_textWithEntities);
+        }
+        tL_messages_translateText.to_lang = TranslateController.normalizeLanguage(str);
+        this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateText, new LinkManager$$ExternalSyntheticLambda8(11, this, tL_textWithEntities)));
+    }
+
+    public final void translateAlt() {
+        CharSequence charSequence = this.reqText;
+        String string = charSequence == null ? "" : charSequence.toString();
+        String str = this.fromLanguage;
+        if (str != null) {
+            str = str.split("_")[0];
+        }
+        if ("nb".equals(str)) {
+            str = "no";
+        }
+        String str2 = this.toLanguage;
+        if (str2 != null) {
+            str2 = str2.split("_")[0];
+        }
+        alternativeTranslate(string, str, new GiftSheet$$ExternalSyntheticLambda8(this, 10), "nb".equals(str2) ? "no" : str2);
+    }
+
+    public static void showAlert(Context context, BaseFragment baseFragment, String str, String str2, CharSequence charSequence, WebActionBar$$ExternalSyntheticLambda9 webActionBar$$ExternalSyntheticLambda9, final ChatActivity$$ExternalSyntheticLambda174 chatActivity$$ExternalSyntheticLambda174) {
         if (context == null) {
-            return null;
+            return;
         }
-        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, null, null, inputPeer, i2, false, richMessage, null) {
+        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, charSequence) {
             @Override
-            public void dismiss() {
-                super.dismiss();
-                Runnable runnable2 = runnable;
-                if (runnable2 != null) {
-                    runnable2.run();
+            public final void lambda$showGiftOfferSheet$15() {
+                super.lambda$showGiftOfferSheet$15();
+                ChatActivity$$ExternalSyntheticLambda174 chatActivity$$ExternalSyntheticLambda175 = chatActivity$$ExternalSyntheticLambda174;
+                if (chatActivity$$ExternalSyntheticLambda175 != null) {
+                    chatActivity$$ExternalSyntheticLambda175.run();
                 }
             }
         };
-        translateAlert2.setNoforwards(z);
-        translateAlert2.setFragment(baseFragment);
-        translateAlert2.setOnLinkPress(callbackReturn);
+        translateAlert2.setNoforwards(false);
+        translateAlert2.fragment = baseFragment;
+        translateAlert2.onLinkPress = webActionBar$$ExternalSyntheticLambda9;
         if (baseFragment != null) {
             if (baseFragment.getParentActivity() != null) {
                 baseFragment.showDialog(translateAlert2);
+                return;
             }
-            return translateAlert2;
+            return;
         }
         translateAlert2.show();
-        return translateAlert2;
-    }
-
-    public static TranslateAlert2 showAlert(Context context, BaseFragment baseFragment, int i, String str, String str2, CharSequence charSequence, ArrayList arrayList, boolean z, Utilities.CallbackReturn callbackReturn, final Runnable runnable) {
-        if (context == null) {
-            return null;
-        }
-        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, charSequence, arrayList, null) {
-            @Override
-            public void dismiss() {
-                super.dismiss();
-                Runnable runnable2 = runnable;
-                if (runnable2 != null) {
-                    runnable2.run();
-                }
-            }
-        };
-        translateAlert2.setNoforwards(z);
-        translateAlert2.setFragment(baseFragment);
-        translateAlert2.setOnLinkPress(callbackReturn);
-        if (baseFragment != null) {
-            if (baseFragment.getParentActivity() != null) {
-                baseFragment.showDialog(translateAlert2);
-            }
-            return translateAlert2;
-        }
-        translateAlert2.show();
-        return translateAlert2;
-    }
-
-    public static String getToLanguage() {
-        return MessagesController.getGlobalMainSettings().getString("translate_to_language", LocaleController.getInstance().getCurrentLocale().getLanguage());
-    }
-
-    public static void setToLanguage(String str) {
-        MessagesController.getGlobalMainSettings().edit().putString("translate_to_language", str).apply();
     }
 }

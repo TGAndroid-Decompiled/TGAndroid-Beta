@@ -8,7 +8,6 @@ import java.util.Set;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -22,175 +21,6 @@ public class BirthdayController {
     private long lastCheckDate;
     private boolean loading;
     private BirthdayState state;
-
-    static {
-        for (int i = 0; i < 4; i++) {
-            lockObjects[i] = new Object();
-        }
-    }
-
-    public static BirthdayController getInstance(int i) {
-        BirthdayController birthdayController;
-        BirthdayController birthdayController2 = Instance[i];
-        if (birthdayController2 != null) {
-            return birthdayController2;
-        }
-        synchronized (lockObjects[i]) {
-            try {
-                birthdayController = Instance[i];
-                if (birthdayController == null) {
-                    BirthdayController[] birthdayControllerArr = Instance;
-                    BirthdayController birthdayController3 = new BirthdayController(i);
-                    birthdayControllerArr[i] = birthdayController3;
-                    birthdayController = birthdayController3;
-                }
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
-        return birthdayController;
-    }
-
-    private BirthdayController(final int i) {
-        this.currentAccount = i;
-        SharedPreferences mainSettings = MessagesController.getInstance(i).getMainSettings();
-        this.lastCheckDate = mainSettings.getLong("bday_check", 0L);
-        String string = mainSettings.getString("bday_contacts", null);
-        if (string != null) {
-            try {
-                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-                final TL_birthdays tL_birthdaysTLdeserialize = TL_birthdays.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-                if (tL_birthdaysTLdeserialize != null && !tL_birthdaysTLdeserialize.contacts.isEmpty()) {
-                    final ArrayList arrayList = new ArrayList();
-                    for (int i2 = 0; i2 < tL_birthdaysTLdeserialize.contacts.size(); i2++) {
-                        arrayList.add(Long.valueOf(tL_birthdaysTLdeserialize.contacts.get(i2).contact_id));
-                    }
-                    MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
-                        @Override
-                        public final void run() {
-                            BirthdayController.$r8$lambda$GqYKVXZ4oUwEwNTXAqwEYzuVGyM(this.f$0, i, arrayList, tL_birthdaysTLdeserialize);
-                        }
-                    });
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-        this.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
-    }
-
-    public static void $r8$lambda$GqYKVXZ4oUwEwNTXAqwEYzuVGyM(final BirthdayController birthdayController, int i, ArrayList arrayList, final TL_birthdays tL_birthdays) {
-        birthdayController.getClass();
-        final ArrayList<TLRPC.User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BirthdayController.$r8$lambda$MaKtOYeIJDbDHwaJLuRzxAaPMbM(this.f$0, tL_birthdays, users);
-            }
-        });
-    }
-
-    public static void $r8$lambda$MaKtOYeIJDbDHwaJLuRzxAaPMbM(BirthdayController birthdayController, TL_birthdays tL_birthdays, ArrayList arrayList) {
-        birthdayController.getClass();
-        TL_account.contactBirthdays contactbirthdays = new TL_account.contactBirthdays();
-        contactbirthdays.contacts = tL_birthdays.contacts;
-        contactbirthdays.users = arrayList;
-        birthdayController.state = BirthdayState.from(contactbirthdays);
-    }
-
-    public void check() {
-        if (this.loading) {
-            return;
-        }
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        long j = this.lastCheckDate;
-        boolean z = false;
-        boolean z2 = j == 0;
-        if (!z2) {
-            z2 = jCurrentTimeMillis - j > ((long) (BuildVars.DEBUG_PRIVATE_VERSION ? 25000 : 43200000));
-        }
-        if (z2) {
-            z = z2;
-        } else {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(this.lastCheckDate);
-            Calendar calendar2 = Calendar.getInstance();
-            calendar2.setTimeInMillis(jCurrentTimeMillis);
-            if (calendar.get(5) != calendar2.get(5) || calendar.get(2) != calendar2.get(2) || calendar.get(1) != calendar2.get(1)) {
-                z = true;
-            }
-        }
-        if (z) {
-            this.loading = true;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getBirthdays(), new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BirthdayController.$r8$lambda$VIi0fx2Yg8f7ukd1ZA85xPETL7s(this.f$0, tLObject, tL_error);
-                }
-            });
-        }
-    }
-
-    public static void $r8$lambda$VIi0fx2Yg8f7ukd1ZA85xPETL7s(final BirthdayController birthdayController, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        birthdayController.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BirthdayController.$r8$lambda$CKtlsFTDoX4m45QWj5cE85AeTkg(this.f$0, tLObject);
-            }
-        });
-    }
-
-    public static void $r8$lambda$CKtlsFTDoX4m45QWj5cE85AeTkg(BirthdayController birthdayController, TLObject tLObject) {
-        birthdayController.getClass();
-        if (tLObject instanceof TL_account.contactBirthdays) {
-            birthdayController.lastCheckDate = System.currentTimeMillis();
-            TL_account.contactBirthdays contactbirthdays = (TL_account.contactBirthdays) tLObject;
-            birthdayController.state = BirthdayState.from(contactbirthdays);
-            MessagesController.getInstance(birthdayController.currentAccount).putUsers(contactbirthdays.users, false);
-            MessagesStorage.getInstance(birthdayController.currentAccount).putUsersAndChats(contactbirthdays.users, null, true, true);
-            SharedPreferences.Editor editorEdit = MessagesController.getInstance(birthdayController.currentAccount).getMainSettings().edit();
-            editorEdit.putLong("bday_check", birthdayController.lastCheckDate);
-            TL_birthdays tL_birthdays = new TL_birthdays();
-            tL_birthdays.contacts = contactbirthdays.contacts;
-            SerializedData serializedData = new SerializedData(tL_birthdays.getObjectSize());
-            tL_birthdays.serializeToStream(serializedData);
-            editorEdit.putString("bday_contacts", Utilities.bytesToHex(serializedData.toByteArray()));
-            editorEdit.apply();
-            NotificationCenter.getInstance(birthdayController.currentAccount).postNotificationName(NotificationCenter.premiumPromoUpdated, new Object[0]);
-            birthdayController.loading = false;
-        }
-    }
-
-    public boolean contains() {
-        BirthdayState state = getState();
-        return (state == null || state.isTodayEmpty()) ? false : true;
-    }
-
-    public boolean contains(long j) {
-        BirthdayState state = getState();
-        return state != null && state.contains(j);
-    }
-
-    public BirthdayState getState() {
-        BirthdayState birthdayState = this.state;
-        if (birthdayState == null || this.hiddenDays.contains(birthdayState.todayKey)) {
-            return null;
-        }
-        return this.state;
-    }
-
-    public void hide() {
-        BirthdayState birthdayState = this.state;
-        if (birthdayState == null || this.hiddenDays.contains(birthdayState.todayKey)) {
-            return;
-        }
-        this.hiddenDays.add(this.state.todayKey);
-        SharedPreferences.Editor editorEdit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
-        editorEdit.putStringSet("bday_hidden", this.hiddenDays);
-        editorEdit.apply();
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.premiumPromoUpdated, new Object[0]);
-    }
 
     public static class BirthdayState {
         public String todayKey;
@@ -273,10 +103,6 @@ public class BirthdayController {
             return birthdayState;
         }
 
-        public boolean isTodayEmpty() {
-            return this.today.isEmpty();
-        }
-
         public boolean contains(long j) {
             ArrayList<TLRPC.User> arrayList = this.yesterday;
             int size = arrayList.size();
@@ -310,9 +136,13 @@ public class BirthdayController {
             }
             return false;
         }
+
+        public boolean isTodayEmpty() {
+            return this.today.isEmpty();
+        }
     }
 
-    static class TL_birthdays extends TLObject {
+    public static class TL_birthdays extends TLObject {
         public static final int constructor = 290452237;
         public ArrayList<TL_account.TL_contactBirthday> contacts;
 
@@ -351,6 +181,166 @@ public class BirthdayController {
         }
     }
 
+    static {
+        for (int i = 0; i < 4; i++) {
+            lockObjects[i] = new Object();
+        }
+    }
+
+    private BirthdayController(int i) {
+        BirthdayController birthdayController;
+        Exception exc;
+        this.currentAccount = i;
+        SharedPreferences mainSettings = MessagesController.getInstance(i).getMainSettings();
+        this.lastCheckDate = mainSettings.getLong("bday_check", 0L);
+        String string = mainSettings.getString("bday_contacts", null);
+        if (string != null) {
+            try {
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+                TL_birthdays tL_birthdaysTLdeserialize = TL_birthdays.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (tL_birthdaysTLdeserialize == null || tL_birthdaysTLdeserialize.contacts.isEmpty()) {
+                    birthdayController = this;
+                } else {
+                    ArrayList arrayList = new ArrayList();
+                    for (int i2 = 0; i2 < tL_birthdaysTLdeserialize.contacts.size(); i2++) {
+                        try {
+                            arrayList.add(Long.valueOf(tL_birthdaysTLdeserialize.contacts.get(i2).contact_id));
+                        } catch (Exception e) {
+                            exc = e;
+                            birthdayController = this;
+                            FileLog.e(exc);
+                            birthdayController.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
+                        }
+                    }
+                    birthdayController = this;
+                    try {
+                        MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new ImageLoader$$ExternalSyntheticLambda14(birthdayController, i, arrayList, tL_birthdaysTLdeserialize, 1));
+                    } catch (Exception e2) {
+                        e = e2;
+                        exc = e;
+                        FileLog.e(exc);
+                    }
+                }
+            } catch (Exception e3) {
+                e = e3;
+                birthdayController = this;
+            }
+        } else {
+            birthdayController = this;
+        }
+        birthdayController.hiddenDays = mainSettings.getStringSet("bday_hidden", new HashSet());
+    }
+
+    public static BirthdayController getInstance(int i) {
+        BirthdayController birthdayController;
+        BirthdayController birthdayController2 = Instance[i];
+        if (birthdayController2 != null) {
+            return birthdayController2;
+        }
+        synchronized (lockObjects[i]) {
+            try {
+                birthdayController = Instance[i];
+                if (birthdayController == null) {
+                    BirthdayController[] birthdayControllerArr = Instance;
+                    BirthdayController birthdayController3 = new BirthdayController(i);
+                    birthdayControllerArr[i] = birthdayController3;
+                    birthdayController = birthdayController3;
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+        return birthdayController;
+    }
+
+    public void lambda$check$2(TLObject tLObject) {
+        if (tLObject instanceof TL_account.contactBirthdays) {
+            this.lastCheckDate = System.currentTimeMillis();
+            TL_account.contactBirthdays contactbirthdays = (TL_account.contactBirthdays) tLObject;
+            this.state = BirthdayState.from(contactbirthdays);
+            MessagesController.getInstance(this.currentAccount).putUsers(contactbirthdays.users, false);
+            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(contactbirthdays.users, null, true, true);
+            SharedPreferences.Editor editorM = AiTonesController$$ExternalSyntheticOutline0.m(this.currentAccount);
+            editorM.putLong("bday_check", this.lastCheckDate);
+            TL_birthdays tL_birthdays = new TL_birthdays();
+            tL_birthdays.contacts = contactbirthdays.contacts;
+            SerializedData serializedData = new SerializedData(tL_birthdays.getObjectSize());
+            tL_birthdays.serializeToStream(serializedData);
+            editorM.putString("bday_contacts", Utilities.bytesToHex(serializedData.toByteArray()));
+            editorM.apply();
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
+            this.loading = false;
+        }
+    }
+
+    public void lambda$check$3(TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda5(12, this, tLObject));
+    }
+
+    public void lambda$new$0(TL_birthdays tL_birthdays, ArrayList arrayList) {
+        TL_account.contactBirthdays contactbirthdays = new TL_account.contactBirthdays();
+        contactbirthdays.contacts = tL_birthdays.contacts;
+        contactbirthdays.users = arrayList;
+        this.state = BirthdayState.from(contactbirthdays);
+    }
+
+    public void lambda$new$1(int i, ArrayList arrayList, TL_birthdays tL_birthdays) {
+        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda0(this, tL_birthdays, MessagesStorage.getInstance(i).getUsers(arrayList), 1));
+    }
+
+    public void check() {
+        if (this.loading) {
+            return;
+        }
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = this.lastCheckDate;
+        boolean z = false;
+        boolean z2 = j == 0;
+        if (!z2) {
+            z2 = jCurrentTimeMillis - j > ((long) (BuildVars.DEBUG_PRIVATE_VERSION ? 25000 : 43200000));
+        }
+        if (z2) {
+            z = z2;
+        } else {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(this.lastCheckDate);
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.setTimeInMillis(jCurrentTimeMillis);
+            if (calendar.get(5) != calendar2.get(5) || calendar.get(2) != calendar2.get(2) || calendar.get(1) != calendar2.get(1)) {
+                z = true;
+            }
+        }
+        if (z) {
+            this.loading = true;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getBirthdays(), new UserConfig$$ExternalSyntheticLambda0(this, 1));
+        }
+    }
+
+    public boolean contains() {
+        BirthdayState state = getState();
+        return (state == null || state.isTodayEmpty()) ? false : true;
+    }
+
+    public BirthdayState getState() {
+        BirthdayState birthdayState = this.state;
+        if (birthdayState == null || this.hiddenDays.contains(birthdayState.todayKey)) {
+            return null;
+        }
+        return this.state;
+    }
+
+    public void hide() {
+        BirthdayState birthdayState = this.state;
+        if (birthdayState == null || this.hiddenDays.contains(birthdayState.todayKey)) {
+            return;
+        }
+        this.hiddenDays.add(this.state.todayKey);
+        SharedPreferences.Editor editorM = AiTonesController$$ExternalSyntheticOutline0.m(this.currentAccount);
+        editorM.putStringSet("bday_hidden", this.hiddenDays);
+        editorM.apply();
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
+    }
+
     public boolean isToday(long j) {
         BirthdayState birthdayState = this.state;
         if (birthdayState != null && birthdayState.contains(j)) {
@@ -358,6 +348,11 @@ public class BirthdayController {
         }
         TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j);
         return (userFull == null || !isToday(userFull.birthday) || UserObject.areGiftsDisabled(userFull)) ? false : true;
+    }
+
+    public boolean contains(long j) {
+        BirthdayState state = getState();
+        return state != null && state.contains(j);
     }
 
     public static boolean isToday(TLRPC.UserFull userFull) {

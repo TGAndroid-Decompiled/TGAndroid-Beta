@@ -1,32 +1,33 @@
 package kotlinx.coroutines.internal;
 
-import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 public abstract class AtomicOp extends OpDescriptor {
-    private static final AtomicReferenceFieldUpdater _consensus$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(AtomicOp.class, Object.class, "_consensus$volatile");
+    public static final AtomicReferenceFieldUpdater _consensus$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(AtomicOp.class, Object.class, "_consensus$volatile");
     private volatile Object _consensus$volatile = AtomicKt.NO_DECISION;
 
     public abstract void complete(Object obj, Object obj2);
 
-    public abstract Object prepare(Object obj);
-
-    private final Object decide(Object obj) {
-        Object obj2 = _consensus$volatile$FU.get(this);
-        Object obj3 = AtomicKt.NO_DECISION;
-        if (obj2 != obj3) {
-            return obj2;
-        }
-        return AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_consensus$volatile$FU, this, obj3, obj) ? obj : _consensus$volatile$FU.get(this);
-    }
-
     @Override
     public final Object perform(Object obj) {
-        Object objDecide = _consensus$volatile$FU.get(this);
-        if (objDecide == AtomicKt.NO_DECISION) {
-            objDecide = decide(prepare(obj));
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _consensus$volatile$FU;
+        Object obj2 = atomicReferenceFieldUpdater.get(this);
+        Symbol symbol = AtomicKt.NO_DECISION;
+        if (obj2 == symbol) {
+            Symbol symbolPrepare = prepare(obj);
+            obj2 = atomicReferenceFieldUpdater.get(this);
+            if (obj2 == symbol) {
+                while (!atomicReferenceFieldUpdater.compareAndSet(this, symbol, symbolPrepare)) {
+                    if (atomicReferenceFieldUpdater.get(this) != symbol) {
+                        obj2 = atomicReferenceFieldUpdater.get(this);
+                    }
+                }
+                obj2 = symbolPrepare;
+            }
         }
-        complete(obj, objDecide);
-        return objDecide;
+        complete(obj, obj2);
+        return obj2;
     }
+
+    public abstract Symbol prepare(Object obj);
 }

@@ -21,8 +21,10 @@ public class Glue {
         this.name = str;
     }
 
-    public String getName() {
-        return this.name;
+    private Box createBox(TeXEnvironment teXEnvironment) {
+        TeXFont teXFont = teXEnvironment.getTeXFont();
+        float quad = teXFont.getQuad(teXEnvironment.getStyle(), teXFont.getMuFontId());
+        return new GlueBox((this.space / 18.0f) * quad, (this.stretch / 18.0f) * quad, (this.shrink / 18.0f) * quad);
     }
 
     public static Box get(int i, int i2, TeXEnvironment teXEnvironment) {
@@ -35,9 +37,7 @@ public class Glue {
         return glueTypes[glueTable[i][i2][teXEnvironment.getStyle() / 2]].createBox(teXEnvironment);
     }
 
-    private Box createBox(TeXEnvironment teXEnvironment) {
-        TeXFont teXFont = teXEnvironment.getTeXFont();
-        float quad = teXFont.getQuad(teXEnvironment.getStyle(), teXFont.getMuFontId());
-        return new GlueBox((this.space / 18.0f) * quad, (this.stretch / 18.0f) * quad, (this.shrink / 18.0f) * quad);
+    public String getName() {
+        return this.name;
     }
 }

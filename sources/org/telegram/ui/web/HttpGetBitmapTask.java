@@ -10,21 +10,21 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.Utilities;
+import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
 
-public class HttpGetBitmapTask extends AsyncTask {
-    private final Utilities.Callback callback;
-    private Exception exception;
-    private final HashMap headers = new HashMap();
+public final class HttpGetBitmapTask extends AsyncTask {
+    public final ThemeActivity$$ExternalSyntheticLambda19 callback;
+    public Exception exception;
+    public final HashMap headers = new HashMap();
 
-    public HttpGetBitmapTask(Utilities.Callback callback) {
-        this.callback = callback;
+    public HttpGetBitmapTask(ThemeActivity$$ExternalSyntheticLambda19 themeActivity$$ExternalSyntheticLambda19) {
+        this.callback = themeActivity$$ExternalSyntheticLambda19;
     }
 
     @Override
-    public Bitmap doInBackground(String... strArr) {
+    public final Object doInBackground(Object[] objArr) {
         try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(strArr[0]).openConnection();
+            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
             for (Map.Entry entry : this.headers.entrySet()) {
                 if (entry.getKey() != null && entry.getValue() != null) {
                     httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
@@ -34,10 +34,7 @@ public class HttpGetBitmapTask extends AsyncTask {
             httpURLConnection.setDoInput(true);
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode >= 200 && responseCode < 300) {
-                if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                    return SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
-                }
-                return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
+                return (httpURLConnection.getContentType() == null || !httpURLConnection.getContentType().contains("svg")) ? BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream())) : SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
             }
             httpURLConnection.disconnect();
             return null;
@@ -48,13 +45,14 @@ public class HttpGetBitmapTask extends AsyncTask {
     }
 
     @Override
-    public void onPostExecute(Bitmap bitmap) {
-        Utilities.Callback callback = this.callback;
-        if (callback != null) {
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        ThemeActivity$$ExternalSyntheticLambda19 themeActivity$$ExternalSyntheticLambda19 = this.callback;
+        if (themeActivity$$ExternalSyntheticLambda19 != null) {
             if (this.exception == null) {
-                callback.run(bitmap);
+                themeActivity$$ExternalSyntheticLambda19.run(bitmap);
             } else {
-                callback.run(null);
+                themeActivity$$ExternalSyntheticLambda19.run(null);
             }
         }
     }

@@ -2,43 +2,46 @@ package org.telegram.messenger.audioinfo.util;
 
 import java.io.InputStream;
 
-public class RangeInputStream extends PositionInputStream {
-    private final long endPosition;
+public final class RangeInputStream extends PositionInputStream {
+    public final long endPosition;
 
     public RangeInputStream(InputStream inputStream, long j, long j2) {
-        super(inputStream, j);
+        super(0, inputStream);
+        this.position = j;
         this.endPosition = j + j2;
     }
 
-    public long getRemainingLength() {
-        return this.endPosition - getPosition();
+    public final long getRemainingLength() {
+        return this.endPosition - this.position;
     }
 
     @Override
-    public int read() {
-        if (getPosition() == this.endPosition) {
+    public final int read() {
+        if (this.position == this.endPosition) {
             return -1;
         }
         return super.read();
     }
 
     @Override
-    public int read(byte[] bArr, int i, int i2) {
-        long position = getPosition() + ((long) i2);
-        long j = this.endPosition;
-        if (position <= j || (i2 = (int) (j - getPosition())) != 0) {
-            return super.read(bArr, i, i2);
+    public final long skip(long j) {
+        long j2 = this.position;
+        long j3 = j2 + j;
+        long j4 = this.endPosition;
+        if (j3 > j4) {
+            j = (int) (j4 - j2);
         }
-        return -1;
+        return super.skip(j);
     }
 
     @Override
-    public long skip(long j) {
-        long position = getPosition() + j;
-        long j2 = this.endPosition;
-        if (position > j2) {
-            j = (int) (j2 - getPosition());
+    public final int read(byte[] bArr, int i, int i2) {
+        long j = this.position;
+        long j2 = ((long) i2) + j;
+        long j3 = this.endPosition;
+        if (j2 <= j3 || (i2 = (int) (j3 - j)) != 0) {
+            return super.read(bArr, i, i2);
         }
-        return super.skip(j);
+        return -1;
     }
 }

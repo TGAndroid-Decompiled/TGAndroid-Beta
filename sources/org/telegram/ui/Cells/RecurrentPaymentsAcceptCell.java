@@ -11,62 +11,63 @@ import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 
-public class RecurrentPaymentsAcceptCell extends FrameLayout {
-    private CheckBoxSquare checkBox;
-    private LinkSpanDrawable.LinkCollector links;
-    private TextView textView;
+public final class RecurrentPaymentsAcceptCell extends FrameLayout {
+    public final CheckBoxSquare checkBox;
+    public final LinkSpanDrawable.LinkCollector links;
+    public final LinkSpanDrawable.LinksTextView textView;
 
     public RecurrentPaymentsAcceptCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, false);
+        CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
         this.checkBox = checkBoxSquare;
         checkBoxSquare.setDuplicateParentStateEnabled(false);
-        this.checkBox.setFocusable(false);
-        this.checkBox.setFocusableInTouchMode(false);
-        this.checkBox.setClickable(false);
-        addView(this.checkBox, LayoutHelper.createFrame(18, 18.0f, (LocaleController.isRTL ? 5 : 3) | 16, 21.0f, 0.0f, 21.0f, 0.0f));
+        checkBoxSquare.setFocusable(false);
+        checkBoxSquare.setFocusableInTouchMode(false);
+        checkBoxSquare.setClickable(false);
+        addView(checkBoxSquare, LayoutHelper.createFrame(18, 18.0f, (LocaleController.isRTL ? 5 : 3) | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         LinkSpanDrawable.LinkCollector linkCollector = new LinkSpanDrawable.LinkCollector(this);
         this.links = linkCollector;
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, linkCollector, resourcesProvider);
         this.textView = linksTextView;
         linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-        this.textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, resourcesProvider));
-        this.textView.setTextSize(1, 15.0f);
-        this.textView.setMaxLines(2);
-        this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
-        TextView textView = this.textView;
+        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, resourcesProvider));
+        linksTextView.setTextSize(1, 15.0f);
+        linksTextView.setMaxLines(2);
+        linksTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        linksTextView.setEllipsize(TextUtils.TruncateAt.END);
         boolean z = LocaleController.isRTL;
-        addView(textView, LayoutHelper.createFrame(-1, -1.0f, (z ? 5 : 3) | 48, z ? 16.0f : 58.0f, 21.0f, z ? 58.0f : 16.0f, 21.0f));
+        addView(linksTextView, LayoutHelper.createFrame(-1, -1.0f, (z ? 5 : 3) | 48, z ? 16.0f : 58.0f, 21.0f, z ? 58.0f : 16.0f, 21.0f));
         setWillNotDraw(false);
-    }
-
-    public TextView getTextView() {
-        return this.textView;
     }
 
     public CheckBoxSquare getCheckBox() {
         return this.checkBox;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.textView.setText(charSequence);
+    public TextView getTextView() {
+        return this.textView;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        LinkSpanDrawable.LinkCollector linkCollector = this.links;
+        if (linkCollector != null) {
+            canvas.save();
+            LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+            canvas.translate(linksTextView.getLeft(), linksTextView.getTop());
+            if (linkCollector.draw(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
+        }
     }
 
     public void setChecked(boolean z) {
         this.checkBox.setChecked(z, true);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.links != null) {
-            canvas.save();
-            canvas.translate(this.textView.getLeft(), this.textView.getTop());
-            if (this.links.draw(canvas)) {
-                invalidate();
-            }
-            canvas.restore();
-        }
+    public void setText(CharSequence charSequence) {
+        this.textView.setText(charSequence);
     }
 }

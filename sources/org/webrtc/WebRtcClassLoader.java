@@ -1,10 +1,7 @@
 package org.webrtc;
 
 class WebRtcClassLoader {
-    WebRtcClassLoader() {
-    }
-
-    static Object getClassLoader() {
+    public static Object getClassLoader() {
         ClassLoader classLoader = WebRtcClassLoader.class.getClassLoader();
         if (classLoader != null) {
             return classLoader;

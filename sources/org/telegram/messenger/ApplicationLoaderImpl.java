@@ -9,13 +9,8 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import androidx.core.content.FileProvider;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.microsoft.appcenter.AppCenter;
-import com.microsoft.appcenter.CustomProperties;
-import com.microsoft.appcenter.analytics.Analytics;
-import com.microsoft.appcenter.crashes.Crashes;
-import com.microsoft.appcenter.distribute.Distribute;
-import com.microsoft.appcenter.utils.async.AppCenterConsumer;
 import java.io.File;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
@@ -26,20 +21,6 @@ import org.telegram.ui.IUpdateLayout;
 
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
-
-    @Override
-    protected boolean isBeta() {
-        return true;
-    }
-
-    @Override
-    protected void logDualCameraInternal(boolean z, boolean z2) {
-    }
-
-    @Override
-    protected String onGetApplicationId() {
-        return "org.telegram.messenger.beta";
-    }
 
     private String getVersionName(int i) {
         if (i == 0) {
@@ -54,111 +35,29 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (i == 5) {
             return "hardcore";
         }
-        if (i == 6) {
-            return "standalone";
+        if (i != 6) {
+            return i != 7 ? "unknown" : "release";
         }
-        if (i == 7) {
-            return "release";
-        }
-        return "unknown";
+        return "standalone";
     }
 
     @Override
-    protected void startAppCenterInternal(Activity activity) {
+    public void appCenterLogInternal(Throwable th) {
         try {
-            if (BuildVars.DEBUG_VERSION) {
-                String str = "" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser() != null) {
-                    String publicUsername = UserObject.getPublicUsername(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
-                    if (!TextUtils.isEmpty(publicUsername)) {
-                        str = "@" + publicUsername;
-                    }
-                }
-                if (ConnectionsManager.getInstance(UserConfig.selectedAccount).isTestBackend()) {
-                    str = str + " [TEST SERVER]";
-                }
-                FirebaseCrashlytics firebaseCrashlytics = FirebaseCrashlytics.getInstance();
-                firebaseCrashlytics.setUserId(str);
-                firebaseCrashlytics.setCustomKey("version", getVersionName(4));
-                firebaseCrashlytics.setCustomKey("model", Build.MODEL);
-                firebaseCrashlytics.setCustomKey("manufacturer", Build.MANUFACTURER);
-                if (Build.VERSION.SDK_INT >= 31) {
-                    firebaseCrashlytics.setCustomKey("soc_model", Build.SOC_MODEL);
-                    firebaseCrashlytics.setCustomKey("soc_manufacturer", Build.SOC_MANUFACTURER);
-                }
-                firebaseCrashlytics.setCustomKey("device", Build.DEVICE);
-                firebaseCrashlytics.setCustomKey("product", Build.PRODUCT);
-                firebaseCrashlytics.setCustomKey("hardware", Build.HARDWARE);
-                firebaseCrashlytics.setCustomKey("user", Build.USER);
-                firebaseCrashlytics.setCrashlyticsCollectionEnabled(true);
+            FirebaseCrashlytics firebaseCrashlytics = (FirebaseCrashlytics) FirebaseApp.getInstance().get(FirebaseCrashlytics.class);
+            if (firebaseCrashlytics == null) {
+                throw new NullPointerException("FirebaseCrashlytics component is not present.");
             }
-            if (BuildVars.DEBUG_VERSION) {
-                Distribute.setEnabledForDebuggableBuild(true);
-                if (!TextUtils.isEmpty("null")) {
-                    AppCenter.start(activity.getApplication(), "null", Distribute.class, Crashes.class, Analytics.class);
-                    Crashes.getMinidumpDirectory().thenAccept(new AppCenterConsumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            ApplicationLoaderImpl.m358$r8$lambda$iduE1Rxk3r4juvJqEO1Jt_RGXI((String) obj);
-                        }
-                    });
-                    CustomProperties customProperties = new CustomProperties();
-                    customProperties.set("model", Build.MODEL);
-                    customProperties.set("manufacturer", Build.MANUFACTURER);
-                    if (Build.VERSION.SDK_INT >= 31) {
-                        customProperties.set("soc_model", Build.SOC_MODEL);
-                        customProperties.set("soc_manufacturer", Build.SOC_MANUFACTURER);
-                    }
-                    customProperties.set("device", Build.DEVICE);
-                    customProperties.set("product", Build.PRODUCT);
-                    customProperties.set("hardware", Build.HARDWARE);
-                    customProperties.set("user", Build.USER);
-                    AppCenter.setCustomProperties(customProperties);
-                    String str2 = "uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId;
-                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser() != null) {
-                        String publicUsername2 = UserObject.getPublicUsername(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
-                        if (!TextUtils.isEmpty(publicUsername2)) {
-                            str2 = str2 + " @" + publicUsername2;
-                        }
-                    }
-                    AppCenter.setUserId(str2);
-                    return;
-                }
-                throw new RuntimeException("App Center hash is empty. add to local.properties field APP_CENTER_HASH_PRIVATE and APP_CENTER_HASH_PUBLIC");
-            }
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
-    }
-
-    public static void m358$r8$lambda$iduE1Rxk3r4juvJqEO1Jt_RGXI(String str) {
-        if (str != null) {
-            Utilities.setupNativeCrashesListener(str);
-        }
-    }
-
-    @Override
-    protected void checkForUpdatesInternal() {
-        try {
-            if (BuildVars.DEBUG_VERSION && SystemClock.elapsedRealtime() - lastUpdateCheckTime >= 3600000) {
-                lastUpdateCheckTime = SystemClock.elapsedRealtime();
-                Distribute.checkForUpdate();
-            }
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
-    }
-
-    @Override
-    protected void appCenterLogInternal(Throwable th) {
-        try {
-            FirebaseCrashlytics.getInstance().recordException(th);
+            firebaseCrashlytics.recordException(th);
         } catch (Throwable th2) {
             FileLog.e(th2, false);
         }
-        try {
-            Crashes.trackError(th);
-        } catch (Throwable unused) {
+    }
+
+    @Override
+    public void cancelDownloadingUpdate() {
+        if (isCustomUpdate()) {
+            BetaUpdaterController.getInstance().cancelDownloadingUpdate();
         }
     }
 
@@ -169,6 +68,82 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         }
         AlertsCreator.createApkRestrictedDialog(context, null).show();
         return false;
+    }
+
+    @Override
+    public void checkForUpdatesInternal() {
+        try {
+            if (BuildVars.DEBUG_VERSION && SystemClock.elapsedRealtime() - lastUpdateCheckTime >= 3600000) {
+                lastUpdateCheckTime = SystemClock.elapsedRealtime();
+            }
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+    }
+
+    @Override
+    public void checkUpdate(boolean z, Runnable runnable) {
+        if (isCustomUpdate()) {
+            BetaUpdaterController.getInstance().checkForUpdate(z, runnable);
+        }
+    }
+
+    @Override
+    public void downloadUpdate() {
+        if (isCustomUpdate()) {
+            BetaUpdaterController.getInstance().downloadUpdate();
+        }
+    }
+
+    @Override
+    public File getDownloadedUpdateFile() {
+        if (isCustomUpdate()) {
+            return BetaUpdaterController.getInstance().getDownloadedFile();
+        }
+        return null;
+    }
+
+    @Override
+    public float getDownloadingUpdateProgress() {
+        if (isCustomUpdate()) {
+            return BetaUpdaterController.getInstance().getDownloadingProgress();
+        }
+        return 0.0f;
+    }
+
+    @Override
+    public BetaUpdate getUpdate() {
+        if (isCustomUpdate()) {
+            return BetaUpdaterController.getInstance().getUpdate();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isBeta() {
+        return true;
+    }
+
+    @Override
+    public boolean isCustomUpdate() {
+        return !TextUtils.isEmpty("null");
+    }
+
+    @Override
+    public boolean isDownloadingUpdate() {
+        if (isCustomUpdate()) {
+            return BetaUpdaterController.getInstance().isDownloading();
+        }
+        return false;
+    }
+
+    @Override
+    public void logDualCameraInternal(boolean z, boolean z2) {
+    }
+
+    @Override
+    public String onGetApplicationId() {
+        return "org.telegram.messenger.beta";
     }
 
     @Override
@@ -199,61 +174,51 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
-    public boolean isCustomUpdate() {
-        return !TextUtils.isEmpty("null");
-    }
-
-    @Override
-    public BetaUpdate getUpdate() {
-        if (isCustomUpdate()) {
-            return BetaUpdaterController.getInstance().getUpdate();
-        }
-        return null;
-    }
-
-    @Override
-    public void checkUpdate(boolean z, Runnable runnable) {
-        if (isCustomUpdate()) {
-            BetaUpdaterController.getInstance().checkForUpdate(z, runnable);
+    public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i) {
+        try {
+            new UpdateAppAlertDialog(context, betaUpdate).show();
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return true;
         }
     }
 
     @Override
-    public void downloadUpdate() {
-        if (isCustomUpdate()) {
-            BetaUpdaterController.getInstance().downloadUpdate();
+    public void startAppCenterInternal(Activity activity) {
+        try {
+            if (BuildVars.DEBUG_VERSION) {
+                String str = "" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId;
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser() != null) {
+                    String publicUsername = UserObject.getPublicUsername(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
+                    if (!TextUtils.isEmpty(publicUsername)) {
+                        str = "@" + publicUsername;
+                    }
+                }
+                if (ConnectionsManager.getInstance(UserConfig.selectedAccount).isTestBackend()) {
+                    str = str + " [TEST SERVER]";
+                }
+                FirebaseCrashlytics firebaseCrashlytics = (FirebaseCrashlytics) FirebaseApp.getInstance().get(FirebaseCrashlytics.class);
+                if (firebaseCrashlytics == null) {
+                    throw new NullPointerException("FirebaseCrashlytics component is not present.");
+                }
+                firebaseCrashlytics.setUserId(str);
+                firebaseCrashlytics.setCustomKey("version", getVersionName(4));
+                firebaseCrashlytics.setCustomKey("model", Build.MODEL);
+                firebaseCrashlytics.setCustomKey("manufacturer", Build.MANUFACTURER);
+                if (Build.VERSION.SDK_INT >= 31) {
+                    firebaseCrashlytics.setCustomKey("soc_model", Build.SOC_MODEL);
+                    firebaseCrashlytics.setCustomKey("soc_manufacturer", Build.SOC_MANUFACTURER);
+                }
+                firebaseCrashlytics.setCustomKey("device", Build.DEVICE);
+                firebaseCrashlytics.setCustomKey("product", Build.PRODUCT);
+                firebaseCrashlytics.setCustomKey("hardware", Build.HARDWARE);
+                firebaseCrashlytics.setCustomKey("user", Build.USER);
+                firebaseCrashlytics.setCrashlyticsCollectionEnabled();
+            }
+        } catch (Throwable th) {
+            FileLog.e(th);
         }
-    }
-
-    @Override
-    public void cancelDownloadingUpdate() {
-        if (isCustomUpdate()) {
-            BetaUpdaterController.getInstance().cancelDownloadingUpdate();
-        }
-    }
-
-    @Override
-    public boolean isDownloadingUpdate() {
-        if (isCustomUpdate()) {
-            return BetaUpdaterController.getInstance().isDownloading();
-        }
-        return false;
-    }
-
-    @Override
-    public float getDownloadingUpdateProgress() {
-        if (isCustomUpdate()) {
-            return BetaUpdaterController.getInstance().getDownloadingProgress();
-        }
-        return 0.0f;
-    }
-
-    @Override
-    public File getDownloadedUpdateFile() {
-        if (isCustomUpdate()) {
-            return BetaUpdaterController.getInstance().getDownloadedFile();
-        }
-        return null;
     }
 
     @Override
@@ -262,16 +227,5 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             return new UpdateLayout(activity, viewGroup);
         }
         return null;
-    }
-
-    @Override
-    public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i) {
-        try {
-            new UpdateAppAlertDialog(context, betaUpdate, i).show();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return true;
-        }
     }
 }

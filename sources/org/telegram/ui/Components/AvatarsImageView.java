@@ -6,15 +6,13 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 
 public class AvatarsImageView extends View {
     public final AvatarsDrawable avatarsDrawable;
-    private Paint plusBgPaint;
-    private Text plusText;
-    private PremiumGradient.PremiumGradientTools premiumGradient;
+    public Paint plusBgPaint;
+    public Text plusText;
+    public PremiumGradient.PremiumGradientTools premiumGradient;
 
     public AvatarsImageView(Context context, boolean z) {
         super(context);
@@ -22,87 +20,72 @@ public class AvatarsImageView extends View {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        this.avatarsDrawable.width = getMeasuredWidth();
-        this.avatarsDrawable.height = getMeasuredHeight();
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.avatarsDrawable.onAttachedToWindow();
     }
 
-    public void setPlus(int i, int i2) {
-        this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, -1, null);
-        this.plusText = new Text("+" + i, 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-        Paint paint = new Paint(1);
-        this.plusBgPaint = paint;
-        paint.setColor(i2);
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.avatarsDrawable.onDetachedFromWindow();
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         this.avatarsDrawable.onDraw(canvas);
         if (this.plusText != null) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getWidth() - AndroidUtilities.dp(22.0f), getHeight() - AndroidUtilities.dp(22.0f), getWidth() - AndroidUtilities.dp(0.0f), getHeight() - AndroidUtilities.dp(0.0f));
-            this.premiumGradient.gradientMatrix(rectF);
+            PremiumGradient.PremiumGradientTools premiumGradientTools = this.premiumGradient;
+            premiumGradientTools.getClass();
+            premiumGradientTools.gradientMatrix((int) rectF.left, 0.0f, (int) rectF.top, (int) rectF.right, 0.0f, (int) rectF.bottom);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + AndroidUtilities.dp(1.33f), this.plusBgPaint);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.premiumGradient.paint);
-            this.plusText.draw(canvas, rectF.centerX() - (this.plusText.getCurrentWidth() / 2.0f), rectF.centerY(), -1, 1.0f);
+            this.plusText.draw(rectF.centerX() - (this.plusText.width / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
         }
     }
 
     @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.avatarsDrawable.onDetachedFromWindow();
-    }
-
-    public void setStyle(int i) {
-        this.avatarsDrawable.setStyle(i);
-    }
-
-    public void setDelegate(Runnable runnable) {
-        this.avatarsDrawable.setDelegate(runnable);
-    }
-
-    public void setObject(int i, int i2, TLObject tLObject) {
-        this.avatarsDrawable.setObject(i, i2, tLObject);
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        int measuredWidth = getMeasuredWidth();
+        AvatarsDrawable avatarsDrawable = this.avatarsDrawable;
+        avatarsDrawable.width = measuredWidth;
+        avatarsDrawable.height = getMeasuredHeight();
     }
 
     public void setAvatarsTextSize(int i) {
         this.avatarsDrawable.setAvatarsTextSize(i);
     }
 
-    public void setSize(int i) {
-        this.avatarsDrawable.setSize(i);
-    }
-
-    public void setStepFactor(float f) {
-        this.avatarsDrawable.setStepFactor(f);
-    }
-
-    public void reset() {
-        this.avatarsDrawable.reset();
+    public void setCentered(boolean z) {
+        this.avatarsDrawable.centered = z;
     }
 
     public void setCount(int i) {
         this.avatarsDrawable.setCount(i);
     }
 
-    public void commitTransition(boolean z) {
-        this.avatarsDrawable.commitTransition(z);
+    public void setDelegate(Runnable runnable) {
+        this.avatarsDrawable.updateDelegate = runnable;
     }
 
-    public void updateAfterTransitionEnd() {
-        this.avatarsDrawable.updateAfterTransitionEnd();
+    public void setSize(int i) {
+        this.avatarsDrawable.overrideSize = i;
     }
 
-    public void setCentered(boolean z) {
-        this.avatarsDrawable.setCentered(z);
+    public void setStepFactor(float f) {
+        this.avatarsDrawable.overrideSizeStepFactor = f;
+    }
+
+    public void setStyle(int i) {
+        AvatarsDrawable avatarsDrawable = this.avatarsDrawable;
+        avatarsDrawable.currentStyle = i;
+        View view = avatarsDrawable.parent;
+        if (view != null) {
+            view.invalidate();
+        }
     }
 }

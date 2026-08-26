@@ -23,7 +23,7 @@ public class GroupCallMessage {
     public GroupCallMessage(int i, long j, long j2, TLRPC.TL_textWithEntities tL_textWithEntities) {
         long j3;
         TLRPC.TL_availableReaction tL_availableReaction;
-        ReactionsLayoutInBubble.VisibleReaction visibleReactionFromEmojicon;
+        ReactionsLayoutInBubble.VisibleReaction visibleReaction;
         this.currentAccount = i;
         this.fromId = j;
         this.randomId = j2;
@@ -40,33 +40,31 @@ public class GroupCallMessage {
             }
         }
         if (j3 != 0) {
-            visibleReactionFromEmojicon = ReactionsLayoutInBubble.VisibleReaction.fromCustomEmoji(Long.valueOf(j3));
+            visibleReaction = new ReactionsLayoutInBubble.VisibleReaction();
+            visibleReaction.documentId = j3;
+            visibleReaction.hash = j3;
         } else {
             ArrayList<TLRPC.MessageEntity> arrayList2 = tL_textWithEntities.entities;
-            visibleReactionFromEmojicon = ((arrayList2 == null || arrayList2.isEmpty()) && (tL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(tL_textWithEntities.text)) != null) ? ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(tL_availableReaction) : null;
+            if ((arrayList2 == null || arrayList2.isEmpty()) && (tL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(tL_textWithEntities.text)) != null) {
+                ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = new ReactionsLayoutInBubble.VisibleReaction();
+                String str = tL_availableReaction.reaction;
+                visibleReaction2.emojicon = str;
+                visibleReaction2.hash = str.hashCode();
+                visibleReaction = visibleReaction2;
+            } else {
+                visibleReaction = null;
+            }
         }
         this.reactionAnimatedEmojiId = j3;
-        this.visibleReaction = visibleReactionFromEmojicon;
-    }
-
-    public void setIsOut(boolean z) {
-        this.flags = BitwiseUtils.setFlag(this.flags, 1, z);
-    }
-
-    public void setIsSendDelayed(boolean z) {
-        this.flags = BitwiseUtils.setFlag(this.flags, 2, z);
-    }
-
-    public void setIsSendError(boolean z) {
-        this.flags = BitwiseUtils.setFlag(this.flags, 4, z);
-    }
-
-    public void setIsSendConfirmed(boolean z) {
-        this.flags = BitwiseUtils.setFlag(this.flags, 8, z);
+        this.visibleReaction = visibleReaction;
     }
 
     public boolean isOut() {
         return BitwiseUtils.hasFlag(this.flags, 1);
+    }
+
+    public boolean isSendConfirmed() {
+        return BitwiseUtils.hasFlag(this.flags, 8);
     }
 
     public boolean isSendDelayed() {
@@ -75,18 +73,6 @@ public class GroupCallMessage {
 
     public boolean isSendError() {
         return BitwiseUtils.hasFlag(this.flags, 4);
-    }
-
-    public boolean isSendConfirmed() {
-        return BitwiseUtils.hasFlag(this.flags, 8);
-    }
-
-    public void subscribeToStateUpdates(Runnable runnable) {
-        this.listeners.add(runnable);
-    }
-
-    public void unsubscribeFromStateUpdates(Runnable runnable) {
-        this.listeners.remove(runnable);
     }
 
     public void notifyStateUpdate() {
@@ -98,5 +84,29 @@ public class GroupCallMessage {
             i++;
             runnable.run();
         }
+    }
+
+    public void setIsOut(boolean z) {
+        this.flags = BitwiseUtils.setFlag(this.flags, 1, z);
+    }
+
+    public void setIsSendConfirmed(boolean z) {
+        this.flags = BitwiseUtils.setFlag(this.flags, 8, z);
+    }
+
+    public void setIsSendDelayed(boolean z) {
+        this.flags = BitwiseUtils.setFlag(this.flags, 2, z);
+    }
+
+    public void setIsSendError(boolean z) {
+        this.flags = BitwiseUtils.setFlag(this.flags, 4, z);
+    }
+
+    public void subscribeToStateUpdates(Runnable runnable) {
+        this.listeners.add(runnable);
+    }
+
+    public void unsubscribeFromStateUpdates(Runnable runnable) {
+        this.listeners.remove(runnable);
     }
 }

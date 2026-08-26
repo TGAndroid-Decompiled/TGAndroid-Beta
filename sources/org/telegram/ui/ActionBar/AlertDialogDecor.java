@@ -6,8 +6,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
-import android.graphics.Rect;
-import android.os.Build;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -16,186 +14,69 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
-import androidx.core.graphics.Insets;
-import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 
-public class AlertDialogDecor extends AlertDialog {
-    private static final int[] ATTRS = {16842932, 16842933};
-    private View contentView;
-    private View dimView;
-    private boolean isDismissed;
-    private DialogInterface.OnDismissListener onDismissListener;
-    private DialogInterface.OnShowListener onShowListener;
-    private long openDelay;
-    private int resEnterAnimation;
-    private int resExitAnimation;
-    private View rootView;
-    private final Runnable showRunnable;
+public final class AlertDialogDecor extends AlertDialog {
+    public static final int[] ATTRS = {16842932, 16842933};
+    public ViewGroup contentView;
+    public View dimView;
+    public boolean isDismissed;
+    public DialogInterface.OnDismissListener onDismissListener;
+    public DialogInterface.OnShowListener onShowListener;
+    public long openDelay;
+    public int resEnterAnimation;
+    public int resExitAnimation;
+    public FrameLayout rootView;
+    public final Theme$$ExternalSyntheticLambda8 showRunnable;
 
-    @Override
-    protected boolean supportsNativeBlur() {
-        return false;
+    public final class AnonymousClass1 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final AlertDialogDecor this$0;
+
+        public AnonymousClass1(AlertDialogDecor alertDialogDecor, int i) {
+            this.$r8$classId = i;
+            this.this$0 = alertDialogDecor;
+        }
+
+        @Override
+        public final void onAnimationEnd(Animator animator) {
+            switch (this.$r8$classId) {
+                case 0:
+                    AlertDialogDecor alertDialogDecor = this.this$0;
+                    DialogInterface.OnShowListener onShowListener = alertDialogDecor.onShowListener;
+                    if (onShowListener != null) {
+                        onShowListener.onShow(alertDialogDecor);
+                    }
+                    break;
+                default:
+                    AlertDialogDecor alertDialogDecor2 = this.this$0;
+                    ((ViewGroup) AlertDialogDecor.getActivity(alertDialogDecor2.getContext()).getWindow().getDecorView()).removeView(alertDialogDecor2.rootView);
+                    DialogInterface.OnDismissListener onDismissListener = alertDialogDecor2.onDismissListener;
+                    if (onDismissListener != null) {
+                        onDismissListener.onDismiss(alertDialogDecor2);
+                    }
+                    break;
+            }
+        }
     }
 
-    public static void $r8$lambda$8RLZCjnGF2HtuczYbgz5AZPNT2M(AlertDialogDecor alertDialogDecor) {
-        alertDialogDecor.rootView.setVisibility(0);
-        alertDialogDecor.dimView.setAlpha(0.0f);
-        alertDialogDecor.contentView.startAnimation(AnimationUtils.loadAnimation(alertDialogDecor.getContext(), alertDialogDecor.resEnterAnimation));
-        alertDialogDecor.dimView.animate().setDuration(300L).alpha(1.0f).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (AlertDialogDecor.this.onShowListener != null) {
-                    AlertDialogDecor.this.onShowListener.onShow(AlertDialogDecor.this);
-                }
-            }
-        }).start();
+    public final class Builder extends AlertDialog.Builder {
+        @Override
+        public final AlertDialog createAlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+            return new AlertDialogDecor(context, i, resourcesProvider);
+        }
     }
 
     public AlertDialogDecor(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context, i, resourcesProvider);
         this.isDismissed = false;
         this.openDelay = 0L;
-        this.showRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                AlertDialogDecor.$r8$lambda$8RLZCjnGF2HtuczYbgz5AZPNT2M(this.f$0);
-            }
-        };
+        this.showRunnable = new Theme$$ExternalSyntheticLambda8(this, 8);
     }
 
-    public ViewGroup getDecorView() {
-        return (ViewGroup) getActivity(getContext()).getWindow().getDecorView();
-    }
-
-    private void extractAnimations() {
-        TypedValue typedValue = new TypedValue();
-        getContext().getTheme().resolveAttribute(16842926, typedValue, true);
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, ATTRS);
-        this.resEnterAnimation = typedArrayObtainStyledAttributes.getResourceId(0, -1);
-        this.resExitAnimation = typedArrayObtainStyledAttributes.getResourceId(1, -1);
-        typedArrayObtainStyledAttributes.recycle();
-    }
-
-    @Override
-    public void show() {
-        extractAnimations();
-        setDismissDialogByButtons(true);
-        View viewInflateContent = inflateContent(false);
-        this.contentView = viewInflateContent;
-        viewInflateContent.setClickable(true);
-        WindowManager.LayoutParams attributes = getWindow().getAttributes();
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        frameLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.dismiss();
-            }
-        });
-        View view = new View(getContext());
-        this.dimView = view;
-        view.setBackgroundColor(Theme.multAlpha(-16777216, attributes.dimAmount));
-        frameLayout.addView(this.dimView, new FrameLayout.LayoutParams(-1, -1));
-        final FrameLayout frameLayout2 = new FrameLayout(getContext());
-        frameLayout2.addView(this.contentView, new FrameLayout.LayoutParams(-1, -2, 17));
-        frameLayout.addView(frameLayout2, new FrameLayout.LayoutParams(attributes.width, -2, 17));
-        this.rootView = frameLayout;
-        getDecorView().addView(this.rootView);
-        ViewCompat.requestApplyInsets(this.rootView);
-        ViewCompat.setOnApplyWindowInsetsListener(this.rootView, new OnApplyWindowInsetsListener() {
-            @Override
-            public final WindowInsetsCompat onApplyWindowInsets(View view2, WindowInsetsCompat windowInsetsCompat) {
-                return AlertDialogDecor.$r8$lambda$MfRho_Mx6ljB7hFhFOV_Aw5clhE(frameLayout2, view2, windowInsetsCompat);
-            }
-        });
-        this.rootView.setVisibility(4);
-        long j = this.openDelay;
-        if (j == 0) {
-            this.showRunnable.run();
-        } else {
-            AndroidUtilities.runOnUIThread(this.showRunnable, j);
-        }
-    }
-
-    public static WindowInsetsCompat $r8$lambda$MfRho_Mx6ljB7hFhFOV_Aw5clhE(FrameLayout frameLayout, View view, WindowInsetsCompat windowInsetsCompat) {
-        Rect rect = new Rect();
-        if (Build.VERSION.SDK_INT >= 30) {
-            Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars());
-            rect.set(insets.left, insets.top, insets.right, insets.bottom);
-        } else {
-            rect.set(windowInsetsCompat.getStableInsetLeft(), windowInsetsCompat.getStableInsetTop(), windowInsetsCompat.getStableInsetRight(), windowInsetsCompat.getStableInsetBottom());
-        }
-        frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom + AndroidUtilities.navigationBarHeight);
-        frameLayout.requestLayout();
-        return windowInsetsCompat;
-    }
-
-    @Override
-    public void showDelayed(long j) {
-        if (isShowing()) {
-            return;
-        }
-        this.openDelay = j;
-        show();
-    }
-
-    @Override
-    public boolean isShowing() {
-        return (getDecorView().indexOfChild(this.rootView) == -1 || this.isDismissed) ? false : true;
-    }
-
-    @Override
-    public void setOnShowListener(DialogInterface.OnShowListener onShowListener) {
-        this.onShowListener = onShowListener;
-    }
-
-    @Override
-    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
-    @Override
-    public void dismiss() {
-        if (isShowing() && !this.isDismissed) {
-            this.isDismissed = true;
-            AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
-            if (this.rootView.getVisibility() != 0) {
-                getDecorView().removeView(this.rootView);
-                return;
-            }
-            Animation animationLoadAnimation = AnimationUtils.loadAnimation(getContext(), this.resExitAnimation);
-            animationLoadAnimation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    AlertDialogDecor.this.contentView.setAlpha(0.0f);
-                }
-            });
-            this.contentView.clearAnimation();
-            this.contentView.startAnimation(animationLoadAnimation);
-            this.dimView.animate().setListener(null).cancel();
-            this.dimView.animate().setDuration(300L).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    AlertDialogDecor.this.getDecorView().removeView(AlertDialogDecor.this.rootView);
-                    if (AlertDialogDecor.this.onDismissListener != null) {
-                        AlertDialogDecor.this.onDismissListener.onDismiss(AlertDialogDecor.this);
-                    }
-                }
-            }).start();
-        }
-    }
-
-    private Activity getActivity(Context context) {
+    public static Activity getActivity(Context context) {
         if (context instanceof Activity) {
             return (Activity) context;
         }
@@ -205,18 +86,133 @@ public class AlertDialogDecor extends AlertDialog {
         return null;
     }
 
-    public static class Builder extends AlertDialog.Builder {
-        public Builder(Context context) {
-            super(context, null);
+    @Override
+    public final void dismiss() {
+        if (isShowing() && !this.isDismissed) {
+            this.isDismissed = true;
+            AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
+            if (this.rootView.getVisibility() != 0) {
+                ((ViewGroup) getActivity(getContext()).getWindow().getDecorView()).removeView(this.rootView);
+                return;
+            }
+            Animation animationLoadAnimation = AnimationUtils.loadAnimation(getContext(), this.resExitAnimation);
+            animationLoadAnimation.setAnimationListener(new AnonymousClass2(this, 0));
+            this.contentView.clearAnimation();
+            this.contentView.startAnimation(animationLoadAnimation);
+            this.dimView.animate().setListener(null).cancel();
+            this.dimView.animate().setDuration(300L).alpha(0.0f).setListener(new AnonymousClass1(this, 1)).start();
         }
+    }
 
-        public Builder(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context, 0, resourcesProvider);
+    @Override
+    public final boolean isShowing() {
+        return (((ViewGroup) getActivity(getContext()).getWindow().getDecorView()).indexOfChild(this.rootView) == -1 || this.isDismissed) ? false : true;
+    }
+
+    @Override
+    public final void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    @Override
+    public final void setOnShowListener(DialogInterface.OnShowListener onShowListener) {
+        this.onShowListener = onShowListener;
+    }
+
+    @Override
+    public final void show() {
+        TypedValue typedValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(16842926, typedValue, true);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, ATTRS);
+        this.resEnterAnimation = typedArrayObtainStyledAttributes.getResourceId(0, -1);
+        this.resExitAnimation = typedArrayObtainStyledAttributes.getResourceId(1, -1);
+        typedArrayObtainStyledAttributes.recycle();
+        this.dismissDialogByButtons = true;
+        ViewGroup viewGroupInflateContent = inflateContent(false);
+        this.contentView = viewGroupInflateContent;
+        viewGroupInflateContent.setClickable(true);
+        WindowManager.LayoutParams attributes = getWindow().getAttributes();
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        frameLayout.setOnClickListener(new BottomSheet$$ExternalSyntheticLambda7(this, 2));
+        View view = new View(getContext());
+        this.dimView = view;
+        view.setBackgroundColor(Theme.multAlpha(attributes.dimAmount, -16777216));
+        frameLayout.addView(this.dimView, new FrameLayout.LayoutParams(-1, -1));
+        FrameLayout frameLayout2 = new FrameLayout(getContext());
+        frameLayout2.addView(this.contentView, new FrameLayout.LayoutParams(-1, -2, 17));
+        frameLayout.addView(frameLayout2, new FrameLayout.LayoutParams(attributes.width, -2, 17));
+        this.rootView = frameLayout;
+        ((ViewGroup) getActivity(getContext()).getWindow().getDecorView()).addView(this.rootView);
+        FrameLayout frameLayout3 = this.rootView;
+        WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
+        ViewCompat.Api20Impl.requestApplyInsets(frameLayout3);
+        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(this.rootView, new AlertDialog$$ExternalSyntheticLambda11(frameLayout2, 4));
+        this.rootView.setVisibility(4);
+        long j = this.openDelay;
+        Theme$$ExternalSyntheticLambda8 theme$$ExternalSyntheticLambda8 = this.showRunnable;
+        if (j == 0) {
+            theme$$ExternalSyntheticLambda8.run();
+        } else {
+            AndroidUtilities.runOnUIThread(theme$$ExternalSyntheticLambda8, j);
+        }
+    }
+
+    @Override
+    public final void showDelayed(long j) {
+        if (isShowing()) {
+            return;
+        }
+        this.openDelay = j;
+        show();
+    }
+
+    public final class AnonymousClass2 implements Animation.AnimationListener {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass2(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
         }
 
         @Override
-        protected AlertDialog createAlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-            return new AlertDialogDecor(context, i, resourcesProvider);
+        public final void onAnimationEnd(Animation animation) {
+            switch (this.$r8$classId) {
+                case 0:
+                    ((AlertDialogDecor) this.this$0).contentView.setAlpha(0.0f);
+                    break;
+                default:
+                    ((FloatingToolbar.FloatingToolbarPopup) this.this$0).mContentContainer.post(new Theme$$ExternalSyntheticLambda8(this, 13));
+                    break;
+            }
+        }
+
+        @Override
+        public final void onAnimationRepeat(Animation animation) {
+            int i = this.$r8$classId;
+        }
+
+        @Override
+        public final void onAnimationStart(Animation animation) {
+            switch (this.$r8$classId) {
+                case 0:
+                    break;
+                default:
+                    FloatingToolbar.FloatingToolbarPopup floatingToolbarPopup = (FloatingToolbar.FloatingToolbarPopup) this.this$0;
+                    floatingToolbarPopup.mOverflowButton.setEnabled(false);
+                    floatingToolbarPopup.mMainPanel.setVisibility(0);
+                    floatingToolbarPopup.mOverflowPanel.setVisibility(0);
+                    break;
+            }
+        }
+
+        private final void onAnimationRepeat$org$telegram$ui$ActionBar$AlertDialogDecor$2(Animation animation) {
+        }
+
+        private final void onAnimationRepeat$org$telegram$ui$ActionBar$FloatingToolbar$FloatingToolbarPopup$14(Animation animation) {
+        }
+
+        private final void onAnimationStart$org$telegram$ui$ActionBar$AlertDialogDecor$2(Animation animation) {
         }
     }
 }

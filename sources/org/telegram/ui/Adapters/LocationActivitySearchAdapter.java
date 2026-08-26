@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
@@ -14,127 +15,129 @@ import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.RecyclerListView;
 
 public abstract class LocationActivitySearchAdapter extends BaseLocationAdapter {
-    private FlickerLoadingView globalGradientView;
-    private Context mContext;
-    private boolean myLocationDenied;
-    private Theme.ResourcesProvider resourcesProvider;
-
-    @Override
-    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        return true;
-    }
-
-    public void setMyLocationDenied(boolean z) {
-        if (this.myLocationDenied == z) {
-            return;
-        }
-        this.myLocationDenied = z;
-    }
+    public final Context mContext;
+    public boolean myLocationDenied;
+    public final Theme.ResourcesProvider resourcesProvider;
 
     public LocationActivitySearchAdapter(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
         super(z, z2);
         this.myLocationDenied = false;
         this.mContext = context;
         this.resourcesProvider = resourcesProvider;
-        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
-        this.globalGradientView = flickerLoadingView;
-        flickerLoadingView.setIsSingleCell(true);
+        new FlickerLoadingView(context, null).setIsSingleCell(true);
+    }
+
+    public final TLRPC.TL_messageMediaVenue getItem(int i) {
+        ArrayList arrayList = this.locations;
+        if (!arrayList.isEmpty()) {
+            i--;
+        }
+        if (i >= 0 && i < arrayList.size()) {
+            return (TLRPC.TL_messageMediaVenue) arrayList.get(i);
+        }
+        if (this.searchInProgress) {
+            return null;
+        }
+        int size = i - arrayList.size();
+        if (!arrayList.isEmpty()) {
+            size--;
+        }
+        if (size < 0) {
+            return null;
+        }
+        ArrayList arrayList2 = this.places;
+        if (size < arrayList2.size()) {
+            return (TLRPC.TL_messageMediaVenue) arrayList2.get(size);
+        }
+        return null;
     }
 
     @Override
-    public int getItemCount() {
-        int size = !this.locations.isEmpty() ? this.locations.size() + 1 : 0;
+    public final int getItemCount() {
+        ArrayList arrayList = this.locations;
+        int size = !arrayList.isEmpty() ? arrayList.size() + 1 : 0;
         if (this.myLocationDenied) {
             return size;
         }
-        if (isSearching()) {
+        if (this.searchInProgress) {
             return size + 3;
         }
-        if (!this.locations.isEmpty() && !this.places.isEmpty()) {
+        boolean zIsEmpty = arrayList.isEmpty();
+        ArrayList arrayList2 = this.places;
+        if (!zIsEmpty && !arrayList2.isEmpty()) {
             size++;
         }
-        return size + this.places.size();
-    }
-
-    public boolean isEmpty() {
-        return this.places.size() == 0 && this.locations.size() == 0;
+        return arrayList2.size() + size;
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View graySectionCell;
-        if (i == 0) {
-            graySectionCell = new LocationCell(this.mContext, false, this.resourcesProvider);
-        } else {
-            graySectionCell = new GraySectionCell(this.mContext, this.resourcesProvider);
-        }
-        return new RecyclerListView.Holder(graySectionCell);
+    public final int getItemViewType(int i) {
+        ArrayList arrayList = this.locations;
+        return ((i == 0 || i == arrayList.size() + 1) && !arrayList.isEmpty()) ? 1 : 0;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+    public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+        return true;
+    }
+
+    @Override
+    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         int i2;
+        int i3 = viewHolder.mItemViewType;
+        ArrayList arrayList = this.locations;
         boolean z = true;
-        if (viewHolder.getItemViewType() == 0) {
-            int i3 = !this.locations.isEmpty() ? i - 1 : i;
-            if (i3 >= 0 && i3 < this.locations.size()) {
-                tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) this.locations.get(i3);
-                i2 = 2;
-            } else if (isSearching()) {
-                tL_messageMediaVenue = null;
-                i2 = i;
-            } else {
-                int size = i3 - this.locations.size();
-                if (!this.searchingLocations && !this.locations.isEmpty()) {
-                    size--;
-                }
-                i2 = size;
-                if (i2 < 0 || i2 >= this.places.size()) {
-                    tL_messageMediaVenue = null;
-                    i2 = i;
+        View view = viewHolder.itemView;
+        if (i3 != 0) {
+            if (i3 == 1) {
+                if (i != 0 || arrayList.isEmpty()) {
+                    ((GraySectionCell) view).setText(LocaleController.getString(R.string.NearbyVenue));
+                    return;
                 } else {
-                    tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) this.places.get(i2);
+                    ((GraySectionCell) view).setText(LocaleController.getString(R.string.LocationOnMap));
+                    return;
                 }
             }
-            LocationCell locationCell = (LocationCell) viewHolder.itemView;
-            if (i == getItemCount() - 1 || (!this.searchingLocations && !this.locations.isEmpty() && i == this.locations.size())) {
-                z = false;
-            }
-            locationCell.setLocation(tL_messageMediaVenue, i2, z);
             return;
         }
-        if (viewHolder.getItemViewType() == 1) {
-            if (i == 0 && !this.locations.isEmpty()) {
-                ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.LocationOnMap));
+        int i4 = !arrayList.isEmpty() ? i - 1 : i;
+        if (i4 >= 0 && i4 < arrayList.size()) {
+            tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList.get(i4);
+            i2 = 2;
+        } else if (this.searchInProgress) {
+            tL_messageMediaVenue = null;
+            i2 = i;
+        } else {
+            int size = i4 - arrayList.size();
+            if (!this.searchingLocations && !arrayList.isEmpty()) {
+                size--;
+            }
+            i2 = size;
+            if (i2 >= 0) {
+                ArrayList arrayList2 = this.places;
+                if (i2 < arrayList2.size()) {
+                    tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList2.get(i2);
+                } else {
+                    tL_messageMediaVenue = null;
+                    i2 = i;
+                }
             } else {
-                ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.NearbyVenue));
+                tL_messageMediaVenue = null;
+                i2 = i;
             }
         }
+        LocationCell locationCell = (LocationCell) view;
+        if (i == getItemCount() - 1 || (!this.searchingLocations && !arrayList.isEmpty() && i == arrayList.size())) {
+            z = false;
+        }
+        locationCell.setLocation(tL_messageMediaVenue, i2, z, false);
     }
 
     @Override
-    public int getItemViewType(int i) {
-        return ((i == 0 || i == this.locations.size() + 1) && !this.locations.isEmpty()) ? 1 : 0;
-    }
-
-    public TLRPC.TL_messageMediaVenue getItem(int i) {
-        if (!this.locations.isEmpty()) {
-            i--;
-        }
-        if (i >= 0 && i < this.locations.size()) {
-            return (TLRPC.TL_messageMediaVenue) this.locations.get(i);
-        }
-        if (isSearching()) {
-            return null;
-        }
-        int size = i - this.locations.size();
-        if (!this.locations.isEmpty()) {
-            size--;
-        }
-        if (size < 0 || size >= this.places.size()) {
-            return null;
-        }
-        return (TLRPC.TL_messageMediaVenue) this.places.get(size);
+    public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Context context = this.mContext;
+        return new RecyclerListView.Holder(i == 0 ? new LocationCell(context, resourcesProvider) : new GraySectionCell(context, 16, resourcesProvider));
     }
 }

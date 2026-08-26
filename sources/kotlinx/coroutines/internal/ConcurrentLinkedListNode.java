@@ -1,91 +1,66 @@
 package kotlinx.coroutines.internal;
 
-import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class ConcurrentLinkedListNode {
-    private static final AtomicReferenceFieldUpdater _next$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(ConcurrentLinkedListNode.class, Object.class, "_next$volatile");
-    private static final AtomicReferenceFieldUpdater _prev$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(ConcurrentLinkedListNode.class, Object.class, "_prev$volatile");
+    public static final AtomicReferenceFieldUpdater _next$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(ConcurrentLinkedListNode.class, Object.class, "_next$volatile");
+    public static final AtomicReferenceFieldUpdater _prev$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(ConcurrentLinkedListNode.class, Object.class, "_prev$volatile");
     private volatile Object _next$volatile;
     private volatile Object _prev$volatile;
 
-    public abstract boolean isRemoved();
-
-    public ConcurrentLinkedListNode(ConcurrentLinkedListNode concurrentLinkedListNode) {
-        this._prev$volatile = concurrentLinkedListNode;
-    }
-
-    public final Object getNextOrClosed() {
-        return _next$volatile$FU.get(this);
-    }
-
-    public final ConcurrentLinkedListNode getNext() {
-        Object nextOrClosed = getNextOrClosed();
-        if (nextOrClosed == ConcurrentLinkedListKt.CLOSED) {
-            return null;
-        }
-        return (ConcurrentLinkedListNode) nextOrClosed;
-    }
-
-    public final boolean trySetNext(ConcurrentLinkedListNode concurrentLinkedListNode) {
-        return AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, this, null, concurrentLinkedListNode);
-    }
-
-    public final boolean isTail() {
-        return getNext() == null;
-    }
-
-    public final ConcurrentLinkedListNode getPrev() {
-        return (ConcurrentLinkedListNode) _prev$volatile$FU.get(this);
+    public ConcurrentLinkedListNode(Segment segment) {
+        this._prev$volatile = segment;
     }
 
     public final void cleanPrev() {
         _prev$volatile$FU.set(this, null);
     }
 
-    public final boolean markAsClosed() {
-        return AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, this, null, ConcurrentLinkedListKt.CLOSED);
+    public final ConcurrentLinkedListNode getNext() {
+        Object obj = _next$volatile$FU.get(this);
+        if (obj == AtomicKt.CLOSED) {
+            return null;
+        }
+        return (ConcurrentLinkedListNode) obj;
     }
 
+    public abstract boolean isRemoved();
+
     public final void remove() {
-        Object obj;
-        if (isTail()) {
+        ConcurrentLinkedListNode next;
+        if (getNext() == null) {
             return;
         }
         while (true) {
-            ConcurrentLinkedListNode aliveSegmentLeft = getAliveSegmentLeft();
-            ConcurrentLinkedListNode aliveSegmentRight = getAliveSegmentRight();
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _prev$volatile$FU;
-            do {
-                obj = atomicReferenceFieldUpdater.get(aliveSegmentRight);
-            } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, aliveSegmentRight, obj, ((ConcurrentLinkedListNode) obj) == null ? null : aliveSegmentLeft));
-            if (aliveSegmentLeft != null) {
-                _next$volatile$FU.set(aliveSegmentLeft, aliveSegmentRight);
+            ConcurrentLinkedListNode concurrentLinkedListNode = (ConcurrentLinkedListNode) atomicReferenceFieldUpdater.get(this);
+            while (concurrentLinkedListNode != null && concurrentLinkedListNode.isRemoved()) {
+                concurrentLinkedListNode = (ConcurrentLinkedListNode) atomicReferenceFieldUpdater.get(concurrentLinkedListNode);
             }
-            if (!aliveSegmentRight.isRemoved() || aliveSegmentRight.isTail()) {
-                if (aliveSegmentLeft == null || !aliveSegmentLeft.isRemoved()) {
+            ConcurrentLinkedListNode next2 = getNext();
+            Intrinsics.checkNotNull(next2);
+            while (next2.isRemoved() && (next = next2.getNext()) != null) {
+                next2 = next;
+            }
+            while (true) {
+                Object obj = atomicReferenceFieldUpdater.get(next2);
+                ConcurrentLinkedListNode concurrentLinkedListNode2 = ((ConcurrentLinkedListNode) obj) == null ? null : concurrentLinkedListNode;
+                while (true) {
+                    if (atomicReferenceFieldUpdater.compareAndSet(next2, obj, concurrentLinkedListNode2)) {
+                        break;
+                    } else if (atomicReferenceFieldUpdater.get(next2) != obj) {
+                    }
+                }
+            }
+            if (concurrentLinkedListNode != null) {
+                _next$volatile$FU.set(concurrentLinkedListNode, next2);
+            }
+            if (!next2.isRemoved() || next2.getNext() == null) {
+                if (concurrentLinkedListNode == null || !concurrentLinkedListNode.isRemoved()) {
                     return;
                 }
             }
         }
-    }
-
-    private final ConcurrentLinkedListNode getAliveSegmentLeft() {
-        ConcurrentLinkedListNode prev = getPrev();
-        while (prev != null && prev.isRemoved()) {
-            prev = (ConcurrentLinkedListNode) _prev$volatile$FU.get(prev);
-        }
-        return prev;
-    }
-
-    private final ConcurrentLinkedListNode getAliveSegmentRight() {
-        ConcurrentLinkedListNode next;
-        ConcurrentLinkedListNode next2 = getNext();
-        Intrinsics.checkNotNull(next2);
-        while (next2.isRemoved() && (next = next2.getNext()) != null) {
-            next2 = next;
-        }
-        return next2;
     }
 }

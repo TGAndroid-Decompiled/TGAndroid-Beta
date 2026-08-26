@@ -1,22 +1,12 @@
 package kotlinx.coroutines.selects;
 
-import kotlin.jvm.functions.Function3;
-import kotlin.jvm.internal.DefaultConstructorMarker;
+import com.google.android.datatransport.runtime.dagger.internal.Factory;
 
-public final class SelectClause0Impl implements SelectClause0 {
-    private final Object clauseObject;
-    private final Function3 onCancellationConstructor;
-    private final Function3 processResFunc;
-    private final Function3 regFunc;
+public final class SelectClause0Impl implements Factory, SelectClause0 {
+    public final Object clauseObject;
 
-    public SelectClause0Impl(Object obj, Function3 function3, Function3 function4) {
-        this.clauseObject = obj;
-        this.regFunc = function3;
-        this.onCancellationConstructor = function4;
-        this.processResFunc = SelectKt.DUMMY_PROCESS_RESULT_FUNCTION;
-    }
-
-    public SelectClause0Impl(Object obj, Function3 function3, Function3 function4, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(obj, function3, (i & 4) != 0 ? null : function4);
+    @Override
+    public Object get() {
+        return this.clauseObject;
     }
 }

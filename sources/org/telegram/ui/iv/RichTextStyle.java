@@ -1,10 +1,9 @@
 package org.telegram.ui.iv;
 
-import android.graphics.Paint;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.style.CharacterStyle;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -17,11 +16,189 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.FormattedDateSpan;
 import org.telegram.ui.Components.SquigglyLinesSpan;
 import org.telegram.ui.Components.TextStyleSpan;
-import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanReplacement;
 
 public abstract class RichTextStyle {
-    private static final int[] STYLE_FLAGS = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
+    public static final int[] STYLE_FLAGS = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
+
+    public final class Run {
+        public RichInlineButtonSpan button;
+        public FormattedDateSpan date;
+        public long emojiDocId;
+        public int flags;
+        public String mathSource;
+        public String url;
+    }
+
+    public static void append(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i, TL_iv.PageBlock pageBlock, boolean z) {
+        String str;
+        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
+            return;
+        }
+        int i2 = 0;
+        if (richText instanceof TL_iv.textConcat) {
+            ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
+            int size = arrayList.size();
+            while (i2 < size) {
+                TL_iv.RichText richText2 = arrayList.get(i2);
+                i2++;
+                append(spannableStringBuilder, richText2, i, pageBlock, z);
+            }
+            return;
+        }
+        if (richText instanceof TL_iv.textDiff) {
+            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+            boolean zIsEmpty = isEmpty(textdiff.text);
+            boolean zIsEmpty2 = isEmpty(textdiff.old_text);
+            int length = spannableStringBuilder.length();
+            if (zIsEmpty) {
+                append(spannableStringBuilder, textdiff.old_text, i, pageBlock, z);
+                if (spannableStringBuilder.length() > length) {
+                    TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+                    textStyleRun.flags = 8192;
+                    spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun, 0), length, spannableStringBuilder.length(), 33);
+                    return;
+                }
+                return;
+            }
+            append(spannableStringBuilder, textdiff.text, i, pageBlock, z);
+            if (!zIsEmpty2) {
+                if (spannableStringBuilder.length() > length) {
+                    spannableStringBuilder.setSpan(new SquigglyLinesSpan(), length, spannableStringBuilder.length(), 33);
+                    return;
+                }
+                return;
+            } else {
+                if (spannableStringBuilder.length() > length) {
+                    TextStyleSpan.TextStyleRun textStyleRun2 = new TextStyleSpan.TextStyleRun();
+                    textStyleRun2.flags = 4096;
+                    spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun2, 0), length, spannableStringBuilder.length(), 33);
+                    return;
+                }
+                return;
+            }
+        }
+        if (richText instanceof TL_iv.textPlain) {
+            String str2 = ((TL_iv.textPlain) richText).text;
+            if (str2 == null || str2.isEmpty()) {
+                return;
+            }
+            int length2 = spannableStringBuilder.length();
+            spannableStringBuilder.append((CharSequence) str2);
+            if (i != 0) {
+                spannableStringBuilder.setSpan(spanFor(i, pageBlock), length2, spannableStringBuilder.length(), 33);
+                return;
+            }
+            return;
+        }
+        if (richText instanceof TL_iv.textCustomEmoji) {
+            TL_iv.textCustomEmoji textcustomemoji = (TL_iv.textCustomEmoji) richText;
+            String str3 = textcustomemoji.alt;
+            CharSequence charSequence = (str3 == null || str3.isEmpty()) ? "😀" : textcustomemoji.alt;
+            int length3 = spannableStringBuilder.length();
+            spannableStringBuilder.append(charSequence);
+            AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(textcustomemoji.document_id, 1.2f, null);
+            animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
+            spannableStringBuilder.setSpan(animatedEmojiSpan, length3, spannableStringBuilder.length(), 33);
+            if (i != 0) {
+                spannableStringBuilder.setSpan(spanFor(i, pageBlock), length3, spannableStringBuilder.length(), 33);
+                return;
+            }
+            return;
+        }
+        if (richText instanceof TL_iv.textUrl) {
+            TL_iv.textUrl texturl = (TL_iv.textUrl) richText;
+            int length4 = spannableStringBuilder.length();
+            append(spannableStringBuilder, texturl.text, i, pageBlock, z);
+            if (spannableStringBuilder.length() <= length4 || (str = texturl.url) == null) {
+                return;
+            }
+            TextStyleSpan.TextStyleRun textStyleRun3 = new TextStyleSpan.TextStyleRun();
+            textStyleRun3.flags = 1024;
+            spannableStringBuilder.setSpan(new URLSpanReplacement(str, textStyleRun3), length4, spannableStringBuilder.length(), 33);
+            return;
+        }
+        if (richText instanceof TL_iv.textDate) {
+            TL_iv.textDate textdate = (TL_iv.textDate) richText;
+            int length5 = spannableStringBuilder.length();
+            append(spannableStringBuilder, textdate.text, i, pageBlock, z);
+            if (spannableStringBuilder.length() > length5) {
+                String string = spannableStringBuilder.subSequence(length5, spannableStringBuilder.length()).toString();
+                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
+                tL_messageEntityFormattedDate.flags = textdate.flags;
+                tL_messageEntityFormattedDate.date = textdate.date;
+                tL_messageEntityFormattedDate.applyFlags();
+                TextStyleSpan.TextStyleRun textStyleRun4 = new TextStyleSpan.TextStyleRun();
+                textStyleRun4.flags |= 128;
+                spannableStringBuilder.setSpan(new FormattedDateSpan(string, textStyleRun4, tL_messageEntityFormattedDate), length5, spannableStringBuilder.length(), 33);
+                return;
+            }
+            return;
+        }
+        if (richText instanceof TL_iv.textMath) {
+            TL_iv.textMath textmath = (TL_iv.textMath) richText;
+            int length6 = spannableStringBuilder.length();
+            spannableStringBuilder.append(" ");
+            Object objCreate = MathSpan.create(textmath.source, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), AndroidUtilities.dp(SharedConfig.fontSize + 4));
+            if (objCreate != null) {
+                spannableStringBuilder.setSpan(objCreate, length6, spannableStringBuilder.length(), 33);
+            } else {
+                int length7 = spannableStringBuilder.length();
+                CharSequence charSequence2 = textmath.source;
+                if (charSequence2 == null) {
+                    charSequence2 = "";
+                }
+                spannableStringBuilder.replace(length6, length7, charSequence2);
+            }
+            if (spannableStringBuilder.length() <= length6 || i == 0) {
+                return;
+            }
+            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length6, spannableStringBuilder.length(), 33);
+            return;
+        }
+        if (richText instanceof TL_iv.textButton) {
+            TL_iv.textButton textbutton = (TL_iv.textButton) richText;
+            int length8 = spannableStringBuilder.length();
+            append(spannableStringBuilder, textbutton.text, i, pageBlock, z);
+            if (z && spannableStringBuilder.length() > length8 && RichInlineButtonSpan.isSupported(textbutton.type)) {
+                spannableStringBuilder.setSpan(new RichInlineButtonSpan(textbutton), length8, spannableStringBuilder.length(), 33);
+                return;
+            }
+            return;
+        }
+        if (richText instanceof TL_iv.textBold) {
+            i2 = 1;
+        } else if (richText instanceof TL_iv.textItalic) {
+            i2 = 2;
+        } else if (richText instanceof TL_iv.textUnderline) {
+            i2 = 16;
+        } else if (richText instanceof TL_iv.textStrike) {
+            i2 = 8;
+        } else if (richText instanceof TL_iv.textFixed) {
+            i2 = 4;
+        } else if (richText instanceof TL_iv.textSpoiler) {
+            i2 = 256;
+        } else if (richText instanceof TL_iv.textSubscript) {
+            i2 = 16384;
+        } else if (richText instanceof TL_iv.textSuperscript) {
+            i2 = 32768;
+        } else if (richText instanceof TL_iv.textMarked) {
+            i2 = 65536;
+        }
+        if (i2 != 0) {
+            append(spannableStringBuilder, richText.text, i | i2, pageBlock, z);
+            return;
+        }
+        String strPlainOf = plainOf(richText);
+        if (strPlainOf == null || strPlainOf.isEmpty()) {
+            return;
+        }
+        int length9 = spannableStringBuilder.length();
+        spannableStringBuilder.append((CharSequence) strPlainOf);
+        if (i != 0) {
+            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length9, spannableStringBuilder.length(), 33);
+        }
+    }
 
     public static int emojiOnlyCount(CharSequence charSequence) {
         if (!(charSequence instanceof Spanned) || charSequence.length() == 0) {
@@ -39,16 +216,15 @@ public abstract class RichTextStyle {
             int length = animatedEmojiSpanArr.length;
             int i = 0;
             while (true) {
-                if (i < length) {
-                    AnimatedEmojiSpan animatedEmojiSpan2 = animatedEmojiSpanArr[i];
-                    if (spanned.getSpanStart(animatedEmojiSpan2) == spanStart && spanned.getSpanEnd(animatedEmojiSpan2) == spanEnd) {
-                        break;
-                    }
-                    i++;
-                } else {
+                if (i >= length) {
                     arrayList.add(emojiSpan);
                     break;
                 }
+                AnimatedEmojiSpan animatedEmojiSpan2 = animatedEmojiSpanArr[i];
+                if (spanned.getSpanStart(animatedEmojiSpan2) == spanStart && spanned.getSpanEnd(animatedEmojiSpan2) == spanEnd) {
+                    break;
+                }
+                i++;
             }
         }
         if (arrayList.isEmpty()) {
@@ -68,391 +244,56 @@ public abstract class RichTextStyle {
         return arrayList.size();
     }
 
-    public static CharSequence toSpannable(TL_iv.RichText richText) {
-        return toSpannable(richText, null);
+    public static int flagsBetween(Spanned spanned, int i, int i2) {
+        TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) spanned.getSpans(i, i2, TextStyleSpan.class);
+        int i3 = 0;
+        for (TextStyleSpan textStyleSpan : textStyleSpanArr) {
+            int i4 = textStyleSpan.style.flags;
+            if ((i4 & 512) != 0) {
+                i4 |= 256;
+            }
+            i3 |= i4;
+        }
+        return 114975 & i3;
     }
 
-    public static CharSequence toSpannable(TL_iv.RichText richText, TL_iv.PageBlock pageBlock) {
-        return toSpannable(richText, pageBlock, true);
+    public static org.telegram.tgnet.tl.TL_iv.RichText fromSpannable(java.lang.CharSequence r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTextStyle.fromSpannable(java.lang.CharSequence):org.telegram.tgnet.tl.TL_iv$RichText");
     }
 
-    public static CharSequence toSimpleSpannable(TL_iv.RichText richText, TL_iv.PageBlock pageBlock) {
-        return toSpannable(richText, pageBlock, false);
-    }
-
-    private static CharSequence toSpannable(TL_iv.RichText richText, TL_iv.PageBlock pageBlock, boolean z) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        append(spannableStringBuilder, richText, 0, pageBlock, z);
-        return spannableStringBuilder;
-    }
-
-    private static void append(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i, TL_iv.PageBlock pageBlock, boolean z) {
-        String str;
-        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
-            return;
-        }
-        if (richText instanceof TL_iv.textConcat) {
-            ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
-            int size = arrayList.size();
-            int i2 = 0;
-            while (i2 < size) {
-                TL_iv.RichText richText2 = arrayList.get(i2);
-                i2++;
-                append(spannableStringBuilder, richText2, i, pageBlock, z);
-            }
-            return;
-        }
-        if (richText instanceof TL_iv.textDiff) {
-            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
-            boolean zIsEmpty = isEmpty(textdiff.text);
-            boolean zIsEmpty2 = isEmpty(textdiff.old_text);
-            int length = spannableStringBuilder.length();
-            if (zIsEmpty) {
-                append(spannableStringBuilder, textdiff.old_text, i, pageBlock, z);
-                setDiffStyle(spannableStringBuilder, length, 8192);
-                return;
-            }
-            append(spannableStringBuilder, textdiff.text, i, pageBlock, z);
-            if (zIsEmpty2) {
-                setDiffStyle(spannableStringBuilder, length, 4096);
-                return;
-            } else {
-                if (spannableStringBuilder.length() > length) {
-                    spannableStringBuilder.setSpan(new SquigglyLinesSpan(), length, spannableStringBuilder.length(), 33);
-                    return;
-                }
-                return;
-            }
-        }
-        if (richText instanceof TL_iv.textPlain) {
-            appendLeaf(spannableStringBuilder, ((TL_iv.textPlain) richText).text, i, pageBlock);
-            return;
-        }
-        if (richText instanceof TL_iv.textCustomEmoji) {
-            TL_iv.textCustomEmoji textcustomemoji = (TL_iv.textCustomEmoji) richText;
-            String str2 = textcustomemoji.alt;
-            CharSequence charSequence = (str2 == null || str2.isEmpty()) ? "😀" : textcustomemoji.alt;
-            int length2 = spannableStringBuilder.length();
-            spannableStringBuilder.append(charSequence);
-            AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(textcustomemoji.document_id, (Paint.FontMetricsInt) null);
-            animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
-            spannableStringBuilder.setSpan(animatedEmojiSpan, length2, spannableStringBuilder.length(), 33);
-            if (i != 0) {
-                spannableStringBuilder.setSpan(spanFor(i, pageBlock), length2, spannableStringBuilder.length(), 33);
-                return;
-            }
-            return;
-        }
-        if (richText instanceof TL_iv.textUrl) {
-            TL_iv.textUrl texturl = (TL_iv.textUrl) richText;
-            int length3 = spannableStringBuilder.length();
-            append(spannableStringBuilder, texturl.text, i, pageBlock, z);
-            if (spannableStringBuilder.length() <= length3 || (str = texturl.url) == null) {
-                return;
-            }
-            spannableStringBuilder.setSpan(linkSpan(str), length3, spannableStringBuilder.length(), 33);
-            return;
-        }
-        if (richText instanceof TL_iv.textDate) {
-            TL_iv.textDate textdate = (TL_iv.textDate) richText;
-            int length4 = spannableStringBuilder.length();
-            append(spannableStringBuilder, textdate.text, i, pageBlock, z);
-            if (spannableStringBuilder.length() > length4) {
-                spannableStringBuilder.setSpan(dateSpan(textdate, spannableStringBuilder.subSequence(length4, spannableStringBuilder.length()).toString()), length4, spannableStringBuilder.length(), 33);
-                return;
-            }
-            return;
-        }
-        if (richText instanceof TL_iv.textMath) {
-            TL_iv.textMath textmath = (TL_iv.textMath) richText;
-            int length5 = spannableStringBuilder.length();
-            spannableStringBuilder.append(" ");
-            Object objCreate = MathSpan.create(textmath.source, Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), AndroidUtilities.dp(SharedConfig.fontSize + 4));
-            if (objCreate != null) {
-                spannableStringBuilder.setSpan(objCreate, length5, spannableStringBuilder.length(), 33);
-            } else {
-                int length6 = spannableStringBuilder.length();
-                CharSequence charSequence2 = textmath.source;
-                if (charSequence2 == null) {
-                    charSequence2 = "";
-                }
-                spannableStringBuilder.replace(length5, length6, charSequence2);
-            }
-            if (spannableStringBuilder.length() <= length5 || i == 0) {
-                return;
-            }
-            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length5, spannableStringBuilder.length(), 33);
-            return;
-        }
-        if (richText instanceof TL_iv.textButton) {
-            TL_iv.textButton textbutton = (TL_iv.textButton) richText;
-            int length7 = spannableStringBuilder.length();
-            append(spannableStringBuilder, textbutton.text, i, pageBlock, z);
-            if (z && spannableStringBuilder.length() > length7 && RichInlineButtonSpan.isSupported(textbutton.type)) {
-                spannableStringBuilder.setSpan(new RichInlineButtonSpan(textbutton), length7, spannableStringBuilder.length(), 33);
-                return;
-            }
-            return;
-        }
-        int iFlagOf = flagOf(richText);
-        if (iFlagOf != 0) {
-            append(spannableStringBuilder, richText.text, i | iFlagOf, pageBlock, z);
-        } else {
-            appendLeaf(spannableStringBuilder, plainOf(richText), i, pageBlock);
-        }
-    }
-
-    private static void setDiffStyle(SpannableStringBuilder spannableStringBuilder, int i, int i2) {
-        if (spannableStringBuilder.length() > i) {
-            TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-            textStyleRun.flags = i2;
-            spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun), i, spannableStringBuilder.length(), 33);
-        }
-    }
-
-    private static void appendLeaf(SpannableStringBuilder spannableStringBuilder, String str, int i, TL_iv.PageBlock pageBlock) {
-        if (str == null || str.isEmpty()) {
-            return;
-        }
-        int length = spannableStringBuilder.length();
-        spannableStringBuilder.append((CharSequence) str);
-        if (i != 0) {
-            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length, spannableStringBuilder.length(), 33);
-        }
-    }
-
-    private static int flagOf(TL_iv.RichText richText) {
-        if (richText instanceof TL_iv.textBold) {
-            return 1;
-        }
-        if (richText instanceof TL_iv.textItalic) {
-            return 2;
-        }
-        if (richText instanceof TL_iv.textUnderline) {
-            return 16;
-        }
-        if (richText instanceof TL_iv.textStrike) {
-            return 8;
-        }
-        if (richText instanceof TL_iv.textFixed) {
-            return 4;
-        }
-        if (richText instanceof TL_iv.textSpoiler) {
-            return 256;
-        }
-        if (richText instanceof TL_iv.textSubscript) {
-            return 16384;
-        }
-        if (richText instanceof TL_iv.textSuperscript) {
-            return 32768;
-        }
-        return richText instanceof TL_iv.textMarked ? 65536 : 0;
-    }
-
-    public static String plainOf(TL_iv.RichText richText) {
-        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
-            return "";
-        }
-        if (richText instanceof TL_iv.textPlain) {
-            String str = ((TL_iv.textPlain) richText).text;
-            return str == null ? "" : str;
-        }
-        if (richText instanceof TL_iv.textCustomEmoji) {
-            String str2 = ((TL_iv.textCustomEmoji) richText).alt;
-            return str2 == null ? "" : str2;
-        }
-        if (richText instanceof TL_iv.textMath) {
-            return " ";
-        }
-        if (richText instanceof TL_iv.textConcat) {
-            StringBuilder sb = new StringBuilder();
-            ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                TL_iv.RichText richText2 = arrayList.get(i);
-                i++;
-                sb.append(plainOf(richText2));
-            }
-            return sb.toString();
-        }
-        if (richText instanceof TL_iv.textDiff) {
-            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
-            return isEmpty(textdiff.text) ? plainOf(textdiff.old_text) : plainOf(textdiff.text);
-        }
-        return plainOf(richText.text);
-    }
-
-    public static boolean isEmpty(TL_iv.RichText richText) {
-        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
-            return true;
-        }
-        if (richText instanceof TL_iv.textPlain) {
-            String str = ((TL_iv.textPlain) richText).text;
-            return str == null || str.isEmpty();
-        }
-        if (richText instanceof TL_iv.textCustomEmoji) {
-            return false;
-        }
-        if (richText instanceof TL_iv.textMath) {
-            String str2 = ((TL_iv.textMath) richText).source;
-            return str2 == null || str2.isEmpty();
-        }
-        if (richText instanceof TL_iv.textConcat) {
-            ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                TL_iv.RichText richText2 = arrayList.get(i);
-                i++;
-                if (!isEmpty(richText2)) {
-                    return false;
+    public static boolean hasDate(Editable editable, int i, int i2) {
+        int length = editable == null ? 0 : editable.length();
+        int iMax = Math.max(0, Math.min(i, length));
+        int iMax2 = Math.max(0, Math.min(i2, length));
+        if (iMax < iMax2 && editable != null) {
+            while (iMax < iMax2) {
+                int iNextSpanTransition = editable.nextSpanTransition(iMax, iMax2, FormattedDateSpan.class);
+                if (((FormattedDateSpan[]) editable.getSpans(iMax, iNextSpanTransition, FormattedDateSpan.class)).length != 0) {
+                    iMax = iNextSpanTransition;
                 }
             }
             return true;
         }
-        if (richText instanceof TL_iv.textDiff) {
-            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
-            return isEmpty(textdiff.text) && isEmpty(textdiff.old_text);
-        }
-        return isEmpty(richText.text);
+        return false;
     }
 
-    private static FormattedDateSpan dateSpan(TL_iv.textDate textdate, String str) {
-        TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
-        tL_messageEntityFormattedDate.flags = textdate.flags;
-        tL_messageEntityFormattedDate.date = textdate.date;
-        tL_messageEntityFormattedDate.applyFlags();
-        TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-        textStyleRun.flags |= 128;
-        return new FormattedDateSpan(str, textStyleRun, tL_messageEntityFormattedDate);
-    }
-
-    public static TL_iv.RichText fromSpannable(CharSequence charSequence) {
-        int length = charSequence == null ? 0 : charSequence.length();
-        if (length == 0) {
-            return new TL_iv.textEmpty();
-        }
-        if (!(charSequence instanceof Spanned)) {
-            return plainNode(charSequence.toString());
-        }
-        Spanned spanned = (Spanned) charSequence;
-        ArrayList<TL_iv.RichText> arrayList = new ArrayList<>();
-        Run run = null;
-        int i = 0;
-        int i2 = 0;
-        while (i < length) {
-            int iNextSpanTransition = spanned.nextSpanTransition(i, length, CharacterStyle.class);
-            Run runRunAt = runAt(spanned, i, iNextSpanTransition);
-            if (run == null) {
-                run = runRunAt;
-            } else if (!run.equals(runRunAt)) {
-                arrayList.add(wrap(charSequence.subSequence(i2, i).toString(), run));
-                i2 = i;
-                run = runRunAt;
+    public static boolean hasLink(Editable editable, int i, int i2) {
+        int length = editable == null ? 0 : editable.length();
+        int iMax = Math.max(0, Math.min(i, length));
+        int iMax2 = Math.max(0, Math.min(i2, length));
+        if (iMax < iMax2 && editable != null) {
+            while (iMax < iMax2) {
+                int iNextSpanTransition = editable.nextSpanTransition(iMax, iMax2, URLSpanReplacement.class);
+                if (((URLSpanReplacement[]) editable.getSpans(iMax, iNextSpanTransition, URLSpanReplacement.class)).length != 0) {
+                    iMax = iNextSpanTransition;
+                }
             }
-            i = iNextSpanTransition;
+            return true;
         }
-        String string = charSequence.subSequence(i2, length).toString();
-        if (run == null) {
-            run = new Run();
-        }
-        arrayList.add(wrap(string, run));
-        if (arrayList.size() == 1) {
-            return arrayList.get(0);
-        }
-        TL_iv.textConcat textconcat = new TL_iv.textConcat();
-        textconcat.texts = arrayList;
-        return textconcat;
+        return false;
     }
 
-    private static TL_iv.RichText wrap(String str, Run run) {
-        RichInlineButtonSpan richInlineButtonSpan = run.button;
-        if (richInlineButtonSpan != null) {
-            return richInlineButtonSpan.getButton();
-        }
-        if (run.mathSource != null) {
-            TL_iv.textMath textmath = new TL_iv.textMath();
-            textmath.source = run.mathSource;
-            return textmath;
-        }
-        long j = run.emojiDocId;
-        TL_iv.RichText richTextCustomEmojiNode = j != 0 ? customEmojiNode(j, str) : plainNode(str);
-        int i = run.flags;
-        if ((i & 1) != 0) {
-            richTextCustomEmojiNode = wrapOne(new TL_iv.textBold(), richTextCustomEmojiNode);
-        }
-        if ((i & 2) != 0) {
-            richTextCustomEmojiNode = wrapOne(new TL_iv.textItalic(), richTextCustomEmojiNode);
-        }
-        if ((i & 16) != 0) {
-            richTextCustomEmojiNode = wrapOne(new TL_iv.textUnderline(), richTextCustomEmojiNode);
-        }
-        if ((i & 8) != 0) {
-            richTextCustomEmojiNode = wrapOne(new TL_iv.textStrike(), richTextCustomEmojiNode);
-        }
-        if ((i & 4) != 0) {
-            richTextCustomEmojiNode = wrapOne(new TL_iv.textFixed(), richTextCustomEmojiNode);
-        }
-        if ((i & 256) != 0) {
-            richTextCustomEmojiNode = wrapOne(new TL_iv.textSpoiler(), richTextCustomEmojiNode);
-        }
-        if ((i & 16384) != 0) {
-            richTextCustomEmojiNode = wrapOne(new TL_iv.textSubscript(), richTextCustomEmojiNode);
-        }
-        if ((32768 & i) != 0) {
-            richTextCustomEmojiNode = wrapOne(new TL_iv.textSuperscript(), richTextCustomEmojiNode);
-        }
-        if ((i & 65536) != 0) {
-            richTextCustomEmojiNode = wrapOne(new TL_iv.textMarked(), richTextCustomEmojiNode);
-        }
-        if (run.url != null) {
-            TL_iv.textUrl texturl = new TL_iv.textUrl();
-            texturl.text = richTextCustomEmojiNode;
-            texturl.url = run.url;
-            richTextCustomEmojiNode = texturl;
-        }
-        FormattedDateSpan formattedDateSpan = run.date;
-        return formattedDateSpan != null ? dateNode(formattedDateSpan, richTextCustomEmojiNode) : richTextCustomEmojiNode;
-    }
-
-    private static TL_iv.RichText dateNode(FormattedDateSpan formattedDateSpan, TL_iv.RichText richText) {
-        TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = formattedDateSpan.entity;
-        TL_iv.textDate textdate = new TL_iv.textDate();
-        textdate.text = richText;
-        textdate.flags = tL_messageEntityFormattedDate.flags;
-        textdate.relative = tL_messageEntityFormattedDate.relative;
-        textdate.short_time = tL_messageEntityFormattedDate.short_time;
-        textdate.long_time = tL_messageEntityFormattedDate.long_time;
-        textdate.short_date = tL_messageEntityFormattedDate.short_date;
-        textdate.long_date = tL_messageEntityFormattedDate.long_date;
-        textdate.day_of_week = tL_messageEntityFormattedDate.day_of_week;
-        textdate.date = tL_messageEntityFormattedDate.date;
-        return textdate;
-    }
-
-    private static TL_iv.textPlain plainNode(String str) {
-        TL_iv.textPlain textplain = new TL_iv.textPlain();
-        textplain.text = str;
-        return textplain;
-    }
-
-    private static TL_iv.textCustomEmoji customEmojiNode(long j, String str) {
-        TL_iv.textCustomEmoji textcustomemoji = new TL_iv.textCustomEmoji();
-        textcustomemoji.document_id = j;
-        if (str == null) {
-            str = "";
-        }
-        textcustomemoji.alt = str;
-        return textcustomemoji;
-    }
-
-    private static TL_iv.RichText wrapOne(TL_iv.RichText richText, TL_iv.RichText richText2) {
-        richText.text = richText2;
-        return richText;
-    }
-
-    public static boolean hasStyle(CharSequence charSequence, int i, int i2, int i3) {
+    public static boolean hasStyle(int i, int i2, int i3, CharSequence charSequence) {
         int length = charSequence == null ? 0 : charSequence.length();
         int iMax = Math.max(0, Math.min(i, length));
         int iMax2 = Math.max(0, Math.min(i2, length));
@@ -470,54 +311,111 @@ public abstract class RichTextStyle {
         return true;
     }
 
-    public static boolean hasLink(CharSequence charSequence, int i, int i2) {
-        int length = charSequence == null ? 0 : charSequence.length();
-        int iMax = Math.max(0, Math.min(i, length));
-        int iMax2 = Math.max(0, Math.min(i2, length));
-        if (iMax >= iMax2 || !(charSequence instanceof Spanned)) {
+    public static boolean isEmpty(TL_iv.RichText richText) {
+        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
+            return true;
+        }
+        if (richText instanceof TL_iv.textPlain) {
+            String str = ((TL_iv.textPlain) richText).text;
+            return str == null || str.isEmpty();
+        }
+        if (richText instanceof TL_iv.textCustomEmoji) {
             return false;
         }
-        Spanned spanned = (Spanned) charSequence;
-        while (iMax < iMax2) {
-            int iNextSpanTransition = spanned.nextSpanTransition(iMax, iMax2, URLSpanReplacement.class);
-            if (((URLSpanReplacement[]) spanned.getSpans(iMax, iNextSpanTransition, URLSpanReplacement.class)).length == 0) {
+        if (richText instanceof TL_iv.textMath) {
+            String str2 = ((TL_iv.textMath) richText).source;
+            return str2 == null || str2.isEmpty();
+        }
+        if (!(richText instanceof TL_iv.textConcat)) {
+            if (!(richText instanceof TL_iv.textDiff)) {
+                return isEmpty(richText.text);
+            }
+            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+            return isEmpty(textdiff.text) && isEmpty(textdiff.old_text);
+        }
+        ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            TL_iv.RichText richText2 = arrayList.get(i);
+            i++;
+            if (!isEmpty(richText2)) {
                 return false;
             }
-            iMax = iNextSpanTransition;
         }
         return true;
     }
 
-    public static boolean hasDate(CharSequence charSequence, int i, int i2) {
-        int length = charSequence == null ? 0 : charSequence.length();
+    public static String plainOf(TL_iv.RichText richText) {
+        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
+            return "";
+        }
+        if (richText instanceof TL_iv.textPlain) {
+            String str = ((TL_iv.textPlain) richText).text;
+            return str == null ? "" : str;
+        }
+        if (richText instanceof TL_iv.textCustomEmoji) {
+            String str2 = ((TL_iv.textCustomEmoji) richText).alt;
+            return str2 == null ? "" : str2;
+        }
+        if (richText instanceof TL_iv.textMath) {
+            return " ";
+        }
+        if (!(richText instanceof TL_iv.textConcat)) {
+            if (!(richText instanceof TL_iv.textDiff)) {
+                return plainOf(richText.text);
+            }
+            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+            return isEmpty(textdiff.text) ? plainOf(textdiff.old_text) : plainOf(textdiff.text);
+        }
+        StringBuilder sb = new StringBuilder();
+        ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            TL_iv.RichText richText2 = arrayList.get(i);
+            i++;
+            sb.append(plainOf(richText2));
+        }
+        return sb.toString();
+    }
+
+    public static void removeDate(Editable editable, int i, int i2) {
+        int length = editable.length();
         int iMax = Math.max(0, Math.min(i, length));
         int iMax2 = Math.max(0, Math.min(i2, length));
-        if (iMax >= iMax2 || !(charSequence instanceof Spanned)) {
-            return false;
+        if (iMax >= iMax2) {
+            return;
         }
-        Spanned spanned = (Spanned) charSequence;
-        while (iMax < iMax2) {
-            int iNextSpanTransition = spanned.nextSpanTransition(iMax, iMax2, FormattedDateSpan.class);
-            if (((FormattedDateSpan[]) spanned.getSpans(iMax, iNextSpanTransition, FormattedDateSpan.class)).length == 0) {
-                return false;
-            }
-            iMax = iNextSpanTransition;
+        for (FormattedDateSpan formattedDateSpan : (FormattedDateSpan[]) editable.getSpans(iMax, iMax2, FormattedDateSpan.class)) {
+            editable.removeSpan(formattedDateSpan);
         }
-        return true;
     }
 
-    public static int stylesFullyCovering(CharSequence charSequence, int i, int i2) {
-        int i3 = 0;
-        for (int i4 : STYLE_FLAGS) {
-            if (hasStyle(charSequence, i, i2, i4)) {
-                i3 |= i4;
+    public static void removeLink(Editable editable, int i, int i2) {
+        int length = editable.length();
+        int iMax = Math.max(0, Math.min(i, length));
+        int iMax2 = Math.max(0, Math.min(i2, length));
+        if (iMax >= iMax2) {
+            return;
+        }
+        for (URLSpanReplacement uRLSpanReplacement : (URLSpanReplacement[]) editable.getSpans(iMax, iMax2, URLSpanReplacement.class)) {
+            int spanStart = editable.getSpanStart(uRLSpanReplacement);
+            int spanEnd = editable.getSpanEnd(uRLSpanReplacement);
+            editable.removeSpan(uRLSpanReplacement);
+            if (spanStart < iMax) {
+                String url = uRLSpanReplacement.getURL();
+                TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+                textStyleRun.flags = 1024;
+                editable.setSpan(new URLSpanReplacement(url, textStyleRun), spanStart, iMax, 33);
+            }
+            if (spanEnd > iMax2) {
+                String url2 = uRLSpanReplacement.getURL();
+                TextStyleSpan.TextStyleRun textStyleRun2 = new TextStyleSpan.TextStyleRun();
+                textStyleRun2.flags = 1024;
+                editable.setSpan(new URLSpanReplacement(url2, textStyleRun2), iMax2, spanEnd, 33);
             }
         }
-        return i3;
-    }
-
-    public static void setStyle(Spannable spannable, int i, int i2, int i3, boolean z) {
-        setStyle(spannable, i, i2, i3, z, null);
     }
 
     public static void setStyle(Spannable spannable, int i, int i2, int i3, boolean z, TL_iv.PageBlock pageBlock) {
@@ -530,130 +428,159 @@ public abstract class RichTextStyle {
         for (TextStyleSpan textStyleSpan : (TextStyleSpan[]) spannable.getSpans(iMax, iMax2, TextStyleSpan.class)) {
             int spanStart = spannable.getSpanStart(textStyleSpan);
             int spanEnd = spannable.getSpanEnd(textStyleSpan);
-            int styleFlags = textStyleSpan.getStyleFlags();
+            int i4 = textStyleSpan.style.flags;
             spannable.removeSpan(textStyleSpan);
-            applyRun(spannable, spanStart, iMax, styleFlags, pageBlock);
-            applyRun(spannable, iMax2, spanEnd, styleFlags, pageBlock);
-            applyRun(spannable, Math.max(spanStart, iMax), Math.min(spanEnd, iMax2), z ? styleFlags | i3 : (~i3) & styleFlags, pageBlock);
+            if (spanStart < iMax && i4 != 0) {
+                spannable.setSpan(spanFor(i4, pageBlock), spanStart, iMax, 33);
+            }
+            if (iMax2 < spanEnd && i4 != 0) {
+                spannable.setSpan(spanFor(i4, pageBlock), iMax2, spanEnd, 33);
+            }
+            int iMax3 = Math.max(spanStart, iMax);
+            int iMin = Math.min(spanEnd, iMax2);
+            int i5 = z ? i4 | i3 : (~i3) & i4;
+            if (iMax3 < iMin && i5 != 0) {
+                spannable.setSpan(spanFor(i5, pageBlock), iMax3, iMin, 33);
+            }
         }
         if (z) {
             while (iMax < iMax2) {
                 int iNextSpanTransition = spannable.nextSpanTransition(iMax, iMax2, TextStyleSpan.class);
-                if (flagsBetween(spannable, iMax, iNextSpanTransition) == 0) {
-                    applyRun(spannable, iMax, iNextSpanTransition, i3, pageBlock);
+                if (flagsBetween(spannable, iMax, iNextSpanTransition) == 0 && iMax < iNextSpanTransition && i3 != 0) {
+                    spannable.setSpan(spanFor(i3, pageBlock), iMax, iNextSpanTransition, 33);
                 }
                 iMax = iNextSpanTransition;
             }
         }
     }
 
-    public static void removeLink(Spannable spannable, int i, int i2) {
-        int length = spannable.length();
-        int iMax = Math.max(0, Math.min(i, length));
-        int iMax2 = Math.max(0, Math.min(i2, length));
-        if (iMax >= iMax2) {
-            return;
-        }
-        for (URLSpanReplacement uRLSpanReplacement : (URLSpanReplacement[]) spannable.getSpans(iMax, iMax2, URLSpanReplacement.class)) {
-            int spanStart = spannable.getSpanStart(uRLSpanReplacement);
-            int spanEnd = spannable.getSpanEnd(uRLSpanReplacement);
-            spannable.removeSpan(uRLSpanReplacement);
-            if (spanStart < iMax) {
-                spannable.setSpan(linkSpan(uRLSpanReplacement.getURL()), spanStart, iMax, 33);
-            }
-            if (spanEnd > iMax2) {
-                spannable.setSpan(linkSpan(uRLSpanReplacement.getURL()), iMax2, spanEnd, 33);
-            }
-        }
-    }
-
-    static URLSpanReplacement linkSpan(String str) {
-        TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-        textStyleRun.flags = 1024;
-        return new URLSpanReplacement(str, textStyleRun);
-    }
-
-    public static void removeDate(Spannable spannable, int i, int i2) {
-        int length = spannable.length();
-        int iMax = Math.max(0, Math.min(i, length));
-        int iMax2 = Math.max(0, Math.min(i2, length));
-        if (iMax >= iMax2) {
-            return;
-        }
-        for (FormattedDateSpan formattedDateSpan : (FormattedDateSpan[]) spannable.getSpans(iMax, iMax2, FormattedDateSpan.class)) {
-            spannable.removeSpan(formattedDateSpan);
-        }
-    }
-
-    private static void applyRun(Spannable spannable, int i, int i2, int i3, TL_iv.PageBlock pageBlock) {
-        if (i >= i2 || i3 == 0) {
-            return;
-        }
-        spannable.setSpan(spanFor(i3, pageBlock), i, i2, 33);
-    }
-
-    private static int flagsBetween(Spanned spanned, int i, int i2) {
-        TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) spanned.getSpans(i, i2, TextStyleSpan.class);
-        int i3 = 0;
-        for (TextStyleSpan textStyleSpan : textStyleSpanArr) {
-            int styleFlags = textStyleSpan.getStyleFlags();
-            if ((styleFlags & 512) != 0) {
-                styleFlags |= 256;
-            }
-            i3 |= styleFlags;
-        }
-        return 114975 & i3;
-    }
-
-    private static Run runAt(Spanned spanned, int i, int i2) {
-        Run run = new Run();
-        run.flags = flagsBetween(spanned, i, i2);
-        if (((URLSpanMono[]) spanned.getSpans(i, i2, URLSpanMono.class)).length > 0) {
-            run.flags |= 4;
-        }
-        URLSpanReplacement[] uRLSpanReplacementArr = (URLSpanReplacement[]) spanned.getSpans(i, i2, URLSpanReplacement.class);
-        if (uRLSpanReplacementArr.length > 0) {
-            run.url = uRLSpanReplacementArr[0].getURL();
-        }
-        FormattedDateSpan[] formattedDateSpanArr = (FormattedDateSpan[]) spanned.getSpans(i, i2, FormattedDateSpan.class);
-        if (formattedDateSpanArr.length > 0) {
-            run.date = formattedDateSpanArr[0];
-        }
-        AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spanned.getSpans(i, i2, AnimatedEmojiSpan.class);
-        if (animatedEmojiSpanArr.length > 0) {
-            run.emojiDocId = animatedEmojiSpanArr[0].getDocumentId();
-        }
-        MathSpan[] mathSpanArr = (MathSpan[]) spanned.getSpans(i, i2, MathSpan.class);
-        if (mathSpanArr.length > 0) {
-            run.mathSource = mathSpanArr[0].source;
-        }
-        RichInlineButtonSpan[] richInlineButtonSpanArr = (RichInlineButtonSpan[]) spanned.getSpans(i, i2, RichInlineButtonSpan.class);
-        if (richInlineButtonSpanArr.length > 0) {
-            run.button = richInlineButtonSpanArr[0];
-        }
-        return run;
-    }
-
-    private static TextStyleSpan spanFor(int i, TL_iv.PageBlock pageBlock) {
+    public static TextStyleSpan spanFor(int i, TL_iv.PageBlock pageBlock) {
         TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
         textStyleRun.flags = i;
         textStyleRun.header = (pageBlock instanceof TL_iv.pageBlockTitle) || (pageBlock instanceof TL_iv.pageBlockSubheader) || (pageBlock instanceof TL_iv.pageBlockHeader) || (pageBlock instanceof TL_iv.pageBlockHeading1) || (pageBlock instanceof TL_iv.pageBlockHeading2) || (pageBlock instanceof TL_iv.pageBlockHeading3) || (pageBlock instanceof TL_iv.pageBlockHeading4) || (pageBlock instanceof TL_iv.pageBlockHeading5) || (pageBlock instanceof TL_iv.pageBlockHeading6);
-        return new TextStyleSpan(textStyleRun);
+        return new TextStyleSpan(textStyleRun, 0);
     }
 
-    private static class Run {
-        RichInlineButtonSpan button;
-        FormattedDateSpan date;
-        long emojiDocId;
-        int flags;
-        String mathSource;
-        String url;
-
-        private Run() {
+    public static int stylesFullyCovering(int i, int i2, CharSequence charSequence) {
+        int[] iArr = STYLE_FLAGS;
+        int i3 = 0;
+        for (int i4 = 0; i4 < 9; i4++) {
+            int i5 = iArr[i4];
+            if (hasStyle(i, i2, i5, charSequence)) {
+                i3 |= i5;
+            }
         }
+        return i3;
+    }
 
-        boolean equals(org.telegram.ui.iv.RichTextStyle.Run r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTextStyle.Run.equals(org.telegram.ui.iv.RichTextStyle$Run):boolean");
+    public static SpannableStringBuilder toSpannable(TL_iv.RichText richText, TL_iv.PageBlock pageBlock) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        append(spannableStringBuilder, richText, 0, pageBlock, true);
+        return spannableStringBuilder;
+    }
+
+    public static TL_iv.RichText wrap(String str, Run run) {
+        TL_iv.RichText richText;
+        RichInlineButtonSpan richInlineButtonSpan = run.button;
+        if (richInlineButtonSpan != null) {
+            return richInlineButtonSpan.button;
         }
+        if (run.mathSource != null) {
+            TL_iv.textMath textmath = new TL_iv.textMath();
+            textmath.source = run.mathSource;
+            return textmath;
+        }
+        long j = run.emojiDocId;
+        if (j != 0) {
+            TL_iv.textCustomEmoji textcustomemoji = new TL_iv.textCustomEmoji();
+            textcustomemoji.document_id = j;
+            if (str == null) {
+                str = "";
+            }
+            textcustomemoji.alt = str;
+            richText = textcustomemoji;
+        } else {
+            TL_iv.textPlain textplain = new TL_iv.textPlain();
+            textplain.text = str;
+            richText = textplain;
+        }
+        int i = run.flags;
+        TL_iv.RichText richText2 = richText;
+        if ((i & 1) != 0) {
+            TL_iv.textBold textbold = new TL_iv.textBold();
+            textbold.text = richText;
+            richText2 = textbold;
+        }
+        TL_iv.RichText richText3 = richText2;
+        if ((i & 2) != 0) {
+            TL_iv.textItalic textitalic = new TL_iv.textItalic();
+            textitalic.text = richText2;
+            richText3 = textitalic;
+        }
+        TL_iv.RichText richText4 = richText3;
+        if ((i & 16) != 0) {
+            TL_iv.textUnderline textunderline = new TL_iv.textUnderline();
+            textunderline.text = richText3;
+            richText4 = textunderline;
+        }
+        TL_iv.RichText richText5 = richText4;
+        if ((i & 8) != 0) {
+            TL_iv.textStrike textstrike = new TL_iv.textStrike();
+            textstrike.text = richText4;
+            richText5 = textstrike;
+        }
+        TL_iv.RichText richText6 = richText5;
+        if ((i & 4) != 0) {
+            TL_iv.textFixed textfixed = new TL_iv.textFixed();
+            textfixed.text = richText5;
+            richText6 = textfixed;
+        }
+        TL_iv.RichText richText7 = richText6;
+        if ((i & 256) != 0) {
+            TL_iv.textSpoiler textspoiler = new TL_iv.textSpoiler();
+            textspoiler.text = richText6;
+            richText7 = textspoiler;
+        }
+        TL_iv.RichText richText8 = richText7;
+        if ((i & 16384) != 0) {
+            TL_iv.textSubscript textsubscript = new TL_iv.textSubscript();
+            textsubscript.text = richText7;
+            richText8 = textsubscript;
+        }
+        TL_iv.RichText richText9 = richText8;
+        if ((32768 & i) != 0) {
+            TL_iv.textSuperscript textsuperscript = new TL_iv.textSuperscript();
+            textsuperscript.text = richText8;
+            richText9 = textsuperscript;
+        }
+        TL_iv.RichText richText10 = richText9;
+        if ((i & 65536) != 0) {
+            TL_iv.textMarked textmarked = new TL_iv.textMarked();
+            textmarked.text = richText9;
+            richText10 = textmarked;
+        }
+        TL_iv.RichText richText11 = richText10;
+        if (run.url != null) {
+            TL_iv.textUrl texturl = new TL_iv.textUrl();
+            texturl.text = richText10;
+            texturl.url = run.url;
+            richText11 = texturl;
+        }
+        FormattedDateSpan formattedDateSpan = run.date;
+        if (formattedDateSpan == null) {
+            return richText11;
+        }
+        TL_iv.textDate textdate = new TL_iv.textDate();
+        textdate.text = richText11;
+        TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = formattedDateSpan.entity;
+        textdate.flags = tL_messageEntityFormattedDate.flags;
+        textdate.relative = tL_messageEntityFormattedDate.relative;
+        textdate.short_time = tL_messageEntityFormattedDate.short_time;
+        textdate.long_time = tL_messageEntityFormattedDate.long_time;
+        textdate.short_date = tL_messageEntityFormattedDate.short_date;
+        textdate.long_date = tL_messageEntityFormattedDate.long_date;
+        textdate.day_of_week = tL_messageEntityFormattedDate.day_of_week;
+        textdate.date = tL_messageEntityFormattedDate.date;
+        return textdate;
     }
 }

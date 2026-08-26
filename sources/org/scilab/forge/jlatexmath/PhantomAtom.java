@@ -17,13 +17,6 @@ public class PhantomAtom extends Atom implements Row {
         }
     }
 
-    public PhantomAtom(Atom atom, boolean z, boolean z2, boolean z3) {
-        this(atom);
-        this.w = z;
-        this.h = z2;
-        this.d = z3;
-    }
-
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box boxCreateBox = this.elements.createBox(teXEnvironment);
@@ -43,5 +36,12 @@ public class PhantomAtom extends Atom implements Row {
     @Override
     public void setPreviousAtom(Dummy dummy) {
         this.elements.setPreviousAtom(dummy);
+    }
+
+    public PhantomAtom(Atom atom, boolean z, boolean z2, boolean z3) {
+        this(atom);
+        this.w = z;
+        this.h = z2;
+        this.d = z3;
     }
 }

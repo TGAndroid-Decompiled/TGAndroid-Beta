@@ -5,11 +5,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,9 +20,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.ReplacementSpan;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -30,30 +28,42 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
+import com.google.android.gms.internal.mlkit_vision_common.zzkt;
 import java.util.ArrayList;
+import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.LocationController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationBadge$ZukHomeBadger$$ExternalSyntheticOutline0;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.WindowVisibilityManager$$ExternalSyntheticLambda0;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialogDecor;
-import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda131;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda151;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda18;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -62,6 +72,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberTextView;
+import org.telegram.ui.Components.SearchTagsList$$ExternalSyntheticLambda10;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TypefaceSpan;
@@ -69,822 +80,87 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
+import org.telegram.ui.Components.voip.VoIPEllipsizeSpan;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda23;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda110;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda11;
+import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stories.recorder.PreviewView$$ExternalSyntheticLambda8;
 
-public class QuickRepliesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    private static AlertDialog currentDialog;
-    private NumberTextView countText;
-    private ActionBarMenuItem deleteItem;
-    private ActionBarMenuItem editItem;
-    private UniversalRecyclerView listView;
-    private int repliesOrderId;
-    public final ArrayList selected = new ArrayList();
-    private boolean shownEditItem = true;
+public final class QuickRepliesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    public static AlertDialog currentDialog;
+    public NumberTextView countText;
+    public ActionBarMenuItem editItem;
+    public UniversalRecyclerView listView;
+    public int repliesOrderId;
+    public final ArrayList selected;
+    public boolean shownEditItem;
 
-    public static boolean m1404$r8$lambda$ifxmYZdj0M51BTjeMLg3okpfY(View view, MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public View createView(Context context) {
-        this.actionBar.setBackButtonDrawable(new BackDrawable(false));
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessReplies));
-        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1());
-        ActionBarMenu actionBarMenuCreateActionMode = this.actionBar.createActionMode();
-        NumberTextView numberTextView = new NumberTextView(getContext());
-        this.countText = numberTextView;
-        numberTextView.setTextSize(18);
-        this.countText.setTypeface(AndroidUtilities.bold());
-        this.countText.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
-        actionBarMenuCreateActionMode.addView(this.countText, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
-        this.countText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return QuickRepliesActivity.m1404$r8$lambda$ifxmYZdj0M51BTjeMLg3okpfY(view, motionEvent);
-            }
-        });
-        ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateActionMode.addItem(1, R.drawable.msg_edit);
-        this.editItem = actionBarMenuItemAddItem;
-        actionBarMenuItemAddItem.setContentDescription(LocaleController.getString(R.string.Edit));
-        ActionBarMenuItem actionBarMenuItemAddItem2 = actionBarMenuCreateActionMode.addItem(2, R.drawable.msg_delete);
-        this.deleteItem = actionBarMenuItemAddItem2;
-        actionBarMenuItemAddItem2.setContentDescription(LocaleController.getString(R.string.Delete));
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
-            @Override
-            protected void onMeasure(int i, int i2) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
-            }
-        };
-        sizeNotifierFrameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, new Utilities.Callback5() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-            }
-        }, new Utilities.Callback5Return() {
-            @Override
-            public final Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                return Boolean.valueOf(this.f$0.onLongClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue()));
-            }
-        });
-        this.listView = universalRecyclerView;
-        universalRecyclerView.setSections();
-        this.listView.adapter.setApplyBackground(false);
-        this.listView.listenReorder(new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
-            }
-        });
-        sizeNotifierFrameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        this.actionBar.setAdaptiveBackground(this.listView, true);
-        this.fragmentView = sizeNotifierFrameLayout;
-        return sizeNotifierFrameLayout;
-    }
-
-    class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
-        AnonymousClass1() {
+    public final class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
+        public AnonymousClass1() {
         }
 
         @Override
-        public void onItemClick(int i) {
+        public final void onItemClick(int i) {
+            QuickRepliesActivity quickRepliesActivity = QuickRepliesActivity.this;
+            ArrayList arrayList = quickRepliesActivity.selected;
             if (i == -1) {
-                if (!QuickRepliesActivity.this.selected.isEmpty()) {
-                    QuickRepliesActivity.this.clearSelection();
+                if (arrayList.isEmpty()) {
+                    quickRepliesActivity.finishFragment();
                     return;
                 } else {
-                    QuickRepliesActivity.this.finishFragment();
+                    quickRepliesActivity.clearSelection();
                     return;
                 }
             }
-            if (i != 1) {
-                if (i == 2) {
-                    QuickRepliesActivity quickRepliesActivity = QuickRepliesActivity.this;
-                    quickRepliesActivity.showDialog(new AlertDialog.Builder(quickRepliesActivity.getContext(), QuickRepliesActivity.this.getResourceProvider()).setTitle(LocaleController.formatPluralString("BusinessRepliesDeleteTitle", QuickRepliesActivity.this.selected.size(), new Object[0])).setMessage(LocaleController.formatPluralString("BusinessRepliesDeleteMessage", QuickRepliesActivity.this.selected.size(), new Object[0])).setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
-                        @Override
-                        public final void onClick(AlertDialog alertDialog, int i2) {
-                            QuickRepliesActivity.AnonymousClass1.$r8$lambda$ThS6Ap9puawPzRQdMw83QR0E82I(this.f$0, alertDialog, i2);
-                        }
-                    }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create());
+            if (i == 1) {
+                if (arrayList.size() != 1) {
                     return;
                 }
+                int iIntValue = ((Integer) arrayList.get(0)).intValue();
+                QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(((BaseFragment) quickRepliesActivity).currentAccount).findReply(iIntValue);
+                if (quickReplyFindReply == null) {
+                    return;
+                }
+                QuickRepliesActivity.openRenameReplyAlert(quickRepliesActivity.getParentActivity(), ((BaseFragment) quickRepliesActivity).currentAccount, null, quickReplyFindReply, ((BaseFragment) quickRepliesActivity).resourceProvider, new PreviewView$$ExternalSyntheticLambda8(this, iIntValue, 1));
                 return;
             }
-            if (QuickRepliesActivity.this.selected.size() != 1) {
-                return;
+            if (i == 2) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(quickRepliesActivity.getParentActivity(), 0, quickRepliesActivity.getResourceProvider());
+                String pluralString = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
+                AlertDialog alertDialog = builder.alertDialog;
+                alertDialog.title = pluralString;
+                alertDialog.message = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
+                builder.setPositiveButton(LocaleController.getString(R.string.Remove), new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 23));
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+                quickRepliesActivity.showDialog(alertDialog);
             }
-            final int iIntValue = ((Integer) QuickRepliesActivity.this.selected.get(0)).intValue();
-            QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(((BaseFragment) QuickRepliesActivity.this).currentAccount).findReply(iIntValue);
-            if (quickReplyFindReply == null) {
-                return;
-            }
-            QuickRepliesActivity.openRenameReplyAlert(QuickRepliesActivity.this.getContext(), ((BaseFragment) QuickRepliesActivity.this).currentAccount, null, quickReplyFindReply, ((BaseFragment) QuickRepliesActivity.this).resourceProvider, false, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    QuickRepliesActivity.AnonymousClass1.m1407$r8$lambda$n3SewBrXU1N7eqWWi1x8Slu0U(this.f$0, iIntValue, (String) obj);
-                }
-            });
-        }
-
-        public static void m1407$r8$lambda$n3SewBrXU1N7eqWWi1x8Slu0U(AnonymousClass1 anonymousClass1, int i, String str) {
-            QuickRepliesActivity.this.clearSelection();
-            QuickRepliesController.getInstance(((BaseFragment) QuickRepliesActivity.this).currentAccount).renameReply(i, str);
-        }
-
-        public static void $r8$lambda$ThS6Ap9puawPzRQdMw83QR0E82I(AnonymousClass1 anonymousClass1, AlertDialog alertDialog, int i) {
-            QuickRepliesController.getInstance(((BaseFragment) QuickRepliesActivity.this).currentAccount).deleteReplies(QuickRepliesActivity.this.selected);
-            QuickRepliesActivity.this.clearSelection();
         }
     }
 
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessReplies), LocaleController.getString(R.string.BusinessRepliesInfo), "RestrictedEmoji", "📝"));
-        universalAdapter.whiteSectionStart();
-        if (QuickRepliesController.getInstance(this.currentAccount).canAddNew()) {
-            arrayList.add(UItem.asButton(1, R.drawable.msg_viewintopic, LocaleController.getString(R.string.BusinessRepliesAdd)).accent());
-        }
-        this.repliesOrderId = universalAdapter.reorderSectionStart();
-        ArrayList arrayList2 = QuickRepliesController.getInstance(this.currentAccount).replies;
-        int size = arrayList2.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList2.get(i);
-            i++;
-            QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) obj;
-            arrayList.add(UItem.asQuickReply(quickReply).setChecked(this.selected.contains(Integer.valueOf(quickReply.id))));
-        }
-        universalAdapter.reorderSectionEnd();
-        universalAdapter.whiteSectionEnd();
-        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessRepliesAddInfo)));
-    }
-
-    public void whenReordered(int i, ArrayList arrayList) {
-        if (i == this.repliesOrderId) {
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                if (((UItem) arrayList.get(i2)).object instanceof QuickRepliesController.QuickReply) {
-                    ((QuickRepliesController.QuickReply) ((UItem) arrayList.get(i2)).object).order = i2;
-                }
-            }
-            QuickRepliesController.getInstance(this.currentAccount).reorder();
-        }
-    }
-
-    public void onClick(UItem uItem, View view, int i, float f, float f2) {
-        if (uItem.id == 1) {
-            openRenameReplyAlert(getContext(), this.currentAccount, null, null, getResourceProvider(), false, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    QuickRepliesActivity.$r8$lambda$OgeiK9N_KLKiq6OIE7u95f3VcfA(this.f$0, (String) obj);
-                }
-            });
-            return;
-        }
-        if (uItem.viewType == 16 && (uItem.object instanceof QuickRepliesController.QuickReply)) {
-            if (!this.selected.isEmpty()) {
-                updateSelect(uItem, view);
-                return;
-            }
-            QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) uItem.object;
-            if (quickReply.local) {
-                return;
-            }
-            Bundle bundle = new Bundle();
-            bundle.putInt("chatMode", 5);
-            bundle.putLong("user_id", getUserConfig().getClientUserId());
-            bundle.putString("quick_reply", quickReply.name);
-            ChatActivity chatActivity = new ChatActivity(bundle);
-            chatActivity.setQuickReplyId(quickReply.id);
-            presentFragment(chatActivity);
-        }
-    }
-
-    public static void $r8$lambda$OgeiK9N_KLKiq6OIE7u95f3VcfA(QuickRepliesActivity quickRepliesActivity, String str) {
-        quickRepliesActivity.getClass();
-        Bundle bundle = new Bundle();
-        bundle.putInt("chatMode", 5);
-        bundle.putLong("user_id", quickRepliesActivity.getUserConfig().getClientUserId());
-        bundle.putString("quick_reply", str);
-        ChatActivity chatActivity = new ChatActivity(bundle);
-        chatActivity.forceEmptyHistory();
-        quickRepliesActivity.presentFragment(chatActivity);
-    }
-
-    private void updateSelect(UItem uItem, View view) {
-        QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) uItem.object;
-        QuickReplyView quickReplyView = (QuickReplyView) view;
-        if (this.selected.contains(Integer.valueOf(quickReply.id))) {
-            this.selected.remove(Integer.valueOf(quickReply.id));
-        } else {
-            this.selected.add(Integer.valueOf(quickReply.id));
-        }
-        this.listView.allowReorder(!this.selected.isEmpty());
-        boolean zContains = this.selected.contains(Integer.valueOf(quickReply.id));
-        uItem.checked = zContains;
-        quickReplyView.setChecked(zContains, true);
-        if (this.actionBar.isActionModeShowed() == this.selected.isEmpty()) {
-            if (this.selected.isEmpty()) {
-                this.actionBar.hideActionMode();
-            } else {
-                this.actionBar.showActionMode();
-            }
-        }
-        this.countText.setNumber(Math.max(1, this.selected.size()), true);
-        updateEditItem();
-    }
-
-    private void updateEditItem() {
-        boolean z = false;
-        boolean z2 = this.selected.size() == 1;
-        if (z2) {
-            QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(this.currentAccount).findReply(((Integer) this.selected.get(0)).intValue());
-            if (quickReplyFindReply != null && !quickReplyFindReply.isSpecial()) {
-                z = true;
-            }
-        } else {
-            z = z2;
-        }
-        if (this.shownEditItem != z) {
-            this.shownEditItem = z;
-            this.editItem.animate().alpha(this.shownEditItem ? 1.0f : 0.0f).scaleX(this.shownEditItem ? 1.0f : 0.7f).scaleY(this.shownEditItem ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(340L).start();
-        }
-    }
-
-    public void clearSelection() {
-        this.selected.clear();
-        AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
-            @Override
-            public final void accept(Object obj) {
-                QuickRepliesActivity.$r8$lambda$DXrWCH_IribtI7QI_T5ifywXdjU((View) obj);
-            }
-        });
-        this.actionBar.hideActionMode();
-        this.listView.allowReorder(false);
-    }
-
-    public static void $r8$lambda$DXrWCH_IribtI7QI_T5ifywXdjU(View view) {
-        if (view instanceof QuickReplyView) {
-            ((QuickReplyView) view).setChecked(false, true);
-        }
-    }
-
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
-        if (uItem.viewType != 16) {
-            return false;
-        }
-        Object obj = uItem.object;
-        if ((obj instanceof QuickRepliesController.QuickReply) && ((QuickRepliesController.QuickReply) obj).local) {
-            return false;
-        }
-        updateSelect(uItem, view);
-        return true;
-    }
-
-    public static void openRenameReplyAlert(Context context, final int i, String str, final QuickRepliesController.QuickReply quickReply, final Theme.ResourcesProvider resourcesProvider, boolean z, final Utilities.Callback callback) {
-        Object builder;
-        String str2;
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        Activity activityFindActivity = AndroidUtilities.findActivity(context);
-        final View currentFocus = activityFindActivity != null ? activityFindActivity.getCurrentFocus() : null;
-        boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
-        final AlertDialog[] alertDialogArr = new AlertDialog[1];
-        if (z2) {
-            builder = new AlertDialogDecor.Builder(context, resourcesProvider);
-        } else {
-            builder = new AlertDialog.Builder(context, resourcesProvider);
-        }
-        ?? r11 = builder;
-        r11.setTitle(LocaleController.getString((quickReply == null && str == null) ? R.string.BusinessRepliesNewTitle : R.string.BusinessRepliesEditTitle));
-        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
-            AnimatedTextView.AnimatedTextDrawable limit;
-            AnimatedColor limitColor = new AnimatedColor(this);
-            private int limitCount;
-
-            {
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-                this.limit = animatedTextDrawable;
-                animatedTextDrawable.setAnimationProperties(0.2f, 0L, 160L, CubicBezierInterpolator.EASE_OUT_QUINT);
-                this.limit.setTextSize(AndroidUtilities.dp(15.33f));
-                this.limit.setCallback(this);
-                this.limit.setGravity(5);
-            }
-
-            @Override
-            protected boolean verifyDrawable(Drawable drawable) {
-                return drawable == this.limit || super.verifyDrawable(drawable);
-            }
-
-            @Override
-            protected void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                super.onTextChanged(charSequence, i2, i3, i4);
-                if (this.limit != null) {
-                    this.limitCount = 32 - charSequence.length();
-                    this.limit.cancelAnimation();
-                    AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-                    String str3 = "";
-                    if (this.limitCount <= 4) {
-                        str3 = "" + this.limitCount;
-                    }
-                    animatedTextDrawable.setText(str3);
-                }
-            }
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
-                this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
-                this.limit.draw(canvas);
-            }
-
-            @Override
-            protected void onMeasure(int i2, int i3) {
-                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-            }
-        };
-        MediaDataController.getInstance(i).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
-        editTextBoldCursor.setTextSize(1, 18.0f);
-        if (quickReply == null) {
-            str2 = str == null ? "" : str;
-        } else {
-            str2 = quickReply.name;
-        }
-        editTextBoldCursor.setText(str2);
-        int i2 = Theme.key_dialogTextBlack;
-        editTextBoldCursor.setTextColor(Theme.getColor(i2, resourcesProvider));
-        editTextBoldCursor.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
-        editTextBoldCursor.setHintText(LocaleController.getString(R.string.BusinessRepliesNamePlaceholder));
-        editTextBoldCursor.setSingleLine(true);
-        editTextBoldCursor.setFocusable(true);
-        editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
-        editTextBoldCursor.setImeOptions(6);
-        editTextBoldCursor.setBackgroundDrawable(null);
-        editTextBoldCursor.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
-        editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence charSequence, int i3, int i4, Spanned spanned, int i5, int i6) {
-                return String.valueOf(charSequence).replaceAll("[^\\d_\\p{L}\\x{200c}\\x{00b7}\\x{0d80}-\\x{0dff}]", "");
-            }
-        }});
-        ?? linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        final TextView textView = new TextView(context);
-        textView.setTextColor(Theme.getColor(i2, resourcesProvider));
-        textView.setTextSize(1, 16.0f);
-        textView.setText(LocaleController.getString((quickReply == null && str == null) ? R.string.BusinessRepliesNewMessage : R.string.BusinessRepliesEditMessage));
-        frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2, 83));
-        final TextView textView2 = new TextView(context);
-        textView2.setTextColor(Theme.getColor(Theme.key_text_RedBold, resourcesProvider));
-        textView2.setTextSize(1, 16.0f);
-        textView2.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
-        textView2.setAlpha(0.0f);
-        frameLayout.addView(textView2, LayoutHelper.createFrame(-1, -2, 83));
-        final ValueAnimator[] valueAnimatorArr = new ValueAnimator[1];
-        final Runnable[] runnableArr = {new Runnable() {
-            @Override
-            public final void run() {
-                callback.run(Boolean.FALSE);
-            }
-        }};
-        final Utilities.Callback callback2 = new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                QuickRepliesActivity.m1402$r8$lambda$VHsMSvYMPiYKY5kqrnTah4CNd4(runnableArr, valueAnimatorArr, textView2, textView, (Boolean) obj);
-            }
-        };
-        editTextBoldCursor.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (textView2.getAlpha() > 0.0f) {
-                    AndroidUtilities.cancelRunOnUIThread(runnableArr[0]);
-                    AndroidUtilities.runOnUIThread(runnableArr[0]);
-                }
-            }
-        });
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
-        linearLayout.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
-        r11.setView(linearLayout);
-        r11.setWidth(AndroidUtilities.dp(292.0f));
-        editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView3, int i3, KeyEvent keyEvent) {
-                if (i3 != 6) {
-                    return false;
-                }
-                String string = editTextBoldCursor.getText().toString();
-                if (string.length() <= 0 || string.length() > 32) {
-                    AndroidUtilities.shakeView(editTextBoldCursor);
-                    return true;
-                }
-                QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(i);
-                QuickRepliesController.QuickReply quickReply2 = quickReply;
-                if (quickRepliesController.isNameBusy(string, quickReply2 == null ? -1 : quickReply2.id)) {
-                    AndroidUtilities.shakeView(editTextBoldCursor);
-                    textView2.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
-                    callback2.run(Boolean.TRUE);
-                    return true;
-                }
-                Utilities.Callback callback3 = callback;
-                if (callback3 != null) {
-                    callback3.run(string);
-                }
-                AlertDialog alertDialog = alertDialogArr[0];
-                if (alertDialog != null) {
-                    alertDialog.dismiss();
-                }
-                if (alertDialogArr[0] == QuickRepliesActivity.currentDialog) {
-                    AlertDialog unused = QuickRepliesActivity.currentDialog = null;
-                }
-                View view = currentFocus;
-                if (view != null) {
-                    view.requestFocus();
-                }
-                return true;
-            }
-        });
-        r11.setPositiveButton(LocaleController.getString(R.string.Done), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i3) {
-                QuickRepliesActivity.$r8$lambda$0pRxDBuy8ztEkr1uoTVgdmpUhUM(editTextBoldCursor, callback2, i, quickReply, textView2, callback, alertDialog, i3);
-            }
-        });
-        r11.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i3) {
-                alertDialog.dismiss();
-            }
-        });
-        if (z2) {
-            AlertDialog alertDialogCreate = r11.create();
-            currentDialog = alertDialogCreate;
-            alertDialogArr[0] = alertDialogCreate;
-            alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    QuickRepliesActivity.$r8$lambda$sF9FHqFkkH3wZHUsi6MiJxSdiw8(currentFocus, dialogInterface);
-                }
-            });
-            currentDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    QuickRepliesActivity.$r8$lambda$mvxXaGaQpNH83o7El7LuGcpnyNA(editTextBoldCursor, dialogInterface);
-                }
-            });
-            currentDialog.showDelayed(250L);
-        } else {
-            r11.overrideDismissListener(new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    QuickRepliesActivity.m1400$r8$lambda$QvBAgX4oJR40YLK8c3o2Ep4iU(editTextBoldCursor, (Runnable) obj);
-                }
-            });
-            AlertDialog alertDialogCreate2 = r11.create();
-            alertDialogArr[0] = alertDialogCreate2;
-            alertDialogCreate2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    AndroidUtilities.hideKeyboard(editTextBoldCursor);
-                }
-            });
-            alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    QuickRepliesActivity.$r8$lambda$ZSAcGoE2QDXJpND0A7RqwPPsXOI(editTextBoldCursor, dialogInterface);
-                }
-            });
-            alertDialogArr[0].show();
-        }
-        alertDialogArr[0].setDismissDialogByButtons(false);
-        editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
-    }
-
-    public static void m1402$r8$lambda$VHsMSvYMPiYKY5kqrnTah4CNd4(Runnable[] runnableArr, ValueAnimator[] valueAnimatorArr, final TextView textView, final TextView textView2, Boolean bool) {
-        AndroidUtilities.cancelRunOnUIThread(runnableArr[0]);
-        ValueAnimator valueAnimator = valueAnimatorArr[0];
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(textView.getAlpha(), bool.booleanValue() ? 1.0f : 0.0f);
-        valueAnimatorArr[0] = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                QuickRepliesActivity.$r8$lambda$YvpIIRQr5jc8H4moXkzXFBpXttM(textView, textView2, valueAnimator2);
-            }
-        });
-        valueAnimatorArr[0].setDuration(320L);
-        valueAnimatorArr[0].setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        valueAnimatorArr[0].start();
-        if (bool.booleanValue()) {
-            AndroidUtilities.runOnUIThread(runnableArr[0], 5320L);
-        }
-    }
-
-    public static void $r8$lambda$YvpIIRQr5jc8H4moXkzXFBpXttM(TextView textView, TextView textView2, ValueAnimator valueAnimator) {
-        textView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-        textView2.setAlpha(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue());
-    }
-
-    public static void $r8$lambda$0pRxDBuy8ztEkr1uoTVgdmpUhUM(EditTextBoldCursor editTextBoldCursor, Utilities.Callback callback, int i, QuickRepliesController.QuickReply quickReply, TextView textView, Utilities.Callback callback2, AlertDialog alertDialog, int i2) {
-        String string = editTextBoldCursor.getText().toString();
-        if (string.length() <= 0 || string.length() > 32) {
-            AndroidUtilities.shakeView(editTextBoldCursor);
-            callback.run(Boolean.FALSE);
-            return;
-        }
-        if (QuickRepliesController.getInstance(i).isNameBusy(string, quickReply == null ? -1 : quickReply.id)) {
-            AndroidUtilities.shakeView(editTextBoldCursor);
-            textView.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
-            callback.run(Boolean.TRUE);
-        } else {
-            if (callback2 != null) {
-                callback2.run(string);
-            }
-            alertDialog.dismiss();
-        }
-    }
-
-    public static void $r8$lambda$sF9FHqFkkH3wZHUsi6MiJxSdiw8(View view, DialogInterface dialogInterface) {
-        currentDialog = null;
-        if (view != null) {
-            view.requestFocus();
-        }
-    }
-
-    public static void $r8$lambda$mvxXaGaQpNH83o7El7LuGcpnyNA(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
-        editTextBoldCursor.requestFocus();
-        AndroidUtilities.showKeyboard(editTextBoldCursor);
-    }
-
-    public static void m1400$r8$lambda$QvBAgX4oJR40YLK8c3o2Ep4iU(EditTextBoldCursor editTextBoldCursor, Runnable runnable) {
-        AndroidUtilities.hideKeyboard(editTextBoldCursor);
-        AndroidUtilities.runOnUIThread(runnable, 80L);
-    }
-
-    public static void $r8$lambda$ZSAcGoE2QDXJpND0A7RqwPPsXOI(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
-        editTextBoldCursor.requestFocus();
-        AndroidUtilities.showKeyboard(editTextBoldCursor);
-    }
-
-    @Override
-    public boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.quickRepliesUpdated);
-        QuickRepliesController.getInstance(this.currentAccount).load();
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.quickRepliesUpdated);
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        UniversalRecyclerView universalRecyclerView;
-        UniversalAdapter universalAdapter;
-        if (i != NotificationCenter.quickRepliesUpdated || (universalRecyclerView = this.listView) == null || (universalAdapter = universalRecyclerView.adapter) == null) {
-            return;
-        }
-        universalAdapter.update(true);
-    }
-
-    private static class MoreSpan extends ReplacementSpan {
-        private final Paint backgroundPaint = new Paint(1);
-        private final Text text;
-
-        public MoreSpan(int i) {
-            this.text = new Text(LocaleController.formatPluralString("BusinessRepliesMore", i, new Object[0]), 9.33f, AndroidUtilities.bold());
-        }
-
-        public static CharSequence of(int i, int[] iArr) {
-            SpannableString spannableString = new SpannableString("+");
-            MoreSpan moreSpan = new MoreSpan(i);
-            iArr[0] = moreSpan.getSize();
-            spannableString.setSpan(moreSpan, 0, spannableString.length(), 33);
-            return spannableString;
-        }
-
-        public int getSize() {
-            return (int) (this.text.getCurrentWidth() + AndroidUtilities.dp(10.0f));
-        }
-
+    public final class AnonymousClass4 implements InputFilter {
         @Override
-        public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-            return getSize();
-        }
-
-        @Override
-        public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-            float fDpf2 = AndroidUtilities.dpf2(14.66f);
-            float f2 = (i3 + i5) / 2.0f;
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f3 = fDpf2 / 2.0f;
-            rectF.set(f, f2 - f3, getSize() + f, f3 + f2);
-            Paint paint2 = this.backgroundPaint;
-            int i6 = Theme.key_windowBackgroundWhiteGrayText2;
-            paint2.setColor(Theme.multAlpha(Theme.getColor(i6), 0.15f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.backgroundPaint);
-            this.text.draw(canvas, f + AndroidUtilities.dp(5.0f), f2, Theme.getColor(i6), Utilities.clamp((paint.getAlpha() * 2) / 255.0f, 1.0f, 0.0f));
+        public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+            return String.valueOf(charSequence).replaceAll("[^\\d_\\p{L}\\x{200c}\\x{00b7}\\x{0d80}-\\x{0dff}]", "");
         }
     }
 
-    public static class QuickReplyView extends FrameLayout {
-        private final AvatarDrawable avatarDrawable;
-        private final CheckBox2 checkBox;
-        private final ImageReceiver imageReceiver;
-        private boolean local;
-        private boolean needDivider;
-        private final ImageView orderView;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private int[] spanWidth;
-        private final TextView textView;
-
-        public QuickReplyView(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            this.avatarDrawable = new AvatarDrawable();
-            this.imageReceiver = new ImageReceiver(this);
-            this.spanWidth = new int[1];
-            this.resourcesProvider = resourcesProvider;
-            setWillNotDraw(false);
-            int i = z ? 42 : 16;
-            SpoilersTextView spoilersTextView = new SpoilersTextView(context);
-            this.textView = spoilersTextView;
-            spoilersTextView.setLines(2);
-            spoilersTextView.setEllipsize(TextUtils.TruncateAt.END);
-            spoilersTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-            spoilersTextView.setTextSize(1, 14.0f);
-            boolean z2 = LocaleController.isRTL;
-            addView(spoilersTextView, LayoutHelper.createFrame(-1, -2.0f, 7, z2 ? i : 64.0f, 7.0f, z2 ? 64.0f : i, 0.0f));
-            if (z) {
-                ImageView imageView = new ImageView(context);
-                this.orderView = imageView;
-                imageView.setScaleType(ImageView.ScaleType.CENTER);
-                imageView.setImageResource(R.drawable.list_reorder);
-                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_stickers_menu), PorterDuff.Mode.MULTIPLY));
-                imageView.setAlpha(0.0f);
-                addView(imageView, LayoutHelper.createFrame(50, 50, (LocaleController.isRTL ? 3 : 5) | 112));
-            } else {
-                this.orderView = null;
-            }
-            CheckBox2 checkBox2 = new CheckBox2(getContext(), 21, resourcesProvider);
-            this.checkBox = checkBox2;
-            checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
-            checkBox2.setDrawUnchecked(false);
-            checkBox2.setDrawBackgroundAsArc(3);
-            addView(checkBox2, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
-        }
-
-        public void invalidateEmojis() {
-            this.textView.invalidate();
-        }
-
-        public void setChecked(boolean z, boolean z2) {
-            this.checkBox.setChecked(z, z2);
-        }
-
-        public void setReorder(boolean z) {
-            this.orderView.animate().alpha((!z || this.local) ? 0.0f : 1.0f).start();
-        }
-
-        public void set(QuickRepliesController.QuickReply quickReply, String str, boolean z) {
-            TLRPC.WebPage webPage;
-            TLRPC.Photo photo;
-            long j;
-            String str2;
-            ImageLocation imageLocation;
-            TLRPC.Photo photo2;
-            String str3 = str;
-            this.local = quickReply != null ? quickReply.local : false;
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            if (str3 != null && str3.length() > 0 && !str3.startsWith("/")) {
-                str3 = "/" + str3;
-            }
-            spannableStringBuilder.append((CharSequence) "/").append((CharSequence) quickReply.name);
-            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider)), 0, spannableStringBuilder.length(), 33);
-            if (str3 != null) {
-                spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText2, this.resourcesProvider)), 0, Math.min(str3.length() <= 0 ? 1 : str3.length(), spannableStringBuilder.length()), 33);
-            }
-            if (quickReply.topMessage != null) {
-                spannableStringBuilder.append((CharSequence) " ");
-                CharSequence charSequence = quickReply.topMessage.caption;
-                if (TextUtils.isEmpty(charSequence)) {
-                    charSequence = quickReply.topMessage.messageText;
-                }
-                CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(new SpannableStringBuilder(charSequence), this.textView.getPaint().getFontMetricsInt(), false);
-                TLRPC.Message message = quickReply.topMessage.messageOwner;
-                if (message != null) {
-                    MessageObject.replaceAnimatedEmoji(charSequenceReplaceEmoji, message.entities, this.textView.getPaint().getFontMetricsInt());
-                }
-                spannableStringBuilder.append(charSequenceReplaceEmoji);
-            }
-            if (quickReply.getMessagesCount() > 1) {
-                spannableStringBuilder.append((CharSequence) "  ");
-                int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(80.0f);
-                CharSequence charSequenceOf = MoreSpan.of(quickReply.getMessagesCount() - 1, this.spanWidth);
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, this.textView.getPaint(), (iDp * 1.5f) - this.spanWidth[0], TextUtils.TruncateAt.END));
-                if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
-                    spannableStringBuilder2.append((CharSequence) "  ");
-                }
-                spannableStringBuilder2.append(charSequenceOf);
-                spannableStringBuilder = spannableStringBuilder2;
-            }
-            this.textView.setText(spannableStringBuilder);
-            int i = UserConfig.selectedAccount;
-            TLRPC.MessageMedia media = MessageObject.getMedia(quickReply.topMessage);
-            if (media != null && (photo2 = media.photo) != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, AndroidUtilities.dp(36.0f), true, null, true);
-                ImageReceiver imageReceiver = this.imageReceiver;
-                ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, media.photo);
-                MessageObject messageObject = quickReply.topMessage;
-                imageReceiver.setImage(forObject, "36_36", messageObject.strippedThumb, closestPhotoSizeWithSize != null ? closestPhotoSizeWithSize.size : 0L, (String) null, messageObject, 0);
-                this.imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
-            } else if (media != null && media.document != null && (quickReply.topMessage.isVideo() || quickReply.topMessage.isSticker())) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(media.document.thumbs, AndroidUtilities.dp(36.0f), true, null, true);
-                if (closestPhotoSizeWithSize2 == null) {
-                    ImageLocation forDocument = ImageLocation.getForDocument(media.document);
-                    j = media.document.size;
-                    imageLocation = forDocument;
-                    str2 = "g";
-                } else {
-                    ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize2, media.document);
-                    j = closestPhotoSizeWithSize2.size;
-                    str2 = "36_36";
-                    imageLocation = forObject2;
-                }
-                long j2 = j;
-                ImageReceiver imageReceiver2 = this.imageReceiver;
-                MessageObject messageObject2 = quickReply.topMessage;
-                imageReceiver2.setImage(imageLocation, str2, messageObject2.strippedThumb, j2, (String) null, messageObject2, 0);
-                this.imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
-            } else if (media != null && (webPage = media.webpage) != null && (photo = webPage.photo) != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), true, null, true);
-                this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize3, media.webpage.photo), "36_36", quickReply.topMessage.strippedThumb, closestPhotoSizeWithSize3 != null ? closestPhotoSizeWithSize3.size : 0L, (String) null, media.webpage, 0);
-                this.imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
-            } else {
-                this.avatarDrawable.setInfo(UserConfig.getInstance(i).getCurrentUser());
-                this.imageReceiver.setForUserOrChat(UserConfig.getInstance(i).getCurrentUser(), this.avatarDrawable);
-                this.imageReceiver.setRoundRadius(AndroidUtilities.dp(36.0f));
-            }
-            this.needDivider = z;
-            invalidate();
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            this.imageReceiver.setImageCoords(LocaleController.isRTL ? getMeasuredWidth() - AndroidUtilities.dp(51.0f) : AndroidUtilities.dp(15.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
-            this.imageReceiver.draw(canvas);
-            super.onDraw(canvas);
-            if (this.needDivider) {
-                Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
-                if (themePaint == null) {
-                    themePaint = Theme.dividerPaint;
-                }
-                canvas.drawRect(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 64.0f), getMeasuredHeight() - 1, getWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : 0.0f), getMeasuredHeight(), themePaint);
-            }
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
-        }
-    }
-
-    public static class LargeQuickReplyView extends FrameLayout {
-        private final Paint arrowPaint;
-        private final Path arrowPath;
-        private final AvatarDrawable avatarDrawable;
-        private final CheckBox2 checkBox;
-        private final ImageReceiver imageReceiver;
-        private boolean needDivider;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private int[] spanWidth;
-        private final TextView textView;
-        private final TextView titleView;
+    public final class LargeQuickReplyView extends FrameLayout {
+        public final Paint arrowPaint;
+        public final Path arrowPath;
+        public final AvatarDrawable avatarDrawable;
+        public final CheckBox2 checkBox;
+        public final ImageReceiver imageReceiver;
+        public boolean needDivider;
+        public final Theme.ResourcesProvider resourcesProvider;
+        public final int[] spanWidth;
+        public final TextView textView;
+        public final TextView titleView;
 
         public LargeQuickReplyView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            this.avatarDrawable = new AvatarDrawable();
+            this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
             this.imageReceiver = new ImageReceiver(this);
             this.arrowPath = new Path();
             this.arrowPaint = new Paint(1);
@@ -905,86 +181,22 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             this.textView = textView2;
             textView2.setLines(2);
             textView2.setEllipsize(truncateAt);
-            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-            textView2.setTextSize(1, 15.0f);
+            OKLCH.m(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider, textView2, 15.0f);
             boolean z2 = LocaleController.isRTL;
             addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 7, z2 ? 40.0f : 78.0f, 32.0f, z2 ? 78.0f : 40.0f, 0.0f));
             CheckBox2 checkBox2 = new CheckBox2(getContext(), 21, resourcesProvider);
             this.checkBox = checkBox2;
-            checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+            checkBox2.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             checkBox2.setDrawUnchecked(false);
             checkBox2.setDrawBackgroundAsArc(3);
             addView(checkBox2, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
         }
 
-        public void setChecked(boolean z, boolean z2) {
-            this.checkBox.setChecked(z, z2);
-        }
-
-        public void set(QuickRepliesController.QuickReply quickReply, boolean z) {
-            TLRPC.Document document;
-            long j;
-            String str;
-            ImageLocation imageLocation;
-            TLRPC.Photo photo;
-            int i = UserConfig.selectedAccount;
-            this.titleView.setText(MessagesController.getInstance(i).getPeerName(UserConfig.getInstance(i).getClientUserId()));
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            MessageObject messageObject = quickReply.topMessage;
-            if (messageObject != null) {
-                spannableStringBuilder.append(Emoji.replaceEmoji(messageObject.messageText, this.textView.getPaint().getFontMetricsInt(), false));
-            }
-            if (quickReply.getMessagesCount() > 1) {
-                spannableStringBuilder.append((CharSequence) "  ");
-                int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(80.0f);
-                CharSequence charSequenceOf = MoreSpan.of(quickReply.getMessagesCount() - 1, this.spanWidth);
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, this.textView.getPaint(), (iDp * 1.5f) - this.spanWidth[0], TextUtils.TruncateAt.END));
-                if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
-                    spannableStringBuilder2.append((CharSequence) "  ");
-                }
-                spannableStringBuilder2.append(charSequenceOf);
-                spannableStringBuilder = spannableStringBuilder2;
-            }
-            this.textView.setText(spannableStringBuilder);
-            TLRPC.MessageMedia media = MessageObject.getMedia(quickReply.topMessage);
-            if (media != null && (photo = media.photo) != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), true, null, true);
-                ImageReceiver imageReceiver = this.imageReceiver;
-                ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, media.photo);
-                MessageObject messageObject2 = quickReply.topMessage;
-                imageReceiver.setImage(forObject, "36_36", messageObject2.strippedThumb, closestPhotoSizeWithSize == null ? 0L : closestPhotoSizeWithSize.size, (String) null, messageObject2, 0);
-                this.imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-            } else if (media != null && (document = media.document) != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(36.0f), true, null, true);
-                if (closestPhotoSizeWithSize2 == null) {
-                    ImageLocation forDocument = ImageLocation.getForDocument(media.document);
-                    j = media.document.size;
-                    imageLocation = forDocument;
-                    str = "g";
-                } else {
-                    ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize2, media.document);
-                    j = closestPhotoSizeWithSize2.size;
-                    str = "36_36";
-                    imageLocation = forObject2;
-                }
-                long j2 = j;
-                ImageReceiver imageReceiver2 = this.imageReceiver;
-                MessageObject messageObject3 = quickReply.topMessage;
-                imageReceiver2.setImage(imageLocation, str, messageObject3.strippedThumb, j2, (String) null, messageObject3, 0);
-                this.imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-            } else {
-                this.avatarDrawable.setInfo(UserConfig.getInstance(i).getCurrentUser());
-                this.imageReceiver.setForUserOrChat(UserConfig.getInstance(i).getCurrentUser(), this.avatarDrawable);
-                this.imageReceiver.setRoundRadius(AndroidUtilities.dp(56.0f));
-            }
-            this.needDivider = z;
-            invalidate();
-        }
-
         @Override
-        protected void onDraw(Canvas canvas) {
-            this.imageReceiver.setImageCoords(LocaleController.isRTL ? getMeasuredWidth() - AndroidUtilities.dp(65.0f) : AndroidUtilities.dp(9.0f), AndroidUtilities.dp(11.33f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-            this.imageReceiver.draw(canvas);
+        public final void onDraw(Canvas canvas) {
+            ImageReceiver imageReceiver = this.imageReceiver;
+            imageReceiver.setImageCoords(LocaleController.isRTL ? getMeasuredWidth() - AndroidUtilities.dp(65.0f) : AndroidUtilities.dp(9.0f), AndroidUtilities.dp(11.33f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+            imageReceiver.draw(canvas);
             super.onDraw(canvas);
             canvas.drawPath(this.arrowPath, this.arrowPaint);
             if (this.needDivider) {
@@ -997,25 +209,668 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public final void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.needDivider ? 1 : 0), 1073741824));
-            this.arrowPaint.setStyle(Paint.Style.STROKE);
-            this.arrowPaint.setStrokeCap(Paint.Cap.ROUND);
-            this.arrowPaint.setStrokeJoin(Paint.Join.ROUND);
-            this.arrowPaint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-            this.arrowPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), 0.85f));
-            this.arrowPath.rewind();
+            Paint paint = this.arrowPaint;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setStrokeJoin(Paint.Join.ROUND);
+            paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
+            paint.setColor(Theme.multAlpha(0.85f, Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider)));
+            Path path = this.arrowPath;
+            path.rewind();
             float measuredHeight = getMeasuredHeight() / 2.0f;
             float fDpf2 = LocaleController.isRTL ? AndroidUtilities.dpf2(29.66f) : getMeasuredWidth() - AndroidUtilities.dpf2(24.33f);
-            this.arrowPath.moveTo(fDpf2, measuredHeight - AndroidUtilities.dpf2(5.66f));
-            this.arrowPath.lineTo(((LocaleController.isRTL ? -1 : 1) * AndroidUtilities.dpf2(5.33f)) + fDpf2, measuredHeight);
-            this.arrowPath.lineTo(fDpf2, measuredHeight + AndroidUtilities.dpf2(5.66f));
+            path.moveTo(fDpf2, measuredHeight - AndroidUtilities.dpf2(5.66f));
+            path.lineTo((AndroidUtilities.dpf2(5.33f) * (LocaleController.isRTL ? -1 : 1)) + fDpf2, measuredHeight);
+            path.lineTo(fDpf2, AndroidUtilities.dpf2(5.66f) + measuredHeight);
+        }
+    }
+
+    public final class QuickReplyView extends FrameLayout {
+        public final AvatarDrawable avatarDrawable;
+        public final CheckBox2 checkBox;
+        public final ImageReceiver imageReceiver;
+        public boolean local;
+        public boolean needDivider;
+        public final ImageView orderView;
+        public final Theme.ResourcesProvider resourcesProvider;
+        public final int[] spanWidth;
+        public final SpoilersTextView textView;
+
+        public QuickReplyView(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+            super(context);
+            this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            this.imageReceiver = new ImageReceiver(this);
+            this.spanWidth = new int[1];
+            this.resourcesProvider = resourcesProvider;
+            setWillNotDraw(false);
+            int i = z ? 42 : 16;
+            SpoilersTextView spoilersTextView = new SpoilersTextView(context, null, true);
+            this.textView = spoilersTextView;
+            spoilersTextView.setLines(2);
+            spoilersTextView.setEllipsize(TextUtils.TruncateAt.END);
+            spoilersTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+            spoilersTextView.setTextSize(1, 14.0f);
+            boolean z2 = LocaleController.isRTL;
+            addView(spoilersTextView, LayoutHelper.createFrame(-1, -2.0f, 7, z2 ? i : 64.0f, 7.0f, z2 ? 64.0f : i, 0.0f));
+            if (z) {
+                ImageView imageView = new ImageView(context);
+                this.orderView = imageView;
+                imageView.setScaleType(ImageView.ScaleType.CENTER);
+                imageView.setImageResource(R.drawable.list_reorder);
+                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_stickers_menu, false), PorterDuff.Mode.MULTIPLY));
+                imageView.setAlpha(0.0f);
+                addView(imageView, LayoutHelper.createFrame(50, 50, (LocaleController.isRTL ? 3 : 5) | 112));
+            } else {
+                this.orderView = null;
+            }
+            CheckBox2 checkBox2 = new CheckBox2(getContext(), 21, resourcesProvider);
+            this.checkBox = checkBox2;
+            checkBox2.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+            checkBox2.setDrawUnchecked(false);
+            checkBox2.setDrawBackgroundAsArc(3);
+            addView(checkBox2, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        }
+
+        @Override
+        public final void onDraw(Canvas canvas) {
+            ImageReceiver imageReceiver = this.imageReceiver;
+            imageReceiver.setImageCoords(LocaleController.isRTL ? getMeasuredWidth() - AndroidUtilities.dp(51.0f) : AndroidUtilities.dp(15.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
+            imageReceiver.draw(canvas);
+            super.onDraw(canvas);
+            if (this.needDivider) {
+                Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
+                if (themePaint == null) {
+                    themePaint = Theme.dividerPaint;
+                }
+                canvas.drawRect(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 64.0f), getMeasuredHeight() - 1, getWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : 0.0f), getMeasuredHeight(), themePaint);
+            }
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        }
+
+        public final void set(QuickRepliesController.QuickReply quickReply, String str, boolean z) {
+            TLRPC.WebPage webPage;
+            TLRPC.Photo photo;
+            long j;
+            String str2;
+            ImageLocation imageLocation;
+            TLRPC.Photo photo2;
+            this.local = quickReply != null ? quickReply.local : false;
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            if (str != null && str.length() > 0 && !str.startsWith("/")) {
+                str = "/".concat(str);
+            }
+            spannableStringBuilder.append((CharSequence) "/").append((CharSequence) quickReply.name);
+            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(i, resourcesProvider)), 0, spannableStringBuilder.length(), 33);
+            if (str != null) {
+                spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText2, resourcesProvider)), 0, Math.min(str.length() <= 0 ? 1 : str.length(), spannableStringBuilder.length()), 33);
+            }
+            MessageObject messageObject = quickReply.topMessage;
+            SpoilersTextView spoilersTextView = this.textView;
+            if (messageObject != null) {
+                spannableStringBuilder.append((CharSequence) " ");
+                CharSequence charSequence = quickReply.topMessage.caption;
+                if (TextUtils.isEmpty(charSequence)) {
+                    charSequence = quickReply.topMessage.messageText;
+                }
+                CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(new SpannableStringBuilder(charSequence), spoilersTextView.getPaint().getFontMetricsInt(), false);
+                TLRPC.Message message = quickReply.topMessage.messageOwner;
+                if (message != null) {
+                    MessageObject.replaceAnimatedEmoji(charSequenceReplaceEmoji, message.entities, spoilersTextView.getPaint().getFontMetricsInt());
+                }
+                spannableStringBuilder.append(charSequenceReplaceEmoji);
+            }
+            if (quickReply.getMessagesCount() > 1) {
+                spannableStringBuilder.append((CharSequence) "  ");
+                int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(80.0f);
+                int messagesCount = quickReply.getMessagesCount() - 1;
+                int i2 = VoIPEllipsizeSpan.$r8$clinit;
+                SpannableString spannableString = new SpannableString("+");
+                VoIPEllipsizeSpan voIPEllipsizeSpan = new VoIPEllipsizeSpan(messagesCount);
+                int iDp2 = (int) (((Text) voIPEllipsizeSpan.parents).width + AndroidUtilities.dp(10.0f));
+                int[] iArr = this.spanWidth;
+                iArr[0] = iDp2;
+                spannableString.setSpan(voIPEllipsizeSpan, 0, spannableString.length(), 33);
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, spoilersTextView.getPaint(), (iDp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
+                if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
+                    spannableStringBuilder2.append((CharSequence) "  ");
+                }
+                spannableStringBuilder2.append((CharSequence) spannableString);
+                spannableStringBuilder = spannableStringBuilder2;
+            }
+            spoilersTextView.setText(spannableStringBuilder);
+            int i3 = UserConfig.selectedAccount;
+            TLRPC.MessageMedia media = MessageObject.getMedia(quickReply.topMessage);
+            ImageReceiver imageReceiver = this.imageReceiver;
+            if (media != null && (photo2 = media.photo) != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, AndroidUtilities.dp(36.0f), true, null, true);
+                ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, media.photo);
+                MessageObject messageObject2 = quickReply.topMessage;
+                imageReceiver.setImage(forObject, "36_36", messageObject2.strippedThumb, closestPhotoSizeWithSize != null ? closestPhotoSizeWithSize.size : 0L, (String) null, messageObject2, 0);
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
+            } else if (media != null && media.document != null && (quickReply.topMessage.isVideo() || quickReply.topMessage.isSticker())) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(media.document.thumbs, AndroidUtilities.dp(36.0f), true, null, true);
+                if (closestPhotoSizeWithSize2 == null) {
+                    ImageLocation forDocument = ImageLocation.getForDocument(media.document);
+                    j = media.document.size;
+                    imageLocation = forDocument;
+                    str2 = "g";
+                } else {
+                    ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize2, media.document);
+                    j = closestPhotoSizeWithSize2.size;
+                    str2 = "36_36";
+                    imageLocation = forObject2;
+                }
+                MessageObject messageObject3 = quickReply.topMessage;
+                imageReceiver.setImage(imageLocation, str2, messageObject3.strippedThumb, j, (String) null, messageObject3, 0);
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
+            } else if (media == null || (webPage = media.webpage) == null || (photo = webPage.photo) == null) {
+                AvatarDrawable avatarDrawable = this.avatarDrawable;
+                avatarDrawable.setInfo(UserConfig.selectedAccount, UserConfig.getInstance(i3).getCurrentUser());
+                imageReceiver.setForUserOrChat(UserConfig.getInstance(i3).getCurrentUser(), avatarDrawable);
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(36.0f));
+            } else {
+                TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), true, null, true);
+                imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize3, media.webpage.photo), "36_36", quickReply.topMessage.strippedThumb, closestPhotoSizeWithSize3 != null ? closestPhotoSizeWithSize3.size : 0L, (String) null, media.webpage, 0);
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
+            }
+            this.needDivider = z;
+            invalidate();
+        }
+
+        public void setReorder(boolean z) {
+            this.orderView.animate().alpha((!z || this.local) ? 0.0f : 1.0f).start();
+        }
+    }
+
+    public QuickRepliesActivity() {
+        super(null);
+        this.selected = new ArrayList();
+        this.shownEditItem = true;
+    }
+
+    public static void openRenameReplyAlert(Activity activity, final int i, String str, final QuickRepliesController.QuickReply quickReply, final Theme.ResourcesProvider resourcesProvider, final Utilities.Callback callback) {
+        String str2;
+        ?? r3;
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        Activity activityFindActivity = AndroidUtilities.findActivity(activity);
+        final View currentFocus = activityFindActivity != null ? activityFindActivity.getCurrentFocus() : null;
+        boolean z = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f);
+        final AlertDialog[] alertDialogArr = new AlertDialog[1];
+        AlertDialog.Builder builder = z ? new AlertDialogDecor.Builder(activity, 0, resourcesProvider) : new AlertDialog.Builder(activity, 0, resourcesProvider);
+        String string = LocaleController.getString((quickReply == null && str == null) ? R.string.BusinessRepliesNewTitle : R.string.BusinessRepliesEditTitle);
+        AlertDialog alertDialog = builder.alertDialog;
+        alertDialog.title = string;
+        final ?? r2 = new EditTextBoldCursor(activity) {
+            public final AnimatedTextView.AnimatedTextDrawable limit;
+            public final AnimatedColor limitColor = new AnimatedColor(this);
+            public int limitCount;
+
+            {
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+                this.limit = animatedTextDrawable;
+                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+                animatedTextDrawable.moveAmplitude = 0.2f;
+                animatedTextDrawable.animateDuration = 160L;
+                animatedTextDrawable.animateWave = 1.0f;
+                animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+                animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.33f));
+                animatedTextDrawable.setCallback(this);
+                animatedTextDrawable.gravity = 5;
+            }
+
+            @Override
+            public final void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
+                int i2 = this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider), false);
+                animatedTextDrawable.textPaint.setColor(i2);
+                animatedTextDrawable.alpha = Color.alpha(i2);
+                animatedTextDrawable.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+                animatedTextDrawable.draw(canvas);
+            }
+
+            @Override
+            public final void onMeasure(int i2, int i3) {
+                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+            }
+
+            @Override
+            public final void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                super.onTextChanged(charSequence, i2, i3, i4);
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
+                if (animatedTextDrawable != null) {
+                    this.limitCount = 32 - charSequence.length();
+                    animatedTextDrawable.cancelAnimation();
+                    String str3 = "";
+                    if (this.limitCount <= 4) {
+                        str3 = "" + this.limitCount;
+                    }
+                    animatedTextDrawable.setText(str3, true, true);
+                }
+            }
+
+            @Override
+            public final boolean verifyDrawable(Drawable drawable) {
+                return drawable == this.limit || super.verifyDrawable(drawable);
+            }
+        };
+        MediaDataController.getInstance(i).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
+        r2.setTextSize(1, 18.0f);
+        if (quickReply == null) {
+            str2 = str == null ? "" : str;
+        } else {
+            str2 = quickReply.name;
+        }
+        r2.setText(str2);
+        int i2 = Theme.key_dialogTextBlack;
+        r2.setTextColor(Theme.getColor(i2, resourcesProvider));
+        r2.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
+        r2.setHintText(LocaleController.getString(R.string.BusinessRepliesNamePlaceholder));
+        r2.setSingleLine(true);
+        r2.setFocusable(true);
+        r2.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
+        r2.setImeOptions(6);
+        r2.setBackgroundDrawable(null);
+        r2.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
+        r2.setFilters(new InputFilter[]{new AnonymousClass4()});
+        LinearLayout linearLayoutM = FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(activity, 1);
+        FrameLayout frameLayout = new FrameLayout(activity);
+        TextView textView = new TextView(activity);
+        OKLCH.m(i2, resourcesProvider, textView, 16.0f);
+        textView.setText(LocaleController.getString((quickReply == null && str == null) ? R.string.BusinessRepliesNewMessage : R.string.BusinessRepliesEditMessage));
+        frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2, 83));
+        final TextView textView2 = new TextView(activity);
+        OKLCH.m(Theme.key_text_RedBold, resourcesProvider, textView2, 16.0f);
+        textView2.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
+        textView2.setAlpha(0.0f);
+        frameLayout.addView(textView2, LayoutHelper.createFrame(-1, -2, 83));
+        final Runnable[] runnableArr = {new ArticleViewer$$ExternalSyntheticLambda3(giftSheet$$ExternalSyntheticLambda23, 18)};
+        final GiftSheet$$ExternalSyntheticLambda23 giftSheet$$ExternalSyntheticLambda23 = new GiftSheet$$ExternalSyntheticLambda23(runnableArr, new ValueAnimator[1], textView2, textView, 1);
+        r2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public final void afterTextChanged(Editable editable) {
+                if (textView2.getAlpha() > 0.0f) {
+                    Runnable[] runnableArr2 = runnableArr;
+                    AndroidUtilities.cancelRunOnUIThread(runnableArr2[0]);
+                    AndroidUtilities.runOnUIThread(runnableArr2[0]);
+                }
+            }
+
+            @Override
+            public final void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+            }
+
+            @Override
+            public final void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+            }
+        });
+        linearLayoutM.addView(frameLayout, LayoutHelper.createLinear(24.0f, 5.0f, 24.0f, 12.0f, -1, -2));
+        linearLayoutM.addView((View) r2, LayoutHelper.createLinear(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
+        builder.setView(linearLayoutM);
+        alertDialog.customWidth = AndroidUtilities.dp(292.0f);
+        r2.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public final boolean onEditorAction(TextView textView3, int i3, KeyEvent keyEvent) {
+                if (i3 != 6) {
+                    return false;
+                }
+                AnonymousClass3 anonymousClass3 = r2;
+                String string2 = anonymousClass3.getText().toString();
+                if (string2.length() <= 0 || string2.length() > 32) {
+                    AndroidUtilities.shakeView(anonymousClass3);
+                    return true;
+                }
+                QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(i);
+                QuickRepliesController.QuickReply quickReply2 = quickReply;
+                int i4 = quickReply2 == null ? -1 : quickReply2.id;
+                QuickRepliesController.QuickReply quickReplyFindReply = quickRepliesController.findReply(string2);
+                if (quickReplyFindReply != null && quickReplyFindReply.id != i4) {
+                    AndroidUtilities.shakeView(anonymousClass3);
+                    textView2.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
+                    giftSheet$$ExternalSyntheticLambda23.run(Boolean.TRUE);
+                    return true;
+                }
+                callback.run(string2);
+                AlertDialog[] alertDialogArr2 = alertDialogArr;
+                AlertDialog alertDialog2 = alertDialogArr2[0];
+                if (alertDialog2 != null) {
+                    alertDialog2.dismiss();
+                }
+                if (alertDialogArr2[0] == QuickRepliesActivity.currentDialog) {
+                    QuickRepliesActivity.currentDialog = null;
+                }
+                View view = currentFocus;
+                if (view != null) {
+                    view.requestFocus();
+                }
+                return true;
+            }
+        });
+        builder.setPositiveButton(LocaleController.getString(R.string.Done), new LaunchActivity$$ExternalSyntheticLambda110((AnonymousClass3) r2, giftSheet$$ExternalSyntheticLambda23, i, quickReply, textView2, callback));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new ChatActivity$$ExternalSyntheticLambda131(1));
+        if (z) {
+            currentDialog = alertDialog;
+            alertDialogArr[0] = alertDialog;
+            alertDialog.setOnDismissListener(new SearchTagsList$$ExternalSyntheticLambda10(2, currentFocus));
+            AlertDialog alertDialog2 = currentDialog;
+            r3 = 0;
+            final boolean z2 = false ? 1 : 0;
+            alertDialog2.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public final void onShow(DialogInterface dialogInterface) {
+                    switch (z2) {
+                        case 0:
+                            QuickRepliesActivity.AnonymousClass3 anonymousClass3 = r2;
+                            anonymousClass3.requestFocus();
+                            AndroidUtilities.showKeyboard(anonymousClass3);
+                            break;
+                        default:
+                            QuickRepliesActivity.AnonymousClass3 anonymousClass4 = r2;
+                            anonymousClass4.requestFocus();
+                            AndroidUtilities.showKeyboard(anonymousClass4);
+                            break;
+                    }
+                }
+            });
+            currentDialog.showDelayed(250L);
+        } else {
+            r3 = 0;
+            alertDialog.overridenDissmissListener = new DialogCell$$ExternalSyntheticLambda6(r2, 8);
+            alertDialogArr[0] = alertDialog;
+            alertDialog.setOnDismissListener(new OAuthSheet$$ExternalSyntheticLambda11(r2, 3));
+            final int i3 = 1;
+            alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public final void onShow(DialogInterface dialogInterface) {
+                    switch (i3) {
+                        case 0:
+                            QuickRepliesActivity.AnonymousClass3 anonymousClass3 = r2;
+                            anonymousClass3.requestFocus();
+                            AndroidUtilities.showKeyboard(anonymousClass3);
+                            break;
+                        default:
+                            QuickRepliesActivity.AnonymousClass3 anonymousClass4 = r2;
+                            anonymousClass4.requestFocus();
+                            AndroidUtilities.showKeyboard(anonymousClass4);
+                            break;
+                    }
+                }
+            });
+            alertDialogArr[0].show();
+        }
+        alertDialogArr[r3].dismissDialogByButtons = r3;
+        r2.setSelection(r2.getText().length());
+    }
+
+    public final void clearSelection() {
+        this.selected.clear();
+        AndroidUtilities.forEachViews((RecyclerView) this.listView, (Consumer) new ChatActivity$$ExternalSyntheticLambda151(3));
+        this.actionBar.hideActionMode$1();
+        this.listView.allowReorder(false);
+    }
+
+    @Override
+    public final View createView(Context context) {
+        zzkt.m(this.actionBar);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessReplies));
+        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1());
+        ActionBar.AnonymousClass1 anonymousClass1CreateActionMode = this.actionBar.createActionMode(null);
+        NumberTextView numberTextView = new NumberTextView(getParentActivity());
+        this.countText = numberTextView;
+        numberTextView.setTextSize(18);
+        this.countText.setTypeface(AndroidUtilities.bold());
+        this.countText.setTextColor(Theme.getColor(null, Theme.key_actionBarActionModeDefaultIcon, false));
+        anonymousClass1CreateActionMode.addView(this.countText, LayoutHelper.createLinear(1.0f, 0, -1, 72, 0, 0));
+        this.countText.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(2));
+        ActionBarMenuItem actionBarMenuItemAddItem = anonymousClass1CreateActionMode.addItem(1, R.drawable.msg_edit);
+        this.editItem = actionBarMenuItemAddItem;
+        actionBarMenuItemAddItem.setContentDescription(LocaleController.getString(R.string.Edit));
+        anonymousClass1CreateActionMode.addItem(2, R.drawable.msg_delete).setContentDescription(LocaleController.getString(R.string.Delete));
+        LaunchActivity.AnonymousClass11 anonymousClass11 = new LaunchActivity.AnonymousClass11(context, null, 1);
+        int i = Theme.key_windowBackgroundGray;
+        anonymousClass11.setBackgroundColor(Theme.getColor(null, i, false));
+        final int i2 = 0;
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new Utilities.Callback2(this) {
+            public final QuickRepliesActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run(Object obj, Object obj2) {
+                switch (i2) {
+                    case 0:
+                        this.f$0.fillItems$5((ArrayList) obj, (UniversalAdapter) obj2);
+                        break;
+                    default:
+                        this.f$0.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
+                        break;
+                }
+            }
+        }, new QuickRepliesActivity$$ExternalSyntheticLambda1(this), new QuickRepliesActivity$$ExternalSyntheticLambda1(this), getResourceProvider());
+        this.listView = universalRecyclerView;
+        universalRecyclerView.setSections();
+        UniversalRecyclerView universalRecyclerView2 = this.listView;
+        universalRecyclerView2.adapter.applyBackground = false;
+        final int i3 = 1;
+        universalRecyclerView2.listenReorder(new Utilities.Callback2(this) {
+            public final QuickRepliesActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run(Object obj, Object obj2) {
+                switch (i3) {
+                    case 0:
+                        this.f$0.fillItems$5((ArrayList) obj, (UniversalAdapter) obj2);
+                        break;
+                    default:
+                        this.f$0.whenReordered(((Integer) obj).intValue(), (ArrayList) obj2);
+                        break;
+                }
+            }
+        }, false);
+        anonymousClass11.addView(this.listView, LayoutHelper.createFrame(-1.0f, -1));
+        ActionBar actionBar = this.actionBar;
+        UniversalRecyclerView universalRecyclerView3 = this.listView;
+        actionBar.getClass();
+        actionBar.setAdaptiveBackground(universalRecyclerView3, true, i, Theme.key_actionBarDefault);
+        this.fragmentView = anonymousClass11;
+        return anonymousClass11;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        UniversalRecyclerView universalRecyclerView;
+        UniversalAdapter universalAdapter;
+        if (i != NotificationCenter.quickRepliesUpdated || (universalRecyclerView = this.listView) == null || (universalAdapter = universalRecyclerView.adapter) == null) {
+            return;
+        }
+        universalAdapter.update(true);
+    }
+
+    public final void fillItems$5(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        ArrayList arrayList2;
+        String string = LocaleController.getString(R.string.BusinessReplies);
+        String string2 = LocaleController.getString(R.string.BusinessRepliesInfo);
+        UItem uItem = new UItem(2);
+        uItem.text = string;
+        uItem.animatedText = string2;
+        uItem.subtext = "RestrictedEmoji";
+        uItem.textValue = "📝";
+        arrayList.add(uItem);
+        universalAdapter.whiteSectionStart();
+        QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(this.currentAccount);
+        int i = 0;
+        int i2 = 0;
+        int i3 = 0;
+        int i4 = 0;
+        while (true) {
+            arrayList2 = quickRepliesController.replies;
+            if (i2 < arrayList2.size()) {
+                i3 = (i3 != 0 || "hello".equalsIgnoreCase(((QuickRepliesController.QuickReply) arrayList2.get(i2)).name)) ? 1 : 0;
+                i4 = (i4 != 0 || "away".equalsIgnoreCase(((QuickRepliesController.QuickReply) arrayList2.get(i2)).name)) ? 1 : 0;
+                if (i3 != 0 && i4 != 0) {
+                    break;
+                } else {
+                    i2++;
+                }
+            } else {
+                break;
+            }
+        }
+        if (arrayList2.size() + (i3 ^ 1) + (i4 ^ 1) < MessagesController.getInstance(quickRepliesController.currentAccount).quickRepliesLimit) {
+            UItem uItemAsButton = UItem.asButton(1, R.drawable.msg_viewintopic, LocaleController.getString(R.string.BusinessRepliesAdd));
+            uItemAsButton.accent = true;
+            arrayList.add(uItemAsButton);
+        }
+        this.repliesOrderId = universalAdapter.reorderSectionStart();
+        ArrayList arrayList3 = QuickRepliesController.getInstance(this.currentAccount).replies;
+        int size = arrayList3.size();
+        while (i < size) {
+            Object obj = arrayList3.get(i);
+            i++;
+            QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) obj;
+            UItem uItem2 = new UItem(16);
+            uItem2.object = quickReply;
+            uItem2.setChecked(this.selected.contains(Integer.valueOf(quickReply.id)));
+            arrayList.add(uItem2);
+        }
+        universalAdapter.reorderSectionEnd();
+        universalAdapter.whiteSectionEnd();
+        String string3 = LocaleController.getString(R.string.BusinessRepliesAddInfo);
+        UItem uItem3 = new UItem(7);
+        uItem3.text = string3;
+        arrayList.add(uItem3);
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    public final void onClick$5(UItem uItem, View view) {
+        if (uItem.id == 1) {
+            openRenameReplyAlert(getParentActivity(), this.currentAccount, null, null, getResourceProvider(), new DialogCell$$ExternalSyntheticLambda6(this, 9));
+            return;
+        }
+        if (uItem.viewType == 16 && (uItem.object instanceof QuickRepliesController.QuickReply)) {
+            if (!this.selected.isEmpty()) {
+                updateSelect(uItem, view);
+                return;
+            }
+            QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) uItem.object;
+            if (quickReply.local) {
+                return;
+            }
+            Bundle bundleM = NotificationBadge$ZukHomeBadger$$ExternalSyntheticOutline0.m(5, "chatMode");
+            bundleM.putLong("user_id", getUserConfig().getClientUserId());
+            bundleM.putString("quick_reply", quickReply.name);
+            ChatActivity chatActivity = new ChatActivity(bundleM);
+            chatActivity.setQuickReplyId(quickReply.id);
+            presentFragment(chatActivity);
         }
     }
 
     @Override
-    public void onInsets(int i, int i2, int i3, int i4) {
+    public final boolean onFragmentCreate() {
+        getNotificationCenter().addObserver(this, NotificationCenter.quickRepliesUpdated);
+        QuickRepliesController.getInstance(this.currentAccount).load(null, true);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        getNotificationCenter().removeObserver(this, NotificationCenter.quickRepliesUpdated);
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final void onInsets(int i, int i2, int i3, int i4) {
         this.listView.setPadding(0, 0, 0, i4);
         this.listView.setClipToPadding(false);
+    }
+
+    public final void updateSelect(UItem uItem, View view) {
+        QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) uItem.object;
+        QuickReplyView quickReplyView = (QuickReplyView) view;
+        ArrayList arrayList = this.selected;
+        if (arrayList.contains(Integer.valueOf(quickReply.id))) {
+            arrayList.remove(Integer.valueOf(quickReply.id));
+        } else {
+            arrayList.add(Integer.valueOf(quickReply.id));
+        }
+        boolean z = true;
+        this.listView.allowReorder(!arrayList.isEmpty());
+        boolean zContains = arrayList.contains(Integer.valueOf(quickReply.id));
+        uItem.checked = zContains;
+        quickReplyView.checkBox.checkBoxBase.setChecked(-1, zContains, true);
+        if (this.actionBar.isActionModeShowed() == arrayList.isEmpty()) {
+            if (arrayList.isEmpty()) {
+                this.actionBar.hideActionMode$1();
+            } else {
+                this.actionBar.showActionMode(null, null);
+            }
+        }
+        this.countText.setNumber(Math.max(1, arrayList.size()), true);
+        boolean z2 = arrayList.size() == 1;
+        if (z2) {
+            QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(this.currentAccount).findReply(((Integer) arrayList.get(0)).intValue());
+            if (quickReplyFindReply == null || QuickRepliesController.isSpecial(quickReplyFindReply.name)) {
+                z = false;
+            }
+        } else {
+            z = z2;
+        }
+        if (this.shownEditItem != z) {
+            this.shownEditItem = z;
+            OKLCH.m(this.editItem.animate().alpha(this.shownEditItem ? 1.0f : 0.0f).scaleX(this.shownEditItem ? 1.0f : 0.7f).scaleY(this.shownEditItem ? 1.0f : 0.7f), CubicBezierInterpolator.EASE_OUT_QUINT, 340L);
+        }
+    }
+
+    public final void whenReordered(int i, ArrayList arrayList) {
+        ArrayList arrayList2;
+        if (i == this.repliesOrderId) {
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                if (((UItem) arrayList.get(i2)).object instanceof QuickRepliesController.QuickReply) {
+                    ((QuickRepliesController.QuickReply) ((UItem) arrayList.get(i2)).object).order = i2;
+                }
+            }
+            QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(this.currentAccount);
+            ArrayList arrayList3 = new ArrayList();
+            int iM = 0;
+            while (true) {
+                arrayList2 = quickRepliesController.replies;
+                if (iM >= arrayList2.size()) {
+                    break;
+                } else {
+                    iM = LocationController$$ExternalSyntheticOutline0.m(((QuickRepliesController.QuickReply) arrayList2.get(iM)).id, iM, 1, arrayList3);
+                }
+            }
+            Collections.sort(arrayList2, new ChatActivity$$ExternalSyntheticLambda18(1));
+            for (int i3 = 0; i3 < arrayList2.size(); i3++) {
+                if (((QuickRepliesController.QuickReply) arrayList2.get(i3)).id != ((Integer) arrayList3.get(i3)).intValue()) {
+                    TLRPC.TL_messages_reorderQuickReplies tL_messages_reorderQuickReplies = new TLRPC.TL_messages_reorderQuickReplies();
+                    for (int iM2 = 0; iM2 < arrayList2.size(); iM2 = LocationController$$ExternalSyntheticOutline0.m(((QuickRepliesController.QuickReply) arrayList2.get(iM2)).id, iM2, 1, tL_messages_reorderQuickReplies.order)) {
+                    }
+                    ConnectionsManager.getInstance(quickRepliesController.currentAccount).sendRequest(tL_messages_reorderQuickReplies, new PassportActivity$$ExternalSyntheticLambda1(2));
+                    quickRepliesController.saveToCache();
+                    return;
+                }
+            }
+        }
     }
 }

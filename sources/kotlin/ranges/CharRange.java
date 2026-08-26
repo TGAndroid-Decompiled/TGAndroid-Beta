@@ -1,48 +1,36 @@
 package kotlin.ranges;
 
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.jvm.internal.Intrinsics;
-
 public final class CharRange extends CharProgression {
-    public static final Companion Companion = new Companion(null);
-    private static final CharRange EMPTY = new CharRange(1, 0);
-
-    public CharRange(char c, char c2) {
-        super(c, c2, 1);
+    static {
+        new CharRange((char) 1, (char) 0);
     }
 
-    public boolean isEmpty() {
-        return Intrinsics.compare((int) getFirst(), (int) getLast()) > 0;
-    }
-
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
+        CharRange charRange;
+        char c;
+        char c2;
         if (!(obj instanceof CharRange)) {
             return false;
         }
-        if (isEmpty() && ((CharRange) obj).isEmpty()) {
+        char c3 = this.first;
+        char c4 = this.last;
+        if (c3 >= c4 && c3 != c4 && (c = (charRange = (CharRange) obj).first) >= (c2 = charRange.last) && c != c2) {
             return true;
         }
-        CharRange charRange = (CharRange) obj;
-        return getFirst() == charRange.getFirst() && getLast() == charRange.getLast();
+        CharRange charRange2 = (CharRange) obj;
+        return c3 == charRange2.first && c4 == charRange2.last;
     }
 
-    public int hashCode() {
-        if (isEmpty()) {
+    public final int hashCode() {
+        char c = this.first;
+        char c2 = this.last;
+        if (c >= c2 && c != c2) {
             return -1;
         }
-        return (getFirst() * 31) + getLast();
+        return (c * 31) + c2;
     }
 
-    public String toString() {
-        return getFirst() + ".." + getLast();
-    }
-
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
+    public final String toString() {
+        return this.first + ".." + this.last;
     }
 }

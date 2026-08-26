@@ -4,12 +4,22 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import org.telegram.ui.AvatarSpan;
 
 public abstract class CompatDrawable extends Drawable {
     public final Paint paint = new Paint(1);
 
+    public CompatDrawable(View view) {
+        if (view != null) {
+            view.addOnAttachStateChangeListener(new AvatarSpan.AnonymousClass1(this, 7));
+            if (view.isAttachedToWindow()) {
+                view.post(new Bulletin$2$$ExternalSyntheticLambda1(this, 23));
+            }
+        }
+    }
+
     @Override
-    public int getOpacity() {
+    public final int getOpacity() {
         return -2;
     }
 
@@ -19,37 +29,13 @@ public abstract class CompatDrawable extends Drawable {
     public void onDetachedToWindow() {
     }
 
-    public CompatDrawable(View view) {
-        if (view != null) {
-            view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-                @Override
-                public void onViewAttachedToWindow(View view2) {
-                    CompatDrawable.this.onAttachedToWindow();
-                }
-
-                @Override
-                public void onViewDetachedFromWindow(View view2) {
-                    CompatDrawable.this.onDetachedToWindow();
-                }
-            });
-            if (view.isAttachedToWindow()) {
-                view.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.onAttachedToWindow();
-                    }
-                });
-            }
-        }
-    }
-
     @Override
     public void setAlpha(int i) {
         this.paint.setAlpha(i);
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
+    public final void setColorFilter(ColorFilter colorFilter) {
         this.paint.setColorFilter(colorFilter);
     }
 }

@@ -1,23 +1,25 @@
 package kotlinx.coroutines;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import kotlin.coroutines.Continuation;
 import kotlinx.coroutines.internal.ScopeCoroutine;
 
-final class TimeoutCoroutine extends ScopeCoroutine implements Runnable {
+public final class TimeoutCoroutine extends ScopeCoroutine implements Runnable {
     public final long time;
 
     public TimeoutCoroutine(long j, Continuation continuation) {
-        super(continuation.getContext(), continuation);
+        super(continuation, continuation.getContext());
         this.time = j;
     }
 
     @Override
-    public void run() {
-        cancelCoroutine(TimeoutKt.TimeoutCancellationException(this.time, DelayKt.getDelay(getContext()), this));
+    public final String nameString$kotlinx_coroutines_core() {
+        return super.nameString$kotlinx_coroutines_core() + "(timeMillis=" + this.time + ')';
     }
 
     @Override
-    public String nameString$kotlinx_coroutines_core() {
-        return super.nameString$kotlinx_coroutines_core() + "(timeMillis=" + this.time + ')';
+    public final void run() {
+        JobKt.getDelay(this.context);
+        cancelImpl$kotlinx_coroutines_core(new TimeoutCancellationException(SurfaceContainer$$ExternalSyntheticOutline0.m(new StringBuilder("Timed out waiting for "), this.time, " ms"), this));
     }
 }

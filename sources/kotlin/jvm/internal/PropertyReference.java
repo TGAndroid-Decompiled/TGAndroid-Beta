@@ -2,29 +2,22 @@ package kotlin.jvm.internal;
 
 import kotlin.reflect.KCallable;
 import kotlin.reflect.KProperty;
+import kotlinx.coroutines.CoroutinesInternalError;
 
 public abstract class PropertyReference extends CallableReference implements KProperty {
-    private final boolean syntheticJavaProperty;
+    public final boolean syntheticJavaProperty;
 
     public PropertyReference(Object obj, Class cls, String str, String str2, int i) {
         super(obj, cls, str, str2, (i & 1) == 1);
-        this.syntheticJavaProperty = (i & 2) == 2;
+        this.syntheticJavaProperty = false;
     }
 
     @Override
-    public KProperty getReflected() {
-        if (this.syntheticJavaProperty) {
-            throw new UnsupportedOperationException("Kotlin reflection is not yet supported for synthetic Java properties. Please follow/upvote https://youtrack.jetbrains.com/issue/KT-55980");
-        }
-        return (KProperty) super.getReflected();
-    }
-
-    @Override
-    public KCallable compute() {
+    public final KCallable compute() {
         return this.syntheticJavaProperty ? this : super.compute();
     }
 
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
@@ -38,15 +31,27 @@ public abstract class PropertyReference extends CallableReference implements KPr
         return false;
     }
 
-    public int hashCode() {
-        return (((getOwner().hashCode() * 31) + getName().hashCode()) * 31) + getSignature().hashCode();
+    public final int hashCode() {
+        return getSignature().hashCode() + ((getName().hashCode() + (getOwner().hashCode() * 31)) * 31);
     }
 
-    public String toString() {
+    public final String toString() {
         KCallable kCallableCompute = compute();
         if (kCallableCompute != this) {
             return kCallableCompute.toString();
         }
         return "property " + getName() + " (Kotlin reflection is not available)";
+    }
+
+    @Override
+    public final KProperty getReflected() {
+        if (this.syntheticJavaProperty) {
+            throw new UnsupportedOperationException("Kotlin reflection is not yet supported for synthetic Java properties. Please follow/upvote https://youtrack.jetbrains.com/issue/KT-55980");
+        }
+        KCallable kCallableCompute = compute();
+        if (kCallableCompute != this) {
+            return (KProperty) kCallableCompute;
+        }
+        throw new CoroutinesInternalError("Kotlin reflection implementation is not found at runtime. Make sure you have kotlin-reflect.jar in the classpath");
     }
 }

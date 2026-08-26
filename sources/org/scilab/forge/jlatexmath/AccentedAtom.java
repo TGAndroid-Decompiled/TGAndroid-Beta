@@ -1,5 +1,7 @@
 package org.scilab.forge.jlatexmath;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+
 public class AccentedAtom extends Atom {
     private boolean acc;
     private final SymbolAtom accent;
@@ -22,52 +24,6 @@ public class AccentedAtom extends Atom {
         }
         this.accent = (SymbolAtom) atom2;
         this.acc = true;
-    }
-
-    public AccentedAtom(Atom atom, Atom atom2, boolean z) {
-        this(atom, atom2);
-        this.changeSize = z;
-    }
-
-    public AccentedAtom(Atom atom, String str) {
-        this.acc = false;
-        this.changeSize = true;
-        this.base = null;
-        this.underbase = null;
-        SymbolAtom symbolAtom = SymbolAtom.get(str);
-        this.accent = symbolAtom;
-        if (symbolAtom.type == 10) {
-            this.base = atom;
-            if (atom instanceof AccentedAtom) {
-                this.underbase = ((AccentedAtom) atom).underbase;
-                return;
-            } else {
-                this.underbase = atom;
-                return;
-            }
-        }
-        throw new InvalidSymbolTypeException("The symbol with the name '" + str + "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!");
-    }
-
-    public AccentedAtom(Atom atom, TeXFormula teXFormula) {
-        this.acc = false;
-        this.changeSize = true;
-        this.base = null;
-        this.underbase = null;
-        if (teXFormula == null) {
-            throw new InvalidTeXFormulaException("The accent TeXFormula can't be null!");
-        }
-        Atom atom2 = teXFormula.root;
-        if (atom2 instanceof SymbolAtom) {
-            SymbolAtom symbolAtom = (SymbolAtom) atom2;
-            this.accent = symbolAtom;
-            if (symbolAtom.type == 10) {
-                this.base = atom;
-                return;
-            }
-            throw new InvalidSymbolTypeException("The accent TeXFormula represents a single symbol with the name '" + symbolAtom.getName() + "', but this symbol is not defined as an accent (type='acc') in 'TeXSymbols.xml'!");
-        }
-        throw new InvalidTeXFormulaException("The accent TeXFormula does not represent a single symbol!");
     }
 
     @Override
@@ -114,10 +70,10 @@ public class AccentedAtom extends Atom {
         verticalBox.add(charBox);
         verticalBox.add(new StrutBox(0.0f, this.changeSize ? -fMin : -strutBox.getHeight(), 0.0f, 0.0f));
         verticalBox.add(strutBox);
-        float height = verticalBox.getHeight() + verticalBox.getDepth();
-        float depth = strutBox.getDepth();
-        verticalBox.setDepth(depth);
-        verticalBox.setHeight(height - depth);
+        float depth = verticalBox.getDepth() + verticalBox.getHeight();
+        float depth2 = strutBox.getDepth();
+        verticalBox.setDepth(depth2);
+        verticalBox.setHeight(depth - depth2);
         if (width2 >= 0.0f) {
             return verticalBox;
         }
@@ -125,5 +81,51 @@ public class AccentedAtom extends Atom {
         horizontalBox2.add(verticalBox);
         horizontalBox2.setWidth(width);
         return horizontalBox2;
+    }
+
+    public AccentedAtom(Atom atom, Atom atom2, boolean z) {
+        this(atom, atom2);
+        this.changeSize = z;
+    }
+
+    public AccentedAtom(Atom atom, String str) {
+        this.acc = false;
+        this.changeSize = true;
+        this.base = null;
+        this.underbase = null;
+        SymbolAtom symbolAtom = SymbolAtom.get(str);
+        this.accent = symbolAtom;
+        if (symbolAtom.type == 10) {
+            this.base = atom;
+            if (atom instanceof AccentedAtom) {
+                this.underbase = ((AccentedAtom) atom).underbase;
+                return;
+            } else {
+                this.underbase = atom;
+                return;
+            }
+        }
+        throw new InvalidSymbolTypeException(SurfaceContainer$$ExternalSyntheticOutline0.m("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
+    }
+
+    public AccentedAtom(Atom atom, TeXFormula teXFormula) {
+        this.acc = false;
+        this.changeSize = true;
+        this.base = null;
+        this.underbase = null;
+        if (teXFormula != null) {
+            Atom atom2 = teXFormula.root;
+            if (atom2 instanceof SymbolAtom) {
+                SymbolAtom symbolAtom = (SymbolAtom) atom2;
+                this.accent = symbolAtom;
+                if (symbolAtom.type == 10) {
+                    this.base = atom;
+                    return;
+                }
+                throw new InvalidSymbolTypeException("The accent TeXFormula represents a single symbol with the name '" + symbolAtom.getName() + "', but this symbol is not defined as an accent (type='acc') in 'TeXSymbols.xml'!");
+            }
+            throw new InvalidTeXFormulaException("The accent TeXFormula does not represent a single symbol!");
+        }
+        throw new InvalidTeXFormulaException("The accent TeXFormula can't be null!");
     }
 }

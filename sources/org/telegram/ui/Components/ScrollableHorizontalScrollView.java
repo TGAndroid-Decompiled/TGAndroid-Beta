@@ -1,7 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
@@ -13,37 +11,41 @@ import org.telegram.messenger.AndroidUtilities;
 
 public abstract class ScrollableHorizontalScrollView extends HorizontalScrollView {
     public LinearLayout contentView;
-    private ValueAnimator scrollAnimator;
-    protected boolean scrollingAnimation;
-    private int scrollingTo;
-    ValueAnimator showAnimator;
-    private boolean touch;
-    boolean touching;
+    public ValueAnimator scrollAnimator;
+    public boolean scrollingAnimation;
+    public int scrollingTo;
+    public ValueAnimator showAnimator;
+    public boolean touching;
 
     public ScrollableHorizontalScrollView(Context context) {
         super(context);
         this.scrollingTo = -1;
     }
 
-    public boolean scrollToVisible(int i, int i2) {
-        int measuredWidth;
-        if (getChildCount() <= 0) {
-            return false;
-        }
-        int iDp = AndroidUtilities.dp(50.0f);
-        if (i < getScrollX() + iDp) {
-            measuredWidth = i - iDp;
-        } else {
-            if (i2 <= getScrollX() + (getMeasuredWidth() - iDp)) {
-                return false;
-            }
-            measuredWidth = (i2 - getMeasuredWidth()) + iDp;
-        }
-        scrollTo(MathUtils.clamp(measuredWidth, 0, getChildAt(0).getMeasuredWidth() - getMeasuredWidth()));
-        return true;
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        updateButtonsVisibility();
     }
 
-    public void scrollTo(int i) {
+    @Override
+    public final void onScrollChanged(int i, int i2, int i3, int i4) {
+        super.onScrollChanged(i, i2, i3, i4);
+        if ((Math.abs(i2 - i4) < 2 || i2 >= getMeasuredHeight() || i2 == 0) && !this.touching) {
+            requestDisallowInterceptTouchEvent(false);
+        }
+        updateButtonsVisibility();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() != 0 && motionEvent.getAction() != 1) {
+            motionEvent.getAction();
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public final void scrollTo(int i) {
         if (this.scrollingTo == i) {
             return;
         }
@@ -57,57 +59,32 @@ public abstract class ScrollableHorizontalScrollView extends HorizontalScrollVie
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(getScrollX(), i);
         this.scrollAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ScrollableHorizontalScrollView.$r8$lambda$LoUjiMHB75HABA7pTR0eoEgDe9A(this.f$0, valueAnimator2);
-            }
-        });
+        valueAnimatorOfFloat.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 13));
         this.scrollAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.scrollAnimator.setDuration(250L);
-        this.scrollAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                ScrollableHorizontalScrollView.this.scrollingAnimation = false;
-            }
-
-            @Override
-            public void onAnimationStart(Animator animator) {
-                ScrollableHorizontalScrollView scrollableHorizontalScrollView = ScrollableHorizontalScrollView.this;
-                scrollableHorizontalScrollView.scrollingAnimation = true;
-                if (scrollableHorizontalScrollView.getParent() instanceof HorizontalScrollView) {
-                    ((HorizontalScrollView) ScrollableHorizontalScrollView.this.getParent()).requestDisallowInterceptTouchEvent(false);
-                }
-            }
-        });
+        this.scrollAnimator.addListener(new ItemOptions.AnonymousClass3(this, 29));
         this.scrollAnimator.start();
     }
 
-    public static void $r8$lambda$LoUjiMHB75HABA7pTR0eoEgDe9A(ScrollableHorizontalScrollView scrollableHorizontalScrollView, ValueAnimator valueAnimator) {
-        scrollableHorizontalScrollView.getClass();
-        scrollableHorizontalScrollView.setScrollX((int) ((Float) valueAnimator.getAnimatedValue()).floatValue());
-    }
-
-    public void resetScrollTo() {
-        this.scrollingTo = -1;
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        updateButtonsVisibility();
-    }
-
-    @Override
-    protected void onScrollChanged(int i, int i2, int i3, int i4) {
-        super.onScrollChanged(i, i2, i3, i4);
-        if ((Math.abs(i2 - i4) < 2 || i2 >= getMeasuredHeight() || i2 == 0) && !this.touching) {
-            requestDisallowInterceptTouchEvent(false);
+    public final void scrollToVisible(int i, int i2) {
+        int measuredWidth;
+        if (getChildCount() <= 0) {
+            return;
         }
-        updateButtonsVisibility();
+        int iDp = AndroidUtilities.dp(50.0f);
+        if (i < getScrollX() + iDp) {
+            measuredWidth = i - iDp;
+        } else {
+            if (i2 <= (getMeasuredWidth() - iDp) + getScrollX()) {
+                return;
+            } else {
+                measuredWidth = (i2 - getMeasuredWidth()) + iDp;
+            }
+        }
+        scrollTo(MathUtils.clamp(measuredWidth, 0, getChildAt(0).getMeasuredWidth() - getMeasuredWidth()));
     }
 
-    void updateButtonsVisibility() {
+    public final void updateButtonsVisibility() {
         ValueAnimator valueAnimator;
         int childCount = this.contentView.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -122,15 +99,5 @@ public abstract class ScrollableHorizontalScrollView extends HorizontalScrollVie
                 emojiTabButton.updateVisibilityInbounds(z2, z);
             }
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.touch = true;
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.touch = false;
-        }
-        return super.onTouchEvent(motionEvent);
     }
 }

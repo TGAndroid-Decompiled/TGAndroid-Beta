@@ -2,8 +2,52 @@ package org.webrtc;
 
 public interface VideoEncoder {
 
+    public abstract class CC {
+        public static long $default$createNativeVideoEncoder(VideoEncoder videoEncoder) {
+            return 0L;
+        }
+
+        public static EncoderInfo $default$getEncoderInfo(VideoEncoder videoEncoder) {
+            return new EncoderInfo(1, false);
+        }
+
+        public static ResolutionBitrateLimits[] $default$getResolutionBitrateLimits(VideoEncoder videoEncoder) {
+            return new ResolutionBitrateLimits[0];
+        }
+
+        public static boolean $default$isHardwareEncoder(VideoEncoder videoEncoder) {
+            return true;
+        }
+    }
+
+    public static class BitrateAllocation {
+        public final int[][] bitratesBbs;
+
+        public BitrateAllocation(int[][] iArr) {
+            this.bitratesBbs = iArr;
+        }
+
+        public int getSum() {
+            int i = 0;
+            for (int[] iArr : this.bitratesBbs) {
+                for (int i2 : iArr) {
+                    i += i2;
+                }
+            }
+            return i;
+        }
+    }
+
     public interface Callback {
         void onEncodedFrame(EncodedImage encodedImage, CodecSpecificInfo codecSpecificInfo);
+    }
+
+    public static class Capabilities {
+        public final boolean lossNotification;
+
+        public Capabilities(boolean z) {
+            this.lossNotification = z;
+        }
     }
 
     public static class CodecSpecificInfo {
@@ -21,27 +65,71 @@ public interface VideoEncoder {
     public static class CodecSpecificInfoVP9 extends CodecSpecificInfo {
     }
 
-    long createNativeVideoEncoder();
+    public static class EncodeInfo {
+        public final EncodedImage.FrameType[] frameTypes;
 
-    VideoCodecStatus encode(VideoFrame videoFrame, EncodeInfo encodeInfo);
+        public EncodeInfo(EncodedImage.FrameType[] frameTypeArr) {
+            this.frameTypes = frameTypeArr;
+        }
+    }
 
-    EncoderInfo getEncoderInfo();
+    public static class EncoderInfo {
+        public final boolean applyAlignmentToAllSimulcastLayers;
+        public final int requestedResolutionAlignment;
 
-    String getImplementationName();
+        public EncoderInfo(int i, boolean z) {
+            this.requestedResolutionAlignment = i;
+            this.applyAlignmentToAllSimulcastLayers = z;
+        }
 
-    ResolutionBitrateLimits[] getResolutionBitrateLimits();
+        public boolean getApplyAlignmentToAllSimulcastLayers() {
+            return this.applyAlignmentToAllSimulcastLayers;
+        }
 
-    ScalingSettings getScalingSettings();
+        public int getRequestedResolutionAlignment() {
+            return this.requestedResolutionAlignment;
+        }
+    }
 
-    VideoCodecStatus initEncode(Settings settings, Callback callback);
+    public static class RateControlParameters {
+        public final BitrateAllocation bitrate;
+        public final double framerateFps;
 
-    boolean isHardwareEncoder();
+        public RateControlParameters(BitrateAllocation bitrateAllocation, double d) {
+            this.bitrate = bitrateAllocation;
+            this.framerateFps = d;
+        }
+    }
 
-    VideoCodecStatus release();
+    public static class ResolutionBitrateLimits {
+        public final int frameSizePixels;
+        public final int maxBitrateBps;
+        public final int minBitrateBps;
+        public final int minStartBitrateBps;
 
-    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i);
+        public ResolutionBitrateLimits(int i, int i2, int i3, int i4) {
+            this.frameSizePixels = i;
+            this.minStartBitrateBps = i2;
+            this.minBitrateBps = i3;
+            this.maxBitrateBps = i4;
+        }
 
-    VideoCodecStatus setRates(RateControlParameters rateControlParameters);
+        public int getFrameSizePixels() {
+            return this.frameSizePixels;
+        }
+
+        public int getMaxBitrateBps() {
+            return this.maxBitrateBps;
+        }
+
+        public int getMinBitrateBps() {
+            return this.minBitrateBps;
+        }
+
+        public int getMinStartBitrateBps() {
+            return this.minStartBitrateBps;
+        }
+    }
 
     public static class Settings {
         public final boolean automaticResizeOn;
@@ -70,39 +158,27 @@ public interface VideoEncoder {
         }
     }
 
-    public static class Capabilities {
-        public final boolean lossNotification;
+    long createNativeVideoEncoder();
 
-        public Capabilities(boolean z) {
-            this.lossNotification = z;
-        }
-    }
+    VideoCodecStatus encode(VideoFrame videoFrame, EncodeInfo encodeInfo);
 
-    public static class EncodeInfo {
-        public final EncodedImage.FrameType[] frameTypes;
+    EncoderInfo getEncoderInfo();
 
-        public EncodeInfo(EncodedImage.FrameType[] frameTypeArr) {
-            this.frameTypes = frameTypeArr;
-        }
-    }
+    String getImplementationName();
 
-    public static class BitrateAllocation {
-        public final int[][] bitratesBbs;
+    ResolutionBitrateLimits[] getResolutionBitrateLimits();
 
-        public BitrateAllocation(int[][] iArr) {
-            this.bitratesBbs = iArr;
-        }
+    ScalingSettings getScalingSettings();
 
-        public int getSum() {
-            int i = 0;
-            for (int[] iArr : this.bitratesBbs) {
-                for (int i2 : iArr) {
-                    i += i2;
-                }
-            }
-            return i;
-        }
-    }
+    VideoCodecStatus initEncode(Settings settings, Callback callback);
+
+    boolean isHardwareEncoder();
+
+    VideoCodecStatus release();
+
+    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i);
+
+    VideoCodecStatus setRates(RateControlParameters rateControlParameters);
 
     public static class ScalingSettings {
         public static final ScalingSettings OFF = new ScalingSettings();
@@ -114,6 +190,13 @@ public interface VideoEncoder {
             this.on = true;
             this.low = Integer.valueOf(i);
             this.high = Integer.valueOf(i2);
+        }
+
+        public String toString() {
+            if (!this.on) {
+                return "OFF";
+            }
+            return "[ " + this.low + ", " + this.high + " ]";
         }
 
         private ScalingSettings() {
@@ -134,89 +217,6 @@ public interface VideoEncoder {
             this.on = z;
             this.low = Integer.valueOf(i);
             this.high = Integer.valueOf(i2);
-        }
-
-        public String toString() {
-            if (!this.on) {
-                return "OFF";
-            }
-            return "[ " + this.low + ", " + this.high + " ]";
-        }
-    }
-
-    public static class ResolutionBitrateLimits {
-        public final int frameSizePixels;
-        public final int maxBitrateBps;
-        public final int minBitrateBps;
-        public final int minStartBitrateBps;
-
-        public ResolutionBitrateLimits(int i, int i2, int i3, int i4) {
-            this.frameSizePixels = i;
-            this.minStartBitrateBps = i2;
-            this.minBitrateBps = i3;
-            this.maxBitrateBps = i4;
-        }
-
-        public int getFrameSizePixels() {
-            return this.frameSizePixels;
-        }
-
-        public int getMinStartBitrateBps() {
-            return this.minStartBitrateBps;
-        }
-
-        public int getMinBitrateBps() {
-            return this.minBitrateBps;
-        }
-
-        public int getMaxBitrateBps() {
-            return this.maxBitrateBps;
-        }
-    }
-
-    public static class RateControlParameters {
-        public final BitrateAllocation bitrate;
-        public final double framerateFps;
-
-        public RateControlParameters(BitrateAllocation bitrateAllocation, double d) {
-            this.bitrate = bitrateAllocation;
-            this.framerateFps = d;
-        }
-    }
-
-    public static class EncoderInfo {
-        public final boolean applyAlignmentToAllSimulcastLayers;
-        public final int requestedResolutionAlignment;
-
-        public EncoderInfo(int i, boolean z) {
-            this.requestedResolutionAlignment = i;
-            this.applyAlignmentToAllSimulcastLayers = z;
-        }
-
-        public int getRequestedResolutionAlignment() {
-            return this.requestedResolutionAlignment;
-        }
-
-        public boolean getApplyAlignmentToAllSimulcastLayers() {
-            return this.applyAlignmentToAllSimulcastLayers;
-        }
-    }
-
-    public abstract class CC {
-        public static long $default$createNativeVideoEncoder(VideoEncoder videoEncoder) {
-            return 0L;
-        }
-
-        public static boolean $default$isHardwareEncoder(VideoEncoder videoEncoder) {
-            return true;
-        }
-
-        public static ResolutionBitrateLimits[] $default$getResolutionBitrateLimits(VideoEncoder videoEncoder) {
-            return new ResolutionBitrateLimits[0];
-        }
-
-        public static EncoderInfo $default$getEncoderInfo(VideoEncoder videoEncoder) {
-            return new EncoderInfo(1, false);
         }
     }
 }

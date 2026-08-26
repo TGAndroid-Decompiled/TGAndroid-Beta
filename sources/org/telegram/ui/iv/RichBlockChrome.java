@@ -1,91 +1,14 @@
 package org.telegram.ui.iv;
 
-import android.view.View;
+import com.google.android.gms.internal.mlkit_vision_common.zzkv;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.ReplyMessageLine;
 
 public abstract class RichBlockChrome {
-    public static void applyEditorQuoteColor(ReplyMessageLine replyMessageLine, Theme.ResourcesProvider resourcesProvider) {
-        replyMessageLine.setSimpleColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider), resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark());
-    }
-
-    public static int quoteEdgePad(int i) {
-        if (i <= 0) {
-            return 0;
-        }
-        return AndroidUtilities.dp(((i - 1) * 16) + 10);
-    }
-
-    public static int quoteTopPad(BlockRow blockRow) {
-        if (blockRow == null) {
-            return 0;
-        }
-        return quoteEdgePad(blockRow.quoteTopEdge);
-    }
-
-    public static int quoteBottomPad(BlockRow blockRow) {
-        if (blockRow == null) {
-            return 0;
-        }
-        return quoteEdgePad(blockRow.quoteBottomEdge);
-    }
-
-    public static int insetForDepth(int i) {
-        if (i <= 0) {
-            return 0;
-        }
-        return AndroidUtilities.dp(((i - 1) * 24) + 28);
-    }
-
-    public static int quoteDepth(BlockRow blockRow) {
-        if (blockRow == null) {
-            return 0;
-        }
-        return blockRow.quoteIds.size();
-    }
-
-    public static int quoteInset(BlockRow blockRow) {
-        int iQuoteDepth = quoteDepth(blockRow);
-        if (iQuoteDepth <= 0) {
-            return 0;
-        }
-        return AndroidUtilities.dp(((iQuoteDepth - 1) * 16) + 12);
-    }
-
     public static int quoteInsetEnd(BlockRow blockRow) {
-        int iQuoteDepth = quoteDepth(blockRow);
-        if (iQuoteDepth <= 0) {
+        int size = blockRow == null ? 0 : blockRow.quoteIds.size();
+        if (size <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(((iQuoteDepth - 1) * 16) + 8);
-    }
-
-    public static int insetFor(BlockRow blockRow) {
-        if (blockRow == null) {
-            return 0;
-        }
-        return quoteInset(blockRow) + insetForDepth(Math.max(0, blockRow.level));
-    }
-
-    public static int insetEndFor(BlockRow blockRow) {
-        return quoteInsetEnd(blockRow);
-    }
-
-    public static boolean rtl() {
-        return LocaleController.isRTL;
-    }
-
-    public static void applyInsetPx(View view, int i, int i2, int i3, int i4, int i5) {
-        applyInsetPx(view, i, 0, i2, i3, i4, i5);
-    }
-
-    public static void applyInsetPx(View view, int i, int i2, int i3, int i4, int i5, int i6) {
-        if (rtl()) {
-            view.setPadding(i3 + i2, i4, i5 + i, i6);
-        } else {
-            view.setPadding(i3 + i, i4, i5 + i2, i6);
-        }
+        return AndroidUtilities.dp(zzkv.m(size, 1, 16, 8));
     }
 }

@@ -2,7 +2,7 @@ package org.telegram.ui.Stories;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
@@ -12,35 +12,48 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.CircularProgressDrawable;
+import org.telegram.ui.BoostsActivity;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.blur3.StrokeDrawable;
-import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
 
-public class MuteButton extends FrameLayout {
-    private ValueAnimator animator;
-    private final StrokeDrawable background;
-    private boolean connected;
-    private final View filledBackgroundView;
-    private final ImageView image;
-    private final FrameLayout layout;
-    private final View loadingView;
-    private ValueAnimator loadingViewAnimator;
-    private boolean muted;
-    private float mutedT;
+public final class MuteButton extends FrameLayout {
+    public ValueAnimator animator;
+    public boolean connected;
+    public final View filledBackgroundView;
+    public final ImageView image;
+    public final FrameLayout layout;
+    public final BoostsActivity.AnonymousClass3 loadingView;
+    public ValueAnimator loadingViewAnimator;
+    public boolean muted;
+    public float mutedT;
 
-    public MuteButton(Context context, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
+    public MuteButton(Context context, BlurredBackgroundColorProviderThemed blurredBackgroundColorProviderThemed) {
         super(context);
-        ScaleStateListAnimator.apply(this);
+        ScaleStateListAnimator.apply(this, 0.1f, 1.5f);
         FrameLayout frameLayout = new FrameLayout(context);
         this.layout = frameLayout;
         StrokeDrawable strokeDrawable = new StrokeDrawable();
-        this.background = strokeDrawable;
-        strokeDrawable.setColorProvider(blurredBackgroundColorProvider);
-        strokeDrawable.setBackgroundColor(-14670806);
-        strokeDrawable.setPadding(AndroidUtilities.dp(1.0f));
+        strokeDrawable.colorProvider = blurredBackgroundColorProviderThemed;
+        Paint paint = strokeDrawable.paintStrokeTop;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        Paint paint2 = strokeDrawable.paintStrokeBottom;
+        paint2.setStyle(style);
+        BlurredBackgroundColorProviderThemed blurredBackgroundColorProviderThemed2 = strokeDrawable.colorProvider;
+        if (blurredBackgroundColorProviderThemed2 != null) {
+            strokeDrawable.strokeColorTop = Theme.multAlpha(strokeDrawable.alpha, blurredBackgroundColorProviderThemed2.getStrokeColorTop());
+            strokeDrawable.strokeColorBottom = Theme.multAlpha(strokeDrawable.alpha, strokeDrawable.colorProvider.getStrokeColorBottom());
+            paint.setColor(strokeDrawable.strokeColorTop);
+            paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+            paint2.setColor(strokeDrawable.strokeColorBottom);
+            paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
+        }
+        strokeDrawable.paintFill.setColor(-14670806);
+        strokeDrawable.invalidateSelf();
+        strokeDrawable.padding = AndroidUtilities.dp(1.0f);
         frameLayout.setBackground(strokeDrawable);
         addView(frameLayout, LayoutHelper.createFrame(40, 40, 17));
         View view = new View(context);
@@ -50,19 +63,9 @@ public class MuteButton extends FrameLayout {
         view.setAlpha(0.0f);
         view.setScaleX(0.0f);
         view.setScaleY(0.0f);
-        View view2 = new View(context) {
-            private final CircularProgressDrawable progressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(2.0f), -13522392);
-
-            @Override
-            protected void onDraw(Canvas canvas) {
-                int iDp = AndroidUtilities.dp(1.0f);
-                this.progressDrawable.setBounds(iDp, iDp, (getWidth() - iDp) - iDp, (getHeight() - iDp) - iDp);
-                this.progressDrawable.draw(canvas);
-                invalidate();
-            }
-        };
-        this.loadingView = view2;
-        addView(view2, LayoutHelper.createFrame(42, 42, 17));
+        BoostsActivity.AnonymousClass3 anonymousClass3 = new BoostsActivity.AnonymousClass3(context);
+        this.loadingView = anonymousClass3;
+        addView(anonymousClass3, LayoutHelper.createFrame(42, 42, 17));
         ImageView imageView = new ImageView(context);
         this.image = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -73,7 +76,7 @@ public class MuteButton extends FrameLayout {
         setMuted(false, false);
     }
 
-    public void setConnected(boolean z, boolean z2) {
+    public final void setConnected(boolean z, boolean z2) {
         boolean z3 = true;
         if (this.connected == z && z2) {
             return;
@@ -84,22 +87,18 @@ public class MuteButton extends FrameLayout {
             valueAnimator.cancel();
             this.loadingViewAnimator = null;
         }
-        if (!z2) {
-            this.loadingView.setAlpha(z ? 0.0f : 1.0f);
-            this.loadingView.setVisibility(z ? 8 : 0);
-        } else {
-            this.loadingView.setVisibility(0);
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.loadingView.getAlpha(), z ? 0.0f : 1.0f);
+        BoostsActivity.AnonymousClass3 anonymousClass3 = this.loadingView;
+        if (z2) {
+            anonymousClass3.setVisibility(0);
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(anonymousClass3.getAlpha(), z ? 0.0f : 1.0f);
             this.loadingViewAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.loadingView.setAlpha(((Float) valueAnimator2.getAnimatedValue()).floatValue());
-                }
-            });
+            valueAnimatorOfFloat.addUpdateListener(new MuteButton$$ExternalSyntheticLambda0(this, 0));
             this.loadingViewAnimator.setDuration(320L);
             this.loadingViewAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             this.loadingViewAnimator.start();
+        } else {
+            anonymousClass3.setAlpha(z ? 0.0f : 1.0f);
+            anonymousClass3.setVisibility(z ? 8 : 0);
         }
         if (!this.muted && z) {
             z3 = false;
@@ -107,53 +106,39 @@ public class MuteButton extends FrameLayout {
         updateFill(z3, z2);
     }
 
-    public void setMuted(boolean z, boolean z2) {
+    public final void setMuted(boolean z, boolean z2) {
         this.muted = z;
-        if (!z2) {
-            AndroidUtilities.updateImageViewImageAnimated(this.image, z ? R.drawable.msg_voice_muted : R.drawable.msg_voice_unmuted);
+        ImageView imageView = this.image;
+        if (z2) {
+            imageView.setImageResource(z ? R.drawable.msg_voice_muted : R.drawable.msg_voice_unmuted);
         } else {
-            this.image.setImageResource(z ? R.drawable.msg_voice_muted : R.drawable.msg_voice_unmuted);
+            AndroidUtilities.updateImageViewImageAnimated(imageView, z ? R.drawable.msg_voice_muted : R.drawable.msg_voice_unmuted);
         }
         updateFill(z || !this.connected, z2);
     }
 
-    private void updateFill(boolean z, boolean z2) {
+    public final void updateFill(boolean z, boolean z2) {
         ValueAnimator valueAnimator = this.animator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
             this.animator = null;
         }
-        if (!z2) {
-            float f = z ? 1.0f : 0.0f;
-            this.mutedT = f;
-            this.filledBackgroundView.setAlpha(1.0f - f);
-            this.filledBackgroundView.setScaleX(1.0f - this.mutedT);
-            this.filledBackgroundView.setScaleY(1.0f - this.mutedT);
-            this.image.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -2960428, this.mutedT), PorterDuff.Mode.SRC_IN));
-            this.layout.invalidate();
+        if (z2) {
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.mutedT, z ? 1.0f : 0.0f);
+            this.animator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new MuteButton$$ExternalSyntheticLambda0(this, 1));
+            this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.animator.setDuration(420L);
+            this.animator.start();
             return;
         }
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.mutedT, z ? 1.0f : 0.0f);
-        this.animator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                MuteButton.m4341$r8$lambda$slVReqTgRBlp2qRiEYjaysTAGU(this.f$0, valueAnimator2);
-            }
-        });
-        this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.animator.setDuration(420L);
-        this.animator.start();
-    }
-
-    public static void m4341$r8$lambda$slVReqTgRBlp2qRiEYjaysTAGU(MuteButton muteButton, ValueAnimator valueAnimator) {
-        muteButton.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        muteButton.mutedT = fFloatValue;
-        muteButton.filledBackgroundView.setAlpha(1.0f - fFloatValue);
-        muteButton.filledBackgroundView.setScaleX(1.0f - muteButton.mutedT);
-        muteButton.filledBackgroundView.setScaleY(1.0f - muteButton.mutedT);
-        muteButton.image.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -2960428, muteButton.mutedT), PorterDuff.Mode.SRC_IN));
-        muteButton.layout.invalidate();
+        float f = z ? 1.0f : 0.0f;
+        this.mutedT = f;
+        View view = this.filledBackgroundView;
+        view.setAlpha(1.0f - f);
+        view.setScaleX(1.0f - this.mutedT);
+        view.setScaleY(1.0f - this.mutedT);
+        this.image.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(this.mutedT, -1, -2960428), PorterDuff.Mode.SRC_IN));
+        this.layout.invalidate();
     }
 }

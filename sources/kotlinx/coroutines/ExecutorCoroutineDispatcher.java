@@ -1,29 +1,11 @@
 package kotlinx.coroutines;
 
 import java.io.Closeable;
-import kotlin.coroutines.AbstractCoroutineContextKey;
-import kotlin.coroutines.CoroutineContext;
-import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
+import kotlin.jvm.internal.Intrinsics;
 
 public abstract class ExecutorCoroutineDispatcher extends CoroutineDispatcher implements Closeable, AutoCloseable {
-    public static final Key Key = new Key(null);
-
-    public static final class Key extends AbstractCoroutineContextKey {
-        public Key(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Key() {
-            super(CoroutineDispatcher.Key, new Function1() {
-                @Override
-                public final ExecutorCoroutineDispatcher invoke(CoroutineContext.Element element) {
-                    if (element instanceof ExecutorCoroutineDispatcher) {
-                        return (ExecutorCoroutineDispatcher) element;
-                    }
-                    return null;
-                }
-            });
-        }
+    static {
+        CoroutineDispatcher.Key baseKey = CoroutineDispatcher.Key;
+        Intrinsics.checkNotNullParameter(baseKey, "baseKey");
     }
 }

@@ -10,14 +10,12 @@ import org.telegram.tgnet.tl.TL_keyboard;
 public abstract class RichMessageButtonUsers {
     public static ArrayList collect(int i, ArrayList arrayList) {
         LinkedHashSet<Long> linkedHashSet = new LinkedHashSet();
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i2 = 0;
-            while (i2 < size) {
-                Object obj = arrayList.get(i2);
-                i2++;
-                collectBlock((TL_iv.PageBlock) obj, linkedHashSet);
-            }
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            collectBlock((TL_iv.PageBlock) obj, linkedHashSet);
         }
         ArrayList arrayList2 = new ArrayList(linkedHashSet.size());
         MessagesController messagesController = MessagesController.getInstance(i);
@@ -34,13 +32,17 @@ public abstract class RichMessageButtonUsers {
         return arrayList2;
     }
 
-    private static void collectBlock(TL_iv.PageBlock pageBlock, LinkedHashSet linkedHashSet) {
+    public static void collectBlock(TL_iv.PageBlock pageBlock, LinkedHashSet linkedHashSet) {
         ArrayList<TL_iv.pageTableCell> arrayList;
         if (pageBlock == null) {
             return;
         }
         collectText(pageBlock.text, linkedHashSet);
-        collectCaption(pageBlock.caption, linkedHashSet);
+        TL_iv.PageCaption pageCaption = pageBlock.caption;
+        if (pageCaption != null) {
+            collectText(pageCaption.text, linkedHashSet);
+            collectText(pageCaption.credit, linkedHashSet);
+        }
         int i = 0;
         if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
             ArrayList<TL_keyboard.PageButton> arrayList2 = ((TL_iv.pageBlockButtonRow) pageBlock).buttons;
@@ -51,7 +53,13 @@ public abstract class RichMessageButtonUsers {
                     i++;
                     TL_keyboard.PageButton pageButton2 = pageButton;
                     if (pageButton2 != null) {
-                        collectType(pageButton2.type, linkedHashSet);
+                        TL_keyboard.InlineButtonType inlineButtonType = pageButton2.type;
+                        if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
+                            long j = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
+                            if (j != 0) {
+                                linkedHashSet.add(Long.valueOf(j));
+                            }
+                        }
                         collectText(pageButton2.text, linkedHashSet);
                     }
                 }
@@ -115,52 +123,56 @@ public abstract class RichMessageButtonUsers {
             }
             return;
         }
-        if (pageBlock instanceof TL_iv.pageBlockTable) {
-            TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock;
-            collectText(pageblocktable.title, linkedHashSet);
-            ArrayList<TL_iv.pageTableRow> arrayList5 = pageblocktable.rows;
-            if (arrayList5 != null) {
-                int size4 = arrayList5.size();
-                int i2 = 0;
-                while (i2 < size4) {
-                    TL_iv.pageTableRow pagetablerow = arrayList5.get(i2);
-                    i2++;
-                    TL_iv.pageTableRow pagetablerow2 = pagetablerow;
-                    if (pagetablerow2 != null && (arrayList = pagetablerow2.cells) != null) {
-                        int size5 = arrayList.size();
-                        int i3 = 0;
-                        while (i3 < size5) {
-                            TL_iv.pageTableCell pagetablecell = arrayList.get(i3);
-                            i3++;
-                            TL_iv.pageTableCell pagetablecell2 = pagetablecell;
-                            if (pagetablecell2 != null) {
-                                collectText(pagetablecell2.text, linkedHashSet);
-                            }
-                        }
-                    }
+        if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
+            if (pageBlock instanceof TL_iv.pageBlockCollage) {
+                collectBlocks(((TL_iv.pageBlockCollage) pageBlock).items, linkedHashSet);
+                return;
+            }
+            if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
+                collectBlocks(((TL_iv.pageBlockSlideshow) pageBlock).items, linkedHashSet);
+                return;
+            }
+            if (pageBlock instanceof TL_iv.pageBlockEmbedPost) {
+                collectBlocks(((TL_iv.pageBlockEmbedPost) pageBlock).blocks, linkedHashSet);
+                return;
+            } else if (pageBlock instanceof TL_iv.pageBlockCover) {
+                collectBlock(((TL_iv.pageBlockCover) pageBlock).cover, linkedHashSet);
+                return;
+            } else {
+                if (pageBlock instanceof TL_iv.pageBlockRelatedArticles) {
+                    collectText(((TL_iv.pageBlockRelatedArticles) pageBlock).title, linkedHashSet);
+                    return;
                 }
                 return;
             }
-            return;
         }
-        if (pageBlock instanceof TL_iv.pageBlockCollage) {
-            collectBlocks(((TL_iv.pageBlockCollage) pageBlock).items, linkedHashSet);
-            return;
-        }
-        if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
-            collectBlocks(((TL_iv.pageBlockSlideshow) pageBlock).items, linkedHashSet);
-            return;
-        }
-        if (pageBlock instanceof TL_iv.pageBlockEmbedPost) {
-            collectBlocks(((TL_iv.pageBlockEmbedPost) pageBlock).blocks, linkedHashSet);
-        } else if (pageBlock instanceof TL_iv.pageBlockCover) {
-            collectBlock(((TL_iv.pageBlockCover) pageBlock).cover, linkedHashSet);
-        } else if (pageBlock instanceof TL_iv.pageBlockRelatedArticles) {
-            collectText(((TL_iv.pageBlockRelatedArticles) pageBlock).title, linkedHashSet);
+        TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock;
+        collectText(pageblocktable.title, linkedHashSet);
+        ArrayList<TL_iv.pageTableRow> arrayList5 = pageblocktable.rows;
+        if (arrayList5 != null) {
+            int size4 = arrayList5.size();
+            int i2 = 0;
+            while (i2 < size4) {
+                TL_iv.pageTableRow pagetablerow = arrayList5.get(i2);
+                i2++;
+                TL_iv.pageTableRow pagetablerow2 = pagetablerow;
+                if (pagetablerow2 != null && (arrayList = pagetablerow2.cells) != null) {
+                    int size5 = arrayList.size();
+                    int i3 = 0;
+                    while (i3 < size5) {
+                        TL_iv.pageTableCell pagetablecell = arrayList.get(i3);
+                        i3++;
+                        TL_iv.pageTableCell pagetablecell2 = pagetablecell;
+                        if (pagetablecell2 != null) {
+                            collectText(pagetablecell2.text, linkedHashSet);
+                        }
+                    }
+                }
+            }
         }
     }
 
-    private static void collectBlocks(ArrayList arrayList, LinkedHashSet linkedHashSet) {
+    public static void collectBlocks(ArrayList arrayList, LinkedHashSet linkedHashSet) {
         if (arrayList == null) {
             return;
         }
@@ -173,20 +185,18 @@ public abstract class RichMessageButtonUsers {
         }
     }
 
-    private static void collectCaption(TL_iv.PageCaption pageCaption, LinkedHashSet linkedHashSet) {
-        if (pageCaption == null) {
-            return;
-        }
-        collectText(pageCaption.text, linkedHashSet);
-        collectText(pageCaption.credit, linkedHashSet);
-    }
-
-    private static void collectText(TL_iv.RichText richText, LinkedHashSet linkedHashSet) {
+    public static void collectText(TL_iv.RichText richText, LinkedHashSet linkedHashSet) {
         if (richText == null) {
             return;
         }
         if (richText instanceof TL_iv.textButton) {
-            collectType(((TL_iv.textButton) richText).type, linkedHashSet);
+            TL_keyboard.InlineButtonType inlineButtonType = ((TL_iv.textButton) richText).type;
+            if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
+                long j = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
+                if (j != 0) {
+                    linkedHashSet.add(Long.valueOf(j));
+                }
+            }
         } else if (richText instanceof TL_iv.textDiff) {
             collectText(((TL_iv.textDiff) richText).old_text, linkedHashSet);
         }
@@ -199,15 +209,6 @@ public abstract class RichMessageButtonUsers {
                 TL_iv.RichText richText2 = arrayList.get(i);
                 i++;
                 collectText(richText2, linkedHashSet);
-            }
-        }
-    }
-
-    private static void collectType(TL_keyboard.InlineButtonType inlineButtonType, LinkedHashSet linkedHashSet) {
-        if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-            long j = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
-            if (j != 0) {
-                linkedHashSet.add(Long.valueOf(j));
             }
         }
     }

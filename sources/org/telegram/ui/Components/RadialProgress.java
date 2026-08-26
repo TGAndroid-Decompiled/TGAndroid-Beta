@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -11,61 +10,35 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.Theme;
 
-public class RadialProgress {
-    private static DecelerateInterpolator decelerateInterpolator;
-    private Drawable checkBackgroundDrawable;
-    private Drawable currentDrawable;
-    private Drawable currentMiniDrawable;
-    private boolean currentMiniWithRound;
-    private boolean currentWithRound;
-    private boolean disableUpdate;
-    private boolean drawMiniProgress;
-    private boolean hideCurrentDrawable;
-    private Bitmap miniDrawBitmap;
-    private Canvas miniDrawCanvas;
-    private Paint miniProgressBackgroundPaint;
-    private Paint miniProgressPaint;
-    private View parent;
-    private Drawable previousDrawable;
-    private Drawable previousMiniDrawable;
-    private boolean previousMiniWithRound;
-    private boolean previousWithRound;
-    private Paint progressPaint;
-    private boolean roundRectProgress;
-    private long lastUpdateTime = 0;
-    private float radOffset = 0.0f;
-    private float currentProgress = 0.0f;
-    private float animationProgressStart = 0.0f;
-    private long currentProgressTime = 0;
-    private float animatedProgressValue = 0.0f;
-    private RectF progressRect = new RectF();
-    private RectF cicleRect = new RectF();
-    private float animatedAlphaValue = 1.0f;
-    private int progressColor = -1;
-    private int diff = AndroidUtilities.dp(4.0f);
-    private boolean alphaForPrevious = true;
-    private boolean alphaForMiniPrevious = true;
-    private float overrideAlpha = 1.0f;
-    private Paint overridePaint = null;
-    private float rotationSpeed = 3000.0f;
-    private final Path roundProgressRectPath = new Path();
-    private final Matrix roundProgressRectMatrix = new Matrix();
-    private final PathMeasure roundProgressRectPathMeasure = new PathMeasure();
-    private final Path roundRectProgressPath = new Path();
-
-    public float getAnimatedProgress() {
-        return this.animatedProgressValue;
-    }
-
-    public void copyParams(RadialProgress radialProgress) {
-        this.currentProgress = radialProgress.currentProgress;
-        this.animatedProgressValue = radialProgress.animatedProgressValue;
-        this.radOffset = radialProgress.radOffset;
-        this.lastUpdateTime = System.currentTimeMillis();
-        invalidateParent();
-    }
+public final class RadialProgress {
+    public static DecelerateInterpolator decelerateInterpolator;
+    public Drawable currentDrawable;
+    public boolean currentWithRound;
+    public final View parent;
+    public Drawable previousDrawable;
+    public boolean previousWithRound;
+    public final Paint progressPaint;
+    public boolean roundRectProgress;
+    public long lastUpdateTime = 0;
+    public float radOffset = 0.0f;
+    public float currentProgress = 0.0f;
+    public float animationProgressStart = 0.0f;
+    public long currentProgressTime = 0;
+    public float animatedProgressValue = 0.0f;
+    public final RectF progressRect = new RectF();
+    public final RectF cicleRect = new RectF();
+    public float animatedAlphaValue = 1.0f;
+    public int progressColor = -1;
+    public int diff = AndroidUtilities.dp(4.0f);
+    public final boolean alphaForPrevious = true;
+    public final float overrideAlpha = 1.0f;
+    public Paint overridePaint = null;
+    public float rotationSpeed = 3000.0f;
+    public final Path roundProgressRectPath = new Path();
+    public final Matrix roundProgressRectMatrix = new Matrix();
+    public final PathMeasure roundProgressRectPathMeasure = new PathMeasure();
+    public final Path roundRectProgressPath = new Path();
 
     public RadialProgress(View view) {
         if (decelerateInterpolator == null) {
@@ -75,362 +48,193 @@ public class RadialProgress {
         this.progressPaint = paint;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
-        Paint paint2 = this.progressPaint;
         Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        Paint paint2 = new Paint(1);
+        paint2.setStyle(style);
         paint2.setStrokeCap(cap);
-        this.progressPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        Paint paint3 = new Paint(1);
-        this.miniProgressPaint = paint3;
-        paint3.setStyle(style);
-        this.miniProgressPaint.setStrokeCap(cap);
-        this.miniProgressPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.miniProgressBackgroundPaint = new Paint(1);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        new Paint(1);
         this.parent = view;
     }
 
-    public void setStrokeWidth(int i) {
-        this.progressPaint.setStrokeWidth(i);
-    }
-
-    public void setProgressRect(int i, int i2, int i3, int i4) {
-        this.progressRect.set(i, i2, i3, i4);
-    }
-
-    public void setRotationTime(float f) {
-        this.rotationSpeed = f;
-    }
-
-    private void updateAnimation(boolean z) {
-        if (this.disableUpdate) {
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.previousDrawable;
+        RectF rectF = this.progressRect;
+        float f = this.overrideAlpha;
+        if (drawable != null) {
+            if (this.alphaForPrevious) {
+                drawable.setAlpha((int) (this.animatedAlphaValue * 255.0f * f));
+            } else {
+                drawable.setAlpha((int) (f * 255.0f));
+            }
+            this.previousDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            this.previousDrawable.draw(canvas);
+        }
+        Drawable drawable2 = this.currentDrawable;
+        if (drawable2 != null) {
+            if (this.previousDrawable != null) {
+                drawable2.setAlpha((int) ((1.0f - this.animatedAlphaValue) * 255.0f * f));
+            } else {
+                drawable2.setAlpha((int) (f * 255.0f));
+            }
+            this.currentDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            this.currentDrawable.draw(canvas);
+        }
+        if (!this.currentWithRound && !this.previousWithRound) {
+            updateAnimation(false);
             return;
         }
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        long j = jCurrentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = jCurrentTimeMillis;
-        Drawable drawable = this.checkBackgroundDrawable;
-        if (drawable != null && (this.currentDrawable == drawable || this.previousDrawable == drawable)) {
-            throw null;
+        Paint paint = this.overridePaint;
+        if (paint == null) {
+            paint = this.progressPaint;
+            paint.setColor(this.progressColor);
+            if (this.previousWithRound) {
+                paint.setAlpha((int) (this.animatedAlphaValue * 255.0f * f));
+            } else {
+                paint.setAlpha((int) (f * 255.0f));
+            }
         }
-        if (z) {
-            if (this.animatedProgressValue != 1.0f) {
-                this.radOffset += (360 * j) / this.rotationSpeed;
-                float f = this.currentProgress;
-                float f2 = this.animationProgressStart;
-                float f3 = f - f2;
-                if (f3 > 0.0f) {
-                    long j2 = this.currentProgressTime + j;
-                    this.currentProgressTime = j2;
-                    if (j2 >= 300) {
-                        this.animatedProgressValue = f;
-                        this.animationProgressStart = f;
-                        this.currentProgressTime = 0L;
-                    } else {
-                        this.animatedProgressValue = f2 + (f3 * decelerateInterpolator.getInterpolation(j2 / 300.0f));
-                    }
-                }
-                invalidateParent();
-            }
-            if (!this.drawMiniProgress) {
-                if (this.animatedProgressValue < 1.0f || this.previousDrawable == null) {
-                    return;
-                }
-                float f4 = this.animatedAlphaValue - (j / 200.0f);
-                this.animatedAlphaValue = f4;
-                if (f4 <= 0.0f) {
-                    this.animatedAlphaValue = 0.0f;
-                    this.previousDrawable = null;
-                }
-                invalidateParent();
-                return;
-            }
-            if (this.animatedProgressValue < 1.0f || this.previousMiniDrawable == null) {
-                return;
-            }
-            float f5 = this.animatedAlphaValue - (j / 200.0f);
-            this.animatedAlphaValue = f5;
-            if (f5 <= 0.0f) {
-                this.animatedAlphaValue = 0.0f;
-                this.previousMiniDrawable = null;
-                this.drawMiniProgress = this.currentMiniDrawable != null;
-            }
+        Paint paint2 = paint;
+        RectF rectF2 = this.cicleRect;
+        float f2 = rectF.left;
+        float f3 = this.diff;
+        rectF2.set(f2 + f3, rectF.top + f3, rectF.right - f3, rectF.bottom - f3);
+        drawArc(this.radOffset - 90.0f, Math.max(4.0f, this.animatedProgressValue * 360.0f), canvas, paint2, rectF2);
+        updateAnimation(true);
+    }
+
+    public final void drawArc(float f, float f2, Canvas canvas, Paint paint, RectF rectF) {
+        if (!this.roundRectProgress) {
+            canvas.drawArc(rectF, f, f2, false, paint);
+            return;
+        }
+        float fHeight = rectF.height() * 0.32f;
+        if (Math.abs(f2) == 360.0f) {
+            canvas.drawRoundRect(rectF, fHeight, fHeight, paint);
+            return;
+        }
+        float f3 = ((((int) f) / 90) * 90) + 90;
+        float f4 = (-199.0f) + f3;
+        float f5 = ((f + f2) - f4) / 360.0f;
+        Path path = this.roundProgressRectPath;
+        path.rewind();
+        path.addRoundRect(rectF, fHeight, fHeight, Path.Direction.CW);
+        Matrix matrix = this.roundProgressRectMatrix;
+        matrix.reset();
+        matrix.postRotate(f3, rectF.centerX(), rectF.centerY());
+        path.transform(matrix);
+        PathMeasure pathMeasure = this.roundProgressRectPathMeasure;
+        pathMeasure.setPath(path, false);
+        float length = pathMeasure.getLength();
+        Path path2 = this.roundRectProgressPath;
+        path2.reset();
+        pathMeasure.getSegment(((f - f4) / 360.0f) * length, length * f5, path2, true);
+        path2.rLineTo(0.0f, 0.0f);
+        canvas.drawPath(path2, paint);
+        if (f5 > 1.0f) {
+            drawArc(f + 90.0f, f2 - 90.0f, canvas, paint, rectF);
+        }
+    }
+
+    public final void invalidateParent() {
+        int iDp = AndroidUtilities.dp(2.0f);
+        RectF rectF = this.progressRect;
+        int i = ((int) rectF.left) - iDp;
+        int i2 = ((int) rectF.top) - iDp;
+        int i3 = iDp * 2;
+        this.parent.invalidate(i, i2, ((int) rectF.right) + i3, ((int) rectF.bottom) + i3);
+    }
+
+    public final void setBackground(Drawable drawable, boolean z, boolean z2) {
+        Drawable drawable2;
+        this.lastUpdateTime = System.currentTimeMillis();
+        if (!z2 || (drawable2 = this.currentDrawable) == drawable) {
+            this.previousDrawable = null;
+            this.previousWithRound = false;
+        } else {
+            this.previousDrawable = drawable2;
+            this.previousWithRound = this.currentWithRound;
+            this.animatedAlphaValue = 1.0f;
+            setProgress(1.0f, z2);
+        }
+        this.currentWithRound = z;
+        this.currentDrawable = drawable;
+        if (z2) {
             invalidateParent();
-            return;
-        }
-        if (this.drawMiniProgress) {
-            if (this.previousMiniDrawable != null) {
-                float f6 = this.animatedAlphaValue - (j / 200.0f);
-                this.animatedAlphaValue = f6;
-                if (f6 <= 0.0f) {
-                    this.animatedAlphaValue = 0.0f;
-                    this.previousMiniDrawable = null;
-                    this.drawMiniProgress = this.currentMiniDrawable != null;
-                }
-                invalidateParent();
-                return;
-            }
-            return;
-        }
-        if (this.previousDrawable != null) {
-            float f7 = this.animatedAlphaValue - (j / 200.0f);
-            this.animatedAlphaValue = f7;
-            if (f7 <= 0.0f) {
-                this.animatedAlphaValue = 0.0f;
-                this.previousDrawable = null;
-            }
-            invalidateParent();
+        } else {
+            this.parent.invalidate();
         }
     }
 
-    public void setDiff(int i) {
-        this.diff = i;
-    }
-
-    public void setProgressColor(int i) {
-        this.progressColor = i;
-    }
-
-    public void setProgress(float f, boolean z) {
-        if (this.drawMiniProgress) {
-            if (f != 1.0f && this.animatedAlphaValue != 0.0f && this.previousMiniDrawable != null) {
-                this.animatedAlphaValue = 0.0f;
-                this.previousMiniDrawable = null;
-                this.drawMiniProgress = this.currentMiniDrawable != null;
-            }
-        } else if (f != 1.0f && this.animatedAlphaValue != 0.0f && this.previousDrawable != null) {
+    public final void setProgress(float f, boolean z) {
+        if (f != 1.0f && this.animatedAlphaValue != 0.0f && this.previousDrawable != null) {
             this.animatedAlphaValue = 0.0f;
             this.previousDrawable = null;
         }
-        if (!z) {
-            this.animatedProgressValue = f;
-            this.animationProgressStart = f;
-        } else {
+        if (z) {
             if (this.animatedProgressValue > f) {
                 this.animatedProgressValue = f;
             }
             this.animationProgressStart = this.animatedProgressValue;
+        } else {
+            this.animatedProgressValue = f;
+            this.animationProgressStart = f;
         }
         this.currentProgress = f;
         this.currentProgressTime = 0L;
         invalidateParent();
     }
 
-    private void invalidateParent() {
-        int iDp = AndroidUtilities.dp(2.0f);
-        View view = this.parent;
-        RectF rectF = this.progressRect;
-        int i = ((int) rectF.left) - iDp;
-        int i2 = ((int) rectF.top) - iDp;
-        int i3 = iDp * 2;
-        view.invalidate(i, i2, ((int) rectF.right) + i3, ((int) rectF.bottom) + i3);
+    public final void setProgressRect(int i, int i2, int i3, int i4) {
+        this.progressRect.set(i, i2, i3, i4);
     }
 
-    public void setBackground(Drawable drawable, boolean z, boolean z2) {
-        Drawable drawable2;
-        this.lastUpdateTime = System.currentTimeMillis();
-        if (z2 && (drawable2 = this.currentDrawable) != drawable) {
-            this.previousDrawable = drawable2;
-            this.previousWithRound = this.currentWithRound;
-            this.animatedAlphaValue = 1.0f;
-            setProgress(1.0f, z2);
-        } else {
-            this.previousDrawable = null;
-            this.previousWithRound = false;
+    public final void updateAnimation(boolean z) {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
+        if (!z) {
+            if (this.previousDrawable != null) {
+                float f = this.animatedAlphaValue - (j / 200.0f);
+                this.animatedAlphaValue = f;
+                if (f <= 0.0f) {
+                    this.animatedAlphaValue = 0.0f;
+                    this.previousDrawable = null;
+                }
+                invalidateParent();
+                return;
+            }
+            return;
         }
-        this.currentWithRound = z;
-        this.currentDrawable = drawable;
-        if (!z2) {
-            this.parent.invalidate();
-        } else {
+        if (this.animatedProgressValue != 1.0f) {
+            this.radOffset = ((360 * j) / this.rotationSpeed) + this.radOffset;
+            float f2 = this.currentProgress;
+            float f3 = this.animationProgressStart;
+            float f4 = f2 - f3;
+            if (f4 > 0.0f) {
+                long j2 = this.currentProgressTime + j;
+                this.currentProgressTime = j2;
+                if (j2 >= 300) {
+                    this.animatedProgressValue = f2;
+                    this.animationProgressStart = f2;
+                    this.currentProgressTime = 0L;
+                } else {
+                    this.animatedProgressValue = (decelerateInterpolator.getInterpolation(j2 / 300.0f) * f4) + f3;
+                }
+            }
             invalidateParent();
         }
-    }
-
-    public void draw(Canvas canvas) {
-        Drawable drawable;
-        float fCenterX;
-        float fCenterY;
-        int i;
-        int i2;
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        Drawable drawable2;
-        if (this.drawMiniProgress && this.currentDrawable != null) {
-            if (this.miniDrawCanvas != null) {
-                this.miniDrawBitmap.eraseColor(0);
-            }
-            this.currentDrawable.setAlpha((int) (this.overrideAlpha * 255.0f));
-            if (this.miniDrawCanvas != null) {
-                this.currentDrawable.setBounds(0, 0, (int) this.progressRect.width(), (int) this.progressRect.height());
-                this.currentDrawable.draw(this.miniDrawCanvas);
-            } else {
-                Drawable drawable3 = this.currentDrawable;
-                RectF rectF = this.progressRect;
-                drawable3.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-                this.currentDrawable.draw(canvas);
-            }
-            if (Math.abs(this.progressRect.width() - AndroidUtilities.dp(44.0f)) < AndroidUtilities.density) {
-                float f5 = 16;
-                fCenterX = this.progressRect.centerX() + AndroidUtilities.dp(f5);
-                fCenterY = this.progressRect.centerY() + AndroidUtilities.dp(f5);
-                i = 20;
-                i2 = 0;
-            } else {
-                fCenterX = this.progressRect.centerX() + AndroidUtilities.dp(18.0f);
-                fCenterY = this.progressRect.centerY() + AndroidUtilities.dp(18.0f);
-                i = 22;
-                i2 = 2;
-            }
-            int i3 = i / 2;
-            if (this.previousMiniDrawable == null || !this.alphaForMiniPrevious) {
-                f = 360.0f;
-                f2 = 1.0f;
-            } else {
-                f = 360.0f;
-                f2 = this.animatedAlphaValue * this.overrideAlpha;
-            }
-            Canvas canvas2 = this.miniDrawCanvas;
-            if (canvas2 != null) {
-                float f6 = i + 18 + i2;
-                f3 = -90.0f;
-                f4 = 1.0f;
-                canvas2.drawCircle(AndroidUtilities.dp(f6), AndroidUtilities.dp(f6), AndroidUtilities.dp(i3 + 1) * f2, Theme.checkboxSquare_eraserPaint);
-            } else {
-                f3 = -90.0f;
-                f4 = 1.0f;
-                this.miniProgressBackgroundPaint.setColor(this.progressColor);
-                if (this.previousMiniDrawable != null && this.currentMiniDrawable == null) {
-                    this.miniProgressBackgroundPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f * this.overrideAlpha));
-                } else {
-                    this.miniProgressBackgroundPaint.setAlpha(255);
-                }
-                canvas.drawCircle(fCenterX, fCenterY, AndroidUtilities.dp(12.0f), this.miniProgressBackgroundPaint);
-            }
-            if (this.miniDrawCanvas != null) {
-                Bitmap bitmap = this.miniDrawBitmap;
-                RectF rectF2 = this.progressRect;
-                canvas.drawBitmap(bitmap, (int) rectF2.left, (int) rectF2.top, (Paint) null);
-            }
-            Drawable drawable4 = this.previousMiniDrawable;
-            if (drawable4 != null) {
-                if (this.alphaForMiniPrevious) {
-                    drawable4.setAlpha((int) (this.animatedAlphaValue * 255.0f * this.overrideAlpha));
-                } else {
-                    drawable4.setAlpha((int) (this.overrideAlpha * 255.0f));
-                }
-                float f7 = i3;
-                this.previousMiniDrawable.setBounds((int) (fCenterX - (AndroidUtilities.dp(f7) * f2)), (int) (fCenterY - (AndroidUtilities.dp(f7) * f2)), (int) ((AndroidUtilities.dp(f7) * f2) + fCenterX), (int) ((AndroidUtilities.dp(f7) * f2) + fCenterY));
-                this.previousMiniDrawable.draw(canvas);
-            }
-            if (!this.hideCurrentDrawable && (drawable2 = this.currentMiniDrawable) != null) {
-                if (this.previousMiniDrawable != null) {
-                    drawable2.setAlpha((int) ((f4 - this.animatedAlphaValue) * 255.0f * this.overrideAlpha));
-                } else {
-                    drawable2.setAlpha((int) (this.overrideAlpha * 255.0f));
-                }
-                float f8 = i3;
-                this.currentMiniDrawable.setBounds((int) (fCenterX - AndroidUtilities.dp(f8)), (int) (fCenterY - AndroidUtilities.dp(f8)), (int) (AndroidUtilities.dp(f8) + fCenterX), (int) (AndroidUtilities.dp(f8) + fCenterY));
-                this.currentMiniDrawable.draw(canvas);
-            }
-            if (this.currentMiniWithRound || this.previousMiniWithRound) {
-                this.miniProgressPaint.setColor(this.progressColor);
-                if (this.previousMiniWithRound) {
-                    this.miniProgressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f * this.overrideAlpha));
-                } else {
-                    this.miniProgressPaint.setAlpha((int) (this.overrideAlpha * 255.0f));
-                }
-                float f9 = i3 - 2;
-                this.cicleRect.set(fCenterX - (AndroidUtilities.dp(f9) * f2), fCenterY - (AndroidUtilities.dp(f9) * f2), fCenterX + (AndroidUtilities.dp(f9) * f2), fCenterY + (AndroidUtilities.dp(f9) * f2));
-                canvas.drawArc(this.cicleRect, this.radOffset + f3, Math.max(4.0f, this.animatedProgressValue * f), false, this.miniProgressPaint);
-                updateAnimation(true);
-                return;
-            }
-            updateAnimation(false);
+        if (this.animatedProgressValue < 1.0f || this.previousDrawable == null) {
             return;
         }
-        Drawable drawable5 = this.previousDrawable;
-        if (drawable5 != null) {
-            if (this.alphaForPrevious) {
-                drawable5.setAlpha((int) (this.animatedAlphaValue * 255.0f * this.overrideAlpha));
-            } else {
-                drawable5.setAlpha((int) (this.overrideAlpha * 255.0f));
-            }
-            Drawable drawable6 = this.previousDrawable;
-            RectF rectF3 = this.progressRect;
-            drawable6.setBounds((int) rectF3.left, (int) rectF3.top, (int) rectF3.right, (int) rectF3.bottom);
-            this.previousDrawable.draw(canvas);
+        float f5 = this.animatedAlphaValue - (j / 200.0f);
+        this.animatedAlphaValue = f5;
+        if (f5 <= 0.0f) {
+            this.animatedAlphaValue = 0.0f;
+            this.previousDrawable = null;
         }
-        if (!this.hideCurrentDrawable && (drawable = this.currentDrawable) != null) {
-            if (this.previousDrawable != null) {
-                drawable.setAlpha((int) ((1.0f - this.animatedAlphaValue) * 255.0f * this.overrideAlpha));
-            } else {
-                drawable.setAlpha((int) (this.overrideAlpha * 255.0f));
-            }
-            Drawable drawable7 = this.currentDrawable;
-            RectF rectF4 = this.progressRect;
-            drawable7.setBounds((int) rectF4.left, (int) rectF4.top, (int) rectF4.right, (int) rectF4.bottom);
-            this.currentDrawable.draw(canvas);
-        }
-        if (this.currentWithRound || this.previousWithRound) {
-            Paint paint = this.overridePaint;
-            if (paint == null) {
-                this.progressPaint.setColor(this.progressColor);
-                if (this.previousWithRound) {
-                    this.progressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f * this.overrideAlpha));
-                } else {
-                    this.progressPaint.setAlpha((int) (this.overrideAlpha * 255.0f));
-                }
-                paint = this.progressPaint;
-            }
-            Paint paint2 = paint;
-            RectF rectF5 = this.cicleRect;
-            RectF rectF6 = this.progressRect;
-            float f10 = rectF6.left;
-            float f11 = this.diff;
-            rectF5.set(f10 + f11, rectF6.top + f11, rectF6.right - f11, rectF6.bottom - f11);
-            drawArc(canvas, this.cicleRect, this.radOffset - 90.0f, Math.max(4.0f, this.animatedProgressValue * 360.0f), false, paint2);
-            updateAnimation(true);
-            return;
-        }
-        updateAnimation(false);
-    }
-
-    private void drawArc(Canvas canvas, RectF rectF, float f, float f2, boolean z, Paint paint) {
-        if (this.roundRectProgress) {
-            float fHeight = rectF.height() * 0.32f;
-            if (Math.abs(f2) == 360.0f) {
-                canvas.drawRoundRect(rectF, fHeight, fHeight, paint);
-                return;
-            }
-            float f3 = ((((int) f) / 90) * 90) + 90;
-            float f4 = (-199.0f) + f3;
-            float f5 = ((f + f2) - f4) / 360.0f;
-            this.roundProgressRectPath.rewind();
-            this.roundProgressRectPath.addRoundRect(rectF, fHeight, fHeight, Path.Direction.CW);
-            this.roundProgressRectMatrix.reset();
-            this.roundProgressRectMatrix.postRotate(f3, rectF.centerX(), rectF.centerY());
-            this.roundProgressRectPath.transform(this.roundProgressRectMatrix);
-            this.roundProgressRectPathMeasure.setPath(this.roundProgressRectPath, false);
-            float length = this.roundProgressRectPathMeasure.getLength();
-            this.roundRectProgressPath.reset();
-            this.roundProgressRectPathMeasure.getSegment(((f - f4) / 360.0f) * length, length * f5, this.roundRectProgressPath, true);
-            this.roundRectProgressPath.rLineTo(0.0f, 0.0f);
-            canvas.drawPath(this.roundRectProgressPath, paint);
-            if (f5 > 1.0f) {
-                drawArc(canvas, rectF, f + 90.0f, f2 - 90.0f, z, paint);
-                return;
-            }
-            return;
-        }
-        canvas.drawArc(rectF, f, f2, z, paint);
-    }
-
-    public void setPaint(Paint paint) {
-        this.overridePaint = paint;
-    }
-
-    public void setRoundRectProgress(boolean z) {
-        this.roundRectProgress = z;
+        invalidateParent();
     }
 }

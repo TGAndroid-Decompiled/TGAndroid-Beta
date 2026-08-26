@@ -1,12 +1,14 @@
 package org.telegram.ui.Stories.recorder;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -16,22 +18,22 @@ import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
 
-public class TrashView extends View {
-    private final ButtonBounce bounce;
-    private final Paint circlePaint;
-    private boolean dragged;
-    private final AnimatedFloat draggedT;
-    private final RLottieDrawable drawable;
-    private final Paint greyPaint;
-    private final AnimatedTextView.AnimatedTextDrawable textDrawable;
+public final class TrashView extends View {
+    public final ButtonBounce bounce;
+    public final Paint circlePaint;
+    public boolean dragged;
+    public final AnimatedFloat draggedT;
+    public final RLottieDrawable drawable;
+    public final Paint greyPaint;
+    public final AnimatedTextView.AnimatedTextDrawable textDrawable;
 
-    public TrashView(Context context) {
-        super(context);
+    public TrashView(Activity activity) {
+        super(activity);
         Paint paint = new Paint(1);
         this.circlePaint = paint;
         Paint paint2 = new Paint(1);
         this.greyPaint = paint2;
-        this.bounce = new ButtonBounce(this);
+        this.bounce = new ButtonBounce(this, 1.0f, 5.0f);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.draggedT = new AnimatedFloat(this, 0L, 240L, cubicBezierInterpolator);
         paint.setColor(-1);
@@ -40,65 +42,74 @@ public class TrashView extends View {
         paint.setShadowLayer(AndroidUtilities.dpf2(3.0f), 0.0f, AndroidUtilities.dp(1.66f), 805306368);
         paint2.setColor(855638016);
         int i = R.raw.group_pip_delete_icon;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, SurfaceContainer$$ExternalSyntheticOutline0.m(i, ""), AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
         this.drawable = rLottieDrawable;
-        rLottieDrawable.setMasterParent(this);
+        rLottieDrawable.masterParent = this;
         rLottieDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-        rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
+        rLottieDrawable.playInDirectionOfCustomEndFrame = true;
         rLottieDrawable.setCustomEndFrame(0);
-        rLottieDrawable.setAllowDecodeSingleFrame(true);
+        rLottieDrawable.decodeSingleFrame = true;
+        rLottieDrawable.scheduleNextGetFrame();
         rLottieDrawable.start();
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false, false);
         this.textDrawable = animatedTextDrawable;
-        animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
-        animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+        animatedTextDrawable.moveAmplitude = 0.3f;
+        animatedTextDrawable.animateDuration = 250L;
+        animatedTextDrawable.animateWave = 1.0f;
+        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
-        animatedTextDrawable.setTextColor(-1);
-        animatedTextDrawable.setShadowLayer(AndroidUtilities.dpf2(1.33f), 0.0f, AndroidUtilities.dp(1.0f), 1073741824);
-        animatedTextDrawable.setText(LocaleController.getString(R.string.TrashHintDrag));
-        animatedTextDrawable.setGravity(17);
+        animatedTextDrawable.textPaint.setColor(-1);
+        animatedTextDrawable.alpha = Color.alpha(-1);
+        animatedTextDrawable.setShadowLayer(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dp(1.0f), 1073741824);
+        animatedTextDrawable.setText(LocaleController.getString(R.string.TrashHintDrag), true, true);
+        animatedTextDrawable.gravity = 17;
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.textDrawable || super.verifyDrawable(drawable);
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         float fDp = AndroidUtilities.dp(30.0f);
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
-        float fDp2 = (AndroidUtilities.dp(3.0f) * this.draggedT.set(this.dragged)) + fDp;
+        float fDp2 = (this.draggedT.set(this.dragged) * AndroidUtilities.dp(3.0f)) + fDp;
         canvas.drawCircle(width, height, fDp2, this.greyPaint);
         canvas.drawCircle(width, height, fDp2, this.circlePaint);
-        float fDp3 = AndroidUtilities.dp(48.0f) / 2.0f;
-        this.drawable.setBounds((int) (width - fDp3), (int) (height - fDp3), (int) (width + fDp3), (int) (fDp3 + height));
-        this.drawable.draw(canvas);
-        this.textDrawable.setBounds(0, (int) (height + fDp + AndroidUtilities.dp(7.0f)), getWidth(), getHeight());
-        this.textDrawable.draw(canvas);
+        float fDp3 = AndroidUtilities.dp(48.0f);
+        RLottieDrawable rLottieDrawable = this.drawable;
+        float f = fDp3 / 2.0f;
+        rLottieDrawable.setBounds((int) (width - f), (int) (height - f), (int) (width + f), (int) (f + height));
+        rLottieDrawable.draw(canvas);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
+        animatedTextDrawable.setBounds(0, (int) (height + fDp + AndroidUtilities.dp(7.0f)), getWidth(), getHeight());
+        animatedTextDrawable.draw(canvas);
+    }
+
+    public final void onDragInfo(boolean z, boolean z2) {
+        this.bounce.setPressed(z);
+        this.textDrawable.setText(LocaleController.getString((z || z2) ? R.string.TrashHintRelease : R.string.TrashHintDrag), true, true);
+        boolean z3 = z && !z2;
+        this.dragged = z3;
+        RLottieDrawable rLottieDrawable = this.drawable;
+        if (z3) {
+            if (rLottieDrawable.currentFrame > 34) {
+                rLottieDrawable.setCurrentFrame(0, false, false);
+            }
+            rLottieDrawable.setCustomEndFrame(33);
+            rLottieDrawable.start();
+        } else {
+            rLottieDrawable.setCustomEndFrame(z2 ? 66 : 0);
+            rLottieDrawable.start();
+        }
+        invalidate();
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onMeasure(int i, int i2) {
         setMeasuredDimension(i, AndroidUtilities.dp(120.0f));
     }
 
-    public void onDragInfo(boolean z, boolean z2) {
-        this.bounce.setPressed(z);
-        this.textDrawable.setText(LocaleController.getString((z || z2) ? R.string.TrashHintRelease : R.string.TrashHintDrag));
-        boolean z3 = z && !z2;
-        this.dragged = z3;
-        if (z3) {
-            if (this.drawable.getCurrentFrame() > 34) {
-                this.drawable.setCurrentFrame(0, false);
-            }
-            this.drawable.setCustomEndFrame(33);
-            this.drawable.start();
-        } else {
-            this.drawable.setCustomEndFrame(z2 ? 66 : 0);
-            this.drawable.start();
-        }
-        invalidate();
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.textDrawable || super.verifyDrawable(drawable);
     }
 }

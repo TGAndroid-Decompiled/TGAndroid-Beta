@@ -2,18 +2,21 @@ package org.telegram.ui.Stories.recorder;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -23,38 +26,36 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
 public class SliderView extends View {
-    private final Path clipPath;
-    private final int currentType;
+    public final Path clipPath;
+    public final int currentType;
     public int fixWidth;
-    private int h;
-    private float lastTouchX;
-    private float maxVolume;
-    private float minVolume;
-    private Utilities.Callback onValueChange;
-    private long pressTime;
-    private float r;
-    private final Paint speaker1Paint;
-    private final Path speaker1Path;
-    private final Paint speaker2Paint;
-    private final Path speaker2Path;
-    private final Paint speakerWave1Paint;
-    private final Path speakerWave1Path;
-    private final Paint speakerWave2Paint;
-    private final Path speakerWave2Path;
-    private final AnimatedTextView.AnimatedTextDrawable text;
-    private final AnimatedTextView.AnimatedTextDrawable text2;
-    private final TextPaint textPaint;
-    private float value;
-    private AnimatedFloat valueAnimated;
-    private boolean valueIsAnimated;
-    private int w;
-    private final AnimatedFloat wave1Alpha;
-    private final AnimatedFloat wave2Alpha;
-    private final Paint whitePaint;
+    public int h;
+    public float lastTouchX;
+    public float maxVolume;
+    public float minVolume;
+    public Utilities.Callback onValueChange;
+    public long pressTime;
+    public float r;
+    public final Paint speaker1Paint;
+    public final Path speaker1Path;
+    public final Paint speaker2Paint;
+    public final Path speaker2Path;
+    public final Paint speakerWave1Paint;
+    public final Path speakerWave1Path;
+    public final Paint speakerWave2Paint;
+    public final Path speakerWave2Path;
+    public final AnimatedTextView.AnimatedTextDrawable text;
+    public final AnimatedTextView.AnimatedTextDrawable text2;
+    public final TextPaint textPaint;
+    public float value;
+    public final AnimatedFloat valueAnimated;
+    public boolean valueIsAnimated;
+    public int w;
+    public final AnimatedFloat wave1Alpha;
+    public final AnimatedFloat wave2Alpha;
+    public final Paint whitePaint;
 
     public SliderView(Context context, int i) {
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable;
-        int i2;
         super(context);
         this.minVolume = 0.0f;
         this.maxVolume = 1.0f;
@@ -70,8 +71,8 @@ public class SliderView extends View {
         this.speakerWave1Paint = paint4;
         Paint paint5 = new Paint(1);
         this.speakerWave2Paint = paint5;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-        this.text = animatedTextDrawable2;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+        this.text = animatedTextDrawable;
         this.clipPath = new Path();
         this.speaker1Path = new Path();
         this.speaker2Path = new Path();
@@ -81,13 +82,19 @@ public class SliderView extends View {
         this.wave2Alpha = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.textPaint = new TextPaint(1);
         this.currentType = i;
-        animatedTextDrawable2.setTypeface(AndroidUtilities.bold());
-        animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 40L, cubicBezierInterpolator);
-        animatedTextDrawable2.setCallback(this);
-        animatedTextDrawable2.setTextColor(-1);
-        animatedTextDrawable2.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+        Typeface typefaceBold = AndroidUtilities.bold();
+        TextPaint textPaint = animatedTextDrawable.textPaint;
+        textPaint.setTypeface(typefaceBold);
+        animatedTextDrawable.moveAmplitude = 0.3f;
+        animatedTextDrawable.animateDuration = 40L;
+        animatedTextDrawable.animateWave = 1.0f;
+        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextDrawable.setCallback(this);
+        textPaint.setColor(-1);
+        animatedTextDrawable.alpha = Color.alpha(-1);
+        animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
         if (i == 0) {
-            animatedTextDrawable2.setTextSize(AndroidUtilities.dp(15.0f));
+            animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.0f));
             this.text2 = null;
             paint2.setColor(-1);
             paint3.setColor(-1);
@@ -95,101 +102,81 @@ public class SliderView extends View {
             paint5.setColor(-1);
             paint5.setStyle(Paint.Style.STROKE);
             paint5.setStrokeCap(Paint.Cap.ROUND);
-            animatedTextDrawable = animatedTextDrawable2;
-            i2 = -1;
         } else {
+            animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
+            animatedTextDrawable.gravity = 5;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+            this.text2 = animatedTextDrawable2;
+            animatedTextDrawable2.overrideFullWidth = AndroidUtilities.displaySize.x;
             animatedTextDrawable2.setTextSize(AndroidUtilities.dp(14.0f));
-            animatedTextDrawable2.setGravity(5);
-            animatedTextDrawable = animatedTextDrawable2;
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-            this.text2 = animatedTextDrawable3;
-            animatedTextDrawable3.setOverrideFullWidth(AndroidUtilities.displaySize.x);
-            animatedTextDrawable3.setTextSize(AndroidUtilities.dp(14.0f));
-            animatedTextDrawable3.setTypeface(AndroidUtilities.bold());
-            i2 = -1;
-            animatedTextDrawable3.setAnimationProperties(0.3f, 0L, 40L, cubicBezierInterpolator);
-            animatedTextDrawable3.setCallback(this);
-            animatedTextDrawable3.setTextColor(-1);
+            Typeface typefaceBold2 = AndroidUtilities.bold();
+            TextPaint textPaint2 = animatedTextDrawable2.textPaint;
+            textPaint2.setTypeface(typefaceBold2);
+            animatedTextDrawable2.moveAmplitude = 0.3f;
+            animatedTextDrawable2.animateDuration = 40L;
+            animatedTextDrawable2.animateWave = 1.0f;
+            animatedTextDrawable2.animateInterpolator = cubicBezierInterpolator;
+            animatedTextDrawable2.setCallback(this);
+            textPaint2.setColor(-1);
+            animatedTextDrawable2.alpha = Color.alpha(-1);
             if (i == 1) {
-                animatedTextDrawable3.setText(LocaleController.getString(R.string.FlashWarmth));
+                animatedTextDrawable2.setText(LocaleController.getString(R.string.FlashWarmth), true, true);
             } else if (i == 2) {
-                animatedTextDrawable3.setText(LocaleController.getString(R.string.FlashIntensity));
+                animatedTextDrawable2.setText(LocaleController.getString(R.string.FlashIntensity), true, true);
             } else if (i == 3) {
-                animatedTextDrawable3.setText(LocaleController.getString(R.string.WallpaperDimming));
+                animatedTextDrawable2.setText(LocaleController.getString(R.string.WallpaperDimming), true, true);
             }
         }
-        animatedTextDrawable.setText("");
-        paint.setColor(i2);
+        animatedTextDrawable.setText("", true, true);
+        paint.setColor(-1);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
     }
 
-    public SliderView setMinMax(float f, float f2) {
-        this.minVolume = f;
-        this.maxVolume = f2;
-        return this;
-    }
-
-    public SliderView setValue(float f) {
-        float f2 = this.minVolume;
-        float f3 = (f - f2) / (this.maxVolume - f2);
-        this.value = f3;
-        this.valueAnimated.set(f3, true);
-        updateText(f);
-        return this;
-    }
-
-    public SliderView setOnValueChange(Utilities.Callback callback) {
-        this.onValueChange = callback;
-        return this;
-    }
-
-    public void animateValueTo(float f) {
-        this.valueIsAnimated = true;
-        float f2 = this.minVolume;
-        this.value = (f - f2) / (this.maxVolume - f2);
-        updateText(f);
-    }
-
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         canvas.save();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, this.w, this.h);
-        this.clipPath.rewind();
         Path path = this.clipPath;
+        path.rewind();
         float f = this.r;
         path.addRoundRect(rectF, f, f, Path.Direction.CW);
-        canvas.clipPath(this.clipPath);
-        float f2 = this.valueIsAnimated ? this.valueAnimated.set(this.value) : this.value;
+        canvas.clipPath(path);
+        float f2 = this.valueIsAnimated ? this.valueAnimated.set(this.value, false) : this.value;
         canvas.saveLayerAlpha(0.0f, 0.0f, this.w, this.h, 255, 31);
-        if (this.currentType == 0) {
-            this.text.setBounds(AndroidUtilities.dp(42.0f), -AndroidUtilities.dp(1.0f), this.w, this.h - AndroidUtilities.dp(1.0f));
-            this.text.draw(canvas);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text;
+        int i = this.currentType;
+        if (i == 0) {
+            animatedTextDrawable.setBounds(AndroidUtilities.dp(42.0f), -AndroidUtilities.dp(1.0f), this.w, this.h - AndroidUtilities.dp(1.0f));
+            animatedTextDrawable.draw(canvas);
         } else {
-            this.text2.setBounds(AndroidUtilities.dp(12.33f), -AndroidUtilities.dp(1.0f), (this.w - ((int) this.text.getCurrentWidth())) - AndroidUtilities.dp(6.0f), this.h - AndroidUtilities.dp(1.0f));
-            this.text2.draw(canvas);
-            this.text.setBounds(this.w - AndroidUtilities.dp(111.0f), -AndroidUtilities.dp(1.0f), this.w - AndroidUtilities.dp(11.0f), this.h - AndroidUtilities.dp(1.0f));
-            this.text.draw(canvas);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.text2;
+            animatedTextDrawable2.setBounds(AndroidUtilities.dp(12.33f), -AndroidUtilities.dp(1.0f), (this.w - ((int) animatedTextDrawable.getCurrentWidth())) - AndroidUtilities.dp(6.0f), this.h - AndroidUtilities.dp(1.0f));
+            animatedTextDrawable2.draw(canvas);
+            animatedTextDrawable.setBounds(this.w - AndroidUtilities.dp(111.0f), -AndroidUtilities.dp(1.0f), this.w - AndroidUtilities.dp(11.0f), this.h - AndroidUtilities.dp(1.0f));
+            animatedTextDrawable.draw(canvas);
         }
-        if (this.currentType == 0) {
+        if (i == 0) {
             canvas.drawPath(this.speaker1Path, this.speaker1Paint);
             canvas.drawPath(this.speaker2Path, this.speaker2Paint);
             float f3 = this.maxVolume;
             float f4 = this.minVolume;
             float f5 = f3 - f4;
-            double d = f5 != 0.0f ? f4 + (this.value * f5) : 0.0f;
+            double d = f5 != 0.0f ? (f5 * this.value) + f4 : 0.0f;
             float f6 = this.wave1Alpha.set(d > 0.25d);
             canvas.save();
-            canvas.translate((-AndroidUtilities.dpf2(0.33f)) * (1.0f - f6), 0.0f);
-            this.speakerWave1Paint.setAlpha((int) (f6 * 255.0f));
-            canvas.drawPath(this.speakerWave1Path, this.speakerWave1Paint);
+            canvas.translate((1.0f - f6) * (-AndroidUtilities.dpf2(0.33f)), 0.0f);
+            Paint paint = this.speakerWave1Paint;
+            paint.setAlpha((int) (f6 * 255.0f));
+            canvas.drawPath(this.speakerWave1Path, paint);
             canvas.restore();
             float f7 = this.wave2Alpha.set(d > 0.5d);
             canvas.save();
-            canvas.translate((-AndroidUtilities.dpf2(0.66f)) * (1.0f - f7), 0.0f);
-            this.speakerWave2Paint.setAlpha((int) (f7 * 255.0f));
-            canvas.drawPath(this.speakerWave2Path, this.speakerWave2Paint);
+            canvas.translate((1.0f - f7) * (-AndroidUtilities.dpf2(0.66f)), 0.0f);
+            Paint paint2 = this.speakerWave2Paint;
+            paint2.setAlpha((int) (f7 * 255.0f));
+            canvas.drawPath(this.speakerWave2Path, paint2);
             canvas.restore();
         }
         canvas.save();
@@ -212,47 +199,121 @@ public class SliderView extends View {
         } else if (motionEvent.getAction() == 2 || motionEvent.getAction() == 1) {
             float f = this.maxVolume;
             float f2 = this.minVolume;
-            float f3 = f - f2;
-            float f4 = f3 != 0.0f ? f2 + (this.value * f3) : 0.0f;
-            if (motionEvent.getAction() == 1 && System.currentTimeMillis() - this.pressTime < ViewConfiguration.getTapTimeout()) {
+            float fM = f - f2 != 0.0f ? DiffUtil.m(f, f2, this.value, f2) : 0.0f;
+            if (motionEvent.getAction() != 1 || System.currentTimeMillis() - this.pressTime >= ViewConfiguration.getTapTimeout()) {
+                this.value = Utilities.clamp(((x - this.lastTouchX) / this.w) + this.value, 1.0f, 0.0f);
+                this.valueIsAnimated = false;
+                z = true;
+            } else {
                 this.valueAnimated.set(this.value, true);
                 this.value = x / this.w;
                 this.valueIsAnimated = true;
-            } else {
-                this.value = Utilities.clamp(this.value + ((x - this.lastTouchX) / this.w), 1.0f, 0.0f);
-                this.valueIsAnimated = false;
-                z = true;
             }
-            float f5 = this.maxVolume;
-            float f6 = this.minVolume;
-            float f7 = f5 - f6;
-            float f8 = f7 != 0.0f ? (this.value * f7) + f6 : 0.0f;
+            float f3 = this.maxVolume;
+            float f4 = this.minVolume;
+            float fM2 = f3 - f4 != 0.0f ? DiffUtil.m(f3, f4, this.value, f4) : 0.0f;
             if (z) {
-                if ((f8 <= f6 && f4 > f8) || (f8 >= f5 && f4 < f8)) {
+                if ((fM2 <= f4 && fM > fM2) || (fM2 >= f3 && fM < fM2)) {
                     try {
                         performHapticFeedback(3, 1);
                     } catch (Exception unused) {
                     }
-                } else if (Math.floor(f4 * 5.0f) != Math.floor(5.0f * f8)) {
+                } else if (Math.floor(fM * 5.0f) != Math.floor(5.0f * fM2)) {
                     AndroidUtilities.vibrateCursor(this);
                 }
             }
-            updateText(f8);
+            updateText(fM2);
             Utilities.Callback callback = this.onValueChange;
             if (callback != null) {
-                callback.run(Float.valueOf(f8));
+                callback.run(Float.valueOf(fM2));
             }
         }
         this.lastTouchX = x;
         return true;
     }
 
-    private void updateText(float f) {
+    @Override
+    public final void onMeasure(int i, int i2) {
+        this.r = AndroidUtilities.dp(12.0f);
+        TextPaint textPaint = this.textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        this.text.setTextSize(AndroidUtilities.dp(15.0f));
+        int i3 = this.fixWidth;
+        int i4 = this.currentType;
+        if (i3 > 0) {
+            this.w = i3;
+            this.h = AndroidUtilities.dp(48.0f);
+        } else if (i4 == 0) {
+            this.w = (int) Math.min(textPaint.measureText(LocaleController.getString(R.string.StoryAudioRemove)) + AndroidUtilities.dp(88.0f), View.MeasureSpec.getSize(i));
+            this.h = AndroidUtilities.dp(48.0f);
+        } else {
+            this.w = AndroidUtilities.dp(190.0f);
+            this.h = AndroidUtilities.dp(44.0f);
+        }
+        setMeasuredDimension(this.w, this.h);
+        if (i4 == 0) {
+            float fDp = AndroidUtilities.dp(25.0f);
+            float f = this.h / 2.0f;
+            this.speaker1Paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(1.33f)));
+            Path path = this.speaker1Path;
+            path.rewind();
+            path.moveTo(fDp - AndroidUtilities.dpf2(8.66f), f - AndroidUtilities.dpf2(2.9f));
+            path.lineTo(fDp - AndroidUtilities.dpf2(3.0f), f - AndroidUtilities.dpf2(2.9f));
+            path.lineTo(fDp - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(2.9f) + f);
+            path.lineTo(fDp - AndroidUtilities.dpf2(8.66f), AndroidUtilities.dpf2(2.9f) + f);
+            path.close();
+            this.speaker2Paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(2.66f)));
+            Path path2 = this.speaker2Path;
+            path2.rewind();
+            path2.moveTo(fDp - AndroidUtilities.dpf2(7.5f), f);
+            path2.lineTo(fDp, f - AndroidUtilities.dpf2(7.33f));
+            path2.lineTo(fDp, AndroidUtilities.dpf2(7.33f) + f);
+            path2.close();
+            Path path3 = this.speakerWave1Path;
+            path3.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((fDp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(4.33f), f - AndroidUtilities.dp(4.33f), (fDp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(4.33f), AndroidUtilities.dp(4.33f) + f);
+            path3.arcTo(rectF, -60.0f, 120.0f);
+            path3.close();
+            Paint paint = this.speakerWave2Paint;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            Path path4 = this.speakerWave2Path;
+            path4.rewind();
+            rectF.set((fDp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(8.0f), f - AndroidUtilities.dp(8.0f), (fDp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(8.0f), f + AndroidUtilities.dp(8.0f));
+            path4.arcTo(rectF, -70.0f, 140.0f);
+        }
+    }
+
+    public final void setMinMax() {
+        this.minVolume = 0.0f;
+        this.maxVolume = 0.9f;
+    }
+
+    public final void setOnValueChange(Utilities.Callback callback) {
+        this.onValueChange = callback;
+    }
+
+    public final void setValue(float f) {
+        float f2 = this.minVolume;
+        float f3 = (f - f2) / (this.maxVolume - f2);
+        this.value = f3;
+        this.valueAnimated.set(f3, true);
+        updateText(f);
+    }
+
+    public final void updateText(float f) {
         String str = Math.round(100.0f * f) + "%";
-        if (!TextUtils.equals(this.text.getText(), str)) {
-            this.text.cancelAnimation();
-            this.text.setAnimationProperties(0.3f, 0L, this.valueIsAnimated ? 320L : 40L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.text.setText(str);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text;
+        if (!TextUtils.equals(animatedTextDrawable.currentText, str)) {
+            animatedTextDrawable.cancelAnimation();
+            long j = this.valueIsAnimated ? 320L : 40L;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            animatedTextDrawable.moveAmplitude = 0.3f;
+            animatedTextDrawable.animateDuration = j;
+            animatedTextDrawable.animateWave = 1.0f;
+            animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+            animatedTextDrawable.setText(str, true, true);
         }
         if (this.currentType == 1) {
             this.whitePaint.setColor(FlashViews.getColor(f));
@@ -261,53 +322,7 @@ public class SliderView extends View {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        this.r = AndroidUtilities.dp(12.0f);
-        this.textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        this.text.setTextSize(AndroidUtilities.dp(15.0f));
-        int i3 = this.fixWidth;
-        if (i3 > 0) {
-            this.w = i3;
-            this.h = AndroidUtilities.dp(48.0f);
-        } else if (this.currentType == 0) {
-            this.w = (int) Math.min(this.textPaint.measureText(LocaleController.getString(R.string.StoryAudioRemove)) + AndroidUtilities.dp(88.0f), View.MeasureSpec.getSize(i));
-            this.h = AndroidUtilities.dp(48.0f);
-        } else {
-            this.w = AndroidUtilities.dp(190.0f);
-            this.h = AndroidUtilities.dp(44.0f);
-        }
-        setMeasuredDimension(this.w, this.h);
-        if (this.currentType == 0) {
-            float fDp = AndroidUtilities.dp(25.0f);
-            float f = this.h / 2.0f;
-            this.speaker1Paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(1.33f)));
-            this.speaker1Path.rewind();
-            this.speaker1Path.moveTo(fDp - AndroidUtilities.dpf2(8.66f), f - AndroidUtilities.dpf2(2.9f));
-            this.speaker1Path.lineTo(fDp - AndroidUtilities.dpf2(3.0f), f - AndroidUtilities.dpf2(2.9f));
-            this.speaker1Path.lineTo(fDp - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(2.9f) + f);
-            this.speaker1Path.lineTo(fDp - AndroidUtilities.dpf2(8.66f), AndroidUtilities.dpf2(2.9f) + f);
-            this.speaker1Path.close();
-            this.speaker2Paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(2.66f)));
-            this.speaker2Path.rewind();
-            this.speaker2Path.moveTo(fDp - AndroidUtilities.dpf2(7.5f), f);
-            this.speaker2Path.lineTo(fDp, f - AndroidUtilities.dpf2(7.33f));
-            this.speaker2Path.lineTo(fDp, AndroidUtilities.dpf2(7.33f) + f);
-            this.speaker2Path.close();
-            this.speakerWave1Path.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((fDp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(4.33f), f - AndroidUtilities.dp(4.33f), (fDp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(4.33f), AndroidUtilities.dp(4.33f) + f);
-            this.speakerWave1Path.arcTo(rectF, -60.0f, 120.0f);
-            this.speakerWave1Path.close();
-            this.speakerWave2Paint.setStyle(Paint.Style.STROKE);
-            this.speakerWave2Paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            this.speakerWave2Path.rewind();
-            rectF.set((fDp - AndroidUtilities.dpf2(0.33f)) - AndroidUtilities.dp(8.0f), f - AndroidUtilities.dp(8.0f), (fDp - AndroidUtilities.dpf2(0.33f)) + AndroidUtilities.dp(8.0f), f + AndroidUtilities.dp(8.0f));
-            this.speakerWave2Path.arcTo(rectF, -70.0f, 140.0f);
-        }
-    }
-
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
+    public final boolean verifyDrawable(Drawable drawable) {
         return drawable == this.text || drawable == this.text2 || super.verifyDrawable(drawable);
     }
 }

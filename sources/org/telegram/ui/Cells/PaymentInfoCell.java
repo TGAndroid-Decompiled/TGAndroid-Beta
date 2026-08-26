@@ -13,14 +13,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class PaymentInfoCell extends FrameLayout {
-    private final TextView detailExTextView;
-    private final TextView detailTextView;
-    private final BackupImageView imageView;
-    private final TextView nameTextView;
+public final class PaymentInfoCell extends FrameLayout {
+    public final TextView detailExTextView;
+    public final TextView detailTextView;
+    public final BackupImageView imageView;
+    public final TextView nameTextView;
 
     public PaymentInfoCell(Context context) {
         super(context);
@@ -31,7 +32,7 @@ public class PaymentInfoCell extends FrameLayout {
         TextView textView = new TextView(context);
         this.nameTextView = textView;
         int i = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i));
+        textView.setTextColor(Theme.getColor(null, i, false));
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setTypeface(AndroidUtilities.bold());
@@ -44,7 +45,7 @@ public class PaymentInfoCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 10.0f : 123.0f, 9.0f, z ? 123.0f : 10.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.detailTextView = textView2;
-        textView2.setTextColor(Theme.getColor(i));
+        textView2.setTextColor(Theme.getColor(null, i, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setMaxLines(3);
         textView2.setEllipsize(truncateAt);
@@ -53,11 +54,7 @@ public class PaymentInfoCell extends FrameLayout {
         addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 10.0f : 123.0f, 33.0f, z2 ? 123.0f : 10.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.detailExTextView = textView3;
-        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
-        textView3.setTextSize(1, 14.0f);
-        textView3.setLines(1);
-        textView3.setMaxLines(1);
-        textView3.setSingleLine(true);
+        ArticleViewer.IBlock.CC.m(textView3, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), 14.0f, 1, true);
         textView3.setEllipsize(truncateAt);
         textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         boolean z3 = LocaleController.isRTL;
@@ -65,7 +62,7 @@ public class PaymentInfoCell extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onMeasure(int i, int i2) {
         int i3;
         int iMakeMeasureSpec;
         if (this.imageView.getVisibility() != 8) {
@@ -73,19 +70,23 @@ public class PaymentInfoCell extends FrameLayout {
             i3 = i;
         } else {
             int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
+            TextView textView = this.detailTextView;
             i3 = i;
-            measureChildWithMargins(this.detailTextView, i3, 0, i2, 0);
-            ((FrameLayout.LayoutParams) this.detailExTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(33.0f) + this.detailTextView.getMeasuredHeight() + AndroidUtilities.dp(3.0f);
+            measureChildWithMargins(textView, i3, 0, i2, 0);
+            ((FrameLayout.LayoutParams) this.detailExTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(3.0f) + textView.getMeasuredHeight() + AndroidUtilities.dp(33.0f);
             iMakeMeasureSpec = iMakeMeasureSpec2;
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), iMakeMeasureSpec);
     }
 
-    public void setInfo(String str, String str2, TLRPC.WebDocument webDocument, String str3, Object obj) {
+    public final void setInfo(String str, String str2, TLRPC.WebDocument webDocument, String str3, Object obj) {
         int iMin;
-        this.nameTextView.setText(str);
-        this.detailTextView.setText(str2);
-        this.detailExTextView.setText(str3);
+        TextView textView = this.nameTextView;
+        textView.setText(str);
+        TextView textView2 = this.detailTextView;
+        textView2.setText(str2);
+        TextView textView3 = this.detailExTextView;
+        textView3.setText(str3);
         if (AndroidUtilities.isTablet()) {
             iMin = AndroidUtilities.getMinTabletSide();
         } else {
@@ -96,31 +97,30 @@ public class PaymentInfoCell extends FrameLayout {
         float fDp = f / (((int) (iMin * 0.7f)) - AndroidUtilities.dp(2.0f));
         int i = (int) (f / fDp);
         int i2 = (int) (360 / fDp);
-        if (webDocument != null && webDocument.mime_type.startsWith("image/")) {
-            TextView textView = this.nameTextView;
-            boolean z = LocaleController.isRTL;
-            textView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 10.0f : 123.0f, 9.0f, z ? 123.0f : 10.0f, 0.0f));
-            TextView textView2 = this.detailTextView;
-            boolean z2 = LocaleController.isRTL;
-            textView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 10.0f : 123.0f, 33.0f, z2 ? 123.0f : 10.0f, 0.0f));
-            TextView textView3 = this.detailExTextView;
-            boolean z3 = LocaleController.isRTL;
-            textView3.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 10.0f : 123.0f, 90.0f, z3 ? 123.0f : 10.0f, 0.0f));
-            this.imageView.setVisibility(0);
-            this.imageView.getImageReceiver().setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), String.format(Locale.US, "%d_%d", Integer.valueOf(i), Integer.valueOf(i2)), null, null, -1L, null, obj, 1);
+        BackupImageView backupImageView = this.imageView;
+        if (webDocument == null || !webDocument.mime_type.startsWith("image/")) {
+            textView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 9.0f, 17.0f, 0.0f));
+            textView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 33.0f, 17.0f, 0.0f));
+            textView3.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 90.0f, 17.0f, 9.0f));
+            backupImageView.setVisibility(8);
             return;
         }
-        this.nameTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 9.0f, 17.0f, 0.0f));
-        this.detailTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 33.0f, 17.0f, 0.0f));
-        this.detailExTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 17.0f, 90.0f, 17.0f, 9.0f));
-        this.imageView.setVisibility(8);
+        boolean z = LocaleController.isRTL;
+        textView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 10.0f : 123.0f, 9.0f, z ? 123.0f : 10.0f, 0.0f));
+        boolean z2 = LocaleController.isRTL;
+        textView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 10.0f : 123.0f, 33.0f, z2 ? 123.0f : 10.0f, 0.0f));
+        boolean z3 = LocaleController.isRTL;
+        textView3.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 10.0f : 123.0f, 90.0f, z3 ? 123.0f : 10.0f, 0.0f));
+        backupImageView.setVisibility(0);
+        Locale locale = Locale.US;
+        backupImageView.getImageReceiver().setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), i + "_" + i2, null, null, -1L, null, obj, 1);
     }
 
-    public void setInvoice(TLRPC.TL_messageMediaInvoice tL_messageMediaInvoice, String str) {
+    public final void setInvoice(TLRPC.TL_messageMediaInvoice tL_messageMediaInvoice, String str) {
         setInfo(tL_messageMediaInvoice.title, tL_messageMediaInvoice.description, tL_messageMediaInvoice.webPhoto, str, tL_messageMediaInvoice);
     }
 
-    public void setReceipt(TLRPC.PaymentReceipt paymentReceipt, String str) {
+    public final void setReceipt(TLRPC.PaymentReceipt paymentReceipt, String str) {
         setInfo(paymentReceipt.title, paymentReceipt.description, paymentReceipt.photo, str, paymentReceipt);
     }
 }

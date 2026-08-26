@@ -18,86 +18,11 @@ public class AndroidGraphics2D implements Graphics2D {
     private Stroke stroke;
     private AffineTransform transform;
 
-    @Override
-    public FontRenderContext getFontRenderContext() {
-        return null;
-    }
-
-    @Override
-    public RenderingHints getRenderingHints() {
-        return null;
-    }
-
-    @Override
-    public void setRenderingHint(RenderingHints.Key key, Object obj) {
-    }
-
-    @Override
-    public void setRenderingHints(RenderingHints renderingHints) {
-    }
-
     public AndroidGraphics2D() {
         Paint paint = new Paint(1);
         this.paint = paint;
         paint.setStrokeCap(Paint.Cap.BUTT);
         paint.setStrokeJoin(Paint.Join.MITER);
-    }
-
-    public void setCanvas(Canvas canvas) {
-        this.canvas = canvas;
-        this.transform = AffineTransform.create(canvas);
-    }
-
-    @Override
-    public Color getColor() {
-        if (this.color == null) {
-            this.color = new Color(this.paint.getColor());
-        }
-        return this.color;
-    }
-
-    @Override
-    public void setColor(Color color) {
-        this.color = color;
-        this.paint.setColor(color.getColorInt());
-    }
-
-    @Override
-    public void fill(Rectangle2D.Float r9) {
-        this.paint.setStyle(Paint.Style.FILL);
-        Canvas canvas = this.canvas;
-        float f = r9.x;
-        float f2 = r9.y;
-        canvas.drawRect(f, f2, f + r9.w, f2 + r9.h, this.paint);
-    }
-
-    @Override
-    public Stroke getStroke() {
-        if (this.stroke == null) {
-            this.stroke = new BasicStroke(this.paint.getStrokeWidth(), 0, 0, this.paint.getStrokeMiter());
-        }
-        return this.stroke;
-    }
-
-    @Override
-    public void setStroke(Stroke stroke) {
-        this.stroke = stroke;
-        this.paint.setStrokeWidth(stroke.width());
-    }
-
-    @Override
-    public AffineTransform getTransform() {
-        AffineTransform affineTransformSave = this.transform.save();
-        this.transform = affineTransformSave;
-        return affineTransformSave;
-    }
-
-    @Override
-    public void setTransform(AffineTransform affineTransform) {
-        if (this.canvas != affineTransform.getCanvas()) {
-            throw new IllegalStateException("Supplied transform has different Canvas attached");
-        }
-        this.transform = affineTransform.restore();
     }
 
     @Override
@@ -110,23 +35,10 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void translate(double d, double d2) {
-        this.transform.translate((float) d, (float) d2);
-    }
-
-    @Override
-    public void scale(double d, double d2) {
-        this.transform.scale(d, d2);
-    }
-
-    @Override
-    public Font getFont() {
-        return this.font;
-    }
-
-    @Override
-    public void setFont(Font font) {
-        this.font = font;
+    public void drawArc(int i, int i2, int i3, int i4, int i5, int i6) {
+        this.paint.setStyle(Paint.Style.STROKE);
+        this.rectF.set(i, i2, i + i3, i2 + i4);
+        this.canvas.drawArc(this.rectF, i5, i6, false, this.paint);
     }
 
     @Override
@@ -140,26 +52,12 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void draw(Line2D.Float r9) {
-        this.paint.setStyle(Paint.Style.STROKE);
-        this.canvas.drawLine((float) r9.x1, (float) r9.y1, (float) r9.x2, (float) r9.y2, this.paint);
-    }
-
-    @Override
-    public void rotate(double d) {
-        this.canvas.rotate((float) Math.toDegrees(d));
-    }
-
-    @Override
-    public void rotate(double d, double d2, double d3) {
-        this.canvas.rotate((float) Math.toDegrees(d), (float) d2, (float) d3);
-    }
-
-    @Override
-    public void drawArc(int i, int i2, int i3, int i4, int i5, int i6) {
-        this.paint.setStyle(Paint.Style.STROKE);
-        this.rectF.set(i, i2, i + i3, i2 + i4);
-        this.canvas.drawArc(this.rectF, i5, i6, false, this.paint);
+    public void fill(Rectangle2D.Float r9) {
+        this.paint.setStyle(Paint.Style.FILL);
+        Canvas canvas = this.canvas;
+        float f = r9.x;
+        float f2 = r9.y;
+        canvas.drawRect(f, f2, f + r9.w, f2 + r9.h, this.paint);
     }
 
     @Override
@@ -170,6 +68,114 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
+    public void fillRect(int i, int i2, int i3, int i4) {
+        this.paint.setStyle(Paint.Style.FILL);
+        this.canvas.drawRect(i, i2, i + i3, i2 + i4, this.paint);
+    }
+
+    @Override
+    public Color getColor() {
+        if (this.color == null) {
+            this.color = new Color(this.paint.getColor());
+        }
+        return this.color;
+    }
+
+    @Override
+    public Font getFont() {
+        return this.font;
+    }
+
+    @Override
+    public FontRenderContext getFontRenderContext() {
+        return null;
+    }
+
+    @Override
+    public RenderingHints getRenderingHints() {
+        return null;
+    }
+
+    @Override
+    public Stroke getStroke() {
+        if (this.stroke == null) {
+            this.stroke = new BasicStroke(this.paint.getStrokeWidth(), 0, 0, this.paint.getStrokeMiter());
+        }
+        return this.stroke;
+    }
+
+    @Override
+    public AffineTransform getTransform() {
+        AffineTransform affineTransformSave = this.transform.save();
+        this.transform = affineTransformSave;
+        return affineTransformSave;
+    }
+
+    @Override
+    public void rotate(double d) {
+        this.canvas.rotate((float) Math.toDegrees(d));
+    }
+
+    @Override
+    public void scale(double d, double d2) {
+        this.transform.scale(d, d2);
+    }
+
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
+        this.transform = AffineTransform.create(canvas);
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+        this.paint.setColor(color.getColorInt());
+    }
+
+    @Override
+    public void setFont(Font font) {
+        this.font = font;
+    }
+
+    @Override
+    public void setRenderingHint(RenderingHints.Key key, Object obj) {
+    }
+
+    @Override
+    public void setRenderingHints(RenderingHints renderingHints) {
+    }
+
+    @Override
+    public void setStroke(Stroke stroke) {
+        this.stroke = stroke;
+        this.paint.setStrokeWidth(stroke.width());
+    }
+
+    @Override
+    public void setTransform(AffineTransform affineTransform) {
+        if (this.canvas != affineTransform.getCanvas()) {
+            throw new IllegalStateException("Supplied transform has different Canvas attached");
+        }
+        this.transform = affineTransform.restore();
+    }
+
+    @Override
+    public void translate(double d, double d2) {
+        this.transform.translate((float) d, (float) d2);
+    }
+
+    @Override
+    public void rotate(double d, double d2, double d3) {
+        this.canvas.rotate((float) Math.toDegrees(d), (float) d2, (float) d3);
+    }
+
+    @Override
+    public void draw(Line2D.Float r9) {
+        this.paint.setStyle(Paint.Style.STROKE);
+        this.canvas.drawLine((float) r9.x1, (float) r9.y1, (float) r9.x2, (float) r9.y2, this.paint);
+    }
+
+    @Override
     public void draw(RoundRectangle2D.Float r6) {
         this.paint.setStyle(Paint.Style.STROKE);
         RectF rectF = this.rectF;
@@ -177,11 +183,5 @@ public class AndroidGraphics2D implements Graphics2D {
         float f2 = r6.y;
         rectF.set(f, f2, r6.width + f, r6.height + f2);
         this.canvas.drawRoundRect(this.rectF, r6.arcwidth, r6.archeight, this.paint);
-    }
-
-    @Override
-    public void fillRect(int i, int i2, int i3, int i4) {
-        this.paint.setStyle(Paint.Style.FILL);
-        this.canvas.drawRect(i, i2, i + i3, i2 + i4, this.paint);
     }
 }

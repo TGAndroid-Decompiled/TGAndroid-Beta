@@ -4,12 +4,12 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 
-public class PhotoBubbleClip extends Path {
-    private int lastCx;
-    private int lastCy;
-    private int lastR;
+public final class PhotoBubbleClip extends Path {
+    public int lastCx;
+    public int lastCy;
+    public int lastR;
 
-    public void setBounds(int i, int i2, int i3) {
+    public final void setBounds(int i, int i2, int i3) {
         if (this.lastCx == i && this.lastCy == i2 && this.lastR == i3) {
             return;
         }
@@ -29,7 +29,7 @@ public class PhotoBubbleClip extends Path {
         float f7 = f4 - (63.73f * f3);
         cubicTo(f4 - (78.0f * f3), f2 - (6.0f * f3), f7, f2 - (15.0f * f3), f7, f2 - (31.0f * f3));
         float f8 = i2;
-        cubicTo(f4 - (74.5f * f3), f2 - (44.75f * f3), f, f8 + (f3 * 18.87f), f, f8);
+        cubicTo(f4 - (74.5f * f3), f2 - (44.75f * f3), f, (f3 * 18.87f) + f8, f, f8);
         close();
         this.lastCx = i;
         this.lastCy = i2;

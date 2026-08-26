@@ -8,37 +8,33 @@ public final class EmptyCoroutineContext implements CoroutineContext, Serializab
     public static final EmptyCoroutineContext INSTANCE = new EmptyCoroutineContext();
 
     @Override
-    public Object fold(Object obj, Function2 operation) {
-        Intrinsics.checkNotNullParameter(operation, "operation");
+    public final Object fold(Object obj, Function2 function2) {
         return obj;
     }
 
     @Override
-    public CoroutineContext.Element get(CoroutineContext.Key key) {
+    public final CoroutineContext.Element get(CoroutineContext.Key key) {
         Intrinsics.checkNotNullParameter(key, "key");
         return null;
     }
 
-    public int hashCode() {
+    public final int hashCode() {
         return 0;
     }
 
     @Override
-    public CoroutineContext minusKey(CoroutineContext.Key key) {
+    public final CoroutineContext minusKey(CoroutineContext.Key key) {
         Intrinsics.checkNotNullParameter(key, "key");
         return this;
     }
 
     @Override
-    public CoroutineContext plus(CoroutineContext context) {
+    public final CoroutineContext plus(CoroutineContext context) {
         Intrinsics.checkNotNullParameter(context, "context");
         return context;
     }
 
-    private EmptyCoroutineContext() {
-    }
-
-    public String toString() {
+    public final String toString() {
         return "EmptyCoroutineContext";
     }
 }

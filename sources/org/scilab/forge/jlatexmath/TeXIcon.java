@@ -20,6 +20,10 @@ public class TeXIcon implements Icon {
     public boolean isColored;
     private final float size;
 
+    public TeXIcon(Box box, float f) {
+        this(box, f, false);
+    }
+
     private static int sanitizePx(int i) {
         if (i < 0 || i > 4096) {
             return 4096;
@@ -27,81 +31,24 @@ public class TeXIcon implements Icon {
         return i;
     }
 
-    protected TeXIcon(Box box, float f) {
-        this(box, f, false);
-    }
-
-    protected TeXIcon(Box box, float f, boolean z) {
-        this.insets = new Insets(0, 0, 0, 0);
-        this.fg = null;
-        this.isColored = false;
-        this.box = box;
-        float f2 = defaultSize;
-        f = f2 != -1.0f ? f2 : f;
-        float f3 = magFactor;
-        if (f3 != 0.0f) {
-            this.size = Math.abs(f3) * f;
-        } else {
-            this.size = f;
-        }
-        if (z) {
-            return;
-        }
+    public float getBaseLine() {
+        double height = ((double) (this.box.getHeight() * this.size)) + 0.99d + ((double) this.insets.top);
+        double depth = ((double) ((this.box.getDepth() + this.box.getHeight()) * this.size)) + 0.99d;
         Insets insets = this.insets;
-        int i = (int) (f * 0.18f);
-        insets.top += i;
-        insets.bottom += i;
-        insets.left += i;
-        insets.right += i;
+        return (float) (height / ((depth + ((double) insets.top)) + ((double) insets.bottom)));
     }
 
-    public void setForeground(Color color) {
-        this.fg = color;
+    public Box getBox() {
+        return this.box;
     }
 
-    public Insets getInsets() {
-        return this.insets;
-    }
-
-    public void setInsets(Insets insets, boolean z) {
-        this.insets = insets;
-        if (z) {
-            return;
-        }
-        int i = insets.top;
-        float f = this.size;
-        insets.top = i + ((int) (f * 0.18f));
-        insets.bottom += (int) (f * 0.18f);
-        insets.left += (int) (f * 0.18f);
-        insets.right += (int) (f * 0.18f);
-    }
-
-    public void setInsets(Insets insets) {
-        setInsets(insets, false);
-    }
-
-    public void setIconWidth(int i, int i2) {
-        float iconWidth = i - getIconWidth();
-        if (iconWidth > 0.0f) {
-            Box box = this.box;
-            this.box = new HorizontalBox(box, box.getWidth() + iconWidth, i2);
-        }
-    }
-
-    public void setIconHeight(int i, int i2) {
-        float iconHeight = i - getIconHeight();
-        if (iconHeight > 0.0f) {
-            this.box = new VerticalBox(this.box, iconHeight, i2);
-        }
+    public int getIconDepth() {
+        return sanitizePx((int) (((double) (this.box.getDepth() * this.size)) + 0.99d + ((double) this.insets.bottom)));
     }
 
     @Override
     public int getIconHeight() {
         return sanitizePx(((int) (((double) (this.box.getHeight() * this.size)) + 0.99d + ((double) this.insets.top))) + ((int) (((double) (this.box.getDepth() * this.size)) + 0.99d + ((double) this.insets.bottom))));
-    }
-
-    public int getIconDepth() {
-        return sanitizePx((int) (((double) (this.box.getDepth() * this.size)) + 0.99d + ((double) this.insets.bottom)));
     }
 
     @Override
@@ -111,27 +58,20 @@ public class TeXIcon implements Icon {
         return sanitizePx((int) (width + ((double) insets.left) + ((double) insets.right)));
     }
 
-    public float getTrueIconHeight() {
-        return (this.box.getHeight() + this.box.getDepth()) * this.size;
+    public Insets getInsets() {
+        return this.insets;
     }
 
     public float getTrueIconDepth() {
         return this.box.getDepth() * this.size;
     }
 
+    public float getTrueIconHeight() {
+        return (this.box.getDepth() + this.box.getHeight()) * this.size;
+    }
+
     public float getTrueIconWidth() {
         return this.box.getWidth() * this.size;
-    }
-
-    public float getBaseLine() {
-        double height = ((double) (this.box.getHeight() * this.size)) + 0.99d + ((double) this.insets.top);
-        double height2 = ((double) ((this.box.getHeight() + this.box.getDepth()) * this.size)) + 0.99d;
-        Insets insets = this.insets;
-        return (float) (height / ((height2 + ((double) insets.top)) + ((double) insets.bottom)));
-    }
-
-    public Box getBox() {
-        return this.box;
     }
 
     @Override
@@ -157,9 +97,69 @@ public class TeXIcon implements Icon {
         Insets insets = this.insets;
         float f2 = i + insets.left;
         float f3 = this.size;
-        box.draw(graphics2D, f2 / f3, ((i2 + insets.top) / f3) + box.getHeight());
+        box.draw(graphics2D, f2 / f3, box.getHeight() + ((i2 + insets.top) / f3));
         graphics2D.setRenderingHints(renderingHints);
         graphics2D.setTransform(transform);
         graphics2D.setColor(color);
+    }
+
+    public void setForeground(Color color) {
+        this.fg = color;
+    }
+
+    public void setIconHeight(int i, int i2) {
+        float iconHeight = i - getIconHeight();
+        if (iconHeight > 0.0f) {
+            this.box = new VerticalBox(this.box, iconHeight, i2);
+        }
+    }
+
+    public void setIconWidth(int i, int i2) {
+        float iconWidth = i - getIconWidth();
+        if (iconWidth > 0.0f) {
+            Box box = this.box;
+            this.box = new HorizontalBox(box, box.getWidth() + iconWidth, i2);
+        }
+    }
+
+    public void setInsets(Insets insets, boolean z) {
+        this.insets = insets;
+        if (z) {
+            return;
+        }
+        int i = insets.top;
+        float f = this.size;
+        insets.top = i + ((int) (f * 0.18f));
+        insets.bottom += (int) (f * 0.18f);
+        insets.left += (int) (f * 0.18f);
+        insets.right += (int) (f * 0.18f);
+    }
+
+    public TeXIcon(Box box, float f, boolean z) {
+        this.insets = new Insets(0, 0, 0, 0);
+        this.fg = null;
+        this.isColored = false;
+        this.box = box;
+        float f2 = defaultSize;
+        f = f2 != -1.0f ? f2 : f;
+        float f3 = magFactor;
+        if (f3 != 0.0f) {
+            this.size = Math.abs(f3) * f;
+        } else {
+            this.size = f;
+        }
+        if (z) {
+            return;
+        }
+        Insets insets = this.insets;
+        int i = (int) (f * 0.18f);
+        insets.top += i;
+        insets.bottom += i;
+        insets.left += i;
+        insets.right += i;
+    }
+
+    public void setInsets(Insets insets) {
+        setInsets(insets, false);
     }
 }

@@ -9,10 +9,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.LayoutHelper;
 
 public abstract class GlassTabsView extends FrameLayout {
-    private final Rect lensBounds;
-    private final Rect lensBoundsForeground;
-    private final Paint lensPaint;
-    private float lensVisibility;
+    public final Rect lensBounds;
+    public final Rect lensBoundsForeground;
+    public final Paint lensPaint;
+    public float lensVisibility;
     public final LinearLayout linearLayout;
 
     public GlassTabsView(Context context) {
@@ -24,27 +24,16 @@ public abstract class GlassTabsView extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(0);
-        addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f));
+        addView(linearLayout, LayoutHelper.createFrame(-1.0f, -1));
     }
 
-    protected void setLensColor(int i, int i2) {
-        this.lensPaint.setColor(i);
-    }
-
-    protected void setLensBounds(int i, int i2, int i3, int i4) {
-        this.lensBounds.set(i, i2, i3, i4);
-        checkBounds();
-    }
-
-    protected void setLensVisibility(float f) {
+    public void setLensVisibility(float f) {
         this.lensVisibility = f;
-        checkBounds();
-    }
-
-    private void checkBounds() {
-        int iDp = AndroidUtilities.dp(this.lensVisibility * 7.0f);
-        this.lensBoundsForeground.set(this.lensBounds);
+        int iDp = AndroidUtilities.dp(f * 7.0f);
+        Rect rect = this.lensBounds;
+        Rect rect2 = this.lensBoundsForeground;
+        rect2.set(rect);
         int i = -iDp;
-        this.lensBoundsForeground.inset(i, i);
+        rect2.inset(i, i);
     }
 }

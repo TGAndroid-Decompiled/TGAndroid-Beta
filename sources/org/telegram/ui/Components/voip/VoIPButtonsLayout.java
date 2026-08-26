@@ -6,12 +6,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 
-public class VoIPButtonsLayout extends FrameLayout {
-    int childPadding;
-    private int childSize;
-    int childWidth;
-    private boolean startPadding;
-    int visibleChildCount;
+public final class VoIPButtonsLayout extends FrameLayout {
+    public int childPadding;
+    public int childSize;
+    public int childWidth;
+    public boolean startPadding;
+    public int visibleChildCount;
 
     public VoIPButtonsLayout(Context context) {
         super(context);
@@ -20,7 +20,7 @@ public class VoIPButtonsLayout extends FrameLayout {
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (isEnabled()) {
             return super.dispatchTouchEvent(motionEvent);
         }
@@ -28,7 +28,33 @@ public class VoIPButtonsLayout extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        if (this.startPadding) {
+            int childCount = (int) (((getChildCount() - this.visibleChildCount) / 2.0f) * ((this.childPadding * 2) + this.childWidth));
+            for (int i5 = 0; i5 < getChildCount(); i5++) {
+                View childAt = getChildAt(i5);
+                if (childAt.getVisibility() != 8) {
+                    int i6 = this.childPadding + childCount;
+                    childAt.layout(i6, 0, childAt.getMeasuredWidth() + i6, childAt.getMeasuredHeight());
+                    childCount = childAt.getMeasuredWidth() + (this.childPadding * 2) + childCount;
+                }
+            }
+            return;
+        }
+        int measuredWidth = this.visibleChildCount > 0 ? (getMeasuredWidth() - this.childWidth) / (this.visibleChildCount - 1) : 0;
+        int i7 = 0;
+        for (int i8 = 0; i8 < getChildCount(); i8++) {
+            View childAt2 = getChildAt(i8);
+            if (childAt2.getVisibility() != 8) {
+                int i9 = i7 * measuredWidth;
+                childAt2.layout(i9, 0, childAt2.getMeasuredWidth() + i9, childAt2.getMeasuredHeight());
+                i7++;
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         this.visibleChildCount = 0;
         for (int i3 = 0; i3 < getChildCount(); i3++) {
@@ -48,32 +74,6 @@ public class VoIPButtonsLayout extends FrameLayout {
             }
         }
         setMeasuredDimension(size, Math.max(measuredHeight, AndroidUtilities.dp(80.0f)));
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        if (this.startPadding) {
-            int childCount = (int) (((getChildCount() - this.visibleChildCount) / 2.0f) * (this.childWidth + (this.childPadding * 2)));
-            for (int i5 = 0; i5 < getChildCount(); i5++) {
-                View childAt = getChildAt(i5);
-                if (childAt.getVisibility() != 8) {
-                    int i6 = this.childPadding + childCount;
-                    childAt.layout(i6, 0, childAt.getMeasuredWidth() + i6, childAt.getMeasuredHeight());
-                    childCount += (this.childPadding * 2) + childAt.getMeasuredWidth();
-                }
-            }
-            return;
-        }
-        int measuredWidth = this.visibleChildCount > 0 ? (getMeasuredWidth() - this.childWidth) / (this.visibleChildCount - 1) : 0;
-        int i7 = 0;
-        for (int i8 = 0; i8 < getChildCount(); i8++) {
-            View childAt2 = getChildAt(i8);
-            if (childAt2.getVisibility() != 8) {
-                int i9 = i7 * measuredWidth;
-                childAt2.layout(i9, 0, childAt2.getMeasuredWidth() + i9, childAt2.getMeasuredHeight());
-                i7++;
-            }
-        }
     }
 
     public void setChildSize(int i) {

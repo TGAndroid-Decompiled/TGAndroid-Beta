@@ -10,13 +10,11 @@ import org.telegram.messenger.SharedConfig;
 
 public abstract class BlurredFrameLayout extends FrameLayout {
     public int backgroundColor;
-    public int backgroundPaddingBottom;
-    public int backgroundPaddingTop;
-    protected Paint backgroundPaint;
-    private Rect blurBounds;
-    public boolean drawBlur;
-    public boolean isTopView;
-    protected final SizeNotifierFrameLayout sizeNotifierFrameLayout;
+    public Paint backgroundPaint;
+    public final Rect blurBounds;
+    public final boolean drawBlur;
+    public final boolean isTopView;
+    public final SizeNotifierFrameLayout sizeNotifierFrameLayout;
 
     public BlurredFrameLayout(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
         super(context);
@@ -28,7 +26,7 @@ public abstract class BlurredFrameLayout extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null || !this.drawBlur || this.backgroundColor == 0) {
             canvas2 = canvas;
@@ -37,7 +35,7 @@ public abstract class BlurredFrameLayout extends FrameLayout {
                 this.backgroundPaint = new Paint();
             }
             this.backgroundPaint.setColor(this.backgroundColor);
-            this.blurBounds.set(0, this.backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight() - this.backgroundPaddingBottom);
+            this.blurBounds.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
             float y = 0.0f;
             View view = this;
             while (true) {
@@ -45,12 +43,11 @@ public abstract class BlurredFrameLayout extends FrameLayout {
                 if (view != sizeNotifierFrameLayout) {
                     y += view.getY();
                     Object parent = view.getParent();
-                    if (parent instanceof View) {
-                        view = (View) parent;
-                    } else {
+                    if (!(parent instanceof View)) {
                         super.dispatchDraw(canvas);
                         return;
                     }
+                    view = (View) parent;
                 } else {
                     canvas2 = canvas;
                     sizeNotifierFrameLayout.drawBlurRect(canvas2, y, this.blurBounds, this.backgroundPaint, this.isTopView);
@@ -61,24 +58,7 @@ public abstract class BlurredFrameLayout extends FrameLayout {
     }
 
     @Override
-    public void setTranslationY(float f) {
-        if (SharedConfig.chatBlurEnabled() && f != getTranslationY()) {
-            invalidate();
-        }
-        super.setTranslationY(f);
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        if (SharedConfig.chatBlurEnabled() && this.sizeNotifierFrameLayout != null) {
-            this.backgroundColor = i;
-        } else {
-            super.setBackgroundColor(i);
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
         if (SharedConfig.chatBlurEnabled() && (sizeNotifierFrameLayout = this.sizeNotifierFrameLayout) != null) {
             sizeNotifierFrameLayout.blurBehindViews.add(this);
@@ -87,11 +67,28 @@ public abstract class BlurredFrameLayout extends FrameLayout {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
         if (sizeNotifierFrameLayout != null) {
             sizeNotifierFrameLayout.blurBehindViews.remove(this);
         }
         super.onDetachedFromWindow();
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null) {
+            super.setBackgroundColor(i);
+        } else {
+            this.backgroundColor = i;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f) {
+        if (SharedConfig.chatBlurEnabled() && f != getTranslationY()) {
+            invalidate();
+        }
+        super.setTranslationY(f);
     }
 }

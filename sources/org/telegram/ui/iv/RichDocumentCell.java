@@ -21,6 +21,7 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
@@ -32,61 +33,105 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.PhotoViewer;
 
-public class RichDocumentCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, DownloadController.FileDownloadProgressListener {
-    private boolean attached;
-    private boolean blockRtl;
-    private TLRPC.Document boundDocument;
-    private final int buttonSize;
-    private int buttonState;
-    private int buttonX;
-    private final int buttonY;
-    private final RichCaptionController caption;
-    private final int currentAccount;
-    private Delegate delegate;
-    private boolean hasPreview;
-    private int mediaX;
-    private MessageObject messageObject;
-    private final int observerTag;
-    private boolean pressed;
-    private final Paint previewBackgroundPaint;
-    private final ImageReceiver previewImage;
-    private final RadialProgress2 radialProgress;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private final Paint selectionPaint;
-    private StaticLayout sizeLayout;
-    private final TextPaint sizePaint;
-    private final TextPaint textPaint;
-    private StaticLayout titleLayout;
+public final class RichDocumentCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, DownloadController.FileDownloadProgressListener {
+    public boolean attached;
+    public boolean blockRtl;
+    public TLRPC.Document boundDocument;
+    public final int buttonSize;
+    public int buttonState;
+    public int buttonX;
+    public final int buttonY;
+    public final RichCaptionController caption;
+    public final int currentAccount;
+    public RichEditorListView.AnonymousClass8 delegate;
+    public boolean hasPreview;
+    public int mediaX;
+    public MessageObject messageObject;
+    public final int observerTag;
+    public boolean pressed;
+    public final Paint previewBackgroundPaint;
+    public final ImageReceiver previewImage;
+    public final RadialProgress2 radialProgress;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final Paint selectionPaint;
+    public StaticLayout sizeLayout;
+    public final TextPaint sizePaint;
+    public final TextPaint textPaint;
+    public StaticLayout titleLayout;
 
-    public interface Delegate {
-        MessageObject getFileRefParentObject();
+    public final class Factory extends UItem.UItemFactory {
+        public static final int $r8$clinit = 0;
 
-        TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper();
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
 
-        void onCancelUpload(BlockRow blockRow);
+        @Override
+        public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            MessageObject messageObject;
+            MediaUploadState mediaUploadState;
+            RichDocumentCell richDocumentCell = (RichDocumentCell) view;
+            BlockRow blockRow = (BlockRow) uItem.object;
+            RichEditorListView.AnonymousClass8 anonymousClass8 = (RichEditorListView.AnonymousClass8) uItem.object2;
+            richDocumentCell.currentRow = blockRow;
+            richDocumentCell.delegate = anonymousClass8;
+            richDocumentCell.blockRtl = LocaleController.isRTL;
+            richDocumentCell.bindBlockInset(blockRow);
+            richDocumentCell.caption.bind();
+            TLRPC.Document document = richDocumentCell.document();
+            if (richDocumentCell.boundDocument != document) {
+                richDocumentCell.boundDocument = document;
+                if (document == null) {
+                    messageObject = null;
+                } else {
+                    TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                    tL_message.out = true;
+                    tL_message.id = -Long.valueOf(document.id).hashCode();
+                    tL_message.peer_id = new TLRPC.TL_peerUser();
+                    TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                    tL_message.from_id = tL_peerUser;
+                    TLRPC.Peer peer = tL_message.peer_id;
+                    int i = richDocumentCell.currentAccount;
+                    long clientUserId = UserConfig.getInstance(i).getClientUserId();
+                    peer.user_id = clientUserId;
+                    tL_peerUser.user_id = clientUserId;
+                    tL_message.date = (int) (System.currentTimeMillis() / 1000);
+                    tL_message.message = "";
+                    TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+                    tL_message.media = tL_messageMediaDocument;
+                    tL_messageMediaDocument.flags |= 3;
+                    tL_messageMediaDocument.document = document;
+                    tL_message.flags |= 768;
+                    BlockRow blockRow2 = richDocumentCell.currentRow;
+                    if (blockRow2 != null && (mediaUploadState = blockRow2.media) != null && !TextUtils.isEmpty(mediaUploadState.localPath)) {
+                        tL_message.attachPath = richDocumentCell.currentRow.media.localPath;
+                    }
+                    messageObject = new MessageObject(i, tL_message, false, true);
+                }
+                richDocumentCell.messageObject = messageObject;
+            }
+            richDocumentCell.bindPreview(document);
+            richDocumentCell.rebuildLayouts();
+            if (richDocumentCell.attached) {
+                richDocumentCell.updateButtonState(false);
+            }
+            richDocumentCell.requestLayout();
+            richDocumentCell.invalidate();
+        }
 
-        void onCaptionChanged(BlockRow blockRow);
+        @Override
+        public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            RichDocumentCell richDocumentCell = new RichDocumentCell(context, i, resourcesProvider);
+            richDocumentCell.setBackground(new RichEditor.DraggingDrawable(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider)));
+            return richDocumentCell;
+        }
 
-        void onCaptionEnter(BlockRow blockRow);
-
-        void onCaptionLockedInsert(CharSequence charSequence);
-
-        boolean onCaptionSelectAll(BlockRow blockRow);
-
-        void onCaptionSpansChanged(BlockRow blockRow);
-
-        void onCaptionWillChange(BlockRow blockRow, int i, int i2);
-
-        void onRequestWindowFocusable(RichEditText richEditText, boolean z);
-    }
-
-    public int[] getColorKeys() {
-        return Theme.Colorable.CC.$default$getColorKeys(this);
-    }
-
-    @Override
-    public void onProgressUpload(String str, long j, long j2, boolean z) {
+        @Override
+        public final boolean isClickable() {
+            return false;
+        }
     }
 
     public RichDocumentCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
@@ -106,7 +151,7 @@ public class RichDocumentCell extends RichBlockCell implements Theme.Colorable, 
         setWillNotDraw(false);
         setMinimumHeight(AndroidUtilities.dp(66.0f));
         this.observerTag = DownloadController.getInstance(i).generateObserverTag();
-        RadialProgress2 radialProgress2 = new RadialProgress2(this, resourcesProvider);
+        RadialProgress2 radialProgress2 = new RadialProgress2(resourcesProvider, this);
         this.radialProgress = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i2 = this.buttonX;
@@ -115,98 +160,63 @@ public class RichDocumentCell extends RichBlockCell implements Theme.Colorable, 
         this.previewImage = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new RichCaptionController.Host() {
-            @Override
-            public BlockRow currentRow() {
-                return RichDocumentCell.this.currentRow;
-            }
-
-            @Override
-            public TextSelectionHelper.ArticleTextSelectionHelper selectionHelper() {
-                if (RichDocumentCell.this.delegate == null) {
-                    return null;
-                }
-                return RichDocumentCell.this.delegate.getSelectionHelper();
-            }
-
-            @Override
-            public TextSelectionHelper.ArticleSelectableView cell() {
-                return RichDocumentCell.this;
-            }
-
-            @Override
-            public void onCaptionWillChange(int i3, int i4) {
-                if (RichDocumentCell.this.delegate != null) {
-                    RichDocumentCell.this.delegate.onCaptionWillChange(RichDocumentCell.this.currentRow, i3, i4);
-                }
-            }
-
-            @Override
-            public void onCaptionChanged() {
-                if (RichDocumentCell.this.delegate != null) {
-                    RichDocumentCell.this.delegate.onCaptionChanged(RichDocumentCell.this.currentRow);
-                }
-            }
-
-            @Override
-            public void onCaptionSpansChanged() {
-                if (RichDocumentCell.this.delegate != null) {
-                    RichDocumentCell.this.delegate.onCaptionSpansChanged(RichDocumentCell.this.currentRow);
-                }
-            }
-
-            @Override
-            public void onCaptionEnter() {
-                if (RichDocumentCell.this.delegate != null) {
-                    RichDocumentCell.this.delegate.onCaptionEnter(RichDocumentCell.this.currentRow);
-                }
-            }
-
-            @Override
-            public void onRequestWindowFocusable(RichEditText richEditText, boolean z) {
-                if (RichDocumentCell.this.delegate != null) {
-                    RichDocumentCell.this.delegate.onRequestWindowFocusable(richEditText, z);
-                }
-            }
-
-            @Override
-            public void onCaptionLockedInsert(CharSequence charSequence) {
-                if (RichDocumentCell.this.delegate != null) {
-                    RichDocumentCell.this.delegate.onCaptionLockedInsert(charSequence);
-                }
-            }
-
-            @Override
-            public boolean onCaptionSelectAll() {
-                return RichDocumentCell.this.delegate != null && RichDocumentCell.this.delegate.onCaptionSelectAll(RichDocumentCell.this.currentRow);
-            }
-        });
+        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new PhotoViewer.AnonymousClass24(this, 10));
         this.caption = richCaptionController;
         addView(richCaptionController.editText, LayoutHelper.createFrame(-2, -2, 51));
-        updateColors();
+        updateColors$1();
     }
 
-    public void bind(BlockRow blockRow, Delegate delegate) {
-        this.currentRow = blockRow;
-        this.delegate = delegate;
-        this.blockRtl = RichBlockChrome.rtl();
-        bindBlockInset(blockRow);
-        this.caption.bind();
-        TLRPC.Document document = document();
-        if (this.boundDocument != document) {
-            this.boundDocument = document;
-            this.messageObject = document == null ? null : buildMessageObject(document);
+    public final void bindPreview(TLRPC.Document document) {
+        MediaUploadState mediaUploadState;
+        String str;
+        MediaUploadState mediaUploadState2;
+        BlockRow blockRow = this.currentRow;
+        String str2 = (blockRow == null || (mediaUploadState2 = blockRow.media) == null) ? null : mediaUploadState2.localPath;
+        File file = TextUtils.isEmpty(str2) ? null : new File(str2);
+        String lowerCase = (document == null || (str = document.mime_type) == null) ? "" : str.toLowerCase();
+        BlockRow blockRow2 = this.currentRow;
+        boolean z = blockRow2 != null && (mediaUploadState = blockRow2.media) != null && mediaUploadState.isPending() && file != null && file.exists() && (lowerCase.startsWith("image/") || lowerCase.equals("video/mp4"));
+        boolean zIsDocumentHasThumb = MessageObject.isDocumentHasThumb(document);
+        this.hasPreview = z || zIsDocumentHasThumb;
+        int iDp = AndroidUtilities.dp(16.0f) + (this.blockRtl ? 0 : this.blockInset);
+        this.mediaX = iDp;
+        if (this.hasPreview) {
+            iDp += AndroidUtilities.dp(21.0f);
         }
-        bindPreview(document);
-        rebuildLayouts();
-        if (this.attached) {
-            updateButtonState(false);
+        this.buttonX = iDp;
+        int iDp2 = this.hasPreview ? AndroidUtilities.dp(31.0f) : this.buttonY;
+        int i = this.buttonX;
+        int i2 = this.buttonSize;
+        this.radialProgress.setProgressRect(i, iDp2, i + i2, i2 + iDp2);
+        ImageReceiver imageReceiver = this.previewImage;
+        if (z) {
+            imageReceiver.setImageCoords(this.mediaX, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
+            this.previewImage.setImage(ImageLocation.getForPath(str2), "86_86", null, null, document, 1);
+            return;
         }
-        requestLayout();
-        invalidate();
+        if (!zIsDocumentHasThumb) {
+            imageReceiver.clearImage();
+            return;
+        }
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320, false, null, true);
+        RichEditorListView.AnonymousClass8 anonymousClass8 = this.delegate;
+        MessageObject messageObject = anonymousClass8 == null ? null : RichEditorListView.this.fileRefParentObject;
+        imageReceiver.setImageCoords(this.mediaX, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
+        ImageLocation forDocument = closestPhotoSizeWithSize != null ? ImageLocation.getForDocument(closestPhotoSizeWithSize, document) : null;
+        Drawable drawableCreateStripedBitmap = ImageLoader.createStripedBitmap(document.thumbs);
+        if (messageObject == null) {
+            messageObject = this.messageObject;
+        }
+        this.previewImage.setImage(forDocument, "86_86", drawableCreateStripedBitmap, null, messageObject, 1);
     }
 
-    private TLRPC.Document document() {
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.caption.drawSelection(canvas);
+    }
+
+    public final TLRPC.Document document() {
         MediaUploadState mediaUploadState;
         BlockRow blockRow = this.currentRow;
         if (blockRow == null || (mediaUploadState = blockRow.media) == null) {
@@ -215,39 +225,265 @@ public class RichDocumentCell extends RichBlockCell implements Theme.Colorable, 
         return mediaUploadState.document;
     }
 
-    private boolean isUploading() {
-        MediaUploadState mediaUploadState;
-        BlockRow blockRow = this.currentRow;
-        return (blockRow == null || (mediaUploadState = blockRow.media) == null || !mediaUploadState.isPending()) ? false : true;
+    @Override
+    public final void fillTextLayoutBlocks(ArrayList arrayList) {
+        this.caption.fillTextLayoutBlocks(arrayList);
     }
 
-    private MessageObject buildMessageObject(TLRPC.Document document) {
-        MediaUploadState mediaUploadState;
-        TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.out = true;
-        tL_message.id = -Long.valueOf(document.id).hashCode();
-        tL_message.peer_id = new TLRPC.TL_peerUser();
-        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-        tL_message.from_id = tL_peerUser;
-        TLRPC.Peer peer = tL_message.peer_id;
-        long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-        peer.user_id = clientUserId;
-        tL_peerUser.user_id = clientUserId;
-        tL_message.date = (int) (System.currentTimeMillis() / 1000);
-        tL_message.message = "";
-        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-        tL_message.media = tL_messageMediaDocument;
-        tL_messageMediaDocument.flags |= 3;
-        tL_messageMediaDocument.document = document;
-        tL_message.flags |= 768;
-        BlockRow blockRow = this.currentRow;
-        if (blockRow != null && (mediaUploadState = blockRow.media) != null && !TextUtils.isEmpty(mediaUploadState.localPath)) {
-            tL_message.attachPath = this.currentRow.media.localPath;
+    @Override
+    public RichEditText getCaptionEditText() {
+        return this.caption.editText;
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public int getObserverTag() {
+        return this.observerTag;
+    }
+
+    @Override
+    public BlockRow getRow() {
+        return this.currentRow;
+    }
+
+    @Override
+    public final boolean isPressOnCaption(int i, int i2) {
+        return this.caption.isPressOnCaption(i, i2);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.attached = true;
+        this.radialProgress.setParent(this);
+        this.previewImage.onAttachedToWindow();
+        updateButtonState(false);
+    }
+
+    @Override
+    public final void onBlockInsetChanged(int i) {
+        int iDp = AndroidUtilities.dp(16.0f);
+        if (this.blockRtl) {
+            i = 0;
         }
-        return new MessageObject(this.currentAccount, tL_message, false, true);
+        int iDp2 = iDp + i;
+        this.mediaX = iDp2;
+        if (this.hasPreview) {
+            iDp2 += AndroidUtilities.dp(21.0f);
+        }
+        this.buttonX = iDp2;
+        int iDp3 = this.hasPreview ? AndroidUtilities.dp(31.0f) : this.buttonY;
+        int i2 = this.buttonX;
+        int i3 = this.buttonSize;
+        this.radialProgress.setProgressRect(i2, iDp3, i2 + i3, i3 + iDp3);
+        requestLayout();
     }
 
-    private void rebuildLayouts() {
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.attached = false;
+        this.previewImage.onDetachedFromWindow();
+        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i;
+        float f;
+        TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+        if (document() == null) {
+            return;
+        }
+        boolean z = this.hasPreview;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (z && !this.previewImage.draw(canvas)) {
+            Paint paint = this.previewBackgroundPaint;
+            paint.setColor(Theme.getColor(Theme.key_chat_inFileBackground, resourcesProvider));
+            canvas.drawRoundRect(this.mediaX, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f) + this.mediaX, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
+        }
+        this.radialProgress.draw(canvas);
+        if (this.hasPreview) {
+            i = this.mediaX;
+            f = 97.0f;
+        } else {
+            i = this.buttonX;
+            f = 54.0f;
+        }
+        int iDp = AndroidUtilities.dp(f) + i;
+        this.textPaint.setColor(Theme.getColor(Theme.key_chat_inFileNameText, resourcesProvider));
+        int iDp2 = AndroidUtilities.dp(12.0f);
+        if (this.titleLayout != null) {
+            canvas.save();
+            canvas.translate(iDp, iDp2);
+            this.titleLayout.draw(canvas);
+            canvas.restore();
+        }
+        this.sizePaint.setColor(Theme.getColor(Theme.key_chat_inTimeText, resourcesProvider));
+        StaticLayout staticLayout = this.titleLayout;
+        int iDp3 = AndroidUtilities.dp(2.0f) + iDp2 + (staticLayout == null ? 0 : staticLayout.getHeight());
+        if (this.sizeLayout != null) {
+            canvas.save();
+            canvas.translate(iDp, iDp3);
+            this.sizeLayout.draw(canvas);
+            canvas.restore();
+        }
+        if (this.delegate == null || !(getParent() instanceof RecyclerView) || (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) == null || !textSelectionHelper.isInSelectionMode()) {
+            return;
+        }
+        ((RecyclerView) getParent()).getClass();
+        int childAdapterPosition = RecyclerView.getChildAdapterPosition(this);
+        if (childAdapterPosition <= textSelectionHelper.startViewPosition || childAdapterPosition > textSelectionHelper.endViewPosition) {
+            return;
+        }
+        canvas.drawRoundRect(AndroidUtilities.dp(8.0f) + (this.blockRtl ? 0 : this.blockInset), AndroidUtilities.dp(2.0f), (getWidth() - (this.blockRtl ? this.blockInset : 0)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(this.hasPreview ? 104.0f : 64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectionPaint);
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z) {
+        updateButtonState(true);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        boolean z2 = this.blockRtl;
+        this.caption.layout(z2 ? 0 : this.blockInset, z2 ? this.blockInset : 0, i3 - i, AndroidUtilities.dp(this.hasPreview ? 106.0f : 66.0f));
+        rebuildLayouts();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        boolean z = this.blockRtl;
+        setMeasuredDimension(size, AndroidUtilities.dp(this.hasPreview ? 106.0f : 66.0f) + this.caption.measure(z ? 0 : this.blockInset, z ? this.blockInset : 0, size));
+    }
+
+    @Override
+    public final void onProgressDownload(String str, long j, long j2) {
+        this.radialProgress.setProgress(j2 <= 0 ? 0.0f : Math.min(1.0f, j / j2), true);
+    }
+
+    @Override
+    public final void onProgressUpload(String str, long j, long j2, boolean z) {
+    }
+
+    @Override
+    public final void onSuccessDownload(String str) {
+        this.radialProgress.setProgress(1.0f, true);
+        updateButtonState(true);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z;
+        MessageObject messageObject;
+        MediaUploadState mediaUploadState;
+        if (motionEvent.getX() < this.mediaX || motionEvent.getX() > getWidth() - AndroidUtilities.dp(12.0f) || motionEvent.getY() < AndroidUtilities.dp(10.0f)) {
+            z = false;
+        } else {
+            if (motionEvent.getY() <= AndroidUtilities.dp(this.hasPreview ? 96.0f : 54.0f)) {
+                z = true;
+            } else {
+                z = false;
+            }
+        }
+        if (motionEvent.getActionMasked() == 0 && z) {
+            this.pressed = true;
+            return true;
+        }
+        if (motionEvent.getActionMasked() == 1 && this.pressed) {
+            this.pressed = false;
+            if (z) {
+                playSoundEffect(0);
+                BlockRow blockRow = this.currentRow;
+                if (blockRow == null || (mediaUploadState = blockRow.media) == null || !mediaUploadState.isPending()) {
+                    int i = this.buttonState;
+                    Activity activity = null;
+                    if (i == 0) {
+                        Context context = getContext();
+                        while (true) {
+                            if (!(context instanceof ContextWrapper)) {
+                                if (!(context instanceof Activity)) {
+                                    break;
+                                }
+                                activity = (Activity) context;
+                                break;
+                            }
+                            if (context instanceof Activity) {
+                                activity = (Activity) context;
+                                break;
+                            }
+                            context = ((ContextWrapper) context).getBaseContext();
+                        }
+                        if (activity != null && (messageObject = this.messageObject) != null) {
+                            AndroidUtilities.openForView(messageObject, activity, this.resourcesProvider, false);
+                        }
+                    } else {
+                        RadialProgress2 radialProgress2 = this.radialProgress;
+                        int i2 = this.currentAccount;
+                        if (i == 1 && document() != null) {
+                            RichEditorListView.AnonymousClass8 anonymousClass8 = this.delegate;
+                            MessageObject messageObject2 = anonymousClass8 != null ? RichEditorListView.this.fileRefParentObject : null;
+                            FileLoader fileLoader = FileLoader.getInstance(i2);
+                            TLRPC.Document document = document();
+                            if (messageObject2 == null) {
+                                messageObject2 = this.messageObject;
+                            }
+                            fileLoader.loadFile(document, messageObject2, 1, 1);
+                            this.buttonState = 2;
+                            radialProgress2.setIcon(3, true, true);
+                        } else if (this.buttonState == 2 && document() != null) {
+                            FileLoader.getInstance(i2).cancelLoadFile(document());
+                            this.buttonState = 1;
+                            radialProgress2.setIcon(2, false, true);
+                        }
+                    }
+                } else {
+                    RichEditorListView.AnonymousClass8 anonymousClass9 = this.delegate;
+                    if (anonymousClass9 != null) {
+                        BlockRow blockRow2 = this.currentRow;
+                        RichEditorListView richEditorListView = RichEditorListView.this;
+                        RichMediaUploader richMediaUploader = (RichMediaUploader) richEditorListView.uploaders.remove(blockRow2.media);
+                        if (richMediaUploader != null) {
+                            richMediaUploader.cancel();
+                        }
+                        RichEditorHistory richEditorHistory = richEditorListView.history;
+                        if (richEditorHistory != null) {
+                            AndroidUtilities.cancelRunOnUIThread(richEditorHistory.commitRunnable);
+                            richEditorHistory.commit();
+                        }
+                        richEditorListView.rows.remove(blockRow2);
+                        richEditorListView.adapter.update(true);
+                        RichEditorHistory richEditorHistory2 = richEditorListView.history;
+                        if (richEditorHistory2 != null) {
+                            richEditorHistory2.record();
+                        }
+                        richEditorListView.delegate.onContentChanged();
+                    }
+                }
+                invalidate();
+                return true;
+            }
+        } else {
+            if (motionEvent.getActionMasked() == 3) {
+                this.pressed = false;
+            }
+            if (!this.pressed && !super.onTouchEvent(motionEvent)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void persistCaption() {
+        this.caption.persist();
+    }
+
+    public final void rebuildLayouts() {
         int i;
         float f;
         MediaUploadState mediaUploadState;
@@ -262,10 +498,12 @@ public class RichDocumentCell extends RichBlockCell implements Theme.Colorable, 
             i = this.buttonX;
             f = 54.0f;
         }
-        int iMax = Math.max(AndroidUtilities.dp(40.0f), (((getMeasuredWidth() > 0 ? getMeasuredWidth() : AndroidUtilities.displaySize.x) - (i + AndroidUtilities.dp(f))) - AndroidUtilities.dp(16.0f)) - (this.blockRtl ? blockInset() : 0));
-        this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        this.textPaint.setTypeface(AndroidUtilities.bold());
-        this.sizePaint.setTextSize(AndroidUtilities.dp(13.0f));
+        int iMax = Math.max(AndroidUtilities.dp(40.0f), (((getMeasuredWidth() > 0 ? getMeasuredWidth() : AndroidUtilities.displaySize.x) - (AndroidUtilities.dp(f) + i)) - AndroidUtilities.dp(16.0f)) - (this.blockRtl ? this.blockInset : 0));
+        TextPaint textPaint = this.textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setTypeface(AndroidUtilities.bold());
+        TextPaint textPaint2 = this.sizePaint;
+        textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         String documentFileName = FileLoader.getDocumentFileName(document);
         if (TextUtils.isEmpty(documentFileName) && (mediaUploadState = this.currentRow.media) != null && !TextUtils.isEmpty(mediaUploadState.localPath)) {
             documentFileName = new File(this.currentRow.media.localPath).getName();
@@ -273,8 +511,7 @@ public class RichDocumentCell extends RichBlockCell implements Theme.Colorable, 
         if (documentFileName == null) {
             documentFileName = "";
         }
-        CharSequence charSequenceEllipsize = TextUtils.ellipsize(documentFileName, this.textPaint, iMax, TextUtils.TruncateAt.END);
-        TextPaint textPaint = this.textPaint;
+        CharSequence charSequenceEllipsize = TextUtils.ellipsize(documentFileName, textPaint, iMax, TextUtils.TruncateAt.END);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
         this.titleLayout = new StaticLayout(charSequenceEllipsize, textPaint, iMax, alignment, 1.0f, 0.0f, false);
         long length = document.size;
@@ -282,376 +519,97 @@ public class RichDocumentCell extends RichBlockCell implements Theme.Colorable, 
             MediaUploadState mediaUploadState2 = this.currentRow.media;
             length = (mediaUploadState2 == null || TextUtils.isEmpty(mediaUploadState2.localPath)) ? 0L : new File(this.currentRow.media.localPath).length();
         }
-        this.sizeLayout = new StaticLayout(AndroidUtilities.formatFileSize(length), this.sizePaint, iMax, alignment, 1.0f, 0.0f, false);
+        this.sizeLayout = new StaticLayout(AndroidUtilities.formatFileSize(length), textPaint2, iMax, alignment, 1.0f, 0.0f, false);
     }
 
-    @Override
-    protected void onBlockInsetChanged(int i) {
-        int iDp = AndroidUtilities.dp(16.0f);
-        if (this.blockRtl) {
-            i = 0;
-        }
-        int iDp2 = iDp + i;
-        this.mediaX = iDp2;
-        if (this.hasPreview) {
-            iDp2 += AndroidUtilities.dp(21.0f);
-        }
-        this.buttonX = iDp2;
-        int iDp3 = this.hasPreview ? AndroidUtilities.dp(31.0f) : this.buttonY;
-        RadialProgress2 radialProgress2 = this.radialProgress;
-        int i2 = this.buttonX;
-        int i3 = this.buttonSize;
-        radialProgress2.setProgressRect(i2, iDp3, i2 + i3, i3 + iDp3);
-        requestLayout();
-    }
-
-    private void bindPreview(TLRPC.Document document) {
-        String str;
+    public final void updateButtonState(boolean z) {
+        File pathToAttach;
         MediaUploadState mediaUploadState;
-        BlockRow blockRow = this.currentRow;
-        String str2 = (blockRow == null || (mediaUploadState = blockRow.media) == null) ? null : mediaUploadState.localPath;
-        File file = TextUtils.isEmpty(str2) ? null : new File(str2);
-        String lowerCase = (document == null || (str = document.mime_type) == null) ? "" : str.toLowerCase();
-        boolean z = isUploading() && file != null && file.exists() && (lowerCase.startsWith("image/") || lowerCase.equals("video/mp4"));
-        boolean zIsDocumentHasThumb = MessageObject.isDocumentHasThumb(document);
-        this.hasPreview = z || zIsDocumentHasThumb;
-        int iDp = AndroidUtilities.dp(16.0f) + (this.blockRtl ? 0 : blockInset());
-        this.mediaX = iDp;
-        if (this.hasPreview) {
-            iDp += AndroidUtilities.dp(21.0f);
-        }
-        this.buttonX = iDp;
-        int iDp2 = this.hasPreview ? AndroidUtilities.dp(31.0f) : this.buttonY;
+        MediaUploadState mediaUploadState2;
+        boolean z2 = this.hasPreview;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         RadialProgress2 radialProgress2 = this.radialProgress;
-        int i = this.buttonX;
-        int i2 = this.buttonSize;
-        radialProgress2.setProgressRect(i, iDp2, i + i2, i2 + iDp2);
-        if (z) {
-            this.previewImage.setImageCoords(this.mediaX, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
-            this.previewImage.setImage(ImageLocation.getForPath(str2), "86_86", null, null, document, 1);
-            return;
-        }
-        if (zIsDocumentHasThumb) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320, false, null, true);
-            Delegate delegate = this.delegate;
-            MessageObject fileRefParentObject = delegate == null ? null : delegate.getFileRefParentObject();
-            this.previewImage.setImageCoords(this.mediaX, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
-            ImageReceiver imageReceiver = this.previewImage;
-            ImageLocation forDocument = closestPhotoSizeWithSize != null ? ImageLocation.getForDocument(closestPhotoSizeWithSize, document) : null;
-            Drawable drawableCreateStripedBitmap = ImageLoader.createStripedBitmap(document.thumbs);
-            if (fileRefParentObject == null) {
-                fileRefParentObject = this.messageObject;
-            }
-            imageReceiver.setImage(forDocument, "86_86", drawableCreateStripedBitmap, null, fileRefParentObject, 1);
-            return;
-        }
-        this.previewImage.clearImage();
-    }
-
-    public void refreshUploadState() {
-        bindPreview(document());
-        rebuildLayouts();
-        updateButtonState(false);
-        requestLayout();
-        invalidate();
-    }
-
-    private File localFile() {
-        MediaUploadState mediaUploadState;
-        BlockRow blockRow = this.currentRow;
-        if (blockRow != null && (mediaUploadState = blockRow.media) != null && !TextUtils.isEmpty(mediaUploadState.localPath)) {
-            File file = new File(this.currentRow.media.localPath);
-            if (file.exists()) {
-                return file;
-            }
-        }
-        if (document() == null) {
-            return null;
-        }
-        File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(document(), false);
-        return (pathToAttach == null || !pathToAttach.exists()) ? FileLoader.getInstance(this.currentAccount).getPathToAttach(document(), true) : pathToAttach;
-    }
-
-    public void updateButtonState(boolean z) {
-        if (this.hasPreview) {
-            this.radialProgress.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
-            this.radialProgress.setProgressColor(Theme.getColor(Theme.key_chat_mediaProgress, this.resourcesProvider));
+        if (z2) {
+            int i = Theme.key_chat_mediaLoaderPhoto;
+            int i2 = Theme.key_chat_mediaLoaderPhotoSelected;
+            int i3 = Theme.key_chat_mediaLoaderPhotoIcon;
+            int i4 = Theme.key_chat_mediaLoaderPhotoIconSelected;
+            radialProgress2.circleColorKey = i;
+            radialProgress2.circlePressedColorKey = i2;
+            radialProgress2.iconColorKey = i3;
+            radialProgress2.iconPressedColorKey = i4;
+            radialProgress2.progressColor = Theme.getColor(Theme.key_chat_mediaProgress, resourcesProvider);
         } else {
-            this.radialProgress.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
-            this.radialProgress.setProgressColor(Theme.getColor(Theme.key_chat_inFileProgress, this.resourcesProvider));
+            int i5 = Theme.key_chat_inLoader;
+            int i6 = Theme.key_chat_inLoaderSelected;
+            int i7 = Theme.key_chat_inMediaIcon;
+            int i8 = Theme.key_chat_inMediaIconSelected;
+            radialProgress2.circleColorKey = i5;
+            radialProgress2.circlePressedColorKey = i6;
+            radialProgress2.iconColorKey = i7;
+            radialProgress2.iconPressedColorKey = i8;
+            radialProgress2.progressColor = Theme.getColor(Theme.key_chat_inFileProgress, resourcesProvider);
         }
-        if (isUploading()) {
-            DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-            this.radialProgress.setProgress(this.currentRow.media.progress, z);
-            this.radialProgress.setIcon(3, false, z);
+        BlockRow blockRow = this.currentRow;
+        int i9 = this.currentAccount;
+        if (blockRow != null && (mediaUploadState2 = blockRow.media) != null && mediaUploadState2.isPending()) {
+            DownloadController.getInstance(i9).removeLoadingFileObserver(this);
+            radialProgress2.setProgress(this.currentRow.media.progress, z);
+            radialProgress2.setIcon(3, false, z);
             return;
         }
         String attachFileName = FileLoader.getAttachFileName(document());
-        File fileLocalFile = localFile();
-        if (fileLocalFile != null && fileLocalFile.exists()) {
-            DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
+        BlockRow blockRow2 = this.currentRow;
+        if (blockRow2 != null && (mediaUploadState = blockRow2.media) != null && !TextUtils.isEmpty(mediaUploadState.localPath)) {
+            pathToAttach = new File(this.currentRow.media.localPath);
+            if (!pathToAttach.exists()) {
+                if (document() == null) {
+                    pathToAttach = null;
+                } else {
+                    pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), false);
+                    if (pathToAttach != null) {
+                        pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), true);
+                    } else {
+                        pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), true);
+                    }
+                }
+            }
+        } else if (document() == null) {
+            pathToAttach = null;
+        } else {
+            pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), false);
+            if (pathToAttach != null || !pathToAttach.exists()) {
+                pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), true);
+            }
+        }
+        if (pathToAttach != null && pathToAttach.exists()) {
+            DownloadController.getInstance(i9).removeLoadingFileObserver(this);
             this.buttonState = 0;
-            this.radialProgress.setIcon(this.hasPreview ? 4 : 5, false, z);
+            radialProgress2.setIcon(this.hasPreview ? 4 : 5, false, z);
         } else {
             if (TextUtils.isEmpty(attachFileName)) {
                 return;
             }
-            DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(attachFileName, null, this);
-            if (FileLoader.getInstance(this.currentAccount).isLoadingFile(attachFileName)) {
+            DownloadController.getInstance(i9).addLoadingFileObserver(attachFileName, null, this);
+            if (!FileLoader.getInstance(i9).isLoadingFile(attachFileName)) {
+                this.buttonState = 1;
+                radialProgress2.setProgress(0.0f, z);
+                radialProgress2.setIcon(2, false, z);
+            } else {
                 this.buttonState = 2;
                 Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
-                this.radialProgress.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, z);
-                this.radialProgress.setIcon(3, true, z);
-                return;
-            }
-            this.buttonState = 1;
-            this.radialProgress.setProgress(0.0f, z);
-            this.radialProgress.setIcon(2, false, z);
-        }
-    }
-
-    private void pressButton() {
-        MessageObject messageObject;
-        if (isUploading()) {
-            Delegate delegate = this.delegate;
-            if (delegate != null) {
-                delegate.onCancelUpload(this.currentRow);
-            }
-        } else {
-            int i = this.buttonState;
-            if (i == 0) {
-                Activity activityFindActivity = findActivity(getContext());
-                if (activityFindActivity != null && (messageObject = this.messageObject) != null) {
-                    AndroidUtilities.openForView(messageObject, activityFindActivity, this.resourcesProvider, false);
-                }
-            } else if (i == 1 && document() != null) {
-                Delegate delegate2 = this.delegate;
-                MessageObject fileRefParentObject = delegate2 == null ? null : delegate2.getFileRefParentObject();
-                FileLoader fileLoader = FileLoader.getInstance(this.currentAccount);
-                TLRPC.Document document = document();
-                if (fileRefParentObject == null) {
-                    fileRefParentObject = this.messageObject;
-                }
-                fileLoader.loadFile(document, fileRefParentObject, 1, 1);
-                this.buttonState = 2;
-                this.radialProgress.setIcon(3, true, true);
-            } else if (this.buttonState == 2 && document() != null) {
-                FileLoader.getInstance(this.currentAccount).cancelLoadFile(document());
-                this.buttonState = 1;
-                this.radialProgress.setIcon(2, false, true);
+                radialProgress2.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, z);
+                radialProgress2.setIcon(3, true, z);
             }
         }
-        invalidate();
-    }
-
-    private static Activity findActivity(Context context) {
-        while (context instanceof ContextWrapper) {
-            if (context instanceof Activity) {
-                return (Activity) context;
-            }
-            context = ((ContextWrapper) context).getBaseContext();
-        }
-        if (context instanceof Activity) {
-            return (Activity) context;
-        }
-        return null;
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        setMeasuredDimension(size, AndroidUtilities.dp(this.hasPreview ? 106.0f : 66.0f) + this.caption.measure(this.blockRtl ? 0 : blockInset(), this.blockRtl ? blockInset() : 0, size));
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        this.caption.layout(this.blockRtl ? 0 : blockInset(), this.blockRtl ? blockInset() : 0, i3 - i, AndroidUtilities.dp(this.hasPreview ? 106.0f : 66.0f));
-        rebuildLayouts();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        int i;
-        float f;
-        if (document() == null) {
-            return;
-        }
-        if (this.hasPreview && !this.previewImage.draw(canvas)) {
-            this.previewBackgroundPaint.setColor(Theme.getColor(Theme.key_chat_inFileBackground, this.resourcesProvider));
-            canvas.drawRoundRect(this.mediaX, AndroidUtilities.dp(10.0f), this.mediaX + AndroidUtilities.dp(86.0f), AndroidUtilities.dp(96.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.previewBackgroundPaint);
-        }
-        this.radialProgress.draw(canvas);
-        if (this.hasPreview) {
-            i = this.mediaX;
-            f = 97.0f;
-        } else {
-            i = this.buttonX;
-            f = 54.0f;
-        }
-        int iDp = i + AndroidUtilities.dp(f);
-        this.textPaint.setColor(Theme.getColor(Theme.key_chat_inFileNameText, this.resourcesProvider));
-        int iDp2 = AndroidUtilities.dp(12.0f);
-        if (this.titleLayout != null) {
-            canvas.save();
-            canvas.translate(iDp, iDp2);
-            this.titleLayout.draw(canvas);
-            canvas.restore();
-        }
-        this.sizePaint.setColor(Theme.getColor(Theme.key_chat_inTimeText, this.resourcesProvider));
-        StaticLayout staticLayout = this.titleLayout;
-        int height = iDp2 + (staticLayout == null ? 0 : staticLayout.getHeight()) + AndroidUtilities.dp(2.0f);
-        if (this.sizeLayout != null) {
-            canvas.save();
-            canvas.translate(iDp, height);
-            this.sizeLayout.draw(canvas);
-            canvas.restore();
-        }
-        if (isCellSelected()) {
-            canvas.drawRoundRect((this.blockRtl ? 0 : blockInset()) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), (getWidth() - (this.blockRtl ? blockInset() : 0)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(this.hasPreview ? 104.0f : 64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectionPaint);
-        }
-    }
-
-    private boolean isCellSelected() {
-        TextSelectionHelper.ArticleTextSelectionHelper selectionHelper;
-        int childAdapterPosition;
-        return this.delegate != null && (getParent() instanceof RecyclerView) && (selectionHelper = this.delegate.getSelectionHelper()) != null && selectionHelper.isInSelectionMode() && (childAdapterPosition = ((RecyclerView) getParent()).getChildAdapterPosition(this)) > selectionHelper.getStartCell() && childAdapterPosition <= selectionHelper.getEndCell();
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z;
-        if (motionEvent.getX() < this.mediaX || motionEvent.getX() > getWidth() - AndroidUtilities.dp(12.0f) || motionEvent.getY() < AndroidUtilities.dp(10.0f)) {
-            z = false;
-        } else {
-            if (motionEvent.getY() <= AndroidUtilities.dp(this.hasPreview ? 96.0f : 54.0f)) {
-                z = true;
-            } else {
-                z = false;
-            }
-        }
-        if (motionEvent.getActionMasked() == 0 && z) {
-            this.pressed = true;
-            return true;
-        }
-        if (motionEvent.getActionMasked() != 1 || !this.pressed) {
-            if (motionEvent.getActionMasked() == 3) {
-                this.pressed = false;
-            }
-            return this.pressed || super.onTouchEvent(motionEvent);
-        }
-        this.pressed = false;
-        if (z) {
-            playSoundEffect(0);
-            pressButton();
-        }
-        return true;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.attached = true;
-        this.radialProgress.setParent(this);
-        this.previewImage.onAttachedToWindow();
-        updateButtonState(false);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.attached = false;
-        this.previewImage.onDetachedFromWindow();
-        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-    }
-
-    @Override
-    public int getObserverTag() {
-        return this.observerTag;
-    }
-
-    @Override
-    public void onFailedDownload(String str, boolean z) {
-        updateButtonState(true);
-    }
-
-    @Override
-    public void onSuccessDownload(String str) {
-        this.radialProgress.setProgress(1.0f, true);
-        updateButtonState(true);
-    }
-
-    @Override
-    public void onProgressDownload(String str, long j, long j2) {
-        this.radialProgress.setProgress(j2 <= 0 ? 0.0f : Math.min(1.0f, j / j2), true);
-    }
-
-    @Override
-    public void updateColors() {
+    public final void updateColors$1() {
         this.selectionPaint.setColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, this.resourcesProvider));
         RichCaptionController richCaptionController = this.caption;
         if (richCaptionController != null) {
             richCaptionController.applyColors();
-        }
-    }
-
-    @Override
-    public BlockRow getRow() {
-        return this.currentRow;
-    }
-
-    @Override
-    public RichEditText getCaptionEditText() {
-        return this.caption.editText;
-    }
-
-    @Override
-    public void persistCaption() {
-        this.caption.persist();
-    }
-
-    @Override
-    public boolean isPressOnCaption(int i, int i2) {
-        return this.caption.isPressOnCaption(i, i2);
-    }
-
-    @Override
-    public void fillTextLayoutBlocks(ArrayList arrayList) {
-        this.caption.fillTextLayoutBlocks(arrayList);
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.caption.drawSelection(canvas);
-    }
-
-    public static final class Factory extends UItem.UItemFactory {
-        @Override
-        public boolean isClickable() {
-            return false;
-        }
-
-        static {
-            UItem.UItemFactory.setup(new Factory());
-        }
-
-        @Override
-        public RichDocumentCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-            RichDocumentCell richDocumentCell = new RichDocumentCell(context, i, resourcesProvider);
-            richDocumentCell.setBackground(new RichEditor.DraggingDrawable(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider)));
-            return richDocumentCell;
-        }
-
-        @Override
-        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-            ((RichDocumentCell) view).bind((BlockRow) uItem.object, (Delegate) uItem.object2);
-        }
-
-        public static UItem of(BlockRow blockRow, Delegate delegate) {
-            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-            uItemOfFactory.object = blockRow;
-            uItemOfFactory.object2 = delegate;
-            return uItemOfFactory;
         }
     }
 }

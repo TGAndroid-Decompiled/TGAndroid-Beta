@@ -1,27 +1,17 @@
 package org.commonmark.internal;
 
-import org.commonmark.parser.block.BlockContinue;
-
-public class BlockContinueImpl extends BlockContinue {
-    private final boolean finalize;
-    private final int newColumn;
-    private final int newIndex;
+public final class BlockContinueImpl {
+    public final boolean finalize;
+    public final int newColumn;
+    public final int newIndex;
 
     public BlockContinueImpl(int i, int i2, boolean z) {
         this.newIndex = i;
-        this.newColumn = i2;
         this.finalize = z;
+        this.newColumn = i2;
     }
 
-    public int getNewIndex() {
-        return this.newIndex;
-    }
-
-    public int getNewColumn() {
-        return this.newColumn;
-    }
-
-    public boolean isFinalize() {
-        return this.finalize;
+    public static BlockContinueImpl atIndex(int i) {
+        return new BlockContinueImpl(i, -1, false);
     }
 }

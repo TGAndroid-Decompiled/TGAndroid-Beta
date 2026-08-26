@@ -1,23 +1,19 @@
 package kotlinx.coroutines;
 
 public final class InactiveNodeList implements Incomplete {
-    private final NodeList list;
-
-    @Override
-    public boolean isActive() {
-        return false;
-    }
+    public final NodeList list;
 
     public InactiveNodeList(NodeList nodeList) {
         this.list = nodeList;
     }
 
     @Override
-    public NodeList getList() {
+    public final NodeList getList() {
         return this.list;
     }
 
-    public String toString() {
-        return super.toString();
+    @Override
+    public final boolean isActive() {
+        return false;
     }
 }

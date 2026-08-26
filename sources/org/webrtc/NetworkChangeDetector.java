@@ -18,24 +18,6 @@ public interface NetworkChangeDetector {
         CONNECTION_NONE
     }
 
-    public interface Observer {
-        void onConnectionTypeChanged(ConnectionType connectionType);
-
-        void onNetworkConnect(NetworkInformation networkInformation);
-
-        void onNetworkDisconnect(long j);
-
-        void onNetworkPreference(List<ConnectionType> list, int i);
-    }
-
-    void destroy();
-
-    List<NetworkInformation> getActiveNetworkList();
-
-    ConnectionType getCurrentConnectionType();
-
-    boolean supportNetworkCallback();
-
     public static class IPAddress {
         public final byte[] address;
 
@@ -63,24 +45,42 @@ public interface NetworkChangeDetector {
             this.ipAddresses = iPAddressArr;
         }
 
-        private IPAddress[] getIpAddresses() {
-            return this.ipAddresses;
-        }
-
         private ConnectionType getConnectionType() {
             return this.type;
-        }
-
-        private ConnectionType getUnderlyingConnectionTypeForVpn() {
-            return this.underlyingTypeForVpn;
         }
 
         private long getHandle() {
             return this.handle;
         }
 
+        private IPAddress[] getIpAddresses() {
+            return this.ipAddresses;
+        }
+
         private String getName() {
             return this.name;
         }
+
+        private ConnectionType getUnderlyingConnectionTypeForVpn() {
+            return this.underlyingTypeForVpn;
+        }
     }
+
+    public interface Observer {
+        void onConnectionTypeChanged(ConnectionType connectionType);
+
+        void onNetworkConnect(NetworkInformation networkInformation);
+
+        void onNetworkDisconnect(long j);
+
+        void onNetworkPreference(List<ConnectionType> list, int i);
+    }
+
+    void destroy();
+
+    List<NetworkInformation> getActiveNetworkList();
+
+    ConnectionType getCurrentConnectionType();
+
+    boolean supportNetworkCallback();
 }

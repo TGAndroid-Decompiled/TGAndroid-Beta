@@ -1,53 +1,61 @@
 package org.telegram.ui.Components.Premium.boosts.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import com.google.android.gms.internal.mlkit_vision_common.zzkl;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.Premium.boosts.BoostDialogs;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository;
+import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.Premium.boosts.cells.ActionBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.HeaderCell;
 import org.telegram.ui.Components.Premium.boosts.cells.LinkCell;
 import org.telegram.ui.Components.Premium.boosts.cells.TableCell;
 import org.telegram.ui.Components.Premium.boosts.cells.TextInfoCell;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.DialogsActivity;
-import org.telegram.ui.TopicsFragment;
+import org.telegram.ui.Components.SearchField$$ExternalSyntheticLambda0;
+import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda8;
+import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter {
-    private BaseFragment baseFragment;
-    private FrameLayout container;
-    private TLRPC.TL_payments_checkedGiftCode giftCode;
-    private boolean isUnused;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private String slug;
+    public BaseFragment baseFragment;
+    public BottomSheet.ContainerView container;
+    public TLRPC.TL_payments_checkedGiftCode giftCode;
+    public boolean isUnused;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public String slug;
 
-    protected abstract void afterCodeApplied();
-
-    public abstract void dismiss();
+    public GiftInfoAdapter(Theme.ResourcesProvider resourcesProvider) {
+        this.resourcesProvider = resourcesProvider;
+    }
 
     @Override
-    public int getItemCount() {
+    public final int getItemCount() {
         return 5;
     }
 
     @Override
-    public int getItemViewType(int i) {
+    public final int getItemViewType(int i) {
         if (i == 0) {
             return 0;
         }
@@ -68,138 +76,102 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
     }
 
     @Override
-    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+    public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         return false;
     }
 
-    protected abstract void onHiddenLinkClicked();
-
-    protected abstract void onObjectClicked(TLObject tLObject);
-
-    public GiftInfoAdapter(Theme.ResourcesProvider resourcesProvider) {
-        this.resourcesProvider = resourcesProvider;
-    }
-
-    public void init(BaseFragment baseFragment, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str, FrameLayout frameLayout) {
-        this.isUnused = tL_payments_checkedGiftCode.used_date == 0;
-        this.baseFragment = baseFragment;
-        this.giftCode = tL_payments_checkedGiftCode;
-        this.slug = str;
-        this.container = frameLayout;
-    }
-
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View linkCell;
-        Context context = viewGroup.getContext();
-        if (i == 1) {
-            linkCell = new LinkCell(context, this.baseFragment, this.resourcesProvider);
-        } else if (i == 2) {
-            linkCell = new TableCell(context, this.resourcesProvider);
-        } else if (i == 3) {
-            linkCell = new TextInfoCell(context, this.resourcesProvider);
-        } else if (i == 4) {
-            linkCell = new ActionBtnCell(context, this.resourcesProvider);
-            linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
-        } else if (i != 5) {
-            linkCell = new HeaderCell(context, this.resourcesProvider);
-        } else {
-            linkCell = new View(context);
-        }
-        linkCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-        return new RecyclerListView.Holder(linkCell);
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        String string;
-        int itemViewType = viewHolder.getItemViewType();
-        if (itemViewType == 0) {
-            HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        final int i2 = 0;
+        int i3 = viewHolder.mItemViewType;
+        View view = viewHolder.itemView;
+        if (i3 == 0) {
+            HeaderCell headerCell = (HeaderCell) view;
             if (this.isUnused) {
-                headerCell.setGiftLinkText();
+                headerCell.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+                headerCell.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllows", R.string.BoostingLinkAllows, new Object[0])));
             } else {
-                headerCell.setUsedGiftLinkText();
+                headerCell.titleView.setText(LocaleController.formatString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink, new Object[0]));
+                headerCell.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkUsed", R.string.BoostingLinkUsed, new Object[0])));
             }
             TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = this.giftCode;
             if (tL_payments_checkedGiftCode.boost != null) {
-                headerCell.setGiftLinkToUserText(tL_payments_checkedGiftCode.to_id, new Utilities.Callback() {
+                long j = tL_payments_checkedGiftCode.to_id;
+                final PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14 = new PollItemMenu$$ExternalSyntheticLambda14(this, 2);
+                headerCell.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+                SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
+                final TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
+                final int i4 = 1;
+                headerCell.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", spannableStringBuilderReplaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user) + "**", Theme.key_chat_messageLinkIn, 2, new Runnable() {
                     @Override
-                    public final void run(Object obj) {
-                        this.f$0.onObjectClicked((TLObject) obj);
+                    public final void run() {
+                        switch (i4) {
+                            case 0:
+                                pollItemMenu$$ExternalSyntheticLambda14.run(user);
+                                break;
+                            default:
+                                pollItemMenu$$ExternalSyntheticLambda14.run(user);
+                                break;
+                        }
                     }
-                });
+                }, headerCell.resourcesProvider)));
             }
             if (this.giftCode.to_id == -1) {
-                headerCell.setUnclaimedText();
+                headerCell.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+                headerCell.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllowsAnyone", R.string.BoostingLinkAllowsAnyone, new Object[0])));
                 return;
             }
             return;
         }
-        if (itemViewType == 1) {
-            LinkCell linkCell = (LinkCell) viewHolder.itemView;
+        if (i3 == 1) {
+            LinkCell linkCell = (LinkCell) view;
             linkCell.setSlug(this.slug);
             if (this.giftCode.boost != null && this.slug == null) {
-                linkCell.hideSlug(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.onHiddenLinkClicked();
-                    }
-                });
+                linkCell.hideSlug(new GiftInfoAdapter$$ExternalSyntheticLambda2(this, 1));
             }
             String str = this.slug;
             if ((str == null || str.isEmpty()) && this.giftCode.to_id == -1) {
-                linkCell.hideSlug(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.onHiddenLinkClicked();
-                    }
-                });
+                linkCell.hideSlug(new GiftInfoAdapter$$ExternalSyntheticLambda2(this, 1));
                 return;
             }
             return;
         }
-        if (itemViewType == 2) {
-            ((TableCell) viewHolder.itemView).setData(this.giftCode, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    this.f$0.onObjectClicked((TLObject) obj);
+        if (i3 != 2) {
+            if (i3 != 3) {
+                if (i3 != 4) {
+                    return;
                 }
-            });
-            return;
-        }
-        if (itemViewType != 3) {
-            if (itemViewType != 4) {
-                return;
-            }
-            final ActionBtnCell actionBtnCell = (ActionBtnCell) viewHolder.itemView;
-            actionBtnCell.setOkStyle(this.isUnused);
-            actionBtnCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    GiftInfoAdapter.$r8$lambda$h0vGbgoMo7ZLA76X70xFF3x1IIU(this.f$0, actionBtnCell, view);
+                ActionBtnCell actionBtnCell = (ActionBtnCell) view;
+                actionBtnCell.setOkStyle(this.isUnused);
+                actionBtnCell.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(9, this, actionBtnCell));
+                TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.giftCode;
+                if (tL_payments_checkedGiftCode2.boost != null || tL_payments_checkedGiftCode2.flags == -1) {
+                    actionBtnCell.drawDivider = false;
+                    ButtonWithCounterView buttonWithCounterView = actionBtnCell.button;
+                    buttonWithCounterView.setShowZero(false);
+                    buttonWithCounterView.setEnabled(true);
+                    buttonWithCounterView.setText(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
+                    actionBtnCell.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 20));
+                    return;
                 }
-            });
-            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.giftCode;
-            if (tL_payments_checkedGiftCode2.boost != null || tL_payments_checkedGiftCode2.flags == -1) {
-                actionBtnCell.setCloseStyle();
-                actionBtnCell.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        this.f$0.dismiss();
-                    }
-                });
                 return;
             }
-            return;
-        }
-        TextInfoCell textInfoCell = (TextInfoCell) viewHolder.itemView;
-        textInfoCell.setTextGravity(17);
-        textInfoCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        textInfoCell.setTopPadding(14);
-        textInfoCell.setBottomPadding(15);
-        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.giftCode;
-        if (tL_payments_checkedGiftCode3.boost != null) {
+            TextInfoCell textInfoCell = (TextInfoCell) view;
+            textInfoCell.setTextGravity(17);
+            textInfoCell.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+            textInfoCell.setTopPadding(14);
+            textInfoCell.setBottomPadding(15);
+            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.giftCode;
+            if (tL_payments_checkedGiftCode3.boost == null) {
+                if (this.isUnused) {
+                    textInfoCell.setText(AndroidUtilities.replaceSingleTag(tL_payments_checkedGiftCode3.to_id == -1 ? LocaleController.getString(R.string.BoostingSendLinkToAnyone) : LocaleController.getString(R.string.BoostingSendLinkToFriends), Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda2(this, i2), this.resourcesProvider));
+                    return;
+                } else {
+                    Date date = new Date(((long) this.giftCode.used_date) * 1000);
+                    textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
+                    return;
+                }
+            }
             String str2 = this.slug;
             if (str2 == null || str2.isEmpty()) {
                 textInfoCell.setText(LocaleController.getString(R.string.BoostingLinkNotActivated));
@@ -210,92 +182,168 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 return;
             }
         }
-        if (this.isUnused) {
-            if (tL_payments_checkedGiftCode3.to_id == -1) {
-                string = LocaleController.getString(R.string.BoostingSendLinkToAnyone);
-            } else {
-                string = LocaleController.getString(R.string.BoostingSendLinkToFriends);
-            }
-            textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda2(this), this.resourcesProvider));
-            return;
-        }
-        Date date = new Date(((long) this.giftCode.used_date) * 1000);
-        textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
-    }
-
-    public static void $r8$lambda$h0vGbgoMo7ZLA76X70xFF3x1IIU(final GiftInfoAdapter giftInfoAdapter, final ActionBtnCell actionBtnCell, View view) {
-        if (giftInfoAdapter.isUnused) {
-            if (actionBtnCell.isLoading()) {
-                return;
-            }
-            actionBtnCell.updateLoading(true);
-            BoostRepository.applyGiftCode(giftInfoAdapter.slug, new Utilities.Callback() {
+        TableCell tableCell = (TableCell) view;
+        final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode4 = this.giftCode;
+        final PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda15 = new PollItemMenu$$ExternalSyntheticLambda14(this, 2);
+        tableCell.getClass();
+        Date date2 = new Date(((long) tL_payments_checkedGiftCode4.date) * 1000);
+        tableCell.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date2), LocaleController.getInstance().getFormatterDay().format(date2)));
+        int i5 = tL_payments_checkedGiftCode4.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack;
+        Theme.ResourcesProvider resourcesProvider = tableCell.resourcesProvider;
+        int color = Theme.getColor(i5, resourcesProvider);
+        TextView textView = tableCell.reasonTextView;
+        textView.setTextColor(color);
+        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode4.from_id)));
+        boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
+        if (tL_payments_checkedGiftCode4.via_giveaway) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append((CharSequence) "**");
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.BoostingGiveaway));
+            spannableStringBuilder.append((CharSequence) "**");
+            textView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
-                public final void run(Object obj) {
-                    GiftInfoAdapter.$r8$lambda$fjrnpH7dJv9ZfyEvZe8WUJIaqVE(this.f$0, actionBtnCell, (Void) obj);
+                public final void run() {
+                    switch (i2) {
+                        case 0:
+                            pollItemMenu$$ExternalSyntheticLambda15.run(tL_payments_checkedGiftCode4);
+                            break;
+                        default:
+                            pollItemMenu$$ExternalSyntheticLambda15.run(tL_payments_checkedGiftCode4);
+                            break;
+                    }
                 }
-            }, new Utilities.Callback() {
+            }, resourcesProvider));
+            textView.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(11, pollItemMenu$$ExternalSyntheticLambda15, tL_payments_checkedGiftCode4));
+        } else {
+            textView.setText(LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.BoostingYouWereSelected : R.string.BoostingYouWereSelectedGroup));
+            textView.setOnClickListener(null);
+        }
+        int i6 = tL_payments_checkedGiftCode4.months;
+        tableCell.giftTextView.setText(LocaleController.formatString("BoostingTelegramPremiumFor", R.string.BoostingTelegramPremiumFor, i6 == 12 ? LocaleController.formatPluralString("Years", 1, new Object[0]) : LocaleController.formatPluralString("Months", i6, new Object[0])));
+        FrameLayout frameLayout = tableCell.fromFrameLayout;
+        BackupImageView backupImageView = tableCell.fromImageView;
+        TextView textView2 = tableCell.fromTextView;
+        if (chat != null) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            spannableStringBuilder2.append((CharSequence) "**");
+            spannableStringBuilder2.append((CharSequence) chat.title);
+            spannableStringBuilder2.append((CharSequence) "**");
+            textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), Theme.key_chat_messageLinkIn, 0, new ImageUpdater$$ExternalSyntheticLambda2(29, pollItemMenu$$ExternalSyntheticLambda15, chat), resourcesProvider), textView2.getPaint().getFontMetricsInt(), false));
+            backupImageView.imageReceiver.setForUserOrChat(chat, new AvatarDrawable(chat));
+            backupImageView.onNewImageSet();
+            frameLayout.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(12, pollItemMenu$$ExternalSyntheticLambda15, chat));
+        } else {
+            final TLRPC.User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode4.from_id.user_id));
+            final int i7 = 0;
+            textView2.setText(Emoji.replaceEmoji(UserObject.getFirstName(user2), textView2.getPaint().getFontMetricsInt(), false));
+            backupImageView.imageReceiver.setForUserOrChat(user2, new AvatarDrawable(user2));
+            backupImageView.onNewImageSet();
+            frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void run(Object obj) {
-                    GiftInfoAdapter.$r8$lambda$4ObwOuFEVWilRpdMhPy_pSxyTR8(this.f$0, actionBtnCell, (TLRPC.TL_error) obj);
+                public final void onClick(View view2) {
+                    switch (i7) {
+                        case 0:
+                            pollItemMenu$$ExternalSyntheticLambda15.run(user2);
+                            break;
+                        default:
+                            pollItemMenu$$ExternalSyntheticLambda15.run(user2);
+                            break;
+                    }
                 }
             });
-            return;
         }
-        giftInfoAdapter.dismiss();
-    }
-
-    public static void $r8$lambda$fjrnpH7dJv9ZfyEvZe8WUJIaqVE(GiftInfoAdapter giftInfoAdapter, ActionBtnCell actionBtnCell, Void r2) {
-        giftInfoAdapter.getClass();
-        actionBtnCell.updateLoading(false);
-        giftInfoAdapter.afterCodeApplied();
-        giftInfoAdapter.dismiss();
-    }
-
-    public static void $r8$lambda$4ObwOuFEVWilRpdMhPy_pSxyTR8(GiftInfoAdapter giftInfoAdapter, ActionBtnCell actionBtnCell, TLRPC.TL_error tL_error) {
-        giftInfoAdapter.getClass();
-        actionBtnCell.updateLoading(false);
-        BoostDialogs.processApplyGiftCodeError(tL_error, giftInfoAdapter.container, giftInfoAdapter.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda2(giftInfoAdapter));
-    }
-
-    public void share() {
-        final String str = "https://t.me/giftcode/" + this.slug;
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("onlySelect", true);
-        bundle.putInt("dialogsType", 3);
-        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
-        dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
-            @Override
-            public boolean canSelectStories() {
-                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+        long j2 = tL_payments_checkedGiftCode4.to_id;
+        BackupImageView backupImageView2 = tableCell.toImageView;
+        TextView textView3 = tableCell.toTextView;
+        if (j2 == -1 && tL_payments_checkedGiftCode4.via_giveaway) {
+            SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
+            spannableStringBuilder3.append((CharSequence) "**");
+            spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.BoostingIncompleteGiveaway));
+            spannableStringBuilder3.append((CharSequence) "**");
+            final int i8 = 1;
+            textView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                @Override
+                public final void run() {
+                    switch (i8) {
+                        case 0:
+                            pollItemMenu$$ExternalSyntheticLambda15.run(tL_payments_checkedGiftCode4);
+                            break;
+                        default:
+                            pollItemMenu$$ExternalSyntheticLambda15.run(tL_payments_checkedGiftCode4);
+                            break;
+                    }
+                }
+            }, resourcesProvider));
+            textView3.setText(LocaleController.getString(R.string.BoostingNoRecipient));
+            textView3.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
+            ((ViewGroup.MarginLayoutParams) textView3.getLayoutParams()).leftMargin = 0;
+            ((ViewGroup.MarginLayoutParams) textView3.getLayoutParams()).rightMargin = 0;
+            backupImageView2.setVisibility(8);
+        } else {
+            final TLRPC.User user3 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode4.to_id));
+            if (user3 != null) {
+                SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
+                spannableStringBuilder4.append((CharSequence) "**");
+                spannableStringBuilder4.append((CharSequence) UserObject.getFirstName(user3));
+                spannableStringBuilder4.append((CharSequence) "**");
+                final int i9 = 0;
+                textView3.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (i9) {
+                            case 0:
+                                pollItemMenu$$ExternalSyntheticLambda15.run(user3);
+                                break;
+                            default:
+                                pollItemMenu$$ExternalSyntheticLambda15.run(user3);
+                                break;
+                        }
+                    }
+                }, resourcesProvider), textView3.getPaint().getFontMetricsInt(), false));
+                backupImageView2.imageReceiver.setForUserOrChat(user3, new AvatarDrawable(user3));
+                backupImageView2.onNewImageSet();
+                final int i10 = 1;
+                tableCell.toFrameLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        switch (i10) {
+                            case 0:
+                                pollItemMenu$$ExternalSyntheticLambda15.run(user3);
+                                break;
+                            default:
+                                pollItemMenu$$ExternalSyntheticLambda15.run(user3);
+                                break;
+                        }
+                    }
+                });
             }
-
-            @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-                return GiftInfoAdapter.$r8$lambda$fvJJIO_FvgA9NTYBbnGh8dHiyx4(this.f$0, str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
-            }
-
-            @Override
-            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
-                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
-            }
-        });
-        this.baseFragment.presentFragment(dialogsActivity);
-        dismiss();
-    }
-
-    public static boolean $r8$lambda$fvJJIO_FvgA9NTYBbnGh8dHiyx4(GiftInfoAdapter giftInfoAdapter, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-        giftInfoAdapter.getClass();
-        long j = 0;
-        int i3 = 0;
-        while (i3 < arrayList.size()) {
-            long j2 = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
-            giftInfoAdapter.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
-            i3++;
-            j = j2;
         }
-        dialogsActivity.finishFragment();
-        BoostDialogs.showGiftLinkForwardedBulletin(j);
-        return true;
+        if (tL_payments_checkedGiftCode4.boost != null) {
+            tableCell.tableRow4.setVisibility(8);
+        }
     }
+
+    @Override
+    public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View linkCell;
+        Context context = viewGroup.getContext();
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (i == 1) {
+            linkCell = new LinkCell(context, resourcesProvider);
+        } else if (i == 2) {
+            linkCell = new TableCell(context, resourcesProvider);
+        } else if (i == 3) {
+            linkCell = new TextInfoCell(context, resourcesProvider);
+        } else if (i != 4) {
+            linkCell = i != 5 ? new HeaderCell(context, resourcesProvider) : new View(context);
+        } else {
+            linkCell = new ActionBtnCell(context, resourcesProvider);
+            linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
+        }
+        return zzkl.m(linkCell, linkCell);
+    }
+
+    public abstract void onHiddenLinkClicked();
+
+    public abstract void onObjectClicked(TLObject tLObject);
 }

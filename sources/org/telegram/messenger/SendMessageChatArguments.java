@@ -6,19 +6,13 @@ public class SendMessageChatArguments {
     public final int quickReplyShortcutId;
     public final long welcomeMessageChatId;
 
-    private SendMessageChatArguments(Builder builder) {
-        this.welcomeMessageChatId = builder.welcomeMessageChatId;
-        this.quickReplyShortcut = builder.quickReplyShortcut;
-        this.quickReplyShortcutId = builder.quickReplyShortcutId;
-    }
-
     public static class Builder {
         private String quickReplyShortcut;
         private int quickReplyShortcutId;
         private long welcomeMessageChatId;
 
-        public void setWelcomeMessageChatId(long j) {
-            this.welcomeMessageChatId = j;
+        public SendMessageChatArguments build() {
+            return new SendMessageChatArguments(this);
         }
 
         public void setQuickReplyShortcut(String str, int i) {
@@ -26,8 +20,14 @@ public class SendMessageChatArguments {
             this.quickReplyShortcutId = i;
         }
 
-        public SendMessageChatArguments build() {
-            return new SendMessageChatArguments(this);
+        public void setWelcomeMessageChatId(long j) {
+            this.welcomeMessageChatId = j;
         }
+    }
+
+    private SendMessageChatArguments(Builder builder) {
+        this.welcomeMessageChatId = builder.welcomeMessageChatId;
+        this.quickReplyShortcut = builder.quickReplyShortcut;
+        this.quickReplyShortcutId = builder.quickReplyShortcutId;
     }
 }

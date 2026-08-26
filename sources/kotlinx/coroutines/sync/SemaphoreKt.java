@@ -1,17 +1,13 @@
 package kotlinx.coroutines.sync;
 
+import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.Symbol;
-import kotlinx.coroutines.internal.SystemPropsKt__SystemProps_commonKt;
 
 public abstract class SemaphoreKt {
-    private static final int MAX_SPIN_CYCLES = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.semaphore.maxSpinCycles", 100, 0, 0, 12, (Object) null);
-    private static final Symbol PERMIT = new Symbol("PERMIT");
-    private static final Symbol TAKEN = new Symbol("TAKEN");
-    private static final Symbol BROKEN = new Symbol("BROKEN");
-    private static final Symbol CANCELLED = new Symbol("CANCELLED");
-    private static final int SEGMENT_SIZE = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.semaphore.segmentSize", 16, 0, 0, 12, (Object) null);
-
-    public static final SemaphoreSegment createSegment(long j, SemaphoreSegment semaphoreSegment) {
-        return new SemaphoreSegment(j, semaphoreSegment, 0);
-    }
+    public static final int MAX_SPIN_CYCLES = AtomicKt.systemProp$default(100, 12, "kotlinx.coroutines.semaphore.maxSpinCycles");
+    public static final Symbol PERMIT = new Symbol("PERMIT", 0);
+    public static final Symbol TAKEN = new Symbol("TAKEN", 0);
+    public static final Symbol BROKEN = new Symbol("BROKEN", 0);
+    public static final Symbol CANCELLED = new Symbol("CANCELLED", 0);
+    public static final int SEGMENT_SIZE = AtomicKt.systemProp$default(16, 12, "kotlinx.coroutines.semaphore.segmentSize");
 }

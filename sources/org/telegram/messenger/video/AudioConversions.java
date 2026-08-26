@@ -9,12 +9,12 @@ public class AudioConversions {
         return (((long) i) * 1000000) / ((long) ((i2 * 2) * i3));
     }
 
-    public static int usToBytes(long j, int i, int i2) {
-        return (int) Math.ceil((j * ((double) ((i * 2) * i2))) / 1000000.0d);
-    }
-
     public static long shortsToUs(int i, int i2, int i3) {
         return bytesToUs(i * 2, i2, i3);
+    }
+
+    public static int usToBytes(long j, int i, int i2) {
+        return (int) Math.ceil((j * ((double) ((i * 2) * i2))) / 1000000.0d);
     }
 
     public static int usToShorts(long j, int i, int i2) {

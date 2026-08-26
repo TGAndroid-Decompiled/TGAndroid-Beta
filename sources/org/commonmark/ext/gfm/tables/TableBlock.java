@@ -2,5 +2,5 @@ package org.commonmark.ext.gfm.tables;
 
 import org.commonmark.node.CustomBlock;
 
-public class TableBlock extends CustomBlock {
+public final class TableBlock extends CustomBlock {
 }

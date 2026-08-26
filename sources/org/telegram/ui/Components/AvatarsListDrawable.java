@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.View;
+import android.view.ViewGroup;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,94 +20,73 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
-public class AvatarsListDrawable extends Drawable {
-    private boolean attached;
-    private final int avatarOffset;
-    private final int avatarSize;
-    private final float avatarStroke;
-    private final int currentAccount;
-    private final View parent;
-    private final ListAnimator animator = new ListAnimator(new ListAnimator.Callback() {
-        @Override
-        public boolean hasChanges(ListAnimator listAnimator) {
-            return ListAnimator.MetadataCallback.CC.$default$hasChanges(this, listAnimator);
+public final class AvatarsListDrawable extends Drawable {
+    public boolean attached;
+    public final int avatarOffset;
+    public final int avatarSize;
+    public final float avatarStroke;
+    public final int currentAccount;
+    public final ViewGroup parent;
+    public final ListAnimator animator = new ListAnimator(new Stripe.AnonymousClass1(this, 23), CubicBezierInterpolator.EASE_OUT_QUINT, 380);
+    public final ArrayList avatarItemsPool = new ArrayList();
+    public int alpha = 255;
+
+    public final class AvatarItem implements ListAnimator.Measurable, Destroyable {
+        public boolean attached;
+        public final AvatarDrawable avatarDrawable;
+        public long dialogId;
+        public final ImageReceiver imageReceiver;
+
+        public AvatarItem(ViewGroup viewGroup) {
+            ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
+            this.imageReceiver = imageReceiver;
+            imageReceiver.setRoundRadius(AvatarsListDrawable.this.avatarSize / 2);
+            AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            this.avatarDrawable = avatarDrawable;
+            avatarDrawable.namePaint.setTextSize(AndroidUtilities.dp(22.0f));
+        }
+
+        public final boolean equals(Object obj) {
+            return (obj instanceof AvatarItem) && this.dialogId == ((AvatarItem) obj).dialogId;
         }
 
         @Override
-        public boolean onApplyMetadataAnimation(ListAnimator listAnimator, float f) {
-            return ListAnimator.MetadataCallback.CC.$default$onApplyMetadataAnimation(this, listAnimator, f);
+        public final int getHeight() {
+            return AvatarsListDrawable.this.avatarSize;
         }
 
         @Override
-        public void onFinishMetadataAnimation(ListAnimator listAnimator, boolean z) {
-            ListAnimator.MetadataCallback.CC.$default$onFinishMetadataAnimation(this, listAnimator, z);
+        public final int getSpacingStart(boolean z) {
+            if (z) {
+                return 0;
+            }
+            return -AvatarsListDrawable.this.avatarOffset;
         }
 
         @Override
-        public void onForceApplyChanges(ListAnimator listAnimator) {
-            ListAnimator.MetadataCallback.CC.$default$onForceApplyChanges(this, listAnimator);
+        public final int getWidth() {
+            return AvatarsListDrawable.this.avatarSize;
         }
 
         @Override
-        public void onPrepareMetadataAnimation(ListAnimator listAnimator) {
-            ListAnimator.MetadataCallback.CC.$default$onPrepareMetadataAnimation(this, listAnimator);
+        public final void performDestroy() {
+            if (this.attached) {
+                this.attached = false;
+                this.imageReceiver.onDetachedFromWindow();
+            }
+            this.dialogId = 0L;
         }
-
-        @Override
-        public void onItemsChanged(ListAnimator listAnimator) {
-            AvatarsListDrawable.this.parent.invalidate();
-        }
-    }, CubicBezierInterpolator.EASE_OUT_QUINT, 380);
-    private final ArrayList avatarItemsPool = new ArrayList();
-    private int alpha = 255;
-
-    @Override
-    public int getOpacity() {
-        return 0;
     }
 
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public AvatarsListDrawable(int i, View view, int i2, int i3, float f) {
+    public AvatarsListDrawable(int i, ViewGroup viewGroup, int i2, int i3, float f) {
         this.currentAccount = i;
-        this.parent = view;
+        this.parent = viewGroup;
         this.avatarSize = i2;
         this.avatarOffset = i3;
         this.avatarStroke = f;
     }
 
-    public void set(List list, boolean z) {
-        if (list == null || list.isEmpty()) {
-            this.animator.clear(z);
-            return;
-        }
-        if (!z) {
-            this.animator.clear(false);
-        }
-        ArrayList arrayList = new ArrayList(list.size());
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            long peerDialogId = DialogObject.getPeerDialogId((TLRPC.Peer) it.next());
-            AvatarItem avatarItemFind = find(peerDialogId);
-            if (avatarItemFind == null) {
-                avatarItemFind = find(0L);
-            }
-            if (avatarItemFind == null) {
-                avatarItemFind = new AvatarItem(this.parent);
-                this.avatarItemsPool.add(avatarItemFind);
-            }
-            avatarItemFind.set(this.currentAccount, peerDialogId);
-            arrayList.add(avatarItemFind);
-            if (this.attached) {
-                avatarItemFind.attach();
-            }
-        }
-        this.animator.reset(arrayList, z);
-    }
-
-    public void attach() {
+    public final void attach() {
         if (this.attached) {
             return;
         }
@@ -119,170 +98,154 @@ public class AvatarsListDrawable extends Drawable {
             Object obj = arrayList.get(i);
             i++;
             AvatarItem avatarItem = (AvatarItem) obj;
-            if (avatarItem.dialogId != 0) {
-                avatarItem.attach();
+            if (avatarItem.dialogId != 0 && !avatarItem.attached) {
+                avatarItem.attached = true;
+                avatarItem.imageReceiver.onAttachedToWindow();
             }
         }
     }
 
-    public void detach() {
+    public final void detach() {
         if (this.attached) {
-            int i = 0;
             this.attached = false;
             ArrayList arrayList = this.avatarItemsPool;
             int size = arrayList.size();
+            int i = 0;
             while (i < size) {
                 Object obj = arrayList.get(i);
                 i++;
-                ((AvatarItem) obj).detach();
+                AvatarItem avatarItem = (AvatarItem) obj;
+                if (avatarItem.attached) {
+                    avatarItem.attached = false;
+                    avatarItem.imageReceiver.onDetachedFromWindow();
+                }
             }
-        }
-    }
-
-    private AvatarItem find(long j) {
-        ArrayList arrayList = this.avatarItemsPool;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            AvatarItem avatarItem = (AvatarItem) obj;
-            if (avatarItem.dialogId == j) {
-                return avatarItem;
-            }
-        }
-        return null;
-    }
-
-    private class AvatarItem implements ListAnimator.Measurable, Destroyable {
-        private boolean attached;
-        private final AvatarDrawable avatarDrawable;
-        private long dialogId;
-        private final ImageReceiver imageReceiver;
-
-        @Override
-        public int getSpacingEnd(boolean z) {
-            return ListAnimator.Measurable.CC.$default$getSpacingEnd(this, z);
-        }
-
-        private AvatarItem(View view) {
-            ImageReceiver imageReceiver = new ImageReceiver(view);
-            this.imageReceiver = imageReceiver;
-            imageReceiver.setRoundRadius(AvatarsListDrawable.this.avatarSize / 2);
-            AvatarDrawable avatarDrawable = new AvatarDrawable();
-            this.avatarDrawable = avatarDrawable;
-            avatarDrawable.setTextSize(AndroidUtilities.dp(22.0f));
-        }
-
-        public void set(int i, long j) {
-            if (this.dialogId == j) {
-                return;
-            }
-            this.dialogId = j;
-            TLObject userOrChat = MessagesController.getInstance(i).getUserOrChat(j);
-            if (userOrChat != null) {
-                this.avatarDrawable.setInfo(i, userOrChat);
-                this.imageReceiver.setForUserOrChat(userOrChat, this.avatarDrawable);
-            } else {
-                this.avatarDrawable.setInfo(j, "", "");
-                this.imageReceiver.clearImage();
-            }
-        }
-
-        public void attach() {
-            if (this.attached) {
-                return;
-            }
-            this.attached = true;
-            this.imageReceiver.onAttachedToWindow();
-        }
-
-        public void detach() {
-            if (this.attached) {
-                this.attached = false;
-                this.imageReceiver.onDetachedFromWindow();
-            }
-        }
-
-        public boolean equals(Object obj) {
-            return (obj instanceof AvatarItem) && this.dialogId == ((AvatarItem) obj).dialogId;
-        }
-
-        @Override
-        public void performDestroy() {
-            detach();
-            this.dialogId = 0L;
-        }
-
-        @Override
-        public int getSpacingStart(boolean z) {
-            if (z) {
-                return 0;
-            }
-            return -AvatarsListDrawable.this.avatarOffset;
-        }
-
-        @Override
-        public int getWidth() {
-            return AvatarsListDrawable.this.avatarSize;
-        }
-
-        @Override
-        public int getHeight() {
-            return AvatarsListDrawable.this.avatarSize;
         }
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        draw(canvas, null);
+    public final void draw(Canvas canvas) {
+        draw$1(canvas);
     }
 
-    public void draw(Canvas canvas, Paint paint) {
+    public final void draw$1(Canvas canvas) {
         Rect bounds = getBounds();
         if (bounds.isEmpty() || this.alpha == 0) {
             return;
         }
         float f = bounds.left;
         float f2 = bounds.top;
-        canvas.saveLayer(f, f2, f + this.animator.getMetadata().getTotalWidth(), f2 + this.avatarSize, null);
-        for (int size = this.animator.size() - 1; size >= 0; size--) {
-            ListAnimator.Entry entry = this.animator.getEntry(size);
+        ListAnimator listAnimator = this.animator;
+        canvas.saveLayer(f, f2, f + listAnimator.metadata.totalWidth.now, f2 + this.avatarSize, null);
+        for (int size = listAnimator.entries.size() - 1; size >= 0; size--) {
+            ListAnimator.Entry entry = (ListAnimator.Entry) listAnimator.entries.get(size);
             RectF rectF = entry.getRectF();
-            float spacingStart = entry.getSpacingStart();
+            float f3 = entry.measuredSpacingStart.now;
             float visibility = entry.getVisibility();
-            float f3 = rectF.left + spacingStart;
-            float fWidth = rectF.width() - spacingStart;
-            float f4 = f + f3;
-            float f5 = fWidth / 2.0f;
-            float f6 = f4 + f5;
-            float f7 = f2 + f5;
+            float f4 = rectF.left + f3;
+            float fWidth = rectF.width() - f3;
+            float f5 = f + f4;
+            float f6 = fWidth / 2.0f;
+            float f7 = f5 + f6;
+            float f8 = f2 + f6;
             canvas.save();
-            canvas.scale(visibility, visibility, f6, f7);
-            canvas.drawCircle(f6, f7, f5 + this.avatarStroke, Theme.PAINT_CLEAR);
-            ((AvatarItem) entry.item).imageReceiver.setImageCoords(f4, f2, fWidth, fWidth);
-            ((AvatarItem) entry.item).imageReceiver.setAlpha(entry.getVisibility() * (this.alpha / 255.0f));
-            ((AvatarItem) entry.item).imageReceiver.draw(canvas);
+            canvas.scale(visibility, visibility, f7, f8);
+            canvas.drawCircle(f7, f8, f6 + this.avatarStroke, Theme.PAINT_CLEAR);
+            Object obj = entry.item;
+            ((AvatarItem) obj).imageReceiver.setImageCoords(f5, f2, fWidth, fWidth);
+            ((AvatarItem) obj).imageReceiver.setAlpha((this.alpha / 255.0f) * entry.getVisibility());
+            ((AvatarItem) obj).imageReceiver.draw(canvas);
             canvas.restore();
         }
         canvas.restore();
     }
 
-    public float getAnimatedWidth() {
-        return this.animator.getMetadata().getTotalWidth();
-    }
-
-    public float getTotalVisibility() {
-        return this.animator.getMetadata().getTotalVisibility();
+    @Override
+    public final int getAlpha() {
+        return this.alpha;
     }
 
     @Override
-    public void setAlpha(int i) {
+    public final int getOpacity() {
+        return 0;
+    }
+
+    public final void set(List list, boolean z) {
+        AvatarItem avatarItem;
+        ListAnimator listAnimator = this.animator;
+        if (list == null || list.isEmpty()) {
+            listAnimator.reset(null, z);
+            return;
+        }
+        if (!z) {
+            listAnimator.reset(null, false);
+        }
+        ArrayList arrayList = new ArrayList(list.size());
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            long peerDialogId = DialogObject.getPeerDialogId((TLRPC.Peer) it.next());
+            ArrayList arrayList2 = this.avatarItemsPool;
+            int size = arrayList2.size();
+            int i = 0;
+            do {
+                if (i >= size) {
+                    avatarItem = null;
+                    break;
+                } else {
+                    Object obj = arrayList2.get(i);
+                    i++;
+                    avatarItem = (AvatarItem) obj;
+                }
+            } while (avatarItem.dialogId != peerDialogId);
+            if (avatarItem == null) {
+                int size2 = arrayList2.size();
+                int i2 = 0;
+                do {
+                    if (i2 >= size2) {
+                        avatarItem = null;
+                        break;
+                    } else {
+                        Object obj2 = arrayList2.get(i2);
+                        i2++;
+                        avatarItem = (AvatarItem) obj2;
+                    }
+                } while (avatarItem.dialogId != 0);
+            }
+            if (avatarItem == null) {
+                avatarItem = new AvatarItem(this.parent);
+                arrayList2.add(avatarItem);
+            }
+            AvatarItem avatarItem2 = avatarItem;
+            long j = avatarItem2.dialogId;
+            ImageReceiver imageReceiver = avatarItem2.imageReceiver;
+            if (j != peerDialogId) {
+                avatarItem2.dialogId = peerDialogId;
+                int i3 = this.currentAccount;
+                TLObject userOrChat = MessagesController.getInstance(i3).getUserOrChat(peerDialogId);
+                AvatarDrawable avatarDrawable = avatarItem2.avatarDrawable;
+                if (userOrChat != null) {
+                    avatarDrawable.setInfo(i3, userOrChat);
+                    imageReceiver.setForUserOrChat(userOrChat, avatarDrawable);
+                } else {
+                    avatarDrawable.setInfo(peerDialogId, "", "", null, null);
+                    imageReceiver.clearImage();
+                }
+            }
+            arrayList.add(avatarItem2);
+            if (this.attached && !avatarItem2.attached) {
+                avatarItem2.attached = true;
+                imageReceiver.onAttachedToWindow();
+            }
+        }
+        listAnimator.reset(arrayList, z);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
         this.alpha = i;
     }
 
     @Override
-    public int getAlpha() {
-        return this.alpha;
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

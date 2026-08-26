@@ -5,6 +5,7 @@ import android.media.MediaCrypto;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.view.Surface;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FileLog;
@@ -35,15 +36,6 @@ public class AudioDecoder {
         MediaExtractor mediaExtractor = new MediaExtractor();
         this.extractor = mediaExtractor;
         mediaExtractor.setDataSource(str);
-        init();
-    }
-
-    public AudioDecoder(String str, int i) throws IOException {
-        this.audioIndex = -1;
-        MediaExtractor mediaExtractor = new MediaExtractor();
-        this.extractor = mediaExtractor;
-        mediaExtractor.setDataSource(str);
-        this.audioIndex = i;
         init();
     }
 
@@ -80,138 +72,6 @@ public class AudioDecoder {
             throw new RuntimeException("No audio track found in source");
         }
         this.extractor.selectTrack(i3);
-    }
-
-    public MediaFormat getMediaFormat() {
-        try {
-            return getOutputMediaFormat() != null ? getOutputMediaFormat() : getInputMediaFormat();
-        } catch (Exception e) {
-            FileLog.e(e);
-            return null;
-        }
-    }
-
-    public MediaFormat getInputMediaFormat() {
-        try {
-            return this.extractor.getTrackFormat(this.trackIndex);
-        } catch (Exception e) {
-            FileLog.e(e);
-            return null;
-        }
-    }
-
-    public MediaFormat getOutputMediaFormat() {
-        try {
-            return this.decoder.getOutputFormat();
-        } catch (Exception e) {
-            FileLog.e(e);
-            return null;
-        }
-    }
-
-    public long getDurationUs() {
-        try {
-            return getOutputMediaFormat().getLong("durationUs");
-        } catch (Exception e) {
-            FileLog.e(e);
-            try {
-                return getInputMediaFormat().getLong("durationUs");
-            } catch (Exception e2) {
-                FileLog.e(e2);
-                return -1L;
-            }
-        }
-    }
-
-    public int getSampleRate() {
-        try {
-            return getOutputMediaFormat().getInteger("sample-rate");
-        } catch (Exception e) {
-            FileLog.e(e);
-            try {
-                return getInputMediaFormat().getInteger("sample-rate");
-            } catch (Exception e2) {
-                FileLog.e(e2);
-                return -1;
-            }
-        }
-    }
-
-    public int getBitrateRate() {
-        try {
-            try {
-                return getOutputMediaFormat().getInteger("bitrate");
-            } catch (Exception unused) {
-                return getInputMediaFormat().getInteger("bitrate");
-            }
-        } catch (Exception unused2) {
-            return -1;
-        }
-    }
-
-    public int getChannelCount() {
-        try {
-            return getOutputMediaFormat().getInteger("channel-count");
-        } catch (Exception e) {
-            FileLog.e(e);
-            try {
-                return getInputMediaFormat().getInteger("channel-count");
-            } catch (Exception e2) {
-                FileLog.e(e2);
-                return -1;
-            }
-        }
-    }
-
-    public long getStartTimeUs() {
-        return this.startTimeUs;
-    }
-
-    public long getEndTimeUs() {
-        return this.endTimeUs;
-    }
-
-    public boolean isLoopingEnabled() {
-        return this.loopingEnabled;
-    }
-
-    public boolean isDecodingDone() {
-        return this.decodingDone;
-    }
-
-    public void setStartTimeUs(long j) {
-        this.startTimeUs = j;
-        long durationUs = getDurationUs();
-        if (j < 0) {
-            this.startTimeUs = 0L;
-        } else if (j > durationUs) {
-            this.startTimeUs = durationUs;
-        }
-    }
-
-    public void setEndTimeUs(long j) {
-        this.endTimeUs = j;
-        long durationUs = getDurationUs();
-        if (j < 0) {
-            this.endTimeUs = 0L;
-        } else if (j > durationUs) {
-            this.endTimeUs = durationUs;
-        }
-    }
-
-    public void setLoopingEnabled(boolean z) {
-        this.loopingEnabled = z;
-    }
-
-    public void start() {
-        long j = this.startTimeUs;
-        if (j > this.endTimeUs) {
-            throw new RuntimeException("StartTimeUs(" + this.startTimeUs + ") must be less than or equal to EndTimeUs(" + this.endTimeUs + ")");
-        }
-        this.extractor.seekTo(j, 0);
-        this.decoder.start();
-        this.allInputExtracted = false;
-        this.decodingDone = false;
     }
 
     public DecodedBufferData decode() {
@@ -251,7 +111,7 @@ public class AudioDecoder {
                         decodedBufferData.byteBuffer.position(iPosition);
                     }
                 }
-                long jBytesToUs = decodedBufferData.presentationTimeUs + AudioConversions.bytesToUs(decodedBufferData.size, getSampleRate(), getChannelCount());
+                long jBytesToUs = AudioConversions.bytesToUs(decodedBufferData.size, getSampleRate(), getChannelCount()) + decodedBufferData.presentationTimeUs;
                 long j3 = this.endTimeUs;
                 if (jBytesToUs > j3 && (iUsToBytes = AudioConversions.usToBytes(jBytesToUs - j3, getSampleRate(), getChannelCount())) > 0 && (iLimit = decodedBufferData.byteBuffer.limit() - iUsToBytes) >= decodedBufferData.byteBuffer.position()) {
                     decodedBufferData.byteBuffer.limit(iLimit);
@@ -267,8 +127,149 @@ public class AudioDecoder {
         return decodedBufferData;
     }
 
+    public int getBitrateRate() {
+        try {
+            try {
+                return getOutputMediaFormat().getInteger("bitrate");
+            } catch (Exception unused) {
+                return getInputMediaFormat().getInteger("bitrate");
+            }
+        } catch (Exception unused2) {
+            return -1;
+        }
+    }
+
+    public int getChannelCount() {
+        try {
+            return getOutputMediaFormat().getInteger("channel-count");
+        } catch (Exception e) {
+            FileLog.e(e);
+            try {
+                return getInputMediaFormat().getInteger("channel-count");
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                return -1;
+            }
+        }
+    }
+
+    public long getDurationUs() {
+        try {
+            return getOutputMediaFormat().getLong("durationUs");
+        } catch (Exception e) {
+            FileLog.e(e);
+            try {
+                return getInputMediaFormat().getLong("durationUs");
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                return -1L;
+            }
+        }
+    }
+
+    public long getEndTimeUs() {
+        return this.endTimeUs;
+    }
+
+    public MediaFormat getInputMediaFormat() {
+        try {
+            return this.extractor.getTrackFormat(this.trackIndex);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public MediaFormat getMediaFormat() {
+        try {
+            return getOutputMediaFormat() != null ? getOutputMediaFormat() : getInputMediaFormat();
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public MediaFormat getOutputMediaFormat() {
+        try {
+            return this.decoder.getOutputFormat();
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public int getSampleRate() {
+        try {
+            return getOutputMediaFormat().getInteger("sample-rate");
+        } catch (Exception e) {
+            FileLog.e(e);
+            try {
+                return getInputMediaFormat().getInteger("sample-rate");
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                return -1;
+            }
+        }
+    }
+
+    public long getStartTimeUs() {
+        return this.startTimeUs;
+    }
+
+    public boolean isDecodingDone() {
+        return this.decodingDone;
+    }
+
+    public boolean isLoopingEnabled() {
+        return this.loopingEnabled;
+    }
+
+    public void release() {
+        stop();
+        this.decoder.release();
+        this.extractor.release();
+    }
+
     public void releaseOutputBuffer(int i) {
         this.decoder.releaseOutputBuffer(i, false);
+    }
+
+    public void setEndTimeUs(long j) {
+        this.endTimeUs = j;
+        long durationUs = getDurationUs();
+        if (j < 0) {
+            this.endTimeUs = 0L;
+        } else if (j > durationUs) {
+            this.endTimeUs = durationUs;
+        }
+    }
+
+    public void setLoopingEnabled(boolean z) {
+        this.loopingEnabled = z;
+    }
+
+    public void setStartTimeUs(long j) {
+        this.startTimeUs = j;
+        long durationUs = getDurationUs();
+        if (j < 0) {
+            this.startTimeUs = 0L;
+        } else if (j > durationUs) {
+            this.startTimeUs = durationUs;
+        }
+    }
+
+    public void start() {
+        long j = this.startTimeUs;
+        if (j > this.endTimeUs) {
+            StringBuilder sb = new StringBuilder("StartTimeUs(");
+            sb.append(this.startTimeUs);
+            sb.append(") must be less than or equal to EndTimeUs(");
+            throw new RuntimeException(SurfaceContainer$$ExternalSyntheticOutline0.m(sb, this.endTimeUs, ")"));
+        }
+        this.extractor.seekTo(j, 0);
+        this.decoder.start();
+        this.allInputExtracted = false;
+        this.decodingDone = false;
     }
 
     public void stop() {
@@ -276,9 +277,12 @@ public class AudioDecoder {
         this.decodingDone = true;
     }
 
-    public void release() {
-        stop();
-        this.decoder.release();
-        this.extractor.release();
+    public AudioDecoder(String str, int i) throws IOException {
+        this.audioIndex = -1;
+        MediaExtractor mediaExtractor = new MediaExtractor();
+        this.extractor = mediaExtractor;
+        mediaExtractor.setDataSource(str);
+        this.audioIndex = i;
+        init();
     }
 }

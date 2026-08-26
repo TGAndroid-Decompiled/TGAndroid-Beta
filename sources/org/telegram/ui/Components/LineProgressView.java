@@ -9,19 +9,19 @@ import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 
-public class LineProgressView extends View {
-    private static DecelerateInterpolator decelerateInterpolator;
-    private static Paint progressPaint;
-    private float animatedAlphaValue;
-    private float animatedProgressValue;
-    private float animationProgressStart;
-    private int backColor;
-    CellFlickerDrawable cellFlickerDrawable;
-    private float currentProgress;
-    private long currentProgressTime;
-    private long lastUpdateTime;
-    private int progressColor;
-    private RectF rect;
+public final class LineProgressView extends View {
+    public static DecelerateInterpolator decelerateInterpolator;
+    public static Paint progressPaint;
+    public float animatedAlphaValue;
+    public float animatedProgressValue;
+    public float animationProgressStart;
+    public int backColor;
+    public CellFlickerDrawable cellFlickerDrawable;
+    public float currentProgress;
+    public long currentProgressTime;
+    public long lastUpdateTime;
+    public int progressColor;
+    public final RectF rect;
 
     public LineProgressView(Context context) {
         super(context);
@@ -36,7 +36,37 @@ public class LineProgressView extends View {
         }
     }
 
-    private void updateAnimation() {
+    public float getCurrentProgress() {
+        return this.currentProgress;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i = this.backColor;
+        RectF rectF = this.rect;
+        if (i != 0 && this.animatedProgressValue != 1.0f) {
+            progressPaint.setColor(i);
+            progressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f));
+            getWidth();
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, progressPaint);
+        }
+        progressPaint.setColor(this.progressColor);
+        progressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f));
+        rectF.set(0.0f, 0.0f, getWidth() * this.animatedProgressValue, getHeight());
+        canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, progressPaint);
+        if (this.animatedAlphaValue > 0.0f) {
+            if (this.cellFlickerDrawable == null) {
+                CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(160, 0, 160);
+                this.cellFlickerDrawable = cellFlickerDrawable;
+                cellFlickerDrawable.drawFrame = false;
+                cellFlickerDrawable.animationSpeedScale = 0.8f;
+                cellFlickerDrawable.repeatProgress = 1.2f;
+            }
+            this.cellFlickerDrawable.parentWidth = getMeasuredWidth();
+            this.cellFlickerDrawable.draw(getHeight() / 2.0f, canvas, rectF, null);
+            invalidate();
+        }
         long jCurrentTimeMillis = System.currentTimeMillis();
         long j = jCurrentTimeMillis - this.lastUpdateTime;
         this.lastUpdateTime = jCurrentTimeMillis;
@@ -54,7 +84,7 @@ public class LineProgressView extends View {
                         this.animationProgressStart = f2;
                         this.currentProgressTime = 0L;
                     } else {
-                        this.animatedProgressValue = f3 + (f4 * decelerateInterpolator.getInterpolation(j2 / 300.0f));
+                        this.animatedProgressValue = (decelerateInterpolator.getInterpolation(j2 / 300.0f) * f4) + f3;
                     }
                 }
                 invalidate();
@@ -75,20 +105,16 @@ public class LineProgressView extends View {
         }
     }
 
-    public void setProgressColor(int i) {
-        this.progressColor = i;
-    }
-
     public void setBackColor(int i) {
         this.backColor = i;
     }
 
-    public void setProgress(float f, boolean z) {
-        if (!z) {
+    public final void setProgress(float f, boolean z) {
+        if (z) {
+            this.animationProgressStart = this.animatedProgressValue;
+        } else {
             this.animatedProgressValue = f;
             this.animationProgressStart = f;
-        } else {
-            this.animationProgressStart = this.animatedProgressValue;
         }
         if (f != 1.0f) {
             this.animatedAlphaValue = 1.0f;
@@ -99,36 +125,7 @@ public class LineProgressView extends View {
         invalidate();
     }
 
-    public float getCurrentProgress() {
-        return this.currentProgress;
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        int i = this.backColor;
-        if (i != 0 && this.animatedProgressValue != 1.0f) {
-            progressPaint.setColor(i);
-            progressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f));
-            getWidth();
-            this.rect.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(this.rect, getHeight() / 2.0f, getHeight() / 2.0f, progressPaint);
-        }
-        progressPaint.setColor(this.progressColor);
-        progressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f));
-        this.rect.set(0.0f, 0.0f, getWidth() * this.animatedProgressValue, getHeight());
-        canvas.drawRoundRect(this.rect, getHeight() / 2.0f, getHeight() / 2.0f, progressPaint);
-        if (this.animatedAlphaValue > 0.0f) {
-            if (this.cellFlickerDrawable == null) {
-                CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(160, 0);
-                this.cellFlickerDrawable = cellFlickerDrawable;
-                cellFlickerDrawable.drawFrame = false;
-                cellFlickerDrawable.animationSpeedScale = 0.8f;
-                cellFlickerDrawable.repeatProgress = 1.2f;
-            }
-            this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
-            this.cellFlickerDrawable.draw(canvas, this.rect, getHeight() / 2.0f, null);
-            invalidate();
-        }
-        updateAnimation();
+    public void setProgressColor(int i) {
+        this.progressColor = i;
     }
 }

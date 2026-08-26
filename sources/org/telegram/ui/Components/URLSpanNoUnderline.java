@@ -8,34 +8,23 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
 
 public class URLSpanNoUnderline extends URLSpan {
-    private boolean forceNoUnderline;
+    public boolean forceNoUnderline;
     public String label;
-    private TLObject object;
-    private TextStyleSpan.TextStyleRun style;
+    public TLObject object;
+    public final TextStyleSpan.TextStyleRun style;
 
     public URLSpanNoUnderline(String str) {
-        this(str, (TextStyleSpan.TextStyleRun) null);
-    }
-
-    public URLSpanNoUnderline(String str, boolean z) {
-        this(str, (TextStyleSpan.TextStyleRun) null);
-        this.forceNoUnderline = z;
-    }
-
-    public URLSpanNoUnderline(String str, TextStyleSpan.TextStyleRun textStyleRun) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.forceNoUnderline = false;
-        this.style = textStyleRun;
+        this(str, null);
     }
 
     @Override
     public void onClick(View view) {
         String url = getURL();
-        if (url.startsWith("@")) {
-            Browser.openUrl(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)));
+        if (!url.startsWith("@")) {
+            Browser.openUrl(view.getContext(), url);
             return;
         }
-        Browser.openUrl(view.getContext(), url);
+        Browser.openUrl(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
     }
 
     @Override
@@ -50,11 +39,9 @@ public class URLSpanNoUnderline extends URLSpan {
         textPaint.setUnderlineText(i == color && !this.forceNoUnderline);
     }
 
-    public void setObject(TLObject tLObject) {
-        this.object = tLObject;
-    }
-
-    public TLObject getObject() {
-        return this.object;
+    public URLSpanNoUnderline(String str, TextStyleSpan.TextStyleRun textStyleRun) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.forceNoUnderline = false;
+        this.style = textStyleRun;
     }
 }

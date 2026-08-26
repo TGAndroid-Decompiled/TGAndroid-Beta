@@ -15,55 +15,8 @@ public class SQLiteCursor {
     private boolean inRow = false;
     private SQLitePreparedStatement preparedStatement;
 
-    native byte[] columnByteArrayValue(long j, int i);
-
-    native long columnByteBufferValue(long j, int i);
-
-    native int columnCount(long j);
-
-    native double columnDoubleValue(long j, int i);
-
-    native int columnIntValue(long j, int i);
-
-    native int columnIsNull(long j, int i);
-
-    native long columnLongValue(long j, int i);
-
-    native String columnStringValue(long j, int i);
-
-    native int columnType(long j, int i);
-
     public SQLiteCursor(SQLitePreparedStatement sQLitePreparedStatement) {
         this.preparedStatement = sQLitePreparedStatement;
-    }
-
-    public boolean isNull(int i) throws SQLiteException {
-        checkRow();
-        return columnIsNull(this.preparedStatement.getStatementHandle(), i) == 1;
-    }
-
-    public SQLitePreparedStatement getPreparedStatement() {
-        return this.preparedStatement;
-    }
-
-    public int intValue(int i) {
-        checkRow();
-        return columnIntValue(this.preparedStatement.getStatementHandle(), i);
-    }
-
-    public double doubleValue(int i) throws SQLiteException {
-        checkRow();
-        return columnDoubleValue(this.preparedStatement.getStatementHandle(), i);
-    }
-
-    public long longValue(int i) {
-        checkRow();
-        return columnLongValue(this.preparedStatement.getStatementHandle(), i);
-    }
-
-    public String stringValue(int i) {
-        checkRow();
-        return columnStringValue(this.preparedStatement.getStatementHandle(), i);
     }
 
     public byte[] byteArrayValue(int i) {
@@ -80,16 +33,49 @@ public class SQLiteCursor {
         return null;
     }
 
-    public <T extends TLObject> T tlObjectValue(int i, Vector.TLDeserializer<T> tLDeserializer, boolean z) {
-        NativeByteBuffer nativeByteBufferByteBufferValue = byteBufferValue(i);
-        if (nativeByteBufferByteBufferValue == null) {
-            return null;
+    public void checkRow() throws SQLiteException {
+        if (!this.inRow) {
+            throw new SQLiteException("You must call next before");
         }
-        try {
-            return (T) tLDeserializer.deserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(z), z);
-        } finally {
-            nativeByteBufferByteBufferValue.reuse();
-        }
+    }
+
+    public native byte[] columnByteArrayValue(long j, int i);
+
+    public native long columnByteBufferValue(long j, int i);
+
+    public native int columnCount(long j);
+
+    public native double columnDoubleValue(long j, int i);
+
+    public native int columnIntValue(long j, int i);
+
+    public native int columnIsNull(long j, int i);
+
+    public native long columnLongValue(long j, int i);
+
+    public native String columnStringValue(long j, int i);
+
+    public native int columnType(long j, int i);
+
+    public void dispose() {
+        this.preparedStatement.dispose();
+    }
+
+    public double doubleValue(int i) throws SQLiteException {
+        checkRow();
+        return columnDoubleValue(this.preparedStatement.getStatementHandle(), i);
+    }
+
+    public int getColumnCount() {
+        return columnCount(this.preparedStatement.getStatementHandle());
+    }
+
+    public SQLitePreparedStatement getPreparedStatement() {
+        return this.preparedStatement;
+    }
+
+    public long getStatementHandle() {
+        return this.preparedStatement.getStatementHandle();
     }
 
     public int getTypeOf(int i) throws SQLiteException {
@@ -97,7 +83,22 @@ public class SQLiteCursor {
         return columnType(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public boolean next() throws SQLiteException {
+    public int intValue(int i) {
+        checkRow();
+        return columnIntValue(this.preparedStatement.getStatementHandle(), i);
+    }
+
+    public boolean isNull(int i) {
+        checkRow();
+        return columnIsNull(this.preparedStatement.getStatementHandle(), i) == 1;
+    }
+
+    public long longValue(int i) {
+        checkRow();
+        return columnLongValue(this.preparedStatement.getStatementHandle(), i);
+    }
+
+    public boolean next() {
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
         int iStep = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
         if (iStep == -1) {
@@ -130,21 +131,20 @@ public class SQLiteCursor {
         return z;
     }
 
-    public long getStatementHandle() {
-        return this.preparedStatement.getStatementHandle();
+    public String stringValue(int i) {
+        checkRow();
+        return columnStringValue(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public int getColumnCount() {
-        return columnCount(this.preparedStatement.getStatementHandle());
-    }
-
-    public void dispose() {
-        this.preparedStatement.dispose();
-    }
-
-    void checkRow() throws SQLiteException {
-        if (!this.inRow) {
-            throw new SQLiteException("You must call next before");
+    public <T extends TLObject> T tlObjectValue(int i, Vector.TLDeserializer<T> tLDeserializer, boolean z) {
+        NativeByteBuffer nativeByteBufferByteBufferValue = byteBufferValue(i);
+        if (nativeByteBufferByteBufferValue == null) {
+            return null;
+        }
+        try {
+            return (T) tLDeserializer.deserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(z), z);
+        } finally {
+            nativeByteBufferByteBufferValue.reuse();
         }
     }
 }

@@ -15,18 +15,13 @@ public class FramedBox extends Box {
 
     public FramedBox(Box box, float f, float f2) {
         this.box = box;
-        this.width = box.width + (f * 2.0f) + (2.0f * f2);
+        float f3 = 2.0f * f2;
+        this.width = f3 + (f * 2.0f) + box.width;
         this.height = box.height + f + f2;
         this.depth = box.depth + f + f2;
         this.shift = box.shift;
         this.thickness = f;
         this.space = f2;
-    }
-
-    public FramedBox(Box box, float f, float f2, Color color, Color color2) {
-        this(box, f, f2);
-        this.line = color;
-        this.bg = color2;
     }
 
     @Override
@@ -68,5 +63,11 @@ public class FramedBox extends Box {
     @Override
     public int getLastFontId() {
         return this.box.getLastFontId();
+    }
+
+    public FramedBox(Box box, float f, float f2, Color color, Color color2) {
+        this(box, f, f2);
+        this.line = color;
+        this.bg = color2;
     }
 }

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import java.util.List;
 
-public class WallpaperGiftBitmapDrawable extends BitmapDrawable {
+public final class WallpaperGiftBitmapDrawable extends BitmapDrawable {
     public final List patternPositions;
 
     public WallpaperGiftBitmapDrawable(Bitmap bitmap, List list) {
@@ -16,9 +16,6 @@ public class WallpaperGiftBitmapDrawable extends BitmapDrawable {
         if (bitmap == null) {
             return null;
         }
-        if (list == null || list.isEmpty()) {
-            return new BitmapDrawable(bitmap);
-        }
-        return new WallpaperGiftBitmapDrawable(bitmap, list);
+        return (list == null || list.isEmpty()) ? new BitmapDrawable(bitmap) : new WallpaperGiftBitmapDrawable(bitmap, list);
     }
 }

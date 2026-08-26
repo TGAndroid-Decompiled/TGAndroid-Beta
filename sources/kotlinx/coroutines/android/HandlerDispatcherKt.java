@@ -10,34 +10,30 @@ import kotlin.ResultKt;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class HandlerDispatcherKt {
-    public static final HandlerDispatcher Main;
     private static volatile Choreographer choreographer;
 
-    public static final Handler asHandler(Looper looper, boolean z) throws IllegalAccessException, InvocationTargetException {
-        if (z) {
-            if (Build.VERSION.SDK_INT >= 28) {
-                Object objInvoke = Handler.class.getDeclaredMethod("createAsync", Looper.class).invoke(null, looper);
-                Intrinsics.checkNotNull(objInvoke, "null cannot be cast to non-null type android.os.Handler");
-                return (Handler) objInvoke;
-            }
+    static {
+        Object objCreateFailure;
+        try {
+            objCreateFailure = new HandlerContext(asHandler(Looper.getMainLooper()), false);
+        } catch (Throwable th) {
+            objCreateFailure = ResultKt.createFailure(th);
+        }
+        if (objCreateFailure instanceof Result.Failure) {
+            objCreateFailure = null;
+        }
+    }
+
+    public static final Handler asHandler(Looper looper) throws IllegalAccessException, InvocationTargetException {
+        if (Build.VERSION.SDK_INT < 28) {
             try {
                 return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler.Callback.class, Boolean.TYPE).newInstance(looper, null, Boolean.TRUE);
             } catch (NoSuchMethodException unused) {
                 return new Handler(looper);
             }
         }
-        return new Handler(looper);
-    }
-
-    static {
-        Object objM283constructorimpl;
-        try {
-            Result.Companion companion = Result.Companion;
-            objM283constructorimpl = Result.m283constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
-        } catch (Throwable th) {
-            Result.Companion companion2 = Result.Companion;
-            objM283constructorimpl = Result.m283constructorimpl(ResultKt.createFailure(th));
-        }
-        Main = (HandlerDispatcher) (Result.m287isFailureimpl(objM283constructorimpl) ? null : objM283constructorimpl);
+        Object objInvoke = Handler.class.getDeclaredMethod("createAsync", Looper.class).invoke(null, looper);
+        Intrinsics.checkNotNull(objInvoke, "null cannot be cast to non-null type android.os.Handler");
+        return (Handler) objInvoke;
     }
 }

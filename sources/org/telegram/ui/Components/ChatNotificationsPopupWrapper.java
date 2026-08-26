@@ -2,56 +2,45 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda333;
-import org.telegram.ui.ProfileNotificationsActivity;
+import org.telegram.ui.ChooseSpeedLayout$$ExternalSyntheticLambda0;
+import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda6;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda37;
+import org.telegram.ui.ProfileActivity;
 
-public class ChatNotificationsPopupWrapper {
-    View backItem;
-    Callback callback;
-    int currentAccount;
-    private final View gap;
-    private final boolean isProfile;
-    long lastDismissTime;
-    ActionBarMenuSubItem muteForLastSelected;
-    private int muteForLastSelected1Time;
-    ActionBarMenuSubItem muteForLastSelected2;
-    private int muteForLastSelected2Time;
-    ActionBarMenuSubItem muteUnmuteButton;
-    ActionBarPopupWindow popupWindow;
-    ActionBarMenuSubItem soundToggle;
-    private final TextView topicsExceptionsTextView;
+public final class ChatNotificationsPopupWrapper {
+    public final ActionBarMenuSubItem backItem;
+    public final Callback callback;
+    public final int currentAccount;
+    public final FrameLayout gap;
+    public long lastDismissTime;
+    public final ActionBarMenuSubItem muteForLastSelected;
+    public int muteForLastSelected1Time;
+    public final ActionBarMenuSubItem muteForLastSelected2;
+    public int muteForLastSelected2Time;
+    public final ActionBarMenuSubItem muteUnmuteButton;
+    public ActionBarPopupWindow popupWindow;
+    public final ActionBarMenuSubItem soundToggle;
+    public final TextView topicsExceptionsTextView;
     public int type;
-    public ActionBarPopupWindow.ActionBarPopupWindowLayout windowLayout;
+    public final ProfileActivity.AnonymousClass39 windowLayout;
 
     public interface Callback {
-
-        public abstract class CC {
-            public static void $default$dismiss(Callback callback) {
-            }
-
-            public static void $default$openExceptions(Callback callback) {
-            }
-        }
-
         void dismiss();
 
         void muteFor(int i);
@@ -65,247 +54,305 @@ public class ChatNotificationsPopupWrapper {
         void toggleSound();
     }
 
-    public ChatNotificationsPopupWrapper(final Context context, final int i, final PopupSwipeBackLayout popupSwipeBackLayout, boolean z, boolean z2, final Callback callback, final Theme.ResourcesProvider resourcesProvider) {
+    public ChatNotificationsPopupWrapper(Context context, int i, PopupSwipeBackLayout popupSwipeBackLayout, boolean z, final Callback callback, Theme.ResourcesProvider resourcesProvider) {
         this.currentAccount = i;
         this.callback = callback;
-        this.isProfile = z2;
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, z ? R.drawable.popup_fixed_alert : 0, resourcesProvider) {
-            Path path = new Path();
+        ProfileActivity.AnonymousClass39 anonymousClass39 = new ProfileActivity.AnonymousClass39(context, z ? R.drawable.popup_fixed_alert : 0, resourcesProvider);
+        this.windowLayout = anonymousClass39;
+        anonymousClass39.setFitItems(true);
+        if (popupSwipeBackLayout != null) {
+            ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(false, false, anonymousClass39, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, resourcesProvider);
+            this.backItem = actionBarMenuSubItemAddItem;
+            actionBarMenuSubItemAddItem.setOnClickListener(new ChooseSpeedLayout$$ExternalSyntheticLambda0(popupSwipeBackLayout, 3));
+        }
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(false, false, anonymousClass39, R.drawable.msg_tone_on, LocaleController.getString(R.string.SoundOn), false, resourcesProvider);
+        this.soundToggle = actionBarMenuSubItemAddItem2;
+        final int i2 = 0;
+        actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener(this) {
+            public final ChatNotificationsPopupWrapper f$0;
+
+            {
+                this.f$0 = this;
+            }
 
             @Override
-            protected boolean drawChild(Canvas canvas, View view, long j) {
-                canvas.save();
-                this.path.rewind();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                this.path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-                canvas.clipPath(this.path);
-                boolean zDrawChild = super.drawChild(canvas, view, j);
-                canvas.restore();
-                return zDrawChild;
-            }
-        };
-        this.windowLayout = actionBarPopupWindowLayout;
-        actionBarPopupWindowLayout.setFitItems(true);
-        if (popupSwipeBackLayout != null) {
-            ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, resourcesProvider);
-            this.backItem = actionBarMenuSubItemAddItem;
-            actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    popupSwipeBackLayout.closeForeground();
+            public final void onClick(View view) {
+                switch (i2) {
+                    case 0:
+                        this.f$0.dismiss();
+                        callback.toggleSound();
+                        break;
+                    case 1:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = this.f$0;
+                        chatNotificationsPopupWrapper.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected1Time);
+                        break;
+                    case 2:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper2 = this.f$0;
+                        chatNotificationsPopupWrapper2.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper2.muteForLastSelected2Time);
+                        break;
+                    case 3:
+                        this.f$0.dismiss();
+                        callback.showCustomize();
+                        break;
+                    case 4:
+                        this.f$0.dismiss();
+                        AndroidUtilities.runOnUIThread(new Bulletin$2$$ExternalSyntheticLambda1(callback, 19));
+                        break;
+                    default:
+                        ChatNotificationsPopupWrapper.Callback callback2 = callback;
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper3 = this.f$0;
+                        chatNotificationsPopupWrapper3.getClass();
+                        callback2.openExceptions();
+                        chatNotificationsPopupWrapper3.dismiss();
+                        break;
                 }
-            });
-        }
-        ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_tone_on, LocaleController.getString(R.string.SoundOn), false, resourcesProvider);
-        this.soundToggle = actionBarMenuSubItemAddItem2;
-        actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.$r8$lambda$hdU0es5DaVL4qd0zTA5VJOOqTlk(this.f$0, callback, view);
             }
         });
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.windowLayout;
-        int i2 = R.drawable.msg_mute_1h;
-        int i3 = R.string.MuteFor1h;
-        ActionBarMenuSubItem actionBarMenuSubItemAddItem3 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout2, i2, LocaleController.getString(i3), false, resourcesProvider);
+        int i3 = R.drawable.msg_mute_1h;
+        int i4 = R.string.MuteFor1h;
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem3 = ActionBarMenuItem.addItem(false, false, anonymousClass39, i3, LocaleController.getString(i4), false, resourcesProvider);
         this.muteForLastSelected = actionBarMenuSubItemAddItem3;
-        actionBarMenuSubItemAddItem3.setOnClickListener(new View.OnClickListener() {
+        final int i5 = 1;
+        actionBarMenuSubItemAddItem3.setOnClickListener(new View.OnClickListener(this) {
+            public final ChatNotificationsPopupWrapper f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.$r8$lambda$BCifHbT070kKx60ZM0FZEguxiUk(this.f$0, callback, view);
+                switch (i5) {
+                    case 0:
+                        this.f$0.dismiss();
+                        callback.toggleSound();
+                        break;
+                    case 1:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = this.f$0;
+                        chatNotificationsPopupWrapper.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected1Time);
+                        break;
+                    case 2:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper2 = this.f$0;
+                        chatNotificationsPopupWrapper2.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper2.muteForLastSelected2Time);
+                        break;
+                    case 3:
+                        this.f$0.dismiss();
+                        callback.showCustomize();
+                        break;
+                    case 4:
+                        this.f$0.dismiss();
+                        AndroidUtilities.runOnUIThread(new Bulletin$2$$ExternalSyntheticLambda1(callback, 19));
+                        break;
+                    default:
+                        ChatNotificationsPopupWrapper.Callback callback2 = callback;
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper3 = this.f$0;
+                        chatNotificationsPopupWrapper3.getClass();
+                        callback2.openExceptions();
+                        chatNotificationsPopupWrapper3.dismiss();
+                        break;
+                }
             }
         });
-        ActionBarMenuSubItem actionBarMenuSubItemAddItem4 = ActionBarMenuItem.addItem(this.windowLayout, i2, LocaleController.getString(i3), false, resourcesProvider);
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem4 = ActionBarMenuItem.addItem(false, false, anonymousClass39, i3, LocaleController.getString(i4), false, resourcesProvider);
         this.muteForLastSelected2 = actionBarMenuSubItemAddItem4;
-        actionBarMenuSubItemAddItem4.setOnClickListener(new View.OnClickListener() {
+        final int i6 = 2;
+        actionBarMenuSubItemAddItem4.setOnClickListener(new View.OnClickListener(this) {
+            public final ChatNotificationsPopupWrapper f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.m2221$r8$lambda$IUt87eeObtHRh9nlOj8Lm3A_hQ(this.f$0, callback, view);
+                switch (i6) {
+                    case 0:
+                        this.f$0.dismiss();
+                        callback.toggleSound();
+                        break;
+                    case 1:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = this.f$0;
+                        chatNotificationsPopupWrapper.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected1Time);
+                        break;
+                    case 2:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper2 = this.f$0;
+                        chatNotificationsPopupWrapper2.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper2.muteForLastSelected2Time);
+                        break;
+                    case 3:
+                        this.f$0.dismiss();
+                        callback.showCustomize();
+                        break;
+                    case 4:
+                        this.f$0.dismiss();
+                        AndroidUtilities.runOnUIThread(new Bulletin$2$$ExternalSyntheticLambda1(callback, 19));
+                        break;
+                    default:
+                        ChatNotificationsPopupWrapper.Callback callback2 = callback;
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper3 = this.f$0;
+                        chatNotificationsPopupWrapper3.getClass();
+                        callback2.openExceptions();
+                        chatNotificationsPopupWrapper3.dismiss();
+                        break;
+                }
             }
         });
-        ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_mute_period, LocaleController.getString(R.string.MuteForPopup), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuItem.addItem(false, false, anonymousClass39, R.drawable.msg_mute_period, LocaleController.getString(R.string.MuteForPopup), false, resourcesProvider).setOnClickListener(new GroupCallSheet$$ExternalSyntheticLambda6(this, context, resourcesProvider, i, callback, 1));
+        final int i7 = 3;
+        ActionBarMenuItem.addItem(false, false, anonymousClass39, R.drawable.msg_customize, LocaleController.getString(R.string.NotificationsCustomize), false, resourcesProvider).setOnClickListener(new View.OnClickListener(this) {
+            public final ChatNotificationsPopupWrapper f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.m2222$r8$lambda$PEbOpDurCCRYUlxQxtL_WRuezo(this.f$0, context, resourcesProvider, i, callback, view);
+                switch (i7) {
+                    case 0:
+                        this.f$0.dismiss();
+                        callback.toggleSound();
+                        break;
+                    case 1:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = this.f$0;
+                        chatNotificationsPopupWrapper.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected1Time);
+                        break;
+                    case 2:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper2 = this.f$0;
+                        chatNotificationsPopupWrapper2.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper2.muteForLastSelected2Time);
+                        break;
+                    case 3:
+                        this.f$0.dismiss();
+                        callback.showCustomize();
+                        break;
+                    case 4:
+                        this.f$0.dismiss();
+                        AndroidUtilities.runOnUIThread(new Bulletin$2$$ExternalSyntheticLambda1(callback, 19));
+                        break;
+                    default:
+                        ChatNotificationsPopupWrapper.Callback callback2 = callback;
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper3 = this.f$0;
+                        chatNotificationsPopupWrapper3.getClass();
+                        callback2.openExceptions();
+                        chatNotificationsPopupWrapper3.dismiss();
+                        break;
+                }
             }
         });
-        ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_customize, LocaleController.getString(R.string.NotificationsCustomize), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.$r8$lambda$ybt8tZUW07bes1IVqFi8k5NWQ3U(this.f$0, callback, view);
-            }
-        });
-        ActionBarMenuSubItem actionBarMenuSubItemAddItem5 = ActionBarMenuItem.addItem(this.windowLayout, 0, "", false, resourcesProvider);
+        ActionBarMenuSubItem actionBarMenuSubItemAddItem5 = ActionBarMenuItem.addItem(false, false, anonymousClass39, 0, "", false, resourcesProvider);
         this.muteUnmuteButton = actionBarMenuSubItemAddItem5;
-        actionBarMenuSubItemAddItem5.setOnClickListener(new View.OnClickListener() {
+        final int i8 = 4;
+        actionBarMenuSubItemAddItem5.setOnClickListener(new View.OnClickListener(this) {
+            public final ChatNotificationsPopupWrapper f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.$r8$lambda$TeJuG4RmFiN6mblwxCj699X3MFI(this.f$0, callback, view);
+                switch (i8) {
+                    case 0:
+                        this.f$0.dismiss();
+                        callback.toggleSound();
+                        break;
+                    case 1:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = this.f$0;
+                        chatNotificationsPopupWrapper.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected1Time);
+                        break;
+                    case 2:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper2 = this.f$0;
+                        chatNotificationsPopupWrapper2.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper2.muteForLastSelected2Time);
+                        break;
+                    case 3:
+                        this.f$0.dismiss();
+                        callback.showCustomize();
+                        break;
+                    case 4:
+                        this.f$0.dismiss();
+                        AndroidUtilities.runOnUIThread(new Bulletin$2$$ExternalSyntheticLambda1(callback, 19));
+                        break;
+                    default:
+                        ChatNotificationsPopupWrapper.Callback callback2 = callback;
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper3 = this.f$0;
+                        chatNotificationsPopupWrapper3.getClass();
+                        callback2.openExceptions();
+                        chatNotificationsPopupWrapper3.dismiss();
+                        break;
+                }
             }
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.gap = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
-        this.windowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 8));
+        LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(-1, 8);
+        ActionBarPopupWindow.ActionBarPopupWindowLayout.AnonymousClass2 anonymousClass2 = anonymousClass39.linearLayout;
+        anonymousClass2.addView(frameLayout, layoutParamsCreateLinear);
         TextView textView = new TextView(context);
         this.topicsExceptionsTextView = textView;
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
-        int i4 = R.id.fit_width_tag;
-        frameLayout.setTag(i4, 1);
-        textView.setTag(i4, 1);
-        this.windowLayout.addView((View) textView, LayoutHelper.createLinear(-2, -2));
+        int i9 = R.id.fit_width_tag;
+        frameLayout.setTag(i9, 1);
+        textView.setTag(i9, 1);
+        anonymousClass2.addView(textView, LayoutHelper.createLinear(-2, -2));
         textView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider), 0, 6));
-        textView.setOnClickListener(new View.OnClickListener() {
+        final int i10 = 5;
+        textView.setOnClickListener(new View.OnClickListener(this) {
+            public final ChatNotificationsPopupWrapper f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.$r8$lambda$U4PfluN4GyVVrcQPg3HKYf3ZkvA(this.f$0, callback, view);
-            }
-        });
-    }
-
-    public static void $r8$lambda$hdU0es5DaVL4qd0zTA5VJOOqTlk(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Callback callback, View view) {
-        chatNotificationsPopupWrapper.dismiss();
-        callback.toggleSound();
-    }
-
-    public static void $r8$lambda$BCifHbT070kKx60ZM0FZEguxiUk(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Callback callback, View view) {
-        chatNotificationsPopupWrapper.dismiss();
-        callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected1Time);
-    }
-
-    public static void m2221$r8$lambda$IUt87eeObtHRh9nlOj8Lm3A_hQ(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Callback callback, View view) {
-        chatNotificationsPopupWrapper.dismiss();
-        callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected2Time);
-    }
-
-    public static void m2222$r8$lambda$PEbOpDurCCRYUlxQxtL_WRuezo(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Context context, Theme.ResourcesProvider resourcesProvider, final int i, final Callback callback, View view) {
-        chatNotificationsPopupWrapper.dismiss();
-        AlertsCreator.createMuteForPickerDialog(context, resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
-            @Override
-            public final void didSelectDate(boolean z, int i2, int i3) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatNotificationsPopupWrapper.m2223$r8$lambda$jhiS2GRG2Zdjm9uB5JrzKUjxx0(i2, i, callback);
-                    }
-                }, 16L);
-            }
-        });
-    }
-
-    public static void m2223$r8$lambda$jhiS2GRG2Zdjm9uB5JrzKUjxx0(int i, int i2, Callback callback) {
-        if (i != 0) {
-            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
-            notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
-        }
-        callback.muteFor(i);
-    }
-
-    public static void $r8$lambda$ybt8tZUW07bes1IVqFi8k5NWQ3U(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Callback callback, View view) {
-        chatNotificationsPopupWrapper.dismiss();
-        callback.showCustomize();
-    }
-
-    public static void $r8$lambda$TeJuG4RmFiN6mblwxCj699X3MFI(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, final Callback callback, View view) {
-        chatNotificationsPopupWrapper.dismiss();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                callback.toggleMute();
-            }
-        });
-    }
-
-    public static void $r8$lambda$U4PfluN4GyVVrcQPg3HKYf3ZkvA(ChatNotificationsPopupWrapper chatNotificationsPopupWrapper, Callback callback, View view) {
-        if (callback != null) {
-            chatNotificationsPopupWrapper.getClass();
-            callback.openExceptions();
-        }
-        chatNotificationsPopupWrapper.dismiss();
-    }
-
-    private void dismiss() {
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
-        if (actionBarPopupWindow != null) {
-            actionBarPopupWindow.dismiss();
-            this.popupWindow.dismiss();
-        }
-        this.callback.dismiss();
-        this.lastDismissTime = System.currentTimeMillis();
-    }
-
-    public void update(final long j, final long j2, final HashSet hashSet) {
-        int color;
-        int i;
-        int i2;
-        if (System.currentTimeMillis() - this.lastDismissTime < 200) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.update(j, j2, hashSet);
+                switch (i10) {
+                    case 0:
+                        this.f$0.dismiss();
+                        callback.toggleSound();
+                        break;
+                    case 1:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = this.f$0;
+                        chatNotificationsPopupWrapper.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper.muteForLastSelected1Time);
+                        break;
+                    case 2:
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper2 = this.f$0;
+                        chatNotificationsPopupWrapper2.dismiss();
+                        callback.muteFor(chatNotificationsPopupWrapper2.muteForLastSelected2Time);
+                        break;
+                    case 3:
+                        this.f$0.dismiss();
+                        callback.showCustomize();
+                        break;
+                    case 4:
+                        this.f$0.dismiss();
+                        AndroidUtilities.runOnUIThread(new Bulletin$2$$ExternalSyntheticLambda1(callback, 19));
+                        break;
+                    default:
+                        ChatNotificationsPopupWrapper.Callback callback2 = callback;
+                        ChatNotificationsPopupWrapper chatNotificationsPopupWrapper3 = this.f$0;
+                        chatNotificationsPopupWrapper3.getClass();
+                        callback2.openExceptions();
+                        chatNotificationsPopupWrapper3.dismiss();
+                        break;
                 }
-            });
-            return;
-        }
-        boolean zIsDialogMuted = MessagesController.getInstance(this.currentAccount).isDialogMuted(j, j2);
-        if (zIsDialogMuted) {
-            this.muteUnmuteButton.setTextAndIcon(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute);
-            color = Theme.getColor(Theme.key_windowBackgroundWhiteGreenText2);
-            this.soundToggle.setVisibility(8);
-        } else {
-            this.muteUnmuteButton.setTextAndIcon(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute);
-            int color2 = Theme.getColor(Theme.key_text_RedBold);
-            this.soundToggle.setVisibility(0);
-            if (MessagesController.getInstance(this.currentAccount).isDialogNotificationsSoundEnabled(j, j2)) {
-                this.soundToggle.setTextAndIcon(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off);
-            } else {
-                this.soundToggle.setTextAndIcon(LocaleController.getString(R.string.SoundOn), R.drawable.msg_tone_on);
             }
-            color = color2;
-        }
-        if (this.type == 1) {
-            this.backItem.setVisibility(8);
-        }
-        if (zIsDialogMuted || this.type == 1) {
-            i = 0;
-            i2 = 0;
-        } else {
-            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
-            i2 = notificationsSettings.getInt("last_selected_mute_until_time", 0);
-            i = notificationsSettings.getInt("last_selected_mute_until_time2", 0);
-        }
-        if (i2 != 0) {
-            this.muteForLastSelected1Time = i2;
-            this.muteForLastSelected.setVisibility(0);
-            this.muteForLastSelected.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i2));
-            this.muteForLastSelected.setText(formatMuteForTime(i2));
-        } else {
-            this.muteForLastSelected.setVisibility(8);
-        }
-        if (i != 0) {
-            this.muteForLastSelected2Time = i;
-            this.muteForLastSelected2.setVisibility(0);
-            this.muteForLastSelected2.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i));
-            this.muteForLastSelected2.setText(formatMuteForTime(i));
-        } else {
-            this.muteForLastSelected2.setVisibility(8);
-        }
-        this.muteUnmuteButton.setColors(color, color);
-        this.muteUnmuteButton.setSelectorColor(Theme.multAlpha(color, 0.1f));
-        if (hashSet == null || hashSet.isEmpty()) {
-            this.gap.setVisibility(8);
-            this.topicsExceptionsTextView.setVisibility(8);
-        } else {
-            this.gap.setVisibility(0);
-            this.topicsExceptionsTextView.setVisibility(0);
-            this.topicsExceptionsTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), Theme.key_windowBackgroundWhiteBlueText, 1, null));
-        }
+        });
     }
 
-    private String formatMuteForTime(int i) {
+    public static String formatMuteForTime(int i) {
         StringBuilder sb = new StringBuilder();
         int i2 = i / 86400;
         int i3 = i - (86400 * i2);
@@ -332,21 +379,32 @@ public class ChatNotificationsPopupWrapper {
         return LocaleController.formatString("MuteForButton", R.string.MuteForButton, sb.toString());
     }
 
-    public void showAsOptions(BaseFragment baseFragment, View view, float f, float f2, boolean z) {
+    public final void dismiss() {
+        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+        if (actionBarPopupWindow != null) {
+            actionBarPopupWindow.dismiss(true);
+            this.popupWindow.dismiss(true);
+        }
+        this.callback.dismiss();
+        this.lastDismissTime = System.currentTimeMillis();
+    }
+
+    public final void showAsOptions(BaseFragment baseFragment, View view, float f, float f2, boolean z) {
         float measuredWidth;
         float measuredHeight;
-        if (baseFragment == null || baseFragment.getFragmentView() == null) {
+        if (baseFragment.getFragmentView() == null) {
             return;
         }
-        ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.windowLayout, -2, -2);
+        ProfileActivity.AnonymousClass39 anonymousClass39 = this.windowLayout;
+        ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(anonymousClass39);
         this.popupWindow = actionBarPopupWindow;
-        actionBarPopupWindow.setPauseNotifications(true);
-        this.popupWindow.setDismissAnimationDuration(220);
-        this.popupWindow.setOutsideTouchable(true);
+        actionBarPopupWindow.pauseNotifications = true;
+        actionBarPopupWindow.dismissAnimationDuration = 220;
+        actionBarPopupWindow.setOutsideTouchable(true);
         this.popupWindow.setClippingEnabled(true);
         this.popupWindow.setAnimationStyle(R.style.PopupContextAnimation);
         this.popupWindow.setFocusable(true);
-        this.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
+        anonymousClass39.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
         this.popupWindow.setInputMethodMode(2);
         this.popupWindow.getContentView().setFocusableInTouchMode(true);
         while (view != baseFragment.getFragmentView()) {
@@ -361,142 +419,83 @@ public class ChatNotificationsPopupWrapper {
             measuredWidth = f - AndroidUtilities.dpf2(8.0f);
             measuredHeight = AndroidUtilities.dpf2(16.0f);
         } else {
-            measuredWidth = f - (this.windowLayout.getMeasuredWidth() / 2.0f);
-            measuredHeight = this.windowLayout.getMeasuredHeight() / 2.0f;
+            measuredWidth = f - (anonymousClass39.getMeasuredWidth() / 2.0f);
+            measuredHeight = anonymousClass39.getMeasuredHeight() / 2.0f;
         }
         this.popupWindow.showAtLocation(baseFragment.getFragmentView(), 0, (int) measuredWidth, (int) (f2 - measuredHeight));
-        this.popupWindow.dimBehind();
+        this.popupWindow.dimBehind(0.2f);
     }
 
-    public static ItemOptions addAsItemOptions(final BaseFragment baseFragment, final ItemOptions itemOptions, final long j, final long j2) {
-        final int currentAccount = baseFragment.getCurrentAccount();
-        final Theme.ResourcesProvider resourceProvider = baseFragment.getResourceProvider();
-        final Utilities.Callback callback = new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChatNotificationsPopupWrapper.$r8$lambda$aS3nDMDQw8wnJZR5VS7dQrqJSc8(itemOptions, currentAccount, j, j2, baseFragment, resourceProvider, (Integer) obj);
-            }
-        };
-        final ItemOptions itemOptionsMakeSwipeback = itemOptions.makeSwipeback();
-        itemOptionsMakeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda333(itemOptions));
-        itemOptionsMakeSwipeback.add(R.drawable.msg_tone_on, LocaleController.getString(R.string.SoundOn), new Runnable() {
-            @Override
-            public final void run() {
-                ChatNotificationsPopupWrapper.$r8$lambda$31RerRr0yK3qaJutUXuPZrSTK8M(itemOptions, currentAccount, j, j2, itemOptionsMakeSwipeback, baseFragment, resourceProvider);
-            }
-        });
-        final ActionBarMenuSubItem last = itemOptionsMakeSwipeback.getLast();
-        itemOptionsMakeSwipeback.add(R.drawable.msg_mute_period, LocaleController.getString(R.string.MuteForPopup), new Runnable() {
-            @Override
-            public final void run() {
-                AlertsCreator.createMuteForPickerDialog(itemOptions.getContext(), resourceProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
-                    @Override
-                    public final void didSelectDate(boolean z, int i, int i2) {
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                ChatNotificationsPopupWrapper.m2219$r8$lambda$2E5Qdzb2TlshZLi5DNrMyDRQJs(i, i, callback);
-                            }
-                        }, 16L);
-                    }
-                });
-            }
-        });
-        itemOptionsMakeSwipeback.add(R.drawable.msg_customize, LocaleController.getString(R.string.NotificationsCustomize), new Runnable() {
-            @Override
-            public final void run() {
-                ChatNotificationsPopupWrapper.$r8$lambda$_WHFIA39ymnz5txwO8Ws6ecXwFk(itemOptions, j, j2, baseFragment, resourceProvider);
-            }
-        });
-        itemOptionsMakeSwipeback.add(0, "", new Runnable() {
-            @Override
-            public final void run() {
-                ChatNotificationsPopupWrapper.$r8$lambda$99jwGva_EFC_FHEqFr4J7466z3Y(itemOptions, currentAccount, j, j2, baseFragment, resourceProvider);
-            }
-        });
-        final ActionBarMenuSubItem last2 = itemOptionsMakeSwipeback.getLast();
-        new Runnable() {
-            @Override
-            public final void run() {
-                ChatNotificationsPopupWrapper.m2224$r8$lambda$jslqYv3H4CQpj7lsolTF0FqDk4(currentAccount, j, j2, last2, last);
-            }
-        }.run();
-        return itemOptionsMakeSwipeback;
-    }
-
-    public static void $r8$lambda$aS3nDMDQw8wnJZR5VS7dQrqJSc8(ItemOptions itemOptions, int i, long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, Integer num) {
-        itemOptions.dismiss();
-        if (num.intValue() == 0) {
-            if (MessagesController.getInstance(i).isDialogMuted(j, j2)) {
-                NotificationsController.getInstance(i).muteDialog(j, j2, false);
-            }
-            if (BulletinFactory.canShowBulletin(baseFragment)) {
-                BulletinFactory.createMuteBulletin(baseFragment, 4, num.intValue(), resourcesProvider).show();
-                return;
-            }
+    public final void update(long j, long j2, HashSet hashSet) {
+        int color;
+        int i;
+        int i2;
+        if (System.currentTimeMillis() - this.lastDismissTime < 200) {
+            AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda37(9, j, j2, this, hashSet));
             return;
         }
-        NotificationsController.getInstance(i).muteUntil(j, j2, num.intValue());
-        if (BulletinFactory.canShowBulletin(baseFragment)) {
-            BulletinFactory.createMuteBulletin(baseFragment, 5, num.intValue(), resourcesProvider).show();
-        }
-    }
-
-    public static void $r8$lambda$31RerRr0yK3qaJutUXuPZrSTK8M(ItemOptions itemOptions, int i, long j, long j2, ItemOptions itemOptions2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
-        itemOptions.dismiss();
-        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i);
-        boolean z = notificationsSettings.getBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(j, j2), true);
-        boolean z2 = !z;
-        notificationsSettings.edit().putBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(j, j2), z2).apply();
-        itemOptions2.dismiss();
-        if (BulletinFactory.canShowBulletin(baseFragment)) {
-            BulletinFactory.createSoundEnabledBulletin(baseFragment, z ? 1 : 0, resourcesProvider).show();
-        }
-    }
-
-    public static void m2219$r8$lambda$2E5Qdzb2TlshZLi5DNrMyDRQJs(int i, int i2, Utilities.Callback callback) {
-        if (i != 0) {
-            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
-            notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
-        }
-        callback.run(Integer.valueOf(i));
-    }
-
-    public static void $r8$lambda$_WHFIA39ymnz5txwO8Ws6ecXwFk(ItemOptions itemOptions, long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
-        itemOptions.dismiss();
-        Bundle bundle = new Bundle();
-        bundle.putLong("dialog_id", j);
-        bundle.putLong("topic_id", j2);
-        baseFragment.presentFragment(new ProfileNotificationsActivity(bundle, resourcesProvider));
-    }
-
-    public static void $r8$lambda$99jwGva_EFC_FHEqFr4J7466z3Y(ItemOptions itemOptions, int i, long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
-        itemOptions.dismiss();
-        boolean zIsDialogMuted = MessagesController.getInstance(i).isDialogMuted(j, j2);
-        NotificationsController.getInstance(i).muteDialog(j, j2, !zIsDialogMuted);
-        if (BulletinFactory.canShowBulletin(baseFragment)) {
-            BulletinFactory.createMuteBulletin(baseFragment, !zIsDialogMuted ? 3 : 4, !zIsDialogMuted ? Integer.MAX_VALUE : 0, resourcesProvider).show();
-        }
-    }
-
-    public static void m2224$r8$lambda$jslqYv3H4CQpj7lsolTF0FqDk4(int i, long j, long j2, ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2) {
-        int color;
-        if (MessagesController.getInstance(i).isDialogMuted(j, j2)) {
-            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute);
-            color = Theme.getColor(Theme.key_windowBackgroundWhiteGreenText2);
-            actionBarMenuSubItem2.setVisibility(8);
+        boolean zIsDialogMuted = MessagesController.getInstance(this.currentAccount).isDialogMuted(j, j2);
+        if (zIsDialogMuted) {
+            this.muteUnmuteButton.setTextAndIcon(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute, null);
+            color = Theme.getColor(null, Theme.key_windowBackgroundWhiteGreenText2, false);
+            this.soundToggle.setVisibility(8);
         } else {
-            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute);
-            int color2 = Theme.getColor(Theme.key_text_RedBold);
-            actionBarMenuSubItem2.setVisibility(0);
-            if (MessagesController.getInstance(i).isDialogNotificationsSoundEnabled(j, j2)) {
-                actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off);
+            this.muteUnmuteButton.setTextAndIcon(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute, null);
+            int color2 = Theme.getColor(null, Theme.key_text_RedBold, false);
+            this.soundToggle.setVisibility(0);
+            if (MessagesController.getInstance(this.currentAccount).isDialogNotificationsSoundEnabled(j, j2)) {
+                this.soundToggle.setTextAndIcon(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off, null);
             } else {
-                actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.SoundOn), R.drawable.msg_tone_on);
+                this.soundToggle.setTextAndIcon(LocaleController.getString(R.string.SoundOn), R.drawable.msg_tone_on, null);
             }
             color = color2;
         }
-        actionBarMenuSubItem.setColors(color, color);
-        actionBarMenuSubItem.setSelectorColor(Theme.multAlpha(color, 0.1f));
+        if (this.type == 1) {
+            this.backItem.setVisibility(8);
+        }
+        if (zIsDialogMuted || this.type == 1) {
+            i = 0;
+            i2 = 0;
+        } else {
+            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
+            i2 = notificationsSettings.getInt("last_selected_mute_until_time", 0);
+            i = notificationsSettings.getInt("last_selected_mute_until_time2", 0);
+        }
+        if (i2 != 0) {
+            this.muteForLastSelected1Time = i2;
+            this.muteForLastSelected.setVisibility(0);
+            ImageView imageView = this.muteForLastSelected.getImageView();
+            TimerDrawable timerDrawable = new TimerDrawable(ApplicationLoader.applicationContext, null);
+            timerDrawable.setTime(i2);
+            timerDrawable.isStaticIcon = true;
+            imageView.setImageDrawable(timerDrawable);
+            this.muteForLastSelected.setText(formatMuteForTime(i2));
+        } else {
+            this.muteForLastSelected.setVisibility(8);
+        }
+        if (i != 0) {
+            this.muteForLastSelected2Time = i;
+            this.muteForLastSelected2.setVisibility(0);
+            ImageView imageView2 = this.muteForLastSelected2.getImageView();
+            TimerDrawable timerDrawable2 = new TimerDrawable(ApplicationLoader.applicationContext, null);
+            timerDrawable2.setTime(i);
+            timerDrawable2.isStaticIcon = true;
+            imageView2.setImageDrawable(timerDrawable2);
+            this.muteForLastSelected2.setText(formatMuteForTime(i));
+        } else {
+            this.muteForLastSelected2.setVisibility(8);
+        }
+        ActionBarMenuSubItem actionBarMenuSubItem = this.muteUnmuteButton;
+        actionBarMenuSubItem.setTextColor(color);
+        actionBarMenuSubItem.setIconColor(color);
+        this.muteUnmuteButton.setSelectorColor(Theme.multAlpha(0.1f, color));
+        if (hashSet == null || hashSet.isEmpty()) {
+            this.gap.setVisibility(8);
+            this.topicsExceptionsTextView.setVisibility(8);
+        } else {
+            this.gap.setVisibility(0);
+            this.topicsExceptionsTextView.setVisibility(0);
+            this.topicsExceptionsTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), Theme.key_windowBackgroundWhiteBlueText, 1, null));
+        }
     }
 }

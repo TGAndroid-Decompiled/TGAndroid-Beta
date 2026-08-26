@@ -1,7 +1,7 @@
 package org.telegram.ui.Stories.recorder;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -19,160 +19,34 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.MotionPhotoDrawable;
+import org.telegram.ui.Stories.PeerStoriesView$40$$ExternalSyntheticLambda1;
 
 public class ToggleButton2 extends View implements FlashViews.Invertable {
-    private Bitmap activeBitmap;
-    private final Paint activeBitmapPaint;
-    private final Paint activePaint;
-    private final AnimatedFloat animatedSelected;
-    private ValueAnimator animator;
-    private final Path clipPath;
-    private int currentIcon;
-    private Drawable drawable;
-    private float scale;
-    private boolean selected;
+    public Bitmap activeBitmap;
+    public final Paint activeBitmapPaint;
+    public final Paint activePaint;
+    public final AnimatedFloat animatedSelected;
+    public ValueAnimator animator;
+    public final Path clipPath;
+    public int currentIcon;
+    public Drawable drawable;
+    public boolean selected;
 
-    public ToggleButton2(Context context) {
-        super(context);
+    public ToggleButton2(Activity activity) {
+        super(activity);
         this.clipPath = new Path();
         Paint paint = new Paint(1);
         this.activePaint = paint;
         Paint paint2 = new Paint(3);
         this.activeBitmapPaint = paint2;
         this.animatedSelected = new AnimatedFloat(this, 0L, 380L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.scale = 1.0f;
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
 
-    public void setIcon(final int i, boolean z) {
-        if (this.currentIcon == i) {
-            return;
-        }
-        this.currentIcon = i;
-        ValueAnimator valueAnimator = this.animator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.animator = null;
-        }
-        if (z) {
-            this.animator = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-            final AtomicBoolean atomicBoolean = new AtomicBoolean();
-            this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ToggleButton2.$r8$lambda$7N8XUy7mDOAwptXKcb1iDnTNhcw(this.f$0, atomicBoolean, i, valueAnimator2);
-                }
-            });
-            this.animator.start();
-            return;
-        }
-        this.scale = 1.0f;
-        setDrawable(i);
-    }
-
-    public static void $r8$lambda$7N8XUy7mDOAwptXKcb1iDnTNhcw(ToggleButton2 toggleButton2, AtomicBoolean atomicBoolean, int i, ValueAnimator valueAnimator) {
-        toggleButton2.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        toggleButton2.scale = Math.abs(fFloatValue - 0.5f) + 0.5f;
-        if (fFloatValue >= 0.5f && !atomicBoolean.get()) {
-            atomicBoolean.set(true);
-            toggleButton2.setDrawable(i);
-        }
-        toggleButton2.invalidate();
-    }
-
-    public void setIcon(final Drawable drawable, boolean z) {
-        if (this.drawable == drawable) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.animator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.animator = null;
-        }
-        if (z) {
-            this.animator = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-            final AtomicBoolean atomicBoolean = new AtomicBoolean();
-            this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ToggleButton2.$r8$lambda$A4tM51lh7vANWCzIePR_O6INzDM(this.f$0, atomicBoolean, drawable, valueAnimator2);
-                }
-            });
-            this.animator.start();
-            return;
-        }
-        this.scale = 1.0f;
-        setDrawable(drawable);
-    }
-
-    public static void $r8$lambda$A4tM51lh7vANWCzIePR_O6INzDM(ToggleButton2 toggleButton2, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
-        toggleButton2.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        toggleButton2.scale = Math.abs(fFloatValue - 0.5f) + 0.5f;
-        if (fFloatValue < 0.5f || atomicBoolean.get()) {
-            return;
-        }
-        atomicBoolean.set(true);
-        toggleButton2.setDrawable(drawable);
-    }
-
     @Override
-    public void setSelected(boolean z) {
-        this.selected = z;
-        invalidate();
-    }
-
-    public void setSelected(boolean z, boolean z2) {
-        this.selected = z;
-        if (!z2) {
-            this.animatedSelected.set(z ? 1.0f : 0.0f, true);
-        }
-        invalidate();
-    }
-
-    @Override
-    public void setInvert(float f) {
-        Drawable drawable = this.drawable;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
-        }
-        this.activePaint.setColor(ColorUtils.blendARGB(-1, -16777216, f));
-        invalidate();
-    }
-
-    public void setDrawable(int i) {
-        this.drawable = getContext().getResources().getDrawable(i).mutate();
-        Bitmap bitmap = this.activeBitmap;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.activeBitmap = null;
-        }
-        if (this.activeBitmap == null && i != 0) {
-            this.activeBitmap = BitmapFactory.decodeResource(getResources(), i);
-        }
-        invalidate();
-    }
-
-    public void setDrawable(Drawable drawable) {
-        this.drawable = drawable;
-        Bitmap bitmap = this.activeBitmap;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.activeBitmap = null;
-        }
-        if (this.activeBitmap == null && drawable != null && drawable.getIntrinsicWidth() > 0 && drawable.getIntrinsicHeight() > 0) {
-            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-            this.activeBitmap = bitmapCreateBitmap;
-            drawable.setBounds(0, 0, bitmapCreateBitmap.getWidth(), this.activeBitmap.getHeight());
-            drawable.draw(new Canvas(this.activeBitmap));
-        }
-        invalidate();
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         if (this.drawable == null) {
             return;
         }
@@ -186,9 +60,10 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
             this.drawable.draw(canvas);
         } else if (f < 1.0f) {
             canvas.save();
-            this.clipPath.rewind();
-            this.clipPath.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * f, Path.Direction.CW);
-            canvas.clipPath(this.clipPath, Region.Op.DIFFERENCE);
+            Path path = this.clipPath;
+            path.rewind();
+            path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * f, Path.Direction.CW);
+            canvas.clipPath(path, Region.Op.DIFFERENCE);
             this.drawable.setBounds(rect);
             this.drawable.draw(canvas);
             canvas.restore();
@@ -207,7 +82,7 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (this.activeBitmap != null || this.currentIcon == 0) {
             return;
@@ -216,12 +91,96 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Bitmap bitmap = this.activeBitmap;
         if (bitmap != null) {
             bitmap.recycle();
             this.activeBitmap = null;
         }
+    }
+
+    public void setDrawable(int i) {
+        this.drawable = getContext().getResources().getDrawable(i).mutate();
+        Bitmap bitmap = this.activeBitmap;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.activeBitmap = null;
+        }
+        if (this.activeBitmap == null && i != 0) {
+            this.activeBitmap = BitmapFactory.decodeResource(getResources(), i);
+        }
+        invalidate();
+    }
+
+    public final void setIcon(int i) {
+        if (this.currentIcon == i) {
+            return;
+        }
+        this.currentIcon = i;
+        ValueAnimator valueAnimator = this.animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.animator = null;
+        }
+        setDrawable(i);
+    }
+
+    @Override
+    public void setInvert(float f) {
+        Drawable drawable = this.drawable;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(f, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        }
+        this.activePaint.setColor(ColorUtils.blendARGB(f, -1, -16777216));
+        invalidate();
+    }
+
+    @Override
+    public void setSelected(boolean z) {
+        this.selected = z;
+        invalidate();
+    }
+
+    public final void setSelected(boolean z, boolean z2) {
+        this.selected = z;
+        if (!z2) {
+            this.animatedSelected.set(z ? 1.0f : 0.0f, true);
+        }
+        invalidate();
+    }
+
+    public final void setIcon(MotionPhotoDrawable motionPhotoDrawable, boolean z) {
+        if (this.drawable == motionPhotoDrawable) {
+            return;
+        }
+        ValueAnimator valueAnimator = this.animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.animator = null;
+        }
+        if (z) {
+            this.animator = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+            this.animator.addUpdateListener(new PeerStoriesView$40$$ExternalSyntheticLambda1(this, new AtomicBoolean(), motionPhotoDrawable, 4));
+            this.animator.start();
+            return;
+        }
+        setDrawable(motionPhotoDrawable);
+    }
+
+    public void setDrawable(Drawable drawable) {
+        this.drawable = drawable;
+        Bitmap bitmap = this.activeBitmap;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.activeBitmap = null;
+        }
+        if (this.activeBitmap == null && drawable != null && drawable.getIntrinsicWidth() > 0 && drawable.getIntrinsicHeight() > 0) {
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            this.activeBitmap = bitmapCreateBitmap;
+            drawable.setBounds(0, 0, bitmapCreateBitmap.getWidth(), this.activeBitmap.getHeight());
+            drawable.draw(new Canvas(this.activeBitmap));
+        }
+        invalidate();
     }
 }

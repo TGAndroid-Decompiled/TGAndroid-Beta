@@ -12,11 +12,11 @@ import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class TextRightIconCell extends FrameLayout {
-    private final ImageView ivIcon;
-    private boolean needDivider;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private final SimpleTextView textView;
+public final class TextRightIconCell extends FrameLayout {
+    public final ImageView ivIcon;
+    public boolean needDivider;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final SimpleTextView textView;
 
     public TextRightIconCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -31,20 +31,14 @@ public class TextRightIconCell extends FrameLayout {
         this.ivIcon = imageView;
         imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText5, resourcesProvider), PorterDuff.Mode.SRC_IN));
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 8388629, 0.0f, 0.0f, 16.0f, 0.0f));
-        setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_dialogBackground));
-    }
-
-    public void setTextAndIcon(CharSequence charSequence, int i) {
-        this.textView.setText(charSequence);
-        this.ivIcon.setImageResource(i);
-    }
-
-    public void setDivider(boolean z) {
-        this.needDivider = z;
+        int i = Theme.key_dialogBackground;
+        int i2 = Theme.AdaptiveRipple.defaultBackgroundColorKey;
+        int color = Theme.getColor(null, i, false);
+        setBackground(Theme.AdaptiveRipple.createRect(new float[0], color, Theme.AdaptiveRipple.calcRippleColor(color)));
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.needDivider) {
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
@@ -54,5 +48,9 @@ public class TextRightIconCell extends FrameLayout {
             }
             canvas.drawLine(AndroidUtilities.dp(22.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
         }
+    }
+
+    public void setDivider(boolean z) {
+        this.needDivider = z;
     }
 }

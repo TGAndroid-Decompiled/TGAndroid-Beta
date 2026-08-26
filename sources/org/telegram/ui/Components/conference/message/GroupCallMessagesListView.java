@@ -1,109 +1,142 @@
 package org.telegram.ui.Components.conference.message;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.RenderNode;
 import android.graphics.Shader;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.components.Component;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
 import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+import org.telegram.ui.GroupCallActivity;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
 
-public class GroupCallMessagesListView extends RecyclerView {
-    private final GroupCallMessagesAdapter adapter;
-    private View blurRoot;
-    private GroupCallMessageCell.Delegate cellDelegate;
-    private int clipBottom;
-    private int clipTop;
-    private Delegate delegate;
-    private final Paint maskPaint;
-    private RenderNode renderNode;
-    private float renderNodeScale;
-    private int visibleHeight;
+public final class GroupCallMessagesListView extends RecyclerView {
+    public final AnonymousClass3 adapter;
+    public View blurRoot;
+    public GroupCallMessageCell.Delegate cellDelegate;
+    public int clipBottom;
+    public int clipTop;
+    public Delegate delegate;
+    public final Paint maskPaint;
+    public RenderNode renderNode;
+    public float renderNodeScale;
+    public int visibleHeight;
 
     public interface Delegate {
-        void showReaction(GroupCallMessageCell groupCallMessageCell, ReactionsLayoutInBubble.VisibleReaction visibleReaction);
     }
 
-    public GroupCallMessagesListView(Context context) {
-        super(context);
+    public GroupCallMessagesListView(LaunchActivity launchActivity) {
+        super(launchActivity);
         Paint paint = new Paint(1);
         this.maskPaint = paint;
         this.clipTop = Integer.MIN_VALUE;
         this.clipBottom = Integer.MIN_VALUE;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), 0, -16777216, Shader.TileMode.CLAMP));
-        setLayoutManager(new LinearLayoutManager(context, 1, 1 == true ? 1 : 0) {
-            @Override
-            public boolean canScrollVertically() {
-                return false;
+        setLayoutManager(new PhotoViewer.AnonymousClass36(1, 11, 1 == true ? 1 : 0));
+        addItemDecoration(new FiltersView.AnonymousClass2(7));
+        ?? r12 = new GroupCallMessagesAdapter() {
+            {
+                this.currentAccount = -1;
             }
-        });
-        addItemDecoration(new RecyclerView.ItemDecoration() {
+
             @Override
-            public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
-                rect.top = AndroidUtilities.dp(6.0f);
-            }
-        });
-        GroupCallMessagesAdapter groupCallMessagesAdapter = new GroupCallMessagesAdapter() {
-            @Override
-            public GroupCallMessageCell.VH onCreateViewHolder(ViewGroup viewGroup, int i) {
-                GroupCallMessageCell.VH vhOnCreateViewHolder = super.onCreateViewHolder(viewGroup, i);
-                vhOnCreateViewHolder.cell.setRenderNode(GroupCallMessagesListView.this.blurRoot, GroupCallMessagesListView.this.renderNode, GroupCallMessagesListView.this.renderNodeScale);
-                vhOnCreateViewHolder.cell.setDelegate(GroupCallMessagesListView.this.cellDelegate);
-                return vhOnCreateViewHolder;
+            public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                GroupCallMessageCell groupCallMessageCell = new GroupCallMessageCell(viewGroup.getContext());
+                groupCallMessageCell.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+                GroupCallMessageCell.VH vh = new GroupCallMessageCell.VH(groupCallMessageCell);
+                GroupCallMessagesListView groupCallMessagesListView = GroupCallMessagesListView.this;
+                View view = groupCallMessagesListView.blurRoot;
+                RenderNode renderNode = groupCallMessagesListView.renderNode;
+                float f = groupCallMessagesListView.renderNodeScale;
+                GroupCallMessageCell groupCallMessageCell2 = vh.cell;
+                groupCallMessageCell2.blurRoot = view;
+                groupCallMessageCell2.renderNode = renderNode;
+                groupCallMessageCell2.renderNodeScale = f;
+                groupCallMessageCell2.setDelegate(groupCallMessagesListView.cellDelegate);
+                return vh;
             }
         };
-        this.adapter = groupCallMessagesAdapter;
-        setAdapter(groupCallMessagesAdapter);
-        setItemAnimator(createItemAnimator());
-    }
-
-    private DefaultItemAnimator createItemAnimator() {
+        this.adapter = r12;
+        setAdapter(r12);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
-            protected float animateByScale(View view) {
+            public final float animateByScale(View view) {
                 return 0.6f;
             }
 
             @Override
-            public void onAddFinished(RecyclerView.ViewHolder viewHolder) {
-                super.onAddFinished(viewHolder);
-                GroupCallMessage message = GroupCallMessagesListView.this.adapter.getMessage(viewHolder.getAdapterPosition());
-                if (message == null || message.visibleReaction == null || !(viewHolder.itemView instanceof GroupCallMessageCell) || GroupCallMessagesListView.this.delegate == null) {
+            public final void onAddFinished(RecyclerView.ViewHolder viewHolder) {
+                ReactionsLayoutInBubble.VisibleReaction visibleReaction;
+                Delegate delegate;
+                GroupCallMessagesListView groupCallMessagesListView = GroupCallMessagesListView.this;
+                AnonymousClass3 anonymousClass3 = groupCallMessagesListView.adapter;
+                int adapterPosition = viewHolder.getAdapterPosition();
+                List list = anonymousClass3.messages;
+                GroupCallMessage groupCallMessage = (list != null && adapterPosition >= 0 && adapterPosition < list.size()) ? (GroupCallMessage) anonymousClass3.messages.get(adapterPosition) : null;
+                if (groupCallMessage == null || (visibleReaction = groupCallMessage.visibleReaction) == null) {
                     return;
                 }
-                GroupCallMessagesListView.this.delegate.showReaction((GroupCallMessageCell) viewHolder.itemView, message.visibleReaction);
+                View view = viewHolder.itemView;
+                if (!(view instanceof GroupCallMessageCell) || (delegate = groupCallMessagesListView.delegate) == null) {
+                    return;
+                }
+                GroupCallMessageCell groupCallMessageCell = (GroupCallMessageCell) view;
+                GroupCallActivity groupCallActivity = GroupCallActivity.this;
+                ReactionsEffectOverlay reactionsEffectOverlay = new ReactionsEffectOverlay(groupCallActivity.getContext(), null, groupCallActivity.reactionsContainerLayout, groupCallMessageCell, null, 0.0f, 0.0f, visibleReaction, ((BottomSheet) groupCallActivity).currentAccount, 1, false);
+                ReactionsEffectOverlay.currentOverlay = reactionsEffectOverlay;
+                int i = R.id.parent_tag;
+                ReactionsEffectOverlay.AnonymousClass1 anonymousClass1 = reactionsEffectOverlay.windowView;
+                anonymousClass1.setTag(i, 1);
+                groupCallActivity.container.addView(anonymousClass1);
+                reactionsEffectOverlay.started = true;
+                reactionsEffectOverlay.startTime = System.currentTimeMillis();
             }
         };
-        defaultItemAnimator.setSupportsChangeAnimations(false);
-        defaultItemAnimator.setDelayAnimations(false);
-        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.mSupportsChangeAnimations = false;
+        defaultItemAnimator.delayAnimations = false;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
         defaultItemAnimator.setDurations(320L);
-        return defaultItemAnimator;
+        setItemAnimator(defaultItemAnimator);
     }
 
-    public void setVisibleHeight(int i) {
-        if (this.visibleHeight != i) {
-            this.visibleHeight = i;
-            invalidate();
+    private float getMinChildY() {
+        int childCount = getChildCount();
+        float fMin = 2.1474836E9f;
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            if (childAt.getVisibility() == 0) {
+                fMin = Math.min(fMin, childAt.getY());
+            }
         }
+        return fMin;
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         int measuredHeight = getMeasuredHeight() - this.visibleHeight;
         int iDp = AndroidUtilities.dp(16.0f);
         int i = measuredHeight + iDp;
@@ -135,7 +168,47 @@ public class GroupCallMessagesListView extends RecyclerView {
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        boolean z;
+        if (motionEvent.getAction() == 0) {
+            int x = (int) motionEvent.getX();
+            int y = (int) motionEvent.getY();
+            if (y < getMeasuredHeight() - this.visibleHeight) {
+                return false;
+            }
+            int childCount = getChildCount();
+            int i = 0;
+            while (true) {
+                if (i >= childCount) {
+                    z = false;
+                    break;
+                }
+                View childAt = getChildAt(i);
+                if (childAt instanceof GroupCallMessageCell) {
+                    GroupCallMessageCell groupCallMessageCell = (GroupCallMessageCell) childAt;
+                    if (groupCallMessageCell.getVisibility() == 0) {
+                        float x2 = x - childAt.getX();
+                        float y2 = y - childAt.getY();
+                        Component.Builder builder = groupCallMessageCell.layout;
+                        if (builder == null ? false : ((RectF) builder.name).contains(x2, y2)) {
+                            z = true;
+                            break;
+                        }
+                    } else {
+                        continue;
+                    }
+                }
+                i++;
+            }
+            if (!z) {
+                return false;
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j) {
         if (this.clipTop != Integer.MIN_VALUE && view.getY() + view.getHeight() < this.clipTop) {
             return true;
         }
@@ -145,33 +218,57 @@ public class GroupCallMessagesListView extends RecyclerView {
         return true;
     }
 
-    private float getMinChildY() {
-        int childCount = getChildCount();
-        float fMin = 2.1474836E9f;
-        for (int i = 0; i < childCount; i++) {
-            View childAt = getChildAt(i);
-            if (childAt.getVisibility() == 0) {
-                fMin = Math.min(fMin, childAt.getY());
-            }
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        AnonymousClass3 anonymousClass3 = this.adapter;
+        anonymousClass3.isAttachedToRecyclerView = true;
+        int i = anonymousClass3.currentAccount;
+        if (i == -1 || anonymousClass3.inputGroupCall == null) {
+            return;
         }
-        return fMin;
+        anonymousClass3.messages = GroupCallMessagesController.getInstance(i).getCallMessages(anonymousClass3.inputGroupCall.id);
+        anonymousClass3.mObservable.notifyChanged();
+        GroupCallMessagesController.getInstance(anonymousClass3.currentAccount).subscribeToCallMessages(anonymousClass3.inputGroupCall.id, anonymousClass3);
     }
 
-    public void setRenderNode(RenderNode renderNode, float f) {
-        this.renderNode = renderNode;
-        this.renderNodeScale = f;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        AnonymousClass3 anonymousClass3 = this.adapter;
+        anonymousClass3.isAttachedToRecyclerView = false;
+        int i = anonymousClass3.currentAccount;
+        if (i == -1 || anonymousClass3.inputGroupCall == null) {
+            return;
+        }
+        GroupCallMessagesController.getInstance(i).unsubscribeFromCallMessages(anonymousClass3.inputGroupCall.id, anonymousClass3);
     }
 
     public void setBlurRoot(View view) {
         this.blurRoot = view;
     }
 
+    public void setClickCellDelegate(GroupCallMessageCell.Delegate delegate) {
+        this.cellDelegate = delegate;
+    }
+
     public void setDelegate(Delegate delegate) {
         this.delegate = delegate;
     }
 
-    public void setClickCellDelegate(GroupCallMessageCell.Delegate delegate) {
-        this.cellDelegate = delegate;
+    public final void setGroupCall(int i, TLRPC.InputGroupCall inputGroupCall) {
+        int i2;
+        AnonymousClass3 anonymousClass3 = this.adapter;
+        if (anonymousClass3.isAttachedToRecyclerView && (i2 = anonymousClass3.currentAccount) != -1 && anonymousClass3.inputGroupCall != null) {
+            GroupCallMessagesController.getInstance(i2).unsubscribeFromCallMessages(anonymousClass3.inputGroupCall.id, anonymousClass3);
+        }
+        anonymousClass3.currentAccount = i;
+        anonymousClass3.inputGroupCall = inputGroupCall;
+        if (anonymousClass3.isAttachedToRecyclerView) {
+            anonymousClass3.messages = GroupCallMessagesController.getInstance(i).getCallMessages(anonymousClass3.inputGroupCall.id);
+            anonymousClass3.mObservable.notifyChanged();
+            GroupCallMessagesController.getInstance(i).subscribeToCallMessages(anonymousClass3.inputGroupCall.id, anonymousClass3);
+        }
     }
 
     @Override
@@ -186,41 +283,10 @@ public class GroupCallMessagesListView extends RecyclerView {
         }
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            int x = (int) motionEvent.getX();
-            int y = (int) motionEvent.getY();
-            if (y < getMeasuredHeight() - this.visibleHeight) {
-                return false;
-            }
-            int childCount = getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                View childAt = getChildAt(i);
-                if (childAt instanceof GroupCallMessageCell) {
-                    GroupCallMessageCell groupCallMessageCell = (GroupCallMessageCell) childAt;
-                    if (groupCallMessageCell.getVisibility() != 0 || !groupCallMessageCell.isInsideBubble(x - childAt.getX(), y - childAt.getY())) {
-                    }
-                }
-            }
-            return false;
+    public void setVisibleHeight(int i) {
+        if (this.visibleHeight != i) {
+            this.visibleHeight = i;
+            invalidate();
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public void setGroupCall(int i, TLRPC.InputGroupCall inputGroupCall) {
-        this.adapter.setGroupCall(i, inputGroupCall);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.adapter.attach();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.adapter.detach();
     }
 }

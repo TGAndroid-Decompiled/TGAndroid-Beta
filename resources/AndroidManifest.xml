@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="70399"
+    android:versionCode="70469"
     android:versionName="12.10.2"
     android:installLocation="auto"
     android:compileSdkVersion="36"
@@ -147,7 +147,6 @@
         android:name="org.telegram.messenger.beta.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature"/>
     <uses-permission android:name="org.telegram.messenger.beta.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
-    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
     <application
         android:theme="@style/Theme.TMessages.Start"
         android:label="@string/AppNameBeta"

@@ -3,134 +3,37 @@ package org.telegram.ui.Components.voip;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.graphics.Paint;
 import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.PhotoViewer$73$$ExternalSyntheticLambda0;
 
-public class ImageWithWavesView extends FrameLayout {
-    private final boolean allowAnimations;
-    private AnimatorSet animatorSet;
-    private final AvatarWavesDrawable avatarWavesDrawable;
-    private final BackupImageView backupImageView;
-    private boolean isConnectedCalled;
-    private boolean isMuted;
+public final class ImageWithWavesView extends FrameLayout {
+    public final boolean allowAnimations;
+    public AnimatorSet animatorSet;
+    public final AvatarWavesDrawable avatarWavesDrawable;
+    public final BackupImageView backupImageView;
+    public boolean isConnectedCalled;
+    public boolean isMuted;
 
-    public ImageWithWavesView(Context context) {
-        super(context);
-        AvatarWavesDrawable avatarWavesDrawable = new AvatarWavesDrawable(AndroidUtilities.dp(104.0f), AndroidUtilities.dp(111.0f), AndroidUtilities.dp(12.0f), 8);
-        this.avatarWavesDrawable = avatarWavesDrawable;
-        avatarWavesDrawable.setAmplitude(3.0d);
-        avatarWavesDrawable.setShowWaves(true, this);
-        BackupImageView backupImageView = new BackupImageView(context);
-        this.backupImageView = backupImageView;
-        addView(backupImageView, LayoutHelper.createFrame(135, 135, 17));
-        setWillNotDraw(false);
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.animatorSet = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_X, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f), ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_Y, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f));
-        this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        this.animatorSet.setDuration(3000L);
-        boolean zIsEnabled = LiteMode.isEnabled(512);
-        this.allowAnimations = zIsEnabled;
-        if (zIsEnabled) {
-            this.animatorSet.start();
-        }
-        setClipChildren(false);
-    }
-
-    public void setImage(ImageLocation imageLocation, String str, Drawable drawable, Object obj) {
-        this.backupImageView.setImage(imageLocation, str, drawable, obj);
-    }
-
-    public void setRoundRadius(int i) {
-        this.backupImageView.setRoundRadius(i);
-    }
-
-    public void setShowWaves(boolean z) {
-        this.avatarWavesDrawable.setShowWaves(z, this);
-    }
-
-    public void setMute(boolean z, boolean z2) {
-        if (this.isMuted != z) {
-            this.isMuted = z;
-            if (z) {
-                this.avatarWavesDrawable.setAmplitude(3.0d);
-            }
-            this.avatarWavesDrawable.setMuteToStatic(z, z2, this);
-        }
-    }
-
-    public void setAmplitude(double d) {
-        if (this.isMuted) {
-            return;
-        }
-        if (d > 1.5d) {
-            this.avatarWavesDrawable.setAmplitude(d);
-        } else {
-            this.avatarWavesDrawable.setAmplitude(0.0d);
-        }
-    }
-
-    public void onConnected() {
-        if (this.isConnectedCalled) {
-            return;
-        }
-        AnimatorSet animatorSet = this.animatorSet;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.isConnectedCalled = true;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.animatorSet = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_X, getScaleX(), 1.05f, 1.0f), ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_Y, getScaleY(), 1.05f, 1.0f));
-        this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        this.animatorSet.setDuration(400L);
-        this.animatorSet.start();
-    }
-
-    public void onNeedRating() {
-        setShowWaves(false);
-        AnimatorSet animatorSet = this.animatorSet;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.animatorSet = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.ALPHA, getAlpha(), 1.0f), ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.TRANSLATION_Y, getTranslationY(), -AndroidUtilities.dp(24.0f)), ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_X, getScaleX(), 0.9f, 1.0f), ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_Y, getScaleY(), 0.9f, 1.0f));
-        this.animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.animatorSet.setDuration(300L);
-        this.animatorSet.setStartDelay(250L);
-        this.animatorSet.start();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.allowAnimations) {
-            this.avatarWavesDrawable.update();
-            this.avatarWavesDrawable.draw(canvas, getWidth() / 2, getHeight() / 2, this);
-        }
-        super.onDraw(canvas);
-    }
-
-    public static class AvatarWavesDrawable {
-        float amplitude;
-        float animateAmplitudeDiff;
-        float animateToAmplitude;
-        private ValueAnimator animator;
-        private final VoipBlobDrawable blobDrawable;
-        private final VoipBlobDrawable blobDrawable2;
-        private int muteToStaticInvalidationCount;
-        boolean showWaves;
-        float wavesEnter = 0.0f;
+    public final class AvatarWavesDrawable {
+        public float amplitude;
+        public float animateAmplitudeDiff;
+        public float animateToAmplitude;
+        public ValueAnimator animator;
+        public final VoipBlobDrawable blobDrawable;
+        public final VoipBlobDrawable blobDrawable2;
+        public int muteToStaticInvalidationCount;
+        public boolean showWaves;
+        public float wavesEnter = 0.0f;
         public boolean muteToStatic = false;
         public float muteToStaticProgress = 1.0f;
 
@@ -145,18 +48,66 @@ public class ImageWithWavesView extends FrameLayout {
             voipBlobDrawable2.maxRadius = i2 - i3;
             voipBlobDrawable.generateBlob();
             voipBlobDrawable2.generateBlob();
-            voipBlobDrawable.paint.setColor(-1);
-            voipBlobDrawable.paint.setAlpha(20);
-            voipBlobDrawable2.paint.setColor(-1);
-            voipBlobDrawable2.paint.setAlpha(36);
+            Paint paint = voipBlobDrawable.paint;
+            paint.setColor(-1);
+            paint.setAlpha(20);
+            Paint paint2 = voipBlobDrawable2.paint;
+            paint2.setColor(-1);
+            paint2.setAlpha(36);
         }
 
-        public void update() {
+        public final void draw(Canvas canvas, float f, float f2, View view) {
+            float f3 = (this.amplitude * 0.4f) + 0.8f;
+            if (this.showWaves || this.wavesEnter != 0.0f) {
+                canvas.save();
+                float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(this.wavesEnter) * f3;
+                canvas.scale(interpolation, interpolation, f, f2);
+                float f4 = this.amplitude;
+                float f5 = this.muteToStaticProgress;
+                VoipBlobDrawable voipBlobDrawable = this.blobDrawable;
+                voipBlobDrawable.update$1(f4, f5);
+                Paint paint = voipBlobDrawable.paint;
+                voipBlobDrawable.draw(f, f2, canvas, paint);
+                float f6 = this.amplitude;
+                float f7 = this.muteToStaticProgress;
+                VoipBlobDrawable voipBlobDrawable2 = this.blobDrawable2;
+                voipBlobDrawable2.update$1(f6, f7);
+                voipBlobDrawable2.draw(f, f2, canvas, paint);
+                canvas.restore();
+            }
+            if (this.muteToStatic && this.muteToStaticInvalidationCount == 0) {
+                return;
+            }
+            int i = this.muteToStaticInvalidationCount;
+            if (i != 0) {
+                this.muteToStaticInvalidationCount = i - 1;
+            }
+            if (this.wavesEnter != 0.0f) {
+                view.invalidate();
+            }
+        }
+
+        public final void setAmplitude(double d) {
+            float f = ((float) d) / 80.0f;
+            float f2 = 0.0f;
+            if (!this.showWaves) {
+                f = 0.0f;
+            }
+            if (f > 1.0f) {
+                f2 = 1.0f;
+            } else if (f >= 0.0f) {
+                f2 = f;
+            }
+            this.animateToAmplitude = f2;
+            this.animateAmplitudeDiff = (f2 - this.amplitude) / 200.0f;
+        }
+
+        public final void update() {
             float f = this.animateToAmplitude;
             float f2 = this.amplitude;
             if (f != f2) {
                 float f3 = this.animateAmplitudeDiff;
-                float f4 = f2 + (16.0f * f3);
+                float f4 = (16.0f * f3) + f2;
                 this.amplitude = f4;
                 if (f3 > 0.0f) {
                     if (f4 > f) {
@@ -191,88 +142,115 @@ public class ImageWithWavesView extends FrameLayout {
                 }
             }
         }
+    }
 
-        public void draw(Canvas canvas, float f, float f2, View view) {
-            float f3 = (this.amplitude * 0.4f) + 0.8f;
-            if (this.showWaves || this.wavesEnter != 0.0f) {
-                canvas.save();
-                float interpolation = f3 * CubicBezierInterpolator.DEFAULT.getInterpolation(this.wavesEnter);
-                canvas.scale(interpolation, interpolation, f, f2);
-                this.blobDrawable.update(this.amplitude, 1.0f, this.muteToStaticProgress);
-                VoipBlobDrawable voipBlobDrawable = this.blobDrawable;
-                voipBlobDrawable.draw(f, f2, canvas, voipBlobDrawable.paint);
-                this.blobDrawable2.update(this.amplitude, 1.0f, this.muteToStaticProgress);
-                this.blobDrawable2.draw(f, f2, canvas, this.blobDrawable.paint);
-                canvas.restore();
-            }
-            if (this.muteToStatic && this.muteToStaticInvalidationCount == 0) {
-                return;
-            }
-            int i = this.muteToStaticInvalidationCount;
-            if (i != 0) {
-                this.muteToStaticInvalidationCount = i - 1;
-            }
-            if (this.wavesEnter != 0.0f) {
-                view.invalidate();
-            }
+    public ImageWithWavesView(Activity activity) {
+        super(activity);
+        AvatarWavesDrawable avatarWavesDrawable = new AvatarWavesDrawable(AndroidUtilities.dp(104.0f), AndroidUtilities.dp(111.0f), AndroidUtilities.dp(12.0f), 8);
+        this.avatarWavesDrawable = avatarWavesDrawable;
+        avatarWavesDrawable.setAmplitude(3.0d);
+        if (!avatarWavesDrawable.showWaves) {
+            invalidate();
         }
-
-        public void setShowWaves(boolean z, View view) {
-            if (this.showWaves != z) {
-                view.invalidate();
-            }
-            this.showWaves = z;
+        avatarWavesDrawable.showWaves = true;
+        BackupImageView backupImageView = new BackupImageView(activity);
+        this.backupImageView = backupImageView;
+        addView(backupImageView, LayoutHelper.createFrame(135, 135, 17));
+        setWillNotDraw(false);
+        AnimatorSet animatorSet = new AnimatorSet();
+        this.animatorSet = animatorSet;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_X, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f), ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_Y, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f));
+        this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+        this.animatorSet.setDuration(3000L);
+        boolean zIsEnabled = LiteMode.isEnabled(512);
+        this.allowAnimations = zIsEnabled;
+        if (zIsEnabled) {
+            this.animatorSet.start();
         }
+        setClipChildren(false);
+    }
 
-        public void setAmplitude(double d) {
-            float f = ((float) d) / 80.0f;
-            float f2 = 0.0f;
-            if (!this.showWaves) {
-                f = 0.0f;
-            }
-            if (f > 1.0f) {
-                f2 = 1.0f;
-            } else if (f >= 0.0f) {
-                f2 = f;
-            }
-            this.animateToAmplitude = f2;
-            this.animateAmplitudeDiff = (f2 - this.amplitude) / 200.0f;
+    public final void onConnected() {
+        if (this.isConnectedCalled) {
+            return;
         }
+        AnimatorSet animatorSet = this.animatorSet;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        this.isConnectedCalled = true;
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.animatorSet = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_X, getScaleX(), 1.05f, 1.0f), ObjectAnimator.ofFloat(this, (Property<ImageWithWavesView, Float>) View.SCALE_Y, getScaleY(), 1.05f, 1.0f));
+        this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+        this.animatorSet.setDuration(400L);
+        this.animatorSet.start();
+    }
 
-        public void setMuteToStatic(boolean z, boolean z2, View view) {
-            if (this.muteToStatic != z) {
-                this.muteToStatic = z;
-                ValueAnimator valueAnimator = this.animator;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.allowAnimations) {
+            AvatarWavesDrawable avatarWavesDrawable = this.avatarWavesDrawable;
+            avatarWavesDrawable.update();
+            avatarWavesDrawable.draw(canvas, getWidth() / 2, getHeight() / 2, this);
+        }
+        super.onDraw(canvas);
+    }
+
+    public void setAmplitude(double d) {
+        if (this.isMuted) {
+            return;
+        }
+        AvatarWavesDrawable avatarWavesDrawable = this.avatarWavesDrawable;
+        if (d > 1.5d) {
+            avatarWavesDrawable.setAmplitude(d);
+        } else {
+            avatarWavesDrawable.setAmplitude(0.0d);
+        }
+    }
+
+    public final void setMute(boolean z, boolean z2) {
+        if (this.isMuted != z) {
+            this.isMuted = z;
+            AvatarWavesDrawable avatarWavesDrawable = this.avatarWavesDrawable;
+            if (z) {
+                avatarWavesDrawable.setAmplitude(3.0d);
+            }
+            if (avatarWavesDrawable.muteToStatic != z) {
+                avatarWavesDrawable.muteToStatic = z;
+                ValueAnimator valueAnimator = avatarWavesDrawable.animator;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllUpdateListeners();
-                    this.animator.cancel();
+                    avatarWavesDrawable.animator.cancel();
                 }
                 if (z) {
-                    this.animator = ValueAnimator.ofFloat(this.muteToStaticProgress, 0.0f);
-                    this.muteToStaticInvalidationCount = (int) (2000.0f / AndroidUtilities.screenRefreshTime);
+                    avatarWavesDrawable.animator = ValueAnimator.ofFloat(avatarWavesDrawable.muteToStaticProgress, 0.0f);
+                    avatarWavesDrawable.muteToStaticInvalidationCount = (int) (2000.0f / AndroidUtilities.screenRefreshTime);
                 } else {
-                    this.muteToStaticInvalidationCount = 0;
-                    this.animator = ValueAnimator.ofFloat(this.muteToStaticProgress, 1.0f);
+                    avatarWavesDrawable.muteToStaticInvalidationCount = 0;
+                    avatarWavesDrawable.animator = ValueAnimator.ofFloat(avatarWavesDrawable.muteToStaticProgress, 1.0f);
                 }
-                this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        ImageWithWavesView.AvatarWavesDrawable.m2989$r8$lambda$_ebVITTxOVzm1c6XWJKr3yMvGM(this.f$0, valueAnimator2);
-                    }
-                });
+                avatarWavesDrawable.animator.addUpdateListener(new PhotoViewer$73$$ExternalSyntheticLambda0(avatarWavesDrawable, 5));
                 if (z2) {
-                    this.animator.setDuration(150L);
+                    avatarWavesDrawable.animator.setDuration(150L);
                 } else {
-                    this.animator.setDuration(1000L);
+                    avatarWavesDrawable.animator.setDuration(1000L);
                 }
-                this.animator.start();
-                view.invalidate();
+                avatarWavesDrawable.animator.start();
+                invalidate();
             }
         }
+    }
 
-        public static void m2989$r8$lambda$_ebVITTxOVzm1c6XWJKr3yMvGM(AvatarWavesDrawable avatarWavesDrawable, ValueAnimator valueAnimator) {
-            avatarWavesDrawable.getClass();
-            avatarWavesDrawable.muteToStaticProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+    public void setRoundRadius(int i) {
+        this.backupImageView.setRoundRadius(i);
+    }
+
+    public void setShowWaves(boolean z) {
+        AvatarWavesDrawable avatarWavesDrawable = this.avatarWavesDrawable;
+        if (avatarWavesDrawable.showWaves != z) {
+            invalidate();
         }
+        avatarWavesDrawable.showWaves = z;
     }
 }

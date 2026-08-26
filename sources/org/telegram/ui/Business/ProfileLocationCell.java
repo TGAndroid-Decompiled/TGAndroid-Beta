@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkq;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -18,13 +19,12 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingDrawable;
 
-public class ProfileLocationCell extends LinearLayout {
-    private final ImageReceiver imageReceiver;
-    private boolean needDivider;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private final TextView textView1;
-    private final TextView textView2;
-    private final LoadingDrawable thumbDrawable;
+public final class ProfileLocationCell extends LinearLayout {
+    public final ImageReceiver imageReceiver;
+    public boolean needDivider;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final TextView textView1;
+    public final LoadingDrawable thumbDrawable;
 
     public ProfileLocationCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -36,8 +36,8 @@ public class ProfileLocationCell extends LinearLayout {
         this.thumbDrawable = loadingDrawable;
         int i = Theme.key_windowBackgroundWhiteBlackText;
         int color = Theme.getColor(i, resourcesProvider);
-        loadingDrawable.setColors(Theme.multAlpha(color, 0.05f), Theme.multAlpha(color, 0.15f), Theme.multAlpha(color, 0.1f), Theme.multAlpha(color, 0.3f));
-        loadingDrawable.setRadiiDp(4.0f);
+        loadingDrawable.setColors(Theme.multAlpha(0.05f, color), Theme.multAlpha(0.15f, color), Theme.multAlpha(0.1f, color), Theme.multAlpha(0.3f, color));
+        loadingDrawable.setRadii(AndroidUtilities.dp(4.0f));
         loadingDrawable.strokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
@@ -48,22 +48,35 @@ public class ProfileLocationCell extends LinearLayout {
         boolean z = LocaleController.isRTL;
         addView(textView, LayoutHelper.createLinear(-1, -2, 55, z ? 70 : 18, 10, z ? 18 : 70, 4));
         TextView textView2 = new TextView(context);
-        this.textView2 = textView2;
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
         textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-        textView2.setText(LocaleController.getString(R.string.BusinessProfileLocation));
-        textView2.setTextSize(1, 13.0f);
+        zzkq.m(13.0f, R.string.BusinessProfileLocation, textView2);
         boolean z2 = LocaleController.isRTL;
         addView(textView2, LayoutHelper.createLinear(-1, -2, 55, z2 ? 70 : 18, 0, z2 ? 18 : 70, 8));
         setWillNotDraw(false);
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.thumbDrawable || super.verifyDrawable(drawable);
+    public final void onDraw(Canvas canvas) {
+        ImageReceiver imageReceiver = this.imageReceiver;
+        imageReceiver.setImageCoords(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : getWidth() - AndroidUtilities.dp(60.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
+        imageReceiver.draw(canvas);
+        super.onDraw(canvas);
+        if (this.needDivider) {
+            Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
+            if (themePaint == null) {
+                themePaint = Theme.dividerPaint;
+            }
+            canvas.drawRect(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 21.33f), getMeasuredHeight() - 1, getWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 21.33f : 0.0f), getMeasuredHeight(), themePaint);
+        }
     }
 
-    public void set(TLRPC.TL_businessLocation tL_businessLocation, boolean z) {
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    }
+
+    public final void set(TLRPC.TL_businessLocation tL_businessLocation, boolean z) {
         if (tL_businessLocation != null) {
             this.textView1.setText(tL_businessLocation.address);
             if (tL_businessLocation.geo_point != null) {
@@ -78,21 +91,7 @@ public class ProfileLocationCell extends LinearLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        this.imageReceiver.setImageCoords(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : getWidth() - AndroidUtilities.dp(60.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
-        this.imageReceiver.draw(canvas);
-        super.onDraw(canvas);
-        if (this.needDivider) {
-            Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
-            if (themePaint == null) {
-                themePaint = Theme.dividerPaint;
-            }
-            canvas.drawRect(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 21.33f), getMeasuredHeight() - 1, getWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 21.33f : 0.0f), getMeasuredHeight(), themePaint);
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    public final boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.thumbDrawable || super.verifyDrawable(drawable);
     }
 }

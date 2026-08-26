@@ -1,32 +1,26 @@
 package org.telegram.ui.Cells;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import j$.util.Comparator$CC;
+import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import com.google.android.gms.internal.mlkit_vision_common.zzkf;
+import com.google.android.gms.internal.mlkit_vision_common.zzkh;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.function.ToIntFunction;
-import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda19;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -37,24 +31,77 @@ import org.telegram.ui.Components.ClickableAnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingDrawable;
+import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 
 public abstract class ProfileChannelCell extends FrameLayout implements Theme.Colorable {
     public final DialogCell dialogCell;
-    private final TextView headerView;
-    private boolean loading;
-    private AnimatedFloat loadingAlpha;
-    private final LoadingDrawable loadingDrawable;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private boolean set;
-    private final AnimatedTextView subscribersView;
+    public final TextView headerView;
+    public boolean loading;
+    public final AnimatedFloat loadingAlpha;
+    public final LoadingDrawable loadingDrawable;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public boolean set;
+    public final ClickableAnimatedTextView subscribersView;
 
-    public int[] getColorKeys() {
-        return Theme.Colorable.CC.$default$getColorKeys(this);
+    public final class ChannelMessageFetcher {
+        public long channel_id;
+        public final int currentAccount;
+        public boolean loaded;
+        public boolean loading;
+        public int message_id;
+        public int searchId;
+        public final ArrayList messageObjects = new ArrayList();
+        public final ArrayList callbacks = new ArrayList();
+
+        public ChannelMessageFetcher(int i) {
+            this.currentAccount = i;
+        }
+
+        public final void done() {
+            int i = 0;
+            this.loading = false;
+            this.loaded = true;
+            ArrayList arrayList = this.callbacks;
+            int size = arrayList.size();
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ((Runnable) obj).run();
+            }
+            arrayList.clear();
+        }
+
+        public final void fetch(TLRPC.UserFull userFull) {
+            ArrayList arrayList = this.messageObjects;
+            if (userFull == null || (userFull.flags2 & 64) == 0) {
+                this.searchId++;
+                this.loaded = true;
+                arrayList.clear();
+                done();
+                return;
+            }
+            long j = userFull.personal_channel_id;
+            int i = userFull.personal_channel_message;
+            if (this.loaded || this.loading) {
+                if (this.channel_id == j && this.message_id == i) {
+                    return;
+                }
+                this.loaded = false;
+                arrayList.clear();
+            }
+            int i2 = this.searchId + 1;
+            this.searchId = i2;
+            this.loading = true;
+            this.channel_id = j;
+            this.message_id = i;
+            int i3 = this.currentAccount;
+            long clientUserId = UserConfig.getInstance(i3).getClientUserId();
+            MessagesStorage messagesStorage = MessagesStorage.getInstance(i3);
+            messagesStorage.getStorageQueue().postRunnable(new MessagesStorage$$ExternalSyntheticLambda19(this, i, messagesStorage, j, clientUserId, i2));
+        }
     }
-
-    public abstract int processColor(int i);
 
     public ProfileChannelCell(final BaseFragment baseFragment) {
         super(baseFragment.getContext());
@@ -64,119 +111,135 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
         final Context context = baseFragment.getContext();
         Theme.ResourcesProvider resourceProvider = baseFragment.getResourceProvider();
         this.resourcesProvider = resourceProvider;
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 16.66f, 11.6f, 16.66f, 0.0f));
+        LinearLayout linearLayoutM = zzkf.m(context, 0);
+        addView(linearLayoutM, LayoutHelper.createFrame(-1, -2.0f, 55, 16.66f, 11.6f, 16.66f, 0.0f));
         TextView textView = new TextView(context);
         this.headerView = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 14.0f);
+        zzkh.m(14.0f, textView);
         textView.setText(LocaleController.getString(R.string.ProfileChannel));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 51));
+        linearLayoutM.addView(textView, LayoutHelper.createLinear(-2, -2, 51));
         ClickableAnimatedTextView clickableAnimatedTextView = new ClickableAnimatedTextView(context);
         this.subscribersView = clickableAnimatedTextView;
-        clickableAnimatedTextView.getDrawable().setHacks(true, true, true);
-        clickableAnimatedTextView.setAnimationProperties(0.3f, 0L, 165L, cubicBezierInterpolator);
+        clickableAnimatedTextView.getDrawable().setHacks(true, true);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = clickableAnimatedTextView.drawable;
+        animatedTextDrawable.moveAmplitude = 0.3f;
+        animatedTextDrawable.animateDuration = 165L;
+        animatedTextDrawable.animateWave = 1.0f;
+        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
         clickableAnimatedTextView.setTypeface(AndroidUtilities.bold());
         clickableAnimatedTextView.setTextSize(AndroidUtilities.dp(11.0f));
         clickableAnimatedTextView.setPadding(AndroidUtilities.dp(4.33f), 0, AndroidUtilities.dp(4.33f), 0);
         clickableAnimatedTextView.setGravity(3);
-        linearLayout.addView(clickableAnimatedTextView, LayoutHelper.createLinear(-1, 17, 51, 4, 1, 4, 0));
-        DialogCell dialogCell = new DialogCell(null, context, false, true, UserConfig.selectedAccount, resourceProvider);
+        linearLayoutM.addView(clickableAnimatedTextView, LayoutHelper.createLinear(-1, 17, 51, 4, 1, 4, 0));
+        DialogCell dialogCell = new DialogCell(null, context, true, UserConfig.selectedAccount, resourceProvider);
         this.dialogCell = dialogCell;
         dialogCell.setBackgroundColor(0);
+        final ProfileActivity.ListAdapter.AnonymousClass10 anonymousClass10 = (ProfileActivity.ListAdapter.AnonymousClass10) this;
         dialogCell.setDialogCellDelegate(new DialogCell.DialogCellDelegate() {
             @Override
-            public boolean canClickButtonInside() {
+            public final boolean canClickButtonInside() {
                 return true;
             }
 
             @Override
-            public void onButtonClicked(DialogCell dialogCell2) {
+            public final void onButtonClicked(DialogCell dialogCell2) {
             }
 
             @Override
-            public void onButtonLongPress(DialogCell dialogCell2) {
+            public final void onButtonLongPress(DialogCell dialogCell2) {
             }
 
             @Override
-            public void showChatPreview(DialogCell dialogCell2) {
-            }
-
-            @Override
-            public void openStory(DialogCell dialogCell2, Runnable runnable) {
-                if (baseFragment.getMessagesController().getStoriesController().hasStories(dialogCell2.getDialogId())) {
-                    baseFragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
-                    baseFragment.getOrCreateStoryViewer().open(baseFragment.getContext(), dialogCell2.getDialogId(), StoriesListPlaceProvider.of(ProfileChannelCell.this));
-                }
-            }
-
-            @Override
-            public void openHiddenStories() {
-                StoriesController storiesController = baseFragment.getMessagesController().getStoriesController();
-                if (storiesController.getHiddenList().isEmpty()) {
+            public final void openHiddenStories() {
+                BaseFragment baseFragment2 = baseFragment;
+                StoriesController storiesController = baseFragment2.getMessagesController().getStoriesController();
+                if (storiesController.hiddenListStories.isEmpty()) {
                     return;
                 }
-                boolean z = storiesController.getUnreadState(DialogObject.getPeerDialogId(((TL_stories.PeerStories) storiesController.getHiddenList().get(0)).peer)) != 0;
-                ArrayList arrayList = new ArrayList();
-                for (int i = 0; i < storiesController.getHiddenList().size(); i++) {
-                    long peerDialogId = DialogObject.getPeerDialogId(((TL_stories.PeerStories) storiesController.getHiddenList().get(i)).peer);
-                    if (!z || storiesController.getUnreadState(peerDialogId) != 0) {
-                        arrayList.add(Long.valueOf(peerDialogId));
+                ArrayList arrayList = storiesController.hiddenListStories;
+                boolean z = storiesController.getUnreadState(0, DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(0)).peer)) != 0;
+                ArrayList arrayList2 = new ArrayList();
+                for (int i = 0; i < arrayList.size(); i++) {
+                    long peerDialogId = DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(i)).peer);
+                    if (!z || storiesController.getUnreadState(0, peerDialogId) != 0) {
+                        arrayList2.add(Long.valueOf(peerDialogId));
                     }
                 }
-                baseFragment.getOrCreateStoryViewer().open(context, null, arrayList, 0, null, null, StoriesListPlaceProvider.of(ProfileChannelCell.this), false);
+                baseFragment2.getOrCreateStoryViewer().open(UserConfig.selectedAccount, context, null, arrayList2, 0, null, null, new StoriesListPlaceProvider(anonymousClass10), false);
+            }
+
+            @Override
+            public final void openStory(DialogCell dialogCell2) {
+                BaseFragment baseFragment2 = baseFragment;
+                if (baseFragment2.getMessagesController().getStoriesController().hasStories(dialogCell2.getDialogId())) {
+                    baseFragment2.getOrCreateStoryViewer().getClass();
+                    baseFragment2.getOrCreateStoryViewer().open(baseFragment2.getContext(), dialogCell2.getDialogId(), new StoriesListPlaceProvider(anonymousClass10));
+                }
+            }
+
+            @Override
+            public final void showChatPreview(DialogCell dialogCell2) {
             }
         });
         dialogCell.avatarStart = 15;
         dialogCell.messagePaddingStart = 83;
         addView(dialogCell, LayoutHelper.createFrame(-1, -2, 87));
-        updateColors();
+        updateColors$1();
         setWillNotDraw(false);
         LoadingDrawable loadingDrawable = new LoadingDrawable();
         this.loadingDrawable = loadingDrawable;
         int i = Theme.key_listSelector;
-        loadingDrawable.setColors(Theme.multAlpha(Theme.getColor(i, resourceProvider), 1.25f), Theme.multAlpha(Theme.getColor(i, resourceProvider), 0.8f));
-        loadingDrawable.setRadiiDp(8.0f);
+        loadingDrawable.setColors(Theme.multAlpha(1.25f, Theme.getColor(i, resourceProvider)), Theme.multAlpha(0.8f, Theme.getColor(i, resourceProvider)));
+        loadingDrawable.setRadii(AndroidUtilities.dp(8.0f));
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         float f = this.loadingAlpha.set(this.loading);
         if (f > 0.0f) {
-            this.loadingDrawable.setAlpha((int) (f * 255.0f));
+            LoadingDrawable loadingDrawable = this.loadingDrawable;
+            loadingDrawable.setAlpha((int) (f * 255.0f));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.dialogCell.getX() + AndroidUtilities.dp(this.dialogCell.messagePaddingStart + 6), this.dialogCell.getY() + AndroidUtilities.dp(38.0f), this.dialogCell.getX() + AndroidUtilities.dp(this.dialogCell.messagePaddingStart + 6) + (getWidth() * 0.5f), this.dialogCell.getY() + AndroidUtilities.dp(46.33f));
-            this.loadingDrawable.setBounds(rectF);
-            this.loadingDrawable.draw(canvas);
-            rectF.set(this.dialogCell.getX() + AndroidUtilities.dp(this.dialogCell.messagePaddingStart + 6), this.dialogCell.getY() + AndroidUtilities.dp(56.0f), this.dialogCell.getX() + AndroidUtilities.dp(this.dialogCell.messagePaddingStart + 6) + (getWidth() * 0.36f), this.dialogCell.getY() + AndroidUtilities.dp(64.33f));
-            this.loadingDrawable.setBounds(rectF);
-            this.loadingDrawable.draw(canvas);
-            rectF.set(((this.dialogCell.getX() + this.dialogCell.getWidth()) - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(43.0f), this.dialogCell.getY() + AndroidUtilities.dp(12.0f), (this.dialogCell.getX() + this.dialogCell.getWidth()) - AndroidUtilities.dp(16.0f), this.dialogCell.getY() + AndroidUtilities.dp(20.33f));
-            this.loadingDrawable.setBounds(rectF);
-            this.loadingDrawable.draw(canvas);
+            DialogCell dialogCell = this.dialogCell;
+            rectF.set(dialogCell.getX() + AndroidUtilities.dp(dialogCell.messagePaddingStart + 6), dialogCell.getY() + AndroidUtilities.dp(38.0f), (getWidth() * 0.5f) + dialogCell.getX() + AndroidUtilities.dp(dialogCell.messagePaddingStart + 6), dialogCell.getY() + AndroidUtilities.dp(46.33f));
+            loadingDrawable.setBounds(rectF);
+            loadingDrawable.draw(canvas);
+            rectF.set(dialogCell.getX() + AndroidUtilities.dp(dialogCell.messagePaddingStart + 6), dialogCell.getY() + AndroidUtilities.dp(56.0f), (getWidth() * 0.36f) + dialogCell.getX() + AndroidUtilities.dp(dialogCell.messagePaddingStart + 6), dialogCell.getY() + AndroidUtilities.dp(64.33f));
+            loadingDrawable.setBounds(rectF);
+            loadingDrawable.draw(canvas);
+            rectF.set(((dialogCell.getX() + dialogCell.getWidth()) - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(43.0f), dialogCell.getY() + AndroidUtilities.dp(12.0f), (dialogCell.getX() + dialogCell.getWidth()) - AndroidUtilities.dp(16.0f), dialogCell.getY() + AndroidUtilities.dp(20.33f));
+            loadingDrawable.setBounds(rectF);
+            loadingDrawable.draw(canvas);
             invalidate();
         }
     }
 
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return this.loadingDrawable == drawable || super.verifyDrawable(drawable);
+    public int[] getColorKeys() {
+        return null;
     }
 
-    public void set(TLRPC.Chat chat, ArrayList arrayList) {
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
+    }
+
+    public final void set(ArrayList arrayList, TLRPC.Chat chat) {
         String shortNumber;
         boolean z = this.set;
         boolean z2 = chat == null || chat.participants_count > 0;
-        this.subscribersView.cancelAnimation();
-        this.subscribersView.setPivotX(0.0f);
+        ClickableAnimatedTextView clickableAnimatedTextView = this.subscribersView;
+        ValueAnimator valueAnimator = clickableAnimatedTextView.drawable.animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        clickableAnimatedTextView.setPivotX(0.0f);
         if (z) {
-            this.subscribersView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.8f).scaleY(z2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            clickableAnimatedTextView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.8f).scaleY(z2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
         } else {
-            this.subscribersView.setAlpha(z2 ? 1.0f : 0.0f);
-            this.subscribersView.setScaleX(z2 ? 1.0f : 0.0f);
-            this.subscribersView.setScaleY(z2 ? 1.0f : 0.0f);
+            clickableAnimatedTextView.setAlpha(z2 ? 1.0f : 0.0f);
+            clickableAnimatedTextView.setScaleX(z2 ? 1.0f : 0.0f);
+            clickableAnimatedTextView.setScaleY(z2 ? 1.0f : 0.0f);
         }
         if (chat != null) {
             int[] iArr = new int[1];
@@ -187,294 +250,59 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
             } else {
                 shortNumber = LocaleController.formatShortNumber(chat.participants_count, iArr);
             }
-            this.subscribersView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), shortNumber), true);
+            clickableAnimatedTextView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), shortNumber), true, true);
             boolean z3 = arrayList == null || arrayList.isEmpty();
             this.loading = z3;
+            DialogCell dialogCell = this.dialogCell;
             if (z3) {
-                this.dialogCell.setDialog(-chat.id, null, 0, false, z);
+                dialogCell.setDialog(-chat.id, null, 0, false, z);
             } else {
-                MessageObject messageObject = (MessageObject) arrayList.get(arrayList.size() - 1);
-                this.dialogCell.setDialog(-chat.id, messageObject, arrayList, messageObject.messageOwner.date, false, z);
+                MessageObject messageObject = (MessageObject) zziq.m(1, arrayList);
+                long j = -chat.id;
+                int i2 = messageObject.messageOwner.date;
+                if (dialogCell.currentDialogId != j) {
+                    dialogCell.lastStatusDrawableParams = -1;
+                }
+                dialogCell.currentDialogId = j;
+                dialogCell.lastDialogChangedTime = System.currentTimeMillis();
+                dialogCell.message = messageObject;
+                dialogCell.useMeForMyMessages = false;
+                dialogCell.isDialogCell = false;
+                dialogCell.lastMessageDate = i2;
+                int i3 = messageObject.messageOwner.edit_date;
+                dialogCell.unreadCount = 0;
+                dialogCell.markUnread = false;
+                dialogCell.messageId = messageObject.getId();
+                dialogCell.mentionCount = 0;
+                dialogCell.reactionMentionCount = 0;
+                dialogCell.pollVotesMentionCount = 0;
+                dialogCell.lastUnreadState = messageObject.isUnread();
+                dialogCell.groupMessages = arrayList;
+                MessageObject messageObject2 = dialogCell.message;
+                if (messageObject2 != null) {
+                    dialogCell.lastSendState = messageObject2.messageOwner.send_state;
+                }
+                dialogCell.update(0, z);
             }
         }
         if (!z) {
-            z = z;
             this.loadingAlpha.set(this.loading, true);
         }
-        z = z;
         invalidate();
         this.set = true;
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
-    }
-
-    public static class ChannelMessageFetcher {
-        public long channel_id;
-        public final int currentAccount;
-        public boolean error;
-        public boolean loaded;
-        public boolean loading;
-        public int message_id;
-        private int searchId;
-        public ArrayList messageObjects = new ArrayList();
-        private ArrayList callbacks = new ArrayList();
-
-        public ChannelMessageFetcher(int i) {
-            this.currentAccount = i;
-        }
-
-        public void fetch(TLRPC.UserFull userFull) {
-            if (userFull == null || (userFull.flags2 & 64) == 0) {
-                this.searchId++;
-                this.loaded = true;
-                this.messageObjects.clear();
-                done(false);
-                return;
-            }
-            fetch(userFull.personal_channel_id, userFull.personal_channel_message);
-        }
-
-        public void fetch(final long j, final int i) {
-            if (this.loaded || this.loading) {
-                if (this.channel_id == j && this.message_id == i) {
-                    return;
-                }
-                this.loaded = false;
-                this.messageObjects.clear();
-            }
-            final int i2 = this.searchId + 1;
-            this.searchId = i2;
-            this.loading = true;
-            this.channel_id = j;
-            this.message_id = i;
-            final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-            final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-            messagesStorage.getStorageQueue().postRunnable(new Runnable() {
-                @Override
-                public final void run() throws Throwable {
-                    ProfileChannelCell.ChannelMessageFetcher.$r8$lambda$rXKSW7QTzI4_zXTgytjDxPu1NJ4(this.f$0, i, messagesStorage, j, clientUserId, i2);
-                }
-            });
-        }
-
-        public static void $r8$lambda$rXKSW7QTzI4_zXTgytjDxPu1NJ4(final ChannelMessageFetcher channelMessageFetcher, final int i, final MessagesStorage messagesStorage, final long j, long j2, final int i2) throws Throwable {
-            SQLiteCursor sQLiteCursorQueryFinalized;
-            boolean z = false;
-            int i3 = 1;
-            channelMessageFetcher.getClass();
-            final ArrayList arrayList = new ArrayList();
-            ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
-            ArrayList<TLRPC.Chat> arrayList3 = new ArrayList<>();
-            SQLiteCursor sQLiteCursor = null;
-            sQLiteCursor = null;
-            try {
-                try {
-                    if (i <= 0) {
-                        sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? ORDER BY mid DESC LIMIT 10", Long.valueOf(-j));
-                    } else {
-                        sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? AND mid <= ? ORDER BY mid DESC LIMIT 10", Long.valueOf(-j), Integer.valueOf(i));
-                    }
-                    try {
-                        ArrayList<Long> arrayList4 = new ArrayList<>();
-                        ArrayList arrayList5 = new ArrayList();
-                        while (sQLiteCursorQueryFinalized.next()) {
-                            NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(z ? 1 : 0);
-                            if (nativeByteBufferByteBufferValue != null) {
-                                TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(z), z);
-                                messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue, j2);
-                                nativeByteBufferByteBufferValue.reuse();
-                                messageTLdeserialize.id = sQLiteCursorQueryFinalized.intValue(i3);
-                                messageTLdeserialize.dialog_id = -j;
-                                MessagesStorage.addUsersAndChatsFromMessage(messageTLdeserialize, arrayList4, arrayList5, null);
-                                arrayList.add(messageTLdeserialize);
-                                z = false;
-                                i3 = 1;
-                            }
-                        }
-                        sQLiteCursorQueryFinalized.dispose();
-                        if (!arrayList.isEmpty()) {
-                            if (!arrayList4.isEmpty()) {
-                                messagesStorage.getUsersInternal(arrayList4, arrayList2);
-                            }
-                            if (!arrayList5.isEmpty()) {
-                                messagesStorage.getChatsInternal(TextUtils.join(",", arrayList5), arrayList3);
-                            }
-                        }
-                    } catch (Exception e) {
-                        e = e;
-                        sQLiteCursor = sQLiteCursorQueryFinalized;
-                        FileLog.e(e);
-                        if (sQLiteCursor != null) {
-                            sQLiteCursorQueryFinalized = sQLiteCursor;
-                        }
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                ProfileChannelCell.ChannelMessageFetcher.$r8$lambda$fc_Nyqlljl_Uw1Lp0w8_VtSyrqU(this.f$0, i2, arrayList, j, i, messagesStorage);
-                            }
-                        });
-                    } catch (Throwable th) {
-                        th = th;
-                        sQLiteCursor = sQLiteCursorQueryFinalized;
-                        if (sQLiteCursor != null) {
-                            sQLiteCursor.dispose();
-                        }
-                        throw th;
-                    }
-                } catch (Exception e2) {
-                    e = e2;
-                }
-                sQLiteCursorQueryFinalized.dispose();
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ProfileChannelCell.ChannelMessageFetcher.$r8$lambda$fc_Nyqlljl_Uw1Lp0w8_VtSyrqU(this.f$0, i2, arrayList, j, i, messagesStorage);
-                    }
-                });
-            } catch (Throwable th2) {
-                th = th2;
-            }
-        }
-
-        public static void $r8$lambda$fc_Nyqlljl_Uw1Lp0w8_VtSyrqU(final ChannelMessageFetcher channelMessageFetcher, final int i, final ArrayList arrayList, final long j, int i2, final MessagesStorage messagesStorage) {
-            if (i != channelMessageFetcher.searchId) {
-                return;
-            }
-            if (!arrayList.isEmpty()) {
-                channelMessageFetcher.messageObjects.clear();
-                Collections.sort(arrayList, Comparator$CC.comparingInt(new ToIntFunction() {
-                    @Override
-                    public final int applyAsInt(Object obj) {
-                        return ((TLRPC.Message) obj).id;
-                    }
-                }));
-                TLRPC.Message message = (TLRPC.Message) arrayList.get(arrayList.size() - 1);
-                long j2 = message.grouped_id;
-                if (j2 != 0) {
-                    int size = arrayList.size();
-                    int i3 = 0;
-                    while (i3 < size) {
-                        Object obj = arrayList.get(i3);
-                        i3++;
-                        TLRPC.Message message2 = (TLRPC.Message) obj;
-                        if (message2.grouped_id == j2) {
-                            channelMessageFetcher.messageObjects.add(new MessageObject(channelMessageFetcher.currentAccount, message2, false, true));
-                        }
-                    }
-                } else {
-                    channelMessageFetcher.messageObjects.add(new MessageObject(channelMessageFetcher.currentAccount, message, false, true));
-                }
-                if (!channelMessageFetcher.messageObjects.isEmpty()) {
-                    channelMessageFetcher.done(false);
-                    return;
-                }
-            }
-            TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
-            tL_channels_getMessages.channel = MessagesController.getInstance(channelMessageFetcher.currentAccount).getInputChannel(j);
-            for (int i4 = 10; i4 >= 0; i4--) {
-                int i5 = i2 - i4;
-                if (i5 >= 0) {
-                    tL_channels_getMessages.id.add(Integer.valueOf(i5));
-                }
-            }
-            ConnectionsManager.getInstance(channelMessageFetcher.currentAccount).sendRequest(tL_channels_getMessages, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ProfileChannelCell.ChannelMessageFetcher.m1502$r8$lambda$y6kbaezH8lc59pPc6OUHkfb5iY(this.f$0, messagesStorage, j, i, arrayList, tLObject, tL_error);
-                }
-            });
-        }
-
-        public static void m1502$r8$lambda$y6kbaezH8lc59pPc6OUHkfb5iY(final ChannelMessageFetcher channelMessageFetcher, final MessagesStorage messagesStorage, final long j, final int i, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            channelMessageFetcher.getClass();
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ProfileChannelCell.ChannelMessageFetcher.$r8$lambda$CE0It025FDdHulM9Rwkn80lbBgk(this.f$0, tLObject, messagesStorage, j, i, arrayList);
-                }
-            });
-        }
-
-        public static void $r8$lambda$CE0It025FDdHulM9Rwkn80lbBgk(ChannelMessageFetcher channelMessageFetcher, TLObject tLObject, MessagesStorage messagesStorage, long j, int i, ArrayList arrayList) {
-            channelMessageFetcher.getClass();
-            if (tLObject instanceof TLRPC.messages_Messages) {
-                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                MessagesController.getInstance(channelMessageFetcher.currentAccount).putUsers(messages_messages.users, false);
-                MessagesController.getInstance(channelMessageFetcher.currentAccount).putChats(messages_messages.chats, false);
-                messagesStorage.putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
-                messagesStorage.putMessages(messages_messages, -j, 3, 0, false, 0, 0L);
-                if (i == channelMessageFetcher.searchId && !messages_messages.messages.isEmpty()) {
-                    channelMessageFetcher.messageObjects.clear();
-                    Collections.sort(arrayList, Comparator$CC.comparingInt(new ToIntFunction() {
-                        @Override
-                        public final int applyAsInt(Object obj) {
-                            return ((TLRPC.Message) obj).id;
-                        }
-                    }));
-                    ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
-                    TLRPC.Message message = arrayList2.get(arrayList2.size() - 1);
-                    long j2 = message.grouped_id;
-                    if (j2 != 0) {
-                        ArrayList<TLRPC.Message> arrayList3 = messages_messages.messages;
-                        int size = arrayList3.size();
-                        int i2 = 0;
-                        while (i2 < size) {
-                            TLRPC.Message message2 = arrayList3.get(i2);
-                            i2++;
-                            TLRPC.Message message3 = message2;
-                            if (message3.grouped_id == j2) {
-                                channelMessageFetcher.messageObjects.add(new MessageObject(channelMessageFetcher.currentAccount, message3, false, true));
-                            }
-                        }
-                    } else {
-                        channelMessageFetcher.messageObjects.add(new MessageObject(channelMessageFetcher.currentAccount, message, false, true));
-                    }
-                    if (channelMessageFetcher.messageObjects.isEmpty()) {
-                        return;
-                    }
-                    channelMessageFetcher.done(false);
-                    return;
-                }
-                return;
-            }
-            if (i != channelMessageFetcher.searchId) {
-                return;
-            }
-            channelMessageFetcher.done(true);
-        }
-
-        public void subscribe(Runnable runnable) {
-            if (this.loaded) {
-                runnable.run();
-            } else {
-                this.callbacks.add(runnable);
-            }
-        }
-
-        private void done(boolean z) {
-            int i = 0;
-            this.loading = false;
-            this.loaded = true;
-            this.error = z;
-            ArrayList arrayList = this.callbacks;
-            int size = arrayList.size();
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                ((Runnable) obj).run();
-            }
-            this.callbacks.clear();
-        }
+    public final void updateColors$1() {
+        int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, this.resourcesProvider);
+        ClickableAnimatedTextView clickableAnimatedTextView = this.subscribersView;
+        clickableAnimatedTextView.setTextColor(color);
+        clickableAnimatedTextView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), Theme.multAlpha(0.1f, color)));
+        this.headerView.setTextColor(color);
     }
 
     @Override
-    public void updateColors() {
-        int iProcessColor = processColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, this.resourcesProvider));
-        this.subscribersView.setTextColor(iProcessColor);
-        this.subscribersView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), Theme.multAlpha(iProcessColor, 0.1f)));
-        this.headerView.setTextColor(iProcessColor);
+    public final boolean verifyDrawable(Drawable drawable) {
+        return this.loadingDrawable == drawable || super.verifyDrawable(drawable);
     }
 }

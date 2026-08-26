@@ -7,112 +7,55 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import org.telegram.ui.ChatActivity;
 
 public abstract class ChatActivityEnterTopView extends FrameLayout {
-    private boolean editMode;
-    private EditView editView;
-    private View replyView;
+    public boolean editMode;
+    public EditView editView;
+    public ChatActivity.AnonymousClass60 replyView;
 
-    public ChatActivityEnterTopView(Context context) {
-        super(context);
-    }
-
-    public void addReplyView(View view, FrameLayout.LayoutParams layoutParams) {
-        if (this.replyView == null) {
-            this.replyView = view;
-            addView(view, layoutParams);
-        }
-    }
-
-    public void addEditView(EditView editView, FrameLayout.LayoutParams layoutParams) {
-        if (this.editView == null) {
-            this.editView = editView;
-            editView.setVisibility(8);
-            addView(editView, layoutParams);
-        }
-    }
-
-    public void setEditMode(boolean z) {
-        this.editMode = z;
-        this.replyView.setVisibility(z ? 8 : 0);
-        this.editView.setVisibility(z ? 0 : 8);
-    }
-
-    public void setEditSuggestionMode(boolean z) {
-        setEditMode(z);
-        if (z) {
-            this.replyView.setVisibility(0);
-        }
-        this.editView.buttons[0].setOnlyIconMode(z);
-        this.editView.buttons[1].setOnlyIconMode(z);
-    }
-
-    public boolean isEditMode() {
-        return this.editMode;
-    }
-
-    public View getReplyView() {
-        return this.replyView;
-    }
-
-    public EditView getEditView() {
-        return this.editView;
-    }
-
-    public static class EditView extends LinearLayout {
-        private EditViewButton[] buttons;
+    public final class EditView extends LinearLayout {
+        public final EditViewButton[] buttons;
 
         public EditView(Context context) {
             super(context);
             this.buttons = new EditViewButton[2];
         }
 
-        public void addButton(EditViewButton editViewButton, LinearLayout.LayoutParams layoutParams) {
+        public final void addButton(ChatActivity.AnonymousClass42 anonymousClass42, LinearLayout.LayoutParams layoutParams) {
             int childCount = getChildCount();
             if (childCount < 2) {
-                this.buttons[childCount] = editViewButton;
-                addView(editViewButton, layoutParams);
+                this.buttons[childCount] = anonymousClass42;
+                addView(anonymousClass42, layoutParams);
             }
         }
 
         public EditViewButton[] getButtons() {
             return this.buttons;
         }
-
-        public void updateColors() {
-            for (EditViewButton editViewButton : this.buttons) {
-                editViewButton.updateColors();
-            }
-        }
     }
 
-    public static abstract class EditViewButton extends LinearLayout {
-        private boolean editButton;
-        private ImageView imageView;
-        private Space space;
-        private TextView textView;
+    public abstract class EditViewButton extends LinearLayout {
+        public boolean editButton;
+        public ImageView imageView;
+        public Space space;
+        public TextView textView;
 
-        public abstract void updateColors();
-
-        public EditViewButton(Context context) {
-            super(context);
-        }
-
-        public void addImageView(ImageView imageView, LinearLayout.LayoutParams layoutParams) {
+        public final void addImageView(ImageView imageView, LinearLayout.LayoutParams layoutParams) {
             if (this.imageView == null) {
                 this.imageView = imageView;
                 addView(imageView, layoutParams);
             }
         }
 
-        public void addSpaceView(Space space, LinearLayout.LayoutParams layoutParams) {
+        public final void addSpaceView(Space space, LinearLayout.LayoutParams layoutParams) {
             if (this.space == null) {
                 this.space = space;
                 addView(space, layoutParams);
             }
         }
 
-        public void addTextView(TextView textView, LinearLayout.LayoutParams layoutParams) {
+        public final void addTextView(TextView textView, LinearLayout.LayoutParams layoutParams) {
             if (this.textView == null) {
                 this.textView = textView;
                 addView(textView, layoutParams);
@@ -131,10 +74,6 @@ public abstract class ChatActivityEnterTopView extends FrameLayout {
             this.editButton = z;
         }
 
-        public boolean isEditButton() {
-            return this.editButton;
-        }
-
         public void setOnlyIconMode(boolean z) {
             TextView textView = this.textView;
             if (textView != null) {
@@ -145,5 +84,45 @@ public abstract class ChatActivityEnterTopView extends FrameLayout {
                 space.setVisibility(z ? 8 : 0);
             }
         }
+
+        public abstract void updateColors();
+    }
+
+    public final void addEditView(EditView editView, FrameLayout.LayoutParams layoutParams) {
+        if (this.editView == null) {
+            this.editView = editView;
+            editView.setVisibility(8);
+            addView(editView, layoutParams);
+        }
+    }
+
+    public final void addReplyView(ChatActivity.AnonymousClass60 anonymousClass60, FrameLayout.LayoutParams layoutParams) {
+        if (this.replyView == null) {
+            this.replyView = anonymousClass60;
+            addView(anonymousClass60, layoutParams);
+        }
+    }
+
+    public EditView getEditView() {
+        return this.editView;
+    }
+
+    public View getReplyView() {
+        return this.replyView;
+    }
+
+    public void setEditMode(boolean z) {
+        this.editMode = z;
+        this.replyView.setVisibility(z ? 8 : 0);
+        this.editView.setVisibility(z ? 0 : 8);
+    }
+
+    public void setEditSuggestionMode(boolean z) {
+        setEditMode(z);
+        if (z) {
+            this.replyView.setVisibility(0);
+        }
+        this.editView.buttons[0].setOnlyIconMode(z);
+        this.editView.buttons[1].setOnlyIconMode(z);
     }
 }

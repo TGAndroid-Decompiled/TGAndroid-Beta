@@ -10,7 +10,8 @@ public class VCenteredAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box boxCreateBox = this.atom.createBox(teXEnvironment);
-        boxCreateBox.setShift((-((boxCreateBox.getHeight() + boxCreateBox.getDepth()) / 2.0f)) - teXEnvironment.getTeXFont().getAxisHeight(teXEnvironment.getStyle()));
+        float depth = boxCreateBox.getDepth() + boxCreateBox.getHeight();
+        boxCreateBox.setShift((-(depth / 2.0f)) - teXEnvironment.getTeXFont().getAxisHeight(teXEnvironment.getStyle()));
         return new HorizontalBox(boxCreateBox);
     }
 }

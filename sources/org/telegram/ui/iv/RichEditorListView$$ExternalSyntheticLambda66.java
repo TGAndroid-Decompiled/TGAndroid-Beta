@@ -5,12 +5,12 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public final class RichEditorListView$$ExternalSyntheticLambda66 implements BiFunction {
-    public BiFunction andThen(Function function) {
+    public final BiFunction andThen(Function function) {
         return BiFunction$CC.$default$andThen(this, function);
     }
 
     @Override
     public final Object apply(Object obj, Object obj2) {
-        return Integer.valueOf(((Integer) obj).intValue() + ((Integer) obj2).intValue());
+        return Integer.valueOf(((Integer) obj2).intValue() + ((Integer) obj).intValue());
     }
 }

@@ -3,90 +3,84 @@ package org.telegram.ui.Components.Premium.boosts;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda7;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.adapters.GiftInfoAdapter;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda23;
 import org.telegram.ui.LaunchActivity;
 
-public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
-    private GiftInfoAdapter adapter;
-    private final TLRPC.TL_payments_checkedGiftCode giftCode;
-    private final boolean isUnused;
-    private String slug;
+public final class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
+    public AnonymousClass2 adapter;
+    public final TLRPC.TL_payments_checkedGiftCode giftCode;
+    public final boolean isUnused;
+    public final String slug;
 
-    public static void show(final BaseFragment baseFragment, final String str, final Browser.Progress progress) {
-        if (baseFragment == null) {
-            return;
+    public final class AnonymousClass2 extends GiftInfoAdapter {
+        public AnonymousClass2(Theme.ResourcesProvider resourcesProvider) {
+            super(resourcesProvider);
         }
-        final AtomicBoolean atomicBoolean = new AtomicBoolean(false);
-        if (progress != null) {
-            progress.init();
-            progress.onCancel(new Runnable() {
-                @Override
-                public final void run() {
-                    atomicBoolean.set(true);
-                }
-            });
-        }
-        BoostRepository.checkGiftCode(str, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                GiftInfoBottomSheet.$r8$lambda$YUYLW_38Gm6o4KeCIm9DBgReAdw(atomicBoolean, baseFragment, str, progress, (TLRPC.TL_payments_checkedGiftCode) obj);
-            }
-        }, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                GiftInfoBottomSheet.$r8$lambda$Y7glcthtbPhwh6Sao6m83JvUN7w(atomicBoolean, progress, (TLRPC.TL_error) obj);
-            }
-        });
-    }
 
-    public static void $r8$lambda$YUYLW_38Gm6o4KeCIm9DBgReAdw(AtomicBoolean atomicBoolean, BaseFragment baseFragment, String str, Browser.Progress progress, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode) {
-        if (atomicBoolean.get() || baseFragment.getParentActivity() == null) {
-            return;
+        @Override
+        public final void onHiddenLinkClicked() {
+            GiftInfoBottomSheet giftInfoBottomSheet = GiftInfoBottomSheet.this;
+            String str = giftInfoBottomSheet.slug;
+            new BulletinFactory(giftInfoBottomSheet.container, ((BottomSheet) giftInfoBottomSheet).resourcesProvider).createSimpleBulletinWithIconSize(R.raw.chats_infotip, 36, ((str == null || str.isEmpty()) && giftInfoBottomSheet.giftCode.to_id == -1) ? LocaleController.getString(R.string.BoostingOnlyGiveawayCreatorSeeLink) : LocaleController.getString(R.string.BoostingOnlyRecipientCode)).show(true);
         }
-        if (tL_payments_checkedGiftCode.from_id == null) {
-            TLRPC.TL_premiumGiftOption tL_premiumGiftOption = new TLRPC.TL_premiumGiftOption();
-            tL_premiumGiftOption.months = tL_payments_checkedGiftCode.months;
-            TLRPC.User currentUser = baseFragment instanceof ChatActivity ? ((ChatActivity) baseFragment).getCurrentUser() : null;
-            if (currentUser == null || currentUser.self) {
-                currentUser = new TLRPC.TL_user();
+
+        @Override
+        public final void onObjectClicked(TLObject tLObject) {
+            GiftInfoBottomSheet giftInfoBottomSheet = GiftInfoBottomSheet.this;
+            giftInfoBottomSheet.lambda$showGiftOfferSheet$15();
+            if (tLObject instanceof TLRPC.Chat) {
+                giftInfoBottomSheet.baseFragment.presentFragment(ChatActivity.of(-((TLRPC.Chat) tLObject).id));
+                return;
             }
-            PremiumPreviewGiftLinkBottomSheet.show(str, tL_premiumGiftOption, currentUser, tL_payments_checkedGiftCode.used_date != 0);
-        } else {
-            baseFragment.showDialog(new GiftInfoBottomSheet(baseFragment, false, true, tL_payments_checkedGiftCode, str));
-        }
-        if (progress != null) {
-            progress.end();
+            if (tLObject instanceof TLRPC.User) {
+                giftInfoBottomSheet.baseFragment.presentFragment(ChatActivity.of(((TLRPC.User) tLObject).id));
+                return;
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -DialogObject.getPeerDialogId(giftInfoBottomSheet.giftCode.from_id));
+            bundle.putInt("message_id", giftInfoBottomSheet.giftCode.giveaway_msg_id);
+            giftInfoBottomSheet.baseFragment.presentFragment(new ChatActivity(bundle));
         }
     }
 
-    public static void $r8$lambda$Y7glcthtbPhwh6Sao6m83JvUN7w(AtomicBoolean atomicBoolean, Browser.Progress progress, TLRPC.TL_error tL_error) {
-        if (atomicBoolean.get() || progress == null) {
-            return;
-        }
-        progress.end();
-    }
-
-    public static void show(BaseFragment baseFragment, String str) {
-        show(baseFragment, str, null);
+    public GiftInfoBottomSheet(BaseFragment baseFragment, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
+        super(baseFragment, true);
+        this.isUnused = tL_payments_checkedGiftCode.used_date == 0;
+        this.giftCode = tL_payments_checkedGiftCode;
+        this.slug = str;
+        setApplyTopPadding(false);
+        setApplyBottomPadding(false);
+        fixNavigationBar();
+        updateTitle$1();
+        AnonymousClass2 anonymousClass2 = this.adapter;
+        BottomSheet.ContainerView containerView = this.container;
+        anonymousClass2.getClass();
+        anonymousClass2.isUnused = tL_payments_checkedGiftCode.used_date == 0;
+        anonymousClass2.baseFragment = baseFragment;
+        anonymousClass2.giftCode = tL_payments_checkedGiftCode;
+        anonymousClass2.slug = str;
+        anonymousClass2.container = containerView;
     }
 
     public static boolean handleIntent(Intent intent, Browser.Progress progress) {
@@ -96,152 +90,62 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         if (data == null || (scheme = data.getScheme()) == null) {
             return false;
         }
-        if (scheme.equals("http") || scheme.equals("https")) {
-            String lowerCase = data.getHost().toLowerCase();
-            if ((!lowerCase.equals("telegram.me") && !lowerCase.equals("t.me") && !lowerCase.equals("telegram.dog")) || (path = data.getPath()) == null) {
+        if (!scheme.equals("http") && !scheme.equals("https")) {
+            if (!scheme.equals("tg")) {
                 return false;
             }
+            String string = data.toString();
             String lastPathSegment = data.getLastPathSegment();
-            if (!path.startsWith("/giftcode") || lastPathSegment == null) {
+            if ((!string.startsWith("tg:giftcode") && !string.startsWith("tg://giftcode")) || lastPathSegment == null) {
                 return false;
             }
             show(LaunchActivity.getLastFragment(), lastPathSegment, progress);
             return true;
         }
-        if (!scheme.equals("tg")) {
+        String lowerCase = data.getHost().toLowerCase();
+        if ((!lowerCase.equals("telegram.me") && !lowerCase.equals("t.me") && !lowerCase.equals("telegram.dog")) || (path = data.getPath()) == null) {
             return false;
         }
-        String string = data.toString();
         String lastPathSegment2 = data.getLastPathSegment();
-        if ((!string.startsWith("tg:giftcode") && !string.startsWith("tg://giftcode")) || lastPathSegment2 == null) {
+        if (!path.startsWith("/giftcode") || lastPathSegment2 == null) {
             return false;
         }
         show(LaunchActivity.getLastFragment(), lastPathSegment2, progress);
         return true;
     }
 
-    public GiftInfoBottomSheet(BaseFragment baseFragment, boolean z, boolean z2, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
-        super(baseFragment, z, z2);
-        this.isUnused = tL_payments_checkedGiftCode.used_date == 0;
-        this.giftCode = tL_payments_checkedGiftCode;
-        this.slug = str;
-        setApplyTopPadding(false);
-        setApplyBottomPadding(false);
-        fixNavigationBar();
-        updateTitle();
-        this.adapter.init(baseFragment, tL_payments_checkedGiftCode, str, this.container);
+    public static void show(BaseFragment baseFragment, String str, Browser.Progress progress) {
+        if (baseFragment == null) {
+            return;
+        }
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+        if (progress != null) {
+            progress.init();
+            progress.onCancelListener = new BoostDialogs$$ExternalSyntheticLambda11(atomicBoolean, 1);
+        }
+        GiftSheet$$ExternalSyntheticLambda23 giftSheet$$ExternalSyntheticLambda23 = new GiftSheet$$ExternalSyntheticLambda23(atomicBoolean, baseFragment, str, progress);
+        BoostDialogs$$ExternalSyntheticLambda13 boostDialogs$$ExternalSyntheticLambda13 = new BoostDialogs$$ExternalSyntheticLambda13(atomicBoolean, progress, 1);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
+        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
+        TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
+        tL_payments_checkGiftCode.slug = str;
+        connectionsManager.sendRequest(tL_payments_checkGiftCode, new BoostsActivity$$ExternalSyntheticLambda7(messagesController, giftSheet$$ExternalSyntheticLambda23, boostDialogs$$ExternalSyntheticLambda13, 21));
     }
 
     @Override
-    public void onViewCreated(FrameLayout frameLayout) {
-        super.onViewCreated(frameLayout);
-        Bulletin.addDelegate(this.container, new Bulletin.Delegate() {
-            @Override
-            public boolean allowLayoutChanges() {
-                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
-            }
-
-            @Override
-            public boolean bottomOffsetAnimated() {
-                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
-            }
-
-            @Override
-            public boolean clipWithGradient(int i) {
-                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
-            }
-
-            @Override
-            public int getBottomOffset(int i) {
-                return Bulletin.Delegate.CC.$default$getBottomOffset(this, i);
-            }
-
-            @Override
-            public void onBottomOffsetChange(float f) {
-                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
-            }
-
-            @Override
-            public void onHide(Bulletin bulletin) {
-                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
-            }
-
-            @Override
-            public void onShow(Bulletin bulletin) {
-                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
-            }
-
-            @Override
-            public int getTopOffset(int i) {
-                return AndroidUtilities.statusBarHeight;
-            }
-        });
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return this.isUnused ? LocaleController.getString(R.string.BoostingGiftLink) : LocaleController.getString(R.string.BoostingUsedGiftLink);
-    }
-
-    class AnonymousClass2 extends GiftInfoAdapter {
-        AnonymousClass2(Theme.ResourcesProvider resourcesProvider) {
-            super(resourcesProvider);
-        }
-
-        @Override
-        public void dismiss() {
-            GiftInfoBottomSheet.this.dismiss();
-        }
-
-        @Override
-        protected void afterCodeApplied() {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    GiftInfoBottomSheet.AnonymousClass2.m2647$r8$lambda$IXs29PEC1DO6dXlYNCK1ojvTw(this.f$0);
-                }
-            }, 200L);
-        }
-
-        public static void m2647$r8$lambda$IXs29PEC1DO6dXlYNCK1ojvTw(AnonymousClass2 anonymousClass2) {
-            anonymousClass2.getClass();
-            GiftInfoBottomSheet.this.getBaseFragment().showDialog(new PremiumPreviewBottomSheet(GiftInfoBottomSheet.this.getBaseFragment(), ((BottomSheet) GiftInfoBottomSheet.this).currentAccount, null, null, null, ((BottomSheet) GiftInfoBottomSheet.this).resourcesProvider).setAnimateConfetti(true).setOutboundGift(true));
-        }
-
-        @Override
-        protected void onObjectClicked(TLObject tLObject) {
-            dismiss();
-            if (tLObject instanceof TLRPC.Chat) {
-                GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(-((TLRPC.Chat) tLObject).id));
-                return;
-            }
-            if (tLObject instanceof TLRPC.User) {
-                GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(((TLRPC.User) tLObject).id));
-                return;
-            }
-            Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -DialogObject.getPeerDialogId(GiftInfoBottomSheet.this.giftCode.from_id));
-            bundle.putInt("message_id", GiftInfoBottomSheet.this.giftCode.giveaway_msg_id);
-            GiftInfoBottomSheet.this.getBaseFragment().presentFragment(new ChatActivity(bundle));
-        }
-
-        @Override
-        protected void onHiddenLinkClicked() {
-            String string;
-            if ((GiftInfoBottomSheet.this.slug == null || GiftInfoBottomSheet.this.slug.isEmpty()) && GiftInfoBottomSheet.this.giftCode.to_id == -1) {
-                string = LocaleController.getString(R.string.BoostingOnlyGiveawayCreatorSeeLink);
-            } else {
-                string = LocaleController.getString(R.string.BoostingOnlyRecipientCode);
-            }
-            GiftInfoBottomSheet giftInfoBottomSheet = GiftInfoBottomSheet.this;
-            BulletinFactory.of(giftInfoBottomSheet.container, ((BottomSheet) giftInfoBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, string).show(true);
-        }
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+    public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         AnonymousClass2 anonymousClass2 = new AnonymousClass2(this.resourcesProvider);
         this.adapter = anonymousClass2;
         return anonymousClass2;
+    }
+
+    @Override
+    public final CharSequence getTitle() {
+        return this.isUnused ? LocaleController.getString(R.string.BoostingGiftLink) : LocaleController.getString(R.string.BoostingUsedGiftLink);
+    }
+
+    @Override
+    public final void onViewCreated(SizeNotifierFrameLayout sizeNotifierFrameLayout) {
+        Bulletin.addDelegate(this.container, new LaunchActivity.AnonymousClass7(6));
     }
 }

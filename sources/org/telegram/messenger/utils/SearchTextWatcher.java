@@ -3,41 +3,23 @@ package org.telegram.messenger.utils;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.widget.EditText;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
+import org.telegram.ui.ActionBar.OKLCH;
+import org.telegram.ui.UsersSelectActivity;
 
-public class SearchTextWatcher implements TextWatcher {
-    private boolean doNotCloseAfterFieldEmpty;
-    private final EditText editText;
-    public final ActionBarMenuItem.ActionBarMenuItemSearchListener listener;
-    private boolean searchIsExpanded;
-    private String searchQuery;
-    private final boolean toggleByFocus;
+public final class SearchTextWatcher implements TextWatcher {
+    public boolean doNotCloseAfterFieldEmpty;
+    public final UsersSelectActivity.AnonymousClass4 editText;
+    public final OKLCH listener;
+    public boolean searchIsExpanded;
+    public String searchQuery;
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    public SearchTextWatcher(UsersSelectActivity.AnonymousClass4 anonymousClass4, OKLCH oklch) {
+        this.listener = oklch;
+        this.editText = anonymousClass4;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    public SearchTextWatcher(EditText editText, ActionBarMenuItem.ActionBarMenuItemSearchListener actionBarMenuItemSearchListener) {
-        this(editText, actionBarMenuItemSearchListener, false);
-    }
-
-    public SearchTextWatcher(EditText editText, ActionBarMenuItem.ActionBarMenuItemSearchListener actionBarMenuItemSearchListener, boolean z) {
-        this.listener = actionBarMenuItemSearchListener;
-        this.editText = editText;
-        this.toggleByFocus = z;
-    }
-
-    public void setDoNotCloseAfterFieldEmpty() {
-        this.doNotCloseAfterFieldEmpty = true;
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
+    public final void afterTextChanged(Editable editable) {
         String string = editable.toString();
         boolean zIsEmpty = TextUtils.isEmpty(this.searchQuery);
         boolean zIsEmpty2 = TextUtils.isEmpty(string);
@@ -52,20 +34,30 @@ public class SearchTextWatcher implements TextWatcher {
         toggleSearch(false);
     }
 
-    public boolean toggleSearch(boolean z) {
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    public final void setDoNotCloseAfterFieldEmpty() {
+        this.doNotCloseAfterFieldEmpty = true;
+    }
+
+    public final void toggleSearch(boolean z) {
         if (this.searchIsExpanded == z) {
-            return false;
+            return;
         }
-        this.listener.onPreToggleSearch();
-        if (!this.listener.canToggleSearch()) {
-            return false;
+        OKLCH oklch = this.listener;
+        if (oklch.canToggleSearch()) {
+            if (z) {
+                oklch.onSearchExpand();
+            } else {
+                oklch.onSearchCollapse();
+            }
+            this.searchIsExpanded = z;
         }
-        if (z) {
-            this.listener.onSearchExpand();
-        } else {
-            this.listener.onSearchCollapse();
-        }
-        this.searchIsExpanded = z;
-        return true;
     }
 }

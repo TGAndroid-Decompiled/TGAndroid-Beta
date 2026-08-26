@@ -13,7 +13,7 @@ public class VdotsAtom extends Atom {
         float depth = verticalBox.getDepth();
         float height = verticalBox.getHeight();
         verticalBox.setDepth(0.0f);
-        verticalBox.setHeight(depth + height);
+        verticalBox.setHeight(height + depth);
         return verticalBox;
     }
 }

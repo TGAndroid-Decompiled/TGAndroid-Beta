@@ -1,9 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
 final class PredefinedTeXFormulas {
-    PredefinedTeXFormulas() {
-    }
-
     static {
         TeXFormula.predefinedTeXFormulasAsString.put("qquad", "\\quad\\quad");
         TeXFormula.predefinedTeXFormulasAsString.put(" ", "\\nbsp");

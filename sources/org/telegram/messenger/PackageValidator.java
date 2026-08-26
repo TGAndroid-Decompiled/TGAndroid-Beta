@@ -9,9 +9,6 @@ import java.util.Set;
 public final class PackageValidator {
     private static final Set<String> KNOWN_PACKAGES;
 
-    private PackageValidator() {
-    }
-
     static {
         HashSet hashSet = new HashSet();
         KNOWN_PACKAGES = hashSet;
@@ -27,14 +24,7 @@ public final class PackageValidator {
         hashSet.add("com.google.android.bluetooth");
     }
 
-    public static boolean isKnownCaller(Context context, String str, int i) {
-        if (str == null) {
-            return false;
-        }
-        if (i == 1000 || i == Process.myUid() || KNOWN_PACKAGES.contains(str)) {
-            return true;
-        }
-        return hasPermission(context, str, i);
+    private PackageValidator() {
     }
 
     private static boolean hasPermission(Context context, String str, int i) {
@@ -44,5 +34,15 @@ public final class PackageValidator {
         } catch (Throwable unused) {
             return false;
         }
+    }
+
+    public static boolean isKnownCaller(Context context, String str, int i) {
+        if (str == null) {
+            return false;
+        }
+        if (i == 1000 || i == Process.myUid() || KNOWN_PACKAGES.contains(str)) {
+            return true;
+        }
+        return hasPermission(context, str, i);
     }
 }

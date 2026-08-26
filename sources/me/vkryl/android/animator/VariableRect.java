@@ -2,89 +2,37 @@ package me.vkryl.android.animator;
 
 import android.graphics.RectF;
 
-public class VariableRect implements Animatable {
-    private final VariableFloat bottom;
-    private final VariableFloat left;
-    private final RectF rectF;
-    private final VariableFloat right;
-    private final VariableFloat top;
+public final class VariableRect {
+    public final RectF rectF = new RectF();
+    public final VariableFloat left = new VariableFloat(0.0f);
+    public final VariableFloat top = new VariableFloat(0.0f);
+    public final VariableFloat right = new VariableFloat(0.0f);
+    public final VariableFloat bottom = new VariableFloat(0.0f);
 
-    @Override
-    public void applyChanges() {
-        Animatable.CC.$default$applyChanges(this);
+    public final boolean applyAnimation(float f) {
+        return this.bottom.applyAnimation(f) || (this.right.applyAnimation(f) || (this.top.applyAnimation(f) || this.left.applyAnimation(f)));
     }
 
-    @Override
-    public boolean hasChanges() {
-        return Animatable.CC.$default$hasChanges(this);
-    }
-
-    @Override
-    public void prepareChanges() {
-        Animatable.CC.$default$prepareChanges(this);
-    }
-
-    public VariableRect() {
-        this(0.0f, 0.0f, 0.0f, 0.0f);
-    }
-
-    public VariableRect(float f, float f2, float f3, float f4) {
-        this.rectF = new RectF();
-        this.left = new VariableFloat(f);
-        this.top = new VariableFloat(f2);
-        this.right = new VariableFloat(f3);
-        this.bottom = new VariableFloat(f4);
-    }
-
-    public float getLeft() {
-        return this.left.get();
-    }
-
-    public float getTop() {
-        return this.top.get();
-    }
-
-    public float getRight() {
-        return this.right.get();
-    }
-
-    public float getBottom() {
-        return this.bottom.get();
-    }
-
-    public void set(float f, float f2, float f3, float f4) {
-        this.left.set(f);
-        this.top.set(f2);
-        this.right.set(f3);
-        this.bottom.set(f4);
-    }
-
-    public boolean differs(float f, float f2, float f3, float f4) {
+    public final boolean differs(float f, float f2, float f3, float f4) {
         return this.left.differs(f) || this.top.differs(f2) || this.right.differs(f3) || this.bottom.differs(f4);
     }
 
-    public void setTo(float f, float f2, float f3, float f4) {
-        this.left.setTo(f);
-        this.top.setTo(f2);
-        this.right.setTo(f3);
-        this.bottom.setTo(f4);
-    }
-
-    public RectF toRectF() {
-        this.rectF.set(getLeft(), getTop(), getRight(), getBottom());
-        return this.rectF;
-    }
-
-    @Override
-    public void finishAnimation(boolean z) {
-        this.left.finishAnimation(z);
-        this.top.finishAnimation(z);
-        this.right.finishAnimation(z);
-        this.bottom.finishAnimation(z);
-    }
-
-    @Override
-    public boolean applyAnimation(float f) {
-        return this.bottom.applyAnimation(f) || (this.right.applyAnimation(f) || (this.top.applyAnimation(f) || this.left.applyAnimation(f)));
+    public final void set(float f, float f2, float f3, float f4) {
+        VariableFloat variableFloat = this.left;
+        variableFloat.from = f;
+        variableFloat.to = f;
+        variableFloat.now = f;
+        VariableFloat variableFloat2 = this.top;
+        variableFloat2.from = f2;
+        variableFloat2.to = f2;
+        variableFloat2.now = f2;
+        VariableFloat variableFloat3 = this.right;
+        variableFloat3.from = f3;
+        variableFloat3.to = f3;
+        variableFloat3.now = f3;
+        VariableFloat variableFloat4 = this.bottom;
+        variableFloat4.from = f4;
+        variableFloat4.to = f4;
+        variableFloat4.now = f4;
     }
 }

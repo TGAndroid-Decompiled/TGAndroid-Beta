@@ -1,61 +1,56 @@
 package kotlinx.coroutines.internal;
 
+import com.google.android.gms.wearable.zzy;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.EmptyCoroutineContext;
-import kotlinx.coroutines.CancellableContinuation;
+import kotlinx.coroutines.CancellableContinuationImpl;
 import kotlinx.coroutines.CoroutineDispatcher;
-import kotlinx.coroutines.CoroutineExceptionHandlerKt;
 import kotlinx.coroutines.DefaultExecutorKt;
 import kotlinx.coroutines.Delay;
 import kotlinx.coroutines.DisposableHandle;
+import kotlinx.coroutines.TimeoutCoroutine;
+import kotlinx.coroutines.scheduling.UnlimitedIoScheduler;
 
 public final class LimitedDispatcher extends CoroutineDispatcher implements Delay {
-    private static final AtomicIntegerFieldUpdater runningWorkers$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(LimitedDispatcher.class, "runningWorkers$volatile");
-    private final Delay $$delegate_0;
-    private final CoroutineDispatcher dispatcher;
-    private final int parallelism;
-    private final LockFreeTaskQueue queue;
+    public static final AtomicIntegerFieldUpdater runningWorkers$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(LimitedDispatcher.class, "runningWorkers$volatile");
+    public final Delay $$delegate_0;
+    public final UnlimitedIoScheduler dispatcher;
+    public final int parallelism;
+    public final LockFreeTaskQueue queue;
     private volatile int runningWorkers$volatile;
-    private final Object workerAllocationLock;
+    public final Object workerAllocationLock;
 
-    @Override
-    public DisposableHandle invokeOnTimeout(long j, Runnable runnable, CoroutineContext coroutineContext) {
-        return this.$$delegate_0.invokeOnTimeout(j, runnable, coroutineContext);
-    }
-
-    @Override
-    public void scheduleResumeAfterDelay(long j, CancellableContinuation cancellableContinuation) {
-        this.$$delegate_0.scheduleResumeAfterDelay(j, cancellableContinuation);
-    }
-
-    public LimitedDispatcher(CoroutineDispatcher coroutineDispatcher, int i) {
-        this.dispatcher = coroutineDispatcher;
+    public LimitedDispatcher(UnlimitedIoScheduler unlimitedIoScheduler, int i) {
+        this.dispatcher = unlimitedIoScheduler;
         this.parallelism = i;
-        Delay delay = coroutineDispatcher instanceof Delay ? (Delay) coroutineDispatcher : null;
-        this.$$delegate_0 = delay == null ? DefaultExecutorKt.getDefaultDelay() : delay;
-        this.queue = new LockFreeTaskQueue(false);
+        Delay delay = unlimitedIoScheduler instanceof Delay ? (Delay) unlimitedIoScheduler : null;
+        this.$$delegate_0 = delay == null ? DefaultExecutorKt.DefaultDelay : delay;
+        this.queue = new LockFreeTaskQueue();
         this.workerAllocationLock = new Object();
     }
 
     @Override
-    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
-        Runnable runnableObtainTaskOrDeallocateWorker;
+    public final void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         this.queue.addLast(runnable);
-        if (runningWorkers$volatile$FU.get(this) >= this.parallelism || !tryAllocateWorker() || (runnableObtainTaskOrDeallocateWorker = obtainTaskOrDeallocateWorker()) == null) {
-            return;
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = runningWorkers$volatile$FU;
+        if (atomicIntegerFieldUpdater.get(this) < this.parallelism) {
+            synchronized (this.workerAllocationLock) {
+                if (atomicIntegerFieldUpdater.get(this) >= this.parallelism) {
+                    return;
+                }
+                atomicIntegerFieldUpdater.incrementAndGet(this);
+                Runnable runnableObtainTaskOrDeallocateWorker = obtainTaskOrDeallocateWorker();
+                if (runnableObtainTaskOrDeallocateWorker == null) {
+                    return;
+                }
+                this.dispatcher.dispatch(this, new zzy(9, this, runnableObtainTaskOrDeallocateWorker));
+            }
         }
-        this.dispatcher.dispatch(this, new Worker(runnableObtainTaskOrDeallocateWorker));
     }
 
-    private final boolean tryAllocateWorker() {
-        synchronized (this.workerAllocationLock) {
-            if (runningWorkers$volatile$FU.get(this) >= this.parallelism) {
-                return false;
-            }
-            runningWorkers$volatile$FU.incrementAndGet(this);
-            return true;
-        }
+    @Override
+    public final DisposableHandle invokeOnTimeout(long j, TimeoutCoroutine timeoutCoroutine, CoroutineContext coroutineContext) {
+        return this.$$delegate_0.invokeOnTimeout(j, timeoutCoroutine, coroutineContext);
     }
 
     public final Runnable obtainTaskOrDeallocateWorker() {
@@ -65,42 +60,18 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Dela
                 return runnable;
             }
             synchronized (this.workerAllocationLock) {
-                runningWorkers$volatile$FU.decrementAndGet(this);
+                AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = runningWorkers$volatile$FU;
+                atomicIntegerFieldUpdater.decrementAndGet(this);
                 if (this.queue.getSize() == 0) {
                     return null;
                 }
-                runningWorkers$volatile$FU.incrementAndGet(this);
+                atomicIntegerFieldUpdater.incrementAndGet(this);
             }
         }
     }
 
-    private final class Worker implements Runnable {
-        private Runnable currentTask;
-
-        public Worker(Runnable runnable) {
-            this.currentTask = runnable;
-        }
-
-        @Override
-        public void run() {
-            int i = 0;
-            while (true) {
-                try {
-                    this.currentTask.run();
-                } catch (Throwable th) {
-                    CoroutineExceptionHandlerKt.handleCoroutineException(EmptyCoroutineContext.INSTANCE, th);
-                }
-                Runnable runnableObtainTaskOrDeallocateWorker = LimitedDispatcher.this.obtainTaskOrDeallocateWorker();
-                if (runnableObtainTaskOrDeallocateWorker == null) {
-                    return;
-                }
-                this.currentTask = runnableObtainTaskOrDeallocateWorker;
-                i++;
-                if (i >= 16 && LimitedDispatcher.this.dispatcher.isDispatchNeeded(LimitedDispatcher.this)) {
-                    LimitedDispatcher.this.dispatcher.dispatch(LimitedDispatcher.this, this);
-                    return;
-                }
-            }
-        }
+    @Override
+    public final void scheduleResumeAfterDelay(long j, CancellableContinuationImpl cancellableContinuationImpl) {
+        this.$$delegate_0.scheduleResumeAfterDelay(j, cancellableContinuationImpl);
     }
 }

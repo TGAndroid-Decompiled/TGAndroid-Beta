@@ -13,20 +13,8 @@ public class Extension {
         this.bottom = r4;
     }
 
-    public boolean hasTop() {
-        return this.top != null;
-    }
-
-    public boolean hasMiddle() {
-        return this.middle != null;
-    }
-
-    public boolean hasBottom() {
-        return this.bottom != null;
-    }
-
-    public Char getTop() {
-        return this.top;
+    public Char getBottom() {
+        return this.bottom;
     }
 
     public Char getMiddle() {
@@ -37,7 +25,19 @@ public class Extension {
         return this.repeat;
     }
 
-    public Char getBottom() {
-        return this.bottom;
+    public Char getTop() {
+        return this.top;
+    }
+
+    public boolean hasBottom() {
+        return this.bottom != null;
+    }
+
+    public boolean hasMiddle() {
+        return this.middle != null;
+    }
+
+    public boolean hasTop() {
+        return this.top != null;
     }
 }

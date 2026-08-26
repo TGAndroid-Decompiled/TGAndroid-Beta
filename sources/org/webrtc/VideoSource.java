@@ -75,18 +75,32 @@ public class VideoSource extends MediaSource {
         this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j);
     }
 
+    public void lambda$setVideoProcessor$0(VideoFrame videoFrame) {
+        this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrame);
+    }
+
+    public void lambda$setVideoProcessor$1(VideoFrame videoFrame) {
+        runWithReference(new EglRenderer$$ExternalSyntheticLambda2(6, this, videoFrame));
+    }
+
     public void adaptOutputFormat(int i, int i2, int i3) {
         int iMax = Math.max(i, i2);
         int iMin = Math.min(i, i2);
         adaptOutputFormat(iMax, iMin, iMin, iMax, i3);
     }
 
-    public void adaptOutputFormat(int i, int i2, int i3, int i4, int i5) {
-        adaptOutputFormat(new AspectRatio(i, i2), Integer.valueOf(i * i2), new AspectRatio(i3, i4), Integer.valueOf(i3 * i4), Integer.valueOf(i5));
+    @Override
+    public void dispose() {
+        setVideoProcessor(null);
+        super.dispose();
     }
 
-    public void adaptOutputFormat(AspectRatio aspectRatio, Integer num, AspectRatio aspectRatio2, Integer num2, Integer num3) {
-        this.nativeAndroidVideoTrackSource.adaptOutputFormat(aspectRatio, num, aspectRatio2, num2, num3);
+    public CapturerObserver getCapturerObserver() {
+        return this.capturerObserver;
+    }
+
+    public long getNativeVideoTrackSource() {
+        return getNativeMediaSource();
     }
 
     public void setIsScreencast(boolean z) {
@@ -105,17 +119,7 @@ public class VideoSource extends MediaSource {
                 }
                 this.videoProcessor = videoProcessor;
                 if (videoProcessor != null) {
-                    videoProcessor.setSink(new VideoSink() {
-                        @Override
-                        public final void onFrame(VideoFrame videoFrame) {
-                            VideoSource.$r8$lambda$alSLwIDfjL1u6pBZwqqvarucaB4(this.f$0, videoFrame);
-                        }
-
-                        @Override
-                        public void setParentSink(VideoSink videoSink) {
-                            VideoSink.CC.$default$setParentSink(this, videoSink);
-                        }
-                    });
+                    videoProcessor.setSink(new VideoSource$$ExternalSyntheticLambda1(this, 0));
                     if (this.isCapturerRunning) {
                         videoProcessor.onCapturerStarted(true);
                     }
@@ -126,27 +130,11 @@ public class VideoSource extends MediaSource {
         }
     }
 
-    public static void $r8$lambda$alSLwIDfjL1u6pBZwqqvarucaB4(final VideoSource videoSource, final VideoFrame videoFrame) {
-        videoSource.getClass();
-        videoSource.runWithReference(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrame);
-            }
-        });
+    public void adaptOutputFormat(int i, int i2, int i3, int i4, int i5) {
+        adaptOutputFormat(new AspectRatio(i, i2), Integer.valueOf(i * i2), new AspectRatio(i3, i4), Integer.valueOf(i3 * i4), Integer.valueOf(i5));
     }
 
-    public CapturerObserver getCapturerObserver() {
-        return this.capturerObserver;
-    }
-
-    long getNativeVideoTrackSource() {
-        return getNativeMediaSource();
-    }
-
-    @Override
-    public void dispose() {
-        setVideoProcessor(null);
-        super.dispose();
+    public void adaptOutputFormat(AspectRatio aspectRatio, Integer num, AspectRatio aspectRatio2, Integer num2, Integer num3) {
+        this.nativeAndroidVideoTrackSource.adaptOutputFormat(aspectRatio, num, aspectRatio2, num2, num3);
     }
 }

@@ -17,7 +17,7 @@ class UnderlinedAtom extends Atom {
         verticalBox.add(strutBox);
         verticalBox.add(new StrutBox(0.0f, 3.0f * defaultRuleThickness, 0.0f, 0.0f));
         verticalBox.add(new HorizontalRule(defaultRuleThickness, strutBox.getWidth(), 0.0f));
-        verticalBox.setDepth(strutBox.getDepth() + (defaultRuleThickness * 5.0f));
+        verticalBox.setDepth((defaultRuleThickness * 5.0f) + strutBox.getDepth());
         verticalBox.setHeight(strutBox.getHeight());
         return verticalBox;
     }

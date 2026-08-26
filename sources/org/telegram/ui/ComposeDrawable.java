@@ -9,94 +9,78 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
-public class ComposeDrawable extends Drawable {
-    private final Drawable background;
-    private final Drawable icon;
-    private int tx;
-    private int ty;
-    private final ArrayList views = new ArrayList();
-    private boolean iconVisible = false;
-    private final AnimatedFloat animatedIconVisible = new AnimatedFloat(new Runnable() {
-        @Override
-        public final void run() {
-            this.f$0.invalidate();
-        }
-    }, 420, CubicBezierInterpolator.EASE_OUT_QUINT);
-    private int alpha = 255;
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
+public final class ComposeDrawable extends Drawable {
+    public final Drawable background;
+    public final Drawable icon;
+    public int tx;
+    public int ty;
+    public final ArrayList views = new ArrayList();
+    public boolean iconVisible = false;
+    public final AnimatedFloat animatedIconVisible = new AnimatedFloat(new ComposeDrawable$$ExternalSyntheticLambda0(this, 0), 420, CubicBezierInterpolator.EASE_OUT_QUINT);
+    public int alpha = 255;
 
     public ComposeDrawable(Drawable drawable, Drawable drawable2) {
         this.background = drawable;
         this.icon = drawable2;
     }
 
-    public void addView(View view) {
-        this.views.add(view);
-    }
-
-    public void setIconTranslate(int i, int i2) {
-        this.tx = i;
-        this.ty = i2;
-    }
-
-    public void setIconVisible(boolean z) {
-        setIconVisible(z, true);
-    }
-
-    public void setIconVisible(boolean z, boolean z2) {
-        if (this.iconVisible == z) {
-            return;
-        }
-        this.iconVisible = z;
-        if (!z2) {
-            this.animatedIconVisible.force(z);
-        }
-        invalidate();
-    }
-
     @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         float f = this.animatedIconVisible.set(this.iconVisible);
-        this.background.setAlpha(this.alpha);
-        this.background.setBounds(getBounds());
-        this.background.draw(canvas);
+        int i = this.alpha;
+        Drawable drawable = this.background;
+        drawable.setAlpha(i);
+        drawable.setBounds(getBounds());
+        drawable.draw(canvas);
         if (f > 0.0f) {
-            this.icon.setAlpha((int) (this.alpha * f));
-            this.icon.setBounds(getBounds().left + this.tx, getBounds().top + this.ty, getBounds().left + this.tx + this.icon.getIntrinsicWidth(), getBounds().top + this.ty + this.icon.getIntrinsicHeight());
+            int i2 = (int) (this.alpha * f);
+            Drawable drawable2 = this.icon;
+            drawable2.setAlpha(i2);
+            drawable2.setBounds(getBounds().left + this.tx, getBounds().top + this.ty, drawable2.getIntrinsicWidth() + getBounds().left + this.tx, drawable2.getIntrinsicHeight() + getBounds().top + this.ty);
             float fLerp = AndroidUtilities.lerp(0.5f, 1.0f, f);
             canvas.save();
-            canvas.scale(fLerp, fLerp, this.icon.getBounds().centerX(), this.icon.getBounds().centerY());
-            this.icon.draw(canvas);
+            canvas.scale(fLerp, fLerp, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
+            drawable2.draw(canvas);
             canvas.restore();
         }
     }
 
     @Override
-    public int getIntrinsicWidth() {
-        return this.background.getIntrinsicWidth();
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
+    public final int getIntrinsicHeight() {
         return this.background.getIntrinsicHeight();
     }
 
     @Override
-    public void setAlpha(int i) {
+    public final int getIntrinsicWidth() {
+        return this.background.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
         this.alpha = i;
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
+    public final void setColorFilter(ColorFilter colorFilter) {
         this.background.setColorFilter(colorFilter);
         this.icon.setColorFilter(colorFilter);
     }
 
-    public void invalidate() {
+    public final void setIconTranslate(int i, int i2) {
+        this.tx = i;
+        this.ty = i2;
+    }
+
+    public final void setIconVisible(boolean z) {
+        if (this.iconVisible == z) {
+            return;
+        }
+        this.iconVisible = z;
         ArrayList arrayList = this.views;
         int size = arrayList.size();
         int i = 0;

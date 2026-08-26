@@ -8,268 +8,213 @@ import me.vkryl.android.animator.VariableFloat;
 import me.vkryl.android.animator.VariableRect;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
 
-public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInsetsInAppController, WindowAnimatedInsetsProvider.Listener {
-    private int activeAnimations;
-    private int animatedImeInset;
-    private WindowAnimatedInsetsProvider animatedInsetsProvider;
-    private View animatedInsetsProviderTarget;
-    private int inAppKeyboardHeight;
-    private int inAppKeyboardViewHeight;
-    private final FactorAnimator insetsAnimator;
-    private WindowInsetsCompat lastInsets;
-    private boolean locked;
-    private final Runnable onUpdateListener;
-    private final VariableFloat keyboardVisibility = new VariableFloat(0.0f);
-    private final VariableRect insetsMaxRect = new VariableRect();
-    private final VariableRect insetsImeRect = new VariableRect();
-    private final AnimationNotificationsLocker locker = new AnimationNotificationsLocker();
-    private final KeyboardState keyboardState = new KeyboardState(new Utilities.Callback() {
-        @Override
-        public final void run(Object obj) {
-            this.f$0.onKeyboardStateChanged((KeyboardState.State) obj);
-        }
-    });
-    private int inAppKeyboardState = 1;
-    private final Runnable closeInAppKeyboard = new Runnable() {
-        @Override
-        public final void run() {
-            WindowInsetsStateHolder.$r8$lambda$8xLh9UF2GS50Hj_KqglTxILbuEg(this.f$0);
-        }
-    };
+public final class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInsetsInAppController, WindowAnimatedInsetsProvider.Listener {
+    public int activeAnimations;
+    public int animatedImeInset;
+    public WindowAnimatedInsetsProvider animatedInsetsProvider;
+    public View animatedInsetsProviderTarget;
+    public int inAppKeyboardHeight;
+    public int inAppKeyboardViewHeight;
+    public final FactorAnimator insetsAnimator;
+    public WindowInsetsCompat lastInsets;
+    public boolean locked;
+    public final Runnable onUpdateListener;
+    public final VariableFloat keyboardVisibility = new VariableFloat(0.0f);
+    public final VariableRect insetsMaxRect = new VariableRect();
+    public final VariableRect insetsImeRect = new VariableRect();
+    public final AnimationNotificationsLocker locker = new AnimationNotificationsLocker();
+    public final KeyboardState keyboardState = new KeyboardState(new PollItemMenu$$ExternalSyntheticLambda14(this, 6));
+    public int inAppKeyboardState = 1;
+    public final WindowInsetsStateHolder$$ExternalSyntheticLambda1 closeInAppKeyboard = new WindowInsetsStateHolder$$ExternalSyntheticLambda1(this, 0);
+
+    public WindowInsetsStateHolder(Runnable runnable) {
+        this.onUpdateListener = runnable;
+        this.insetsAnimator = new FactorAnimator(0, new PhotoViewer.AnonymousClass14(2, this, runnable), AdjustPanLayoutHelper.keyboardInterpolator, 250L);
+    }
+
+    public final float getAnimatedImeBottomInset() {
+        WindowAnimatedInsetsProvider windowAnimatedInsetsProvider = this.animatedInsetsProvider;
+        VariableRect variableRect = this.insetsImeRect;
+        return (windowAnimatedInsetsProvider == null || this.activeAnimations <= 0) ? variableRect.bottom.now : Math.max(this.animatedImeInset, variableRect.bottom.now);
+    }
 
     @Override
-    public void requestInAppKeyboardHeightIncludeNavbar(int i) {
-        WindowInsetsInAppController.CC.$default$requestInAppKeyboardHeightIncludeNavbar(this, i);
+    public final View getAnimatedInsetsTargetView() {
+        return this.animatedInsetsProviderTarget;
     }
 
-    public WindowInsetsStateHolder(final Runnable runnable) {
-        this.onUpdateListener = runnable;
-        this.insetsAnimator = new FactorAnimator(0, new FactorAnimator.Target() {
-            @Override
-            public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                WindowInsetsStateHolder.this.insetsMaxRect.applyAnimation(f);
-                WindowInsetsStateHolder.this.insetsImeRect.applyAnimation(f);
-                WindowInsetsStateHolder.this.keyboardVisibility.applyAnimation(f);
-                runnable.run();
+    public final float getAnimatedMaxBottomInset() {
+        WindowAnimatedInsetsProvider windowAnimatedInsetsProvider = this.animatedInsetsProvider;
+        VariableRect variableRect = this.insetsMaxRect;
+        return (windowAnimatedInsetsProvider == null || this.activeAnimations <= 0) ? variableRect.bottom.now : Math.max(this.animatedImeInset, variableRect.bottom.now);
+    }
+
+    public final int getCurrentMaxBottomInset() {
+        WindowAnimatedInsetsProvider windowAnimatedInsetsProvider = this.animatedInsetsProvider;
+        Insets insets = Insets.NONE;
+        if (windowAnimatedInsetsProvider == null || this.activeAnimations <= 0) {
+            WindowInsetsCompat windowInsetsCompat = this.lastInsets;
+            if (windowInsetsCompat != null) {
+                insets = windowInsetsCompat.mImpl.getInsets(527);
             }
-
-            @Override
-            public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-                boolean z;
-                boolean z2 = true;
-                if ((WindowInsetsStateHolder.this.getAnimatedImeBottomInset() == 0.0f && WindowInsetsStateHolder.this.inAppKeyboardState == 2) || WindowInsetsStateHolder.this.inAppKeyboardState == 3) {
-                    WindowInsetsStateHolder.this.inAppKeyboardState = 1;
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (f != 1.0f || WindowInsetsStateHolder.this.inAppKeyboardViewHeight == WindowInsetsStateHolder.this.inAppKeyboardHeight) {
-                    z2 = z;
-                } else {
-                    WindowInsetsStateHolder windowInsetsStateHolder = WindowInsetsStateHolder.this;
-                    windowInsetsStateHolder.inAppKeyboardViewHeight = windowInsetsStateHolder.inAppKeyboardHeight;
-                }
-                if (z2) {
-                    runnable.run();
-                }
-                WindowInsetsStateHolder.this.checkAnimationsLocker();
-            }
-        }, AdjustPanLayoutHelper.keyboardInterpolator, 250L);
+            return Math.max(insets.bottom, this.inAppKeyboardHeight);
+        }
+        int i = this.animatedImeInset;
+        WindowInsetsCompat windowInsetsCompat2 = this.lastInsets;
+        if (windowInsetsCompat2 != null) {
+            insets = windowInsetsCompat2.mImpl.getInsets(527);
+        }
+        return Math.max(i, Math.max(insets.bottom, this.inAppKeyboardHeight));
     }
 
-    public void checkAnimationsLocker() {
-        boolean zIsAnimating = this.insetsAnimator.isAnimating();
-        if (!this.locked && zIsAnimating) {
-            this.locked = true;
-            this.locker.lock();
-        }
-        if (!this.locked || zIsAnimating) {
-            return;
-        }
-        this.locked = false;
-        this.locker.unlock();
-    }
-
-    public void onKeyboardStateChanged(KeyboardState.State state) {
-        int i;
-        if (state == KeyboardState.State.STATE_FULLY_VISIBLE && ((i = this.inAppKeyboardState) == 2 || i == 3)) {
-            this.inAppKeyboardState = 1;
-        }
+    @Override
+    public final void onAnimatedInsetsChanged(WindowInsetsCompat windowInsetsCompat) {
+        this.animatedImeInset = windowInsetsCompat.mImpl.getInsets(8).bottom;
         this.onUpdateListener.run();
     }
 
-    public void setInsets(WindowInsetsCompat windowInsetsCompat) {
+    @Override
+    public final void onAnimatedInsetsFinished() {
+        View view = this.animatedInsetsProviderTarget;
+        if (view != null) {
+            view.postOnAnimation(new WindowInsetsStateHolder$$ExternalSyntheticLambda1(this, 1));
+        }
+    }
+
+    @Override
+    public final void onAnimatedInsetsStarted() {
+        this.activeAnimations++;
+    }
+
+    public final void resetInAppKeyboardHeight(boolean z) {
+        if (this.inAppKeyboardHeight == 0) {
+            return;
+        }
+        WindowInsetsStateHolder$$ExternalSyntheticLambda1 windowInsetsStateHolder$$ExternalSyntheticLambda1 = this.closeInAppKeyboard;
+        AndroidUtilities.cancelRunOnUIThread(windowInsetsStateHolder$$ExternalSyntheticLambda1);
+        this.inAppKeyboardState = z ? 3 : 2;
+        setInsets(this.lastInsets);
+        if (z) {
+            AndroidUtilities.runOnUIThread(windowInsetsStateHolder$$ExternalSyntheticLambda1, 1000L);
+        }
+    }
+
+    public final void setInsets(WindowInsetsCompat windowInsetsCompat) {
         setInsets(windowInsetsCompat, this.lastInsets != null);
     }
 
-    private void setInsets(WindowInsetsCompat windowInsetsCompat, boolean z) {
+    public final void setInsets(WindowInsetsCompat windowInsetsCompat, boolean z) {
+        KeyboardState.State state;
+        FactorAnimator factorAnimator;
+        int i;
+        FactorAnimator factorAnimator2;
         this.lastInsets = windowInsetsCompat;
-        Insets insetsIgnoringVisibility = windowInsetsCompat != null ? windowInsetsCompat.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout()) : Insets.NONE;
-        Insets insets = windowInsetsCompat != null ? windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()) : Insets.NONE;
-        KeyboardState.State state = this.keyboardState.getState();
-        KeyboardState.State keyboardVisibility = this.keyboardState.setKeyboardVisibility(insets.bottom > 0, !z, false);
-        int i = this.inAppKeyboardState;
-        if (i == 2) {
+        Insets insets = Insets.NONE;
+        Insets insetsIgnoringVisibility = windowInsetsCompat != null ? windowInsetsCompat.mImpl.getInsetsIgnoringVisibility(647) : insets;
+        if (windowInsetsCompat != null) {
+            insets = windowInsetsCompat.mImpl.getInsets(8);
+        }
+        KeyboardState keyboardState = this.keyboardState;
+        KeyboardState.State state2 = keyboardState.state;
+        boolean z2 = insets.bottom > 0;
+        if (z) {
+            state = z2 ? KeyboardState.State.STATE_ANIMATING_TO_FULLY_VISIBLE : KeyboardState.State.STATE_ANIMATING_TO_FULLY_HIDDEN;
+        } else {
+            state = z2 ? KeyboardState.State.STATE_FULLY_VISIBLE : KeyboardState.State.STATE_FULLY_HIDDEN;
+        }
+        if (state2 != state) {
+            keyboardState.setState(state, false);
+        }
+        int i2 = this.inAppKeyboardState;
+        if (i2 == 2) {
             this.inAppKeyboardHeight = 0;
         }
-        if (i == 3 && insets.bottom > 0) {
+        if (i2 == 3 && insets.bottom > 0) {
             this.inAppKeyboardHeight = 0;
         }
         Insets insetsMax = Insets.max(insets, Insets.of(0, 0, 0, this.inAppKeyboardHeight));
         Insets insetsMax2 = Insets.max(insetsIgnoringVisibility, insetsMax);
+        VariableFloat variableFloat = this.keyboardVisibility;
+        Runnable runnable = this.onUpdateListener;
+        VariableRect variableRect = this.insetsImeRect;
+        VariableRect variableRect2 = this.insetsMaxRect;
+        FactorAnimator factorAnimator3 = this.insetsAnimator;
+        int i3 = insetsMax.right;
+        int i4 = insetsMax.top;
+        int i5 = insetsMax.left;
+        int i6 = insetsMax.bottom;
+        int i7 = insetsMax2.bottom;
+        int i8 = insetsMax2.right;
+        int i9 = insetsMax2.top;
+        int i10 = insetsMax2.left;
         if (z) {
-            if (this.keyboardVisibility.differs(insetsMax.bottom > 0 ? 1.0f : 0.0f) || this.insetsMaxRect.differs(insetsMax2.left, insetsMax2.top, insetsMax2.right, insetsMax2.bottom) || this.insetsImeRect.differs(insetsMax.left, insetsMax.top, insetsMax.right, insetsMax.bottom)) {
-                this.insetsAnimator.cancel();
-                this.keyboardVisibility.finishAnimation(false);
-                this.insetsMaxRect.finishAnimation(false);
-                this.insetsImeRect.finishAnimation(false);
-                this.keyboardVisibility.setTo(insetsMax.bottom > 0 ? 1.0f : 0.0f);
-                this.insetsMaxRect.setTo(insetsMax2.left, insetsMax2.top, insetsMax2.right, insetsMax2.bottom);
-                this.insetsImeRect.setTo(insetsMax.left, insetsMax.top, insetsMax.right, insetsMax.bottom);
-                this.insetsAnimator.forceFactor(0.0f);
-                this.insetsAnimator.animateTo(1.0f);
-            } else if (state != keyboardVisibility) {
-                this.onUpdateListener.run();
-            }
-        } else {
-            this.insetsAnimator.cancel();
-            this.keyboardVisibility.set(insetsMax.bottom > 0 ? 1.0f : 0.0f);
-            this.insetsMaxRect.set(insetsMax2.left, insetsMax2.top, insetsMax2.right, insetsMax2.bottom);
-            this.insetsImeRect.set(insetsMax.left, insetsMax.top, insetsMax.right, insetsMax.bottom);
-            this.onUpdateListener.run();
-        }
-        checkAnimationsLocker();
-    }
-
-    @Override
-    public boolean inAppViewIsVisible() {
-        return this.inAppKeyboardState != 1;
-    }
-
-    @Override
-    public int getInAppKeyboardRecommendedViewHeight() {
-        return this.inAppKeyboardViewHeight;
-    }
-
-    @Override
-    public int getCurrentNavigationBarInset() {
-        WindowInsetsCompat windowInsetsCompat = this.lastInsets;
-        if (windowInsetsCompat != null) {
-            return windowInsetsCompat.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
-        }
-        return 0;
-    }
-
-    public Insets getInsets(int i) {
-        WindowInsetsCompat windowInsetsCompat = this.lastInsets;
-        return windowInsetsCompat != null ? windowInsetsCompat.getInsets(i) : Insets.NONE;
-    }
-
-    @Override
-    public float getAnimatedMaxBottomInset() {
-        if (this.animatedInsetsProvider != null && this.activeAnimations > 0) {
-            return Math.max(this.animatedImeInset, this.insetsMaxRect.getBottom());
-        }
-        return this.insetsMaxRect.getBottom();
-    }
-
-    public int getCurrentMaxBottomInset() {
-        if (this.animatedInsetsProvider != null && this.activeAnimations > 0) {
-            return Math.max(this.animatedImeInset, Math.max(getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars()).bottom, this.inAppKeyboardHeight));
-        }
-        return Math.max(getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars()).bottom, this.inAppKeyboardHeight);
-    }
-
-    @Override
-    public float getAnimatedImeBottomInset() {
-        if (this.animatedInsetsProvider != null && this.activeAnimations > 0) {
-            return Math.max(this.animatedImeInset, this.insetsImeRect.getBottom());
-        }
-        return this.insetsImeRect.getBottom();
-    }
-
-    public float getAnimatedKeyboardVisibility() {
-        return this.keyboardVisibility.get();
-    }
-
-    @Override
-    public void requestInAppKeyboardHeight(int i) {
-        if (this.inAppKeyboardHeight == i && this.inAppKeyboardState == 0) {
-            return;
-        }
-        AndroidUtilities.cancelRunOnUIThread(this.closeInAppKeyboard);
-        this.inAppKeyboardViewHeight = Math.max(this.inAppKeyboardHeight, i);
-        this.inAppKeyboardHeight = i;
-        this.inAppKeyboardState = 0;
-        setInsets(this.lastInsets);
-    }
-
-    public static void $r8$lambda$8xLh9UF2GS50Hj_KqglTxILbuEg(WindowInsetsStateHolder windowInsetsStateHolder) {
-        if (windowInsetsStateHolder.inAppKeyboardHeight != 0) {
-            windowInsetsStateHolder.resetInAppKeyboardHeight(false);
-        }
-    }
-
-    public int getInAppKeyboardHeight() {
-        return this.inAppKeyboardHeight;
-    }
-
-    @Override
-    public void resetInAppKeyboardHeight(boolean z) {
-        if (this.inAppKeyboardHeight == 0) {
-            return;
-        }
-        AndroidUtilities.cancelRunOnUIThread(this.closeInAppKeyboard);
-        this.inAppKeyboardState = z ? 3 : 2;
-        setInsets(this.lastInsets);
-        if (z) {
-            AndroidUtilities.runOnUIThread(this.closeInAppKeyboard, 1000L);
-        }
-    }
-
-    public void setupAnimatedInsetsProvider(WindowAnimatedInsetsProvider windowAnimatedInsetsProvider, View view) {
-        this.animatedInsetsProvider = windowAnimatedInsetsProvider;
-        this.animatedInsetsProviderTarget = view;
-        windowAnimatedInsetsProvider.subscribeToWindowInsetsAnimation(this);
-    }
-
-    @Override
-    public View getAnimatedInsetsTargetView() {
-        return this.animatedInsetsProviderTarget;
-    }
-
-    @Override
-    public void onAnimatedInsetsChanged(View view, WindowInsetsCompat windowInsetsCompat) {
-        this.animatedImeInset = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()).bottom;
-        this.onUpdateListener.run();
-    }
-
-    @Override
-    public void onAnimatedInsetsStarted() {
-        this.activeAnimations++;
-    }
-
-    @Override
-    public void onAnimatedInsetsFinished() {
-        View view = this.animatedInsetsProviderTarget;
-        if (view != null) {
-            view.postOnAnimation(new Runnable() {
-                @Override
-                public final void run() {
-                    WindowInsetsStateHolder.m2964$r8$lambda$OCxQKGVtc5dkOsTKLOJpG9eYbc(this.f$0);
+            if (variableFloat.differs(i6 > 0 ? 1.0f : 0.0f)) {
+                i = i8;
+                factorAnimator2 = factorAnimator3;
+            } else {
+                factorAnimator2 = factorAnimator3;
+                i = i8;
+                if (!variableRect2.differs(i10, i9, i8, i7) && !variableRect.differs(i5, i4, i3, i6)) {
+                    if (state2 != state) {
+                        runnable.run();
+                    }
+                    factorAnimator = factorAnimator2;
                 }
-            });
+            }
+            factorAnimator2.cancel();
+            variableFloat.finishAnimation(false);
+            variableRect2.left.finishAnimation(false);
+            VariableFloat variableFloat2 = variableRect2.top;
+            variableFloat2.finishAnimation(false);
+            VariableFloat variableFloat3 = variableRect2.right;
+            variableFloat3.finishAnimation(false);
+            VariableFloat variableFloat4 = variableRect2.bottom;
+            variableFloat4.finishAnimation(false);
+            variableRect.left.finishAnimation(false);
+            VariableFloat variableFloat5 = variableRect.top;
+            variableFloat5.finishAnimation(false);
+            VariableFloat variableFloat6 = variableRect.right;
+            variableFloat6.finishAnimation(false);
+            VariableFloat variableFloat7 = variableRect.bottom;
+            variableFloat7.finishAnimation(false);
+            variableFloat.to = i6 > 0 ? 1.0f : 0.0f;
+            variableRect2.left.to = i10;
+            variableFloat2.to = i9;
+            variableFloat3.to = i;
+            variableFloat4.to = i7;
+            variableRect.left.to = i5;
+            variableFloat5.to = i4;
+            variableFloat6.to = i3;
+            variableFloat7.to = i6;
+            factorAnimator = factorAnimator2;
+            factorAnimator.forceFactor(0.0f);
+            factorAnimator.animateTo(1.0f);
+        } else {
+            factorAnimator = factorAnimator3;
+            factorAnimator.cancel();
+            float f = i6 > 0 ? 1.0f : 0.0f;
+            variableFloat.from = f;
+            variableFloat.to = f;
+            variableFloat.now = f;
+            variableRect2.set(i10, i9, i8, i7);
+            variableRect.set(i5, i4, i3, i6);
+            runnable.run();
         }
-    }
-
-    public static void m2964$r8$lambda$OCxQKGVtc5dkOsTKLOJpG9eYbc(WindowInsetsStateHolder windowInsetsStateHolder) {
-        int i = windowInsetsStateHolder.activeAnimations - 1;
-        windowInsetsStateHolder.activeAnimations = i;
-        if (i == 0) {
-            windowInsetsStateHolder.setInsets(WindowAnimatedInsetsProvider.calculateWindowInsets(windowInsetsStateHolder.animatedInsetsProviderTarget), false);
+        boolean z3 = factorAnimator.isAnimating;
+        boolean z4 = this.locked;
+        AnimationNotificationsLocker animationNotificationsLocker = this.locker;
+        if (!z4 && z3) {
+            this.locked = true;
+            animationNotificationsLocker.lock();
         }
+        if (!this.locked || z3) {
+            return;
+        }
+        this.locked = false;
+        animationNotificationsLocker.unlock();
     }
 }

@@ -8,19 +8,11 @@ public enum ID3v2Encoding {
     UTF_16BE(Charset.forName("UTF-16BE"), 2),
     UTF_8(Charset.forName("UTF-8"), 1);
 
-    private final Charset charset;
-    private final int zeroBytes;
+    public final Charset charset;
+    public final int zeroBytes;
 
     ID3v2Encoding(Charset charset, int i) {
         this.charset = charset;
         this.zeroBytes = i;
-    }
-
-    public Charset getCharset() {
-        return this.charset;
-    }
-
-    public int getZeroBytes() {
-        return this.zeroBytes;
     }
 }

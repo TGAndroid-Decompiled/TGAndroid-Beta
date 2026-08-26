@@ -13,10 +13,6 @@ public class Color {
     public static final Color yellow;
     private final int color;
 
-    public int getAlpha() {
-        return 255;
-    }
-
     static {
         Color color = new Color(-16777216);
         black = color;
@@ -32,12 +28,32 @@ public class Color {
         RED = color2;
     }
 
+    public Color(int i) {
+        this.color = i;
+    }
+
     public static Color decode(String str) {
         return new Color(android.graphics.Color.parseColor(str));
     }
 
-    public Color(int i) {
-        this.color = i;
+    public int getAlpha() {
+        return 255;
+    }
+
+    public int getBlue() {
+        return android.graphics.Color.blue(this.color);
+    }
+
+    public int getColorInt() {
+        return this.color;
+    }
+
+    public int getGreen() {
+        return android.graphics.Color.green(this.color);
+    }
+
+    public int getRed() {
+        return android.graphics.Color.red(this.color);
     }
 
     public Color(int i, int i2, int i3) {
@@ -46,21 +62,5 @@ public class Color {
 
     public Color(float f, float f2, float f3) {
         this((int) ((f * 255.0f) + 0.5f), (int) ((f2 * 255.0f) + 0.5f), (int) ((f3 * 255.0f) + 0.5f));
-    }
-
-    public int getRed() {
-        return android.graphics.Color.red(this.color);
-    }
-
-    public int getBlue() {
-        return android.graphics.Color.blue(this.color);
-    }
-
-    public int getGreen() {
-        return android.graphics.Color.green(this.color);
-    }
-
-    public int getColorInt() {
-        return this.color;
     }
 }

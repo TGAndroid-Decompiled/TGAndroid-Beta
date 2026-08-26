@@ -5,15 +5,15 @@ public abstract class CharSymbol extends Atom {
 
     public abstract CharFont getCharFont(TeXFont teXFont);
 
+    public boolean isMarkedAsTextSymbol() {
+        return this.textSymbol;
+    }
+
     public void markAsTextSymbol() {
         this.textSymbol = true;
     }
 
     public void removeMark() {
         this.textSymbol = false;
-    }
-
-    public boolean isMarkedAsTextSymbol() {
-        return this.textSymbol;
     }
 }

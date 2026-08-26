@@ -1,14 +1,12 @@
 package kotlin.ranges;
 
-import kotlin.collections.IntIterator;
+import java.util.Iterator;
 import kotlin.internal.ProgressionUtilKt;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 
-public class IntProgression implements Iterable {
-    public static final Companion Companion = new Companion(null);
-    private final int first;
-    private final int last;
-    private final int step;
+public abstract class IntProgression implements Iterable {
+    public final int first;
+    public final int last;
+    public final int step;
 
     public IntProgression(int i, int i2, int i3) {
         if (i3 == 0) {
@@ -22,80 +20,8 @@ public class IntProgression implements Iterable {
         this.step = i3;
     }
 
-    public final int getFirst() {
-        return this.first;
-    }
-
-    public final int getLast() {
-        return this.last;
-    }
-
-    public final int getStep() {
-        return this.step;
-    }
-
     @Override
-    public IntIterator iterator() {
+    public final Iterator iterator() {
         return new IntProgressionIterator(this.first, this.last, this.step);
-    }
-
-    public boolean isEmpty() {
-        if (this.step > 0) {
-            return this.first > this.last;
-        }
-        return this.first < this.last;
-    }
-
-    public boolean equals(Object obj) {
-        if (!(obj instanceof IntProgression)) {
-            return false;
-        }
-        if (isEmpty() && ((IntProgression) obj).isEmpty()) {
-            return true;
-        }
-        IntProgression intProgression = (IntProgression) obj;
-        return this.first == intProgression.first && this.last == intProgression.last && this.step == intProgression.step;
-    }
-
-    public int hashCode() {
-        if (isEmpty()) {
-            return -1;
-        }
-        return (((this.first * 31) + this.last) * 31) + this.step;
-    }
-
-    public String toString() {
-        StringBuilder sb;
-        int i;
-        if (this.step > 0) {
-            sb = new StringBuilder();
-            sb.append(this.first);
-            sb.append("..");
-            sb.append(this.last);
-            sb.append(" step ");
-            i = this.step;
-        } else {
-            sb = new StringBuilder();
-            sb.append(this.first);
-            sb.append(" downTo ");
-            sb.append(this.last);
-            sb.append(" step ");
-            i = -this.step;
-        }
-        sb.append(i);
-        return sb.toString();
-    }
-
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
-
-        public final IntProgression fromClosedRange(int i, int i2, int i3) {
-            return new IntProgression(i, i2, i3);
-        }
     }
 }

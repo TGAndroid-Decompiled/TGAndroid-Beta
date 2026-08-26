@@ -2,6 +2,8 @@ package org.telegram.messenger;
 
 import android.os.Looper;
 import android.util.LongSparseArray;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.IOException;
@@ -37,92 +39,26 @@ public class FilePathDatabase {
         public int messageType;
     }
 
+    public static class PathData {
+        public final int dc;
+        public final long id;
+        public final int type;
+
+        public PathData(long j, int i, int i2) {
+            this.id = j;
+            this.dc = i;
+            this.type = i2;
+        }
+    }
+
     public FilePathDatabase(int i) {
         this.currentAccount = i;
-    }
-
-    public void createDatabase(int i, boolean z) {
-        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-        if (this.currentAccount != 0) {
-            File file = new File(filesDirFixed, "account" + this.currentAccount + "/");
-            file.mkdirs();
-            filesDirFixed = file;
-        }
-        this.cacheFile = new File(filesDirFixed, "file_to_path.db");
-        this.shmCacheFile = new File(filesDirFixed, "file_to_path.db-shm");
-        boolean zExists = this.cacheFile.exists();
-        try {
-            SQLiteDatabase sQLiteDatabase = new SQLiteDatabase(this.cacheFile.getPath());
-            this.database = sQLiteDatabase;
-            sQLiteDatabase.executeFast("PRAGMA secure_delete = ON").stepThis().dispose();
-            this.database.executeFast("PRAGMA temp_store = MEMORY").stepThis().dispose();
-            if (!zExists) {
-                this.database.executeFast("CREATE TABLE paths(document_id INTEGER, dc_id INTEGER, type INTEGER, path TEXT, flags INTEGER, PRIMARY KEY(document_id, dc_id, type));").stepThis().dispose();
-                this.database.executeFast("CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);").stepThis().dispose();
-                this.database.executeFast("CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER, message_id INTEGER, message_type INTEGER);").stepThis().dispose();
-                this.database.executeFast("PRAGMA user_version = 7").stepThis().dispose();
-            } else {
-                int iIntValue = this.database.executeInt("PRAGMA user_version", new Object[0]).intValue();
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("current files db version = " + iIntValue);
-                }
-                if (iIntValue == 0) {
-                    throw new Exception("malformed");
-                }
-                migrateDatabase(iIntValue);
-            }
-            if (!z) {
-                createBackup();
-            }
-            FileLog.d("files db created from_backup= " + z);
-        } catch (Exception e) {
-            if (i < 4) {
-                if (!z && restoreBackup()) {
-                    createDatabase(i + 1, true);
-                    return;
-                } else {
-                    this.cacheFile.delete();
-                    this.shmCacheFile.delete();
-                    createDatabase(i + 1, false);
-                }
-            }
-            if (BuildVars.DEBUG_VERSION) {
-                FileLog.e(e);
-            }
-        }
-    }
-
-    private void migrateDatabase(int i) {
-        if (i == 1) {
-            this.database.executeFast("CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);").stepThis().dispose();
-            this.database.executeFast("PRAGMA user_version = 2").stepThis().dispose();
-            i = 2;
-        }
-        if (i == 2) {
-            this.database.executeFast("CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);").stepThis().dispose();
-            this.database.executeFast("PRAGMA user_version = 3").stepThis().dispose();
-            i = 3;
-        }
-        if (i == 3) {
-            this.database.executeFast("ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0").stepThis().dispose();
-            this.database.executeFast("ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0").stepThis().dispose();
-            this.database.executeFast("PRAGMA user_version = 4").stepThis().dispose();
-            i = 4;
-        }
-        if (i == 4 || i == 5 || i == 6) {
-            try {
-                this.database.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
-            } catch (Throwable th) {
-                FileLog.e(th);
-            }
-            this.database.executeFast("PRAGMA user_version = 7").stepThis().dispose();
-        }
     }
 
     private void createBackup() {
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (this.currentAccount != 0) {
-            File file = new File(filesDirFixed, "account" + this.currentAccount + "/");
+            File file = new File(filesDirFixed, SurfaceContainer$$ExternalSyntheticOutline0.m(this.currentAccount, "/", new StringBuilder("account")));
             file.mkdirs();
             filesDirFixed = file;
         }
@@ -135,190 +71,54 @@ public class FilePathDatabase {
         }
     }
 
-    private boolean restoreBackup() {
-        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-        if (this.currentAccount != 0) {
-            File file = new File(filesDirFixed, "account" + this.currentAccount + "/");
-            file.mkdirs();
-            filesDirFixed = file;
-        }
-        File file2 = new File(filesDirFixed, "file_to_path_backup.db");
-        if (!file2.exists()) {
-            return false;
-        }
-        try {
-            return AndroidUtilities.copyFile(file2, this.cacheFile);
-        } catch (IOException e) {
-            FileLog.e(e);
-            return false;
-        }
-    }
-
-    public String getPath(final long j, final int i, final int i2, boolean z) {
-        char c;
-        boolean z2;
-        SQLiteDatabase sQLiteDatabase;
-        SQLiteCursor sQLiteCursor;
-        SQLiteCursor sQLiteCursorQueryFinalized;
-        String strStringValue;
-        String str;
-        final long jCurrentTimeMillis = System.currentTimeMillis();
-        String str2 = j + "_" + i + "_" + i2;
-        String str3 = this.cache.get(str2);
-        if (str3 == "~null~") {
-            if (BuildVars.DEBUG_VERSION) {
-                FileLog.d("get file path cached null id=" + j + " dc=" + i + " type=" + i2 + " path=" + ((Object) null) + " in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
-            }
-            return null;
-        }
-        if (str3 != null) {
-            if (BuildVars.DEBUG_VERSION) {
-                FileLog.d("get file path cached id=" + j + " dc=" + i + " type=" + i2 + " path=" + str3 + " in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
-            }
-            return str3;
-        }
-        DispatchQueue dispatchQueue = this.dispatchQueue;
-        String str4 = null;
-        if (dispatchQueue != null && dispatchQueue.getHandler() != null) {
-            c = 0;
-            if (Thread.currentThread() == this.dispatchQueue.getHandler().getLooper().getThread()) {
-                z2 = false;
-            }
-            if (z2) {
-                final CountDownLatch countDownLatch = new CountDownLatch(1);
-                final String[] strArr = new String[1];
-                postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        FilePathDatabase.$r8$lambda$HqiCMqwGz2aJinpic2ZjTjYS7Q4(this.f$0, j, i, i2, strArr, jCurrentTimeMillis, countDownLatch);
-                    }
-                });
+    private void ensureQueueExist() {
+        if (this.dispatchQueue == null) {
+            synchronized (this) {
                 try {
-                    countDownLatch.await();
-                } catch (Exception unused) {
-                }
-                str = strArr[c];
-                if (str != null) {
-                    this.cache.put(str2, str);
-                } else {
-                    this.cache.put(str2, "~null~");
-                }
-                return strArr[c];
-            }
-            sQLiteDatabase = this.database;
-            if (sQLiteDatabase == null) {
-                return null;
-            }
-            try {
-                sQLiteCursorQueryFinalized = sQLiteDatabase.queryFinalized("SELECT path FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2, new Object[0]);
-                try {
-                    try {
-                        if (sQLiteCursorQueryFinalized.next()) {
-                            strStringValue = sQLiteCursorQueryFinalized.stringValue(0);
-                            try {
-                                if (BuildVars.DEBUG_VERSION) {
-                                    FileLog.d("get file path id=" + j + " dc=" + i + " type=" + i2 + " path=" + strStringValue + " in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
-                                }
-                            } catch (SQLiteException e) {
-                                e = e;
-                                str4 = strStringValue;
-                                sQLiteCursor = sQLiteCursorQueryFinalized;
-                                try {
-                                    FileLog.e(e);
-                                    if (sQLiteCursor != null) {
-                                        sQLiteCursorQueryFinalized = sQLiteCursor;
-                                        strStringValue = str4;
-                                    } else {
-                                        strStringValue = str4;
-                                    }
-                                    if (strStringValue != null) {
-                                        this.cache.put(str2, strStringValue);
-                                    } else {
-                                        this.cache.put(str2, "~null~");
-                                    }
-                                    return strStringValue;
-                                } catch (Throwable th) {
-                                    th = th;
-                                    if (sQLiteCursor != null) {
-                                        sQLiteCursor.dispose();
-                                    }
-                                    throw th;
-                                }
-                            }
-                        } else {
-                            strStringValue = str4;
-                        }
-                    } catch (SQLiteException e2) {
-                        e = e2;
+                    if (this.dispatchQueue == null) {
+                        DispatchQueue dispatchQueue = new DispatchQueue("files_database_queue_" + this.currentAccount);
+                        this.dispatchQueue = dispatchQueue;
+                        dispatchQueue.setPriority(10);
                     }
-                } catch (Throwable th2) {
-                    th = th2;
-                    sQLiteCursor = sQLiteCursorQueryFinalized;
-                    if (sQLiteCursor != null) {
-                        sQLiteCursor.dispose();
-                    }
+                } catch (Throwable th) {
                     throw th;
                 }
-            } catch (SQLiteException e3) {
-                e = e3;
-                sQLiteCursor = null;
-            } catch (Throwable th3) {
-                th = th3;
-                sQLiteCursor = null;
             }
-            sQLiteCursorQueryFinalized.dispose();
-            if (strStringValue != null) {
-                this.cache.put(str2, strStringValue);
-            } else {
-                this.cache.put(str2, "~null~");
-            }
-            return strStringValue;
         }
-        c = 0;
-        z2 = z;
-        if (z2) {
-            final CountDownLatch countDownLatch2 = new CountDownLatch(1);
-            final String[] strArr2 = new String[1];
-            postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    FilePathDatabase.$r8$lambda$HqiCMqwGz2aJinpic2ZjTjYS7Q4(this.f$0, j, i, i2, strArr2, jCurrentTimeMillis, countDownLatch2);
-                }
-            });
-            countDownLatch2.await();
-            str = strArr2[c];
-            if (str != null) {
-                this.cache.put(str2, str);
-            } else {
-                this.cache.put(str2, "~null~");
-            }
-            return strArr2[c];
-        }
-        sQLiteDatabase = this.database;
-        if (sQLiteDatabase == null) {
-            return null;
-        }
-        sQLiteCursorQueryFinalized = sQLiteDatabase.queryFinalized("SELECT path FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2, new Object[0]);
-        if (sQLiteCursorQueryFinalized.next()) {
-            strStringValue = sQLiteCursorQueryFinalized.stringValue(0);
-            if (BuildVars.DEBUG_VERSION) {
-                FileLog.d("get file path id=" + j + " dc=" + i + " type=" + i2 + " path=" + strStringValue + " in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
-            }
-        } else {
-            strStringValue = str4;
-        }
-        sQLiteCursorQueryFinalized.dispose();
-        if (strStringValue != null) {
-            this.cache.put(str2, strStringValue);
-        } else {
-            this.cache.put(str2, "~null~");
-        }
-        return strStringValue;
     }
 
-    public static void $r8$lambda$HqiCMqwGz2aJinpic2ZjTjYS7Q4(FilePathDatabase filePathDatabase, long j, int i, int i2, String[] strArr, long j2, CountDownLatch countDownLatch) {
-        filePathDatabase.ensureDatabaseCreated();
-        SQLiteDatabase sQLiteDatabase = filePathDatabase.database;
+    public void lambda$checkMediaExistance$2(ArrayList arrayList, long[] jArr, CountDownLatch countDownLatch) {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        ensureDatabaseCreated();
+        for (int i = 0; i < arrayList.size(); i++) {
+            try {
+                ((MessageObject) arrayList.get(i)).checkMediaExistance(false);
+            } catch (Throwable th) {
+                try {
+                    FileLog.e(th);
+                    return;
+                } finally {
+                    countDownLatch.countDown();
+                }
+            }
+        }
+        jArr[0] = System.currentTimeMillis() - jCurrentTimeMillis;
+        countDownLatch.countDown();
+    }
+
+    public void lambda$clear$3() {
+        ensureDatabaseCreated();
+        try {
+            this.database.executeFast("DELETE FROM paths WHERE 1").stepThis().dispose();
+            this.database.executeFast("DELETE FROM paths_by_dialog_id WHERE 1").stepThis().dispose();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void lambda$getPath$0(long j, int i, int i2, String[] strArr, long j2, CountDownLatch countDownLatch) {
+        ensureDatabaseCreated();
+        SQLiteDatabase sQLiteDatabase = this.database;
         if (sQLiteDatabase != null) {
             SQLiteCursor sQLiteCursorQueryFinalized = null;
             try {
@@ -347,46 +147,74 @@ public class FilePathDatabase {
         countDownLatch.countDown();
     }
 
-    public void ensureDatabaseCreated() {
-        if (this.databaseCreated) {
-            return;
-        }
-        if (!NativeLoader.loaded()) {
-            int i = 0;
-            while (!NativeLoader.loaded()) {
-                try {
-                    Thread.sleep(1000L);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                i++;
-                if (i > 5) {
-                    break;
-                }
+    public void lambda$hasAnotherRefOnFile$4(String str, boolean[] zArr, CountDownLatch countDownLatch) {
+        ensureDatabaseCreated();
+        try {
+            if (this.database.queryFinalized("SELECT document_id FROM paths WHERE path = '" + str + "'", new Object[0]).next()) {
+                zArr[0] = true;
             }
+        } catch (Exception e) {
+            FileLog.e(e);
+        } finally {
+            countDownLatch.countDown();
         }
-        createDatabase(0, false);
-        this.databaseCreated = true;
     }
 
-    public void putPath(final long j, final int i, final int i2, final int i3, final String str) {
-        postRunnable(new Runnable() {
-            @Override
-            public final void run() throws Throwable {
-                FilePathDatabase.$r8$lambda$E_4uVEv2hBwJRahJMveRUMHiMu0(this.f$0, j, i, i2, str, i3);
+    public void lambda$isLocallyCreated$8(String str, boolean[] zArr, CountDownLatch countDownLatch) {
+        ensureDatabaseCreated();
+        try {
+            SQLiteCursor sQLiteCursorQueryFinalized = this.database.queryFinalized("SELECT flags FROM paths WHERE path = '" + str + "'", new Object[0]);
+            if (sQLiteCursorQueryFinalized.next()) {
+                boolean z = true;
+                if ((sQLiteCursorQueryFinalized.intValue(0) & 1) == 0) {
+                    z = false;
+                }
+                zArr[0] = z;
             }
-        });
+        } catch (Exception e) {
+            FileLog.e(e);
+        } finally {
+            countDownLatch.countDown();
+        }
     }
 
-    public static void $r8$lambda$E_4uVEv2hBwJRahJMveRUMHiMu0(FilePathDatabase filePathDatabase, long j, int i, int i2, String str, int i3) throws Throwable {
+    public void lambda$lookupFiles$7(ArrayList arrayList, LongSparseArray longSparseArray, CountDownLatch countDownLatch) {
+        try {
+            ensureDatabaseCreated();
+            FileMeta fileMeta = new FileMeta();
+            for (int i = 0; i < arrayList.size(); i++) {
+                FileMeta fileDialogId = getFileDialogId(((CacheByChatsController.KeepMediaFile) arrayList.get(i)).file, fileMeta);
+                if (fileDialogId != null) {
+                    long j = fileDialogId.dialogId;
+                    if (j != 0) {
+                        ArrayList arrayList2 = (ArrayList) longSparseArray.get(j);
+                        if (arrayList2 == null) {
+                            arrayList2 = new ArrayList();
+                            longSparseArray.put(fileDialogId.dialogId, arrayList2);
+                        }
+                        ((CacheByChatsController.KeepMediaFile) arrayList.get(i)).isStory = fileDialogId.messageType == 23;
+                        arrayList2.add((CacheByChatsController.KeepMediaFile) arrayList.get(i));
+                    }
+                }
+            }
+            countDownLatch.countDown();
+        } catch (Throwable th) {
+            try {
+                FileLog.e(th);
+            } finally {
+                countDownLatch.countDown();
+            }
+        }
+    }
+
+    public void lambda$putPath$1(long j, int i, int i2, String str, int i3) throws Throwable {
         SQLitePreparedStatement sQLitePreparedStatement;
         SQLitePreparedStatement sQLitePreparedStatement2;
-        filePathDatabase.getClass();
         if (BuildVars.DEBUG_VERSION) {
             FileLog.d("put file path id=" + j + " dc=" + i + " type=" + i2 + " path=" + str);
         }
-        filePathDatabase.ensureDatabaseCreated();
-        SQLiteDatabase sQLiteDatabase = filePathDatabase.database;
+        ensureDatabaseCreated();
+        SQLiteDatabase sQLiteDatabase = this.database;
         if (sQLiteDatabase == null) {
             return;
         }
@@ -397,7 +225,7 @@ public class FilePathDatabase {
                 try {
                     sQLitePreparedStatementExecuteFast2.bindString(1, str);
                     sQLitePreparedStatementExecuteFast2.step();
-                    sQLitePreparedStatementExecuteFast = filePathDatabase.database.executeFast("REPLACE INTO paths VALUES(?, ?, ?, ?, ?)");
+                    sQLitePreparedStatementExecuteFast = this.database.executeFast("REPLACE INTO paths VALUES(?, ?, ?, ?, ?)");
                     sQLitePreparedStatementExecuteFast.requery();
                     sQLitePreparedStatementExecuteFast.bindLong(1, j);
                     sQLitePreparedStatementExecuteFast.bindInteger(2, i);
@@ -406,7 +234,7 @@ public class FilePathDatabase {
                     sQLitePreparedStatementExecuteFast.bindInteger(5, i3);
                     sQLitePreparedStatementExecuteFast.step();
                     sQLitePreparedStatementExecuteFast.dispose();
-                    filePathDatabase.cache.put(j + "_" + i + "_" + i2, str);
+                    this.cache.put(j + "_" + i + "_" + i2, str);
                     sQLitePreparedStatement2 = sQLitePreparedStatementExecuteFast;
                     sQLitePreparedStatementExecuteFast = sQLitePreparedStatementExecuteFast2;
                 } catch (SQLiteException e) {
@@ -447,7 +275,7 @@ public class FilePathDatabase {
                 }
             } else {
                 sQLiteDatabase.executeFast("DELETE FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2).stepThis().dispose();
-                filePathDatabase.cache.put(j + "_" + i + "_" + i2, "~null~");
+                this.cache.put(j + "_" + i + "_" + i2, "~null~");
                 sQLitePreparedStatement2 = null;
             }
             if (sQLitePreparedStatementExecuteFast != null) {
@@ -465,121 +293,31 @@ public class FilePathDatabase {
         }
     }
 
-    public void checkMediaExistance(ArrayList<MessageObject> arrayList) {
-        if (arrayList.isEmpty()) {
-            return;
-        }
-        final ArrayList arrayList2 = new ArrayList(arrayList);
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        final long[] jArr = new long[1];
-        postToFrontRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FilePathDatabase.$r8$lambda$lRIs10uRarqSoPqVxpL53d2P3BA(this.f$0, arrayList2, jArr, countDownLatch);
-            }
-        });
+    public void lambda$removeFiles$6(List list) {
         try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            FileLog.e(e);
-        }
-        FileLog.d("checkMediaExistance size=" + arrayList.size() + " time=" + (System.currentTimeMillis() - jCurrentTimeMillis) + " thread_time=" + jArr[0]);
-        if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
-            FileLog.e(new Exception("warning, not allowed in main thread"));
-        }
-    }
-
-    public static void $r8$lambda$lRIs10uRarqSoPqVxpL53d2P3BA(FilePathDatabase filePathDatabase, ArrayList arrayList, long[] jArr, CountDownLatch countDownLatch) {
-        filePathDatabase.getClass();
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        filePathDatabase.ensureDatabaseCreated();
-        for (int i = 0; i < arrayList.size(); i++) {
+            ensureDatabaseCreated();
+            this.database.beginTransaction();
+            for (int i = 0; i < list.size(); i++) {
+                this.database.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((CacheModel.FileInfo) list.get(i)).file.getPath()) + "'").stepThis().dispose();
+            }
+            this.database.commitTransaction();
+        } catch (Throwable th) {
             try {
-                ((MessageObject) arrayList.get(i)).checkMediaExistance(false);
-            } catch (Throwable th) {
-                try {
-                    FileLog.e(th);
-                    return;
-                } finally {
-                    countDownLatch.countDown();
-                }
+                FileLog.e(th);
+            } finally {
+                this.database.commitTransaction();
             }
         }
-        jArr[0] = System.currentTimeMillis() - jCurrentTimeMillis;
-        countDownLatch.countDown();
     }
 
-    public void clear() {
-        this.cache.clear();
-        postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FilePathDatabase.$r8$lambda$YdinATIATBLaWkMhkkxgFPvg1hM(this.f$0);
-            }
-        });
-    }
-
-    public static void $r8$lambda$YdinATIATBLaWkMhkkxgFPvg1hM(FilePathDatabase filePathDatabase) {
-        filePathDatabase.ensureDatabaseCreated();
-        try {
-            filePathDatabase.database.executeFast("DELETE FROM paths WHERE 1").stepThis().dispose();
-            filePathDatabase.database.executeFast("DELETE FROM paths_by_dialog_id WHERE 1").stepThis().dispose();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    public boolean hasAnotherRefOnFile(final String str) {
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        final boolean[] zArr = {false};
-        postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FilePathDatabase.$r8$lambda$gtkL6n_WjbCg2_gQFR0ZequCJFE(this.f$0, str, zArr, countDownLatch);
-            }
-        });
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            FileLog.e(e);
-        }
-        return zArr[0];
-    }
-
-    public static void $r8$lambda$gtkL6n_WjbCg2_gQFR0ZequCJFE(FilePathDatabase filePathDatabase, String str, boolean[] zArr, CountDownLatch countDownLatch) {
-        filePathDatabase.ensureDatabaseCreated();
-        try {
-            if (filePathDatabase.database.queryFinalized("SELECT document_id FROM paths WHERE path = '" + str + "'", new Object[0]).next()) {
-                zArr[0] = true;
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        } finally {
-            countDownLatch.countDown();
-        }
-    }
-
-    public void saveFileDialogId(final File file, final FileMeta fileMeta) {
-        if (file == null || fileMeta == null) {
-            return;
-        }
-        postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FilePathDatabase.$r8$lambda$vxQr77TOpjk8gIud8dOQeFzX6Vo(this.f$0, file, fileMeta);
-            }
-        });
-    }
-
-    public static void $r8$lambda$vxQr77TOpjk8gIud8dOQeFzX6Vo(FilePathDatabase filePathDatabase, File file, FileMeta fileMeta) {
-        filePathDatabase.ensureDatabaseCreated();
+    public void lambda$saveFileDialogId$5(File file, FileMeta fileMeta) {
+        ensureDatabaseCreated();
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
-                sQLitePreparedStatementExecuteFast = filePathDatabase.database.executeFast("REPLACE INTO paths_by_dialog_id VALUES(?, ?, ?, ?)");
+                sQLitePreparedStatementExecuteFast = this.database.executeFast("REPLACE INTO paths_by_dialog_id VALUES(?, ?, ?, ?)");
                 sQLitePreparedStatementExecuteFast.requery();
-                sQLitePreparedStatementExecuteFast.bindString(1, filePathDatabase.shield(file.getPath()));
+                sQLitePreparedStatementExecuteFast.bindString(1, shield(file.getPath()));
                 sQLitePreparedStatementExecuteFast.bindLong(2, fileMeta.dialogId);
                 sQLitePreparedStatementExecuteFast.bindInteger(3, fileMeta.messageId);
                 sQLitePreparedStatementExecuteFast.bindInteger(4, fileMeta.messageType);
@@ -597,6 +335,169 @@ public class FilePathDatabase {
             }
             throw th;
         }
+    }
+
+    private void migrateDatabase(int i) {
+        if (i == 1) {
+            DatabaseMigrationHelper$$ExternalSyntheticOutline0.m(this.database, "CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);");
+            DatabaseMigrationHelper$$ExternalSyntheticOutline0.m(this.database, "PRAGMA user_version = 2");
+            i = 2;
+        }
+        if (i == 2) {
+            DatabaseMigrationHelper$$ExternalSyntheticOutline0.m(this.database, "CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);");
+            DatabaseMigrationHelper$$ExternalSyntheticOutline0.m(this.database, "PRAGMA user_version = 3");
+            i = 3;
+        }
+        if (i == 3) {
+            DatabaseMigrationHelper$$ExternalSyntheticOutline0.m(this.database, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0");
+            DatabaseMigrationHelper$$ExternalSyntheticOutline0.m(this.database, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0");
+            DatabaseMigrationHelper$$ExternalSyntheticOutline0.m(this.database, "PRAGMA user_version = 4");
+            i = 4;
+        }
+        if (i == 4 || i == 5 || i == 6) {
+            try {
+                this.database.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
+            } catch (Throwable th) {
+                FileLog.e(th);
+            }
+            DatabaseMigrationHelper$$ExternalSyntheticOutline0.m(this.database, "PRAGMA user_version = 7");
+        }
+    }
+
+    private void postRunnable(Runnable runnable) {
+        ensureQueueExist();
+        this.dispatchQueue.postRunnable(runnable);
+    }
+
+    private void postToFrontRunnable(Runnable runnable) {
+        ensureQueueExist();
+        this.dispatchQueue.postToFrontRunnable(runnable);
+    }
+
+    private boolean restoreBackup() {
+        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+        if (this.currentAccount != 0) {
+            File file = new File(filesDirFixed, SurfaceContainer$$ExternalSyntheticOutline0.m(this.currentAccount, "/", new StringBuilder("account")));
+            file.mkdirs();
+            filesDirFixed = file;
+        }
+        File file2 = new File(filesDirFixed, "file_to_path_backup.db");
+        if (!file2.exists()) {
+            return false;
+        }
+        try {
+            return AndroidUtilities.copyFile(file2, this.cacheFile);
+        } catch (IOException e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
+    private String shield(String str) {
+        return str.replace("'", "").replace("\"", "");
+    }
+
+    public void checkMediaExistance(ArrayList<MessageObject> arrayList) {
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        ArrayList arrayList2 = new ArrayList(arrayList);
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long[] jArr = new long[1];
+        postToFrontRunnable(new ImageLoader$$ExternalSyntheticLambda10(this, arrayList2, jArr, countDownLatch, 7));
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            FileLog.e(e);
+        }
+        StringBuilder sb = new StringBuilder("checkMediaExistance size=");
+        sb.append(arrayList.size());
+        sb.append(" time=");
+        sb.append(System.currentTimeMillis() - jCurrentTimeMillis);
+        sb.append(" thread_time=");
+        zzjj.m(sb, jArr[0]);
+        if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
+            FileLog.e(new Exception("warning, not allowed in main thread"));
+        }
+    }
+
+    public void clear() {
+        this.cache.clear();
+        postRunnable(new ANRDetector$$ExternalSyntheticLambda0(this, 21));
+    }
+
+    public void createDatabase(int i, boolean z) {
+        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+        if (this.currentAccount != 0) {
+            File file = new File(filesDirFixed, SurfaceContainer$$ExternalSyntheticOutline0.m(this.currentAccount, "/", new StringBuilder("account")));
+            file.mkdirs();
+            filesDirFixed = file;
+        }
+        this.cacheFile = new File(filesDirFixed, "file_to_path.db");
+        this.shmCacheFile = new File(filesDirFixed, "file_to_path.db-shm");
+        boolean zExists = this.cacheFile.exists();
+        try {
+            SQLiteDatabase sQLiteDatabase = new SQLiteDatabase(this.cacheFile.getPath());
+            this.database = sQLiteDatabase;
+            sQLiteDatabase.executeFast("PRAGMA secure_delete = ON").stepThis().dispose();
+            this.database.executeFast("PRAGMA temp_store = MEMORY").stepThis().dispose();
+            if (zExists) {
+                int iIntValue = this.database.executeInt("PRAGMA user_version", new Object[0]).intValue();
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("current files db version = " + iIntValue);
+                }
+                if (iIntValue == 0) {
+                    throw new Exception("malformed");
+                }
+                migrateDatabase(iIntValue);
+            } else {
+                this.database.executeFast("CREATE TABLE paths(document_id INTEGER, dc_id INTEGER, type INTEGER, path TEXT, flags INTEGER, PRIMARY KEY(document_id, dc_id, type));").stepThis().dispose();
+                this.database.executeFast("CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);").stepThis().dispose();
+                this.database.executeFast("CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER, message_id INTEGER, message_type INTEGER);").stepThis().dispose();
+                this.database.executeFast("PRAGMA user_version = 7").stepThis().dispose();
+            }
+            if (!z) {
+                createBackup();
+            }
+            FileLog.d("files db created from_backup= " + z);
+        } catch (Exception e) {
+            if (i < 4) {
+                if (!z && restoreBackup()) {
+                    createDatabase(i + 1, true);
+                    return;
+                } else {
+                    this.cacheFile.delete();
+                    this.shmCacheFile.delete();
+                    createDatabase(i + 1, false);
+                }
+            }
+            if (BuildVars.DEBUG_VERSION) {
+                FileLog.e(e);
+            }
+        }
+    }
+
+    public void ensureDatabaseCreated() {
+        if (this.databaseCreated) {
+            return;
+        }
+        if (!NativeLoader.loaded()) {
+            int i = 0;
+            while (!NativeLoader.loaded()) {
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                i++;
+                if (i > 5) {
+                    break;
+                }
+            }
+        }
+        createDatabase(0, false);
+        this.databaseCreated = true;
     }
 
     public FileMeta getFileDialogId(File file, FileMeta fileMeta) {
@@ -648,15 +549,148 @@ public class FilePathDatabase {
             fileMeta.messageType = i;
             return fileMeta;
         } catch (Throwable th) {
-            if (sQLiteCursorQueryFinalized != null) {
+            if (0 != 0) {
                 sQLiteCursorQueryFinalized.dispose();
             }
             throw th;
         }
     }
 
-    private String shield(String str) {
-        return str.replace("'", "").replace("\"", "");
+    public String getPath(final long j, final int i, final int i2, boolean z) {
+        SQLiteCursor sQLiteCursor;
+        String str;
+        String strStringValue;
+        SQLiteCursor sQLiteCursorQueryFinalized;
+        String str2;
+        final long jCurrentTimeMillis = System.currentTimeMillis();
+        String str3 = j + "_" + i + "_" + i2;
+        String str4 = this.cache.get(str3);
+        if (str4 == "~null~") {
+            if (!BuildVars.DEBUG_VERSION) {
+                return null;
+            }
+            FileLog.d("get file path cached null id=" + j + " dc=" + i + " type=" + i2 + " path=null in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
+            return null;
+        }
+        if (str4 != null) {
+            if (BuildVars.DEBUG_VERSION) {
+                FileLog.d("get file path cached id=" + j + " dc=" + i + " type=" + i2 + " path=" + str4 + " in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
+            }
+            return str4;
+        }
+        DispatchQueue dispatchQueue = this.dispatchQueue;
+        if ((dispatchQueue == null || dispatchQueue.getHandler() == null || Thread.currentThread() != this.dispatchQueue.getHandler().getLooper().getThread()) ? z : false) {
+            final CountDownLatch countDownLatch = new CountDownLatch(1);
+            final String[] strArr = new String[1];
+            postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    CountDownLatch countDownLatch2 = countDownLatch;
+                    this.f$0.lambda$getPath$0(j, i, i2, strArr, jCurrentTimeMillis, countDownLatch2);
+                }
+            });
+            try {
+                countDownLatch.await();
+            } catch (Exception unused) {
+            }
+            String str5 = strArr[0];
+            if (str5 != null) {
+                this.cache.put(str3, str5);
+            } else {
+                this.cache.put(str3, "~null~");
+            }
+            return strArr[0];
+        }
+        SQLiteDatabase sQLiteDatabase = this.database;
+        if (sQLiteDatabase == null) {
+            return null;
+        }
+        try {
+            try {
+                str = "~null~";
+                try {
+                    sQLiteCursorQueryFinalized = sQLiteDatabase.queryFinalized("SELECT path FROM paths WHERE document_id = " + j + " AND dc_id = " + i + " AND type = " + i2, new Object[0]);
+                    try {
+                        try {
+                            if (sQLiteCursorQueryFinalized.next()) {
+                                strStringValue = sQLiteCursorQueryFinalized.stringValue(0);
+                                try {
+                                    if (BuildVars.DEBUG_VERSION) {
+                                        FileLog.d("get file path id=" + j + " dc=" + i + " type=" + i2 + " path=" + strStringValue + " in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
+                                    }
+                                } catch (SQLiteException e) {
+                                    e = e;
+                                    sQLiteCursor = sQLiteCursorQueryFinalized;
+                                    try {
+                                        FileLog.e(e);
+                                        if (sQLiteCursor != null) {
+                                            sQLiteCursorQueryFinalized = sQLiteCursor;
+                                        }
+                                        if (strStringValue != null) {
+                                            this.cache.put(str3, strStringValue);
+                                        } else {
+                                            this.cache.put(str3, str);
+                                        }
+                                        return strStringValue;
+                                    } catch (Throwable th) {
+                                        th = th;
+                                        if (sQLiteCursor != null) {
+                                            sQLiteCursor.dispose();
+                                        }
+                                        throw th;
+                                    }
+                                }
+                                str2 = strStringValue;
+                            } else {
+                                str2 = null;
+                            }
+                        } catch (SQLiteException e2) {
+                            e = e2;
+                            sQLiteCursor = sQLiteCursorQueryFinalized;
+                            strStringValue = null;
+                        }
+                        sQLiteCursorQueryFinalized.dispose();
+                        strStringValue = str2;
+                        if (strStringValue != null) {
+                            this.cache.put(str3, strStringValue);
+                        } else {
+                            this.cache.put(str3, str);
+                        }
+                        return strStringValue;
+                    } catch (Throwable th2) {
+                        th = th2;
+                        sQLiteCursor = sQLiteCursorQueryFinalized;
+                        if (sQLiteCursor != null) {
+                            sQLiteCursor.dispose();
+                        }
+                        throw th;
+                    }
+                } catch (SQLiteException e3) {
+                    e = e3;
+                    strStringValue = null;
+                    sQLiteCursor = null;
+                    FileLog.e(e);
+                    if (sQLiteCursor != null) {
+                        sQLiteCursorQueryFinalized = sQLiteCursor;
+                        str2 = strStringValue;
+                        sQLiteCursorQueryFinalized.dispose();
+                        strStringValue = str2;
+                    }
+                    if (strStringValue != null) {
+                        this.cache.put(str3, strStringValue);
+                    } else {
+                        this.cache.put(str3, str);
+                    }
+                    return strStringValue;
+                }
+            } catch (SQLiteException e4) {
+                e = e4;
+                str = "~null~";
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            sQLiteCursor = null;
+        }
     }
 
     public DispatchQueue getQueue() {
@@ -664,116 +698,10 @@ public class FilePathDatabase {
         return this.dispatchQueue;
     }
 
-    public void removeFiles(final List<CacheModel.FileInfo> list) {
-        postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FilePathDatabase.$r8$lambda$zmcut6QXy6pSMNsHhG868wAkHdo(this.f$0, list);
-            }
-        });
-    }
-
-    public static void $r8$lambda$zmcut6QXy6pSMNsHhG868wAkHdo(FilePathDatabase filePathDatabase, List list) {
-        filePathDatabase.getClass();
-        try {
-            filePathDatabase.ensureDatabaseCreated();
-            filePathDatabase.database.beginTransaction();
-            for (int i = 0; i < list.size(); i++) {
-                filePathDatabase.database.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + filePathDatabase.shield(((CacheModel.FileInfo) list.get(i)).file.getPath()) + "'").stepThis().dispose();
-            }
-            filePathDatabase.database.commitTransaction();
-        } catch (Throwable th) {
-            try {
-                FileLog.e(th);
-            } finally {
-                filePathDatabase.database.commitTransaction();
-            }
-        }
-    }
-
-    public LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> lookupFiles(final ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList) {
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        final LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> longSparseArray = new LongSparseArray<>();
-        postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FilePathDatabase.$r8$lambda$XYrvfuzQnu3rEZu62AyjTrmdN7w(this.f$0, arrayList, longSparseArray, countDownLatch);
-            }
-        });
-        try {
-            countDownLatch.await();
-            return longSparseArray;
-        } catch (InterruptedException e) {
-            FileLog.e(e);
-            return longSparseArray;
-        }
-    }
-
-    public static void $r8$lambda$XYrvfuzQnu3rEZu62AyjTrmdN7w(FilePathDatabase filePathDatabase, ArrayList arrayList, LongSparseArray longSparseArray, CountDownLatch countDownLatch) {
-        filePathDatabase.getClass();
-        try {
-            filePathDatabase.ensureDatabaseCreated();
-            FileMeta fileMeta = new FileMeta();
-            for (int i = 0; i < arrayList.size(); i++) {
-                FileMeta fileDialogId = filePathDatabase.getFileDialogId(((CacheByChatsController.KeepMediaFile) arrayList.get(i)).file, fileMeta);
-                if (fileDialogId != null) {
-                    long j = fileDialogId.dialogId;
-                    if (j != 0) {
-                        ArrayList arrayList2 = (ArrayList) longSparseArray.get(j);
-                        if (arrayList2 == null) {
-                            arrayList2 = new ArrayList();
-                            longSparseArray.put(fileDialogId.dialogId, arrayList2);
-                        }
-                        ((CacheByChatsController.KeepMediaFile) arrayList.get(i)).isStory = fileDialogId.messageType == 23;
-                        arrayList2.add((CacheByChatsController.KeepMediaFile) arrayList.get(i));
-                    }
-                }
-            }
-            countDownLatch.countDown();
-        } catch (Throwable th) {
-            try {
-                FileLog.e(th);
-            } finally {
-                countDownLatch.countDown();
-            }
-        }
-    }
-
-    private void postRunnable(Runnable runnable) {
-        ensureQueueExist();
-        this.dispatchQueue.postRunnable(runnable);
-    }
-
-    private void postToFrontRunnable(Runnable runnable) {
-        ensureQueueExist();
-        this.dispatchQueue.postToFrontRunnable(runnable);
-    }
-
-    private void ensureQueueExist() {
-        if (this.dispatchQueue == null) {
-            synchronized (this) {
-                try {
-                    if (this.dispatchQueue == null) {
-                        DispatchQueue dispatchQueue = new DispatchQueue("files_database_queue_" + this.currentAccount);
-                        this.dispatchQueue = dispatchQueue;
-                        dispatchQueue.setPriority(10);
-                    }
-                } catch (Throwable th) {
-                    throw th;
-                }
-            }
-        }
-    }
-
-    public boolean isLocallyCreated(final String str) {
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        final boolean[] zArr = {false};
-        postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FilePathDatabase.m458$r8$lambda$o620mQhbbKNtJWoFd8lNpFxXqw(this.f$0, str, zArr, countDownLatch);
-            }
-        });
+    public boolean hasAnotherRefOnFile(String str) {
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        boolean[] zArr = {false};
+        postRunnable(new FilePathDatabase$$ExternalSyntheticLambda0(this, str, zArr, countDownLatch, 1));
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -782,33 +710,43 @@ public class FilePathDatabase {
         return zArr[0];
     }
 
-    public static void m458$r8$lambda$o620mQhbbKNtJWoFd8lNpFxXqw(FilePathDatabase filePathDatabase, String str, boolean[] zArr, CountDownLatch countDownLatch) {
-        filePathDatabase.ensureDatabaseCreated();
+    public boolean isLocallyCreated(String str) {
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        boolean[] zArr = {false};
+        postRunnable(new FilePathDatabase$$ExternalSyntheticLambda0(this, str, zArr, countDownLatch, 0));
         try {
-            SQLiteCursor sQLiteCursorQueryFinalized = filePathDatabase.database.queryFinalized("SELECT flags FROM paths WHERE path = '" + str + "'", new Object[0]);
-            if (sQLiteCursorQueryFinalized.next()) {
-                boolean z = true;
-                if ((sQLiteCursorQueryFinalized.intValue(0) & 1) == 0) {
-                    z = false;
-                }
-                zArr[0] = z;
-            }
-        } catch (Exception e) {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
             FileLog.e(e);
-        } finally {
-            countDownLatch.countDown();
+        }
+        return zArr[0];
+    }
+
+    public LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> lookupFiles(ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList) {
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> longSparseArray = new LongSparseArray<>();
+        postRunnable(new ImageLoader$$ExternalSyntheticLambda10(this, arrayList, longSparseArray, countDownLatch, 6));
+        try {
+            countDownLatch.await();
+            return longSparseArray;
+        } catch (InterruptedException e) {
+            FileLog.e(e);
+            return longSparseArray;
         }
     }
 
-    public static class PathData {
-        public final int dc;
-        public final long id;
-        public final int type;
+    public void putPath(long j, int i, int i2, int i3, String str) {
+        postRunnable(new FilePathDatabase$$ExternalSyntheticLambda2(this, j, i, i2, str, i3));
+    }
 
-        public PathData(long j, int i, int i2) {
-            this.id = j;
-            this.dc = i;
-            this.type = i2;
+    public void removeFiles(List<CacheModel.FileInfo> list) {
+        postRunnable(new FileLog$$ExternalSyntheticLambda3(8, this, list));
+    }
+
+    public void saveFileDialogId(File file, FileMeta fileMeta) {
+        if (file == null || fileMeta == null) {
+            return;
         }
+        postRunnable(new FileLoader$$ExternalSyntheticLambda0(this, file, fileMeta, 23));
     }
 }

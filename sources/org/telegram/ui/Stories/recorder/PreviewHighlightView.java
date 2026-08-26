@@ -1,12 +1,8 @@
 package org.telegram.ui.Stories.recorder;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.text.SpannableString;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -17,117 +13,93 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Cells.UserCell;
+import org.telegram.ui.Cells.UserCell2;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.GroupCreateActivity;
+import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.StoryCaptionView;
 
-public class PreviewHighlightView extends FrameLayout {
-    private final FrameLayout bottom;
-    private int currentAccount;
-    private boolean shownBottom;
-    private boolean shownTop;
-    private int storiesCount;
-    private final StoryCaptionView storyCaptionView;
-    private final FrameLayout top;
+public final class PreviewHighlightView extends FrameLayout {
+    public final FrameLayout bottom;
+    public final int currentAccount;
+    public boolean shownBottom;
+    public boolean shownTop;
+    public int storiesCount;
+    public final StoryCaptionView storyCaptionView;
+    public final GroupCreateActivity.AnonymousClass7 top;
 
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    public PreviewHighlightView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
+    public PreviewHighlightView(Activity activity, int i, DarkThemeResourceProvider darkThemeResourceProvider) {
+        super(activity);
         this.storiesCount = 1;
         this.shownTop = false;
         this.shownBottom = false;
         this.currentAccount = i;
         TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
-        FrameLayout frameLayout = new FrameLayout(getContext()) {
-            private RectF rectF = new RectF();
-            private Paint barPaint = new Paint(1);
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                this.barPaint.setColor(-1);
-                float width = ((getWidth() - (AndroidUtilities.dpf2(5.0f) * 2.0f)) - AndroidUtilities.dpf2((PreviewHighlightView.this.storiesCount - 1) * 2)) / PreviewHighlightView.this.storiesCount;
-                float fDpf2 = AndroidUtilities.dpf2(5.0f);
-                int i2 = 0;
-                while (i2 < PreviewHighlightView.this.storiesCount) {
-                    this.rectF.set(fDpf2, AndroidUtilities.dpf2(8.0f), fDpf2 + width, AndroidUtilities.dpf2(10.0f));
-                    this.barPaint.setAlpha(i2 < PreviewHighlightView.this.storiesCount + (-1) ? 255 : 133);
-                    canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(1.0f), AndroidUtilities.dpf2(1.0f), this.barPaint);
-                    fDpf2 += AndroidUtilities.dpf2(2.0f) + width;
-                    i2++;
-                }
-            }
-        };
-        this.top = frameLayout;
+        GroupCreateActivity.AnonymousClass7 anonymousClass7 = new GroupCreateActivity.AnonymousClass7(this, getContext());
+        this.top = anonymousClass7;
         PeerStoriesView.PeerHeaderView peerHeaderView = new PeerStoriesView.PeerHeaderView(getContext(), null);
-        peerHeaderView.backupImageView.getAvatarDrawable().setInfo(i, currentUser);
-        BackupImageView backupImageView = peerHeaderView.backupImageView;
-        backupImageView.setForUserOrChat(currentUser, backupImageView.getAvatarDrawable());
-        peerHeaderView.titleView.setText(Emoji.replaceEmoji(UserObject.getUserName(currentUser), peerHeaderView.titleView.getPaint().getFontMetricsInt(), false));
+        UserCell.AnonymousClass2 anonymousClass2 = peerHeaderView.backupImageView;
+        anonymousClass2.getAvatarDrawable().setInfo(i, currentUser);
+        anonymousClass2.imageReceiver.setForUserOrChat(currentUser, anonymousClass2.getAvatarDrawable());
+        anonymousClass2.onNewImageSet();
+        String userName = UserObject.getUserName(currentUser);
+        UserCell2.AnonymousClass1 anonymousClass1 = peerHeaderView.titleView;
+        anonymousClass1.setText(Emoji.replaceEmoji(userName, anonymousClass1.getPaint().getFontMetricsInt(), false), false);
         peerHeaderView.setSubtitle(LocaleController.getString(R.string.RightNow), false);
-        frameLayout.addView(peerHeaderView, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
+        anonymousClass7.addView(peerHeaderView, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
+        ImageView imageView = new ImageView(activity);
         imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close_white).mutate());
         imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        frameLayout.addView(imageView, LayoutHelper.createFrame(40, 40.0f, 53, 12.0f, 15.0f, 12.0f, 0.0f));
-        addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f));
-        FrameLayout frameLayout2 = new FrameLayout(getContext());
-        this.bottom = frameLayout2;
-        StoryCaptionView storyCaptionView = new StoryCaptionView(getContext(), resourcesProvider);
+        anonymousClass7.addView(imageView, LayoutHelper.createFrame(40, 40.0f, 53, 12.0f, 15.0f, 12.0f, 0.0f));
+        addView(anonymousClass7, LayoutHelper.createFrame(-2.0f, -1));
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        this.bottom = frameLayout;
+        StoryCaptionView storyCaptionView = new StoryCaptionView(getContext(), darkThemeResourceProvider);
         this.storyCaptionView = storyCaptionView;
         storyCaptionView.disableTouches = true;
         storyCaptionView.setTranslationY(AndroidUtilities.dp(8.0f));
-        frameLayout2.addView(storyCaptionView, LayoutHelper.createFrame(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
-        ImageView imageView2 = new ImageView(context);
+        frameLayout.addView(storyCaptionView, LayoutHelper.createFrame(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
+        ImageView imageView2 = new ImageView(activity);
         imageView2.setImageResource(R.drawable.msg_share);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        frameLayout2.addView(imageView2, LayoutHelper.createFrame(28, 28.0f, 85, 0.0f, 0.0f, 12.0f, 16.0f));
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        frameLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), ColorUtils.setAlphaComponent(-16777216, 122)));
-        TextView textView = new TextView(context);
+        frameLayout.addView(imageView2, LayoutHelper.createFrame(28, 28.0f, 85, 0.0f, 0.0f, 12.0f, 16.0f));
+        FrameLayout frameLayout2 = new FrameLayout(activity);
+        frameLayout2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), ColorUtils.setAlphaComponent(-16777216, 122)));
+        TextView textView = new TextView(activity);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(1694498815);
         textView.setText(LocaleController.getString(R.string.ReplyPrivately));
-        frameLayout3.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 19, 24.0f, 0.0f, 24.0f, 0.0f));
-        ImageView imageView3 = new ImageView(context);
+        frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 19, 24.0f, 0.0f, 24.0f, 0.0f));
+        ImageView imageView3 = new ImageView(activity);
         imageView3.setImageResource(R.drawable.input_attach);
         imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        frameLayout3.addView(imageView3, LayoutHelper.createFrame(28, 28.0f, 21, 0.0f, 0.0f, 9.0f, 0.0f));
-        frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(-1, 44.0f, 87, 9.0f, 8.0f, 55.0f, 8.0f));
-        addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout2.addView(imageView3, LayoutHelper.createFrame(28, 28.0f, 21, 0.0f, 0.0f, 9.0f, 0.0f));
+        frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 44.0f, 87, 9.0f, 8.0f, 55.0f, 8.0f));
+        addView(frameLayout, LayoutHelper.createFrame(-1.0f, -1));
+        anonymousClass7.setAlpha(0.0f);
         frameLayout.setAlpha(0.0f);
-        frameLayout2.setAlpha(0.0f);
         setImportantForAccessibility(4);
     }
 
-    public void updateCount() {
-        this.storiesCount = MessagesController.getInstance(this.currentAccount).getStoriesController().getSelfStoriesCount() + 1;
-        this.top.invalidate();
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
-    public void updateCaption(CharSequence charSequence) {
-        this.storyCaptionView.captionTextview.setText(AnimatedEmojiSpan.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
-    public void show(boolean z, boolean z2, View view) {
+    public final void show(boolean z, boolean z2, FrameLayout frameLayout) {
         float f;
         if (z) {
             if (this.shownTop == z2) {
@@ -140,18 +112,18 @@ public class PreviewHighlightView extends FrameLayout {
         } else {
             this.shownBottom = z2;
         }
-        FrameLayout frameLayout = z ? this.top : this.bottom;
-        frameLayout.clearAnimation();
-        ViewPropertyAnimator viewPropertyAnimatorAnimate = frameLayout.animate();
+        View view = z ? this.top : this.bottom;
+        view.clearAnimation();
+        ViewPropertyAnimator viewPropertyAnimatorAnimate = view.animate();
         if (z2) {
             f = z ? 0.5f : 0.2f;
         } else {
             f = 0.0f;
         }
         viewPropertyAnimatorAnimate.alpha(f).start();
-        if (view != null) {
-            view.clearAnimation();
-            view.animate().alpha(z2 ? 0.0f : 1.0f).start();
+        if (frameLayout != null) {
+            frameLayout.clearAnimation();
+            frameLayout.animate().alpha(z2 ? 0.0f : 1.0f).start();
         }
     }
 }

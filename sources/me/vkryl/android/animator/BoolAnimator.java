@@ -2,68 +2,37 @@ package me.vkryl.android.animator;
 
 import android.view.View;
 import android.view.animation.Interpolator;
+import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.RadialProgress2$$ExternalSyntheticLambda0;
+import org.telegram.ui.GroupCallActivity;
 
-public class BoolAnimator implements FactorAnimator.Target {
-    private FactorAnimator animator;
-    private long duration;
-    private float floatValue;
-    private final int id;
-    private Interpolator interpolator;
-    private long startDelay;
-    private final FactorAnimator.Target target;
-    private boolean value;
+public final class BoolAnimator implements FactorAnimator.Target {
+    public FactorAnimator animator;
+    public final long duration;
+    public float floatValue;
+    public final int id;
+    public final Interpolator interpolator;
+    public final FactorAnimator.Target target;
+    public boolean value;
 
-    public BoolAnimator(final View view, Interpolator interpolator, long j) {
-        this(0, new FactorAnimator.Target() {
-            @Override
-            public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-                FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
-            }
-
-            @Override
-            public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                view.invalidate();
-            }
-        }, interpolator, j, false);
+    public BoolAnimator(long j, View view, Interpolator interpolator) {
+        this(0, new RadialProgress2$$ExternalSyntheticLambda0(view), interpolator, j, false);
     }
 
-    public BoolAnimator(final View view, Interpolator interpolator, long j, boolean z) {
-        this(0, new FactorAnimator.Target() {
-            @Override
-            public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-                FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
-            }
-
-            @Override
-            public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                view.invalidate();
-            }
-        }, interpolator, j, z);
+    @Override
+    public final void onFactorChangeFinished(float f, int i) {
+        this.target.onFactorChangeFinished(f, this.id);
     }
 
-    public BoolAnimator(int i, FactorAnimator.Target target, Interpolator interpolator, long j) {
-        this(i, target, interpolator, j, false);
+    @Override
+    public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        if (this.floatValue != f) {
+            this.floatValue = f;
+            this.target.onFactorChanged(this.id, f, -1.0f, null);
+        }
     }
 
-    public BoolAnimator(int i, FactorAnimator.Target target, Interpolator interpolator, long j, boolean z) {
-        this.id = i;
-        this.target = target;
-        this.interpolator = interpolator;
-        this.duration = j;
-        this.value = z;
-        this.floatValue = z ? 1.0f : 0.0f;
-    }
-
-    public boolean isAnimating() {
-        FactorAnimator factorAnimator = this.animator;
-        return factorAnimator != null && factorAnimator.isAnimating();
-    }
-
-    public void setValue(boolean z, boolean z2) {
-        setValue(z, z2, null);
-    }
-
-    public void setValue(boolean z, boolean z2, View view) {
+    public final void setValue(boolean z, boolean z2) {
         BoolAnimator boolAnimator;
         if (this.value == z && z2) {
             return;
@@ -73,50 +42,39 @@ public class BoolAnimator implements FactorAnimator.Target {
         if (z2) {
             if (this.animator == null) {
                 boolAnimator = this;
-                FactorAnimator factorAnimator = new FactorAnimator(0, boolAnimator, this.interpolator, this.duration, this.floatValue);
-                boolAnimator.animator = factorAnimator;
-                long j = boolAnimator.startDelay;
-                if (j != 0) {
-                    factorAnimator.setStartDelay(j);
-                }
+                boolAnimator.animator = new FactorAnimator(0, boolAnimator, this.interpolator, this.duration, this.floatValue);
             } else {
                 boolAnimator = this;
             }
-            boolAnimator.animator.animateTo(f, view);
+            boolAnimator.animator.animateTo(f);
             return;
         }
-        FactorAnimator factorAnimator2 = this.animator;
-        if (factorAnimator2 != null) {
-            factorAnimator2.forceFactor(f);
+        FactorAnimator factorAnimator = this.animator;
+        if (factorAnimator != null) {
+            factorAnimator.forceFactor(f);
         }
-        if (this.floatValue != f) {
-            setFloatValue(f);
-            this.target.onFactorChangeFinished(this.id, f, null);
-        }
-    }
-
-    public boolean getValue() {
-        return this.value;
-    }
-
-    public float getFloatValue() {
-        return this.floatValue;
-    }
-
-    private void setFloatValue(float f) {
-        if (this.floatValue != f) {
-            this.floatValue = f;
-            this.target.onFactorChanged(this.id, f, -1.0f, null);
+        float f2 = this.floatValue;
+        if (f2 != f) {
+            int i = this.id;
+            FactorAnimator.Target target = this.target;
+            if (f2 != f) {
+                this.floatValue = f;
+                target.onFactorChanged(i, f, -1.0f, null);
+            }
+            target.onFactorChangeFinished(f, i);
         }
     }
 
-    @Override
-    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-        setFloatValue(f);
+    public BoolAnimator(int i, GroupCallActivity groupCallActivity, CubicBezierInterpolator cubicBezierInterpolator) {
+        this(i, groupCallActivity, cubicBezierInterpolator, 350L, false);
     }
 
-    @Override
-    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-        this.target.onFactorChangeFinished(this.id, f, null);
+    public BoolAnimator(int i, FactorAnimator.Target target, Interpolator interpolator, long j, boolean z) {
+        this.id = i;
+        this.target = target;
+        this.interpolator = interpolator;
+        this.duration = j;
+        this.value = z;
+        this.floatValue = z ? 1.0f : 0.0f;
     }
 }

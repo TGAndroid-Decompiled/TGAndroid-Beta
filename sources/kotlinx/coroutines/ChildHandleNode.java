@@ -8,17 +8,12 @@ public final class ChildHandleNode extends JobCancellingNode implements ChildHan
     }
 
     @Override
-    public Job getParent() {
-        return getJob();
-    }
-
-    @Override
-    public void invoke(Throwable th) {
-        this.childJob.parentCancelled(getJob());
-    }
-
-    @Override
-    public boolean childCancelled(Throwable th) {
+    public final boolean childCancelled(Throwable th) {
         return getJob().childCancelled(th);
+    }
+
+    @Override
+    public final void invoke(Throwable th) {
+        ((JobSupport) this.childJob).cancelImpl$kotlinx_coroutines_core(getJob());
     }
 }

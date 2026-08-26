@@ -1,75 +1,88 @@
 package kotlinx.coroutines;
 
 import kotlin.coroutines.AbstractCoroutineContextElement;
-import kotlin.coroutines.AbstractCoroutineContextKey;
-import kotlin.coroutines.Continuation;
 import kotlin.coroutines.ContinuationInterceptor;
 import kotlin.coroutines.CoroutineContext;
+import kotlin.coroutines.EmptyCoroutineContext;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
-import kotlinx.coroutines.internal.DispatchedContinuation;
-import kotlinx.coroutines.internal.LimitedDispatcher;
-import kotlinx.coroutines.internal.LimitedDispatcherKt;
+import kotlin.jvm.internal.Lambda;
 
 public abstract class CoroutineDispatcher extends AbstractCoroutineContextElement implements ContinuationInterceptor {
-    public static final Key Key = new Key(null);
+    public static final Key Key = new Key(ContinuationInterceptor.Key.$$INSTANCE, Key.AnonymousClass1.INSTANCE);
 
-    public abstract void dispatch(CoroutineContext coroutineContext, Runnable runnable);
+    public final class Key implements CoroutineContext.Key {
+        public final Lambda safeCast;
+        public final CoroutineContext.Key topmostKey;
 
-    public boolean isDispatchNeeded(CoroutineContext coroutineContext) {
-        return true;
-    }
+        public final class AnonymousClass1 extends Lambda implements Function1 {
+            public static final AnonymousClass1 INSTANCE = new AnonymousClass1(1);
 
-    @Override
-    public CoroutineContext.Element get(CoroutineContext.Key key) {
-        return ContinuationInterceptor.DefaultImpls.get(this, key);
-    }
+            @Override
+            public final Object invoke(Object obj) {
+                CoroutineContext.Element element = (CoroutineContext.Element) obj;
+                if (element instanceof CoroutineDispatcher) {
+                    return (CoroutineDispatcher) element;
+                }
+                return null;
+            }
+        }
 
-    @Override
-    public CoroutineContext minusKey(CoroutineContext.Key key) {
-        return ContinuationInterceptor.DefaultImpls.minusKey(this, key);
+        public Key(CoroutineContext.Key baseKey, Function1 function1) {
+            Intrinsics.checkNotNullParameter(baseKey, "baseKey");
+            this.safeCast = (Lambda) function1;
+            this.topmostKey = baseKey instanceof Key ? ((Key) baseKey).topmostKey : baseKey;
+        }
     }
 
     public CoroutineDispatcher() {
-        super(ContinuationInterceptor.Key);
+        super(ContinuationInterceptor.Key.$$INSTANCE);
     }
 
-    public static final class Key extends AbstractCoroutineContextKey {
-        public Key(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
+    public abstract void dispatch(CoroutineContext coroutineContext, Runnable runnable);
 
-        private Key() {
-            super(ContinuationInterceptor.Key, new Function1() {
-                @Override
-                public final CoroutineDispatcher invoke(CoroutineContext.Element element) {
-                    if (element instanceof CoroutineDispatcher) {
-                        return (CoroutineDispatcher) element;
-                    }
-                    return null;
-                }
-            });
+    @Override
+    public final CoroutineContext.Element get(CoroutineContext.Key key) {
+        CoroutineContext.Element element;
+        Intrinsics.checkNotNullParameter(key, "key");
+        if (!(key instanceof Key)) {
+            if (ContinuationInterceptor.Key.$$INSTANCE == key) {
+                return this;
+            }
+            return null;
         }
+        Key key2 = (Key) key;
+        CoroutineContext.Key key3 = this.key;
+        if ((key3 == key2 || key2.topmostKey == key3) && (element = (CoroutineContext.Element) key2.safeCast.invoke(this)) != null) {
+            return element;
+        }
+        return null;
     }
 
-    public CoroutineDispatcher limitedParallelism(int i) {
-        LimitedDispatcherKt.checkParallelism(i);
-        return new LimitedDispatcher(this, i);
+    public boolean isDispatchNeeded() {
+        return !(this instanceof Unconfined);
     }
 
     @Override
-    public final Continuation interceptContinuation(Continuation continuation) {
-        return new DispatchedContinuation(this, continuation);
-    }
-
-    @Override
-    public final void releaseInterceptedContinuation(Continuation continuation) {
-        Intrinsics.checkNotNull(continuation, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<*>");
-        ((DispatchedContinuation) continuation).release$kotlinx_coroutines_core();
+    public final CoroutineContext minusKey(CoroutineContext.Key key) {
+        Intrinsics.checkNotNullParameter(key, "key");
+        boolean z = key instanceof Key;
+        EmptyCoroutineContext emptyCoroutineContext = EmptyCoroutineContext.INSTANCE;
+        if (!z) {
+            if (ContinuationInterceptor.Key.$$INSTANCE == key) {
+                return emptyCoroutineContext;
+            }
+            return this;
+        }
+        Key key2 = (Key) key;
+        CoroutineContext.Key key3 = this.key;
+        if ((key3 == key2 || key2.topmostKey == key3) && ((CoroutineContext.Element) key2.safeCast.invoke(this)) != null) {
+            return emptyCoroutineContext;
+        }
+        return this;
     }
 
     public String toString() {
-        return DebugStringsKt.getClassSimpleName(this) + '@' + DebugStringsKt.getHexAddress(this);
+        return getClass().getSimpleName() + '@' + JobKt.getHexAddress(this);
     }
 }

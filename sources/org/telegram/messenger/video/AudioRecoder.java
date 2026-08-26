@@ -58,6 +58,31 @@ public class AudioRecoder {
         }
     }
 
+    private boolean isInputAvailable() {
+        if (this.encoderInputPresentationTimeUs > this.totalDurationUs) {
+            return false;
+        }
+        return this.mainInput.hasRemaining();
+    }
+
+    private void mix(ShortBuffer shortBuffer) {
+        int iRemaining = shortBuffer.remaining();
+        for (int i = 0; i < iRemaining && isInputAvailable(); i++) {
+            boolean z = false;
+            short next = 0;
+            for (int i2 = 0; i2 < this.audioInputs.size() && isInputAvailable(); i2++) {
+                AudioInput audioInput = this.audioInputs.get(i2);
+                if (audioInput.hasRemaining()) {
+                    next = (short) ((((short) (audioInput.getNext() * audioInput.volume)) / this.audioInputs.size()) + next);
+                    z = true;
+                }
+            }
+            if (z) {
+                shortBuffer.put(next);
+            }
+        }
+    }
+
     public void release() {
         try {
             this.encoder.stop();
@@ -76,7 +101,7 @@ public class AudioRecoder {
                 ShortBuffer shortBufferAsShortBuffer = this.encoder.getInputBuffer(iDequeueInputBuffer).asShortBuffer();
                 mix(shortBufferAsShortBuffer);
                 this.encoder.queueInputBuffer(iDequeueInputBuffer, 0, shortBufferAsShortBuffer.position() * 2, this.encoderInputPresentationTimeUs, 1);
-                this.encoderInputPresentationTimeUs += AudioConversions.shortsToUs(shortBufferAsShortBuffer.position(), this.sampleRate, this.channelCount);
+                this.encoderInputPresentationTimeUs = AudioConversions.shortsToUs(shortBufferAsShortBuffer.position(), this.sampleRate, this.channelCount) + this.encoderInputPresentationTimeUs;
             } else {
                 this.encoder.queueInputBuffer(iDequeueInputBuffer, 0, 0, 0L, 4);
                 this.encoderInputDone = true;
@@ -108,30 +133,5 @@ public class AudioRecoder {
             this.encoder.releaseOutputBuffer(iDequeueOutputBuffer, false);
         }
         return this.encoderDone;
-    }
-
-    private void mix(ShortBuffer shortBuffer) {
-        int iRemaining = shortBuffer.remaining();
-        for (int i = 0; i < iRemaining && isInputAvailable(); i++) {
-            boolean z = false;
-            short next = 0;
-            for (int i2 = 0; i2 < this.audioInputs.size() && isInputAvailable(); i2++) {
-                AudioInput audioInput = this.audioInputs.get(i2);
-                if (audioInput.hasRemaining()) {
-                    next = (short) (next + (((short) (audioInput.getNext() * audioInput.getVolume())) / this.audioInputs.size()));
-                    z = true;
-                }
-            }
-            if (z) {
-                shortBuffer.put(next);
-            }
-        }
-    }
-
-    private boolean isInputAvailable() {
-        if (this.encoderInputPresentationTimeUs > this.totalDurationUs) {
-            return false;
-        }
-        return this.mainInput.hasRemaining();
     }
 }

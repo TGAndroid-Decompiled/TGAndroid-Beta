@@ -19,208 +19,8 @@ public final class WebRtcAudioUtils {
     private static final String[] BLACKLISTED_AEC_MODELS = new String[0];
     private static final String[] BLACKLISTED_NS_MODELS = new String[0];
 
-    public static boolean isAutomaticGainControlSupported() {
-        return false;
-    }
-
-    public static synchronized boolean useWebRtcBasedAutomaticGainControl() {
-        return true;
-    }
-
-    public static synchronized void setWebRtcBasedAcousticEchoCanceler(boolean z) {
-        useWebRtcBasedAcousticEchoCanceler = z;
-    }
-
-    public static synchronized void setWebRtcBasedNoiseSuppressor(boolean z) {
-        useWebRtcBasedNoiseSuppressor = z;
-    }
-
-    public static synchronized void setWebRtcBasedAutomaticGainControl(boolean z) {
-        Logging.w("WebRtcAudioUtils", "setWebRtcBasedAutomaticGainControl() is deprecated");
-    }
-
-    public static synchronized boolean useWebRtcBasedAcousticEchoCanceler() {
-        try {
-            if (useWebRtcBasedAcousticEchoCanceler) {
-                Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC AEC!");
-            }
-        } catch (Throwable th) {
-            throw th;
-        }
-        return useWebRtcBasedAcousticEchoCanceler;
-    }
-
-    public static synchronized boolean useWebRtcBasedNoiseSuppressor() {
-        try {
-            if (useWebRtcBasedNoiseSuppressor) {
-                Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC NS!");
-            }
-        } catch (Throwable th) {
-            throw th;
-        }
-        return useWebRtcBasedNoiseSuppressor;
-    }
-
-    public static boolean isAcousticEchoCancelerSupported() {
-        return WebRtcAudioEffects.canUseAcousticEchoCanceler();
-    }
-
-    public static boolean isNoiseSuppressorSupported() {
-        return WebRtcAudioEffects.canUseNoiseSuppressor();
-    }
-
-    public static synchronized void setDefaultSampleRateHz(int i) {
-        isDefaultSampleRateOverridden = true;
-        defaultSampleRateHz = i;
-    }
-
-    public static synchronized boolean isDefaultSampleRateOverridden() {
-        return isDefaultSampleRateOverridden;
-    }
-
-    public static synchronized int getDefaultSampleRateHz() {
-        return defaultSampleRateHz;
-    }
-
-    public static List<String> getBlackListedModelsForAecUsage() {
-        return Arrays.asList(BLACKLISTED_AEC_MODELS);
-    }
-
-    public static List<String> getBlackListedModelsForNsUsage() {
-        return Arrays.asList(BLACKLISTED_NS_MODELS);
-    }
-
-    public static String getThreadInfo() {
-        return "@[name=" + Thread.currentThread().getName() + ", id=" + Thread.currentThread().getId() + "]";
-    }
-
-    public static boolean runningOnEmulator() {
-        return Build.HARDWARE.equals("goldfish") && Build.BRAND.startsWith("generic_");
-    }
-
     public static boolean deviceIsBlacklistedForOpenSLESUsage() {
         return Arrays.asList(BLACKLISTED_OPEN_SL_ES_MODELS).contains(Build.MODEL);
-    }
-
-    static void logDeviceInfo(String str) {
-        Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
-    }
-
-    static void logAudioState(String str) {
-        logDeviceInfo(str);
-        AudioManager audioManager = (AudioManager) ContextUtils.getApplicationContext().getSystemService("audio");
-        logAudioStateBasic(str, audioManager);
-        logAudioStateVolume(str, audioManager);
-        logAudioDeviceInfo(str, audioManager);
-    }
-
-    private static void logAudioStateBasic(String str, AudioManager audioManager) {
-        Logging.d(str, "Audio State: audio mode: " + modeToString(audioManager.getMode()) + ", has mic: " + hasMicrophone() + ", mic muted: " + audioManager.isMicrophoneMute() + ", music active: " + audioManager.isMusicActive() + ", speakerphone: " + audioManager.isSpeakerphoneOn() + ", BT SCO: " + audioManager.isBluetoothScoOn());
-    }
-
-    private static boolean isVolumeFixed(AudioManager audioManager) {
-        return audioManager.isVolumeFixed();
-    }
-
-    private static void logAudioStateVolume(String str, AudioManager audioManager) {
-        int[] iArr = {0, 3, 2, 4, 5, 1};
-        Logging.d(str, "Audio State: ");
-        boolean zIsVolumeFixed = isVolumeFixed(audioManager);
-        Logging.d(str, "  fixed volume=" + zIsVolumeFixed);
-        if (zIsVolumeFixed) {
-            return;
-        }
-        for (int i = 0; i < 6; i++) {
-            int i2 = iArr[i];
-            StringBuilder sb = new StringBuilder();
-            sb.append("  " + streamTypeToString(i2) + ": ");
-            sb.append("volume=");
-            sb.append(audioManager.getStreamVolume(i2));
-            sb.append(", max=");
-            sb.append(audioManager.getStreamMaxVolume(i2));
-            logIsStreamMute(str, audioManager, i2, sb);
-            Logging.d(str, sb.toString());
-        }
-    }
-
-    private static void logIsStreamMute(String str, AudioManager audioManager, int i, StringBuilder sb) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            sb.append(", muted=");
-            sb.append(audioManager.isStreamMute(i));
-        }
-    }
-
-    private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
-        if (Build.VERSION.SDK_INT < 23) {
-            return;
-        }
-        AudioDeviceInfo[] devices = audioManager.getDevices(3);
-        if (devices.length == 0) {
-            return;
-        }
-        Logging.d(str, "Audio Devices: ");
-        for (AudioDeviceInfo audioDeviceInfo : devices) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("  ");
-            sb.append(deviceTypeToString(audioDeviceInfo.getType()));
-            sb.append(audioDeviceInfo.isSource() ? "(in): " : "(out): ");
-            if (audioDeviceInfo.getChannelCounts().length > 0) {
-                sb.append("channels=");
-                sb.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
-                sb.append(", ");
-            }
-            if (audioDeviceInfo.getEncodings().length > 0) {
-                sb.append("encodings=");
-                sb.append(Arrays.toString(audioDeviceInfo.getEncodings()));
-                sb.append(", ");
-            }
-            if (audioDeviceInfo.getSampleRates().length > 0) {
-                sb.append("sample rates=");
-                sb.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
-                sb.append(", ");
-            }
-            sb.append("id=");
-            sb.append(audioDeviceInfo.getId());
-            Logging.d(str, sb.toString());
-        }
-    }
-
-    static String modeToString(int i) {
-        if (i == 0) {
-            return "MODE_NORMAL";
-        }
-        if (i == 1) {
-            return "MODE_RINGTONE";
-        }
-        if (i == 2) {
-            return "MODE_IN_CALL";
-        }
-        if (i == 3) {
-            return "MODE_IN_COMMUNICATION";
-        }
-        return "MODE_INVALID";
-    }
-
-    private static String streamTypeToString(int i) {
-        if (i == 0) {
-            return "STREAM_VOICE_CALL";
-        }
-        if (i == 1) {
-            return "STREAM_SYSTEM";
-        }
-        if (i == 2) {
-            return "STREAM_RING";
-        }
-        if (i == 3) {
-            return "STREAM_MUSIC";
-        }
-        if (i == 4) {
-            return "STREAM_ALARM";
-        }
-        if (i == 5) {
-            return "STREAM_NOTIFICATION";
-        }
-        return "STREAM_INVALID";
     }
 
     private static String deviceTypeToString(int i) {
@@ -274,7 +74,200 @@ public final class WebRtcAudioUtils {
         }
     }
 
+    public static List<String> getBlackListedModelsForAecUsage() {
+        return Arrays.asList(BLACKLISTED_AEC_MODELS);
+    }
+
+    public static List<String> getBlackListedModelsForNsUsage() {
+        return Arrays.asList(BLACKLISTED_NS_MODELS);
+    }
+
+    public static synchronized int getDefaultSampleRateHz() {
+        return defaultSampleRateHz;
+    }
+
+    public static String getThreadInfo() {
+        return "@[name=" + Thread.currentThread().getName() + ", id=" + Thread.currentThread().getId() + "]";
+    }
+
     private static boolean hasMicrophone() {
         return ContextUtils.getApplicationContext().getPackageManager().hasSystemFeature("android.hardware.microphone");
+    }
+
+    public static boolean isAcousticEchoCancelerSupported() {
+        return WebRtcAudioEffects.canUseAcousticEchoCanceler();
+    }
+
+    public static boolean isAutomaticGainControlSupported() {
+        return false;
+    }
+
+    public static synchronized boolean isDefaultSampleRateOverridden() {
+        return isDefaultSampleRateOverridden;
+    }
+
+    public static boolean isNoiseSuppressorSupported() {
+        return WebRtcAudioEffects.canUseNoiseSuppressor();
+    }
+
+    private static boolean isVolumeFixed(AudioManager audioManager) {
+        return audioManager.isVolumeFixed();
+    }
+
+    private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
+        if (Build.VERSION.SDK_INT < 23) {
+            return;
+        }
+        AudioDeviceInfo[] devices = audioManager.getDevices(3);
+        if (devices.length == 0) {
+            return;
+        }
+        Logging.d(str, "Audio Devices: ");
+        for (AudioDeviceInfo audioDeviceInfo : devices) {
+            StringBuilder sb = new StringBuilder("  ");
+            sb.append(deviceTypeToString(audioDeviceInfo.getType()));
+            sb.append(audioDeviceInfo.isSource() ? "(in): " : "(out): ");
+            if (audioDeviceInfo.getChannelCounts().length > 0) {
+                sb.append("channels=");
+                sb.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
+                sb.append(", ");
+            }
+            if (audioDeviceInfo.getEncodings().length > 0) {
+                sb.append("encodings=");
+                sb.append(Arrays.toString(audioDeviceInfo.getEncodings()));
+                sb.append(", ");
+            }
+            if (audioDeviceInfo.getSampleRates().length > 0) {
+                sb.append("sample rates=");
+                sb.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
+                sb.append(", ");
+            }
+            sb.append("id=");
+            sb.append(audioDeviceInfo.getId());
+            Logging.d(str, sb.toString());
+        }
+    }
+
+    public static void logAudioState(String str) {
+        logDeviceInfo(str);
+        AudioManager audioManager = (AudioManager) ContextUtils.getApplicationContext().getSystemService("audio");
+        logAudioStateBasic(str, audioManager);
+        logAudioStateVolume(str, audioManager);
+        logAudioDeviceInfo(str, audioManager);
+    }
+
+    private static void logAudioStateBasic(String str, AudioManager audioManager) {
+        Logging.d(str, "Audio State: audio mode: " + modeToString(audioManager.getMode()) + ", has mic: " + hasMicrophone() + ", mic muted: " + audioManager.isMicrophoneMute() + ", music active: " + audioManager.isMusicActive() + ", speakerphone: " + audioManager.isSpeakerphoneOn() + ", BT SCO: " + audioManager.isBluetoothScoOn());
+    }
+
+    private static void logAudioStateVolume(String str, AudioManager audioManager) {
+        int[] iArr = {0, 3, 2, 4, 5, 1};
+        Logging.d(str, "Audio State: ");
+        boolean zIsVolumeFixed = isVolumeFixed(audioManager);
+        Logging.d(str, "  fixed volume=" + zIsVolumeFixed);
+        if (zIsVolumeFixed) {
+            return;
+        }
+        for (int i = 0; i < 6; i++) {
+            int i2 = iArr[i];
+            StringBuilder sb = new StringBuilder();
+            sb.append("  " + streamTypeToString(i2) + ": ");
+            sb.append("volume=");
+            sb.append(audioManager.getStreamVolume(i2));
+            sb.append(", max=");
+            sb.append(audioManager.getStreamMaxVolume(i2));
+            logIsStreamMute(str, audioManager, i2, sb);
+            Logging.d(str, sb.toString());
+        }
+    }
+
+    public static void logDeviceInfo(String str) {
+        Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
+    }
+
+    private static void logIsStreamMute(String str, AudioManager audioManager, int i, StringBuilder sb) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            sb.append(", muted=");
+            sb.append(audioManager.isStreamMute(i));
+        }
+    }
+
+    public static String modeToString(int i) {
+        if (i == 0) {
+            return "MODE_NORMAL";
+        }
+        if (i == 1) {
+            return "MODE_RINGTONE";
+        }
+        if (i != 2) {
+            return i != 3 ? "MODE_INVALID" : "MODE_IN_COMMUNICATION";
+        }
+        return "MODE_IN_CALL";
+    }
+
+    public static boolean runningOnEmulator() {
+        return Build.HARDWARE.equals("goldfish") && Build.BRAND.startsWith("generic_");
+    }
+
+    public static synchronized void setDefaultSampleRateHz(int i) {
+        isDefaultSampleRateOverridden = true;
+        defaultSampleRateHz = i;
+    }
+
+    public static synchronized void setWebRtcBasedAcousticEchoCanceler(boolean z) {
+        useWebRtcBasedAcousticEchoCanceler = z;
+    }
+
+    public static synchronized void setWebRtcBasedAutomaticGainControl(boolean z) {
+        Logging.w("WebRtcAudioUtils", "setWebRtcBasedAutomaticGainControl() is deprecated");
+    }
+
+    public static synchronized void setWebRtcBasedNoiseSuppressor(boolean z) {
+        useWebRtcBasedNoiseSuppressor = z;
+    }
+
+    private static String streamTypeToString(int i) {
+        if (i == 0) {
+            return "STREAM_VOICE_CALL";
+        }
+        if (i == 1) {
+            return "STREAM_SYSTEM";
+        }
+        if (i == 2) {
+            return "STREAM_RING";
+        }
+        if (i == 3) {
+            return "STREAM_MUSIC";
+        }
+        if (i != 4) {
+            return i != 5 ? "STREAM_INVALID" : "STREAM_NOTIFICATION";
+        }
+        return "STREAM_ALARM";
+    }
+
+    public static synchronized boolean useWebRtcBasedAcousticEchoCanceler() {
+        try {
+            if (useWebRtcBasedAcousticEchoCanceler) {
+                Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC AEC!");
+            }
+        } catch (Throwable th) {
+            throw th;
+        }
+        return useWebRtcBasedAcousticEchoCanceler;
+    }
+
+    public static synchronized boolean useWebRtcBasedAutomaticGainControl() {
+        return true;
+    }
+
+    public static synchronized boolean useWebRtcBasedNoiseSuppressor() {
+        try {
+            if (useWebRtcBasedNoiseSuppressor) {
+                Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC NS!");
+            }
+        } catch (Throwable th) {
+            throw th;
+        }
+        return useWebRtcBasedNoiseSuppressor;
     }
 }

@@ -6,107 +6,85 @@ import java.util.Map;
 import java.util.Set;
 import kotlin.jvm.internal.Intrinsics;
 
-final class EmptyMap implements Map, Serializable {
+public final class EmptyMap implements Map, Serializable {
     public static final EmptyMap INSTANCE = new EmptyMap();
 
     @Override
-    public void clear() {
+    public final void clear() {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
     @Override
-    public boolean containsKey(Object obj) {
+    public final boolean containsKey(Object obj) {
         return false;
     }
 
-    public boolean containsValue(Void value) {
+    @Override
+    public final boolean containsValue(Object obj) {
+        if (!(obj instanceof Void)) {
+            return false;
+        }
+        Void value = (Void) obj;
         Intrinsics.checkNotNullParameter(value, "value");
         return false;
     }
 
     @Override
-    public Void get(Object obj) {
+    public final Set entrySet() {
+        return EmptySet.INSTANCE;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        return (obj instanceof Map) && ((Map) obj).isEmpty();
+    }
+
+    @Override
+    public final Object get(Object obj) {
         return null;
     }
 
-    public int getSize() {
+    @Override
+    public final int hashCode() {
         return 0;
     }
 
     @Override
-    public int hashCode() {
-        return 0;
-    }
-
-    @Override
-    public boolean isEmpty() {
+    public final boolean isEmpty() {
         return true;
     }
 
     @Override
-    public Object put(Object obj, Object obj2) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public void putAll(Map map) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public Void remove(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    private EmptyMap() {
-    }
-
-    @Override
-    public final boolean containsValue(Object obj) {
-        if (obj instanceof Void) {
-            return containsValue((Void) obj);
-        }
-        return false;
-    }
-
-    @Override
-    public final Set entrySet() {
-        return getEntries();
-    }
-
-    @Override
     public final Set keySet() {
-        return getKeys();
+        return EmptySet.INSTANCE;
+    }
+
+    @Override
+    public final Object put(Object obj, Object obj2) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final void putAll(Map map) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final Object remove(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
     @Override
     public final int size() {
-        return getSize();
+        return 0;
+    }
+
+    public final String toString() {
+        return "{}";
     }
 
     @Override
     public final Collection values() {
-        return getValues();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return (obj instanceof Map) && ((Map) obj).isEmpty();
-    }
-
-    public String toString() {
-        return "{}";
-    }
-
-    public Set getEntries() {
-        return EmptySet.INSTANCE;
-    }
-
-    public Set getKeys() {
-        return EmptySet.INSTANCE;
-    }
-
-    public Collection getValues() {
         return EmptyList.INSTANCE;
     }
 }

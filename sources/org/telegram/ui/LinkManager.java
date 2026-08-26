@@ -1,12 +1,11 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import com.google.android.exoplayer2.util.Consumer;
+import com.google.android.gms.internal.mlkit_vision_common.zzkw;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,47 +18,115 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationBadge$ZukHomeBadger$$ExternalSyntheticOutline0;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
-import org.telegram.ui.Components.AIEditorAlert;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.CreateBotAlert;
 import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
-import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.Stars.BotStarsActivity;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.Stories.recorder.CollageLayoutButton;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 import org.telegram.ui.TON.TONIntroActivity;
 import org.telegram.ui.bots.ChannelAffiliateProgramsFragment;
 import org.telegram.ui.web.WebBrowserSettings;
 
-public class LinkManager {
-    private final LaunchActivity activity;
-    private final int currentAccount;
-    private int currentRequestId = -1;
-    private boolean done;
-    private boolean inited;
-    private final boolean isExternalIntent;
-    private final Browser.Progress progress;
-    private AlertDialog progressDialog;
+public final class LinkManager {
+    public final LaunchActivity activity;
+    public final int currentAccount;
+    public int currentRequestId = -1;
+    public boolean done;
+    public boolean inited;
+    public final boolean isExternalIntent;
+    public final Browser.Progress progress;
+    public AlertDialog progressDialog;
+
+    public final class AnonymousClass1 extends GroupCreateActivity {
+        public AnonymousClass1(Bundle bundle) {
+            super(bundle);
+        }
+
+        public final void lambda$onCallUsersSelected$2(TLObject tLObject, HashSet hashSet, TLRPC.TL_error tL_error) {
+            int i = 0;
+            if (!(tLObject instanceof TLRPC.Updates)) {
+                if (!(tLObject instanceof TL_phone.groupCall)) {
+                    if (tL_error != null) {
+                        LinkManager.this.getClass();
+                        LinkManager.getBulletinFactory().showForError(false, tL_error);
+                        return;
+                    }
+                    return;
+                }
+                TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
+                MessagesController.getInstance(this.currentAccount).putUsers(groupcall.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(groupcall.chats, false);
+                if (LaunchActivity.instance == null) {
+                    return;
+                }
+                TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
+                TLRPC.GroupCall groupCall = groupcall.call;
+                tL_inputGroupCall.id = groupCall.id;
+                tL_inputGroupCall.access_hash = groupCall.access_hash;
+                VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall, false, groupCall, hashSet);
+                return;
+            }
+            TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(updates.chats, false);
+            ArrayList arrayListFindUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCall.class);
+            int size = arrayListFindUpdatesAndRemove.size();
+            TLRPC.GroupCall groupCall2 = null;
+            while (i < size) {
+                Object obj = arrayListFindUpdatesAndRemove.get(i);
+                i++;
+                groupCall2 = ((TL_update.TL_updateGroupCall) obj).call;
+            }
+            if (LaunchActivity.instance == null || groupCall2 == null) {
+                return;
+            }
+            TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
+            tL_inputGroupCall2.id = groupCall2.id;
+            tL_inputGroupCall2.access_hash = groupCall2.access_hash;
+            VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall2, false, groupCall2, hashSet);
+        }
+
+        @Override
+        public final void onCallUsersSelected(HashSet hashSet) {
+            if (hashSet.size() == 1) {
+                TLRPC.User user = getMessagesController().getUser((Long) hashSet.iterator().next());
+                TLRPC.UserFull userFull = getMessagesController().getUserFull(user.id);
+                if (userFull == null) {
+                    TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
+                    tL_users_getFullUser.id = getMessagesController().getInputUser(user.id);
+                    getConnectionsManager().sendRequest(tL_users_getFullUser, new LinkManager$$ExternalSyntheticLambda8(24, this, user));
+                    return;
+                }
+                VoIPHelper.startCall(user, false, userFull.video_calls_available, getParentActivity(), userFull, getAccountInstance());
+            } else {
+                TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
+                createconferencecall.random_id = Utilities.random.nextInt();
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new LinkManager$$ExternalSyntheticLambda8(25, this, hashSet));
+            }
+            finishFragment();
+        }
+    }
 
     public LinkManager(LaunchActivity launchActivity, int i, Browser.Progress progress, boolean z) {
         this.activity = launchActivity;
@@ -68,5370 +135,9 @@ public class LinkManager {
         this.isExternalIntent = z;
     }
 
-    public boolean handle(Uri uri) {
-        if (uri == null) {
-            return false;
-        }
-        String scheme = uri.getScheme();
-        if ("tonsite".equalsIgnoreCase(scheme)) {
-            return handleTonsite(uri);
-        }
-        if ("http".equalsIgnoreCase(scheme) || "https".equalsIgnoreCase(scheme)) {
-            return handleHttp(uri);
-        }
-        if ("tg".equalsIgnoreCase(scheme)) {
-            return handleTg(uri);
-        }
-        return false;
-    }
-
-    private boolean handleTonsite(Uri uri) {
-        Browser.openUrl(this.activity, uri);
-        return true;
-    }
-
-    private boolean handleHttp(Uri uri) {
-        String host = uri.getHost();
-        if (host == null) {
-            return false;
-        }
-        Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(host.toLowerCase());
-        boolean zFind = matcher.find();
-        if (!"telegram.me".equalsIgnoreCase(host) && !"t.me".equalsIgnoreCase(host) && !"telegram.dog".equalsIgnoreCase(host) && !zFind) {
-            return false;
-        }
-        if (zFind) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("https://t.me/");
-            sb.append(matcher.group(1));
-            String str = "";
-            sb.append(TextUtils.isEmpty(uri.getPath()) ? "" : uri.getPath());
-            if (!TextUtils.isEmpty(uri.getQuery())) {
-                str = "?" + uri.getQuery();
-            }
-            sb.append(str);
-            uri = Uri.parse(sb.toString());
-        }
-        String path = uri.getPath();
-        if (path != null && path.length() > 1) {
-            String strSubstring = path.substring(1);
-            List<String> pathSegments = uri.getPathSegments();
-            if (pathSegments != null && !pathSegments.isEmpty()) {
-                String str2 = pathSegments.get(0);
-                String str3 = pathSegments.size() > 1 ? pathSegments.get(1) : null;
-                if ("$".equalsIgnoreCase(str2)) {
-                    return handleInvoiceSlug(strSubstring.substring(1));
-                }
-                if ("invoice".equalsIgnoreCase(str2)) {
-                    return handleInvoiceSlug(str3);
-                }
-                if ("addstyle".equalsIgnoreCase(str2)) {
-                    return handleAiStyle(str3);
-                }
-                if ("oauth".equalsIgnoreCase(str2)) {
-                    return handleOAuth(uri, uri.getQueryParameter("startapp"));
-                }
-                if ("newbot".equalsIgnoreCase(str2)) {
-                    if (pathSegments.size() < 2) {
-                        return true;
-                    }
-                    return handleNewBot(str3, pathSegments.size() >= 3 ? pathSegments.get(2) : null, uri.getQueryParameter("name"));
-                }
-            }
-        }
-        return false;
-    }
-
-    private Uri normalizeTgUri(Uri uri) {
-        String scheme;
-        String schemeSpecificPart;
-        if (uri == null || !uri.isOpaque() || (scheme = uri.getScheme()) == null || uri.getAuthority() != null || (schemeSpecificPart = uri.getSchemeSpecificPart()) == null) {
-            return uri;
-        }
-        return Uri.parse(scheme + "://" + schemeSpecificPart);
-    }
-
-    private boolean handleTg(Uri uri) {
-        ?? r10;
-        Uri uriNormalizeTgUri = normalizeTgUri(uri);
-        List<String> pathSegments = uriNormalizeTgUri.getPathSegments();
-        if (pathSegments == null) {
-            return false;
-        }
-        ArrayList arrayList = new ArrayList(pathSegments);
-        String authority = uriNormalizeTgUri.getAuthority();
-        if (!TextUtils.isEmpty(authority)) {
-            arrayList.add(0, authority);
-        }
-        if (arrayList.isEmpty()) {
-            return false;
-        }
-        String str = (String) arrayList.get(0);
-        String str2 = arrayList.size() > 1 ? (String) arrayList.get(1) : null;
-        if ("newbot".equalsIgnoreCase(str)) {
-            return handleNewBot(uriNormalizeTgUri.getQueryParameter("manager"), uriNormalizeTgUri.getQueryParameter("username"), uriNormalizeTgUri.getQueryParameter("name"));
-        }
-        if ("resolve".equalsIgnoreCase(str)) {
-            return handleTgResolve(uriNormalizeTgUri);
-        }
-        if ("invoice".equalsIgnoreCase(str)) {
-            return handleInvoiceSlug(uriNormalizeTgUri.getQueryParameter("slug"));
-        }
-        if ("oauth".equalsIgnoreCase(str)) {
-            return handleOAuth(uriNormalizeTgUri, uriNormalizeTgUri.getQueryParameter("token"));
-        }
-        if ("settings".equalsIgnoreCase(str)) {
-            return handleSettings(arrayList.subList(1, arrayList.size()));
-        }
-        if ("chats".equalsIgnoreCase(str)) {
-            "search".equalsIgnoreCase(str2);
-            "edit".equalsIgnoreCase(str2);
-            "emoji-status".equalsIgnoreCase(str2);
-        }
-        if ("new".equalsIgnoreCase(str)) {
-            if ("group".equalsIgnoreCase(str2)) {
-                presentFragment(new GroupCreateActivity(new Bundle()), false);
-                return true;
-            }
-            if ("contact".equalsIgnoreCase(str2)) {
-                new NewContactBottomSheet(getLastFragment(), this.activity).show();
-                return true;
-            }
-            if ("channel".equalsIgnoreCase(str2)) {
-                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("step", 0);
-                    presentFragment(new ChannelCreateActivity(bundle));
-                } else {
-                    presentFragment(new ActionIntroActivity(0));
-                    globalMainSettings.edit().putBoolean("channel_intro", true).commit();
-                }
-                return true;
-            }
-            Bundle bundle2 = new Bundle();
-            bundle2.putBoolean("destroyAfterSelect", true);
-            presentFragment(new ContactsActivity(bundle2));
-            return true;
-        }
-        if ("post".equalsIgnoreCase(str)) {
-            boolean zEqualsIgnoreCase = "video".equalsIgnoreCase(str2);
-            if ("live".equalsIgnoreCase(str2)) {
-                r10 = zEqualsIgnoreCase;
-                r10 = -1;
-            }
-            r10 = zEqualsIgnoreCase;
-            StoryRecorder.getInstance(this.activity, this.currentAccount).setMode(r10).open(null);
-            return true;
-        }
-        if ("contacts".equalsIgnoreCase(str)) {
-            if ("new".equalsIgnoreCase(str2)) {
-                new NewContactBottomSheet(getLastFragment(), this.activity).show();
-                return true;
-            }
-            Bundle bundle3 = new Bundle();
-            bundle3.putBoolean("needPhonebook", true);
-            bundle3.putBoolean("needFinishFragment", true);
-            presentFragment(new ContactsActivity(bundle3));
-            "search".equalsIgnoreCase(str2);
-            "sort".equalsIgnoreCase(str2);
-            if ("invite".equalsIgnoreCase(str2)) {
-                scrollTo("phonebookRow");
-            }
-            return true;
-        }
-        if ("addstyle".equalsIgnoreCase(str)) {
-            return handleAiStyle(uriNormalizeTgUri.getQueryParameter("slug"));
-        }
-        return false;
-    }
-
-    private boolean handleTgResolve(Uri uri) {
-        List<String> pathSegments = uri.getPathSegments();
-        if (pathSegments == null) {
-            return false;
-        }
-        ArrayList arrayList = new ArrayList(pathSegments);
-        String authority = uri.getAuthority();
-        if (!TextUtils.isEmpty(authority)) {
-            arrayList.add(0, authority);
-        }
-        if (arrayList.isEmpty()) {
-            return false;
-        }
-        arrayList.remove(0);
-        String queryParameter = uri.getQueryParameter("domain");
-        String queryParameter2 = uri.getQueryParameter("startapp");
-        if (!"oauth".equalsIgnoreCase(queryParameter) || isEmpty(queryParameter2)) {
-            return false;
-        }
-        return handleOAuth(uri, queryParameter2);
-    }
-
-    private boolean handleSettings(List list) {
-        LiteModeSettingsActivity liteModeSettingsActivity;
-        int i;
-        int i2;
-        DataUsage2Activity dataUsage2Activity;
-        int i3;
-        final int i4;
-        Bundle bundle;
-        final ProfileActivity profileActivity;
-        BaseFragment lastFragment;
-        MainTabsActivity mainTabsActivity;
-        ApplicationLoader applicationLoader;
-        BaseFragment baseFragmentOpenSettings;
-        if (list == null) {
-            return false;
-        }
-        if (list.isEmpty()) {
-            presentFragment(new SettingsActivity());
-        } else {
-            String str = (String) list.get(0);
-            String str2 = list.size() > 1 ? (String) list.get(1) : null;
-            final String str3 = list.size() > 2 ? (String) list.get(2) : null;
-            String str4 = list.size() > 3 ? (String) list.get(3) : null;
-            String str5 = list.size() > 4 ? (String) list.get(4) : null;
-            if ("theme".equalsIgnoreCase(str) || "themes".equalsIgnoreCase(str)) {
-                presentFragment(new ThemeActivity(0));
-            } else {
-                if ("devices".equalsIgnoreCase(str)) {
-                    SessionsActivity sessionsActivity = new SessionsActivity(0);
-                    if ("link-desktop".equalsIgnoreCase(str2)) {
-                        sessionsActivity.setHighlightLinkDesktopDevice();
-                    }
-                    presentFragment(sessionsActivity);
-                    if ("terminate-sessions".equalsIgnoreCase(str2)) {
-                        scrollTo("terminateAllSessionsRow");
-                    }
-                    if ("auto-terminate".equalsIgnoreCase(str2)) {
-                        scrollTo("ttlRow");
-                    }
-                    return true;
-                }
-                if ("folders".equalsIgnoreCase(str)) {
-                    final FiltersSetupActivity filtersSetupActivity = new FiltersSetupActivity();
-                    presentFragment(new FiltersSetupActivity());
-                    if ("create".equalsIgnoreCase(str2)) {
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                filtersSetupActivity.createFolder(this.f$0.getParentLayout());
-                            }
-                        }, 300L);
-                    }
-                    if ("show-tags".equalsIgnoreCase(str2)) {
-                        scrollTo("showTagsRow");
-                    }
-                    return true;
-                }
-                if ("change_number".equalsIgnoreCase(str)) {
-                    presentFragment(new ActionIntroActivity(3), true);
-                } else if ("language".equalsIgnoreCase(str)) {
-                    if ("do-not-translate".equalsIgnoreCase(str2)) {
-                        presentFragment(new RestrictedLanguagesSelectActivity());
-                    } else {
-                        presentFragment(new LanguageSelectActivity());
-                        if ("show-button".equalsIgnoreCase(str2)) {
-                            scrollTo("manualTranslationPosition");
-                        }
-                        if ("translate-chats".equalsIgnoreCase(str2)) {
-                            scrollTo("autoTranslationPosition");
-                        }
-                        return true;
-                    }
-                } else if ("auto_delete".equalsIgnoreCase(str)) {
-                    presentFragment(new AutoDeleteMessagesActivity());
-                } else if ("phone_privacy".equalsIgnoreCase(str)) {
-                    presentFragment(new PrivacyControlActivity(6));
-                } else if ("premium_sms".equalsIgnoreCase(str) && (applicationLoader = ApplicationLoader.applicationLoaderInstance) != null && (baseFragmentOpenSettings = applicationLoader.openSettings(13)) != null) {
-                    presentFragment(baseFragmentOpenSettings);
-                } else if ("login_email".equalsIgnoreCase(str)) {
-                    init();
-                    setRequestId(getConnectionsManager().sendRequest(new TL_account.getPassword(), new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            LinkManager.$r8$lambda$FTjISxid4ZMyM2vnubeewnhkhfM(this.f$0, tLObject, tL_error);
-                        }
-                    }, 10));
-                } else if ("chats".equalsIgnoreCase(str)) {
-                    INavigationLayout parentLayout = getParentLayout();
-                    int size = parentLayout.getFragmentStack().size() - 1;
-                    while (true) {
-                        if (size < 0) {
-                            mainTabsActivity = null;
-                            break;
-                        }
-                        if (parentLayout.getFragmentStack().get(size) instanceof MainTabsActivity) {
-                            mainTabsActivity = (MainTabsActivity) parentLayout.getFragmentStack().get(size);
-                            break;
-                        }
-                        if (size > 0) {
-                            parentLayout.removeFragmentFromStack(size);
-                        }
-                        size++;
-                    }
-                    if (mainTabsActivity != null && "search".equalsIgnoreCase(str2)) {
-                        mainTabsActivity.viewPager.scrollToPosition(2);
-                    } else if ("saved-messages".equalsIgnoreCase(str)) {
-                        presentFragment(ChatActivity.of(getUserConfig().getClientUserId()));
-                    } else if ("calls".equalsIgnoreCase(str)) {
-                        if ("start-call".equalsIgnoreCase(str2)) {
-                            Bundle bundle2 = new Bundle();
-                            bundle2.putBoolean("isCall", true);
-                            presentFragment(new AnonymousClass1(bundle2));
-                        } else {
-                            presentFragment(new CallLogActivity());
-                        }
-                    } else if ("qr-code".equalsIgnoreCase(str)) {
-                        if (!"scan".equalsIgnoreCase(str2) && (lastFragment = getLastFragment()) != null) {
-                            QrActivity.openCameraScanActivity(lastFragment);
-                        } else if ("share".equalsIgnoreCase(str2)) {
-                            Bundle bundle3 = new Bundle();
-                            bundle3.putLong("user_id", getUserConfig().getClientUserId());
-                            presentFragment(new QrActivity(bundle3) {
-                                @Override
-                                public void onBecomeFullyVisible() {
-                                    super.onBecomeFullyVisible();
-                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            performShare();
-                                        }
-                                    });
-                                }
-                            });
-                        } else {
-                            Bundle bundle4 = new Bundle();
-                            bundle4.putLong("user_id", getUserConfig().getClientUserId());
-                            presentFragment(new QrActivity(bundle4));
-                        }
-                    } else if (!"chat".equalsIgnoreCase(str) && "browser".equalsIgnoreCase(str2)) {
-                        if (TextUtils.isEmpty(str3)) {
-                            presentFragment(new ThemeActivity(0));
-                            scrollTo("browserRow");
-                        } else {
-                            presentFragment(new WebBrowserSettings(null));
-                            if ("enable-browser".equalsIgnoreCase(str3)) {
-                                scrollTo("enableRow");
-                            }
-                            if ("clear-cookies".equalsIgnoreCase(str3)) {
-                                scrollTo("clearCookiesRow");
-                            }
-                            if ("clear-cache".equalsIgnoreCase(str3)) {
-                                scrollTo("clearCacheRow");
-                            }
-                            if ("history".equalsIgnoreCase(str3)) {
-                                scrollTo("historyRow");
-                            }
-                            if ("clear-history".equalsIgnoreCase(str3)) {
-                                scrollTo("clearHistoryRow");
-                            }
-                            if ("never-open".equalsIgnoreCase(str3)) {
-                                scrollTo("neverOpenRow");
-                            }
-                            if ("clear-list".equalsIgnoreCase(str3)) {
-                                scrollTo("clearListRow");
-                            }
-                            if ("search".equalsIgnoreCase(str3)) {
-                                scrollTo("searchRow");
-                            }
-                            return true;
-                        }
-                    } else {
-                        if ("edit".equalsIgnoreCase(str)) {
-                            presentFragment(new UserInfoActivity());
-                            if ("first-name".equalsIgnoreCase(str2)) {
-                                scrollTo("firstNameRow");
-                            }
-                            if ("last-name".equalsIgnoreCase(str2)) {
-                                scrollTo("lastNameRow");
-                            }
-                            if ("bio".equalsIgnoreCase(str2)) {
-                                scrollTo("bioRow");
-                            }
-                            if ("birthday".equalsIgnoreCase(str2)) {
-                                scrollTo("birthdayRow");
-                            }
-                            if ("change-number".equalsIgnoreCase(str2)) {
-                                scrollTo("numberRow");
-                            }
-                            if ("username".equalsIgnoreCase(str2)) {
-                                scrollTo("usernameRow");
-                            }
-                            if ("channel".equalsIgnoreCase(str2)) {
-                                scrollTo("channelRow");
-                            }
-                            if ("add-account".equalsIgnoreCase(str2)) {
-                                scrollTo("addAccountRow");
-                            }
-                            if ("log-out".equalsIgnoreCase(str2)) {
-                                scrollTo("logoutRow");
-                            }
-                            return true;
-                        }
-                        if ("my-profile".equalsIgnoreCase(str)) {
-                            if ("edit".equalsIgnoreCase(str2)) {
-                                presentFragment(new UserInfoActivity());
-                            } else {
-                                bundle = new Bundle();
-                                bundle.putLong("user_id", getUserConfig().getClientUserId());
-                                bundle.putBoolean("my_profile", true);
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    bundle.putBoolean("open_gifts", true);
-                                }
-                                profileActivity = new ProfileActivity(bundle);
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    profileActivity.whenFullyVisible(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                                @Override
-                                                public final void run() {
-                                                    LinkManager.$r8$lambda$LH95z6iiSbgUKZuFzNPo8_CwFi0(profileActivity);
-                                                }
-                                            }, 200L);
-                                        }
-                                    });
-                                }
-                                if ("posts".equalsIgnoreCase(str2)) {
-                                    profileActivity.whenFullyVisible(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                                @Override
-                                                public final void run() {
-                                                    LinkManager.$r8$lambda$paHps_jeHUwNd7Rbor9CdgvlPiQ(profileActivity);
-                                                }
-                                            }, 200L);
-                                        }
-                                    });
-                                }
-                                presentFragment(profileActivity);
-                            }
-                        } else if ("notifications".equalsIgnoreCase(str)) {
-                            if (TextUtils.isEmpty(str3) && ("private-chats".equalsIgnoreCase(str2) || "groups".equalsIgnoreCase(str2) || "channels".equalsIgnoreCase(str2) || "stories".equalsIgnoreCase(str2) || "reactions".equalsIgnoreCase(str2))) {
-                                if ("private-chats".equalsIgnoreCase(str2)) {
-                                    i4 = 1;
-                                } else if ("groups".equalsIgnoreCase(str2)) {
-                                    i4 = 0;
-                                } else if ("channels".equalsIgnoreCase(str2)) {
-                                    i4 = 2;
-                                } else if ("stories".equalsIgnoreCase(str2)) {
-                                    i4 = 3;
-                                } else if ("reactions".equalsIgnoreCase(str2)) {
-                                    i4 = 4;
-                                } else {
-                                    i4 = 0;
-                                }
-                                final NotificationsSettingsActivity notificationsSettingsActivity = new NotificationsSettingsActivity();
-                                init();
-                                notificationsSettingsActivity.loadExceptions(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        LinkManager.$r8$lambda$Jc7BiNOWixcRUcVcKIDmxiGhYAg(this.f$0, notificationsSettingsActivity, i4, str3);
-                                    }
-                                });
-                            } else {
-                                presentFragment(new NotificationsSettingsActivity());
-                                if ("accounts".equalsIgnoreCase(str2)) {
-                                    scrollTo("accountsAllRow");
-                                }
-                                if ("private-chats".equalsIgnoreCase(str2)) {
-                                    scrollTo("privateRow");
-                                }
-                                if ("groups".equalsIgnoreCase(str2)) {
-                                    scrollTo("groupRow");
-                                }
-                                if ("channels".equalsIgnoreCase(str2)) {
-                                    scrollTo("channelsRow");
-                                }
-                                if ("stories".equalsIgnoreCase(str2)) {
-                                    scrollTo("storiesRow");
-                                }
-                                if ("reactions".equalsIgnoreCase(str2)) {
-                                    scrollTo("reactionsRow");
-                                }
-                                if ("in-app-sounds".equalsIgnoreCase(str2)) {
-                                    scrollTo("inappSoundRow");
-                                }
-                                if ("in-app-vibrate".equalsIgnoreCase(str2)) {
-                                    scrollTo("inappVibrateRow");
-                                }
-                                if ("in-app-preview".equalsIgnoreCase(str2)) {
-                                    scrollTo("inappPreviewRow");
-                                }
-                                if ("in-chat-sounds".equalsIgnoreCase(str2)) {
-                                    scrollTo("inchatSoundRow");
-                                }
-                                if ("in-app-popup".equalsIgnoreCase(str2)) {
-                                    scrollTo("inappPriorityRow");
-                                }
-                                if ("show-badge-icon".equalsIgnoreCase(str2)) {
-                                    scrollTo("badgeNumberShowRow");
-                                }
-                                if ("include-muted-chats".equalsIgnoreCase(str2)) {
-                                    scrollTo("badgeNumberMutedRow");
-                                }
-                                if ("count-unread-messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("badgeNumberMessagesRow");
-                                }
-                                if ("new-contacts".equalsIgnoreCase(str2)) {
-                                    scrollTo("contactJoinedRow");
-                                }
-                                if ("pinned-messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("pinnedMessageRow");
-                                }
-                                if ("reset".equalsIgnoreCase(str2)) {
-                                    scrollTo("resetNotificationsRow");
-                                }
-                                return true;
-                            }
-                        } else if ("privacy".equalsIgnoreCase(str)) {
-                            if (!"data-settings".equalsIgnoreCase(str2) && "delete-cloud-drafts".equalsIgnoreCase(str3)) {
-                                presentFragment(new DataSettingsActivity());
-                                scrollTo("clearDraftsRow");
-                            } else if (TextUtils.isEmpty(str3) && "blocked".equalsIgnoreCase(str2)) {
-                                presentFragment(new PrivacyUsersActivity());
-                            } else {
-                                if (TextUtils.isEmpty(str3) && "active-websites".equalsIgnoreCase(str2)) {
-                                    presentFragment(new SessionsActivity(1));
-                                    if ("disconnect-all".equalsIgnoreCase(str3)) {
-                                        scrollTo("terminateAllSessionsRow");
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3) && "passcode".equalsIgnoreCase(str2)) {
-                                    Runnable runnable = new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            LinkManager.$r8$lambda$KI_W5AvBpDAU0Drn11mFdJ7eR8k(this.f$0, str3);
-                                        }
-                                    };
-                                    BaseFragment baseFragmentDetermineOpenFragment = PasscodeActivity.determineOpenFragment();
-                                    presentFragment(baseFragmentDetermineOpenFragment);
-                                    if (baseFragmentDetermineOpenFragment instanceof ActionIntroActivity) {
-                                        ((ActionIntroActivity) baseFragmentDetermineOpenFragment).setOnOpenedSettings(runnable);
-                                    } else if (baseFragmentDetermineOpenFragment instanceof PasscodeActivity) {
-                                        ((PasscodeActivity) baseFragmentDetermineOpenFragment).setOnOpenedSettings(runnable);
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3) && "2sv".equalsIgnoreCase(str2)) {
-                                    init();
-                                    setRequestId(getConnectionsManager().sendRequest(new TL_account.getPassword(), new RequestDelegate() {
-                                        @Override
-                                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                            LinkManager.m3409$r8$lambda$IQ_Z2YYGa7BhMAbvIr_OYGr524(this.f$0, str3, tLObject, tL_error);
-                                        }
-                                    }, 10));
-                                } else if (TextUtils.isEmpty(str3) && "passkey".equalsIgnoreCase(str2) && Build.VERSION.SDK_INT >= 28) {
-                                    init();
-                                    setRequestId(getConnectionsManager().sendRequestTyped(new TL_account.getPasskeys(), new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
-                                        @Override
-                                        public final void run(Object obj, Object obj2) {
-                                            LinkManager.$r8$lambda$USK0WmlmeY2frZnNUReW0nKtUdc(this.f$0, str3, (TL_account.Passkeys) obj, (TLRPC.TL_error) obj2);
-                                        }
-                                    }));
-                                } else if (TextUtils.isEmpty(str3) && "auto-delete".equalsIgnoreCase(str2) && getUserConfig().getGlobalTTl() >= 0) {
-                                    presentFragment(new AutoDeleteMessagesActivity());
-                                } else {
-                                    if (TextUtils.isEmpty(str3) && ("phone-number".equalsIgnoreCase(str2) || "last-seen".equalsIgnoreCase(str2) || "profile-photos".equalsIgnoreCase(str2) || "bio".equalsIgnoreCase(str2) || "gifts".equalsIgnoreCase(str2) || "birthday".equalsIgnoreCase(str2) || "saved-music".equalsIgnoreCase(str2) || "forwards".equalsIgnoreCase(str2) || "calls".equalsIgnoreCase(str2) || "voice".equalsIgnoreCase(str2) || "messages".equalsIgnoreCase(str2) || "invites".equalsIgnoreCase(str2))) {
-                                        if ("phone-number".equalsIgnoreCase(str2)) {
-                                            i3 = 6;
-                                        } else if ("last-seen".equalsIgnoreCase(str2)) {
-                                            i3 = 0;
-                                        } else if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            i3 = 4;
-                                        } else if ("bio".equalsIgnoreCase(str2)) {
-                                            i3 = 9;
-                                        } else if ("gifts".equalsIgnoreCase(str2)) {
-                                            i3 = 12;
-                                        } else if ("birthday".equalsIgnoreCase(str2)) {
-                                            i3 = 11;
-                                        } else if ("saved-music".equalsIgnoreCase(str2)) {
-                                            i3 = 14;
-                                        } else if ("forwards".equalsIgnoreCase(str2)) {
-                                            i3 = 5;
-                                        } else if ("calls".equalsIgnoreCase(str2)) {
-                                            i3 = "p2p".equalsIgnoreCase(str3) ? 3 : 2;
-                                        } else if ("voice".equalsIgnoreCase(str2)) {
-                                            i3 = 8;
-                                        } else if ("messages".equalsIgnoreCase(str2)) {
-                                            i3 = 10;
-                                        } else if ("invites".equalsIgnoreCase(str2)) {
-                                            i3 = 1;
-                                        } else {
-                                            i3 = 0;
-                                        }
-                                        presentFragment(new PrivacyControlActivity(i3));
-                                        if ("birthday".equalsIgnoreCase(str2) && "add".equalsIgnoreCase(str3)) {
-                                            scrollTo("setBirthdayRow");
-                                        }
-                                        if ("always-share".equalsIgnoreCase(str3) || "always-share".equalsIgnoreCase(str4) || "always".equalsIgnoreCase(str3) || "always".equalsIgnoreCase(str4)) {
-                                            scrollTo("everybodyRow");
-                                        }
-                                        if ("never-share".equalsIgnoreCase(str3) || "never-share".equalsIgnoreCase(str4) || "never".equalsIgnoreCase(str3) || "never".equalsIgnoreCase(str4)) {
-                                            scrollTo("nobodyRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2) && "show-icon".equalsIgnoreCase(str3)) {
-                                            scrollTo("showGiftIconRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2) && "accepted-types".equalsIgnoreCase(str3)) {
-                                            scrollTo("giftTypesHeaderRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2) && "set-price".equalsIgnoreCase(str3)) {
-                                            scrollTo("priceRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2) && "remove-fee".equalsIgnoreCase(str3)) {
-                                            scrollTo("alwaysShareRow");
-                                        }
-                                        if ("last-seen".equalsIgnoreCase(str2) && "hide-read-time".equalsIgnoreCase(str3)) {
-                                            scrollTo("readRow");
-                                        }
-                                        if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            if ("set-public".equalsIgnoreCase(str3)) {
-                                                scrollTo("photoForRestRow");
-                                            }
-                                            if ("update-public".equalsIgnoreCase(str3)) {
-                                                scrollTo("photoForRestRow");
-                                            }
-                                            if ("remove-public".equalsIgnoreCase(str3)) {
-                                                scrollTo("currentPhotoForRestRow");
-                                            }
-                                        }
-                                        return true;
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable && "archive-and-mute".equalsIgnoreCase(str2)) {
-                                        return true;
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                            }
-                        } else if ("data".equalsIgnoreCase(str)) {
-                            if ("storage".equalsIgnoreCase(str2)) {
-                                "clear-cache".equalsIgnoreCase(str3);
-                                presentFragment(new CacheControlActivity());
-                            } else {
-                                if ("usage".equalsIgnoreCase(str2)) {
-                                    dataUsage2Activity = new DataUsage2Activity();
-                                    presentFragment(dataUsage2Activity);
-                                    if ("mobile".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.selectTab(1);
-                                    }
-                                    if ("wifi".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.selectTab(2);
-                                    }
-                                    if ("roaming".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.selectTab(3);
-                                    }
-                                    if ("reset".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.scrollToReset();
-                                    }
-                                    return true;
-                                }
-                                i = 2;
-                                if ("auto-download".equalsIgnoreCase(str2)) {
-                                    if (!"mobile".equalsIgnoreCase(str3) || "wifi".equalsIgnoreCase(str3) || "roaming".equalsIgnoreCase(str3)) {
-                                        if ("mobile".equalsIgnoreCase(str3)) {
-                                            i = 0;
-                                        } else if ("wifi".equalsIgnoreCase(str3)) {
-                                            i = 1;
-                                        } else if (!"roaming".equalsIgnoreCase(str3)) {
-                                            i = 0;
-                                        }
-                                        presentFragment(new DataAutoDownloadActivity(i));
-                                        if ("enable".equalsIgnoreCase(str4)) {
-                                            scrollTo("autoDownloadRow");
-                                        }
-                                        if ("usage".equalsIgnoreCase(str4)) {
-                                            scrollTo("usageProgressRow");
-                                        }
-                                        if ("photos".equalsIgnoreCase(str4)) {
-                                            scrollTo("photosRow");
-                                        }
-                                        if ("stories".equalsIgnoreCase(str4)) {
-                                            scrollTo("storiesRow");
-                                        }
-                                        if ("videos".equalsIgnoreCase(str4)) {
-                                            scrollTo("videosRow");
-                                        }
-                                        if ("files".equalsIgnoreCase(str4)) {
-                                            scrollTo("filesRow");
-                                        }
-                                        return true;
-                                    }
-                                    if ("reset".equalsIgnoreCase(str3)) {
-                                        presentFragment(new DataSettingsActivity());
-                                        scrollTo("resetDownloadRow");
-                                    } else {
-                                        if (TextUtils.isEmpty(str4)) {
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if ("pause-music".equalsIgnoreCase(str2)) {
-                                            presentFragment(new ThemeActivity(0));
-                                            scrollTo("pauseOnMediaRow");
-                                        } else if ("pause-music-on-record".equalsIgnoreCase(str2)) {
-                                            presentFragment(new ThemeActivity(0));
-                                            scrollTo("pauseOnRecordRow");
-                                        } else if ("raise-to-listen".equalsIgnoreCase(str2)) {
-                                            presentFragment(new ThemeActivity(0));
-                                            scrollTo("raiseToListenRow");
-                                        } else if ("raise-to-speak".equalsIgnoreCase(str2)) {
-                                            presentFragment(new ThemeActivity(0));
-                                            scrollTo("raiseToSpeakRow");
-                                        } else if ("show-18-contnet".equalsIgnoreCase(str2)) {
-                                            presentFragment(new ThemeActivity(0));
-                                            scrollTo("sensitiveContentRow");
-                                        } else {
-                                            presentFragment(new DataSettingsActivity());
-                                            if ("save-to-photos".equalsIgnoreCase(str2)) {
-                                                if ("chats".equalsIgnoreCase(str3)) {
-                                                    scrollTo("saveToGalleryPeerRow");
-                                                }
-                                                if ("groups".equalsIgnoreCase(str3)) {
-                                                    scrollTo("saveToGalleryGroupsRow");
-                                                }
-                                                if ("channels".equalsIgnoreCase(str3)) {
-                                                    scrollTo("saveToGalleryChannelsRow");
-                                                }
-                                            }
-                                            if ("use-less-data".equalsIgnoreCase(str2)) {
-                                                scrollTo("useLessDataForCallsRow");
-                                            }
-                                            if ("proxy".equalsIgnoreCase(str2)) {
-                                                scrollTo("proxyRow");
-                                            }
-                                            return true;
-                                        }
-                                    }
-                                } else {
-                                    if (TextUtils.isEmpty(str4) && "save-to-photos".equalsIgnoreCase(str2)) {
-                                        if ("groups".equalsIgnoreCase(str3)) {
-                                            i2 = 2;
-                                        } else {
-                                            i2 = "channels".equalsIgnoreCase(str3) ? 4 : 1;
-                                        }
-                                        Bundle bundle5 = new Bundle();
-                                        bundle5.putInt("type", i2);
-                                        presentFragment(new SaveToGallerySettingsActivity(bundle5));
-                                        if ("max-video-size".equalsIgnoreCase(str4)) {
-                                            scrollTo("maxVideoSizeRow");
-                                        }
-                                        if ("add-exception".equalsIgnoreCase(str4)) {
-                                            scrollTo("addExceptionRow");
-                                        }
-                                        if ("delete-all".equalsIgnoreCase(str4)) {
-                                            scrollTo("deleteAllExceptionsRow");
-                                        }
-                                        return true;
-                                    }
-                                    if (TextUtils.isEmpty(str3) && "proxy".equalsIgnoreCase(str2)) {
-                                        presentFragment(new ProxyListActivity());
-                                        if ("use-proxy".equalsIgnoreCase(str3)) {
-                                            scrollTo("useProxyRow");
-                                        }
-                                        if ("add-proxy".equalsIgnoreCase(str3)) {
-                                            scrollTo("proxyAddRow");
-                                        }
-                                        if ("use-for-calls".equalsIgnoreCase(str3)) {
-                                            scrollTo("callsRow");
-                                        }
-                                        return true;
-                                    }
-                                    if ("pause-music".equalsIgnoreCase(str2)) {
-                                        presentFragment(new ThemeActivity(0));
-                                        scrollTo("pauseOnMediaRow");
-                                    } else if ("pause-music-on-record".equalsIgnoreCase(str2)) {
-                                        presentFragment(new ThemeActivity(0));
-                                        scrollTo("pauseOnRecordRow");
-                                    } else if ("raise-to-listen".equalsIgnoreCase(str2)) {
-                                        presentFragment(new ThemeActivity(0));
-                                        scrollTo("raiseToListenRow");
-                                    } else if ("raise-to-speak".equalsIgnoreCase(str2)) {
-                                        presentFragment(new ThemeActivity(0));
-                                        scrollTo("raiseToSpeakRow");
-                                    } else if ("show-18-contnet".equalsIgnoreCase(str2)) {
-                                        presentFragment(new ThemeActivity(0));
-                                        scrollTo("sensitiveContentRow");
-                                    } else {
-                                        presentFragment(new DataSettingsActivity());
-                                        if ("save-to-photos".equalsIgnoreCase(str2)) {
-                                            if ("chats".equalsIgnoreCase(str3)) {
-                                                scrollTo("saveToGalleryPeerRow");
-                                            }
-                                            if ("groups".equalsIgnoreCase(str3)) {
-                                                scrollTo("saveToGalleryGroupsRow");
-                                            }
-                                            if ("channels".equalsIgnoreCase(str3)) {
-                                                scrollTo("saveToGalleryChannelsRow");
-                                            }
-                                        }
-                                        if ("use-less-data".equalsIgnoreCase(str2)) {
-                                            scrollTo("useLessDataForCallsRow");
-                                        }
-                                        if ("proxy".equalsIgnoreCase(str2)) {
-                                            scrollTo("proxyRow");
-                                        }
-                                        return true;
-                                    }
-                                }
-                            }
-                        } else if ("appearance".equalsIgnoreCase(str)) {
-                            if (!"themes".equalsIgnoreCase(str2) || "theme".equalsIgnoreCase(str2)) {
-                                presentFragment(new ThemeActivity(3));
-                                if ("create".equalsIgnoreCase(str3)) {
-                                    scrollTo("createNewThemeRow");
-                                }
-                                return true;
-                            }
-                            if (!TextUtils.isEmpty(str3) && ("wallpaper".equalsIgnoreCase(str2) || "wallpapers".equalsIgnoreCase(str2))) {
-                                presentFragment(new WallpapersListActivity(0));
-                                if ("set".equalsIgnoreCase(str3) || "choose-photo".equalsIgnoreCase(str3)) {
-                                    scrollTo("uploadImageRow");
-                                }
-                                return true;
-                            }
-                            if (!TextUtils.isEmpty(str3) && ("your-color".equalsIgnoreCase(str2) || "color".equalsIgnoreCase(str2))) {
-                                presentFragment(new PeerColorActivity(0L));
-                            } else if (!TextUtils.isEmpty(str3) && "stickers-and-emoji".equalsIgnoreCase(str2)) {
-                                if (!TextUtils.isEmpty(str4) && "archived".equalsIgnoreCase(str3)) {
-                                    presentFragment(new ArchivedStickersActivity(0));
-                                } else if ("emoji".equalsIgnoreCase(str3) && !TextUtils.isEmpty(str4) && !"large".equalsIgnoreCase(str4) && !"dynamic-order".equalsIgnoreCase(str4)) {
-                                    if (!TextUtils.isEmpty(str5) && "archived".equalsIgnoreCase(str4)) {
-                                        presentFragment(new ArchivedStickersActivity(5));
-                                    } else {
-                                        presentFragment(new StickersActivity(5, null));
-                                        if ("suggest".equalsIgnoreCase(str4)) {
-                                            scrollTo("suggestRow");
-                                        }
-                                        return true;
-                                    }
-                                } else {
-                                    presentFragment(new StickersActivity(0, null));
-                                    if ("trending".equalsIgnoreCase(str3)) {
-                                        scrollTo("featuredRow");
-                                    }
-                                    if ("archived".equalsIgnoreCase(str3)) {
-                                        scrollTo("archivedRow");
-                                    }
-                                    if ("emoji".equalsIgnoreCase(str3) && "large".equalsIgnoreCase(str4)) {
-                                        scrollTo("largeEmojiRow");
-                                    } else if ("emoji".equalsIgnoreCase(str3) && "dynamic-order".equalsIgnoreCase(str4)) {
-                                        scrollTo("dynamicPackOrder");
-                                    } else if ("emoji".equalsIgnoreCase(str3)) {
-                                        scrollTo("emojiPacksRow");
-                                    }
-                                    return true;
-                                }
-                            } else {
-                                presentFragment(new ThemeActivity(0));
-                                if ("wallpaper".equalsIgnoreCase(str2) || "wallpapers".equalsIgnoreCase(str2)) {
-                                    scrollTo("backgroundRow");
-                                }
-                                if ("your-color".equalsIgnoreCase(str2) || "color".equalsIgnoreCase(str2)) {
-                                    scrollTo("changeUserColor");
-                                }
-                                if ("auto-night-mode".equalsIgnoreCase(str2)) {
-                                    scrollTo("nightThemeRow");
-                                }
-                                if ("text-size".equalsIgnoreCase(str2)) {
-                                    scrollTo("textSizeRow");
-                                }
-                                if ("message-corners".equalsIgnoreCase(str2)) {
-                                    scrollTo("bubbleRadiusRow");
-                                }
-                                if ("animations".equalsIgnoreCase(str2)) {
-                                    scrollTo("liteModeRow");
-                                }
-                                if ("stickers-and-emoji".equalsIgnoreCase(str2)) {
-                                    scrollTo("stickersRow");
-                                }
-                                if ("app-icon".equalsIgnoreCase(str2)) {
-                                    scrollTo("appIconSelectorRow");
-                                }
-                                if ("tap-for-next-media".equalsIgnoreCase(str2)) {
-                                    scrollTo("nextMediaTapRow");
-                                }
-                                return true;
-                            }
-                        } else {
-                            if ("power-saving".equalsIgnoreCase(str)) {
-                                liteModeSettingsActivity = new LiteModeSettingsActivity();
-                                presentFragment(liteModeSettingsActivity);
-                                if ("videos".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(1024);
-                                }
-                                if ("gifs".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(2048);
-                                }
-                                if ("stickers".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(3);
-                                }
-                                if ("emoji".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(28700);
-                                }
-                                if ("effects".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(360928);
-                                }
-                                if ("call-animations".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(512);
-                                }
-                                if ("particles".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(131072);
-                                }
-                                if ("transitions".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToType(1);
-                                }
-                                return true;
-                            }
-                            if ("stars".equalsIgnoreCase(str)) {
-                                if ("top-up".equalsIgnoreCase(str2)) {
-                                    new StarsIntroActivity.StarsOptionsSheet(this.activity, null).show();
-                                } else if ("stats".equalsIgnoreCase(str2)) {
-                                    presentFragment(new BotStarsActivity(0, getUserConfig().getClientUserId()));
-                                } else if ("gift".equalsIgnoreCase(str2)) {
-                                    StarsController.getInstance(this.currentAccount).getGiftOptions();
-                                    UserSelectorBottomSheet.open(1, 0L, BirthdayController.getInstance(this.currentAccount).getState());
-                                } else if ("earn".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ChannelAffiliateProgramsFragment(getUserConfig().getClientUserId()));
-                                } else {
-                                    presentFragment(new StarsIntroActivity());
-                                }
-                            } else if ("premium".equalsIgnoreCase(str)) {
-                                presentFragment(new PremiumPreviewFragment("link"));
-                            } else {
-                                if ("business".equalsIgnoreCase(str)) {
-                                    presentFragment(new PremiumPreviewFragment(1, "link"));
-                                    if ("do-not-hide-ads".equalsIgnoreCase(str2)) {
-                                        scrollTo("showAdsRow");
-                                    }
-                                    return true;
-                                }
-                                if ("ton".equalsIgnoreCase(str)) {
-                                    presentFragment(new TONIntroActivity());
-                                } else if ("send-gift".equalsIgnoreCase(str)) {
-                                    if ("self".equalsIgnoreCase(str2)) {
-                                        new GiftSheet(this.activity, this.currentAccount, getUserConfig().getClientUserId(), null, null).show();
-                                    } else {
-                                        UserSelectorBottomSheet.open(0L, BirthdayController.getInstance(this.currentAccount).getState());
-                                    }
-                                } else if (!"ask-question".equalsIgnoreCase(str) || "ask-a-question".equalsIgnoreCase(str)) {
-                                    AlertsCreator.createSupportAlert(getLastFragment(), null).show();
-                                } else if ("faq".equalsIgnoreCase(str)) {
-                                    Browser.openUrl(this.activity, LocaleController.getString(R.string.TelegramFaqUrl));
-                                } else if ("features".equalsIgnoreCase(str)) {
-                                    Browser.openUrl(this.activity, LocaleController.getString(R.string.TelegramFeaturesUrl));
-                                } else if ("privacy-policy".equalsIgnoreCase(str)) {
-                                    Browser.openUrl(this.activity, LocaleController.getString(R.string.PrivacyPolicyUrl));
-                                } else {
-                                    presentFragment(new SettingsActivity());
-                                }
-                            }
-                        }
-                    }
-                } else if ("saved-messages".equalsIgnoreCase(str)) {
-                    presentFragment(ChatActivity.of(getUserConfig().getClientUserId()));
-                } else if ("calls".equalsIgnoreCase(str)) {
-                    if ("start-call".equalsIgnoreCase(str2)) {
-                        Bundle bundle6 = new Bundle();
-                        bundle6.putBoolean("isCall", true);
-                        presentFragment(new AnonymousClass1(bundle6));
-                    } else {
-                        presentFragment(new CallLogActivity());
-                    }
-                } else if ("qr-code".equalsIgnoreCase(str)) {
-                    if (!"scan".equalsIgnoreCase(str2)) {
-                        if ("share".equalsIgnoreCase(str2)) {
-                            Bundle bundle7 = new Bundle();
-                            bundle7.putLong("user_id", getUserConfig().getClientUserId());
-                            presentFragment(new QrActivity(bundle7) {
-                                @Override
-                                public void onBecomeFullyVisible() {
-                                    super.onBecomeFullyVisible();
-                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            performShare();
-                                        }
-                                    });
-                                }
-                            });
-                        } else {
-                            Bundle bundle8 = new Bundle();
-                            bundle8.putLong("user_id", getUserConfig().getClientUserId());
-                            presentFragment(new QrActivity(bundle8));
-                        }
-                    } else if ("share".equalsIgnoreCase(str2)) {
-                        Bundle bundle9 = new Bundle();
-                        bundle9.putLong("user_id", getUserConfig().getClientUserId());
-                        presentFragment(new QrActivity(bundle9) {
-                            @Override
-                            public void onBecomeFullyVisible() {
-                                super.onBecomeFullyVisible();
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        performShare();
-                                    }
-                                });
-                            }
-                        });
-                    } else {
-                        Bundle bundle10 = new Bundle();
-                        bundle10.putLong("user_id", getUserConfig().getClientUserId());
-                        presentFragment(new QrActivity(bundle10));
-                    }
-                } else if (!"chat".equalsIgnoreCase(str)) {
-                    if ("edit".equalsIgnoreCase(str)) {
-                        presentFragment(new UserInfoActivity());
-                        if ("first-name".equalsIgnoreCase(str2)) {
-                            scrollTo("firstNameRow");
-                        }
-                        if ("last-name".equalsIgnoreCase(str2)) {
-                            scrollTo("lastNameRow");
-                        }
-                        if ("bio".equalsIgnoreCase(str2)) {
-                            scrollTo("bioRow");
-                        }
-                        if ("birthday".equalsIgnoreCase(str2)) {
-                            scrollTo("birthdayRow");
-                        }
-                        if ("change-number".equalsIgnoreCase(str2)) {
-                            scrollTo("numberRow");
-                        }
-                        if ("username".equalsIgnoreCase(str2)) {
-                            scrollTo("usernameRow");
-                        }
-                        if ("channel".equalsIgnoreCase(str2)) {
-                            scrollTo("channelRow");
-                        }
-                        if ("add-account".equalsIgnoreCase(str2)) {
-                            scrollTo("addAccountRow");
-                        }
-                        if ("log-out".equalsIgnoreCase(str2)) {
-                            scrollTo("logoutRow");
-                        }
-                        return true;
-                    }
-                    if ("my-profile".equalsIgnoreCase(str)) {
-                        if ("edit".equalsIgnoreCase(str2)) {
-                            presentFragment(new UserInfoActivity());
-                        } else {
-                            bundle = new Bundle();
-                            bundle.putLong("user_id", getUserConfig().getClientUserId());
-                            bundle.putBoolean("my_profile", true);
-                            if ("gifts".equalsIgnoreCase(str2)) {
-                                bundle.putBoolean("open_gifts", true);
-                            }
-                            profileActivity = new ProfileActivity(bundle);
-                            if ("gifts".equalsIgnoreCase(str2)) {
-                                profileActivity.whenFullyVisible(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                LinkManager.$r8$lambda$LH95z6iiSbgUKZuFzNPo8_CwFi0(profileActivity);
-                                            }
-                                        }, 200L);
-                                    }
-                                });
-                            }
-                            if ("posts".equalsIgnoreCase(str2)) {
-                                profileActivity.whenFullyVisible(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                LinkManager.$r8$lambda$paHps_jeHUwNd7Rbor9CdgvlPiQ(profileActivity);
-                                            }
-                                        }, 200L);
-                                    }
-                                });
-                            }
-                            presentFragment(profileActivity);
-                        }
-                    } else {
-                        if ("notifications".equalsIgnoreCase(str)) {
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            presentFragment(new NotificationsSettingsActivity());
-                            if ("accounts".equalsIgnoreCase(str2)) {
-                                scrollTo("accountsAllRow");
-                            }
-                            if ("private-chats".equalsIgnoreCase(str2)) {
-                                scrollTo("privateRow");
-                            }
-                            if ("groups".equalsIgnoreCase(str2)) {
-                                scrollTo("groupRow");
-                            }
-                            if ("channels".equalsIgnoreCase(str2)) {
-                                scrollTo("channelsRow");
-                            }
-                            if ("stories".equalsIgnoreCase(str2)) {
-                                scrollTo("storiesRow");
-                            }
-                            if ("reactions".equalsIgnoreCase(str2)) {
-                                scrollTo("reactionsRow");
-                            }
-                            if ("in-app-sounds".equalsIgnoreCase(str2)) {
-                                scrollTo("inappSoundRow");
-                            }
-                            if ("in-app-vibrate".equalsIgnoreCase(str2)) {
-                                scrollTo("inappVibrateRow");
-                            }
-                            if ("in-app-preview".equalsIgnoreCase(str2)) {
-                                scrollTo("inappPreviewRow");
-                            }
-                            if ("in-chat-sounds".equalsIgnoreCase(str2)) {
-                                scrollTo("inchatSoundRow");
-                            }
-                            if ("in-app-popup".equalsIgnoreCase(str2)) {
-                                scrollTo("inappPriorityRow");
-                            }
-                            if ("show-badge-icon".equalsIgnoreCase(str2)) {
-                                scrollTo("badgeNumberShowRow");
-                            }
-                            if ("include-muted-chats".equalsIgnoreCase(str2)) {
-                                scrollTo("badgeNumberMutedRow");
-                            }
-                            if ("count-unread-messages".equalsIgnoreCase(str2)) {
-                                scrollTo("badgeNumberMessagesRow");
-                            }
-                            if ("new-contacts".equalsIgnoreCase(str2)) {
-                                scrollTo("contactJoinedRow");
-                            }
-                            if ("pinned-messages".equalsIgnoreCase(str2)) {
-                                scrollTo("pinnedMessageRow");
-                            }
-                            if ("reset".equalsIgnoreCase(str2)) {
-                                scrollTo("resetNotificationsRow");
-                            }
-                            return true;
-                        }
-                        if ("privacy".equalsIgnoreCase(str)) {
-                            if (!"data-settings".equalsIgnoreCase(str2)) {
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                        if (TextUtils.isEmpty(str3)) {
-                                            if (TextUtils.isEmpty(str3)) {
-                                            }
-                                            if (TextUtils.isEmpty(str3)) {
-                                            }
-                                            if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                            }
-                                            presentFragment(new PrivacySettingsActivity());
-                                            if ("blocked".equalsIgnoreCase(str2)) {
-                                                scrollTo("blockedRow");
-                                            }
-                                            if ("active-websites".equalsIgnoreCase(str2)) {
-                                                scrollTo("webSessionsRow");
-                                            }
-                                            if ("passcode".equalsIgnoreCase(str2)) {
-                                                scrollTo("passcodeRow");
-                                            }
-                                            if ("2sv".equalsIgnoreCase(str2)) {
-                                                scrollTo("passwordRow");
-                                            }
-                                            if ("passkey".equalsIgnoreCase(str2)) {
-                                                scrollTo("passkeysRow");
-                                            }
-                                            if ("auto-delete".equalsIgnoreCase(str2)) {
-                                                scrollTo("autoDeleteMesages");
-                                            }
-                                            if ("login-email".equalsIgnoreCase(str2)) {
-                                                scrollTo("emailLoginRow");
-                                            }
-                                            if ("phone-number".equalsIgnoreCase(str2)) {
-                                                scrollTo("phoneNumberRow");
-                                            }
-                                            if ("last-seen".equalsIgnoreCase(str2)) {
-                                                scrollTo("lastSeenRow");
-                                            }
-                                            if ("profile-photos".equalsIgnoreCase(str2)) {
-                                                scrollTo("profilePhotoRow");
-                                            }
-                                            if ("bio".equalsIgnoreCase(str2)) {
-                                                scrollTo("bioRow");
-                                            }
-                                            if ("gifts".equalsIgnoreCase(str2)) {
-                                                scrollTo("giftsRow");
-                                            }
-                                            if ("birthday".equalsIgnoreCase(str2)) {
-                                                scrollTo("birthdayRow");
-                                            }
-                                            if ("saved-music".equalsIgnoreCase(str2)) {
-                                                scrollTo("musicRow");
-                                            }
-                                            if ("forwards".equalsIgnoreCase(str2)) {
-                                                scrollTo("forwardsRow");
-                                            }
-                                            if ("calls".equalsIgnoreCase(str2)) {
-                                                scrollTo("callsRow");
-                                            }
-                                            if ("voice".equalsIgnoreCase(str2)) {
-                                                scrollTo("voicesRow");
-                                            }
-                                            if ("messages".equalsIgnoreCase(str2)) {
-                                                scrollTo("noncontactsRow");
-                                            }
-                                            if ("invites".equalsIgnoreCase(str2)) {
-                                                scrollTo("groupsRow");
-                                            }
-                                            if ("self-destruct".equalsIgnoreCase(str2)) {
-                                                scrollTo("deleteAccountRow");
-                                            }
-                                            if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                                scrollTo("newChatsRow");
-                                            }
-                                            if ("data-settings".equalsIgnoreCase(str2)) {
-                                                if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                    scrollTo("contactsSyncRow");
-                                                }
-                                                if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                    scrollTo("contactsDeleteRow");
-                                                }
-                                                if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                    scrollTo("contactsSuggestRow");
-                                                }
-                                                if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                    scrollTo("paymentsClearRow");
-                                                }
-                                                if ("link-previews".equalsIgnoreCase(str3)) {
-                                                    scrollTo("secretWebpageRow");
-                                                }
-                                                if ("map-provider".equalsIgnoreCase(str3)) {
-                                                    scrollTo("secretMapRow");
-                                                }
-                                            }
-                                            return true;
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                        }
-                                        presentFragment(new PrivacySettingsActivity());
-                                        if ("blocked".equalsIgnoreCase(str2)) {
-                                            scrollTo("blockedRow");
-                                        }
-                                        if ("active-websites".equalsIgnoreCase(str2)) {
-                                            scrollTo("webSessionsRow");
-                                        }
-                                        if ("passcode".equalsIgnoreCase(str2)) {
-                                            scrollTo("passcodeRow");
-                                        }
-                                        if ("2sv".equalsIgnoreCase(str2)) {
-                                            scrollTo("passwordRow");
-                                        }
-                                        if ("passkey".equalsIgnoreCase(str2)) {
-                                            scrollTo("passkeysRow");
-                                        }
-                                        if ("auto-delete".equalsIgnoreCase(str2)) {
-                                            scrollTo("autoDeleteMesages");
-                                        }
-                                        if ("login-email".equalsIgnoreCase(str2)) {
-                                            scrollTo("emailLoginRow");
-                                        }
-                                        if ("phone-number".equalsIgnoreCase(str2)) {
-                                            scrollTo("phoneNumberRow");
-                                        }
-                                        if ("last-seen".equalsIgnoreCase(str2)) {
-                                            scrollTo("lastSeenRow");
-                                        }
-                                        if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            scrollTo("profilePhotoRow");
-                                        }
-                                        if ("bio".equalsIgnoreCase(str2)) {
-                                            scrollTo("bioRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2)) {
-                                            scrollTo("giftsRow");
-                                        }
-                                        if ("birthday".equalsIgnoreCase(str2)) {
-                                            scrollTo("birthdayRow");
-                                        }
-                                        if ("saved-music".equalsIgnoreCase(str2)) {
-                                            scrollTo("musicRow");
-                                        }
-                                        if ("forwards".equalsIgnoreCase(str2)) {
-                                            scrollTo("forwardsRow");
-                                        }
-                                        if ("calls".equalsIgnoreCase(str2)) {
-                                            scrollTo("callsRow");
-                                        }
-                                        if ("voice".equalsIgnoreCase(str2)) {
-                                            scrollTo("voicesRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2)) {
-                                            scrollTo("noncontactsRow");
-                                        }
-                                        if ("invites".equalsIgnoreCase(str2)) {
-                                            scrollTo("groupsRow");
-                                        }
-                                        if ("self-destruct".equalsIgnoreCase(str2)) {
-                                            scrollTo("deleteAccountRow");
-                                        }
-                                        if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                            scrollTo("newChatsRow");
-                                        }
-                                        if ("data-settings".equalsIgnoreCase(str2)) {
-                                            if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSyncRow");
-                                            }
-                                            if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsDeleteRow");
-                                            }
-                                            if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSuggestRow");
-                                            }
-                                            if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                scrollTo("paymentsClearRow");
-                                            }
-                                            if ("link-previews".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretWebpageRow");
-                                            }
-                                            if ("map-provider".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretMapRow");
-                                            }
-                                        }
-                                        return true;
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                        }
-                                        presentFragment(new PrivacySettingsActivity());
-                                        if ("blocked".equalsIgnoreCase(str2)) {
-                                            scrollTo("blockedRow");
-                                        }
-                                        if ("active-websites".equalsIgnoreCase(str2)) {
-                                            scrollTo("webSessionsRow");
-                                        }
-                                        if ("passcode".equalsIgnoreCase(str2)) {
-                                            scrollTo("passcodeRow");
-                                        }
-                                        if ("2sv".equalsIgnoreCase(str2)) {
-                                            scrollTo("passwordRow");
-                                        }
-                                        if ("passkey".equalsIgnoreCase(str2)) {
-                                            scrollTo("passkeysRow");
-                                        }
-                                        if ("auto-delete".equalsIgnoreCase(str2)) {
-                                            scrollTo("autoDeleteMesages");
-                                        }
-                                        if ("login-email".equalsIgnoreCase(str2)) {
-                                            scrollTo("emailLoginRow");
-                                        }
-                                        if ("phone-number".equalsIgnoreCase(str2)) {
-                                            scrollTo("phoneNumberRow");
-                                        }
-                                        if ("last-seen".equalsIgnoreCase(str2)) {
-                                            scrollTo("lastSeenRow");
-                                        }
-                                        if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            scrollTo("profilePhotoRow");
-                                        }
-                                        if ("bio".equalsIgnoreCase(str2)) {
-                                            scrollTo("bioRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2)) {
-                                            scrollTo("giftsRow");
-                                        }
-                                        if ("birthday".equalsIgnoreCase(str2)) {
-                                            scrollTo("birthdayRow");
-                                        }
-                                        if ("saved-music".equalsIgnoreCase(str2)) {
-                                            scrollTo("musicRow");
-                                        }
-                                        if ("forwards".equalsIgnoreCase(str2)) {
-                                            scrollTo("forwardsRow");
-                                        }
-                                        if ("calls".equalsIgnoreCase(str2)) {
-                                            scrollTo("callsRow");
-                                        }
-                                        if ("voice".equalsIgnoreCase(str2)) {
-                                            scrollTo("voicesRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2)) {
-                                            scrollTo("noncontactsRow");
-                                        }
-                                        if ("invites".equalsIgnoreCase(str2)) {
-                                            scrollTo("groupsRow");
-                                        }
-                                        if ("self-destruct".equalsIgnoreCase(str2)) {
-                                            scrollTo("deleteAccountRow");
-                                        }
-                                        if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                            scrollTo("newChatsRow");
-                                        }
-                                        if ("data-settings".equalsIgnoreCase(str2)) {
-                                            if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSyncRow");
-                                            }
-                                            if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsDeleteRow");
-                                            }
-                                            if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSuggestRow");
-                                            }
-                                            if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                scrollTo("paymentsClearRow");
-                                            }
-                                            if ("link-previews".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretWebpageRow");
-                                            }
-                                            if ("map-provider".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretMapRow");
-                                            }
-                                        }
-                                        return true;
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                        }
-                                        presentFragment(new PrivacySettingsActivity());
-                                        if ("blocked".equalsIgnoreCase(str2)) {
-                                            scrollTo("blockedRow");
-                                        }
-                                        if ("active-websites".equalsIgnoreCase(str2)) {
-                                            scrollTo("webSessionsRow");
-                                        }
-                                        if ("passcode".equalsIgnoreCase(str2)) {
-                                            scrollTo("passcodeRow");
-                                        }
-                                        if ("2sv".equalsIgnoreCase(str2)) {
-                                            scrollTo("passwordRow");
-                                        }
-                                        if ("passkey".equalsIgnoreCase(str2)) {
-                                            scrollTo("passkeysRow");
-                                        }
-                                        if ("auto-delete".equalsIgnoreCase(str2)) {
-                                            scrollTo("autoDeleteMesages");
-                                        }
-                                        if ("login-email".equalsIgnoreCase(str2)) {
-                                            scrollTo("emailLoginRow");
-                                        }
-                                        if ("phone-number".equalsIgnoreCase(str2)) {
-                                            scrollTo("phoneNumberRow");
-                                        }
-                                        if ("last-seen".equalsIgnoreCase(str2)) {
-                                            scrollTo("lastSeenRow");
-                                        }
-                                        if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            scrollTo("profilePhotoRow");
-                                        }
-                                        if ("bio".equalsIgnoreCase(str2)) {
-                                            scrollTo("bioRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2)) {
-                                            scrollTo("giftsRow");
-                                        }
-                                        if ("birthday".equalsIgnoreCase(str2)) {
-                                            scrollTo("birthdayRow");
-                                        }
-                                        if ("saved-music".equalsIgnoreCase(str2)) {
-                                            scrollTo("musicRow");
-                                        }
-                                        if ("forwards".equalsIgnoreCase(str2)) {
-                                            scrollTo("forwardsRow");
-                                        }
-                                        if ("calls".equalsIgnoreCase(str2)) {
-                                            scrollTo("callsRow");
-                                        }
-                                        if ("voice".equalsIgnoreCase(str2)) {
-                                            scrollTo("voicesRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2)) {
-                                            scrollTo("noncontactsRow");
-                                        }
-                                        if ("invites".equalsIgnoreCase(str2)) {
-                                            scrollTo("groupsRow");
-                                        }
-                                        if ("self-destruct".equalsIgnoreCase(str2)) {
-                                            scrollTo("deleteAccountRow");
-                                        }
-                                        if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                            scrollTo("newChatsRow");
-                                        }
-                                        if ("data-settings".equalsIgnoreCase(str2)) {
-                                            if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSyncRow");
-                                            }
-                                            if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsDeleteRow");
-                                            }
-                                            if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSuggestRow");
-                                            }
-                                            if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                scrollTo("paymentsClearRow");
-                                            }
-                                            if ("link-previews".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretWebpageRow");
-                                            }
-                                            if ("map-provider".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretMapRow");
-                                            }
-                                        }
-                                        return true;
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                }
-                                presentFragment(new PrivacySettingsActivity());
-                                if ("blocked".equalsIgnoreCase(str2)) {
-                                    scrollTo("blockedRow");
-                                }
-                                if ("active-websites".equalsIgnoreCase(str2)) {
-                                    scrollTo("webSessionsRow");
-                                }
-                                if ("passcode".equalsIgnoreCase(str2)) {
-                                    scrollTo("passcodeRow");
-                                }
-                                if ("2sv".equalsIgnoreCase(str2)) {
-                                    scrollTo("passwordRow");
-                                }
-                                if ("passkey".equalsIgnoreCase(str2)) {
-                                    scrollTo("passkeysRow");
-                                }
-                                if ("auto-delete".equalsIgnoreCase(str2)) {
-                                    scrollTo("autoDeleteMesages");
-                                }
-                                if ("login-email".equalsIgnoreCase(str2)) {
-                                    scrollTo("emailLoginRow");
-                                }
-                                if ("phone-number".equalsIgnoreCase(str2)) {
-                                    scrollTo("phoneNumberRow");
-                                }
-                                if ("last-seen".equalsIgnoreCase(str2)) {
-                                    scrollTo("lastSeenRow");
-                                }
-                                if ("profile-photos".equalsIgnoreCase(str2)) {
-                                    scrollTo("profilePhotoRow");
-                                }
-                                if ("bio".equalsIgnoreCase(str2)) {
-                                    scrollTo("bioRow");
-                                }
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    scrollTo("giftsRow");
-                                }
-                                if ("birthday".equalsIgnoreCase(str2)) {
-                                    scrollTo("birthdayRow");
-                                }
-                                if ("saved-music".equalsIgnoreCase(str2)) {
-                                    scrollTo("musicRow");
-                                }
-                                if ("forwards".equalsIgnoreCase(str2)) {
-                                    scrollTo("forwardsRow");
-                                }
-                                if ("calls".equalsIgnoreCase(str2)) {
-                                    scrollTo("callsRow");
-                                }
-                                if ("voice".equalsIgnoreCase(str2)) {
-                                    scrollTo("voicesRow");
-                                }
-                                if ("messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("noncontactsRow");
-                                }
-                                if ("invites".equalsIgnoreCase(str2)) {
-                                    scrollTo("groupsRow");
-                                }
-                                if ("self-destruct".equalsIgnoreCase(str2)) {
-                                    scrollTo("deleteAccountRow");
-                                }
-                                if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                    scrollTo("newChatsRow");
-                                }
-                                if ("data-settings".equalsIgnoreCase(str2)) {
-                                    if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSyncRow");
-                                    }
-                                    if ("delete-synced".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsDeleteRow");
-                                    }
-                                    if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSuggestRow");
-                                    }
-                                    if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                        scrollTo("paymentsClearRow");
-                                    }
-                                    if ("link-previews".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretWebpageRow");
-                                    }
-                                    if ("map-provider".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretMapRow");
-                                    }
-                                }
-                                return true;
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                        }
-                                        presentFragment(new PrivacySettingsActivity());
-                                        if ("blocked".equalsIgnoreCase(str2)) {
-                                            scrollTo("blockedRow");
-                                        }
-                                        if ("active-websites".equalsIgnoreCase(str2)) {
-                                            scrollTo("webSessionsRow");
-                                        }
-                                        if ("passcode".equalsIgnoreCase(str2)) {
-                                            scrollTo("passcodeRow");
-                                        }
-                                        if ("2sv".equalsIgnoreCase(str2)) {
-                                            scrollTo("passwordRow");
-                                        }
-                                        if ("passkey".equalsIgnoreCase(str2)) {
-                                            scrollTo("passkeysRow");
-                                        }
-                                        if ("auto-delete".equalsIgnoreCase(str2)) {
-                                            scrollTo("autoDeleteMesages");
-                                        }
-                                        if ("login-email".equalsIgnoreCase(str2)) {
-                                            scrollTo("emailLoginRow");
-                                        }
-                                        if ("phone-number".equalsIgnoreCase(str2)) {
-                                            scrollTo("phoneNumberRow");
-                                        }
-                                        if ("last-seen".equalsIgnoreCase(str2)) {
-                                            scrollTo("lastSeenRow");
-                                        }
-                                        if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            scrollTo("profilePhotoRow");
-                                        }
-                                        if ("bio".equalsIgnoreCase(str2)) {
-                                            scrollTo("bioRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2)) {
-                                            scrollTo("giftsRow");
-                                        }
-                                        if ("birthday".equalsIgnoreCase(str2)) {
-                                            scrollTo("birthdayRow");
-                                        }
-                                        if ("saved-music".equalsIgnoreCase(str2)) {
-                                            scrollTo("musicRow");
-                                        }
-                                        if ("forwards".equalsIgnoreCase(str2)) {
-                                            scrollTo("forwardsRow");
-                                        }
-                                        if ("calls".equalsIgnoreCase(str2)) {
-                                            scrollTo("callsRow");
-                                        }
-                                        if ("voice".equalsIgnoreCase(str2)) {
-                                            scrollTo("voicesRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2)) {
-                                            scrollTo("noncontactsRow");
-                                        }
-                                        if ("invites".equalsIgnoreCase(str2)) {
-                                            scrollTo("groupsRow");
-                                        }
-                                        if ("self-destruct".equalsIgnoreCase(str2)) {
-                                            scrollTo("deleteAccountRow");
-                                        }
-                                        if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                            scrollTo("newChatsRow");
-                                        }
-                                        if ("data-settings".equalsIgnoreCase(str2)) {
-                                            if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSyncRow");
-                                            }
-                                            if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsDeleteRow");
-                                            }
-                                            if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSuggestRow");
-                                            }
-                                            if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                scrollTo("paymentsClearRow");
-                                            }
-                                            if ("link-previews".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretWebpageRow");
-                                            }
-                                            if ("map-provider".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretMapRow");
-                                            }
-                                        }
-                                        return true;
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                }
-                                presentFragment(new PrivacySettingsActivity());
-                                if ("blocked".equalsIgnoreCase(str2)) {
-                                    scrollTo("blockedRow");
-                                }
-                                if ("active-websites".equalsIgnoreCase(str2)) {
-                                    scrollTo("webSessionsRow");
-                                }
-                                if ("passcode".equalsIgnoreCase(str2)) {
-                                    scrollTo("passcodeRow");
-                                }
-                                if ("2sv".equalsIgnoreCase(str2)) {
-                                    scrollTo("passwordRow");
-                                }
-                                if ("passkey".equalsIgnoreCase(str2)) {
-                                    scrollTo("passkeysRow");
-                                }
-                                if ("auto-delete".equalsIgnoreCase(str2)) {
-                                    scrollTo("autoDeleteMesages");
-                                }
-                                if ("login-email".equalsIgnoreCase(str2)) {
-                                    scrollTo("emailLoginRow");
-                                }
-                                if ("phone-number".equalsIgnoreCase(str2)) {
-                                    scrollTo("phoneNumberRow");
-                                }
-                                if ("last-seen".equalsIgnoreCase(str2)) {
-                                    scrollTo("lastSeenRow");
-                                }
-                                if ("profile-photos".equalsIgnoreCase(str2)) {
-                                    scrollTo("profilePhotoRow");
-                                }
-                                if ("bio".equalsIgnoreCase(str2)) {
-                                    scrollTo("bioRow");
-                                }
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    scrollTo("giftsRow");
-                                }
-                                if ("birthday".equalsIgnoreCase(str2)) {
-                                    scrollTo("birthdayRow");
-                                }
-                                if ("saved-music".equalsIgnoreCase(str2)) {
-                                    scrollTo("musicRow");
-                                }
-                                if ("forwards".equalsIgnoreCase(str2)) {
-                                    scrollTo("forwardsRow");
-                                }
-                                if ("calls".equalsIgnoreCase(str2)) {
-                                    scrollTo("callsRow");
-                                }
-                                if ("voice".equalsIgnoreCase(str2)) {
-                                    scrollTo("voicesRow");
-                                }
-                                if ("messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("noncontactsRow");
-                                }
-                                if ("invites".equalsIgnoreCase(str2)) {
-                                    scrollTo("groupsRow");
-                                }
-                                if ("self-destruct".equalsIgnoreCase(str2)) {
-                                    scrollTo("deleteAccountRow");
-                                }
-                                if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                    scrollTo("newChatsRow");
-                                }
-                                if ("data-settings".equalsIgnoreCase(str2)) {
-                                    if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSyncRow");
-                                    }
-                                    if ("delete-synced".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsDeleteRow");
-                                    }
-                                    if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSuggestRow");
-                                    }
-                                    if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                        scrollTo("paymentsClearRow");
-                                    }
-                                    if ("link-previews".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretWebpageRow");
-                                    }
-                                    if ("map-provider".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretMapRow");
-                                    }
-                                }
-                                return true;
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                }
-                                presentFragment(new PrivacySettingsActivity());
-                                if ("blocked".equalsIgnoreCase(str2)) {
-                                    scrollTo("blockedRow");
-                                }
-                                if ("active-websites".equalsIgnoreCase(str2)) {
-                                    scrollTo("webSessionsRow");
-                                }
-                                if ("passcode".equalsIgnoreCase(str2)) {
-                                    scrollTo("passcodeRow");
-                                }
-                                if ("2sv".equalsIgnoreCase(str2)) {
-                                    scrollTo("passwordRow");
-                                }
-                                if ("passkey".equalsIgnoreCase(str2)) {
-                                    scrollTo("passkeysRow");
-                                }
-                                if ("auto-delete".equalsIgnoreCase(str2)) {
-                                    scrollTo("autoDeleteMesages");
-                                }
-                                if ("login-email".equalsIgnoreCase(str2)) {
-                                    scrollTo("emailLoginRow");
-                                }
-                                if ("phone-number".equalsIgnoreCase(str2)) {
-                                    scrollTo("phoneNumberRow");
-                                }
-                                if ("last-seen".equalsIgnoreCase(str2)) {
-                                    scrollTo("lastSeenRow");
-                                }
-                                if ("profile-photos".equalsIgnoreCase(str2)) {
-                                    scrollTo("profilePhotoRow");
-                                }
-                                if ("bio".equalsIgnoreCase(str2)) {
-                                    scrollTo("bioRow");
-                                }
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    scrollTo("giftsRow");
-                                }
-                                if ("birthday".equalsIgnoreCase(str2)) {
-                                    scrollTo("birthdayRow");
-                                }
-                                if ("saved-music".equalsIgnoreCase(str2)) {
-                                    scrollTo("musicRow");
-                                }
-                                if ("forwards".equalsIgnoreCase(str2)) {
-                                    scrollTo("forwardsRow");
-                                }
-                                if ("calls".equalsIgnoreCase(str2)) {
-                                    scrollTo("callsRow");
-                                }
-                                if ("voice".equalsIgnoreCase(str2)) {
-                                    scrollTo("voicesRow");
-                                }
-                                if ("messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("noncontactsRow");
-                                }
-                                if ("invites".equalsIgnoreCase(str2)) {
-                                    scrollTo("groupsRow");
-                                }
-                                if ("self-destruct".equalsIgnoreCase(str2)) {
-                                    scrollTo("deleteAccountRow");
-                                }
-                                if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                    scrollTo("newChatsRow");
-                                }
-                                if ("data-settings".equalsIgnoreCase(str2)) {
-                                    if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSyncRow");
-                                    }
-                                    if ("delete-synced".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsDeleteRow");
-                                    }
-                                    if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSuggestRow");
-                                    }
-                                    if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                        scrollTo("paymentsClearRow");
-                                    }
-                                    if ("link-previews".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretWebpageRow");
-                                    }
-                                    if ("map-provider".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretMapRow");
-                                    }
-                                }
-                                return true;
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                }
-                                presentFragment(new PrivacySettingsActivity());
-                                if ("blocked".equalsIgnoreCase(str2)) {
-                                    scrollTo("blockedRow");
-                                }
-                                if ("active-websites".equalsIgnoreCase(str2)) {
-                                    scrollTo("webSessionsRow");
-                                }
-                                if ("passcode".equalsIgnoreCase(str2)) {
-                                    scrollTo("passcodeRow");
-                                }
-                                if ("2sv".equalsIgnoreCase(str2)) {
-                                    scrollTo("passwordRow");
-                                }
-                                if ("passkey".equalsIgnoreCase(str2)) {
-                                    scrollTo("passkeysRow");
-                                }
-                                if ("auto-delete".equalsIgnoreCase(str2)) {
-                                    scrollTo("autoDeleteMesages");
-                                }
-                                if ("login-email".equalsIgnoreCase(str2)) {
-                                    scrollTo("emailLoginRow");
-                                }
-                                if ("phone-number".equalsIgnoreCase(str2)) {
-                                    scrollTo("phoneNumberRow");
-                                }
-                                if ("last-seen".equalsIgnoreCase(str2)) {
-                                    scrollTo("lastSeenRow");
-                                }
-                                if ("profile-photos".equalsIgnoreCase(str2)) {
-                                    scrollTo("profilePhotoRow");
-                                }
-                                if ("bio".equalsIgnoreCase(str2)) {
-                                    scrollTo("bioRow");
-                                }
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    scrollTo("giftsRow");
-                                }
-                                if ("birthday".equalsIgnoreCase(str2)) {
-                                    scrollTo("birthdayRow");
-                                }
-                                if ("saved-music".equalsIgnoreCase(str2)) {
-                                    scrollTo("musicRow");
-                                }
-                                if ("forwards".equalsIgnoreCase(str2)) {
-                                    scrollTo("forwardsRow");
-                                }
-                                if ("calls".equalsIgnoreCase(str2)) {
-                                    scrollTo("callsRow");
-                                }
-                                if ("voice".equalsIgnoreCase(str2)) {
-                                    scrollTo("voicesRow");
-                                }
-                                if ("messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("noncontactsRow");
-                                }
-                                if ("invites".equalsIgnoreCase(str2)) {
-                                    scrollTo("groupsRow");
-                                }
-                                if ("self-destruct".equalsIgnoreCase(str2)) {
-                                    scrollTo("deleteAccountRow");
-                                }
-                                if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                    scrollTo("newChatsRow");
-                                }
-                                if ("data-settings".equalsIgnoreCase(str2)) {
-                                    if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSyncRow");
-                                    }
-                                    if ("delete-synced".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsDeleteRow");
-                                    }
-                                    if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSuggestRow");
-                                    }
-                                    if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                        scrollTo("paymentsClearRow");
-                                    }
-                                    if ("link-previews".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretWebpageRow");
-                                    }
-                                    if ("map-provider".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretMapRow");
-                                    }
-                                }
-                                return true;
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                            }
-                            presentFragment(new PrivacySettingsActivity());
-                            if ("blocked".equalsIgnoreCase(str2)) {
-                                scrollTo("blockedRow");
-                            }
-                            if ("active-websites".equalsIgnoreCase(str2)) {
-                                scrollTo("webSessionsRow");
-                            }
-                            if ("passcode".equalsIgnoreCase(str2)) {
-                                scrollTo("passcodeRow");
-                            }
-                            if ("2sv".equalsIgnoreCase(str2)) {
-                                scrollTo("passwordRow");
-                            }
-                            if ("passkey".equalsIgnoreCase(str2)) {
-                                scrollTo("passkeysRow");
-                            }
-                            if ("auto-delete".equalsIgnoreCase(str2)) {
-                                scrollTo("autoDeleteMesages");
-                            }
-                            if ("login-email".equalsIgnoreCase(str2)) {
-                                scrollTo("emailLoginRow");
-                            }
-                            if ("phone-number".equalsIgnoreCase(str2)) {
-                                scrollTo("phoneNumberRow");
-                            }
-                            if ("last-seen".equalsIgnoreCase(str2)) {
-                                scrollTo("lastSeenRow");
-                            }
-                            if ("profile-photos".equalsIgnoreCase(str2)) {
-                                scrollTo("profilePhotoRow");
-                            }
-                            if ("bio".equalsIgnoreCase(str2)) {
-                                scrollTo("bioRow");
-                            }
-                            if ("gifts".equalsIgnoreCase(str2)) {
-                                scrollTo("giftsRow");
-                            }
-                            if ("birthday".equalsIgnoreCase(str2)) {
-                                scrollTo("birthdayRow");
-                            }
-                            if ("saved-music".equalsIgnoreCase(str2)) {
-                                scrollTo("musicRow");
-                            }
-                            if ("forwards".equalsIgnoreCase(str2)) {
-                                scrollTo("forwardsRow");
-                            }
-                            if ("calls".equalsIgnoreCase(str2)) {
-                                scrollTo("callsRow");
-                            }
-                            if ("voice".equalsIgnoreCase(str2)) {
-                                scrollTo("voicesRow");
-                            }
-                            if ("messages".equalsIgnoreCase(str2)) {
-                                scrollTo("noncontactsRow");
-                            }
-                            if ("invites".equalsIgnoreCase(str2)) {
-                                scrollTo("groupsRow");
-                            }
-                            if ("self-destruct".equalsIgnoreCase(str2)) {
-                                scrollTo("deleteAccountRow");
-                            }
-                            if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                scrollTo("newChatsRow");
-                            }
-                            if ("data-settings".equalsIgnoreCase(str2)) {
-                                if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                    scrollTo("contactsSyncRow");
-                                }
-                                if ("delete-synced".equalsIgnoreCase(str3)) {
-                                    scrollTo("contactsDeleteRow");
-                                }
-                                if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                    scrollTo("contactsSuggestRow");
-                                }
-                                if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                    scrollTo("paymentsClearRow");
-                                }
-                                if ("link-previews".equalsIgnoreCase(str3)) {
-                                    scrollTo("secretWebpageRow");
-                                }
-                                if ("map-provider".equalsIgnoreCase(str3)) {
-                                    scrollTo("secretMapRow");
-                                }
-                            }
-                            return true;
-                        }
-                        if ("data".equalsIgnoreCase(str)) {
-                            if ("storage".equalsIgnoreCase(str2)) {
-                                "clear-cache".equalsIgnoreCase(str3);
-                                presentFragment(new CacheControlActivity());
-                            } else {
-                                if ("usage".equalsIgnoreCase(str2)) {
-                                    dataUsage2Activity = new DataUsage2Activity();
-                                    presentFragment(dataUsage2Activity);
-                                    if ("mobile".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.selectTab(1);
-                                    }
-                                    if ("wifi".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.selectTab(2);
-                                    }
-                                    if ("roaming".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.selectTab(3);
-                                    }
-                                    if ("reset".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.scrollToReset();
-                                    }
-                                    return true;
-                                }
-                                i = 2;
-                                if ("auto-download".equalsIgnoreCase(str2)) {
-                                    if (!"mobile".equalsIgnoreCase(str3)) {
-                                    }
-                                    if ("mobile".equalsIgnoreCase(str3)) {
-                                        i = 0;
-                                    } else if ("wifi".equalsIgnoreCase(str3)) {
-                                        i = 1;
-                                    } else if (!"roaming".equalsIgnoreCase(str3)) {
-                                        i = 0;
-                                    }
-                                    presentFragment(new DataAutoDownloadActivity(i));
-                                    if ("enable".equalsIgnoreCase(str4)) {
-                                        scrollTo("autoDownloadRow");
-                                    }
-                                    if ("usage".equalsIgnoreCase(str4)) {
-                                        scrollTo("usageProgressRow");
-                                    }
-                                    if ("photos".equalsIgnoreCase(str4)) {
-                                        scrollTo("photosRow");
-                                    }
-                                    if ("stories".equalsIgnoreCase(str4)) {
-                                        scrollTo("storiesRow");
-                                    }
-                                    if ("videos".equalsIgnoreCase(str4)) {
-                                        scrollTo("videosRow");
-                                    }
-                                    if ("files".equalsIgnoreCase(str4)) {
-                                        scrollTo("filesRow");
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str4)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if ("pause-music".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("pauseOnMediaRow");
-                                } else if ("pause-music-on-record".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("pauseOnRecordRow");
-                                } else if ("raise-to-listen".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("raiseToListenRow");
-                                } else if ("raise-to-speak".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("raiseToSpeakRow");
-                                } else if ("show-18-contnet".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("sensitiveContentRow");
-                                } else {
-                                    presentFragment(new DataSettingsActivity());
-                                    if ("save-to-photos".equalsIgnoreCase(str2)) {
-                                        if ("chats".equalsIgnoreCase(str3)) {
-                                            scrollTo("saveToGalleryPeerRow");
-                                        }
-                                        if ("groups".equalsIgnoreCase(str3)) {
-                                            scrollTo("saveToGalleryGroupsRow");
-                                        }
-                                        if ("channels".equalsIgnoreCase(str3)) {
-                                            scrollTo("saveToGalleryChannelsRow");
-                                        }
-                                    }
-                                    if ("use-less-data".equalsIgnoreCase(str2)) {
-                                        scrollTo("useLessDataForCallsRow");
-                                    }
-                                    if ("proxy".equalsIgnoreCase(str2)) {
-                                        scrollTo("proxyRow");
-                                    }
-                                    return true;
-                                }
-                            }
-                        } else {
-                            if ("appearance".equalsIgnoreCase(str)) {
-                                if (!"themes".equalsIgnoreCase(str2)) {
-                                }
-                                presentFragment(new ThemeActivity(3));
-                                if ("create".equalsIgnoreCase(str3)) {
-                                    scrollTo("createNewThemeRow");
-                                }
-                                return true;
-                            }
-                            if ("power-saving".equalsIgnoreCase(str)) {
-                                liteModeSettingsActivity = new LiteModeSettingsActivity();
-                                presentFragment(liteModeSettingsActivity);
-                                if ("videos".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(1024);
-                                }
-                                if ("gifs".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(2048);
-                                }
-                                if ("stickers".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(3);
-                                }
-                                if ("emoji".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(28700);
-                                }
-                                if ("effects".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(360928);
-                                }
-                                if ("call-animations".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(512);
-                                }
-                                if ("particles".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(131072);
-                                }
-                                if ("transitions".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToType(1);
-                                }
-                                return true;
-                            }
-                            if ("stars".equalsIgnoreCase(str)) {
-                                if ("top-up".equalsIgnoreCase(str2)) {
-                                    new StarsIntroActivity.StarsOptionsSheet(this.activity, null).show();
-                                } else if ("stats".equalsIgnoreCase(str2)) {
-                                    presentFragment(new BotStarsActivity(0, getUserConfig().getClientUserId()));
-                                } else if ("gift".equalsIgnoreCase(str2)) {
-                                    StarsController.getInstance(this.currentAccount).getGiftOptions();
-                                    UserSelectorBottomSheet.open(1, 0L, BirthdayController.getInstance(this.currentAccount).getState());
-                                } else if ("earn".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ChannelAffiliateProgramsFragment(getUserConfig().getClientUserId()));
-                                } else {
-                                    presentFragment(new StarsIntroActivity());
-                                }
-                            } else if ("premium".equalsIgnoreCase(str)) {
-                                presentFragment(new PremiumPreviewFragment("link"));
-                            } else {
-                                if ("business".equalsIgnoreCase(str)) {
-                                    presentFragment(new PremiumPreviewFragment(1, "link"));
-                                    if ("do-not-hide-ads".equalsIgnoreCase(str2)) {
-                                        scrollTo("showAdsRow");
-                                    }
-                                    return true;
-                                }
-                                if ("ton".equalsIgnoreCase(str)) {
-                                    presentFragment(new TONIntroActivity());
-                                } else if ("send-gift".equalsIgnoreCase(str)) {
-                                    if ("self".equalsIgnoreCase(str2)) {
-                                        new GiftSheet(this.activity, this.currentAccount, getUserConfig().getClientUserId(), null, null).show();
-                                    } else {
-                                        UserSelectorBottomSheet.open(0L, BirthdayController.getInstance(this.currentAccount).getState());
-                                    }
-                                } else if (!"ask-question".equalsIgnoreCase(str)) {
-                                    AlertsCreator.createSupportAlert(getLastFragment(), null).show();
-                                } else {
-                                    AlertsCreator.createSupportAlert(getLastFragment(), null).show();
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    if ("edit".equalsIgnoreCase(str)) {
-                        presentFragment(new UserInfoActivity());
-                        if ("first-name".equalsIgnoreCase(str2)) {
-                            scrollTo("firstNameRow");
-                        }
-                        if ("last-name".equalsIgnoreCase(str2)) {
-                            scrollTo("lastNameRow");
-                        }
-                        if ("bio".equalsIgnoreCase(str2)) {
-                            scrollTo("bioRow");
-                        }
-                        if ("birthday".equalsIgnoreCase(str2)) {
-                            scrollTo("birthdayRow");
-                        }
-                        if ("change-number".equalsIgnoreCase(str2)) {
-                            scrollTo("numberRow");
-                        }
-                        if ("username".equalsIgnoreCase(str2)) {
-                            scrollTo("usernameRow");
-                        }
-                        if ("channel".equalsIgnoreCase(str2)) {
-                            scrollTo("channelRow");
-                        }
-                        if ("add-account".equalsIgnoreCase(str2)) {
-                            scrollTo("addAccountRow");
-                        }
-                        if ("log-out".equalsIgnoreCase(str2)) {
-                            scrollTo("logoutRow");
-                        }
-                        return true;
-                    }
-                    if ("my-profile".equalsIgnoreCase(str)) {
-                        if ("edit".equalsIgnoreCase(str2)) {
-                            presentFragment(new UserInfoActivity());
-                        } else {
-                            bundle = new Bundle();
-                            bundle.putLong("user_id", getUserConfig().getClientUserId());
-                            bundle.putBoolean("my_profile", true);
-                            if ("gifts".equalsIgnoreCase(str2)) {
-                                bundle.putBoolean("open_gifts", true);
-                            }
-                            profileActivity = new ProfileActivity(bundle);
-                            if ("gifts".equalsIgnoreCase(str2)) {
-                                profileActivity.whenFullyVisible(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                LinkManager.$r8$lambda$LH95z6iiSbgUKZuFzNPo8_CwFi0(profileActivity);
-                                            }
-                                        }, 200L);
-                                    }
-                                });
-                            }
-                            if ("posts".equalsIgnoreCase(str2)) {
-                                profileActivity.whenFullyVisible(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                LinkManager.$r8$lambda$paHps_jeHUwNd7Rbor9CdgvlPiQ(profileActivity);
-                                            }
-                                        }, 200L);
-                                    }
-                                });
-                            }
-                            presentFragment(profileActivity);
-                        }
-                    } else {
-                        if ("notifications".equalsIgnoreCase(str)) {
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            presentFragment(new NotificationsSettingsActivity());
-                            if ("accounts".equalsIgnoreCase(str2)) {
-                                scrollTo("accountsAllRow");
-                            }
-                            if ("private-chats".equalsIgnoreCase(str2)) {
-                                scrollTo("privateRow");
-                            }
-                            if ("groups".equalsIgnoreCase(str2)) {
-                                scrollTo("groupRow");
-                            }
-                            if ("channels".equalsIgnoreCase(str2)) {
-                                scrollTo("channelsRow");
-                            }
-                            if ("stories".equalsIgnoreCase(str2)) {
-                                scrollTo("storiesRow");
-                            }
-                            if ("reactions".equalsIgnoreCase(str2)) {
-                                scrollTo("reactionsRow");
-                            }
-                            if ("in-app-sounds".equalsIgnoreCase(str2)) {
-                                scrollTo("inappSoundRow");
-                            }
-                            if ("in-app-vibrate".equalsIgnoreCase(str2)) {
-                                scrollTo("inappVibrateRow");
-                            }
-                            if ("in-app-preview".equalsIgnoreCase(str2)) {
-                                scrollTo("inappPreviewRow");
-                            }
-                            if ("in-chat-sounds".equalsIgnoreCase(str2)) {
-                                scrollTo("inchatSoundRow");
-                            }
-                            if ("in-app-popup".equalsIgnoreCase(str2)) {
-                                scrollTo("inappPriorityRow");
-                            }
-                            if ("show-badge-icon".equalsIgnoreCase(str2)) {
-                                scrollTo("badgeNumberShowRow");
-                            }
-                            if ("include-muted-chats".equalsIgnoreCase(str2)) {
-                                scrollTo("badgeNumberMutedRow");
-                            }
-                            if ("count-unread-messages".equalsIgnoreCase(str2)) {
-                                scrollTo("badgeNumberMessagesRow");
-                            }
-                            if ("new-contacts".equalsIgnoreCase(str2)) {
-                                scrollTo("contactJoinedRow");
-                            }
-                            if ("pinned-messages".equalsIgnoreCase(str2)) {
-                                scrollTo("pinnedMessageRow");
-                            }
-                            if ("reset".equalsIgnoreCase(str2)) {
-                                scrollTo("resetNotificationsRow");
-                            }
-                            return true;
-                        }
-                        if ("privacy".equalsIgnoreCase(str)) {
-                            if (!"data-settings".equalsIgnoreCase(str2)) {
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                        if (TextUtils.isEmpty(str3)) {
-                                            if (TextUtils.isEmpty(str3)) {
-                                            }
-                                            if (TextUtils.isEmpty(str3)) {
-                                            }
-                                            if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                            }
-                                            presentFragment(new PrivacySettingsActivity());
-                                            if ("blocked".equalsIgnoreCase(str2)) {
-                                                scrollTo("blockedRow");
-                                            }
-                                            if ("active-websites".equalsIgnoreCase(str2)) {
-                                                scrollTo("webSessionsRow");
-                                            }
-                                            if ("passcode".equalsIgnoreCase(str2)) {
-                                                scrollTo("passcodeRow");
-                                            }
-                                            if ("2sv".equalsIgnoreCase(str2)) {
-                                                scrollTo("passwordRow");
-                                            }
-                                            if ("passkey".equalsIgnoreCase(str2)) {
-                                                scrollTo("passkeysRow");
-                                            }
-                                            if ("auto-delete".equalsIgnoreCase(str2)) {
-                                                scrollTo("autoDeleteMesages");
-                                            }
-                                            if ("login-email".equalsIgnoreCase(str2)) {
-                                                scrollTo("emailLoginRow");
-                                            }
-                                            if ("phone-number".equalsIgnoreCase(str2)) {
-                                                scrollTo("phoneNumberRow");
-                                            }
-                                            if ("last-seen".equalsIgnoreCase(str2)) {
-                                                scrollTo("lastSeenRow");
-                                            }
-                                            if ("profile-photos".equalsIgnoreCase(str2)) {
-                                                scrollTo("profilePhotoRow");
-                                            }
-                                            if ("bio".equalsIgnoreCase(str2)) {
-                                                scrollTo("bioRow");
-                                            }
-                                            if ("gifts".equalsIgnoreCase(str2)) {
-                                                scrollTo("giftsRow");
-                                            }
-                                            if ("birthday".equalsIgnoreCase(str2)) {
-                                                scrollTo("birthdayRow");
-                                            }
-                                            if ("saved-music".equalsIgnoreCase(str2)) {
-                                                scrollTo("musicRow");
-                                            }
-                                            if ("forwards".equalsIgnoreCase(str2)) {
-                                                scrollTo("forwardsRow");
-                                            }
-                                            if ("calls".equalsIgnoreCase(str2)) {
-                                                scrollTo("callsRow");
-                                            }
-                                            if ("voice".equalsIgnoreCase(str2)) {
-                                                scrollTo("voicesRow");
-                                            }
-                                            if ("messages".equalsIgnoreCase(str2)) {
-                                                scrollTo("noncontactsRow");
-                                            }
-                                            if ("invites".equalsIgnoreCase(str2)) {
-                                                scrollTo("groupsRow");
-                                            }
-                                            if ("self-destruct".equalsIgnoreCase(str2)) {
-                                                scrollTo("deleteAccountRow");
-                                            }
-                                            if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                                scrollTo("newChatsRow");
-                                            }
-                                            if ("data-settings".equalsIgnoreCase(str2)) {
-                                                if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                    scrollTo("contactsSyncRow");
-                                                }
-                                                if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                    scrollTo("contactsDeleteRow");
-                                                }
-                                                if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                    scrollTo("contactsSuggestRow");
-                                                }
-                                                if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                    scrollTo("paymentsClearRow");
-                                                }
-                                                if ("link-previews".equalsIgnoreCase(str3)) {
-                                                    scrollTo("secretWebpageRow");
-                                                }
-                                                if ("map-provider".equalsIgnoreCase(str3)) {
-                                                    scrollTo("secretMapRow");
-                                                }
-                                            }
-                                            return true;
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                        }
-                                        presentFragment(new PrivacySettingsActivity());
-                                        if ("blocked".equalsIgnoreCase(str2)) {
-                                            scrollTo("blockedRow");
-                                        }
-                                        if ("active-websites".equalsIgnoreCase(str2)) {
-                                            scrollTo("webSessionsRow");
-                                        }
-                                        if ("passcode".equalsIgnoreCase(str2)) {
-                                            scrollTo("passcodeRow");
-                                        }
-                                        if ("2sv".equalsIgnoreCase(str2)) {
-                                            scrollTo("passwordRow");
-                                        }
-                                        if ("passkey".equalsIgnoreCase(str2)) {
-                                            scrollTo("passkeysRow");
-                                        }
-                                        if ("auto-delete".equalsIgnoreCase(str2)) {
-                                            scrollTo("autoDeleteMesages");
-                                        }
-                                        if ("login-email".equalsIgnoreCase(str2)) {
-                                            scrollTo("emailLoginRow");
-                                        }
-                                        if ("phone-number".equalsIgnoreCase(str2)) {
-                                            scrollTo("phoneNumberRow");
-                                        }
-                                        if ("last-seen".equalsIgnoreCase(str2)) {
-                                            scrollTo("lastSeenRow");
-                                        }
-                                        if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            scrollTo("profilePhotoRow");
-                                        }
-                                        if ("bio".equalsIgnoreCase(str2)) {
-                                            scrollTo("bioRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2)) {
-                                            scrollTo("giftsRow");
-                                        }
-                                        if ("birthday".equalsIgnoreCase(str2)) {
-                                            scrollTo("birthdayRow");
-                                        }
-                                        if ("saved-music".equalsIgnoreCase(str2)) {
-                                            scrollTo("musicRow");
-                                        }
-                                        if ("forwards".equalsIgnoreCase(str2)) {
-                                            scrollTo("forwardsRow");
-                                        }
-                                        if ("calls".equalsIgnoreCase(str2)) {
-                                            scrollTo("callsRow");
-                                        }
-                                        if ("voice".equalsIgnoreCase(str2)) {
-                                            scrollTo("voicesRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2)) {
-                                            scrollTo("noncontactsRow");
-                                        }
-                                        if ("invites".equalsIgnoreCase(str2)) {
-                                            scrollTo("groupsRow");
-                                        }
-                                        if ("self-destruct".equalsIgnoreCase(str2)) {
-                                            scrollTo("deleteAccountRow");
-                                        }
-                                        if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                            scrollTo("newChatsRow");
-                                        }
-                                        if ("data-settings".equalsIgnoreCase(str2)) {
-                                            if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSyncRow");
-                                            }
-                                            if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsDeleteRow");
-                                            }
-                                            if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSuggestRow");
-                                            }
-                                            if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                scrollTo("paymentsClearRow");
-                                            }
-                                            if ("link-previews".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretWebpageRow");
-                                            }
-                                            if ("map-provider".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretMapRow");
-                                            }
-                                        }
-                                        return true;
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                        }
-                                        presentFragment(new PrivacySettingsActivity());
-                                        if ("blocked".equalsIgnoreCase(str2)) {
-                                            scrollTo("blockedRow");
-                                        }
-                                        if ("active-websites".equalsIgnoreCase(str2)) {
-                                            scrollTo("webSessionsRow");
-                                        }
-                                        if ("passcode".equalsIgnoreCase(str2)) {
-                                            scrollTo("passcodeRow");
-                                        }
-                                        if ("2sv".equalsIgnoreCase(str2)) {
-                                            scrollTo("passwordRow");
-                                        }
-                                        if ("passkey".equalsIgnoreCase(str2)) {
-                                            scrollTo("passkeysRow");
-                                        }
-                                        if ("auto-delete".equalsIgnoreCase(str2)) {
-                                            scrollTo("autoDeleteMesages");
-                                        }
-                                        if ("login-email".equalsIgnoreCase(str2)) {
-                                            scrollTo("emailLoginRow");
-                                        }
-                                        if ("phone-number".equalsIgnoreCase(str2)) {
-                                            scrollTo("phoneNumberRow");
-                                        }
-                                        if ("last-seen".equalsIgnoreCase(str2)) {
-                                            scrollTo("lastSeenRow");
-                                        }
-                                        if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            scrollTo("profilePhotoRow");
-                                        }
-                                        if ("bio".equalsIgnoreCase(str2)) {
-                                            scrollTo("bioRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2)) {
-                                            scrollTo("giftsRow");
-                                        }
-                                        if ("birthday".equalsIgnoreCase(str2)) {
-                                            scrollTo("birthdayRow");
-                                        }
-                                        if ("saved-music".equalsIgnoreCase(str2)) {
-                                            scrollTo("musicRow");
-                                        }
-                                        if ("forwards".equalsIgnoreCase(str2)) {
-                                            scrollTo("forwardsRow");
-                                        }
-                                        if ("calls".equalsIgnoreCase(str2)) {
-                                            scrollTo("callsRow");
-                                        }
-                                        if ("voice".equalsIgnoreCase(str2)) {
-                                            scrollTo("voicesRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2)) {
-                                            scrollTo("noncontactsRow");
-                                        }
-                                        if ("invites".equalsIgnoreCase(str2)) {
-                                            scrollTo("groupsRow");
-                                        }
-                                        if ("self-destruct".equalsIgnoreCase(str2)) {
-                                            scrollTo("deleteAccountRow");
-                                        }
-                                        if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                            scrollTo("newChatsRow");
-                                        }
-                                        if ("data-settings".equalsIgnoreCase(str2)) {
-                                            if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSyncRow");
-                                            }
-                                            if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsDeleteRow");
-                                            }
-                                            if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSuggestRow");
-                                            }
-                                            if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                scrollTo("paymentsClearRow");
-                                            }
-                                            if ("link-previews".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretWebpageRow");
-                                            }
-                                            if ("map-provider".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretMapRow");
-                                            }
-                                        }
-                                        return true;
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                        }
-                                        presentFragment(new PrivacySettingsActivity());
-                                        if ("blocked".equalsIgnoreCase(str2)) {
-                                            scrollTo("blockedRow");
-                                        }
-                                        if ("active-websites".equalsIgnoreCase(str2)) {
-                                            scrollTo("webSessionsRow");
-                                        }
-                                        if ("passcode".equalsIgnoreCase(str2)) {
-                                            scrollTo("passcodeRow");
-                                        }
-                                        if ("2sv".equalsIgnoreCase(str2)) {
-                                            scrollTo("passwordRow");
-                                        }
-                                        if ("passkey".equalsIgnoreCase(str2)) {
-                                            scrollTo("passkeysRow");
-                                        }
-                                        if ("auto-delete".equalsIgnoreCase(str2)) {
-                                            scrollTo("autoDeleteMesages");
-                                        }
-                                        if ("login-email".equalsIgnoreCase(str2)) {
-                                            scrollTo("emailLoginRow");
-                                        }
-                                        if ("phone-number".equalsIgnoreCase(str2)) {
-                                            scrollTo("phoneNumberRow");
-                                        }
-                                        if ("last-seen".equalsIgnoreCase(str2)) {
-                                            scrollTo("lastSeenRow");
-                                        }
-                                        if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            scrollTo("profilePhotoRow");
-                                        }
-                                        if ("bio".equalsIgnoreCase(str2)) {
-                                            scrollTo("bioRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2)) {
-                                            scrollTo("giftsRow");
-                                        }
-                                        if ("birthday".equalsIgnoreCase(str2)) {
-                                            scrollTo("birthdayRow");
-                                        }
-                                        if ("saved-music".equalsIgnoreCase(str2)) {
-                                            scrollTo("musicRow");
-                                        }
-                                        if ("forwards".equalsIgnoreCase(str2)) {
-                                            scrollTo("forwardsRow");
-                                        }
-                                        if ("calls".equalsIgnoreCase(str2)) {
-                                            scrollTo("callsRow");
-                                        }
-                                        if ("voice".equalsIgnoreCase(str2)) {
-                                            scrollTo("voicesRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2)) {
-                                            scrollTo("noncontactsRow");
-                                        }
-                                        if ("invites".equalsIgnoreCase(str2)) {
-                                            scrollTo("groupsRow");
-                                        }
-                                        if ("self-destruct".equalsIgnoreCase(str2)) {
-                                            scrollTo("deleteAccountRow");
-                                        }
-                                        if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                            scrollTo("newChatsRow");
-                                        }
-                                        if ("data-settings".equalsIgnoreCase(str2)) {
-                                            if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSyncRow");
-                                            }
-                                            if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsDeleteRow");
-                                            }
-                                            if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSuggestRow");
-                                            }
-                                            if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                scrollTo("paymentsClearRow");
-                                            }
-                                            if ("link-previews".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretWebpageRow");
-                                            }
-                                            if ("map-provider".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretMapRow");
-                                            }
-                                        }
-                                        return true;
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                }
-                                presentFragment(new PrivacySettingsActivity());
-                                if ("blocked".equalsIgnoreCase(str2)) {
-                                    scrollTo("blockedRow");
-                                }
-                                if ("active-websites".equalsIgnoreCase(str2)) {
-                                    scrollTo("webSessionsRow");
-                                }
-                                if ("passcode".equalsIgnoreCase(str2)) {
-                                    scrollTo("passcodeRow");
-                                }
-                                if ("2sv".equalsIgnoreCase(str2)) {
-                                    scrollTo("passwordRow");
-                                }
-                                if ("passkey".equalsIgnoreCase(str2)) {
-                                    scrollTo("passkeysRow");
-                                }
-                                if ("auto-delete".equalsIgnoreCase(str2)) {
-                                    scrollTo("autoDeleteMesages");
-                                }
-                                if ("login-email".equalsIgnoreCase(str2)) {
-                                    scrollTo("emailLoginRow");
-                                }
-                                if ("phone-number".equalsIgnoreCase(str2)) {
-                                    scrollTo("phoneNumberRow");
-                                }
-                                if ("last-seen".equalsIgnoreCase(str2)) {
-                                    scrollTo("lastSeenRow");
-                                }
-                                if ("profile-photos".equalsIgnoreCase(str2)) {
-                                    scrollTo("profilePhotoRow");
-                                }
-                                if ("bio".equalsIgnoreCase(str2)) {
-                                    scrollTo("bioRow");
-                                }
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    scrollTo("giftsRow");
-                                }
-                                if ("birthday".equalsIgnoreCase(str2)) {
-                                    scrollTo("birthdayRow");
-                                }
-                                if ("saved-music".equalsIgnoreCase(str2)) {
-                                    scrollTo("musicRow");
-                                }
-                                if ("forwards".equalsIgnoreCase(str2)) {
-                                    scrollTo("forwardsRow");
-                                }
-                                if ("calls".equalsIgnoreCase(str2)) {
-                                    scrollTo("callsRow");
-                                }
-                                if ("voice".equalsIgnoreCase(str2)) {
-                                    scrollTo("voicesRow");
-                                }
-                                if ("messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("noncontactsRow");
-                                }
-                                if ("invites".equalsIgnoreCase(str2)) {
-                                    scrollTo("groupsRow");
-                                }
-                                if ("self-destruct".equalsIgnoreCase(str2)) {
-                                    scrollTo("deleteAccountRow");
-                                }
-                                if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                    scrollTo("newChatsRow");
-                                }
-                                if ("data-settings".equalsIgnoreCase(str2)) {
-                                    if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSyncRow");
-                                    }
-                                    if ("delete-synced".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsDeleteRow");
-                                    }
-                                    if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSuggestRow");
-                                    }
-                                    if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                        scrollTo("paymentsClearRow");
-                                    }
-                                    if ("link-previews".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretWebpageRow");
-                                    }
-                                    if ("map-provider".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretMapRow");
-                                    }
-                                }
-                                return true;
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (TextUtils.isEmpty(str3)) {
-                                        }
-                                        if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                        }
-                                        presentFragment(new PrivacySettingsActivity());
-                                        if ("blocked".equalsIgnoreCase(str2)) {
-                                            scrollTo("blockedRow");
-                                        }
-                                        if ("active-websites".equalsIgnoreCase(str2)) {
-                                            scrollTo("webSessionsRow");
-                                        }
-                                        if ("passcode".equalsIgnoreCase(str2)) {
-                                            scrollTo("passcodeRow");
-                                        }
-                                        if ("2sv".equalsIgnoreCase(str2)) {
-                                            scrollTo("passwordRow");
-                                        }
-                                        if ("passkey".equalsIgnoreCase(str2)) {
-                                            scrollTo("passkeysRow");
-                                        }
-                                        if ("auto-delete".equalsIgnoreCase(str2)) {
-                                            scrollTo("autoDeleteMesages");
-                                        }
-                                        if ("login-email".equalsIgnoreCase(str2)) {
-                                            scrollTo("emailLoginRow");
-                                        }
-                                        if ("phone-number".equalsIgnoreCase(str2)) {
-                                            scrollTo("phoneNumberRow");
-                                        }
-                                        if ("last-seen".equalsIgnoreCase(str2)) {
-                                            scrollTo("lastSeenRow");
-                                        }
-                                        if ("profile-photos".equalsIgnoreCase(str2)) {
-                                            scrollTo("profilePhotoRow");
-                                        }
-                                        if ("bio".equalsIgnoreCase(str2)) {
-                                            scrollTo("bioRow");
-                                        }
-                                        if ("gifts".equalsIgnoreCase(str2)) {
-                                            scrollTo("giftsRow");
-                                        }
-                                        if ("birthday".equalsIgnoreCase(str2)) {
-                                            scrollTo("birthdayRow");
-                                        }
-                                        if ("saved-music".equalsIgnoreCase(str2)) {
-                                            scrollTo("musicRow");
-                                        }
-                                        if ("forwards".equalsIgnoreCase(str2)) {
-                                            scrollTo("forwardsRow");
-                                        }
-                                        if ("calls".equalsIgnoreCase(str2)) {
-                                            scrollTo("callsRow");
-                                        }
-                                        if ("voice".equalsIgnoreCase(str2)) {
-                                            scrollTo("voicesRow");
-                                        }
-                                        if ("messages".equalsIgnoreCase(str2)) {
-                                            scrollTo("noncontactsRow");
-                                        }
-                                        if ("invites".equalsIgnoreCase(str2)) {
-                                            scrollTo("groupsRow");
-                                        }
-                                        if ("self-destruct".equalsIgnoreCase(str2)) {
-                                            scrollTo("deleteAccountRow");
-                                        }
-                                        if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                            scrollTo("newChatsRow");
-                                        }
-                                        if ("data-settings".equalsIgnoreCase(str2)) {
-                                            if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSyncRow");
-                                            }
-                                            if ("delete-synced".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsDeleteRow");
-                                            }
-                                            if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                                scrollTo("contactsSuggestRow");
-                                            }
-                                            if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                                scrollTo("paymentsClearRow");
-                                            }
-                                            if ("link-previews".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretWebpageRow");
-                                            }
-                                            if ("map-provider".equalsIgnoreCase(str3)) {
-                                                scrollTo("secretMapRow");
-                                            }
-                                        }
-                                        return true;
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                }
-                                presentFragment(new PrivacySettingsActivity());
-                                if ("blocked".equalsIgnoreCase(str2)) {
-                                    scrollTo("blockedRow");
-                                }
-                                if ("active-websites".equalsIgnoreCase(str2)) {
-                                    scrollTo("webSessionsRow");
-                                }
-                                if ("passcode".equalsIgnoreCase(str2)) {
-                                    scrollTo("passcodeRow");
-                                }
-                                if ("2sv".equalsIgnoreCase(str2)) {
-                                    scrollTo("passwordRow");
-                                }
-                                if ("passkey".equalsIgnoreCase(str2)) {
-                                    scrollTo("passkeysRow");
-                                }
-                                if ("auto-delete".equalsIgnoreCase(str2)) {
-                                    scrollTo("autoDeleteMesages");
-                                }
-                                if ("login-email".equalsIgnoreCase(str2)) {
-                                    scrollTo("emailLoginRow");
-                                }
-                                if ("phone-number".equalsIgnoreCase(str2)) {
-                                    scrollTo("phoneNumberRow");
-                                }
-                                if ("last-seen".equalsIgnoreCase(str2)) {
-                                    scrollTo("lastSeenRow");
-                                }
-                                if ("profile-photos".equalsIgnoreCase(str2)) {
-                                    scrollTo("profilePhotoRow");
-                                }
-                                if ("bio".equalsIgnoreCase(str2)) {
-                                    scrollTo("bioRow");
-                                }
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    scrollTo("giftsRow");
-                                }
-                                if ("birthday".equalsIgnoreCase(str2)) {
-                                    scrollTo("birthdayRow");
-                                }
-                                if ("saved-music".equalsIgnoreCase(str2)) {
-                                    scrollTo("musicRow");
-                                }
-                                if ("forwards".equalsIgnoreCase(str2)) {
-                                    scrollTo("forwardsRow");
-                                }
-                                if ("calls".equalsIgnoreCase(str2)) {
-                                    scrollTo("callsRow");
-                                }
-                                if ("voice".equalsIgnoreCase(str2)) {
-                                    scrollTo("voicesRow");
-                                }
-                                if ("messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("noncontactsRow");
-                                }
-                                if ("invites".equalsIgnoreCase(str2)) {
-                                    scrollTo("groupsRow");
-                                }
-                                if ("self-destruct".equalsIgnoreCase(str2)) {
-                                    scrollTo("deleteAccountRow");
-                                }
-                                if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                    scrollTo("newChatsRow");
-                                }
-                                if ("data-settings".equalsIgnoreCase(str2)) {
-                                    if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSyncRow");
-                                    }
-                                    if ("delete-synced".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsDeleteRow");
-                                    }
-                                    if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSuggestRow");
-                                    }
-                                    if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                        scrollTo("paymentsClearRow");
-                                    }
-                                    if ("link-previews".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretWebpageRow");
-                                    }
-                                    if ("map-provider".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretMapRow");
-                                    }
-                                }
-                                return true;
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                                if (TextUtils.isEmpty(str3)) {
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (TextUtils.isEmpty(str3)) {
-                                    }
-                                    if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                    }
-                                    presentFragment(new PrivacySettingsActivity());
-                                    if ("blocked".equalsIgnoreCase(str2)) {
-                                        scrollTo("blockedRow");
-                                    }
-                                    if ("active-websites".equalsIgnoreCase(str2)) {
-                                        scrollTo("webSessionsRow");
-                                    }
-                                    if ("passcode".equalsIgnoreCase(str2)) {
-                                        scrollTo("passcodeRow");
-                                    }
-                                    if ("2sv".equalsIgnoreCase(str2)) {
-                                        scrollTo("passwordRow");
-                                    }
-                                    if ("passkey".equalsIgnoreCase(str2)) {
-                                        scrollTo("passkeysRow");
-                                    }
-                                    if ("auto-delete".equalsIgnoreCase(str2)) {
-                                        scrollTo("autoDeleteMesages");
-                                    }
-                                    if ("login-email".equalsIgnoreCase(str2)) {
-                                        scrollTo("emailLoginRow");
-                                    }
-                                    if ("phone-number".equalsIgnoreCase(str2)) {
-                                        scrollTo("phoneNumberRow");
-                                    }
-                                    if ("last-seen".equalsIgnoreCase(str2)) {
-                                        scrollTo("lastSeenRow");
-                                    }
-                                    if ("profile-photos".equalsIgnoreCase(str2)) {
-                                        scrollTo("profilePhotoRow");
-                                    }
-                                    if ("bio".equalsIgnoreCase(str2)) {
-                                        scrollTo("bioRow");
-                                    }
-                                    if ("gifts".equalsIgnoreCase(str2)) {
-                                        scrollTo("giftsRow");
-                                    }
-                                    if ("birthday".equalsIgnoreCase(str2)) {
-                                        scrollTo("birthdayRow");
-                                    }
-                                    if ("saved-music".equalsIgnoreCase(str2)) {
-                                        scrollTo("musicRow");
-                                    }
-                                    if ("forwards".equalsIgnoreCase(str2)) {
-                                        scrollTo("forwardsRow");
-                                    }
-                                    if ("calls".equalsIgnoreCase(str2)) {
-                                        scrollTo("callsRow");
-                                    }
-                                    if ("voice".equalsIgnoreCase(str2)) {
-                                        scrollTo("voicesRow");
-                                    }
-                                    if ("messages".equalsIgnoreCase(str2)) {
-                                        scrollTo("noncontactsRow");
-                                    }
-                                    if ("invites".equalsIgnoreCase(str2)) {
-                                        scrollTo("groupsRow");
-                                    }
-                                    if ("self-destruct".equalsIgnoreCase(str2)) {
-                                        scrollTo("deleteAccountRow");
-                                    }
-                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                        scrollTo("newChatsRow");
-                                    }
-                                    if ("data-settings".equalsIgnoreCase(str2)) {
-                                        if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSyncRow");
-                                        }
-                                        if ("delete-synced".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsDeleteRow");
-                                        }
-                                        if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                            scrollTo("contactsSuggestRow");
-                                        }
-                                        if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                            scrollTo("paymentsClearRow");
-                                        }
-                                        if ("link-previews".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretWebpageRow");
-                                        }
-                                        if ("map-provider".equalsIgnoreCase(str3)) {
-                                            scrollTo("secretMapRow");
-                                        }
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                }
-                                presentFragment(new PrivacySettingsActivity());
-                                if ("blocked".equalsIgnoreCase(str2)) {
-                                    scrollTo("blockedRow");
-                                }
-                                if ("active-websites".equalsIgnoreCase(str2)) {
-                                    scrollTo("webSessionsRow");
-                                }
-                                if ("passcode".equalsIgnoreCase(str2)) {
-                                    scrollTo("passcodeRow");
-                                }
-                                if ("2sv".equalsIgnoreCase(str2)) {
-                                    scrollTo("passwordRow");
-                                }
-                                if ("passkey".equalsIgnoreCase(str2)) {
-                                    scrollTo("passkeysRow");
-                                }
-                                if ("auto-delete".equalsIgnoreCase(str2)) {
-                                    scrollTo("autoDeleteMesages");
-                                }
-                                if ("login-email".equalsIgnoreCase(str2)) {
-                                    scrollTo("emailLoginRow");
-                                }
-                                if ("phone-number".equalsIgnoreCase(str2)) {
-                                    scrollTo("phoneNumberRow");
-                                }
-                                if ("last-seen".equalsIgnoreCase(str2)) {
-                                    scrollTo("lastSeenRow");
-                                }
-                                if ("profile-photos".equalsIgnoreCase(str2)) {
-                                    scrollTo("profilePhotoRow");
-                                }
-                                if ("bio".equalsIgnoreCase(str2)) {
-                                    scrollTo("bioRow");
-                                }
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    scrollTo("giftsRow");
-                                }
-                                if ("birthday".equalsIgnoreCase(str2)) {
-                                    scrollTo("birthdayRow");
-                                }
-                                if ("saved-music".equalsIgnoreCase(str2)) {
-                                    scrollTo("musicRow");
-                                }
-                                if ("forwards".equalsIgnoreCase(str2)) {
-                                    scrollTo("forwardsRow");
-                                }
-                                if ("calls".equalsIgnoreCase(str2)) {
-                                    scrollTo("callsRow");
-                                }
-                                if ("voice".equalsIgnoreCase(str2)) {
-                                    scrollTo("voicesRow");
-                                }
-                                if ("messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("noncontactsRow");
-                                }
-                                if ("invites".equalsIgnoreCase(str2)) {
-                                    scrollTo("groupsRow");
-                                }
-                                if ("self-destruct".equalsIgnoreCase(str2)) {
-                                    scrollTo("deleteAccountRow");
-                                }
-                                if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                    scrollTo("newChatsRow");
-                                }
-                                if ("data-settings".equalsIgnoreCase(str2)) {
-                                    if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSyncRow");
-                                    }
-                                    if ("delete-synced".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsDeleteRow");
-                                    }
-                                    if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSuggestRow");
-                                    }
-                                    if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                        scrollTo("paymentsClearRow");
-                                    }
-                                    if ("link-previews".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretWebpageRow");
-                                    }
-                                    if ("map-provider".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretMapRow");
-                                    }
-                                }
-                                return true;
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                                }
-                                presentFragment(new PrivacySettingsActivity());
-                                if ("blocked".equalsIgnoreCase(str2)) {
-                                    scrollTo("blockedRow");
-                                }
-                                if ("active-websites".equalsIgnoreCase(str2)) {
-                                    scrollTo("webSessionsRow");
-                                }
-                                if ("passcode".equalsIgnoreCase(str2)) {
-                                    scrollTo("passcodeRow");
-                                }
-                                if ("2sv".equalsIgnoreCase(str2)) {
-                                    scrollTo("passwordRow");
-                                }
-                                if ("passkey".equalsIgnoreCase(str2)) {
-                                    scrollTo("passkeysRow");
-                                }
-                                if ("auto-delete".equalsIgnoreCase(str2)) {
-                                    scrollTo("autoDeleteMesages");
-                                }
-                                if ("login-email".equalsIgnoreCase(str2)) {
-                                    scrollTo("emailLoginRow");
-                                }
-                                if ("phone-number".equalsIgnoreCase(str2)) {
-                                    scrollTo("phoneNumberRow");
-                                }
-                                if ("last-seen".equalsIgnoreCase(str2)) {
-                                    scrollTo("lastSeenRow");
-                                }
-                                if ("profile-photos".equalsIgnoreCase(str2)) {
-                                    scrollTo("profilePhotoRow");
-                                }
-                                if ("bio".equalsIgnoreCase(str2)) {
-                                    scrollTo("bioRow");
-                                }
-                                if ("gifts".equalsIgnoreCase(str2)) {
-                                    scrollTo("giftsRow");
-                                }
-                                if ("birthday".equalsIgnoreCase(str2)) {
-                                    scrollTo("birthdayRow");
-                                }
-                                if ("saved-music".equalsIgnoreCase(str2)) {
-                                    scrollTo("musicRow");
-                                }
-                                if ("forwards".equalsIgnoreCase(str2)) {
-                                    scrollTo("forwardsRow");
-                                }
-                                if ("calls".equalsIgnoreCase(str2)) {
-                                    scrollTo("callsRow");
-                                }
-                                if ("voice".equalsIgnoreCase(str2)) {
-                                    scrollTo("voicesRow");
-                                }
-                                if ("messages".equalsIgnoreCase(str2)) {
-                                    scrollTo("noncontactsRow");
-                                }
-                                if ("invites".equalsIgnoreCase(str2)) {
-                                    scrollTo("groupsRow");
-                                }
-                                if ("self-destruct".equalsIgnoreCase(str2)) {
-                                    scrollTo("deleteAccountRow");
-                                }
-                                if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                    scrollTo("newChatsRow");
-                                }
-                                if ("data-settings".equalsIgnoreCase(str2)) {
-                                    if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSyncRow");
-                                    }
-                                    if ("delete-synced".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsDeleteRow");
-                                    }
-                                    if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                        scrollTo("contactsSuggestRow");
-                                    }
-                                    if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                        scrollTo("paymentsClearRow");
-                                    }
-                                    if ("link-previews".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretWebpageRow");
-                                    }
-                                    if ("map-provider".equalsIgnoreCase(str3)) {
-                                        scrollTo("secretMapRow");
-                                    }
-                                }
-                                return true;
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            if (TextUtils.isEmpty(str3)) {
-                            }
-                            if (MessagesController.getInstance(this.currentAccount).autoarchiveAvailable) {
-                            }
-                            presentFragment(new PrivacySettingsActivity());
-                            if ("blocked".equalsIgnoreCase(str2)) {
-                                scrollTo("blockedRow");
-                            }
-                            if ("active-websites".equalsIgnoreCase(str2)) {
-                                scrollTo("webSessionsRow");
-                            }
-                            if ("passcode".equalsIgnoreCase(str2)) {
-                                scrollTo("passcodeRow");
-                            }
-                            if ("2sv".equalsIgnoreCase(str2)) {
-                                scrollTo("passwordRow");
-                            }
-                            if ("passkey".equalsIgnoreCase(str2)) {
-                                scrollTo("passkeysRow");
-                            }
-                            if ("auto-delete".equalsIgnoreCase(str2)) {
-                                scrollTo("autoDeleteMesages");
-                            }
-                            if ("login-email".equalsIgnoreCase(str2)) {
-                                scrollTo("emailLoginRow");
-                            }
-                            if ("phone-number".equalsIgnoreCase(str2)) {
-                                scrollTo("phoneNumberRow");
-                            }
-                            if ("last-seen".equalsIgnoreCase(str2)) {
-                                scrollTo("lastSeenRow");
-                            }
-                            if ("profile-photos".equalsIgnoreCase(str2)) {
-                                scrollTo("profilePhotoRow");
-                            }
-                            if ("bio".equalsIgnoreCase(str2)) {
-                                scrollTo("bioRow");
-                            }
-                            if ("gifts".equalsIgnoreCase(str2)) {
-                                scrollTo("giftsRow");
-                            }
-                            if ("birthday".equalsIgnoreCase(str2)) {
-                                scrollTo("birthdayRow");
-                            }
-                            if ("saved-music".equalsIgnoreCase(str2)) {
-                                scrollTo("musicRow");
-                            }
-                            if ("forwards".equalsIgnoreCase(str2)) {
-                                scrollTo("forwardsRow");
-                            }
-                            if ("calls".equalsIgnoreCase(str2)) {
-                                scrollTo("callsRow");
-                            }
-                            if ("voice".equalsIgnoreCase(str2)) {
-                                scrollTo("voicesRow");
-                            }
-                            if ("messages".equalsIgnoreCase(str2)) {
-                                scrollTo("noncontactsRow");
-                            }
-                            if ("invites".equalsIgnoreCase(str2)) {
-                                scrollTo("groupsRow");
-                            }
-                            if ("self-destruct".equalsIgnoreCase(str2)) {
-                                scrollTo("deleteAccountRow");
-                            }
-                            if ("archive-and-mute".equalsIgnoreCase(str2)) {
-                                scrollTo("newChatsRow");
-                            }
-                            if ("data-settings".equalsIgnoreCase(str2)) {
-                                if ("sync-contacts".equalsIgnoreCase(str3)) {
-                                    scrollTo("contactsSyncRow");
-                                }
-                                if ("delete-synced".equalsIgnoreCase(str3)) {
-                                    scrollTo("contactsDeleteRow");
-                                }
-                                if ("suggest-contacts".equalsIgnoreCase(str3)) {
-                                    scrollTo("contactsSuggestRow");
-                                }
-                                if ("clear-payment-info".equalsIgnoreCase(str3)) {
-                                    scrollTo("paymentsClearRow");
-                                }
-                                if ("link-previews".equalsIgnoreCase(str3)) {
-                                    scrollTo("secretWebpageRow");
-                                }
-                                if ("map-provider".equalsIgnoreCase(str3)) {
-                                    scrollTo("secretMapRow");
-                                }
-                            }
-                            return true;
-                        }
-                        if ("data".equalsIgnoreCase(str)) {
-                            if ("storage".equalsIgnoreCase(str2)) {
-                                "clear-cache".equalsIgnoreCase(str3);
-                                presentFragment(new CacheControlActivity());
-                            } else {
-                                if ("usage".equalsIgnoreCase(str2)) {
-                                    dataUsage2Activity = new DataUsage2Activity();
-                                    presentFragment(dataUsage2Activity);
-                                    if ("mobile".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.selectTab(1);
-                                    }
-                                    if ("wifi".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.selectTab(2);
-                                    }
-                                    if ("roaming".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.selectTab(3);
-                                    }
-                                    if ("reset".equalsIgnoreCase(str3)) {
-                                        dataUsage2Activity.scrollToReset();
-                                    }
-                                    return true;
-                                }
-                                i = 2;
-                                if ("auto-download".equalsIgnoreCase(str2)) {
-                                    if (!"mobile".equalsIgnoreCase(str3)) {
-                                    }
-                                    if ("mobile".equalsIgnoreCase(str3)) {
-                                        i = 0;
-                                    } else if ("wifi".equalsIgnoreCase(str3)) {
-                                        i = 1;
-                                    } else if (!"roaming".equalsIgnoreCase(str3)) {
-                                        i = 0;
-                                    }
-                                    presentFragment(new DataAutoDownloadActivity(i));
-                                    if ("enable".equalsIgnoreCase(str4)) {
-                                        scrollTo("autoDownloadRow");
-                                    }
-                                    if ("usage".equalsIgnoreCase(str4)) {
-                                        scrollTo("usageProgressRow");
-                                    }
-                                    if ("photos".equalsIgnoreCase(str4)) {
-                                        scrollTo("photosRow");
-                                    }
-                                    if ("stories".equalsIgnoreCase(str4)) {
-                                        scrollTo("storiesRow");
-                                    }
-                                    if ("videos".equalsIgnoreCase(str4)) {
-                                        scrollTo("videosRow");
-                                    }
-                                    if ("files".equalsIgnoreCase(str4)) {
-                                        scrollTo("filesRow");
-                                    }
-                                    return true;
-                                }
-                                if (TextUtils.isEmpty(str4)) {
-                                }
-                                if (TextUtils.isEmpty(str3)) {
-                                }
-                                if ("pause-music".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("pauseOnMediaRow");
-                                } else if ("pause-music-on-record".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("pauseOnRecordRow");
-                                } else if ("raise-to-listen".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("raiseToListenRow");
-                                } else if ("raise-to-speak".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("raiseToSpeakRow");
-                                } else if ("show-18-contnet".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ThemeActivity(0));
-                                    scrollTo("sensitiveContentRow");
-                                } else {
-                                    presentFragment(new DataSettingsActivity());
-                                    if ("save-to-photos".equalsIgnoreCase(str2)) {
-                                        if ("chats".equalsIgnoreCase(str3)) {
-                                            scrollTo("saveToGalleryPeerRow");
-                                        }
-                                        if ("groups".equalsIgnoreCase(str3)) {
-                                            scrollTo("saveToGalleryGroupsRow");
-                                        }
-                                        if ("channels".equalsIgnoreCase(str3)) {
-                                            scrollTo("saveToGalleryChannelsRow");
-                                        }
-                                    }
-                                    if ("use-less-data".equalsIgnoreCase(str2)) {
-                                        scrollTo("useLessDataForCallsRow");
-                                    }
-                                    if ("proxy".equalsIgnoreCase(str2)) {
-                                        scrollTo("proxyRow");
-                                    }
-                                    return true;
-                                }
-                            }
-                        } else {
-                            if ("appearance".equalsIgnoreCase(str)) {
-                                if (!"themes".equalsIgnoreCase(str2)) {
-                                }
-                                presentFragment(new ThemeActivity(3));
-                                if ("create".equalsIgnoreCase(str3)) {
-                                    scrollTo("createNewThemeRow");
-                                }
-                                return true;
-                            }
-                            if ("power-saving".equalsIgnoreCase(str)) {
-                                liteModeSettingsActivity = new LiteModeSettingsActivity();
-                                presentFragment(liteModeSettingsActivity);
-                                if ("videos".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(1024);
-                                }
-                                if ("gifs".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(2048);
-                                }
-                                if ("stickers".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(3);
-                                }
-                                if ("emoji".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(28700);
-                                }
-                                if ("effects".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(360928);
-                                }
-                                if ("call-animations".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(512);
-                                }
-                                if ("particles".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToFlags(131072);
-                                }
-                                if ("transitions".equalsIgnoreCase(str2)) {
-                                    liteModeSettingsActivity.scrollToType(1);
-                                }
-                                return true;
-                            }
-                            if ("stars".equalsIgnoreCase(str)) {
-                                if ("top-up".equalsIgnoreCase(str2)) {
-                                    new StarsIntroActivity.StarsOptionsSheet(this.activity, null).show();
-                                } else if ("stats".equalsIgnoreCase(str2)) {
-                                    presentFragment(new BotStarsActivity(0, getUserConfig().getClientUserId()));
-                                } else if ("gift".equalsIgnoreCase(str2)) {
-                                    StarsController.getInstance(this.currentAccount).getGiftOptions();
-                                    UserSelectorBottomSheet.open(1, 0L, BirthdayController.getInstance(this.currentAccount).getState());
-                                } else if ("earn".equalsIgnoreCase(str2)) {
-                                    presentFragment(new ChannelAffiliateProgramsFragment(getUserConfig().getClientUserId()));
-                                } else {
-                                    presentFragment(new StarsIntroActivity());
-                                }
-                            } else if ("premium".equalsIgnoreCase(str)) {
-                                presentFragment(new PremiumPreviewFragment("link"));
-                            } else {
-                                if ("business".equalsIgnoreCase(str)) {
-                                    presentFragment(new PremiumPreviewFragment(1, "link"));
-                                    if ("do-not-hide-ads".equalsIgnoreCase(str2)) {
-                                        scrollTo("showAdsRow");
-                                    }
-                                    return true;
-                                }
-                                if ("ton".equalsIgnoreCase(str)) {
-                                    presentFragment(new TONIntroActivity());
-                                } else if ("send-gift".equalsIgnoreCase(str)) {
-                                    if ("self".equalsIgnoreCase(str2)) {
-                                        new GiftSheet(this.activity, this.currentAccount, getUserConfig().getClientUserId(), null, null).show();
-                                    } else {
-                                        UserSelectorBottomSheet.open(0L, BirthdayController.getInstance(this.currentAccount).getState());
-                                    }
-                                } else if (!"ask-question".equalsIgnoreCase(str)) {
-                                    AlertsCreator.createSupportAlert(getLastFragment(), null).show();
-                                } else {
-                                    AlertsCreator.createSupportAlert(getLastFragment(), null).show();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    public static void $r8$lambda$FTjISxid4ZMyM2vnubeewnhkhfM(final LinkManager linkManager, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        linkManager.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LinkManager.$r8$lambda$kmI2ZTgjPFiBHXKBUYAnd90DMpg(this.f$0, tLObject);
-            }
-        });
-    }
-
-    public static void $r8$lambda$kmI2ZTgjPFiBHXKBUYAnd90DMpg(LinkManager linkManager, TLObject tLObject) {
-        linkManager.done();
-        if (tLObject != null) {
-            linkManager.activity.openEmailSettings((TL_account.Password) tLObject);
-        }
-    }
-
-    class AnonymousClass1 extends GroupCreateActivity {
-        AnonymousClass1(Bundle bundle) {
-            super(bundle);
-        }
-
-        @Override
-        protected void onCallUsersSelected(final HashSet hashSet, final boolean z) {
-            if (hashSet.size() == 1) {
-                final TLRPC.User user = getMessagesController().getUser((Long) hashSet.iterator().next());
-                TLRPC.UserFull userFull = getMessagesController().getUserFull(user.id);
-                if (userFull == null) {
-                    TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                    tL_users_getFullUser.id = getMessagesController().getInputUser(user.id);
-                    getConnectionsManager().sendRequest(tL_users_getFullUser, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            LinkManager.AnonymousClass1.m3414$r8$lambda$HL2XXrJILYHwBHGhWwGPaBAuZE(this.f$0, user, z, tLObject, tL_error);
-                        }
-                    });
-                    return;
-                }
-                VoIPHelper.startCall(user, z, userFull.video_calls_available, getParentActivity(), userFull, getAccountInstance());
-            } else {
-                TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-                createconferencecall.random_id = Utilities.random.nextInt();
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        LinkManager.AnonymousClass1.$r8$lambda$Emw0vwyuSJZj2hQUVlklpr2MMGM(this.f$0, z, hashSet, tLObject, tL_error);
-                    }
-                });
-            }
-            finishFragment();
-        }
-
-        public static void m3414$r8$lambda$HL2XXrJILYHwBHGhWwGPaBAuZE(final AnonymousClass1 anonymousClass1, final TLRPC.User user, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            anonymousClass1.getClass();
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    LinkManager.AnonymousClass1.$r8$lambda$JlkCN8OTFM89ACCmyBG_73v7igg(this.f$0, tLObject, user, z);
-                }
-            });
-        }
-
-        public static void $r8$lambda$JlkCN8OTFM89ACCmyBG_73v7igg(AnonymousClass1 anonymousClass1, TLObject tLObject, TLRPC.User user, boolean z) {
-            TLRPC.UserFull userFull;
-            anonymousClass1.getClass();
-            if (tLObject instanceof TLRPC.TL_users_userFull) {
-                TLRPC.TL_users_userFull tL_users_userFull = (TLRPC.TL_users_userFull) tLObject;
-                anonymousClass1.getMessagesController().putUsers(tL_users_userFull.users, false);
-                anonymousClass1.getMessagesController().putChats(tL_users_userFull.chats, false);
-                userFull = tL_users_userFull.full_user;
-            } else {
-                userFull = null;
-            }
-            TLRPC.UserFull userFull2 = userFull;
-            VoIPHelper.startCall(user, z, userFull2 != null && userFull2.video_calls_available, anonymousClass1.getParentActivity(), userFull2, anonymousClass1.getAccountInstance());
-        }
-
-        public static void $r8$lambda$Emw0vwyuSJZj2hQUVlklpr2MMGM(final AnonymousClass1 anonymousClass1, final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-            anonymousClass1.getClass();
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    LinkManager.AnonymousClass1.m3415$r8$lambda$HXl8PLciMA6n3wwTS5T3bi4tZo(this.f$0, tLObject, z, hashSet, tL_error);
-                }
-            });
-        }
-
-        public static void m3415$r8$lambda$HXl8PLciMA6n3wwTS5T3bi4tZo(AnonymousClass1 anonymousClass1, TLObject tLObject, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) {
-            anonymousClass1.getClass();
-            int i = 0;
-            if (tLObject instanceof TLRPC.Updates) {
-                TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                MessagesController.getInstance(anonymousClass1.currentAccount).putUsers(updates.users, false);
-                MessagesController.getInstance(anonymousClass1.currentAccount).putChats(updates.chats, false);
-                ArrayList arrayListFindUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCall.class);
-                int size = arrayListFindUpdatesAndRemove.size();
-                TLRPC.GroupCall groupCall = null;
-                while (i < size) {
-                    Object obj = arrayListFindUpdatesAndRemove.get(i);
-                    i++;
-                    groupCall = ((TL_update.TL_updateGroupCall) obj).call;
-                }
-                if (LaunchActivity.instance == null || groupCall == null) {
-                    return;
-                }
-                TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.id = groupCall.id;
-                tL_inputGroupCall.access_hash = groupCall.access_hash;
-                VoIPHelper.joinConference(LaunchActivity.instance, anonymousClass1.currentAccount, tL_inputGroupCall, z, groupCall, hashSet);
-                return;
-            }
-            if (!(tLObject instanceof TL_phone.groupCall)) {
-                if (tL_error != null) {
-                    LinkManager.this.getBulletinFactory().showForError(tL_error);
-                    return;
-                }
-                return;
-            }
-            TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            MessagesController.getInstance(anonymousClass1.currentAccount).putUsers(groupcall.users, false);
-            MessagesController.getInstance(anonymousClass1.currentAccount).putChats(groupcall.chats, false);
-            if (LaunchActivity.instance == null) {
-                return;
-            }
-            TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
-            TLRPC.GroupCall groupCall2 = groupcall.call;
-            tL_inputGroupCall2.id = groupCall2.id;
-            tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-            VoIPHelper.joinConference(LaunchActivity.instance, anonymousClass1.currentAccount, tL_inputGroupCall2, z, groupCall2, hashSet);
-        }
-    }
-
-    public static void $r8$lambda$LH95z6iiSbgUKZuFzNPo8_CwFi0(ProfileActivity profileActivity) {
-        SharedMediaLayout sharedMediaLayout = profileActivity.sharedMediaLayout;
-        if (sharedMediaLayout != null) {
-            sharedMediaLayout.scrollToPage(14);
-            profileActivity.scrollToSharedMedia();
-        }
-    }
-
-    public static void $r8$lambda$paHps_jeHUwNd7Rbor9CdgvlPiQ(ProfileActivity profileActivity) {
-        SharedMediaLayout sharedMediaLayout = profileActivity.sharedMediaLayout;
-        if (sharedMediaLayout != null) {
-            sharedMediaLayout.scrollToPage(14);
-            profileActivity.scrollToSharedMedia();
-        }
-    }
-
-    public static void $r8$lambda$Jc7BiNOWixcRUcVcKIDmxiGhYAg(LinkManager linkManager, NotificationsSettingsActivity notificationsSettingsActivity, int i, String str) {
-        linkManager.done();
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivityMakeNotificationsCustomSettingsActivity = notificationsSettingsActivity.makeNotificationsCustomSettingsActivity(i);
-        notificationsCustomSettingsActivityMakeNotificationsCustomSettingsActivity.expanded = true;
-        notificationsCustomSettingsActivityMakeNotificationsCustomSettingsActivity.updateRows(false);
-        linkManager.presentFragment(notificationsCustomSettingsActivityMakeNotificationsCustomSettingsActivity);
-        if ("show".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("showRow");
-        }
-        if ("new".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("newRow");
-        }
-        if ("important".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("importantRow");
-        }
-        if ("messages".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("messagesRow");
-        }
-        if ("stories".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("storiesRow");
-        }
-        if ("preview".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("previewRow");
-        }
-        if ("show-sender".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("showSenderRow");
-        }
-        if ("sound".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("soundRow");
-        }
-        if ("add-exception".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("addExceptionRow");
-        }
-        if ("delete-exceptions".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("deleteExceptionsRow");
-        }
-        if ("light-color".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("lightColorRow");
-        }
-        if ("vibrate".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("vibrateRow");
-        }
-        if ("popup".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("popupRow");
-        }
-        if ("priority".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("priorityRow");
-        }
-    }
-
-    public static void $r8$lambda$KI_W5AvBpDAU0Drn11mFdJ7eR8k(LinkManager linkManager, String str) {
-        linkManager.getClass();
-        if ("disable".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("disablePasscodeRow");
-        }
-        if ("change".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("changePasscodeRow");
-        }
-        if ("auto-lock".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("autoLockRow");
-        }
-        if ("fingerprint".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("fingerprintRow");
-        }
-    }
-
-    public static void m3409$r8$lambda$IQ_Z2YYGa7BhMAbvIr_OYGr524(final LinkManager linkManager, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        linkManager.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LinkManager.$r8$lambda$zFjc9RBlr8jZac_yFHGk21FZeV0(this.f$0, tLObject, str);
-            }
-        });
-    }
-
-    public static void $r8$lambda$zFjc9RBlr8jZac_yFHGk21FZeV0(final LinkManager linkManager, TLObject tLObject, final String str) {
-        linkManager.done();
-        if (tLObject == null) {
-            return;
-        }
-        TL_account.Password password = (TL_account.Password) tLObject;
-        if (!TwoStepVerificationActivity.canHandleCurrentPassword(password, false)) {
-            AlertsCreator.showUpdateAppAlert(linkManager.activity, LocaleController.getString(R.string.UpdateAppAlert), true);
-        }
-        Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                LinkManager.m3412$r8$lambda$hzRVS3j2oLc6YP6Ai4UdLpLw2s(this.f$0, str);
-            }
-        };
-        if (password.has_password) {
-            TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-            twoStepVerificationActivity.setPassword(password);
-            linkManager.presentFragment(twoStepVerificationActivity);
-            runnable.run();
-            return;
-        }
-        TwoStepVerificationSetupActivity twoStepVerificationSetupActivity = new TwoStepVerificationSetupActivity(TextUtils.isEmpty(password.email_unconfirmed_pattern) ? 6 : 5, password);
-        twoStepVerificationSetupActivity.setOnOpenedSettings(runnable);
-        linkManager.presentFragment(twoStepVerificationSetupActivity);
-    }
-
-    public static void m3412$r8$lambda$hzRVS3j2oLc6YP6Ai4UdLpLw2s(LinkManager linkManager, String str) {
-        linkManager.getClass();
-        if ("disable".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("turnPasswordOffRow");
-        }
-        if ("change".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("changePasswordRow");
-        }
-        if ("change-email".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("emailRow");
-        }
-    }
-
-    public static void $r8$lambda$USK0WmlmeY2frZnNUReW0nKtUdc(LinkManager linkManager, String str, TL_account.Passkeys passkeys, TLRPC.TL_error tL_error) {
-        linkManager.done();
-        if (passkeys == null) {
-            return;
-        }
-        linkManager.presentFragment(new PasskeysActivity(passkeys.passkeys));
-        if ("create".equalsIgnoreCase(str)) {
-            linkManager.scrollTo("addPasskeyRow");
-        }
-    }
-
-    private boolean handleInvoiceSlug(final String str) {
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        init();
-        TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
-        final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
-        tL_inputInvoiceSlug.slug = str;
-        tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
-        setRequestId(getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LinkManager.$r8$lambda$yB86LXrUQcAq2ueYKff7Ht76ewI(this.f$0, tL_inputInvoiceSlug, str, tLObject, tL_error);
-            }
-        }));
-        return true;
-    }
-
-    public static void $r8$lambda$yB86LXrUQcAq2ueYKff7Ht76ewI(final LinkManager linkManager, final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        linkManager.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LinkManager.m3413$r8$lambda$q1bC5o24mucYv0tXZ1GLOM5QjU(this.f$0, tL_error, tLObject, tL_inputInvoiceSlug, str);
-            }
-        });
-    }
-
-    public static void m3413$r8$lambda$q1bC5o24mucYv0tXZ1GLOM5QjU(final LinkManager linkManager, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, String str) {
-        PaymentFormActivity paymentFormActivity;
-        if (tL_error != null) {
-            linkManager.getClass();
-            if ("SUBSCRIPTION_ALREADY_ACTIVE".equalsIgnoreCase(tL_error.text)) {
-                linkManager.getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.PaymentInvoiceSubscriptionLinkAlreadyPaid)).show();
-            } else {
-                linkManager.getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.PaymentInvoiceLinkInvalid)).show();
-            }
-        } else if (!linkManager.activity.isFinishing()) {
-            if (tLObject instanceof TLRPC.TL_payments_paymentFormStars) {
-                LaunchActivity launchActivity = linkManager.activity;
-                final Runnable runnable = launchActivity.navigateToPremiumGiftCallback;
-                launchActivity.navigateToPremiumGiftCallback = null;
-                StarsController.getInstance(linkManager.currentAccount).openPaymentForm(null, tL_inputInvoiceSlug, (TLRPC.TL_payments_paymentFormStars) tLObject, new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.done();
-                    }
-                }, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        LinkManager.$r8$lambda$URxiwuOJG0fM2eKyA9oQo6oOclQ(runnable, (String) obj);
-                    }
-                });
-                return;
-            }
-            if (tLObject instanceof TLRPC.PaymentForm) {
-                TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
-                MessagesController.getInstance(linkManager.currentAccount).putUsers(paymentForm.users, false);
-                paymentFormActivity = new PaymentFormActivity(paymentForm, str, linkManager.getLastFragment());
-            } else {
-                paymentFormActivity = tLObject instanceof TLRPC.PaymentReceipt ? new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject) : null;
-            }
-            if (paymentFormActivity != null) {
-                LaunchActivity launchActivity2 = linkManager.activity;
-                final Runnable runnable2 = launchActivity2.navigateToPremiumGiftCallback;
-                if (runnable2 != null) {
-                    launchActivity2.navigateToPremiumGiftCallback = null;
-                    paymentFormActivity.setPaymentFormCallback(new PaymentFormActivity.PaymentFormCallback() {
-                        @Override
-                        public final void onInvoiceStatusChanged(PaymentFormActivity.InvoiceStatus invoiceStatus) {
-                            LinkManager.$r8$lambda$5p5ZPZn3KDU8oha1jokY1ltg1Eo(runnable2, invoiceStatus);
-                        }
-                    });
-                }
-                linkManager.presentFragment(paymentFormActivity);
-            }
-        }
-        linkManager.done();
-    }
-
-    public static void $r8$lambda$URxiwuOJG0fM2eKyA9oQo6oOclQ(Runnable runnable, String str) {
-        if (runnable == null || !"paid".equals(str)) {
-            return;
-        }
-        runnable.run();
-    }
-
-    public static void $r8$lambda$5p5ZPZn3KDU8oha1jokY1ltg1Eo(Runnable runnable, PaymentFormActivity.InvoiceStatus invoiceStatus) {
-        if (invoiceStatus == PaymentFormActivity.InvoiceStatus.PAID) {
-            runnable.run();
-        }
-    }
-
-    private boolean handleOAuth(Uri uri, String str) {
-        if (!this.isExternalIntent) {
-            return true;
-        }
-        if (isEmpty(str)) {
-            return false;
-        }
-        init();
-        final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
-        tL_messages_requestUrlAuth.flags |= 4;
-        tL_messages_requestUrlAuth.url = uri.toString();
-        getConnectionsManager().sendRequestTyped(tL_messages_requestUrlAuth, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                LinkManager.$r8$lambda$0OGqaoTZwVb4VG3NP2kGnejvvLA(this.f$0, tL_messages_requestUrlAuth, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
-            }
-        });
-        return true;
-    }
-
-    public static void $r8$lambda$0OGqaoTZwVb4VG3NP2kGnejvvLA(LinkManager linkManager, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
-        linkManager.done();
-        if (tL_error != null) {
-            if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                linkManager.getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain)).show();
-                return;
-            } else {
-                linkManager.getBulletinFactory().showForError(tL_error);
-                return;
-            }
-        }
-        OAuthSheet.handle(linkManager.isExternalIntent, linkManager.currentAccount, tL_messages_requestUrlAuth, urlAuthResult);
-    }
-
-    private boolean handleNewBot(String str, String str2, String str3) {
-        final TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot = new TLRPC.TL_requestPeerTypeCreateBot();
-        tL_requestPeerTypeCreateBot.bot_managed = true;
-        if (!TextUtils.isEmpty(str3)) {
-            tL_requestPeerTypeCreateBot.flags |= 2;
-            tL_requestPeerTypeCreateBot.suggested_name = str3;
-        }
-        if (!TextUtils.isEmpty(str2)) {
-            tL_requestPeerTypeCreateBot.flags |= 4;
-            tL_requestPeerTypeCreateBot.suggested_username = str2;
-        }
-        final BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment != null && safeLastFragment.getContext() != null) {
-            init();
-            final TLRPC.User[] userArr = {null};
-            final Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    LinkManager.m3408$r8$lambda$I3F9JBOvhHnAnrtQk9jLIx5OJM(this.f$0, safeLastFragment, userArr, tL_requestPeerTypeCreateBot);
-                }
-            };
-            MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str, new Consumer() {
-                @Override
-                public final void accept(Object obj) {
-                    LinkManager.$r8$lambda$xSLKfM3fA0oKlIz8PdAFgt17Szc(this.f$0, userArr, runnable, (Long) obj);
-                }
-            });
-        }
-        return true;
-    }
-
-    public static void m3408$r8$lambda$I3F9JBOvhHnAnrtQk9jLIx5OJM(final LinkManager linkManager, BaseFragment baseFragment, final TLRPC.User[] userArr, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot) {
-        linkManager.getClass();
-        CreateBotAlert.show(baseFragment.getContext(), linkManager.currentAccount, userArr[0], tL_requestPeerTypeCreateBot, true, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                LinkManager.$r8$lambda$7TXSyGNbxU5se5jRBCF_U7IHzEw(this.f$0, userArr, (TLRPC.User) obj);
-            }
-        }, baseFragment.getResourceProvider(), linkManager.getBulletinFactory(), false);
-    }
-
-    public static void $r8$lambda$7TXSyGNbxU5se5jRBCF_U7IHzEw(LinkManager linkManager, TLRPC.User[] userArr, TLRPC.User user) {
-        linkManager.done();
-        if (user == null) {
-            return;
-        }
-        long j = userArr[0].id;
-        Bundle bundle = new Bundle();
-        bundle.putLong("user_id", user.id);
-        linkManager.presentFragment(linkManager.new AnonymousClass3(bundle, user, userArr, j));
-    }
-
-    class AnonymousClass3 extends ChatActivity {
-        private boolean shownToast;
-        final TLRPC.User[] val$manager;
-        final long val$managerId;
-        final TLRPC.User val$newBot;
-
-        AnonymousClass3(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j) {
-            super(bundle);
-            this.val$newBot = user;
-            this.val$manager = userArr;
-            this.val$managerId = j;
-        }
-
-        @Override
-        public void onBecomeFullyVisible() {
-            super.onBecomeFullyVisible();
-            if (this.shownToast) {
-                return;
-            }
-            this.shownToast = true;
-            BulletinFactory bulletinFactoryOf = BulletinFactory.of(this);
-            int i = R.raw.contact_check;
-            String string = LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.val$newBot));
-            String string2 = LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.val$manager[0]));
-            final long j = this.val$managerId;
-            bulletinFactoryOf.createSimpleBulletin(i, string, AndroidUtilities.replaceSingleTag(string2, new Runnable() {
-                @Override
-                public final void run() {
-                    LinkManager.AnonymousClass3.$r8$lambda$4Xfi51IC5nkwO_aRmvJmFiJOPrY(this.f$0, j);
-                }
-            })).show();
-        }
-
-        public static void $r8$lambda$4Xfi51IC5nkwO_aRmvJmFiJOPrY(AnonymousClass3 anonymousClass3, long j) {
-            anonymousClass3.getClass();
-            anonymousClass3.presentFragment(ChatActivity.of(j));
-        }
-    }
-
-    public static void $r8$lambda$xSLKfM3fA0oKlIz8PdAFgt17Szc(LinkManager linkManager, TLRPC.User[] userArr, Runnable runnable, Long l) {
-        TLRPC.User user;
-        if (l == null) {
-            linkManager.getClass();
-            user = null;
-        } else {
-            user = MessagesController.getInstance(linkManager.currentAccount).getUser(l);
-        }
-        userArr[0] = user;
-        if (user == null) {
-            linkManager.done();
-            linkManager.getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.NoUsernameFound)).show();
-        } else {
-            runnable.run();
-        }
-    }
-
-    private boolean handleAiStyle(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        TL_aicompose.getTone gettone = new TL_aicompose.getTone();
-        TL_aicompose.inputAiComposeToneSlug inputaicomposetoneslug = new TL_aicompose.inputAiComposeToneSlug();
-        inputaicomposetoneslug.slug = str;
-        gettone.tone = inputaicomposetoneslug;
-        init();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettone, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                LinkManager.$r8$lambda$swZ_QT24wHgr_jmlkXH9ntoARYY(this.f$0, (TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
-            }
-        });
-        return true;
-    }
-
-    public static void $r8$lambda$swZ_QT24wHgr_jmlkXH9ntoARYY(LinkManager linkManager, TL_aicompose.Tones tones, TLRPC.TL_error tL_error) {
-        linkManager.done();
-        if (!(tones instanceof TL_aicompose.TL_tones)) {
-            if (tL_error != null) {
-                if ("AICOMPOSE_TONE_SLUG_INVALID".equalsIgnoreCase(tL_error.text)) {
-                    linkManager.getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AIEditorStyleNotFound)).show();
-                    return;
-                } else {
-                    linkManager.getBulletinFactory().showForError(tL_error);
-                    return;
-                }
-            }
-            return;
-        }
-        TL_aicompose.TL_tones tL_tones = (TL_aicompose.TL_tones) tones;
-        MessagesController.getInstance(linkManager.currentAccount).putUsers(tL_tones.users, false);
+    public static BulletinFactory getBulletinFactory() {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment == null || tL_tones.tones.isEmpty()) {
-            return;
-        }
-        new AIEditorAlert.AiStyleAlert(safeLastFragment.getContext(), tL_tones.tones.get(0), safeLastFragment.getResourceProvider()).show();
-    }
-
-    private void setRequestId(int i) {
-        this.currentRequestId = i;
-    }
-
-    private void presentFragment(BaseFragment baseFragment) {
-        presentFragment(baseFragment, false);
-    }
-
-    private void presentFragment(BaseFragment baseFragment, boolean z) {
-        this.activity.presentFragment(baseFragment, z, false);
-        if (AndroidUtilities.isTablet()) {
-            this.activity.actionBarLayout.rebuildFragments(1);
-            this.activity.rightActionBarLayout.rebuildFragments(1);
-        }
-    }
-
-    private INavigationLayout getParentLayout() {
-        return this.activity.getActionBarLayout();
-    }
-
-    private void scrollTo(String str) {
-        AndroidUtilities.scrollToFragmentRow(getParentLayout(), str);
-    }
-
-    private BaseFragment getLastFragment() {
-        return LaunchActivity.getSafeLastFragment();
-    }
-
-    public BulletinFactory getBulletinFactory() {
-        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment == null) {
-            return BulletinFactory.global();
-        }
-        return BulletinFactory.of(safeLastFragment);
-    }
-
-    public UserConfig getUserConfig() {
-        return UserConfig.getInstance(this.currentAccount);
-    }
-
-    public ConnectionsManager getConnectionsManager() {
-        return ConnectionsManager.getInstance(this.currentAccount);
-    }
-
-    private void init() {
-        if (this.inited || this.done) {
-            return;
-        }
-        Browser.Progress progress = this.progress;
-        if (progress == null) {
-            if (this.progressDialog == null) {
-                this.progressDialog = new AlertDialog(this.activity, 3);
-            }
-            this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public final void onCancel(DialogInterface dialogInterface) {
-                    this.f$0.cancel();
-                }
-            });
-            this.progressDialog.showDelayed(300L);
-        } else {
-            progress.onCancel(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.cancel();
-                }
-            });
-            this.progress.init();
-        }
-        this.inited = true;
-    }
-
-    public void cancel() {
-        if (this.currentRequestId >= 0) {
-            getConnectionsManager().cancelRequest(this.currentRequestId, true);
-            this.currentRequestId = -1;
-        }
-    }
-
-    public void done() {
-        if (this.done) {
-            return;
-        }
-        AlertDialog alertDialog = this.progressDialog;
-        if (alertDialog != null) {
-            alertDialog.dismiss();
-        }
-        Browser.Progress progress = this.progress;
-        if (progress != null) {
-            progress.end();
-        }
-        this.done = true;
-    }
-
-    private static boolean isEmpty(String str) {
-        return TextUtils.isEmpty(str);
+        return safeLastFragment == null ? BulletinFactory.global() : BulletinFactory.of(safeLastFragment);
     }
 
     public static boolean isWebAppLink(String str) {
@@ -5514,6 +220,1322 @@ public class LinkManager {
             return false;
         } catch (Exception e) {
             FileLog.e(e);
+        }
+    }
+
+    public final void done() {
+        if (this.done) {
+            return;
+        }
+        AlertDialog alertDialog = this.progressDialog;
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+        }
+        Browser.Progress progress = this.progress;
+        if (progress != null) {
+            progress.end();
+        }
+        this.done = true;
+    }
+
+    public final INavigationLayout getParentLayout() {
+        return this.activity.getActionBarLayout();
+    }
+
+    public final UserConfig getUserConfig() {
+        return UserConfig.getInstance(this.currentAccount);
+    }
+
+    public final boolean handle(Uri uri) {
+        ?? r15;
+        String scheme;
+        String schemeSpecificPart;
+        if (uri != null) {
+            String scheme2 = uri.getScheme();
+            boolean zEqualsIgnoreCase = "tonsite".equalsIgnoreCase(scheme2);
+            LaunchActivity launchActivity = this.activity;
+            if (zEqualsIgnoreCase) {
+                Browser.openUrl(launchActivity, uri, true, true);
+                return true;
+            }
+            if ("http".equalsIgnoreCase(scheme2) || "https".equalsIgnoreCase(scheme2)) {
+                String host = uri.getHost();
+                if (host != null) {
+                    Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(host.toLowerCase());
+                    boolean zFind = matcher.find();
+                    if ("telegram.me".equalsIgnoreCase(host) || "t.me".equalsIgnoreCase(host) || "telegram.dog".equalsIgnoreCase(host) || zFind) {
+                        if (zFind) {
+                            StringBuilder sb = new StringBuilder("https://t.me/");
+                            sb.append(matcher.group(1));
+                            String str = "";
+                            sb.append(TextUtils.isEmpty(uri.getPath()) ? "" : uri.getPath());
+                            if (!TextUtils.isEmpty(uri.getQuery())) {
+                                str = "?" + uri.getQuery();
+                            }
+                            sb.append(str);
+                            uri = Uri.parse(sb.toString());
+                        }
+                        String path = uri.getPath();
+                        if (path != null && path.length() > 1) {
+                            String strSubstring = path.substring(1);
+                            List<String> pathSegments = uri.getPathSegments();
+                            if (pathSegments != null && !pathSegments.isEmpty()) {
+                                String str2 = pathSegments.get(0);
+                                String str3 = pathSegments.size() > 1 ? pathSegments.get(1) : null;
+                                if ("$".equalsIgnoreCase(str2)) {
+                                    return handleInvoiceSlug(strSubstring.substring(1));
+                                }
+                                if ("invoice".equalsIgnoreCase(str2)) {
+                                    return handleInvoiceSlug(str3);
+                                }
+                                if ("addstyle".equalsIgnoreCase(str2)) {
+                                    return handleAiStyle(str3);
+                                }
+                                if ("oauth".equalsIgnoreCase(str2)) {
+                                    return handleOAuth(uri, uri.getQueryParameter("startapp"));
+                                }
+                                if ("newbot".equalsIgnoreCase(str2)) {
+                                    if (pathSegments.size() >= 2) {
+                                        handleNewBot(str3, pathSegments.size() >= 3 ? pathSegments.get(2) : null, uri.getQueryParameter("name"));
+                                        return true;
+                                    }
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            } else if ("tg".equalsIgnoreCase(scheme2)) {
+                if (uri.isOpaque() && (scheme = uri.getScheme()) != null && uri.getAuthority() == null && (schemeSpecificPart = uri.getSchemeSpecificPart()) != null) {
+                    uri = Uri.parse(scheme + "://" + schemeSpecificPart);
+                }
+                List<String> pathSegments2 = uri.getPathSegments();
+                if (pathSegments2 != null) {
+                    ArrayList arrayList = new ArrayList(pathSegments2);
+                    String authority = uri.getAuthority();
+                    if (!TextUtils.isEmpty(authority)) {
+                        arrayList.add(0, authority);
+                    }
+                    if (!arrayList.isEmpty()) {
+                        String str4 = (String) arrayList.get(0);
+                        String str5 = arrayList.size() > 1 ? (String) arrayList.get(1) : null;
+                        if ("newbot".equalsIgnoreCase(str4)) {
+                            handleNewBot(uri.getQueryParameter("manager"), uri.getQueryParameter("username"), uri.getQueryParameter("name"));
+                            return true;
+                        }
+                        if ("resolve".equalsIgnoreCase(str4)) {
+                            List<String> pathSegments3 = uri.getPathSegments();
+                            if (pathSegments3 != null) {
+                                ArrayList arrayList2 = new ArrayList(pathSegments3);
+                                String authority2 = uri.getAuthority();
+                                if (!TextUtils.isEmpty(authority2)) {
+                                    arrayList2.add(0, authority2);
+                                }
+                                if (!arrayList2.isEmpty()) {
+                                    arrayList2.remove(0);
+                                    String queryParameter = uri.getQueryParameter("domain");
+                                    String queryParameter2 = uri.getQueryParameter("startapp");
+                                    if ("oauth".equalsIgnoreCase(queryParameter) && !TextUtils.isEmpty(queryParameter2)) {
+                                        return handleOAuth(uri, queryParameter2);
+                                    }
+                                }
+                            }
+                        } else {
+                            if ("invoice".equalsIgnoreCase(str4)) {
+                                return handleInvoiceSlug(uri.getQueryParameter("slug"));
+                            }
+                            if ("oauth".equalsIgnoreCase(str4)) {
+                                return handleOAuth(uri, uri.getQueryParameter("token"));
+                            }
+                            if ("settings".equalsIgnoreCase(str4)) {
+                                return handleSettings(arrayList.subList(1, arrayList.size()));
+                            }
+                            if ("chats".equalsIgnoreCase(str4)) {
+                                "search".equalsIgnoreCase(str5);
+                                "edit".equalsIgnoreCase(str5);
+                                "emoji-status".equalsIgnoreCase(str5);
+                            }
+                            if ("new".equalsIgnoreCase(str4)) {
+                                if ("group".equalsIgnoreCase(str5)) {
+                                    presentFragment(new GroupCreateActivity(new Bundle()), false);
+                                    return true;
+                                }
+                                if ("contact".equalsIgnoreCase(str5)) {
+                                    new NewContactBottomSheet(launchActivity, LaunchActivity.getSafeLastFragment()).show();
+                                    return true;
+                                }
+                                if (!"channel".equalsIgnoreCase(str5)) {
+                                    presentFragment(new ContactsActivity(zzkw.m("destroyAfterSelect", true)), false);
+                                    return true;
+                                }
+                                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                                if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
+                                    presentFragment(new ChannelCreateActivity(NotificationBadge$ZukHomeBadger$$ExternalSyntheticOutline0.m(0, "step")), false);
+                                    return true;
+                                }
+                                presentFragment(new ActionIntroActivity(0), false);
+                                globalMainSettings.edit().putBoolean("channel_intro", true).commit();
+                                return true;
+                            }
+                            if ("post".equalsIgnoreCase(str4)) {
+                                boolean zEqualsIgnoreCase2 = "video".equalsIgnoreCase(str5);
+                                if ("live".equalsIgnoreCase(str5)) {
+                                    r15 = zEqualsIgnoreCase2;
+                                    r15 = -1;
+                                }
+                                r15 = zEqualsIgnoreCase2;
+                                StoryRecorder storyRecorder = StoryRecorder.getInstance(launchActivity, this.currentAccount);
+                                if (storyRecorder.mode != r15) {
+                                    storyRecorder.mode = r15;
+                                    ?? r2 = storyRecorder.modeSwitcherView;
+                                    if (r2 != 0) {
+                                        r2.switchMode(r15);
+                                    }
+                                    storyRecorder.showVideoTimer(r15 == 1, true);
+                                    CollageLayoutButton.CollageLayoutListView collageLayoutListView = storyRecorder.collageListView;
+                                    if (collageLayoutListView != null) {
+                                        collageLayoutListView.setVisible(false, true);
+                                    }
+                                    storyRecorder.updateActionBarButtons(false);
+                                }
+                                storyRecorder.open(null);
+                                return true;
+                            }
+                            if ("contacts".equalsIgnoreCase(str4)) {
+                                if ("new".equalsIgnoreCase(str5)) {
+                                    new NewContactBottomSheet(launchActivity, LaunchActivity.getSafeLastFragment()).show();
+                                    return true;
+                                }
+                                Bundle bundle = new Bundle();
+                                bundle.putBoolean("needPhonebook", true);
+                                bundle.putBoolean("needFinishFragment", true);
+                                presentFragment(new ContactsActivity(bundle), false);
+                                "search".equalsIgnoreCase(str5);
+                                "sort".equalsIgnoreCase(str5);
+                                if ("invite".equalsIgnoreCase(str5)) {
+                                    scrollTo("phonebookRow");
+                                    return true;
+                                }
+                                return true;
+                            }
+                            if ("addstyle".equalsIgnoreCase(str4)) {
+                                return handleAiStyle(uri.getQueryParameter("slug"));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public final boolean handleAiStyle(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        TL_aicompose.getTone gettone = new TL_aicompose.getTone();
+        TL_aicompose.inputAiComposeToneSlug inputaicomposetoneslug = new TL_aicompose.inputAiComposeToneSlug();
+        inputaicomposetoneslug.slug = str;
+        gettone.tone = inputaicomposetoneslug;
+        init();
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettone, new AiTonesController$$ExternalSyntheticLambda0(), new LinkManager$$ExternalSyntheticLambda1(this, 0));
+        return true;
+    }
+
+    public final boolean handleInvoiceSlug(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        init();
+        TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
+        TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
+        tL_inputInvoiceSlug.slug = str;
+        tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
+        this.currentRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getPaymentForm, new LinkManager$$ExternalSyntheticLambda0(this, tL_inputInvoiceSlug, str, 0));
+        return true;
+    }
+
+    public final void handleNewBot(String str, String str2, String str3) {
+        int i = 0;
+        TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot = new TLRPC.TL_requestPeerTypeCreateBot();
+        tL_requestPeerTypeCreateBot.bot_managed = true;
+        if (!TextUtils.isEmpty(str3)) {
+            tL_requestPeerTypeCreateBot.flags |= 2;
+            tL_requestPeerTypeCreateBot.suggested_name = str3;
+        }
+        if (!TextUtils.isEmpty(str2)) {
+            tL_requestPeerTypeCreateBot.flags |= 4;
+            tL_requestPeerTypeCreateBot.suggested_username = str2;
+        }
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null || safeLastFragment.getContext() == null) {
+            return;
+        }
+        init();
+        TLRPC.User[] userArr = {null};
+        MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str, new LinkManager$$ExternalSyntheticLambda13(this, userArr, new LinkManager$$ExternalSyntheticLambda12(this, safeLastFragment, userArr, tL_requestPeerTypeCreateBot, 0), i));
+    }
+
+    public final boolean handleOAuth(Uri uri, String str) {
+        if (!this.isExternalIntent) {
+            return true;
+        }
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        init();
+        TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
+        tL_messages_requestUrlAuth.flags |= 4;
+        tL_messages_requestUrlAuth.url = uri.toString();
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_requestUrlAuth, new AiTonesController$$ExternalSyntheticLambda0(), new OAuthSheet$$ExternalSyntheticLambda18(17, this, tL_messages_requestUrlAuth));
+        return true;
+    }
+
+    public final boolean handleSettings(List list) {
+        boolean z;
+        int i;
+        int i2;
+        int i3;
+        BaseFragment safeLastFragment;
+        MainTabsActivity mainTabsActivity;
+        ApplicationLoader applicationLoader;
+        BaseFragment baseFragmentOpenSettings;
+        if (list == null) {
+            return false;
+        }
+        if (list.isEmpty()) {
+            presentFragment(new SettingsActivity());
+            return true;
+        }
+        String str = (String) list.get(0);
+        String str2 = list.size() > 1 ? (String) list.get(1) : null;
+        String str3 = list.size() > 2 ? (String) list.get(2) : null;
+        String str4 = list.size() > 3 ? (String) list.get(3) : null;
+        String str5 = list.size() > 4 ? (String) list.get(4) : null;
+        if ("theme".equalsIgnoreCase(str) || "themes".equalsIgnoreCase(str)) {
+            presentFragment(new ThemeActivity(0));
+            return true;
+        }
+        if ("devices".equalsIgnoreCase(str)) {
+            SessionsActivity sessionsActivity = new SessionsActivity(0);
+            if ("link-desktop".equalsIgnoreCase(str2)) {
+                sessionsActivity.setHighlightLinkDesktopDevice();
+            }
+            presentFragment(sessionsActivity);
+            if ("terminate-sessions".equalsIgnoreCase(str2)) {
+                scrollTo("terminateAllSessionsRow");
+            }
+            if ("auto-terminate".equalsIgnoreCase(str2)) {
+                scrollTo("ttlRow");
+                return true;
+            }
+        } else if ("folders".equalsIgnoreCase(str)) {
+            FiltersSetupActivity filtersSetupActivity = new FiltersSetupActivity();
+            presentFragment(new FiltersSetupActivity());
+            if ("create".equalsIgnoreCase(str2)) {
+                AndroidUtilities.runOnUIThread(new LinkManager$$ExternalSyntheticLambda2(0, this, filtersSetupActivity), 300L);
+            }
+            if ("show-tags".equalsIgnoreCase(str2)) {
+                scrollTo("showTagsRow");
+                return true;
+            }
+        } else {
+            if ("change_number".equalsIgnoreCase(str)) {
+                presentFragment(new ActionIntroActivity(3), true);
+                return true;
+            }
+            if (!"language".equalsIgnoreCase(str)) {
+                if ("auto_delete".equalsIgnoreCase(str)) {
+                    presentFragment(new AutoDeleteMessagesActivity());
+                    return true;
+                }
+                if ("phone_privacy".equalsIgnoreCase(str)) {
+                    presentFragment(new PrivacyControlActivity(6));
+                    return true;
+                }
+                if ("premium_sms".equalsIgnoreCase(str) && (applicationLoader = ApplicationLoader.applicationLoaderInstance) != null && (baseFragmentOpenSettings = applicationLoader.openSettings(13)) != null) {
+                    presentFragment(baseFragmentOpenSettings);
+                    return true;
+                }
+                boolean zEqualsIgnoreCase = "login_email".equalsIgnoreCase(str);
+                int i4 = this.currentAccount;
+                if (zEqualsIgnoreCase) {
+                    init();
+                    this.currentRequestId = ConnectionsManager.getInstance(i4).sendRequest(new TL_account.getPassword(), new LinkManager$$ExternalSyntheticLambda3(this, 0), 10);
+                    return true;
+                }
+                if ("chats".equalsIgnoreCase(str)) {
+                    ActionBarLayout actionBarLayout = (ActionBarLayout) getParentLayout();
+                    int iM = ArticleViewer.IBlock.CC.m(actionBarLayout, 1);
+                    z = true;
+                    while (true) {
+                        if (iM < 0) {
+                            mainTabsActivity = null;
+                            break;
+                        }
+                        if (actionBarLayout.getFragmentStack().get(iM) instanceof MainTabsActivity) {
+                            mainTabsActivity = (MainTabsActivity) actionBarLayout.getFragmentStack().get(iM);
+                            break;
+                        }
+                        if (iM > 0) {
+                            actionBarLayout.removeFragmentFromStack(iM);
+                        }
+                        iM++;
+                    }
+                    if (mainTabsActivity != null && "search".equalsIgnoreCase(str2)) {
+                        mainTabsActivity.viewPager.scrollToPosition$1(2);
+                        return true;
+                    }
+                } else {
+                    z = true;
+                }
+                if ("saved-messages".equalsIgnoreCase(str)) {
+                    presentFragment(ChatActivity.of(getUserConfig().getClientUserId()));
+                    return z;
+                }
+                if ("calls".equalsIgnoreCase(str)) {
+                    if ("start-call".equalsIgnoreCase(str2)) {
+                        presentFragment(new AnonymousClass1(zzkw.m("isCall", true)));
+                        return true;
+                    }
+                    presentFragment(new CallLogActivity());
+                    return true;
+                }
+                if ("qr-code".equalsIgnoreCase(str)) {
+                    if ("scan".equalsIgnoreCase(str2) && (safeLastFragment = LaunchActivity.getSafeLastFragment()) != null) {
+                        QrActivity.openCameraScanActivity(safeLastFragment);
+                        return true;
+                    }
+                    if ("share".equalsIgnoreCase(str2)) {
+                        Bundle bundle = new Bundle();
+                        bundle.putLong("user_id", getUserConfig().getClientUserId());
+                        presentFragment(new QrActivity(bundle) {
+                            @Override
+                            public final void onBecomeFullyVisible() {
+                                super.onBecomeFullyVisible();
+                                AndroidUtilities.runOnUIThread(new IntroActivity$$ExternalSyntheticLambda6(this, 14));
+                            }
+                        });
+                        return true;
+                    }
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putLong("user_id", getUserConfig().getClientUserId());
+                    presentFragment(new QrActivity(bundle2));
+                    return true;
+                }
+                String str6 = str5;
+                if (!"chat".equalsIgnoreCase(str) || !"browser".equalsIgnoreCase(str2)) {
+                    String str7 = str3;
+                    if ("edit".equalsIgnoreCase(str)) {
+                        presentFragment(new UserInfoActivity());
+                        if ("first-name".equalsIgnoreCase(str2)) {
+                            scrollTo("firstNameRow");
+                        }
+                        if ("last-name".equalsIgnoreCase(str2)) {
+                            scrollTo("lastNameRow");
+                        }
+                        if ("bio".equalsIgnoreCase(str2)) {
+                            scrollTo("bioRow");
+                        }
+                        if ("birthday".equalsIgnoreCase(str2)) {
+                            scrollTo("birthdayRow");
+                        }
+                        if ("change-number".equalsIgnoreCase(str2)) {
+                            scrollTo("numberRow");
+                        }
+                        if ("username".equalsIgnoreCase(str2)) {
+                            scrollTo("usernameRow");
+                        }
+                        if ("channel".equalsIgnoreCase(str2)) {
+                            scrollTo("channelRow");
+                        }
+                        if ("add-account".equalsIgnoreCase(str2)) {
+                            scrollTo("addAccountRow");
+                        }
+                        if ("log-out".equalsIgnoreCase(str2)) {
+                            scrollTo("logoutRow");
+                            return true;
+                        }
+                    } else {
+                        if ("my-profile".equalsIgnoreCase(str)) {
+                            if ("edit".equalsIgnoreCase(str2)) {
+                                presentFragment(new UserInfoActivity());
+                                return true;
+                            }
+                            Bundle bundle3 = new Bundle();
+                            bundle3.putLong("user_id", getUserConfig().getClientUserId());
+                            bundle3.putBoolean("my_profile", true);
+                            if ("gifts".equalsIgnoreCase(str2)) {
+                                bundle3.putBoolean("open_gifts", true);
+                            }
+                            ProfileActivity profileActivity = new ProfileActivity(bundle3);
+                            if ("gifts".equalsIgnoreCase(str2)) {
+                                profileActivity.whenFullyVisible(new LinkManager$$ExternalSyntheticLambda4(profileActivity, 0));
+                            }
+                            if ("posts".equalsIgnoreCase(str2)) {
+                                profileActivity.whenFullyVisible(new LinkManager$$ExternalSyntheticLambda4(profileActivity, 5));
+                            }
+                            presentFragment(profileActivity);
+                            return true;
+                        }
+                        if ("notifications".equalsIgnoreCase(str)) {
+                            if (!TextUtils.isEmpty(str7) && ("private-chats".equalsIgnoreCase(str2) || "groups".equalsIgnoreCase(str2) || "channels".equalsIgnoreCase(str2) || "stories".equalsIgnoreCase(str2) || "reactions".equalsIgnoreCase(str2))) {
+                                if ("private-chats".equalsIgnoreCase(str2)) {
+                                    i3 = 1;
+                                } else if ("groups".equalsIgnoreCase(str2)) {
+                                    i3 = 0;
+                                } else if ("channels".equalsIgnoreCase(str2)) {
+                                    i3 = 2;
+                                } else if ("stories".equalsIgnoreCase(str2)) {
+                                    i3 = 3;
+                                } else if ("reactions".equalsIgnoreCase(str2)) {
+                                    i3 = 4;
+                                } else {
+                                    i3 = 0;
+                                }
+                                NotificationsSettingsActivity notificationsSettingsActivity = new NotificationsSettingsActivity();
+                                init();
+                                notificationsSettingsActivity.loadExceptions(new OAuthSheet$$ExternalSyntheticLambda2(this, notificationsSettingsActivity, i3, str7, 5));
+                                return true;
+                            }
+                            presentFragment(new NotificationsSettingsActivity());
+                            if ("accounts".equalsIgnoreCase(str2)) {
+                                scrollTo("accountsAllRow");
+                            }
+                            if ("private-chats".equalsIgnoreCase(str2)) {
+                                scrollTo("privateRow");
+                            }
+                            if ("groups".equalsIgnoreCase(str2)) {
+                                scrollTo("groupRow");
+                            }
+                            if ("channels".equalsIgnoreCase(str2)) {
+                                scrollTo("channelsRow");
+                            }
+                            if ("stories".equalsIgnoreCase(str2)) {
+                                scrollTo("storiesRow");
+                            }
+                            if ("reactions".equalsIgnoreCase(str2)) {
+                                scrollTo("reactionsRow");
+                            }
+                            if ("in-app-sounds".equalsIgnoreCase(str2)) {
+                                scrollTo("inappSoundRow");
+                            }
+                            if ("in-app-vibrate".equalsIgnoreCase(str2)) {
+                                scrollTo("inappVibrateRow");
+                            }
+                            if ("in-app-preview".equalsIgnoreCase(str2)) {
+                                scrollTo("inappPreviewRow");
+                            }
+                            if ("in-chat-sounds".equalsIgnoreCase(str2)) {
+                                scrollTo("inchatSoundRow");
+                            }
+                            if ("in-app-popup".equalsIgnoreCase(str2)) {
+                                scrollTo("inappPriorityRow");
+                            }
+                            if ("show-badge-icon".equalsIgnoreCase(str2)) {
+                                scrollTo("badgeNumberShowRow");
+                            }
+                            if ("include-muted-chats".equalsIgnoreCase(str2)) {
+                                scrollTo("badgeNumberMutedRow");
+                            }
+                            if ("count-unread-messages".equalsIgnoreCase(str2)) {
+                                scrollTo("badgeNumberMessagesRow");
+                            }
+                            if ("new-contacts".equalsIgnoreCase(str2)) {
+                                scrollTo("contactJoinedRow");
+                            }
+                            if ("pinned-messages".equalsIgnoreCase(str2)) {
+                                scrollTo("pinnedMessageRow");
+                            }
+                            if ("reset".equalsIgnoreCase(str2)) {
+                                scrollTo("resetNotificationsRow");
+                                return true;
+                            }
+                        } else if ("privacy".equalsIgnoreCase(str)) {
+                            if ("data-settings".equalsIgnoreCase(str2) && "delete-cloud-drafts".equalsIgnoreCase(str7)) {
+                                presentFragment(new DataSettingsActivity());
+                                scrollTo("clearDraftsRow");
+                                return true;
+                            }
+                            if (!TextUtils.isEmpty(str7) && "blocked".equalsIgnoreCase(str2)) {
+                                presentFragment(new PrivacyUsersActivity());
+                                return true;
+                            }
+                            if (!TextUtils.isEmpty(str7) && "active-websites".equalsIgnoreCase(str2)) {
+                                presentFragment(new SessionsActivity(1));
+                                if (!"disconnect-all".equalsIgnoreCase(str7)) {
+                                    return true;
+                                }
+                                scrollTo("terminateAllSessionsRow");
+                                return true;
+                            }
+                            if (!TextUtils.isEmpty(str7) && "passcode".equalsIgnoreCase(str2)) {
+                                LinkManager$$ExternalSyntheticLambda7 linkManager$$ExternalSyntheticLambda7 = new LinkManager$$ExternalSyntheticLambda7(this, str7, 0);
+                                BaseFragment baseFragmentDetermineOpenFragment = PasscodeActivity.determineOpenFragment();
+                                presentFragment(baseFragmentDetermineOpenFragment);
+                                if (baseFragmentDetermineOpenFragment instanceof ActionIntroActivity) {
+                                    ((ActionIntroActivity) baseFragmentDetermineOpenFragment).setOnOpenedSettings(linkManager$$ExternalSyntheticLambda7);
+                                    return true;
+                                }
+                                if (baseFragmentDetermineOpenFragment instanceof PasscodeActivity) {
+                                    ((PasscodeActivity) baseFragmentDetermineOpenFragment).setOnOpenedSettings(linkManager$$ExternalSyntheticLambda7);
+                                    return true;
+                                }
+                            } else {
+                                if (!TextUtils.isEmpty(str7) && "2sv".equalsIgnoreCase(str2)) {
+                                    init();
+                                    this.currentRequestId = ConnectionsManager.getInstance(i4).sendRequest(new TL_account.getPassword(), new LinkManager$$ExternalSyntheticLambda8(0, this, str7), 10);
+                                    return true;
+                                }
+                                if (!TextUtils.isEmpty(str7) && "passkey".equalsIgnoreCase(str2) && Build.VERSION.SDK_INT >= 28) {
+                                    init();
+                                    this.currentRequestId = ConnectionsManager.getInstance(i4).sendRequestTyped(new TL_account.getPasskeys(), new LinkManager$$ExternalSyntheticLambda9(0), new OAuthSheet$$ExternalSyntheticLambda18(16, this, str7));
+                                    return true;
+                                }
+                                if (!TextUtils.isEmpty(str7) && "auto-delete".equalsIgnoreCase(str2) && getUserConfig().getGlobalTTl() >= 0) {
+                                    presentFragment(new AutoDeleteMessagesActivity());
+                                    return true;
+                                }
+                                if (!TextUtils.isEmpty(str7) && ("phone-number".equalsIgnoreCase(str2) || "last-seen".equalsIgnoreCase(str2) || "profile-photos".equalsIgnoreCase(str2) || "bio".equalsIgnoreCase(str2) || "gifts".equalsIgnoreCase(str2) || "birthday".equalsIgnoreCase(str2) || "saved-music".equalsIgnoreCase(str2) || "forwards".equalsIgnoreCase(str2) || "calls".equalsIgnoreCase(str2) || "voice".equalsIgnoreCase(str2) || "messages".equalsIgnoreCase(str2) || "invites".equalsIgnoreCase(str2))) {
+                                    if ("phone-number".equalsIgnoreCase(str2)) {
+                                        i2 = 6;
+                                    } else if ("last-seen".equalsIgnoreCase(str2)) {
+                                        i2 = 0;
+                                    } else if ("profile-photos".equalsIgnoreCase(str2)) {
+                                        i2 = 4;
+                                    } else if ("bio".equalsIgnoreCase(str2)) {
+                                        i2 = 9;
+                                    } else if ("gifts".equalsIgnoreCase(str2)) {
+                                        i2 = 12;
+                                    } else if ("birthday".equalsIgnoreCase(str2)) {
+                                        i2 = 11;
+                                    } else if ("saved-music".equalsIgnoreCase(str2)) {
+                                        i2 = 14;
+                                    } else if ("forwards".equalsIgnoreCase(str2)) {
+                                        i2 = 5;
+                                    } else if ("calls".equalsIgnoreCase(str2)) {
+                                        i2 = "p2p".equalsIgnoreCase(str7) ? 3 : 2;
+                                    } else if ("voice".equalsIgnoreCase(str2)) {
+                                        i2 = 8;
+                                    } else if ("messages".equalsIgnoreCase(str2)) {
+                                        i2 = 10;
+                                    } else if ("invites".equalsIgnoreCase(str2)) {
+                                        i2 = 1;
+                                    } else {
+                                        i2 = 0;
+                                    }
+                                    presentFragment(new PrivacyControlActivity(i2));
+                                    if ("birthday".equalsIgnoreCase(str2) && "add".equalsIgnoreCase(str7)) {
+                                        scrollTo("setBirthdayRow");
+                                    }
+                                    if ("always-share".equalsIgnoreCase(str7) || "always-share".equalsIgnoreCase(str4) || "always".equalsIgnoreCase(str7) || "always".equalsIgnoreCase(str4)) {
+                                        scrollTo("everybodyRow");
+                                    }
+                                    if ("never-share".equalsIgnoreCase(str7) || "never-share".equalsIgnoreCase(str4) || "never".equalsIgnoreCase(str7) || "never".equalsIgnoreCase(str4)) {
+                                        scrollTo("nobodyRow");
+                                    }
+                                    if ("gifts".equalsIgnoreCase(str2) && "show-icon".equalsIgnoreCase(str7)) {
+                                        scrollTo("showGiftIconRow");
+                                    }
+                                    if ("gifts".equalsIgnoreCase(str2) && "accepted-types".equalsIgnoreCase(str7)) {
+                                        scrollTo("giftTypesHeaderRow");
+                                    }
+                                    if ("messages".equalsIgnoreCase(str2) && "set-price".equalsIgnoreCase(str7)) {
+                                        scrollTo("priceRow");
+                                    }
+                                    if ("messages".equalsIgnoreCase(str2) && "remove-fee".equalsIgnoreCase(str7)) {
+                                        scrollTo("alwaysShareRow");
+                                    }
+                                    if ("last-seen".equalsIgnoreCase(str2) && "hide-read-time".equalsIgnoreCase(str7)) {
+                                        scrollTo("readRow");
+                                    }
+                                    if ("profile-photos".equalsIgnoreCase(str2)) {
+                                        if ("set-public".equalsIgnoreCase(str7)) {
+                                            scrollTo("photoForRestRow");
+                                        }
+                                        if ("update-public".equalsIgnoreCase(str7)) {
+                                            scrollTo("photoForRestRow");
+                                        }
+                                        if ("remove-public".equalsIgnoreCase(str7)) {
+                                            scrollTo("currentPhotoForRestRow");
+                                            return true;
+                                        }
+                                    }
+                                } else if (MessagesController.getInstance(i4).autoarchiveAvailable || !"archive-and-mute".equalsIgnoreCase(str2)) {
+                                    presentFragment(new PrivacySettingsActivity());
+                                    if ("blocked".equalsIgnoreCase(str2)) {
+                                        scrollTo("blockedRow");
+                                    }
+                                    if ("active-websites".equalsIgnoreCase(str2)) {
+                                        scrollTo("webSessionsRow");
+                                    }
+                                    if ("passcode".equalsIgnoreCase(str2)) {
+                                        scrollTo("passcodeRow");
+                                    }
+                                    if ("2sv".equalsIgnoreCase(str2)) {
+                                        scrollTo("passwordRow");
+                                    }
+                                    if ("passkey".equalsIgnoreCase(str2)) {
+                                        scrollTo("passkeysRow");
+                                    }
+                                    if ("auto-delete".equalsIgnoreCase(str2)) {
+                                        scrollTo("autoDeleteMesages");
+                                    }
+                                    if ("login-email".equalsIgnoreCase(str2)) {
+                                        scrollTo("emailLoginRow");
+                                    }
+                                    if ("phone-number".equalsIgnoreCase(str2)) {
+                                        scrollTo("phoneNumberRow");
+                                    }
+                                    if ("last-seen".equalsIgnoreCase(str2)) {
+                                        scrollTo("lastSeenRow");
+                                    }
+                                    if ("profile-photos".equalsIgnoreCase(str2)) {
+                                        scrollTo("profilePhotoRow");
+                                    }
+                                    if ("bio".equalsIgnoreCase(str2)) {
+                                        scrollTo("bioRow");
+                                    }
+                                    if ("gifts".equalsIgnoreCase(str2)) {
+                                        scrollTo("giftsRow");
+                                    }
+                                    if ("birthday".equalsIgnoreCase(str2)) {
+                                        scrollTo("birthdayRow");
+                                    }
+                                    if ("saved-music".equalsIgnoreCase(str2)) {
+                                        scrollTo("musicRow");
+                                    }
+                                    if ("forwards".equalsIgnoreCase(str2)) {
+                                        scrollTo("forwardsRow");
+                                    }
+                                    if ("calls".equalsIgnoreCase(str2)) {
+                                        scrollTo("callsRow");
+                                    }
+                                    if ("voice".equalsIgnoreCase(str2)) {
+                                        scrollTo("voicesRow");
+                                    }
+                                    if ("messages".equalsIgnoreCase(str2)) {
+                                        scrollTo("noncontactsRow");
+                                    }
+                                    if ("invites".equalsIgnoreCase(str2)) {
+                                        scrollTo("groupsRow");
+                                    }
+                                    if ("self-destruct".equalsIgnoreCase(str2)) {
+                                        scrollTo("deleteAccountRow");
+                                    }
+                                    if ("archive-and-mute".equalsIgnoreCase(str2)) {
+                                        scrollTo("newChatsRow");
+                                    }
+                                    if ("data-settings".equalsIgnoreCase(str2)) {
+                                        if ("sync-contacts".equalsIgnoreCase(str7)) {
+                                            scrollTo("contactsSyncRow");
+                                        }
+                                        if ("delete-synced".equalsIgnoreCase(str7)) {
+                                            scrollTo("contactsDeleteRow");
+                                        }
+                                        if ("suggest-contacts".equalsIgnoreCase(str7)) {
+                                            scrollTo("contactsSuggestRow");
+                                        }
+                                        if ("clear-payment-info".equalsIgnoreCase(str7)) {
+                                            scrollTo("paymentsClearRow");
+                                        }
+                                        if ("link-previews".equalsIgnoreCase(str7)) {
+                                            scrollTo("secretWebpageRow");
+                                        }
+                                        if ("map-provider".equalsIgnoreCase(str7)) {
+                                            scrollTo("secretMapRow");
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                        } else if ("data".equalsIgnoreCase(str)) {
+                            if ("storage".equalsIgnoreCase(str2)) {
+                                "clear-cache".equalsIgnoreCase(str7);
+                                presentFragment(new CacheControlActivity());
+                                return true;
+                            }
+                            if ("usage".equalsIgnoreCase(str2)) {
+                                DataUsage2Activity dataUsage2Activity = new DataUsage2Activity();
+                                presentFragment(dataUsage2Activity);
+                                if ("mobile".equalsIgnoreCase(str7)) {
+                                    dataUsage2Activity.tabsView.scrollToTab(1, 1);
+                                }
+                                if ("wifi".equalsIgnoreCase(str7)) {
+                                    dataUsage2Activity.tabsView.scrollToTab(2, 2);
+                                }
+                                if ("roaming".equalsIgnoreCase(str7)) {
+                                    dataUsage2Activity.tabsView.scrollToTab(3, 3);
+                                }
+                                if ("reset".equalsIgnoreCase(str7)) {
+                                    dataUsage2Activity.scrollToReset();
+                                    return true;
+                                }
+                            } else if ("auto-download".equalsIgnoreCase(str2)) {
+                                if ("mobile".equalsIgnoreCase(str7) || "wifi".equalsIgnoreCase(str7) || "roaming".equalsIgnoreCase(str7)) {
+                                    if ("mobile".equalsIgnoreCase(str7)) {
+                                        i = 0;
+                                    } else if ("wifi".equalsIgnoreCase(str7)) {
+                                        i = 1;
+                                    } else if ("roaming".equalsIgnoreCase(str7)) {
+                                        i = 2;
+                                    } else {
+                                        i = 0;
+                                    }
+                                    presentFragment(new DataAutoDownloadActivity(i));
+                                    if ("enable".equalsIgnoreCase(str4)) {
+                                        scrollTo("autoDownloadRow");
+                                    }
+                                    if ("usage".equalsIgnoreCase(str4)) {
+                                        scrollTo("usageProgressRow");
+                                    }
+                                    if ("photos".equalsIgnoreCase(str4)) {
+                                        scrollTo("photosRow");
+                                    }
+                                    if ("stories".equalsIgnoreCase(str4)) {
+                                        scrollTo("storiesRow");
+                                    }
+                                    if ("videos".equalsIgnoreCase(str4)) {
+                                        scrollTo("videosRow");
+                                    }
+                                    if ("files".equalsIgnoreCase(str4)) {
+                                        scrollTo("filesRow");
+                                        return true;
+                                    }
+                                } else {
+                                    if ("reset".equalsIgnoreCase(str7)) {
+                                        presentFragment(new DataSettingsActivity());
+                                        scrollTo("resetDownloadRow");
+                                        return true;
+                                    }
+                                    if (!TextUtils.isEmpty(str4)) {
+                                        if (!TextUtils.isEmpty(str7)) {
+                                            if ("pause-music".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("pauseOnMediaRow");
+                                                return true;
+                                            }
+                                            if ("pause-music-on-record".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("pauseOnRecordRow");
+                                                return true;
+                                            }
+                                            if ("raise-to-listen".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("raiseToListenRow");
+                                                return true;
+                                            }
+                                            if ("raise-to-speak".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("raiseToSpeakRow");
+                                                return true;
+                                            }
+                                            if ("show-18-contnet".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("sensitiveContentRow");
+                                                return true;
+                                            }
+                                            presentFragment(new DataSettingsActivity());
+                                            if ("save-to-photos".equalsIgnoreCase(str2)) {
+                                                if ("chats".equalsIgnoreCase(str7)) {
+                                                    scrollTo("saveToGalleryPeerRow");
+                                                }
+                                                if ("groups".equalsIgnoreCase(str7)) {
+                                                    scrollTo("saveToGalleryGroupsRow");
+                                                }
+                                                if ("channels".equalsIgnoreCase(str7)) {
+                                                    scrollTo("saveToGalleryChannelsRow");
+                                                }
+                                            }
+                                            if ("use-less-data".equalsIgnoreCase(str2)) {
+                                                scrollTo("useLessDataForCallsRow");
+                                            }
+                                            if ("proxy".equalsIgnoreCase(str2)) {
+                                                scrollTo("proxyRow");
+                                                return true;
+                                            }
+                                        } else {
+                                            if ("pause-music".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("pauseOnMediaRow");
+                                                return true;
+                                            }
+                                            if ("pause-music-on-record".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("pauseOnRecordRow");
+                                                return true;
+                                            }
+                                            if ("raise-to-listen".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("raiseToListenRow");
+                                                return true;
+                                            }
+                                            if ("raise-to-speak".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("raiseToSpeakRow");
+                                                return true;
+                                            }
+                                            if ("show-18-contnet".equalsIgnoreCase(str2)) {
+                                                presentFragment(new ThemeActivity(0));
+                                                scrollTo("sensitiveContentRow");
+                                                return true;
+                                            }
+                                            presentFragment(new DataSettingsActivity());
+                                            if ("save-to-photos".equalsIgnoreCase(str2)) {
+                                                if ("chats".equalsIgnoreCase(str7)) {
+                                                    scrollTo("saveToGalleryPeerRow");
+                                                }
+                                                if ("groups".equalsIgnoreCase(str7)) {
+                                                    scrollTo("saveToGalleryGroupsRow");
+                                                }
+                                                if ("channels".equalsIgnoreCase(str7)) {
+                                                    scrollTo("saveToGalleryChannelsRow");
+                                                }
+                                            }
+                                            if ("use-less-data".equalsIgnoreCase(str2)) {
+                                                scrollTo("useLessDataForCallsRow");
+                                            }
+                                            if ("proxy".equalsIgnoreCase(str2)) {
+                                                scrollTo("proxyRow");
+                                                return true;
+                                            }
+                                        }
+                                    } else if (!TextUtils.isEmpty(str7)) {
+                                        if ("pause-music".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("pauseOnMediaRow");
+                                            return true;
+                                        }
+                                        if ("pause-music-on-record".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("pauseOnRecordRow");
+                                            return true;
+                                        }
+                                        if ("raise-to-listen".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("raiseToListenRow");
+                                            return true;
+                                        }
+                                        if ("raise-to-speak".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("raiseToSpeakRow");
+                                            return true;
+                                        }
+                                        if ("show-18-contnet".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("sensitiveContentRow");
+                                            return true;
+                                        }
+                                        presentFragment(new DataSettingsActivity());
+                                        if ("save-to-photos".equalsIgnoreCase(str2)) {
+                                            if ("chats".equalsIgnoreCase(str7)) {
+                                                scrollTo("saveToGalleryPeerRow");
+                                            }
+                                            if ("groups".equalsIgnoreCase(str7)) {
+                                                scrollTo("saveToGalleryGroupsRow");
+                                            }
+                                            if ("channels".equalsIgnoreCase(str7)) {
+                                                scrollTo("saveToGalleryChannelsRow");
+                                            }
+                                        }
+                                        if ("use-less-data".equalsIgnoreCase(str2)) {
+                                            scrollTo("useLessDataForCallsRow");
+                                        }
+                                        if ("proxy".equalsIgnoreCase(str2)) {
+                                            scrollTo("proxyRow");
+                                            return true;
+                                        }
+                                    } else {
+                                        if ("pause-music".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("pauseOnMediaRow");
+                                            return true;
+                                        }
+                                        if ("pause-music-on-record".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("pauseOnRecordRow");
+                                            return true;
+                                        }
+                                        if ("raise-to-listen".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("raiseToListenRow");
+                                            return true;
+                                        }
+                                        if ("raise-to-speak".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("raiseToSpeakRow");
+                                            return true;
+                                        }
+                                        if ("show-18-contnet".equalsIgnoreCase(str2)) {
+                                            presentFragment(new ThemeActivity(0));
+                                            scrollTo("sensitiveContentRow");
+                                            return true;
+                                        }
+                                        presentFragment(new DataSettingsActivity());
+                                        if ("save-to-photos".equalsIgnoreCase(str2)) {
+                                            if ("chats".equalsIgnoreCase(str7)) {
+                                                scrollTo("saveToGalleryPeerRow");
+                                            }
+                                            if ("groups".equalsIgnoreCase(str7)) {
+                                                scrollTo("saveToGalleryGroupsRow");
+                                            }
+                                            if ("channels".equalsIgnoreCase(str7)) {
+                                                scrollTo("saveToGalleryChannelsRow");
+                                            }
+                                        }
+                                        if ("use-less-data".equalsIgnoreCase(str2)) {
+                                            scrollTo("useLessDataForCallsRow");
+                                        }
+                                        if ("proxy".equalsIgnoreCase(str2)) {
+                                            scrollTo("proxyRow");
+                                            return true;
+                                        }
+                                    }
+                                }
+                            } else if (!TextUtils.isEmpty(str4) && "save-to-photos".equalsIgnoreCase(str2)) {
+                                presentFragment(new SaveToGallerySettingsActivity(NotificationBadge$ZukHomeBadger$$ExternalSyntheticOutline0.m("groups".equalsIgnoreCase(str7) ? 2 : "channels".equalsIgnoreCase(str7) ? 4 : 1, "type")));
+                                if ("max-video-size".equalsIgnoreCase(str4)) {
+                                    scrollTo("maxVideoSizeRow");
+                                }
+                                if ("add-exception".equalsIgnoreCase(str4)) {
+                                    scrollTo("addExceptionRow");
+                                }
+                                if ("delete-all".equalsIgnoreCase(str4)) {
+                                    scrollTo("deleteAllExceptionsRow");
+                                    return true;
+                                }
+                            } else if (!TextUtils.isEmpty(str7) && "proxy".equalsIgnoreCase(str2)) {
+                                presentFragment(new ProxyListActivity());
+                                if ("use-proxy".equalsIgnoreCase(str7)) {
+                                    scrollTo("useProxyRow");
+                                }
+                                if ("add-proxy".equalsIgnoreCase(str7)) {
+                                    scrollTo("proxyAddRow");
+                                }
+                                if ("use-for-calls".equalsIgnoreCase(str7)) {
+                                    scrollTo("callsRow");
+                                    return true;
+                                }
+                            } else {
+                                if ("pause-music".equalsIgnoreCase(str2)) {
+                                    presentFragment(new ThemeActivity(0));
+                                    scrollTo("pauseOnMediaRow");
+                                    return true;
+                                }
+                                if ("pause-music-on-record".equalsIgnoreCase(str2)) {
+                                    presentFragment(new ThemeActivity(0));
+                                    scrollTo("pauseOnRecordRow");
+                                    return true;
+                                }
+                                if ("raise-to-listen".equalsIgnoreCase(str2)) {
+                                    presentFragment(new ThemeActivity(0));
+                                    scrollTo("raiseToListenRow");
+                                    return true;
+                                }
+                                if ("raise-to-speak".equalsIgnoreCase(str2)) {
+                                    presentFragment(new ThemeActivity(0));
+                                    scrollTo("raiseToSpeakRow");
+                                    return true;
+                                }
+                                if ("show-18-contnet".equalsIgnoreCase(str2)) {
+                                    presentFragment(new ThemeActivity(0));
+                                    scrollTo("sensitiveContentRow");
+                                    return true;
+                                }
+                                presentFragment(new DataSettingsActivity());
+                                if ("save-to-photos".equalsIgnoreCase(str2)) {
+                                    if ("chats".equalsIgnoreCase(str7)) {
+                                        scrollTo("saveToGalleryPeerRow");
+                                    }
+                                    if ("groups".equalsIgnoreCase(str7)) {
+                                        scrollTo("saveToGalleryGroupsRow");
+                                    }
+                                    if ("channels".equalsIgnoreCase(str7)) {
+                                        scrollTo("saveToGalleryChannelsRow");
+                                    }
+                                }
+                                if ("use-less-data".equalsIgnoreCase(str2)) {
+                                    scrollTo("useLessDataForCallsRow");
+                                }
+                                if ("proxy".equalsIgnoreCase(str2)) {
+                                    scrollTo("proxyRow");
+                                    return true;
+                                }
+                            }
+                        } else if (!"appearance".equalsIgnoreCase(str)) {
+                            if (!"power-saving".equalsIgnoreCase(str)) {
+                                boolean zEqualsIgnoreCase2 = "stars".equalsIgnoreCase(str);
+                                LaunchActivity launchActivity = this.activity;
+                                if (zEqualsIgnoreCase2) {
+                                    if ("top-up".equalsIgnoreCase(str2)) {
+                                        new StarsIntroActivity.StarsOptionsSheet(launchActivity, null).show();
+                                        return true;
+                                    }
+                                    if ("stats".equalsIgnoreCase(str2)) {
+                                        presentFragment(new BotStarsActivity(0, getUserConfig().getClientUserId()));
+                                        return true;
+                                    }
+                                    if ("gift".equalsIgnoreCase(str2)) {
+                                        StarsController.getInstance(i4).getGiftOptions();
+                                        UserSelectorBottomSheet.open(1, BirthdayController.getInstance(i4).getState());
+                                        return true;
+                                    }
+                                    if ("earn".equalsIgnoreCase(str2)) {
+                                        presentFragment(new ChannelAffiliateProgramsFragment(getUserConfig().getClientUserId()));
+                                        return true;
+                                    }
+                                    presentFragment(new StarsIntroActivity());
+                                    return true;
+                                }
+                                if ("premium".equalsIgnoreCase(str)) {
+                                    presentFragment(new PremiumPreviewFragment());
+                                    return true;
+                                }
+                                if ("business".equalsIgnoreCase(str)) {
+                                    presentFragment(new PremiumPreviewFragment(1, "link"));
+                                    if (!"do-not-hide-ads".equalsIgnoreCase(str2)) {
+                                        return true;
+                                    }
+                                    scrollTo("showAdsRow");
+                                    return true;
+                                }
+                                if ("ton".equalsIgnoreCase(str)) {
+                                    presentFragment(new TONIntroActivity());
+                                    return true;
+                                }
+                                if ("send-gift".equalsIgnoreCase(str)) {
+                                    if ("self".equalsIgnoreCase(str2)) {
+                                        new GiftSheet(this.activity, this.currentAccount, getUserConfig().getClientUserId(), null, null).show();
+                                        return true;
+                                    }
+                                    UserSelectorBottomSheet.open(0, BirthdayController.getInstance(i4).getState());
+                                    return true;
+                                }
+                                if ("ask-question".equalsIgnoreCase(str) || "ask-a-question".equalsIgnoreCase(str)) {
+                                    AlertsCreator.createSupportAlert(LaunchActivity.getSafeLastFragment(), null).show();
+                                    return true;
+                                }
+                                if ("faq".equalsIgnoreCase(str)) {
+                                    Browser.openUrl(launchActivity, LocaleController.getString(R.string.TelegramFaqUrl));
+                                    return true;
+                                }
+                                if ("features".equalsIgnoreCase(str)) {
+                                    Browser.openUrl(launchActivity, LocaleController.getString(R.string.TelegramFeaturesUrl));
+                                    return true;
+                                }
+                                if ("privacy-policy".equalsIgnoreCase(str)) {
+                                    Browser.openUrl(launchActivity, LocaleController.getString(R.string.PrivacyPolicyUrl));
+                                    return true;
+                                }
+                                presentFragment(new SettingsActivity());
+                                return true;
+                            }
+                            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+                            presentFragment(liteModeSettingsActivity);
+                            if ("videos".equalsIgnoreCase(str2)) {
+                                liteModeSettingsActivity.scrollToFlags(1024);
+                            }
+                            if ("gifs".equalsIgnoreCase(str2)) {
+                                liteModeSettingsActivity.scrollToFlags(2048);
+                            }
+                            if ("stickers".equalsIgnoreCase(str2)) {
+                                liteModeSettingsActivity.scrollToFlags(3);
+                            }
+                            if ("emoji".equalsIgnoreCase(str2)) {
+                                liteModeSettingsActivity.scrollToFlags(28700);
+                            }
+                            if ("effects".equalsIgnoreCase(str2)) {
+                                liteModeSettingsActivity.scrollToFlags(360928);
+                            }
+                            if ("call-animations".equalsIgnoreCase(str2)) {
+                                liteModeSettingsActivity.scrollToFlags(512);
+                            }
+                            if ("particles".equalsIgnoreCase(str2)) {
+                                liteModeSettingsActivity.scrollToFlags(131072);
+                            }
+                            if ("transitions".equalsIgnoreCase(str2)) {
+                                for (int i5 = 0; i5 < liteModeSettingsActivity.items.size(); i5++) {
+                                    if (((LiteModeSettingsActivity.Item) liteModeSettingsActivity.items.get(i5)).type == 1) {
+                                        liteModeSettingsActivity.listView.highlightRowInternal(new LaunchActivity$$ExternalSyntheticLambda9(liteModeSettingsActivity, i5, 11), 700, true);
+                                        return true;
+                                    }
+                                }
+                            }
+                        } else if ("themes".equalsIgnoreCase(str2) || "theme".equalsIgnoreCase(str2)) {
+                            presentFragment(new ThemeActivity(3));
+                            if ("create".equalsIgnoreCase(str7)) {
+                                scrollTo("createNewThemeRow");
+                                return true;
+                            }
+                        } else if (!TextUtils.isEmpty(str7) && ("wallpaper".equalsIgnoreCase(str2) || "wallpapers".equalsIgnoreCase(str2))) {
+                            presentFragment(new WallpapersListActivity(0));
+                            if ("set".equalsIgnoreCase(str7) || "choose-photo".equalsIgnoreCase(str7)) {
+                                scrollTo("uploadImageRow");
+                                return true;
+                            }
+                        } else {
+                            if (!TextUtils.isEmpty(str7) && ("your-color".equalsIgnoreCase(str2) || "color".equalsIgnoreCase(str2))) {
+                                presentFragment(new PeerColorActivity());
+                                return true;
+                            }
+                            if (TextUtils.isEmpty(str7) || !"stickers-and-emoji".equalsIgnoreCase(str2)) {
+                                presentFragment(new ThemeActivity(0));
+                                if ("wallpaper".equalsIgnoreCase(str2) || "wallpapers".equalsIgnoreCase(str2)) {
+                                    scrollTo("backgroundRow");
+                                }
+                                if ("your-color".equalsIgnoreCase(str2) || "color".equalsIgnoreCase(str2)) {
+                                    scrollTo("changeUserColor");
+                                }
+                                if ("auto-night-mode".equalsIgnoreCase(str2)) {
+                                    scrollTo("nightThemeRow");
+                                }
+                                if ("text-size".equalsIgnoreCase(str2)) {
+                                    scrollTo("textSizeRow");
+                                }
+                                if ("message-corners".equalsIgnoreCase(str2)) {
+                                    scrollTo("bubbleRadiusRow");
+                                }
+                                if ("animations".equalsIgnoreCase(str2)) {
+                                    scrollTo("liteModeRow");
+                                }
+                                if ("stickers-and-emoji".equalsIgnoreCase(str2)) {
+                                    scrollTo("stickersRow");
+                                }
+                                if ("app-icon".equalsIgnoreCase(str2)) {
+                                    scrollTo("appIconSelectorRow");
+                                }
+                                if ("tap-for-next-media".equalsIgnoreCase(str2)) {
+                                    scrollTo("nextMediaTapRow");
+                                    return true;
+                                }
+                            } else {
+                                if (!TextUtils.isEmpty(str4) && "archived".equalsIgnoreCase(str7)) {
+                                    presentFragment(new ArchivedStickersActivity(0));
+                                    return true;
+                                }
+                                if (!"emoji".equalsIgnoreCase(str7) || TextUtils.isEmpty(str4) || "large".equalsIgnoreCase(str4) || "dynamic-order".equalsIgnoreCase(str4)) {
+                                    presentFragment(new StickersActivity(0, null));
+                                    if ("trending".equalsIgnoreCase(str7)) {
+                                        scrollTo("featuredRow");
+                                    }
+                                    if ("archived".equalsIgnoreCase(str7)) {
+                                        scrollTo("archivedRow");
+                                    }
+                                    if ("emoji".equalsIgnoreCase(str7) && "large".equalsIgnoreCase(str4)) {
+                                        scrollTo("largeEmojiRow");
+                                        return true;
+                                    }
+                                    if ("emoji".equalsIgnoreCase(str7) && "dynamic-order".equalsIgnoreCase(str4)) {
+                                        scrollTo("dynamicPackOrder");
+                                        return true;
+                                    }
+                                    if ("emoji".equalsIgnoreCase(str7)) {
+                                        scrollTo("emojiPacksRow");
+                                        return true;
+                                    }
+                                } else {
+                                    if (!TextUtils.isEmpty(str6) && "archived".equalsIgnoreCase(str4)) {
+                                        presentFragment(new ArchivedStickersActivity(5));
+                                        return true;
+                                    }
+                                    presentFragment(new StickersActivity(5, null));
+                                    if ("suggest".equalsIgnoreCase(str4)) {
+                                        scrollTo("suggestRow");
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    return true;
+                }
+                if (TextUtils.isEmpty(str3)) {
+                    presentFragment(new ThemeActivity(0));
+                    scrollTo("browserRow");
+                    return true;
+                }
+                presentFragment(new WebBrowserSettings(null));
+                if ("enable-browser".equalsIgnoreCase(str3)) {
+                    scrollTo("enableRow");
+                }
+                if ("clear-cookies".equalsIgnoreCase(str3)) {
+                    scrollTo("clearCookiesRow");
+                }
+                if ("clear-cache".equalsIgnoreCase(str3)) {
+                    scrollTo("clearCacheRow");
+                }
+                if ("history".equalsIgnoreCase(str3)) {
+                    scrollTo("historyRow");
+                }
+                if ("clear-history".equalsIgnoreCase(str3)) {
+                    scrollTo("clearHistoryRow");
+                }
+                if ("never-open".equalsIgnoreCase(str3)) {
+                    scrollTo("neverOpenRow");
+                }
+                if ("clear-list".equalsIgnoreCase(str3)) {
+                    scrollTo("clearListRow");
+                }
+                if ("search".equalsIgnoreCase(str3)) {
+                    scrollTo("searchRow");
+                    return true;
+                }
+                return true;
+            }
+            if ("do-not-translate".equalsIgnoreCase(str2)) {
+                presentFragment(new RestrictedLanguagesSelectActivity());
+                return true;
+            }
+            presentFragment(new LanguageSelectActivity());
+            if ("show-button".equalsIgnoreCase(str2)) {
+                scrollTo("manualTranslationPosition");
+            }
+            if ("translate-chats".equalsIgnoreCase(str2)) {
+                scrollTo("autoTranslationPosition");
+                return true;
+            }
+        }
+        return true;
+    }
+
+    public final void init() {
+        if (this.inited || this.done) {
+            return;
+        }
+        Browser.Progress progress = this.progress;
+        if (progress == null) {
+            if (this.progressDialog == null) {
+                this.progressDialog = new AlertDialog(this.activity, 3, null);
+            }
+            this.progressDialog.setOnCancelListener(new LinkManager$$ExternalSyntheticLambda17(this, 0));
+            AlertDialog alertDialog = this.progressDialog;
+            AndroidUtilities.cancelRunOnUIThread(alertDialog.showRunnable);
+            AndroidUtilities.runOnUIThread(alertDialog.showRunnable, 300L);
+        } else {
+            progress.onCancelListener = new LinkManager$$ExternalSyntheticLambda18(this, 0);
+            progress.init();
+        }
+        this.inited = true;
+    }
+
+    public final void presentFragment(BaseFragment baseFragment) {
+        presentFragment(baseFragment, false);
+    }
+
+    public final void scrollTo(String str) {
+        AndroidUtilities.scrollToFragmentRow(this.activity.getActionBarLayout(), str);
+    }
+
+    public final void presentFragment(BaseFragment baseFragment, boolean z) {
+        LaunchActivity launchActivity = this.activity;
+        ((ActionBarLayout) launchActivity.getActionBarLayout()).presentFragment$1(baseFragment, z, false);
+        if (AndroidUtilities.isTablet()) {
+            ActionBarLayout actionBarLayout = launchActivity.actionBarLayout;
+            actionBarLayout.getClass();
+            actionBarLayout.rebuildAllFragmentViews(true, true);
+            ActionBarLayout actionBarLayout2 = launchActivity.rightActionBarLayout;
+            actionBarLayout2.getClass();
+            actionBarLayout2.rebuildAllFragmentViews(true, true);
         }
     }
 }

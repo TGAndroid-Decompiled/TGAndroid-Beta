@@ -1,108 +1,63 @@
 package kotlin.collections;
 
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import kotlin.Pair;
 import kotlin.jvm.internal.Intrinsics;
 
-public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
-    public static Map emptyMap() {
-        EmptyMap emptyMap = EmptyMap.INSTANCE;
-        Intrinsics.checkNotNull(emptyMap, "null cannot be cast to non-null type kotlin.collections.Map<K of kotlin.collections.MapsKt__MapsKt.emptyMap, V of kotlin.collections.MapsKt__MapsKt.emptyMap>");
-        return emptyMap;
+public abstract class MapsKt__MapsKt {
+    public static int mapCapacity(int i) {
+        if (i < 0) {
+            return i;
+        }
+        if (i < 3) {
+            return i + 1;
+        }
+        if (i < 1073741824) {
+            return (int) ((i / 0.75f) + 1.0f);
+        }
+        return Integer.MAX_VALUE;
     }
 
-    public static Map mapOf(Pair... pairs) {
-        Intrinsics.checkNotNullParameter(pairs, "pairs");
-        return pairs.length > 0 ? toMap(pairs, new LinkedHashMap(MapsKt__MapsJVMKt.mapCapacity(pairs.length))) : emptyMap();
-    }
-
-    public static Map mutableMapOf(Pair... pairs) {
-        Intrinsics.checkNotNullParameter(pairs, "pairs");
-        LinkedHashMap linkedHashMap = new LinkedHashMap(MapsKt__MapsJVMKt.mapCapacity(pairs.length));
-        putAll(linkedHashMap, pairs);
+    public static Map mapOf(Pair... pairArr) {
+        if (pairArr.length <= 0) {
+            return EmptyMap.INSTANCE;
+        }
+        LinkedHashMap linkedHashMap = new LinkedHashMap(mapCapacity(pairArr.length));
+        putAll(linkedHashMap, pairArr);
         return linkedHashMap;
     }
 
-    public static LinkedHashMap linkedMapOf(Pair... pairs) {
-        Intrinsics.checkNotNullParameter(pairs, "pairs");
-        return (LinkedHashMap) toMap(pairs, new LinkedHashMap(MapsKt__MapsJVMKt.mapCapacity(pairs.length)));
-    }
-
-    public static final void putAll(Map map, Pair[] pairs) {
-        Intrinsics.checkNotNullParameter(map, "<this>");
-        Intrinsics.checkNotNullParameter(pairs, "pairs");
-        for (Pair pair : pairs) {
-            map.put(pair.component1(), pair.component2());
+    public static final void putAll(LinkedHashMap linkedHashMap, Pair[] pairArr) {
+        for (Pair pair : pairArr) {
+            linkedHashMap.put(pair.first, pair.second);
         }
     }
 
-    public static final void putAll(Map map, Iterable pairs) {
-        Intrinsics.checkNotNullParameter(map, "<this>");
-        Intrinsics.checkNotNullParameter(pairs, "pairs");
-        Iterator it = pairs.iterator();
-        while (it.hasNext()) {
-            Pair pair = (Pair) it.next();
-            map.put(pair.component1(), pair.component2());
-        }
-    }
-
-    public static Map toMap(Iterable iterable) {
-        Intrinsics.checkNotNullParameter(iterable, "<this>");
-        if (iterable instanceof Collection) {
-            Collection collection = (Collection) iterable;
-            int size = collection.size();
-            if (size == 0) {
-                return emptyMap();
-            }
-            if (size != 1) {
-                return toMap(iterable, new LinkedHashMap(MapsKt__MapsJVMKt.mapCapacity(collection.size())));
-            }
-            return MapsKt__MapsJVMKt.mapOf((Pair) (iterable instanceof List ? ((List) iterable).get(0) : collection.iterator().next()));
-        }
-        return optimizeReadOnlyMap(toMap(iterable, new LinkedHashMap()));
-    }
-
-    public static final Map toMap(Iterable iterable, Map destination) {
-        Intrinsics.checkNotNullParameter(iterable, "<this>");
-        Intrinsics.checkNotNullParameter(destination, "destination");
-        putAll(destination, iterable);
-        return destination;
-    }
-
-    public static final Map toMap(Pair[] pairArr, Map destination) {
-        Intrinsics.checkNotNullParameter(pairArr, "<this>");
-        Intrinsics.checkNotNullParameter(destination, "destination");
-        putAll(destination, pairArr);
-        return destination;
-    }
-
-    public static Map toMap(Map map) {
-        Intrinsics.checkNotNullParameter(map, "<this>");
-        int size = map.size();
+    public static Map toMap(ArrayList arrayList) {
+        EmptyMap emptyMap = EmptyMap.INSTANCE;
+        int size = arrayList.size();
         if (size == 0) {
-            return emptyMap();
+            return emptyMap;
         }
         if (size == 1) {
-            return MapsKt__MapsJVMKt.toSingletonMap(map);
+            Pair pair = (Pair) arrayList.get(0);
+            Intrinsics.checkNotNullParameter(pair, "pair");
+            Map mapSingletonMap = Collections.singletonMap(pair.first, pair.second);
+            Intrinsics.checkNotNullExpressionValue(mapSingletonMap, "singletonMap(...)");
+            return mapSingletonMap;
         }
-        return toMutableMap(map);
-    }
-
-    public static Map toMutableMap(Map map) {
-        Intrinsics.checkNotNullParameter(map, "<this>");
-        return new LinkedHashMap(map);
-    }
-
-    public static final Map optimizeReadOnlyMap(Map map) {
-        Intrinsics.checkNotNullParameter(map, "<this>");
-        int size = map.size();
-        if (size != 0) {
-            return size != 1 ? map : MapsKt__MapsJVMKt.toSingletonMap(map);
+        LinkedHashMap linkedHashMap = new LinkedHashMap(mapCapacity(arrayList.size()));
+        int size2 = arrayList.size();
+        int i = 0;
+        while (i < size2) {
+            Object obj = arrayList.get(i);
+            i++;
+            Pair pair2 = (Pair) obj;
+            linkedHashMap.put(pair2.first, pair2.second);
         }
-        return emptyMap();
+        return linkedHashMap;
     }
 }

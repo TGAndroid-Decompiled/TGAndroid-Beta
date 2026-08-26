@@ -10,110 +10,103 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
 import org.telegram.ui.Components.UnsupportedBlockDrawable;
 
-public class ChatMessageUnsupportedCell extends View implements Theme.Colorable {
-    private ChatMessageCell.ChatMessageCellDelegate delegate;
-    private int mParentH;
-    private float mViewTop;
+public final class ChatMessageUnsupportedCell extends View implements Theme.Colorable {
+    public ChatMessageCell.ChatMessageCellDelegate delegate;
+    public int mParentH;
+    public float mViewTop;
     public final Theme.ResourcesProvider resourcesProvider;
     public final UnsupportedBlockDrawable unsupportedBlockDrawable;
-    private int unsupportedBlockHeight;
-    private int unsupportedBlockWidth;
-
-    public int[] getColorKeys() {
-        return Theme.Colorable.CC.$default$getColorKeys(this);
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-    }
+    public int unsupportedBlockHeight;
+    public int unsupportedBlockWidth;
 
     public ChatMessageUnsupportedCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
-        UnsupportedBlockDrawable unsupportedBlockDrawable = new UnsupportedBlockDrawable(resourcesProvider);
+        UnsupportedBlockDrawable unsupportedBlockDrawable = new UnsupportedBlockDrawable();
         this.unsupportedBlockDrawable = unsupportedBlockDrawable;
         unsupportedBlockDrawable.setCallback(this);
-        unsupportedBlockDrawable.setTitle(LocaleController.getString(R.string.UnsupportedMessageTitle));
-        unsupportedBlockDrawable.setSubtitle(LocaleController.getString(R.string.UnsupportedMessageMessage));
-        unsupportedBlockDrawable.setButtonText(LocaleController.getString(R.string.UnsupportedUpdate));
-        unsupportedBlockDrawable.setOnClickListener(new Runnable() {
-            @Override
-            public final void run() {
-                ChatMessageUnsupportedCell.$r8$lambda$9kWNZCd7_y2vHz1m5G2sNSX0N74(this.f$0);
-            }
-        });
+        unsupportedBlockDrawable.title = LocaleController.getString(R.string.UnsupportedMessageTitle);
+        unsupportedBlockDrawable.subtitle = LocaleController.getString(R.string.UnsupportedMessageMessage);
+        unsupportedBlockDrawable.buttonText = LocaleController.getString(R.string.UnsupportedUpdate);
+        unsupportedBlockDrawable.onClickListener = new ArticleViewer$$ExternalSyntheticLambda3(this, 25);
     }
 
-    public static void $r8$lambda$9kWNZCd7_y2vHz1m5G2sNSX0N74(ChatMessageUnsupportedCell chatMessageUnsupportedCell) {
-        ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate = chatMessageUnsupportedCell.delegate;
-        if (chatMessageCellDelegate != null) {
-            chatMessageCellDelegate.didPressAppUpdateButton();
+    public final void drawBackground(Canvas canvas) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider != null) {
+            resourcesProvider.applyServiceShaderMatrix(0.0f, this.mViewTop, getMeasuredWidth(), this.mParentH);
+        } else {
+            Theme.applyServiceShaderMatrix(Theme.serviceBitmap, Theme.serviceBitmapShader, Theme.serviceBitmapMatrix, getMeasuredWidth(), this.mParentH, 0.0f, this.mViewTop);
+        }
+        float fDp = AndroidUtilities.dp(18.0f);
+        float fDp2 = AndroidUtilities.dp(6.0f);
+        float fDp3 = AndroidUtilities.dp(18.0f) + this.unsupportedBlockWidth;
+        float fDp4 = AndroidUtilities.dp(6.0f) + this.unsupportedBlockHeight;
+        float fDp5 = AndroidUtilities.dp(18.0f);
+        float fDp6 = AndroidUtilities.dp(18.0f);
+        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintChatActionBackground") : null;
+        if (paint == null) {
+            paint = Theme.getThemePaint("paintChatActionBackground");
+        }
+        canvas.drawRoundRect(fDp, fDp2, fDp3, fDp4, fDp5, fDp6, paint);
+        if (resourcesProvider != null ? resourcesProvider.hasGradientService() : Theme.hasGradientService()) {
+            canvas.drawRoundRect(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(18.0f) + this.unsupportedBlockWidth, AndroidUtilities.dp(6.0f) + this.unsupportedBlockHeight, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Theme.chat_actionBackgroundGradientDarkenPaint);
         }
     }
 
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return super.verifyDrawable(drawable) || drawable == this.unsupportedBlockDrawable;
+    public int[] getColorKeys() {
+        return null;
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onDraw(Canvas canvas) {
+        int iDp = AndroidUtilities.dp(18.0f);
+        int iDp2 = AndroidUtilities.dp(6.0f);
+        int iDp3 = AndroidUtilities.dp(18.0f) + this.unsupportedBlockWidth;
+        int iDp4 = AndroidUtilities.dp(6.0f) + this.unsupportedBlockHeight;
+        UnsupportedBlockDrawable unsupportedBlockDrawable = this.unsupportedBlockDrawable;
+        unsupportedBlockDrawable.setBounds(iDp, iDp2, iDp3, iDp4);
+        unsupportedBlockDrawable.draw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         int iDp = size - AndroidUtilities.dp(36.0f);
         this.unsupportedBlockWidth = iDp;
         int iMeasure = this.unsupportedBlockDrawable.measure(iDp);
         this.unsupportedBlockHeight = iMeasure;
-        setMeasuredDimension(size, iMeasure + AndroidUtilities.dp(12.0f));
+        setMeasuredDimension(size, AndroidUtilities.dp(12.0f) + iMeasure);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return this.unsupportedBlockDrawable.clickHelper.onTouchEvent(motionEvent, this);
     }
 
     public void setDelegate(ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate) {
         this.delegate = chatMessageCellDelegate;
     }
 
-    public void setVisiblePart(float f, int i) {
+    public final void setVisiblePart(float f, int i) {
         this.mViewTop = f;
         this.mParentH = i;
     }
 
-    public void drawBackground(Canvas canvas) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        if (resourcesProvider != null) {
-            resourcesProvider.applyServiceShaderMatrix(getMeasuredWidth(), this.mParentH, 0.0f, this.mViewTop);
-        } else {
-            Theme.applyServiceShaderMatrix(getMeasuredWidth(), this.mParentH, 0.0f, this.mViewTop);
-        }
-        canvas.drawRoundRect(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(18.0f) + this.unsupportedBlockWidth, AndroidUtilities.dp(6.0f) + this.unsupportedBlockHeight, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), getThemedPaint("paintChatActionBackground"));
-        if (hasGradientService()) {
-            canvas.drawRoundRect(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(18.0f) + this.unsupportedBlockWidth, AndroidUtilities.dp(6.0f) + this.unsupportedBlockHeight, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Theme.chat_actionBackgroundGradientDarkenPaint);
-        }
-    }
-
     @Override
-    protected void onDraw(Canvas canvas) {
-        this.unsupportedBlockDrawable.setBounds(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(18.0f) + this.unsupportedBlockWidth, AndroidUtilities.dp(6.0f) + this.unsupportedBlockHeight);
-        this.unsupportedBlockDrawable.draw(canvas);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.unsupportedBlockDrawable.onTouchEvent(this, motionEvent);
-    }
-
-    @Override
-    public void updateColors() {
+    public final void updateColors$1() {
         this.unsupportedBlockDrawable.updateColors();
     }
 
-    public boolean hasGradientService() {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider != null ? resourcesProvider.hasGradientService() : Theme.hasGradientService();
-    }
-
-    public Paint getThemedPaint(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
-        return paint != null ? paint : Theme.getThemePaint(str);
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        return super.verifyDrawable(drawable) || drawable == this.unsupportedBlockDrawable;
     }
 }

@@ -12,7 +12,7 @@ import org.telegram.ui.Components.voip.VoIPHelper;
 
 public class VoIPPermissionActivity extends Activity {
     @Override
-    protected void onCreate(Bundle bundle) {
+    public final void onCreate(Bundle bundle) {
         boolean zIsVideo;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -40,7 +40,7 @@ public class VoIPPermissionActivity extends Activity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
+    public final void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
         if (i == 101 || i == 102) {
             boolean z = false;
             int i2 = 0;
@@ -64,21 +64,16 @@ public class VoIPPermissionActivity extends Activity {
                 startActivity(new Intent(this, (Class<?>) LaunchActivity.class).setAction("voip"));
                 return;
             }
-            if (!shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().declineIncomingCall();
-                } else {
-                    VoIPPreNotificationService.decline(this, 1);
-                }
-                VoIPHelper.permissionDenied(this, new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.finish();
-                    }
-                }, i);
+            if (shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
+                finish();
                 return;
             }
-            finish();
+            if (VoIPService.getSharedInstance() != null) {
+                VoIPService.getSharedInstance().declineIncomingCall();
+            } else {
+                VoIPPreNotificationService.decline(this, 1);
+            }
+            VoIPHelper.permissionDenied(i, this, new VoIPFragment$8$$ExternalSyntheticLambda1(this, 2));
         }
     }
 }

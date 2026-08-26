@@ -5,17 +5,17 @@ import android.media.MediaCodecInfo;
 public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
     private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new Predicate<MediaCodecInfo>() {
         @Override
-        public Predicate<MediaCodecInfo> and(Predicate<? super MediaCodecInfo> predicate) {
+        public final Predicate<MediaCodecInfo> and(Predicate<? super MediaCodecInfo> predicate) {
             return Predicate.CC.$default$and(this, predicate);
         }
 
         @Override
-        public Predicate<MediaCodecInfo> negate() {
+        public final Predicate<MediaCodecInfo> negate() {
             return Predicate.CC.$default$negate(this);
         }
 
         @Override
-        public Predicate<MediaCodecInfo> or(Predicate<? super MediaCodecInfo> predicate) {
+        public final Predicate<MediaCodecInfo> or(Predicate<? super MediaCodecInfo> predicate) {
             return Predicate.CC.$default$or(this, predicate);
         }
 
@@ -25,6 +25,11 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         }
     };
 
+    @Deprecated
+    public HardwareVideoDecoderFactory() {
+        this(null);
+    }
+
     @Override
     public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
         return super.createDecoder(videoCodecInfo);
@@ -33,11 +38,6 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
     @Override
     public VideoCodecInfo[] getSupportedCodecs() {
         return super.getSupportedCodecs();
-    }
-
-    @Deprecated
-    public HardwareVideoDecoderFactory() {
-        this(null);
     }
 
     public HardwareVideoDecoderFactory(EglBase.Context context) {

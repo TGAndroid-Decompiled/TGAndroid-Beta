@@ -1,41 +1,40 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.text.TextUtils;
+import android.util.StateSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import com.google.android.gms.internal.mlkit_vision_common.zzkv;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda77;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarsImageView;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 
-public class DialogsHintCell extends FrameLayout {
-    private final AvatarsImageView avatarsImageView;
-    private final ImageView chevronView;
-    private final ImageView closeView;
-    private final LinearLayout contentView;
-    private int height;
+public final class DialogsHintCell extends FrameLayout {
+    public final AvatarsImageView avatarsImageView;
+    public final ImageView chevronView;
+    public final ImageView closeView;
+    public final LinearLayout contentView;
     public final BackupImageView imageView;
     public final LinkSpanDrawable.LinksTextView messageView;
-    private final LinearLayout parentView;
+    public final LinearLayout parentView;
     public boolean titleIsError;
     public final AnimatedEmojiSpan.TextViewEmojis titleView;
-
-    public void setCompact(boolean z) {
-    }
 
     public DialogsHintCell(Context context) {
         super(context);
@@ -61,7 +60,7 @@ public class DialogsHintCell extends FrameLayout {
         textViewEmojis.setTypeface(AndroidUtilities.bold());
         textViewEmojis.setMaxLines(5);
         linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-2, -2, 0.0f, (LocaleController.isRTL ? 5 : 3) | 48));
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, null);
         this.messageView = linksTextView;
         linksTextView.setTextSize(1, 13.0f);
         linksTextView.setEllipsize(truncateAt);
@@ -81,7 +80,7 @@ public class DialogsHintCell extends FrameLayout {
             linearLayout2.addView(avatarsImageView, LayoutHelper.createFrame(0, -1.0f, 16, -2.0f, 0.0f, 0.0f, 0.0f));
             linearLayout2.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 16, 7.0f, 0.0f, 7.0f, 0.0f));
         }
-        addView(linearLayout2, LayoutHelper.createFrame(-1, -1.0f));
+        addView(linearLayout2, LayoutHelper.createFrame(-1.0f, -1));
         linearLayout2.setClipChildren(false);
         linearLayout2.setClipToPadding(false);
         ImageView imageView = new ImageView(context);
@@ -99,123 +98,101 @@ public class DialogsHintCell extends FrameLayout {
         updateColors();
     }
 
-    public void updateColors() {
-        this.titleView.setTextColor(Theme.getColor(this.titleIsError ? Theme.key_text_RedBold : Theme.key_windowBackgroundWhiteBlackText));
-        LinkSpanDrawable.LinksTextView linksTextView = this.messageView;
-        int i = Theme.key_windowBackgroundWhiteGrayText;
-        linksTextView.setTextColor(Theme.getColor(i));
-        this.messageView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
-        ImageView imageView = this.chevronView;
-        int color = Theme.getColor(i);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(color, mode);
-        this.closeView.setColorFilter(Theme.getColor(i), mode);
-        this.closeView.setBackground(Theme.AdaptiveRipple.filledCircle());
-    }
-
-    public void setAvatars(int i, ArrayList arrayList) {
-        int iMin = Math.min(3, arrayList == null ? 0 : arrayList.size());
-        AvatarsImageView avatarsImageView = this.avatarsImageView;
-        boolean z = iMin != avatarsImageView.avatarsDrawable.count;
-        if (iMin <= 1) {
-            avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
-            this.avatarsImageView.setSize(AndroidUtilities.dp(36.0f));
-        } else {
-            avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(20.0f));
-            this.avatarsImageView.setSize(AndroidUtilities.dp(30.0f));
-        }
-        this.avatarsImageView.setCount(iMin);
-        this.avatarsImageView.setVisibility(iMin <= 0 ? 8 : 0);
-        this.avatarsImageView.getLayoutParams().width = iMin <= 1 ? AndroidUtilities.dp(36.0f) : AndroidUtilities.dp(((iMin - 1) * 18) + 30);
-        if (z) {
-            this.parentView.requestLayout();
-        }
-        if (arrayList != null) {
-            int i2 = 0;
-            while (i2 < 3) {
-                this.avatarsImageView.setObject(i2, i, i2 >= arrayList.size() ? null : (TLObject) arrayList.get(i2));
-                i2++;
-            }
-        }
-        this.avatarsImageView.commitTransition(false);
-    }
-
-    public void clear() {
-        setCompact(false);
-        setAvatars(UserConfig.selectedAccount, null);
-        this.imageView.setVisibility(8);
-        this.imageView.clearImage();
-    }
-
-    public void showImage() {
-        this.imageView.setVisibility(0);
-    }
-
-    public void setText(CharSequence charSequence, CharSequence charSequence2) {
-        setText(charSequence, charSequence2, true, false);
-    }
-
-    public void setText(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
-        this.titleIsError = z2;
-        this.titleView.setVisibility(TextUtils.isEmpty(charSequence) ? 8 : 0);
-        this.titleView.setText(charSequence);
-        this.titleView.setCompoundDrawables(null, null, null, null);
-        this.messageView.setText(charSequence2);
-        this.chevronView.setVisibility(z ? 0 : 8);
-        this.closeView.setVisibility(8);
-        int iDp = z ? AndroidUtilities.dp(24.0f) : 0;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
         LinearLayout linearLayout = this.contentView;
-        boolean z3 = LocaleController.isRTL;
-        int i = z3 ? iDp : 0;
-        if (z3) {
-            iDp = 0;
-        }
-        linearLayout.setPadding(i, 0, iDp, 0);
-        updateColors();
-    }
-
-    public void setOnCloseListener(View.OnClickListener onClickListener) {
-        this.chevronView.setVisibility(4);
-        this.closeView.setVisibility(0);
-        this.closeView.setOnClickListener(onClickListener);
+        linearLayout.measure(View.MeasureSpec.makeMeasureSpec(linearLayout.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight(), 1073741824));
+        this.closeView.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
+        this.avatarsImageView.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
+        this.imageView.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
+        this.chevronView.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
     }
 
     @Override
-    public void setOnClickListener(final View.OnClickListener onClickListener) {
-        super.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                DialogsHintCell.$r8$lambda$djl6f41F7MaGy1hqIwHSY2q0ukw(this.f$0, onClickListener, view);
-            }
-        });
-    }
-
-    public static void $r8$lambda$djl6f41F7MaGy1hqIwHSY2q0ukw(DialogsHintCell dialogsHintCell, View.OnClickListener onClickListener, View view) {
-        if (dialogsHintCell.getAlpha() <= 0.5f || onClickListener == null) {
-            return;
-        }
-        onClickListener.onClick(view);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
         if (getAlpha() < 0.5f) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
     }
 
+    public final void setAvatars(int i, ArrayList arrayList) {
+        int iMin = Math.min(3, arrayList == null ? 0 : arrayList.size());
+        AvatarsImageView avatarsImageView = this.avatarsImageView;
+        boolean z = iMin != avatarsImageView.avatarsDrawable.count;
+        if (iMin <= 1) {
+            avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
+            avatarsImageView.setSize(AndroidUtilities.dp(36.0f));
+        } else {
+            avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(20.0f));
+            avatarsImageView.setSize(AndroidUtilities.dp(30.0f));
+        }
+        avatarsImageView.setCount(iMin);
+        avatarsImageView.setVisibility(iMin <= 0 ? 8 : 0);
+        avatarsImageView.getLayoutParams().width = iMin <= 1 ? AndroidUtilities.dp(36.0f) : AndroidUtilities.dp(zzkv.m(iMin, 1, 18, 30));
+        if (z) {
+            this.parentView.requestLayout();
+        }
+        if (arrayList != null) {
+            int i2 = 0;
+            while (i2 < 3) {
+                avatarsImageView.avatarsDrawable.setObject(i2, i2 >= arrayList.size() ? null : (TLObject) arrayList.get(i2), i);
+                i2++;
+            }
+        }
+        avatarsImageView.avatarsDrawable.commitTransition(false, true);
+    }
+
+    public void setCompact(boolean z) {
+    }
+
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
-        LinearLayout linearLayout = this.contentView;
-        linearLayout.measure(View.MeasureSpec.makeMeasureSpec(linearLayout.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
-        int measuredHeight = this.contentView.getMeasuredHeight() + getPaddingTop() + getPaddingBottom();
-        this.height = measuredHeight;
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
-        this.closeView.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
-        this.avatarsImageView.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
-        this.imageView.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
-        this.chevronView.setTranslationY((getPaddingBottom() - getPaddingTop()) / 2.0f);
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        super.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda77(17, this, onClickListener));
+    }
+
+    public void setOnCloseListener(View.OnClickListener onClickListener) {
+        this.chevronView.setVisibility(4);
+        ImageView imageView = this.closeView;
+        imageView.setVisibility(0);
+        imageView.setOnClickListener(onClickListener);
+    }
+
+    public final void setText(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
+        this.titleIsError = z2;
+        int i = TextUtils.isEmpty(charSequence) ? 8 : 0;
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.titleView;
+        textViewEmojis.setVisibility(i);
+        textViewEmojis.setText(charSequence);
+        textViewEmojis.setCompoundDrawables(null, null, null, null);
+        this.messageView.setText(charSequence2);
+        this.chevronView.setVisibility(z ? 0 : 8);
+        this.closeView.setVisibility(8);
+        int iDp = z ? AndroidUtilities.dp(24.0f) : 0;
+        boolean z3 = LocaleController.isRTL;
+        int i2 = z3 ? iDp : 0;
+        if (z3) {
+            iDp = 0;
+        }
+        this.contentView.setPadding(i2, 0, iDp, 0);
+        updateColors();
+    }
+
+    public final void updateColors() {
+        this.titleView.setTextColor(Theme.getColor(null, this.titleIsError ? Theme.key_text_RedBold : Theme.key_windowBackgroundWhiteBlackText, false));
+        int i = Theme.key_windowBackgroundWhiteGrayText;
+        int color = Theme.getColor(null, i, false);
+        LinkSpanDrawable.LinksTextView linksTextView = this.messageView;
+        linksTextView.setTextColor(color);
+        linksTextView.setLinkTextColor(Theme.getColor(null, Theme.key_chat_messageLinkIn, false));
+        int color2 = Theme.getColor(null, i, false);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.chevronView.setColorFilter(color2, mode);
+        int color3 = Theme.getColor(null, i, false);
+        ImageView imageView = this.closeView;
+        imageView.setColorFilter(color3, mode);
+        imageView.setBackground(new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{Theme.AdaptiveRipple.calcRippleColor(Theme.getColor(null, Theme.AdaptiveRipple.defaultBackgroundColorKey, false))}), null, new Theme.AdaptiveRipple.CircleDrawable()));
     }
 }

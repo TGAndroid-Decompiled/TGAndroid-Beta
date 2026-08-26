@@ -3,35 +3,20 @@ package org.telegram.ui.Components.Premium.boosts.cells.statistics;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
-import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 
-public class CounterDrawable extends Drawable {
-    private final Paint bgPaint;
-    private final RectF bgRoundRect;
-    private final Drawable icon;
-    private String text;
-    private final TextPaint textPaint;
-    private float textWith;
-
-    @Override
-    public int getOpacity() {
-        return -1;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
+public final class CounterDrawable extends Drawable {
+    public final TextPaint bgPaint;
+    public final RectF bgRoundRect;
+    public final Drawable icon;
+    public String text;
+    public final TextPaint textPaint;
+    public float textWith;
 
     public CounterDrawable(Context context) {
         TextPaint textPaint = new TextPaint(1);
@@ -43,35 +28,47 @@ public class CounterDrawable extends Drawable {
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint2.setColor(-6915073);
-        this.icon = ContextCompat.getDrawable(context, R.drawable.mini_boost_badge);
-    }
-
-    public void setText(String str) {
-        this.text = str;
-        this.textWith = this.textPaint.measureText(str);
-        invalidateSelf();
+        this.icon = context.getDrawable(R.drawable.mini_boost_badge);
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.bgRoundRect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        canvas.drawRoundRect(this.bgRoundRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.bgPaint);
-        this.icon.setBounds(bounds.left + AndroidUtilities.dp(2.0f), bounds.top + AndroidUtilities.dp(1.0f), bounds.left + AndroidUtilities.dp(2.0f) + this.icon.getIntrinsicWidth(), getBounds().top + AndroidUtilities.dp(1.0f) + this.icon.getIntrinsicHeight());
-        this.icon.draw(canvas);
+        RectF rectF = this.bgRoundRect;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.bgPaint);
+        int iDp = AndroidUtilities.dp(2.0f) + bounds.left;
+        int iDp2 = AndroidUtilities.dp(1.0f) + bounds.top;
+        int iDp3 = AndroidUtilities.dp(2.0f) + bounds.left;
+        Drawable drawable = this.icon;
+        drawable.setBounds(iDp, iDp2, drawable.getIntrinsicWidth() + iDp3, drawable.getIntrinsicHeight() + AndroidUtilities.dp(1.0f) + getBounds().top);
+        drawable.draw(canvas);
         String str = this.text;
         if (str != null) {
-            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, bounds.top + AndroidUtilities.dp(13.0f), this.textPaint);
+            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, AndroidUtilities.dp(13.0f) + bounds.top, this.textPaint);
         }
     }
 
     @Override
-    public int getIntrinsicWidth() {
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
         return (int) (AndroidUtilities.dp(23.0f) + this.textWith);
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
+    public final int getOpacity() {
+        return -1;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

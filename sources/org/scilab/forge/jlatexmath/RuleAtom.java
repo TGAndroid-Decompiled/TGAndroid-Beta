@@ -20,13 +20,13 @@ public class RuleAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        float factor = this.w * SpaceAtom.getFactor(this.wunit, teXEnvironment);
-        float factor2 = this.h * SpaceAtom.getFactor(this.hunit, teXEnvironment);
-        float factor3 = this.r * SpaceAtom.getFactor(this.runit, teXEnvironment);
-        if (!DelimiterFactory$$ExternalSyntheticBackport0.m(factor) || factor > 4096.0f) {
+        float factor = SpaceAtom.getFactor(this.wunit, teXEnvironment) * this.w;
+        float factor2 = SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h;
+        float factor3 = SpaceAtom.getFactor(this.runit, teXEnvironment) * this.r;
+        if (Float.isInfinite(factor) || Float.isNaN(factor) || factor > 4096.0f) {
             factor = 4096.0f;
         }
-        if (!DelimiterFactory$$ExternalSyntheticBackport0.m(factor2) || factor2 > 4096.0f) {
+        if (Float.isInfinite(factor2) || Float.isNaN(factor2) || factor2 > 4096.0f) {
             factor2 = 4096.0f;
         }
         return new HorizontalRule(factor2, factor, factor3);

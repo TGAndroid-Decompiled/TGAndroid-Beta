@@ -4,26 +4,24 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.LongSparseArray;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.gms.internal.mlkit_vision_common.zzks;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController$$ExternalSyntheticLambda37;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserNameResolver$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -33,8 +31,14 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
+import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda8;
+import org.telegram.ui.CallLogActivity;
+import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
 import org.telegram.ui.Cells.CheckBoxCell;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Cells.TextCheckCell2;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda380;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
@@ -42,106 +46,195 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
-import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
 
-public class ChatbotsActivity extends BaseFragment {
-    private static final int BUTTON_DELETE = -3;
-    private static final int PERMISSION_GIFTS = -15;
-    private static final int PERMISSION_GIFTS_SELL = -17;
-    private static final int PERMISSION_GIFTS_SETTINGS = -18;
-    private static final int PERMISSION_GIFTS_TRANSFER = -19;
-    private static final int PERMISSION_GIFTS_TRANSFER_STARS = -20;
-    private static final int PERMISSION_GIFTS_VIEW = -16;
-    private static final int PERMISSION_MESSAGES = -4;
-    private static final int PERMISSION_MESSAGES_DELETE_RECEIVED = -9;
-    private static final int PERMISSION_MESSAGES_DELETE_SENT = -8;
-    private static final int PERMISSION_MESSAGES_MARK_AS_READ = -7;
-    private static final int PERMISSION_MESSAGES_READ = -5;
-    private static final int PERMISSION_MESSAGES_REPLY = -6;
-    private static final int PERMISSION_PROFILE = -10;
-    private static final int PERMISSION_PROFILE_BIO = -12;
-    private static final int PERMISSION_PROFILE_NAME = -11;
-    private static final int PERMISSION_PROFILE_PICTURE = -13;
-    private static final int PERMISSION_PROFILE_USERNAME = -14;
-    private static final int PERMISSION_STORIES = -21;
-    private static final int RADIO_EXCLUDE = -1;
-    private static final int RADIO_INCLUDE = -2;
+public final class ChatbotsActivity extends BaseFragment {
     public TL_account.TL_connectedBot currentBot;
     public TL_account.connectedBots currentValue;
-    private ActionBarMenuItem doneButton;
-    private CrossfadeDrawable doneButtonDrawable;
-    private EditTextBoldCursor editText;
-    private FrameLayout editTextContainer;
-    private View editTextDivider;
-    private FrameLayout emptyView;
-    private ImageView emptyViewLoading;
-    private TextView emptyViewText;
+    public ActionBarMenuItem doneButton;
+    public CrossfadeDrawable doneButtonDrawable;
+    public EditTextBoldCursor editText;
+    public FrameLayout editTextContainer;
+    public View editTextDivider;
+    public PhotoViewer.AnonymousClass19 emptyView;
+    public ImageView emptyViewLoading;
+    public TextView emptyViewText;
     public boolean exclude;
-    private String lastQuery;
-    private UniversalRecyclerView listView;
-    private boolean loading;
-    private BusinessRecipientsHelper recipientsHelper;
-    private boolean scheduledLoading;
-    private SearchAdapterHelper searchHelper;
-    private boolean shownGiftsPermissionsAlert;
-    private boolean shownUsernamePermissionsAlert;
-    private boolean valueSet;
-    private boolean wasLoading;
-    private int searchId = 0;
-    private Runnable search = new Runnable() {
-        @Override
-        public final void run() {
-            ChatbotsActivity.$r8$lambda$GSSUxRMgwgzbcuRZnBZMrz2XKQQ(this.f$0);
-        }
-    };
-    public TL_account.TL_businessBotRights rights = TL_account.TL_businessBotRights.makeDefault();
-    private TLRPC.User selectedBot = null;
-    private LongSparseArray foundBots = new LongSparseArray();
-    private int shakeDp = -4;
-    private boolean expandedMessagesSection = true;
-    private boolean expandedProfileSection = false;
-    private boolean expandedGiftsSection = false;
+    public boolean expandedGiftsSection;
+    public boolean expandedMessagesSection;
+    public boolean expandedProfileSection;
+    public final LongSparseArray foundBots;
+    public String lastQuery;
+    public UniversalRecyclerView listView;
+    public boolean loading;
+    public BusinessRecipientsHelper recipientsHelper;
+    public TL_account.TL_businessBotRights rights;
+    public boolean scheduledLoading;
+    public final ChatbotsActivity$$ExternalSyntheticLambda5 search;
+    public SearchAdapterHelper searchHelper;
+    public int searchId;
+    public TLRPC.User selectedBot;
+    public int shakeDp;
+    public boolean shownGiftsPermissionsAlert;
+    public boolean shownUsernamePermissionsAlert;
+    public boolean valueSet;
+    public boolean wasLoading;
 
-    @Override
-    public boolean isSupportEdgeToEdge() {
-        return true;
+    public final class AnonymousClass4 extends CircularProgressDrawable {
+        public final int $r8$classId = 1;
+
+        public AnonymousClass4(float f, float f2, int i) {
+            super(f, f2, i);
+        }
+
+        @Override
+        public final int getIntrinsicHeight() {
+            switch (this.$r8$classId) {
+                case 0:
+                    return (int) ((this.thickness * 2.0f) + this.size);
+                default:
+                    return AndroidUtilities.dp(26.0f);
+            }
+        }
+
+        @Override
+        public final int getIntrinsicWidth() {
+            switch (this.$r8$classId) {
+                case 0:
+                    return (int) ((this.thickness * 2.0f) + this.size);
+                default:
+                    return AndroidUtilities.dp(26.0f);
+            }
+        }
+
+        public AnonymousClass4(int i) {
+            super(i);
+        }
     }
 
-    @Override
-    public View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessBots2));
-        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
-                    if (ChatbotsActivity.this.onBackPressed(true)) {
-                        ChatbotsActivity.this.finishFragment();
+    public ChatbotsActivity() {
+        super(null);
+        this.searchId = 0;
+        this.search = new ChatbotsActivity$$ExternalSyntheticLambda5(this, 4);
+        this.rights = TL_account.TL_businessBotRights.makeDefault();
+        this.selectedBot = null;
+        this.foundBots = new LongSparseArray();
+        this.shakeDp = -4;
+        this.expandedMessagesSection = true;
+        this.expandedProfileSection = false;
+        this.expandedGiftsSection = false;
+    }
+
+    public final void checkAlert(int i, boolean z, final Runnable runnable) {
+        final int i2 = 1;
+        final int i3 = 0;
+        if (!this.shownUsernamePermissionsAlert && i == -14 && z) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, getResourceProvider());
+            String string = LocaleController.getString(R.string.BusinessBotPermissionsWarning);
+            AlertDialog alertDialog = builder.alertDialog;
+            alertDialog.title = string;
+            alertDialog.message = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsUsernamesWarningText, UserObject.getPublicUsername(this.selectedBot)));
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            builder.setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener(this) {
+                public final ChatbotsActivity f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void onClick(AlertDialog alertDialog2, int i4) {
+                    switch (i3) {
+                        case 0:
+                            this.f$0.shownUsernamePermissionsAlert = true;
+                            runnable.run();
+                            break;
+                        default:
+                            this.f$0.shownGiftsPermissionsAlert = true;
+                            runnable.run();
+                            break;
                     }
-                } else if (i == 1) {
-                    ChatbotsActivity.this.processDone();
+                }
+            });
+            builder.makeRed(-1);
+            builder.show();
+            return;
+        }
+        if (this.shownGiftsPermissionsAlert || !z || (i != -17 && i != -18 && i != -19 && i != -20)) {
+            runnable.run();
+            return;
+        }
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity(), 0, getResourceProvider());
+        String string2 = LocaleController.getString(R.string.BusinessBotPermissionsWarning);
+        AlertDialog alertDialog2 = builder2.alertDialog;
+        alertDialog2.title = string2;
+        alertDialog2.message = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsGiftsWarningText, UserObject.getPublicUsername(this.selectedBot)));
+        builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        builder2.setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener(this) {
+            public final ChatbotsActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void onClick(AlertDialog alertDialog3, int i4) {
+                switch (i2) {
+                    case 0:
+                        this.f$0.shownUsernamePermissionsAlert = true;
+                        runnable.run();
+                        break;
+                    default:
+                        this.f$0.shownGiftsPermissionsAlert = true;
+                        runnable.run();
+                        break;
                 }
             }
         });
+        builder2.makeRed(-1);
+        builder2.show();
+    }
+
+    public final void checkDone$6(boolean z) {
+        if (this.doneButton == null) {
+            return;
+        }
+        boolean zHasChanges = hasChanges();
+        this.doneButton.setEnabled(zHasChanges);
+        if (z) {
+            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
+            return;
+        }
+        this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
+    }
+
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessBots2));
+        this.actionBar.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 7));
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(i)));
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
-        checkDone(false);
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(null, i, false)));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.doneButtonDrawable);
+        checkDone$6(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        new LinearLayout(getContext()).setOrientation(0);
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
+        int i2 = Theme.key_windowBackgroundGray;
+        frameLayout.setBackgroundColor(Theme.getColor(null, i2, false));
+        new LinearLayout(getParentActivity()).setOrientation(0);
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getParentActivity());
         this.editText = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 17.0f);
-        this.editText.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
+        this.editText.setHintTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteHintText, false));
         EditTextBoldCursor editTextBoldCursor2 = this.editText;
-        int i2 = Theme.key_windowBackgroundWhiteBlackText;
-        editTextBoldCursor2.setTextColor(Theme.getColor(i2));
+        int i3 = Theme.key_windowBackgroundWhiteBlackText;
+        editTextBoldCursor2.setTextColor(Theme.getColor(null, i3, false));
         this.editText.setBackgroundDrawable(null);
         this.editText.setMaxLines(1);
         this.editText.setLines(1);
@@ -151,35 +244,17 @@ public class ChatbotsActivity extends BaseFragment {
         this.editText.setInputType(180224);
         this.editText.setImeOptions(6);
         this.editText.setHint(LocaleController.getString(R.string.BusinessBotLink));
-        this.editText.setCursorColor(Theme.getColor(i2));
+        this.editText.setCursorColor(Theme.getColor(null, i3, false));
         this.editText.setCursorSize(AndroidUtilities.dp(19.0f));
         this.editText.setCursorWidth(1.5f);
-        this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-                return ChatbotsActivity.$r8$lambda$niSBNSXOVRr1_jMlXwEPMBhZpu4(this.f$0, textView, i3, keyEvent);
-            }
-        });
-        this.editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                ChatbotsActivity.this.scheduleSearch();
-            }
-        });
+        this.editText.setOnEditorActionListener(new ChatActivity$$ExternalSyntheticLambda380(this, 1));
+        this.editText.addTextChangedListener(new ArticleViewer.AnonymousClass16(this, 2));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.editTextContainer = frameLayout2;
         frameLayout2.addView(this.editText, LayoutHelper.createFrame(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.editTextContainer;
-        int i3 = Theme.key_windowBackgroundWhite;
-        frameLayout3.setBackgroundColor(getThemedColor(i3));
+        int i4 = Theme.key_windowBackgroundWhite;
+        frameLayout3.setBackgroundColor(getThemedColor(i4));
         View view = new View(context);
         this.editTextDivider = view;
         view.setBackgroundColor(getThemedColor(Theme.key_divider));
@@ -188,457 +263,161 @@ public class ChatbotsActivity extends BaseFragment {
         float f = 1.0f / AndroidUtilities.density;
         boolean z = LocaleController.isRTL;
         frameLayout4.addView(view2, LayoutHelper.createFrame(-1, f, 87, z ? 0 : 21, 0.0f, z ? 21 : 0, 0.0f));
-        FrameLayout frameLayout5 = new FrameLayout(context) {
-            @Override
-            protected void onMeasure(int i4, int i5) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
-            }
-        };
-        this.emptyView = frameLayout5;
-        frameLayout5.setBackgroundColor(getThemedColor(i3));
+        PhotoViewer.AnonymousClass19 anonymousClass19 = new PhotoViewer.AnonymousClass19(context, 5);
+        this.emptyView = anonymousClass19;
+        anonymousClass19.setBackgroundColor(getThemedColor(i4));
         TextView textView = new TextView(context);
         this.emptyViewText = textView;
         textView.setText(LocaleController.getString(R.string.BusinessBotNotFound));
         this.emptyViewText.setTextSize(1, 14.0f);
         TextView textView2 = this.emptyViewText;
-        int i4 = Theme.key_windowBackgroundWhiteGrayText2;
-        textView2.setTextColor(getThemedColor(i4));
+        int i5 = Theme.key_windowBackgroundWhiteGrayText2;
+        textView2.setTextColor(getThemedColor(i5));
         this.emptyView.addView(this.emptyViewText, LayoutHelper.createFrame(-2, -2, 17));
         this.emptyViewLoading = new ImageView(context);
-        CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(getThemedColor(i4)) {
-            @Override
-            public int getIntrinsicWidth() {
-                return (int) (this.size + (this.thickness * 2.0f));
-            }
-
-            @Override
-            public int getIntrinsicHeight() {
-                return (int) (this.size + (this.thickness * 2.0f));
-            }
-        };
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(getThemedColor(i5));
         this.emptyViewLoading.setScaleType(ImageView.ScaleType.CENTER);
-        this.emptyViewLoading.setImageDrawable(circularProgressDrawable);
+        this.emptyViewLoading.setImageDrawable(anonymousClass4);
         this.emptyView.addView(this.emptyViewLoading, LayoutHelper.createFrame(-2, -2, 17));
         this.emptyViewLoading.setAlpha(0.0f);
         this.emptyViewLoading.setTranslationY(AndroidUtilities.dp(8.0f));
         SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
         this.searchHelper = searchAdapterHelper;
-        searchAdapterHelper.setDelegate(new AnonymousClass5());
-        BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new Runnable() {
-            @Override
-            public final void run() {
-                ChatbotsActivity.$r8$lambda$hsWjQGsHFpAB5uXhPRcunrpiyeI(this.f$0);
-            }
-        });
+        searchAdapterHelper.delegate = new Stripe.AnonymousClass1(this, 19);
+        BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new ChatbotsActivity$$ExternalSyntheticLambda5(this, 0));
         this.recipientsHelper = businessRecipientsHelper;
         TL_account.TL_connectedBot tL_connectedBot = this.currentBot;
-        businessRecipientsHelper.setValue(tL_connectedBot == null ? null : tL_connectedBot.recipients);
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, new Utilities.Callback5() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-            }
-        }, null);
+        businessRecipientsHelper.setValue(tL_connectedBot != null ? tL_connectedBot.recipients : null);
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new CallLogActivity$$ExternalSyntheticLambda3(this, 6), new ChatbotsActivity$$ExternalSyntheticLambda0(this, 3), null, getResourceProvider());
         this.listView = universalRecyclerView;
         universalRecyclerView.setSections();
-        this.listView.adapter.setApplyBackground(false);
-        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        this.actionBar.setAdaptiveBackground(this.listView, true);
+        UniversalRecyclerView universalRecyclerView2 = this.listView;
+        universalRecyclerView2.adapter.applyBackground = false;
+        frameLayout.addView(universalRecyclerView2, LayoutHelper.createFrame(-1.0f, -1));
+        ActionBar actionBar = this.actionBar;
+        UniversalRecyclerView universalRecyclerView3 = this.listView;
+        actionBar.getClass();
+        actionBar.setAdaptiveBackground(universalRecyclerView3, true, i2, Theme.key_actionBarDefault);
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
-    public static boolean $r8$lambda$niSBNSXOVRr1_jMlXwEPMBhZpu4(ChatbotsActivity chatbotsActivity, TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 6) {
-            chatbotsActivity.getClass();
-            return false;
+    public final boolean hasChanges() {
+        BusinessRecipientsHelper businessRecipientsHelper;
+        if (this.valueSet) {
+            TLRPC.User user = this.selectedBot;
+            boolean z = user != null;
+            TL_account.TL_connectedBot tL_connectedBot = this.currentBot;
+            if (z == (tL_connectedBot != null)) {
+                if ((user == null ? 0L : user.id) == (tL_connectedBot != null ? tL_connectedBot.bot_id : 0L) && (user == null || (this.rights.equals(tL_connectedBot.rights) && ((businessRecipientsHelper = this.recipientsHelper) == null || !businessRecipientsHelper.hasChanges())))) {
+                }
+            }
+            return true;
         }
-        chatbotsActivity.scheduledLoading = false;
-        AndroidUtilities.cancelRunOnUIThread(chatbotsActivity.search);
-        if (TextUtils.isEmpty(chatbotsActivity.editText.getText())) {
-            chatbotsActivity.lastQuery = null;
-            chatbotsActivity.searchHelper.clear();
-            chatbotsActivity.listView.adapter.update(true);
-        } else {
-            AndroidUtilities.runOnUIThread(chatbotsActivity.search);
-        }
-        chatbotsActivity.updateSearchLoading();
+        return false;
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
         return true;
     }
 
-    class AnonymousClass5 implements SearchAdapterHelper.SearchAdapterHelperDelegate {
-        @Override
-        public boolean canApplySearchResults(int i) {
-            return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$canApplySearchResults(this, i);
-        }
-
-        @Override
-        public androidx.collection.LongSparseArray getExcludeCallParticipants() {
-            return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$getExcludeCallParticipants(this);
-        }
-
-        @Override
-        public androidx.collection.LongSparseArray getExcludeUsers() {
-            return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$getExcludeUsers(this);
-        }
-
-        @Override
-        public void onSetHashtags(ArrayList arrayList, HashMap map) {
-            SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$onSetHashtags(this, arrayList, map);
-        }
-
-        AnonymousClass5() {
-        }
-
-        @Override
-        public void onDataSetChanged(int i) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatbotsActivity.AnonymousClass5.$r8$lambda$XNSA0q1wPPr9qECTf74LLSHvV9w(this.f$0);
-                }
-            });
-        }
-
-        public static void $r8$lambda$XNSA0q1wPPr9qECTf74LLSHvV9w(AnonymousClass5 anonymousClass5) {
-            ChatbotsActivity.this.listView.adapter.update(true);
-            ChatbotsActivity.this.updateSearchLoading();
-        }
+    public final void lambda$processDone$18(TLObject tLObject) {
+        MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
     }
 
-    public static void $r8$lambda$hsWjQGsHFpAB5uXhPRcunrpiyeI(ChatbotsActivity chatbotsActivity) {
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
-    }
-
-    public void updateSearchLoading() {
-        boolean z = true;
-        if (this.wasLoading != (this.searchHelper.isSearchInProgress() || this.scheduledLoading || this.foundBots.size() > 0)) {
-            if (!this.searchHelper.isSearchInProgress() && !this.scheduledLoading && this.foundBots.size() <= 0) {
-                z = false;
-            }
-            this.wasLoading = z;
-            ViewPropertyAnimator duration = this.emptyViewText.animate().alpha(z ? 0.0f : 1.0f).translationY(z ? -AndroidUtilities.dp(8.0f) : 0.0f).setDuration(320L);
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            duration.setInterpolator(cubicBezierInterpolator).start();
-            this.emptyViewLoading.animate().alpha(z ? 1.0f : 0.0f).translationY(z ? 0.0f : AndroidUtilities.dp(8.0f)).setDuration(320L).setInterpolator(cubicBezierInterpolator).start();
-        }
-    }
-
-    public void scheduleSearch() {
-        this.scheduledLoading = false;
-        AndroidUtilities.cancelRunOnUIThread(this.search);
-        if (TextUtils.isEmpty(this.editText.getText())) {
-            this.lastQuery = null;
-            this.searchHelper.clear();
-        } else {
-            this.scheduledLoading = true;
-            AndroidUtilities.runOnUIThread(this.search, 800L);
-        }
-        this.listView.adapter.update(true);
-        updateSearchLoading();
-    }
-
-    public static void $r8$lambda$GSSUxRMgwgzbcuRZnBZMrz2XKQQ(ChatbotsActivity chatbotsActivity) {
-        String string = chatbotsActivity.editText.getText().toString();
-        String str = chatbotsActivity.lastQuery;
-        if (str == null || !TextUtils.equals(str, string)) {
-            chatbotsActivity.scheduledLoading = false;
-            if (TextUtils.isEmpty(string)) {
-                chatbotsActivity.lastQuery = null;
-                chatbotsActivity.searchHelper.clear();
-                chatbotsActivity.listView.adapter.update(true);
-            } else {
-                SearchAdapterHelper searchAdapterHelper = chatbotsActivity.searchHelper;
-                chatbotsActivity.lastQuery = string;
-                int i = chatbotsActivity.searchId;
-                chatbotsActivity.searchId = i + 1;
-                searchAdapterHelper.queryServerSearch(string, true, false, true, false, false, 0L, false, 0, i, 0L);
-            }
-        }
-    }
-
-    private void checkAlert(int i, boolean z, final Runnable runnable) {
-        if (!this.shownUsernamePermissionsAlert && i == PERMISSION_PROFILE_USERNAME && z) {
-            new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessBotPermissionsWarning)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsUsernamesWarningText, UserObject.getPublicUsername(this.selectedBot)))).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i2) {
-                    ChatbotsActivity.$r8$lambda$ufnycNvVdVilWunXsjBJkWaYWrA(this.f$0, runnable, alertDialog, i2);
-                }
-            }).makeRed(-1).show();
+    public final void lambda$processDone$19(TLRPC.TL_error tL_error, TLObject tLObject, int[] iArr, ArrayList arrayList, boolean z, TLRPC.User user) {
+        BaseFragment safeLastFragment;
+        if (tL_error != null) {
+            this.doneButtonDrawable.animateToProgress(0.0f);
+            BulletinFactory.showError(tL_error);
             return;
         }
-        if (!this.shownGiftsPermissionsAlert && z && (i == PERMISSION_GIFTS_SELL || i == PERMISSION_GIFTS_SETTINGS || i == PERMISSION_GIFTS_TRANSFER || i == PERMISSION_GIFTS_TRANSFER_STARS)) {
-            new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessBotPermissionsWarning)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsGiftsWarningText, UserObject.getPublicUsername(this.selectedBot)))).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i2) {
-                    ChatbotsActivity.m1389$r8$lambda$icMjgQv1AwSgl29gADhWjQ9Os4(this.f$0, runnable, alertDialog, i2);
-                }
-            }).makeRed(-1).show();
-        } else {
-            runnable.run();
-        }
-    }
-
-    public static void $r8$lambda$ufnycNvVdVilWunXsjBJkWaYWrA(ChatbotsActivity chatbotsActivity, Runnable runnable, AlertDialog alertDialog, int i) {
-        chatbotsActivity.shownUsernamePermissionsAlert = true;
-        runnable.run();
-    }
-
-    public static void m1389$r8$lambda$icMjgQv1AwSgl29gADhWjQ9Os4(ChatbotsActivity chatbotsActivity, Runnable runnable, AlertDialog alertDialog, int i) {
-        chatbotsActivity.shownGiftsPermissionsAlert = true;
-        runnable.run();
-    }
-
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessBots2), LocaleController.getString(R.string.BusinessBots2Info), 120, "tg_superplaceholders_android_2", "🤖🏝️"));
-        boolean z = false;
-        if (this.selectedBot != null) {
-            universalAdapter.whiteSectionStart();
-            arrayList.add(UItem.asAddChat(Long.valueOf(this.selectedBot.id)).setChecked(true).setCloseIcon(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    this.f$0.clear(view);
-                }
-            }));
-            universalAdapter.whiteSectionEnd();
-        } else {
-            universalAdapter.whiteSectionStart();
-            arrayList.add(UItem.asCustom(this.editTextContainer));
-            this.foundBots.clear();
-            boolean z2 = false;
-            for (int i = 0; i < this.searchHelper.getLocalServerSearch().size(); i++) {
-                TLObject tLObject = (TLObject) this.searchHelper.getLocalServerSearch().get(i);
-                if (tLObject instanceof TLRPC.User) {
-                    TLRPC.User user = (TLRPC.User) tLObject;
-                    if (user.bot) {
-                        arrayList.add(UItem.asAddChat(Long.valueOf(user.id), this.lastQuery));
-                        this.foundBots.put(user.id, user);
-                        z2 = true;
-                    }
-                }
-            }
-            for (int i2 = 0; i2 < this.searchHelper.getGlobalSearch().size(); i2++) {
-                TLObject tLObject2 = (TLObject) this.searchHelper.getGlobalSearch().get(i2);
-                if (tLObject2 instanceof TLRPC.User) {
-                    TLRPC.User user2 = (TLRPC.User) tLObject2;
-                    if (user2.bot) {
-                        arrayList.add(UItem.asAddChat(Long.valueOf(user2.id), this.lastQuery));
-                        this.foundBots.put(user2.id, user2);
-                        z2 = true;
-                    }
-                }
-            }
-            if (this.foundBots.size() <= 0 && (!TextUtils.isEmpty(this.editText.getText().toString()) || this.searchHelper.isSearchInProgress() || this.scheduledLoading)) {
-                arrayList.add(UItem.asCustom(this.emptyView));
-                z2 = true;
-            }
-            this.editTextDivider.setVisibility(z2 ? 0 : 8);
-            universalAdapter.whiteSectionEnd();
-        }
-        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessBotLinkInfo2)));
-        universalAdapter.whiteSectionStart();
-        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessBotChats2)).setEnabled(this.selectedBot != null));
-        arrayList.add(UItem.asRadio(RADIO_EXCLUDE, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2)).setChecked(this.exclude).setEnabled(this.selectedBot != null));
-        arrayList.add(UItem.asRadio(RADIO_INCLUDE, LocaleController.getString(R.string.BusinessChatsOnlySelected2)).setChecked(!this.exclude).setEnabled(this.selectedBot != null));
-        universalAdapter.whiteSectionEnd();
-        arrayList.add(UItem.asShadow(null));
-        this.recipientsHelper.fillItems(arrayList, universalAdapter, this.selectedBot != null);
-        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessBotChatsInfo2)));
-        if (this.selectedBot != null) {
-            universalAdapter.whiteSectionStart();
-            arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessBotPermissions)));
-            int i3 = PERMISSION_MESSAGES;
-            String string = LocaleController.getString(R.string.BusinessBotPermissionsMessagesSection);
-            StringBuilder sb = new StringBuilder();
-            TL_account.TL_businessBotRights tL_businessBotRights = this.rights;
-            sb.append((tL_businessBotRights.reply ? 1 : 0) + 1 + (tL_businessBotRights.read_messages ? 1 : 0) + (tL_businessBotRights.delete_sent_messages ? 1 : 0) + (tL_businessBotRights.delete_received_messages ? 1 : 0));
-            sb.append("/5");
-            UItem uItemAsExpandableSwitch = UItem.asExpandableSwitch(i3, string, sb.toString());
-            TL_account.TL_businessBotRights tL_businessBotRights2 = this.rights;
-            arrayList.add(uItemAsExpandableSwitch.setChecked(tL_businessBotRights2.reply && tL_businessBotRights2.read_messages && tL_businessBotRights2.delete_received_messages && tL_businessBotRights2.delete_sent_messages).setCollapsed(!this.expandedMessagesSection).setClickCallback(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    ChatbotsActivity.m1381$r8$lambda$Czm4yBZwfeGwNJcyRo_0DVwkdY(this.f$0, view);
-                }
-            }));
-            if (this.expandedMessagesSection) {
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_READ, LocaleController.getString(R.string.BusinessBotPermissionsMessagesRead)).setChecked(true).setEnabled(false).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_REPLY, LocaleController.getString(R.string.BusinessBotPermissionsMessagesReply)).setChecked(this.rights.reply).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_MARK_AS_READ, LocaleController.getString(R.string.BusinessBotPermissionsMessagesMarkAsRead)).setChecked(this.rights.read_messages).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_DELETE_SENT, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteSent)).setChecked(this.rights.delete_sent_messages).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_MESSAGES_DELETE_RECEIVED, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteReceived)).setChecked(this.rights.delete_received_messages).setPad(1));
-            }
-            int i4 = PERMISSION_PROFILE;
-            String string2 = LocaleController.getString(R.string.BusinessBotPermissionsProfileSection);
-            StringBuilder sb2 = new StringBuilder();
-            TL_account.TL_businessBotRights tL_businessBotRights3 = this.rights;
-            sb2.append((tL_businessBotRights3.edit_name ? 1 : 0) + (tL_businessBotRights3.edit_bio ? 1 : 0) + (tL_businessBotRights3.edit_profile_photo ? 1 : 0) + (tL_businessBotRights3.edit_username ? 1 : 0));
-            sb2.append("/4");
-            UItem uItemAsExpandableSwitch2 = UItem.asExpandableSwitch(i4, string2, sb2.toString());
-            TL_account.TL_businessBotRights tL_businessBotRights4 = this.rights;
-            arrayList.add(uItemAsExpandableSwitch2.setChecked(tL_businessBotRights4.edit_name && tL_businessBotRights4.edit_bio && tL_businessBotRights4.edit_profile_photo && tL_businessBotRights4.edit_username).setCollapsed(!this.expandedProfileSection).setClickCallback(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    ChatbotsActivity.m1386$r8$lambda$IeThuQWRCcTEYDu6KsQ4OthFu8(this.f$0, view);
-                }
-            }));
-            if (this.expandedProfileSection) {
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_PROFILE_NAME, LocaleController.getString(R.string.BusinessBotPermissionsProfileName)).setChecked(this.rights.edit_name).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_PROFILE_BIO, LocaleController.getString(R.string.BusinessBotPermissionsProfileBio)).setChecked(this.rights.edit_bio).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_PROFILE_PICTURE, LocaleController.getString(R.string.BusinessBotPermissionsProfilePicture)).setChecked(this.rights.edit_profile_photo).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_PROFILE_USERNAME, LocaleController.getString(R.string.BusinessBotPermissionsProfileUsername)).setChecked(this.rights.edit_username).setPad(1));
-            }
-            int i5 = PERMISSION_GIFTS;
-            String string3 = LocaleController.getString(R.string.BusinessBotPermissionsGiftsSection);
-            StringBuilder sb3 = new StringBuilder();
-            TL_account.TL_businessBotRights tL_businessBotRights5 = this.rights;
-            sb3.append((tL_businessBotRights5.view_gifts ? 1 : 0) + (tL_businessBotRights5.sell_gifts ? 1 : 0) + (tL_businessBotRights5.change_gift_settings ? 1 : 0) + (tL_businessBotRights5.transfer_and_upgrade_gifts ? 1 : 0) + (tL_businessBotRights5.transfer_stars ? 1 : 0));
-            sb3.append("/5");
-            UItem uItemAsExpandableSwitch3 = UItem.asExpandableSwitch(i5, string3, sb3.toString());
-            TL_account.TL_businessBotRights tL_businessBotRights6 = this.rights;
-            if (tL_businessBotRights6.view_gifts && tL_businessBotRights6.sell_gifts && tL_businessBotRights6.change_gift_settings && tL_businessBotRights6.transfer_and_upgrade_gifts && tL_businessBotRights6.transfer_stars) {
-                z = true;
-            }
-            arrayList.add(uItemAsExpandableSwitch3.setChecked(z).setCollapsed(!this.expandedGiftsSection).setClickCallback(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    ChatbotsActivity.m1391$r8$lambda$z7TfxbXrwHeQn1D5ISq6zWCPrI(this.f$0, view);
-                }
-            }));
-            if (this.expandedGiftsSection) {
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_VIEW, LocaleController.getString(R.string.BusinessBotPermissionsGiftsView)).setChecked(this.rights.view_gifts).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_SELL, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSell)).setChecked(this.rights.sell_gifts).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_SETTINGS, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSettings)).setChecked(this.rights.change_gift_settings).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_TRANSFER, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransfer)).setChecked(this.rights.transfer_and_upgrade_gifts).setPad(1));
-                arrayList.add(UItem.asRoundCheckbox(PERMISSION_GIFTS_TRANSFER_STARS, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransferStars)).setChecked(this.rights.transfer_stars).setPad(1));
-            }
-            arrayList.add(UItem.asExpandableSwitch(PERMISSION_STORIES, LocaleController.getString(R.string.BusinessBotPermissionsStories), "").setChecked(this.rights.manage_stories).setClickCallback(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    ChatbotsActivity.$r8$lambda$O9jLDpCplYKtM7l_pXi3GmAt7pM(this.f$0, view);
-                }
-            }));
-            universalAdapter.whiteSectionEnd();
-            arrayList.add(UItem.asShadow(-4, null));
-            arrayList.add(UItem.asShadow(-5, null));
-            arrayList.add(UItem.asShadow(-6, null));
-            arrayList.add(UItem.asShadow(-7, null));
-        }
-    }
-
-    public static void m1381$r8$lambda$Czm4yBZwfeGwNJcyRo_0DVwkdY(ChatbotsActivity chatbotsActivity, View view) {
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        if (tL_businessBotRights.reply && tL_businessBotRights.read_messages && tL_businessBotRights.delete_received_messages && tL_businessBotRights.delete_sent_messages) {
-            tL_businessBotRights.delete_sent_messages = false;
-            tL_businessBotRights.delete_received_messages = false;
-            tL_businessBotRights.read_messages = false;
-            tL_businessBotRights.reply = false;
-        } else {
-            tL_businessBotRights.delete_sent_messages = true;
-            tL_businessBotRights.delete_received_messages = true;
-            tL_businessBotRights.read_messages = true;
-            tL_businessBotRights.reply = true;
-        }
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
-    }
-
-    public static void m1386$r8$lambda$IeThuQWRCcTEYDu6KsQ4OthFu8(final ChatbotsActivity chatbotsActivity, View view) {
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        if (tL_businessBotRights.edit_name && tL_businessBotRights.edit_bio && tL_businessBotRights.edit_profile_photo && tL_businessBotRights.edit_username) {
-            tL_businessBotRights.edit_username = false;
-            tL_businessBotRights.edit_profile_photo = false;
-            tL_businessBotRights.edit_bio = false;
-            tL_businessBotRights.edit_name = false;
-            chatbotsActivity.listView.adapter.update(true);
-            chatbotsActivity.checkDone(true);
+        if (tLObject instanceof TLRPC.TL_boolFalse) {
+            this.doneButtonDrawable.animateToProgress(0.0f);
+            UserNameResolver$$ExternalSyntheticOutline0.m(R.string.UnknownError, BulletinFactory.of(this), null);
             return;
         }
-        chatbotsActivity.checkAlert(PERMISSION_PROFILE_USERNAME, true, new Runnable() {
-            @Override
-            public final void run() {
-                ChatbotsActivity.$r8$lambda$O722C7_NqFKiCV4dHACfMjLHsVQ(this.f$0);
-            }
-        });
-    }
-
-    public static void $r8$lambda$O722C7_NqFKiCV4dHACfMjLHsVQ(ChatbotsActivity chatbotsActivity) {
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        tL_businessBotRights.edit_username = true;
-        tL_businessBotRights.edit_profile_photo = true;
-        tL_businessBotRights.edit_bio = true;
-        tL_businessBotRights.edit_name = true;
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
-    }
-
-    public static void m1391$r8$lambda$z7TfxbXrwHeQn1D5ISq6zWCPrI(final ChatbotsActivity chatbotsActivity, View view) {
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        if (tL_businessBotRights.view_gifts && tL_businessBotRights.sell_gifts && tL_businessBotRights.change_gift_settings && tL_businessBotRights.transfer_and_upgrade_gifts && tL_businessBotRights.transfer_stars) {
-            tL_businessBotRights.transfer_stars = false;
-            tL_businessBotRights.transfer_and_upgrade_gifts = false;
-            tL_businessBotRights.change_gift_settings = false;
-            tL_businessBotRights.sell_gifts = false;
-            tL_businessBotRights.view_gifts = false;
-            chatbotsActivity.listView.adapter.update(true);
-            chatbotsActivity.checkDone(true);
-            return;
+        if (tLObject instanceof TLRPC.Updates) {
+            Utilities.stageQueue.postRunnable(new ArticleViewer$$ExternalSyntheticLambda8(13, this, tLObject));
         }
-        chatbotsActivity.checkAlert(PERMISSION_GIFTS_SELL, true, new Runnable() {
-            @Override
-            public final void run() {
-                ChatbotsActivity.$r8$lambda$34deL_OICg09TtS95GCYCAox3pc(this.f$0);
+        int i = iArr[0] + 1;
+        iArr[0] = i;
+        if (i == arrayList.size()) {
+            BusinessChatbotController businessChatbotController = BusinessChatbotController.getInstance(this.currentAccount);
+            businessChatbotController.loaded = false;
+            businessChatbotController.load(null);
+            getMessagesController().clearFullUsers();
+            finishFragment();
+            if (!z || user == null) {
+                if (user == null || (safeLastFragment = LaunchActivity.getSafeLastFragment()) == null) {
+                    return;
+                }
+                zzks.m(R.string.BusinessBotUpdated, new Object[]{UserObject.getUserName(user)}, BulletinFactory.of(safeLastFragment), R.raw.contact_check);
+                return;
             }
-        });
+            BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment2 != null) {
+                zzks.m(R.string.BusinessBotDone, new Object[]{UserObject.getUserName(user)}, BulletinFactory.of(safeLastFragment2), R.raw.contact_check);
+            }
+        }
     }
 
-    public static void $r8$lambda$34deL_OICg09TtS95GCYCAox3pc(ChatbotsActivity chatbotsActivity) {
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        tL_businessBotRights.transfer_stars = true;
-        tL_businessBotRights.transfer_and_upgrade_gifts = true;
-        tL_businessBotRights.change_gift_settings = true;
-        tL_businessBotRights.sell_gifts = true;
-        tL_businessBotRights.view_gifts = true;
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
+    @Override
+    public final boolean onBackPressed(boolean z) {
+        if (hasChanges()) {
+            if (z) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, null);
+                String string = LocaleController.getString(R.string.UnsavedChanges);
+                AlertDialog alertDialog = builder.alertDialog;
+                alertDialog.title = string;
+                alertDialog.message = LocaleController.getString(R.string.BusinessBotUnsavedChanges);
+                builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new ChatbotsActivity$$ExternalSyntheticLambda0(this, 0));
+                builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new ChatbotsActivity$$ExternalSyntheticLambda0(this, 1));
+                showDialog(alertDialog);
+                return false;
+            }
+        } else {
+            if (this.selectedBot != null || hasChanges() || (this.searchHelper.localServerSearch.isEmpty() && this.searchHelper.globalSearch.isEmpty())) {
+                return super.onBackPressed(z);
+            }
+            if (z) {
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity(), 0, null);
+                String string2 = LocaleController.getString(R.string.BusinessBotNoAddedTitle);
+                AlertDialog alertDialog2 = builder2.alertDialog;
+                alertDialog2.title = string2;
+                alertDialog2.message = LocaleController.getString(R.string.BusinessBotNoAddedText);
+                builder2.setPositiveButton(LocaleController.getString(R.string.BusinessBotNoAddedButton), new ChatbotsActivity$$ExternalSyntheticLambda0(this, 2));
+                builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+                showDialog(alertDialog2);
+            }
+        }
+        return false;
     }
 
-    public static void $r8$lambda$O9jLDpCplYKtM7l_pXi3GmAt7pM(ChatbotsActivity chatbotsActivity, View view) {
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
-    }
-
-    public void onClick(UItem uItem, final View view, int i, float f, float f2) {
+    public final void onClick$16(UItem uItem, final View view) {
         if (uItem.enabled && !this.recipientsHelper.onClick(uItem)) {
-            int i2 = uItem.id;
-            if (i2 == RADIO_EXCLUDE) {
+            int i = uItem.id;
+            if (i == -1) {
                 BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
                 this.exclude = true;
-                businessRecipientsHelper.setExclude(true);
+                businessRecipientsHelper.exclude = true;
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
-            if (i2 == RADIO_INCLUDE) {
+            if (i == -2) {
                 BusinessRecipientsHelper businessRecipientsHelper2 = this.recipientsHelper;
                 this.exclude = false;
-                businessRecipientsHelper2.setExclude(false);
+                businessRecipientsHelper2.exclude = false;
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
-            if (i2 == BUTTON_DELETE) {
+            if (i == -3) {
                 this.selectedBot = null;
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
             if (uItem.viewType == 13) {
@@ -646,244 +425,631 @@ public class ChatbotsActivity extends BaseFragment {
                 if (user == null) {
                     return;
                 }
-                if (!user.bot_business) {
-                    showDialog(new AlertDialog.Builder(getContext(), this.resourceProvider).setTitle(LocaleController.getString(R.string.BusinessBotNotSupportedTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage))).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
+                if (user.bot_business) {
+                    this.selectedBot = user;
+                    AndroidUtilities.hideKeyboard(this.editText);
+                    this.listView.adapter.update(true);
+                    checkDone$6(true);
                     return;
                 }
-                this.selectedBot = user;
-                AndroidUtilities.hideKeyboard(this.editText);
-                this.listView.adapter.update(true);
-                checkDone(true);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, this.resourceProvider);
+                String string = LocaleController.getString(R.string.BusinessBotNotSupportedTitle);
+                AlertDialog alertDialog = builder.alertDialog;
+                alertDialog.title = string;
+                alertDialog.message = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage));
+                builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
+                showDialog(alertDialog);
                 return;
             }
-            if (i2 == PERMISSION_MESSAGES) {
+            if (i == -4) {
                 boolean z = !this.expandedMessagesSection;
                 this.expandedMessagesSection = z;
                 ((TextCheckCell2) view).setChecked(z);
                 this.listView.adapter.update(true);
                 return;
             }
-            if (i2 == PERMISSION_MESSAGES_READ) {
-                int i3 = -this.shakeDp;
-                this.shakeDp = i3;
-                AndroidUtilities.shakeViewSpring(view, i3);
+            if (i == -5) {
+                int i2 = -this.shakeDp;
+                this.shakeDp = i2;
+                AndroidUtilities.shakeViewSpring(view, i2);
                 return;
             }
-            if (i2 == PERMISSION_MESSAGES_REPLY) {
+            if (i == -6) {
                 TL_account.TL_businessBotRights tL_businessBotRights = this.rights;
                 boolean z2 = !tL_businessBotRights.reply;
                 tL_businessBotRights.reply = z2;
                 ((CheckBoxCell) view).setChecked(z2, true);
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
-            if (i2 == PERMISSION_MESSAGES_MARK_AS_READ) {
+            if (i == -7) {
                 TL_account.TL_businessBotRights tL_businessBotRights2 = this.rights;
                 boolean z3 = !tL_businessBotRights2.read_messages;
                 tL_businessBotRights2.read_messages = z3;
                 ((CheckBoxCell) view).setChecked(z3, true);
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
-            if (i2 == PERMISSION_MESSAGES_DELETE_SENT) {
+            if (i == -8) {
                 TL_account.TL_businessBotRights tL_businessBotRights3 = this.rights;
                 boolean z4 = !tL_businessBotRights3.delete_sent_messages;
                 tL_businessBotRights3.delete_sent_messages = z4;
                 ((CheckBoxCell) view).setChecked(z4, true);
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
-            if (i2 == PERMISSION_MESSAGES_DELETE_RECEIVED) {
+            if (i == -9) {
                 TL_account.TL_businessBotRights tL_businessBotRights4 = this.rights;
                 boolean z5 = !tL_businessBotRights4.delete_received_messages;
                 tL_businessBotRights4.delete_received_messages = z5;
                 ((CheckBoxCell) view).setChecked(z5, true);
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
-            if (i2 == PERMISSION_PROFILE) {
+            if (i == -10) {
                 boolean z6 = !this.expandedProfileSection;
                 this.expandedProfileSection = z6;
                 ((TextCheckCell2) view).setChecked(z6);
                 this.listView.adapter.update(true);
                 return;
             }
-            if (i2 == PERMISSION_PROFILE_NAME) {
+            if (i == -11) {
                 TL_account.TL_businessBotRights tL_businessBotRights5 = this.rights;
                 boolean z7 = !tL_businessBotRights5.edit_name;
                 tL_businessBotRights5.edit_name = z7;
                 ((CheckBoxCell) view).setChecked(z7, true);
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
-            if (i2 == PERMISSION_PROFILE_BIO) {
+            if (i == -12) {
                 TL_account.TL_businessBotRights tL_businessBotRights6 = this.rights;
                 boolean z8 = !tL_businessBotRights6.edit_bio;
                 tL_businessBotRights6.edit_bio = z8;
                 ((CheckBoxCell) view).setChecked(z8, true);
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
-            if (i2 == PERMISSION_PROFILE_PICTURE) {
+            if (i == -13) {
                 TL_account.TL_businessBotRights tL_businessBotRights7 = this.rights;
                 boolean z9 = !tL_businessBotRights7.edit_profile_photo;
                 tL_businessBotRights7.edit_profile_photo = z9;
                 ((CheckBoxCell) view).setChecked(z9, true);
                 this.listView.adapter.update(true);
-                checkDone(true);
+                checkDone$6(true);
                 return;
             }
-            if (i2 == PERMISSION_PROFILE_USERNAME) {
-                checkAlert(i2, !this.rights.edit_username, new Runnable() {
+            if (i == -14) {
+                final int i3 = 0;
+                checkAlert(i, !this.rights.edit_username, new Runnable(this) {
+                    public final ChatbotsActivity f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
                     @Override
                     public final void run() {
-                        ChatbotsActivity.$r8$lambda$nKjEFIck3Gm6XolikNVFoTR_69M(this.f$0, view);
+                        switch (i3) {
+                            case 0:
+                                ChatbotsActivity chatbotsActivity = this.f$0;
+                                chatbotsActivity.getClass();
+                                CheckBoxCell checkBoxCell = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights8 = chatbotsActivity.rights;
+                                boolean z10 = !tL_businessBotRights8.edit_username;
+                                tL_businessBotRights8.edit_username = z10;
+                                checkBoxCell.setChecked(z10, true);
+                                chatbotsActivity.listView.adapter.update(true);
+                                chatbotsActivity.checkDone$6(true);
+                                break;
+                            case 1:
+                                ChatbotsActivity chatbotsActivity2 = this.f$0;
+                                chatbotsActivity2.getClass();
+                                CheckBoxCell checkBoxCell2 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights9 = chatbotsActivity2.rights;
+                                boolean z11 = !tL_businessBotRights9.view_gifts;
+                                tL_businessBotRights9.view_gifts = z11;
+                                checkBoxCell2.setChecked(z11, true);
+                                chatbotsActivity2.listView.adapter.update(true);
+                                chatbotsActivity2.checkDone$6(true);
+                                break;
+                            case 2:
+                                ChatbotsActivity chatbotsActivity3 = this.f$0;
+                                chatbotsActivity3.getClass();
+                                CheckBoxCell checkBoxCell3 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights10 = chatbotsActivity3.rights;
+                                boolean z12 = !tL_businessBotRights10.sell_gifts;
+                                tL_businessBotRights10.sell_gifts = z12;
+                                checkBoxCell3.setChecked(z12, true);
+                                chatbotsActivity3.listView.adapter.update(true);
+                                chatbotsActivity3.checkDone$6(true);
+                                break;
+                            case 3:
+                                ChatbotsActivity chatbotsActivity4 = this.f$0;
+                                chatbotsActivity4.getClass();
+                                CheckBoxCell checkBoxCell4 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights11 = chatbotsActivity4.rights;
+                                boolean z13 = !tL_businessBotRights11.change_gift_settings;
+                                tL_businessBotRights11.change_gift_settings = z13;
+                                checkBoxCell4.setChecked(z13, true);
+                                chatbotsActivity4.listView.adapter.update(true);
+                                chatbotsActivity4.checkDone$6(true);
+                                break;
+                            case 4:
+                                ChatbotsActivity chatbotsActivity5 = this.f$0;
+                                chatbotsActivity5.getClass();
+                                CheckBoxCell checkBoxCell5 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights12 = chatbotsActivity5.rights;
+                                boolean z14 = !tL_businessBotRights12.transfer_and_upgrade_gifts;
+                                tL_businessBotRights12.transfer_and_upgrade_gifts = z14;
+                                checkBoxCell5.setChecked(z14, true);
+                                chatbotsActivity5.listView.adapter.update(true);
+                                chatbotsActivity5.checkDone$6(true);
+                                break;
+                            default:
+                                ChatbotsActivity chatbotsActivity6 = this.f$0;
+                                chatbotsActivity6.getClass();
+                                CheckBoxCell checkBoxCell6 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights13 = chatbotsActivity6.rights;
+                                boolean z15 = !tL_businessBotRights13.transfer_stars;
+                                tL_businessBotRights13.transfer_stars = z15;
+                                checkBoxCell6.setChecked(z15, true);
+                                chatbotsActivity6.listView.adapter.update(true);
+                                chatbotsActivity6.checkDone$6(true);
+                                break;
+                        }
                     }
                 });
                 return;
             }
-            if (i2 == PERMISSION_GIFTS) {
+            if (i == -15) {
                 boolean z10 = !this.expandedGiftsSection;
                 this.expandedGiftsSection = z10;
                 ((TextCheckCell2) view).setChecked(z10);
                 this.listView.adapter.update(true);
                 return;
             }
-            if (i2 == PERMISSION_GIFTS_VIEW) {
-                checkAlert(i2, !this.rights.view_gifts, new Runnable() {
+            if (i == -16) {
+                final int i4 = 1;
+                checkAlert(i, !this.rights.view_gifts, new Runnable(this) {
+                    public final ChatbotsActivity f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
                     @Override
                     public final void run() {
-                        ChatbotsActivity.$r8$lambda$_jzAoeVRytubzhpVx4OxyHhdLT0(this.f$0, view);
+                        switch (i4) {
+                            case 0:
+                                ChatbotsActivity chatbotsActivity = this.f$0;
+                                chatbotsActivity.getClass();
+                                CheckBoxCell checkBoxCell = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights8 = chatbotsActivity.rights;
+                                boolean z11 = !tL_businessBotRights8.edit_username;
+                                tL_businessBotRights8.edit_username = z11;
+                                checkBoxCell.setChecked(z11, true);
+                                chatbotsActivity.listView.adapter.update(true);
+                                chatbotsActivity.checkDone$6(true);
+                                break;
+                            case 1:
+                                ChatbotsActivity chatbotsActivity2 = this.f$0;
+                                chatbotsActivity2.getClass();
+                                CheckBoxCell checkBoxCell2 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights9 = chatbotsActivity2.rights;
+                                boolean z12 = !tL_businessBotRights9.view_gifts;
+                                tL_businessBotRights9.view_gifts = z12;
+                                checkBoxCell2.setChecked(z12, true);
+                                chatbotsActivity2.listView.adapter.update(true);
+                                chatbotsActivity2.checkDone$6(true);
+                                break;
+                            case 2:
+                                ChatbotsActivity chatbotsActivity3 = this.f$0;
+                                chatbotsActivity3.getClass();
+                                CheckBoxCell checkBoxCell3 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights10 = chatbotsActivity3.rights;
+                                boolean z13 = !tL_businessBotRights10.sell_gifts;
+                                tL_businessBotRights10.sell_gifts = z13;
+                                checkBoxCell3.setChecked(z13, true);
+                                chatbotsActivity3.listView.adapter.update(true);
+                                chatbotsActivity3.checkDone$6(true);
+                                break;
+                            case 3:
+                                ChatbotsActivity chatbotsActivity4 = this.f$0;
+                                chatbotsActivity4.getClass();
+                                CheckBoxCell checkBoxCell4 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights11 = chatbotsActivity4.rights;
+                                boolean z14 = !tL_businessBotRights11.change_gift_settings;
+                                tL_businessBotRights11.change_gift_settings = z14;
+                                checkBoxCell4.setChecked(z14, true);
+                                chatbotsActivity4.listView.adapter.update(true);
+                                chatbotsActivity4.checkDone$6(true);
+                                break;
+                            case 4:
+                                ChatbotsActivity chatbotsActivity5 = this.f$0;
+                                chatbotsActivity5.getClass();
+                                CheckBoxCell checkBoxCell5 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights12 = chatbotsActivity5.rights;
+                                boolean z15 = !tL_businessBotRights12.transfer_and_upgrade_gifts;
+                                tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
+                                checkBoxCell5.setChecked(z15, true);
+                                chatbotsActivity5.listView.adapter.update(true);
+                                chatbotsActivity5.checkDone$6(true);
+                                break;
+                            default:
+                                ChatbotsActivity chatbotsActivity6 = this.f$0;
+                                chatbotsActivity6.getClass();
+                                CheckBoxCell checkBoxCell6 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights13 = chatbotsActivity6.rights;
+                                boolean z16 = !tL_businessBotRights13.transfer_stars;
+                                tL_businessBotRights13.transfer_stars = z16;
+                                checkBoxCell6.setChecked(z16, true);
+                                chatbotsActivity6.listView.adapter.update(true);
+                                chatbotsActivity6.checkDone$6(true);
+                                break;
+                        }
                     }
                 });
                 return;
             }
-            if (i2 == PERMISSION_GIFTS_SELL) {
-                checkAlert(i2, !this.rights.sell_gifts, new Runnable() {
+            if (i == -17) {
+                final int i5 = 2;
+                checkAlert(i, !this.rights.sell_gifts, new Runnable(this) {
+                    public final ChatbotsActivity f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
                     @Override
                     public final void run() {
-                        ChatbotsActivity.m1385$r8$lambda$Eg7e2A2ngG_W4gZGHZH8sh7gSA(this.f$0, view);
+                        switch (i5) {
+                            case 0:
+                                ChatbotsActivity chatbotsActivity = this.f$0;
+                                chatbotsActivity.getClass();
+                                CheckBoxCell checkBoxCell = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights8 = chatbotsActivity.rights;
+                                boolean z11 = !tL_businessBotRights8.edit_username;
+                                tL_businessBotRights8.edit_username = z11;
+                                checkBoxCell.setChecked(z11, true);
+                                chatbotsActivity.listView.adapter.update(true);
+                                chatbotsActivity.checkDone$6(true);
+                                break;
+                            case 1:
+                                ChatbotsActivity chatbotsActivity2 = this.f$0;
+                                chatbotsActivity2.getClass();
+                                CheckBoxCell checkBoxCell2 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights9 = chatbotsActivity2.rights;
+                                boolean z12 = !tL_businessBotRights9.view_gifts;
+                                tL_businessBotRights9.view_gifts = z12;
+                                checkBoxCell2.setChecked(z12, true);
+                                chatbotsActivity2.listView.adapter.update(true);
+                                chatbotsActivity2.checkDone$6(true);
+                                break;
+                            case 2:
+                                ChatbotsActivity chatbotsActivity3 = this.f$0;
+                                chatbotsActivity3.getClass();
+                                CheckBoxCell checkBoxCell3 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights10 = chatbotsActivity3.rights;
+                                boolean z13 = !tL_businessBotRights10.sell_gifts;
+                                tL_businessBotRights10.sell_gifts = z13;
+                                checkBoxCell3.setChecked(z13, true);
+                                chatbotsActivity3.listView.adapter.update(true);
+                                chatbotsActivity3.checkDone$6(true);
+                                break;
+                            case 3:
+                                ChatbotsActivity chatbotsActivity4 = this.f$0;
+                                chatbotsActivity4.getClass();
+                                CheckBoxCell checkBoxCell4 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights11 = chatbotsActivity4.rights;
+                                boolean z14 = !tL_businessBotRights11.change_gift_settings;
+                                tL_businessBotRights11.change_gift_settings = z14;
+                                checkBoxCell4.setChecked(z14, true);
+                                chatbotsActivity4.listView.adapter.update(true);
+                                chatbotsActivity4.checkDone$6(true);
+                                break;
+                            case 4:
+                                ChatbotsActivity chatbotsActivity5 = this.f$0;
+                                chatbotsActivity5.getClass();
+                                CheckBoxCell checkBoxCell5 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights12 = chatbotsActivity5.rights;
+                                boolean z15 = !tL_businessBotRights12.transfer_and_upgrade_gifts;
+                                tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
+                                checkBoxCell5.setChecked(z15, true);
+                                chatbotsActivity5.listView.adapter.update(true);
+                                chatbotsActivity5.checkDone$6(true);
+                                break;
+                            default:
+                                ChatbotsActivity chatbotsActivity6 = this.f$0;
+                                chatbotsActivity6.getClass();
+                                CheckBoxCell checkBoxCell6 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights13 = chatbotsActivity6.rights;
+                                boolean z16 = !tL_businessBotRights13.transfer_stars;
+                                tL_businessBotRights13.transfer_stars = z16;
+                                checkBoxCell6.setChecked(z16, true);
+                                chatbotsActivity6.listView.adapter.update(true);
+                                chatbotsActivity6.checkDone$6(true);
+                                break;
+                        }
                     }
                 });
                 return;
             }
-            if (i2 == PERMISSION_GIFTS_SETTINGS) {
-                checkAlert(i2, !this.rights.change_gift_settings, new Runnable() {
+            if (i == -18) {
+                final int i6 = 3;
+                checkAlert(i, !this.rights.change_gift_settings, new Runnable(this) {
+                    public final ChatbotsActivity f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
                     @Override
                     public final void run() {
-                        ChatbotsActivity.$r8$lambda$Php_iSrcvMItbjvHCvX31iCJVFA(this.f$0, view);
+                        switch (i6) {
+                            case 0:
+                                ChatbotsActivity chatbotsActivity = this.f$0;
+                                chatbotsActivity.getClass();
+                                CheckBoxCell checkBoxCell = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights8 = chatbotsActivity.rights;
+                                boolean z11 = !tL_businessBotRights8.edit_username;
+                                tL_businessBotRights8.edit_username = z11;
+                                checkBoxCell.setChecked(z11, true);
+                                chatbotsActivity.listView.adapter.update(true);
+                                chatbotsActivity.checkDone$6(true);
+                                break;
+                            case 1:
+                                ChatbotsActivity chatbotsActivity2 = this.f$0;
+                                chatbotsActivity2.getClass();
+                                CheckBoxCell checkBoxCell2 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights9 = chatbotsActivity2.rights;
+                                boolean z12 = !tL_businessBotRights9.view_gifts;
+                                tL_businessBotRights9.view_gifts = z12;
+                                checkBoxCell2.setChecked(z12, true);
+                                chatbotsActivity2.listView.adapter.update(true);
+                                chatbotsActivity2.checkDone$6(true);
+                                break;
+                            case 2:
+                                ChatbotsActivity chatbotsActivity3 = this.f$0;
+                                chatbotsActivity3.getClass();
+                                CheckBoxCell checkBoxCell3 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights10 = chatbotsActivity3.rights;
+                                boolean z13 = !tL_businessBotRights10.sell_gifts;
+                                tL_businessBotRights10.sell_gifts = z13;
+                                checkBoxCell3.setChecked(z13, true);
+                                chatbotsActivity3.listView.adapter.update(true);
+                                chatbotsActivity3.checkDone$6(true);
+                                break;
+                            case 3:
+                                ChatbotsActivity chatbotsActivity4 = this.f$0;
+                                chatbotsActivity4.getClass();
+                                CheckBoxCell checkBoxCell4 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights11 = chatbotsActivity4.rights;
+                                boolean z14 = !tL_businessBotRights11.change_gift_settings;
+                                tL_businessBotRights11.change_gift_settings = z14;
+                                checkBoxCell4.setChecked(z14, true);
+                                chatbotsActivity4.listView.adapter.update(true);
+                                chatbotsActivity4.checkDone$6(true);
+                                break;
+                            case 4:
+                                ChatbotsActivity chatbotsActivity5 = this.f$0;
+                                chatbotsActivity5.getClass();
+                                CheckBoxCell checkBoxCell5 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights12 = chatbotsActivity5.rights;
+                                boolean z15 = !tL_businessBotRights12.transfer_and_upgrade_gifts;
+                                tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
+                                checkBoxCell5.setChecked(z15, true);
+                                chatbotsActivity5.listView.adapter.update(true);
+                                chatbotsActivity5.checkDone$6(true);
+                                break;
+                            default:
+                                ChatbotsActivity chatbotsActivity6 = this.f$0;
+                                chatbotsActivity6.getClass();
+                                CheckBoxCell checkBoxCell6 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights13 = chatbotsActivity6.rights;
+                                boolean z16 = !tL_businessBotRights13.transfer_stars;
+                                tL_businessBotRights13.transfer_stars = z16;
+                                checkBoxCell6.setChecked(z16, true);
+                                chatbotsActivity6.listView.adapter.update(true);
+                                chatbotsActivity6.checkDone$6(true);
+                                break;
+                        }
                     }
                 });
                 return;
             }
-            if (i2 == PERMISSION_GIFTS_TRANSFER) {
-                checkAlert(i2, !this.rights.transfer_and_upgrade_gifts, new Runnable() {
+            if (i == -19) {
+                final int i7 = 4;
+                checkAlert(i, !this.rights.transfer_and_upgrade_gifts, new Runnable(this) {
+                    public final ChatbotsActivity f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
                     @Override
                     public final void run() {
-                        ChatbotsActivity.$r8$lambda$UBi4Ed24AJ0AuOqbVQw0M434imQ(this.f$0, view);
+                        switch (i7) {
+                            case 0:
+                                ChatbotsActivity chatbotsActivity = this.f$0;
+                                chatbotsActivity.getClass();
+                                CheckBoxCell checkBoxCell = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights8 = chatbotsActivity.rights;
+                                boolean z11 = !tL_businessBotRights8.edit_username;
+                                tL_businessBotRights8.edit_username = z11;
+                                checkBoxCell.setChecked(z11, true);
+                                chatbotsActivity.listView.adapter.update(true);
+                                chatbotsActivity.checkDone$6(true);
+                                break;
+                            case 1:
+                                ChatbotsActivity chatbotsActivity2 = this.f$0;
+                                chatbotsActivity2.getClass();
+                                CheckBoxCell checkBoxCell2 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights9 = chatbotsActivity2.rights;
+                                boolean z12 = !tL_businessBotRights9.view_gifts;
+                                tL_businessBotRights9.view_gifts = z12;
+                                checkBoxCell2.setChecked(z12, true);
+                                chatbotsActivity2.listView.adapter.update(true);
+                                chatbotsActivity2.checkDone$6(true);
+                                break;
+                            case 2:
+                                ChatbotsActivity chatbotsActivity3 = this.f$0;
+                                chatbotsActivity3.getClass();
+                                CheckBoxCell checkBoxCell3 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights10 = chatbotsActivity3.rights;
+                                boolean z13 = !tL_businessBotRights10.sell_gifts;
+                                tL_businessBotRights10.sell_gifts = z13;
+                                checkBoxCell3.setChecked(z13, true);
+                                chatbotsActivity3.listView.adapter.update(true);
+                                chatbotsActivity3.checkDone$6(true);
+                                break;
+                            case 3:
+                                ChatbotsActivity chatbotsActivity4 = this.f$0;
+                                chatbotsActivity4.getClass();
+                                CheckBoxCell checkBoxCell4 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights11 = chatbotsActivity4.rights;
+                                boolean z14 = !tL_businessBotRights11.change_gift_settings;
+                                tL_businessBotRights11.change_gift_settings = z14;
+                                checkBoxCell4.setChecked(z14, true);
+                                chatbotsActivity4.listView.adapter.update(true);
+                                chatbotsActivity4.checkDone$6(true);
+                                break;
+                            case 4:
+                                ChatbotsActivity chatbotsActivity5 = this.f$0;
+                                chatbotsActivity5.getClass();
+                                CheckBoxCell checkBoxCell5 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights12 = chatbotsActivity5.rights;
+                                boolean z15 = !tL_businessBotRights12.transfer_and_upgrade_gifts;
+                                tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
+                                checkBoxCell5.setChecked(z15, true);
+                                chatbotsActivity5.listView.adapter.update(true);
+                                chatbotsActivity5.checkDone$6(true);
+                                break;
+                            default:
+                                ChatbotsActivity chatbotsActivity6 = this.f$0;
+                                chatbotsActivity6.getClass();
+                                CheckBoxCell checkBoxCell6 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights13 = chatbotsActivity6.rights;
+                                boolean z16 = !tL_businessBotRights13.transfer_stars;
+                                tL_businessBotRights13.transfer_stars = z16;
+                                checkBoxCell6.setChecked(z16, true);
+                                chatbotsActivity6.listView.adapter.update(true);
+                                chatbotsActivity6.checkDone$6(true);
+                                break;
+                        }
                     }
                 });
-            } else if (i2 == PERMISSION_GIFTS_TRANSFER_STARS) {
-                checkAlert(i2, !this.rights.transfer_stars, new Runnable() {
+            } else if (i == -20) {
+                final int i8 = 5;
+                checkAlert(i, !this.rights.transfer_stars, new Runnable(this) {
+                    public final ChatbotsActivity f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
                     @Override
                     public final void run() {
-                        ChatbotsActivity.m1388$r8$lambda$hsPWW5pNBSnMMWR34ctuZfiPNQ(this.f$0, view);
+                        switch (i8) {
+                            case 0:
+                                ChatbotsActivity chatbotsActivity = this.f$0;
+                                chatbotsActivity.getClass();
+                                CheckBoxCell checkBoxCell = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights8 = chatbotsActivity.rights;
+                                boolean z11 = !tL_businessBotRights8.edit_username;
+                                tL_businessBotRights8.edit_username = z11;
+                                checkBoxCell.setChecked(z11, true);
+                                chatbotsActivity.listView.adapter.update(true);
+                                chatbotsActivity.checkDone$6(true);
+                                break;
+                            case 1:
+                                ChatbotsActivity chatbotsActivity2 = this.f$0;
+                                chatbotsActivity2.getClass();
+                                CheckBoxCell checkBoxCell2 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights9 = chatbotsActivity2.rights;
+                                boolean z12 = !tL_businessBotRights9.view_gifts;
+                                tL_businessBotRights9.view_gifts = z12;
+                                checkBoxCell2.setChecked(z12, true);
+                                chatbotsActivity2.listView.adapter.update(true);
+                                chatbotsActivity2.checkDone$6(true);
+                                break;
+                            case 2:
+                                ChatbotsActivity chatbotsActivity3 = this.f$0;
+                                chatbotsActivity3.getClass();
+                                CheckBoxCell checkBoxCell3 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights10 = chatbotsActivity3.rights;
+                                boolean z13 = !tL_businessBotRights10.sell_gifts;
+                                tL_businessBotRights10.sell_gifts = z13;
+                                checkBoxCell3.setChecked(z13, true);
+                                chatbotsActivity3.listView.adapter.update(true);
+                                chatbotsActivity3.checkDone$6(true);
+                                break;
+                            case 3:
+                                ChatbotsActivity chatbotsActivity4 = this.f$0;
+                                chatbotsActivity4.getClass();
+                                CheckBoxCell checkBoxCell4 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights11 = chatbotsActivity4.rights;
+                                boolean z14 = !tL_businessBotRights11.change_gift_settings;
+                                tL_businessBotRights11.change_gift_settings = z14;
+                                checkBoxCell4.setChecked(z14, true);
+                                chatbotsActivity4.listView.adapter.update(true);
+                                chatbotsActivity4.checkDone$6(true);
+                                break;
+                            case 4:
+                                ChatbotsActivity chatbotsActivity5 = this.f$0;
+                                chatbotsActivity5.getClass();
+                                CheckBoxCell checkBoxCell5 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights12 = chatbotsActivity5.rights;
+                                boolean z15 = !tL_businessBotRights12.transfer_and_upgrade_gifts;
+                                tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
+                                checkBoxCell5.setChecked(z15, true);
+                                chatbotsActivity5.listView.adapter.update(true);
+                                chatbotsActivity5.checkDone$6(true);
+                                break;
+                            default:
+                                ChatbotsActivity chatbotsActivity6 = this.f$0;
+                                chatbotsActivity6.getClass();
+                                CheckBoxCell checkBoxCell6 = (CheckBoxCell) view;
+                                TL_account.TL_businessBotRights tL_businessBotRights13 = chatbotsActivity6.rights;
+                                boolean z16 = !tL_businessBotRights13.transfer_stars;
+                                tL_businessBotRights13.transfer_stars = z16;
+                                checkBoxCell6.setChecked(z16, true);
+                                chatbotsActivity6.listView.adapter.update(true);
+                                chatbotsActivity6.checkDone$6(true);
+                                break;
+                        }
                     }
                 });
-            } else if (i2 == PERMISSION_STORIES) {
-                checkAlert(i2, !this.rights.manage_stories, new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatbotsActivity.m1382$r8$lambda$8xHhfAOEt5ykFzc3Vdm9PAEW4(this.f$0);
-                    }
-                });
+            } else if (i == -21) {
+                checkAlert(i, !this.rights.manage_stories, new ChatbotsActivity$$ExternalSyntheticLambda5(this, 1));
             }
         }
     }
 
-    public static void $r8$lambda$nKjEFIck3Gm6XolikNVFoTR_69M(ChatbotsActivity chatbotsActivity, View view) {
-        chatbotsActivity.getClass();
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        boolean z = !tL_businessBotRights.edit_username;
-        tL_businessBotRights.edit_username = z;
-        ((CheckBoxCell) view).setChecked(z, true);
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
+    @Override
+    public final boolean onFragmentCreate() {
+        if (!this.loading && !this.valueSet) {
+            this.loading = true;
+            BusinessChatbotController.getInstance(this.currentAccount).load(new DialogCell$$ExternalSyntheticLambda6(this, 6));
+        }
+        return super.onFragmentCreate();
     }
 
-    public static void $r8$lambda$_jzAoeVRytubzhpVx4OxyHhdLT0(ChatbotsActivity chatbotsActivity, View view) {
-        chatbotsActivity.getClass();
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        boolean z = !tL_businessBotRights.view_gifts;
-        tL_businessBotRights.view_gifts = z;
-        ((CheckBoxCell) view).setChecked(z, true);
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
+    @Override
+    public final void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 
-    public static void m1385$r8$lambda$Eg7e2A2ngG_W4gZGHZH8sh7gSA(ChatbotsActivity chatbotsActivity, View view) {
-        chatbotsActivity.getClass();
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        boolean z = !tL_businessBotRights.sell_gifts;
-        tL_businessBotRights.sell_gifts = z;
-        ((CheckBoxCell) view).setChecked(z, true);
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
-    }
-
-    public static void $r8$lambda$Php_iSrcvMItbjvHCvX31iCJVFA(ChatbotsActivity chatbotsActivity, View view) {
-        chatbotsActivity.getClass();
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        boolean z = !tL_businessBotRights.change_gift_settings;
-        tL_businessBotRights.change_gift_settings = z;
-        ((CheckBoxCell) view).setChecked(z, true);
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
-    }
-
-    public static void $r8$lambda$UBi4Ed24AJ0AuOqbVQw0M434imQ(ChatbotsActivity chatbotsActivity, View view) {
-        chatbotsActivity.getClass();
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        boolean z = !tL_businessBotRights.transfer_and_upgrade_gifts;
-        tL_businessBotRights.transfer_and_upgrade_gifts = z;
-        ((CheckBoxCell) view).setChecked(z, true);
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
-    }
-
-    public static void m1388$r8$lambda$hsPWW5pNBSnMMWR34ctuZfiPNQ(ChatbotsActivity chatbotsActivity, View view) {
-        chatbotsActivity.getClass();
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        boolean z = !tL_businessBotRights.transfer_stars;
-        tL_businessBotRights.transfer_stars = z;
-        ((CheckBoxCell) view).setChecked(z, true);
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
-    }
-
-    public static void m1382$r8$lambda$8xHhfAOEt5ykFzc3Vdm9PAEW4(ChatbotsActivity chatbotsActivity) {
-        TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
-        tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
-        chatbotsActivity.listView.adapter.update(true);
-        chatbotsActivity.checkDone(true);
-    }
-
-    public void clear(View view) {
-        this.selectedBot = null;
-        this.listView.adapter.update(true);
-        checkDone(true);
-    }
-
-    public void processDone() {
+    public final void processDone$14() {
         TLRPC.User user;
         TL_account.TL_connectedBot tL_connectedBot;
-        if (this.doneButtonDrawable.getProgress() > 0.0f) {
+        if (this.doneButtonDrawable.progress > 0.0f) {
             return;
         }
         if (!hasChanges()) {
@@ -891,9 +1057,9 @@ public class ChatbotsActivity extends BaseFragment {
             return;
         }
         if (this.recipientsHelper.validate(this.listView)) {
-            final TLRPC.User user2 = this.selectedBot;
-            final boolean z = user2 != null && ((tL_connectedBot = this.currentBot) == null || tL_connectedBot.bot_id != user2.id);
-            final ArrayList arrayList = new ArrayList();
+            TLRPC.User user2 = this.selectedBot;
+            boolean z = user2 != null && ((tL_connectedBot = this.currentBot) == null || tL_connectedBot.bot_id != user2.id);
+            ArrayList arrayList = new ArrayList();
             TL_account.TL_connectedBot tL_connectedBot2 = this.currentBot;
             if (tL_connectedBot2 != null && ((user = this.selectedBot) == null || tL_connectedBot2.bot_id != user.id)) {
                 TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
@@ -920,202 +1086,27 @@ public class ChatbotsActivity extends BaseFragment {
                 finishFragment();
                 return;
             }
-            final int[] iArr = {0};
+            int[] iArr = {0};
             for (int i = 0; i < arrayList.size(); i++) {
-                getConnectionsManager().sendRequest((TLObject) arrayList.get(i), new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ChatbotsActivity.$r8$lambda$dilcIuBgUVaQjYQ49gVqZAE8GuI(this.f$0, iArr, arrayList, z, user2, tLObject, tL_error);
-                    }
-                });
+                getConnectionsManager().sendRequest((TLObject) arrayList.get(i), new ContactsController$$ExternalSyntheticLambda37(this, iArr, arrayList, z, user2));
             }
         }
     }
 
-    public static void $r8$lambda$dilcIuBgUVaQjYQ49gVqZAE8GuI(final ChatbotsActivity chatbotsActivity, final int[] iArr, final ArrayList arrayList, final boolean z, final TLRPC.User user, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        chatbotsActivity.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChatbotsActivity.$r8$lambda$LKnA6hN0fJtuITzULuctnX2YMuc(this.f$0, tL_error, tLObject, iArr, arrayList, z, user);
+    public final void updateSearchLoading() {
+        boolean z = this.wasLoading;
+        boolean zIsSearchInProgress = this.searchHelper.isSearchInProgress();
+        LongSparseArray longSparseArray = this.foundBots;
+        boolean z2 = true;
+        if (z != (zIsSearchInProgress || this.scheduledLoading || longSparseArray.size() > 0)) {
+            if (!this.searchHelper.isSearchInProgress() && !this.scheduledLoading && longSparseArray.size() <= 0) {
+                z2 = false;
             }
-        });
-    }
-
-    public static void $r8$lambda$LKnA6hN0fJtuITzULuctnX2YMuc(final ChatbotsActivity chatbotsActivity, TLRPC.TL_error tL_error, final TLObject tLObject, int[] iArr, ArrayList arrayList, boolean z, TLRPC.User user) {
-        BaseFragment safeLastFragment;
-        if (tL_error != null) {
-            chatbotsActivity.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.showError(tL_error);
-            return;
+            this.wasLoading = z2;
+            ViewPropertyAnimator duration = this.emptyViewText.animate().alpha(z2 ? 0.0f : 1.0f).translationY(z2 ? -AndroidUtilities.dp(8.0f) : 0.0f).setDuration(320L);
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            duration.setInterpolator(cubicBezierInterpolator).start();
+            this.emptyViewLoading.animate().alpha(z2 ? 1.0f : 0.0f).translationY(z2 ? 0.0f : AndroidUtilities.dp(8.0f)).setDuration(320L).setInterpolator(cubicBezierInterpolator).start();
         }
-        chatbotsActivity.getClass();
-        if (tLObject instanceof TLRPC.TL_boolFalse) {
-            chatbotsActivity.doneButtonDrawable.animateToProgress(0.0f);
-            BulletinFactory.of(chatbotsActivity).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
-            return;
-        }
-        if (tLObject instanceof TLRPC.Updates) {
-            Utilities.stageQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    MessagesController.getInstance(this.f$0.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
-                }
-            });
-        }
-        int i = iArr[0] + 1;
-        iArr[0] = i;
-        if (i == arrayList.size()) {
-            BusinessChatbotController.getInstance(chatbotsActivity.currentAccount).invalidate(true);
-            chatbotsActivity.getMessagesController().clearFullUsers();
-            chatbotsActivity.finishFragment();
-            if (!z || user == null) {
-                if (user == null || (safeLastFragment = LaunchActivity.getSafeLastFragment()) == null) {
-                    return;
-                }
-                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.BusinessBotUpdated, UserObject.getUserName(user))).show();
-                return;
-            }
-            BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
-            if (safeLastFragment2 != null) {
-                BulletinFactory.of(safeLastFragment2).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.BusinessBotDone, UserObject.getUserName(user))).show();
-            }
-        }
-    }
-
-    private void setValue() {
-        if (this.loading || this.valueSet) {
-            return;
-        }
-        this.loading = true;
-        BusinessChatbotController.getInstance(this.currentAccount).load(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ChatbotsActivity.$r8$lambda$Da8ihRP2259yCyBjk_rOC9kF8NY(this.f$0, (TL_account.connectedBots) obj);
-            }
-        });
-    }
-
-    public static void $r8$lambda$Da8ihRP2259yCyBjk_rOC9kF8NY(ChatbotsActivity chatbotsActivity, TL_account.connectedBots connectedbots) {
-        UniversalAdapter universalAdapter;
-        chatbotsActivity.currentValue = connectedbots;
-        TL_account.TL_connectedBot tL_connectedBot = (connectedbots == null || connectedbots.connected_bots.isEmpty()) ? null : chatbotsActivity.currentValue.connected_bots.get(0);
-        chatbotsActivity.currentBot = tL_connectedBot;
-        chatbotsActivity.selectedBot = tL_connectedBot == null ? null : chatbotsActivity.getMessagesController().getUser(Long.valueOf(chatbotsActivity.currentBot.bot_id));
-        TL_account.TL_connectedBot tL_connectedBot2 = chatbotsActivity.currentBot;
-        chatbotsActivity.rights = tL_connectedBot2 != null ? TL_account.TL_businessBotRights.clone(tL_connectedBot2.rights) : TL_account.TL_businessBotRights.makeDefault();
-        TL_account.TL_connectedBot tL_connectedBot3 = chatbotsActivity.currentBot;
-        chatbotsActivity.exclude = tL_connectedBot3 != null ? tL_connectedBot3.recipients.exclude_selected : true;
-        BusinessRecipientsHelper businessRecipientsHelper = chatbotsActivity.recipientsHelper;
-        if (businessRecipientsHelper != null) {
-            businessRecipientsHelper.setValue(tL_connectedBot3 != null ? tL_connectedBot3.recipients : null);
-        }
-        UniversalRecyclerView universalRecyclerView = chatbotsActivity.listView;
-        if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
-            universalAdapter.update(true);
-        }
-        chatbotsActivity.checkDone(true);
-        chatbotsActivity.valueSet = true;
-    }
-
-    public boolean notSelectedBot() {
-        if (this.selectedBot == null && !hasChanges()) {
-            return (this.searchHelper.getLocalServerSearch().isEmpty() && this.searchHelper.getGlobalSearch().isEmpty()) ? false : true;
-        }
-        return false;
-    }
-
-    public boolean hasChanges() {
-        if (!this.valueSet) {
-            return false;
-        }
-        TLRPC.User user = this.selectedBot;
-        boolean z = user != null;
-        TL_account.TL_connectedBot tL_connectedBot = this.currentBot;
-        if (z != (tL_connectedBot != null)) {
-            return true;
-        }
-        if ((user == null ? 0L : user.id) != (tL_connectedBot != null ? tL_connectedBot.bot_id : 0L)) {
-            return true;
-        }
-        if (user != null) {
-            if (!this.rights.equals(tL_connectedBot.rights)) {
-                return true;
-            }
-            BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
-            if (businessRecipientsHelper != null && businessRecipientsHelper.hasChanges()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean onBackPressed(boolean z) {
-        if (hasChanges()) {
-            if (z) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
-                builder.setMessage(LocaleController.getString(R.string.BusinessBotUnsavedChanges));
-                builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
-                    @Override
-                    public final void onClick(AlertDialog alertDialog, int i) {
-                        this.f$0.processDone();
-                    }
-                });
-                builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
-                    @Override
-                    public final void onClick(AlertDialog alertDialog, int i) {
-                        this.f$0.finishFragment();
-                    }
-                });
-                showDialog(builder.create());
-            }
-            return false;
-        }
-        if (!notSelectedBot()) {
-            return super.onBackPressed(z);
-        }
-        if (z) {
-            AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity());
-            builder2.setTitle(LocaleController.getString(R.string.BusinessBotNoAddedTitle));
-            builder2.setMessage(LocaleController.getString(R.string.BusinessBotNoAddedText));
-            builder2.setPositiveButton(LocaleController.getString(R.string.BusinessBotNoAddedButton), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.processDone();
-                }
-            });
-            builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            showDialog(builder2.create());
-        }
-        return false;
-    }
-
-    private void checkDone(boolean z) {
-        if (this.doneButton == null) {
-            return;
-        }
-        boolean zHasChanges = hasChanges();
-        this.doneButton.setEnabled(zHasChanges);
-        if (z) {
-            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
-            return;
-        }
-        this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
-        this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
-    }
-
-    @Override
-    public boolean onFragmentCreate() {
-        setValue();
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onInsets(int i, int i2, int i3, int i4) {
-        this.listView.setPadding(0, 0, 0, i4);
-        this.listView.setClipToPadding(false);
     }
 }

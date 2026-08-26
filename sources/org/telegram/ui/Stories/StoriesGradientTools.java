@@ -3,21 +3,22 @@ package org.telegram.ui.Stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.GradientTools;
 
-public class StoriesGradientTools extends GradientTools {
-    int colorKey1;
-    int colorKey2;
+public final class StoriesGradientTools extends GradientTools {
+    public final int colorKey1;
+    public final int colorKey2;
 
     public StoriesGradientTools() {
         int i = Theme.key_voipgroup_overlayGreen1;
         this.colorKey1 = i;
-        this.colorKey2 = Theme.key_voipgroup_overlayBlue1;
+        int i2 = Theme.key_voipgroup_overlayBlue1;
+        this.colorKey2 = i2;
         this.isDiagonal = true;
-        setColors(Theme.getColor(i), Theme.getColor(this.colorKey2));
+        setColors(Theme.getColor(null, i, false), Theme.getColor(null, i2, false), 0, 0);
     }
 
     @Override
-    protected void updateBounds() {
-        setColors(Theme.getColor(this.colorKey1), Theme.getColor(this.colorKey2));
+    public final void updateBounds() {
+        setColors(Theme.getColor(null, this.colorKey1, false), Theme.getColor(null, this.colorKey2, false), 0, 0);
         super.updateBounds();
     }
 }

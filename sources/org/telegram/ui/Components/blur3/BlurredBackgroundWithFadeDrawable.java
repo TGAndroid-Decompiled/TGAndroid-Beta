@@ -21,34 +21,26 @@ import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceWrapped;
 
-public class BlurredBackgroundWithFadeDrawable extends Drawable {
-    private int alpha;
-    private final Matrix bitmapMatrix;
-    private final Paint bitmapPaint;
-    private BitmapShader bitmapShader;
-    private int colorStaticLast;
-    private final Paint colorStaticPaint;
-    private Shader composeShader;
-    private final BlurredBackgroundDrawable drawable;
-    private int fadeHeight;
-    private Shader gradientShader;
-    private boolean ignoreFastWay;
-    private Bitmap lastBitmap;
-    private final Paint maskFadeGradientPaint;
-    private final Matrix matrix;
-    private final Matrix matrixTmp;
-    private boolean opacity;
-    private Shader shader;
-
-    @Override
-    public int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
+public final class BlurredBackgroundWithFadeDrawable extends Drawable {
+    public int alpha;
+    public final Matrix bitmapMatrix;
+    public final Paint bitmapPaint;
+    public BitmapShader bitmapShader;
+    public int colorStaticLast;
+    public final Paint colorStaticPaint;
+    public ComposeShader composeShader;
+    public final BlurredBackgroundDrawable drawable;
+    public int fadeHeight;
+    public LinearGradient gradientShader;
+    public boolean ignoreFastWay;
+    public Bitmap lastBitmap;
+    public final Paint maskFadeGradientPaint;
+    public final Matrix matrix;
+    public final Matrix matrixTmp;
+    public boolean opacity;
+    public LinearGradient shader;
 
     public BlurredBackgroundWithFadeDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
         Paint paint = new Paint(1);
@@ -66,37 +58,13 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
         setFadeHeight(AndroidUtilities.dp(40.0f), false);
     }
 
-    public void setFadeHeight(int i, boolean z) {
-        if (this.fadeHeight == i && this.opacity == z) {
-            return;
-        }
-        this.fadeHeight = i;
-        this.opacity = z;
-        Paint paint = this.maskFadeGradientPaint;
-        LinearGradient linearGradientCreateGradient = createGradient(-16777216, z);
-        this.shader = linearGradientCreateGradient;
-        paint.setShader(linearGradientCreateGradient);
-        this.colorStaticPaint.setShader(null);
-        this.matrix.reset();
-        this.matrix.setScale(1.0f, i);
-        if (i < 0) {
-            this.matrix.postTranslate(0.0f, -i);
-        }
-        this.shader.setLocalMatrix(this.matrix);
+    public static LinearGradient createGradient(int i, boolean z) {
+        int iAlpha = Color.alpha(i);
+        return z ? new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (iAlpha * 96) / 285), ColorUtils.setAlphaComponent(i, (iAlpha * 176) / 285), ColorUtils.setAlphaComponent(i, (iAlpha * 232) / 285)}, (float[]) null, Shader.TileMode.CLAMP) : new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (iAlpha * 96) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 176) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 232) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 255) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
     }
 
     @Override
-    protected void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        this.drawable.setBounds(rect);
-    }
-
-    public void setIgnoreFastWay(boolean z) {
-        this.ignoreFastWay = z;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         int iHeight;
         int i;
         boolean z;
@@ -104,88 +72,124 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
         if (bounds.isEmpty() || this.alpha == 0) {
             return;
         }
-        BlurredBackgroundSource unwrappedSource = this.drawable.getUnwrappedSource();
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.drawable;
+        BlurredBackgroundSource source = blurredBackgroundDrawable.getSource();
+        while (source instanceof BlurredBackgroundSourceWrapped) {
+            source = ((BlurredBackgroundSourceWrapped) source).sourceInternal;
+        }
         boolean z2 = this.ignoreFastWay;
-        if (!z2 && (unwrappedSource instanceof BlurredBackgroundSourceColor)) {
-            int color = ((BlurredBackgroundSourceColor) unwrappedSource).getColor();
-            if (this.colorStaticLast != color || this.gradientShader == null) {
+        Matrix matrix = this.matrix;
+        Matrix matrix2 = this.matrixTmp;
+        if (!z2 && (source instanceof BlurredBackgroundSourceColor)) {
+            int color = ((BlurredBackgroundSourceColor) source).paint.getColor();
+            int i2 = this.colorStaticLast;
+            Paint paint = this.colorStaticPaint;
+            if (i2 != color || this.gradientShader == null) {
                 LinearGradient linearGradientCreateGradient = createGradient(color, this.opacity);
                 this.gradientShader = linearGradientCreateGradient;
                 this.colorStaticLast = color;
-                this.colorStaticPaint.setShader(linearGradientCreateGradient);
+                paint.setShader(linearGradientCreateGradient);
             }
             iHeight = this.fadeHeight < 0 ? bounds.height() + this.fadeHeight : 0;
-            this.matrixTmp.set(this.matrix);
-            this.matrixTmp.postTranslate(bounds.left, bounds.top + iHeight);
-            this.gradientShader.setLocalMatrix(this.matrixTmp);
-            this.colorStaticPaint.setAlpha(this.alpha);
-            canvas.drawRect(bounds, this.colorStaticPaint);
+            matrix2.set(matrix);
+            matrix2.postTranslate(bounds.left, bounds.top + iHeight);
+            this.gradientShader.setLocalMatrix(matrix2);
+            paint.setAlpha(this.alpha);
+            canvas.drawRect(bounds, paint);
             return;
         }
-        if (!z2 && (unwrappedSource instanceof BlurredBackgroundSourceBitmap) && (i = Build.VERSION.SDK_INT) >= 28) {
-            BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = (BlurredBackgroundSourceBitmap) unwrappedSource;
-            Bitmap bitmap = blurredBackgroundSourceBitmap.getBitmap();
-            if (bitmap == null) {
-                return;
-            }
-            boolean z3 = true;
-            if (this.colorStaticLast != -16777216 || this.gradientShader == null) {
-                this.gradientShader = createGradient(-16777216, this.opacity);
-                this.colorStaticLast = -16777216;
-                z = true;
-            } else {
-                z = false;
-            }
-            if (this.bitmapShader == null || this.lastBitmap != bitmap) {
-                this.lastBitmap = bitmap;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                this.bitmapShader = bitmapShader;
-                if (i >= 33) {
-                    bitmapShader.setFilterMode(2);
-                }
-            } else {
-                z3 = z;
-            }
-            if (z3 || this.composeShader == null) {
-                ComposeShader composeShader = new ComposeShader(this.bitmapShader, this.gradientShader, PorterDuff.Mode.DST_IN);
-                this.composeShader = composeShader;
-                this.bitmapPaint.setShader(composeShader);
-            }
-            iHeight = this.fadeHeight < 0 ? this.fadeHeight + bounds.height() : 0;
-            this.matrixTmp.set(this.matrix);
-            this.matrixTmp.postTranslate(bounds.left, bounds.top + iHeight);
-            this.gradientShader.setLocalMatrix(this.matrixTmp);
-            this.bitmapMatrix.set(blurredBackgroundSourceBitmap.getMatrix());
-            this.bitmapMatrix.postTranslate(-this.drawable.getSourceOffsetX(), -this.drawable.getSourceOffsetY());
-            this.bitmapShader.setLocalMatrix(this.bitmapMatrix);
-            this.bitmapPaint.setAlpha(this.alpha);
-            canvas.drawRect(bounds, this.bitmapPaint);
+        if (z2 || !(source instanceof BlurredBackgroundSourceBitmap) || (i = Build.VERSION.SDK_INT) < 28) {
+            int iSaveLayerAlpha = canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, this.alpha);
+            iHeight = this.fadeHeight < 0 ? bounds.height() + this.fadeHeight : 0;
+            blurredBackgroundDrawable.draw(canvas);
+            canvas.translate(bounds.left, bounds.top + iHeight);
+            canvas.drawRect(0.0f, -iHeight, bounds.width(), bounds.height() - iHeight, this.maskFadeGradientPaint);
+            canvas.restoreToCount(iSaveLayerAlpha);
             return;
         }
-        int iSaveLayerAlpha = canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, this.alpha);
+        BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = (BlurredBackgroundSourceBitmap) source;
+        Bitmap bitmap = blurredBackgroundSourceBitmap.bitmap;
+        if (bitmap == null) {
+            return;
+        }
+        boolean z3 = true;
+        if (this.colorStaticLast != -16777216 || this.gradientShader == null) {
+            this.gradientShader = createGradient(-16777216, this.opacity);
+            this.colorStaticLast = -16777216;
+            z = true;
+        } else {
+            z = false;
+        }
+        if (this.bitmapShader == null || this.lastBitmap != bitmap) {
+            this.lastBitmap = bitmap;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+            this.bitmapShader = bitmapShader;
+            if (i >= 33) {
+                bitmapShader.setFilterMode(2);
+            }
+        } else {
+            z3 = z;
+        }
+        Paint paint2 = this.bitmapPaint;
+        if (z3 || this.composeShader == null) {
+            ComposeShader composeShader = new ComposeShader(this.bitmapShader, this.gradientShader, PorterDuff.Mode.DST_IN);
+            this.composeShader = composeShader;
+            paint2.setShader(composeShader);
+        }
         iHeight = this.fadeHeight < 0 ? bounds.height() + this.fadeHeight : 0;
-        this.drawable.draw(canvas);
-        canvas.translate(bounds.left, bounds.top + iHeight);
-        canvas.drawRect(0.0f, -iHeight, bounds.width(), bounds.height() - iHeight, this.maskFadeGradientPaint);
-        canvas.restoreToCount(iSaveLayerAlpha);
+        matrix2.set(matrix);
+        matrix2.postTranslate(bounds.left, bounds.top + iHeight);
+        this.gradientShader.setLocalMatrix(matrix2);
+        Matrix matrix3 = this.bitmapMatrix;
+        matrix3.set(blurredBackgroundSourceBitmap.bitmapMatrix);
+        matrix3.postTranslate(-blurredBackgroundDrawable.sourceOffsetX, -blurredBackgroundDrawable.sourceOffsetY);
+        this.bitmapShader.setLocalMatrix(matrix3);
+        paint2.setAlpha(this.alpha);
+        canvas.drawRect(bounds, paint2);
     }
 
     @Override
-    public void setAlpha(int i) {
+    public final int getAlpha() {
+        return this.alpha;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.drawable.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
         this.alpha = i;
     }
 
     @Override
-    public int getAlpha() {
-        return this.alpha;
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 
-    private static LinearGradient createGradient(int i, boolean z) {
-        int iAlpha = Color.alpha(i);
-        if (z) {
-            return new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (iAlpha * 96) / 285), ColorUtils.setAlphaComponent(i, (iAlpha * 176) / 285), ColorUtils.setAlphaComponent(i, (iAlpha * 232) / 285)}, (float[]) null, Shader.TileMode.CLAMP);
+    public final void setFadeHeight(int i, boolean z) {
+        if (this.fadeHeight == i && this.opacity == z) {
+            return;
         }
-        return new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (iAlpha * 96) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 176) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 232) / 255), ColorUtils.setAlphaComponent(i, (iAlpha * 255) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
+        this.fadeHeight = i;
+        this.opacity = z;
+        LinearGradient linearGradientCreateGradient = createGradient(-16777216, z);
+        this.shader = linearGradientCreateGradient;
+        this.maskFadeGradientPaint.setShader(linearGradientCreateGradient);
+        this.colorStaticPaint.setShader(null);
+        Matrix matrix = this.matrix;
+        matrix.reset();
+        matrix.setScale(1.0f, i);
+        if (i < 0) {
+            matrix.postTranslate(0.0f, -i);
+        }
+        this.shader.setLocalMatrix(matrix);
     }
 }

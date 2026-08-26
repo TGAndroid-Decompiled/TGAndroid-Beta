@@ -1,11 +1,10 @@
 package org.telegram.ui.Stories;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -13,7 +12,9 @@ import android.graphics.PathMeasure;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -22,17 +23,21 @@ import androidx.core.graphics.ColorUtils;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline0;
+import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
@@ -40,142 +45,143 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.GradientTools;
 import org.telegram.ui.Components.RadialProgress;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda3;
+import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.QrActivity;
+import org.telegram.ui.QrActivity$$ExternalSyntheticLambda14;
+import org.telegram.ui.QrActivity$$ExternalSyntheticLambda18;
 
 public abstract class ProfileStoriesView extends View implements NotificationCenter.NotificationCenterDelegate {
-    private float actionBarProgress;
-    private boolean attached;
-    private final View avatarContainer;
-    private final ProfileActivity.AvatarImageView avatarImage;
-    private float bounceScale;
-    private final ArrayList circles;
-    private final Paint clipOutAvatar;
-    private final Path clipPath;
-    private int count;
-    private final int currentAccount;
-    private float cy;
-    private final long dialogId;
-    private float expandProgress;
-    private float expandRight;
-    private boolean expandRightPad;
-    private final AnimatedFloat expandRightPadAnimated;
-    private float expandY;
-    private final Matrix forumRoundRectMatrix;
-    private final Path forumRoundRectPath;
-    private final PathMeasure forumRoundRectPathMeasure;
-    private final Path forumSegmentPath;
-    private float fragmentTransitionProgress;
-    private final StoriesUtilities.StoryGradientTools gradientTools;
-    private final boolean isTopic;
-    private StoriesController.UploadingStory lastUploadingStory;
-    private float left;
-    private final Paint livePaint;
-    private StoryCircle mainCircle;
-    private ValueAnimator newStoryBounce;
-    private float newStoryBounceT;
-    private Runnable onLongPressRunnable;
-    Paint paint;
-    private TL_stories.PeerStories peerStories;
-    private boolean progressIsDone;
-    private float progressToInsets;
-    private final AnimatedFloat progressToUploading;
-    private boolean progressWasDrawn;
-    private final StoryViewer.PlaceProvider provider;
-    private RadialProgress radialProgress;
-    private final Paint readPaint;
-    private int readPaintAlpha;
-    private final RectF rect1;
-    private final RectF rect2;
-    private final RectF rect3;
-    private float right;
-    private final AnimatedFloat rightAnimated;
-    private final AnimatedFloat segmentsCountAnimated;
-    private final AnimatedFloat segmentsUnreadCountAnimated;
-    StoriesController storiesController;
-    private long tapTime;
-    private float tapX;
-    private float tapY;
-    private final AnimatedTextView.AnimatedTextDrawable titleDrawable;
-    private int unreadCount;
-    private int uploadingStoriesCount;
-    float w;
-    private final Paint whitePaint;
+    public static final int $r8$clinit = 0;
+    public float actionBarProgress;
+    public boolean attached;
+    public final ProfileActivity.AnonymousClass19 avatarContainer;
+    public final ProfileActivity.AnonymousClass21 avatarImage;
+    public float bounceScale;
+    public final ArrayList circles;
+    public final Path clipPath;
+    public int count;
+    public final int currentAccount;
+    public float cy;
+    public final long dialogId;
+    public float expandProgress;
+    public float expandRight;
+    public boolean expandRightPad;
+    public final AnimatedFloat expandRightPadAnimated;
+    public float expandY;
+    public final Matrix forumRoundRectMatrix;
+    public final Path forumRoundRectPath;
+    public final PathMeasure forumRoundRectPathMeasure;
+    public final Path forumSegmentPath;
+    public float fragmentTransitionProgress;
+    public final StoriesUtilities.StoryGradientTools gradientTools;
+    public final boolean isTopic;
+    public StoriesController.UploadingStory lastUploadingStory;
+    public float left;
+    public final Paint livePaint;
+    public StoryCircle mainCircle;
+    public ValueAnimator newStoryBounce;
+    public float newStoryBounceT;
+    public final ProfileStoriesView$$ExternalSyntheticLambda1 onLongPressRunnable;
+    public boolean progressIsDone;
+    public float progressToInsets;
+    public final AnimatedFloat progressToUploading;
+    public boolean progressWasDrawn;
+    public final PhotoViewer.AnonymousClass49 provider;
+    public RadialProgress radialProgress;
+    public final Paint readPaint;
+    public final RectF rect1;
+    public final RectF rect2;
+    public final RectF rect3;
+    public float right;
+    public final AnimatedFloat rightAnimated;
+    public final AnimatedFloat segmentsCountAnimated;
+    public final AnimatedFloat segmentsUnreadCountAnimated;
+    public final StoriesController storiesController;
+    public long tapTime;
+    public float tapX;
+    public float tapY;
+    public final AnimatedTextView.AnimatedTextDrawable titleDrawable;
+    public int unreadCount;
+    public int uploadingStoriesCount;
 
-    public abstract void onLongPress();
+    public final class StoryCircle {
+        public final RectF borderRect;
+        public float cachedIndex;
+        public float cachedRead;
+        public final RectF cachedRect;
+        public float cachedScale;
+        public final ImageReceiver imageReceiver;
+        public int index;
+        public final AnimatedFloat indexAnimated;
+        public final boolean live;
+        public boolean read;
+        public final AnimatedFloat readAnimated;
+        public float scale;
+        public final AnimatedFloat scaleAnimated;
+        public final int storyId;
 
-    protected abstract void onTap(StoryViewer.PlaceProvider placeProvider);
-
-    public void setProgressToStoriesInsets(float f) {
-        if (this.progressToInsets == f) {
-            return;
-        }
-        this.progressToInsets = f;
-        invalidate();
-    }
-
-    class StoryCircle {
-        final RectF borderRect;
-        float cachedIndex;
-        float cachedRead;
-        final RectF cachedRect;
-        float cachedScale;
-        final AnimatedFloat indexAnimated;
-        boolean live;
-        final AnimatedFloat readAnimated;
-        final AnimatedFloat scaleAnimated;
-        int storyId;
-        AvatarDrawable avatarDrawable = new AvatarDrawable();
-        ImageReceiver imageReceiver = new ImageReceiver();
-        int index = 0;
-        boolean read = false;
-        float scale = 1.0f;
-
-        public StoryCircle(TL_stories.StoryItem storyItem) {
+        public StoryCircle(ProfileStoriesView profileStoriesView, TL_stories.StoryItem storyItem) {
+            ArrayList<TLRPC.PhotoSize> arrayList;
+            TLRPC.Document document;
+            AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            ImageReceiver imageReceiver = new ImageReceiver();
+            this.imageReceiver = imageReceiver;
+            this.index = 0;
+            this.read = false;
+            this.scale = 1.0f;
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            this.readAnimated = new AnimatedFloat(ProfileStoriesView.this, 420L, cubicBezierInterpolator);
-            this.indexAnimated = new AnimatedFloat(ProfileStoriesView.this, 420L, cubicBezierInterpolator);
-            this.scaleAnimated = new AnimatedFloat(ProfileStoriesView.this, 420L, cubicBezierInterpolator);
+            this.readAnimated = new AnimatedFloat(420L, profileStoriesView, cubicBezierInterpolator);
+            this.indexAnimated = new AnimatedFloat(420L, profileStoriesView, cubicBezierInterpolator);
+            this.scaleAnimated = new AnimatedFloat(420L, profileStoriesView, cubicBezierInterpolator);
             this.cachedRect = new RectF();
             this.borderRect = new RectF();
             this.storyId = storyItem.id;
-            this.imageReceiver.setRoundRadius(AndroidUtilities.dp(200.0f));
-            this.imageReceiver.setParentView(ProfileStoriesView.this);
+            imageReceiver.setRoundRadius(AndroidUtilities.dp(200.0f));
+            imageReceiver.setParentView(profileStoriesView);
             this.live = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
-            if (ProfileStoriesView.this.attached) {
-                this.imageReceiver.onAttachedToWindow();
+            if (profileStoriesView.attached) {
+                imageReceiver.onAttachedToWindow();
             }
-            StoriesUtilities.setThumbImage(this.avatarDrawable, this.imageReceiver, storyItem, 25, 25);
-        }
-
-        public void destroy() {
-            this.imageReceiver.onDetachedFromWindow();
-        }
-
-        public void apply() {
-            this.readAnimated.set(this.read, true);
-            this.indexAnimated.set(this.index, true);
-            this.scaleAnimated.set(this.scale, true);
+            GradientTools[] gradientToolsArr = StoriesUtilities.storiesGradientTools;
+            TLRPC.MessageMedia messageMedia = storyItem.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
+                TLObject userOrChat = MessagesController.getInstance(imageReceiver.getCurrentAccount()).getUserOrChat(storyItem.dialogId);
+                avatarDrawable.setInfo(userOrChat);
+                imageReceiver.setForUserOrChat(userOrChat, avatarDrawable);
+            } else {
+                if (messageMedia != null && (document = messageMedia.document) != null) {
+                    imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(Math.max(25, 25)), false, null, true), storyItem.media.document), "25_25", null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
+                    return;
+                }
+                TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
+                if (photo == null || (arrayList = photo.sizes) == null) {
+                    imageReceiver.clearImage();
+                } else {
+                    imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.dp(Math.max(25, 25)), false, null, true), photo), "25_25", null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
+                }
+            }
         }
     }
 
-    public ProfileStoriesView(Context context, int i, long j, boolean z, View view, ProfileActivity.AvatarImageView avatarImageView, Theme.ResourcesProvider resourcesProvider) {
+    public ProfileStoriesView(Context context, int i, long j, boolean z, ProfileActivity.AnonymousClass19 anonymousClass19, ProfileActivity.AnonymousClass21 anonymousClass21, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         Paint paint = new Paint(1);
         this.readPaint = paint;
         Paint paint2 = new Paint(1);
         this.livePaint = paint2;
         Paint paint3 = new Paint(1);
-        this.whitePaint = paint3;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
         this.titleDrawable = animatedTextDrawable;
         Paint paint4 = new Paint(1);
-        this.clipOutAvatar = paint4;
         this.circles = new ArrayList();
-        this.paint = new Paint(1);
+        Paint paint5 = new Paint(1);
         this.bounceScale = 1.0f;
         this.progressToInsets = 1.0f;
-        this.gradientTools = new StoriesUtilities.StoryGradientTools((View) this, false);
+        this.gradientTools = new StoriesUtilities.StoryGradientTools(this);
         this.rect1 = new RectF();
         this.rect2 = new RectF();
         this.rect3 = new RectF();
@@ -191,27 +197,44 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
         this.forumSegmentPath = new Path();
         this.expandRightPadAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.rightAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
-        this.provider = new AnonymousClass3();
+        this.provider = new PhotoViewer.AnonymousClass49((ProfileActivity.AnonymousClass27) this, 12);
+        final ProfileActivity.AnonymousClass27 anonymousClass27 = (ProfileActivity.AnonymousClass27) this;
+        final int i2 = 0;
         this.onLongPressRunnable = new Runnable() {
             @Override
-            public final void run() {
-                this.f$0.onLongPress();
+            public final void run() throws Throwable {
+                switch (i2) {
+                    case 0:
+                        ProfileActivity.this.openAvatar(false);
+                        break;
+                    default:
+                        anonymousClass27.invalidate();
+                        break;
+                }
             }
         };
         this.currentAccount = i;
         this.dialogId = j;
         this.isTopic = z;
-        this.avatarContainer = view;
-        this.avatarImage = avatarImageView;
-        avatarImageView.getImageReceiver().setVisibleInvalidate(new Runnable() {
+        this.avatarContainer = anonymousClass19;
+        this.avatarImage = anonymousClass21;
+        final int i3 = 1;
+        anonymousClass21.getImageReceiver().setVisibleInvalidate(new Runnable() {
             @Override
-            public final void run() {
-                this.f$0.invalidate();
+            public final void run() throws Throwable {
+                switch (i3) {
+                    case 0:
+                        ProfileActivity.this.openAvatar(false);
+                        break;
+                    default:
+                        anonymousClass27.invalidate();
+                        break;
+                }
             }
         });
         this.storiesController = MessagesController.getInstance(i).getStoriesController();
         paint.setColor(1526726655);
-        this.readPaintAlpha = paint.getAlpha();
+        paint.getAlpha();
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
@@ -223,763 +246,29 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
         paint2.setStrokeCap(cap);
         paint3.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
-        animatedTextDrawable.setAnimationProperties(0.4f, 0L, 320L, cubicBezierInterpolator);
-        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
-        animatedTextDrawable.setTextColor(-1);
-        animatedTextDrawable.setEllipsizeByGradient(true);
+        animatedTextDrawable.moveAmplitude = 0.4f;
+        animatedTextDrawable.animateDuration = 320L;
+        animatedTextDrawable.animateWave = 1.0f;
+        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        Typeface typefaceBold = AndroidUtilities.bold();
+        TextPaint textPaint = animatedTextDrawable.textPaint;
+        textPaint.setTypeface(typefaceBold);
+        textPaint.setColor(-1);
+        animatedTextDrawable.alpha = Color.alpha(-1);
+        animatedTextDrawable.ellipsizeByGradient = true;
+        animatedTextDrawable.invalidateSelf();
         animatedTextDrawable.setCallback(this);
         paint4.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        this.paint.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
-        this.paint.setStyle(style);
+        paint5.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
+        paint5.setStyle(style);
         updateStories(false, false);
     }
 
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.titleDrawable || super.verifyDrawable(drawable);
+    private float getExpandRight() {
+        return this.expandRight - (this.expandRightPadAnimated.set(this.expandRightPad) * AndroidUtilities.dp(71.0f));
     }
 
-    public void setStories(TL_stories.PeerStories peerStories) {
-        this.peerStories = peerStories;
-        updateStories(true, false);
-    }
-
-    public void update() {
-        updateStories(true, true);
-    }
-
-    public void updateStories(boolean z, boolean z2) {
-        ArrayList<TL_stories.StoryItem> arrayList;
-        boolean z3;
-        int i;
-        TL_stories.StoryItem storyItem;
-        int i2;
-        if (this.isTopic) {
-            return;
-        }
-        boolean z4 = this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId();
-        int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-        TL_stories.PeerStories storiesFromFullPeer = MessagesController.getInstance(this.currentAccount).getStoriesController().getStoriesFromFullPeer(this.dialogId);
-        TL_stories.PeerStories stories = MessagesController.getInstance(this.currentAccount).getStoriesController().getStories(this.dialogId);
-        TL_stories.PeerStories peerStories = this.dialogId == 0 ? null : storiesFromFullPeer;
-        int iMax = storiesFromFullPeer != null ? Math.max(0, storiesFromFullPeer.max_read_id) : 0;
-        if (stories != null) {
-            iMax = Math.max(iMax, stories.max_read_id);
-        }
-        if (peerStories == null || (arrayList = peerStories.stories) == null) {
-            arrayList = new ArrayList<>();
-        }
-        ArrayList arrayList2 = new ArrayList();
-        int i3 = this.unreadCount;
-        this.unreadCount = 0;
-        int i4 = 0;
-        for (int i5 = 0; i5 < arrayList.size(); i5++) {
-            TL_stories.StoryItem storyItem2 = arrayList.get(i5);
-            if (!(storyItem2 instanceof TL_stories.TL_storyItemDeleted)) {
-                if (storyItem2.id > iMax) {
-                    this.unreadCount++;
-                }
-                i4++;
-            }
-        }
-        int i6 = 0;
-        while (true) {
-            if (i6 >= arrayList.size()) {
-                z3 = z4;
-                i = 3;
-                break;
-            }
-            TL_stories.StoryItem storyItem3 = arrayList.get(i6);
-            if (storyItem3 instanceof TL_stories.TL_storyItemDeleted) {
-                z3 = z4;
-            } else {
-                if (storyItem3 instanceof TL_stories.TL_storyItemSkipped) {
-                    int i7 = storyItem3.id;
-                    z3 = z4;
-                    if (stories != null) {
-                        for (int i8 = 0; i8 < stories.stories.size(); i8++) {
-                            if (stories.stories.get(i8).id == i7) {
-                                storyItem3 = stories.stories.get(i8);
-                                break;
-                            }
-                        }
-                    }
-                    boolean z5 = storyItem3 instanceof TL_stories.TL_storyItemSkipped;
-                    if (z5) {
-                        if (storiesFromFullPeer != null) {
-                            for (int i9 = 0; i9 < storiesFromFullPeer.stories.size(); i9++) {
-                                if (storiesFromFullPeer.stories.get(i9).id == i7) {
-                                    storiesFromFullPeer.stories.get(i9);
-                                    break;
-                                }
-                            }
-                        }
-                    } else if (z5) {
-                        continue;
-                    }
-                } else {
-                    z3 = z4;
-                }
-                int i10 = storyItem3.expire_date;
-                if ((i10 == 0 || currentTime <= i10) && (z3 || storyItem3.id > iMax)) {
-                    arrayList2.add(storyItem3);
-                    i = 3;
-                    if (arrayList2.size() >= 3) {
-                        break;
-                    }
-                }
-            }
-            i6++;
-            z4 = z3;
-        }
-        if (arrayList2.size() < i) {
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                TL_stories.StoryItem storyItem4 = arrayList.get(i11);
-                if (storyItem4 instanceof TL_stories.TL_storyItemSkipped) {
-                    int i12 = storyItem4.id;
-                    if (stories != null) {
-                        for (int i13 = 0; i13 < stories.stories.size(); i13++) {
-                            if (stories.stories.get(i13).id == i12) {
-                                storyItem4 = stories.stories.get(i13);
-                                break;
-                            }
-                        }
-                    }
-                    boolean z6 = storyItem4 instanceof TL_stories.TL_storyItemSkipped;
-                    if (!z6) {
-                        if (z6) {
-                            break;
-                        }
-                        if (!(storyItem4 instanceof TL_stories.TL_storyItemDeleted) && (((i2 = storyItem4.expire_date) == 0 || currentTime <= i2) && !arrayList2.contains(storyItem4))) {
-                            arrayList2.add(storyItem4);
-                            if (arrayList2.size() >= 3) {
-                                break;
-                            }
-                        }
-                    } else if (storiesFromFullPeer != null) {
-                        for (int i14 = 0; i14 < storiesFromFullPeer.stories.size(); i14++) {
-                            if (storiesFromFullPeer.stories.get(i14).id == i12) {
-                                storiesFromFullPeer.stories.get(i14);
-                                break;
-                            }
-                        }
-                    }
-                } else if (!(storyItem4 instanceof TL_stories.TL_storyItemDeleted)) {
-                    arrayList2.add(storyItem4);
-                    if (arrayList2.size() >= 3) {
-                        break;
-                        break;
-                    }
-                }
-            }
-        }
-        for (int i15 = 0; i15 < this.circles.size(); i15++) {
-            StoryCircle storyCircle = (StoryCircle) this.circles.get(i15);
-            int i16 = 0;
-            while (true) {
-                if (i16 >= arrayList2.size()) {
-                    i16 = -1;
-                    storyItem = null;
-                    break;
-                } else {
-                    storyItem = (TL_stories.StoryItem) arrayList2.get(i16);
-                    if (storyItem.id == storyCircle.storyId) {
-                        break;
-                    } else {
-                        i16++;
-                    }
-                }
-            }
-            if (i16 == -1) {
-                storyCircle.scale = 0.0f;
-            } else {
-                storyCircle.index = i16;
-                storyCircle.read = z3 || !(peerStories == null || storyItem == null || storyItem.id > this.storiesController.getMaxStoriesReadId(this.dialogId));
-            }
-            if (!z) {
-                storyCircle.apply();
-            }
-        }
-        for (int i17 = 0; i17 < arrayList2.size(); i17++) {
-            TL_stories.StoryItem storyItem5 = (TL_stories.StoryItem) arrayList2.get(i17);
-            int i18 = 0;
-            while (true) {
-                if (i18 >= this.circles.size()) {
-                    i18 = -1;
-                    break;
-                } else if (((StoryCircle) this.circles.get(i18)).storyId == storyItem5.id) {
-                    break;
-                } else {
-                    i18++;
-                }
-            }
-            if (i18 == -1) {
-                storyItem5.dialogId = this.dialogId;
-                StoryCircle storyCircle2 = new StoryCircle(storyItem5);
-                storyCircle2.index = i17;
-                storyCircle2.scale = 1.0f;
-                storyCircle2.scaleAnimated.set(0.0f, true);
-                storyCircle2.read = z3 || (peerStories != null && storyItem5.id <= peerStories.max_read_id);
-                if (!z) {
-                    storyCircle2.apply();
-                }
-                this.circles.add(storyCircle2);
-            }
-        }
-        this.mainCircle = null;
-        for (int i19 = 0; i19 < this.circles.size(); i19++) {
-            StoryCircle storyCircle3 = (StoryCircle) this.circles.get(i19);
-            if (storyCircle3.scale > 0.0f) {
-                this.mainCircle = storyCircle3;
-                break;
-            }
-        }
-        ArrayList uploadingStories = this.storiesController.getUploadingStories(this.dialogId);
-        this.uploadingStoriesCount = uploadingStories == null ? 0 : uploadingStories.size();
-        int iMax2 = Math.max(arrayList2.size(), i4);
-        if (iMax2 == 0 && this.uploadingStoriesCount != 0) {
-            iMax2 = 1;
-        }
-        if (z2 && z) {
-            if (iMax2 == this.count + 1 && this.unreadCount == i3 + 1) {
-                animateNewStory();
-            }
-        }
-        this.count = iMax2;
-        this.titleDrawable.setText(iMax2 > 0 ? LocaleController.formatPluralString("Stories", iMax2, new Object[0]) : "", z && !LocaleController.isRTL);
-        if (this.dialogId >= 0) {
-            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
-            if (user != null) {
-                TLRPC.EmojiStatus emojiStatus = user.emoji_status;
-                if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
-                    this.gradientTools.setColor(MessagesController.PeerColor.fromCollectible(emojiStatus), z);
-                } else {
-                    this.gradientTools.setUser(user, z);
-                }
-            } else {
-                this.gradientTools.setUser(user, z);
-            }
-        } else {
-            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
-            if (chat != null) {
-                TLRPC.EmojiStatus emojiStatus2 = chat.emoji_status;
-                if (emojiStatus2 instanceof TLRPC.TL_emojiStatusCollectible) {
-                    this.gradientTools.setColor(MessagesController.PeerColor.fromCollectible(emojiStatus2), z);
-                } else {
-                    this.gradientTools.setChat(chat, z);
-                }
-            } else {
-                this.gradientTools.setChat(chat, z);
-            }
-        }
-        invalidate();
-    }
-
-    public void setExpandProgress(float f) {
-        if (this.expandProgress != f) {
-            this.expandProgress = f;
-            invalidate();
-        }
-    }
-
-    public void setActionBarActionMode(float f) {
-        if (Theme.isCurrentThemeDark()) {
-            return;
-        }
-        this.actionBarProgress = f;
-        invalidate();
-    }
-
-    public void vibrateNewStory() {
-        if (SharedConfig.getDevicePerformanceClass() <= 0) {
-            return;
-        }
-        AndroidUtilities.vibrateCursor(this);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ProfileStoriesView.$r8$lambda$AmbJGordIoaqtAGHuhomGEcgJqc(this.f$0);
-            }
-        }, 180L);
-    }
-
-    public static void $r8$lambda$AmbJGordIoaqtAGHuhomGEcgJqc(ProfileStoriesView profileStoriesView) {
-        profileStoriesView.getClass();
-        AndroidUtilities.vibrateCursor(profileStoriesView);
-    }
-
-    public void animateNewStory() {
-        ValueAnimator valueAnimator = this.newStoryBounce;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        final boolean[] zArr = {false};
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.newStoryBounce = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ProfileStoriesView.$r8$lambda$vHRaq9wyhDGyqt31tiC8FhEpfi8(this.f$0, zArr, valueAnimator2);
-            }
-        });
-        this.newStoryBounce.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                boolean[] zArr2 = zArr;
-                if (!zArr2[0]) {
-                    zArr2[0] = true;
-                    ProfileStoriesView.this.vibrateNewStory();
-                }
-                ProfileStoriesView.this.newStoryBounceT = 1.0f;
-                ProfileStoriesView.this.invalidate();
-            }
-        });
-        this.newStoryBounce.setInterpolator(new OvershootInterpolator(3.0f));
-        this.newStoryBounce.setDuration(400L);
-        this.newStoryBounce.setStartDelay(120L);
-        this.newStoryBounce.start();
-    }
-
-    public static void $r8$lambda$vHRaq9wyhDGyqt31tiC8FhEpfi8(ProfileStoriesView profileStoriesView, boolean[] zArr, ValueAnimator valueAnimator) {
-        profileStoriesView.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        if (!zArr[0] && fFloatValue > 0.2f) {
-            zArr[0] = true;
-            profileStoriesView.vibrateNewStory();
-        }
-        profileStoriesView.newStoryBounceT = Math.max(1.0f, fFloatValue);
-        profileStoriesView.invalidate();
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        float f;
-        float f2;
-        Paint paint;
-        float f3;
-        float f4;
-        float f5;
-        float f6;
-        float fClamp;
-        ProfileStoriesView profileStoriesView;
-        float fMax;
-        Paint paint2;
-        Paint paint3;
-        float size;
-        StoriesController.UploadingStory uploadingStory;
-        ProfileStoriesView profileStoriesView2 = this;
-        Canvas canvas2 = canvas;
-        float f7 = profileStoriesView2.rightAnimated.set(profileStoriesView2.right);
-        float fClamp2 = Utilities.clamp((profileStoriesView2.avatarContainer.getScaleX() - 1.0f) / 0.4f, 1.0f, 0.0f);
-        float fLerp = AndroidUtilities.lerp(AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(3.5f), fClamp2) * profileStoriesView2.progressToInsets;
-        float x = profileStoriesView2.avatarContainer.getX() + (profileStoriesView2.avatarContainer.getScaleX() * fLerp);
-        float y = profileStoriesView2.avatarContainer.getY() + (profileStoriesView2.avatarContainer.getScaleY() * fLerp);
-        float f8 = fLerp * 2.0f;
-        profileStoriesView2.rect1.set(x, y, ((profileStoriesView2.avatarContainer.getWidth() - f8) * profileStoriesView2.avatarContainer.getScaleX()) + x, ((profileStoriesView2.avatarContainer.getHeight() - f8) * profileStoriesView2.avatarContainer.getScaleY()) + y);
-        float f9 = profileStoriesView2.left;
-        int i = 0;
-        while (i < profileStoriesView2.circles.size()) {
-            StoryCircle storyCircle = (StoryCircle) profileStoriesView2.circles.get(i);
-            float f10 = storyCircle.scaleAnimated.set(storyCircle.scale);
-            storyCircle.cachedScale = f10;
-            if (f10 <= 0.0f && storyCircle.scale <= 0.0f) {
-                storyCircle.destroy();
-                profileStoriesView2.circles.remove(i);
-                i--;
-            } else {
-                storyCircle.cachedIndex = storyCircle.indexAnimated.set(storyCircle.index);
-                storyCircle.cachedRead = storyCircle.readAnimated.set(storyCircle.read);
-                if (i > 0 && ((StoryCircle) profileStoriesView2.circles.get(i - 1)).cachedIndex > storyCircle.cachedIndex) {
-                    Collections.sort(profileStoriesView2.circles, new Comparator() {
-                        @Override
-                        public final int compare(Object obj, Object obj2) {
-                            return ProfileStoriesView.m4385$r8$lambda$JQNPIPP51ie698WIdXQXlPmQs((ProfileStoriesView.StoryCircle) obj, (ProfileStoriesView.StoryCircle) obj2);
-                        }
-                    });
-                    break;
-                }
-            }
-            i++;
-        }
-        float fClamp3 = Utilities.clamp(1.0f - (profileStoriesView2.expandProgress / 0.2f), 1.0f, 0.0f);
-        boolean zIsLastUploadingFailed = profileStoriesView2.storiesController.isLastUploadingFailed(profileStoriesView2.dialogId);
-        boolean zHasUploadingStories = profileStoriesView2.storiesController.hasUploadingStories(profileStoriesView2.dialogId);
-        if (!zHasUploadingStories && (uploadingStory = profileStoriesView2.lastUploadingStory) != null && uploadingStory.canceled) {
-            profileStoriesView2.progressWasDrawn = false;
-            profileStoriesView2.progressIsDone = false;
-            profileStoriesView2.progressToUploading.set(false, true);
-        }
-        float fLerp2 = AndroidUtilities.lerp(0.0f, profileStoriesView2.progressToUploading.set((zHasUploadingStories && !zIsLastUploadingFailed) || (profileStoriesView2.progressWasDrawn && !profileStoriesView2.progressIsDone)), profileStoriesView2.fragmentTransitionProgress);
-        canvas2.save();
-        float f11 = profileStoriesView2.bounceScale;
-        canvas2.scale(f11, f11, profileStoriesView2.rect1.centerX(), profileStoriesView2.rect1.centerY());
-        float fLerp3 = AndroidUtilities.lerp(profileStoriesView2.rect1.centerY(), profileStoriesView2.expandY, profileStoriesView2.expandProgress);
-        profileStoriesView2.lastUploadingStory = null;
-        if (fLerp2 > 0.0f) {
-            f = 3.775f;
-            f2 = 2.0f;
-            profileStoriesView2.rect2.set(profileStoriesView2.rect1);
-            profileStoriesView2.rect2.inset(-AndroidUtilities.dpf2(3.775f), -AndroidUtilities.dpf2(3.775f));
-            Paint paint4 = profileStoriesView2.gradientTools.getPaint(profileStoriesView2.rect2);
-            if (profileStoriesView2.radialProgress == null) {
-                RadialProgress radialProgress = new RadialProgress(profileStoriesView2);
-                profileStoriesView2.radialProgress = radialProgress;
-                radialProgress.setBackground(null, true, false);
-                profileStoriesView2.radialProgress.setRoundRectProgress(ChatObject.isForum(UserConfig.selectedAccount, profileStoriesView2.dialogId));
-            }
-            if (!profileStoriesView2.storiesController.hasUploadingStories(profileStoriesView2.dialogId) || profileStoriesView2.storiesController.isLastUploadingFailed(profileStoriesView2.dialogId)) {
-                size = 1.0f;
-            } else {
-                ArrayList uploadingStories = profileStoriesView2.storiesController.getUploadingStories(profileStoriesView2.dialogId);
-                if (uploadingStories != null) {
-                    if (uploadingStories.size() > 0) {
-                        profileStoriesView2.lastUploadingStory = (StoriesController.UploadingStory) uploadingStories.get(0);
-                    }
-                    float f12 = 0.0f;
-                    for (int i2 = 0; i2 < uploadingStories.size(); i2++) {
-                        f12 += ((StoriesController.UploadingStory) uploadingStories.get(i2)).progress;
-                    }
-                    size = f12 / uploadingStories.size();
-                } else {
-                    size = 0.0f;
-                }
-            }
-            profileStoriesView2.radialProgress.setDiff(0);
-            int alpha = paint4.getAlpha();
-            paint4.setAlpha((int) (alpha * fClamp3 * fLerp2));
-            paint4.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
-            profileStoriesView2.radialProgress.setPaint(paint4);
-            RadialProgress radialProgress2 = profileStoriesView2.radialProgress;
-            RectF rectF = profileStoriesView2.rect2;
-            radialProgress2.setProgressRect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            profileStoriesView2.radialProgress.setProgress(Utilities.clamp(size, 1.0f, 0.0f), true);
-            if (profileStoriesView2.avatarImage.drawAvatar) {
-                profileStoriesView2.radialProgress.draw(canvas2);
-            }
-            paint4.setAlpha(alpha);
-            profileStoriesView2.progressWasDrawn = true;
-            boolean z = profileStoriesView2.progressIsDone;
-            boolean z2 = profileStoriesView2.radialProgress.getAnimatedProgress() >= 0.98f;
-            profileStoriesView2.progressIsDone = z2;
-            if (z != z2) {
-                profileStoriesView2.segmentsCountAnimated.set(profileStoriesView2.count, true);
-                profileStoriesView2.segmentsUnreadCountAnimated.set(profileStoriesView2.unreadCount, true);
-                profileStoriesView2.animateBounce();
-            }
-            paint = paint4;
-        } else {
-            fLerp3 = fLerp3;
-            f = 3.775f;
-            f2 = 2.0f;
-            profileStoriesView2.progressWasDrawn = false;
-            paint = null;
-        }
-        if (fLerp2 < 1.0f) {
-            fClamp = Utilities.clamp(1.0f - (profileStoriesView2.expandProgress / 0.2f), 1.0f, 0.0f) * (1.0f - fLerp2);
-            float f13 = profileStoriesView2.segmentsCountAnimated.set(profileStoriesView2.count);
-            float f14 = profileStoriesView2.segmentsUnreadCountAnimated.set(profileStoriesView2.unreadCount);
-            if (zIsLastUploadingFailed) {
-                profileStoriesView2.rect2.set(profileStoriesView2.rect1);
-                profileStoriesView2.rect2.inset(-AndroidUtilities.dpf2(f), -AndroidUtilities.dpf2(f));
-                Paint errorPaint = StoriesUtilities.getErrorPaint(profileStoriesView2.rect2);
-                errorPaint.setStrokeWidth(AndroidUtilities.dp(f2));
-                errorPaint.setAlpha((int) (fClamp * 255.0f));
-                if (ChatObject.isForum(UserConfig.selectedAccount, profileStoriesView2.dialogId)) {
-                    float fHeight = profileStoriesView2.rect2.height() * 0.32f;
-                    canvas2.drawRoundRect(profileStoriesView2.rect2, fHeight, fHeight, errorPaint);
-                } else {
-                    canvas2.drawCircle(profileStoriesView2.rect2.centerX(), profileStoriesView2.rect2.centerY(), profileStoriesView2.rect2.width() / f2, errorPaint);
-                }
-            } else if ((profileStoriesView2.mainCircle != null || profileStoriesView2.uploadingStoriesCount > 0) && fClamp > 0.0f) {
-                profileStoriesView2.rect2.set(profileStoriesView2.rect1);
-                profileStoriesView2.rect2.inset(-AndroidUtilities.dpf2(f), -AndroidUtilities.dpf2(f));
-                profileStoriesView2.rect3.set(profileStoriesView2.rect1);
-                profileStoriesView2.rect3.inset(-AndroidUtilities.dpf2(3.41f), -AndroidUtilities.dpf2(3.41f));
-                RectF rectF2 = profileStoriesView2.rect2;
-                RectF rectF3 = profileStoriesView2.rect3;
-                AndroidUtilities.lerp(rectF2, rectF3, fClamp2, rectF3);
-                f3 = f9;
-                f4 = 12.0f;
-                float fLerp4 = AndroidUtilities.lerp(0.0f, (float) ((((double) AndroidUtilities.dpf2(4.23f)) / (((double) profileStoriesView2.rect1.width()) * 3.141592653589793d)) * 360.0d), Utilities.clamp(f13 - 1.0f, 1.0f, 0.0f) * fClamp);
-                int iMin = Math.min(profileStoriesView2.count, 50);
-                float fMin = Math.min(f13, 50.0f);
-                int i3 = iMin > 20 ? 3 : 5;
-                if (iMin <= 1) {
-                    i3 = 0;
-                }
-                float fLerp5 = AndroidUtilities.lerp(i3 * 2, fLerp4, fClamp2);
-                float fMax2 = (360.0f - (Math.max(0.0f, fMin) * fLerp5)) / Math.max(1.0f, fMin);
-                profileStoriesView2.readPaint.setColor(ColorUtils.blendARGB(1526726655, 973078528, profileStoriesView2.actionBarProgress));
-                profileStoriesView2.readPaintAlpha = profileStoriesView2.readPaint.getAlpha();
-                float f15 = (-90.0f) - (fLerp5 / f2);
-                boolean z3 = false;
-                for (int i4 = 0; i4 < iMin; i4++) {
-                    if (i4 < profileStoriesView2.circles.size() && ((StoryCircle) profileStoriesView2.circles.get(i4)).live) {
-                        z3 = true;
-                    }
-                }
-                if (z3) {
-                    RectF rectF4 = AndroidUtilities.rectTmp;
-                    rectF4.set(profileStoriesView2.rect3);
-                    rectF4.inset(-AndroidUtilities.dp(12.0f), -AndroidUtilities.dp(12.0f));
-                    canvas2.saveLayerAlpha(rectF4, 255, 31);
-                    float f16 = ((profileStoriesView2.newStoryBounceT - 1.0f) / 2.5f) + 1.0f;
-                    if (f16 != 1.0f) {
-                        canvas2.save();
-                        canvas2.scale(f16, f16, profileStoriesView2.rect2.centerX(), profileStoriesView2.rect2.centerY());
-                    }
-                    int alpha2 = profileStoriesView2.livePaint.getAlpha();
-                    profileStoriesView2.livePaint.setAlpha((int) (alpha2 * fClamp));
-                    rectF4.set(profileStoriesView2.rect3);
-                    rectF4.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
-                    profileStoriesView2.livePaint.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
-                    profileStoriesView2.drawArc(canvas2, profileStoriesView2.rect3, 0.0f, 360.0f, false, profileStoriesView2.livePaint);
-                    profileStoriesView2.livePaint.setAlpha(alpha2);
-                    if (f16 != 1.0f) {
-                        canvas2.restore();
-                    }
-                } else {
-                    float f17 = f15;
-                    int i5 = 0;
-                    while (i5 < iMin) {
-                        float f18 = i5;
-                        float fClamp4 = 1.0f - Utilities.clamp(f14 - f18, 1.0f, 0.0f);
-                        float fClamp5 = 1.0f - Utilities.clamp((iMin - fMin) - f18, 1.0f, 0.0f);
-                        if (fClamp5 < 0.0f) {
-                            fMax2 = fMax2;
-                            i5 = i5;
-                        } else {
-                            float f19 = i5 == 0 ? ((profileStoriesView2.newStoryBounceT - 1.0f) / 2.5f) + 1.0f : 1.0f;
-                            if (f19 != 1.0f) {
-                                canvas2.save();
-                                canvas2.scale(f19, f19, profileStoriesView2.rect2.centerX(), profileStoriesView2.rect2.centerY());
-                            }
-                            boolean z4 = i5 < profileStoriesView2.circles.size() && ((StoryCircle) profileStoriesView2.circles.get(i5)).live;
-                            if (fClamp4 < 1.0f) {
-                                if (z4) {
-                                    paint3 = profileStoriesView2.livePaint;
-                                } else {
-                                    paint = profileStoriesView2.gradientTools.getPaint(profileStoriesView2.rect2);
-                                    paint3 = paint;
-                                }
-                                int alpha3 = paint3.getAlpha();
-                                paint3.setAlpha((int) (alpha3 * (1.0f - fClamp4) * fClamp));
-                                paint3.setStrokeWidth(AndroidUtilities.dpf2(z4 ? 3.0f : 2.33f));
-                                profileStoriesView2.drawArc(canvas2, profileStoriesView2.rect2, f17, (-fMax2) * fClamp5, false, paint3);
-                                paint3.setAlpha(alpha3);
-                                paint = paint;
-                            }
-                            if (fClamp4 > 0.0f) {
-                                Paint paint5 = z4 ? profileStoriesView2.livePaint : profileStoriesView2.readPaint;
-                                int alpha4 = paint5.getAlpha();
-                                paint5.setAlpha((int) (alpha4 * fClamp4 * fClamp));
-                                paint5.setStrokeWidth(AndroidUtilities.dpf2(z4 ? 3.0f : 1.5f));
-                                canvas2 = canvas;
-                                profileStoriesView2.drawArc(canvas2, profileStoriesView2.rect3, f17, (-fMax2) * fClamp5, false, paint5);
-                                paint5.setAlpha(alpha4);
-                            } else {
-                                canvas2 = canvas;
-                            }
-                            if (f19 != 1.0f) {
-                                canvas2.restore();
-                            }
-                            f17 -= (fMax2 * fClamp5) + (fClamp5 * fLerp5);
-                        }
-                        i5++;
-                        fMax2 = fMax2;
-                    }
-                }
-                f5 = 255.0f;
-                f6 = 1.5f;
-                if (z3) {
-                    StoriesUtilities.drawLive(canvas2, profileStoriesView2.rect3, fClamp, profileStoriesView2.avatarImage.getImageReceiver().getVisible(), profileStoriesView2.fragmentTransitionProgress);
-                    canvas2.restore();
-                }
-            }
-            f3 = f9;
-            f4 = 12.0f;
-            f5 = 255.0f;
-            f6 = 1.5f;
-        } else {
-            f3 = f9;
-            f4 = 12.0f;
-            f5 = 255.0f;
-            f6 = 1.5f;
-            fClamp = fClamp3;
-        }
-        profileStoriesView2.getExpandRight();
-        if (profileStoriesView2.expandProgress <= 0.0f || fClamp >= 1.0f) {
-            profileStoriesView = profileStoriesView2;
-            fMax = f3;
-        } else {
-            profileStoriesView2.w = 0.0f;
-            for (int i6 = 0; i6 < profileStoriesView2.circles.size(); i6++) {
-                profileStoriesView2.w += AndroidUtilities.dp(14.0f) * ((StoryCircle) profileStoriesView2.circles.get(i6)).cachedScale;
-            }
-            fMax = f3;
-            float fDp = 0.0f;
-            for (int i7 = 0; i7 < profileStoriesView2.circles.size(); i7++) {
-                StoryCircle storyCircle2 = (StoryCircle) profileStoriesView2.circles.get(i7);
-                float f20 = storyCircle2.cachedScale;
-                float f21 = storyCircle2.cachedRead;
-                float fDp2 = (AndroidUtilities.dp(28.0f) / f2) * f20;
-                float f22 = profileStoriesView2.left + fDp2 + fDp;
-                fDp += AndroidUtilities.dp(18.0f) * f20;
-                float f23 = f22 + fDp2;
-                fMax = Math.max(fMax, f23);
-                profileStoriesView2.rect2.set(f22 - fDp2, fLerp3 - fDp2, f23, fLerp3 + fDp2);
-                profileStoriesView2.lerpCentered(profileStoriesView2.rect1, profileStoriesView2.rect2, profileStoriesView2.expandProgress, profileStoriesView2.rect3);
-                storyCircle2.cachedRect.set(profileStoriesView2.rect3);
-                storyCircle2.borderRect.set(profileStoriesView2.rect3);
-                float f24 = (-AndroidUtilities.lerp(AndroidUtilities.dpf2(2.66f), AndroidUtilities.lerp(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(2.33f), profileStoriesView2.expandProgress), f21 * profileStoriesView2.expandProgress)) * f20;
-                storyCircle2.borderRect.inset(f24, f24);
-            }
-            profileStoriesView2.readPaint.setColor(ColorUtils.blendARGB(1526726655, -2135178036, profileStoriesView2.expandProgress));
-            profileStoriesView2.readPaintAlpha = profileStoriesView2.readPaint.getAlpha();
-            Paint paint6 = profileStoriesView2.gradientTools.getPaint(profileStoriesView2.rect2);
-            paint6.setStrokeWidth(AndroidUtilities.lerp(AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(f6), profileStoriesView2.expandProgress));
-            profileStoriesView2.readPaint.setStrokeWidth(AndroidUtilities.lerp(AndroidUtilities.dpf2(1.125f), AndroidUtilities.dpf2(f6), profileStoriesView2.expandProgress));
-            profileStoriesView2.livePaint.setStrokeWidth(AndroidUtilities.lerp(AndroidUtilities.dpf2(1.125f), AndroidUtilities.dpf2(f6), profileStoriesView2.expandProgress));
-            int i8 = 0;
-            while (i8 < profileStoriesView2.circles.size()) {
-                StoryCircle storyCircle3 = (StoryCircle) profileStoriesView2.circles.get(i8);
-                int i9 = i8 - 2;
-                int i10 = i8 - 1;
-                StoryCircle storyCircleNearest = profileStoriesView2.nearest(i9 >= 0 ? (StoryCircle) profileStoriesView2.circles.get(i9) : null, i10 >= 0 ? (StoryCircle) profileStoriesView2.circles.get(i10) : null, storyCircle3);
-                int i11 = i8 + 1;
-                int i12 = i8 + 2;
-                StoryCircle storyCircleNearest2 = profileStoriesView2.nearest(i11 < profileStoriesView2.circles.size() ? (StoryCircle) profileStoriesView2.circles.get(i11) : null, i12 < profileStoriesView2.circles.size() ? (StoryCircle) profileStoriesView2.circles.get(i12) : null, storyCircle3);
-                if (storyCircleNearest != null && (Math.abs(storyCircleNearest.borderRect.centerX() - storyCircle3.borderRect.centerX()) < Math.abs((storyCircle3.borderRect.width() / f2) - (storyCircleNearest.borderRect.width() / f2)) || Math.abs(storyCircleNearest.borderRect.centerX() - storyCircle3.borderRect.centerX()) > (storyCircleNearest.borderRect.width() / f2) + (storyCircle3.borderRect.width() / f2))) {
-                    storyCircleNearest = null;
-                }
-                if (storyCircleNearest2 != null && (Math.abs(storyCircleNearest2.borderRect.centerX() - storyCircle3.borderRect.centerX()) < Math.abs((storyCircle3.borderRect.width() / f2) - (storyCircleNearest2.borderRect.width() / f2)) || Math.abs(storyCircleNearest2.borderRect.centerX() - storyCircle3.borderRect.centerX()) > (storyCircleNearest2.borderRect.width() / f2) + (storyCircle3.borderRect.width() / f2))) {
-                    storyCircleNearest2 = null;
-                }
-                if (storyCircle3.cachedRead < 1.0f) {
-                    int alpha5 = paint6.getAlpha();
-                    paint6.setAlpha((int) (alpha5 * storyCircle3.cachedScale * (1.0f - storyCircle3.cachedRead) * (1.0f - fClamp)));
-                    profileStoriesView2.drawArcs(canvas2, storyCircleNearest, storyCircle3, storyCircleNearest2, paint6);
-                    paint2 = paint6;
-                    paint2.setAlpha(alpha5);
-                } else {
-                    paint2 = paint6;
-                }
-                if (storyCircle3.cachedRead > 0.0f) {
-                    Paint paint7 = storyCircle3.live ? profileStoriesView2.livePaint : profileStoriesView2.readPaint;
-                    int alpha6 = paint7.getAlpha();
-                    paint7.setAlpha((int) (alpha6 * storyCircle3.cachedScale * storyCircle3.cachedRead * (1.0f - fClamp)));
-                    profileStoriesView2.drawArcs(canvas, storyCircleNearest, storyCircle3, storyCircleNearest2, paint7);
-                    paint7.setAlpha(alpha6);
-                }
-                canvas2 = canvas;
-                paint6 = paint2;
-                profileStoriesView2 = profileStoriesView2;
-                i8 = i11;
-            }
-            profileStoriesView = profileStoriesView2;
-            Paint paint8 = paint6;
-            canvas.saveLayerAlpha(0.0f, 0.0f, profileStoriesView.getWidth(), profileStoriesView.getHeight(), (int) (profileStoriesView.expandProgress * f5 * (1.0f - fClamp)), 31);
-            canvas2 = canvas;
-            for (int size2 = profileStoriesView.circles.size() - 1; size2 >= 0; size2--) {
-                StoryCircle storyCircle4 = (StoryCircle) profileStoriesView.circles.get(size2);
-                if (storyCircle4.imageReceiver.getVisible()) {
-                    int saveCount = canvas2.getSaveCount();
-                    int i13 = size2 - 1;
-                    int i14 = size2 - 2;
-                    profileStoriesView.clipCircle(canvas2, storyCircle4, profileStoriesView.nearest(i13 >= 0 ? (StoryCircle) profileStoriesView.circles.get(i13) : null, i14 >= 0 ? (StoryCircle) profileStoriesView.circles.get(i14) : null, storyCircle4));
-                    storyCircle4.imageReceiver.setImageCoords(storyCircle4.cachedRect);
-                    storyCircle4.imageReceiver.draw(canvas2);
-                    canvas2.restoreToCount(saveCount);
-                }
-            }
-            canvas2.restore();
-            paint = paint8;
-        }
-        if (paint != null) {
-            paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
-        }
-        canvas2.restore();
-        float fMax3 = Math.max(0.0f, (profileStoriesView.expandProgress - 0.5f) * f2);
-        if (fMax3 > 0.0f) {
-            float fLerp6 = AndroidUtilities.lerp(profileStoriesView.rect1.right + AndroidUtilities.dp(16.0f), fMax + AndroidUtilities.dp(f4), profileStoriesView.expandProgress);
-            float fLerp7 = AndroidUtilities.lerp(profileStoriesView.getWidth(), f7, profileStoriesView.expandProgress);
-            float fLerp8 = AndroidUtilities.lerp(profileStoriesView.rect1.centerY(), profileStoriesView.cy, profileStoriesView.expandProgress);
-            profileStoriesView.titleDrawable.setBounds((int) fLerp6, (int) (fLerp8 - AndroidUtilities.dp(18.0f)), (int) fLerp7, (int) (fLerp8 + AndroidUtilities.dp(18.0f)));
-            profileStoriesView.titleDrawable.setAlpha((int) (fMax3 * f5));
-            profileStoriesView.titleDrawable.draw(canvas2);
-        }
-    }
-
-    public static int m4385$r8$lambda$JQNPIPP51ie698WIdXQXlPmQs(StoryCircle storyCircle, StoryCircle storyCircle2) {
-        return (int) (storyCircle2.cachedIndex - storyCircle.cachedIndex);
-    }
-
-    private void animateBounce() {
-        AnimatorSet animatorSet = new AnimatorSet();
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, 1.05f);
-        valueAnimatorOfFloat.setDuration(100L);
-        valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(1.05f, 1.0f);
-        valueAnimatorOfFloat2.setDuration(250L);
-        valueAnimatorOfFloat2.setInterpolator(new OvershootInterpolator());
-        ValueAnimator.AnimatorUpdateListener animatorUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ProfileStoriesView.$r8$lambda$Pl8F927pxcrAD7lBvSRsjTu6NK4(this.f$0, valueAnimator);
-            }
-        };
-        valueAnimatorOfFloat.addUpdateListener(animatorUpdateListener);
-        valueAnimatorOfFloat2.addUpdateListener(animatorUpdateListener);
-        animatorSet.playSequentially(valueAnimatorOfFloat, valueAnimatorOfFloat2);
-        animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                ProfileStoriesView.this.avatarImage.bounceScale = ProfileStoriesView.this.bounceScale = 1.0f;
-                ProfileStoriesView.this.avatarImage.invalidate();
-                ProfileStoriesView.this.invalidate();
-            }
-        });
-        animatorSet.start();
-    }
-
-    public static void $r8$lambda$Pl8F927pxcrAD7lBvSRsjTu6NK4(ProfileStoriesView profileStoriesView, ValueAnimator valueAnimator) {
-        ProfileActivity.AvatarImageView avatarImageView = profileStoriesView.avatarImage;
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        profileStoriesView.bounceScale = fFloatValue;
-        avatarImageView.bounceScale = fFloatValue;
-        profileStoriesView.avatarImage.invalidate();
-        profileStoriesView.invalidate();
-    }
-
-    public void clipCircle(Canvas canvas, StoryCircle storyCircle, StoryCircle storyCircle2) {
-        if (storyCircle2 == null) {
-            return;
-        }
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(storyCircle2.cachedRect);
-        float f = -(AndroidUtilities.dpf2(1.66f) * storyCircle2.cachedScale);
-        rectF.inset(f, f);
-        float fCenterX = storyCircle2.cachedRect.centerX();
-        float fWidth = storyCircle2.cachedRect.width() / 2.0f;
-        float fCenterX2 = storyCircle.cachedRect.centerX();
-        float fWidth2 = storyCircle.cachedRect.width() / 2.0f;
-        this.clipPath.rewind();
-        if (fCenterX > fCenterX2) {
-            float degrees = (float) Math.toDegrees(Math.acos(Math.abs((((fCenterX - fWidth) + (fCenterX2 + fWidth2)) / 2.0f) - fCenterX2) / fWidth2));
-            this.clipPath.arcTo(rectF, 180.0f + degrees, (-degrees) * 2.0f);
-            this.clipPath.arcTo(storyCircle.cachedRect, degrees, 360.0f - (2.0f * degrees));
-        } else {
-            float degrees2 = (float) Math.toDegrees(Math.acos(Math.abs((((fCenterX + fWidth) + (fCenterX2 - fWidth2)) / 2.0f) - fCenterX2) / fWidth2));
-            float f2 = 2.0f * degrees2;
-            this.clipPath.arcTo(rectF, -degrees2, f2);
-            this.clipPath.arcTo(storyCircle.cachedRect, 180.0f - degrees2, -(360.0f - f2));
-        }
-        this.clipPath.close();
-        canvas.save();
-        canvas.clipPath(this.clipPath);
-    }
-
-    public StoryCircle nearest(StoryCircle storyCircle, StoryCircle storyCircle2, StoryCircle storyCircle3) {
+    public static StoryCircle nearest(StoryCircle storyCircle, StoryCircle storyCircle2, StoryCircle storyCircle3) {
         if (storyCircle3 == null) {
             return null;
         }
@@ -989,41 +278,630 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
         if (storyCircle == null || storyCircle2 == null) {
             return storyCircle != null ? storyCircle : storyCircle2;
         }
-        return Math.min(Math.abs(storyCircle.borderRect.left - storyCircle3.borderRect.right), Math.abs(storyCircle.borderRect.right - storyCircle3.borderRect.left)) > Math.min(Math.abs(storyCircle2.borderRect.left - storyCircle3.borderRect.right), Math.abs(storyCircle2.borderRect.right - storyCircle3.borderRect.left)) ? storyCircle : storyCircle2;
+        RectF rectF = storyCircle.borderRect;
+        float f = rectF.left;
+        RectF rectF2 = storyCircle3.borderRect;
+        float fMin = Math.min(Math.abs(f - rectF2.right), Math.abs(rectF.right - rectF2.left));
+        RectF rectF3 = storyCircle2.borderRect;
+        return fMin > Math.min(Math.abs(rectF3.left - rectF2.right), Math.abs(rectF3.right - rectF2.left)) ? storyCircle : storyCircle2;
     }
 
-    private void drawArc(Canvas canvas, RectF rectF, float f, float f2, boolean z, Paint paint) {
-        if (ChatObject.isForum(UserConfig.selectedAccount, this.dialogId)) {
-            float fHeight = rectF.height() * 0.32f;
-            if (Math.abs(f2) == 360.0f) {
-                canvas.drawRoundRect(rectF, fHeight, fHeight, paint);
-                return;
-            }
-            float f3 = f + f2;
-            float f4 = (((int) f3) / 90) * 90;
-            float f5 = (-199.0f) + f4;
-            this.forumRoundRectPath.rewind();
-            this.forumRoundRectPath.addRoundRect(rectF, fHeight, fHeight, Path.Direction.CW);
-            this.forumRoundRectMatrix.reset();
-            this.forumRoundRectMatrix.postRotate(f4, rectF.centerX(), rectF.centerY());
-            this.forumRoundRectPath.transform(this.forumRoundRectMatrix);
-            this.forumRoundRectPathMeasure.setPath(this.forumRoundRectPath, false);
-            float length = this.forumRoundRectPathMeasure.getLength();
-            this.forumSegmentPath.reset();
-            this.forumRoundRectPathMeasure.getSegment(((f3 - f5) / 360.0f) * length, length * (((f3 - f2) - f5) / 360.0f), this.forumSegmentPath, true);
-            this.forumSegmentPath.rLineTo(0.0f, 0.0f);
-            canvas.drawPath(this.forumSegmentPath, paint);
+    public final void clipCircle(Canvas canvas, StoryCircle storyCircle, StoryCircle storyCircle2) {
+        if (storyCircle2 == null) {
             return;
         }
-        canvas.drawArc(rectF, f, f2, z, paint);
+        RectF rectF = AndroidUtilities.rectTmp;
+        RectF rectF2 = storyCircle2.cachedRect;
+        rectF.set(rectF2);
+        float f = -(AndroidUtilities.dpf2(1.66f) * storyCircle2.cachedScale);
+        rectF.inset(f, f);
+        float fCenterX = rectF2.centerX();
+        float fWidth = rectF2.width() / 2.0f;
+        RectF rectF3 = storyCircle.cachedRect;
+        float fCenterX2 = rectF3.centerX();
+        float fWidth2 = rectF3.width() / 2.0f;
+        Path path = this.clipPath;
+        path.rewind();
+        if (fCenterX > fCenterX2) {
+            float degrees = (float) Math.toDegrees(Math.acos(Math.abs((((fCenterX2 + fWidth2) + (fCenterX - fWidth)) / 2.0f) - fCenterX2) / fWidth2));
+            path.arcTo(rectF, 180.0f + degrees, (-degrees) * 2.0f);
+            path.arcTo(rectF3, degrees, 360.0f - (2.0f * degrees));
+        } else {
+            float degrees2 = (float) Math.toDegrees(Math.acos(Math.abs((((fCenterX2 - fWidth2) + (fCenterX + fWidth)) / 2.0f) - fCenterX2) / fWidth2));
+            float f2 = 2.0f * degrees2;
+            path.arcTo(rectF, -degrees2, f2);
+            path.arcTo(rectF3, 180.0f - degrees2, -(360.0f - f2));
+        }
+        path.close();
+        canvas.save();
+        canvas.clipPath(path);
     }
 
-    private void drawArcs(Canvas canvas, StoryCircle storyCircle, StoryCircle storyCircle2, StoryCircle storyCircle3, Paint paint) {
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.storiesUpdated) {
+            updateStories(true, true);
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        ArrayList arrayList;
+        float f;
+        float f2;
+        Paint paint;
+        Paint paint2;
+        Paint paint3;
+        RectF rectF;
+        StoriesUtilities.StoryGradientTools storyGradientTools;
+        ArrayList arrayList2;
+        float f3;
+        float f4;
+        RectF rectF2;
+        float fClamp;
+        ProfileStoriesView profileStoriesView;
+        float f5;
+        float f6;
+        StoryCircle storyCircle;
+        StoryCircle storyCircle2;
+        Paint paint4;
+        ProfileStoriesView profileStoriesView2;
+        Paint paint5;
+        RectF rectF3;
+        StoriesUtilities.StoryGradientTools storyGradientTools2;
+        RectF rectF4;
+        RectF rectF5;
+        boolean z;
+        float f7;
+        StoriesUtilities.StoryGradientTools storyGradientTools3;
+        ProfileStoriesView profileStoriesView3;
+        RectF rectF6;
+        float f8;
+        StoriesUtilities.StoryGradientTools storyGradientTools4;
+        Paint paint6;
+        int i;
+        ArrayList arrayList3;
+        float size;
+        StoriesController.UploadingStory uploadingStory;
+        ProfileStoriesView profileStoriesView4 = this;
+        Canvas canvas2 = canvas;
+        float f9 = profileStoriesView4.rightAnimated.set(profileStoriesView4.right, false);
+        ProfileActivity.AnonymousClass19 anonymousClass19 = profileStoriesView4.avatarContainer;
+        float fClamp2 = Utilities.clamp((anonymousClass19.getScaleX() - 1.0f) / 0.4f, 1.0f, 0.0f);
+        float fLerp = AndroidUtilities.lerp(AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(3.5f), fClamp2) * profileStoriesView4.progressToInsets;
+        float scaleX = (anonymousClass19.getScaleX() * fLerp) + anonymousClass19.getX();
+        float scaleY = (anonymousClass19.getScaleY() * fLerp) + anonymousClass19.getY();
+        float f10 = fLerp * 2.0f;
+        float scaleX2 = anonymousClass19.getScaleX() * (anonymousClass19.getWidth() - f10);
+        float scaleY2 = anonymousClass19.getScaleY() * (anonymousClass19.getHeight() - f10);
+        RectF rectF7 = profileStoriesView4.rect1;
+        rectF7.set(scaleX, scaleY, scaleX2 + scaleX, scaleY2 + scaleY);
+        float f11 = profileStoriesView4.left;
+        int i2 = 0;
+        while (true) {
+            arrayList = profileStoriesView4.circles;
+            if (i2 >= arrayList.size()) {
+                f = 2.0f;
+                break;
+            }
+            StoryCircle storyCircle3 = (StoryCircle) arrayList.get(i2);
+            f = 2.0f;
+            float f12 = storyCircle3.scaleAnimated.set(storyCircle3.scale, false);
+            storyCircle3.cachedScale = f12;
+            if (f12 > 0.0f || storyCircle3.scale > 0.0f) {
+                storyCircle3.cachedIndex = storyCircle3.indexAnimated.set(storyCircle3.index, false);
+                storyCircle3.cachedRead = storyCircle3.readAnimated.set(storyCircle3.read);
+                if (i2 > 0 && ((StoryCircle) arrayList.get(i2 - 1)).cachedIndex > storyCircle3.cachedIndex) {
+                    Collections.sort(arrayList, new OAuthSheet$$ExternalSyntheticLambda3(15));
+                    break;
+                }
+            } else {
+                storyCircle3.imageReceiver.onDetachedFromWindow();
+                arrayList.remove(i2);
+                i2--;
+            }
+            i2++;
+        }
+        float fClamp3 = Utilities.clamp(1.0f - (profileStoriesView4.expandProgress / 0.2f), 1.0f, 0.0f);
+        StoriesController storiesController = profileStoriesView4.storiesController;
+        long j = profileStoriesView4.dialogId;
+        boolean zIsLastUploadingFailed = storiesController.isLastUploadingFailed(j);
+        boolean zHasUploadingStories = storiesController.hasUploadingStories(j);
+        AnimatedFloat animatedFloat = profileStoriesView4.progressToUploading;
+        if (!zHasUploadingStories && (uploadingStory = profileStoriesView4.lastUploadingStory) != null && uploadingStory.canceled) {
+            profileStoriesView4.progressWasDrawn = false;
+            profileStoriesView4.progressIsDone = false;
+            animatedFloat.getClass();
+            animatedFloat.set(0.0f, true);
+        }
+        float fLerp2 = AndroidUtilities.lerp(0.0f, animatedFloat.set((zHasUploadingStories && !zIsLastUploadingFailed) || (profileStoriesView4.progressWasDrawn && !profileStoriesView4.progressIsDone)), profileStoriesView4.fragmentTransitionProgress);
+        canvas2.save();
+        float f13 = profileStoriesView4.bounceScale;
+        canvas2.scale(f13, f13, rectF7.centerX(), rectF7.centerY());
+        float fLerp3 = AndroidUtilities.lerp(rectF7.centerY(), profileStoriesView4.expandY, profileStoriesView4.expandProgress);
+        profileStoriesView4.lastUploadingStory = null;
+        RectF rectF8 = profileStoriesView4.rect2;
+        AnimatedFloat animatedFloat2 = profileStoriesView4.segmentsUnreadCountAnimated;
+        AnimatedFloat animatedFloat3 = profileStoriesView4.segmentsCountAnimated;
+        ProfileActivity.AnonymousClass21 anonymousClass21 = profileStoriesView4.avatarImage;
+        StoriesUtilities.StoryGradientTools storyGradientTools5 = profileStoriesView4.gradientTools;
+        if (fLerp2 > 0.0f) {
+            rectF8.set(rectF7);
+            f2 = fLerp2;
+            rectF8.inset(-AndroidUtilities.dpf2(3.775f), -AndroidUtilities.dpf2(3.775f));
+            Paint paint7 = storyGradientTools5.getPaint(rectF8);
+            if (profileStoriesView4.radialProgress == null) {
+                RadialProgress radialProgress = new RadialProgress(profileStoriesView4);
+                profileStoriesView4.radialProgress = radialProgress;
+                radialProgress.setBackground(null, true, false);
+                profileStoriesView4.radialProgress.roundRectProgress = ChatObject.isForum(UserConfig.selectedAccount, j);
+            }
+            if (!storiesController.hasUploadingStories(j) || storiesController.isLastUploadingFailed(j)) {
+                size = 1.0f;
+            } else {
+                ArrayList arrayList4 = (ArrayList) storiesController.uploadingStoriesByDialogId.get(j);
+                if (arrayList4 != null) {
+                    if (arrayList4.size() > 0) {
+                        profileStoriesView4.lastUploadingStory = (StoriesController.UploadingStory) arrayList4.get(0);
+                    }
+                    float f14 = 0.0f;
+                    for (int i3 = 0; i3 < arrayList4.size(); i3++) {
+                        f14 += ((StoriesController.UploadingStory) arrayList4.get(i3)).progress;
+                    }
+                    size = f14 / arrayList4.size();
+                } else {
+                    size = 0.0f;
+                }
+            }
+            profileStoriesView4.radialProgress.diff = 0;
+            int alpha = paint7.getAlpha();
+            paint7.setAlpha((int) (alpha * fClamp3 * f2));
+            paint7.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
+            RadialProgress radialProgress2 = profileStoriesView4.radialProgress;
+            radialProgress2.overridePaint = paint7;
+            radialProgress2.setProgressRect((int) rectF8.left, (int) rectF8.top, (int) rectF8.right, (int) rectF8.bottom);
+            profileStoriesView4.radialProgress.setProgress(Utilities.clamp(size, 1.0f, 0.0f), true);
+            if (anonymousClass21.drawAvatar) {
+                profileStoriesView4.radialProgress.draw(canvas2);
+            }
+            paint7.setAlpha(alpha);
+            profileStoriesView4.progressWasDrawn = true;
+            boolean z2 = profileStoriesView4.progressIsDone;
+            boolean z3 = profileStoriesView4.radialProgress.animatedProgressValue >= 0.98f;
+            profileStoriesView4.progressIsDone = z3;
+            if (z2 != z3) {
+                animatedFloat3.set(profileStoriesView4.count, true);
+                animatedFloat2.set(profileStoriesView4.unreadCount, true);
+                AnimatorSet animatorSet = new AnimatorSet();
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, 1.05f);
+                valueAnimatorOfFloat.setDuration(100L);
+                valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(1.05f, 1.0f);
+                valueAnimatorOfFloat2.setDuration(250L);
+                valueAnimatorOfFloat2.setInterpolator(new OvershootInterpolator());
+                QrActivity$$ExternalSyntheticLambda18 qrActivity$$ExternalSyntheticLambda18 = new QrActivity$$ExternalSyntheticLambda18(profileStoriesView4, 28);
+                valueAnimatorOfFloat.addUpdateListener(qrActivity$$ExternalSyntheticLambda18);
+                valueAnimatorOfFloat2.addUpdateListener(qrActivity$$ExternalSyntheticLambda18);
+                animatorSet.playSequentially(valueAnimatorOfFloat, valueAnimatorOfFloat2);
+                animatorSet.addListener(new PhotoViewer.AnonymousClass78.AnonymousClass1(profileStoriesView4, 22));
+                animatorSet.start();
+            }
+            paint = paint7;
+        } else {
+            f2 = fLerp2;
+            f9 = f9;
+            storyGradientTools5 = storyGradientTools5;
+            arrayList = arrayList;
+            rectF8 = rectF8;
+            profileStoriesView4.progressWasDrawn = false;
+            paint = null;
+        }
+        Paint paint8 = profileStoriesView4.readPaint;
+        Paint paint9 = profileStoriesView4.livePaint;
+        RectF rectF9 = profileStoriesView4.rect3;
+        if (f2 < 1.0f) {
+            f4 = 255.0f;
+            f3 = 1.5f;
+            fClamp = (1.0f - f2) * Utilities.clamp(1.0f - (profileStoriesView4.expandProgress / 0.2f), 1.0f, 0.0f);
+            float f15 = animatedFloat3.set(profileStoriesView4.count, false);
+            float f16 = animatedFloat2.set(profileStoriesView4.unreadCount, false);
+            if (zIsLastUploadingFailed) {
+                rectF8.set(rectF7);
+                rectF8.inset(-AndroidUtilities.dpf2(3.775f), -AndroidUtilities.dpf2(3.775f));
+                if (StoriesUtilities.errorGradientTools == null) {
+                    GradientTools gradientTools = new GradientTools();
+                    StoriesUtilities.errorGradientTools = gradientTools;
+                    gradientTools.isDiagonal = true;
+                    gradientTools.isRotate = true;
+                    int color = Theme.getColor(null, Theme.key_color_orange, false);
+                    int color2 = Theme.getColor(null, Theme.key_text_RedBold, false);
+                    StoriesUtilities.errorGradientTools.setColors(ColorUtils.blendARGB(0.25f, color, color2), color2, 0, 0);
+                    StoriesUtilities.errorGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(f));
+                    StoriesUtilities.errorGradientTools.paint.setStyle(Paint.Style.STROKE);
+                    StoriesUtilities.errorGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
+                }
+                GradientTools gradientTools2 = StoriesUtilities.errorGradientTools;
+                float f17 = rectF8.left;
+                float f18 = rectF8.top;
+                float f19 = rectF8.right;
+                float f20 = rectF8.bottom;
+                gradientTools2.getClass();
+                RectF rectF10 = AndroidUtilities.rectTmp;
+                rectF10.set(f17, f18, f19, f20);
+                gradientTools2.setBounds(rectF10);
+                Paint paint10 = StoriesUtilities.errorGradientTools.paint;
+                paint10.setStrokeWidth(AndroidUtilities.dp(f));
+                paint10.setAlpha((int) (fClamp * 255.0f));
+                if (ChatObject.isForum(UserConfig.selectedAccount, j)) {
+                    float fHeight = rectF8.height() * 0.32f;
+                    canvas2.drawRoundRect(rectF8, fHeight, fHeight, paint10);
+                } else {
+                    canvas2.drawCircle(rectF8.centerX(), rectF8.centerY(), rectF8.width() / f, paint10);
+                }
+            } else if ((profileStoriesView4.mainCircle != null || profileStoriesView4.uploadingStoriesCount > 0) && fClamp > 0.0f) {
+                rectF8.set(rectF7);
+                rectF8.inset(-AndroidUtilities.dpf2(3.775f), -AndroidUtilities.dpf2(3.775f));
+                rectF9.set(rectF7);
+                rectF9.inset(-AndroidUtilities.dpf2(3.41f), -AndroidUtilities.dpf2(3.41f));
+                AndroidUtilities.lerp(rectF8, rectF9, fClamp2, rectF9);
+                float fLerp4 = AndroidUtilities.lerp(0.0f, (float) ((((double) AndroidUtilities.dpf2(4.23f)) / (((double) rectF7.width()) * 3.141592653589793d)) * 360.0d), Utilities.clamp(f15 - 1.0f, 1.0f, 0.0f) * fClamp);
+                int iMin = Math.min(profileStoriesView4.count, 50);
+                float fMin = Math.min(f15, 50.0f);
+                int i4 = iMin > 20 ? 3 : 5;
+                if (iMin <= 1) {
+                    i4 = 0;
+                }
+                float fLerp5 = AndroidUtilities.lerp(i4 * 2, fLerp4, fClamp2);
+                float fMax = (360.0f - (Math.max(0.0f, fMin) * fLerp5)) / Math.max(1.0f, fMin);
+                RectF rectF11 = rectF7;
+                paint8.setColor(ColorUtils.blendARGB(profileStoriesView4.actionBarProgress, 1526726655, 973078528));
+                paint8.getAlpha();
+                float f21 = (-90.0f) - (fLerp5 / f);
+                int i5 = 0;
+                boolean z4 = false;
+                while (i5 < iMin) {
+                    float f22 = f21;
+                    if (i5 < arrayList.size()) {
+                        arrayList3 = arrayList;
+                        i = i5;
+                        if (((StoryCircle) arrayList3.get(i5)).live) {
+                            z4 = true;
+                        }
+                    } else {
+                        i = i5;
+                        arrayList3 = arrayList;
+                    }
+                    i5 = i + 1;
+                    arrayList = arrayList3;
+                    f21 = f22;
+                }
+                float f23 = f21;
+                ArrayList arrayList5 = arrayList;
+                if (z4) {
+                    RectF rectF12 = AndroidUtilities.rectTmp;
+                    rectF12.set(rectF9);
+                    rectF12.inset(-AndroidUtilities.dp(12.0f), -AndroidUtilities.dp(12.0f));
+                    canvas2.saveLayerAlpha(rectF12, 255, 31);
+                    float fM = ImageReceiver$$ExternalSyntheticOutline0.m(profileStoriesView4.newStoryBounceT, 1.0f, 2.5f, 1.0f);
+                    if (fM != 1.0f) {
+                        canvas2.save();
+                        canvas2.scale(fM, fM, rectF8.centerX(), rectF8.centerY());
+                    }
+                    int alpha2 = paint9.getAlpha();
+                    paint9.setAlpha((int) (alpha2 * fClamp));
+                    rectF12.set(rectF9);
+                    rectF12.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
+                    paint9.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
+                    profileStoriesView4.drawArc(0.0f, 360.0f, canvas2, paint9, rectF9);
+                    profileStoriesView2 = profileStoriesView4;
+                    paint5 = paint9;
+                    rectF3 = rectF9;
+                    paint5.setAlpha(alpha2);
+                    if (fM != 1.0f) {
+                        canvas2.restore();
+                    }
+                    storyGradientTools2 = storyGradientTools5;
+                    arrayList2 = arrayList5;
+                } else {
+                    profileStoriesView2 = profileStoriesView4;
+                    paint5 = paint9;
+                    rectF3 = rectF9;
+                    int i6 = 0;
+                    while (i6 < iMin) {
+                        float f24 = i6;
+                        Paint paint11 = paint5;
+                        float f25 = f16;
+                        float fClamp4 = 1.0f - Utilities.clamp(f16 - f24, 1.0f, 0.0f);
+                        Paint paint12 = paint;
+                        float fClamp5 = 1.0f - Utilities.clamp((iMin - fMin) - f24, 1.0f, 0.0f);
+                        if (fClamp5 < 0.0f) {
+                            profileStoriesView3 = profileStoriesView2;
+                            f8 = f23;
+                            storyGradientTools3 = storyGradientTools5;
+                            paint11 = paint11;
+                            arrayList5 = arrayList5;
+                            fLerp5 = fLerp5;
+                            rectF4 = rectF8;
+                            rectF5 = rectF11;
+                            i6 = i6;
+                            rectF6 = rectF3;
+                        } else {
+                            float fM2 = i6 == 0 ? ImageReceiver$$ExternalSyntheticOutline0.m(profileStoriesView2.newStoryBounceT, 1.0f, 2.5f, 1.0f) : 1.0f;
+                            if (fM2 != 1.0f) {
+                                canvas2.save();
+                                canvas2.scale(fM2, fM2, rectF8.centerX(), rectF8.centerY());
+                            }
+                            boolean z5 = i6 < arrayList5.size() && ((StoryCircle) arrayList5.get(i6)).live;
+                            if (fClamp4 < 1.0f) {
+                                if (z5) {
+                                    storyGradientTools4 = storyGradientTools5;
+                                    paint6 = paint11;
+                                } else {
+                                    storyGradientTools4 = storyGradientTools5;
+                                    paint6 = storyGradientTools4.getPaint(rectF8);
+                                    paint12 = paint6;
+                                }
+                                z = z5;
+                                int alpha3 = paint6.getAlpha();
+                                Paint paint13 = paint6;
+                                paint13.setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp4, alpha3, fClamp));
+                                paint13.setStrokeWidth(AndroidUtilities.dpf2(z ? 3.0f : 2.33f));
+                                rectF4 = rectF8;
+                                rectF5 = rectF11;
+                                f7 = f23;
+                                storyGradientTools3 = storyGradientTools4;
+                                drawArc(f7, (-fMax) * fClamp5, canvas2, paint13, rectF4);
+                                paint13.setAlpha(alpha3);
+                            } else {
+                                rectF4 = rectF8;
+                                rectF5 = rectF11;
+                                z = z5;
+                                f7 = f23;
+                                storyGradientTools3 = storyGradientTools5;
+                            }
+                            if (fClamp4 > 0.0f) {
+                                Paint paint14 = z ? paint11 : paint8;
+                                int alpha4 = paint14.getAlpha();
+                                paint14.setAlpha((int) (alpha4 * fClamp4 * fClamp));
+                                paint14.setStrokeWidth(AndroidUtilities.dpf2(z ? 3.0f : 1.5f));
+                                profileStoriesView3 = this;
+                                canvas2 = canvas;
+                                rectF6 = rectF3;
+                                profileStoriesView3.drawArc(f7, (-fMax) * fClamp5, canvas2, paint14, rectF6);
+                                paint14.setAlpha(alpha4);
+                            } else {
+                                profileStoriesView3 = this;
+                                canvas2 = canvas;
+                                rectF6 = rectF3;
+                            }
+                            if (fM2 != 1.0f) {
+                                canvas2.restore();
+                            }
+                            f8 = f7 - ((fLerp5 * fClamp5) + (fMax * fClamp5));
+                        }
+                        int i7 = i6 + 1;
+                        rectF3 = rectF6;
+                        rectF11 = rectF5;
+                        rectF8 = rectF4;
+                        arrayList5 = arrayList5;
+                        fLerp5 = fLerp5;
+                        f16 = f25;
+                        i6 = i7;
+                        storyGradientTools5 = storyGradientTools3;
+                        profileStoriesView2 = profileStoriesView3;
+                        f23 = f8;
+                        paint5 = paint11;
+                        paint = paint12;
+                    }
+                    storyGradientTools2 = storyGradientTools5;
+                    arrayList2 = arrayList5;
+                }
+                rectF = rectF8;
+                Paint paint15 = paint;
+                rectF2 = rectF11;
+                rectF9 = rectF3;
+                paint2 = paint5;
+                profileStoriesView4 = profileStoriesView2;
+                if (z4) {
+                    StoriesUtilities.drawLive(canvas2, rectF9, fClamp, anonymousClass21.getImageReceiver().getVisible(), profileStoriesView4.fragmentTransitionProgress);
+                    canvas2.restore();
+                }
+                storyGradientTools = storyGradientTools2;
+                paint3 = paint15;
+            }
+            Paint paint16 = paint;
+            paint2 = paint9;
+            paint3 = paint16;
+            rectF = rectF8;
+            storyGradientTools = storyGradientTools5;
+            arrayList2 = arrayList;
+            rectF2 = rectF7;
+        } else {
+            Paint paint17 = paint;
+            paint2 = paint9;
+            paint3 = paint17;
+            rectF = rectF8;
+            storyGradientTools = storyGradientTools5;
+            arrayList2 = arrayList;
+            f3 = 1.5f;
+            f4 = 255.0f;
+            rectF2 = rectF7;
+            fClamp = fClamp3;
+        }
+        profileStoriesView4.getExpandRight();
+        if (profileStoriesView4.expandProgress <= 0.0f || fClamp >= 1.0f) {
+            profileStoriesView = profileStoriesView4;
+            f5 = 18.0f;
+            f6 = f11;
+        } else {
+            for (int i8 = 0; i8 < arrayList2.size(); i8++) {
+                float f26 = ((StoryCircle) arrayList2.get(i8)).cachedScale;
+                AndroidUtilities.dp(14.0f);
+            }
+            ArrayList arrayList6 = arrayList2;
+            float fMax2 = f11;
+            int i9 = 0;
+            float f27 = 0.0f;
+            while (i9 < arrayList6.size()) {
+                StoryCircle storyCircle4 = (StoryCircle) arrayList6.get(i9);
+                float f28 = storyCircle4.cachedScale;
+                float f29 = storyCircle4.cachedRead;
+                int i10 = i9;
+                float fDp = (AndroidUtilities.dp(28.0f) / f) * f28;
+                float f30 = profileStoriesView4.left + fDp + f27;
+                float fDp2 = f27 + (AndroidUtilities.dp(18.0f) * f28);
+                float f31 = f30 + fDp;
+                fMax2 = Math.max(fMax2, f31);
+                rectF.set(f30 - fDp, fLerp3 - fDp, f31, fLerp3 + fDp);
+                float f32 = profileStoriesView4.expandProgress;
+                float fLerp6 = AndroidUtilities.lerp(rectF2.centerX(), rectF.centerX(), f32);
+                float fLerp7 = AndroidUtilities.lerp(rectF2.centerY(), rectF.centerY(), f32);
+                float fLerp8 = AndroidUtilities.lerp(Math.min(rectF2.width(), rectF2.height()), Math.min(rectF.width(), rectF.height()), f32) / f;
+                rectF9.set(fLerp6 - fLerp8, fLerp7 - fLerp8, fLerp6 + fLerp8, fLerp7 + fLerp8);
+                storyCircle4.cachedRect.set(rectF9);
+                RectF rectF13 = storyCircle4.borderRect;
+                rectF13.set(rectF9);
+                float f33 = (-AndroidUtilities.lerp(AndroidUtilities.dpf2(2.66f), AndroidUtilities.lerp(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(2.33f), profileStoriesView4.expandProgress), f29 * profileStoriesView4.expandProgress)) * f28;
+                rectF13.inset(f33, f33);
+                i9 = i10 + 1;
+                f27 = fDp2;
+            }
+            f5 = 18.0f;
+            paint8.setColor(ColorUtils.blendARGB(profileStoriesView4.expandProgress, 1526726655, -2135178036));
+            paint8.getAlpha();
+            Paint paint18 = storyGradientTools.getPaint(rectF);
+            paint18.setStrokeWidth(AndroidUtilities.lerp(AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(f3), profileStoriesView4.expandProgress));
+            paint8.setStrokeWidth(AndroidUtilities.lerp(AndroidUtilities.dpf2(1.125f), AndroidUtilities.dpf2(f3), profileStoriesView4.expandProgress));
+            paint2.setStrokeWidth(AndroidUtilities.lerp(AndroidUtilities.dpf2(1.125f), AndroidUtilities.dpf2(f3), profileStoriesView4.expandProgress));
+            int i11 = 0;
+            while (i11 < arrayList6.size()) {
+                StoryCircle storyCircle5 = (StoryCircle) arrayList6.get(i11);
+                int i12 = i11 - 2;
+                StoryCircle storyCircle6 = i12 >= 0 ? (StoryCircle) arrayList6.get(i12) : null;
+                int i13 = i11 - 1;
+                StoryCircle storyCircleNearest = nearest(storyCircle6, i13 >= 0 ? (StoryCircle) arrayList6.get(i13) : null, storyCircle5);
+                int i14 = i11 + 1;
+                int i15 = i11 + 2;
+                StoryCircle storyCircleNearest2 = nearest(i14 < arrayList6.size() ? (StoryCircle) arrayList6.get(i14) : null, i15 < arrayList6.size() ? (StoryCircle) arrayList6.get(i15) : null, storyCircle5);
+                if (storyCircleNearest != null) {
+                    RectF rectF14 = storyCircleNearest.borderRect;
+                    float fAbs = Math.abs(rectF14.centerX() - storyCircle5.borderRect.centerX());
+                    RectF rectF15 = storyCircle5.borderRect;
+                    if (fAbs < Math.abs((rectF15.width() / f) - (rectF14.width() / f)) || Math.abs(rectF14.centerX() - rectF15.centerX()) > (rectF15.width() / f) + (rectF14.width() / f)) {
+                        storyCircle = null;
+                    } else {
+                        storyCircle = storyCircleNearest;
+                    }
+                } else {
+                    storyCircle = storyCircleNearest;
+                }
+                if (storyCircleNearest2 != null) {
+                    RectF rectF16 = storyCircleNearest2.borderRect;
+                    float fAbs2 = Math.abs(rectF16.centerX() - storyCircle5.borderRect.centerX());
+                    RectF rectF17 = storyCircle5.borderRect;
+                    if (fAbs2 < Math.abs((rectF17.width() / f) - (rectF16.width() / f)) || Math.abs(rectF16.centerX() - rectF17.centerX()) > (rectF17.width() / f) + (rectF16.width() / f)) {
+                        storyCircle2 = null;
+                    } else {
+                        storyCircle2 = storyCircleNearest2;
+                    }
+                } else {
+                    storyCircle2 = storyCircleNearest2;
+                }
+                if (storyCircle5.cachedRead < 1.0f) {
+                    int alpha5 = paint18.getAlpha();
+                    paint18.setAlpha((int) ((1.0f - fClamp) * (1.0f - storyCircle5.cachedRead) * alpha5 * storyCircle5.cachedScale));
+                    profileStoriesView4.drawArcs(canvas, storyCircle, storyCircle5, storyCircle2, paint18);
+                    paint4 = paint18;
+                    paint4.setAlpha(alpha5);
+                } else {
+                    paint4 = paint18;
+                }
+                if (storyCircle5.cachedRead > 0.0f) {
+                    Paint paint19 = storyCircle5.live ? paint2 : paint8;
+                    int alpha6 = paint19.getAlpha();
+                    paint19.setAlpha((int) ((1.0f - fClamp) * alpha6 * storyCircle5.cachedScale * storyCircle5.cachedRead));
+                    profileStoriesView4 = this;
+                    profileStoriesView4.drawArcs(canvas, storyCircle, storyCircle5, storyCircle2, paint19);
+                    paint19.setAlpha(alpha6);
+                } else {
+                    profileStoriesView4 = this;
+                }
+                paint18 = paint4;
+                i11 = i14;
+            }
+            Paint paint20 = paint18;
+            profileStoriesView = profileStoriesView4;
+            canvas.saveLayerAlpha(0.0f, 0.0f, profileStoriesView4.getWidth(), profileStoriesView4.getHeight(), (int) ((1.0f - fClamp) * profileStoriesView4.expandProgress * f4), 31);
+            canvas2 = canvas;
+            for (int size2 = arrayList6.size() - 1; size2 >= 0; size2--) {
+                StoryCircle storyCircle7 = (StoryCircle) arrayList6.get(size2);
+                if (storyCircle7.imageReceiver.getVisible()) {
+                    int saveCount = canvas2.getSaveCount();
+                    int i16 = size2 - 1;
+                    int i17 = size2 - 2;
+                    profileStoriesView.clipCircle(canvas2, storyCircle7, nearest(i16 >= 0 ? (StoryCircle) arrayList6.get(i16) : null, i17 >= 0 ? (StoryCircle) arrayList6.get(i17) : null, storyCircle7));
+                    ImageReceiver imageReceiver = storyCircle7.imageReceiver;
+                    imageReceiver.setImageCoords(storyCircle7.cachedRect);
+                    imageReceiver.draw(canvas2);
+                    canvas2.restoreToCount(saveCount);
+                }
+            }
+            canvas2.restore();
+            paint3 = paint20;
+            f6 = fMax2;
+        }
+        if (paint3 != null) {
+            paint3.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
+        }
+        canvas2.restore();
+        float fMax3 = Math.max(0.0f, (profileStoriesView.expandProgress - 0.5f) * f);
+        if (fMax3 > 0.0f) {
+            float fLerp9 = AndroidUtilities.lerp(rectF2.right + AndroidUtilities.dp(16.0f), f6 + AndroidUtilities.dp(12.0f), profileStoriesView.expandProgress);
+            float fLerp10 = AndroidUtilities.lerp(profileStoriesView.getWidth(), f9, profileStoriesView.expandProgress);
+            float fLerp11 = AndroidUtilities.lerp(rectF2.centerY(), profileStoriesView.cy, profileStoriesView.expandProgress);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = profileStoriesView.titleDrawable;
+            animatedTextDrawable.setBounds((int) fLerp9, (int) (fLerp11 - AndroidUtilities.dp(f5)), (int) fLerp10, (int) (fLerp11 + AndroidUtilities.dp(f5)));
+            animatedTextDrawable.alpha = (int) (fMax3 * f4);
+            animatedTextDrawable.draw(canvas2);
+        }
+    }
+
+    public final void drawArc(float f, float f2, Canvas canvas, Paint paint, RectF rectF) {
+        if (!ChatObject.isForum(UserConfig.selectedAccount, this.dialogId)) {
+            canvas.drawArc(rectF, f, f2, false, paint);
+            return;
+        }
+        float fHeight = rectF.height() * 0.32f;
+        if (Math.abs(f2) == 360.0f) {
+            canvas.drawRoundRect(rectF, fHeight, fHeight, paint);
+            return;
+        }
+        float f3 = f + f2;
+        float f4 = (((int) f3) / 90) * 90;
+        float f5 = (-199.0f) + f4;
+        Path path = this.forumRoundRectPath;
+        path.rewind();
+        path.addRoundRect(rectF, fHeight, fHeight, Path.Direction.CW);
+        Matrix matrix = this.forumRoundRectMatrix;
+        matrix.reset();
+        matrix.postRotate(f4, rectF.centerX(), rectF.centerY());
+        path.transform(matrix);
+        PathMeasure pathMeasure = this.forumRoundRectPathMeasure;
+        pathMeasure.setPath(path, false);
+        float length = pathMeasure.getLength();
+        Path path2 = this.forumSegmentPath;
+        path2.reset();
+        pathMeasure.getSegment(((f3 - f5) / 360.0f) * length, length * (((f3 - f2) - f5) / 360.0f), path2, true);
+        path2.rLineTo(0.0f, 0.0f);
+        canvas.drawPath(path2, paint);
+    }
+
+    public final void drawArcs(Canvas canvas, StoryCircle storyCircle, StoryCircle storyCircle2, StoryCircle storyCircle3, Paint paint) {
         double degrees;
-        double degrees2;
         StoryCircle storyCircle4 = storyCircle;
+        RectF rectF = storyCircle2.borderRect;
         if (storyCircle4 == null && storyCircle3 == null) {
-            drawArc(canvas, storyCircle2.borderRect, 0.0f, 360.0f, false, paint);
+            drawArc(0.0f, 360.0f, canvas, paint, rectF);
             return;
         }
         if (storyCircle4 == null || storyCircle3 == null) {
@@ -1035,244 +913,161 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
             }
             float fCenterX = storyCircle4.borderRect.centerX();
             float fWidth = storyCircle4.borderRect.width() / 2.0f;
-            float fCenterX2 = storyCircle2.borderRect.centerX();
-            float fWidth2 = storyCircle2.borderRect.width() / 2.0f;
+            float fCenterX2 = rectF.centerX();
+            float fWidth2 = rectF.width() / 2.0f;
             if (Math.abs(fCenterX - fCenterX2) > fWidth + fWidth2) {
-                drawArc(canvas, storyCircle2.borderRect, 0.0f, 360.0f, false, paint);
+                drawArc(0.0f, 360.0f, canvas, paint, rectF);
                 return;
             } else if (fCenterX > fCenterX2) {
-                float degrees3 = (float) Math.toDegrees(Math.acos(Math.abs((((fCenterX - fWidth) + (fCenterX2 + fWidth2)) / 2.0f) - fCenterX2) / fWidth2));
-                drawArc(canvas, storyCircle2.borderRect, degrees3, 360.0f - (2.0f * degrees3), false, paint);
+                float degrees2 = (float) Math.toDegrees(Math.acos(Math.abs((((fCenterX2 + fWidth2) + (fCenterX - fWidth)) / 2.0f) - fCenterX2) / fWidth2));
+                drawArc(degrees2, 360.0f - (2.0f * degrees2), canvas, paint, rectF);
                 return;
             } else {
-                float degrees4 = (float) Math.toDegrees(Math.acos(Math.abs((((fCenterX + fWidth) + (fCenterX2 - fWidth2)) / 2.0f) - fCenterX2) / fWidth2));
-                drawArc(canvas, storyCircle2.borderRect, degrees4 + 180.0f, 360.0f - (degrees4 * 2.0f), false, paint);
+                float degrees3 = (float) Math.toDegrees(Math.acos(Math.abs((((fCenterX2 - fWidth2) + (fCenterX + fWidth)) / 2.0f) - fCenterX2) / fWidth2));
+                drawArc(degrees3 + 180.0f, 360.0f - (degrees3 * 2.0f), canvas, paint, rectF);
                 return;
             }
         }
-        float fCenterX3 = storyCircle4.borderRect.centerX();
-        float fWidth3 = storyCircle4.borderRect.width() / 2.0f;
-        float fCenterX4 = storyCircle2.borderRect.centerX();
-        float fWidth4 = storyCircle2.borderRect.width() / 2.0f;
-        float fCenterX5 = storyCircle3.borderRect.centerX();
-        float fWidth5 = storyCircle3.borderRect.width() / 2.0f;
+        RectF rectF2 = storyCircle4.borderRect;
+        float fCenterX3 = rectF2.centerX();
+        float fWidth3 = rectF2.width() / 2.0f;
+        float fCenterX4 = rectF.centerX();
+        float fWidth4 = rectF.width() / 2.0f;
+        RectF rectF3 = storyCircle3.borderRect;
+        float fCenterX5 = rectF3.centerX();
+        float fWidth5 = rectF3.width() / 2.0f;
         boolean z = fCenterX3 > fCenterX4;
         if (z) {
-            degrees = Math.toDegrees(Math.acos(Math.abs((((fCenterX3 - fWidth3) + (fCenterX4 + fWidth4)) / 2.0f) - fCenterX4) / fWidth4));
+            degrees = Math.toDegrees(Math.acos(Math.abs((((fCenterX4 + fWidth4) + (fCenterX3 - fWidth3)) / 2.0f) - fCenterX4) / fWidth4));
         } else {
-            degrees = Math.toDegrees(Math.acos(Math.abs((((fCenterX3 + fWidth3) + (fCenterX4 - fWidth4)) / 2.0f) - fCenterX4) / fWidth4));
+            degrees = Math.toDegrees(Math.acos(Math.abs((((fCenterX4 - fWidth4) + (fCenterX3 + fWidth3)) / 2.0f) - fCenterX4) / fWidth4));
         }
         float f = (float) degrees;
         boolean z2 = fCenterX5 > fCenterX4;
-        if (z2) {
-            degrees2 = Math.toDegrees(Math.acos(Math.abs((((fCenterX5 - fWidth5) + (fCenterX4 + fWidth4)) / 2.0f) - fCenterX4) / fWidth4));
-        } else {
-            degrees2 = Math.toDegrees(Math.acos(Math.abs((((fCenterX5 + fWidth5) + (fCenterX4 - fWidth4)) / 2.0f) - fCenterX4) / fWidth4));
-        }
-        float f2 = (float) degrees2;
+        float degrees4 = (float) (z2 ? Math.toDegrees(Math.acos(Math.abs((((fCenterX4 + fWidth4) + (fCenterX5 - fWidth5)) / 2.0f) - fCenterX4) / fWidth4)) : Math.toDegrees(Math.acos(Math.abs((((fCenterX4 - fWidth4) + (fCenterX5 + fWidth5)) / 2.0f) - fCenterX4) / fWidth4)));
         if (z && z2) {
-            float fMax = Math.max(f, f2);
-            drawArc(canvas, storyCircle2.borderRect, fMax, 360.0f - (2.0f * fMax), false, paint);
+            float fMax = Math.max(f, degrees4);
+            drawArc(fMax, 360.0f - (2.0f * fMax), canvas, paint, rectF);
         } else if (z) {
-            drawArc(canvas, storyCircle2.borderRect, f2 + 180.0f, 180.0f - (f + f2), false, paint);
-            drawArc(canvas, storyCircle2.borderRect, f, (180.0f - f2) - f, false, paint);
+            drawArc(degrees4 + 180.0f, 180.0f - (f + degrees4), canvas, paint, rectF);
+            drawArc(f, (180.0f - degrees4) - f, canvas, paint, rectF);
         } else if (z2) {
-            drawArc(canvas, storyCircle2.borderRect, f + 180.0f, 180.0f - (f2 + f), false, paint);
-            drawArc(canvas, storyCircle2.borderRect, f2, (180.0f - f2) - f, false, paint);
+            drawArc(f + 180.0f, 180.0f - (degrees4 + f), canvas, paint, rectF);
+            drawArc(degrees4, (180.0f - degrees4) - f, canvas, paint, rectF);
         } else {
-            float fMax2 = Math.max(f, f2);
-            drawArc(canvas, storyCircle2.borderRect, fMax2 + 180.0f, 360.0f - (fMax2 * 2.0f), false, paint);
+            float fMax2 = Math.max(f, degrees4);
+            drawArc(fMax2 + 180.0f, 360.0f - (fMax2 * 2.0f), canvas, paint, rectF);
         }
     }
 
-    private void lerpCentered(RectF rectF, RectF rectF2, float f, RectF rectF3) {
-        float fLerp = AndroidUtilities.lerp(rectF.centerX(), rectF2.centerX(), f);
-        float fLerp2 = AndroidUtilities.lerp(rectF.centerY(), rectF2.centerY(), f);
-        float fLerp3 = AndroidUtilities.lerp(Math.min(rectF.width(), rectF.height()), Math.min(rectF2.width(), rectF2.height()), f) / 2.0f;
-        rectF3.set(fLerp - fLerp3, fLerp2 - fLerp3, fLerp + fLerp3, fLerp2 + fLerp3);
-    }
-
-    public void setBounds(float f, float f2, float f3, boolean z) {
-        boolean z2 = Math.abs(f - this.left) > 0.1f || Math.abs(f2 - this.right) > 0.1f || Math.abs(f3 - this.cy) > 0.1f;
-        this.left = f;
-        this.right = f2;
-        if (!z) {
-            this.rightAnimated.set(f2, true);
-        }
-        this.cy = f3;
-        if (z2) {
-            invalidate();
-        }
-    }
-
-    public void setExpandCoords(float f, boolean z, float f2) {
-        this.expandRight = f;
-        this.expandRightPad = z;
-        this.expandY = f2;
-        invalidate();
+    public float getFragmentTransitionProgress() {
+        return this.fragmentTransitionProgress;
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.storiesUpdated) {
-            updateStories(true, true);
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attached = true;
-        for (int i = 0; i < this.circles.size(); i++) {
-            ((StoryCircle) this.circles.get(i)).imageReceiver.onAttachedToWindow();
-        }
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesUpdated);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.attached = false;
-        for (int i = 0; i < this.circles.size(); i++) {
-            ((StoryCircle) this.circles.get(i)).imageReceiver.onDetachedFromWindow();
-        }
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesUpdated);
-    }
-
-    class AnonymousClass3 implements StoryViewer.PlaceProvider {
-        @Override
-        public void loadNext(boolean z) {
-            StoryViewer.PlaceProvider.CC.$default$loadNext(this, z);
-        }
-
-        AnonymousClass3() {
-        }
-
-        @Override
-        public boolean findView(long j, int i, int i2, int i3, StoryViewer.TransitionViewHolder transitionViewHolder) {
-            ImageReceiver imageReceiver;
-            final StoryCircle storyCircle;
-            final StoryCircle storyCircle2;
-            transitionViewHolder.avatarImage = null;
-            transitionViewHolder.storyImage = null;
-            if (ProfileStoriesView.this.expandProgress < 0.2f) {
-                transitionViewHolder.avatarImage = ProfileStoriesView.this.avatarImage.getImageReceiver();
-                transitionViewHolder.storyImage = null;
-                transitionViewHolder.view = ProfileStoriesView.this.avatarImage;
-                transitionViewHolder.clipTop = 0.0f;
-                transitionViewHolder.clipBottom = AndroidUtilities.displaySize.y;
-                transitionViewHolder.clipParent = (View) ProfileStoriesView.this.getParent();
-                transitionViewHolder.radialProgressUpload = ProfileStoriesView.this.radialProgress;
-                transitionViewHolder.checkParentScale = true;
-                return true;
-            }
-            int i4 = 0;
-            while (true) {
-                if (i4 >= ProfileStoriesView.this.circles.size()) {
-                    imageReceiver = null;
-                    storyCircle = null;
-                    storyCircle2 = null;
-                    break;
-                }
-                StoryCircle storyCircle3 = (StoryCircle) ProfileStoriesView.this.circles.get(i4);
-                if (storyCircle3.scale >= 1.0f && storyCircle3.storyId == i2) {
-                    ProfileStoriesView profileStoriesView = ProfileStoriesView.this;
-                    int i5 = i4 - 1;
-                    int i6 = i4 - 2;
-                    StoryCircle storyCircleNearest = profileStoriesView.nearest(i5 >= 0 ? (StoryCircle) profileStoriesView.circles.get(i5) : null, i6 >= 0 ? (StoryCircle) ProfileStoriesView.this.circles.get(i6) : null, storyCircle3);
-                    imageReceiver = storyCircle3.imageReceiver;
-                    storyCircle2 = storyCircleNearest;
-                    storyCircle = storyCircle3;
-                    break;
-                }
-                i4++;
-            }
-            if (imageReceiver == null) {
-                return false;
-            }
-            transitionViewHolder.storyImage = imageReceiver;
-            transitionViewHolder.avatarImage = null;
-            ProfileStoriesView profileStoriesView2 = ProfileStoriesView.this;
-            transitionViewHolder.view = profileStoriesView2;
-            transitionViewHolder.clipTop = 0.0f;
-            transitionViewHolder.clipBottom = AndroidUtilities.displaySize.y;
-            transitionViewHolder.clipParent = (View) profileStoriesView2.getParent();
-            if (storyCircle != null && storyCircle2 != null) {
-                final RectF rectF = new RectF(storyCircle.cachedRect);
-                final RectF rectF2 = new RectF(storyCircle2.cachedRect);
-                transitionViewHolder.drawClip = new StoryViewer.HolderClip() {
-                    @Override
-                    public final void clip(Canvas canvas, RectF rectF3, float f, boolean z) {
-                        ProfileStoriesView.AnonymousClass3.m4386$r8$lambda$THKxWddNCIebL9eDb50cle7J1U(this.f$0, rectF, storyCircle, rectF2, storyCircle2, canvas, rectF3, f, z);
-                    }
-                };
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.circles;
+            if (i >= arrayList.size()) {
+                NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesUpdated);
+                return;
             } else {
-                transitionViewHolder.drawClip = null;
+                ((StoryCircle) arrayList.get(i)).imageReceiver.onAttachedToWindow();
+                i++;
             }
-            return true;
         }
-
-        public static void m4386$r8$lambda$THKxWddNCIebL9eDb50cle7J1U(AnonymousClass3 anonymousClass3, RectF rectF, StoryCircle storyCircle, RectF rectF2, StoryCircle storyCircle2, Canvas canvas, RectF rectF3, float f, boolean z) {
-            anonymousClass3.getClass();
-            rectF.set(storyCircle.cachedRect);
-            rectF2.set(storyCircle2.cachedRect);
-            storyCircle.cachedRect.set(rectF3);
-            try {
-                float fWidth = rectF3.width() / rectF.width();
-                float fCenterX = rectF3.centerX() - ((rectF.centerX() - rectF2.centerX()) * (((1.0f - f) * 2.0f) + fWidth));
-                float fCenterY = rectF3.centerY();
-                float fWidth2 = (rectF2.width() / 2.0f) * fWidth;
-                float fHeight = (rectF2.height() / 2.0f) * fWidth;
-                storyCircle2.cachedRect.set(fCenterX - fWidth2, fCenterY - fHeight, fCenterX + fWidth2, fCenterY + fHeight);
-            } catch (Exception unused) {
-            }
-            ProfileStoriesView.this.clipCircle(canvas, storyCircle, storyCircle2);
-            storyCircle.cachedRect.set(rectF);
-            storyCircle2.cachedRect.set(rectF2);
-        }
-
-        @Override
-        public void preLayout(long j, int i, Runnable runnable) {
-            ProfileStoriesView.this.updateStories(true, false);
-            runnable.run();
-        }
-    }
-
-    public boolean isEmpty() {
-        return this.circles.isEmpty();
-    }
-
-    private float getExpandRight() {
-        return this.expandRight - (this.expandRightPadAnimated.set(this.expandRightPad) * AndroidUtilities.dp(71.0f));
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        int i = 0;
+        this.attached = false;
+        while (true) {
+            ArrayList arrayList = this.circles;
+            if (i >= arrayList.size()) {
+                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesUpdated);
+                return;
+            } else {
+                ((StoryCircle) arrayList.get(i)).imageReceiver.onDetachedFromWindow();
+                i++;
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean zContains;
+        TL_stories.PeerStories peerStories;
+        TL_stories.PeerStories peerStories2;
         if (this.expandProgress < 0.9f) {
             zContains = this.rect2.contains(motionEvent.getX(), motionEvent.getY());
         } else {
             zContains = motionEvent.getX() >= this.left && motionEvent.getX() <= this.right && Math.abs(motionEvent.getY() - this.cy) < ((float) AndroidUtilities.dp(32.0f));
         }
+        ProfileStoriesView$$ExternalSyntheticLambda1 profileStoriesView$$ExternalSyntheticLambda1 = this.onLongPressRunnable;
         if (zContains && motionEvent.getAction() == 0) {
             this.tapTime = System.currentTimeMillis();
             this.tapX = motionEvent.getX();
             this.tapY = motionEvent.getY();
-            AndroidUtilities.cancelRunOnUIThread(this.onLongPressRunnable);
-            AndroidUtilities.runOnUIThread(this.onLongPressRunnable, ViewConfiguration.getLongPressTimeout());
+            AndroidUtilities.cancelRunOnUIThread(profileStoriesView$$ExternalSyntheticLambda1);
+            AndroidUtilities.runOnUIThread(profileStoriesView$$ExternalSyntheticLambda1, ViewConfiguration.getLongPressTimeout());
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            AndroidUtilities.cancelRunOnUIThread(this.onLongPressRunnable);
-            if (zContains && System.currentTimeMillis() - this.tapTime <= ViewConfiguration.getTapTimeout() && MathUtils.distance(this.tapX, this.tapY, motionEvent.getX(), motionEvent.getY()) <= AndroidUtilities.dp(12.0f) && (this.storiesController.hasUploadingStories(this.dialogId) || this.storiesController.hasStories(this.dialogId) || !this.circles.isEmpty())) {
-                onTap(this.provider);
-                return true;
+            AndroidUtilities.cancelRunOnUIThread(profileStoriesView$$ExternalSyntheticLambda1);
+            if (zContains && System.currentTimeMillis() - this.tapTime <= ViewConfiguration.getTapTimeout() && MathUtils.distance(this.tapX, this.tapY, motionEvent.getX(), motionEvent.getY()) <= AndroidUtilities.dp(12.0f)) {
+                StoriesController storiesController = this.storiesController;
+                long j = this.dialogId;
+                if (storiesController.hasUploadingStories(j) || storiesController.hasStories(j) || !this.circles.isEmpty()) {
+                    ProfileActivity.AnonymousClass27 anonymousClass27 = (ProfileActivity.AnonymousClass27) this;
+                    ProfileActivity profileActivity = ProfileActivity.this;
+                    long dialogId = profileActivity.getDialogId();
+                    StoriesController storiesController2 = profileActivity.getMessagesController().getStoriesController();
+                    boolean zHasStories = storiesController2.hasStories(dialogId);
+                    PhotoViewer.AnonymousClass49 anonymousClass49 = this.provider;
+                    Context context = anonymousClass27.val$context;
+                    if (zHasStories || storiesController2.hasUploadingStories(dialogId) || storiesController2.isLastUploadingFailed(dialogId)) {
+                        profileActivity.getOrCreateStoryViewer().open(context, dialogId, anonymousClass49);
+                        return true;
+                    }
+                    TLRPC.UserFull userFull = profileActivity.userInfo;
+                    if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.userId != profileActivity.getUserConfig().clientUserId) {
+                        profileActivity.getOrCreateStoryViewer().open(context, profileActivity.userInfo.stories, anonymousClass49);
+                        return true;
+                    }
+                    TLRPC.ChatFull chatFull = profileActivity.chatInfo;
+                    if (chatFull == null || (peerStories = chatFull.stories) == null || peerStories.stories.isEmpty()) {
+                        profileActivity.expandAvatar();
+                        return true;
+                    }
+                    profileActivity.getOrCreateStoryViewer().open(context, profileActivity.chatInfo.stories, anonymousClass49);
+                    return true;
+                }
             }
         } else if (motionEvent.getAction() == 3) {
             this.tapTime = -1L;
-            AndroidUtilities.cancelRunOnUIThread(this.onLongPressRunnable);
+            AndroidUtilities.cancelRunOnUIThread(profileStoriesView$$ExternalSyntheticLambda1);
         }
         return super.onTouchEvent(motionEvent);
+    }
+
+    public void setActionBarActionMode(float f) {
+        if (Theme.currentTheme.isDark()) {
+            return;
+        }
+        this.actionBarProgress = f;
+        invalidate();
+    }
+
+    public void setExpandProgress(float f) {
+        if (this.expandProgress != f) {
+            this.expandProgress = f;
+            invalidate();
+        }
     }
 
     public void setFragmentTransitionProgress(float f) {
@@ -1283,7 +1078,382 @@ public abstract class ProfileStoriesView extends View implements NotificationCen
         invalidate();
     }
 
-    public float getFragmentTransitionProgress() {
-        return this.fragmentTransitionProgress;
+    public void setProgressToStoriesInsets(float f) {
+        if (this.progressToInsets == f) {
+            return;
+        }
+        this.progressToInsets = f;
+        invalidate();
+    }
+
+    public void setStories(TL_stories.PeerStories peerStories) {
+        updateStories(true, false);
+    }
+
+    public final void updateStories(boolean z, boolean z2) {
+        ArrayList<TL_stories.StoryItem> arrayList;
+        boolean z3;
+        int i;
+        ArrayList arrayList2;
+        StoriesController storiesController;
+        int i2;
+        int i3;
+        MessagesController.PeerColors peerColors;
+        MessagesController.PeerColor color;
+        TLRPC.PeerColor peerColor;
+        int i4;
+        MessagesController.PeerColors peerColors2;
+        MessagesController.PeerColor color2;
+        TLRPC.PeerColor peerColor2;
+        int i5;
+        TL_stories.StoryItem storyItem;
+        int i6;
+        int i7;
+        int i8;
+        int i9;
+        int i10 = 0;
+        if (this.isTopic) {
+            return;
+        }
+        int i11 = this.currentAccount;
+        long clientUserId = UserConfig.getInstance(i11).getClientUserId();
+        long j = this.dialogId;
+        boolean z4 = j == clientUserId;
+        int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
+        TL_stories.PeerStories storiesFromFullPeer = MessagesController.getInstance(i11).getStoriesController().getStoriesFromFullPeer(j);
+        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) MessagesController.getInstance(i11).getStoriesController().allStoriesMap.get(j);
+        TL_stories.PeerStories peerStories2 = j == 0 ? null : storiesFromFullPeer;
+        int iMax = storiesFromFullPeer != null ? Math.max(0, storiesFromFullPeer.max_read_id) : 0;
+        if (peerStories != null) {
+            iMax = Math.max(iMax, peerStories.max_read_id);
+        }
+        if (peerStories2 == null || (arrayList = peerStories2.stories) == null) {
+            arrayList = new ArrayList<>();
+        }
+        ArrayList arrayList3 = new ArrayList();
+        int i12 = this.unreadCount;
+        this.unreadCount = 0;
+        int i13 = 0;
+        while (i10 < arrayList.size()) {
+            TL_stories.StoryItem storyItem2 = arrayList.get(i10);
+            int i14 = i10;
+            if (!(storyItem2 instanceof TL_stories.TL_storyItemDeleted)) {
+                if (storyItem2.id > iMax) {
+                    this.unreadCount++;
+                }
+                i13++;
+            }
+            i10 = i14 + 1;
+        }
+        int i15 = 0;
+        while (true) {
+            z3 = z4;
+            if (i15 >= arrayList.size()) {
+                i = 3;
+                break;
+            }
+            TL_stories.StoryItem storyItem3 = arrayList.get(i15);
+            if (storyItem3 instanceof TL_stories.TL_storyItemDeleted) {
+                i9 = i15;
+            } else {
+                if (storyItem3 instanceof TL_stories.TL_storyItemSkipped) {
+                    int i16 = storyItem3.id;
+                    i9 = i15;
+                    if (peerStories == null) {
+                        storyItem3 = storyItem3;
+                        break;
+                    }
+                    int i17 = 0;
+                    while (true) {
+                        if (i17 >= peerStories.stories.size()) {
+                            storyItem3 = storyItem3;
+                            break;
+                        } else {
+                            if (peerStories.stories.get(i17).id == i16) {
+                                storyItem3 = peerStories.stories.get(i17);
+                                break;
+                            }
+                            i17++;
+                        }
+                    }
+                    boolean z5 = storyItem3 instanceof TL_stories.TL_storyItemSkipped;
+                    if (z5) {
+                        if (storiesFromFullPeer != null) {
+                            for (int i18 = 0; i18 < storiesFromFullPeer.stories.size(); i18++) {
+                                if (storiesFromFullPeer.stories.get(i18).id == i16) {
+                                    storiesFromFullPeer.stories.get(i18);
+                                    break;
+                                }
+                            }
+                        }
+                    } else if (z5) {
+                        continue;
+                    }
+                } else {
+                    i9 = i15;
+                }
+                int i19 = storyItem3.expire_date;
+                if ((i19 == 0 || currentTime <= i19) && (z3 || storyItem3.id > iMax)) {
+                    arrayList3.add(storyItem3);
+                    i = 3;
+                    if (arrayList3.size() >= 3) {
+                        break;
+                    }
+                }
+            }
+            i15 = i9 + 1;
+            z4 = z3;
+        }
+        if (arrayList3.size() < i) {
+            for (int i20 = 0; i20 < arrayList.size(); i20 = i7 + 1) {
+                TL_stories.StoryItem storyItem4 = arrayList.get(i20);
+                if (storyItem4 instanceof TL_stories.TL_storyItemSkipped) {
+                    int i21 = storyItem4.id;
+                    i7 = i20;
+                    if (peerStories != null) {
+                        for (int i22 = 0; i22 < peerStories.stories.size(); i22++) {
+                            if (peerStories.stories.get(i22).id == i21) {
+                                storyItem4 = peerStories.stories.get(i22);
+                                break;
+                            }
+                        }
+                    }
+                    boolean z6 = storyItem4 instanceof TL_stories.TL_storyItemSkipped;
+                    if (!z6) {
+                        if (z6) {
+                            break;
+                        }
+                    } else if (storiesFromFullPeer != null) {
+                        for (int i23 = 0; i23 < storiesFromFullPeer.stories.size(); i23++) {
+                            if (storiesFromFullPeer.stories.get(i23).id == i21) {
+                                storiesFromFullPeer.stories.get(i23);
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    i7 = i20;
+                }
+                if (!(storyItem4 instanceof TL_stories.TL_storyItemDeleted) && (((i8 = storyItem4.expire_date) == 0 || currentTime <= i8) && !arrayList3.contains(storyItem4))) {
+                    arrayList3.add(storyItem4);
+                    if (arrayList3.size() >= 3) {
+                        break;
+                    }
+                }
+            }
+        }
+        int i24 = 0;
+        while (true) {
+            arrayList2 = this.circles;
+            int size = arrayList2.size();
+            storiesController = this.storiesController;
+            i2 = -1;
+            if (i24 >= size) {
+                break;
+            }
+            StoryCircle storyCircle = (StoryCircle) arrayList2.get(i24);
+            int i25 = 0;
+            while (true) {
+                if (i25 >= arrayList3.size()) {
+                    i25 = -1;
+                    storyItem = null;
+                    break;
+                } else {
+                    storyItem = (TL_stories.StoryItem) arrayList3.get(i25);
+                    if (storyItem.id == storyCircle.storyId) {
+                        break;
+                    } else {
+                        i25++;
+                    }
+                }
+            }
+            if (i25 == -1) {
+                storyCircle.scale = 0.0f;
+            } else {
+                storyCircle.index = i25;
+                storyCircle.read = z3 || !(peerStories2 == null || storyItem == null || storyItem.id > storiesController.getMaxStoriesReadId(j));
+            }
+            if (z) {
+                i6 = 1;
+            } else {
+                i6 = 1;
+                storyCircle.readAnimated.set(storyCircle.read, true);
+                storyCircle.indexAnimated.set(storyCircle.index, true);
+                storyCircle.scaleAnimated.set(storyCircle.scale, true);
+            }
+            i24 += i6;
+        }
+        int i26 = 0;
+        while (i26 < arrayList3.size()) {
+            TL_stories.StoryItem storyItem5 = (TL_stories.StoryItem) arrayList3.get(i26);
+            int i27 = 0;
+            while (true) {
+                if (i27 >= arrayList2.size()) {
+                    i27 = -1;
+                    break;
+                } else if (((StoryCircle) arrayList2.get(i27)).storyId == storyItem5.id) {
+                    break;
+                } else {
+                    i27++;
+                }
+            }
+            if (i27 == i2) {
+                storyItem5.dialogId = j;
+                StoryCircle storyCircle2 = new StoryCircle(this, storyItem5);
+                storyCircle2.index = i26;
+                storyCircle2.scale = 1.0f;
+                AnimatedFloat animatedFloat = storyCircle2.scaleAnimated;
+                animatedFloat.set(0.0f, true);
+                boolean z7 = z3 || (peerStories2 != null && storyItem5.id <= peerStories2.max_read_id);
+                storyCircle2.read = z7;
+                if (z) {
+                    i5 = 1;
+                } else {
+                    i5 = 1;
+                    storyCircle2.readAnimated.set(z7, true);
+                    storyCircle2.indexAnimated.set(storyCircle2.index, true);
+                    animatedFloat.set(storyCircle2.scale, true);
+                }
+                arrayList2.add(storyCircle2);
+            } else {
+                i5 = 1;
+            }
+            i26 += i5;
+            i2 = -1;
+        }
+        this.mainCircle = null;
+        for (int i28 = 0; i28 < arrayList2.size(); i28++) {
+            StoryCircle storyCircle3 = (StoryCircle) arrayList2.get(i28);
+            if (storyCircle3.scale > 0.0f) {
+                this.mainCircle = storyCircle3;
+                break;
+            }
+        }
+        ArrayList arrayList4 = (ArrayList) storiesController.uploadingStoriesByDialogId.get(j);
+        this.uploadingStoriesCount = arrayList4 == null ? 0 : arrayList4.size();
+        int iMax2 = Math.max(arrayList3.size(), i13);
+        int i29 = (iMax2 != 0 || this.uploadingStoriesCount == 0) ? iMax2 : 1;
+        if (z2 && z && i29 == this.count + 1 && this.unreadCount == i12 + 1) {
+            ValueAnimator valueAnimator = this.newStoryBounce;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            boolean[] zArr = {false};
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.newStoryBounce = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda14(27, this, zArr));
+            this.newStoryBounce.addListener(new QrActivity.AnonymousClass4(16, this, zArr));
+            this.newStoryBounce.setInterpolator(new OvershootInterpolator(3.0f));
+            this.newStoryBounce.setDuration(400L);
+            this.newStoryBounce.setStartDelay(120L);
+            this.newStoryBounce.start();
+        }
+        this.count = i29;
+        boolean z8 = false;
+        String pluralString = i29 > 0 ? LocaleController.formatPluralString("Stories", i29, new Object[0]) : "";
+        if (z && !LocaleController.isRTL) {
+            z8 = true;
+        }
+        this.titleDrawable.setText(pluralString, z8, true);
+        StoriesUtilities.StoryGradientTools storyGradientTools = this.gradientTools;
+        if (j >= 0) {
+            TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(j));
+            if (user != null) {
+                TLRPC.EmojiStatus emojiStatus = user.emoji_status;
+                if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
+                    storyGradientTools.setColor(MessagesController.PeerColor.fromCollectible(emojiStatus), z);
+                } else {
+                    if (user != null) {
+                        storyGradientTools.getClass();
+                        peerColor2 = user.profile_color;
+                        if (peerColor2 != null) {
+                            i4 = peerColor2.color;
+                        } else {
+                            i4 = -1;
+                        }
+                    } else {
+                        i4 = -1;
+                    }
+                    peerColors2 = MessagesController.getInstance(storyGradientTools.currentAccount).profilePeerColors;
+                    if (peerColors2 == null) {
+                        color2 = null;
+                    } else {
+                        color2 = peerColors2.getColor(i4);
+                    }
+                    storyGradientTools.setColor(color2, z);
+                }
+            } else {
+                if (user != null) {
+                    storyGradientTools.getClass();
+                    peerColor2 = user.profile_color;
+                    if (peerColor2 != null) {
+                        i4 = peerColor2.color;
+                    } else {
+                        i4 = -1;
+                    }
+                } else {
+                    i4 = -1;
+                }
+                peerColors2 = MessagesController.getInstance(storyGradientTools.currentAccount).profilePeerColors;
+                if (peerColors2 == null) {
+                    color2 = null;
+                } else {
+                    color2 = peerColors2.getColor(i4);
+                }
+                storyGradientTools.setColor(color2, z);
+            }
+        } else {
+            TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j));
+            if (chat != null) {
+                TLRPC.EmojiStatus emojiStatus2 = chat.emoji_status;
+                if (emojiStatus2 instanceof TLRPC.TL_emojiStatusCollectible) {
+                    storyGradientTools.setColor(MessagesController.PeerColor.fromCollectible(emojiStatus2), z);
+                } else {
+                    if (chat != null) {
+                        storyGradientTools.getClass();
+                        peerColor = chat.profile_color;
+                        if (peerColor != null) {
+                            i3 = peerColor.color;
+                        } else {
+                            i3 = -1;
+                        }
+                    } else {
+                        i3 = -1;
+                    }
+                    peerColors = MessagesController.getInstance(storyGradientTools.currentAccount).profilePeerColors;
+                    if (peerColors == null) {
+                        color = null;
+                    } else {
+                        color = peerColors.getColor(i3);
+                    }
+                    storyGradientTools.setColor(color, z);
+                }
+            } else {
+                if (chat != null) {
+                    storyGradientTools.getClass();
+                    peerColor = chat.profile_color;
+                    if (peerColor != null) {
+                        i3 = peerColor.color;
+                    } else {
+                        i3 = -1;
+                    }
+                } else {
+                    i3 = -1;
+                }
+                peerColors = MessagesController.getInstance(storyGradientTools.currentAccount).profilePeerColors;
+                if (peerColors == null) {
+                    color = null;
+                } else {
+                    color = peerColors.getColor(i3);
+                }
+                storyGradientTools.setColor(color, z);
+            }
+        }
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.titleDrawable || super.verifyDrawable(drawable);
     }
 }

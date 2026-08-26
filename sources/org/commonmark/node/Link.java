@@ -1,25 +1,35 @@
 package org.commonmark.node;
 
-public class Link extends Node {
-    private String destination;
-    private String title;
+public final class Link extends Node {
+    public final int $r8$classId;
+    public final String destination;
+    public final String title;
 
-    public Link(String str, String str2) {
+    public Link(int i, String str, String str2) {
+        this.$r8$classId = i;
         this.destination = str;
         this.title = str2;
     }
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
-    }
-
-    public String getDestination() {
-        return this.destination;
+    public final void accept(AbstractVisitor abstractVisitor) {
+        switch (this.$r8$classId) {
+            case 0:
+                abstractVisitor.visit(this);
+                break;
+            default:
+                abstractVisitor.visit$1(this);
+                break;
+        }
     }
 
     @Override
-    protected String toStringAttributes() {
-        return "destination=" + this.destination + ", title=" + this.title;
+    public final String toStringAttributes() {
+        switch (this.$r8$classId) {
+            case 0:
+                return "destination=" + this.destination + ", title=" + this.title;
+            default:
+                return "destination=" + this.destination + ", title=" + this.title;
+        }
     }
 }

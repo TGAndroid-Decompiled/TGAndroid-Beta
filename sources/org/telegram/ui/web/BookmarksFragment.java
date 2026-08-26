@@ -2,9 +2,7 @@ package org.telegram.ui.web;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
@@ -16,16 +14,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SavedMessagesController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda0;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda10;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda151;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberTextView;
@@ -33,147 +34,127 @@ import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
-import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.SettingsActivity;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda19;
+import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
 
-public class BookmarksFragment extends UniversalFragment {
-    private final Runnable closeToTabs;
-    private ActionBarMenuItem gotoItem;
-    private String query;
-    private ActionBarMenuItem searchItem;
+public final class BookmarksFragment extends UniversalFragment {
+    public final ArticleViewer$$ExternalSyntheticLambda0 closeToTabs;
+    public ActionBarMenuItem gotoItem;
+    public String query;
+    public ActionBarMenuItem searchItem;
     public AddressBarList.BookmarksList searchList;
-    private NumberTextView selectedCount;
-    private final Utilities.Callback whenClicked;
-    public AddressBarList.BookmarksList list = new AddressBarList.BookmarksList(this.currentAccount, new Runnable() {
-        @Override
-        public final void run() {
-            this.f$0.updateWithOffset();
-        }
-    });
-    public HashSet selected = new HashSet();
-    private final HashSet addedUrls = new HashSet();
+    public NumberTextView selectedCount;
+    public final ArticleViewer$$ExternalSyntheticLambda10 whenClicked;
+    public final AddressBarList.BookmarksList list = new AddressBarList.BookmarksList(null, this.currentAccount, new BookmarksFragment$$ExternalSyntheticLambda0(this, 0));
+    public final HashSet selected = new HashSet();
+    public final HashSet addedUrls = new HashSet();
 
-    public static boolean m5033$r8$lambda$0Ef0Z7zGzug8jwvT6D_zo0aJ0(View view, MotionEvent motionEvent) {
+    public final class AnonymousClass2 extends OKLCH {
+        public final VoIPFragment$8$$ExternalSyntheticLambda1 applySearch = new VoIPFragment$8$$ExternalSyntheticLambda1(this, 20);
+
+        public AnonymousClass2() {
+        }
+
+        @Override
+        public final void onSearchCollapse() {
+            BookmarksFragment bookmarksFragment = BookmarksFragment.this;
+            bookmarksFragment.query = null;
+            AndroidUtilities.cancelRunOnUIThread(this.applySearch);
+            AddressBarList.BookmarksList bookmarksList = bookmarksFragment.searchList;
+            if (bookmarksList != null) {
+                bookmarksList.detach();
+                bookmarksFragment.searchList = null;
+            }
+            UniversalFragment.AnonymousClass3 anonymousClass3 = bookmarksFragment.listView;
+            if (anonymousClass3 != null) {
+                anonymousClass3.adapter.update(true);
+                bookmarksFragment.listView.layoutManager.scrollToPositionWithOffset(0, 0);
+            }
+        }
+
+        @Override
+        public final void onSearchExpand() {
+        }
+
+        @Override
+        public final void onTextChanged(EditTextBoldCursor editTextBoldCursor) {
+            BookmarksFragment bookmarksFragment = BookmarksFragment.this;
+            boolean z = !TextUtils.isEmpty(bookmarksFragment.query);
+            String string = editTextBoldCursor.getText().toString();
+            if (!TextUtils.equals(bookmarksFragment.query, string)) {
+                bookmarksFragment.query = string;
+                AddressBarList.BookmarksList bookmarksList = bookmarksFragment.searchList;
+                if (bookmarksList != null) {
+                    bookmarksList.detach();
+                }
+                AddressBarList.BookmarksList bookmarksList2 = new AddressBarList.BookmarksList(string, ((BaseFragment) bookmarksFragment).currentAccount, new BookmarksFragment$$ExternalSyntheticLambda0(bookmarksFragment, 1));
+                bookmarksFragment.searchList = bookmarksList2;
+                bookmarksList2.attach();
+                VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = this.applySearch;
+                AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
+                AndroidUtilities.runOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1, 500L);
+            }
+            UniversalFragment.AnonymousClass3 anonymousClass3 = bookmarksFragment.listView;
+            if (anonymousClass3 != null) {
+                anonymousClass3.adapter.update(true);
+                if (z != (!TextUtils.isEmpty(string))) {
+                    bookmarksFragment.listView.layoutManager.scrollToPositionWithOffset(0, 0);
+                }
+            }
+        }
+    }
+
+    public BookmarksFragment(ArticleViewer$$ExternalSyntheticLambda10 articleViewer$$ExternalSyntheticLambda10, ArticleViewer$$ExternalSyntheticLambda0 articleViewer$$ExternalSyntheticLambda0) {
+        this.closeToTabs = articleViewer$$ExternalSyntheticLambda0;
+        this.whenClicked = articleViewer$$ExternalSyntheticLambda10;
+    }
+
+    public static boolean matches(String str, String str2) {
+        if (str == null || str2 == null) {
+            return false;
+        }
+        String lowerCase = str.toLowerCase();
+        String lowerCase2 = str2.toLowerCase();
+        if (!lowerCase.startsWith(lowerCase2) && !SavedMessagesController$$ExternalSyntheticOutline0.m(" ", lowerCase2, lowerCase) && !SavedMessagesController$$ExternalSyntheticOutline0.m(".", lowerCase2, lowerCase)) {
+            String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+            String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+            if (!strTranslitSafe.startsWith(strTranslitSafe2) && !SavedMessagesController$$ExternalSyntheticOutline0.m(" ", strTranslitSafe2, strTranslitSafe) && !SavedMessagesController$$ExternalSyntheticOutline0.m(".", strTranslitSafe2, strTranslitSafe)) {
+                return false;
+            }
+        }
         return true;
     }
 
-    public boolean isSelected(MessageObject messageObject) {
-        return messageObject != null && this.selected.contains(Integer.valueOf(messageObject.getId()));
-    }
-
-    public void setSelected(MessageObject messageObject, boolean z) {
-        if (messageObject == null) {
-            return;
-        }
-        if (z) {
-            this.selected.add(Integer.valueOf(messageObject.getId()));
-        } else {
-            this.selected.remove(Integer.valueOf(messageObject.getId()));
-        }
-    }
-
-    public void deleteSelectedMessages() {
-        HashSet hashSet = new HashSet();
-        ArrayList arrayList = new ArrayList();
-        final HashSet hashSet2 = new HashSet();
-        Iterator it = this.selected.iterator();
-        while (true) {
-            MessageObject messageObject = null;
-            int i = 0;
-            if (!it.hasNext()) {
-                break;
-            }
-            int iIntValue = ((Integer) it.next()).intValue();
-            ArrayList arrayList2 = this.list.links;
-            int size = arrayList2.size();
-            int i2 = 0;
-            while (i2 < size) {
-                Object obj = arrayList2.get(i2);
-                i2++;
-                MessageObject messageObject2 = (MessageObject) obj;
-                if (messageObject2 != null && messageObject2.getId() == iIntValue) {
-                    messageObject = messageObject2;
-                    break;
-                }
-            }
-            AddressBarList.BookmarksList bookmarksList = this.searchList;
-            if (bookmarksList != null && messageObject == null) {
-                ArrayList arrayList3 = bookmarksList.links;
-                int size2 = arrayList3.size();
-                while (i < size2) {
-                    Object obj2 = arrayList3.get(i);
-                    i++;
-                    MessageObject messageObject3 = (MessageObject) obj2;
-                    if (messageObject3 != null && messageObject3.getId() == iIntValue) {
-                        messageObject = messageObject3;
-                        break;
-                    }
-                }
-            }
+    public final void clickSelect(UItem uItem, View view) {
+        AddressBarList.BookmarkView bookmarkView = (AddressBarList.BookmarkView) view;
+        MessageObject messageObject = (MessageObject) uItem.object2;
+        HashSet hashSet = this.selected;
+        if (messageObject == null || !hashSet.contains(Integer.valueOf(messageObject.getId()))) {
             if (messageObject != null) {
-                arrayList.add(messageObject);
-                hashSet2.add(Integer.valueOf(messageObject.getId()));
-                hashSet.add(AddressBarList.getLink(messageObject));
+                hashSet.add(Integer.valueOf(messageObject.getId()));
             }
+            bookmarkView.setChecked(true);
+        } else {
+            hashSet.remove(Integer.valueOf(messageObject.getId()));
+            bookmarkView.setChecked(false);
         }
-        new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.formatPluralString("DeleteOptionsTitle", hashSet2.size(), new Object[0])).setMessage(LocaleController.getString(hashSet2.size() == 1 ? "AreYouSureUnsaveSingleMessage" : "AreYouSureUnsaveFewMessages")).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i3) {
-                BookmarksFragment.$r8$lambda$r3rVwHkXykLYszWA4pqNRo0nuBw(this.f$0, hashSet2, alertDialog, i3);
-            }
-        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
-    }
-
-    public static void $r8$lambda$r3rVwHkXykLYszWA4pqNRo0nuBw(BookmarksFragment bookmarksFragment, HashSet hashSet, AlertDialog alertDialog, int i) {
-        MessagesController.getInstance(bookmarksFragment.currentAccount).deleteMessages(new ArrayList<>(hashSet), null, null, UserConfig.getInstance(bookmarksFragment.currentAccount).getClientUserId(), 0, true, 0);
-        bookmarksFragment.list.delete(new ArrayList(hashSet));
-        AddressBarList.BookmarksList bookmarksList = bookmarksFragment.searchList;
-        if (bookmarksList != null) {
-            bookmarksList.delete(new ArrayList(hashSet));
+        this.selectedCount.setNumber(hashSet.size(), true);
+        if (hashSet.isEmpty()) {
+            this.actionBar.hideActionMode$1();
+        } else {
+            this.actionBar.showActionMode(null, null);
         }
-        bookmarksFragment.selected.clear();
-        bookmarksFragment.actionBar.hideActionMode();
-        bookmarksFragment.listView.adapter.update(true);
-    }
-
-    public void gotoMessage() {
-        if (this.selected.size() != 1) {
-            return;
-        }
-        final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-        final int iIntValue = ((Integer) this.selected.iterator().next()).intValue();
-        finishFragment();
-        Runnable runnable = this.closeToTabs;
-        if (runnable != null) {
-            runnable.run();
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BookmarksFragment.$r8$lambda$9pLNWt4i1abWYTli34IBZry2f6c(clientUserId, iIntValue);
-            }
-        }, 80L);
-    }
-
-    public static void $r8$lambda$9pLNWt4i1abWYTli34IBZry2f6c(long j, int i) {
-        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment != null) {
-            safeLastFragment.presentFragment(ChatActivity.of(j, i));
-        }
-    }
-
-    public BookmarksFragment(Runnable runnable, Utilities.Callback callback) {
-        this.closeToTabs = runnable;
-        this.whenClicked = callback;
+        AndroidUtilities.updateViewShow(this.gotoItem, hashSet.size() == 1, true, true);
     }
 
     @Override
-    public View createView(Context context) {
+    public final View createView(Context context) {
         this.fragmentView = super.createView(context);
         ActionBar actionBar = this.actionBar;
         int i = Theme.key_windowBackgroundWhite;
         actionBar.setBackgroundColor(getThemedColor(i));
-        this.actionBar.setActionModeColor(Theme.getColor(i));
+        this.actionBar.setActionModeColor(Theme.getColor(null, i, false));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         ActionBar actionBar2 = this.actionBar;
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
@@ -182,226 +163,182 @@ public class BookmarksFragment extends UniversalFragment {
         this.actionBar.setItemsColor(getThemedColor(i2), false);
         this.actionBar.setItemsColor(getThemedColor(i2), true);
         this.actionBar.setCastShadows(true);
-        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1());
-        ActionBarMenu actionBarMenuCreateActionMode = this.actionBar.createActionMode();
-        NumberTextView numberTextView = new NumberTextView(actionBarMenuCreateActionMode.getContext());
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public final void onItemClick(int i3) {
+                BookmarksFragment bookmarksFragment = BookmarksFragment.this;
+                HashSet hashSet = bookmarksFragment.selected;
+                if (i3 == -1) {
+                    if (!((BaseFragment) bookmarksFragment).actionBar.isActionModeShowed()) {
+                        bookmarksFragment.finishFragment();
+                        return;
+                    }
+                    ((BaseFragment) bookmarksFragment).actionBar.hideActionMode$1();
+                    hashSet.clear();
+                    AndroidUtilities.forEachViews((RecyclerView) bookmarksFragment.listView, (Consumer) new ChatActivity$$ExternalSyntheticLambda151(16));
+                    return;
+                }
+                if (i3 != R.id.menu_delete) {
+                    if (i3 == R.id.menu_link) {
+                        bookmarksFragment.gotoMessage();
+                        return;
+                    }
+                    return;
+                }
+                HashSet hashSet2 = new HashSet();
+                ArrayList arrayList = new ArrayList();
+                HashSet hashSet3 = new HashSet();
+                Iterator it = hashSet.iterator();
+                while (true) {
+                    MessageObject messageObject = null;
+                    int i4 = 0;
+                    if (!it.hasNext()) {
+                        break;
+                    }
+                    int iIntValue = ((Integer) it.next()).intValue();
+                    ArrayList arrayList2 = bookmarksFragment.list.links;
+                    int size = arrayList2.size();
+                    int i5 = 0;
+                    while (i5 < size) {
+                        Object obj = arrayList2.get(i5);
+                        i5++;
+                        MessageObject messageObject2 = (MessageObject) obj;
+                        if (messageObject2 != null && messageObject2.getId() == iIntValue) {
+                            messageObject = messageObject2;
+                            break;
+                        }
+                    }
+                    AddressBarList.BookmarksList bookmarksList = bookmarksFragment.searchList;
+                    if (bookmarksList != null && messageObject == null) {
+                        ArrayList arrayList3 = bookmarksList.links;
+                        int size2 = arrayList3.size();
+                        while (i4 < size2) {
+                            Object obj2 = arrayList3.get(i4);
+                            i4++;
+                            MessageObject messageObject3 = (MessageObject) obj2;
+                            if (messageObject3 != null && messageObject3.getId() == iIntValue) {
+                                messageObject = messageObject3;
+                                break;
+                            }
+                        }
+                    }
+                    if (messageObject != null) {
+                        arrayList.add(messageObject);
+                        hashSet3.add(Integer.valueOf(messageObject.getId()));
+                        hashSet2.add(AddressBarList.getLink(messageObject));
+                    }
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(bookmarksFragment.getParentActivity(), 0, bookmarksFragment.getResourceProvider());
+                String pluralString = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
+                AlertDialog alertDialog = builder.alertDialog;
+                alertDialog.title = pluralString;
+                alertDialog.message = LocaleController.getString(hashSet3.size() == 1 ? "AreYouSureUnsaveSingleMessage" : "AreYouSureUnsaveFewMessages");
+                builder.setPositiveButton(LocaleController.getString(R.string.Delete), new TodoItemMenu$$ExternalSyntheticLambda19(13, bookmarksFragment, hashSet3));
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+                builder.makeRed(-1);
+                builder.show();
+            }
+        });
+        ActionBar.AnonymousClass1 anonymousClass1CreateActionMode = this.actionBar.createActionMode(null);
+        NumberTextView numberTextView = new NumberTextView(anonymousClass1CreateActionMode.getContext());
         this.selectedCount = numberTextView;
         numberTextView.setTextSize(18);
         this.selectedCount.setTypeface(AndroidUtilities.bold());
         this.selectedCount.setTextColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon));
-        this.selectedCount.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return BookmarksFragment.m5033$r8$lambda$0Ef0Z7zGzug8jwvT6D_zo0aJ0(view, motionEvent);
-            }
-        });
-        actionBarMenuCreateActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
-        this.gotoItem = actionBarMenuCreateActionMode.addItemWithWidth(R.id.menu_link, R.drawable.msg_message, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.AccDescrGoToMessage));
-        actionBarMenuCreateActionMode.addItemWithWidth(R.id.menu_delete, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Delete));
-        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search, getResourceProvider()).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass2());
-        this.searchItem = actionBarMenuItemSearchListener;
+        this.selectedCount.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(2));
+        anonymousClass1CreateActionMode.addView(this.selectedCount, LayoutHelper.createLinear(1.0f, 0, -1, 65, 0, 0));
+        this.gotoItem = anonymousClass1CreateActionMode.addItemWithWidth(R.id.menu_link, R.drawable.msg_message, LocaleController.getString(R.string.AccDescrGoToMessage), AndroidUtilities.dp(54.0f));
+        anonymousClass1CreateActionMode.addItemWithWidth(R.id.menu_delete, R.drawable.msg_delete, LocaleController.getString(R.string.Delete), AndroidUtilities.dp(54.0f));
+        ActionBarMenuItem actionBarMenuItemAddItem = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search, getResourceProvider());
+        actionBarMenuItemAddItem.setIsSearchField$1();
+        actionBarMenuItemAddItem.listener = new AnonymousClass2();
+        this.searchItem = actionBarMenuItemAddItem;
         int i3 = R.string.Search;
-        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(i3));
+        actionBarMenuItemAddItem.setSearchFieldHint(LocaleController.getString(i3));
         this.searchItem.setContentDescription(LocaleController.getString(i3));
         EditTextBoldCursor searchField = this.searchItem.getSearchField();
         searchField.setTextColor(getThemedColor(i2));
         searchField.setHintTextColor(getThemedColor(Theme.key_player_time));
         searchField.setCursorColor(getThemedColor(i2));
-        this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
-                if (!BookmarksFragment.this.listView.canScrollVertically(1)) {
-                    if (TextUtils.isEmpty(BookmarksFragment.this.query)) {
-                        BookmarksFragment.this.list.load();
-                    } else {
-                        AddressBarList.BookmarksList bookmarksList = BookmarksFragment.this.searchList;
-                        if (bookmarksList != null) {
-                            bookmarksList.load();
-                        }
-                    }
-                }
-                BookmarksFragment bookmarksFragment = BookmarksFragment.this;
-                if (bookmarksFragment.listView.scrollingByUser) {
-                    AndroidUtilities.hideKeyboard(bookmarksFragment.fragmentView);
-                }
-            }
-        });
-        StickerEmptyView stickerEmptyView = new StickerEmptyView(context, null, 1);
+        this.listView.addOnScrollListener(new SettingsActivity.AnonymousClass5(this, 26));
+        StickerEmptyView stickerEmptyView = new StickerEmptyView(1, null, context, null);
         stickerEmptyView.title.setText(LocaleController.getString(R.string.WebNoBookmarks));
         stickerEmptyView.subtitle.setVisibility(8);
         stickerEmptyView.showProgress(false, false);
         stickerEmptyView.setAnimateLayoutChange(true);
-        ((FrameLayout) this.fragmentView).addView(stickerEmptyView, LayoutHelper.createFrame(-1, -1.0f));
+        ((FrameLayout) this.fragmentView).addView(stickerEmptyView, LayoutHelper.createFrame(-1.0f, -1));
         this.listView.setEmptyView(stickerEmptyView);
         return this.fragmentView;
     }
 
-    class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
-        AnonymousClass1() {
-        }
-
-        @Override
-        public void onItemClick(int i) {
-            if (i == -1) {
-                if (((BaseFragment) BookmarksFragment.this).actionBar.isActionModeShowed()) {
-                    ((BaseFragment) BookmarksFragment.this).actionBar.hideActionMode();
-                    BookmarksFragment.this.selected.clear();
-                    AndroidUtilities.forEachViews((RecyclerView) BookmarksFragment.this.listView, new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            BookmarksFragment.AnonymousClass1.$r8$lambda$zxfcA_nqyu0i6_159jgYkj8d1bM((View) obj);
-                        }
-                    });
-                    return;
-                }
-                BookmarksFragment.this.finishFragment();
-                return;
-            }
-            if (i == R.id.menu_delete) {
-                BookmarksFragment.this.deleteSelectedMessages();
-            } else if (i == R.id.menu_link) {
-                BookmarksFragment.this.gotoMessage();
-            }
-        }
-
-        public static void $r8$lambda$zxfcA_nqyu0i6_159jgYkj8d1bM(View view) {
-            if (view instanceof AddressBarList.BookmarkView) {
-                ((AddressBarList.BookmarkView) view).setChecked(false);
-            }
-        }
-    }
-
-    class AnonymousClass2 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
-        private Runnable applySearch = new Runnable() {
-            @Override
-            public final void run() {
-                BookmarksFragment.AnonymousClass2.m5035$r8$lambda$22sKrybv2fQ38iu4YIXC2RA8Xw(this.f$0);
-            }
-        };
-
-        @Override
-        public void onSearchExpand() {
-        }
-
-        AnonymousClass2() {
-        }
-
-        @Override
-        public void onSearchCollapse() {
-            BookmarksFragment.this.query = null;
-            AndroidUtilities.cancelRunOnUIThread(this.applySearch);
-            AddressBarList.BookmarksList bookmarksList = BookmarksFragment.this.searchList;
-            if (bookmarksList != null) {
-                bookmarksList.detach();
-                BookmarksFragment.this.searchList = null;
-            }
-            UniversalRecyclerView universalRecyclerView = BookmarksFragment.this.listView;
-            if (universalRecyclerView != null) {
-                universalRecyclerView.adapter.update(true);
-                BookmarksFragment.this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
-            }
-        }
-
-        @Override
-        public void onTextChanged(EditText editText) {
-            boolean z = !TextUtils.isEmpty(BookmarksFragment.this.query);
-            String string = editText.getText().toString();
-            if (!TextUtils.equals(BookmarksFragment.this.query, string)) {
-                BookmarksFragment.this.query = string;
-                AddressBarList.BookmarksList bookmarksList = BookmarksFragment.this.searchList;
-                if (bookmarksList != null) {
-                    bookmarksList.detach();
-                }
-                BookmarksFragment bookmarksFragment = BookmarksFragment.this;
-                int i = ((BaseFragment) bookmarksFragment).currentAccount;
-                final BookmarksFragment bookmarksFragment2 = BookmarksFragment.this;
-                bookmarksFragment.searchList = new AddressBarList.BookmarksList(i, string, new Runnable() {
-                    @Override
-                    public final void run() {
-                        bookmarksFragment2.updateWithOffset();
-                    }
-                });
-                BookmarksFragment.this.searchList.attach();
-                scheduleSearch();
-            }
-            UniversalRecyclerView universalRecyclerView = BookmarksFragment.this.listView;
-            if (universalRecyclerView != null) {
-                universalRecyclerView.adapter.update(true);
-                if (z != (!TextUtils.isEmpty(string))) {
-                    BookmarksFragment.this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
-                }
-            }
-        }
-
-        private void scheduleSearch() {
-            AndroidUtilities.cancelRunOnUIThread(this.applySearch);
-            AndroidUtilities.runOnUIThread(this.applySearch, 500L);
-        }
-
-        public static void m5035$r8$lambda$22sKrybv2fQ38iu4YIXC2RA8Xw(AnonymousClass2 anonymousClass2) {
-            AddressBarList.BookmarksList bookmarksList = BookmarksFragment.this.searchList;
-            if (bookmarksList != null) {
-                bookmarksList.load();
-            }
-        }
-    }
-
     @Override
-    public boolean onFragmentCreate() {
-        this.list.attach();
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        this.list.detach();
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.WebBookmarks);
-    }
-
-    @Override
-    protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    public final void fillItems$1(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        HashSet hashSet;
         String str;
-        TLRPC.Message message;
         TLRPC.MessageMedia messageMedia;
-        this.addedUrls.clear();
-        if (TextUtils.isEmpty(this.query)) {
-            ArrayList arrayList2 = this.list.links;
+        int i = 1;
+        HashSet hashSet2 = this.addedUrls;
+        hashSet2.clear();
+        boolean zIsEmpty = TextUtils.isEmpty(this.query);
+        HashSet hashSet3 = this.selected;
+        Class<AddressBarList.BookmarkView.Factory> cls = AddressBarList.BookmarkView.Factory.class;
+        AddressBarList.BookmarksList bookmarksList = this.list;
+        if (zIsEmpty) {
+            ArrayList arrayList2 = bookmarksList.links;
             int size = arrayList2.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList2.get(i);
-                i++;
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList2.get(i2);
+                i2 += i;
                 MessageObject messageObject = (MessageObject) obj;
                 String link = AddressBarList.getLink(messageObject);
                 if (!TextUtils.isEmpty(link) && !link.startsWith("#") && !link.startsWith("$") && !link.startsWith("@")) {
-                    this.addedUrls.add(link);
-                    arrayList.add(AddressBarList.BookmarkView.Factory.as(messageObject, false).setChecked(isSelected(messageObject)));
+                    hashSet2.add(link);
+                    int i3 = AddressBarList.BookmarkView.Factory.$r8$clinit;
+                    UItem uItemOfFactory = UItem.ofFactory(cls);
+                    uItemOfFactory.intValue = 3;
+                    uItemOfFactory.accent = false;
+                    uItemOfFactory.object2 = messageObject;
+                    uItemOfFactory.setChecked(hashSet3.contains(Integer.valueOf(messageObject.getId())));
+                    arrayList.add(uItemOfFactory);
                 }
+                i = 1;
             }
-            if (!this.list.endReached) {
+            if (!bookmarksList.endReached) {
                 arrayList.add(UItem.asFlicker(arrayList.size(), 32));
                 arrayList.add(UItem.asFlicker(arrayList.size(), 32));
                 arrayList.add(UItem.asFlicker(arrayList.size(), 32));
             }
         } else {
-            ArrayList arrayList3 = this.list.links;
+            ArrayList arrayList3 = bookmarksList.links;
             int size2 = arrayList3.size();
-            int i2 = 0;
-            while (i2 < size2) {
-                Object obj2 = arrayList3.get(i2);
-                i2++;
+            int i4 = 0;
+            while (i4 < size2) {
+                Object obj2 = arrayList3.get(i4);
+                i4++;
                 MessageObject messageObject2 = (MessageObject) obj2;
                 String link2 = AddressBarList.getLink(messageObject2);
-                if (!TextUtils.isEmpty(link2) && !link2.startsWith("#") && !link2.startsWith("$") && !link2.startsWith("@")) {
-                    this.addedUrls.add(link2);
+                if (TextUtils.isEmpty(link2) || link2.startsWith("#") || link2.startsWith("$") || link2.startsWith("@")) {
+                    arrayList3 = arrayList3;
+                    hashSet2 = hashSet2;
+                    cls = cls;
+                } else {
+                    hashSet2.add(link2);
                     String hostAuthority = AndroidUtilities.getHostAuthority(link2, true);
-                    WebMetadataCache.WebMetadata webMetadata = WebMetadataCache.getInstance().get(hostAuthority);
-                    TLRPC.WebPage webPage = (messageObject2 == null || (message = messageObject2.messageOwner) == null || (messageMedia = message.media) == null) ? null : messageMedia.webpage;
+                    if (WebMetadataCache.instance == null) {
+                        WebMetadataCache.instance = new WebMetadataCache();
+                    }
+                    WebMetadataCache webMetadataCache = WebMetadataCache.instance;
+                    webMetadataCache.load();
+                    WebMetadataCache.WebMetadata webMetadata = (WebMetadataCache.WebMetadata) webMetadataCache.cache.get(hostAuthority);
+                    if (webMetadata == null) {
+                        webMetadata = null;
+                    } else {
+                        webMetadata.time = Math.max(webMetadata.time, System.currentTimeMillis());
+                        webMetadataCache.scheduleSave();
+                    }
+                    TLRPC.Message message = messageObject2.messageOwner;
+                    TLRPC.WebPage webPage = (message == null || (messageMedia = message.media) == null) ? null : messageMedia.webpage;
                     if (webPage == null || TextUtils.isEmpty(webPage.site_name)) {
                         str = (webMetadata == null || TextUtils.isEmpty(webMetadata.sitename)) ? null : webMetadata.sitename;
                     } else {
@@ -409,22 +346,47 @@ public class BookmarksFragment extends UniversalFragment {
                     }
                     String str2 = (webPage == null || TextUtils.isEmpty(webPage.title)) ? null : webPage.title;
                     if (matches(hostAuthority, this.query) || matches(str, this.query) || matches(str2, this.query)) {
-                        arrayList.add(AddressBarList.BookmarkView.Factory.as(messageObject2, false, this.query).setChecked(isSelected(messageObject2)));
+                        String str3 = this.query;
+                        int i5 = AddressBarList.BookmarkView.Factory.$r8$clinit;
+                        UItem uItemOfFactory2 = UItem.ofFactory(cls);
+                        uItemOfFactory2.intValue = 3;
+                        uItemOfFactory2.accent = false;
+                        uItemOfFactory2.object2 = messageObject2;
+                        uItemOfFactory2.subtext = str3;
+                        uItemOfFactory2.setChecked(hashSet3.contains(Integer.valueOf(messageObject2.getId())));
+                        arrayList.add(uItemOfFactory2);
                     }
                 }
+                cls = cls;
+                hashSet2 = hashSet2;
+                arrayList3 = arrayList3;
             }
+            HashSet hashSet4 = hashSet2;
+            Class<AddressBarList.BookmarkView.Factory> cls2 = cls;
             ArrayList arrayList4 = this.searchList.links;
             int size3 = arrayList4.size();
-            int i3 = 0;
-            while (i3 < size3) {
-                Object obj3 = arrayList4.get(i3);
-                i3++;
+            int i6 = 0;
+            while (i6 < size3) {
+                Object obj3 = arrayList4.get(i6);
+                i6++;
                 MessageObject messageObject3 = (MessageObject) obj3;
                 String link3 = AddressBarList.getLink(messageObject3);
-                if (!TextUtils.isEmpty(link3) && !link3.startsWith("#") && !link3.startsWith("$") && !link3.startsWith("@")) {
-                    this.addedUrls.add(link3);
-                    arrayList.add(AddressBarList.BookmarkView.Factory.as(messageObject3, false, this.query).setChecked(isSelected(messageObject3)));
+                if (TextUtils.isEmpty(link3) || link3.startsWith("#") || link3.startsWith("$") || link3.startsWith("@")) {
+                    hashSet = hashSet4;
+                } else {
+                    hashSet = hashSet4;
+                    hashSet.add(link3);
+                    String str4 = this.query;
+                    int i7 = AddressBarList.BookmarkView.Factory.$r8$clinit;
+                    UItem uItemOfFactory3 = UItem.ofFactory(cls2);
+                    uItemOfFactory3.intValue = 3;
+                    uItemOfFactory3.accent = false;
+                    uItemOfFactory3.object2 = messageObject3;
+                    uItemOfFactory3.subtext = str4;
+                    uItemOfFactory3.setChecked(hashSet3.contains(Integer.valueOf(messageObject3.getId())));
+                    arrayList.add(uItemOfFactory3);
                 }
+                hashSet4 = hashSet;
             }
             if (!this.searchList.endReached) {
                 arrayList.add(UItem.asFlicker(arrayList.size(), 32));
@@ -435,66 +397,99 @@ public class BookmarksFragment extends UniversalFragment {
         if (arrayList.isEmpty()) {
             return;
         }
-        arrayList.add(UItem.asShadow(null));
-    }
-
-    public static boolean matches(String str, String str2) {
-        if (str == null || str2 == null) {
-            return false;
-        }
-        String lowerCase = str.toLowerCase();
-        String lowerCase2 = str2.toLowerCase();
-        if (!lowerCase.startsWith(lowerCase2)) {
-            if (!lowerCase.contains(" " + lowerCase2)) {
-                if (!lowerCase.contains("." + lowerCase2)) {
-                    String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
-                    String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-                    if (!strTranslitSafe.startsWith(strTranslitSafe2)) {
-                        if (!strTranslitSafe.contains(" " + strTranslitSafe2)) {
-                            if (!strTranslitSafe.contains("." + strTranslitSafe2)) {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return true;
+        UItem uItem = new UItem(7);
+        uItem.text = null;
+        arrayList.add(uItem);
     }
 
     @Override
-    protected void onClick(UItem uItem, View view, int i, float f, float f2) {
+    public final CharSequence getTitle() {
+        return LocaleController.getString(R.string.WebBookmarks);
+    }
+
+    public final void gotoMessage() {
+        HashSet hashSet = this.selected;
+        if (hashSet.size() != 1) {
+            return;
+        }
+        long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+        int iIntValue = ((Integer) hashSet.iterator().next()).intValue();
+        finishFragment();
+        ArticleViewer$$ExternalSyntheticLambda0 articleViewer$$ExternalSyntheticLambda0 = this.closeToTabs;
+        if (articleViewer$$ExternalSyntheticLambda0 != null) {
+            articleViewer$$ExternalSyntheticLambda0.run();
+        }
+        AndroidUtilities.runOnUIThread(new BookmarksFragment$$ExternalSyntheticLambda1(clientUserId, iIntValue, 0), 80L);
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        return AndroidUtilities.computePerceivedBrightness(getThemedColor(Theme.key_windowBackgroundWhite)) > 0.721f;
+    }
+
+    public final void lambda$deleteSelectedMessages$0(HashSet hashSet) {
+        MessagesController.getInstance(this.currentAccount).deleteMessages(new ArrayList<>(hashSet), null, null, UserConfig.getInstance(this.currentAccount).getClientUserId(), 0, true, 0);
+        ArrayList arrayList = new ArrayList(hashSet);
+        int i = 0;
+        int i2 = 0;
+        while (true) {
+            AddressBarList.BookmarksList bookmarksList = this.list;
+            if (i2 >= bookmarksList.links.size()) {
+                break;
+            }
+            ArrayList arrayList2 = bookmarksList.links;
+            if (arrayList.contains(Integer.valueOf(((MessageObject) arrayList2.get(i2)).getId()))) {
+                arrayList2.remove(i2);
+                i2--;
+            }
+            i2++;
+        }
+        AddressBarList.BookmarksList bookmarksList2 = this.searchList;
+        if (bookmarksList2 != null) {
+            ArrayList arrayList3 = new ArrayList(hashSet);
+            while (true) {
+                ArrayList arrayList4 = bookmarksList2.links;
+                if (i >= arrayList4.size()) {
+                    break;
+                }
+                if (arrayList3.contains(Integer.valueOf(((MessageObject) arrayList4.get(i)).getId()))) {
+                    arrayList4.remove(i);
+                    i--;
+                }
+                i++;
+            }
+        }
+        this.selected.clear();
+        this.actionBar.hideActionMode$1();
+        this.listView.adapter.update(true);
+    }
+
+    @Override
+    public final void onClick$1(UItem uItem, View view) {
         if (uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             if (this.actionBar.isActionModeShowed()) {
                 clickSelect(uItem, view);
-            } else {
-                finishFragment();
-                this.whenClicked.run(AddressBarList.getLink((MessageObject) uItem.object2));
+                return;
             }
+            finishFragment();
+            this.whenClicked.run(AddressBarList.getLink((MessageObject) uItem.object2));
         }
-    }
-
-    public void clickSelect(UItem uItem, View view) {
-        AddressBarList.BookmarkView bookmarkView = (AddressBarList.BookmarkView) view;
-        MessageObject messageObject = (MessageObject) uItem.object2;
-        if (isSelected(messageObject)) {
-            setSelected(messageObject, false);
-            bookmarkView.setChecked(false);
-        } else {
-            setSelected(messageObject, true);
-            bookmarkView.setChecked(true);
-        }
-        this.selectedCount.setNumber(this.selected.size(), true);
-        if (this.selected.isEmpty()) {
-            this.actionBar.hideActionMode();
-        } else {
-            this.actionBar.showActionMode();
-        }
-        AndroidUtilities.updateViewShow(this.gotoItem, this.selected.size() == 1, true, true);
     }
 
     @Override
-    protected boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+    public final boolean onFragmentCreate() {
+        this.list.attach();
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        this.list.detach();
+    }
+
+    @Override
+    public final boolean onLongClick(UItem uItem, View view) {
         if (!uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             return false;
         }
@@ -502,12 +497,7 @@ public class BookmarksFragment extends UniversalFragment {
         return true;
     }
 
-    @Override
-    public boolean isLightStatusBar() {
-        return AndroidUtilities.computePerceivedBrightness(getThemedColor(Theme.key_windowBackgroundWhite)) > 0.721f;
-    }
-
-    public void updateWithOffset() {
+    public final void updateWithOffset() {
         int top;
         int i = -1;
         int i2 = 0;
@@ -517,7 +507,8 @@ public class BookmarksFragment extends UniversalFragment {
                 break;
             }
             View childAt = this.listView.getChildAt(i2);
-            int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
+            this.listView.getClass();
+            int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt);
             if (childAdapterPosition >= 0) {
                 top = childAt.getTop();
                 i = childAdapterPosition;

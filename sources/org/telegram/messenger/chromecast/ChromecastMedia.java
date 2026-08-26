@@ -1,10 +1,11 @@
 package org.telegram.messenger.chromecast;
 
 import android.net.Uri;
-import com.google.android.gms.cast.MediaInfo;
+import android.os.Bundle;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.cast.MediaMetadata;
 
-public class ChromecastMedia {
+public final class ChromecastMedia {
     public final String externalPath;
     public final int height;
     public final Uri internalUri;
@@ -12,123 +13,152 @@ public class ChromecastMedia {
     public final String mimeType;
     public final int width;
 
-    private ChromecastMedia(Builder builder) {
-        this.mimeType = builder.mimeType;
-        this.mediaMetadata = builder.buildMetadata();
-        this.internalUri = builder.internalUri;
-        this.externalPath = builder.externalPath;
-        this.width = builder.width;
-        this.height = builder.height;
-    }
-
-    public String getExternalUri(String str) {
-        return ChromecastFileServer.getUrlToSource(str, this.externalPath);
-    }
-
-    public MediaInfo buildMediaInfo(String str, String str2) {
-        return new MediaInfo.Builder(getExternalUri(str) + str2).setContentType(this.mimeType).setMetadata(this.mediaMetadata).setStreamType(1).build();
-    }
-
-    public static class Builder {
-        private MediaMetadata baseMetadata;
-        private final String externalPath;
-        private int height;
-        private final Uri internalUri;
-        private final String mimeType;
-        private String subtitle;
-        private String title;
-        private int width;
-
-        private Builder(String str, Uri uri, String str2) {
-            this.mimeType = str;
-            this.internalUri = uri;
-            this.externalPath = str2;
-        }
-
-        public static Builder fromUri(Uri uri, String str, String str2) {
-            return new Builder(str2, uri, str);
-        }
-
-        public Builder setTitle(String str) {
-            this.title = str;
-            return this;
-        }
-
-        public Builder setSubtitle(String str) {
-            this.subtitle = str;
-            return this;
-        }
-
-        public Builder setSize(int i, int i2) {
-            this.width = i;
-            this.height = i2;
-            return this;
-        }
-
-        public Builder setMetadata(MediaMetadata mediaMetadata) {
-            this.baseMetadata = mediaMetadata;
-            return this;
-        }
-
-        public ChromecastMedia build() {
-            return new ChromecastMedia(this);
-        }
-
-        public MediaMetadata buildMetadata() {
-            int i = 3;
-            String str = this.mimeType;
-            str.getClass();
-            switch (str) {
-                case "image/jpeg":
-                case "image/png":
-                    i = 4;
+    public ChromecastMedia(RecyclerView.Recycler recycler) {
+        MediaMetadata mediaMetadata;
+        StringBuilder sb;
+        StringBuilder sb2;
+        String str;
+        String str2;
+        int i;
+        int i2 = 3;
+        String str3 = (String) recycler.mAttachedScrap;
+        this.mimeType = str3;
+        str3.getClass();
+        switch (str3) {
+            case "image/jpeg":
+            case "image/png":
+                i2 = 4;
+                MediaMetadata mediaMetadata2 = (MediaMetadata) recycler.mUnmodifiableAttachedScrap;
+                mediaMetadata = mediaMetadata2 == null ? new MediaMetadata(i2) : mediaMetadata2;
+                sb = new StringBuilder();
+                sb2 = new StringBuilder();
+                str = (String) recycler.mRecyclerPool;
+                if (str != null) {
+                    sb.append(str);
+                }
+                str2 = (String) recycler.this$0;
+                if (str2 != null) {
+                    sb2.append(str2);
+                }
+                i = recycler.mRequestedCacheMax;
+                if (i != 0 && recycler.mViewCacheMax != 0) {
+                    MediaMetadata.throwIfWrongType(2, "com.google.android.gms.cast.metadata.WIDTH");
+                    Bundle bundle = mediaMetadata.zza;
+                    bundle.putInt("com.google.android.gms.cast.metadata.WIDTH", i);
+                    int i3 = recycler.mViewCacheMax;
+                    MediaMetadata.throwIfWrongType(2, "com.google.android.gms.cast.metadata.HEIGHT");
+                    bundle.putInt("com.google.android.gms.cast.metadata.HEIGHT", i3);
+                    if (sb2.length() > 0) {
+                        sb2.append(' ');
+                    }
+                    sb2.append("(");
+                    sb2.append(recycler.mRequestedCacheMax);
+                    sb2.append("x");
+                    sb2.append(recycler.mViewCacheMax);
+                    sb2.append(")");
+                }
+                if (sb.length() > 0) {
+                    mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", sb.toString());
+                } else {
+                    mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", "No Title");
+                }
+                if (sb2.length() > 0) {
+                    mediaMetadata.putString("com.google.android.gms.cast.metadata.SUBTITLE", sb2.toString());
                     break;
-                case "application/x-mpegURL":
-                case "video/mp4":
-                    i = 1;
+                }
+                break;
+            case "application/x-mpegURL":
+            case "video/mp4":
+                i2 = 1;
+                MediaMetadata mediaMetadata3 = (MediaMetadata) recycler.mUnmodifiableAttachedScrap;
+                mediaMetadata = mediaMetadata3 == null ? new MediaMetadata(i2) : mediaMetadata3;
+                sb = new StringBuilder();
+                sb2 = new StringBuilder();
+                str = (String) recycler.mRecyclerPool;
+                if (str != null) {
+                    sb.append(str);
+                }
+                str2 = (String) recycler.this$0;
+                if (str2 != null) {
+                    sb2.append(str2);
+                }
+                i = recycler.mRequestedCacheMax;
+                if (i != 0) {
+                    MediaMetadata.throwIfWrongType(2, "com.google.android.gms.cast.metadata.WIDTH");
+                    Bundle bundle2 = mediaMetadata.zza;
+                    bundle2.putInt("com.google.android.gms.cast.metadata.WIDTH", i);
+                    int i4 = recycler.mViewCacheMax;
+                    MediaMetadata.throwIfWrongType(2, "com.google.android.gms.cast.metadata.HEIGHT");
+                    bundle2.putInt("com.google.android.gms.cast.metadata.HEIGHT", i4);
+                    if (sb2.length() > 0) {
+                        sb2.append(' ');
+                    }
+                    sb2.append("(");
+                    sb2.append(recycler.mRequestedCacheMax);
+                    sb2.append("x");
+                    sb2.append(recycler.mViewCacheMax);
+                    sb2.append(")");
+                }
+                if (sb.length() > 0) {
+                    mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", sb.toString());
+                } else {
+                    mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", "No Title");
+                }
+                if (sb2.length() > 0) {
+                    mediaMetadata.putString("com.google.android.gms.cast.metadata.SUBTITLE", sb2.toString());
                     break;
-                default:
-                    if (!this.mimeType.startsWith("audio/")) {
-                        return null;
+                }
+                break;
+            default:
+                if (str3.startsWith("audio/")) {
+                    MediaMetadata mediaMetadata4 = (MediaMetadata) recycler.mUnmodifiableAttachedScrap;
+                    mediaMetadata = mediaMetadata4 == null ? new MediaMetadata(i2) : mediaMetadata4;
+                    sb = new StringBuilder();
+                    sb2 = new StringBuilder();
+                    str = (String) recycler.mRecyclerPool;
+                    if (str != null) {
+                        sb.append(str);
+                    }
+                    str2 = (String) recycler.this$0;
+                    if (str2 != null) {
+                        sb2.append(str2);
+                    }
+                    i = recycler.mRequestedCacheMax;
+                    if (i != 0) {
+                        MediaMetadata.throwIfWrongType(2, "com.google.android.gms.cast.metadata.WIDTH");
+                        Bundle bundle3 = mediaMetadata.zza;
+                        bundle3.putInt("com.google.android.gms.cast.metadata.WIDTH", i);
+                        int i5 = recycler.mViewCacheMax;
+                        MediaMetadata.throwIfWrongType(2, "com.google.android.gms.cast.metadata.HEIGHT");
+                        bundle3.putInt("com.google.android.gms.cast.metadata.HEIGHT", i5);
+                        if (sb2.length() > 0) {
+                            sb2.append(' ');
+                        }
+                        sb2.append("(");
+                        sb2.append(recycler.mRequestedCacheMax);
+                        sb2.append("x");
+                        sb2.append(recycler.mViewCacheMax);
+                        sb2.append(")");
+                    }
+                    if (sb.length() > 0) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", sb.toString());
+                    } else {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", "No Title");
+                    }
+                    if (sb2.length() > 0) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.SUBTITLE", sb2.toString());
                     }
                     break;
-            }
-            MediaMetadata mediaMetadata = this.baseMetadata;
-            if (mediaMetadata == null) {
-                mediaMetadata = new MediaMetadata(i);
-            }
-            StringBuilder sb = new StringBuilder();
-            StringBuilder sb2 = new StringBuilder();
-            String str2 = this.title;
-            if (str2 != null) {
-                sb.append(str2);
-            }
-            String str3 = this.subtitle;
-            if (str3 != null) {
-                sb2.append(str3);
-            }
-            int i2 = this.width;
-            if (i2 != 0 && this.height != 0) {
-                mediaMetadata.putInt("com.google.android.gms.cast.metadata.WIDTH", i2);
-                mediaMetadata.putInt("com.google.android.gms.cast.metadata.HEIGHT", this.height);
-                if (sb2.length() > 0) {
-                    sb2.append(' ');
+                } else {
+                    mediaMetadata = null;
+                    break;
                 }
-                sb2.append("(");
-                sb2.append(this.width);
-                sb2.append("x");
-                sb2.append(this.height);
-                sb2.append(")");
-            }
-            if (sb.length() > 0) {
-                mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", sb.toString());
-            } else {
-                mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", "No Title");
-            }
-            if (sb2.length() > 0) {
-                mediaMetadata.putString("com.google.android.gms.cast.metadata.SUBTITLE", sb2.toString());
-            }
-            return mediaMetadata;
+                break;
         }
+        this.mediaMetadata = mediaMetadata;
+        this.internalUri = (Uri) recycler.mChangedScrap;
+        this.externalPath = (String) recycler.mCachedViews;
+        this.width = recycler.mRequestedCacheMax;
+        this.height = recycler.mViewCacheMax;
     }
 }

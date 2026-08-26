@@ -2,15 +2,20 @@ package org.telegram.messenger.chromecast;
 
 import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.util.Pair;
-import com.google.android.exoplayer2.upstream.AssetDataSource;
+import androidx.datastore.preferences.PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
-import com.google.android.exoplayer2.upstream.FileDataSource;
 import com.google.android.gms.cast.MediaMetadata;
+import com.google.android.gms.dynamite.zzf;
+import com.google.android.gms.internal.mlkit_language_id_common.zzij;
+import com.google.firebase.crashlytics.internal.common.CrashlyticsCore$$ExternalSyntheticLambda0;
 import fi.iki.elonen.NanoHTTPD;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -20,68 +25,373 @@ import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
+import org.telegram.ui.PollItemMenu;
+import org.telegram.ui.ProfileActivity;
 
-public class ChromecastFileServer extends NanoHTTPD {
+public final class ChromecastFileServer extends NanoHTTPD {
     public static final ChromecastMedia ASSET_FALLBACK_FILE;
-    private static final ChromecastMedia[] ASSET_FILES;
-    private static final HashMap ASSET_FILES_MAP;
-    private final DataSource.Factory assetDataSourceFactory;
-    private final HashMap castedFiles;
-    private Pair coverFile;
-    private final DataSource.Factory fileDataSourceFactory;
-    private final DataSource.Factory mediaDataSourceFactory;
-    private final AtomicInteger reqId;
-    private boolean started;
+    public static final HashMap ASSET_FILES_MAP;
+    public final CrashlyticsCore$$ExternalSyntheticLambda0 assetDataSourceFactory;
+    public final HashMap castedFiles;
+    public Pair coverFile;
+    public final PollItemMenu.AnonymousClass8 fileDataSourceFactory;
+    public final ExtendedDefaultDataSourceFactory mediaDataSourceFactory;
+    public final AtomicInteger reqId;
+    public boolean started;
+
+    public final class Range {
+        public final long end;
+        public final long start;
+
+        public Range(long j, long j2) {
+            this.start = j;
+            this.end = j2;
+        }
+    }
 
     static {
-        ChromecastMedia chromecastMediaBuild = ChromecastMedia.Builder.fromUri(Uri.parse("file:///android_asset/cast/default.png"), "/assets/default", "image/png").build();
-        ASSET_FALLBACK_FILE = chromecastMediaBuild;
-        ChromecastMedia[] chromecastMediaArr = {chromecastMediaBuild};
-        ASSET_FILES = chromecastMediaArr;
+        ChromecastMedia chromecastMedia = new ChromecastMedia(new RecyclerView.Recycler(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
+        ASSET_FALLBACK_FILE = chromecastMedia;
+        ChromecastMedia[] chromecastMediaArr = {chromecastMedia};
         HashMap map = new HashMap();
         ASSET_FILES_MAP = map;
-        ChromecastMedia chromecastMedia = chromecastMediaArr[0];
-        map.put(chromecastMedia.externalPath, chromecastMedia);
+        ChromecastMedia chromecastMedia2 = chromecastMediaArr[0];
+        map.put(chromecastMedia2.externalPath, chromecastMedia2);
     }
 
     public ChromecastFileServer() {
-        super(61578);
+        this.tempFileManagerFactory = new zzf(20);
+        this.asyncRunner = new ProfileActivity.AnonymousClass33(10);
         this.castedFiles = new HashMap();
         this.coverFile = null;
         this.started = false;
         this.reqId = new AtomicInteger();
-        this.assetDataSourceFactory = new DataSource.Factory() {
-            @Override
-            public final DataSource createDataSource() {
-                return ChromecastFileServer.$r8$lambda$c82v5Wmfp8Lb7nt2OzxOZO4a2yk();
-            }
-        };
-        this.fileDataSourceFactory = new FileDataSource.Factory();
+        this.assetDataSourceFactory = new CrashlyticsCore$$ExternalSyntheticLambda0(26);
+        this.fileDataSourceFactory = new PollItemMenu.AnonymousClass8(11);
         this.mediaDataSourceFactory = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
-    public static DataSource $r8$lambda$c82v5Wmfp8Lb7nt2OzxOZO4a2yk() {
-        return new AssetDataSource(ApplicationLoader.applicationContext);
+    public static String getHost() {
+        int ipAddress = ((WifiManager) ApplicationLoader.applicationContext.getSystemService("wifi")).getConnectionInfo().getIpAddress();
+        if (ipAddress == 0) {
+            try {
+                Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+                while (networkInterfaces.hasMoreElements()) {
+                    Enumeration<InetAddress> inetAddresses = networkInterfaces.nextElement().getInetAddresses();
+                    while (inetAddresses.hasMoreElements()) {
+                        InetAddress inetAddressNextElement = inetAddresses.nextElement();
+                        if (inetAddressNextElement.isSiteLocalAddress()) {
+                            byte[] address = inetAddressNextElement.getAddress();
+                            ipAddress = (((address[3] + 256) % 256) << 24) + ((address[0] + 256) % 256) + (((address[1] + 256) % 256) << 8) + (((address[2] + 256) % 256) << 16);
+                        }
+                    }
+                }
+            } catch (SocketException e) {
+                FileLog.e(e);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.valueOf(ipAddress & 255) + '.' + ((ipAddress >> 8) & 255) + '.' + ((ipAddress >> 16) & 255) + '.' + ((ipAddress >> 24) & 255));
+        sb.append(":61578");
+        return sb.toString();
     }
 
-    public void addFileToCast(ChromecastMedia chromecastMedia) {
-        this.castedFiles.put(chromecastMedia.externalPath, chromecastMedia);
-        check();
+    public final void check() {
+        if (!this.castedFiles.isEmpty()) {
+            if (this.started) {
+                return;
+            }
+            try {
+                start();
+                this.started = true;
+                return;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if (this.started) {
+            try {
+                NanoHTTPD.safeClose(this.myServerSocket);
+                ProfileActivity.AnonymousClass33 anonymousClass33 = this.asyncRunner;
+                anonymousClass33.getClass();
+                ArrayList arrayList = new ArrayList((List) anonymousClass33.this$0);
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    NanoHTTPD.ClientHandler clientHandler = (NanoHTTPD.ClientHandler) obj;
+                    NanoHTTPD.safeClose(clientHandler.inputStream);
+                    NanoHTTPD.safeClose(clientHandler.acceptSocket);
+                }
+                Thread thread = this.myThread;
+                if (thread != null) {
+                    thread.join();
+                }
+            } catch (Exception e2) {
+                NanoHTTPD.LOG.log(Level.SEVERE, "Could not stop all connections", (Throwable) e2);
+            }
+            this.started = false;
+        }
     }
 
-    public void removeFileFromCast(ChromecastMedia chromecastMedia) {
-        this.castedFiles.remove(chromecastMedia.externalPath);
-        check();
+    @Override
+    public final NanoHTTPD.Response serve(NanoHTTPD.HTTPSession hTTPSession) {
+        String str;
+        int iIncrementAndGet = this.reqId.incrementAndGet();
+        StringBuilder sbM = DiffUtil.m(iIncrementAndGet, "Request ", " ");
+        switch (hTTPSession.method) {
+            case 1:
+                str = "GET";
+                break;
+            case 2:
+                str = "PUT";
+                break;
+            case 3:
+                str = "POST";
+                break;
+            case 4:
+                str = "DELETE";
+                break;
+            case 5:
+                str = "HEAD";
+                break;
+            case 6:
+                str = "OPTIONS";
+                break;
+            case 7:
+                str = "TRACE";
+                break;
+            case 8:
+                str = "CONNECT";
+                break;
+            case 9:
+                str = "PATCH";
+                break;
+            case 10:
+                str = "PROPFIND";
+                break;
+            case 11:
+                str = "PROPPATCH";
+                break;
+            case 12:
+                str = "MKCOL";
+                break;
+            case 13:
+                str = "MOVE";
+                break;
+            case 14:
+                str = "COPY";
+                break;
+            case 15:
+                str = "LOCK";
+                break;
+            case 16:
+                str = "UNLOCK";
+                break;
+            default:
+                str = "null";
+                break;
+        }
+        sbM.append(str);
+        sbM.append(" ");
+        sbM.append(hTTPSession.uri);
+        sbM.append(" ");
+        sbM.append((String) hTTPSession.headers.get("range"));
+        Log.d("CAST_SERVER", sbM.toString());
+        try {
+            NanoHTTPD.Response responseServeImpl = serveImpl(hTTPSession);
+            responseServeImpl.addHeader("Access-Control-Allow-Origin", "*");
+            responseServeImpl.addHeader("Access-Control-Max-Age", "3628800");
+            responseServeImpl.addHeader("Access-Control-Allow-Methods", "*");
+            responseServeImpl.addHeader("Access-Control-Allow-Headers", "*");
+            return responseServeImpl;
+        } catch (Throwable unused) {
+            Log.d("CAST_SERVER", "Error " + iIncrementAndGet);
+            NanoHTTPD.Response responseNewFixedLengthResponse = NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.INTERNAL_ERROR, "text/plain", "Error reading file");
+            responseNewFixedLengthResponse.addHeader("Access-Control-Allow-Origin", "*");
+            responseNewFixedLengthResponse.addHeader("Access-Control-Max-Age", "3628800");
+            responseNewFixedLengthResponse.addHeader("Access-Control-Allow-Methods", "*");
+            responseNewFixedLengthResponse.addHeader("Access-Control-Allow-Headers", "*");
+            return responseNewFixedLengthResponse;
+        }
     }
 
-    public void setCoverFile(String str, File file) {
+    public final NanoHTTPD.Response serveImpl(NanoHTTPD.HTTPSession hTTPSession) {
+        boolean z;
+        Range range;
+        long j;
+        NanoHTTPD.Response responseNewFixedLengthResponse;
+        NanoHTTPD.Response response;
+        long j2;
+        long j3;
+        String str = (String) hTTPSession.headers.get("host");
+        String path = Uri.parse("http://" + str + hTTPSession.uri).getPath();
+        boolean zEquals = PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility.equals(6, hTTPSession.method);
+        NanoHTTPD.Response.Status status = NanoHTTPD.Response.Status.OK;
+        if (zEquals) {
+            return NanoHTTPD.newFixedLengthResponse(status, "text/plain", "");
+        }
+        boolean zEquals2 = TextUtils.equals(path, "/");
+        HashMap map = this.castedFiles;
+        HashMap map2 = ASSET_FILES_MAP;
+        int i = 0;
+        if (zEquals2) {
+            StringBuilder sb = new StringBuilder();
+            if (this.coverFile != null) {
+                if (sb.length() > 0) {
+                    sb.append('\n');
+                }
+                sb.append(zzij.m("http://", str, (String) this.coverFile.first));
+            }
+            while (i < 2) {
+                for (Map.Entry entry : (i == 0 ? map2 : map).entrySet()) {
+                    if (sb.length() > 0) {
+                        sb.append('\n');
+                    }
+                    sb.append(zzij.m("http://", str, (String) entry.getKey()));
+                    MediaMetadata mediaMetadata = ((ChromecastMedia) entry.getValue()).mediaMetadata;
+                    if (mediaMetadata != null) {
+                        MediaMetadata.throwIfWrongType(1, "com.google.android.gms.cast.metadata.TITLE");
+                        Bundle bundle = mediaMetadata.zza;
+                        String string = bundle.getString("com.google.android.gms.cast.metadata.TITLE");
+                        MediaMetadata.throwIfWrongType(1, "com.google.android.gms.cast.metadata.SUBTITLE");
+                        String string2 = bundle.getString("com.google.android.gms.cast.metadata.SUBTITLE");
+                        if (string != null) {
+                            sb.append(' ');
+                            sb.append(string);
+                        }
+                        if (string2 != null) {
+                            sb.append(" [");
+                            sb.append(string2);
+                            sb.append(']');
+                        }
+                    }
+                }
+                i++;
+            }
+            return NanoHTTPD.newFixedLengthResponse(status, "text/plain", sb.toString());
+        }
+        ChromecastMedia chromecastMedia = (ChromecastMedia) map2.get(path);
+        if (chromecastMedia == null) {
+            chromecastMedia = (ChromecastMedia) map.get(path);
+        }
+        if (chromecastMedia == null) {
+            Pair pair = this.coverFile;
+            File file = (pair == null || !((String) pair.first).equalsIgnoreCase(path)) ? null : (File) this.coverFile.second;
+            return file != null ? new NanoHTTPD.Response(status, "image/jpeg", new BufferedInputStream(new FileInputStream(file)), file.length()) : NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.NOT_FOUND, "text/plain", "file not found");
+        }
+        String str2 = (String) hTTPSession.headers.get("host");
+        Uri uri = chromecastMedia.internalUri;
+        boolean zStartsWith = uri.toString().startsWith("data:application/x-mpegurl;base64,");
+        String str3 = chromecastMedia.mimeType;
+        if (zStartsWith) {
+            return NanoHTTPD.newFixedLengthResponse(status, str3, new String(Base64.decode(uri.toString().substring(34), 0)).replaceAll("mtproto:", zzij.m("http://", str2, "/mtproto_")));
+        }
+        DataSource dataSourceCreateDataSource = (uri.toString().startsWith("file://") ? uri.toString().startsWith("file:///android_asset/") ? this.assetDataSourceFactory : this.fileDataSourceFactory : this.mediaDataSourceFactory).createDataSource();
+        Map map3 = Collections.EMPTY_MAP;
+        long j4 = 0;
+        long j5 = -1;
+        long jOpen = dataSourceCreateDataSource.open(new DataSpec(uri, null, map3, 0L, -1L, null, 0));
+        dataSourceCreateDataSource.close();
+        boolean zEquals3 = TextUtils.equals(str3, "application/x-mpegURL");
+        if (!zEquals3) {
+            z = zEquals3;
+            String str4 = (String) hTTPSession.headers.get("range");
+            if (!TextUtils.isEmpty(str4)) {
+                String strSubstring = str4.trim().substring(6);
+                if (strSubstring.startsWith("-")) {
+                    j3 = jOpen - 1;
+                    j2 = j3 - Long.parseLong(strSubstring.substring(1));
+                } else {
+                    String[] strArrSplit = strSubstring.split("-");
+                    j2 = Long.parseLong(strArrSplit[0]);
+                    j3 = strArrSplit.length > 1 ? Long.parseLong(strArrSplit[1]) : jOpen - 1;
+                }
+                long j6 = j2;
+                long j7 = jOpen - 1;
+                range = new Range(j6, j3 > j7 ? j7 : j3);
+            }
+            if (range != null) {
+                j = (range.end - range.start) + 1;
+            } else {
+                j = jOpen;
+            }
+            if (range != null) {
+                j5 = j;
+                j4 = range.start;
+            }
+            if (z) {
+                int i2 = (int) j;
+                byte[] bArr = new byte[i2];
+                dataSourceCreateDataSource.open(new DataSpec(uri, null, map3, j4, j5, null, 0));
+                dataSourceCreateDataSource.read(bArr, 0, i2);
+                dataSourceCreateDataSource.close();
+                return NanoHTTPD.newFixedLengthResponse(status, str3, new String(bArr).replaceAll("mtproto:", zzij.m("http://", str2, "/mtproto_")));
+            }
+            if (j != 0) {
+                DataSourceInputStream dataSourceInputStream = new DataSourceInputStream(dataSourceCreateDataSource, new DataSpec(uri, null, map3, j4, j5, null, 0));
+                if (range != null) {
+                    status = NanoHTTPD.Response.Status.PARTIAL_CONTENT;
+                }
+                responseNewFixedLengthResponse = new NanoHTTPD.Response(status, chromecastMedia.mimeType, dataSourceInputStream, j);
+            } else {
+                responseNewFixedLengthResponse = NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.NO_CONTENT, str3, "");
+            }
+            response = responseNewFixedLengthResponse;
+            if (range != null) {
+                response.addHeader("Content-Range", "bytes " + range.start + "-" + range.end + "/" + jOpen);
+            }
+            return response;
+        }
+        z = zEquals3;
+        jOpen = jOpen;
+        range = null;
+        if (range != null) {
+            j = (range.end - range.start) + 1;
+        } else {
+            j = jOpen;
+        }
+        if (range != null) {
+            j5 = j;
+            j4 = range.start;
+        }
+        if (z) {
+            int i3 = (int) j;
+            byte[] bArr2 = new byte[i3];
+            dataSourceCreateDataSource.open(new DataSpec(uri, null, map3, j4, j5, null, 0));
+            dataSourceCreateDataSource.read(bArr2, 0, i3);
+            dataSourceCreateDataSource.close();
+            return NanoHTTPD.newFixedLengthResponse(status, str3, new String(bArr2).replaceAll("mtproto:", zzij.m("http://", str2, "/mtproto_")));
+        }
+        if (j != 0) {
+            DataSourceInputStream dataSourceInputStream2 = new DataSourceInputStream(dataSourceCreateDataSource, new DataSpec(uri, null, map3, j4, j5, null, 0));
+            if (range != null) {
+                status = NanoHTTPD.Response.Status.PARTIAL_CONTENT;
+            }
+            responseNewFixedLengthResponse = new NanoHTTPD.Response(status, chromecastMedia.mimeType, dataSourceInputStream2, j);
+        } else {
+            responseNewFixedLengthResponse = NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.NO_CONTENT, str3, "");
+        }
+        response = responseNewFixedLengthResponse;
+        if (range != null) {
+            response.addHeader("Content-Range", "bytes " + range.start + "-" + range.end + "/" + jOpen);
+        }
+        return response;
+    }
+
+    public final void setCoverFile(File file, String str) {
         if (str == null || file == null) {
             Pair pair = this.coverFile;
             if (pair != null && ((File) pair.second).exists()) {
@@ -97,248 +407,10 @@ public class ChromecastFileServer extends NanoHTTPD {
         check();
     }
 
-    public File getCoverFile() {
-        Pair pair = this.coverFile;
-        if (pair == null) {
-            return null;
-        }
-        return (File) pair.second;
-    }
-
-    public String getCoverPath() {
-        Pair pair = this.coverFile;
-        if (pair == null) {
-            return null;
-        }
-        return (String) pair.first;
-    }
-
-    private void check() {
-        if (this.castedFiles.isEmpty()) {
-            if (this.started) {
-                stop();
-                this.started = false;
-                return;
-            }
-            return;
-        }
-        if (this.started) {
-            return;
-        }
-        try {
-            start(5000, true);
-            this.started = true;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public NanoHTTPD.Response serve(NanoHTTPD.IHTTPSession iHTTPSession) {
-        int iIncrementAndGet = this.reqId.incrementAndGet();
-        Log.d("CAST_SERVER", "Request " + iIncrementAndGet + " " + iHTTPSession.getMethod() + " " + iHTTPSession.getUri() + " " + ((String) iHTTPSession.getHeaders().get("range")));
-        try {
-            return addCorsHeaders(serveImpl(iHTTPSession));
-        } catch (Throwable unused) {
-            Log.d("CAST_SERVER", "Error " + iIncrementAndGet);
-            return addCorsHeaders(NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.INTERNAL_ERROR, "text/plain", "Error reading file"));
-        }
-    }
-
-    private NanoHTTPD.Response serveImpl(NanoHTTPD.IHTTPSession iHTTPSession) {
-        String str = (String) iHTTPSession.getHeaders().get("host");
-        String path = Uri.parse("http://" + str + iHTTPSession.getUri()).getPath();
-        if (NanoHTTPD.Method.OPTIONS.equals(iHTTPSession.getMethod())) {
-            return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, "text/plain", "");
-        }
-        if (TextUtils.equals(path, "/")) {
-            return serveAvailableRoutes(str);
-        }
-        ChromecastMedia file = getFile(path);
-        if (file != null) {
-            return serveFileImpl(iHTTPSession, file);
-        }
-        Pair pair = this.coverFile;
-        File file2 = (pair == null || !((String) pair.first).equalsIgnoreCase(path)) ? null : (File) this.coverFile.second;
-        if (file2 != null) {
-            return serveFileImpl(iHTTPSession, file2);
-        }
-        return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.NOT_FOUND, "text/plain", "file not found");
-    }
-
-    private NanoHTTPD.Response serveAvailableRoutes(String str) {
-        StringBuilder sb = new StringBuilder();
-        if (this.coverFile != null) {
-            if (sb.length() > 0) {
-                sb.append('\n');
-            }
-            sb.append(getUrlToSource(str, (String) this.coverFile.first));
-        }
-        int i = 0;
-        while (i < 2) {
-            for (Map.Entry entry : (i == 0 ? ASSET_FILES_MAP : this.castedFiles).entrySet()) {
-                if (sb.length() > 0) {
-                    sb.append('\n');
-                }
-                sb.append(getUrlToSource(str, (String) entry.getKey()));
-                MediaMetadata mediaMetadata = ((ChromecastMedia) entry.getValue()).mediaMetadata;
-                if (mediaMetadata != null) {
-                    String string = mediaMetadata.getString("com.google.android.gms.cast.metadata.TITLE");
-                    String string2 = mediaMetadata.getString("com.google.android.gms.cast.metadata.SUBTITLE");
-                    if (string != null) {
-                        sb.append(' ');
-                        sb.append(string);
-                    }
-                    if (string2 != null) {
-                        sb.append(" [");
-                        sb.append(string2);
-                        sb.append(']');
-                    }
-                }
-            }
-            i++;
-        }
-        return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, "text/plain", sb.toString());
-    }
-
-    private NanoHTTPD.Response serveFileImpl(NanoHTTPD.IHTTPSession iHTTPSession, ChromecastMedia chromecastMedia) {
-        NanoHTTPD.Response responseNewFixedLengthResponse;
-        String str = (String) iHTTPSession.getHeaders().get("host");
-        if (chromecastMedia.internalUri.toString().startsWith("data:application/x-mpegurl;base64,")) {
-            return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, chromecastMedia.mimeType, fixHlsManifest(new String(Base64.decode(chromecastMedia.internalUri.toString().substring(34), 0)), str));
-        }
-        DataSource dataSourceCreateDataSource = getDataSourceFactory(chromecastMedia).createDataSource();
-        DataSpec.Builder uri = new DataSpec.Builder().setUri(chromecastMedia.internalUri);
-        long jOpen = dataSourceCreateDataSource.open(uri.build());
-        dataSourceCreateDataSource.close();
-        boolean zEquals = TextUtils.equals(chromecastMedia.mimeType, "application/x-mpegURL");
-        Range rangeHeader = !zEquals ? parseRangeHeader((String) iHTTPSession.getHeaders().get("range"), jOpen) : null;
-        long j = rangeHeader != null ? (rangeHeader.end - rangeHeader.start) + 1 : jOpen;
-        if (rangeHeader != null) {
-            uri.setPosition(rangeHeader.start);
-            uri.setLength(j);
-        }
-        if (zEquals) {
-            int i = (int) j;
-            byte[] bArr = new byte[i];
-            dataSourceCreateDataSource.open(uri.build());
-            dataSourceCreateDataSource.read(bArr, 0, i);
-            dataSourceCreateDataSource.close();
-            return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, chromecastMedia.mimeType, fixHlsManifest(new String(bArr), str));
-        }
-        if (j != 0) {
-            responseNewFixedLengthResponse = NanoHTTPD.newFixedLengthResponse(rangeHeader != null ? NanoHTTPD.Response.Status.PARTIAL_CONTENT : NanoHTTPD.Response.Status.OK, chromecastMedia.mimeType, new DataSourceInputStream(dataSourceCreateDataSource, uri.build()), j);
-        } else {
-            responseNewFixedLengthResponse = NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.NO_CONTENT, chromecastMedia.mimeType, "");
-        }
-        if (rangeHeader != null) {
-            responseNewFixedLengthResponse.addHeader("Content-Range", "bytes " + rangeHeader.start + "-" + rangeHeader.end + "/" + jOpen);
-        }
-        return responseNewFixedLengthResponse;
-    }
-
-    private NanoHTTPD.Response serveFileImpl(NanoHTTPD.IHTTPSession iHTTPSession, File file) {
-        return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, "image/jpeg", new BufferedInputStream(new FileInputStream(file)), file.length());
-    }
-
-    private ChromecastMedia getFile(String str) {
-        ChromecastMedia chromecastMedia = (ChromecastMedia) ASSET_FILES_MAP.get(str);
-        return chromecastMedia == null ? (ChromecastMedia) this.castedFiles.get(str) : chromecastMedia;
-    }
-
-    private DataSource.Factory getDataSourceFactory(ChromecastMedia chromecastMedia) {
-        if (chromecastMedia.internalUri.toString().startsWith("file://")) {
-            if (chromecastMedia.internalUri.toString().startsWith("file:///android_asset/")) {
-                return this.assetDataSourceFactory;
-            }
-            return this.fileDataSourceFactory;
-        }
-        return this.mediaDataSourceFactory;
-    }
-
-    private static NanoHTTPD.Response addCorsHeaders(NanoHTTPD.Response response) {
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Max-Age", "3628800");
-        response.addHeader("Access-Control-Allow-Methods", "*");
-        response.addHeader("Access-Control-Allow-Headers", "*");
-        return response;
-    }
-
-    private static String fixHlsManifest(String str, String str2) {
-        return str.replaceAll("mtproto:", getUrlToSource(str2, "/mtproto_"));
-    }
-
-    private static Range parseRangeHeader(String str, long j) {
-        long j2;
-        long j3;
-        if (TextUtils.isEmpty(str)) {
-            return null;
-        }
-        String strSubstring = str.trim().substring(6);
-        if (strSubstring.startsWith("-")) {
-            j3 = j - 1;
-            j2 = j3 - Long.parseLong(strSubstring.substring(1));
-        } else {
-            String[] strArrSplit = strSubstring.split("-");
-            j2 = Long.parseLong(strArrSplit[0]);
-            j3 = strArrSplit.length > 1 ? Long.parseLong(strArrSplit[1]) : j - 1;
-        }
-        long j4 = j - 1;
-        if (j3 > j4) {
-            j3 = j4;
-        }
-        return new Range(j2, j3);
-    }
-
-    private static class Range {
-        final long end;
-        final long start;
-
-        public Range(long j, long j2) {
-            this.start = j;
-            this.end = j2;
-        }
-    }
-
-    public static String getUrlToSource(String str, String str2) {
-        return "http://" + str + str2;
-    }
-
-    public static String getHost() {
-        return formatIp4(getMyLocalIp()) + ":61578";
-    }
-
-    private static String formatIp4(int i) {
-        return String.valueOf(i & 255) + '.' + ((i >> 8) & 255) + '.' + ((i >> 16) & 255) + '.' + ((i >> 24) & 255);
-    }
-
-    private static int getMyLocalIp() {
-        int ipAddress = ((WifiManager) ApplicationLoader.applicationContext.getSystemService("wifi")).getConnectionInfo().getIpAddress();
-        if (ipAddress == 0) {
-            try {
-                Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-                while (networkInterfaces.hasMoreElements()) {
-                    Enumeration<InetAddress> inetAddresses = networkInterfaces.nextElement().getInetAddresses();
-                    while (inetAddresses.hasMoreElements()) {
-                        InetAddress inetAddressNextElement = inetAddresses.nextElement();
-                        if (inetAddressNextElement.isSiteLocalAddress()) {
-                            byte[] address = inetAddressNextElement.getAddress();
-                            ipAddress = (((address[3] + 256) % 256) << 24) + ((address[0] + 256) % 256) + (((address[1] + 256) % 256) << 8) + (((address[2] + 256) % 256) << 16);
-                        }
-                    }
-                }
-                return ipAddress;
-            } catch (SocketException e) {
-                FileLog.e(e);
-            }
-        }
-        return ipAddress;
-    }
-
-    private static class DataSourceInputStream extends InputStream implements AutoCloseable {
-        private long availableBytes;
-        private final DataSource dataSource;
-        private final byte[] tmpByte = new byte[1];
+    public final class DataSourceInputStream extends InputStream implements AutoCloseable {
+        public long availableBytes;
+        public final DataSource dataSource;
+        public final byte[] tmpByte = new byte[1];
 
         public DataSourceInputStream(DataSource dataSource, DataSpec dataSpec) {
             this.dataSource = dataSource;
@@ -350,33 +422,35 @@ public class ChromecastFileServer extends NanoHTTPD {
         }
 
         @Override
-        public int available() {
+        public final int available() {
             return (int) this.availableBytes;
         }
 
         @Override
-        public int read() {
-            int i = this.dataSource.read(this.tmpByte, 0, 1);
+        public final void close() {
+            this.dataSource.close();
+        }
+
+        @Override
+        public final int read() {
+            DataSource dataSource = this.dataSource;
+            byte[] bArr = this.tmpByte;
+            int i = dataSource.read(bArr, 0, 1);
             this.availableBytes--;
             if (i == -1) {
                 return -1;
             }
-            return this.tmpByte[0] & 255;
+            return bArr[0] & 255;
         }
 
         @Override
-        public int read(byte[] bArr, int i, int i2) {
+        public final int read(byte[] bArr, int i, int i2) {
             if (i2 == 0) {
                 return 0;
             }
             int i3 = this.dataSource.read(bArr, i, i2);
             this.availableBytes -= (long) i3;
             return i3;
-        }
-
-        @Override
-        public void close() {
-            this.dataSource.close();
         }
     }
 }

@@ -3,7 +3,6 @@ package org.telegram.ui.iv;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.text.Editable;
 import android.text.Layout;
 import android.view.View;
 import java.util.ArrayList;
@@ -14,15 +13,16 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
-import org.telegram.ui.Components.EditTextCaption;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda19;
 
-class RichCaptionController {
-    final RichEditText editText;
-    private boolean hijackingSelection;
-    private final Host host;
-    private final Theme.ResourcesProvider resourcesProvider;
+public final class RichCaptionController {
+    public final RichEditText editText;
+    public boolean hijackingSelection;
+    public final Host host;
+    public final Theme.ResourcesProvider resourcesProvider;
 
-    interface Host {
+    public interface Host {
         TextSelectionHelper.ArticleSelectableView cell();
 
         BlockRow currentRow();
@@ -39,12 +39,12 @@ class RichCaptionController {
 
         void onCaptionWillChange(int i, int i2);
 
-        void onRequestWindowFocusable(RichEditText richEditText, boolean z);
+        void onRequestWindowFocusable(RichEditText richEditText);
 
         TextSelectionHelper.ArticleTextSelectionHelper selectionHelper();
     }
 
-    RichCaptionController(Context context, Theme.ResourcesProvider resourcesProvider, final Host host) {
+    public RichCaptionController(Context context, Theme.ResourcesProvider resourcesProvider, Host host) {
         this.resourcesProvider = resourcesProvider;
         this.host = host;
         RichEditText richEditText = new RichEditText(context, resourcesProvider);
@@ -55,109 +55,12 @@ class RichCaptionController {
         richEditText.setGravity(8388659);
         richEditText.setTextSize(1, Math.max(8, SharedConfig.fontSize - 2));
         richEditText.setHint(LocaleController.getString(R.string.AddCaption));
-        richEditText.setListener(new AnonymousClass1(host));
-        richEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
-            @Override
-            public final void onSpansChanged() {
-                RichCaptionController.$r8$lambda$n1sUuvU1MNhRn1Nf4OolbWszShQ(this.f$0, host);
-            }
-        });
+        richEditText.setListener(new PhotoViewer.AnonymousClass14(13, this, host));
+        richEditText.setDelegate(new TodoItemMenu$$ExternalSyntheticLambda19(10, this, host));
         applyColors();
     }
 
-    class AnonymousClass1 implements RichEditText.Listener {
-        final Host val$host;
-
-        @Override
-        public boolean onBackspaceAtStart(RichEditText richEditText) {
-            return RichEditText.Listener.CC.$default$onBackspaceAtStart(this, richEditText);
-        }
-
-        @Override
-        public void onBackspaceOnEmpty(RichEditText richEditText) {
-            RichEditText.Listener.CC.$default$onBackspaceOnEmpty(this, richEditText);
-        }
-
-        @Override
-        public boolean onPaste(RichEditText richEditText) {
-            return RichEditText.Listener.CC.$default$onPaste(this, richEditText);
-        }
-
-        @Override
-        public boolean onTab(RichEditText richEditText, boolean z) {
-            return RichEditText.Listener.CC.$default$onTab(this, richEditText, z);
-        }
-
-        AnonymousClass1(Host host) {
-            this.val$host = host;
-        }
-
-        @Override
-        public void onEnterPressed(RichEditText richEditText) {
-            this.val$host.onCaptionEnter();
-        }
-
-        @Override
-        public void onTextWillChange(RichEditText richEditText, int i, int i2) {
-            this.val$host.onCaptionWillChange(i, i2);
-        }
-
-        @Override
-        public void onTextChanged(RichEditText richEditText, Editable editable) {
-            RichCaptionController.this.persist();
-            this.val$host.onCaptionChanged();
-        }
-
-        @Override
-        public void onRequestWindowFocusable(RichEditText richEditText, boolean z) {
-            this.val$host.onRequestWindowFocusable(richEditText, z);
-        }
-
-        @Override
-        public void onLockedInsert(RichEditText richEditText, CharSequence charSequence) {
-            this.val$host.onCaptionLockedInsert(charSequence);
-        }
-
-        @Override
-        public boolean onSelectAll(RichEditText richEditText) {
-            return this.val$host.onCaptionSelectAll();
-        }
-
-        @Override
-        public void onSelectionChanged(final RichEditText richEditText, final int i, final int i2) {
-            final TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelperSelectionHelper;
-            if (RichCaptionController.this.hijackingSelection || i == i2 || (articleTextSelectionHelperSelectionHelper = this.val$host.selectionHelper()) == null) {
-                return;
-            }
-            if (articleTextSelectionHelperSelectionHelper.isInSelectionMode() && articleTextSelectionHelperSelectionHelper.getSelectedCell() == this.val$host.cell()) {
-                return;
-            }
-            final Host host = this.val$host;
-            richEditText.post(new Runnable() {
-                @Override
-                public final void run() {
-                    RichCaptionController.AnonymousClass1.$r8$lambda$I_EWBiPSH2lv4l0Ypt9TL6n5u80(this.f$0, richEditText, i2, articleTextSelectionHelperSelectionHelper, host, i);
-                }
-            });
-        }
-
-        public static void $r8$lambda$I_EWBiPSH2lv4l0Ypt9TL6n5u80(AnonymousClass1 anonymousClass1, RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, Host host, int i2) {
-            anonymousClass1.getClass();
-            if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd() || !articleTextSelectionHelper.selectRangeOf(host.cell(), 0, i2, i)) {
-                return;
-            }
-            RichCaptionController.this.hijackingSelection = true;
-            richEditText.setSelection(i);
-            RichCaptionController.this.hijackingSelection = false;
-        }
-    }
-
-    public static void $r8$lambda$n1sUuvU1MNhRn1Nf4OolbWszShQ(RichCaptionController richCaptionController, Host host) {
-        richCaptionController.persist();
-        host.onCaptionSpansChanged();
-    }
-
-    static void ensureCaption(TL_iv.PageBlock pageBlock) {
+    public static void ensureCaption(TL_iv.PageBlock pageBlock) {
         if (pageBlock == null) {
             return;
         }
@@ -174,7 +77,15 @@ class RichCaptionController {
         }
     }
 
-    void bind() {
+    public final void applyColors() {
+        RichEditText richEditText = this.editText;
+        richEditText.updateColors();
+        int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider);
+        richEditText.setTextColor(Theme.multAlpha(0.5f, color));
+        richEditText.setHintTextColor(Theme.multAlpha(0.35f, color));
+    }
+
+    public final void bind() {
         TL_iv.PageBlock pageBlock;
         BlockRow blockRowCurrentRow = this.host.currentRow();
         if (blockRowCurrentRow == null || (pageBlock = blockRowCurrentRow.block) == null) {
@@ -182,14 +93,114 @@ class RichCaptionController {
         }
         ensureCaption(pageBlock);
         TL_iv.RichText richText = blockRowCurrentRow.block.caption.text;
-        if (String.valueOf(this.editText.getText()).equals(RichTextStyle.plainOf(richText))) {
+        String strPlainOf = RichTextStyle.plainOf(richText);
+        RichEditText richEditText = this.editText;
+        if (String.valueOf(richEditText.getText()).equals(strPlainOf)) {
             return;
         }
-        this.editText.setTextSilently(RichTextStyle.toSpannable(richText));
-        this.editText.invalidateEffects();
+        richEditText.setTextSilently(RichTextStyle.toSpannable(richText, null));
+        richEditText.invalidateEffects();
     }
 
-    void persist() {
+    public final void drawSelection(Canvas canvas) {
+        Host host = this.host;
+        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelperSelectionHelper = host.selectionHelper();
+        if (articleTextSelectionHelperSelectionHelper != null) {
+            RichEditText richEditText = this.editText;
+            if (richEditText.getLayout() == null) {
+                return;
+            }
+            canvas.save();
+            canvas.translate(richEditText.getPaddingLeft() + richEditText.getLeft(), richEditText.getPaddingTop() + richEditText.getTop());
+            articleTextSelectionHelperSelectionHelper.draw(canvas, host.cell(), 0);
+            canvas.restore();
+        }
+    }
+
+    public final void fillTextLayoutBlocks(ArrayList arrayList) {
+        RichEditText richEditText = this.editText;
+        final Layout layout = richEditText.getLayout();
+        if (layout == null) {
+            return;
+        }
+        final int paddingLeft = richEditText.getPaddingLeft() + richEditText.getLeft();
+        final int paddingTop = richEditText.getPaddingTop() + richEditText.getTop();
+        arrayList.add(new TextSelectionHelper.TextLayoutBlock() {
+            @Override
+            public final Layout getLayout() {
+                return layout;
+            }
+
+            @Override
+            public final CharSequence getPrefix() {
+                return null;
+            }
+
+            @Override
+            public final int getRow() {
+                return 0;
+            }
+
+            @Override
+            public final Rect getSelectionBounds() {
+                return null;
+            }
+
+            @Override
+            public final CharSequence getText() {
+                TL_iv.PageBlock pageBlock;
+                TL_iv.PageCaption pageCaption;
+                TL_iv.RichText richText;
+                BlockRow blockRowCurrentRow = RichCaptionController.this.host.currentRow();
+                return (blockRowCurrentRow == null || (pageBlock = blockRowCurrentRow.block) == null || (pageCaption = pageBlock.caption) == null || (richText = pageCaption.text) == null) ? "" : RichTextStyle.toSpannable(richText, null);
+            }
+
+            @Override
+            public final int getX() {
+                return paddingLeft;
+            }
+
+            @Override
+            public final int getY() {
+                return paddingTop;
+            }
+        });
+    }
+
+    public final boolean isPressOnCaption(int i, int i2) {
+        int lineForVertical;
+        RichEditText richEditText = this.editText;
+        Layout layout = richEditText.getLayout();
+        if (layout == null) {
+            return false;
+        }
+        int paddingLeft = i - (richEditText.getPaddingLeft() + richEditText.getLeft());
+        int paddingTop = i2 - (richEditText.getPaddingTop() + richEditText.getTop());
+        if (paddingTop >= 0 && paddingTop < layout.getHeight() && (lineForVertical = layout.getLineForVertical(paddingTop)) >= 0 && lineForVertical < layout.getLineCount()) {
+            float f = paddingLeft;
+            if (f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void layout(int i, int i2, int i3, int i4) {
+        int iDp = AndroidUtilities.dp(16.0f) + i;
+        int iMax = Math.max(iDp, (i3 - i2) - AndroidUtilities.dp(16.0f));
+        RichEditText richEditText = this.editText;
+        richEditText.layout(iDp, i4, iMax, richEditText.getMeasuredHeight() + i4);
+    }
+
+    public final int measure(int i, int i2, int i3) {
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, ((i3 - i) - i2) - (AndroidUtilities.dp(16.0f) * 2)), 1073741824);
+        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
+        RichEditText richEditText = this.editText;
+        richEditText.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
+        return richEditText.getMeasuredHeight();
+    }
+
+    public final void persist() {
         TL_iv.PageBlock pageBlock;
         BlockRow blockRowCurrentRow = this.host.currentRow();
         if (blockRowCurrentRow == null || (pageBlock = blockRowCurrentRow.block) == null) {
@@ -197,102 +208,5 @@ class RichCaptionController {
         }
         ensureCaption(pageBlock);
         blockRowCurrentRow.block.caption.text = RichTextStyle.fromSpannable(this.editText.getText());
-    }
-
-    void applyColors() {
-        this.editText.updateColors();
-        int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider);
-        this.editText.setTextColor(Theme.multAlpha(color, 0.5f));
-        this.editText.setHintTextColor(Theme.multAlpha(color, 0.35f));
-    }
-
-    int measure(int i, int i2, int i3) {
-        this.editText.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, ((i3 - i) - i2) - (AndroidUtilities.dp(16.0f) * 2)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        return this.editText.getMeasuredHeight();
-    }
-
-    void layout(int i, int i2, int i3, int i4) {
-        int iDp = i + AndroidUtilities.dp(16.0f);
-        this.editText.layout(iDp, i4, Math.max(iDp, (i3 - i2) - AndroidUtilities.dp(16.0f)), this.editText.getMeasuredHeight() + i4);
-    }
-
-    void fillTextLayoutBlocks(ArrayList arrayList) {
-        final Layout layout = this.editText.getLayout();
-        if (layout == null) {
-            return;
-        }
-        final int left = this.editText.getLeft() + this.editText.getPaddingLeft();
-        final int top = this.editText.getTop() + this.editText.getPaddingTop();
-        arrayList.add(new TextSelectionHelper.TextLayoutBlock() {
-            @Override
-            public CharSequence getPrefix() {
-                return TextSelectionHelper.TextLayoutBlock.CC.$default$getPrefix(this);
-            }
-
-            @Override
-            public int getRow() {
-                return 0;
-            }
-
-            @Override
-            public Rect getSelectionBounds() {
-                return TextSelectionHelper.TextLayoutBlock.CC.$default$getSelectionBounds(this);
-            }
-
-            @Override
-            public Layout getLayout() {
-                return layout;
-            }
-
-            @Override
-            public int getX() {
-                return left;
-            }
-
-            @Override
-            public int getY() {
-                return top;
-            }
-
-            @Override
-            public CharSequence getText() {
-                TL_iv.PageBlock pageBlock;
-                TL_iv.PageCaption pageCaption;
-                TL_iv.RichText richText;
-                BlockRow blockRowCurrentRow = RichCaptionController.this.host.currentRow();
-                if (blockRowCurrentRow == null || (pageBlock = blockRowCurrentRow.block) == null || (pageCaption = pageBlock.caption) == null || (richText = pageCaption.text) == null) {
-                    return "";
-                }
-                return RichTextStyle.toSpannable(richText);
-            }
-        });
-    }
-
-    void drawSelection(Canvas canvas) {
-        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelperSelectionHelper = this.host.selectionHelper();
-        if (articleTextSelectionHelperSelectionHelper == null || this.editText.getLayout() == null) {
-            return;
-        }
-        canvas.save();
-        canvas.translate(this.editText.getLeft() + this.editText.getPaddingLeft(), this.editText.getTop() + this.editText.getPaddingTop());
-        articleTextSelectionHelperSelectionHelper.draw(canvas, this.host.cell(), 0);
-        canvas.restore();
-    }
-
-    boolean isPressOnCaption(int i, int i2) {
-        int lineForVertical;
-        Layout layout = this.editText.getLayout();
-        if (layout == null) {
-            return false;
-        }
-        int left = i - (this.editText.getLeft() + this.editText.getPaddingLeft());
-        int top = i2 - (this.editText.getTop() + this.editText.getPaddingTop());
-        if (top >= 0 && top < layout.getHeight() && (lineForVertical = layout.getLineForVertical(top)) >= 0 && lineForVertical < layout.getLineCount()) {
-            float f = left;
-            if (f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

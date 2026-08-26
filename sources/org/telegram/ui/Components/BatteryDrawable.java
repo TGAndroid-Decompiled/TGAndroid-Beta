@@ -1,66 +1,114 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
+import org.telegram.ui.Cells.SlideIntChooseView;
 
-public class BatteryDrawable extends Drawable {
-    private Paint connectorPaint;
-    private Paint fillPaint;
-    private float fillValue;
-    private ValueAnimator fillValueAnimator;
-    private Paint paintReference;
-    private RectF rectTmp;
-    private float scale;
-    private Paint strokePaint;
-    private float translateY;
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
+public final class BatteryDrawable extends Drawable {
+    public final Paint connectorPaint;
+    public final Paint fillPaint;
+    public float fillValue;
+    public ValueAnimator fillValueAnimator;
+    public TextPaint paintReference;
+    public final RectF rectTmp;
+    public final float scale;
+    public final Paint strokePaint;
+    public float translateY;
 
     public BatteryDrawable() {
-        this.strokePaint = new Paint(1);
+        Paint paint = new Paint(1);
+        this.strokePaint = paint;
         this.connectorPaint = new Paint(1);
         this.fillPaint = new Paint(1);
         this.scale = 1.0f;
         this.translateY = 0.0f;
         this.fillValue = 1.0f;
         this.rectTmp = new RectF();
-        this.strokePaint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
-    public BatteryDrawable(float f, int i, int i2, float f2) {
-        this();
-        setFillValue(f, false);
-        setColor(i, i2);
-        setScale(f2);
+    @Override
+    public final void draw(Canvas canvas) {
+        if (getBounds() == null) {
+            return;
+        }
+        int i = getBounds().left;
+        int i2 = getBounds().top + ((int) this.translateY);
+        int iWidth = getBounds().width();
+        int iHeight = getBounds().height();
+        int iCenterX = getBounds().centerX();
+        int iCenterY = getBounds().centerY() + ((int) this.translateY);
+        TextPaint textPaint = this.paintReference;
+        Paint paint = this.fillPaint;
+        Paint paint2 = this.connectorPaint;
+        Paint paint3 = this.strokePaint;
+        if (textPaint != null) {
+            int color = textPaint.getColor();
+            paint3.setColor(color);
+            paint2.setColor(color);
+            paint.setColor(color);
+        }
+        float f = this.scale;
+        if (f != 1.0f) {
+            canvas.save();
+            canvas.scale(f, f, iCenterX, iCenterY);
+        }
+        paint3.setStrokeWidth(AndroidUtilities.dpf2(1.1f));
+        RectF rectF = this.rectTmp;
+        float f2 = i;
+        float f3 = iWidth;
+        float f4 = i2;
+        float f5 = iHeight;
+        rectF.set((((f3 - AndroidUtilities.dpf2(16.33f)) / 2.0f) + f2) - AndroidUtilities.dpf2(1.33f), ((f5 - AndroidUtilities.dpf2(10.33f)) / 2.0f) + f4, (((AndroidUtilities.dpf2(16.33f) + f3) / 2.0f) + f2) - AndroidUtilities.dpf2(1.33f), ((AndroidUtilities.dpf2(10.33f) + f5) / 2.0f) + f4);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(2.33f), paint3);
+        rectF.set((((f3 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f2) - AndroidUtilities.dpf2(1.66f), ((f5 - AndroidUtilities.dpf2(7.33f)) / 2.0f) + f4, Math.max(AndroidUtilities.dpf2(1.1f), this.fillValue * AndroidUtilities.dpf2(13.0f)) + ((((f3 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f2) - AndroidUtilities.dpf2(1.66f)), ((AndroidUtilities.dpf2(7.33f) + f5) / 2.0f) + f4);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(0.83f), AndroidUtilities.dpf2(0.83f), paint);
+        float f6 = iCenterY;
+        rectF.set((((AndroidUtilities.dpf2(17.5f) + f3) - AndroidUtilities.dpf2(4.66f)) / 2.0f) + f2, f6 - AndroidUtilities.dpf2(2.65f), ((AndroidUtilities.dpf2(4.66f) + (AndroidUtilities.dpf2(17.5f) + f3)) / 2.0f) + f2, AndroidUtilities.dpf2(2.65f) + f6);
+        canvas.drawArc(rectF, -90.0f, 180.0f, false, paint2);
+        if (f != 1.0f) {
+            canvas.restore();
+        }
     }
 
-    public void setScale(float f) {
-        this.scale = f;
-        invalidateSelf();
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(this.scale * 24.0f);
     }
 
-    public void setColor(int i) {
-        setColor(i, i);
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(this.scale * 24.0f);
     }
 
-    public void setColor(int i, int i2) {
-        this.strokePaint.setColor(i);
-        this.connectorPaint.setColor(i);
-        this.fillPaint.setColor(i2);
+    @Override
+    public final int getOpacity() {
+        return -2;
     }
 
-    public void setFillValue(float f, boolean z) {
-        final float fMax = Math.max(Math.min(f, 1.0f), 0.0f);
+    @Override
+    public final void setAlpha(int i) {
+        this.strokePaint.setAlpha(i);
+        this.connectorPaint.setAlpha(i);
+        this.fillPaint.setAlpha(i);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.strokePaint.setColorFilter(colorFilter);
+        this.connectorPaint.setColorFilter(colorFilter);
+        this.fillPaint.setColorFilter(colorFilter);
+    }
+
+    public final void setFillValue(float f, boolean z) {
+        float fMax = Math.max(Math.min(f, 1.0f), 0.0f);
         ValueAnimator valueAnimator = this.fillValueAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -73,96 +121,20 @@ public class BatteryDrawable extends Drawable {
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.fillValue, fMax);
         this.fillValueAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                BatteryDrawable.$r8$lambda$Ogs7G8iRdKf9wrLopXvdru_uIB8(this.f$0, valueAnimator2);
-            }
-        });
-        this.fillValueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                BatteryDrawable.this.fillValue = fMax;
-                BatteryDrawable.this.invalidateSelf();
-            }
-        });
+        valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 23));
+        this.fillValueAnimator.addListener(new SlideIntChooseView.AnonymousClass3(this, fMax, 4));
         this.fillValueAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.fillValueAnimator.setDuration(200L);
         this.fillValueAnimator.start();
     }
 
-    public static void $r8$lambda$Ogs7G8iRdKf9wrLopXvdru_uIB8(BatteryDrawable batteryDrawable, ValueAnimator valueAnimator) {
-        batteryDrawable.getClass();
-        batteryDrawable.fillValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        batteryDrawable.invalidateSelf();
-    }
-
-    public void colorFromPaint(Paint paint) {
-        this.paintReference = paint;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        if (getBounds() == null) {
-            return;
-        }
-        int i = getBounds().left;
-        int i2 = getBounds().top + ((int) this.translateY);
-        int iWidth = getBounds().width();
-        int iHeight = getBounds().height();
-        int iCenterX = getBounds().centerX();
-        int iCenterY = getBounds().centerY() + ((int) this.translateY);
-        Paint paint = this.paintReference;
-        if (paint != null) {
-            setColor(paint.getColor());
-        }
-        if (this.scale != 1.0f) {
-            canvas.save();
-            float f = this.scale;
-            canvas.scale(f, f, iCenterX, iCenterY);
-        }
-        this.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.1f));
-        float f2 = i;
-        float f3 = iWidth;
-        float f4 = i2;
-        float f5 = iHeight;
-        this.rectTmp.set((((f3 - AndroidUtilities.dpf2(16.33f)) / 2.0f) + f2) - AndroidUtilities.dpf2(1.33f), ((f5 - AndroidUtilities.dpf2(10.33f)) / 2.0f) + f4, (((AndroidUtilities.dpf2(16.33f) + f3) / 2.0f) + f2) - AndroidUtilities.dpf2(1.33f), ((AndroidUtilities.dpf2(10.33f) + f5) / 2.0f) + f4);
-        canvas.drawRoundRect(this.rectTmp, AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(2.33f), this.strokePaint);
-        this.rectTmp.set((((f3 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f2) - AndroidUtilities.dpf2(1.66f), ((f5 - AndroidUtilities.dpf2(7.33f)) / 2.0f) + f4, ((f2 + ((f3 - AndroidUtilities.dpf2(13.0f)) / 2.0f)) - AndroidUtilities.dpf2(1.66f)) + Math.max(AndroidUtilities.dpf2(1.1f), this.fillValue * AndroidUtilities.dpf2(13.0f)), f4 + ((f5 + AndroidUtilities.dpf2(7.33f)) / 2.0f));
-        canvas.drawRoundRect(this.rectTmp, AndroidUtilities.dpf2(0.83f), AndroidUtilities.dpf2(0.83f), this.fillPaint);
-        float f6 = iCenterY;
-        this.rectTmp.set((((AndroidUtilities.dpf2(17.5f) + f3) - AndroidUtilities.dpf2(4.66f)) / 2.0f) + f2, f6 - AndroidUtilities.dpf2(2.65f), f2 + (((f3 + AndroidUtilities.dpf2(17.5f)) + AndroidUtilities.dpf2(4.66f)) / 2.0f), f6 + AndroidUtilities.dpf2(2.65f));
-        canvas.drawArc(this.rectTmp, -90.0f, 180.0f, false, this.connectorPaint);
-        if (this.scale != 1.0f) {
-            canvas.restore();
-        }
-    }
-
-    public void setTranslationY(float f) {
-        this.translateY = f;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        this.strokePaint.setAlpha(i);
-        this.connectorPaint.setAlpha(i);
-        this.fillPaint.setAlpha(i);
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.strokePaint.setColorFilter(colorFilter);
-        this.connectorPaint.setColorFilter(colorFilter);
-        this.fillPaint.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(this.scale * 24.0f);
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(this.scale * 24.0f);
+    public BatteryDrawable(float f, int i) {
+        this();
+        setFillValue(f, false);
+        this.strokePaint.setColor(-1);
+        this.connectorPaint.setColor(-1);
+        this.fillPaint.setColor(i);
+        this.scale = 1.3f;
+        invalidateSelf();
     }
 }

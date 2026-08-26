@@ -8,50 +8,53 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.utils.Choreographer60FpsContent;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextCell;
+import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 
-public class ProfilePremiumCell extends TextCell {
-    private final int colorKey;
-    private final Runnable invalidateRunnable;
-    private final StarsReactionsSheet.Particles particles;
+public final class ProfilePremiumCell extends TextCell {
+    public final int colorKey;
+    public final PasscodeView$9$$ExternalSyntheticLambda0 invalidateRunnable;
+    public final StarsReactionsSheet.Particles particles;
 
     public ProfilePremiumCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider);
+        super(23, context, resourcesProvider, false, false);
         this.particles = new StarsReactionsSheet.Particles(1, 15);
-        this.invalidateRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.invalidate();
-            }
-        };
+        this.invalidateRunnable = new PasscodeView$9$$ExternalSyntheticLambda0(this, 17);
         this.colorKey = i == 1 ? Theme.key_starsGradient1 : Theme.key_premiumGradient2;
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        float x = this.imageView.getX() + (this.imageView.getWidth() / 2.0f);
-        float paddingTop = ((this.imageView.getPaddingTop() + this.imageView.getY()) + (this.imageView.getHeight() / 2.0f)) - AndroidUtilities.dp(3.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(x - AndroidUtilities.dp(16.0f), paddingTop - AndroidUtilities.dp(16.0f), x + AndroidUtilities.dp(16.0f), paddingTop + AndroidUtilities.dp(16.0f));
-        this.particles.setBounds(rectF);
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        if (LiteMode.isEnabled(131072)) {
-            this.particles.process();
-            this.particles.draw(canvas, Theme.getColor(this.colorKey));
-            Choreographer60FpsContent.getInstance().addFrameCallback(this.invalidateRunnable, 15);
+    public final void dispatchDraw(Canvas canvas) {
+        boolean zIsEnabled = LiteMode.isEnabled(131072);
+        PasscodeView$9$$ExternalSyntheticLambda0 passcodeView$9$$ExternalSyntheticLambda0 = this.invalidateRunnable;
+        if (zIsEnabled) {
+            StarsReactionsSheet.Particles particles = this.particles;
+            particles.process();
+            particles.draw(canvas, Theme.getColor(null, this.colorKey, false), 1.0f);
+            Choreographer60FpsContent.getInstance().addFrameCallback(15, passcodeView$9$$ExternalSyntheticLambda0);
         } else {
-            Choreographer60FpsContent.getInstance().removeFrameCallback(this.invalidateRunnable);
+            Choreographer60FpsContent.getInstance().removeFrameCallback(passcodeView$9$$ExternalSyntheticLambda0);
         }
         super.dispatchDraw(canvas);
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Choreographer60FpsContent.getInstance().removeFrameCallback(this.invalidateRunnable);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        RLottieImageView rLottieImageView = this.imageView;
+        float width = (rLottieImageView.getWidth() / 2.0f) + rLottieImageView.getX();
+        float height = ((rLottieImageView.getHeight() / 2.0f) + (rLottieImageView.getY() + rLottieImageView.getPaddingTop())) - AndroidUtilities.dp(3.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(width - AndroidUtilities.dp(16.0f), height - AndroidUtilities.dp(16.0f), width + AndroidUtilities.dp(16.0f), height + AndroidUtilities.dp(16.0f));
+        StarsReactionsSheet.Particles particles = this.particles;
+        particles.bounds.set(rectF);
+        particles.removeParticlesOutside();
     }
 }

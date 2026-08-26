@@ -5,45 +5,22 @@ import android.graphics.ColorFilter;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import org.telegram.ui.iv.RichDetailsCell;
 
-public class ClipRoundedDrawable extends Drawable {
-    private Drawable drawable;
-    private Path path;
-    private Drawable.Callback callback = new Drawable.Callback() {
-        @Override
-        public void invalidateDrawable(Drawable drawable) {
-            ClipRoundedDrawable.this.invalidateSelf();
-        }
-
-        @Override
-        public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
-            ClipRoundedDrawable.this.scheduleSelf(runnable, j);
-        }
-
-        @Override
-        public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-            ClipRoundedDrawable.this.unscheduleSelf(runnable);
-        }
-    };
-    private RectF tempBounds = new RectF();
-    private RectF padding = new RectF();
-    private boolean hasRadius = false;
-    private float[] radii = new float[8];
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
+public final class ClipRoundedDrawable extends Drawable {
+    public final Drawable drawable;
+    public boolean hasRadius;
+    public final RectF padding;
+    public Path path;
+    public final float[] radii;
+    public final RectF tempBounds;
 
     public ClipRoundedDrawable(Drawable drawable) {
-        setDrawable(drawable);
-    }
-
-    public Drawable getDrawable() {
-        return this.drawable;
-    }
-
-    public void setDrawable(Drawable drawable) {
+        RichDetailsCell.AnonymousClass1 anonymousClass1 = new RichDetailsCell.AnonymousClass1(this, 4);
+        this.tempBounds = new RectF();
+        this.padding = new RectF();
+        this.hasRadius = false;
+        this.radii = new float[8];
         Drawable drawable2 = this.drawable;
         if (drawable2 != null) {
             drawable2.setCallback(null);
@@ -51,37 +28,64 @@ public class ClipRoundedDrawable extends Drawable {
         this.drawable = drawable;
         if (drawable != null) {
             drawable.setBounds(getBounds());
-            this.drawable.setCallback(this.callback);
+            drawable.setCallback(anonymousClass1);
         }
     }
 
-    public ClipRoundedDrawable setRadii(float f, float f2, float f3, float f4) {
-        float[] fArr = this.radii;
-        float fMax = Math.max(0.0f, f);
-        boolean z = true;
-        fArr[1] = fMax;
-        fArr[0] = fMax;
-        float[] fArr2 = this.radii;
-        float fMax2 = Math.max(0.0f, f2);
-        fArr2[3] = fMax2;
-        fArr2[2] = fMax2;
-        float[] fArr3 = this.radii;
-        float fMax3 = Math.max(0.0f, f3);
-        fArr3[5] = fMax3;
-        fArr3[4] = fMax3;
-        float[] fArr4 = this.radii;
-        float fMax4 = Math.max(0.0f, f4);
-        fArr4[7] = fMax4;
-        fArr4[6] = fMax4;
-        if (f <= 0.0f && f2 <= 0.0f && f3 <= 0.0f && f4 <= 0.0f) {
-            z = false;
+    @Override
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.drawable;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            if (!this.hasRadius) {
+                canvas.save();
+                canvas.clipRect(getBounds());
+                drawable.draw(canvas);
+                canvas.restore();
+                return;
+            }
+            canvas.save();
+            updatePath();
+            canvas.clipPath(this.path);
+            drawable.draw(canvas);
+            canvas.restore();
         }
-        this.hasRadius = z;
-        updatePath();
-        return this;
     }
 
-    private void updatePath() {
+    @Override
+    public final int getIntrinsicHeight() {
+        Drawable drawable = this.drawable;
+        return drawable != null ? drawable.getIntrinsicHeight() : super.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        Drawable drawable = this.drawable;
+        return drawable != null ? drawable.getIntrinsicWidth() : super.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        Drawable drawable = this.drawable;
+        if (drawable != null) {
+            drawable.setAlpha(i);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Drawable drawable = this.drawable;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        }
+    }
+
+    public final void updatePath() {
         if (this.hasRadius) {
             Path path = this.path;
             if (path == null) {
@@ -89,8 +93,8 @@ public class ClipRoundedDrawable extends Drawable {
             } else {
                 path.rewind();
             }
-            this.tempBounds.set(getBounds());
             RectF rectF = this.tempBounds;
+            rectF.set(getBounds());
             float f = rectF.left;
             RectF rectF2 = this.padding;
             rectF.left = f + rectF2.left;
@@ -99,59 +103,5 @@ public class ClipRoundedDrawable extends Drawable {
             rectF.bottom -= rectF2.bottom;
             this.path.addRoundRect(rectF, this.radii, Path.Direction.CW);
         }
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        Drawable drawable = this.drawable;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            if (!this.hasRadius) {
-                canvas.save();
-                canvas.clipRect(getBounds());
-                this.drawable.draw(canvas);
-                canvas.restore();
-                return;
-            }
-            canvas.save();
-            updatePath();
-            canvas.clipPath(this.path);
-            this.drawable.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        Drawable drawable = this.drawable;
-        if (drawable != null) {
-            drawable.setAlpha(i);
-        }
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.drawable;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        Drawable drawable = this.drawable;
-        if (drawable != null) {
-            return drawable.getIntrinsicWidth();
-        }
-        return super.getIntrinsicWidth();
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        Drawable drawable = this.drawable;
-        if (drawable != null) {
-            return drawable.getIntrinsicHeight();
-        }
-        return super.getIntrinsicHeight();
     }
 }

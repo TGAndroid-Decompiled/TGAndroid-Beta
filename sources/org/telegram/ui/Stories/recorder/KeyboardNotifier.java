@@ -7,123 +7,62 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.ItemOptions$$ExternalSyntheticLambda13;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda28;
 
 public class KeyboardNotifier {
-    private boolean awaitingKeyboard;
+    public boolean awaitingKeyboard;
     public boolean ignoring;
-    private int keyboardHeight;
-    private int lastKeyboardHeight;
-    private final Utilities.Callback listener;
-    private boolean mMinusNavBar;
-    private boolean mUseInsets;
-    private final ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener;
-    private final View.OnLayoutChangeListener onLayoutChangeListener;
-    private View realRootView;
-    private final Rect rect;
-    private final View rootView;
-
-    public KeyboardNotifier(View view, Utilities.Callback callback) {
-        this(view, false, callback);
-    }
+    public int keyboardHeight;
+    public int lastKeyboardHeight;
+    public final Utilities.Callback listener;
+    public boolean mMinusNavBar;
+    public boolean mUseInsets;
+    public final LaunchActivity$$ExternalSyntheticLambda28 onGlobalLayoutListener;
+    public final ItemOptions$$ExternalSyntheticLambda13 onLayoutChangeListener;
+    public View realRootView;
+    public final Rect rect = new Rect();
+    public final View rootView;
 
     public KeyboardNotifier(final View view, final boolean z, Utilities.Callback callback) {
-        this.rect = new Rect();
-        View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
-            @Override
-            public final void onLayoutChange(View view2, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-                this.f$0.update();
-            }
-        };
-        this.onLayoutChangeListener = onLayoutChangeListener;
-        ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public final void onGlobalLayout() {
-                this.f$0.update();
-            }
-        };
-        this.onGlobalLayoutListener = onGlobalLayoutListener;
+        ItemOptions$$ExternalSyntheticLambda13 itemOptions$$ExternalSyntheticLambda13 = new ItemOptions$$ExternalSyntheticLambda13(this, 3);
+        this.onLayoutChangeListener = itemOptions$$ExternalSyntheticLambda13;
+        LaunchActivity$$ExternalSyntheticLambda28 launchActivity$$ExternalSyntheticLambda28 = new LaunchActivity$$ExternalSyntheticLambda28(this, 2);
+        this.onGlobalLayoutListener = launchActivity$$ExternalSyntheticLambda28;
         this.rootView = view;
         this.listener = callback;
         this.realRootView = view;
         if (view.isAttachedToWindow()) {
-            view.getViewTreeObserver().addOnGlobalLayoutListener(onGlobalLayoutListener);
-            view.addOnLayoutChangeListener(onLayoutChangeListener);
+            view.getViewTreeObserver().addOnGlobalLayoutListener(launchActivity$$ExternalSyntheticLambda28);
+            view.addOnLayoutChangeListener(itemOptions$$ExternalSyntheticLambda13);
         }
         view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
             @Override
-            public void onViewAttachedToWindow(View view2) {
-                if (z) {
-                    KeyboardNotifier.this.realRootView = view2.getRootView();
+            public final void onViewAttachedToWindow(View view2) {
+                boolean z2 = z;
+                KeyboardNotifier keyboardNotifier = KeyboardNotifier.this;
+                if (z2) {
+                    keyboardNotifier.realRootView = view2.getRootView();
                 }
-                view.getViewTreeObserver().addOnGlobalLayoutListener(KeyboardNotifier.this.onGlobalLayoutListener);
-                view.addOnLayoutChangeListener(KeyboardNotifier.this.onLayoutChangeListener);
+                View view3 = view;
+                view3.getViewTreeObserver().addOnGlobalLayoutListener(keyboardNotifier.onGlobalLayoutListener);
+                view3.addOnLayoutChangeListener(keyboardNotifier.onLayoutChangeListener);
             }
 
             @Override
-            public void onViewDetachedFromWindow(View view2) {
-                view.getViewTreeObserver().removeOnGlobalLayoutListener(KeyboardNotifier.this.onGlobalLayoutListener);
-                view.removeOnLayoutChangeListener(KeyboardNotifier.this.onLayoutChangeListener);
+            public final void onViewDetachedFromWindow(View view2) {
+                View view3 = view;
+                ViewTreeObserver viewTreeObserver = view3.getViewTreeObserver();
+                KeyboardNotifier keyboardNotifier = KeyboardNotifier.this;
+                viewTreeObserver.removeOnGlobalLayoutListener(keyboardNotifier.onGlobalLayoutListener);
+                view3.removeOnLayoutChangeListener(keyboardNotifier.onLayoutChangeListener);
             }
         });
     }
 
-    public KeyboardNotifier useInsets() {
-        this.mUseInsets = true;
-        return this;
-    }
-
-    public KeyboardNotifier useMinusNavbar() {
-        this.mMinusNavBar = true;
-        return this;
-    }
-
-    public void update() {
-        if (this.ignoring) {
-            return;
-        }
-        if (this.mUseInsets) {
-            View view = this.realRootView;
-            if (view == null) {
-                view = this.rootView;
-            }
-            WindowInsetsCompat rootWindowInsets = ViewCompat.getRootWindowInsets(view);
-            this.keyboardHeight = rootWindowInsets != null ? rootWindowInsets.getInsets(WindowInsetsCompat.Type.ime()).bottom : 0;
-        } else {
-            this.rootView.getWindowVisibleDisplayFrame(this.rect);
-            View view2 = this.realRootView;
-            if (view2 == null) {
-                view2 = this.rootView;
-            }
-            this.keyboardHeight = view2.getHeight() - this.rect.bottom;
-        }
-        if (this.mMinusNavBar) {
-            this.keyboardHeight = Math.max(0, this.keyboardHeight - AndroidUtilities.navigationBarHeight);
-        }
-        int i = this.lastKeyboardHeight;
-        int i2 = this.keyboardHeight;
-        boolean z = i != i2;
-        this.lastKeyboardHeight = i2;
-        if (z) {
-            fire();
-        }
-    }
-
-    public int getKeyboardHeight() {
-        return this.keyboardHeight;
-    }
-
-    public boolean keyboardVisible() {
-        return this.keyboardHeight > AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(20.0f) || this.awaitingKeyboard;
-    }
-
-    public void ignore(boolean z) {
-        this.ignoring = z;
-        update();
-    }
-
-    public void fire() {
+    public final void fire() {
         if (this.awaitingKeyboard) {
-            if (this.keyboardHeight < AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(20.0f)) {
+            if (this.keyboardHeight < AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight) {
                 return;
             } else {
                 this.awaitingKeyboard = false;
@@ -135,7 +74,41 @@ public class KeyboardNotifier {
         }
     }
 
-    public void awaitKeyboard() {
-        this.awaitingKeyboard = true;
+    public final boolean keyboardVisible() {
+        return this.keyboardHeight > AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight || this.awaitingKeyboard;
+    }
+
+    public final void update() {
+        if (this.ignoring) {
+            return;
+        }
+        boolean z = this.mUseInsets;
+        View view = this.rootView;
+        if (z) {
+            View view2 = this.realRootView;
+            if (view2 != null) {
+                view = view2;
+            }
+            WindowInsetsCompat rootWindowInsets = ViewCompat.getRootWindowInsets(view);
+            this.keyboardHeight = rootWindowInsets != null ? rootWindowInsets.mImpl.getInsets(8).bottom : 0;
+        } else {
+            Rect rect = this.rect;
+            view.getWindowVisibleDisplayFrame(rect);
+            View view3 = this.realRootView;
+            if (view3 != null) {
+                view = view3;
+            }
+            this.keyboardHeight = view.getHeight() - rect.bottom;
+        }
+        if (this.mMinusNavBar) {
+            this.keyboardHeight = Math.max(0, this.keyboardHeight - AndroidUtilities.navigationBarHeight);
+        }
+        int i = this.lastKeyboardHeight;
+        int i2 = this.keyboardHeight;
+        boolean z2 = i != i2;
+        this.lastKeyboardHeight = i2;
+        if (z2) {
+            fire();
+        }
     }
 }

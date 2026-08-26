@@ -17,8 +17,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
-import me.vkryl.android.animator.BoolAnimator;
-import me.vkryl.android.animator.FactorAnimator;
+import com.google.android.gms.internal.mlkit_vision_label.zzdq;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ImageLocation;
@@ -27,211 +26,85 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.utils.DrawableUtils;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.blur3.utils.NinePatchBuilder;
 
-public class GiftMessageDrawable extends Drawable {
-    private boolean alwaysUseAvatarAnimator;
-    private final BoolAnimator animatorAvatarVisible;
-    private final AvatarDrawable avatarDrawable;
-    private final int avatarLeftPadding;
-    private final int avatarRadius;
-    private final ImageReceiver avatarReceiver;
-    private final int avatarSize;
-    private NinePatchDrawable bubble;
-    private NinePatchDrawable bubbleBorder;
-    private AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans;
-    private final float firstBaselineTop;
-    private boolean hasAvatar;
-    private final float lastBaselineBottom;
-    private int lastMeasuredWidth;
-    private int measuredHeight;
-    private int measuredWidth;
-    private CharSequence message;
-    private final int minHeight;
-    private View parentView;
-    private float textDrawX;
-    private float textDrawY;
-    private StaticLayout textLayout;
-    private final int textPaddingH;
-    private final TextPaint textPaint;
-
-    @Override
-    public int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
+public final class GiftMessageDrawable extends Drawable {
+    public final AvatarDrawable avatarDrawable;
+    public final int avatarLeftPadding;
+    public final ImageReceiver avatarReceiver;
+    public final int avatarSize;
+    public NinePatchDrawable bubble;
+    public NinePatchDrawable bubbleBorder;
+    public AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans;
+    public final float firstBaselineTop;
+    public boolean hasAvatar;
+    public final float lastBaselineBottom;
+    public int lastMeasuredWidth;
+    public int measuredHeight;
+    public int measuredWidth;
+    public CharSequence message;
+    public final int minHeight;
+    public View parentView;
+    public float textDrawX;
+    public float textDrawY;
+    public StaticLayout textLayout;
+    public final int textPaddingH;
+    public final TextPaint textPaint;
 
     public GiftMessageDrawable() {
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.avatarReceiver = imageReceiver;
-        this.avatarDrawable = new AvatarDrawable();
+        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
         int iDp = AndroidUtilities.dp(10.66f);
-        this.avatarRadius = iDp;
         this.avatarSize = iDp * 2;
         this.avatarLeftPadding = AndroidUtilities.dp(4.0f);
         this.firstBaselineTop = AndroidUtilities.dpf2(15.33f);
         this.lastBaselineBottom = AndroidUtilities.dpf2(7.33f);
         this.textPaddingH = AndroidUtilities.dp(8.0f);
         this.minHeight = (int) AndroidUtilities.dpf2(22.66f);
-        this.animatorAvatarVisible = new BoolAnimator(0, new FactorAnimator.Target() {
-            @Override
-            public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-                FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
-            }
-
-            @Override
-            public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-                this.f$0.invalidateSelf();
-            }
-        }, CubicBezierInterpolator.EASE_OUT_QUINT, 320L, true);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setColor(-1);
         imageReceiver.setRoundRadius(iDp);
     }
 
-    private void ensureNinePatches() {
-        if (this.bubble == null) {
-            this.bubble = createBubbleNinePatch(R.drawable.gift_message_bubble_24);
-        }
-        if (this.bubbleBorder == null) {
-            this.bubbleBorder = createBubbleBorderNinePatch(R.drawable.gift_message_bubble_border_24);
-        }
-    }
-
-    public TextPaint getTextPaint() {
-        return this.textPaint;
-    }
-
-    public void setParentView(View view) {
-        this.parentView = view;
-        this.avatarReceiver.setParentView(view);
-    }
-
-    public void setMessage(CharSequence charSequence) {
-        this.message = charSequence;
-        this.lastMeasuredWidth = -1;
-    }
-
-    public void setUser(TLObject tLObject) {
-        boolean z = tLObject != null;
-        this.hasAvatar = z;
-        if (z) {
-            this.avatarDrawable.setInfo(tLObject);
-            if (tLObject instanceof TLRPC.User) {
-                this.avatarReceiver.setImage(ImageLocation.getForUser((TLRPC.User) tLObject, 1), "48_48", this.avatarDrawable, null, null, 0);
-            } else if (tLObject instanceof TLRPC.Chat) {
-                this.avatarReceiver.setImage(ImageLocation.getForChat((TLRPC.Chat) tLObject, 1), "48_48", this.avatarDrawable, null, null, 0);
-            } else {
-                this.avatarReceiver.setImageBitmap(this.avatarDrawable);
-            }
-        }
-        this.lastMeasuredWidth = -1;
-    }
-
-    public void attach() {
-        this.avatarReceiver.onAttachedToWindow();
-    }
-
-    public void detach() {
-        this.avatarReceiver.onDetachedFromWindow();
-        AnimatedEmojiSpan.release((View) null, this.emojiGroupedSpans);
-        this.emojiGroupedSpans = null;
-    }
-
-    private int getTextLeftPadding() {
-        return ((this.hasAvatar || this.alwaysUseAvatarAnimator) ? this.avatarLeftPadding + this.avatarSize : 0) + this.textPaddingH;
-    }
-
-    public int getLineCount() {
-        StaticLayout staticLayout = this.textLayout;
-        if (staticLayout != null) {
-            return staticLayout.getLineCount();
-        }
-        return 0;
-    }
-
-    public int measure(int i) {
-        int iCeil;
-        ensureNinePatches();
-        if (i == this.lastMeasuredWidth && this.textLayout != null) {
-            return this.measuredHeight;
-        }
-        this.lastMeasuredWidth = i;
-        int textLeftPadding = getTextLeftPadding();
-        int i2 = (i - textLeftPadding) - this.textPaddingH;
-        if (i2 <= 0 || TextUtils.isEmpty(this.message)) {
-            this.textLayout = null;
-            int i3 = this.minHeight;
-            this.measuredWidth = i3;
-            this.measuredHeight = i3;
-            return i3;
-        }
-        StaticLayout staticLayout = new StaticLayout(this.message, this.textPaint, i2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        int lineCount = staticLayout.getLineCount();
-        float fMax = 0.0f;
-        float fMax2 = 0.0f;
-        for (int i4 = 0; i4 < lineCount; i4++) {
-            fMax2 = Math.max(fMax2, staticLayout.getLineWidth(i4));
-        }
-        if (lineCount > 1 && (iCeil = (int) Math.ceil(fMax2)) < i2) {
-            StaticLayout staticLayout2 = new StaticLayout(this.message, this.textPaint, iCeil, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            if (staticLayout2.getLineCount() == lineCount) {
-                for (int i5 = 0; i5 < staticLayout2.getLineCount(); i5++) {
-                    fMax = Math.max(fMax, staticLayout2.getLineWidth(i5));
-                }
-                fMax2 = fMax;
-                staticLayout = staticLayout2;
-            }
-        }
-        this.textLayout = staticLayout;
-        this.textDrawX = textLeftPadding;
-        this.measuredWidth = ((int) Math.ceil(fMax2)) + textLeftPadding + this.textPaddingH;
-        int lineCount2 = this.textLayout.getLineCount() - 1;
-        float lineBaseline = this.textLayout.getLineBaseline(0);
-        int iMax = Math.max(this.minHeight, (int) Math.ceil(this.firstBaselineTop + (this.textLayout.getLineBaseline(lineCount2) - lineBaseline) + this.lastBaselineBottom));
-        this.measuredHeight = iMax;
-        this.textDrawY = this.firstBaselineTop - lineBaseline;
-        return iMax;
-    }
-
     @Override
-    public int getMinimumWidth() {
-        return this.measuredWidth;
-    }
-
-    @Override
-    public int getMinimumHeight() {
-        return this.measuredHeight;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        float f;
+    public final void draw(Canvas canvas) {
         ensureNinePatches();
         Rect bounds = getBounds();
         canvas.save();
-        if (this.alwaysUseAvatarAnimator) {
-            float floatValue = this.animatorAvatarVisible.getFloatValue();
-            canvas.translate(((-(this.avatarLeftPadding + this.avatarSize)) / 2.0f) * (1.0f - floatValue), 0.0f);
-            f = floatValue;
+        boolean z = this.hasAvatar;
+        float f = z ? 1.0f : 0.0f;
+        NinePatchDrawable ninePatchDrawable = this.bubble;
+        int i = bounds.left;
+        int i2 = this.avatarLeftPadding;
+        int i3 = this.avatarSize;
+        int i4 = i + (z ? i2 + i3 : 0);
+        int i5 = bounds.top;
+        int i6 = bounds.right;
+        int i7 = bounds.bottom;
+        Rect rect = DrawableUtils.tmpRect;
+        if (ninePatchDrawable.getPadding(rect)) {
+            ninePatchDrawable.setBounds(i4 - rect.left, i5 - rect.top, i6 + rect.right, i7 + rect.bottom);
         } else {
-            f = this.hasAvatar ? 1.0f : 0.0f;
+            ninePatchDrawable.setBounds(i4, i5, i6, i7);
         }
-        DrawableUtils.setBoundsIncreasePadding(this.bubble, bounds.left + (this.hasAvatar ? this.avatarLeftPadding + this.avatarSize : 0), bounds.top, bounds.right, bounds.bottom);
         this.bubble.draw(canvas);
-        DrawableUtils.setBoundsIncreasePadding(this.bubbleBorder, bounds.left + (this.hasAvatar ? this.avatarLeftPadding + this.avatarSize : 0), bounds.top, bounds.right, bounds.bottom);
+        NinePatchDrawable ninePatchDrawable2 = this.bubbleBorder;
+        int i8 = bounds.left + (this.hasAvatar ? i2 + i3 : 0);
+        int i9 = bounds.top;
+        int i10 = bounds.right;
+        int i11 = bounds.bottom;
+        if (ninePatchDrawable2.getPadding(rect)) {
+            ninePatchDrawable2.setBounds(i8 - rect.left, i9 - rect.top, i10 + rect.right, i11 + rect.bottom);
+        } else {
+            ninePatchDrawable2.setBounds(i8, i9, i10, i11);
+        }
         this.bubbleBorder.draw(canvas);
         if (this.textLayout != null) {
             canvas.save();
@@ -246,47 +119,153 @@ public class GiftMessageDrawable extends Drawable {
             canvas.restore();
         }
         if (f > 0.0f) {
-            int i = bounds.left;
-            int i2 = bounds.bottom;
-            int i3 = this.avatarSize;
-            float f2 = i2 - i3;
-            float f3 = i3;
-            this.avatarReceiver.setImageCoords(i, f2, f3, f3);
+            int i12 = bounds.left;
+            int i13 = bounds.bottom - i3;
+            ImageReceiver imageReceiver = this.avatarReceiver;
+            float f2 = i3;
+            imageReceiver.setImageCoords(i12, i13, f2, f2);
             canvas.save();
-            canvas.scale(f, f, this.avatarReceiver.getCenterX(), this.avatarReceiver.getCenterY());
-            this.avatarReceiver.draw(canvas);
+            canvas.scale(f, f, imageReceiver.getCenterX(), imageReceiver.getCenterY());
+            imageReceiver.draw(canvas);
             canvas.restore();
         }
         canvas.restore();
     }
 
-    private static NinePatchDrawable createBubbleNinePatch(int i) {
-        Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(i);
-        int intrinsicWidth = drawable.getIntrinsicWidth();
-        int intrinsicHeight = drawable.getIntrinsicHeight();
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmapCreateBitmap);
-        drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-        drawable.draw(canvas);
-        int i2 = (intrinsicHeight * 4) / 144;
-        return NinePatchBuilder.createNinePatch(bitmapCreateBitmap, new Rect((intrinsicWidth * 27) / 168, i2, (intrinsicWidth * 5) / 168, i2), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
+    public final void ensureNinePatches() {
+        if (this.bubble == null) {
+            Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_24);
+            int intrinsicWidth = drawable.getIntrinsicWidth();
+            int intrinsicHeight = drawable.getIntrinsicHeight();
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmapCreateBitmap);
+            drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+            drawable.draw(canvas);
+            int i = (intrinsicHeight * 4) / 144;
+            this.bubble = zzdq.createNinePatch(bitmapCreateBitmap, new Rect((intrinsicWidth * 27) / 168, i, (intrinsicWidth * 5) / 168, i), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
+        }
+        if (this.bubbleBorder == null) {
+            Drawable drawable2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_border_24);
+            int intrinsicWidth2 = drawable2.getIntrinsicWidth();
+            int intrinsicHeight2 = drawable2.getIntrinsicHeight();
+            Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ARGB_8888);
+            Canvas canvas2 = new Canvas(bitmapCreateBitmap2);
+            drawable2.setBounds(0, 0, intrinsicWidth2, intrinsicHeight2);
+            drawable2.draw(canvas2);
+            Paint paint = new Paint(1);
+            float f = intrinsicWidth2;
+            float f2 = intrinsicHeight2;
+            paint.setShader(new LinearGradient(f, 0.0f, 0.0f, f2, new int[]{1090519039, -805306369, 1090519039}, (float[]) null, Shader.TileMode.CLAMP));
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+            canvas2.drawRect(0.0f, 0.0f, f, f2, paint);
+            int i2 = (intrinsicHeight2 * 4) / 144;
+            this.bubbleBorder = zzdq.createNinePatch(bitmapCreateBitmap2, new Rect((intrinsicWidth2 * 27) / 168, i2, (intrinsicWidth2 * 5) / 168, i2), (intrinsicWidth2 * 94) / 168, (intrinsicHeight2 * 71) / 144);
+        }
     }
 
-    private static NinePatchDrawable createBubbleBorderNinePatch(int i) {
-        Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(i);
-        int intrinsicWidth = drawable.getIntrinsicWidth();
-        int intrinsicHeight = drawable.getIntrinsicHeight();
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmapCreateBitmap);
-        drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-        drawable.draw(canvas);
-        Paint paint = new Paint(1);
-        float f = intrinsicWidth;
-        float f2 = intrinsicHeight;
-        paint.setShader(new LinearGradient(f, 0.0f, 0.0f, f2, new int[]{1090519039, -805306369, 1090519039}, (float[]) null, Shader.TileMode.CLAMP));
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
-        canvas.drawRect(0.0f, 0.0f, f, f2, paint);
-        int i2 = (intrinsicHeight * 4) / 144;
-        return NinePatchBuilder.createNinePatch(bitmapCreateBitmap, new Rect((intrinsicWidth * 27) / 168, i2, (intrinsicWidth * 5) / 168, i2), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
+    @Override
+    public final int getMinimumHeight() {
+        return this.measuredHeight;
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        return this.measuredWidth;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    public final void measure(int i) {
+        float f;
+        int i2;
+        float f2;
+        int iCeil;
+        ensureNinePatches();
+        if (i != this.lastMeasuredWidth || this.textLayout == null) {
+            this.lastMeasuredWidth = i;
+            int i3 = !this.hasAvatar ? 0 : this.avatarLeftPadding + this.avatarSize;
+            int i4 = this.textPaddingH;
+            int i5 = i3 + i4;
+            int i6 = (i - i5) - i4;
+            int i7 = this.minHeight;
+            if (i6 <= 0 || TextUtils.isEmpty(this.message)) {
+                this.textLayout = null;
+                this.measuredWidth = i7;
+                this.measuredHeight = i7;
+                return;
+            }
+            CharSequence charSequence = this.message;
+            TextPaint textPaint = this.textPaint;
+            StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i6, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            int lineCount = staticLayout.getLineCount();
+            float fMax = 0.0f;
+            for (int i8 = 0; i8 < lineCount; i8++) {
+                fMax = Math.max(fMax, staticLayout.getLineWidth(i8));
+            }
+            if (lineCount > 1 && (iCeil = (int) Math.ceil(fMax)) < i6) {
+                i2 = 1;
+                f = fMax;
+                StaticLayout staticLayout2 = new StaticLayout(this.message, textPaint, iCeil, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                if (staticLayout2.getLineCount() == lineCount) {
+                    float fMax2 = 0.0f;
+                    for (int i9 = 0; i9 < staticLayout2.getLineCount(); i9++) {
+                        fMax2 = Math.max(fMax2, staticLayout2.getLineWidth(i9));
+                    }
+                    f2 = fMax2;
+                    staticLayout = staticLayout2;
+                }
+                this.textLayout = staticLayout;
+                this.textDrawX = i5;
+                this.measuredWidth = ((int) Math.ceil(f2)) + i5 + i4;
+                int lineCount2 = this.textLayout.getLineCount() - i2;
+                float lineBaseline = this.textLayout.getLineBaseline(0);
+                float lineBaseline2 = this.textLayout.getLineBaseline(lineCount2) - lineBaseline;
+                float f3 = this.firstBaselineTop;
+                this.measuredHeight = Math.max(i7, (int) Math.ceil(lineBaseline2 + f3 + this.lastBaselineBottom));
+                this.textDrawY = f3 - lineBaseline;
+            }
+            f = fMax;
+            i2 = 1;
+            f2 = f;
+            this.textLayout = staticLayout;
+            this.textDrawX = i5;
+            this.measuredWidth = ((int) Math.ceil(f2)) + i5 + i4;
+            int lineCount3 = this.textLayout.getLineCount() - i2;
+            float lineBaseline3 = this.textLayout.getLineBaseline(0);
+            float lineBaseline4 = this.textLayout.getLineBaseline(lineCount3) - lineBaseline3;
+            float f4 = this.firstBaselineTop;
+            this.measuredHeight = Math.max(i7, (int) Math.ceil(lineBaseline4 + f4 + this.lastBaselineBottom));
+            this.textDrawY = f4 - lineBaseline3;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public final void setUser(TLObject tLObject) {
+        boolean z = tLObject != null;
+        this.hasAvatar = z;
+        if (z) {
+            AvatarDrawable avatarDrawable = this.avatarDrawable;
+            avatarDrawable.setInfo(tLObject);
+            boolean z2 = tLObject instanceof TLRPC.User;
+            ImageReceiver imageReceiver = this.avatarReceiver;
+            if (z2) {
+                imageReceiver.setImage(ImageLocation.getForUser((TLRPC.User) tLObject, 1), "48_48", avatarDrawable, null, null, 0);
+            } else if (tLObject instanceof TLRPC.Chat) {
+                imageReceiver.setImage(ImageLocation.getForChat((TLRPC.Chat) tLObject, 1), "48_48", avatarDrawable, null, null, 0);
+            } else {
+                imageReceiver.setImageBitmap(avatarDrawable);
+            }
+        }
+        this.lastMeasuredWidth = -1;
     }
 }

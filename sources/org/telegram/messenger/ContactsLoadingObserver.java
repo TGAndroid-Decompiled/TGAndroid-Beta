@@ -9,12 +9,7 @@ public final class ContactsLoadingObserver {
     private final int currentAccount;
     private final Handler handler;
     private final NotificationCenter notificationCenter;
-    private final NotificationCenter.NotificationCenterDelegate observer = new NotificationCenter.NotificationCenterDelegate() {
-        @Override
-        public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-            ContactsLoadingObserver.$r8$lambda$U2XpPtohMROBuh2rWH3LHh87PCE(this.f$0, i, i2, objArr);
-        }
-    };
+    private final NotificationCenter.NotificationCenterDelegate observer = new TelegramMediaSession$$ExternalSyntheticLambda4(this, 1);
     private final Runnable releaseRunnable;
     private boolean released;
 
@@ -22,39 +17,41 @@ public final class ContactsLoadingObserver {
         void onResult(boolean z);
     }
 
-    public static void observe(Callback callback, long j) {
-        new ContactsLoadingObserver(callback).start(j);
-    }
-
-    public static void $r8$lambda$U2XpPtohMROBuh2rWH3LHh87PCE(ContactsLoadingObserver contactsLoadingObserver, int i, int i2, Object[] objArr) {
-        contactsLoadingObserver.getClass();
-        if (i == NotificationCenter.contactsDidLoad) {
-            contactsLoadingObserver.onContactsLoadingStateUpdated(i2, false);
-        }
-    }
-
     private ContactsLoadingObserver(Callback callback) {
         this.callback = callback;
         int i = UserConfig.selectedAccount;
         this.currentAccount = i;
-        this.releaseRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                ContactsLoadingObserver contactsLoadingObserver = this.f$0;
-                contactsLoadingObserver.onContactsLoadingStateUpdated(contactsLoadingObserver.currentAccount, true);
-            }
-        };
+        this.releaseRunnable = new ANRDetector$$ExternalSyntheticLambda0(this, 17);
         this.contactsController = ContactsController.getInstance(i);
         this.notificationCenter = NotificationCenter.getInstance(i);
         this.handler = new Handler(Looper.myLooper());
     }
 
-    public void start(long j) {
-        if (onContactsLoadingStateUpdated(this.currentAccount, false)) {
-            return;
+    public void lambda$new$0(int i, int i2, Object[] objArr) {
+        if (i == NotificationCenter.contactsDidLoad) {
+            onContactsLoadingStateUpdated(i2, false);
         }
-        this.notificationCenter.addObserver(this.observer, NotificationCenter.contactsDidLoad);
-        this.handler.postDelayed(this.releaseRunnable, j);
+    }
+
+    public void lambda$new$1() {
+        onContactsLoadingStateUpdated(this.currentAccount, true);
+    }
+
+    public static void observe(Callback callback, long j) {
+        new ContactsLoadingObserver(callback).start(j);
+    }
+
+    private boolean onContactsLoadingStateUpdated(int i, boolean z) {
+        if (this.released) {
+            return false;
+        }
+        boolean z2 = this.contactsController.contactsLoaded;
+        if (!z2 && !z) {
+            return false;
+        }
+        release();
+        this.callback.onResult(z2);
+        return true;
     }
 
     public void release() {
@@ -72,16 +69,11 @@ public final class ContactsLoadingObserver {
         this.released = true;
     }
 
-    public boolean onContactsLoadingStateUpdated(int i, boolean z) {
-        if (this.released) {
-            return false;
+    public void start(long j) {
+        if (onContactsLoadingStateUpdated(this.currentAccount, false)) {
+            return;
         }
-        boolean z2 = this.contactsController.contactsLoaded;
-        if (!z2 && !z) {
-            return false;
-        }
-        release();
-        this.callback.onResult(z2);
-        return true;
+        this.notificationCenter.addObserver(this.observer, NotificationCenter.contactsDidLoad);
+        this.handler.postDelayed(this.releaseRunnable, j);
     }
 }

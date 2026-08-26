@@ -1,8 +1,8 @@
 package org.telegram.ui.Stars;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.text.TextUtils;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -11,38 +11,152 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChannelMonetizationLayout;
+import org.telegram.ui.ChatEditActivity$$ExternalSyntheticLambda52;
+import org.telegram.ui.LinkManager$$ExternalSyntheticLambda3;
+import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda0;
 
-public class BotStarsController {
-    private static volatile BotStarsController[] Instance = new BotStarsController[4];
-    private static final Object[] lockObjects = new Object[4];
+public final class BotStarsController {
+    public static volatile BotStarsController[] Instance = new BotStarsController[4];
+    public static final Object[] lockObjects = new Object[4];
     public ArrayList adminedBots;
     public ArrayList adminedChannels;
     public final int currentAccount;
-    private boolean loadingAdminedBots;
-    private boolean loadingAdminedChannels;
-    private final HashMap lastLoadedBotStarsStats = new HashMap();
-    private final HashMap botStarsStats = new HashMap();
-    private final HashMap lastLoadedTonStats = new HashMap();
-    private final HashMap tonStats = new HashMap();
-    private final HashMap transactions = new HashMap();
-    private final HashMap connectedBots = new HashMap();
-    private final HashMap suggestedBots = new HashMap();
+    public boolean loadingAdminedBots;
+    public boolean loadingAdminedChannels;
+    public final HashMap lastLoadedBotStarsStats = new HashMap();
+    public final HashMap botStarsStats = new HashMap();
+    public final HashMap lastLoadedTonStats = new HashMap();
+    public final HashMap tonStats = new HashMap();
+    public final HashMap transactions = new HashMap();
+    public final HashMap connectedBots = new HashMap();
+    public final HashMap suggestedBots = new HashMap();
+
+    public final class ChannelConnectedBots {
+        public final ArrayList bots = new ArrayList();
+        public int count;
+        public final int currentAccount;
+        public final long dialogId;
+        public boolean endReached;
+        public boolean error;
+        public long lastRequestTime;
+        public boolean loading;
+        public int reqId;
+
+        public ChannelConnectedBots(int i, long j) {
+            this.loading = false;
+            this.error = false;
+            this.currentAccount = i;
+            this.dialogId = j;
+            if (System.currentTimeMillis() - this.lastRequestTime > 900000) {
+                this.count = 0;
+                this.error = false;
+                this.endReached = false;
+                if (this.reqId != 0) {
+                    ConnectionsManager.getInstance(i).cancelRequest(this.reqId, true);
+                    this.reqId = 0;
+                }
+                this.loading = false;
+                load();
+            }
+        }
+
+        public final void load() {
+            if (this.loading || this.error || this.endReached) {
+                return;
+            }
+            this.lastRequestTime = System.currentTimeMillis();
+            this.loading = true;
+            TL_payments.getConnectedStarRefBots getconnectedstarrefbots = new TL_payments.getConnectedStarRefBots();
+            int i = this.currentAccount;
+            getconnectedstarrefbots.peer = MessagesController.getInstance(i).getInputPeer(this.dialogId);
+            getconnectedstarrefbots.limit = 20;
+            ArrayList arrayList = this.bots;
+            if (!arrayList.isEmpty()) {
+                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList);
+                getconnectedstarrefbots.flags |= 4;
+                getconnectedstarrefbots.offset_date = connectedbotstarref.date;
+                getconnectedstarrefbots.offset_link = connectedbotstarref.url;
+            }
+            this.reqId = ConnectionsManager.getInstance(i).sendRequest(getconnectedstarrefbots, new LinkManager$$ExternalSyntheticLambda3(this, 24));
+        }
+    }
+
+    public final class ChannelSuggestedBots {
+        public int count;
+        public final int currentAccount;
+        public final long dialogId;
+        public boolean endReached;
+        public boolean error;
+        public String lastOffset;
+        public long lastRequestTime;
+        public boolean loading;
+        public final ArrayList bots = new ArrayList();
+        public int sorting = 1;
+
+        public ChannelSuggestedBots(int i, long j) {
+            this.loading = false;
+            this.error = false;
+            this.lastOffset = null;
+            this.currentAccount = i;
+            this.dialogId = j;
+            if (System.currentTimeMillis() - this.lastRequestTime > 900000) {
+                this.count = 0;
+                this.endReached = false;
+                this.error = false;
+                this.lastRequestTime = 0L;
+                this.lastOffset = null;
+                this.loading = false;
+                load();
+            }
+        }
+
+        public final void load() {
+            if (this.loading || this.error || this.endReached) {
+                return;
+            }
+            this.lastRequestTime = System.currentTimeMillis();
+            this.loading = true;
+            TL_payments.getSuggestedStarRefBots getsuggestedstarrefbots = new TL_payments.getSuggestedStarRefBots();
+            int i = this.currentAccount;
+            getsuggestedstarrefbots.peer = MessagesController.getInstance(i).getInputPeer(this.dialogId);
+            getsuggestedstarrefbots.limit = 20;
+            int i2 = this.sorting;
+            getsuggestedstarrefbots.order_by_date = i2 == 3;
+            getsuggestedstarrefbots.order_by_revenue = i2 == 2;
+            if (TextUtils.isEmpty(this.lastOffset)) {
+                getsuggestedstarrefbots.offset = "";
+            } else {
+                getsuggestedstarrefbots.offset = this.lastOffset;
+            }
+            ConnectionsManager.getInstance(i).sendRequest(getsuggestedstarrefbots, new LinkManager$$ExternalSyntheticLambda3(this, 25));
+        }
+    }
+
+    public final class TransactionsState {
+        public final ArrayList[] transactions = {new ArrayList(), new ArrayList(), new ArrayList()};
+        public final boolean[] transactionsExist = new boolean[3];
+        public final String[] offset = new String[3];
+        public final boolean[] loading = new boolean[3];
+        public final boolean[] endReached = new boolean[3];
+    }
 
     static {
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
         }
+    }
+
+    public BotStarsController(int i) {
+        this.currentAccount = i;
     }
 
     public static BotStarsController getInstance(int i) {
@@ -67,20 +181,91 @@ public class BotStarsController {
         return botStarsController;
     }
 
-    private BotStarsController(int i) {
-        this.currentAccount = i;
+    public final boolean botHasStars(long j) {
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
+        TLRPC.TL_payments_starsRevenueStats starsRevenueStats = getStarsRevenueStats(j, false);
+        return (starsRevenueStats == null || (tL_starsRevenueStatus = starsRevenueStats.status) == null || (tL_starsRevenueStatus.available_balance.amount <= 0 && tL_starsRevenueStatus.overall_revenue.amount <= 0 && tL_starsRevenueStatus.current_balance.amount <= 0)) ? false : true;
     }
 
-    public TL_stars.StarsAmount getBotStarsBalance(long j) {
-        TLRPC.TL_payments_starsRevenueStats starsRevenueStats = getStarsRevenueStats(j);
+    public final boolean botHasTON(long j) {
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
+        TLRPC.TL_payments_starsRevenueStats tONRevenueStats = getTONRevenueStats(j, false);
+        return (tONRevenueStats == null || (tL_starsRevenueStatus = tONRevenueStats.status) == null || (tL_starsRevenueStatus.current_balance.amount <= 0 && tL_starsRevenueStatus.available_balance.amount <= 0 && tL_starsRevenueStatus.overall_revenue.amount <= 0)) ? false : true;
+    }
+
+    public final TL_stars.StarsAmount getBotStarsBalance(long j) {
+        TLRPC.TL_payments_starsRevenueStats starsRevenueStats = getStarsRevenueStats(j, false);
         return starsRevenueStats == null ? TL_stars.StarsAmount.ofStars(0L) : starsRevenueStats.status.current_balance;
     }
 
-    public void invalidateStarsBalance(long j) {
-        getStarsRevenueStats(j, true);
+    public final ChannelConnectedBots getChannelConnectedBots(long j) {
+        HashMap map = this.connectedBots;
+        ChannelConnectedBots channelConnectedBots = (ChannelConnectedBots) map.get(Long.valueOf(j));
+        if (channelConnectedBots != null) {
+            return channelConnectedBots;
+        }
+        Long lValueOf = Long.valueOf(j);
+        ChannelConnectedBots channelConnectedBots2 = new ChannelConnectedBots(this.currentAccount, j);
+        map.put(lValueOf, channelConnectedBots2);
+        return channelConnectedBots2;
     }
 
-    public long getTONBalance(long j) {
+    public final ChannelSuggestedBots getChannelSuggestedBots(long j) {
+        HashMap map = this.suggestedBots;
+        ChannelSuggestedBots channelSuggestedBots = (ChannelSuggestedBots) map.get(Long.valueOf(j));
+        if (channelSuggestedBots != null) {
+            return channelSuggestedBots;
+        }
+        Long lValueOf = Long.valueOf(j);
+        ChannelSuggestedBots channelSuggestedBots2 = new ChannelSuggestedBots(this.currentAccount, j);
+        map.put(lValueOf, channelSuggestedBots2);
+        return channelSuggestedBots2;
+    }
+
+    public final void getConnectedBot(Context context, long j, long j2, Utilities.Callback callback) {
+        ChannelConnectedBots channelConnectedBots = (ChannelConnectedBots) this.connectedBots.get(Long.valueOf(j));
+        if (channelConnectedBots != null) {
+            int i = 0;
+            while (true) {
+                ArrayList arrayList = channelConnectedBots.bots;
+                if (i >= arrayList.size()) {
+                    break;
+                }
+                if (!((TL_payments.connectedBotStarRef) arrayList.get(i)).revoked && ((TL_payments.connectedBotStarRef) arrayList.get(i)).bot_id == j2) {
+                    callback.run((TL_payments.connectedBotStarRef) arrayList.get(i));
+                    return;
+                }
+                i++;
+            }
+        }
+        AlertDialog alertDialog = new AlertDialog(context, 3, null);
+        TL_payments.getConnectedStarRefBot getconnectedstarrefbot = new TL_payments.getConnectedStarRefBot();
+        int i2 = this.currentAccount;
+        getconnectedstarrefbot.peer = MessagesController.getInstance(i2).getInputPeer(j);
+        getconnectedstarrefbot.bot = MessagesController.getInstance(i2).getInputUser(j2);
+        int iSendRequest = ConnectionsManager.getInstance(i2).sendRequest(getconnectedstarrefbot, new StarGiftSheet$$ExternalSyntheticLambda162(this, alertDialog, j2, callback, 7));
+        alertDialog.canCacnel = true;
+        alertDialog.setOnCancelListener(new ChatEditActivity$$ExternalSyntheticLambda52(this, iSendRequest, 8));
+        AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
+        AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
+        AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 200L);
+    }
+
+    public final TLRPC.TL_payments_starsRevenueStats getStarsRevenueStats(long j, boolean z) {
+        Long l = (Long) this.lastLoadedBotStarsStats.get(Long.valueOf(j));
+        TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) this.botStarsStats.get(Long.valueOf(j));
+        if (l != null && System.currentTimeMillis() - l.longValue() <= 300000 && !z) {
+            return tL_payments_starsRevenueStats;
+        }
+        TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
+        tL_payments_getStarsRevenueStats.dark = Theme.currentTheme.isDark();
+        int i = this.currentAccount;
+        tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(i).getInputPeer(j);
+        ConnectionsManager.getInstance(i).sendRequest(tL_payments_getStarsRevenueStats, new BotStarsController$$ExternalSyntheticLambda0(this, j, 0));
+        return tL_payments_starsRevenueStats;
+    }
+
+    public final long getTONBalance(long j) {
         TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
         TL_stars.StarsAmount starsAmount;
         TLRPC.TL_payments_starsRevenueStats tONRevenueStats = getTONRevenueStats(j, false);
@@ -90,91 +275,7 @@ public class BotStarsController {
         return starsAmount.amount;
     }
 
-    public long getAvailableBalance(long j) {
-        TLRPC.TL_payments_starsRevenueStats starsRevenueStats = getStarsRevenueStats(j);
-        if (starsRevenueStats == null) {
-            return 0L;
-        }
-        return starsRevenueStats.status.available_balance.amount;
-    }
-
-    public boolean isStarsBalanceAvailable(long j) {
-        return getStarsRevenueStats(j) != null;
-    }
-
-    public boolean isTONBalanceAvailable(long j) {
-        return getTONRevenueStats(j, false) != null;
-    }
-
-    public TLRPC.TL_payments_starsRevenueStats getStarsRevenueStats(long j) {
-        return getStarsRevenueStats(j, false);
-    }
-
-    public boolean botHasStars(long j) {
-        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
-        TLRPC.TL_payments_starsRevenueStats starsRevenueStats = getStarsRevenueStats(j);
-        if (starsRevenueStats == null || (tL_starsRevenueStatus = starsRevenueStats.status) == null) {
-            return false;
-        }
-        return tL_starsRevenueStatus.available_balance.amount > 0 || tL_starsRevenueStatus.overall_revenue.amount > 0 || tL_starsRevenueStatus.current_balance.amount > 0;
-    }
-
-    public boolean botHasTON(long j) {
-        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
-        TLRPC.TL_payments_starsRevenueStats tONRevenueStats = getTONRevenueStats(j, false);
-        return (tONRevenueStats == null || (tL_starsRevenueStatus = tONRevenueStats.status) == null || (tL_starsRevenueStatus.current_balance.amount <= 0 && tL_starsRevenueStatus.available_balance.amount <= 0 && tL_starsRevenueStatus.overall_revenue.amount <= 0)) ? false : true;
-    }
-
-    public void preloadStarsStats(long j) {
-        Long l = (Long) this.lastLoadedBotStarsStats.get(Long.valueOf(j));
-        getStarsRevenueStats(j, l == null || System.currentTimeMillis() - l.longValue() > 30000);
-    }
-
-    public void preloadTonStats(long j) {
-        Long l = (Long) this.lastLoadedTonStats.get(Long.valueOf(j));
-        getTONRevenueStats(j, l == null || System.currentTimeMillis() - l.longValue() > 30000);
-    }
-
-    public TLRPC.TL_payments_starsRevenueStats getStarsRevenueStats(final long j, boolean z) {
-        Long l = (Long) this.lastLoadedBotStarsStats.get(Long.valueOf(j));
-        TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) this.botStarsStats.get(Long.valueOf(j));
-        if (l != null && System.currentTimeMillis() - l.longValue() <= 300000 && !z) {
-            return tL_payments_starsRevenueStats;
-        }
-        TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
-        tL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
-        tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.m4087$r8$lambda$KbPi69xXbiMIuc4szqdvonZMps(this.f$0, j, tLObject, tL_error);
-            }
-        });
-        return tL_payments_starsRevenueStats;
-    }
-
-    public static void m4087$r8$lambda$KbPi69xXbiMIuc4szqdvonZMps(final BotStarsController botStarsController, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        botStarsController.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BotStarsController.$r8$lambda$wQbHBLsVnDCORSblXs6cJDL9hJ8(this.f$0, tLObject, j);
-            }
-        });
-    }
-
-    public static void $r8$lambda$wQbHBLsVnDCORSblXs6cJDL9hJ8(BotStarsController botStarsController, TLObject tLObject, long j) {
-        botStarsController.getClass();
-        if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
-            botStarsController.botStarsStats.put(Long.valueOf(j), (TLRPC.TL_payments_starsRevenueStats) tLObject);
-        } else {
-            botStarsController.botStarsStats.put(Long.valueOf(j), null);
-        }
-        botStarsController.lastLoadedBotStarsStats.put(Long.valueOf(j), Long.valueOf(System.currentTimeMillis()));
-        NotificationCenter.getInstance(botStarsController.currentAccount).postNotificationName(NotificationCenter.botStarsUpdated, Long.valueOf(j));
-    }
-
-    public TLRPC.TL_payments_starsRevenueStats getTONRevenueStats(final long j, boolean z) {
+    public final TLRPC.TL_payments_starsRevenueStats getTONRevenueStats(long j, boolean z) {
         Long l = (Long) this.lastLoadedTonStats.get(Long.valueOf(j));
         TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) this.tonStats.get(Long.valueOf(j));
         if (l != null && System.currentTimeMillis() - l.longValue() <= 300000 && !z) {
@@ -182,118 +283,70 @@ public class BotStarsController {
         }
         TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
         tL_payments_getStarsRevenueStats.ton = true;
-        tL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
-        tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-j);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.$r8$lambda$OGEjdIAq99LZVqQzwhcs4xrYkG0(this.f$0, j, tLObject, tL_error);
-            }
-        }, null, null, 0, chatFull != null ? chatFull.stats_dc : Integer.MAX_VALUE, 1, true);
+        tL_payments_getStarsRevenueStats.dark = Theme.currentTheme.isDark();
+        int i = this.currentAccount;
+        tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(i).getInputPeer(j);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i).getChatFull(-j);
+        ConnectionsManager.getInstance(i).sendRequest(tL_payments_getStarsRevenueStats, new BotStarsController$$ExternalSyntheticLambda0(this, j, 1), null, null, 0, chatFull != null ? chatFull.stats_dc : Integer.MAX_VALUE, 1, true);
         return tL_payments_starsRevenueStats;
     }
 
-    public static void $r8$lambda$OGEjdIAq99LZVqQzwhcs4xrYkG0(final BotStarsController botStarsController, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        botStarsController.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BotStarsController.m4086$r8$lambda$FdHsq8Iu5m9EPD6mu5CD8juE8o(this.f$0, tLObject, j);
-            }
-        });
-    }
-
-    public static void m4086$r8$lambda$FdHsq8Iu5m9EPD6mu5CD8juE8o(BotStarsController botStarsController, TLObject tLObject, long j) {
-        botStarsController.getClass();
-        if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
-            botStarsController.tonStats.put(Long.valueOf(j), (TLRPC.TL_payments_starsRevenueStats) tLObject);
-        } else {
-            botStarsController.tonStats.put(Long.valueOf(j), null);
-        }
-        botStarsController.lastLoadedTonStats.put(Long.valueOf(j), Long.valueOf(System.currentTimeMillis()));
-        NotificationCenter.getInstance(botStarsController.currentAccount).postNotificationName(NotificationCenter.botStarsUpdated, Long.valueOf(j));
-    }
-
-    public void onUpdate(TL_update.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {
-        if (tL_updateStarsRevenueStatus == null) {
-            return;
-        }
-        long peerDialogId = DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer);
-        if (peerDialogId < 0) {
-            ChannelMonetizationLayout channelMonetizationLayout = ChannelMonetizationLayout.instance;
-            if (channelMonetizationLayout == null || channelMonetizationLayout.dialogId != DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer)) {
-                return;
-            }
-            ChannelMonetizationLayout channelMonetizationLayout2 = ChannelMonetizationLayout.instance;
-            TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus = tL_updateStarsRevenueStatus.status;
-            channelMonetizationLayout2.setupBalances(tL_starsRevenueStatus.current_balance instanceof TL_stars.TL_starsTonAmount, tL_starsRevenueStatus);
-            ChannelMonetizationLayout.instance.reloadTransactions();
-            return;
-        }
-        TLRPC.TL_payments_starsRevenueStats starsRevenueStats = getStarsRevenueStats(peerDialogId, true);
-        if (starsRevenueStats != null) {
-            starsRevenueStats.status = tL_updateStarsRevenueStatus.status;
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.botStarsUpdated, Long.valueOf(peerDialogId));
-        }
-        invalidateTransactions(peerDialogId, true);
-    }
-
-    class TransactionsState {
-        private final boolean[] endReached;
-        private final boolean[] loading;
-        private final String[] offset;
-        public final ArrayList[] transactions;
-        public final boolean[] transactionsExist;
-
-        private TransactionsState() {
-            this.transactions = new ArrayList[]{new ArrayList(), new ArrayList(), new ArrayList()};
-            this.transactionsExist = new boolean[3];
-            this.offset = new String[3];
-            this.loading = new boolean[3];
-            this.endReached = new boolean[3];
-        }
-    }
-
-    private TransactionsState getTransactionsState(long j) {
-        TransactionsState transactionsState = (TransactionsState) this.transactions.get(Long.valueOf(j));
+    public final TransactionsState getTransactionsState(long j) {
+        HashMap map = this.transactions;
+        TransactionsState transactionsState = (TransactionsState) map.get(Long.valueOf(j));
         if (transactionsState != null) {
             return transactionsState;
         }
-        HashMap map = this.transactions;
         Long lValueOf = Long.valueOf(j);
         TransactionsState transactionsState2 = new TransactionsState();
         map.put(lValueOf, transactionsState2);
         return transactionsState2;
     }
 
-    public ArrayList getTransactions(long j, int i) {
-        return getTransactionsState(j).transactions[i];
-    }
-
-    public void invalidateTransactions(long j, boolean z) {
+    public final void invalidateTransactions(long j) {
         TransactionsState transactionsState = getTransactionsState(j);
         for (int i = 0; i < 3; i++) {
-            if (!transactionsState.loading[i]) {
+            boolean[] zArr = transactionsState.loading;
+            if (!zArr[i]) {
                 transactionsState.transactions[i].clear();
                 transactionsState.offset[i] = null;
-                transactionsState.loading[i] = false;
+                zArr[i] = false;
                 transactionsState.endReached[i] = false;
-                if (z) {
-                    loadTransactions(j, i);
-                }
+                loadTransactions(i, j);
             }
         }
     }
 
-    public void loadTransactions(final long j, final int i) {
-        final TransactionsState transactionsState = getTransactionsState(j);
-        if (transactionsState.loading[i] || transactionsState.endReached[i]) {
+    public final boolean isTONBalanceAvailable(long j) {
+        return getTONRevenueStats(j, false) != null;
+    }
+
+    public final void loadAdminedBots() {
+        if (this.loadingAdminedBots || this.adminedBots != null) {
             return;
         }
-        transactionsState.loading[i] = true;
+        this.loadingAdminedBots = true;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_bots.getAdminedBots(), new BotStarsController$$ExternalSyntheticLambda2(this, 1));
+    }
+
+    public final void loadAdminedChannels() {
+        if (this.loadingAdminedChannels || this.adminedChannels != null) {
+            return;
+        }
+        this.loadingAdminedChannels = true;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new BotStarsController$$ExternalSyntheticLambda2(this, 0));
+    }
+
+    public final void loadTransactions(int i, long j) {
+        TransactionsState transactionsState = getTransactionsState(j);
+        boolean[] zArr = transactionsState.loading;
+        if (zArr[i] || transactionsState.endReached[i]) {
+            return;
+        }
+        zArr[i] = true;
         TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
-        tL_payments_getStarsTransactions.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        int i2 = this.currentAccount;
+        tL_payments_getStarsTransactions.peer = MessagesController.getInstance(i2).getInputPeer(j);
         tL_payments_getStarsTransactions.inbound = i == 1;
         tL_payments_getStarsTransactions.outbound = i == 2;
         String str = transactionsState.offset[i];
@@ -301,495 +354,30 @@ public class BotStarsController {
         if (str == null) {
             tL_payments_getStarsTransactions.offset = "";
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.m4089$r8$lambda$q3J6_s2NaHwFlpUTn6KH4gphc(this.f$0, transactionsState, i, j, tLObject, tL_error);
-            }
-        });
+        ConnectionsManager.getInstance(i2).sendRequest(tL_payments_getStarsTransactions, new MessageSeenView$$ExternalSyntheticLambda0(this, transactionsState, i, j, 5));
     }
 
-    public static void m4089$r8$lambda$q3J6_s2NaHwFlpUTn6KH4gphc(final BotStarsController botStarsController, final TransactionsState transactionsState, final int i, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        botStarsController.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BotStarsController.$r8$lambda$nW9lNgRKDhZ7DNz2zftpvABxpRM(this.f$0, transactionsState, i, tLObject, j);
-            }
-        });
-    }
-
-    public static void $r8$lambda$nW9lNgRKDhZ7DNz2zftpvABxpRM(BotStarsController botStarsController, TransactionsState transactionsState, int i, TLObject tLObject, long j) {
-        botStarsController.getClass();
-        transactionsState.loading[i] = false;
-        if (tLObject instanceof TL_stars.StarsStatus) {
-            TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
-            MessagesController.getInstance(botStarsController.currentAccount).putUsers(starsStatus.users, false);
-            MessagesController.getInstance(botStarsController.currentAccount).putChats(starsStatus.chats, false);
-            transactionsState.transactions[i].addAll(starsStatus.history);
-            transactionsState.transactionsExist[i] = !transactionsState.transactions[i].isEmpty() || transactionsState.transactionsExist[i];
-            transactionsState.endReached[i] = (starsStatus.flags & 1) == 0;
-            transactionsState.offset[i] = transactionsState.endReached[i] ? null : starsStatus.next_offset;
-            NotificationCenter.getInstance(botStarsController.currentAccount).postNotificationName(NotificationCenter.botStarsTransactionsLoaded, Long.valueOf(j));
-        }
-    }
-
-    public boolean didFullyLoadTransactions(long j, int i) {
-        return getTransactionsState(j).endReached[i];
-    }
-
-    public boolean hasTransactions(long j) {
-        return hasTransactions(j, 0);
-    }
-
-    public boolean hasTransactions(long j, int i) {
-        return !getTransactionsState(j).transactions[i].isEmpty();
-    }
-
-    public static class ChannelConnectedBots {
-        public int count;
-        public final int currentAccount;
-        public final long dialogId;
-        public boolean endReached;
-        public long lastRequestTime;
-        private int reqId;
-        public final ArrayList bots = new ArrayList();
-        private boolean loading = false;
-        private boolean error = false;
-
-        public ChannelConnectedBots(int i, long j) {
-            this.currentAccount = i;
-            this.dialogId = j;
-            check();
-        }
-
-        public void clear() {
-            this.count = 0;
-            this.error = false;
-            this.endReached = false;
-        }
-
-        public void check() {
-            if (System.currentTimeMillis() - this.lastRequestTime > 900000) {
-                clear();
-                cancel();
-                load();
-            }
-        }
-
-        public void cancel() {
-            if (this.reqId != 0) {
-                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
-                this.reqId = 0;
-            }
-            this.loading = false;
-        }
-
-        public boolean isLoading() {
-            return this.loading;
-        }
-
-        public void load() {
-            if (this.loading || this.error || this.endReached) {
-                return;
-            }
-            this.lastRequestTime = System.currentTimeMillis();
-            this.loading = true;
-            TL_payments.getConnectedStarRefBots getconnectedstarrefbots = new TL_payments.getConnectedStarRefBots();
-            getconnectedstarrefbots.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-            getconnectedstarrefbots.limit = 20;
-            if (!this.bots.isEmpty()) {
-                ArrayList arrayList = this.bots;
-                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) arrayList.get(arrayList.size() - 1);
-                getconnectedstarrefbots.flags |= 4;
-                getconnectedstarrefbots.offset_date = connectedbotstarref.date;
-                getconnectedstarrefbots.offset_link = connectedbotstarref.url;
-            }
-            this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getconnectedstarrefbots, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BotStarsController.ChannelConnectedBots.m4091$r8$lambda$fgKXC2HLOUs81OUqtZ3pKxGP60(this.f$0, tLObject, tL_error);
-                }
-            });
-        }
-
-        public static void m4091$r8$lambda$fgKXC2HLOUs81OUqtZ3pKxGP60(final ChannelConnectedBots channelConnectedBots, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            channelConnectedBots.getClass();
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    BotStarsController.ChannelConnectedBots.$r8$lambda$m00uTwk4k8ZPSyGGEVnSUhFKAgY(this.f$0, tLObject);
-                }
-            });
-        }
-
-        public static void $r8$lambda$m00uTwk4k8ZPSyGGEVnSUhFKAgY(ChannelConnectedBots channelConnectedBots, TLObject tLObject) {
-            channelConnectedBots.reqId = 0;
-            if (tLObject instanceof TL_payments.connectedStarRefBots) {
-                TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
-                MessagesController.getInstance(channelConnectedBots.currentAccount).putUsers(connectedstarrefbots.users, false);
-                if (channelConnectedBots.count <= 0) {
-                    channelConnectedBots.bots.clear();
-                }
-                channelConnectedBots.count = connectedstarrefbots.count;
-                channelConnectedBots.bots.addAll(connectedstarrefbots.connected_bots);
-                channelConnectedBots.endReached = connectedstarrefbots.connected_bots.isEmpty() || channelConnectedBots.bots.size() >= channelConnectedBots.count;
-            } else {
-                channelConnectedBots.error = true;
-                channelConnectedBots.endReached = true;
-            }
-            channelConnectedBots.loading = false;
-            NotificationCenter.getInstance(channelConnectedBots.currentAccount).postNotificationName(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(channelConnectedBots.dialogId));
-        }
-
-        public void apply(TL_payments.connectedStarRefBots connectedstarrefbots) {
-            MessagesController.getInstance(this.currentAccount).putUsers(connectedstarrefbots.users, false);
-            clear();
-            this.bots.clear();
-            cancel();
-            this.count = connectedstarrefbots.count;
-            this.bots.addAll(connectedstarrefbots.connected_bots);
-            this.endReached = connectedstarrefbots.connected_bots.isEmpty() || this.bots.size() >= this.count;
-            this.error = false;
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(this.dialogId));
-            load();
-        }
-
-        public void applyEdit(TL_payments.connectedStarRefBots connectedstarrefbots) {
-            MessagesController.getInstance(this.currentAccount).putUsers(connectedstarrefbots.users, false);
-            for (int i = 0; i < connectedstarrefbots.connected_bots.size(); i++) {
-                TL_payments.connectedBotStarRef connectedbotstarref = connectedstarrefbots.connected_bots.get(i);
-                for (int i2 = 0; i2 < this.bots.size(); i2++) {
-                    if (((TL_payments.connectedBotStarRef) this.bots.get(i2)).bot_id == connectedbotstarref.bot_id) {
-                        if (connectedbotstarref.revoked) {
-                            this.bots.remove(i2);
-                            this.count = Math.max(this.count - 1, 0);
-                            break;
-                        } else {
-                            this.bots.set(i2, connectedbotstarref);
-                            break;
-                        }
-                    }
-                }
-            }
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(this.dialogId));
-            load();
-        }
-    }
-
-    public ChannelConnectedBots getChannelConnectedBots(long j) {
-        ChannelConnectedBots channelConnectedBots = (ChannelConnectedBots) this.connectedBots.get(Long.valueOf(j));
-        if (channelConnectedBots != null) {
-            return channelConnectedBots;
-        }
-        HashMap map = this.connectedBots;
-        Long lValueOf = Long.valueOf(j);
-        ChannelConnectedBots channelConnectedBots2 = new ChannelConnectedBots(this.currentAccount, j);
-        map.put(lValueOf, channelConnectedBots2);
-        return channelConnectedBots2;
-    }
-
-    public static class ChannelSuggestedBots {
-        public int count;
-        public final int currentAccount;
-        public final long dialogId;
-        public boolean endReached;
-        public long lastRequestTime;
-        private int reqId;
-        public final ArrayList bots = new ArrayList();
-        private Sort sorting = Sort.BY_PROFITABILITY;
-        private boolean loading = false;
-        private boolean error = false;
-        private String lastOffset = null;
-
-        public enum Sort {
-            BY_PROFITABILITY,
-            BY_REVENUE,
-            BY_DATE
-        }
-
-        public ChannelSuggestedBots(int i, long j) {
-            this.currentAccount = i;
-            this.dialogId = j;
-            check();
-        }
-
-        public void clear() {
-            this.count = 0;
-            this.endReached = false;
-            this.error = false;
-            this.lastRequestTime = 0L;
-            this.lastOffset = null;
-        }
-
-        public void check() {
-            if (System.currentTimeMillis() - this.lastRequestTime > 900000) {
-                clear();
-                cancel();
-                load();
-            }
-        }
-
-        public void cancel() {
-            if (this.reqId != 0) {
-                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
-                this.reqId = 0;
-            }
-            this.loading = false;
-        }
-
-        public boolean isLoading() {
-            return this.loading;
-        }
-
-        public void setSort(Sort sort) {
-            if (this.sorting != sort) {
-                this.sorting = sort;
-                reload();
-            }
-        }
-
-        public Sort getSort() {
-            return this.sorting;
-        }
-
-        public void load() {
-            if (this.loading || this.error || this.endReached) {
-                return;
-            }
-            this.lastRequestTime = System.currentTimeMillis();
-            this.loading = true;
-            TL_payments.getSuggestedStarRefBots getsuggestedstarrefbots = new TL_payments.getSuggestedStarRefBots();
-            getsuggestedstarrefbots.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-            getsuggestedstarrefbots.limit = 20;
-            Sort sort = this.sorting;
-            getsuggestedstarrefbots.order_by_date = sort == Sort.BY_DATE;
-            getsuggestedstarrefbots.order_by_revenue = sort == Sort.BY_REVENUE;
-            if (!TextUtils.isEmpty(this.lastOffset)) {
-                getsuggestedstarrefbots.offset = this.lastOffset;
-            } else {
-                getsuggestedstarrefbots.offset = "";
-            }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsuggestedstarrefbots, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    BotStarsController.ChannelSuggestedBots.$r8$lambda$OzG6Cc7bHzlkZWKyxHqnQA1gh38(this.f$0, tLObject, tL_error);
-                }
-            });
-        }
-
-        public static void $r8$lambda$OzG6Cc7bHzlkZWKyxHqnQA1gh38(final ChannelSuggestedBots channelSuggestedBots, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            channelSuggestedBots.getClass();
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    BotStarsController.ChannelSuggestedBots.$r8$lambda$3RezTmN7prcY4U9Gveth8gZwqu4(this.f$0, tLObject);
-                }
-            });
-        }
-
-        public static void $r8$lambda$3RezTmN7prcY4U9Gveth8gZwqu4(ChannelSuggestedBots channelSuggestedBots, TLObject tLObject) {
-            channelSuggestedBots.getClass();
-            if (tLObject instanceof TL_payments.suggestedStarRefBots) {
-                TL_payments.suggestedStarRefBots suggestedstarrefbots = (TL_payments.suggestedStarRefBots) tLObject;
-                MessagesController.getInstance(channelSuggestedBots.currentAccount).putUsers(suggestedstarrefbots.users, false);
-                if (channelSuggestedBots.count <= 0) {
-                    channelSuggestedBots.bots.clear();
-                }
-                channelSuggestedBots.count = suggestedstarrefbots.count;
-                channelSuggestedBots.bots.addAll(suggestedstarrefbots.suggested_bots);
-                channelSuggestedBots.lastOffset = suggestedstarrefbots.next_offset;
-                channelSuggestedBots.endReached = suggestedstarrefbots.suggested_bots.isEmpty() || channelSuggestedBots.bots.size() >= channelSuggestedBots.count;
-            } else {
-                channelSuggestedBots.error = true;
-                channelSuggestedBots.endReached = true;
-            }
-            channelSuggestedBots.loading = false;
-            NotificationCenter.getInstance(channelSuggestedBots.currentAccount).postNotificationName(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(channelSuggestedBots.dialogId));
-        }
-
-        public void remove(long j) {
-            for (int i = 0; i < this.bots.size(); i++) {
-                if (((TL_payments.starRefProgram) this.bots.get(i)).bot_id == j) {
-                    this.bots.remove(i);
-                    this.count--;
-                    NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(this.dialogId));
-                    return;
-                }
-            }
-        }
-
-        public void reload() {
-            clear();
-            cancel();
-            load();
-        }
-    }
-
-    public ChannelSuggestedBots getChannelSuggestedBots(long j) {
-        ChannelSuggestedBots channelSuggestedBots = (ChannelSuggestedBots) this.suggestedBots.get(Long.valueOf(j));
-        if (channelSuggestedBots != null) {
-            return channelSuggestedBots;
-        }
-        HashMap map = this.suggestedBots;
-        Long lValueOf = Long.valueOf(j);
-        ChannelSuggestedBots channelSuggestedBots2 = new ChannelSuggestedBots(this.currentAccount, j);
-        map.put(lValueOf, channelSuggestedBots2);
-        return channelSuggestedBots2;
-    }
-
-    public void loadAdminedBots() {
-        if (this.loadingAdminedBots || this.adminedBots != null) {
+    public final void onUpdate(TL_update.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {
+        if (tL_updateStarsRevenueStatus == null) {
             return;
         }
-        this.loadingAdminedBots = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_bots.getAdminedBots(), new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.$r8$lambda$Gg8WvY9k550H5gb_b3E0OkMABAE(this.f$0, tLObject, tL_error);
+        long peerDialogId = DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer);
+        if (peerDialogId >= 0) {
+            TLRPC.TL_payments_starsRevenueStats starsRevenueStats = getStarsRevenueStats(peerDialogId, true);
+            if (starsRevenueStats != null) {
+                starsRevenueStats.status = tL_updateStarsRevenueStatus.status;
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(peerDialogId));
             }
-        });
-    }
-
-    public static void $r8$lambda$Gg8WvY9k550H5gb_b3E0OkMABAE(final BotStarsController botStarsController, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        botStarsController.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BotStarsController.$r8$lambda$9exmVbB06JmmiEwzJFk32ay8Hd0(this.f$0, tLObject);
-            }
-        });
-    }
-
-    public static void $r8$lambda$9exmVbB06JmmiEwzJFk32ay8Hd0(BotStarsController botStarsController, TLObject tLObject) {
-        botStarsController.getClass();
-        botStarsController.adminedBots = new ArrayList();
-        botStarsController.loadingAdminedBots = false;
-        if (tLObject instanceof Vector) {
-            Vector vector = (Vector) tLObject;
-            for (int i = 0; i < vector.objects.size(); i++) {
-                botStarsController.adminedBots.add((TLRPC.User) vector.objects.get(i));
-            }
-            MessagesController.getInstance(botStarsController.currentAccount).putUsers(botStarsController.adminedBots, false);
-        }
-    }
-
-    public void loadAdminedChannels() {
-        if (this.loadingAdminedChannels || this.adminedChannels != null) {
+            invalidateTransactions(peerDialogId);
             return;
         }
-        this.loadingAdminedChannels = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.m4090$r8$lambda$wYbKLxwHOuOEzwU_smPizHhfac(this.f$0, tLObject, tL_error);
-            }
-        });
-    }
-
-    public static void m4090$r8$lambda$wYbKLxwHOuOEzwU_smPizHhfac(final BotStarsController botStarsController, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        botStarsController.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BotStarsController.$r8$lambda$CpAcXCQoii_sLEjZNOLXsBKBbHE(this.f$0, tLObject);
-            }
-        });
-    }
-
-    public static void $r8$lambda$CpAcXCQoii_sLEjZNOLXsBKBbHE(BotStarsController botStarsController, TLObject tLObject) {
-        botStarsController.getClass();
-        botStarsController.adminedChannels = new ArrayList();
-        botStarsController.loadingAdminedChannels = false;
-        if (tLObject instanceof TLRPC.messages_Chats) {
-            TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject;
-            MessagesController.getInstance(botStarsController.currentAccount).putChats(messages_chats.chats, false);
-            botStarsController.adminedChannels.addAll(messages_chats.chats);
-        }
-        NotificationCenter.getInstance(botStarsController.currentAccount).postNotificationName(NotificationCenter.adminedChannelsLoaded, new Object[0]);
-    }
-
-    public ArrayList getAdmined() {
-        loadAdminedBots();
-        loadAdminedChannels();
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = this.adminedBots;
-        if (arrayList2 != null) {
-            arrayList.addAll(arrayList2);
-        }
-        ArrayList arrayList3 = this.adminedChannels;
-        if (arrayList3 != null) {
-            arrayList.addAll(arrayList3);
-        }
-        return arrayList;
-    }
-
-    public ArrayList getAdminedChannels() {
-        loadAdminedChannels();
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = this.adminedChannels;
-        if (arrayList2 != null) {
-            arrayList.addAll(arrayList2);
-        }
-        return arrayList;
-    }
-
-    public void getConnectedBot(Context context, long j, final long j2, final Utilities.Callback callback) {
-        if (callback == null) {
+        ChannelMonetizationLayout channelMonetizationLayout = ChannelMonetizationLayout.instance;
+        if (channelMonetizationLayout == null || channelMonetizationLayout.dialogId != DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer)) {
             return;
         }
-        ChannelConnectedBots channelConnectedBots = (ChannelConnectedBots) this.connectedBots.get(Long.valueOf(j));
-        if (channelConnectedBots != null) {
-            for (int i = 0; i < channelConnectedBots.bots.size(); i++) {
-                if (!((TL_payments.connectedBotStarRef) channelConnectedBots.bots.get(i)).revoked && ((TL_payments.connectedBotStarRef) channelConnectedBots.bots.get(i)).bot_id == j2) {
-                    callback.run((TL_payments.connectedBotStarRef) channelConnectedBots.bots.get(i));
-                    return;
-                }
-            }
-        }
-        final AlertDialog alertDialog = new AlertDialog(context, 3);
-        TL_payments.getConnectedStarRefBot getconnectedstarrefbot = new TL_payments.getConnectedStarRefBot();
-        getconnectedstarrefbot.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
-        getconnectedstarrefbot.bot = MessagesController.getInstance(this.currentAccount).getInputUser(j2);
-        final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getconnectedstarrefbot, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotStarsController.m4088$r8$lambda$_74SYN3orOOKGVp21cGi7a16Q(this.f$0, alertDialog, j2, callback, tLObject, tL_error);
-            }
-        });
-        alertDialog.setCanCancel(true);
-        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public final void onCancel(DialogInterface dialogInterface) {
-                ConnectionsManager.getInstance(this.f$0.currentAccount).cancelRequest(iSendRequest, true);
-            }
-        });
-        alertDialog.showDelayed(200L);
-    }
-
-    public static void m4088$r8$lambda$_74SYN3orOOKGVp21cGi7a16Q(final BotStarsController botStarsController, final AlertDialog alertDialog, final long j, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        botStarsController.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BotStarsController.m4085$r8$lambda$2F6I1a3kZP6dTRCIxezZ4FPDsg(this.f$0, alertDialog, tLObject, j, callback);
-            }
-        });
-    }
-
-    public static void m4085$r8$lambda$2F6I1a3kZP6dTRCIxezZ4FPDsg(BotStarsController botStarsController, AlertDialog alertDialog, TLObject tLObject, long j, Utilities.Callback callback) {
-        botStarsController.getClass();
-        alertDialog.dismiss();
-        if (tLObject instanceof TL_payments.connectedStarRefBots) {
-            TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
-            MessagesController.getInstance(botStarsController.currentAccount).putUsers(connectedstarrefbots.users, false);
-            for (int i = 0; i < connectedstarrefbots.connected_bots.size(); i++) {
-                if (connectedstarrefbots.connected_bots.get(i).bot_id == j && !connectedstarrefbots.connected_bots.get(i).revoked) {
-                    callback.run(connectedstarrefbots.connected_bots.get(i));
-                    return;
-                }
-            }
-        }
-        callback.run(null);
+        ChannelMonetizationLayout channelMonetizationLayout2 = ChannelMonetizationLayout.instance;
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus = tL_updateStarsRevenueStatus.status;
+        channelMonetizationLayout2.setupBalances(tL_starsRevenueStatus.current_balance instanceof TL_stars.TL_starsTonAmount, tL_starsRevenueStatus);
+        ChannelMonetizationLayout.instance.reloadTransactions();
     }
 }

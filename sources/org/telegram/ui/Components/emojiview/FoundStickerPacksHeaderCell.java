@@ -15,14 +15,10 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class FoundStickerPacksHeaderCell extends FrameLayout implements Theme.Colorable {
-    private final ImageView backButton;
-    private final TextView headerText;
-    private final Theme.ResourcesProvider resourcesProvider;
-
-    public int[] getColorKeys() {
-        return Theme.Colorable.CC.$default$getColorKeys(this);
-    }
+public final class FoundStickerPacksHeaderCell extends FrameLayout implements Theme.Colorable {
+    public final ImageView backButton;
+    public final TextView headerText;
+    public final Theme.ResourcesProvider resourcesProvider;
 
     public FoundStickerPacksHeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -40,7 +36,11 @@ public class FoundStickerPacksHeaderCell extends FrameLayout implements Theme.Co
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         addView(textView, LayoutHelper.createFrame(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
-        updateColors();
+        updateColors$1();
+    }
+
+    public int[] getColorKeys() {
+        return null;
     }
 
     public void setOnBackClickListener(View.OnClickListener onClickListener) {
@@ -48,13 +48,14 @@ public class FoundStickerPacksHeaderCell extends FrameLayout implements Theme.Co
     }
 
     @Override
-    public void updateColors() {
-        this.headerText.setTextColor(getGlassIconColor(0.6f));
-        this.backButton.setColorFilter(new PorterDuffColorFilter(getGlassIconColor(0.6f), PorterDuff.Mode.MULTIPLY));
-        this.backButton.setBackground(Theme.createSelectorDrawable(getGlassIconColor(0.1f), 1));
-    }
-
-    private int getGlassIconColor(float f) {
-        return ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_glass_defaultIcon, this.resourcesProvider), (int) (f * 255.0f));
+    public final void updateColors$1() {
+        int i = Theme.key_glass_defaultIcon;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        int i2 = (int) 153.0f;
+        this.headerText.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor(i, resourcesProvider), i2));
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(ColorUtils.setAlphaComponent(Theme.getColor(i, resourcesProvider), i2), PorterDuff.Mode.MULTIPLY);
+        ImageView imageView = this.backButton;
+        imageView.setColorFilter(porterDuffColorFilter);
+        imageView.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor(i, resourcesProvider), (int) 25.5f), 1, -1));
     }
 }

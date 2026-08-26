@@ -15,10 +15,6 @@ public class MultlineAtom extends Atom {
         this.type = i;
     }
 
-    public MultlineAtom(ArrayOfAtoms arrayOfAtoms, int i) {
-        this(false, arrayOfAtoms, i);
-    }
-
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         ArrayOfAtoms arrayOfAtoms;
@@ -61,12 +57,16 @@ public class MultlineAtom extends Atom {
                     verticalBox.add(boxCreateBox);
                     verticalBox.add(new HorizontalBox(atom3.createBox(teXEnvironment), textwidth, i6));
                 }
-                float height = (verticalBox.getHeight() + verticalBox.getDepth()) / 2.0f;
-                verticalBox.setHeight(height);
-                verticalBox.setDepth(height);
+                float depth = (verticalBox.getDepth() + verticalBox.getHeight()) / 2.0f;
+                verticalBox.setHeight(depth);
+                verticalBox.setDepth(depth);
                 return verticalBox;
             }
         }
         return new MatrixAtom(this.isPartial, this.column, "").createBox(teXEnvironment);
+    }
+
+    public MultlineAtom(ArrayOfAtoms arrayOfAtoms, int i) {
+        this(false, arrayOfAtoms, i);
     }
 }

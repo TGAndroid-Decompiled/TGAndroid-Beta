@@ -7,16 +7,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 
-public class URLSpanMono extends MetricAffectingSpan {
-    private int currentEnd;
-    private CharSequence currentMessage;
-    private int currentStart;
-    private byte currentType;
-    private TextStyleSpan.TextStyleRun style;
-
-    public URLSpanMono(CharSequence charSequence, int i, int i2, byte b) {
-        this(charSequence, i, i2, b, null);
-    }
+public final class URLSpanMono extends MetricAffectingSpan {
+    public final int currentEnd;
+    public final CharSequence currentMessage;
+    public final int currentStart;
+    public final byte currentType;
+    public final TextStyleSpan.TextStyleRun style;
 
     public URLSpanMono(CharSequence charSequence, int i, int i2, byte b, TextStyleSpan.TextStyleRun textStyleRun) {
         this.currentMessage = charSequence;
@@ -26,32 +22,16 @@ public class URLSpanMono extends MetricAffectingSpan {
         this.style = textStyleRun;
     }
 
-    public void copyToClipboard() {
-        AndroidUtilities.addToClipboard(this.currentMessage.subSequence(this.currentStart, this.currentEnd).toString());
-    }
-
     @Override
-    public void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        TextStyleSpan.TextStyleRun textStyleRun = this.style;
-        if (textStyleRun != null) {
-            textStyleRun.applyStyle(textPaint);
-        } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
-        }
-    }
-
-    @Override
-    public void updateDrawState(TextPaint textPaint) {
+    public final void updateDrawState(TextPaint textPaint) {
         textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
         byte b = this.currentType;
         if (b == 2) {
             textPaint.setColor(-1);
         } else if (b == 1) {
-            textPaint.setColor(Theme.getColor(Theme.key_chat_messageTextOut));
+            textPaint.setColor(Theme.getColor(null, Theme.key_chat_messageTextOut, false));
         } else {
-            textPaint.setColor(Theme.getColor(Theme.key_chat_messageTextIn));
+            textPaint.setColor(Theme.getColor(null, Theme.key_chat_messageTextIn, false));
         }
         TextStyleSpan.TextStyleRun textStyleRun = this.style;
         if (textStyleRun != null) {
@@ -59,6 +39,18 @@ public class URLSpanMono extends MetricAffectingSpan {
         } else {
             textPaint.setTypeface(Typeface.MONOSPACE);
             textPaint.setUnderlineText(false);
+        }
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        TextStyleSpan.TextStyleRun textStyleRun = this.style;
+        if (textStyleRun != null) {
+            textStyleRun.applyStyle(textPaint);
+        } else {
+            textPaint.setTypeface(Typeface.MONOSPACE);
         }
     }
 }

@@ -26,16 +26,8 @@ public class EncryptedFileInputStream extends FileInputStream {
         randomAccessFile.close();
     }
 
-    public EncryptedFileInputStream(File file, SecureDocumentKey secureDocumentKey) {
-        super(file);
-        byte[] bArr = new byte[32];
-        this.key = bArr;
-        this.iv = new byte[16];
-        this.currentMode = 1;
-        System.arraycopy(secureDocumentKey.file_key, 0, bArr, 0, 32);
-        byte[] bArr2 = secureDocumentKey.file_iv;
-        byte[] bArr3 = this.iv;
-        System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);
+    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, SecureDocumentKey secureDocumentKey) {
+        Utilities.aesCbcEncryptionByteArraySafe(bArr, secureDocumentKey.file_key, secureDocumentKey.file_iv, i, i2, 0, 0);
     }
 
     @Override
@@ -69,10 +61,6 @@ public class EncryptedFileInputStream extends FileInputStream {
         return super.skip(j);
     }
 
-    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, SecureDocumentKey secureDocumentKey) {
-        Utilities.aesCbcEncryptionByteArraySafe(bArr, secureDocumentKey.file_key, secureDocumentKey.file_iv, i, i2, 0, 0);
-    }
-
     public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, File file) throws IOException {
         byte[] bArr2 = new byte[32];
         byte[] bArr3 = new byte[16];
@@ -81,5 +69,17 @@ public class EncryptedFileInputStream extends FileInputStream {
         randomAccessFile.read(bArr3, 0, 16);
         randomAccessFile.close();
         Utilities.aesCtrDecryptionByteArray(bArr, bArr2, bArr3, i, i2, 0);
+    }
+
+    public EncryptedFileInputStream(File file, SecureDocumentKey secureDocumentKey) {
+        super(file);
+        byte[] bArr = new byte[32];
+        this.key = bArr;
+        this.iv = new byte[16];
+        this.currentMode = 1;
+        System.arraycopy(secureDocumentKey.file_key, 0, bArr, 0, 32);
+        byte[] bArr2 = secureDocumentKey.file_iv;
+        byte[] bArr3 = this.iv;
+        System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);
     }
 }

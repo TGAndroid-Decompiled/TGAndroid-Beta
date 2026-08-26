@@ -1,5 +1,7 @@
 package org.webrtc;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+
 public class StatsReport {
     public final String id;
     public final double timestamp;
@@ -16,7 +18,10 @@ public class StatsReport {
         }
 
         public String toString() {
-            return "[" + this.name + ": " + this.value + "]";
+            StringBuilder sb = new StringBuilder("[");
+            sb.append(this.name);
+            sb.append(": ");
+            return SurfaceContainer$$ExternalSyntheticOutline0.m(sb, this.value, "]");
         }
     }
 
@@ -28,8 +33,7 @@ public class StatsReport {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("id: ");
+        StringBuilder sb = new StringBuilder("id: ");
         sb.append(this.id);
         sb.append(", type: ");
         sb.append(this.type);
@@ -39,13 +43,12 @@ public class StatsReport {
         int i = 0;
         while (true) {
             Value[] valueArr = this.values;
-            if (i < valueArr.length) {
-                sb.append(valueArr[i].toString());
-                sb.append(", ");
-                i++;
-            } else {
+            if (i >= valueArr.length) {
                 return sb.toString();
             }
+            sb.append(valueArr[i].toString());
+            sb.append(", ");
+            i++;
         }
     }
 }

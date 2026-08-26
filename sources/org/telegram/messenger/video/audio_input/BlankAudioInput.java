@@ -2,47 +2,40 @@ package org.telegram.messenger.video.audio_input;
 
 import org.telegram.messenger.video.AudioConversions;
 
-public class BlankAudioInput extends AudioInput {
+public final class BlankAudioInput extends AudioInput {
     public final long durationUs;
-    private int remainingShorts;
-    private int requiredShortsForDuration;
-
-    @Override
-    public int getSampleRate() {
-        return -1;
-    }
+    public int remainingShorts;
 
     public BlankAudioInput(long j) {
         this.durationUs = j;
     }
 
     @Override
-    public boolean hasRemaining() {
-        return this.remainingShorts > 0;
-    }
-
-    @Override
-    public void start(int i, int i2) {
-        int iUsToShorts = AudioConversions.usToShorts(this.durationUs, i, i2);
-        this.requiredShortsForDuration = iUsToShorts;
-        this.remainingShorts = iUsToShorts;
-    }
-
-    @Override
-    public short getNext() {
+    public final short getNext() {
         if (!hasRemaining()) {
             throw new RuntimeException("Audio input has no remaining value.");
         }
         this.remainingShorts--;
-        if (!isLoopingEnabled() || this.remainingShorts != 0) {
-            return (short) 0;
-        }
-        this.remainingShorts = this.requiredShortsForDuration;
         return (short) 0;
     }
 
     @Override
-    public void release() {
+    public final int getSampleRate() {
+        return -1;
+    }
+
+    @Override
+    public final boolean hasRemaining() {
+        return this.remainingShorts > 0;
+    }
+
+    @Override
+    public final void release() {
         this.remainingShorts = 0;
+    }
+
+    @Override
+    public final void start(int i, int i2) {
+        this.remainingShorts = AudioConversions.usToShorts(this.durationUs, i, i2);
     }
 }

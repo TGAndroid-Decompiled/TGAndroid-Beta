@@ -2,91 +2,21 @@ package kotlin.sequences;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import kotlin.Result;
 import kotlin.ResultKt;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.EmptyCoroutineContext;
-import kotlin.coroutines.intrinsics.IntrinsicsKt;
-import kotlin.coroutines.jvm.internal.DebugProbesKt;
+import kotlin.coroutines.intrinsics.CoroutineSingletons;
+import kotlin.coroutines.jvm.internal.RestrictedSuspendLambda;
 import kotlin.jvm.internal.Intrinsics;
 
-final class SequenceBuilderIterator extends SequenceScope implements Iterator, Continuation {
-    private Iterator nextIterator;
-    private Continuation nextStep;
-    private Object nextValue;
-    private int state;
+public final class SequenceBuilderIterator implements Iterator, Continuation {
+    public Continuation nextStep;
+    public Object nextValue;
+    public int state;
 
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    public final void setNextStep(Continuation continuation) {
-        this.nextStep = continuation;
-    }
-
-    @Override
-    public boolean hasNext() throws Throwable {
-        while (true) {
-            int i = this.state;
-            if (i != 0) {
-                if (i != 1) {
-                    if (i == 2 || i == 3) {
-                        return true;
-                    }
-                    if (i == 4) {
-                        return false;
-                    }
-                    throw exceptionalState();
-                }
-                Iterator it = this.nextIterator;
-                Intrinsics.checkNotNull(it);
-                if (it.hasNext()) {
-                    this.state = 2;
-                    return true;
-                }
-                this.nextIterator = null;
-            }
-            this.state = 5;
-            Continuation continuation = this.nextStep;
-            Intrinsics.checkNotNull(continuation);
-            this.nextStep = null;
-            Result.Companion companion = Result.Companion;
-            continuation.resumeWith(Result.m283constructorimpl(Unit.INSTANCE));
-        }
-    }
-
-    @Override
-    public Object next() throws Throwable {
-        int i = this.state;
-        if (i == 0 || i == 1) {
-            return nextNotReady();
-        }
-        if (i == 2) {
-            this.state = 1;
-            Iterator it = this.nextIterator;
-            Intrinsics.checkNotNull(it);
-            return it.next();
-        }
-        if (i == 3) {
-            this.state = 0;
-            Object obj = this.nextValue;
-            this.nextValue = null;
-            return obj;
-        }
-        throw exceptionalState();
-    }
-
-    private final Object nextNotReady() {
-        if (hasNext()) {
-            return next();
-        }
-        throw new NoSuchElementException();
-    }
-
-    private final Throwable exceptionalState() {
+    public final RuntimeException exceptionalState() {
         int i = this.state;
         if (i == 4) {
             return new NoSuchElementException();
@@ -98,25 +28,75 @@ final class SequenceBuilderIterator extends SequenceScope implements Iterator, C
     }
 
     @Override
-    public Object yield(Object obj, Continuation continuation) {
-        this.nextValue = obj;
-        this.state = 3;
-        this.nextStep = continuation;
-        Object coroutine_suspended = IntrinsicsKt.getCOROUTINE_SUSPENDED();
-        if (coroutine_suspended == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
-            DebugProbesKt.probeCoroutineSuspended(continuation);
-        }
-        return coroutine_suspended == IntrinsicsKt.getCOROUTINE_SUSPENDED() ? coroutine_suspended : Unit.INSTANCE;
+    public final CoroutineContext getContext() {
+        return EmptyCoroutineContext.INSTANCE;
     }
 
     @Override
-    public void resumeWith(Object obj) throws Throwable {
+    public final boolean hasNext() {
+        int i;
+        while (true) {
+            i = this.state;
+            if (i != 0) {
+                break;
+            }
+            this.state = 5;
+            Continuation continuation = this.nextStep;
+            Intrinsics.checkNotNull(continuation);
+            this.nextStep = null;
+            continuation.resumeWith(Unit.INSTANCE);
+        }
+        if (i == 1) {
+            Intrinsics.checkNotNull(null);
+            throw null;
+        }
+        if (i == 2 || i == 3) {
+            return true;
+        }
+        if (i == 4) {
+            return false;
+        }
+        throw exceptionalState();
+    }
+
+    @Override
+    public final Object next() {
+        int i = this.state;
+        if (i == 0 || i == 1) {
+            if (hasNext()) {
+                return next();
+            }
+            throw new NoSuchElementException();
+        }
+        if (i == 2) {
+            this.state = 1;
+            Intrinsics.checkNotNull(null);
+            throw null;
+        }
+        if (i != 3) {
+            throw exceptionalState();
+        }
+        this.state = 0;
+        Object obj = this.nextValue;
+        this.nextValue = null;
+        return obj;
+    }
+
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final void resumeWith(Object obj) {
         ResultKt.throwOnFailure(obj);
         this.state = 4;
     }
 
-    @Override
-    public CoroutineContext getContext() {
-        return EmptyCoroutineContext.INSTANCE;
+    public final void yield(Object obj, RestrictedSuspendLambda restrictedSuspendLambda) {
+        this.nextValue = obj;
+        this.state = 3;
+        this.nextStep = restrictedSuspendLambda;
+        CoroutineSingletons coroutineSingletons = CoroutineSingletons.COROUTINE_SUSPENDED;
     }
 }

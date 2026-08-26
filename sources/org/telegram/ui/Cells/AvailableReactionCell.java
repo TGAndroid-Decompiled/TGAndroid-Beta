@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
@@ -25,15 +24,14 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
 
-public class AvailableReactionCell extends FrameLayout {
-    private boolean canLock;
-    private CheckBox2 checkBox;
-    private BackupImageView imageView;
+public final class AvailableReactionCell extends FrameLayout {
+    public final boolean canLock;
+    public final CheckBox2 checkBox;
+    public final BackupImageView imageView;
     public boolean locked;
-    private View overlaySelectorView;
     public TLRPC.TL_availableReaction react;
-    private Switch switchView;
-    private SimpleTextView textView;
+    public final Switch switchView;
+    public final SimpleTextView textView;
 
     public AvailableReactionCell(Context context, boolean z, boolean z2) {
         super(context);
@@ -41,114 +39,126 @@ public class AvailableReactionCell extends FrameLayout {
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
         NotificationCenter.listenEmojiLoading(simpleTextView);
-        this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.textView.setTextSize(16);
-        this.textView.setTypeface(AndroidUtilities.bold());
-        this.textView.setMaxLines(1);
-        this.textView.setMaxLines(1);
-        this.textView.setGravity(16 | LayoutHelper.getAbsoluteGravityStart());
-        addView(this.textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 81.0f, 0.0f, 61.0f, 0.0f));
+        simpleTextView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+        simpleTextView.setTextSize(16);
+        simpleTextView.setTypeface(AndroidUtilities.bold());
+        simpleTextView.setMaxLines(1);
+        simpleTextView.setMaxLines(1);
+        simpleTextView.setGravity(16 | LayoutHelper.getAbsoluteGravityStart());
+        addView(simpleTextView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 81.0f, 0.0f, 61.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
         backupImageView.setAspectFit(true);
-        this.imageView.setLayerNum(1);
-        addView(this.imageView, LayoutHelper.createFrameRelatively(32.0f, 32.0f, 8388627, 23.0f, 0.0f, 0.0f, 0.0f));
+        backupImageView.setLayerNum(1);
+        addView(backupImageView, LayoutHelper.createFrameRelatively(32.0f, 32.0f, 8388627, 23.0f, 0.0f, 0.0f, 0.0f));
         if (z) {
             CheckBox2 checkBox2 = new CheckBox2(context, 26, null);
             this.checkBox = checkBox2;
             checkBox2.setDrawUnchecked(false);
-            this.checkBox.setColor(-1, -1, Theme.key_radioBackgroundChecked);
-            this.checkBox.setDrawBackgroundAsArc(-1);
-            addView(this.checkBox, LayoutHelper.createFrameRelatively(26.0f, 26.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
+            checkBox2.checkBoxBase.setColor(-1, -1, Theme.key_radioBackgroundChecked);
+            checkBox2.setDrawBackgroundAsArc(-1);
+            addView(checkBox2, LayoutHelper.createFrameRelatively(26.0f, 26.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
         } else {
-            Switch r11 = new Switch(context);
-            this.switchView = r11;
-            r11.setColors(Theme.key_switchTrack, Theme.key_switchTrackChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
-            addView(this.switchView, LayoutHelper.createFrameRelatively(37.0f, 20.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
+            Switch r14 = new Switch(context, null);
+            this.switchView = r14;
+            int i = Theme.key_switchTrack;
+            int i2 = Theme.key_switchTrackChecked;
+            int i3 = Theme.key_switchTrackBlueThumb;
+            int i4 = Theme.key_switchTrackBlueThumbChecked;
+            r14.trackColorKey = i;
+            r14.trackCheckedColorKey = i2;
+            r14.thumbColorKey = i3;
+            r14.thumbCheckedColorKey = i4;
+            addView(r14, LayoutHelper.createFrameRelatively(37.0f, 20.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
         }
         View view = new View(context);
-        this.overlaySelectorView = view;
         view.setBackground(Theme.getSelectorDrawable(false));
-        addView(this.overlaySelectorView, LayoutHelper.createFrame(-1, -1.0f));
+        addView(view, LayoutHelper.createFrame(-1.0f, -1));
         setWillNotDraw(false);
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.dp(58.0f) + Theme.dividerPaint.getStrokeWidth()), 1073741824));
-    }
-
-    public void bind(TLRPC.TL_availableReaction tL_availableReaction, boolean z, int i) {
-        TLRPC.TL_availableReaction tL_availableReaction2;
-        boolean z2 = (tL_availableReaction == null || (tL_availableReaction2 = this.react) == null || !tL_availableReaction.reaction.equals(tL_availableReaction2.reaction)) ? false : true;
+    public final void bind(TLRPC.TL_availableReaction tL_availableReaction, boolean z, int i) {
+        TLRPC.TL_availableReaction tL_availableReaction2 = this.react;
+        boolean z2 = tL_availableReaction2 != null && tL_availableReaction.reaction.equals(tL_availableReaction2.reaction);
         this.react = tL_availableReaction;
         SimpleTextView simpleTextView = this.textView;
-        simpleTextView.setText(Emoji.replaceEmoji(tL_availableReaction.title, simpleTextView.getPaint().getFontMetricsInt(), false));
-        this.imageView.setImage(ImageLocation.getForDocument(tL_availableReaction.activate_animation), "30_30_pcache", "tgs", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tL_availableReaction);
+        simpleTextView.setText(Emoji.replaceEmoji(tL_availableReaction.title, simpleTextView.getPaint().getFontMetricsInt(), false), false);
+        this.imageView.setImage(ImageLocation.getForDocument(tL_availableReaction.activate_animation), "30_30_pcache", null, null, DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), "tgs", 0, tL_availableReaction);
         boolean z3 = this.canLock && tL_availableReaction.premium && !UserConfig.getInstance(i).isPremium();
         this.locked = z3;
         if (z3) {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.other_lockedfolders2);
-            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_stickers_menu), PorterDuff.Mode.MULTIPLY));
-            this.textView.setRightDrawable(drawable);
+            Drawable drawable = getContext().getDrawable(R.drawable.other_lockedfolders2);
+            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_stickers_menu, false), PorterDuff.Mode.MULTIPLY));
+            simpleTextView.setRightDrawable(drawable);
         } else {
-            this.textView.setRightDrawable((Drawable) null);
+            simpleTextView.setRightDrawable((Drawable) null);
         }
-        setChecked(z, z2);
-    }
-
-    public void setChecked(boolean z) {
-        setChecked(z, false);
-    }
-
-    public void setChecked(boolean z, boolean z2) {
         Switch r0 = this.switchView;
         if (r0 != null) {
-            r0.setChecked(z, z2);
+            r0.setChecked(r0.drawIconType, z, z2);
         }
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null) {
-            checkBox2.setChecked(z, z2);
+            checkBox2.checkBoxBase.setChecked(-1, z, z2);
         }
-    }
-
-    public boolean isChecked() {
-        Switch r0 = this.switchView;
-        if (r0 != null) {
-            return r0.isChecked();
-        }
-        CheckBox2 checkBox2 = this.checkBox;
-        if (checkBox2 != null) {
-            return checkBox2.isChecked();
-        }
-        return false;
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+    public final void onDraw(Canvas canvas) {
+        int i = 0;
+        canvas.drawColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
         float strokeWidth = Theme.dividerPaint.getStrokeWidth();
         int iDp = AndroidUtilities.dp(81.0f);
-        int i = 0;
-        if (LocaleController.isRTL) {
+        if (!LocaleController.isRTL) {
             i = iDp;
             iDp = 0;
         }
-        canvas.drawLine(getPaddingLeft() + iDp, getHeight() - strokeWidth, (getWidth() - getPaddingRight()) - i, getHeight() - strokeWidth, Theme.dividerPaint);
+        canvas.drawLine(getPaddingLeft() + i, getHeight() - strokeWidth, (getWidth() - getPaddingRight()) - iDp, getHeight() - strokeWidth, Theme.dividerPaint);
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
         accessibilityNodeInfo.setClickable(true);
-        if (this.switchView != null) {
+        Switch r1 = this.switchView;
+        boolean z = false;
+        CheckBox2 checkBox2 = this.checkBox;
+        if (r1 != null) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(isChecked());
+            if (r1 != null) {
+                z = r1.isChecked;
+            } else if (checkBox2 != null) {
+                z = checkBox2.checkBoxBase.isChecked;
+            }
+            accessibilityNodeInfo.setChecked(z);
             accessibilityNodeInfo.setClassName("android.widget.Switch");
-        } else if (isChecked()) {
-            accessibilityNodeInfo.setSelected(true);
+        } else {
+            if (r1 != null) {
+                z = r1.isChecked;
+            } else if (checkBox2 != null) {
+                z = checkBox2.checkBoxBase.isChecked;
+            }
+            if (z) {
+                accessibilityNodeInfo.setSelected(true);
+            }
         }
         accessibilityNodeInfo.setContentDescription(this.textView.getText());
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (Theme.dividerPaint.getStrokeWidth() + AndroidUtilities.dp(58.0f)), 1073741824));
+    }
+
+    public void setChecked(boolean z) {
+        Switch r0 = this.switchView;
+        if (r0 != null) {
+            r0.setChecked(r0.drawIconType, z, false);
+        }
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            checkBox2.checkBoxBase.setChecked(-1, z, false);
+        }
     }
 }

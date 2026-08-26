@@ -1,240 +1,223 @@
 package kotlinx.coroutines.sync;
 
-import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
+import androidx.datastore.core.SingleProcessDataStore$actor$1;
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
+import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.CancellableContinuation;
-import kotlinx.coroutines.Waiter;
-import kotlinx.coroutines.channels.ChannelSegment$$ExternalSyntheticBackportWithForwarding0;
-import kotlinx.coroutines.internal.ConcurrentLinkedListKt;
+import kotlinx.coroutines.CancellableContinuationImpl;
+import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.Segment;
-import kotlinx.coroutines.internal.SegmentOrClosed;
+import kotlinx.coroutines.internal.Symbol;
 
 public class SemaphoreImpl {
     private volatile int _availablePermits$volatile;
     private volatile long deqIdx$volatile;
     private volatile long enqIdx$volatile;
     private volatile Object head$volatile;
-    private final Function1 onCancellationRelease;
-    private final int permits;
+    public final SingleProcessDataStore$actor$1 onCancellationRelease;
     private volatile Object tail$volatile;
-    private static final AtomicReferenceFieldUpdater head$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(SemaphoreImpl.class, Object.class, "head$volatile");
-    private static final AtomicLongFieldUpdater deqIdx$volatile$FU = AtomicLongFieldUpdater.newUpdater(SemaphoreImpl.class, "deqIdx$volatile");
-    private static final AtomicReferenceFieldUpdater tail$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(SemaphoreImpl.class, Object.class, "tail$volatile");
-    private static final AtomicLongFieldUpdater enqIdx$volatile$FU = AtomicLongFieldUpdater.newUpdater(SemaphoreImpl.class, "enqIdx$volatile");
-    private static final AtomicIntegerFieldUpdater _availablePermits$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(SemaphoreImpl.class, "_availablePermits$volatile");
+    public static final AtomicReferenceFieldUpdater head$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(SemaphoreImpl.class, Object.class, "head$volatile");
+    public static final AtomicLongFieldUpdater deqIdx$volatile$FU = AtomicLongFieldUpdater.newUpdater(SemaphoreImpl.class, "deqIdx$volatile");
+    public static final AtomicReferenceFieldUpdater tail$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(SemaphoreImpl.class, Object.class, "tail$volatile");
+    public static final AtomicLongFieldUpdater enqIdx$volatile$FU = AtomicLongFieldUpdater.newUpdater(SemaphoreImpl.class, "enqIdx$volatile");
+    public static final AtomicIntegerFieldUpdater _availablePermits$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(SemaphoreImpl.class, "_availablePermits$volatile");
 
-    public SemaphoreImpl(int i, int i2) {
-        this.permits = i;
-        if (i <= 0) {
-            throw new IllegalArgumentException(("Semaphore should have at least 1 permit, but had " + i).toString());
-        }
-        if (i2 < 0 || i2 > i) {
-            throw new IllegalArgumentException(("The number of acquired permits should be in 0.." + i).toString());
+    public SemaphoreImpl(int i) {
+        if (i < 0 || i > 1) {
+            throw new IllegalArgumentException("The number of acquired permits should be in 0..1".toString());
         }
         SemaphoreSegment semaphoreSegment = new SemaphoreSegment(0L, null, 2);
         this.head$volatile = semaphoreSegment;
         this.tail$volatile = semaphoreSegment;
-        this._availablePermits$volatile = i - i2;
-        this.onCancellationRelease = new Function1() {
-            {
-                super(1);
-            }
-
-            @Override
-            public Object invoke(Object obj) {
-                invoke((Throwable) obj);
-                return Unit.INSTANCE;
-            }
-
-            public final void invoke(Throwable th) {
-                this.this$0.release();
-            }
-        };
+        this._availablePermits$volatile = 1 - i;
+        this.onCancellationRelease = new SingleProcessDataStore$actor$1(this, 1);
     }
 
-    public int getAvailablePermits() {
-        return Math.max(_availablePermits$volatile$FU.get(this), 0);
-    }
-
-    public boolean tryAcquire() {
+    public final void acquire(MutexImpl.CancellableContinuationWithOwner cancellableContinuationWithOwner) throws IllegalAccessException, InvocationTargetException {
+        Object objFindSegmentInternal;
+        CancellableContinuationImpl cancellableContinuationImpl;
         while (true) {
-            int i = _availablePermits$volatile$FU.get(this);
-            if (i > this.permits) {
-                coerceAvailablePermitsAtMaximum();
-            } else {
-                if (i <= 0) {
-                    return false;
+            int andDecrement = _availablePermits$volatile$FU.getAndDecrement(this);
+            if (andDecrement <= 1) {
+                Unit unit = Unit.INSTANCE;
+                CancellableContinuationImpl cancellableContinuationImpl2 = cancellableContinuationWithOwner.cont;
+                MutexImpl mutexImpl = MutexImpl.this;
+                if (andDecrement > 0) {
+                    MutexImpl.owner$volatile$FU.set(mutexImpl, null);
+                    cancellableContinuationImpl2.resume(new MutexImpl$CancellableContinuationWithOwner$resume$2(mutexImpl, cancellableContinuationWithOwner, 0), unit);
+                    return;
                 }
-                if (_availablePermits$volatile$FU.compareAndSet(this, i, i - 1)) {
-                    return true;
+                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = tail$volatile$FU;
+                SemaphoreSegment semaphoreSegment = (SemaphoreSegment) atomicReferenceFieldUpdater.get(this);
+                long andIncrement = enqIdx$volatile$FU.getAndIncrement(this);
+                SemaphoreImpl$addAcquireToQueue$createNewSegment$1 semaphoreImpl$addAcquireToQueue$createNewSegment$1 = SemaphoreImpl$addAcquireToQueue$createNewSegment$1.INSTANCE;
+                long j = andIncrement / ((long) SemaphoreKt.SEGMENT_SIZE);
+                while (true) {
+                    objFindSegmentInternal = AtomicKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$addAcquireToQueue$createNewSegment$1);
+                    if (AtomicKt.m144isClosedimpl(objFindSegmentInternal)) {
+                        cancellableContinuationImpl = cancellableContinuationImpl2;
+                        break;
+                    }
+                    Segment segmentM143getSegmentimpl = AtomicKt.m143getSegmentimpl(objFindSegmentInternal);
+                    while (true) {
+                        Segment segment = (Segment) atomicReferenceFieldUpdater.get(this);
+                        cancellableContinuationImpl = cancellableContinuationImpl2;
+                        if (segment.id >= segmentM143getSegmentimpl.id) {
+                            break;
+                        }
+                        if (!segmentM143getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
+                            break;
+                        }
+                        do {
+                            if (atomicReferenceFieldUpdater.compareAndSet(this, segment, segmentM143getSegmentimpl)) {
+                                if (!segment.decPointers$kotlinx_coroutines_core()) {
+                                    break;
+                                }
+                                segment.remove();
+                                break;
+                            }
+                        } while (atomicReferenceFieldUpdater.get(this) == segment);
+                        if (segmentM143getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
+                            segmentM143getSegmentimpl.remove();
+                        }
+                        cancellableContinuationImpl2 = cancellableContinuationImpl;
+                    }
+                    cancellableContinuationImpl2 = cancellableContinuationImpl;
+                }
+                SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) AtomicKt.m143getSegmentimpl(objFindSegmentInternal);
+                int i = (int) (andIncrement % ((long) SemaphoreKt.SEGMENT_SIZE));
+                AtomicReferenceArray atomicReferenceArray = semaphoreSegment2.acquirers;
+                do {
+                    if (atomicReferenceArray.compareAndSet(i, null, cancellableContinuationWithOwner)) {
+                        cancellableContinuationWithOwner.invokeOnCancellation(semaphoreSegment2, i);
+                        return;
+                    }
+                } while (atomicReferenceArray.get(i) == null);
+                Symbol symbol = SemaphoreKt.PERMIT;
+                Symbol symbol2 = SemaphoreKt.TAKEN;
+                while (true) {
+                    if (atomicReferenceArray.compareAndSet(i, symbol, symbol2)) {
+                        MutexImpl.owner$volatile$FU.set(mutexImpl, null);
+                        cancellableContinuationImpl.resume(new MutexImpl$CancellableContinuationWithOwner$resume$2(mutexImpl, cancellableContinuationWithOwner, 0), unit);
+                        return;
+                    } else {
+                        CancellableContinuationImpl cancellableContinuationImpl3 = cancellableContinuationImpl;
+                        if (atomicReferenceArray.get(i) != symbol) {
+                            break;
+                        } else {
+                            cancellableContinuationImpl = cancellableContinuationImpl3;
+                        }
+                    }
                 }
             }
         }
     }
 
-    protected final void acquire(CancellableContinuation cancellableContinuation) {
-        while (decPermits() <= 0) {
-            Intrinsics.checkNotNull(cancellableContinuation, "null cannot be cast to non-null type kotlinx.coroutines.Waiter");
-            if (addAcquireToQueue((Waiter) cancellableContinuation)) {
-                return;
-            }
-        }
-        cancellableContinuation.resume(Unit.INSTANCE, this.onCancellationRelease);
-    }
-
-    private final int decPermits() {
-        int andDecrement;
+    public final void release() {
+        boolean z;
+        int i;
+        Object objFindSegmentInternal;
         do {
-            andDecrement = _availablePermits$volatile$FU.getAndDecrement(this);
-        } while (andDecrement > this.permits);
-        return andDecrement;
-    }
-
-    public void release() {
-        do {
-            int andIncrement = _availablePermits$volatile$FU.getAndIncrement(this);
-            if (andIncrement >= this.permits) {
-                coerceAvailablePermitsAtMaximum();
-                throw new IllegalStateException(("The number of released permits cannot be greater than " + this.permits).toString());
+            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = _availablePermits$volatile$FU;
+            int andIncrement = atomicIntegerFieldUpdater.getAndIncrement(this);
+            z = true;
+            if (andIncrement >= 1) {
+                do {
+                    i = atomicIntegerFieldUpdater.get(this);
+                    if (i <= 1) {
+                        break;
+                    }
+                } while (!atomicIntegerFieldUpdater.compareAndSet(this, i, 1));
+                throw new IllegalStateException("The number of released permits cannot be greater than 1".toString());
             }
             if (andIncrement >= 0) {
                 return;
             }
-        } while (!tryResumeNextFromQueue());
-    }
-
-    private final void coerceAvailablePermitsAtMaximum() {
-        int i;
-        do {
-            i = _availablePermits$volatile$FU.get(this);
-            if (i <= this.permits) {
-                return;
-            }
-        } while (!_availablePermits$volatile$FU.compareAndSet(this, i, this.permits));
-    }
-
-    private final boolean addAcquireToQueue(Waiter waiter) {
-        Object objFindSegmentInternal;
-        SemaphoreSegment semaphoreSegment = (SemaphoreSegment) tail$volatile$FU.get(this);
-        long andIncrement = enqIdx$volatile$FU.getAndIncrement(this);
-        SemaphoreImpl$addAcquireToQueue$createNewSegment$1 semaphoreImpl$addAcquireToQueue$createNewSegment$1 = SemaphoreImpl$addAcquireToQueue$createNewSegment$1.INSTANCE;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = tail$volatile$FU;
-        long j = andIncrement / ((long) SemaphoreKt.SEGMENT_SIZE);
-        loop0: while (true) {
-            objFindSegmentInternal = ConcurrentLinkedListKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$addAcquireToQueue$createNewSegment$1);
-            if (!SegmentOrClosed.m342isClosedimpl(objFindSegmentInternal)) {
-                Segment segmentM341getSegmentimpl = SegmentOrClosed.m341getSegmentimpl(objFindSegmentInternal);
-                while (true) {
-                    Segment segment = (Segment) atomicReferenceFieldUpdater.get(this);
-                    if (segment.id >= segmentM341getSegmentimpl.id) {
-                        break loop0;
-                    }
-                    if (!segmentM341getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
-                        break;
-                    }
-                    if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, segment, segmentM341getSegmentimpl)) {
-                        if (!segment.decPointers$kotlinx_coroutines_core()) {
-                            break loop0;
-                        }
-                        segment.remove();
-                        break loop0;
-                    }
-                    if (segmentM341getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
-                        segmentM341getSegmentimpl.remove();
-                    }
-                }
-            } else {
-                break;
-            }
-        }
-        SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) SegmentOrClosed.m341getSegmentimpl(objFindSegmentInternal);
-        int i = (int) (andIncrement % ((long) SemaphoreKt.SEGMENT_SIZE));
-        if (!ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i, null, waiter)) {
-            if (!ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i, SemaphoreKt.PERMIT, SemaphoreKt.TAKEN)) {
-                return false;
-            }
-            if (waiter instanceof CancellableContinuation) {
-                Intrinsics.checkNotNull(waiter, "null cannot be cast to non-null type kotlinx.coroutines.CancellableContinuation<kotlin.Unit>");
-                ((CancellableContinuation) waiter).resume(Unit.INSTANCE, this.onCancellationRelease);
-                return true;
-            }
-            throw new IllegalStateException(("unexpected: " + waiter).toString());
-        }
-        waiter.invokeOnCancellation(semaphoreSegment2, i);
-        return true;
-    }
-
-    private final boolean tryResumeNextFromQueue() {
-        Object objFindSegmentInternal;
-        SemaphoreSegment semaphoreSegment = (SemaphoreSegment) head$volatile$FU.get(this);
-        long andIncrement = deqIdx$volatile$FU.getAndIncrement(this);
-        long j = andIncrement / ((long) SemaphoreKt.SEGMENT_SIZE);
-        SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 semaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 = SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1.INSTANCE;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = head$volatile$FU;
-        loop0: while (true) {
-            objFindSegmentInternal = ConcurrentLinkedListKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$tryResumeNextFromQueue$createNewSegment$1);
-            if (SegmentOrClosed.m342isClosedimpl(objFindSegmentInternal)) {
-                break;
-            }
-            Segment segmentM341getSegmentimpl = SegmentOrClosed.m341getSegmentimpl(objFindSegmentInternal);
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = head$volatile$FU;
+            SemaphoreSegment semaphoreSegment = (SemaphoreSegment) atomicReferenceFieldUpdater.get(this);
+            long andIncrement2 = deqIdx$volatile$FU.getAndIncrement(this);
+            long j = andIncrement2 / ((long) SemaphoreKt.SEGMENT_SIZE);
+            SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 semaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 = SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1.INSTANCE;
             while (true) {
-                Segment segment = (Segment) atomicReferenceFieldUpdater.get(this);
-                if (segment.id >= segmentM341getSegmentimpl.id) {
-                    break loop0;
-                }
-                if (!segmentM341getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
+                objFindSegmentInternal = AtomicKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$tryResumeNextFromQueue$createNewSegment$1);
+                if (!AtomicKt.m144isClosedimpl(objFindSegmentInternal)) {
+                    Segment segmentM143getSegmentimpl = AtomicKt.m143getSegmentimpl(objFindSegmentInternal);
+                    while (true) {
+                        Segment segment = (Segment) atomicReferenceFieldUpdater.get(this);
+                        if (segment.id >= segmentM143getSegmentimpl.id) {
+                            break;
+                        }
+                        if (!segmentM143getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
+                            break;
+                        }
+                        do {
+                            if (atomicReferenceFieldUpdater.compareAndSet(this, segment, segmentM143getSegmentimpl)) {
+                                if (!segment.decPointers$kotlinx_coroutines_core()) {
+                                    break;
+                                }
+                                segment.remove();
+                                break;
+                            }
+                        } while (atomicReferenceFieldUpdater.get(this) == segment);
+                        if (segmentM143getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
+                            segmentM143getSegmentimpl.remove();
+                        }
+                    }
+                } else {
                     break;
                 }
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, segment, segmentM341getSegmentimpl)) {
-                    if (!segment.decPointers$kotlinx_coroutines_core()) {
-                        break loop0;
+            }
+            SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) AtomicKt.m143getSegmentimpl(objFindSegmentInternal);
+            semaphoreSegment2.cleanPrev();
+            boolean z2 = false;
+            if (semaphoreSegment2.id > j) {
+                z = false;
+            } else {
+                int i2 = (int) (andIncrement2 % ((long) SemaphoreKt.SEGMENT_SIZE));
+                Symbol symbol = SemaphoreKt.PERMIT;
+                AtomicReferenceArray atomicReferenceArray = semaphoreSegment2.acquirers;
+                Object andSet = atomicReferenceArray.getAndSet(i2, symbol);
+                if (andSet == null) {
+                    int i3 = SemaphoreKt.MAX_SPIN_CYCLES;
+                    int i4 = 0;
+                    while (true) {
+                        if (i4 >= i3) {
+                            Symbol symbol2 = SemaphoreKt.PERMIT;
+                            Symbol symbol3 = SemaphoreKt.BROKEN;
+                            do {
+                                if (atomicReferenceArray.compareAndSet(i2, symbol2, symbol3)) {
+                                    z2 = true;
+                                    break;
+                                }
+                            } while (atomicReferenceArray.get(i2) == symbol2);
+                            z = true ^ z2;
+                            break;
+                        }
+                        if (atomicReferenceArray.get(i2) == SemaphoreKt.TAKEN) {
+                            break;
+                        } else {
+                            i4++;
+                        }
                     }
-                    segment.remove();
-                    break loop0;
-                }
-                if (segmentM341getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
-                    segmentM341getSegmentimpl.remove();
-                }
-            }
-        }
-        SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) SegmentOrClosed.m341getSegmentimpl(objFindSegmentInternal);
-        semaphoreSegment2.cleanPrev();
-        if (semaphoreSegment2.id > j) {
-            return false;
-        }
-        int i = (int) (andIncrement % ((long) SemaphoreKt.SEGMENT_SIZE));
-        Object andSet = semaphoreSegment2.getAcquirers().getAndSet(i, SemaphoreKt.PERMIT);
-        if (andSet == null) {
-            int i2 = SemaphoreKt.MAX_SPIN_CYCLES;
-            for (int i3 = 0; i3 < i2; i3++) {
-                if (semaphoreSegment2.getAcquirers().get(i) == SemaphoreKt.TAKEN) {
-                    return true;
+                } else if (andSet == SemaphoreKt.CANCELLED) {
+                    z = false;
+                } else {
+                    if (!(andSet instanceof CancellableContinuation)) {
+                        throw new IllegalStateException(("unexpected: " + andSet).toString());
+                    }
+                    CancellableContinuation cancellableContinuation = (CancellableContinuation) andSet;
+                    Symbol symbolTryResume = cancellableContinuation.tryResume(this.onCancellationRelease, Unit.INSTANCE);
+                    if (symbolTryResume != null) {
+                        cancellableContinuation.completeResume(symbolTryResume);
+                    } else {
+                        z = false;
+                    }
                 }
             }
-            return !ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i, SemaphoreKt.PERMIT, SemaphoreKt.BROKEN);
-        }
-        if (andSet == SemaphoreKt.CANCELLED) {
-            return false;
-        }
-        return tryResumeAcquire(andSet);
-    }
-
-    private final boolean tryResumeAcquire(Object obj) {
-        if (obj instanceof CancellableContinuation) {
-            Intrinsics.checkNotNull(obj, "null cannot be cast to non-null type kotlinx.coroutines.CancellableContinuation<kotlin.Unit>");
-            CancellableContinuation cancellableContinuation = (CancellableContinuation) obj;
-            Object objTryResume = cancellableContinuation.tryResume(Unit.INSTANCE, null, this.onCancellationRelease);
-            if (objTryResume == null) {
-                return false;
-            }
-            cancellableContinuation.completeResume(objTryResume);
-            return true;
-        }
-        throw new IllegalStateException(("unexpected: " + obj).toString());
+        } while (!z);
     }
 }

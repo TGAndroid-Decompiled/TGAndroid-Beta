@@ -1,9 +1,14 @@
 package kotlin.coroutines.jvm.internal;
 
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.ContinuationInterceptor;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
+import kotlinx.coroutines.CancellableContinuationImpl;
+import kotlinx.coroutines.CoroutineDispatcher;
+import kotlinx.coroutines.internal.AtomicKt;
+import kotlinx.coroutines.internal.DispatchedContinuation;
 
 public abstract class ContinuationImpl extends BaseContinuationImpl {
     private final CoroutineContext _context;
@@ -14,10 +19,6 @@ public abstract class ContinuationImpl extends BaseContinuationImpl {
         this._context = coroutineContext;
     }
 
-    public ContinuationImpl(Continuation continuation) {
-        this(continuation, continuation != null ? continuation.getContext() : null);
-    }
-
     @Override
     public CoroutineContext getContext() {
         CoroutineContext coroutineContext = this._context;
@@ -26,25 +27,37 @@ public abstract class ContinuationImpl extends BaseContinuationImpl {
     }
 
     public final Continuation intercepted() {
-        Continuation continuationInterceptContinuation = this.intercepted;
-        if (continuationInterceptContinuation == null) {
-            ContinuationInterceptor continuationInterceptor = (ContinuationInterceptor) getContext().get(ContinuationInterceptor.Key);
-            if (continuationInterceptor == null || (continuationInterceptContinuation = continuationInterceptor.interceptContinuation(this)) == null) {
-                continuationInterceptContinuation = this;
-            }
-            this.intercepted = continuationInterceptContinuation;
+        Continuation continuation = this.intercepted;
+        if (continuation != null) {
+            return continuation;
         }
-        return continuationInterceptContinuation;
+        ContinuationInterceptor continuationInterceptor = (ContinuationInterceptor) getContext().get(ContinuationInterceptor.Key.$$INSTANCE);
+        Continuation dispatchedContinuation = continuationInterceptor != null ? new DispatchedContinuation((CoroutineDispatcher) continuationInterceptor, this) : this;
+        this.intercepted = dispatchedContinuation;
+        return dispatchedContinuation;
     }
 
     @Override
-    protected void releaseIntercepted() {
+    public void releaseIntercepted() {
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         Continuation continuation = this.intercepted;
         if (continuation != null && continuation != this) {
-            CoroutineContext.Element element = getContext().get(ContinuationInterceptor.Key);
+            CoroutineContext.Element element = getContext().get(ContinuationInterceptor.Key.$$INSTANCE);
             Intrinsics.checkNotNull(element);
-            ((ContinuationInterceptor) element).releaseInterceptedContinuation(continuation);
+            DispatchedContinuation dispatchedContinuation = (DispatchedContinuation) continuation;
+            do {
+                atomicReferenceFieldUpdater = DispatchedContinuation._reusableCancellableContinuation$volatile$FU;
+            } while (atomicReferenceFieldUpdater.get(dispatchedContinuation) == AtomicKt.REUSABLE_CLAIMED);
+            Object obj = atomicReferenceFieldUpdater.get(dispatchedContinuation);
+            CancellableContinuationImpl cancellableContinuationImpl = obj instanceof CancellableContinuationImpl ? (CancellableContinuationImpl) obj : null;
+            if (cancellableContinuationImpl != null) {
+                cancellableContinuationImpl.detachChild$kotlinx_coroutines_core();
+            }
         }
         this.intercepted = CompletedContinuation.INSTANCE;
+    }
+
+    public ContinuationImpl(Continuation continuation) {
+        this(continuation, continuation != null ? continuation.getContext() : null);
     }
 }

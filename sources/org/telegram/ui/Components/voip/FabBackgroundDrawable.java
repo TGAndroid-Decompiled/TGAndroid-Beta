@@ -8,23 +8,10 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 
-public class FabBackgroundDrawable extends Drawable {
-    private Paint bgPaint = new Paint(1);
-    private Bitmap shadowBitmap;
-    private Paint shadowPaint;
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
+public final class FabBackgroundDrawable extends Drawable {
+    public final Paint bgPaint = new Paint(1);
+    public Bitmap shadowBitmap;
+    public final Paint shadowPaint;
 
     public FabBackgroundDrawable() {
         Paint paint = new Paint();
@@ -33,7 +20,7 @@ public class FabBackgroundDrawable extends Drawable {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         if (this.shadowBitmap == null) {
             onBoundsChange(getBounds());
         }
@@ -48,7 +35,19 @@ public class FabBackgroundDrawable extends Drawable {
     }
 
     @Override
-    protected void onBoundsChange(Rect rect) {
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final boolean getPadding(Rect rect) {
+        int iDp = AndroidUtilities.dp(4.0f);
+        rect.set(iDp, iDp, iDp, iDp);
+        return true;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
         int iMin = Math.min(rect.width(), rect.height());
         if (iMin <= 0) {
             this.shadowBitmap = null;
@@ -60,15 +59,11 @@ public class FabBackgroundDrawable extends Drawable {
         new Canvas(this.shadowBitmap).drawCircle(f, f, i - AndroidUtilities.dp(4.0f), new Paint(1));
     }
 
-    public void setColor(int i) {
-        this.bgPaint.setColor(i);
-        invalidateSelf();
+    @Override
+    public final void setAlpha(int i) {
     }
 
     @Override
-    public boolean getPadding(Rect rect) {
-        int iDp = AndroidUtilities.dp(4.0f);
-        rect.set(iDp, iDp, iDp, iDp);
-        return true;
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

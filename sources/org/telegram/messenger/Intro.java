@@ -11,6 +11,10 @@ public class Intro {
 
     private static native void setBackgroundColor(float f, float f2, float f3, float f4);
 
+    public static void setBackgroundColor(int i) {
+        setBackgroundColor(Color.red(i) / 255.0f, Color.green(i) / 255.0f, Color.blue(i) / 255.0f, Color.alpha(i) / 255.0f);
+    }
+
     public static native void setDate(float f);
 
     public static native void setFastTextures(int i, int i2, int i3, int i4);
@@ -28,8 +32,4 @@ public class Intro {
     public static native void setScrollOffset(float f);
 
     public static native void setTelegramTextures(int i, int i2, int i3);
-
-    public static void setBackgroundColor(int i) {
-        setBackgroundColor(Color.red(i) / 255.0f, Color.green(i) / 255.0f, Color.blue(i) / 255.0f, Color.alpha(i) / 255.0f);
-    }
 }

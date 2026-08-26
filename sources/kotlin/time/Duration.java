@@ -1,169 +1,80 @@
 package kotlin.time;
 
-import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
-import kotlin.jvm.internal.DefaultConstructorMarker;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import kotlin.jvm.internal.Intrinsics;
-import kotlin.text.StringsKt;
 
 public final class Duration implements Comparable {
-    private final long rawValue;
-    public static final Companion Companion = new Companion(null);
-    private static final long ZERO = m296constructorimpl(0);
-    private static final long INFINITE = DurationKt.durationOfMillis(4611686018427387903L);
-    private static final long NEG_INFINITE = DurationKt.durationOfMillis(-4611686018427387903L);
+    public static final int $r8$clinit = 0;
+    public static final long INFINITE;
+    public static final long NEG_INFINITE;
+    public final long rawValue;
 
-    public static final Duration m294boximpl(long j) {
-        return new Duration(j);
+    static {
+        int i = DurationJvmKt.$r8$clinit;
+        INFINITE = Long.MAX_VALUE;
+        NEG_INFINITE = -9223372036854775805L;
     }
 
-    public static boolean m297equalsimpl(long j, Object obj) {
-        return (obj instanceof Duration) && j == ((Duration) obj).m321unboximpl();
-    }
-
-    private static final long m309getValueimpl(long j) {
-        return j >> 1;
-    }
-
-    public static int m310hashCodeimpl(long j) {
-        return SessionDetails$$ExternalSyntheticBackport0.m(j);
-    }
-
-    private static final boolean m312isInMillisimpl(long j) {
-        return (((int) j) & 1) == 1;
-    }
-
-    private static final boolean m313isInNanosimpl(long j) {
-        return (((int) j) & 1) == 0;
-    }
-
-    public static final boolean m315isNegativeimpl(long j) {
-        return j < 0;
-    }
-
-    public static final boolean m316isPositiveimpl(long j) {
-        return j > 0;
-    }
-
-    public boolean equals(Object obj) {
-        return m297equalsimpl(this.rawValue, obj);
-    }
-
-    public int hashCode() {
-        return m310hashCodeimpl(this.rawValue);
-    }
-
-    public final long m321unboximpl() {
-        return this.rawValue;
-    }
-
-    @Override
-    public int compareTo(Object obj) {
-        return m320compareToLRDsOJo(((Duration) obj).m321unboximpl());
-    }
-
-    private Duration(long j) {
-        this.rawValue = j;
-    }
-
-    private static final DurationUnit m308getStorageUnitimpl(long j) {
-        return m313isInNanosimpl(j) ? DurationUnit.NANOSECONDS : DurationUnit.MILLISECONDS;
-    }
-
-    public static long m296constructorimpl(long j) {
-        if (!DurationJvmKt.getDurationAssertionsEnabled()) {
-            return j;
-        }
-        if (m313isInNanosimpl(j)) {
-            long jM309getValueimpl = m309getValueimpl(j);
-            if (-4611686018426999999L <= jM309getValueimpl && jM309getValueimpl < 4611686018427000000L) {
-                return j;
+    public static final void m140appendFractionalimpl(StringBuilder sb, int i, int i2, int i3, String str) {
+        CharSequence charSequenceSubSequence;
+        sb.append(i);
+        if (i2 != 0) {
+            sb.append('.');
+            String strValueOf = String.valueOf(i2);
+            Intrinsics.checkNotNullParameter(strValueOf, "<this>");
+            if (i3 < 0) {
+                throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i3, "Desired length ", " is less than zero."));
             }
-            throw new AssertionError(m309getValueimpl(j) + " ns is out of nanoseconds range");
+            if (i3 <= strValueOf.length()) {
+                charSequenceSubSequence = strValueOf.subSequence(0, strValueOf.length());
+            } else {
+                StringBuilder sb2 = new StringBuilder(i3);
+                int length = i3 - strValueOf.length();
+                int i4 = 1;
+                if (1 <= length) {
+                    while (true) {
+                        sb2.append('0');
+                        if (i4 == length) {
+                            break;
+                        } else {
+                            i4++;
+                        }
+                    }
+                }
+                sb2.append((CharSequence) strValueOf);
+                charSequenceSubSequence = sb2;
+            }
+            String string = charSequenceSubSequence.toString();
+            int i5 = -1;
+            int length2 = string.length() - 1;
+            if (length2 >= 0) {
+                while (true) {
+                    int i6 = length2 - 1;
+                    if (string.charAt(length2) != '0') {
+                        i5 = length2;
+                        break;
+                    } else if (i6 < 0) {
+                        break;
+                    } else {
+                        length2 = i6;
+                    }
+                }
+            }
+            int i7 = i5 + 1;
+            if (i7 < 3) {
+                sb.append((CharSequence) string, 0, i7);
+            } else {
+                sb.append((CharSequence) string, 0, ((i5 + 3) / 3) * 3);
+            }
         }
-        long jM309getValueimpl2 = m309getValueimpl(j);
-        if (-4611686018427387903L > jM309getValueimpl2 || jM309getValueimpl2 >= 4611686018427387904L) {
-            throw new AssertionError(m309getValueimpl(j) + " ms is out of milliseconds range");
-        }
-        long jM309getValueimpl3 = m309getValueimpl(j);
-        if (-4611686018426L > jM309getValueimpl3 || jM309getValueimpl3 >= 4611686018427L) {
-            return j;
-        }
-        throw new AssertionError(m309getValueimpl(j) + " ms is denormalized");
+        sb.append(str);
     }
 
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
-    }
-
-    public static final long m319unaryMinusUwyO8pc(long j) {
-        return DurationKt.durationOf(-m309getValueimpl(j), ((int) j) & 1);
-    }
-
-    public static final boolean m314isInfiniteimpl(long j) {
+    public static final boolean m141isInfiniteimpl(long j) {
         return j == INFINITE || j == NEG_INFINITE;
     }
 
-    public static final boolean m311isFiniteimpl(long j) {
-        return !m314isInfiniteimpl(j);
-    }
-
-    public static final long m298getAbsoluteValueUwyO8pc(long j) {
-        return m315isNegativeimpl(j) ? m319unaryMinusUwyO8pc(j) : j;
-    }
-
-    public int m320compareToLRDsOJo(long j) {
-        return m295compareToLRDsOJo(this.rawValue, j);
-    }
-
-    public static int m295compareToLRDsOJo(long j, long j2) {
-        long j3 = j ^ j2;
-        if (j3 < 0 || (((int) j3) & 1) == 0) {
-            return Intrinsics.compare(j, j2);
-        }
-        int i = (((int) j) & 1) - (((int) j2) & 1);
-        return m315isNegativeimpl(j) ? -i : i;
-    }
-
-    public static final int m299getHoursComponentimpl(long j) {
-        if (m314isInfiniteimpl(j)) {
-            return 0;
-        }
-        return (int) (m301getInWholeHoursimpl(j) % ((long) 24));
-    }
-
-    public static final int m305getMinutesComponentimpl(long j) {
-        if (m314isInfiniteimpl(j)) {
-            return 0;
-        }
-        return (int) (m303getInWholeMinutesimpl(j) % ((long) 60));
-    }
-
-    public static final int m307getSecondsComponentimpl(long j) {
-        if (m314isInfiniteimpl(j)) {
-            return 0;
-        }
-        return (int) (m304getInWholeSecondsimpl(j) % ((long) 60));
-    }
-
-    public static final int m306getNanosecondsComponentimpl(long j) {
-        long jM309getValueimpl;
-        if (m314isInfiniteimpl(j)) {
-            return 0;
-        }
-        if (m312isInMillisimpl(j)) {
-            jM309getValueimpl = DurationKt.millisToNanos(m309getValueimpl(j) % ((long) 1000));
-        } else {
-            jM309getValueimpl = m309getValueimpl(j) % ((long) 1000000000);
-        }
-        return (int) jM309getValueimpl;
-    }
-
-    public static final long m317toLongimpl(long j, DurationUnit unit) {
+    public static final long m142toLongimpl(long j, DurationUnit unit) {
         Intrinsics.checkNotNullParameter(unit, "unit");
         if (j == INFINITE) {
             return Long.MAX_VALUE;
@@ -171,34 +82,44 @@ public final class Duration implements Comparable {
         if (j == NEG_INFINITE) {
             return Long.MIN_VALUE;
         }
-        return DurationUnitKt__DurationUnitJvmKt.convertDurationUnit(m309getValueimpl(j), m308getStorageUnitimpl(j), unit);
+        long j2 = j >> 1;
+        DurationUnit sourceUnit = (((int) j) & 1) == 0 ? DurationUnit.NANOSECONDS : DurationUnit.MILLISECONDS;
+        Intrinsics.checkNotNullParameter(sourceUnit, "sourceUnit");
+        return unit.timeUnit.convert(j2, sourceUnit.timeUnit);
     }
 
-    public static final long m300getInWholeDaysimpl(long j) {
-        return m317toLongimpl(j, DurationUnit.DAYS);
+    @Override
+    public final int compareTo(Object obj) {
+        long j = ((Duration) obj).rawValue;
+        long j2 = this.rawValue;
+        long j3 = j2 ^ j;
+        if (j3 >= 0 && (((int) j3) & 1) != 0) {
+            int i = (((int) j2) & 1) - (1 & ((int) j));
+            return j2 < 0 ? -i : i;
+        }
+        if (j2 < j) {
+            return -1;
+        }
+        return j2 == j ? 0 : 1;
     }
 
-    public static final long m301getInWholeHoursimpl(long j) {
-        return m317toLongimpl(j, DurationUnit.HOURS);
+    public final boolean equals(Object obj) {
+        if (obj instanceof Duration) {
+            return this.rawValue == ((Duration) obj).rawValue;
+        }
+        return false;
     }
 
-    public static final long m303getInWholeMinutesimpl(long j) {
-        return m317toLongimpl(j, DurationUnit.MINUTES);
+    public final int hashCode() {
+        long j = this.rawValue;
+        return (int) (j ^ (j >>> 32));
     }
 
-    public static final long m304getInWholeSecondsimpl(long j) {
-        return m317toLongimpl(j, DurationUnit.SECONDS);
-    }
-
-    public static final long m302getInWholeMillisecondsimpl(long j) {
-        return (m312isInMillisimpl(j) && m311isFiniteimpl(j)) ? m309getValueimpl(j) : m317toLongimpl(j, DurationUnit.MILLISECONDS);
-    }
-
-    public String toString() {
-        return m318toStringimpl(this.rawValue);
-    }
-
-    public static String m318toStringimpl(long j) {
+    public final String toString() {
+        int i;
+        int i2;
+        int i3;
+        long j = this.rawValue;
         if (j == 0) {
             return "0s";
         }
@@ -208,97 +129,78 @@ public final class Duration implements Comparable {
         if (j == NEG_INFINITE) {
             return "-Infinity";
         }
-        boolean zM315isNegativeimpl = m315isNegativeimpl(j);
+        boolean z = j < 0;
         StringBuilder sb = new StringBuilder();
-        if (zM315isNegativeimpl) {
+        if (z) {
             sb.append('-');
         }
-        long jM298getAbsoluteValueUwyO8pc = m298getAbsoluteValueUwyO8pc(j);
-        long jM300getInWholeDaysimpl = m300getInWholeDaysimpl(jM298getAbsoluteValueUwyO8pc);
-        int iM299getHoursComponentimpl = m299getHoursComponentimpl(jM298getAbsoluteValueUwyO8pc);
-        int iM305getMinutesComponentimpl = m305getMinutesComponentimpl(jM298getAbsoluteValueUwyO8pc);
-        int iM307getSecondsComponentimpl = m307getSecondsComponentimpl(jM298getAbsoluteValueUwyO8pc);
-        int iM306getNanosecondsComponentimpl = m306getNanosecondsComponentimpl(jM298getAbsoluteValueUwyO8pc);
-        int i = 0;
-        boolean z = jM300getInWholeDaysimpl != 0;
-        boolean z2 = iM299getHoursComponentimpl != 0;
-        boolean z3 = iM305getMinutesComponentimpl != 0;
-        boolean z4 = (iM307getSecondsComponentimpl == 0 && iM306getNanosecondsComponentimpl == 0) ? false : true;
-        if (z) {
-            sb.append(jM300getInWholeDaysimpl);
-            sb.append('d');
+        if (j < 0) {
+            j = ((long) (((int) j) & 1)) + ((-(j >> 1)) << 1);
+            int i4 = DurationJvmKt.$r8$clinit;
+        }
+        long jM142toLongimpl = m142toLongimpl(j, DurationUnit.DAYS);
+        int iM142toLongimpl = m141isInfiniteimpl(j) ? 0 : (int) (m142toLongimpl(j, DurationUnit.HOURS) % ((long) 24));
+        int iM142toLongimpl2 = m141isInfiniteimpl(j) ? 0 : (int) (m142toLongimpl(j, DurationUnit.MINUTES) % ((long) 60));
+        int iM142toLongimpl3 = m141isInfiniteimpl(j) ? 0 : (int) (m142toLongimpl(j, DurationUnit.SECONDS) % ((long) 60));
+        if (m141isInfiniteimpl(j)) {
+            i2 = 0;
             i = 1;
+        } else if ((((int) j) & 1) == 1) {
+            i = 1;
+            i2 = (int) (((j >> 1) % ((long) 1000)) * ((long) 1000000));
+        } else {
+            i = 1;
+            i2 = (int) ((j >> 1) % ((long) 1000000000));
         }
-        if (z2 || (z && (z3 || z4))) {
-            int i2 = i + 1;
-            if (i > 0) {
+        boolean z2 = jM142toLongimpl != 0;
+        boolean z3 = iM142toLongimpl != 0;
+        boolean z4 = iM142toLongimpl2 != 0;
+        boolean z5 = (iM142toLongimpl3 == 0 && i2 == 0) ? false : true;
+        if (z2) {
+            sb.append(jM142toLongimpl);
+            sb.append('d');
+            i3 = 1;
+        } else {
+            i3 = 0;
+        }
+        if (z3 || (z2 && (z4 || z5))) {
+            int i5 = i3 + 1;
+            if (i3 > 0) {
                 sb.append(' ');
             }
-            sb.append(iM299getHoursComponentimpl);
+            sb.append(iM142toLongimpl);
             sb.append('h');
-            i = i2;
+            i3 = i5;
         }
-        if (z3 || (z4 && (z2 || z))) {
-            int i3 = i + 1;
-            if (i > 0) {
+        if (z4 || (z5 && (z3 || z2))) {
+            int i6 = i3 + 1;
+            if (i3 > 0) {
                 sb.append(' ');
             }
-            sb.append(iM305getMinutesComponentimpl);
+            sb.append(iM142toLongimpl2);
             sb.append('m');
-            i = i3;
+            i3 = i6;
         }
-        if (z4) {
-            int i4 = i + 1;
-            if (i > 0) {
+        if (z5) {
+            int i7 = i3 + 1;
+            if (i3 > 0) {
                 sb.append(' ');
             }
-            if (iM307getSecondsComponentimpl != 0 || z || z2 || z3) {
-                m293appendFractionalimpl(j, sb, iM307getSecondsComponentimpl, iM306getNanosecondsComponentimpl, 9, "s", false);
-            } else if (iM306getNanosecondsComponentimpl >= 1000000) {
-                m293appendFractionalimpl(j, sb, iM306getNanosecondsComponentimpl / 1000000, iM306getNanosecondsComponentimpl % 1000000, 6, "ms", false);
-            } else if (iM306getNanosecondsComponentimpl >= 1000) {
-                m293appendFractionalimpl(j, sb, iM306getNanosecondsComponentimpl / 1000, iM306getNanosecondsComponentimpl % 1000, 3, "us", false);
+            if (iM142toLongimpl3 != 0 || z2 || z3 || z4) {
+                m140appendFractionalimpl(sb, iM142toLongimpl3, i2, 9, "s");
+            } else if (i2 >= 1000000) {
+                m140appendFractionalimpl(sb, i2 / 1000000, i2 % 1000000, 6, "ms");
+            } else if (i2 >= 1000) {
+                m140appendFractionalimpl(sb, i2 / 1000, i2 % 1000, 3, "us");
             } else {
-                sb.append(iM306getNanosecondsComponentimpl);
+                sb.append(i2);
                 sb.append("ns");
             }
-            i = i4;
+            i3 = i7;
         }
-        if (zM315isNegativeimpl && i > 1) {
-            sb.insert(1, '(').append(')');
+        if (z && i3 > i) {
+            sb.insert(i, '(').append(')');
         }
         return sb.toString();
-    }
-
-    private static final void m293appendFractionalimpl(long j, StringBuilder sb, int i, int i2, int i3, String str, boolean z) {
-        sb.append(i);
-        if (i2 != 0) {
-            sb.append('.');
-            String strPadStart = StringsKt.padStart(String.valueOf(i2), i3, '0');
-            int i4 = -1;
-            int length = strPadStart.length() - 1;
-            if (length >= 0) {
-                while (true) {
-                    int i5 = length - 1;
-                    if (strPadStart.charAt(length) != '0') {
-                        i4 = length;
-                        break;
-                    } else if (i5 < 0) {
-                        break;
-                    } else {
-                        length = i5;
-                    }
-                }
-            }
-            int i6 = i4 + 1;
-            if (!z && i6 < 3) {
-                sb.append((CharSequence) strPadStart, 0, i6);
-                Intrinsics.checkNotNullExpressionValue(sb, "append(...)");
-            } else {
-                sb.append((CharSequence) strPadStart, 0, ((i4 + 3) / 3) * 3);
-                Intrinsics.checkNotNullExpressionValue(sb, "append(...)");
-            }
-        }
-        sb.append(str);
     }
 }

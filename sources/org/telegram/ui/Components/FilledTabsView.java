@@ -9,16 +9,18 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
 
-public class FilledTabsView extends View {
-    private final Paint backgroundPaint;
-    private RectF[] bounds;
-    private int lastPressedIndex;
-    private Utilities.Callback onTabClick;
-    private final Paint selectedPaint;
-    private float selectedTabIndex;
-    private Text[] tabs;
+public final class FilledTabsView extends View {
+    public final Paint backgroundPaint;
+    public RectF[] bounds;
+    public int lastPressedIndex;
+    public PollItemMenu$$ExternalSyntheticLambda14 onTabClick;
+    public final Paint selectedPaint;
+    public float selectedTabIndex;
+    public Text[] tabs;
 
     public FilledTabsView(Context context) {
         super(context);
@@ -30,49 +32,21 @@ public class FilledTabsView extends View {
         paint.setColor(-1);
     }
 
-    public void setTabs(CharSequence... charSequenceArr) {
-        this.tabs = new Text[charSequenceArr.length];
-        this.bounds = new RectF[charSequenceArr.length];
-        for (int i = 0; i < charSequenceArr.length; i++) {
-            this.tabs[i] = new Text(charSequenceArr[i], 14.0f, AndroidUtilities.bold());
-            this.bounds[i] = new RectF();
-        }
-        invalidate();
-    }
-
-    public void setSelected(float f) {
-        if (Math.abs(f - this.selectedTabIndex) > 0.001f) {
-            invalidate();
-        }
-        this.selectedTabIndex = f;
-    }
-
-    public FilledTabsView onTabSelected(Utilities.Callback callback) {
-        this.onTabClick = callback;
-        return this;
-    }
-
     @Override
-    public void setBackgroundColor(int i) {
-        this.backgroundPaint.setColor(i);
-        invalidate();
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         if (this.tabs == null) {
             return;
         }
         int width = getWidth();
         int height = getHeight();
-        int iDp = AndroidUtilities.dp(2.0f) + (this.tabs.length * AndroidUtilities.dp(24.0f)) + AndroidUtilities.dp(2.0f);
+        int iDp = AndroidUtilities.dp(2.0f) + RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(this.tabs.length, 24.0f, AndroidUtilities.dp(2.0f));
         int i = 0;
         while (true) {
             Text[] textArr = this.tabs;
             if (i >= textArr.length) {
                 break;
             }
-            iDp = (int) (iDp + textArr[i].getWidth());
+            iDp = (int) (textArr[i].getWidth() + iDp);
             i++;
         }
         float fDp = (height - AndroidUtilities.dp(30.0f)) / 2.0f;
@@ -86,15 +60,10 @@ public class FilledTabsView extends View {
         int i2 = 0;
         while (true) {
             Text[] textArr2 = this.tabs;
-            if (i2 < textArr2.length) {
-                textArr2[i2].draw(canvas, fDp3, height / 2.0f, -1, 1.0f);
-                this.bounds[i2].set(fDp3 - AndroidUtilities.dp(14.0f), fDp, this.tabs[i2].getWidth() + fDp3 + AndroidUtilities.dp(14.0f), fDp2);
-                fDp3 += this.tabs[i2].getWidth() + AndroidUtilities.dp(24.0f);
-                i2++;
-            } else {
+            if (i2 >= textArr2.length) {
                 AndroidUtilities.dp(2.0f);
                 float fDp4 = (height - AndroidUtilities.dp(26.0f)) / 2.0f;
-                float fDp5 = (height + AndroidUtilities.dp(26.0f)) / 2.0f;
+                float fDp5 = (AndroidUtilities.dp(26.0f) + height) / 2.0f;
                 int iClamp = Utilities.clamp((int) Math.floor(this.selectedTabIndex), this.tabs.length - 1, 0);
                 int iClamp2 = Utilities.clamp((int) Math.ceil(this.selectedTabIndex), this.tabs.length - 1, 0);
                 float fDp6 = this.bounds[iClamp].left + AndroidUtilities.dp(2.0f);
@@ -111,11 +80,15 @@ public class FilledTabsView extends View {
                 canvas.restore();
                 return;
             }
+            textArr2[i2].draw(fDp3, height / 2.0f, 1.0f, -1, canvas);
+            this.bounds[i2].set(fDp3 - AndroidUtilities.dp(14.0f), fDp, this.tabs[i2].getWidth() + fDp3 + AndroidUtilities.dp(14.0f), fDp2);
+            fDp3 += this.tabs[i2].getWidth() + AndroidUtilities.dp(24.0f);
+            i2++;
         }
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
         int i = 0;
         if (this.tabs == null || this.bounds == null) {
             return false;
@@ -133,9 +106,9 @@ public class FilledTabsView extends View {
         }
         if (i >= 0 && i != this.lastPressedIndex) {
             this.lastPressedIndex = i;
-            Utilities.Callback callback = this.onTabClick;
-            if (callback != null) {
-                callback.run(Integer.valueOf(i));
+            PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14 = this.onTabClick;
+            if (pollItemMenu$$ExternalSyntheticLambda14 != null) {
+                pollItemMenu$$ExternalSyntheticLambda14.run(Integer.valueOf(i));
             }
         }
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
@@ -145,5 +118,28 @@ public class FilledTabsView extends View {
             return super.onTouchEvent(motionEvent);
         }
         return true;
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        this.backgroundPaint.setColor(i);
+        invalidate();
+    }
+
+    public void setSelected(float f) {
+        if (Math.abs(f - this.selectedTabIndex) > 0.001f) {
+            invalidate();
+        }
+        this.selectedTabIndex = f;
+    }
+
+    public void setTabs(CharSequence... charSequenceArr) {
+        this.tabs = new Text[charSequenceArr.length];
+        this.bounds = new RectF[charSequenceArr.length];
+        for (int i = 0; i < charSequenceArr.length; i++) {
+            this.tabs[i] = new Text(charSequenceArr[i], 14.0f, AndroidUtilities.bold());
+            this.bounds[i] = new RectF();
+        }
+        invalidate();
     }
 }

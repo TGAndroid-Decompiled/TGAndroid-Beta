@@ -1,6 +1,5 @@
 package org.telegram.ui.Stars;
 
-import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -11,10 +10,13 @@ import android.graphics.Shader;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline2;
+import org.telegram.messenger.LocationController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
@@ -23,44 +25,72 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.ProfileActivity;
 
-public class ProfileGiftsView extends View implements NotificationCenter.NotificationCenterDelegate {
-    private float actionBarProgress;
-    private boolean active;
-    private final View avatarContainer;
-    private final ProfileActivity.AvatarImageView avatarImage;
+public final class ProfileGiftsView extends View implements NotificationCenter.NotificationCenterDelegate {
+    public float actionBarProgress;
+    public boolean active;
+    public final ProfileActivity.AnonymousClass19 avatarContainer;
     public float collapseProgress;
-    private final int currentAccount;
-    private float cy;
-    private final long dialogId;
+    public final int currentAccount;
+    public float cy;
+    public final long dialogId;
     public float expandProgress;
-    private float expandY;
-    private final TimeInterpolator giftCollapseXInterpolator;
-    private final TimeInterpolator giftCollapseYInterpolator;
+    public float expandY;
+    public final DecelerateInterpolator giftCollapseXInterpolator;
+    public final LinearInterpolator giftCollapseYInterpolator;
     public final HashSet giftIds;
     public final ArrayList gifts;
     public boolean isOpening;
-    private float left;
-    private StarsController.GiftsList list;
+    public float left;
+    public StarsController.GiftsList list;
     public int maxCount;
-    private float maxExpandY;
+    public float maxExpandY;
     public final ArrayList oldGifts;
-    private Gift pressedGift;
-    private float progressToInsets;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private float right;
-    private final AnimatedFloat rightAnimated;
+    public Gift pressedGift;
+    public float progressToInsets;
+    public float right;
+    public final AnimatedFloat rightAnimated;
 
-    public void setActive(boolean z) {
-        this.active = z;
+    public final class Gift {
+        public AnimatedFloat animatedFloat;
+        public final ButtonBounce bounce;
+        public final RectF bounds;
+        public final int color;
+        public final TLRPC.Document document;
+        public final long documentId;
+        public AnimatedEmojiDrawable emojiDrawable;
+        public RadialGradient gradient;
+        public Paint gradientPaint;
+        public final long id;
+        public StarsReactionsSheet.Particles particles;
+        public int position = -1;
+        public final String slug;
+
+        public Gift(ProfileGiftsView profileGiftsView, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+            new Matrix();
+            this.bounds = new RectF();
+            this.bounce = new ButtonBounce(profileGiftsView, 1.0f, 5.0f);
+            this.id = tL_starGiftUnique.id;
+            TLRPC.Document document = tL_starGiftUnique.getDocument();
+            this.document = document;
+            this.documentId = document == null ? 0L : document.id;
+            this.color = ((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class)).center_color | (-16777216);
+            this.slug = tL_starGiftUnique.slug;
+            this.particles = new StarsReactionsSheet.Particles(1, 6);
+            float fDp = AndroidUtilities.dp(36.0f);
+            float f = (-fDp) / 2.0f;
+            float f2 = fDp / 2.0f;
+            this.particles.bounds.set(f, f, f2, f2);
+        }
     }
 
-    public ProfileGiftsView(Context context, int i, long j, View view, ProfileActivity.AvatarImageView avatarImageView, Theme.ResourcesProvider resourcesProvider) {
+    public ProfileGiftsView(Context context, int i, long j, ProfileActivity.AnonymousClass19 anonymousClass19) {
         super(context);
         this.active = true;
         this.rightAnimated = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -72,61 +102,260 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
         this.giftCollapseYInterpolator = new LinearInterpolator();
         this.currentAccount = i;
         this.dialogId = j;
-        this.avatarContainer = view;
-        this.avatarImage = avatarImageView;
-        this.resourcesProvider = resourcesProvider;
-    }
-
-    public void setExpandProgress(float f) {
-        if (this.expandProgress != f) {
-            this.expandProgress = f;
-            invalidate();
-        }
-    }
-
-    public void setCollapseProgress(float f, boolean z) {
-        this.isOpening = z;
-        float fClamp01 = Utilities.clamp01((f - 0.3f) / 0.7f);
-        if (this.collapseProgress != fClamp01) {
-            this.collapseProgress = fClamp01;
-            invalidate();
-        }
-    }
-
-    public void setActionBarActionMode(float f) {
-        this.actionBarProgress = f;
-        invalidate();
-    }
-
-    public void setBounds(float f, float f2, float f3, boolean z, int i) {
-        boolean z2 = Math.abs(f - this.left) > 0.1f || Math.abs(f2 - this.right) > 0.1f || Math.abs(f3 - this.cy) > 0.1f;
-        this.left = f;
-        this.right = f2;
-        if (!z) {
-            this.rightAnimated.set(f2, true);
-        }
-        this.cy = f3;
-        this.maxExpandY = i + f3;
-        if (z2) {
-            invalidate();
-        }
-    }
-
-    public void setExpandCoords(float f) {
-        this.expandY = f;
-        invalidate();
-    }
-
-    public void setProgressToStoriesInsets(float f) {
-        if (this.progressToInsets == f) {
-            return;
-        }
-        this.progressToInsets = f;
-        invalidate();
+        this.avatarContainer = anonymousClass19;
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.starUserGiftsLoaded && ((Long) objArr[0]).longValue() == this.dialogId) {
+            update();
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float fDp;
+        int iDp;
+        float fLerp;
+        float fMin;
+        float f;
+        float fClamp01;
+        float fDp2;
+        float f2;
+        Paint paint;
+        Gift gift;
+        ProfileGiftsView profileGiftsView = this;
+        ArrayList arrayList = profileGiftsView.gifts;
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        float f3 = 1.0f;
+        if (profileGiftsView.expandProgress >= 1.0f || profileGiftsView.collapseProgress <= 0.0f) {
+            return;
+        }
+        ProfileActivity.AnonymousClass19 anonymousClass19 = profileGiftsView.avatarContainer;
+        float x = anonymousClass19.getX();
+        float y = anonymousClass19.getY();
+        float scaleX = anonymousClass19.getScaleX() * anonymousClass19.getWidth();
+        float scaleY = anonymousClass19.getScaleY() * anonymousClass19.getHeight();
+        float fDpf2 = AndroidUtilities.dpf2(96.0f);
+        float fMin2 = Math.min(x, (profileGiftsView.getWidth() - fDpf2) / 2.0f);
+        float fM = ChatActivity$$ExternalSyntheticOutline0.m(profileGiftsView.maxExpandY, fDpf2, 2.0f, y);
+        float fMax = Math.max(scaleX, fDpf2);
+        float fMax2 = Math.max(scaleY, fDpf2);
+        canvas.save();
+        canvas.clipRect(0.0f, 0.0f, profileGiftsView.getWidth(), profileGiftsView.expandY);
+        float f4 = (fMax / 2.0f) + fMin2;
+        float f5 = (fMax2 / 2.0f) + fM;
+        float f6 = (scaleX / 2.0f) + x;
+        float f7 = (scaleY / 2.0f) + y;
+        float f8 = profileGiftsView.expandY;
+        float f9 = f8 / profileGiftsView.maxExpandY;
+        float fClamp02 = Utilities.clamp01((f8 - (ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight)) / AndroidUtilities.dp(50.0f));
+        boolean z = false;
+        int i = 0;
+        while (i < arrayList.size()) {
+            Gift gift2 = (Gift) arrayList.get(i);
+            float f10 = gift2.animatedFloat.set(f3, z);
+            float fLerp2 = AndroidUtilities.lerp(0.5f, f3, f10);
+            int i2 = i;
+            float fM2 = ImageReceiver$$ExternalSyntheticOutline2.m(f3, profileGiftsView.actionBarProgress, (f3 - profileGiftsView.expandProgress) * f10, fClamp02);
+            int i3 = gift2.position;
+            float f11 = 1.6f;
+            if (i3 != 0) {
+                if (i3 != 1) {
+                    if (i3 == 2) {
+                        fDp = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(12.0f) * f9);
+                        fLerp = (fM + fMax2) - AndroidUtilities.dp(16.0f);
+                    } else if (i3 == 3) {
+                        fDp = (AndroidUtilities.dp(20.0f) * f9) + (1.5f * f4);
+                        iDp = AndroidUtilities.dp(13.0f);
+                    } else if (i3 != 4) {
+                        fDp = (AndroidUtilities.dp(12.0f) * f9) + ((4.0f * f4) / 3.0f);
+                        fLerp = (fM + fMax2) - AndroidUtilities.dp(16.0f);
+                    } else {
+                        fDp = (AndroidUtilities.dp(12.0f) * f9) + ((f4 * 4.0f) / 3.0f);
+                        fLerp = fM - AndroidUtilities.dp(4.0f);
+                    }
+                    f11 = 0.9f;
+                    if (!profileGiftsView.isOpening || f10 >= 1.0f) {
+                        fMin = profileGiftsView.collapseProgress;
+                    } else {
+                        fMin = Math.min(f10, profileGiftsView.collapseProgress);
+                    }
+                    f = f11 * 0.2f;
+                    if (fMin >= 1.0f - f) {
+                        fClamp01 = 1.0f;
+                    } else {
+                        fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f) / 0.67999995f);
+                    }
+                    if (fClamp01 < 1.0f) {
+                        fDp = AndroidUtilities.lerp(f6, fDp, profileGiftsView.giftCollapseXInterpolator.getInterpolation(fClamp01));
+                        fLerp = AndroidUtilities.lerp(f7, fLerp, profileGiftsView.giftCollapseYInterpolator.getInterpolation(fClamp01));
+                        fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
+                    }
+                    if (fM2 > 0.0f) {
+                        fDp2 = AndroidUtilities.dp(45.0f);
+                        float f12 = fLerp2;
+                        f2 = fDp2 / 2.0f;
+                        gift2.bounds.set(fDp - f2, fLerp - f2, fDp + f2, fLerp + f2);
+                        canvas.save();
+                        canvas.translate(fDp, fLerp);
+                        canvas.rotate(0.0f);
+                        float scale = gift2.bounce.getScale(0.1f) * f12;
+                        canvas.scale(scale, scale);
+                        gift2.particles.process();
+                        gift2.particles.draw(canvas, gift2.color, fM2);
+                        paint = gift2.gradientPaint;
+                        if (paint != null) {
+                            paint.setAlpha((int) (fM2 * 255.0f * 1.0f));
+                            float f13 = (-fDp2) / 2.0f;
+                            gift = gift2;
+                            canvas.drawRect(f13, f13, f2, f2, gift2.gradientPaint);
+                        } else {
+                            gift = gift2;
+                        }
+                        if (gift.emojiDrawable != null) {
+                            int iDp2 = AndroidUtilities.dp(24.0f);
+                            int i4 = (-iDp2) / 2;
+                            int i5 = iDp2 / 2;
+                            gift.emojiDrawable.setBounds(i4, i4, i5, i5);
+                            gift.emojiDrawable.setAlpha((int) (fM2 * 255.0f));
+                            gift.emojiDrawable.draw(canvas);
+                        }
+                        canvas.restore();
+                    }
+                    i = i2 + 1;
+                    profileGiftsView = this;
+                    f7 = f7;
+                    arrayList = arrayList;
+                    fClamp02 = fClamp02;
+                    z = false;
+                    f3 = 1.0f;
+                } else {
+                    fDp = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(6.0f) * f9);
+                    fLerp = fM - AndroidUtilities.dp(4.0f);
+                }
+                f11 = 0.0f;
+                if (profileGiftsView.isOpening) {
+                    fMin = profileGiftsView.collapseProgress;
+                } else {
+                    fMin = profileGiftsView.collapseProgress;
+                }
+                f = f11 * 0.2f;
+                if (fMin >= 1.0f - f) {
+                    fClamp01 = 1.0f;
+                } else {
+                    fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f) / 0.67999995f);
+                }
+                if (fClamp01 < 1.0f) {
+                    fDp = AndroidUtilities.lerp(f6, fDp, profileGiftsView.giftCollapseXInterpolator.getInterpolation(fClamp01));
+                    fLerp = AndroidUtilities.lerp(f7, fLerp, profileGiftsView.giftCollapseYInterpolator.getInterpolation(fClamp01));
+                    fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
+                }
+                if (fM2 > 0.0f) {
+                    fDp2 = AndroidUtilities.dp(45.0f);
+                    float f14 = fLerp2;
+                    f2 = fDp2 / 2.0f;
+                    gift2.bounds.set(fDp - f2, fLerp - f2, fDp + f2, fLerp + f2);
+                    canvas.save();
+                    canvas.translate(fDp, fLerp);
+                    canvas.rotate(0.0f);
+                    float scale2 = gift2.bounce.getScale(0.1f) * f14;
+                    canvas.scale(scale2, scale2);
+                    gift2.particles.process();
+                    gift2.particles.draw(canvas, gift2.color, fM2);
+                    paint = gift2.gradientPaint;
+                    if (paint != null) {
+                        paint.setAlpha((int) (fM2 * 255.0f * 1.0f));
+                        float f15 = (-fDp2) / 2.0f;
+                        gift = gift2;
+                        canvas.drawRect(f15, f15, f2, f2, gift2.gradientPaint);
+                    } else {
+                        gift = gift2;
+                    }
+                    if (gift.emojiDrawable != null) {
+                        int iDp3 = AndroidUtilities.dp(24.0f);
+                        int i6 = (-iDp3) / 2;
+                        int i7 = iDp3 / 2;
+                        gift.emojiDrawable.setBounds(i6, i6, i7, i7);
+                        gift.emojiDrawable.setAlpha((int) (fM2 * 255.0f));
+                        gift.emojiDrawable.draw(canvas);
+                    }
+                    canvas.restore();
+                }
+                i = i2 + 1;
+                profileGiftsView = this;
+                f7 = f7;
+                arrayList = arrayList;
+                fClamp02 = fClamp02;
+                z = false;
+                f3 = 1.0f;
+            } else {
+                fDp = (f4 / 2.0f) - (AndroidUtilities.dp(20.0f) * f9);
+                iDp = AndroidUtilities.dp(13.0f);
+            }
+            fLerp = f5 - iDp;
+            if (profileGiftsView.isOpening) {
+                fMin = profileGiftsView.collapseProgress;
+            } else {
+                fMin = profileGiftsView.collapseProgress;
+            }
+            f = f11 * 0.2f;
+            if (fMin >= 1.0f - f) {
+                fClamp01 = 1.0f;
+            } else {
+                fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f) / 0.67999995f);
+            }
+            if (fClamp01 < 1.0f) {
+                fDp = AndroidUtilities.lerp(f6, fDp, profileGiftsView.giftCollapseXInterpolator.getInterpolation(fClamp01));
+                fLerp = AndroidUtilities.lerp(f7, fLerp, profileGiftsView.giftCollapseYInterpolator.getInterpolation(fClamp01));
+                fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
+            }
+            if (fM2 > 0.0f) {
+                fDp2 = AndroidUtilities.dp(45.0f);
+                float f16 = fLerp2;
+                f2 = fDp2 / 2.0f;
+                gift2.bounds.set(fDp - f2, fLerp - f2, fDp + f2, fLerp + f2);
+                canvas.save();
+                canvas.translate(fDp, fLerp);
+                canvas.rotate(0.0f);
+                float scale3 = gift2.bounce.getScale(0.1f) * f16;
+                canvas.scale(scale3, scale3);
+                gift2.particles.process();
+                gift2.particles.draw(canvas, gift2.color, fM2);
+                paint = gift2.gradientPaint;
+                if (paint != null) {
+                    paint.setAlpha((int) (fM2 * 255.0f * 1.0f));
+                    float f17 = (-fDp2) / 2.0f;
+                    gift = gift2;
+                    canvas.drawRect(f17, f17, f2, f2, gift2.gradientPaint);
+                } else {
+                    gift = gift2;
+                }
+                if (gift.emojiDrawable != null) {
+                    int iDp4 = AndroidUtilities.dp(24.0f);
+                    int i8 = (-iDp4) / 2;
+                    int i9 = iDp4 / 2;
+                    gift.emojiDrawable.setBounds(i8, i8, i9, i9);
+                    gift.emojiDrawable.setAlpha((int) (fM2 * 255.0f));
+                    gift.emojiDrawable.draw(canvas);
+                }
+                canvas.restore();
+            }
+            i = i2 + 1;
+            profileGiftsView = this;
+            f7 = f7;
+            arrayList = arrayList;
+            fClamp02 = fClamp02;
+            z = false;
+            f3 = 1.0f;
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
         ArrayList arrayList = this.gifts;
@@ -141,7 +370,7 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
         ArrayList arrayList = this.gifts;
@@ -155,112 +384,106 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.starUserGiftsLoaded && ((Long) objArr[0]).longValue() == this.dialogId) {
-            update();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        Gift gift;
+        Gift gift2;
+        if (!this.active) {
+            return false;
+        }
+        float x = motionEvent.getX();
+        float y = motionEvent.getY();
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.gifts;
+            if (i >= arrayList.size()) {
+                gift = null;
+                break;
+            }
+            if (((Gift) arrayList.get(i)).bounds.contains(x, y)) {
+                gift = (Gift) arrayList.get(i);
+                break;
+            }
+            i++;
+        }
+        if (motionEvent.getAction() == 0) {
+            this.pressedGift = gift;
+            if (gift != null) {
+                gift.bounce.setPressed(true);
+            }
+        } else if (motionEvent.getAction() == 2) {
+            Gift gift3 = this.pressedGift;
+            if (gift3 != gift && gift3 != null) {
+                gift3.bounce.setPressed(false);
+                this.pressedGift = null;
+            }
+        } else if (motionEvent.getAction() == 1) {
+            Gift gift4 = this.pressedGift;
+            if (gift4 != null) {
+                Browser.openUrl(getContext(), "https://t.me/nft/" + gift4.slug);
+                this.pressedGift.bounce.setPressed(false);
+                this.pressedGift = null;
+            }
+        } else if (motionEvent.getAction() == 3 && (gift2 = this.pressedGift) != null) {
+            gift2.bounce.setPressed(false);
+            this.pressedGift = null;
+        }
+        return this.pressedGift != null;
+    }
+
+    public void setActionBarActionMode(float f) {
+        this.actionBarProgress = f;
+        invalidate();
+    }
+
+    public void setActive(boolean z) {
+        this.active = z;
+    }
+
+    public void setExpandCoords(float f) {
+        this.expandY = f;
+        invalidate();
+    }
+
+    public void setExpandProgress(float f) {
+        if (this.expandProgress != f) {
+            this.expandProgress = f;
+            invalidate();
         }
     }
 
-    public final class Gift {
-        public AnimatedFloat animatedFloat;
-        public final ButtonBounce bounce;
-        public final int color;
-        public final TLRPC.Document document;
-        public final long documentId;
-        public AnimatedEmojiDrawable emojiDrawable;
-        public RadialGradient gradient;
-        public Paint gradientPaint;
-        public final long id;
-        private StarsReactionsSheet.Particles particles;
-        public final String slug;
-        public int position = -1;
-        public final Matrix gradientMatrix = new Matrix();
-        public final RectF bounds = new RectF();
-
-        public Gift(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-            this.bounce = new ButtonBounce(ProfileGiftsView.this);
-            this.id = tL_starGiftUnique.id;
-            TLRPC.Document document = tL_starGiftUnique.getDocument();
-            this.document = document;
-            this.documentId = document == null ? 0L : document.id;
-            this.color = ((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class)).center_color | (-16777216);
-            this.slug = tL_starGiftUnique.slug;
-            initParticles();
+    public void setProgressToStoriesInsets(float f) {
+        if (this.progressToInsets == f) {
+            return;
         }
-
-        private void initParticles() {
-            this.particles = new StarsReactionsSheet.Particles(1, 6);
-            float fDp = AndroidUtilities.dp(36.0f);
-            float f = (-fDp) / 2.0f;
-            float f2 = fDp / 2.0f;
-            this.particles.bounds.set(f, f, f2, f2);
-        }
-
-        public boolean equals(Gift gift) {
-            return gift != null && gift.id == this.id;
-        }
-
-        public void copy(Gift gift) {
-            this.gradient = gift.gradient;
-            this.emojiDrawable = gift.emojiDrawable;
-            this.gradientPaint = gift.gradientPaint;
-            this.animatedFloat = gift.animatedFloat;
-            this.particles = gift.particles;
-            this.position = gift.position;
-        }
-
-        public void draw(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6) {
-            if (f5 <= 0.0f) {
-                return;
-            }
-            float fDp = AndroidUtilities.dp(45.0f);
-            float f7 = fDp / 2.0f;
-            this.bounds.set(f - f7, f2 - f7, f + f7, f2 + f7);
-            canvas.save();
-            canvas.translate(f, f2);
-            canvas.rotate(f4);
-            float scale = f3 * this.bounce.getScale(0.1f);
-            canvas.scale(scale, scale);
-            this.particles.process();
-            this.particles.draw(canvas, this.color, f5);
-            Paint paint = this.gradientPaint;
-            if (paint != null) {
-                paint.setAlpha((int) (f5 * 255.0f * f6));
-                float f8 = (-fDp) / 2.0f;
-                canvas.drawRect(f8, f8, f7, f7, this.gradientPaint);
-            }
-            if (this.emojiDrawable != null) {
-                int iDp = AndroidUtilities.dp(24.0f);
-                int i = (-iDp) / 2;
-                int i2 = iDp / 2;
-                this.emojiDrawable.setBounds(i, i, i2, i2);
-                this.emojiDrawable.setAlpha((int) (255.0f * f5));
-                this.emojiDrawable.draw(canvas);
-            }
-            canvas.restore();
-        }
+        this.progressToInsets = f;
+        invalidate();
     }
 
-    public void update() {
+    public final void update() {
         TLRPC.EmojiStatus emojiStatus;
         boolean z;
         Gift gift;
         Gift gift2;
-        if (MessagesController.getInstance(this.currentAccount).enableGiftsInProfile) {
-            this.maxCount = MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit;
-            this.oldGifts.clear();
-            this.oldGifts.addAll(this.gifts);
-            this.gifts.clear();
-            this.giftIds.clear();
-            if (this.dialogId >= 0) {
-                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+        int i = this.currentAccount;
+        if (MessagesController.getInstance(i).enableGiftsInProfile) {
+            this.maxCount = MessagesController.getInstance(i).stargiftsPinnedToTopLimit;
+            ArrayList arrayList = this.oldGifts;
+            arrayList.clear();
+            ArrayList arrayList2 = this.gifts;
+            arrayList.addAll(arrayList2);
+            arrayList2.clear();
+            HashSet hashSet = this.giftIds;
+            hashSet.clear();
+            long j = this.dialogId;
+            if (j >= 0) {
+                TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
                 if (user == null) {
                     emojiStatus = null;
                 } else {
                     emojiStatus = user.emoji_status;
                 }
             } else {
-                TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(-this.dialogId));
+                TLRPC.User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(-j));
                 if (user2 == null) {
                     emojiStatus = null;
                 } else {
@@ -268,113 +491,125 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
                 }
             }
             if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
-                this.giftIds.add(Long.valueOf(((TLRPC.TL_emojiStatusCollectible) emojiStatus).collectible_id));
+                hashSet.add(Long.valueOf(((TLRPC.TL_emojiStatusCollectible) emojiStatus).collectible_id));
             }
-            StarsController.GiftsList profileGiftsList = StarsController.getInstance(this.currentAccount).getProfileGiftsList(this.dialogId);
+            int i2 = 0;
+            StarsController.GiftsList profileGiftsList = StarsController.getInstance(i, false).getProfileGiftsList(j, true);
             this.list = profileGiftsList;
             if (profileGiftsList != null) {
-                for (int i = 0; i < this.list.gifts.size(); i++) {
-                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.list.gifts.get(i);
+                for (int i3 = 0; i3 < this.list.gifts.size(); i3++) {
+                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.list.gifts.get(i3);
                     if (!savedStarGift.unsaved && savedStarGift.pinned_to_top) {
                         TL_stars.StarGift starGift = savedStarGift.gift;
                         if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                            Gift gift3 = new Gift((TL_stars.TL_starGiftUnique) starGift);
-                            if (!this.giftIds.contains(Long.valueOf(gift3.id))) {
-                                this.gifts.add(gift3);
-                                this.giftIds.add(Long.valueOf(gift3.id));
+                            Gift gift3 = new Gift(this, (TL_stars.TL_starGiftUnique) starGift);
+                            long j2 = gift3.id;
+                            if (!hashSet.contains(Long.valueOf(j2))) {
+                                arrayList2.add(gift3);
+                                hashSet.add(Long.valueOf(j2));
                             }
                         }
                     }
                 }
             }
-            if (this.gifts.size() != this.oldGifts.size()) {
+            if (arrayList2.size() != arrayList.size()) {
                 z = true;
                 break;
             }
-            int i2 = 0;
+            int i4 = 0;
             while (true) {
-                if (i2 >= this.gifts.size()) {
+                if (i4 >= arrayList2.size()) {
                     z = false;
                     break;
-                } else {
-                    if (!((Gift) this.gifts.get(i2)).equals((Gift) this.oldGifts.get(i2))) {
-                        z = true;
-                        break;
-                    }
-                    i2++;
                 }
+                Gift gift4 = (Gift) arrayList2.get(i4);
+                Gift gift5 = (Gift) arrayList.get(i4);
+                gift4.getClass();
+                if (gift5 == null || gift5.id != gift4.id) {
+                    z = true;
+                    break;
+                }
+                i4++;
             }
-            for (int i3 = 0; i3 < this.gifts.size(); i3++) {
-                Gift gift4 = (Gift) this.gifts.get(i3);
-                int i4 = 0;
+            int i5 = 0;
+            while (i5 < arrayList2.size()) {
+                Gift gift6 = (Gift) arrayList2.get(i5);
+                int i6 = 0;
                 while (true) {
-                    if (i4 >= this.oldGifts.size()) {
+                    if (i6 >= arrayList.size()) {
                         gift2 = null;
                         break;
                     } else {
-                        if (((Gift) this.oldGifts.get(i4)).id == gift4.id) {
-                            gift2 = (Gift) this.oldGifts.get(i4);
+                        if (((Gift) arrayList.get(i6)).id == gift6.id) {
+                            gift2 = (Gift) arrayList.get(i6);
                             break;
                         }
-                        i4++;
+                        i6++;
                     }
                 }
                 if (gift2 != null) {
-                    gift4.copy(gift2);
+                    gift6.getClass();
+                    gift6.gradient = gift2.gradient;
+                    gift6.emojiDrawable = gift2.emojiDrawable;
+                    gift6.gradientPaint = gift2.gradientPaint;
+                    gift6.animatedFloat = gift2.animatedFloat;
+                    gift6.particles = gift2.particles;
+                    gift6.position = gift2.position;
                 } else {
                     float fDp = AndroidUtilities.dp(22.5f);
-                    int i5 = gift4.color;
-                    gift4.gradient = new RadialGradient(0.0f, 0.0f, fDp, new int[]{i5, Theme.multAlpha(i5, 0.0f)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    int i7 = gift6.color;
+                    gift6.gradient = new RadialGradient(0.0f, 0.0f, fDp, new int[]{i7, Theme.multAlpha(0.0f, i7)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                     Paint paint = new Paint(1);
-                    gift4.gradientPaint = paint;
-                    paint.setShader(gift4.gradient);
-                    TLRPC.Document document = gift4.document;
+                    gift6.gradientPaint = paint;
+                    paint.setShader(gift6.gradient);
+                    TLRPC.Document document = gift6.document;
                     if (document != null) {
-                        gift4.emojiDrawable = AnimatedEmojiDrawable.make(this.currentAccount, 0, document);
+                        gift6.emojiDrawable = AnimatedEmojiDrawable.make(i, i2, document);
                     } else {
-                        gift4.emojiDrawable = AnimatedEmojiDrawable.make(this.currentAccount, 0, gift4.documentId);
+                        gift6.emojiDrawable = AnimatedEmojiDrawable.make(i, gift6.documentId, null, i2);
                     }
-                    AnimatedFloat animatedFloat = new AnimatedFloat(this, 0L, 320L, (TimeInterpolator) null);
-                    gift4.animatedFloat = animatedFloat;
-                    animatedFloat.force(0.0f);
+                    AnimatedFloat animatedFloat = new AnimatedFloat(this, 0L, 320L, (Interpolator) null);
+                    gift6.animatedFloat = animatedFloat;
+                    animatedFloat.set(0.0f, true);
                     if (isAttachedToWindow()) {
-                        gift4.emojiDrawable.addView(this);
+                        gift6.emojiDrawable.addView(this);
                     }
                 }
+                i5++;
+                i2 = 0;
             }
-            ArrayList arrayList = new ArrayList();
-            for (int i6 = 0; i6 < this.maxCount; i6++) {
-                arrayList.add(Integer.valueOf(i6));
+            ArrayList arrayList3 = new ArrayList();
+            for (int iM = 0; iM < this.maxCount; iM = LocationController$$ExternalSyntheticOutline0.m(iM, iM, 1, arrayList3)) {
             }
-            for (int i7 = 0; i7 < this.oldGifts.size(); i7++) {
-                Gift gift5 = (Gift) this.oldGifts.get(i7);
-                int i8 = 0;
+            for (int i8 = 0; i8 < arrayList.size(); i8++) {
+                Gift gift7 = (Gift) arrayList.get(i8);
+                int i9 = 0;
                 while (true) {
-                    if (i8 >= this.gifts.size()) {
+                    if (i9 >= arrayList2.size()) {
                         gift = null;
                         break;
                     } else {
-                        if (((Gift) this.gifts.get(i8)).id == gift5.id) {
-                            gift = (Gift) this.gifts.get(i8);
+                        if (((Gift) arrayList2.get(i9)).id == gift7.id) {
+                            gift = (Gift) arrayList2.get(i9);
                             break;
                         }
-                        i8++;
+                        i9++;
                     }
                 }
                 if (gift == null) {
-                    gift5.emojiDrawable.removeView(this);
-                    gift5.emojiDrawable = null;
-                    gift5.gradient = null;
+                    gift7.emojiDrawable.removeView(this);
+                    gift7.emojiDrawable = null;
+                    gift7.gradient = null;
                 } else {
-                    arrayList.remove(Integer.valueOf(gift5.position));
+                    arrayList3.remove(Integer.valueOf(gift7.position));
                 }
             }
-            if (!arrayList.isEmpty()) {
-                BagRandomizer bagRandomizer = new BagRandomizer(arrayList);
-                for (int i9 = 0; i9 < this.gifts.size(); i9++) {
-                    Gift gift6 = (Gift) this.gifts.get(i9);
-                    if (gift6.position == -1) {
-                        gift6.position = ((Integer) bagRandomizer.next()).intValue();
+            if (!arrayList3.isEmpty()) {
+                BagRandomizer bagRandomizer = new BagRandomizer(arrayList3);
+                for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                    Gift gift8 = (Gift) arrayList2.get(i10);
+                    if (gift8.position == -1) {
+                        gift8.position = ((Integer) bagRandomizer.next()).intValue();
                     }
                 }
             }
@@ -382,195 +617,5 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
                 invalidate();
             }
         }
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        float fDp;
-        int iDp;
-        float fLerp;
-        float fLerp2;
-        float f;
-        float fMin;
-        float f2;
-        float fClamp01;
-        if (this.gifts.isEmpty()) {
-            return;
-        }
-        float f3 = 1.0f;
-        if (this.expandProgress >= 1.0f || this.collapseProgress <= 0.0f) {
-            return;
-        }
-        float x = this.avatarContainer.getX();
-        float y = this.avatarContainer.getY();
-        float width = this.avatarContainer.getWidth() * this.avatarContainer.getScaleX();
-        float height = this.avatarContainer.getHeight() * this.avatarContainer.getScaleY();
-        float fDpf2 = AndroidUtilities.dpf2(96.0f);
-        float fMin2 = Math.min(x, (getWidth() - fDpf2) / 2.0f);
-        float fMax = Math.max(y, (this.maxExpandY - fDpf2) / 2.0f);
-        float fMax2 = Math.max(width, fDpf2);
-        float fMax3 = Math.max(height, fDpf2);
-        canvas.save();
-        Canvas canvas2 = canvas;
-        canvas2.clipRect(0.0f, 0.0f, getWidth(), this.expandY);
-        float f4 = fMin2 + (fMax2 / 2.0f);
-        float f5 = (fMax3 / 2.0f) + fMax;
-        float f6 = x + (width / 2.0f);
-        float f7 = y + (height / 2.0f);
-        float f8 = this.expandY;
-        float f9 = f8 / this.maxExpandY;
-        float fClamp02 = Utilities.clamp01((f8 - (AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight())) / AndroidUtilities.dp(50.0f));
-        int i = 0;
-        while (i < this.gifts.size()) {
-            Gift gift = (Gift) this.gifts.get(i);
-            float f10 = gift.animatedFloat.set(f3);
-            float fLerp3 = AndroidUtilities.lerp(0.5f, f3, f10);
-            float f11 = (1.0f - this.expandProgress) * f10 * (1.0f - this.actionBarProgress) * fClamp02;
-            int i2 = gift.position;
-            if (i2 == 0) {
-                fDp = (f4 / 2.0f) - (AndroidUtilities.dp(20.0f) * f9);
-                iDp = AndroidUtilities.dp(13.0f);
-            } else {
-                if (i2 == 1) {
-                    fLerp2 = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(6.0f) * f9);
-                    fLerp = fMax - AndroidUtilities.dp(4.0f);
-                } else {
-                    if (i2 == 2) {
-                        float fDp2 = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(12.0f) * f9);
-                        fLerp = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
-                        fLerp2 = fDp2;
-                    } else if (i2 == 3) {
-                        fDp = (1.5f * f4) + (AndroidUtilities.dp(20.0f) * f9);
-                        iDp = AndroidUtilities.dp(13.0f);
-                    } else if (i2 == 4) {
-                        fLerp2 = ((f4 * 4.0f) / 3.0f) + (AndroidUtilities.dp(12.0f) * f9);
-                        fLerp = fMax - AndroidUtilities.dp(4.0f);
-                    } else {
-                        float fDp3 = ((4.0f * f4) / 3.0f) + (AndroidUtilities.dp(12.0f) * f9);
-                        fLerp = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
-                        fLerp2 = fDp3;
-                    }
-                    f = 0.9f;
-                    if (!this.isOpening || f10 >= 1.0f) {
-                        fMin = this.collapseProgress;
-                    } else {
-                        fMin = Math.min(f10, this.collapseProgress);
-                    }
-                    f2 = f * 0.2f;
-                    if (fMin >= 1.0f - f2) {
-                        fClamp01 = 1.0f;
-                    } else {
-                        fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f2) / 0.67999995f);
-                    }
-                    if (fClamp01 < 1.0f) {
-                        fLerp2 = AndroidUtilities.lerp(f6, fLerp2, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
-                        fLerp = AndroidUtilities.lerp(f7, fLerp, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
-                        fLerp3 = AndroidUtilities.lerp(fLerp3 / 2.0f, fLerp3, fClamp01);
-                    }
-                    gift.draw(canvas2, fLerp2, fLerp, fLerp3, 0.0f, f11, 1.0f);
-                    i++;
-                    canvas2 = canvas;
-                    fClamp02 = fClamp02;
-                    f9 = f9;
-                    f3 = 1.0f;
-                }
-                f = 0.0f;
-                if (!this.isOpening) {
-                    fMin = this.collapseProgress;
-                } else {
-                    fMin = this.collapseProgress;
-                }
-                f2 = f * 0.2f;
-                if (fMin >= 1.0f - f2) {
-                    fClamp01 = 1.0f;
-                } else {
-                    fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f2) / 0.67999995f);
-                }
-                if (fClamp01 < 1.0f) {
-                    fLerp2 = AndroidUtilities.lerp(f6, fLerp2, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
-                    fLerp = AndroidUtilities.lerp(f7, fLerp, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
-                    fLerp3 = AndroidUtilities.lerp(fLerp3 / 2.0f, fLerp3, fClamp01);
-                }
-                gift.draw(canvas2, fLerp2, fLerp, fLerp3, 0.0f, f11, 1.0f);
-                i++;
-                canvas2 = canvas;
-                fClamp02 = fClamp02;
-                f9 = f9;
-                f3 = 1.0f;
-            }
-            fLerp = f5 - iDp;
-            fClamp02 = fClamp02;
-            f9 = f9;
-            fLerp2 = fDp;
-            f = 1.6f;
-            if (!this.isOpening) {
-                fMin = this.collapseProgress;
-            } else {
-                fMin = this.collapseProgress;
-            }
-            f2 = f * 0.2f;
-            if (fMin >= 1.0f - f2) {
-                fClamp01 = 1.0f;
-            } else {
-                fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f2) / 0.67999995f);
-            }
-            if (fClamp01 < 1.0f) {
-                fLerp2 = AndroidUtilities.lerp(f6, fLerp2, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
-                fLerp = AndroidUtilities.lerp(f7, fLerp, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
-                fLerp3 = AndroidUtilities.lerp(fLerp3 / 2.0f, fLerp3, fClamp01);
-            }
-            gift.draw(canvas2, fLerp2, fLerp, fLerp3, 0.0f, f11, 1.0f);
-            i++;
-            canvas2 = canvas;
-            fClamp02 = fClamp02;
-            f9 = f9;
-            f3 = 1.0f;
-        }
-        canvas.restore();
-    }
-
-    public Gift getGiftUnder(float f, float f2) {
-        for (int i = 0; i < this.gifts.size(); i++) {
-            if (((Gift) this.gifts.get(i)).bounds.contains(f, f2)) {
-                return (Gift) this.gifts.get(i);
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        Gift gift;
-        if (!this.active) {
-            return false;
-        }
-        Gift giftUnder = getGiftUnder(motionEvent.getX(), motionEvent.getY());
-        if (motionEvent.getAction() == 0) {
-            this.pressedGift = giftUnder;
-            if (giftUnder != null) {
-                giftUnder.bounce.setPressed(true);
-            }
-        } else if (motionEvent.getAction() == 2) {
-            Gift gift2 = this.pressedGift;
-            if (gift2 != giftUnder && gift2 != null) {
-                gift2.bounce.setPressed(false);
-                this.pressedGift = null;
-            }
-        } else if (motionEvent.getAction() == 1) {
-            Gift gift3 = this.pressedGift;
-            if (gift3 != null) {
-                onGiftClick(gift3);
-                this.pressedGift.bounce.setPressed(false);
-                this.pressedGift = null;
-            }
-        } else if (motionEvent.getAction() == 3 && (gift = this.pressedGift) != null) {
-            gift.bounce.setPressed(false);
-            this.pressedGift = null;
-        }
-        return this.pressedGift != null;
-    }
-
-    public void onGiftClick(Gift gift) {
-        Browser.openUrl(getContext(), "https://t.me/nft/" + gift.slug);
     }
 }

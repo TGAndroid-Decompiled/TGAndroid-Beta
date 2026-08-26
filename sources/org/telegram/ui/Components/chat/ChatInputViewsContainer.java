@@ -12,36 +12,41 @@ import android.view.RoundedCorner;
 import android.view.View;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
+import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject$$ExternalSyntheticOutline0;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.inset.InAppKeyboardInsetView;
 import org.telegram.ui.Components.inset.WindowInsetsProvider;
+import org.telegram.ui.Components.inset.WindowInsetsStateHolder;
+import org.telegram.ui.QrActivity;
 
-public class ChatInputViewsContainer extends FrameLayout {
-    private BlurredBackgroundWithFadeDrawable backgroundWithFadeDrawable;
+public final class ChatInputViewsContainer extends FrameLayout {
+    public BlurredBackgroundWithFadeDrawable backgroundWithFadeDrawable;
     public BlurredBackgroundDrawable blurredBackgroundDrawable;
-    private float blurredBottomHeight;
-    private float bubbleInputTranlationY;
-    private boolean captured;
-    private int currentBlurredHeight;
+    public float blurredBottomHeight;
+    public float bubbleInputTranlationY;
+    public boolean captured;
+    public int currentBlurredHeight;
     public boolean drawInputBackground;
-    private final View fadeView;
-    private float imeBottomInset;
-    private final FrameLayout inAppKeyboardBubbleContainer;
-    private float inputBubbleHeight;
-    private int inputBubbleHeightRound;
-    private float inputBubbleOffsetLeft;
-    private float inputBubbleOffsetRight;
-    private final FrameLayout inputIslandBubbleContainer;
-    private float maxBottomInset;
-    private boolean needDrawInAppKeyboard;
-    private final Rect tmpRect;
-    private final RectF tmpRectF;
-    private BlurredBackgroundDrawable underKeyboardBackgroundDrawable;
-    private final Path underKeyboardPath;
-    private WindowInsetsProvider windowInsetsProvider;
+    public final QrActivity.AnonymousClass2 fadeView;
+    public float imeBottomInset;
+    public final ChatActivity.AnonymousClass60 inAppKeyboardBubbleContainer;
+    public float inputBubbleHeight;
+    public int inputBubbleHeightRound;
+    public float inputBubbleOffsetLeft;
+    public float inputBubbleOffsetRight;
+    public final FrameLayout inputIslandBubbleContainer;
+    public float maxBottomInset;
+    public boolean needDrawInAppKeyboard;
+    public final Rect tmpRect;
+    public final RectF tmpRectF;
+    public BlurredBackgroundDrawable underKeyboardBackgroundDrawable;
+    public final Path underKeyboardPath;
+    public WindowInsetsProvider windowInsetsProvider;
 
     public ChatInputViewsContainer(Context context) {
         super(context);
@@ -52,107 +57,77 @@ public class ChatInputViewsContainer extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         this.inputIslandBubbleContainer = frameLayout;
         addView(frameLayout, LayoutHelper.createFrame(-1, -2, 80));
-        FrameLayout frameLayout2 = new FrameLayout(context) {
-            @Override
-            public void addView(View view, int i, int i2) {
-                super.addView(view, i, i2);
-                ChatInputViewsContainer.this.checkViewsPositions();
-            }
-        };
-        this.inAppKeyboardBubbleContainer = frameLayout2;
-        addView(frameLayout2, LayoutHelper.createFrame(-1, -2, 80));
-        this.fadeView = new View(context) {
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                if (ChatInputViewsContainer.this.backgroundWithFadeDrawable != null) {
-                    ChatInputViewsContainer.this.backgroundWithFadeDrawable.draw(canvas);
-                }
-                super.dispatchDraw(canvas);
-            }
-        };
+        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(this, context, 29);
+        this.inAppKeyboardBubbleContainer = anonymousClass60;
+        addView(anonymousClass60, LayoutHelper.createFrame(-1, -2, 80));
+        this.fadeView = new QrActivity.AnonymousClass2(this, context, 19);
     }
 
-    public View getFadeView() {
-        return this.fadeView;
-    }
-
-    public void setWindowInsetsProvider(WindowInsetsProvider windowInsetsProvider) {
-        this.windowInsetsProvider = windowInsetsProvider;
-    }
-
-    public void setInputIslandBubbleDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
-        this.blurredBackgroundDrawable = blurredBackgroundDrawable;
-        blurredBackgroundDrawable.setPadding(AndroidUtilities.dp(7.0f));
-        this.blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(22.0f));
-    }
-
-    public void setUnderKeyboardBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
-        this.underKeyboardBackgroundDrawable = blurredBackgroundDrawable;
-        blurredBackgroundDrawable.enableInAppKeyboardOptimization();
-        this.underKeyboardBackgroundDrawable.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), 0.0f, 0.0f);
-        this.underKeyboardBackgroundDrawable.setThickness(AndroidUtilities.dp(32.0f));
-        this.underKeyboardBackgroundDrawable.setIntensity(0.4f);
-    }
-
-    public void updateColors() {
-        this.blurredBackgroundDrawable.updateColors();
-        this.underKeyboardBackgroundDrawable.updateColors();
-        invalidate();
-    }
-
-    public FrameLayout getInputIslandBubbleContainer() {
-        return this.inputIslandBubbleContainer;
-    }
-
-    public FrameLayout getInAppKeyboardBubbleContainer() {
-        return this.inAppKeyboardBubbleContainer;
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
+    public final void checkBlurredHeight(boolean z) {
         checkViewsPositions();
-        checkInAppKeyboardChild();
-    }
-
-    private void checkInAppKeyboardViewHeight() {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.inAppKeyboardBubbleContainer.getLayoutParams();
-        int i = layoutParams.height;
-        int inAppKeyboardRecommendedViewHeight = this.windowInsetsProvider.getInAppKeyboardRecommendedViewHeight();
-        if (i != inAppKeyboardRecommendedViewHeight) {
-            layoutParams.height = inAppKeyboardRecommendedViewHeight;
-            requestLayout();
-        }
-    }
-
-    private void checkBlurredHeight(boolean z) {
-        checkViewsPositions();
-        int iDp = this.inputBubbleHeightRound + AndroidUtilities.dp(9.0f) + Math.round(this.maxBottomInset);
-        if (this.currentBlurredHeight != iDp || z) {
-            this.currentBlurredHeight = iDp;
-            int iDp2 = AndroidUtilities.dp(29.0f);
-            this.tmpRectF.set(0.0f, getMeasuredHeight() - this.imeBottomInset, getMeasuredWidth(), getMeasuredHeight());
-            this.underKeyboardPath.rewind();
-            float f = iDp2;
-            this.underKeyboardPath.addRoundRect(this.tmpRectF, new float[]{f, f, f, f, 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CW);
-            this.underKeyboardPath.close();
+        int iRound = Math.round(this.maxBottomInset) + AndroidUtilities.dp(9.0f) + this.inputBubbleHeightRound;
+        if (this.currentBlurredHeight != iRound || z) {
+            this.currentBlurredHeight = iRound;
+            int iDp = AndroidUtilities.dp(29.0f);
+            RectF rectF = this.tmpRectF;
+            rectF.set(0.0f, getMeasuredHeight() - this.imeBottomInset, getMeasuredWidth(), getMeasuredHeight());
+            Path path = this.underKeyboardPath;
+            path.rewind();
+            float f = iDp;
+            path.addRoundRect(rectF, new float[]{f, f, f, f, 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CW);
+            path.close();
             invalidate();
         }
     }
 
-    public void checkInsets() {
+    public final void checkDrawableBounds() {
+        int i;
+        int measuredHeight;
+        BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable = this.backgroundWithFadeDrawable;
+        if (blurredBackgroundWithFadeDrawable == null || (i = blurredBackgroundWithFadeDrawable.getBounds().top) == (measuredHeight = getMeasuredHeight() - Math.round(this.blurredBottomHeight))) {
+            return;
+        }
+        this.backgroundWithFadeDrawable.setBounds(0, measuredHeight, getMeasuredWidth(), getMeasuredHeight());
+        this.fadeView.invalidate(0, Math.max(0, Math.min(i, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
+        invalidate(0, Math.max(0, Math.min(i, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
+    }
+
+    public final void checkInAppKeyboardChild() {
+        WindowInsetsCompat windowInsetsCompat = ((WindowInsetsStateHolder) this.windowInsetsProvider).lastInsets;
+        int i = windowInsetsCompat != null ? windowInsetsCompat.mImpl.getInsets(2).bottom : 0;
+        float animatedImeBottomInset = ((WindowInsetsStateHolder) this.windowInsetsProvider).getAnimatedImeBottomInset();
+        ChatActivity.AnonymousClass60 anonymousClass60 = this.inAppKeyboardBubbleContainer;
+        int childCount = anonymousClass60.getChildCount();
+        for (int i2 = 0; i2 < childCount; i2++) {
+            KeyEvent.Callback childAt = anonymousClass60.getChildAt(i2);
+            if (childAt instanceof InAppKeyboardInsetView) {
+                InAppKeyboardInsetView inAppKeyboardInsetView = (InAppKeyboardInsetView) childAt;
+                inAppKeyboardInsetView.applyNavigationBarHeight(i);
+                inAppKeyboardInsetView.applyInAppKeyboardAnimatedHeight(animatedImeBottomInset);
+            }
+        }
+    }
+
+    public final void checkInsets() {
         int radius;
         WindowInsets rootWindowInsets;
-        this.maxBottomInset = this.windowInsetsProvider.getAnimatedMaxBottomInset();
-        this.imeBottomInset = this.windowInsetsProvider.getAnimatedImeBottomInset();
-        this.needDrawInAppKeyboard = this.windowInsetsProvider.inAppViewIsVisible();
+        this.maxBottomInset = ((WindowInsetsStateHolder) this.windowInsetsProvider).getAnimatedMaxBottomInset();
+        this.imeBottomInset = ((WindowInsetsStateHolder) this.windowInsetsProvider).getAnimatedImeBottomInset();
         int i = 0;
-        boolean z = this.inAppKeyboardBubbleContainer.getVisibility() == 0;
+        this.needDrawInAppKeyboard = ((WindowInsetsStateHolder) this.windowInsetsProvider).inAppKeyboardState != 1;
+        ChatActivity.AnonymousClass60 anonymousClass60 = this.inAppKeyboardBubbleContainer;
+        boolean z = anonymousClass60.getVisibility() == 0;
         boolean z2 = this.needDrawInAppKeyboard;
         if (z != z2) {
-            this.inAppKeyboardBubbleContainer.setVisibility(z2 ? 0 : 8);
+            anonymousClass60.setVisibility(z2 ? 0 : 8);
         }
-        checkInAppKeyboardViewHeight();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) anonymousClass60.getLayoutParams();
+        int i2 = layoutParams.height;
+        int i3 = ((WindowInsetsStateHolder) this.windowInsetsProvider).inAppKeyboardViewHeight;
+        if (i2 != i3) {
+            layoutParams.height = i3;
+            requestLayout();
+        }
         checkBlurredHeight(false);
         checkInAppKeyboardChild();
         if (this.underKeyboardBackgroundDrawable != null) {
@@ -170,71 +145,28 @@ public class ChatInputViewsContainer extends FrameLayout {
                     i = radius2;
                 }
             }
-            this.underKeyboardBackgroundDrawable.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i, true);
+            this.underKeyboardBackgroundDrawable.setRadius$1(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i);
         }
     }
 
-    public void checkViewsPositions() {
+    public final void checkViewsPositions() {
         this.inputIslandBubbleContainer.setTranslationY((-this.maxBottomInset) - AndroidUtilities.dp(9.0f));
-        FrameLayout frameLayout = this.inAppKeyboardBubbleContainer;
-        frameLayout.setTranslationY(frameLayout.getMeasuredHeight() - this.imeBottomInset);
-    }
-
-    private void checkInAppKeyboardChild() {
-        int currentNavigationBarInset = this.windowInsetsProvider.getCurrentNavigationBarInset();
-        float animatedImeBottomInset = this.windowInsetsProvider.getAnimatedImeBottomInset();
-        int childCount = this.inAppKeyboardBubbleContainer.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            KeyEvent.Callback childAt = this.inAppKeyboardBubbleContainer.getChildAt(i);
-            if (childAt instanceof InAppKeyboardInsetView) {
-                InAppKeyboardInsetView inAppKeyboardInsetView = (InAppKeyboardInsetView) childAt;
-                inAppKeyboardInsetView.applyNavigationBarHeight(currentNavigationBarInset);
-                inAppKeyboardInsetView.applyInAppKeyboardAnimatedHeight(animatedImeBottomInset);
-            }
-        }
-    }
-
-    public void setInputBubbleHeight(float f) {
-        this.inputBubbleHeight = f;
-        this.inputBubbleHeightRound = Math.round(f);
-        checkBlurredHeight(false);
-    }
-
-    public void setInputBubbleOffsets(float f, float f2) {
-        this.inputBubbleOffsetLeft = f;
-        this.inputBubbleOffsetRight = f2;
-        invalidate();
-    }
-
-    public float getInputBubbleHeight() {
-        return this.inputBubbleHeight;
-    }
-
-    public float getInputBubbleTop() {
-        return getInputBubbleBottom() - getInputBubbleHeight();
-    }
-
-    public float getInputBubbleBottom() {
-        return (getMeasuredHeight() - this.maxBottomInset) - AndroidUtilities.dp(9.0f);
+        ChatActivity.AnonymousClass60 anonymousClass60 = this.inAppKeyboardBubbleContainer;
+        anonymousClass60.setTranslationY(anonymousClass60.getMeasuredHeight() - this.imeBottomInset);
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        checkBlurredHeight(true);
-        checkDrawableBounds();
-        checkViewsPositions();
-        checkInAppKeyboardChild();
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        this.underKeyboardBackgroundDrawable.setBounds(0, getMeasuredHeight() - ((int) this.imeBottomInset), getMeasuredWidth(), Math.max(getMeasuredHeight(), (getMeasuredHeight() - ((int) this.imeBottomInset)) + AndroidUtilities.dp(58.0f)));
+    public final void dispatchDraw(Canvas canvas) {
+        this.underKeyboardBackgroundDrawable.setBounds(0, getMeasuredHeight() - ((int) this.imeBottomInset), getMeasuredWidth(), MessageObject$$ExternalSyntheticOutline0.m(getMeasuredHeight() - ((int) this.imeBottomInset), 58.0f, getMeasuredHeight()));
         int measuredHeight = getMeasuredHeight() - this.currentBlurredHeight;
-        this.tmpRect.set(Math.round(this.inputBubbleOffsetLeft), 0, getMeasuredWidth() - Math.round(this.inputBubbleOffsetRight), this.inputBubbleHeightRound);
-        this.tmpRect.inset(0, -AndroidUtilities.dp(7.0f));
-        this.tmpRect.offset(0, measuredHeight + ((int) this.bubbleInputTranlationY));
-        this.blurredBackgroundDrawable.setBounds(this.tmpRect);
+        int iRound = Math.round(this.inputBubbleOffsetLeft);
+        int measuredWidth = getMeasuredWidth() - Math.round(this.inputBubbleOffsetRight);
+        int i = this.inputBubbleHeightRound;
+        Rect rect = this.tmpRect;
+        rect.set(iRound, 0, measuredWidth, i);
+        rect.inset(0, -AndroidUtilities.dp(7.0f));
+        rect.offset(0, measuredHeight + ((int) this.bubbleInputTranlationY));
+        this.blurredBackgroundDrawable.setBounds(rect);
         if (this.drawInputBackground) {
             this.blurredBackgroundDrawable.draw(canvas);
         }
@@ -245,17 +177,73 @@ public class ChatInputViewsContainer extends FrameLayout {
     }
 
     @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
+    public final boolean drawChild(Canvas canvas, View view, long j) {
         boolean z = view == this.inAppKeyboardBubbleContainer;
         if (z) {
             canvas.save();
-            canvas.clipPath(this.underKeyboardBackgroundDrawable.getPath());
+            canvas.clipPath(this.underKeyboardBackgroundDrawable.boundProps.path);
         }
         boolean zDrawChild = super.drawChild(canvas, view, j);
         if (z) {
             canvas.restore();
         }
         return zDrawChild;
+    }
+
+    public View getFadeView() {
+        return this.fadeView;
+    }
+
+    public FrameLayout getInAppKeyboardBubbleContainer() {
+        return this.inAppKeyboardBubbleContainer;
+    }
+
+    public float getInputBubbleBottom() {
+        return (getMeasuredHeight() - this.maxBottomInset) - AndroidUtilities.dp(9.0f);
+    }
+
+    public float getInputBubbleHeight() {
+        return this.inputBubbleHeight;
+    }
+
+    public float getInputBubbleTop() {
+        return getInputBubbleBottom() - getInputBubbleHeight();
+    }
+
+    public FrameLayout getInputIslandBubbleContainer() {
+        return this.inputIslandBubbleContainer;
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        checkViewsPositions();
+        checkInAppKeyboardChild();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        checkBlurredHeight(true);
+        checkDrawableBounds();
+        checkViewsPositions();
+        checkInAppKeyboardChild();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        BlurredBackgroundDrawable blurredBackgroundDrawable;
+        int action = motionEvent.getAction();
+        if (action == 0) {
+            int x = (int) motionEvent.getX();
+            int y = (int) motionEvent.getY();
+            BlurredBackgroundDrawable blurredBackgroundDrawable2 = this.blurredBackgroundDrawable;
+            this.captured = (blurredBackgroundDrawable2 != null && blurredBackgroundDrawable2.alpha == 255 && blurredBackgroundDrawable2.getBounds().contains(x, y)) || ((blurredBackgroundDrawable = this.underKeyboardBackgroundDrawable) != null && blurredBackgroundDrawable.getBounds().contains(x, y));
+        }
+        if (action == 1 || action == 3) {
+            this.captured = false;
+        }
+        return this.captured;
     }
 
     public void setBackgroundWithFadeDrawable(BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable) {
@@ -269,11 +257,6 @@ public class ChatInputViewsContainer extends FrameLayout {
         }
     }
 
-    public void setInputBubbleTranslationY(float f) {
-        this.bubbleInputTranlationY = f;
-        invalidate();
-    }
-
     public void setInputBubbleAlpha(int i) {
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
         if (blurredBackgroundDrawable != null) {
@@ -281,31 +264,36 @@ public class ChatInputViewsContainer extends FrameLayout {
         }
     }
 
-    private void checkDrawableBounds() {
-        int i;
-        int measuredHeight;
-        BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable = this.backgroundWithFadeDrawable;
-        if (blurredBackgroundWithFadeDrawable == null || (i = blurredBackgroundWithFadeDrawable.getBounds().top) == (measuredHeight = getMeasuredHeight() - Math.round(this.blurredBottomHeight))) {
-            return;
-        }
-        this.backgroundWithFadeDrawable.setBounds(0, measuredHeight, getMeasuredWidth(), getMeasuredHeight());
-        this.fadeView.invalidate(0, Math.max(0, Math.min(i, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
-        invalidate(0, Math.max(0, Math.min(i, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
+    public void setInputBubbleHeight(float f) {
+        this.inputBubbleHeight = f;
+        this.inputBubbleHeightRound = Math.round(f);
+        checkBlurredHeight(false);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        BlurredBackgroundDrawable blurredBackgroundDrawable;
-        int action = motionEvent.getAction();
-        if (action == 0) {
-            int x = (int) motionEvent.getX();
-            int y = (int) motionEvent.getY();
-            BlurredBackgroundDrawable blurredBackgroundDrawable2 = this.blurredBackgroundDrawable;
-            this.captured = (blurredBackgroundDrawable2 != null && blurredBackgroundDrawable2.getAlpha() == 255 && this.blurredBackgroundDrawable.getBounds().contains(x, y)) || ((blurredBackgroundDrawable = this.underKeyboardBackgroundDrawable) != null && blurredBackgroundDrawable.getBounds().contains(x, y));
-        }
-        if (action == 1 || action == 3) {
-            this.captured = false;
-        }
-        return this.captured;
+    public void setInputBubbleTranslationY(float f) {
+        this.bubbleInputTranlationY = f;
+        invalidate();
+    }
+
+    public void setInputIslandBubbleDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+        this.blurredBackgroundDrawable = blurredBackgroundDrawable;
+        blurredBackgroundDrawable.setPadding(AndroidUtilities.dp(7.0f));
+        this.blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(22.0f));
+    }
+
+    public void setUnderKeyboardBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+        this.underKeyboardBackgroundDrawable = blurredBackgroundDrawable;
+        blurredBackgroundDrawable.inAppKeyboardOptimization = true;
+        blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), 0.0f, 0.0f);
+        BlurredBackgroundDrawable blurredBackgroundDrawable2 = this.underKeyboardBackgroundDrawable;
+        blurredBackgroundDrawable2.boundProps.liquidThickness = AndroidUtilities.dp(32.0f);
+        blurredBackgroundDrawable2.onBoundPropsChanged();
+        BlurredBackgroundDrawable blurredBackgroundDrawable3 = this.underKeyboardBackgroundDrawable;
+        blurredBackgroundDrawable3.boundProps.liquidIntensity = 0.4f;
+        blurredBackgroundDrawable3.onBoundPropsChanged();
+    }
+
+    public void setWindowInsetsProvider(WindowInsetsProvider windowInsetsProvider) {
+        this.windowInsetsProvider = windowInsetsProvider;
     }
 }

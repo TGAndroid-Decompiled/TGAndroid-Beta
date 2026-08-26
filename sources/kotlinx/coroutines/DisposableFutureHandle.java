@@ -1,20 +1,20 @@
 package kotlinx.coroutines;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledFuture;
 
-final class DisposableFutureHandle implements DisposableHandle {
-    private final Future future;
+public final class DisposableFutureHandle implements DisposableHandle {
+    public final ScheduledFuture future;
 
-    public DisposableFutureHandle(Future future) {
-        this.future = future;
+    public DisposableFutureHandle(ScheduledFuture scheduledFuture) {
+        this.future = scheduledFuture;
     }
 
     @Override
-    public void dispose() {
+    public final void dispose() {
         this.future.cancel(false);
     }
 
-    public String toString() {
+    public final String toString() {
         return "DisposableFutureHandle[" + this.future + ']';
     }
 }

@@ -1,141 +1,261 @@
 package org.telegram.ui.Components.Premium;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
+import android.text.TextPaint;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable21;
+import androidx.recyclerview.widget.AdapterHelper;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.gms.internal.mlkit_vision_label.zzcw;
+import com.google.android.gms.internal.play_billing.zzdw;
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticOutline0;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline2;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.SvgHelper;
+import org.telegram.messenger.SvgHelper$SvgDrawable$$ExternalSyntheticOutline0;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Components.CombinedDrawable;
+import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda2;
+import org.telegram.ui.Components.ItemOptions;
+import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.Premium.SpeedLineParticles$Drawable.Particle;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+import org.telegram.ui.Components.voip.CellFlickerDrawable.DrawableInterface;
 import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stories.recorder.CollageLayoutView2;
+import org.telegram.ui.iv.RichEditorListView$$ExternalSyntheticLambda53;
 
-public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, NotificationCenter.NotificationCenterDelegate {
-    private static final float[] speedScaleVideoTimestamps = {0.02f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.02f};
-    boolean allowPlay;
-    float aspectRatio;
-    AspectRatioFrameLayout aspectRatioFrameLayout;
-    String attachFileName;
-    boolean attached;
-    CellFlickerDrawable.DrawableInterface cellFlickerDrawable;
-    int currentAccount;
-    private TLRPC.Document document;
-    File file;
-    boolean firstFrameRendered;
-    boolean fromTop;
-    HelloParticles.Drawable helloParticlesDrawable;
-    ImageReceiver imageReceiver;
-    long lastFrameTime;
-    private MatrixParticlesDrawable matrixParticlesDrawable;
-    Runnable nextCheck;
-    Paint phoneFrame1;
-    Paint phoneFrame2;
-    boolean play;
-    float progress;
-    private float roundRadius;
-    RoundedBitmapDrawable roundedBitmapDrawable;
-    int size;
-    SpeedLineParticles$Drawable speedLinesDrawable;
-    StarParticlesView.Drawable starDrawable;
-    private final SvgHelper.SvgDrawable svgIcon;
-    TextureView textureView;
-    int type;
-    VideoPlayerHolderBase videoPlayerBase;
-    boolean visible;
+public final class VideoScreenPreview extends FrameLayout implements PagerHeaderView, NotificationCenter.NotificationCenterDelegate {
+    public static final float[] speedScaleVideoTimestamps = {0.02f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.02f};
+    public boolean allowPlay;
+    public float aspectRatio;
+    public final AnonymousClass1 aspectRatioFrameLayout;
+    public final String attachFileName;
+    public boolean attached;
+    public final CellFlickerDrawable.DrawableInterface cellFlickerDrawable;
+    public final int currentAccount;
+    public final TLRPC.Document document;
+    public File file;
+    public boolean firstFrameRendered;
+    public final boolean fromTop;
+    public ChatActionCell.TextLayout helloParticlesDrawable;
+    public final ImageReceiver imageReceiver;
+    public long lastFrameTime;
+    public final AdapterHelper matrixParticlesDrawable;
+    public PasscodeView$9$$ExternalSyntheticLambda0 nextCheck;
+    public final Paint phoneFrame1;
+    public final Paint phoneFrame2;
+    public boolean play;
+    public float progress;
+    public float roundRadius;
+    public final RoundedBitmapDrawable21 roundedBitmapDrawable;
+    public int size;
+    public final SpeedLineParticles$Drawable speedLinesDrawable;
+    public final StarParticlesView.Drawable starDrawable;
+    public final SvgHelper.SvgDrawable svgIcon;
+    public final TextureView textureView;
+    public final int type;
+    public AnonymousClass3 videoPlayerBase;
+    public boolean visible;
 
-    public static void $r8$lambda$oqqJ5kFEZuqEQjRzuFj19R2Iil8() {
-    }
+    public final class AnonymousClass3 extends VideoPlayerHolderBase {
+        public final int $r8$classId;
+        public final Object this$0;
 
-    public void checkVideo() {
-        File file = this.file;
-        if ((file != null && file.exists()) || SharedConfig.streamMedia) {
-            File file2 = this.file;
-            if (file2 != null && file2.exists()) {
-                if ((NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & 512) != 0) {
-                    Runnable runnable = this.nextCheck;
-                    if (runnable != null) {
-                        AndroidUtilities.cancelRunOnUIThread(runnable);
-                    }
-                    Runnable runnable2 = new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.checkVideo();
-                        }
-                    };
-                    this.nextCheck = runnable2;
-                    AndroidUtilities.runOnUIThread(runnable2, 300L);
-                    return;
-                }
-                try {
-                    MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                    mediaMetadataRetriever.setDataSource(ApplicationLoader.applicationContext, Uri.fromFile(this.file));
-                    int i = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
-                    int i2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
-                    mediaMetadataRetriever.release();
-                    this.aspectRatio = i / i2;
-                } catch (Exception unused) {
-                    this.aspectRatio = 0.671f;
-                }
-            } else {
-                this.aspectRatio = 0.671f;
-            }
-            if (this.allowPlay) {
-                runVideoPlayer();
+        public AnonymousClass3(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public boolean needRepeat() {
+            switch (this.$r8$classId) {
+                case 1:
+                    return !CollageLayoutView2.this.preview;
+                default:
+                    return super.needRepeat();
             }
         }
-        this.nextCheck = null;
+
+        @Override
+        public final void onRenderedFirstFrame() {
+            switch (this.$r8$classId) {
+                case 0:
+                    VideoScreenPreview videoScreenPreview = (VideoScreenPreview) this.this$0;
+                    TextureView textureView = videoScreenPreview.textureView;
+                    if (textureView != null && !videoScreenPreview.firstFrameRendered) {
+                        textureView.setAlpha(0.0f);
+                        videoScreenPreview.textureView.animate().alpha(1.0f).setListener(new ItemOptions.AnonymousClass3(this, 19)).setDuration(200L);
+                    }
+                    break;
+                default:
+                    CollageLayoutView2.Part part = (CollageLayoutView2.Part) this.this$0;
+                    part.textureViewReady = true;
+                    CollageLayoutView2.this.invalidate();
+                    break;
+            }
+        }
+
+        @Override
+        public void onStateChanged(boolean z, int i) {
+            switch (this.$r8$classId) {
+                case 0:
+                    VideoScreenPreview videoScreenPreview = (VideoScreenPreview) this.this$0;
+                    AnonymousClass3 anonymousClass3 = videoScreenPreview.videoPlayerBase;
+                    if (anonymousClass3 != null) {
+                        if (i == 4) {
+                            anonymousClass3.seekTo(0L);
+                            videoScreenPreview.videoPlayerBase.play();
+                        } else if (i == 1) {
+                            anonymousClass3.play();
+                        }
+                        break;
+                    }
+                    break;
+                default:
+                    super.onStateChanged(z, i);
+                    break;
+            }
+        }
+
+        @Override
+        public void onVideoSizeChanged(int i, int i2, int i3, float f) {
+            switch (this.$r8$classId) {
+                case 1:
+                    AndroidUtilities.runOnUIThread(new RichEditorListView$$ExternalSyntheticLambda53(this, i, i2, i3, 2));
+                    break;
+                default:
+                    super.onVideoSizeChanged(i, i2, i3, f);
+                    break;
+            }
+        }
     }
 
     public VideoScreenPreview(Context context, SvgHelper.SvgDrawable svgDrawable, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
         int i3;
         super(context);
-        this.phoneFrame1 = new Paint(1);
-        this.phoneFrame2 = new Paint(1);
+        Paint paint = new Paint(1);
+        this.phoneFrame1 = paint;
+        Paint paint2 = new Paint(1);
+        this.phoneFrame2 = paint2;
         this.fromTop = false;
-        this.imageReceiver = new ImageReceiver(this);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.imageReceiver = imageReceiver;
         this.currentAccount = i;
         this.type = i2;
         this.svgIcon = svgDrawable;
-        this.phoneFrame1.setColor(-16777216);
-        this.phoneFrame2.setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_premiumGradient2, resourcesProvider), -16777216, 0.5f));
-        this.imageReceiver.setLayerNum(Integer.MAX_VALUE);
-        setVideo();
+        paint.setColor(-16777216);
+        paint2.setColor(ColorUtils.blendARGB(0.5f, Theme.getColor(Theme.key_premiumGradient2, resourcesProvider), -16777216));
+        imageReceiver.setLayerNum(Integer.MAX_VALUE);
+        TLRPC.TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(i).getPremiumPromo();
+        String strFeatureTypeToServerString = PremiumPreviewFragment.featureTypeToServerString(i2);
+        if (premiumPromo != null) {
+            int i4 = 0;
+            while (true) {
+                if (i4 >= premiumPromo.video_sections.size()) {
+                    i4 = -1;
+                    break;
+                } else if (premiumPromo.video_sections.get(i4).equals(strFeatureTypeToServerString)) {
+                    break;
+                } else {
+                    i4++;
+                }
+            }
+            if (i4 >= 0) {
+                TLRPC.Document document = premiumPromo.videos.get(i4);
+                CombinedDrawable combinedDrawable = null;
+                for (int i5 = 0; i5 < document.thumbs.size(); i5++) {
+                    if (document.thumbs.get(i5) instanceof TLRPC.TL_photoStrippedSize) {
+                        this.roundedBitmapDrawable = new RoundedBitmapDrawable21(getResources(), ImageLoader.getStrippedPhotoBitmap(document.thumbs.get(i5).bytes, "b"));
+                        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(64, 204, 160);
+                        cellFlickerDrawable.repeatProgress = 4.0f;
+                        cellFlickerDrawable.progress = 3.5f;
+                        cellFlickerDrawable.frameInside = true;
+                        SvgHelper.SvgDrawable svgDrawable2 = this.svgIcon;
+                        cellFlickerDrawable.parentView = this;
+                        this.cellFlickerDrawable = cellFlickerDrawable.new DrawableInterface(svgDrawable2);
+                        combinedDrawable = new CombinedDrawable(this.roundedBitmapDrawable, this.cellFlickerDrawable) {
+                            @Override
+                            public final void setBounds(int i6, int i7, int i8, int i9) {
+                                VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
+                                if (videoScreenPreview.fromTop) {
+                                    super.setBounds(i6, (int) (i7 - videoScreenPreview.roundRadius), i8, i9);
+                                } else {
+                                    super.setBounds(i6, i7, i8, (int) (i9 + videoScreenPreview.roundRadius));
+                                }
+                            }
+                        };
+                        combinedDrawable.fullSize = true;
+                    }
+                }
+                this.attachFileName = FileLoader.getAttachFileName(document);
+                i3 = 3;
+                this.imageReceiver.setImage(null, null, combinedDrawable, null, premiumPromo, 1);
+                FileLoader.getInstance(this.currentAccount).loadFile(document, premiumPromo, 3, 0);
+                this.document = document;
+                Utilities.globalQueue.postRunnable(new ImageUpdater$$ExternalSyntheticLambda2(20, this, document));
+            } else {
+                i3 = 3;
+            }
+        } else {
+            i3 = 3;
+        }
         if (i2 == 1) {
-            MatrixParticlesDrawable matrixParticlesDrawable = new MatrixParticlesDrawable();
-            this.matrixParticlesDrawable = matrixParticlesDrawable;
-            matrixParticlesDrawable.init();
-        } else if (i2 == 6 || i2 == 9 || i2 == 3 || i2 == 7 || i2 == 11 || i2 == 4 || i2 == 24 || i2 == 43) {
+            AdapterHelper adapterHelper = new AdapterHelper();
+            this.matrixParticlesDrawable = adapterHelper;
+            adapterHelper.mExistingUpdateTypes = AndroidUtilities.dp(16.0f);
+            TextPaint textPaint = new TextPaint(65);
+            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
+            textPaint.setTextSize(adapterHelper.mExistingUpdateTypes);
+            textPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(null, Theme.key_premiumStartSmallStarsColor2, false), 30));
+            textPaint.setTextAlign(Paint.Align.CENTER);
+            int i6 = 0;
+            while (i6 < 16) {
+                int i7 = i6 < 10 ? i6 + 48 : i6 + 55;
+                Bitmap[] bitmapArr = (Bitmap[]) adapterHelper.mPendingUpdates;
+                int i8 = adapterHelper.mExistingUpdateTypes;
+                bitmapArr[i6] = Bitmap.createBitmap(i8, i8, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(((Bitmap[]) adapterHelper.mPendingUpdates)[i6]);
+                String string = Character.toString((char) i7);
+                int i9 = adapterHelper.mExistingUpdateTypes;
+                canvas.drawText(string, i9 >> 1, i9, textPaint);
+                i6++;
+            }
+        } else if (i2 == 6 || i2 == 9 || i2 == i3 || i2 == 7 || i2 == 11 || i2 == 4 || i2 == 24 || i2 == 43) {
             StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(40);
             this.starDrawable = drawable;
             drawable.speedScale = 3.0f;
             drawable.type = i2;
-            if (i2 == 3 || i2 == 24 || i2 == 43) {
+            if (i2 == i3 || i2 == 24 || i2 == 43) {
                 drawable.size1 = 14;
                 drawable.size2 = 18;
                 drawable.size3 = 18;
@@ -155,394 +275,118 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             drawable.colorKey = Theme.key_premiumStartSmallStarsColor2;
             drawable.init();
         } else if (i2 == 2) {
-            SpeedLineParticles$Drawable speedLineParticles$Drawable = new SpeedLineParticles$Drawable(200);
+            SpeedLineParticles$Drawable speedLineParticles$Drawable = new SpeedLineParticles$Drawable();
             this.speedLinesDrawable = speedLineParticles$Drawable;
-            speedLineParticles$Drawable.init();
-        } else if (i2 == 13) {
-            HelloParticles.Drawable drawable2 = new HelloParticles.Drawable(25);
-            this.helloParticlesDrawable = drawable2;
-            drawable2.init();
-        } else {
-            if (SharedConfig.getDevicePerformanceClass() == 2) {
-                i3 = 800;
-            } else {
-                i3 = SharedConfig.getDevicePerformanceClass() == 1 ? 400 : 100;
+            if (speedLineParticles$Drawable.particles.isEmpty()) {
+                for (int i10 = 0; i10 < speedLineParticles$Drawable.count; i10++) {
+                    speedLineParticles$Drawable.particles.add(speedLineParticles$Drawable.new Particle());
+                }
             }
-            StarParticlesView.Drawable drawable3 = new StarParticlesView.Drawable(i3);
-            this.starDrawable = drawable3;
-            drawable3.resourcesProvider = resourcesProvider;
-            drawable3.colorKey = Theme.key_premiumStartSmallStarsColor2;
-            drawable3.size1 = 4;
-            drawable3.k3 = 0.98f;
-            drawable3.k2 = 0.98f;
-            drawable3.k1 = 0.98f;
-            drawable3.useRotate = true;
-            drawable3.speedScale = 4.0f;
-            drawable3.checkBounds = true;
-            drawable3.checkTime = true;
-            drawable3.useBlur = true;
-            drawable3.roundEffect = false;
-            drawable3.init();
+            int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(null, Theme.key_premiumStartSmallStarsColor2, false), 80);
+            if (speedLineParticles$Drawable.lastColor != alphaComponent) {
+                speedLineParticles$Drawable.lastColor = alphaComponent;
+                speedLineParticles$Drawable.paint.setColor(alphaComponent);
+            }
+        } else if (i2 == 13) {
+            ChatActionCell.TextLayout textLayout = new ChatActionCell.TextLayout();
+            this.helloParticlesDrawable = textLayout;
+            if (textLayout.spoilers.isEmpty()) {
+                for (int i11 = 0; i11 < textLayout.width; i11++) {
+                    textLayout.spoilers.add(new HelloParticles$Drawable$Particle(textLayout));
+                }
+            }
+        } else {
+            StarParticlesView.Drawable drawable2 = new StarParticlesView.Drawable(SharedConfig.getDevicePerformanceClass() == 2 ? 800 : SharedConfig.getDevicePerformanceClass() == 1 ? 400 : 100);
+            this.starDrawable = drawable2;
+            drawable2.resourcesProvider = resourcesProvider;
+            drawable2.colorKey = Theme.key_premiumStartSmallStarsColor2;
+            drawable2.size1 = 4;
+            drawable2.k3 = 0.98f;
+            drawable2.k2 = 0.98f;
+            drawable2.k1 = 0.98f;
+            drawable2.useRotate = true;
+            drawable2.speedScale = 4.0f;
+            drawable2.checkBounds = true;
+            drawable2.checkTime = true;
+            drawable2.useBlur = true;
+            drawable2.roundEffect = false;
+            drawable2.init();
         }
-        if (i2 == 1 || i2 == 3 || i2 == 11) {
+        if (i2 == 1 || i2 == i3 || i2 == 11) {
             this.fromTop = true;
         }
-        AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(context) {
-            private final Path clipPath = new Path();
+        ?? r2 = new AspectRatioFrameLayout(context) {
+            public final Path clipPath = new Path();
 
             @Override
-            protected void onMeasure(int i4, int i5) {
-                super.onMeasure(i4, i5);
-                this.clipPath.reset();
+            public final void dispatchDraw(Canvas canvas2) {
+                canvas2.save();
+                canvas2.clipPath(this.clipPath);
+                super.dispatchDraw(canvas2);
+                canvas2.restore();
+            }
+
+            @Override
+            public final void onMeasure(int i12, int i13) {
+                super.onMeasure(i12, i13);
+                Path path = this.clipPath;
+                path.reset();
                 VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
                 if (videoScreenPreview.fromTop) {
                     AndroidUtilities.rectTmp.set(0.0f, -videoScreenPreview.roundRadius, getMeasuredWidth(), getMeasuredHeight());
                 } else {
-                    AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), (int) (getMeasuredHeight() + VideoScreenPreview.this.roundRadius));
+                    AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), (int) (getMeasuredHeight() + videoScreenPreview.roundRadius));
                 }
-                float fDp = VideoScreenPreview.this.roundRadius - AndroidUtilities.dp(3.0f);
-                this.clipPath.addRoundRect(AndroidUtilities.rectTmp, fDp, fDp, Path.Direction.CW);
-            }
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                canvas.save();
-                canvas.clipPath(this.clipPath);
-                super.dispatchDraw(canvas);
-                canvas.restore();
+                float fDp = videoScreenPreview.roundRadius - AndroidUtilities.dp(3.0f);
+                path.addRoundRect(AndroidUtilities.rectTmp, fDp, fDp, Path.Direction.CW);
             }
         };
-        this.aspectRatioFrameLayout = aspectRatioFrameLayout;
-        aspectRatioFrameLayout.setResizeMode(0);
+        this.aspectRatioFrameLayout = r2;
+        r2.setResizeMode(0);
         TextureView textureView = new TextureView(context);
         this.textureView = textureView;
-        this.aspectRatioFrameLayout.addView(textureView);
+        r2.addView(textureView);
         setWillNotDraw(false);
-        addView(this.aspectRatioFrameLayout);
+        addView(r2);
     }
 
-    private void setVideo() {
-        TLRPC.TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(this.currentAccount).getPremiumPromo();
-        String strFeatureTypeToServerString = PremiumPreviewFragment.featureTypeToServerString(this.type);
-        if (premiumPromo != null) {
-            int i = 0;
-            while (true) {
-                if (i >= premiumPromo.video_sections.size()) {
-                    i = -1;
-                    break;
-                } else if (premiumPromo.video_sections.get(i).equals(strFeatureTypeToServerString)) {
-                    break;
-                } else {
-                    i++;
-                }
-            }
-            if (i >= 0) {
-                final TLRPC.Document document = premiumPromo.videos.get(i);
-                CombinedDrawable combinedDrawable = null;
-                for (int i2 = 0; i2 < document.thumbs.size(); i2++) {
-                    if (document.thumbs.get(i2) instanceof TLRPC.TL_photoStrippedSize) {
-                        this.roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), ImageLoader.getStrippedPhotoBitmap(document.thumbs.get(i2).bytes, "b"));
-                        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
-                        cellFlickerDrawable.repeatProgress = 4.0f;
-                        cellFlickerDrawable.progress = 3.5f;
-                        cellFlickerDrawable.frameInside = true;
-                        this.cellFlickerDrawable = cellFlickerDrawable.getDrawableInterface(this, this.svgIcon);
-                        CombinedDrawable combinedDrawable2 = new CombinedDrawable(this.roundedBitmapDrawable, this.cellFlickerDrawable) {
-                            @Override
-                            public void setBounds(int i3, int i4, int i5, int i6) {
-                                VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
-                                if (videoScreenPreview.fromTop) {
-                                    super.setBounds(i3, (int) (i4 - videoScreenPreview.roundRadius), i5, i6);
-                                } else {
-                                    super.setBounds(i3, i4, i5, (int) (i6 + videoScreenPreview.roundRadius));
-                                }
-                            }
-                        };
-                        combinedDrawable2.setFullsize(true);
-                        combinedDrawable = combinedDrawable2;
-                    }
-                }
-                this.attachFileName = FileLoader.getAttachFileName(document);
-                this.imageReceiver.setImage(null, null, combinedDrawable, null, premiumPromo, 1);
-                FileLoader.getInstance(this.currentAccount).loadFile(document, premiumPromo, 3, 0);
-                this.document = document;
-                Utilities.globalQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        VideoScreenPreview.$r8$lambda$qoBGRdLZ21d1kUjhyHUJymySrX8(this.f$0, document);
-                    }
-                });
-            }
-        }
-    }
-
-    public static void $r8$lambda$qoBGRdLZ21d1kUjhyHUJymySrX8(final VideoScreenPreview videoScreenPreview, TLRPC.Document document) {
-        final File pathToAttach = FileLoader.getInstance(videoScreenPreview.currentAccount).getPathToAttach(document);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VideoScreenPreview.m2607$r8$lambda$uhPOCGoEW4sKRGT2owdMDblTA(this.f$0, pathToAttach);
-            }
-        });
-    }
-
-    public static void m2607$r8$lambda$uhPOCGoEW4sKRGT2owdMDblTA(VideoScreenPreview videoScreenPreview, File file) {
-        videoScreenPreview.file = file;
-        videoScreenPreview.checkVideo();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        int size2 = View.MeasureSpec.getSize(i2);
-        float fMin = (int) (Math.min(size2, size) * 0.9f);
-        float f = size;
-        float f2 = (f - (0.671f * fMin)) / 2.0f;
-        this.roundRadius = 0.0671f * fMin;
-        this.aspectRatioFrameLayout.invalidateOutline();
-        if (this.fromTop) {
-            AndroidUtilities.rectTmp.set(f2, 0.0f, f - f2, fMin);
-        } else {
-            float f3 = size2;
-            AndroidUtilities.rectTmp.set(f2, f3 - fMin, f - f2, f3);
-        }
-        ViewGroup.LayoutParams layoutParams = this.aspectRatioFrameLayout.getLayoutParams();
-        RectF rectF = AndroidUtilities.rectTmp;
-        layoutParams.width = (int) rectF.width();
-        this.aspectRatioFrameLayout.getLayoutParams().height = (int) rectF.height();
-        ((ViewGroup.MarginLayoutParams) this.aspectRatioFrameLayout.getLayoutParams()).leftMargin = (int) rectF.left;
-        ((ViewGroup.MarginLayoutParams) this.aspectRatioFrameLayout.getLayoutParams()).topMargin = (int) rectF.top;
-        super.onMeasure(i, i2);
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        int measuredWidth = getMeasuredWidth() << (getMeasuredHeight() + 16);
-        float fMin = (int) (Math.min(getMeasuredWidth(), getMeasuredHeight()) * 0.9f);
-        float measuredWidth2 = (getMeasuredWidth() - (0.671f * fMin)) / 2.0f;
-        if (this.fromTop) {
-            AndroidUtilities.rectTmp.set(measuredWidth2, -this.roundRadius, getMeasuredWidth() - measuredWidth2, fMin);
-        } else {
-            AndroidUtilities.rectTmp.set(measuredWidth2, getMeasuredHeight() - fMin, getMeasuredWidth() - measuredWidth2, getMeasuredHeight() + this.roundRadius);
-        }
-        if (this.size != measuredWidth) {
-            this.size = measuredWidth;
-            MatrixParticlesDrawable matrixParticlesDrawable = this.matrixParticlesDrawable;
-            if (matrixParticlesDrawable != null) {
-                matrixParticlesDrawable.drawingRect.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                this.matrixParticlesDrawable.excludeRect.set(AndroidUtilities.rectTmp);
-                this.matrixParticlesDrawable.excludeRect.inset(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-            }
-            StarParticlesView.Drawable drawable = this.starDrawable;
-            if (drawable != null) {
-                int i5 = this.type;
-                if (i5 == 6 || i5 == 9 || i5 == 3 || i5 == 7 || i5 == 24 || i5 == 43 || i5 == 11 || i5 == 4) {
-                    drawable.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    this.starDrawable.rect.inset(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
-                } else {
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    float fWidth = (int) (rectF.width() * 0.4f);
-                    this.starDrawable.rect.set(rectF.centerX() - fWidth, rectF.centerY() - fWidth, rectF.centerX() + fWidth, rectF.centerY() + fWidth);
-                    this.starDrawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                }
-                this.starDrawable.resetPositions();
-                this.starDrawable.excludeRect.set(AndroidUtilities.rectTmp);
-                this.starDrawable.excludeRect.inset(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-            }
-            SpeedLineParticles$Drawable speedLineParticles$Drawable = this.speedLinesDrawable;
-            if (speedLineParticles$Drawable != null) {
-                speedLineParticles$Drawable.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                this.speedLinesDrawable.screenRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                this.speedLinesDrawable.rect.inset(AndroidUtilities.dp(100.0f), AndroidUtilities.dp(100.0f));
-                this.speedLinesDrawable.rect.offset(0.0f, getMeasuredHeight() * 0.1f);
-                this.speedLinesDrawable.resetPositions();
-            }
-            HelloParticles.Drawable drawable2 = this.helloParticlesDrawable;
-            if (drawable2 != null) {
-                drawable2.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                this.helloParticlesDrawable.screenRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                this.helloParticlesDrawable.rect.inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
-                this.helloParticlesDrawable.resetPositions();
-            }
-        }
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        float f;
-        if (this.starDrawable != null || this.speedLinesDrawable != null || this.helloParticlesDrawable != null || this.matrixParticlesDrawable != null) {
-            float f2 = this.progress;
-            if (f2 < 0.5f) {
-                float fPow = (float) Math.pow(1.0f - f2, 2.0d);
-                canvas.save();
-                canvas.scale(fPow, fPow, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-                MatrixParticlesDrawable matrixParticlesDrawable = this.matrixParticlesDrawable;
-                if (matrixParticlesDrawable != null) {
-                    matrixParticlesDrawable.onDraw(canvas);
-                } else {
-                    StarParticlesView.Drawable drawable = this.starDrawable;
-                    if (drawable != null) {
-                        drawable.onDraw(canvas);
-                    } else if (this.speedLinesDrawable != null) {
-                        VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayerBase;
-                        if (videoPlayerHolderBase != null) {
-                            float fClamp = Utilities.clamp(videoPlayerHolderBase.getCurrentPosition() / this.videoPlayerBase.getDuration(), 1.0f, 0.0f);
-                            float[] fArr = speedScaleVideoTimestamps;
-                            float length = 1.0f / (fArr.length - 1);
-                            int i = (int) (fClamp / length);
-                            int i2 = i + 1;
-                            float f3 = (fClamp - (i * length)) / length;
-                            if (i2 < fArr.length) {
-                                f = (fArr[i] * (1.0f - f3)) + (fArr[i2] * f3);
-                            } else {
-                                f = fArr[i];
-                            }
-                        } else {
-                            f = 0.2f;
-                        }
-                        float fClamp2 = ((1.0f - Utilities.clamp(this.progress / 0.1f, 1.0f, 0.0f)) * 0.9f) + 0.1f;
-                        SpeedLineParticles$Drawable speedLineParticles$Drawable = this.speedLinesDrawable;
-                        speedLineParticles$Drawable.speedScale = fClamp2 * 150.0f * f;
-                        speedLineParticles$Drawable.onDraw(canvas);
-                    } else {
-                        HelloParticles.Drawable drawable2 = this.helloParticlesDrawable;
-                        if (drawable2 != null) {
-                            drawable2.onDraw(canvas);
-                        }
-                    }
-                }
-                canvas.restore();
-                invalidate();
-            }
-        }
-        float fMin = (int) (Math.min(getMeasuredWidth(), getMeasuredHeight()) * 0.9f);
-        float measuredWidth = (getMeasuredWidth() - (0.671f * fMin)) / 2.0f;
-        float f4 = 0.0671f * fMin;
-        this.roundRadius = f4;
-        if (this.fromTop) {
-            AndroidUtilities.rectTmp.set(measuredWidth, -f4, getMeasuredWidth() - measuredWidth, fMin);
-        } else {
-            AndroidUtilities.rectTmp.set(measuredWidth, getMeasuredHeight() - fMin, getMeasuredWidth() - measuredWidth, getMeasuredHeight() + this.roundRadius);
-        }
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
-        rectF.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
-        canvas.drawRoundRect(rectF, this.roundRadius + AndroidUtilities.dp(3.0f), this.roundRadius + AndroidUtilities.dp(3.0f), this.phoneFrame2);
-        rectF.inset(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        float f5 = this.roundRadius;
-        canvas.drawRoundRect(rectF, f5, f5, this.phoneFrame1);
-        if (this.fromTop) {
-            rectF.set(measuredWidth, 0.0f, getMeasuredWidth() - measuredWidth, fMin);
-        } else {
-            rectF.set(measuredWidth, getMeasuredHeight() - fMin, getMeasuredWidth() - measuredWidth, getMeasuredHeight());
-        }
-        float fDp = this.roundRadius - AndroidUtilities.dp(3.0f);
-        this.roundRadius = fDp;
-        RoundedBitmapDrawable roundedBitmapDrawable = this.roundedBitmapDrawable;
-        if (roundedBitmapDrawable != null) {
-            roundedBitmapDrawable.setCornerRadius(fDp);
-        }
-        CellFlickerDrawable.DrawableInterface drawableInterface = this.cellFlickerDrawable;
-        if (drawableInterface != null) {
-            drawableInterface.radius = this.roundRadius;
-        }
-        if (this.fromTop) {
-            ImageReceiver imageReceiver = this.imageReceiver;
-            int i3 = (int) this.roundRadius;
-            imageReceiver.setRoundRadius(0, 0, i3, i3);
-        } else {
-            ImageReceiver imageReceiver2 = this.imageReceiver;
-            int i4 = (int) this.roundRadius;
-            imageReceiver2.setRoundRadius(i4, i4, 0, 0);
-        }
-        if (!this.firstFrameRendered) {
-            this.imageReceiver.setImageCoords(rectF.left, rectF.top, rectF.width(), rectF.height());
-            this.imageReceiver.draw(canvas);
-        }
-        super.dispatchDraw(canvas);
-        if (this.fromTop) {
-            return;
-        }
-        canvas.drawCircle(this.imageReceiver.getCenterX(), this.imageReceiver.getImageY() + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), this.phoneFrame1);
-    }
-
-    @Override
-    public void setOffset(float f) {
-        boolean z;
-        boolean z2 = false;
-        if (f < 0.0f) {
-            float measuredWidth = (-f) / getMeasuredWidth();
-            setAlpha((Utilities.clamp(1.0f - measuredWidth, 1.0f, 0.0f) * 0.5f) + 0.5f);
-            setRotationY(50.0f * measuredWidth);
-            invalidate();
-            if (this.fromTop) {
-                setTranslationY((-getMeasuredHeight()) * 0.3f * measuredWidth);
+    public final void checkVideo() {
+        File file = this.file;
+        if ((file != null && file.exists()) || SharedConfig.streamMedia) {
+            File file2 = this.file;
+            if (file2 == null || !file2.exists()) {
+                this.aspectRatio = 0.671f;
             } else {
-                setTranslationY(getMeasuredHeight() * 0.3f * measuredWidth);
+                if ((NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & 512) != 0) {
+                    PasscodeView$9$$ExternalSyntheticLambda0 passcodeView$9$$ExternalSyntheticLambda0 = this.nextCheck;
+                    if (passcodeView$9$$ExternalSyntheticLambda0 != null) {
+                        AndroidUtilities.cancelRunOnUIThread(passcodeView$9$$ExternalSyntheticLambda0);
+                    }
+                    PasscodeView$9$$ExternalSyntheticLambda0 passcodeView$9$$ExternalSyntheticLambda1 = new PasscodeView$9$$ExternalSyntheticLambda0(this, 18);
+                    this.nextCheck = passcodeView$9$$ExternalSyntheticLambda1;
+                    AndroidUtilities.runOnUIThread(passcodeView$9$$ExternalSyntheticLambda1, 300L);
+                    return;
+                }
+                try {
+                    MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+                    mediaMetadataRetriever.setDataSource(ApplicationLoader.applicationContext, Uri.fromFile(this.file));
+                    int i = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
+                    int i2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
+                    mediaMetadataRetriever.release();
+                    this.aspectRatio = i / i2;
+                } catch (Exception unused) {
+                    this.aspectRatio = 0.671f;
+                }
             }
-            this.progress = Math.abs(measuredWidth);
-            z = measuredWidth < 1.0f;
-            if (measuredWidth < 0.1f) {
-                z2 = true;
-            }
-        } else {
-            float measuredWidth2 = (-f) / getMeasuredWidth();
-            invalidate();
-            setRotationY(50.0f * measuredWidth2);
-            if (this.fromTop) {
-                setTranslationY(getMeasuredHeight() * 0.3f * measuredWidth2);
-            } else {
-                setTranslationY((-getMeasuredHeight()) * 0.3f * measuredWidth2);
-            }
-            z = measuredWidth2 > -1.0f;
-            z2 = measuredWidth2 > -0.1f;
-            this.progress = Math.abs(measuredWidth2);
-        }
-        if (z != this.visible) {
-            this.visible = z;
-            updateAttachState();
-        }
-        if (z2 != this.allowPlay) {
-            this.allowPlay = z2;
-            this.imageReceiver.setAllowStartAnimation(z2);
             if (this.allowPlay) {
-                this.imageReceiver.startAnimation();
                 runVideoPlayer();
-            } else {
-                stopVideoPlayer();
-                this.imageReceiver.stopAnimation();
             }
         }
+        this.nextCheck = null;
     }
 
     @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.attached = true;
-        updateAttachState();
-        if (!this.firstFrameRendered) {
-            checkVideo();
-        }
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.attached = false;
-        updateAttachState();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
-        HelloParticles.Drawable drawable = this.helloParticlesDrawable;
-        if (drawable != null) {
-            drawable.recycle();
-            this.helloParticlesDrawable = null;
-        }
-        stopVideoPlayer();
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.fileLoaded) {
             String str = (String) objArr[0];
             String str2 = this.attachFileName;
@@ -554,65 +398,887 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         }
     }
 
-    private void updateAttachState() {
-        boolean z = this.visible && this.attached;
-        if (this.play != z) {
-            this.play = z;
-            if (z) {
-                this.imageReceiver.onAttachedToWindow();
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f;
+        float f2;
+        boolean z;
+        float f3;
+        float f4;
+        zzdw[][] zzdwVarArr;
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        float f5;
+        int i5;
+        ArrayList arrayList;
+        int i6;
+        MatrixParticlesDrawable$Particle matrixParticlesDrawable$Particle;
+        int iMin;
+        int iMax;
+        float f6;
+        float f7;
+        int i7;
+        int i8;
+        int i9;
+        AdapterHelper adapterHelper;
+        int i10;
+        long j;
+        float fClamp;
+        zzdw zzdwVar;
+        long j2;
+        AdapterHelper adapterHelper2;
+        float fClamp2;
+        int i11;
+        StarParticlesView.Drawable drawable = this.starDrawable;
+        int i12 = 1;
+        AdapterHelper adapterHelper3 = this.matrixParticlesDrawable;
+        SpeedLineParticles$Drawable speedLineParticles$Drawable = this.speedLinesDrawable;
+        int i13 = 0;
+        if (drawable == null && speedLineParticles$Drawable == null && this.helloParticlesDrawable == null && adapterHelper3 == null) {
+            f = 0.9f;
+            f2 = 2.0f;
+            z = true;
+        } else {
+            float f8 = this.progress;
+            if (f8 < 0.5f) {
+                float fPow = (float) Math.pow(1.0f - f8, 2.0d);
+                canvas.save();
+                f = 0.9f;
+                canvas.scale(fPow, fPow, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+                if (adapterHelper3 == null) {
+                    f2 = 2.0f;
+                    z = true;
+                    if (drawable != null) {
+                        drawable.onDraw(canvas, 1.0f);
+                    } else if (speedLineParticles$Drawable == null) {
+                        ChatActionCell.TextLayout textLayout = this.helloParticlesDrawable;
+                        if (textLayout != null) {
+                            System.currentTimeMillis();
+                            int i14 = 0;
+                            while (true) {
+                                ArrayList arrayList2 = textLayout.spoilers;
+                                if (i14 >= arrayList2.size()) {
+                                    break;
+                                }
+                                HelloParticles$Drawable$Particle helloParticles$Drawable$Particle = (HelloParticles$Drawable$Particle) arrayList2.get(i14);
+                                ChatActionCell.TextLayout textLayout2 = helloParticles$Drawable$Particle.this$0;
+                                float f9 = helloParticles$Drawable$Particle.inProgress;
+                                if (f9 != 1.0f) {
+                                    float f10 = (textLayout2.y / helloParticles$Drawable$Particle.duration) + f9;
+                                    helloParticles$Drawable$Particle.inProgress = f10;
+                                    if (f10 > 1.0f) {
+                                        helloParticles$Drawable$Particle.inProgress = 1.0f;
+                                    }
+                                }
+                                if (helloParticles$Drawable$Particle.bitmap != null) {
+                                    canvas.save();
+                                    float fPow2 = 1.0f - (((float) Math.pow(helloParticles$Drawable$Particle.inProgress - 0.5f, 2.0d)) * 4.0f);
+                                    float f11 = helloParticles$Drawable$Particle.scale;
+                                    ChatActionCell.TextLayout textLayout3 = helloParticles$Drawable$Particle.this$0;
+                                    float fM = AndroidUtilities$$ExternalSyntheticOutline0.m(fPow2, 0.4f, 0.7f, f11 / textLayout3.x);
+                                    canvas.translate(helloParticles$Drawable$Particle.x - (helloParticles$Drawable$Particle.w / 2.0f), helloParticles$Drawable$Particle.y - (helloParticles$Drawable$Particle.h / 2.0f));
+                                    canvas.scale(fM, fM, helloParticles$Drawable$Particle.w / 2.0f, helloParticles$Drawable$Particle.h / 2.0f);
+                                    Paint paint = (Paint) textLayout3.this$0;
+                                    paint.setAlpha((int) (helloParticles$Drawable$Particle.alpha * fPow2));
+                                    canvas.drawBitmap(helloParticles$Drawable$Particle.bitmap, 0.0f, 0.0f, paint);
+                                    canvas.restore();
+                                }
+                                if (helloParticles$Drawable$Particle.inProgress >= 1.0f) {
+                                    helloParticles$Drawable$Particle.genPosition(i14, false);
+                                }
+                                i14++;
+                            }
+                        }
+                    } else {
+                        AnonymousClass3 anonymousClass3 = this.videoPlayerBase;
+                        if (anonymousClass3 != null) {
+                            float fClamp3 = Utilities.clamp(anonymousClass3.getCurrentPosition() / this.videoPlayerBase.getDuration(), 1.0f, 0.0f);
+                            float[] fArr = speedScaleVideoTimestamps;
+                            float f12 = 1.0f / 9;
+                            int i15 = (int) (fClamp3 / f12);
+                            int i16 = i15 + 1;
+                            float fM2 = SvgHelper$SvgDrawable$$ExternalSyntheticOutline0.m(i15, f12, fClamp3, f12);
+                            f3 = i16 < 10 ? (fArr[i16] * fM2) + ((1.0f - fM2) * fArr[i15]) : fArr[i15];
+                        } else {
+                            f3 = 0.2f;
+                        }
+                        speedLineParticles$Drawable.speedScale = (((1.0f - Utilities.clamp(this.progress / 0.1f, 1.0f, 0.0f)) * 0.9f) + 0.1f) * 150.0f * f3;
+                        long jCurrentTimeMillis = System.currentTimeMillis();
+                        int i17 = 0;
+                        while (true) {
+                            ArrayList arrayList3 = speedLineParticles$Drawable.particles;
+                            if (i17 >= arrayList3.size()) {
+                                break;
+                            }
+                            SpeedLineParticles$Drawable.Particle particle = (SpeedLineParticles$Drawable.Particle) arrayList3.get(i17);
+                            SpeedLineParticles$Drawable speedLineParticles$Drawable2 = SpeedLineParticles$Drawable.this;
+                            int i18 = i17 * 4;
+                            float f13 = particle.x;
+                            float[] fArr2 = speedLineParticles$Drawable2.lines;
+                            fArr2[i18] = f13;
+                            fArr2[i18 + 1] = particle.y;
+                            fArr2[i18 + 2] = (AndroidUtilities.dp(30.0f) * particle.vecX) + f13;
+                            SpeedLineParticles$Drawable speedLineParticles$Drawable3 = SpeedLineParticles$Drawable.this;
+                            speedLineParticles$Drawable3.lines[i18 + 3] = (AndroidUtilities.dp(30.0f) * particle.vecY) + particle.y;
+                            float fDp = AndroidUtilities.dp(4.0f);
+                            float f14 = speedLineParticles$Drawable3.dt;
+                            float f15 = (f14 / 660.0f) * fDp * speedLineParticles$Drawable3.speedScale;
+                            float f16 = (particle.vecX * f15) + particle.x;
+                            particle.x = f16;
+                            float f17 = (particle.vecY * f15) + particle.y;
+                            particle.y = f17;
+                            float f18 = particle.inProgress;
+                            if (f18 != 1.0f) {
+                                float f19 = (f14 / 200.0f) + f18;
+                                particle.inProgress = f19;
+                                if (f19 > 1.0f) {
+                                    particle.inProgress = 1.0f;
+                                }
+                            }
+                            if (jCurrentTimeMillis > particle.lifeTime || !speedLineParticles$Drawable.screenRect.contains(f16, f17)) {
+                                particle.genPosition(jCurrentTimeMillis, false);
+                            }
+                            i17++;
+                        }
+                        canvas.drawLines(speedLineParticles$Drawable.lines, speedLineParticles$Drawable.paint);
+                    }
+                } else {
+                    Rect rect = (Rect) adapterHelper3.mPostponedList;
+                    int iWidth = rect.width() / adapterHelper3.mExistingUpdateTypes;
+                    int iHeight = rect.height() / adapterHelper3.mExistingUpdateTypes;
+                    if (iWidth == 0 || iHeight == 0) {
+                        f2 = 2.0f;
+                    } else {
+                        long jCurrentTimeMillis2 = System.currentTimeMillis();
+                        ArrayList[] arrayListArr = (ArrayList[]) adapterHelper3.lastNotifies;
+                        if (arrayListArr != null) {
+                            f4 = 150.0f;
+                            if (arrayListArr.length != iWidth + 1) {
+                            }
+                            zzdwVarArr = (zzdw[][]) adapterHelper3.mCallback;
+                            i = 300;
+                            i2 = 16;
+                            if (zzdwVarArr != null) {
+                                f2 = 2.0f;
+                                if (zzdwVarArr.length == iWidth + 1 || zzdwVarArr[0].length != iHeight + 1) {
+                                }
+                                f5 = 1.0f;
+                                i5 = 0;
+                                while (i5 <= iWidth) {
+                                    arrayList = ((ArrayList[]) adapterHelper3.lastNotifies)[i5];
+                                    i6 = 0;
+                                    while (i6 < arrayList.size()) {
+                                        matrixParticlesDrawable$Particle = (MatrixParticlesDrawable$Particle) arrayList.get(i6);
+                                        if (jCurrentTimeMillis2 - matrixParticlesDrawable$Particle.time > 50) {
+                                            i11 = matrixParticlesDrawable$Particle.y + i12;
+                                            matrixParticlesDrawable$Particle.y = i11;
+                                            matrixParticlesDrawable$Particle.time = jCurrentTimeMillis2;
+                                            if (i11 - matrixParticlesDrawable$Particle.len >= iHeight) {
+                                                if (arrayList.size() == i12) {
+                                                    matrixParticlesDrawable$Particle.y = i13;
+                                                    matrixParticlesDrawable$Particle.time = jCurrentTimeMillis2;
+                                                    matrixParticlesDrawable$Particle.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+                                                } else {
+                                                    arrayList.remove(matrixParticlesDrawable$Particle);
+                                                    i6--;
+                                                }
+                                            }
+                                            if (matrixParticlesDrawable$Particle.y > matrixParticlesDrawable$Particle.len && i6 == arrayList.size() - i12 && Math.abs(Utilities.fastRandom.nextInt(4)) == 0) {
+                                                MatrixParticlesDrawable$Particle matrixParticlesDrawable$Particle2 = new MatrixParticlesDrawable$Particle();
+                                                matrixParticlesDrawable$Particle2.y = i13;
+                                                matrixParticlesDrawable$Particle2.time = jCurrentTimeMillis2;
+                                                matrixParticlesDrawable$Particle2.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+                                                arrayList.add(matrixParticlesDrawable$Particle2);
+                                            }
+                                        }
+                                        int i19 = i6;
+                                        iMin = Math.min(matrixParticlesDrawable$Particle.y, iHeight + 1);
+                                        iMax = Math.max(i13, matrixParticlesDrawable$Particle.y - matrixParticlesDrawable$Particle.len);
+                                        while (iMax < iMin) {
+                                            int i20 = adapterHelper3.mExistingUpdateTypes;
+                                            f6 = i20 * i5;
+                                            f7 = i20 * iMax;
+                                            if (((RectF) adapterHelper3.mUpdateOpPool).contains(f6, f7)) {
+                                                i7 = iHeight;
+                                                i8 = i5;
+                                                i9 = iMax;
+                                                adapterHelper = adapterHelper3;
+                                                i10 = iWidth;
+                                                j = jCurrentTimeMillis2;
+                                            } else {
+                                                i7 = iHeight;
+                                                i8 = i5;
+                                                fClamp = Utilities.clamp(((f5 - ((matrixParticlesDrawable$Particle.y - iMax) / (matrixParticlesDrawable$Particle.len - 1))) * 0.8f) + 0.2f, 1.0f, 0.0f);
+                                                zzdwVar = ((zzdw[][]) adapterHelper3.mCallback)[i8][iMax];
+                                                i9 = iMax;
+                                                j2 = zzdwVar.zzb - jCurrentTimeMillis2;
+                                                adapterHelper = adapterHelper3;
+                                                adapterHelper2 = (AdapterHelper) zzdwVar.zzc;
+                                                if (j2 < 150) {
+                                                    i10 = iWidth;
+                                                    fClamp2 = Utilities.clamp(1.0f - (j2 / f4), 1.0f, 0.0f);
+                                                    j = jCurrentTimeMillis2;
+                                                    ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
+                                                    int i21 = zzdwVar.zza;
+                                                    Bitmap[] bitmapArr = (Bitmap[]) adapterHelper2.mPendingUpdates;
+                                                    Bitmap bitmap = bitmapArr[i21];
+                                                    Paint paint2 = (Paint) adapterHelper2.mOpReorderer;
+                                                    canvas.drawBitmap(bitmap, f6, f7, paint2);
+                                                    paint2.setAlpha((int) (fClamp * fClamp2 * 255.0f));
+                                                    canvas.drawBitmap(bitmapArr[zzdwVar.zze], f6, f7, paint2);
+                                                    paint2.setAlpha(255);
+                                                    if (fClamp2 >= 1.0f) {
+                                                        zzdwVar.zza = zzdwVar.zze;
+                                                        zzdwVar.zze = zzcw.m(Utilities.fastRandom, 16);
+                                                        zzdwVar.zzb = j + ((long) zzcw.m(Utilities.fastRandom, 300)) + 150;
+                                                    }
+                                                } else {
+                                                    i10 = iWidth;
+                                                    j = jCurrentTimeMillis2;
+                                                    ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) (fClamp * 255.0f));
+                                                    canvas.drawBitmap(((Bitmap[]) adapterHelper2.mPendingUpdates)[zzdwVar.zza], f6, f7, (Paint) adapterHelper2.mOpReorderer);
+                                                }
+                                                iMax = i9 + 1;
+                                                i5 = i8;
+                                                iHeight = i7;
+                                                adapterHelper3 = adapterHelper;
+                                                iWidth = i10;
+                                                jCurrentTimeMillis2 = j;
+                                                f5 = 1.0f;
+                                            }
+                                            iMax = i9 + 1;
+                                            i5 = i8;
+                                            iHeight = i7;
+                                            adapterHelper3 = adapterHelper;
+                                            iWidth = i10;
+                                            jCurrentTimeMillis2 = j;
+                                            f5 = 1.0f;
+                                        }
+                                        i6 = i19 + 1;
+                                        i5 = i5;
+                                        i12 = 1;
+                                        i13 = 0;
+                                        f5 = 1.0f;
+                                    }
+                                    i5++;
+                                    iHeight = iHeight;
+                                    i12 = 1;
+                                    i13 = 0;
+                                    f5 = 1.0f;
+                                }
+                            } else {
+                                f2 = 2.0f;
+                            }
+                            adapterHelper3.mCallback = new zzdw[iWidth + 1][];
+                            i3 = 0;
+                            while (i3 <= iWidth) {
+                                ((zzdw[][]) adapterHelper3.mCallback)[i3] = new zzdw[iHeight + 1];
+                                i4 = 0;
+                                while (i4 <= iHeight) {
+                                    zzdw[][] zzdwVarArr2 = (zzdw[][]) adapterHelper3.mCallback;
+                                    zzdw[] zzdwVarArr3 = zzdwVarArr2[i3];
+                                    zzdw zzdwVar2 = new zzdw();
+                                    zzdwVar2.zzc = adapterHelper3;
+                                    zzdwVarArr3[i4] = zzdwVar2;
+                                    zzdw zzdwVar3 = zzdwVarArr2[i3][i4];
+                                    zzdwVar3.getClass();
+                                    zzdwVar3.zza = zzcw.m(Utilities.fastRandom, i2);
+                                    zzdwVar3.zze = zzcw.m(Utilities.fastRandom, i2);
+                                    zzdwVar3.zzb = ((long) zzcw.m(Utilities.fastRandom, i)) + jCurrentTimeMillis2 + 150;
+                                    i4++;
+                                    i2 = 16;
+                                    i = 300;
+                                }
+                                i3++;
+                                i2 = 16;
+                                i = 300;
+                            }
+                            f5 = 1.0f;
+                            i5 = 0;
+                            while (i5 <= iWidth) {
+                                arrayList = ((ArrayList[]) adapterHelper3.lastNotifies)[i5];
+                                i6 = 0;
+                                while (i6 < arrayList.size()) {
+                                    matrixParticlesDrawable$Particle = (MatrixParticlesDrawable$Particle) arrayList.get(i6);
+                                    if (jCurrentTimeMillis2 - matrixParticlesDrawable$Particle.time > 50) {
+                                        i11 = matrixParticlesDrawable$Particle.y + i12;
+                                        matrixParticlesDrawable$Particle.y = i11;
+                                        matrixParticlesDrawable$Particle.time = jCurrentTimeMillis2;
+                                        if (i11 - matrixParticlesDrawable$Particle.len >= iHeight) {
+                                            if (arrayList.size() == i12) {
+                                                matrixParticlesDrawable$Particle.y = i13;
+                                                matrixParticlesDrawable$Particle.time = jCurrentTimeMillis2;
+                                                matrixParticlesDrawable$Particle.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+                                            } else {
+                                                arrayList.remove(matrixParticlesDrawable$Particle);
+                                                i6--;
+                                            }
+                                        }
+                                        if (matrixParticlesDrawable$Particle.y > matrixParticlesDrawable$Particle.len) {
+                                            MatrixParticlesDrawable$Particle matrixParticlesDrawable$Particle3 = new MatrixParticlesDrawable$Particle();
+                                            matrixParticlesDrawable$Particle3.y = i13;
+                                            matrixParticlesDrawable$Particle3.time = jCurrentTimeMillis2;
+                                            matrixParticlesDrawable$Particle3.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+                                            arrayList.add(matrixParticlesDrawable$Particle3);
+                                        }
+                                    }
+                                    int i110 = i6;
+                                    iMin = Math.min(matrixParticlesDrawable$Particle.y, iHeight + 1);
+                                    iMax = Math.max(i13, matrixParticlesDrawable$Particle.y - matrixParticlesDrawable$Particle.len);
+                                    while (iMax < iMin) {
+                                        int i22 = adapterHelper3.mExistingUpdateTypes;
+                                        f6 = i22 * i5;
+                                        f7 = i22 * iMax;
+                                        if (((RectF) adapterHelper3.mUpdateOpPool).contains(f6, f7)) {
+                                            i7 = iHeight;
+                                            i8 = i5;
+                                            fClamp = Utilities.clamp(((f5 - ((matrixParticlesDrawable$Particle.y - iMax) / (matrixParticlesDrawable$Particle.len - 1))) * 0.8f) + 0.2f, 1.0f, 0.0f);
+                                            zzdwVar = ((zzdw[][]) adapterHelper3.mCallback)[i8][iMax];
+                                            i9 = iMax;
+                                            j2 = zzdwVar.zzb - jCurrentTimeMillis2;
+                                            adapterHelper = adapterHelper3;
+                                            adapterHelper2 = (AdapterHelper) zzdwVar.zzc;
+                                            if (j2 < 150) {
+                                                i10 = iWidth;
+                                                fClamp2 = Utilities.clamp(1.0f - (j2 / f4), 1.0f, 0.0f);
+                                                j = jCurrentTimeMillis2;
+                                                ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
+                                                int i23 = zzdwVar.zza;
+                                                Bitmap[] bitmapArr2 = (Bitmap[]) adapterHelper2.mPendingUpdates;
+                                                Bitmap bitmap2 = bitmapArr2[i23];
+                                                Paint paint3 = (Paint) adapterHelper2.mOpReorderer;
+                                                canvas.drawBitmap(bitmap2, f6, f7, paint3);
+                                                paint3.setAlpha((int) (fClamp * fClamp2 * 255.0f));
+                                                canvas.drawBitmap(bitmapArr2[zzdwVar.zze], f6, f7, paint3);
+                                                paint3.setAlpha(255);
+                                                if (fClamp2 >= 1.0f) {
+                                                    zzdwVar.zza = zzdwVar.zze;
+                                                    zzdwVar.zze = zzcw.m(Utilities.fastRandom, 16);
+                                                    zzdwVar.zzb = j + ((long) zzcw.m(Utilities.fastRandom, 300)) + 150;
+                                                }
+                                            } else {
+                                                i10 = iWidth;
+                                                j = jCurrentTimeMillis2;
+                                                ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) (fClamp * 255.0f));
+                                                canvas.drawBitmap(((Bitmap[]) adapterHelper2.mPendingUpdates)[zzdwVar.zza], f6, f7, (Paint) adapterHelper2.mOpReorderer);
+                                            }
+                                            iMax = i9 + 1;
+                                            i5 = i8;
+                                            iHeight = i7;
+                                            adapterHelper3 = adapterHelper;
+                                            iWidth = i10;
+                                            jCurrentTimeMillis2 = j;
+                                            f5 = 1.0f;
+                                        } else {
+                                            i7 = iHeight;
+                                            i8 = i5;
+                                            i9 = iMax;
+                                            adapterHelper = adapterHelper3;
+                                            i10 = iWidth;
+                                            j = jCurrentTimeMillis2;
+                                        }
+                                        iMax = i9 + 1;
+                                        i5 = i8;
+                                        iHeight = i7;
+                                        adapterHelper3 = adapterHelper;
+                                        iWidth = i10;
+                                        jCurrentTimeMillis2 = j;
+                                        f5 = 1.0f;
+                                    }
+                                    i6 = i110 + 1;
+                                    i5 = i5;
+                                    i12 = 1;
+                                    i13 = 0;
+                                    f5 = 1.0f;
+                                }
+                                i5++;
+                                iHeight = iHeight;
+                                i12 = 1;
+                                i13 = 0;
+                                f5 = 1.0f;
+                            }
+                        } else {
+                            f4 = 150.0f;
+                        }
+                        adapterHelper3.lastNotifies = new ArrayList[iWidth + 1];
+                        for (int i24 = 0; i24 <= iWidth; i24++) {
+                            ((ArrayList[]) adapterHelper3.lastNotifies)[i24] = new ArrayList();
+                            MatrixParticlesDrawable$Particle matrixParticlesDrawable$Particle4 = new MatrixParticlesDrawable$Particle();
+                            matrixParticlesDrawable$Particle4.y = zzcw.m(Utilities.fastRandom, iHeight);
+                            matrixParticlesDrawable$Particle4.time = jCurrentTimeMillis2;
+                            matrixParticlesDrawable$Particle4.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+                            ((ArrayList[]) adapterHelper3.lastNotifies)[i24].add(matrixParticlesDrawable$Particle4);
+                        }
+                        zzdwVarArr = (zzdw[][]) adapterHelper3.mCallback;
+                        i = 300;
+                        i2 = 16;
+                        if (zzdwVarArr != null) {
+                            f2 = 2.0f;
+                            if (zzdwVarArr.length == iWidth + 1) {
+                            }
+                            f5 = 1.0f;
+                            i5 = 0;
+                            while (i5 <= iWidth) {
+                                arrayList = ((ArrayList[]) adapterHelper3.lastNotifies)[i5];
+                                i6 = 0;
+                                while (i6 < arrayList.size()) {
+                                    matrixParticlesDrawable$Particle = (MatrixParticlesDrawable$Particle) arrayList.get(i6);
+                                    if (jCurrentTimeMillis2 - matrixParticlesDrawable$Particle.time > 50) {
+                                        i11 = matrixParticlesDrawable$Particle.y + i12;
+                                        matrixParticlesDrawable$Particle.y = i11;
+                                        matrixParticlesDrawable$Particle.time = jCurrentTimeMillis2;
+                                        if (i11 - matrixParticlesDrawable$Particle.len >= iHeight) {
+                                            if (arrayList.size() == i12) {
+                                                matrixParticlesDrawable$Particle.y = i13;
+                                                matrixParticlesDrawable$Particle.time = jCurrentTimeMillis2;
+                                                matrixParticlesDrawable$Particle.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+                                            } else {
+                                                arrayList.remove(matrixParticlesDrawable$Particle);
+                                                i6--;
+                                            }
+                                        }
+                                        if (matrixParticlesDrawable$Particle.y > matrixParticlesDrawable$Particle.len) {
+                                            MatrixParticlesDrawable$Particle matrixParticlesDrawable$Particle5 = new MatrixParticlesDrawable$Particle();
+                                            matrixParticlesDrawable$Particle5.y = i13;
+                                            matrixParticlesDrawable$Particle5.time = jCurrentTimeMillis2;
+                                            matrixParticlesDrawable$Particle5.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+                                            arrayList.add(matrixParticlesDrawable$Particle5);
+                                        }
+                                    }
+                                    int i111 = i6;
+                                    iMin = Math.min(matrixParticlesDrawable$Particle.y, iHeight + 1);
+                                    iMax = Math.max(i13, matrixParticlesDrawable$Particle.y - matrixParticlesDrawable$Particle.len);
+                                    while (iMax < iMin) {
+                                        int i25 = adapterHelper3.mExistingUpdateTypes;
+                                        f6 = i25 * i5;
+                                        f7 = i25 * iMax;
+                                        if (((RectF) adapterHelper3.mUpdateOpPool).contains(f6, f7)) {
+                                            i7 = iHeight;
+                                            i8 = i5;
+                                            fClamp = Utilities.clamp(((f5 - ((matrixParticlesDrawable$Particle.y - iMax) / (matrixParticlesDrawable$Particle.len - 1))) * 0.8f) + 0.2f, 1.0f, 0.0f);
+                                            zzdwVar = ((zzdw[][]) adapterHelper3.mCallback)[i8][iMax];
+                                            i9 = iMax;
+                                            j2 = zzdwVar.zzb - jCurrentTimeMillis2;
+                                            adapterHelper = adapterHelper3;
+                                            adapterHelper2 = (AdapterHelper) zzdwVar.zzc;
+                                            if (j2 < 150) {
+                                                i10 = iWidth;
+                                                fClamp2 = Utilities.clamp(1.0f - (j2 / f4), 1.0f, 0.0f);
+                                                j = jCurrentTimeMillis2;
+                                                ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
+                                                int i26 = zzdwVar.zza;
+                                                Bitmap[] bitmapArr3 = (Bitmap[]) adapterHelper2.mPendingUpdates;
+                                                Bitmap bitmap3 = bitmapArr3[i26];
+                                                Paint paint4 = (Paint) adapterHelper2.mOpReorderer;
+                                                canvas.drawBitmap(bitmap3, f6, f7, paint4);
+                                                paint4.setAlpha((int) (fClamp * fClamp2 * 255.0f));
+                                                canvas.drawBitmap(bitmapArr3[zzdwVar.zze], f6, f7, paint4);
+                                                paint4.setAlpha(255);
+                                                if (fClamp2 >= 1.0f) {
+                                                    zzdwVar.zza = zzdwVar.zze;
+                                                    zzdwVar.zze = zzcw.m(Utilities.fastRandom, 16);
+                                                    zzdwVar.zzb = j + ((long) zzcw.m(Utilities.fastRandom, 300)) + 150;
+                                                }
+                                            } else {
+                                                i10 = iWidth;
+                                                j = jCurrentTimeMillis2;
+                                                ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) (fClamp * 255.0f));
+                                                canvas.drawBitmap(((Bitmap[]) adapterHelper2.mPendingUpdates)[zzdwVar.zza], f6, f7, (Paint) adapterHelper2.mOpReorderer);
+                                            }
+                                            iMax = i9 + 1;
+                                            i5 = i8;
+                                            iHeight = i7;
+                                            adapterHelper3 = adapterHelper;
+                                            iWidth = i10;
+                                            jCurrentTimeMillis2 = j;
+                                            f5 = 1.0f;
+                                        } else {
+                                            i7 = iHeight;
+                                            i8 = i5;
+                                            i9 = iMax;
+                                            adapterHelper = adapterHelper3;
+                                            i10 = iWidth;
+                                            j = jCurrentTimeMillis2;
+                                        }
+                                        iMax = i9 + 1;
+                                        i5 = i8;
+                                        iHeight = i7;
+                                        adapterHelper3 = adapterHelper;
+                                        iWidth = i10;
+                                        jCurrentTimeMillis2 = j;
+                                        f5 = 1.0f;
+                                    }
+                                    i6 = i111 + 1;
+                                    i5 = i5;
+                                    i12 = 1;
+                                    i13 = 0;
+                                    f5 = 1.0f;
+                                }
+                                i5++;
+                                iHeight = iHeight;
+                                i12 = 1;
+                                i13 = 0;
+                                f5 = 1.0f;
+                            }
+                        } else {
+                            f2 = 2.0f;
+                        }
+                        adapterHelper3.mCallback = new zzdw[iWidth + 1][];
+                        i3 = 0;
+                        while (i3 <= iWidth) {
+                            ((zzdw[][]) adapterHelper3.mCallback)[i3] = new zzdw[iHeight + 1];
+                            i4 = 0;
+                            while (i4 <= iHeight) {
+                                zzdw[][] zzdwVarArr4 = (zzdw[][]) adapterHelper3.mCallback;
+                                zzdw[] zzdwVarArr5 = zzdwVarArr4[i3];
+                                zzdw zzdwVar4 = new zzdw();
+                                zzdwVar4.zzc = adapterHelper3;
+                                zzdwVarArr5[i4] = zzdwVar4;
+                                zzdw zzdwVar5 = zzdwVarArr4[i3][i4];
+                                zzdwVar5.getClass();
+                                zzdwVar5.zza = zzcw.m(Utilities.fastRandom, i2);
+                                zzdwVar5.zze = zzcw.m(Utilities.fastRandom, i2);
+                                zzdwVar5.zzb = ((long) zzcw.m(Utilities.fastRandom, i)) + jCurrentTimeMillis2 + 150;
+                                i4++;
+                                i2 = 16;
+                                i = 300;
+                            }
+                            i3++;
+                            i2 = 16;
+                            i = 300;
+                        }
+                        f5 = 1.0f;
+                        i5 = 0;
+                        while (i5 <= iWidth) {
+                            arrayList = ((ArrayList[]) adapterHelper3.lastNotifies)[i5];
+                            i6 = 0;
+                            while (i6 < arrayList.size()) {
+                                matrixParticlesDrawable$Particle = (MatrixParticlesDrawable$Particle) arrayList.get(i6);
+                                if (jCurrentTimeMillis2 - matrixParticlesDrawable$Particle.time > 50) {
+                                    i11 = matrixParticlesDrawable$Particle.y + i12;
+                                    matrixParticlesDrawable$Particle.y = i11;
+                                    matrixParticlesDrawable$Particle.time = jCurrentTimeMillis2;
+                                    if (i11 - matrixParticlesDrawable$Particle.len >= iHeight) {
+                                        if (arrayList.size() == i12) {
+                                            matrixParticlesDrawable$Particle.y = i13;
+                                            matrixParticlesDrawable$Particle.time = jCurrentTimeMillis2;
+                                            matrixParticlesDrawable$Particle.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+                                        } else {
+                                            arrayList.remove(matrixParticlesDrawable$Particle);
+                                            i6--;
+                                        }
+                                    }
+                                    if (matrixParticlesDrawable$Particle.y > matrixParticlesDrawable$Particle.len) {
+                                        MatrixParticlesDrawable$Particle matrixParticlesDrawable$Particle6 = new MatrixParticlesDrawable$Particle();
+                                        matrixParticlesDrawable$Particle6.y = i13;
+                                        matrixParticlesDrawable$Particle6.time = jCurrentTimeMillis2;
+                                        matrixParticlesDrawable$Particle6.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+                                        arrayList.add(matrixParticlesDrawable$Particle6);
+                                    }
+                                }
+                                int i112 = i6;
+                                iMin = Math.min(matrixParticlesDrawable$Particle.y, iHeight + 1);
+                                iMax = Math.max(i13, matrixParticlesDrawable$Particle.y - matrixParticlesDrawable$Particle.len);
+                                while (iMax < iMin) {
+                                    int i27 = adapterHelper3.mExistingUpdateTypes;
+                                    f6 = i27 * i5;
+                                    f7 = i27 * iMax;
+                                    if (((RectF) adapterHelper3.mUpdateOpPool).contains(f6, f7)) {
+                                        i7 = iHeight;
+                                        i8 = i5;
+                                        fClamp = Utilities.clamp(((f5 - ((matrixParticlesDrawable$Particle.y - iMax) / (matrixParticlesDrawable$Particle.len - 1))) * 0.8f) + 0.2f, 1.0f, 0.0f);
+                                        zzdwVar = ((zzdw[][]) adapterHelper3.mCallback)[i8][iMax];
+                                        i9 = iMax;
+                                        j2 = zzdwVar.zzb - jCurrentTimeMillis2;
+                                        adapterHelper = adapterHelper3;
+                                        adapterHelper2 = (AdapterHelper) zzdwVar.zzc;
+                                        if (j2 < 150) {
+                                            i10 = iWidth;
+                                            fClamp2 = Utilities.clamp(1.0f - (j2 / f4), 1.0f, 0.0f);
+                                            j = jCurrentTimeMillis2;
+                                            ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
+                                            int i28 = zzdwVar.zza;
+                                            Bitmap[] bitmapArr4 = (Bitmap[]) adapterHelper2.mPendingUpdates;
+                                            Bitmap bitmap4 = bitmapArr4[i28];
+                                            Paint paint5 = (Paint) adapterHelper2.mOpReorderer;
+                                            canvas.drawBitmap(bitmap4, f6, f7, paint5);
+                                            paint5.setAlpha((int) (fClamp * fClamp2 * 255.0f));
+                                            canvas.drawBitmap(bitmapArr4[zzdwVar.zze], f6, f7, paint5);
+                                            paint5.setAlpha(255);
+                                            if (fClamp2 >= 1.0f) {
+                                                zzdwVar.zza = zzdwVar.zze;
+                                                zzdwVar.zze = zzcw.m(Utilities.fastRandom, 16);
+                                                zzdwVar.zzb = j + ((long) zzcw.m(Utilities.fastRandom, 300)) + 150;
+                                            }
+                                        } else {
+                                            i10 = iWidth;
+                                            j = jCurrentTimeMillis2;
+                                            ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) (fClamp * 255.0f));
+                                            canvas.drawBitmap(((Bitmap[]) adapterHelper2.mPendingUpdates)[zzdwVar.zza], f6, f7, (Paint) adapterHelper2.mOpReorderer);
+                                        }
+                                        iMax = i9 + 1;
+                                        i5 = i8;
+                                        iHeight = i7;
+                                        adapterHelper3 = adapterHelper;
+                                        iWidth = i10;
+                                        jCurrentTimeMillis2 = j;
+                                        f5 = 1.0f;
+                                    } else {
+                                        i7 = iHeight;
+                                        i8 = i5;
+                                        i9 = iMax;
+                                        adapterHelper = adapterHelper3;
+                                        i10 = iWidth;
+                                        j = jCurrentTimeMillis2;
+                                    }
+                                    iMax = i9 + 1;
+                                    i5 = i8;
+                                    iHeight = i7;
+                                    adapterHelper3 = adapterHelper;
+                                    iWidth = i10;
+                                    jCurrentTimeMillis2 = j;
+                                    f5 = 1.0f;
+                                }
+                                i6 = i112 + 1;
+                                i5 = i5;
+                                i12 = 1;
+                                i13 = 0;
+                                f5 = 1.0f;
+                            }
+                            i5++;
+                            iHeight = iHeight;
+                            i12 = 1;
+                            i13 = 0;
+                            f5 = 1.0f;
+                        }
+                    }
+                    z = true;
+                }
+                canvas.restore();
+                invalidate();
             } else {
-                this.imageReceiver.onDetachedFromWindow();
+                f = 0.9f;
+                f2 = 2.0f;
+                z = true;
             }
+        }
+        float fMin = (int) (Math.min(getMeasuredWidth(), getMeasuredHeight()) * f);
+        float measuredWidth = (getMeasuredWidth() - (0.671f * fMin)) / f2;
+        float f20 = 0.0671f * fMin;
+        this.roundRadius = f20;
+        boolean z2 = this.fromTop;
+        if (z2) {
+            AndroidUtilities.rectTmp.set(measuredWidth, -f20, getMeasuredWidth() - measuredWidth, fMin);
+        } else {
+            AndroidUtilities.rectTmp.set(measuredWidth, getMeasuredHeight() - fMin, getMeasuredWidth() - measuredWidth, getMeasuredHeight() + this.roundRadius);
+        }
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
+        rectF.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
+        canvas.drawRoundRect(rectF, this.roundRadius + AndroidUtilities.dp(3.0f), this.roundRadius + AndroidUtilities.dp(3.0f), this.phoneFrame2);
+        rectF.inset(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        float f21 = this.roundRadius;
+        Paint paint6 = this.phoneFrame1;
+        canvas.drawRoundRect(rectF, f21, f21, paint6);
+        if (z2) {
+            rectF.set(measuredWidth, 0.0f, getMeasuredWidth() - measuredWidth, fMin);
+        } else {
+            rectF.set(measuredWidth, getMeasuredHeight() - fMin, getMeasuredWidth() - measuredWidth, getMeasuredHeight());
+        }
+        float fDp2 = this.roundRadius - AndroidUtilities.dp(3.0f);
+        this.roundRadius = fDp2;
+        RoundedBitmapDrawable21 roundedBitmapDrawable21 = this.roundedBitmapDrawable;
+        if (roundedBitmapDrawable21 != null && roundedBitmapDrawable21.mCornerRadius != fDp2) {
+            if (fDp2 <= 0.05f) {
+                z = false;
+            }
+            Paint paint7 = roundedBitmapDrawable21.mPaint;
+            if (z) {
+                paint7.setShader(roundedBitmapDrawable21.mBitmapShader);
+            } else {
+                paint7.setShader(null);
+            }
+            roundedBitmapDrawable21.mCornerRadius = fDp2;
+            roundedBitmapDrawable21.invalidateSelf();
+        }
+        CellFlickerDrawable.DrawableInterface drawableInterface = this.cellFlickerDrawable;
+        if (drawableInterface != null) {
+            drawableInterface.radius = this.roundRadius;
+        }
+        ImageReceiver imageReceiver = this.imageReceiver;
+        if (z2) {
+            int i29 = (int) this.roundRadius;
+            imageReceiver.setRoundRadius(0, 0, i29, i29);
+        } else {
+            int i30 = (int) this.roundRadius;
+            imageReceiver.setRoundRadius(i30, i30, 0, 0);
+        }
+        if (!this.firstFrameRendered) {
+            imageReceiver.setImageCoords(rectF.left, rectF.top, rectF.width(), rectF.height());
+            imageReceiver.draw(canvas);
+        }
+        super.dispatchDraw(canvas);
+        if (z2) {
+            return;
+        }
+        canvas.drawCircle(imageReceiver.getCenterX(), imageReceiver.getImageY() + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), paint6);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.attached = true;
+        updateAttachState();
+        if (!this.firstFrameRendered) {
+            checkVideo();
+        }
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.attached = false;
+        updateAttachState();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
+        ChatActionCell.TextLayout textLayout = this.helloParticlesDrawable;
+        if (textLayout != null) {
+            HashMap map = (HashMap) textLayout.layout;
+            Iterator it = map.values().iterator();
+            while (it.hasNext()) {
+                ((Bitmap) it.next()).recycle();
+            }
+            map.clear();
+            this.helloParticlesDrawable = null;
+        }
+        AnonymousClass3 anonymousClass3 = this.videoPlayerBase;
+        if (anonymousClass3 != null) {
+            this.lastFrameTime = anonymousClass3.getCurrentPosition();
+            this.videoPlayerBase.release(new QrActivity$5$$ExternalSyntheticLambda1(1));
+            this.videoPlayerBase = null;
         }
     }
 
-    private void runVideoPlayer() {
-        Uri uriFromFile;
-        if ((this.file != null || SharedConfig.streamMedia) && this.videoPlayerBase == null) {
-            this.aspectRatioFrameLayout.setAspectRatio(this.aspectRatio, 0);
-            VideoPlayerHolderBase videoPlayerHolderBase = new VideoPlayerHolderBase() {
-                @Override
-                public void onStateChanged(boolean z, int i) {
-                    VideoPlayerHolderBase videoPlayerHolderBase2 = VideoScreenPreview.this.videoPlayerBase;
-                    if (videoPlayerHolderBase2 == null) {
-                        return;
-                    }
-                    if (i == 4) {
-                        videoPlayerHolderBase2.seekTo(0L);
-                        VideoScreenPreview.this.videoPlayerBase.play();
-                    } else if (i == 1) {
-                        videoPlayerHolderBase2.play();
-                    }
-                }
-
-                @Override
-                public void onRenderedFirstFrame() {
-                    VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
-                    TextureView textureView = videoScreenPreview.textureView;
-                    if (textureView == null || videoScreenPreview.firstFrameRendered) {
-                        return;
-                    }
-                    textureView.setAlpha(0.0f);
-                    VideoScreenPreview.this.textureView.animate().alpha(1.0f).setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            VideoScreenPreview videoScreenPreview2 = VideoScreenPreview.this;
-                            videoScreenPreview2.firstFrameRendered = true;
-                            videoScreenPreview2.invalidate();
-                        }
-                    }).setDuration(200L);
-                }
-            };
-            this.videoPlayerBase = videoPlayerHolderBase;
-            videoPlayerHolderBase.with(this.textureView);
-            File file = this.file;
-            if (file != null && file.exists()) {
-                uriFromFile = Uri.fromFile(this.file);
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        int measuredWidth = getMeasuredWidth() << (getMeasuredHeight() + 16);
+        float fMin = (int) (Math.min(getMeasuredWidth(), getMeasuredHeight()) * 0.9f);
+        float measuredWidth2 = (getMeasuredWidth() - (0.671f * fMin)) / 2.0f;
+        if (this.fromTop) {
+            AndroidUtilities.rectTmp.set(measuredWidth2, -this.roundRadius, getMeasuredWidth() - measuredWidth2, fMin);
+        } else {
+            AndroidUtilities.rectTmp.set(measuredWidth2, getMeasuredHeight() - fMin, getMeasuredWidth() - measuredWidth2, getMeasuredHeight() + this.roundRadius);
+        }
+        if (this.size == measuredWidth) {
+            return;
+        }
+        this.size = measuredWidth;
+        AdapterHelper adapterHelper = this.matrixParticlesDrawable;
+        int i5 = 0;
+        if (adapterHelper != null) {
+            ((Rect) adapterHelper.mPostponedList).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            RectF rectF = (RectF) adapterHelper.mUpdateOpPool;
+            rectF.set(AndroidUtilities.rectTmp);
+            rectF.inset(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        }
+        StarParticlesView.Drawable drawable = this.starDrawable;
+        if (drawable != null) {
+            RectF rectF2 = drawable.rect;
+            int i6 = this.type;
+            if (i6 == 6 || i6 == 9 || i6 == 3 || i6 == 7 || i6 == 24 || i6 == 43 || i6 == 11 || i6 == 4) {
+                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                rectF2.inset(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
             } else {
+                RectF rectF3 = AndroidUtilities.rectTmp;
+                float fWidth = (int) (rectF3.width() * 0.4f);
+                rectF2.set(rectF3.centerX() - fWidth, rectF3.centerY() - fWidth, rectF3.centerX() + fWidth, rectF3.centerY() + fWidth);
+                drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            }
+            drawable.resetPositions();
+            RectF rectF4 = drawable.excludeRect;
+            rectF4.set(AndroidUtilities.rectTmp);
+            rectF4.inset(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+        }
+        SpeedLineParticles$Drawable speedLineParticles$Drawable = this.speedLinesDrawable;
+        if (speedLineParticles$Drawable != null) {
+            RectF rectF5 = speedLineParticles$Drawable.rect;
+            rectF5.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            speedLineParticles$Drawable.screenRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            rectF5.inset(AndroidUtilities.dp(100.0f), AndroidUtilities.dp(100.0f));
+            rectF5.offset(0.0f, getMeasuredHeight() * 0.1f);
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            int i7 = 0;
+            while (true) {
+                ArrayList arrayList = speedLineParticles$Drawable.particles;
+                if (i7 >= arrayList.size()) {
+                    break;
+                }
+                ((SpeedLineParticles$Drawable.Particle) arrayList.get(i7)).genPosition(jCurrentTimeMillis, true);
+                i7++;
+            }
+        }
+        ChatActionCell.TextLayout textLayout = this.helloParticlesDrawable;
+        if (textLayout == null) {
+            return;
+        }
+        ((RectF) textLayout.patchedLayout).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        ((RectF) this.helloParticlesDrawable.emoji).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        ((RectF) this.helloParticlesDrawable.patchedLayout).inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
+        ChatActionCell.TextLayout textLayout2 = this.helloParticlesDrawable;
+        textLayout2.getClass();
+        System.currentTimeMillis();
+        while (true) {
+            ArrayList arrayList2 = textLayout2.spoilers;
+            if (i5 >= arrayList2.size()) {
+                return;
+            }
+            ((HelloParticles$Drawable$Particle) arrayList2.get(i5)).genPosition(i5, true);
+            i5++;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        float fMin = (int) (Math.min(size2, size) * 0.9f);
+        float f = size;
+        float f2 = (f - (0.671f * fMin)) / 2.0f;
+        this.roundRadius = 0.0671f * fMin;
+        AnonymousClass1 anonymousClass1 = this.aspectRatioFrameLayout;
+        anonymousClass1.invalidateOutline();
+        if (this.fromTop) {
+            AndroidUtilities.rectTmp.set(f2, 0.0f, f - f2, fMin);
+        } else {
+            float f3 = size2;
+            AndroidUtilities.rectTmp.set(f2, f3 - fMin, f - f2, f3);
+        }
+        ViewGroup.LayoutParams layoutParams = anonymousClass1.getLayoutParams();
+        RectF rectF = AndroidUtilities.rectTmp;
+        layoutParams.width = (int) rectF.width();
+        anonymousClass1.getLayoutParams().height = (int) rectF.height();
+        ((ViewGroup.MarginLayoutParams) anonymousClass1.getLayoutParams()).leftMargin = (int) rectF.left;
+        ((ViewGroup.MarginLayoutParams) anonymousClass1.getLayoutParams()).topMargin = (int) rectF.top;
+        super.onMeasure(i, i2);
+    }
+
+    public final void runVideoPlayer() {
+        Uri uriFromFile;
+        int i = this.currentAccount;
+        if ((this.file != null || SharedConfig.streamMedia) && this.videoPlayerBase == null) {
+            setAspectRatio(this.aspectRatio, 0);
+            AnonymousClass3 anonymousClass3 = new AnonymousClass3(this, 0);
+            this.videoPlayerBase = anonymousClass3;
+            TextureView textureView = this.textureView;
+            anonymousClass3.with(textureView);
+            File file = this.file;
+            if (file == null || !file.exists()) {
                 try {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("?account=");
-                    sb.append(this.currentAccount);
+                    StringBuilder sb = new StringBuilder("?account=");
+                    sb.append(i);
                     sb.append("&id=");
                     sb.append(this.document.id);
                     sb.append("&hash=");
@@ -624,7 +1290,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                     sb.append("&mime=");
                     sb.append(URLEncoder.encode(this.document.mime_type, "UTF-8"));
                     sb.append("&rid=");
-                    sb.append(FileLoader.getInstance(this.currentAccount).getFileReference(MediaDataController.getInstance(this.currentAccount).getPremiumPromo()));
+                    sb.append(FileLoader.getInstance(i).getFileReference(MediaDataController.getInstance(i).getPremiumPromo()));
                     sb.append("&name=");
                     sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(this.document), "UTF-8"));
                     sb.append("&reference=");
@@ -637,6 +1303,8 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                 } catch (Exception unused) {
                     uriFromFile = null;
                 }
+            } else {
+                uriFromFile = Uri.fromFile(this.file);
             }
             if (uriFromFile == null) {
                 return;
@@ -644,24 +1312,79 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             this.videoPlayerBase.preparePlayer(uriFromFile, false, 1.0f);
             if (!this.firstFrameRendered) {
                 this.imageReceiver.stopAnimation();
-                this.textureView.setAlpha(0.0f);
+                textureView.setAlpha(0.0f);
             }
             this.videoPlayerBase.seekTo(this.lastFrameTime + 60);
             this.videoPlayerBase.play();
         }
     }
 
-    private void stopVideoPlayer() {
-        VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayerBase;
-        if (videoPlayerHolderBase != null) {
-            this.lastFrameTime = videoPlayerHolderBase.getCurrentPosition();
-            this.videoPlayerBase.release(new Runnable() {
-                @Override
-                public final void run() {
-                    VideoScreenPreview.$r8$lambda$oqqJ5kFEZuqEQjRzuFj19R2Iil8();
-                }
-            });
-            this.videoPlayerBase = null;
+    @Override
+    public void setOffset(float f) {
+        boolean z;
+        boolean z2 = this.fromTop;
+        boolean z3 = false;
+        if (f < 0.0f) {
+            float measuredWidth = (-f) / getMeasuredWidth();
+            setAlpha((Utilities.clamp(1.0f - measuredWidth, 1.0f, 0.0f) * 0.5f) + 0.5f);
+            setRotationY(50.0f * measuredWidth);
+            invalidate();
+            if (z2) {
+                setTranslationY((-getMeasuredHeight()) * 0.3f * measuredWidth);
+            } else {
+                setTranslationY(getMeasuredHeight() * 0.3f * measuredWidth);
+            }
+            this.progress = Math.abs(measuredWidth);
+            z = measuredWidth < 1.0f;
+            if (measuredWidth < 0.1f) {
+                z3 = true;
+            }
+        } else {
+            float measuredWidth2 = (-f) / getMeasuredWidth();
+            invalidate();
+            setRotationY(50.0f * measuredWidth2);
+            if (z2) {
+                setTranslationY(getMeasuredHeight() * 0.3f * measuredWidth2);
+            } else {
+                setTranslationY((-getMeasuredHeight()) * 0.3f * measuredWidth2);
+            }
+            z = measuredWidth2 > -1.0f;
+            z3 = measuredWidth2 > -0.1f;
+            this.progress = Math.abs(measuredWidth2);
+        }
+        if (z != this.visible) {
+            this.visible = z;
+            updateAttachState();
+        }
+        if (z3 != this.allowPlay) {
+            this.allowPlay = z3;
+            ImageReceiver imageReceiver = this.imageReceiver;
+            imageReceiver.setAllowStartAnimation(z3);
+            if (this.allowPlay) {
+                imageReceiver.startAnimation();
+                runVideoPlayer();
+                return;
+            }
+            AnonymousClass3 anonymousClass3 = this.videoPlayerBase;
+            if (anonymousClass3 != null) {
+                this.lastFrameTime = anonymousClass3.getCurrentPosition();
+                this.videoPlayerBase.release(new QrActivity$5$$ExternalSyntheticLambda1(1));
+                this.videoPlayerBase = null;
+            }
+            imageReceiver.stopAnimation();
+        }
+    }
+
+    public final void updateAttachState() {
+        boolean z = this.visible && this.attached;
+        if (this.play != z) {
+            this.play = z;
+            ImageReceiver imageReceiver = this.imageReceiver;
+            if (z) {
+                imageReceiver.onAttachedToWindow();
+            } else {
+                imageReceiver.onDetachedFromWindow();
+            }
         }
     }
 }

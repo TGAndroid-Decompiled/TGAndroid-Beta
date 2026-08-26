@@ -35,18 +35,8 @@ public class UnderOverAtom extends Atom {
         this.overScriptSize = false;
     }
 
-    public UnderOverAtom(Atom atom, Atom atom2, int i, float f, boolean z, Atom atom3, int i2, float f2, boolean z2) {
-        SpaceAtom.checkUnit(i);
-        SpaceAtom.checkUnit(i2);
-        this.base = atom;
-        this.under = atom2;
-        this.underUnit = i;
-        this.underSpace = f;
-        this.underScriptSize = z;
-        this.over = atom3;
-        this.overUnit = i2;
-        this.overSpace = f2;
-        this.overScriptSize = z2;
+    private static Box changeWidth(Box box, float f) {
+        return (box == null || Math.abs(f - box.getWidth()) <= 1.0E-7f) ? box : new HorizontalBox(box, f, 2);
     }
 
     @Override
@@ -76,18 +66,14 @@ public class UnderOverAtom extends Atom {
         }
         Box boxChangeWidth = changeWidth(strutBox, width);
         verticalBox.add(boxChangeWidth);
-        float height = (verticalBox.getHeight() + verticalBox.getDepth()) - boxChangeWidth.getDepth();
+        float depth = (verticalBox.getDepth() + verticalBox.getHeight()) - boxChangeWidth.getDepth();
         if (this.under != null) {
             verticalBox.add(new SpaceAtom(this.overUnit, 0.0f, this.underSpace, 0.0f).createBox(teXEnvironment));
             verticalBox.add(changeWidth(boxCreateBox2, width));
         }
-        verticalBox.setDepth((verticalBox.getHeight() + verticalBox.getDepth()) - height);
-        verticalBox.setHeight(height);
+        verticalBox.setDepth((verticalBox.getDepth() + verticalBox.getHeight()) - depth);
+        verticalBox.setHeight(depth);
         return verticalBox;
-    }
-
-    private static Box changeWidth(Box box, float f) {
-        return (box == null || Math.abs(f - box.getWidth()) <= 1.0E-7f) ? box : new HorizontalBox(box, f, 2);
     }
 
     @Override
@@ -98,5 +84,19 @@ public class UnderOverAtom extends Atom {
     @Override
     public int getRightType() {
         return this.base.getRightType();
+    }
+
+    public UnderOverAtom(Atom atom, Atom atom2, int i, float f, boolean z, Atom atom3, int i2, float f2, boolean z2) {
+        SpaceAtom.checkUnit(i);
+        SpaceAtom.checkUnit(i2);
+        this.base = atom;
+        this.under = atom2;
+        this.underUnit = i;
+        this.underSpace = f;
+        this.underScriptSize = z;
+        this.over = atom3;
+        this.overUnit = i2;
+        this.overSpace = f2;
+        this.overScriptSize = z2;
     }
 }

@@ -6,20 +6,17 @@ import kotlin.coroutines.CoroutineContext;
 public final class CompletedContinuation implements Continuation {
     public static final CompletedContinuation INSTANCE = new CompletedContinuation();
 
-    private CompletedContinuation() {
-    }
-
     @Override
-    public CoroutineContext getContext() {
+    public final CoroutineContext getContext() {
         throw new IllegalStateException("This continuation is already complete");
     }
 
     @Override
-    public void resumeWith(Object obj) {
+    public final void resumeWith(Object obj) {
         throw new IllegalStateException("This continuation is already complete");
     }
 
-    public String toString() {
+    public final String toString() {
         return "This continuation is already complete";
     }
 }

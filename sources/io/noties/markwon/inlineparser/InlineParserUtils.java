@@ -4,18 +4,21 @@ import org.commonmark.node.Node;
 import org.commonmark.node.Text;
 
 public abstract class InlineParserUtils {
-    public static void mergeTextNodesBetweenExclusive(Node node, Node node2) {
-        if (node == node2 || node.getNext() == node2) {
+    public static void mergeIfNeeded(Text text, Text text2, int i) {
+        if (text == null || text2 == null || text == text2) {
             return;
         }
-        mergeTextNodesInclusive(node.getNext(), node2.getPrevious());
-    }
-
-    public static void mergeChildTextNodes(Node node) {
-        if (node.getFirstChild() == node.getLastChild()) {
-            return;
+        StringBuilder sb = new StringBuilder(i);
+        sb.append(text.literal);
+        Node node = (Node) text.next;
+        Node node2 = (Node) text2.next;
+        while (node != node2) {
+            sb.append(((Text) node).literal);
+            Node node3 = (Node) node.next;
+            node.unlink();
+            node = node3;
         }
-        mergeTextNodesInclusive(node.getFirstChild(), node.getLastChild());
+        text.literal = sb.toString();
     }
 
     public static void mergeTextNodesInclusive(Node node, Node node2) {
@@ -28,7 +31,7 @@ public abstract class InlineParserUtils {
                 if (text == null) {
                     text = text2;
                 }
-                length += text2.getLiteral().length();
+                length = text2.literal.length() + length;
             } else {
                 mergeIfNeeded(text, text2, length);
                 text = null;
@@ -38,26 +41,9 @@ public abstract class InlineParserUtils {
             if (node == node2) {
                 break;
             } else {
-                node = node.getNext();
+                node = (Node) node.next;
             }
         }
         mergeIfNeeded(text, text2, length);
-    }
-
-    public static void mergeIfNeeded(Text text, Text text2, int i) {
-        if (text == null || text2 == null || text == text2) {
-            return;
-        }
-        StringBuilder sb = new StringBuilder(i);
-        sb.append(text.getLiteral());
-        Node next = text.getNext();
-        Node next2 = text2.getNext();
-        while (next != next2) {
-            sb.append(((Text) next).getLiteral());
-            Node next3 = next.getNext();
-            next.unlink();
-            next = next3;
-        }
-        text.setLiteral(sb.toString());
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.animation.TimeInterpolator;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -9,71 +8,152 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DiffUtil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjd;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticOutline0;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.utils.Choreographer60FpsContent;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
-public class CapsuleBlobDrawable extends Drawable {
-    public static float MAX_SPEED = 8.2f;
-    public static float MIN_SPEED = 0.8f;
-    private static final TimeInterpolator SMOOTHER = new TimeInterpolator() {
-        @Override
-        public final float getInterpolation(float f) {
-            return CapsuleBlobDrawable.$r8$lambda$UdYoPCaMa_YR8vttLQa0v7_hpD4(f);
-        }
-    };
-    private float amplitude;
-    private float animateAmplitudeDiff;
-    private float animateToAmplitude;
-    private final Layer big;
-    private float breathPhase;
-    private int currentColor;
-    private int fromColor;
-    private float halfHeight;
-    private float halfWidth;
-    private float innerX;
-    private float innerY;
-    private long lastFrameTime;
-    private float perimeter;
-    private float radius;
-    private boolean running;
-    private final Layer small;
-    private float straightH;
-    private float straightV;
-    private int toColor;
-    private float weightedArc;
-    private float weightedTotal;
-    private float cornerRadius = AndroidUtilities.dp(18.0f);
-    private float targetSpacing = AndroidUtilities.dp(22.0f);
-    private float curvatureBoost = 2.4f;
-    private float waveDepth = AndroidUtilities.dp(12.0f);
-    private float breathDepth = AndroidUtilities.dp(1.5f);
-    private float breathPeriodMs = 3600.0f;
-    private float neighborCoherence = 0.25f;
-    private final Path path = new Path();
-    private final float[] sample = new float[4];
-    private int colorState = -1;
-    private float colorProgress = 1.0f;
-    private final Runnable mInvalidateSelf = new Runnable() {
-        @Override
-        public final void run() {
-            CapsuleBlobDrawable.$r8$lambda$w5XISAyYoo2Jk4lclLqmDPvqAfE(this.f$0);
-        }
-    };
-    private int mAlpha = 255;
+public final class CapsuleBlobDrawable extends Drawable {
+    public static final CapsuleBlobDrawable$$ExternalSyntheticLambda0 SMOOTHER = new CapsuleBlobDrawable$$ExternalSyntheticLambda0(0);
+    public float amplitude;
+    public float animateAmplitudeDiff;
+    public float animateToAmplitude;
+    public final Layer big;
+    public float breathPhase;
+    public int currentColor;
+    public int fromColor;
+    public float halfHeight;
+    public float halfWidth;
+    public float innerX;
+    public float innerY;
+    public long lastFrameTime;
+    public float radius;
+    public boolean running;
+    public final Layer small;
+    public float straightH;
+    public float straightV;
+    public int toColor;
+    public float weightedArc;
+    public float weightedTotal;
+    public final float cornerRadius = AndroidUtilities.dp(18.0f);
+    public final float targetSpacing = AndroidUtilities.dp(22.0f);
+    public final float curvatureBoost = 2.4f;
+    public final float waveDepth = AndroidUtilities.dp(12.0f);
+    public final float breathDepth = AndroidUtilities.dp(1.5f);
+    public final float breathPeriodMs = 3600.0f;
+    public final float neighborCoherence = 0.25f;
+    public final Path path = new Path();
+    public final float[] sample = new float[4];
+    public int colorState = -1;
+    public float colorProgress = 1.0f;
+    public final Bulletin$2$$ExternalSyntheticLambda1 mInvalidateSelf = new Bulletin$2$$ExternalSyntheticLambda1(this, 8);
+    public int mAlpha = 255;
 
-    public static float $r8$lambda$UdYoPCaMa_YR8vttLQa0v7_hpD4(float f) {
-        return f * f * f * ((f * ((6.0f * f) - 15.0f)) + 10.0f);
-    }
+    public final class Layer {
+        public int baseAlpha;
+        public float breathScale;
+        public float[] depth;
+        public float[] depthEff;
+        public float[] depthNext;
+        public float[] depthTmp;
+        public int n;
+        public float[] offset;
+        public float[] offsetEff;
+        public float[] offsetNext;
+        public float phaseOffset;
+        public float[] progress;
+        public float pushMax;
+        public float pushMin;
+        public float[] px;
+        public float[] py;
+        public float[] speed;
+        public float speedScale;
+        public float[] tx;
+        public float[] ty;
+        public float waveScale;
+        public int color = -11318601;
+        public final Paint paint = new Paint(1);
+        public final Random random = new Random();
+        public int mAlpha = 255;
 
-    @Override
-    public int getOpacity() {
-        return -3;
+        public final void applyColor() {
+            Paint paint = this.paint;
+            paint.setColor(this.color);
+            paint.setAlpha((this.baseAlpha * this.mAlpha) / 255);
+        }
+
+        public final void next(int i) {
+            float f = 0.18f / this.n;
+            float f2 = this.depth[i];
+            Random random = this.random;
+            float fNextFloat = ((random.nextFloat() - 0.5f) * 2.0f * 0.35f) + f2;
+            float[] fArr = this.depthNext;
+            if (fNextFloat < 0.0f) {
+                fNextFloat = 0.0f;
+            } else if (fNextFloat > 1.0f) {
+                fNextFloat = 1.0f;
+            }
+            fArr[i] = fNextFloat;
+            float fNextFloat2 = ((random.nextFloat() - 0.5f) * 2.0f * f * 0.35f) + this.offset[i];
+            float[] fArr2 = this.offsetNext;
+            float f3 = -f;
+            if (fNextFloat2 < f3) {
+                f = f3;
+            } else if (fNextFloat2 <= f) {
+                f = fNextFloat2;
+            }
+            fArr2[i] = f;
+            this.speed[i] = ((random.nextFloat() * 0.003f) + 0.017f) * this.speedScale;
+        }
+
+        public final void resize(int i) {
+            this.n = i;
+            this.depth = new float[i];
+            this.depthNext = new float[i];
+            this.offset = new float[i];
+            this.offsetNext = new float[i];
+            this.progress = new float[i];
+            this.speed = new float[i];
+            this.px = new float[i];
+            this.py = new float[i];
+            this.tx = new float[i];
+            this.ty = new float[i];
+            this.depthEff = new float[i];
+            this.depthTmp = new float[i];
+            this.offsetEff = new float[i];
+            for (int i2 = 0; i2 < this.n; i2++) {
+                float[] fArr = this.depth;
+                Random random = this.random;
+                fArr[i2] = random.nextFloat();
+                this.offset[i2] = (((random.nextFloat() - 0.5f) * 2.0f) * 0.18f) / this.n;
+                next(i2);
+                this.progress[i2] = random.nextFloat();
+            }
+            applyColor();
+        }
+
+        public final void update(float f) {
+            for (int i = 0; i < this.n; i++) {
+                float[] fArr = this.progress;
+                float f2 = fArr[i];
+                float f3 = this.speed[i];
+                CapsuleBlobDrawable$$ExternalSyntheticLambda0 capsuleBlobDrawable$$ExternalSyntheticLambda0 = CapsuleBlobDrawable.SMOOTHER;
+                float f4 = (f3 * f * 8.2f) + (0.8f * f3) + f2;
+                fArr[i] = f4;
+                if (f4 >= 1.0f) {
+                    fArr[i] = 0.0f;
+                    this.depth[i] = this.depthNext[i];
+                    this.offset[i] = this.offsetNext[i];
+                    next(i);
+                }
+            }
+        }
     }
 
     public CapsuleBlobDrawable() {
@@ -95,30 +175,338 @@ public class CapsuleBlobDrawable extends Drawable {
         layer2.waveScale = 0.55f;
         layer2.breathScale = 0.55f;
         layer2.baseAlpha = 128;
-        setState(0);
+        setState(0, false);
     }
 
-    public void setState(int i) {
-        setState(i, false);
+    public final void arc(float f, float f2, float f3, float[] fArr) {
+        double d = f3;
+        float fCos = (float) Math.cos(d);
+        float fSin = (float) Math.sin(d);
+        float f4 = this.radius;
+        fArr[0] = (f4 * fCos) + f;
+        fArr[1] = (f4 * fSin) + f2;
+        fArr[2] = -fSin;
+        fArr[3] = fCos;
     }
 
-    public void setState(int i, boolean z) {
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        if (bounds.isEmpty() || this.halfWidth < 1.0f) {
+            return;
+        }
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        long jMin = (this.running || this.colorProgress < 1.0f) ? Math.min(40L, Math.max(0L, jElapsedRealtime - this.lastFrameTime)) : 0L;
+        this.lastFrameTime = jElapsedRealtime;
+        boolean zIsEnabled = LiteMode.isEnabled(512);
+        Layer layer = this.big;
+        Layer layer2 = this.small;
+        if (zIsEnabled && jMin > 0) {
+            float f = this.animateToAmplitude;
+            float f2 = this.amplitude;
+            if (f != f2) {
+                float f3 = this.animateAmplitudeDiff;
+                float f4 = (jMin * f3) + f2;
+                this.amplitude = f4;
+                if (f3 > 0.0f) {
+                    if (f4 > f) {
+                        this.amplitude = f;
+                    }
+                } else if (f4 < f) {
+                    this.amplitude = f;
+                }
+            }
+            this.breathPhase = zzjd.m(jMin, this.breathPeriodMs, 6.2831855f, this.breathPhase);
+            layer.update(this.amplitude);
+            layer2.update(this.amplitude);
+        }
+        float f5 = this.colorProgress;
+        if (f5 < 1.0f && jMin > 0) {
+            float f6 = (jMin / 250.0f) + f5;
+            this.colorProgress = f6;
+            if (f6 > 1.0f) {
+                this.colorProgress = 1.0f;
+            }
+            int iBlendARGB = ColorUtils.blendARGB(this.colorProgress, this.fromColor, this.toColor);
+            this.currentColor = iBlendARGB;
+            layer.color = iBlendARGB;
+            layer2.color = iBlendARGB;
+            layer.applyColor();
+            layer2.applyColor();
+        }
+        float fExactCenterX = bounds.exactCenterX();
+        float fExactCenterY = bounds.exactCenterY();
+        float f7 = 1.0f - (this.amplitude * 0.7f);
+        float f8 = layer.breathScale;
+        float f9 = this.breathDepth;
+        float fM = AndroidUtilities$$ExternalSyntheticOutline0.m((float) Math.sin(this.breathPhase), 0.5f, 0.5f, f8 * f9 * f7);
+        float fM2 = AndroidUtilities$$ExternalSyntheticOutline0.m((float) Math.sin(this.breathPhase + layer2.phaseOffset), 0.5f, 0.5f, f9 * layer2.breathScale * f7);
+        drawLayer(canvas, this.big, fExactCenterX, fExactCenterY, fM);
+        drawLayer(canvas, this.small, fExactCenterX, fExactCenterY, fM2);
+        if (this.colorProgress < 1.0f) {
+            invalidateSelf();
+        }
+    }
+
+    public final void drawLayer(Canvas canvas, Layer layer, float f, float f2, float f3) {
+        char c;
+        char c2;
+        int i = layer.n;
+        if (i == 0) {
+            return;
+        }
+        float f4 = layer.pushMin;
+        float f5 = layer.pushMax - f4;
+        float f6 = this.amplitude;
+        float f7 = (f5 * f6) + f4;
+        float fM = AndroidUtilities$$ExternalSyntheticOutline0.m(f6, 1.0f, 0.0f, this.waveDepth * layer.waveScale);
+        float[] fArr = layer.depthEff;
+        float[] fArr2 = layer.depthTmp;
+        float[] fArr3 = layer.offsetEff;
+        char c3 = 0;
+        for (int i2 = 0; i2 < i; i2++) {
+            float interpolation = SMOOTHER.getInterpolation(layer.progress[i2]);
+            float f8 = 1.0f - interpolation;
+            fArr[i2] = (layer.depthNext[i2] * interpolation) + (layer.depth[i2] * f8);
+            fArr3[i2] = (layer.offsetNext[i2] * interpolation) + (layer.offset[i2] * f8);
+        }
+        float f9 = this.neighborCoherence;
+        if (f9 > 0.0f) {
+            int i3 = 0;
+            while (i3 < 2) {
+                int i4 = 0;
+                while (i4 < i) {
+                    int i5 = i4 + 1;
+                    float f10 = (fArr[i4 == 0 ? i - 1 : i4 - 1] + fArr[i5 == i ? 0 : i5]) * 0.5f;
+                    float f11 = fArr[i4];
+                    fArr2[i4] = DiffUtil.m(f10, f11, f9, f11);
+                    i4 = i5;
+                }
+                i3++;
+                float[] fArr4 = fArr2;
+                fArr2 = fArr;
+                fArr = fArr4;
+            }
+        }
+        int i6 = 0;
+        while (i6 < i) {
+            float f12 = (i6 / i) + fArr3[i6];
+            float fFloor = (f12 - ((float) Math.floor(f12))) * this.weightedTotal;
+            float f13 = this.straightH;
+            float[] fArr5 = this.sample;
+            if (fFloor < f13) {
+                fArr5[c3] = (-this.innerX) + fFloor;
+                fArr5[1] = -this.halfHeight;
+                fArr5[2] = 1.0f;
+                fArr5[3] = 0.0f;
+                c = 0;
+                c2 = 1;
+            } else {
+                float f14 = fFloor - f13;
+                float f15 = this.weightedArc;
+                c = 0;
+                float f16 = this.curvatureBoost;
+                if (f14 < f15) {
+                    c2 = 1;
+                    arc(this.innerX, -this.innerY, (f14 / (f16 * this.radius)) - 1.5707964f, fArr5);
+                } else {
+                    c2 = 1;
+                    float f17 = f14 - f15;
+                    float f18 = this.straightV;
+                    if (f17 < f18) {
+                        fArr5[0] = this.halfWidth;
+                        fArr5[1] = (-this.innerY) + f17;
+                        fArr5[2] = 0.0f;
+                        fArr5[3] = 1.0f;
+                    } else {
+                        float f19 = f17 - f18;
+                        if (f19 < f15) {
+                            arc(this.innerX, this.innerY, f19 / (f16 * this.radius), fArr5);
+                        } else {
+                            float f20 = f19 - f15;
+                            if (f20 < f13) {
+                                fArr5[0] = this.innerX - f20;
+                                fArr5[1] = this.halfHeight;
+                                fArr5[2] = -1.0f;
+                                fArr5[3] = 0.0f;
+                            } else {
+                                float f21 = f20 - f13;
+                                if (f21 < f15) {
+                                    arc(-this.innerX, this.innerY, (f21 / (f16 * this.radius)) + 1.5707964f, fArr5);
+                                } else {
+                                    float f22 = f21 - f15;
+                                    if (f22 < f18) {
+                                        fArr5[0] = -this.halfWidth;
+                                        fArr5[1] = this.innerY - f22;
+                                        fArr5[2] = 0.0f;
+                                        fArr5[3] = -1.0f;
+                                    } else {
+                                        arc(-this.innerX, -this.innerY, ((f22 - f18) / (f16 * this.radius)) + 3.1415927f, fArr5);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            float f23 = fArr5[3];
+            float f24 = -fArr5[2];
+            float f25 = (fArr[i6] * fM) + f7 + f3;
+            layer.px[i6] = (f23 * f25) + f + fArr5[c];
+            layer.py[i6] = (f24 * f25) + f2 + fArr5[c2];
+            layer.tx[i6] = fArr5[2];
+            layer.ty[i6] = fArr5[3];
+            i6++;
+            c3 = 0;
+        }
+        Path path = this.path;
+        path.rewind();
+        path.moveTo(layer.px[0], layer.py[0]);
+        int i7 = 0;
+        while (i7 < i) {
+            int i8 = i7 + 1;
+            int i9 = i8 < i ? i8 : 0;
+            float[] fArr6 = layer.px;
+            float f26 = fArr6[i9] - fArr6[i7];
+            float[] fArr7 = layer.py;
+            float f27 = fArr7[i9] - fArr7[i7];
+            float fSqrt = ((float) Math.sqrt((f27 * f27) + (f26 * f26))) / 3.0f;
+            float[] fArr8 = layer.px;
+            float f28 = fArr8[i7];
+            float[] fArr9 = layer.tx;
+            float f29 = (fArr9[i7] * fSqrt) + f28;
+            float[] fArr10 = layer.py;
+            float f30 = fArr10[i7];
+            float[] fArr11 = layer.ty;
+            float f31 = (fArr11[i7] * fSqrt) + f30;
+            float f32 = fArr8[i9];
+            float f33 = f32 - (fArr9[i9] * fSqrt);
+            float f34 = fArr10[i9];
+            path.cubicTo(f29, f31, f33, f34 - (fArr11[i9] * fSqrt), f32, f34);
+            i7 = i8;
+        }
+        path.close();
+        canvas.drawPath(path, layer.paint);
+    }
+
+    @Override
+    public final int getAlpha() {
+        return this.mAlpha;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        Rect bounds = getBounds();
+        if (bounds.isEmpty()) {
+            return;
+        }
+        Layer layer = this.big;
+        float f = layer.pushMax;
+        float f2 = layer.breathScale;
+        float f3 = this.breathDepth;
+        float f4 = (f2 * f3) + f;
+        float f5 = layer.waveScale;
+        float f6 = this.waveDepth;
+        float f7 = (f5 * f6) + f4;
+        Layer layer2 = this.small;
+        float fMax = Math.max(f7, (f6 * layer2.waveScale) + (f3 * layer2.breathScale) + layer2.pushMax) + AndroidUtilities.dp(1.0f);
+        float fMin = (Math.min(bounds.width(), bounds.height()) / 2.0f) - AndroidUtilities.dp(2.0f);
+        if (fMax > fMin) {
+            fMax = Math.max(0.0f, fMin);
+        }
+        this.halfWidth = (bounds.width() / 2.0f) - fMax;
+        float fHeight = (bounds.height() / 2.0f) - fMax;
+        this.halfHeight = fHeight;
+        float f8 = this.halfWidth;
+        if (f8 < 1.0f || fHeight < 1.0f) {
+            return;
+        }
+        float fMin2 = Math.min(this.cornerRadius, Math.min(f8, fHeight));
+        this.radius = fMin2;
+        float f9 = this.halfWidth - fMin2;
+        this.innerX = f9;
+        float f10 = this.halfHeight - fMin2;
+        this.innerY = f10;
+        float f11 = f9 * 2.0f;
+        this.straightH = f11;
+        float f12 = f10 * 2.0f;
+        this.straightV = f12;
+        float f13 = this.curvatureBoost * 1.5707964f * fMin2;
+        this.weightedArc = f13;
+        float f14 = (f12 * 2.0f) + (f11 * 2.0f);
+        this.weightedTotal = (f13 * 4.0f) + f14;
+        int iMax = Math.max(12, Math.min(80, Math.round(((fMin2 * 6.2831855f) + f14) / this.targetSpacing)));
+        if (iMax != layer.n) {
+            layer.resize(iMax);
+            layer2.resize(iMax);
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        if (this.mAlpha != i) {
+            this.mAlpha = i;
+            Layer layer = this.big;
+            layer.mAlpha = i;
+            layer.applyColor();
+            Layer layer2 = this.small;
+            layer2.mAlpha = i;
+            layer2.applyColor();
+            invalidateSelf();
+        }
+    }
+
+    public final void setAmplitude(float f) {
+        this.animateToAmplitude = f;
+        if (LiteMode.isEnabled(512)) {
+            float f2 = this.animateToAmplitude - this.amplitude;
+            this.animateAmplitudeDiff = f2 / (((f2 > 0.0f ? 400.0f : 500.0f) * 0.55f) + 100.0f);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.big.paint.setColorFilter(colorFilter);
+        this.small.paint.setColorFilter(colorFilter);
+        invalidateSelf();
+    }
+
+    public final void setState(int i, boolean z) {
+        int iBlendARGB;
         if (i != this.colorState || this.colorProgress < 1.0f) {
             this.colorState = i;
-            int iResolveStateColor = resolveStateColor(i);
+            if (i == 0) {
+                iBlendARGB = ColorUtils.blendARGB(0.5f, Theme.getColor(null, Theme.key_voipgroup_topPanelGreen1, false), Theme.getColor(null, Theme.key_voipgroup_topPanelGreen2, false));
+            } else if (i != 1) {
+                iBlendARGB = i != 3 ? Theme.getColor(null, Theme.key_voipgroup_topPanelGray, false) : ColorUtils.blendARGB(0.5f, ColorUtils.blendARGB(0.5f, Theme.getColor(null, Theme.key_voipgroup_mutedByAdminGradient, false), Theme.getColor(null, Theme.key_voipgroup_mutedByAdminGradient2, false)), Theme.getColor(null, Theme.key_voipgroup_mutedByAdminGradient3, false));
+            } else {
+                iBlendARGB = ColorUtils.blendARGB(0.5f, Theme.getColor(null, Theme.key_voipgroup_topPanelBlue1, false), Theme.getColor(null, Theme.key_voipgroup_topPanelBlue2, false));
+            }
             if (z && this.currentColor != 0 && LiteMode.isEnabled(512)) {
                 this.fromColor = this.currentColor;
-                this.toColor = iResolveStateColor;
+                this.toColor = iBlendARGB;
                 this.colorProgress = 0.0f;
             } else {
                 this.colorProgress = 1.0f;
-                applyColor(iResolveStateColor);
+                this.currentColor = iBlendARGB;
+                Layer layer = this.big;
+                layer.color = iBlendARGB;
+                Layer layer2 = this.small;
+                layer2.color = iBlendARGB;
+                layer.applyColor();
+                layer2.applyColor();
             }
             invalidateSelf();
         }
     }
 
-    public void updateState(boolean z) {
+    public final void updateState(boolean z) {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance == null) {
             return;
@@ -139,450 +527,6 @@ public class CapsuleBlobDrawable extends Drawable {
         } else {
             sharedInstance.setMicMute(true, false, false);
             setState(3, z);
-        }
-    }
-
-    private static int resolveStateColor(int i) {
-        if (i == 0) {
-            return ColorUtils.blendARGB(Theme.getColor(Theme.key_voipgroup_topPanelGreen1), Theme.getColor(Theme.key_voipgroup_topPanelGreen2), 0.5f);
-        }
-        if (i == 1) {
-            return ColorUtils.blendARGB(Theme.getColor(Theme.key_voipgroup_topPanelBlue1), Theme.getColor(Theme.key_voipgroup_topPanelBlue2), 0.5f);
-        }
-        if (i == 3) {
-            return ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient), Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient2), 0.5f), Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient3), 0.5f);
-        }
-        return Theme.getColor(Theme.key_voipgroup_topPanelGray);
-    }
-
-    private void applyColor(int i) {
-        this.currentColor = i;
-        Layer layer = this.big;
-        layer.color = i;
-        this.small.color = i;
-        layer.applyColor();
-        this.small.applyColor();
-    }
-
-    public int getRequiredInset() {
-        return ((int) maxOutwardExcursion()) + AndroidUtilities.dp(1.0f);
-    }
-
-    private float maxOutwardExcursion() {
-        Layer layer = this.big;
-        float f = layer.pushMax;
-        float f2 = this.breathDepth;
-        float f3 = f + (layer.breathScale * f2);
-        float f4 = this.waveDepth;
-        float f5 = f3 + (layer.waveScale * f4);
-        Layer layer2 = this.small;
-        return Math.max(f5, layer2.pushMax + (f2 * layer2.breathScale) + (f4 * layer2.waveScale));
-    }
-
-    public static void $r8$lambda$w5XISAyYoo2Jk4lclLqmDPvqAfE(CapsuleBlobDrawable capsuleBlobDrawable) {
-        capsuleBlobDrawable.getClass();
-        if (LiteMode.isEnabled(512)) {
-            capsuleBlobDrawable.invalidateSelf();
-        }
-    }
-
-    public void start() {
-        if (this.running) {
-            return;
-        }
-        this.running = true;
-        this.lastFrameTime = SystemClock.elapsedRealtime();
-        Choreographer60FpsContent.getInstance().addFrameCallback(this.mInvalidateSelf, 60);
-    }
-
-    public void stop() {
-        if (this.running) {
-            this.running = false;
-            Choreographer60FpsContent.getInstance().removeFrameCallback(this.mInvalidateSelf);
-        }
-    }
-
-    public void setAmplitude(float f) {
-        setAmplitude(f, false);
-    }
-
-    public void setAmplitude(float f, boolean z) {
-        this.animateToAmplitude = f;
-        if (LiteMode.isEnabled(512)) {
-            float f2 = this.animateToAmplitude - this.amplitude;
-            if (z) {
-                this.animateAmplitudeDiff = f2 / (((f2 > 0.0f ? 300.0f : 500.0f) * 0.35000002f) + 100.0f);
-            } else {
-                this.animateAmplitudeDiff = f2 / (((f2 > 0.0f ? 400.0f : 500.0f) * 0.55f) + 100.0f);
-            }
-        }
-    }
-
-    @Override
-    protected void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        rebuildGeometry();
-    }
-
-    private void rebuildGeometry() {
-        Rect bounds = getBounds();
-        if (bounds.isEmpty()) {
-            return;
-        }
-        float fMaxOutwardExcursion = maxOutwardExcursion() + AndroidUtilities.dp(1.0f);
-        float fMin = (Math.min(bounds.width(), bounds.height()) / 2.0f) - AndroidUtilities.dp(2.0f);
-        if (fMaxOutwardExcursion > fMin) {
-            fMaxOutwardExcursion = Math.max(0.0f, fMin);
-        }
-        this.halfWidth = (bounds.width() / 2.0f) - fMaxOutwardExcursion;
-        float fHeight = (bounds.height() / 2.0f) - fMaxOutwardExcursion;
-        this.halfHeight = fHeight;
-        float f = this.halfWidth;
-        if (f < 1.0f || fHeight < 1.0f) {
-            return;
-        }
-        float fMin2 = Math.min(this.cornerRadius, Math.min(f, fHeight));
-        this.radius = fMin2;
-        float f2 = this.halfWidth - fMin2;
-        this.innerX = f2;
-        float f3 = this.halfHeight - fMin2;
-        this.innerY = f3;
-        float f4 = f2 * 2.0f;
-        this.straightH = f4;
-        float f5 = f3 * 2.0f;
-        this.straightV = f5;
-        float f6 = this.curvatureBoost * 1.5707964f * fMin2;
-        this.weightedArc = f6;
-        float f7 = (f4 * 2.0f) + (f5 * 2.0f);
-        this.weightedTotal = (f6 * 4.0f) + f7;
-        float f8 = f7 + (fMin2 * 6.2831855f);
-        this.perimeter = f8;
-        int iMax = Math.max(12, Math.min(80, Math.round(f8 / this.targetSpacing)));
-        if (iMax != this.big.count()) {
-            this.big.resize(iMax);
-            this.small.resize(iMax);
-        }
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        if (bounds.isEmpty() || this.halfWidth < 1.0f) {
-            return;
-        }
-        long jElapsedRealtime = SystemClock.elapsedRealtime();
-        long jMin = (this.running || this.colorProgress < 1.0f) ? Math.min(40L, Math.max(0L, jElapsedRealtime - this.lastFrameTime)) : 0L;
-        this.lastFrameTime = jElapsedRealtime;
-        if (LiteMode.isEnabled(512) && jMin > 0) {
-            updateAmplitude(jMin);
-            this.breathPhase += (jMin / this.breathPeriodMs) * 6.2831855f;
-            this.big.update(this.amplitude);
-            this.small.update(this.amplitude);
-        }
-        float f = this.colorProgress;
-        if (f < 1.0f && jMin > 0) {
-            float f2 = f + (jMin / 250.0f);
-            this.colorProgress = f2;
-            if (f2 > 1.0f) {
-                this.colorProgress = 1.0f;
-            }
-            applyColor(ColorUtils.blendARGB(this.fromColor, this.toColor, this.colorProgress));
-        }
-        float fExactCenterX = bounds.exactCenterX();
-        float fExactCenterY = bounds.exactCenterY();
-        float f3 = 1.0f - (this.amplitude * 0.7f);
-        float fSin = this.breathDepth * this.big.breathScale * f3 * ((((float) Math.sin(this.breathPhase)) * 0.5f) + 0.5f);
-        float f4 = this.breathDepth;
-        Layer layer = this.small;
-        float fSin2 = f4 * layer.breathScale * f3 * ((((float) Math.sin(this.breathPhase + layer.phaseOffset)) * 0.5f) + 0.5f);
-        drawLayer(canvas, this.big, fExactCenterX, fExactCenterY, fSin);
-        drawLayer(canvas, this.small, fExactCenterX, fExactCenterY, fSin2);
-        if (this.colorProgress < 1.0f) {
-            invalidateSelf();
-        }
-    }
-
-    private void drawLayer(Canvas canvas, Layer layer, float f, float f2, float f3) {
-        int iCount = layer.count();
-        if (iCount == 0) {
-            return;
-        }
-        float f4 = layer.pushMin;
-        float f5 = layer.pushMax - f4;
-        float f6 = this.amplitude;
-        float f7 = f4 + (f5 * f6);
-        float f8 = this.waveDepth * layer.waveScale * ((f6 * 1.0f) + 0.0f);
-        float[] fArr = layer.depthEff;
-        float[] fArr2 = layer.depthTmp;
-        float[] fArr3 = layer.offsetEff;
-        for (int i = 0; i < iCount; i++) {
-            float interpolation = SMOOTHER.getInterpolation(layer.progress[i]);
-            float f9 = 1.0f - interpolation;
-            fArr[i] = (layer.depth[i] * f9) + (layer.depthNext[i] * interpolation);
-            fArr3[i] = (layer.offset[i] * f9) + (layer.offsetNext[i] * interpolation);
-        }
-        if (this.neighborCoherence > 0.0f) {
-            int i2 = 0;
-            while (i2 < 2) {
-                int i3 = 0;
-                while (i3 < iCount) {
-                    int i4 = i3 + 1;
-                    float f10 = (fArr[i3 == 0 ? iCount - 1 : i3 - 1] + fArr[i4 == iCount ? 0 : i4]) * 0.5f;
-                    float f11 = fArr[i3];
-                    fArr2[i3] = f11 + (this.neighborCoherence * (f10 - f11));
-                    i3 = i4;
-                }
-                i2++;
-                float[] fArr4 = fArr2;
-                fArr2 = fArr;
-                fArr = fArr4;
-            }
-        }
-        for (int i5 = 0; i5 < iCount; i5++) {
-            pointAt((i5 / iCount) + fArr3[i5], this.sample);
-            float[] fArr5 = this.sample;
-            float f12 = fArr5[3];
-            float f13 = -fArr5[2];
-            float f14 = f7 + f3 + (fArr[i5] * f8);
-            layer.px[i5] = f + fArr5[0] + (f12 * f14);
-            layer.py[i5] = f2 + fArr5[1] + (f13 * f14);
-            layer.tx[i5] = fArr5[2];
-            layer.ty[i5] = fArr5[3];
-        }
-        this.path.rewind();
-        this.path.moveTo(layer.px[0], layer.py[0]);
-        int i6 = 0;
-        while (i6 < iCount) {
-            int i7 = i6 + 1;
-            int i8 = i7 < iCount ? i7 : 0;
-            float[] fArr6 = layer.px;
-            float f15 = fArr6[i8] - fArr6[i6];
-            float[] fArr7 = layer.py;
-            float f16 = fArr7[i8] - fArr7[i6];
-            float fSqrt = ((float) Math.sqrt((f15 * f15) + (f16 * f16))) / 3.0f;
-            Path path = this.path;
-            float[] fArr8 = layer.px;
-            float f17 = fArr8[i6];
-            float[] fArr9 = layer.tx;
-            float f18 = (fArr9[i6] * fSqrt) + f17;
-            float[] fArr10 = layer.py;
-            float f19 = fArr10[i6];
-            float[] fArr11 = layer.ty;
-            float f20 = f19 + (fArr11[i6] * fSqrt);
-            float f21 = fArr8[i8];
-            float f22 = f21 - (fArr9[i8] * fSqrt);
-            float f23 = fArr10[i8];
-            path.cubicTo(f18, f20, f22, f23 - (fArr11[i8] * fSqrt), f21, f23);
-            i6 = i7;
-        }
-        this.path.close();
-        canvas.drawPath(this.path, layer.paint);
-    }
-
-    private void pointAt(float f, float[] fArr) {
-        float fFloor = (f - ((float) Math.floor(f))) * this.weightedTotal;
-        float f2 = this.straightH;
-        if (fFloor < f2) {
-            fArr[0] = (-this.innerX) + fFloor;
-            fArr[1] = -this.halfHeight;
-            fArr[2] = 1.0f;
-            fArr[3] = 0.0f;
-            return;
-        }
-        float f3 = fFloor - f2;
-        float f4 = this.weightedArc;
-        if (f3 < f4) {
-            arc(this.innerX, -this.innerY, (f3 / (this.curvatureBoost * this.radius)) - 1.5707964f, fArr);
-            return;
-        }
-        float f5 = f3 - f4;
-        float f6 = this.straightV;
-        if (f5 < f6) {
-            fArr[0] = this.halfWidth;
-            fArr[1] = (-this.innerY) + f5;
-            fArr[2] = 0.0f;
-            fArr[3] = 1.0f;
-            return;
-        }
-        float f7 = f5 - f6;
-        if (f7 < f4) {
-            arc(this.innerX, this.innerY, f7 / (this.curvatureBoost * this.radius), fArr);
-            return;
-        }
-        float f8 = f7 - f4;
-        if (f8 < f2) {
-            fArr[0] = this.innerX - f8;
-            fArr[1] = this.halfHeight;
-            fArr[2] = -1.0f;
-            fArr[3] = 0.0f;
-            return;
-        }
-        float f9 = f8 - f2;
-        if (f9 < f4) {
-            arc(-this.innerX, this.innerY, (f9 / (this.curvatureBoost * this.radius)) + 1.5707964f, fArr);
-            return;
-        }
-        float f10 = f9 - f4;
-        if (f10 < f6) {
-            fArr[0] = -this.halfWidth;
-            fArr[1] = this.innerY - f10;
-            fArr[2] = 0.0f;
-            fArr[3] = -1.0f;
-            return;
-        }
-        arc(-this.innerX, -this.innerY, ((f10 - f6) / (this.curvatureBoost * this.radius)) + 3.1415927f, fArr);
-    }
-
-    private void arc(float f, float f2, float f3, float[] fArr) {
-        double d = f3;
-        float fCos = (float) Math.cos(d);
-        float fSin = (float) Math.sin(d);
-        float f4 = this.radius;
-        fArr[0] = f + (f4 * fCos);
-        fArr[1] = f2 + (f4 * fSin);
-        fArr[2] = -fSin;
-        fArr[3] = fCos;
-    }
-
-    private void updateAmplitude(long j) {
-        float f = this.animateToAmplitude;
-        float f2 = this.amplitude;
-        if (f != f2) {
-            float f3 = this.animateAmplitudeDiff;
-            float f4 = f2 + (j * f3);
-            this.amplitude = f4;
-            if (f3 > 0.0f) {
-                if (f4 > f) {
-                    this.amplitude = f;
-                }
-            } else if (f4 < f) {
-                this.amplitude = f;
-            }
-        }
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        if (this.mAlpha != i) {
-            this.mAlpha = i;
-            this.big.setLayerAlpha(i);
-            this.small.setLayerAlpha(i);
-            invalidateSelf();
-        }
-    }
-
-    @Override
-    public int getAlpha() {
-        return this.mAlpha;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.big.paint.setColorFilter(colorFilter);
-        this.small.paint.setColorFilter(colorFilter);
-        invalidateSelf();
-    }
-
-    private static final class Layer {
-        int baseAlpha;
-        float breathScale;
-        int color;
-        float[] depth;
-        float[] depthEff;
-        float[] depthNext;
-        float[] depthTmp;
-        private int mAlpha;
-        private int n;
-        float[] offset;
-        float[] offsetEff;
-        float[] offsetNext;
-        final Paint paint;
-        float phaseOffset;
-        float[] progress;
-        float pushMax;
-        float pushMin;
-        float[] px;
-        float[] py;
-        final Random random;
-        float[] speed;
-        float speedScale;
-        float[] tx;
-        float[] ty;
-        float waveScale;
-
-        static float clamp(float f, float f2, float f3) {
-            if (f < f2) {
-                return f2;
-            }
-            return f > f3 ? f3 : f;
-        }
-
-        private Layer() {
-            this.color = -11318601;
-            this.paint = new Paint(1);
-            this.random = new Random();
-            this.mAlpha = 255;
-        }
-
-        int count() {
-            return this.n;
-        }
-
-        void applyColor() {
-            this.paint.setColor(this.color);
-            this.paint.setAlpha((this.baseAlpha * this.mAlpha) / 255);
-        }
-
-        void setLayerAlpha(int i) {
-            this.mAlpha = i;
-            applyColor();
-        }
-
-        void resize(int i) {
-            this.n = i;
-            this.depth = new float[i];
-            this.depthNext = new float[i];
-            this.offset = new float[i];
-            this.offsetNext = new float[i];
-            this.progress = new float[i];
-            this.speed = new float[i];
-            this.px = new float[i];
-            this.py = new float[i];
-            this.tx = new float[i];
-            this.ty = new float[i];
-            this.depthEff = new float[i];
-            this.depthTmp = new float[i];
-            this.offsetEff = new float[i];
-            for (int i2 = 0; i2 < this.n; i2++) {
-                this.depth[i2] = this.random.nextFloat();
-                this.offset[i2] = (((this.random.nextFloat() - 0.5f) * 2.0f) * 0.18f) / this.n;
-                next(i2);
-                this.progress[i2] = this.random.nextFloat();
-            }
-            applyColor();
-        }
-
-        void next(int i) {
-            float f = 0.18f / this.n;
-            this.depthNext[i] = clamp(this.depth[i] + ((this.random.nextFloat() - 0.5f) * 2.0f * 0.35f), 0.0f, 1.0f);
-            this.offsetNext[i] = clamp(this.offset[i] + ((this.random.nextFloat() - 0.5f) * 2.0f * f * 0.35f), -f, f);
-            this.speed[i] = ((this.random.nextFloat() * 0.003f) + 0.017f) * this.speedScale;
-        }
-
-        void update(float f) {
-            for (int i = 0; i < this.n; i++) {
-                float[] fArr = this.progress;
-                float f2 = fArr[i];
-                float f3 = this.speed[i];
-                float f4 = f2 + (CapsuleBlobDrawable.MIN_SPEED * f3) + (f3 * f * CapsuleBlobDrawable.MAX_SPEED);
-                fArr[i] = f4;
-                if (f4 >= 1.0f) {
-                    fArr[i] = 0.0f;
-                    this.depth[i] = this.depthNext[i];
-                    this.offset[i] = this.offsetNext[i];
-                    next(i);
-                }
-            }
         }
     }
 }

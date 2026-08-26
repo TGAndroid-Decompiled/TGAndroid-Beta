@@ -1,6 +1,5 @@
 package org.telegram.ui.Stories.recorder;
 
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -11,38 +10,37 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import com.google.android.gms.internal.mlkit_vision_common.zzkk;
+import com.google.android.gms.internal.mlkit_vision_common.zzlm;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Business.ChatbotsActivity;
 import org.telegram.ui.Cells.EditTextCell;
+import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
-import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingSpan;
+import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
 import org.telegram.ui.Components.Paint.Views.StoryLinkPreviewDialog;
 import org.telegram.ui.Components.RecyclerListView;
@@ -50,470 +48,103 @@ import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda52;
+import org.telegram.ui.Stories.LiveCommentsView$$ExternalSyntheticLambda6;
+import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda9;
+import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 
-public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
-    private UniversalAdapter adapter;
-    private ButtonWithCounterView button;
-    private FrameLayout buttonContainer;
-    private boolean captionAbove;
-    public boolean editing;
-    private boolean ignoreUrlEdit;
-    private String lastCheckedStr;
-    private boolean loading;
-    private EditTextCell nameEditText;
-    private boolean nameOpen;
-    private boolean needRemoveDefPrefix;
-    private boolean photoLarge;
-    private int reqId;
-    private final Runnable requestPreview;
-    private EditTextCell urlEditText;
-    private Pattern urlPattern;
-    private TLRPC.WebPage webpage;
-    private long webpageId;
-    private Utilities.Callback whenDone;
+public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
+    public AnonymousClass3 adapter;
+    public final ButtonWithCounterView button;
+    public final FrameLayout buttonContainer;
+    public boolean captionAbove;
+    public boolean ignoreUrlEdit;
+    public String lastCheckedStr;
+    public boolean loading;
+    public final EditTextCell nameEditText;
+    public boolean nameOpen;
+    public boolean needRemoveDefPrefix;
+    public boolean photoLarge;
+    public int reqId;
+    public final StoryLinkSheet$$ExternalSyntheticLambda1 requestPreview;
+    public final EditTextCell urlEditText;
+    public Pattern urlPattern;
+    public TLRPC.WebPage webpage;
+    public long webpageId;
+    public ThemeActivity$$ExternalSyntheticLambda19 whenDone;
 
-    public StoryLinkSheet(final Context context, Theme.ResourcesProvider resourcesProvider, final PreviewView previewView, Utilities.Callback callback) {
-        super(context, null, true, false, false, true, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
-        this.requestPreview = new Runnable() {
-            @Override
-            public final void run() {
-                StoryLinkSheet.m4588$r8$lambda$TFhJVauuAvysAoyO1YAHMgfn70(this.f$0);
+    public final class AnonymousClass3 extends UniversalAdapter {
+        @Override
+        public final int getThemedColor(int i) {
+            if (i == Theme.key_dialogBackgroundGray) {
+                return -15921907;
             }
-        };
-        this.whenDone = callback;
-        fixNavigationBar();
-        setSlidingActionBar();
-        this.headerPaddingTop = AndroidUtilities.dp(4.0f);
-        this.headerPaddingBottom = AndroidUtilities.dp(-15.0f);
-        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkURLPlaceholder), true, false, -1, resourcesProvider);
-        this.urlEditText = editTextCell;
-        editTextCell.whenHitEnter(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.processDone();
-            }
-        });
-        this.urlEditText.editText.setHandlesColor(-12476440);
-        this.urlEditText.editText.setCursorColor(-11230757);
-        final String str = "https://";
-        this.urlEditText.editText.setText("https://");
-        this.urlEditText.editText.setSelection(8);
-        final TextView textView = new TextView(getContext());
-        textView.setTextSize(1, 12.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString(R.string.Paste));
-        textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-        textView.setGravity(17);
-        int themedColor = getThemedColor(Theme.key_windowBackgroundWhiteBlueText2);
-        textView.setTextColor(themedColor);
-        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(themedColor, 0.12f), Theme.multAlpha(themedColor, 0.15f)));
-        ScaleStateListAnimator.apply(textView, 0.1f, 1.5f);
-        this.urlEditText.addView(textView, LayoutHelper.createFrame(-2, 26.0f, 21, 0.0f, 4.0f, 24.0f, 3.0f));
-        final Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                StoryLinkSheet.$r8$lambda$KdNv_Pl_g3ioDTxEalYcHAfBcCI(this.f$0, str, textView);
-            }
-        };
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                StoryLinkSheet.$r8$lambda$y6jMhzSaEZHiRK9pggOhEerdzUU(this.f$0, runnable, view);
-            }
-        });
-        runnable.run();
-        this.urlEditText.editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            return Theme.getColor(i, this.resourcesProvider);
+        }
+    }
+
+    public final class WebpagePreviewView extends FrameLayout {
+        public final ImageView closeView;
+        public final ImageView imageView;
+        public final ImageView loadingView;
+        public final SpannableString messageLoading;
+        public final AnimatedTextView messageView;
+        public final Paint separatorPaint;
+        public final SpannableString titleLoading;
+        public final AnimatedTextView titleView;
+
+        public final class Factory extends UItem.UItemFactory {
+            public static final int $r8$clinit = 0;
+
+            static {
+                UItem.UItemFactory.setup(new Factory());
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                int i4;
-                if (StoryLinkSheet.this.ignoreUrlEdit) {
-                    return;
+            public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                boolean z2;
+                WebpagePreviewView webpagePreviewView = (WebpagePreviewView) view;
+                Object obj = uItem.object;
+                TLRPC.WebPage webPage = obj instanceof TLRPC.WebPage ? (TLRPC.WebPage) obj : null;
+                View.OnClickListener onClickListener = uItem.clickCallback;
+                if (webPage != null) {
+                    webpagePreviewView.getClass();
+                    if (webPage instanceof TLRPC.TL_webPagePending) {
+                        z2 = false;
+                    } else {
+                        z2 = true;
+                    }
+                } else {
+                    z2 = false;
                 }
-                StoryLinkSheet storyLinkSheet = StoryLinkSheet.this;
-                boolean z = false;
-                if (charSequence != null && i == str.length() && charSequence.subSequence(0, i).toString().equals(str) && charSequence.length() >= (i4 = i3 + i) && charSequence.subSequence(i, i4).toString().startsWith(str)) {
-                    z = true;
+                ImageView imageView = webpagePreviewView.imageView;
+                imageView.setAlpha(z2 ? 1.0f : 0.0f);
+                imageView.setScaleX(z2 ? 1.0f : 0.4f);
+                imageView.setScaleY(z2 ? 1.0f : 0.4f);
+                ImageView imageView2 = webpagePreviewView.loadingView;
+                imageView2.setAlpha(z2 ? 0.0f : 1.0f);
+                imageView2.setScaleX(z2 ? 0.4f : 1.0f);
+                imageView2.setScaleY(z2 ? 0.4f : 1.0f);
+                AnimatedTextView animatedTextView = webpagePreviewView.messageView;
+                AnimatedTextView animatedTextView2 = webpagePreviewView.titleView;
+                if (z2) {
+                    animatedTextView2.setText(TextUtils.isEmpty(webPage.site_name) ? webPage.title : webPage.site_name, false, true);
+                    animatedTextView.setText(webPage.description, false, true);
+                } else {
+                    animatedTextView2.setText(webpagePreviewView.titleLoading, false, true);
+                    animatedTextView.setText(webpagePreviewView.messageLoading, false, true);
                 }
-                storyLinkSheet.needRemoveDefPrefix = z;
+                webpagePreviewView.closeView.setOnClickListener(onClickListener);
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-                runnable.run();
-                if (StoryLinkSheet.this.ignoreUrlEdit) {
-                    return;
-                }
-                if (!StoryLinkSheet.this.needRemoveDefPrefix || editable == null) {
-                    StoryLinkSheet.this.checkEditURL(editable == null ? null : editable.toString());
-                    return;
-                }
-                String strSubstring = editable.toString().substring(str.length());
-                StoryLinkSheet.this.ignoreUrlEdit = true;
-                StoryLinkSheet.this.urlEditText.editText.setText(strSubstring);
-                StoryLinkSheet.this.urlEditText.editText.setSelection(0, StoryLinkSheet.this.urlEditText.editText.getText().length());
-                StoryLinkSheet.this.ignoreUrlEdit = false;
-                StoryLinkSheet.this.needRemoveDefPrefix = false;
-                StoryLinkSheet.this.checkEditURL(strSubstring);
-            }
-        });
-        EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkNamePlaceholder), true, false, -1, resourcesProvider);
-        this.nameEditText = editTextCell2;
-        editTextCell2.whenHitEnter(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.processDone();
-            }
-        });
-        this.buttonContainer = new FrameLayout(context);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        this.button = buttonWithCounterView;
-        buttonWithCounterView.setText(LocaleController.getString(R.string.StoryLinkAdd), false);
-        this.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.processDone();
-            }
-        });
-        this.button.setEnabled(containsURL(this.urlEditText.getText().toString()));
-        this.buttonContainer.addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        this.topPadding = 0.2f;
-        this.takeTranslationIntoAccount = true;
-        this.smoothKeyboardAnimationEnabled = true;
-        this.smoothKeyboardByBottom = true;
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
-            @Override
-            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
-                super.onMoveAnimationUpdate(viewHolder);
-                ((BottomSheet) StoryLinkSheet.this).containerView.invalidate();
-            }
-        };
-        defaultItemAnimator.setSupportsChangeAnimations(false);
-        defaultItemAnimator.setDelayAnimations(false);
-        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        defaultItemAnimator.setDurations(350L);
-        this.recyclerListView.setItemAnimator(defaultItemAnimator);
-        RecyclerListView recyclerListView = this.recyclerListView;
-        int i = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i, 0, i, 0);
-        this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-            @Override
-            public final void onItemClick(View view, int i2) {
-                StoryLinkSheet.$r8$lambda$O3Ei4aCLYVIBOTzy_USSM57__8c(this.f$0, context, previewView, view, i2);
-            }
-        });
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(false);
-        }
-    }
-
-    public static void $r8$lambda$KdNv_Pl_g3ioDTxEalYcHAfBcCI(StoryLinkSheet storyLinkSheet, String str, TextView textView) {
-        ClipboardManager clipboardManager = (ClipboardManager) storyLinkSheet.getContext().getSystemService("clipboard");
-        boolean z = (TextUtils.isEmpty(storyLinkSheet.urlEditText.editText.getText()) || TextUtils.equals(storyLinkSheet.urlEditText.editText.getText(), str) || TextUtils.isEmpty(storyLinkSheet.urlEditText.editText.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip();
-        textView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.7f).scaleY(z ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(300L).start();
-    }
-
-    public static void $r8$lambda$y6jMhzSaEZHiRK9pggOhEerdzUU(StoryLinkSheet storyLinkSheet, Runnable runnable, View view) {
-        CharSequence charSequenceCoerceToText;
-        try {
-            charSequenceCoerceToText = ((ClipboardManager) storyLinkSheet.getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(storyLinkSheet.getContext());
-        } catch (Exception e) {
-            FileLog.e(e);
-            charSequenceCoerceToText = null;
-        }
-        if (charSequenceCoerceToText != null) {
-            storyLinkSheet.urlEditText.editText.setText(charSequenceCoerceToText.toString());
-            EditTextCaption editTextCaption = storyLinkSheet.urlEditText.editText;
-            editTextCaption.setSelection(0, editTextCaption.getText().length());
-        }
-        runnable.run();
-    }
-
-    public static void $r8$lambda$O3Ei4aCLYVIBOTzy_USSM57__8c(final StoryLinkSheet storyLinkSheet, Context context, PreviewView previewView, View view, int i) {
-        TLRPC.WebPage webPage;
-        UItem item = storyLinkSheet.adapter.getItem(i - 1);
-        if (item == null) {
-            return;
-        }
-        if (item.instanceOf(WebpagePreviewView.Factory.class) && (webPage = storyLinkSheet.webpage) != null && !isPreviewEmpty(webPage)) {
-            StoryLinkPreviewDialog storyLinkPreviewDialog = new StoryLinkPreviewDialog(context, storyLinkSheet.currentAccount);
-            LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
-            webPagePreview.url = storyLinkSheet.urlEditText.editText.getText().toString();
-            webPagePreview.name = storyLinkSheet.nameOpen ? storyLinkSheet.nameEditText.editText.getText().toString() : null;
-            webPagePreview.webpage = storyLinkSheet.webpage;
-            webPagePreview.largePhoto = storyLinkSheet.photoLarge;
-            webPagePreview.captionAbove = storyLinkSheet.captionAbove;
-            storyLinkPreviewDialog.set(webPagePreview, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    StoryLinkSheet.$r8$lambda$ByFZrGZjmVP4Eq3mIvHBqcqpjCs(this.f$0, (LinkPreview.WebPagePreview) obj);
-                }
-            });
-            storyLinkPreviewDialog.setStoryPreviewView(previewView);
-            storyLinkPreviewDialog.show();
-            return;
-        }
-        if (item.id == 2 && (view instanceof TextCheckCell)) {
-            boolean z = !storyLinkSheet.nameOpen;
-            storyLinkSheet.nameOpen = z;
-            ((TextCheckCell) view).setChecked(z);
-            storyLinkSheet.adapter.update(true);
-            if (storyLinkSheet.nameOpen) {
-                storyLinkSheet.nameEditText.requestFocus();
-            } else {
-                storyLinkSheet.urlEditText.requestFocus();
+            public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new WebpagePreviewView(context);
             }
         }
-    }
-
-    public static void $r8$lambda$ByFZrGZjmVP4Eq3mIvHBqcqpjCs(StoryLinkSheet storyLinkSheet, LinkPreview.WebPagePreview webPagePreview) {
-        if (webPagePreview == null) {
-            storyLinkSheet.closePreview(null);
-            return;
-        }
-        storyLinkSheet.getClass();
-        storyLinkSheet.photoLarge = webPagePreview.largePhoto;
-        storyLinkSheet.captionAbove = webPagePreview.captionAbove;
-    }
-
-    public void processDone() {
-        if (this.button.isEnabled()) {
-            if (this.whenDone != null) {
-                LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
-                webPagePreview.url = this.urlEditText.editText.getText().toString();
-                webPagePreview.name = this.nameOpen ? this.nameEditText.editText.getText().toString() : null;
-                webPagePreview.webpage = this.webpage;
-                webPagePreview.largePhoto = this.photoLarge;
-                webPagePreview.captionAbove = this.captionAbove;
-                this.whenDone.run(webPagePreview);
-                this.whenDone = null;
-            }
-            dismiss();
-        }
-    }
-
-    public void set(LinkPreview.WebPagePreview webPagePreview) {
-        this.ignoreUrlEdit = true;
-        this.editing = true;
-        if (webPagePreview != null) {
-            this.webpage = webPagePreview.webpage;
-            this.loading = false;
-            this.urlEditText.setText(webPagePreview.url);
-            this.nameEditText.setText(webPagePreview.name);
-            this.nameOpen = true ^ TextUtils.isEmpty(webPagePreview.name);
-            this.captionAbove = webPagePreview.captionAbove;
-            this.photoLarge = webPagePreview.largePhoto;
-        } else {
-            this.urlEditText.setText("");
-            this.nameEditText.setText("");
-            this.captionAbove = true;
-            this.photoLarge = false;
-        }
-        this.button.setText(LocaleController.getString(R.string.StoryLinkEdit), false);
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(false);
-        }
-        this.button.setEnabled(containsURL(this.urlEditText.getText().toString()));
-        this.ignoreUrlEdit = false;
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.StoryLinkCreate);
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, this.resourcesProvider) {
-            @Override
-            protected int getThemedColor(int i) {
-                if (i == Theme.key_dialogBackgroundGray) {
-                    return -15921907;
-                }
-                return super.getThemedColor(i);
-            }
-        };
-        this.adapter = universalAdapter;
-        return universalAdapter;
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i != NotificationCenter.didReceivedWebpagesInUpdates || this.webpageId == 0) {
-            return;
-        }
-        LongSparseArray longSparseArray = (LongSparseArray) objArr[0];
-        for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
-            TLRPC.WebPage webPage = (TLRPC.WebPage) longSparseArray.valueAt(i3);
-            if (webPage != null && this.webpageId == webPage.id) {
-                if (isPreviewEmpty(webPage)) {
-                    webPage = null;
-                }
-                this.webpage = webPage;
-                this.loading = false;
-                this.webpageId = 0L;
-                UniversalAdapter universalAdapter = this.adapter;
-                if (universalAdapter != null) {
-                    universalAdapter.update(true);
-                    return;
-                }
-                return;
-            }
-        }
-    }
-
-    public void checkEditURL(String str) {
-        if (str == null || TextUtils.equals(str, this.lastCheckedStr)) {
-            return;
-        }
-        this.lastCheckedStr = str;
-        boolean zContainsURL = containsURL(str);
-        AndroidUtilities.cancelRunOnUIThread(this.requestPreview);
-        if (zContainsURL) {
-            if (!this.loading || this.webpage != null) {
-                this.loading = true;
-                this.webpage = null;
-                UniversalAdapter universalAdapter = this.adapter;
-                if (universalAdapter != null) {
-                    universalAdapter.update(true);
-                }
-            }
-            AndroidUtilities.runOnUIThread(this.requestPreview, 700L);
-        } else if (this.loading || this.webpage != null) {
-            this.loading = false;
-            this.webpage = null;
-            if (this.reqId != 0) {
-                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
-                this.reqId = 0;
-            }
-            UniversalAdapter universalAdapter2 = this.adapter;
-            if (universalAdapter2 != null) {
-                universalAdapter2.update(true);
-            }
-        }
-        this.button.setEnabled(zContainsURL);
-    }
-
-    public static void m4588$r8$lambda$TFhJVauuAvysAoyO1YAHMgfn70(final StoryLinkSheet storyLinkSheet) {
-        storyLinkSheet.getClass();
-        TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
-        getwebpagepreview.message = storyLinkSheet.urlEditText.editText.getText().toString();
-        storyLinkSheet.reqId = ConnectionsManager.getInstance(storyLinkSheet.currentAccount).sendRequest(getwebpagepreview, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoryLinkSheet.m4586$r8$lambda$oVy1tiKl5OTXZVuOtczggGXN_M(this.f$0, tLObject, tL_error);
-            }
-        });
-    }
-
-    public static void m4586$r8$lambda$oVy1tiKl5OTXZVuOtczggGXN_M(final StoryLinkSheet storyLinkSheet, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        storyLinkSheet.getClass();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StoryLinkSheet.$r8$lambda$zZMrhBagZSF_gWLhS9zj6GNSM34(this.f$0, tLObject);
-            }
-        });
-    }
-
-    public static void $r8$lambda$zZMrhBagZSF_gWLhS9zj6GNSM34(StoryLinkSheet storyLinkSheet, TLObject tLObject) {
-        TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage;
-        storyLinkSheet.getClass();
-        if (tLObject instanceof TL_account.webPagePreview) {
-            TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) tLObject;
-            MessagesController.getInstance(storyLinkSheet.currentAccount).putUsers(webpagepreview.users, false);
-            MessagesController.getInstance(storyLinkSheet.currentAccount).putChats(webpagepreview.chats, false);
-            TLRPC.MessageMedia messageMedia = webpagepreview.media;
-            if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
-                tL_messageMediaWebPage = (TLRPC.TL_messageMediaWebPage) messageMedia;
-            } else {
-                tL_messageMediaWebPage = null;
-            }
-        } else {
-            tL_messageMediaWebPage = null;
-        }
-        if (tL_messageMediaWebPage != null) {
-            TLRPC.WebPage webPage = tL_messageMediaWebPage.webpage;
-            storyLinkSheet.webpage = webPage;
-            if (isPreviewEmpty(webPage)) {
-                TLRPC.WebPage webPage2 = storyLinkSheet.webpage;
-                storyLinkSheet.webpageId = webPage2 == null ? 0L : webPage2.id;
-                storyLinkSheet.webpage = null;
-            } else {
-                storyLinkSheet.webpageId = 0L;
-            }
-        } else {
-            storyLinkSheet.webpage = null;
-            storyLinkSheet.webpageId = 0L;
-        }
-        storyLinkSheet.loading = storyLinkSheet.webpageId != 0;
-        UniversalAdapter universalAdapter = storyLinkSheet.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(true);
-        }
-    }
-
-    public void closePreview(View view) {
-        this.loading = false;
-        this.webpage = null;
-        if (this.reqId != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
-            this.reqId = 0;
-        }
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(true);
-        }
-    }
-
-    private boolean containsURL(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        if (this.urlPattern == null) {
-            this.urlPattern = Pattern.compile("((https?)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?]?.+)");
-        }
-        return this.urlPattern.matcher(str).find();
-    }
-
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        if (this.loading || this.webpage != null) {
-            arrayList.add(WebpagePreviewView.Factory.item(this.webpage, new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    this.f$0.closePreview(view);
-                }
-            }));
-        }
-        arrayList.add(UItem.asCustom(this.urlEditText));
-        arrayList.add(UItem.asShadow(1, null));
-        arrayList.add(UItem.asCheck(2, LocaleController.getString(R.string.StoryLinkNameHeader)).setChecked(this.nameOpen));
-        if (this.nameOpen) {
-            arrayList.add(UItem.asCustom(this.nameEditText));
-        }
-        arrayList.add(UItem.asShadow(3, null));
-        arrayList.add(UItem.asCustom(this.buttonContainer));
-    }
-
-    public static class WebpagePreviewView extends FrameLayout {
-        private final ImageView closeView;
-        private final ImageView imageView;
-        private final ImageView loadingView;
-        private final SpannableString messageLoading;
-        private final AnimatedTextView messageView;
-        private final Paint separatorPaint;
-        private final SpannableString titleLoading;
-        private final AnimatedTextView titleView;
 
         public WebpagePreviewView(Context context) {
             super(context);
@@ -530,46 +161,36 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             addView(imageView, LayoutHelper.createFrame(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
             this.loadingView = imageView2;
-            imageView2.setBackground(new CircularProgressDrawable(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089) {
-                @Override
-                public int getIntrinsicHeight() {
-                    return AndroidUtilities.dp(26.0f);
-                }
-
-                @Override
-                public int getIntrinsicWidth() {
-                    return AndroidUtilities.dp(26.0f);
-                }
-            });
+            imageView2.setBackground(new ChatbotsActivity.AnonymousClass4(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089));
             addView(imageView2, LayoutHelper.createFrame(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
-            AnimatedTextView animatedTextView = new AnimatedTextView(context);
+            AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
             this.titleView = animatedTextView;
             animatedTextView.setTextColor(-15033089);
             animatedTextView.setTextSize(AndroidUtilities.dp(14.21f));
             animatedTextView.setTypeface(AndroidUtilities.bold());
             animatedTextView.setEllipsizeByGradient(true);
-            animatedTextView.getDrawable().setOverrideFullWidth(AndroidUtilities.displaySize.x);
+            animatedTextView.getDrawable().overrideFullWidth = AndroidUtilities.displaySize.x;
             addView(animatedTextView, LayoutHelper.createFrame(-1, 24.0f, 55, 57.0f, 2.33f, 48.0f, 0.0f));
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
+            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, false, false);
             this.messageView = animatedTextView2;
             animatedTextView2.setTextColor(-8355712);
             animatedTextView2.setTextSize(AndroidUtilities.dp(14.21f));
             animatedTextView2.setEllipsizeByGradient(true);
-            animatedTextView2.getDrawable().setOverrideFullWidth(AndroidUtilities.displaySize.x);
+            animatedTextView2.getDrawable().overrideFullWidth = AndroidUtilities.displaySize.x;
             addView(animatedTextView2, LayoutHelper.createFrame(-1, 24.0f, 55, 57.0f, 20.66f, 48.0f, 0.0f));
             int textColor = animatedTextView.getTextColor();
             SpannableString spannableString = new SpannableString("x");
             this.titleLoading = spannableString;
-            LoadingSpan loadingSpan = new LoadingSpan(animatedTextView, AndroidUtilities.dp(200.0f));
-            loadingSpan.setScaleY(0.8f);
-            loadingSpan.setColors(Theme.multAlpha(textColor, 0.4f), Theme.multAlpha(textColor, 0.08f));
+            LoadingSpan loadingSpan = new LoadingSpan(AndroidUtilities.dp(200.0f), animatedTextView);
+            loadingSpan.scaleY = 0.8f;
+            loadingSpan.setColors(Theme.multAlpha(0.4f, textColor), Theme.multAlpha(0.08f, textColor));
             spannableString.setSpan(loadingSpan, 0, spannableString.length(), 33);
             int textColor2 = animatedTextView2.getTextColor();
             SpannableString spannableString2 = new SpannableString("x");
             this.messageLoading = spannableString2;
-            LoadingSpan loadingSpan2 = new LoadingSpan(animatedTextView2, AndroidUtilities.dp(140.0f));
-            loadingSpan2.setScaleY(0.8f);
-            loadingSpan2.setColors(Theme.multAlpha(textColor2, 0.4f), Theme.multAlpha(textColor2, 0.08f));
+            LoadingSpan loadingSpan2 = new LoadingSpan(AndroidUtilities.dp(140.0f), animatedTextView2);
+            loadingSpan2.scaleY = 0.8f;
+            loadingSpan2.setColors(Theme.multAlpha(0.4f, textColor2), Theme.multAlpha(0.08f, textColor2));
             spannableString2.setSpan(loadingSpan2, 0, spannableString2.length(), 33);
             ImageView imageView3 = new ImageView(context);
             this.closeView = imageView3;
@@ -581,99 +202,359 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         }
 
         @Override
-        protected void onDraw(Canvas canvas) {
+        public final void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.getShadowHeight(), this.separatorPaint);
-            canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), this.separatorPaint);
+            float width = getWidth();
+            float shadowHeight = AndroidUtilities.getShadowHeight();
+            Paint paint = this.separatorPaint;
+            canvas.drawRect(0.0f, 0.0f, width, shadowHeight, paint);
+            canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public final void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
         }
+    }
 
-        public void set(TLRPC.WebPage webPage, View.OnClickListener onClickListener, boolean z) {
-            boolean z2 = (webPage == null || (webPage instanceof TLRPC.TL_webPagePending)) ? false : true;
-            if (z) {
-                ViewPropertyAnimator duration = this.imageView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.4f).scaleY(z2 ? 1.0f : 0.4f).setDuration(320L);
-                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                duration.setInterpolator(cubicBezierInterpolator).start();
-                this.loadingView.animate().alpha(z2 ? 0.0f : 1.0f).scaleX(z2 ? 0.4f : 1.0f).scaleY(z2 ? 0.4f : 1.0f).setDuration(320L).setInterpolator(cubicBezierInterpolator).start();
-            } else {
-                this.imageView.setAlpha(z2 ? 1.0f : 0.0f);
-                this.imageView.setScaleX(z2 ? 1.0f : 0.4f);
-                this.imageView.setScaleY(z2 ? 1.0f : 0.4f);
-                this.loadingView.setAlpha(z2 ? 0.0f : 1.0f);
-                this.loadingView.setScaleX(z2 ? 0.4f : 1.0f);
-                this.loadingView.setScaleY(z2 ? 0.4f : 1.0f);
+    public StoryLinkSheet(Context context, PaintView.AnonymousClass2 anonymousClass2, StoryRecorder.AnonymousClass7 anonymousClass7, ThemeActivity$$ExternalSyntheticLambda19 themeActivity$$ExternalSyntheticLambda19) {
+        boolean zFind;
+        super(context, null, true, false, false, false, true, 2, anonymousClass2);
+        this.requestPreview = new StoryLinkSheet$$ExternalSyntheticLambda1(this, 0);
+        this.whenDone = themeActivity$$ExternalSyntheticLambda19;
+        fixNavigationBar();
+        setSlidingActionBar();
+        this.headerPaddingTop = AndroidUtilities.dp(4.0f);
+        this.headerPaddingBottom = AndroidUtilities.dp(-15.0f);
+        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkURLPlaceholder), true, false, -1, anonymousClass2);
+        this.urlEditText = editTextCell;
+        StoryLinkSheet$$ExternalSyntheticLambda1 storyLinkSheet$$ExternalSyntheticLambda1 = new StoryLinkSheet$$ExternalSyntheticLambda1(this, 1);
+        EditTextCell.AnonymousClass2 anonymousClass3 = editTextCell.editText;
+        anonymousClass3.setImeOptions(6);
+        anonymousClass3.setOnEditorActionListener(new EditTextCell.AnonymousClass1(storyLinkSheet$$ExternalSyntheticLambda1, 0));
+        anonymousClass3.setHandlesColor(-12476440);
+        anonymousClass3.setCursorColor(-11230757);
+        anonymousClass3.setText("https://");
+        anonymousClass3.setSelection(8);
+        TextView textView = new TextView(getContext());
+        zzkk.m(12.0f, 1, textView);
+        textView.setPadding(zzlm.m(10.0f, R.string.Paste, textView), 0, AndroidUtilities.dp(10.0f), 0);
+        textView.setGravity(17);
+        int themedColor = getThemedColor(Theme.key_windowBackgroundWhiteBlueText2);
+        textView.setTextColor(themedColor);
+        int iDp = AndroidUtilities.dp(6.0f);
+        int iMultAlpha = Theme.multAlpha(0.12f, themedColor);
+        int iMultAlpha2 = Theme.multAlpha(0.15f, themedColor);
+        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, iMultAlpha, iMultAlpha2, iMultAlpha2));
+        ScaleStateListAnimator.apply(textView, 0.1f, 1.5f);
+        editTextCell.addView(textView, LayoutHelper.createFrame(-2, 26.0f, 21, 0.0f, 4.0f, 24.0f, 3.0f));
+        final TodoItemMenu$$ExternalSyntheticLambda9 todoItemMenu$$ExternalSyntheticLambda9 = new TodoItemMenu$$ExternalSyntheticLambda9(1, this, textView);
+        textView.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda52(28, this, todoItemMenu$$ExternalSyntheticLambda9));
+        todoItemMenu$$ExternalSyntheticLambda9.run();
+        anonymousClass3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public final void afterTextChanged(Editable editable) {
+                todoItemMenu$$ExternalSyntheticLambda9.run();
+                StoryLinkSheet storyLinkSheet = StoryLinkSheet.this;
+                if (storyLinkSheet.ignoreUrlEdit) {
+                    return;
+                }
+                if (!storyLinkSheet.needRemoveDefPrefix || editable == null) {
+                    StoryLinkSheet.access$300(storyLinkSheet, editable == null ? null : editable.toString());
+                    return;
+                }
+                String strSubstring = editable.toString().substring(8);
+                storyLinkSheet.ignoreUrlEdit = true;
+                EditTextCell editTextCell2 = storyLinkSheet.urlEditText;
+                editTextCell2.editText.setText(strSubstring);
+                EditTextCell.AnonymousClass2 anonymousClass4 = editTextCell2.editText;
+                anonymousClass4.setSelection(0, anonymousClass4.getText().length());
+                storyLinkSheet.ignoreUrlEdit = false;
+                storyLinkSheet.needRemoveDefPrefix = false;
+                StoryLinkSheet.access$300(storyLinkSheet, strSubstring);
             }
-            if (z2) {
-                this.titleView.setText(TextUtils.isEmpty(webPage.site_name) ? webPage.title : webPage.site_name, z);
-                this.messageView.setText(webPage.description, z);
-            } else {
-                this.titleView.setText(this.titleLoading, z);
-                this.messageView.setText(this.messageLoading, z);
+
+            @Override
+            public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
-            this.closeView.setOnClickListener(onClickListener);
+
+            @Override
+            public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                int i4;
+                StoryLinkSheet storyLinkSheet = StoryLinkSheet.this;
+                if (storyLinkSheet.ignoreUrlEdit) {
+                    return;
+                }
+                boolean z = false;
+                if (charSequence != null && i == 8 && charSequence.subSequence(0, i).toString().equals("https://") && charSequence.length() >= (i4 = i3 + i) && charSequence.subSequence(i, i4).toString().startsWith("https://")) {
+                    z = true;
+                }
+                storyLinkSheet.needRemoveDefPrefix = z;
+            }
+        });
+        EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkNamePlaceholder), true, false, -1, anonymousClass2);
+        this.nameEditText = editTextCell2;
+        StoryLinkSheet$$ExternalSyntheticLambda1 storyLinkSheet$$ExternalSyntheticLambda2 = new StoryLinkSheet$$ExternalSyntheticLambda1(this, 1);
+        EditTextCell.AnonymousClass2 anonymousClass4 = editTextCell2.editText;
+        anonymousClass4.setImeOptions(6);
+        anonymousClass4.setOnEditorActionListener(new EditTextCell.AnonymousClass1(storyLinkSheet$$ExternalSyntheticLambda2, 0));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.buttonContainer = frameLayout;
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, anonymousClass2, true);
+        this.button = buttonWithCounterView;
+        buttonWithCounterView.setText(LocaleController.getString(R.string.StoryLinkAdd), false, true);
+        buttonWithCounterView.setOnClickListener(new StoryLinkSheet$$ExternalSyntheticLambda5(this, 0));
+        String string = editTextCell.getText().toString();
+        if (TextUtils.isEmpty(string)) {
+            zFind = false;
+        } else {
+            if (this.urlPattern == null) {
+                this.urlPattern = Pattern.compile("((https?)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?]?.+)");
+            }
+            zFind = this.urlPattern.matcher(string).find();
         }
-
-        public static class Factory extends UItem.UItemFactory {
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
-
+        buttonWithCounterView.setEnabled(zFind);
+        frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
+        this.topPadding = 0.2f;
+        this.takeTranslationIntoAccount = true;
+        this.smoothKeyboardAnimationEnabled = true;
+        this.smoothKeyboardByBottom = true;
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
-            public WebpagePreviewView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new WebpagePreviewView(context);
+            public final void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                ((BottomSheet) StoryLinkSheet.this).containerView.invalidate();
             }
-
-            @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                WebpagePreviewView webpagePreviewView = (WebpagePreviewView) view;
-                Object obj = uItem.object;
-                webpagePreviewView.set(obj instanceof TLRPC.WebPage ? (TLRPC.WebPage) obj : null, uItem.clickCallback, false);
-            }
-
-            public static UItem item(TLRPC.WebPage webPage, View.OnClickListener onClickListener) {
-                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                uItemOfFactory.object = webPage;
-                uItemOfFactory.clickCallback = onClickListener;
-                return uItemOfFactory;
-            }
+        };
+        defaultItemAnimator.mSupportsChangeAnimations = false;
+        defaultItemAnimator.delayAnimations = false;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.setDurations(350L);
+        this.recyclerListView.setItemAnimator(defaultItemAnimator);
+        RecyclerListView recyclerListView = this.recyclerListView;
+        int i = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i, 0, i, 0);
+        this.recyclerListView.setOnItemClickListener(new LiveCommentsView$$ExternalSyntheticLambda6(this, context, anonymousClass7, 4));
+        AnonymousClass3 anonymousClass5 = this.adapter;
+        if (anonymousClass5 != null) {
+            anonymousClass5.update(false);
         }
     }
 
-    public static boolean isPreviewEmpty(TLRPC.WebPage webPage) {
-        if (webPage instanceof TLRPC.TL_webPagePending) {
-            return true;
+    public static void access$300(StoryLinkSheet storyLinkSheet, String str) {
+        boolean zFind;
+        if (str == null) {
+            storyLinkSheet.getClass();
+            return;
         }
-        return TextUtils.isEmpty(webPage.title) && TextUtils.isEmpty(webPage.description);
+        if (TextUtils.equals(str, storyLinkSheet.lastCheckedStr)) {
+            return;
+        }
+        storyLinkSheet.lastCheckedStr = str;
+        if (TextUtils.isEmpty(str)) {
+            zFind = false;
+        } else {
+            if (storyLinkSheet.urlPattern == null) {
+                storyLinkSheet.urlPattern = Pattern.compile("((https?)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?]?.+)");
+            }
+            zFind = storyLinkSheet.urlPattern.matcher(str).find();
+        }
+        StoryLinkSheet$$ExternalSyntheticLambda1 storyLinkSheet$$ExternalSyntheticLambda1 = storyLinkSheet.requestPreview;
+        AndroidUtilities.cancelRunOnUIThread(storyLinkSheet$$ExternalSyntheticLambda1);
+        if (zFind) {
+            if (!storyLinkSheet.loading || storyLinkSheet.webpage != null) {
+                storyLinkSheet.loading = true;
+                storyLinkSheet.webpage = null;
+                AnonymousClass3 anonymousClass3 = storyLinkSheet.adapter;
+                if (anonymousClass3 != null) {
+                    anonymousClass3.update(true);
+                }
+            }
+            AndroidUtilities.runOnUIThread(storyLinkSheet$$ExternalSyntheticLambda1, 700L);
+        } else if (storyLinkSheet.loading || storyLinkSheet.webpage != null) {
+            storyLinkSheet.loading = false;
+            storyLinkSheet.webpage = null;
+            if (storyLinkSheet.reqId != 0) {
+                ConnectionsManager.getInstance(storyLinkSheet.currentAccount).cancelRequest(storyLinkSheet.reqId, true);
+                storyLinkSheet.reqId = 0;
+            }
+            AnonymousClass3 anonymousClass4 = storyLinkSheet.adapter;
+            if (anonymousClass4 != null) {
+                anonymousClass4.update(true);
+            }
+        }
+        storyLinkSheet.button.setEnabled(zFind);
+    }
+
+    public final void closePreview() {
+        this.loading = false;
+        this.webpage = null;
+        if (this.reqId != 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
+            this.reqId = 0;
+        }
+        AnonymousClass3 anonymousClass3 = this.adapter;
+        if (anonymousClass3 != null) {
+            anonymousClass3.update(true);
+        }
     }
 
     @Override
-    public void show() {
-        super.show();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StoryLinkSheet.m4587$r8$lambda$S3KrucBAHa9RZ7odv03RayBOSA(this.f$0);
-            }
-        }, 150L);
+    public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        AnonymousClass3 anonymousClass3 = new AnonymousClass3(this.recyclerListView, getContext(), this.currentAccount, 0, true, new TodoItemMenu$$ExternalSyntheticLambda17(this, 3), this.resourcesProvider);
+        this.adapter = anonymousClass3;
+        return anonymousClass3;
     }
 
-    public static void m4587$r8$lambda$S3KrucBAHa9RZ7odv03RayBOSA(StoryLinkSheet storyLinkSheet) {
-        if (storyLinkSheet.isShowing()) {
-            storyLinkSheet.urlEditText.editText.requestFocus();
-            AndroidUtilities.showKeyboard(storyLinkSheet.urlEditText.editText);
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i != NotificationCenter.didReceivedWebpagesInUpdates || this.webpageId == 0) {
+            return;
+        }
+        LongSparseArray longSparseArray = (LongSparseArray) objArr[0];
+        for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
+            TLRPC.WebPage webPage = (TLRPC.WebPage) longSparseArray.valueAt(i3);
+            if (webPage != null && this.webpageId == webPage.id) {
+                if ((webPage instanceof TLRPC.TL_webPagePending) || (TextUtils.isEmpty(webPage.title) && TextUtils.isEmpty(webPage.description))) {
+                    webPage = null;
+                }
+                this.webpage = webPage;
+                this.loading = false;
+                this.webpageId = 0L;
+                AnonymousClass3 anonymousClass3 = this.adapter;
+                if (anonymousClass3 != null) {
+                    anonymousClass3.update(true);
+                    return;
+                }
+                return;
+            }
         }
     }
 
     @Override
-    public void dismiss() {
+    public final void lambda$showGiftOfferSheet$15() {
         AndroidUtilities.hideKeyboard(this.urlEditText.editText);
         AndroidUtilities.hideKeyboard(this.nameEditText.editText);
-        super.dismiss();
+        super.lambda$showGiftOfferSheet$15();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
+    }
+
+    @Override
+    public final CharSequence getTitle() {
+        return LocaleController.getString(R.string.StoryLinkCreate);
+    }
+
+    public final void lambda$new$4(Context context, StoryRecorder.AnonymousClass7 anonymousClass7, View view, int i) {
+        TLRPC.WebPage webPage;
+        UItem item = this.adapter.getItem(i - 1);
+        if (item == null) {
+            return;
+        }
+        boolean zInstanceOf = item.instanceOf(WebpagePreviewView.Factory.class);
+        EditTextCell editTextCell = this.nameEditText;
+        EditTextCell editTextCell2 = this.urlEditText;
+        if (!zInstanceOf || (webPage = this.webpage) == null || (webPage instanceof TLRPC.TL_webPagePending) || (TextUtils.isEmpty(webPage.title) && TextUtils.isEmpty(webPage.description))) {
+            if (item.id == 2 && (view instanceof TextCheckCell)) {
+                boolean z = !this.nameOpen;
+                this.nameOpen = z;
+                ((TextCheckCell) view).setChecked(z);
+                this.adapter.update(true);
+                if (this.nameOpen) {
+                    editTextCell.requestFocus();
+                    return;
+                } else {
+                    editTextCell2.requestFocus();
+                    return;
+                }
+            }
+            return;
+        }
+        StoryLinkPreviewDialog storyLinkPreviewDialog = new StoryLinkPreviewDialog(context, this.currentAccount);
+        LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
+        webPagePreview.url = editTextCell2.editText.getText().toString();
+        webPagePreview.name = this.nameOpen ? editTextCell.editText.getText().toString() : null;
+        TLRPC.WebPage webPage2 = this.webpage;
+        webPagePreview.webpage = webPage2;
+        webPagePreview.largePhoto = this.photoLarge;
+        webPagePreview.captionAbove = this.captionAbove;
+        VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7 = new VoIPFragment$$ExternalSyntheticLambda7(this, 18);
+        storyLinkPreviewDialog.link = webPagePreview;
+        int i2 = (webPage2 == null || (webPage2.photo == null && !MessageObject.isVideoDocument(webPage2.document))) ? 8 : 0;
+        MessagePreviewView.ToggleButton toggleButton = storyLinkPreviewDialog.photoButton;
+        toggleButton.setVisibility(i2);
+        storyLinkPreviewDialog.linkView.set(storyLinkPreviewDialog.currentAccount, webPagePreview, false);
+        storyLinkPreviewDialog.captionButton.setState(!webPagePreview.captionAbove, false);
+        toggleButton.setState(!webPagePreview.largePhoto, false);
+        storyLinkPreviewDialog.whenDone = voIPFragment$$ExternalSyntheticLambda7;
+        storyLinkPreviewDialog.backgroundView.setImageDrawable(new TextCell.AnonymousClass2(anonymousClass7, 4));
+        storyLinkPreviewDialog.show();
+    }
+
+    public final void lambda$new$5(TLObject tLObject) {
+        TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage;
+        if (tLObject instanceof TL_account.webPagePreview) {
+            TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(webpagepreview.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(webpagepreview.chats, false);
+            TLRPC.MessageMedia messageMedia = webpagepreview.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+                tL_messageMediaWebPage = (TLRPC.TL_messageMediaWebPage) messageMedia;
+            } else {
+                tL_messageMediaWebPage = null;
+            }
+        } else {
+            tL_messageMediaWebPage = null;
+        }
+        if (tL_messageMediaWebPage != null) {
+            TLRPC.WebPage webPage = tL_messageMediaWebPage.webpage;
+            this.webpage = webPage;
+            if ((webPage instanceof TLRPC.TL_webPagePending) || (TextUtils.isEmpty(webPage.title) && TextUtils.isEmpty(webPage.description))) {
+                TLRPC.WebPage webPage2 = this.webpage;
+                this.webpageId = webPage2 == null ? 0L : webPage2.id;
+                this.webpage = null;
+            } else {
+                this.webpageId = 0L;
+            }
+        } else {
+            this.webpage = null;
+            this.webpageId = 0L;
+        }
+        this.loading = this.webpageId != 0;
+        AnonymousClass3 anonymousClass3 = this.adapter;
+        if (anonymousClass3 != null) {
+            anonymousClass3.update(true);
+        }
+    }
+
+    public final void lambda$new$7$2$3() {
+        TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
+        getwebpagepreview.message = this.urlEditText.editText.getText().toString();
+        this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getwebpagepreview, new RichMediaUploader$$ExternalSyntheticLambda0(this, 8));
+    }
+
+    public final void processDone$10() {
+        if (this.button.enabled) {
+            if (this.whenDone != null) {
+                LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
+                webPagePreview.url = this.urlEditText.editText.getText().toString();
+                webPagePreview.name = this.nameOpen ? this.nameEditText.editText.getText().toString() : null;
+                webPagePreview.webpage = this.webpage;
+                webPagePreview.largePhoto = this.photoLarge;
+                webPagePreview.captionAbove = this.captionAbove;
+                this.whenDone.run(webPagePreview);
+                this.whenDone = null;
+            }
+            lambda$showGiftOfferSheet$15();
+        }
+    }
+
+    @Override
+    public final void show() {
+        super.show();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
+        AndroidUtilities.runOnUIThread(new StoryLinkSheet$$ExternalSyntheticLambda1(this, 2), 150L);
     }
 }

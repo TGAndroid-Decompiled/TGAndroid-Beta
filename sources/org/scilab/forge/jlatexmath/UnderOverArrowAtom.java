@@ -13,13 +13,6 @@ public class UnderOverArrowAtom extends Atom {
         this.over = z2;
     }
 
-    public UnderOverArrowAtom(Atom atom, boolean z) {
-        this.left = false;
-        this.base = atom;
-        this.over = z;
-        this.dble = true;
-    }
-
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box boxCreate;
@@ -38,16 +31,23 @@ public class UnderOverArrowAtom extends Atom {
         if (this.over) {
             verticalBox.add(boxCreate);
             verticalBox.add(new HorizontalBox(boxCreateBox, boxCreate.getWidth(), 2));
-            float depth = verticalBox.getDepth() + verticalBox.getHeight();
+            float height = verticalBox.getHeight() + verticalBox.getDepth();
             verticalBox.setDepth(boxCreateBox.getDepth());
-            verticalBox.setHeight(depth - boxCreateBox.getDepth());
+            verticalBox.setHeight(height - boxCreateBox.getDepth());
             return verticalBox;
         }
         verticalBox.add(new HorizontalBox(boxCreateBox, boxCreate.getWidth(), 2));
         verticalBox.add(new StrutBox(0.0f, f, 0.0f, 0.0f));
         verticalBox.add(boxCreate);
-        verticalBox.setDepth((verticalBox.getDepth() + verticalBox.getHeight()) - boxCreateBox.getHeight());
+        verticalBox.setDepth((verticalBox.getHeight() + verticalBox.getDepth()) - boxCreateBox.getHeight());
         verticalBox.setHeight(boxCreateBox.getHeight());
         return verticalBox;
+    }
+
+    public UnderOverArrowAtom(Atom atom, boolean z) {
+        this.left = false;
+        this.base = atom;
+        this.over = z;
+        this.dble = true;
     }
 }

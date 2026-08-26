@@ -14,7 +14,7 @@ import android.os.IBinder;
 public class ContactsSyncAdapterService extends Service {
     private static SyncAdapterImpl sSyncAdapter;
 
-    private static class SyncAdapterImpl extends AbstractThreadedSyncAdapter {
+    public static class SyncAdapterImpl extends AbstractThreadedSyncAdapter {
         private Context mContext;
 
         public SyncAdapterImpl(Context context) {
@@ -32,11 +32,6 @@ public class ContactsSyncAdapterService extends Service {
         }
     }
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return getSyncAdapter().getSyncAdapterBinder();
-    }
-
     private SyncAdapterImpl getSyncAdapter() {
         if (sSyncAdapter == null) {
             sSyncAdapter = new SyncAdapterImpl(this);
@@ -48,5 +43,10 @@ public class ContactsSyncAdapterService extends Service {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("performSync: " + account.toString());
         }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return getSyncAdapter().getSyncAdapterBinder();
     }
 }

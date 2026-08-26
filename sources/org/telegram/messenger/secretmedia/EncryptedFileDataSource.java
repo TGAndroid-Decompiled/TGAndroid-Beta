@@ -5,6 +5,7 @@ import com.google.android.exoplayer2.upstream.BaseDataSource;
 import com.google.android.exoplayer2.upstream.DataSourceException;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
@@ -17,11 +18,6 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     private boolean opened;
     private Uri uri;
 
-    @Override
-    public Map getResponseHeaders() {
-        return Collections.EMPTY_MAP;
-    }
-
     public static class EncryptedFileDataSourceException extends IOException {
         public EncryptedFileDataSourceException(Throwable th) {
             super(th);
@@ -32,29 +28,46 @@ public final class EncryptedFileDataSource extends BaseDataSource {
         super(false);
     }
 
-    @Deprecated
-    public EncryptedFileDataSource(TransferListener transferListener) {
-        this();
-        if (transferListener != null) {
-            addTransferListener(transferListener);
+    @Override
+    public void close() {
+        try {
+            this.fileInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        if (this.opened) {
+            this.opened = false;
+            transferEnded();
+        }
+        this.fileInputStream = null;
+        this.uri = null;
+    }
+
+    @Override
+    public Map getResponseHeaders() {
+        return Collections.EMPTY_MAP;
+    }
+
+    @Override
+    public Uri getUri() {
+        return this.uri;
     }
 
     @Override
     public long open(DataSpec dataSpec) throws DataSourceException {
-        this.uri = dataSpec.uri;
+        Uri uri = dataSpec.uri;
+        long j = dataSpec.position;
+        this.uri = uri;
         File file = new File(dataSpec.uri.getPath());
-        String name = file.getName();
         try {
-            EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), name + ".key"));
+            EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), zzhr.m(file.getName(), ".key")));
             this.fileInputStream = encryptedFileInputStream;
-            encryptedFileInputStream.skip(dataSpec.position);
+            encryptedFileInputStream.skip(j);
             int length = (int) file.length();
             transferInitializing(dataSpec);
-            long j = dataSpec.position;
             long j2 = length;
             if (j > j2) {
-                throw new DataSourceException(2008);
+                throw new DataSourceException();
             }
             int i = (int) (j2 - j);
             this.bytesRemaining = i;
@@ -64,10 +77,9 @@ public final class EncryptedFileDataSource extends BaseDataSource {
             }
             this.opened = true;
             transferStarted(dataSpec);
-            long j4 = dataSpec.length;
-            return j4 != -1 ? j4 : this.bytesRemaining;
+            return j3 != -1 ? j3 : this.bytesRemaining;
         } catch (Throwable unused) {
-            throw new DataSourceException(2008);
+            throw new DataSourceException();
         }
     }
 
@@ -91,23 +103,11 @@ public final class EncryptedFileDataSource extends BaseDataSource {
         return iMin;
     }
 
-    @Override
-    public Uri getUri() {
-        return this.uri;
-    }
-
-    @Override
-    public void close() {
-        try {
-            this.fileInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    @Deprecated
+    public EncryptedFileDataSource(TransferListener transferListener) {
+        this();
+        if (transferListener != null) {
+            addTransferListener(transferListener);
         }
-        if (this.opened) {
-            this.opened = false;
-            transferEnded();
-        }
-        this.fileInputStream = null;
-        this.uri = null;
     }
 }

@@ -1,19 +1,13 @@
 package org.telegram.ui.Components.Premium.boosts;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -23,45 +17,86 @@ import org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.cells.ActionBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.LinkCell;
-import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.Components.SearchField$$ExternalSyntheticLambda0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.TopicsFragment;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet {
-    private static PremiumPreviewGiftLinkBottomSheet instance;
-    private ActionBtnCell actionBtn;
-    private final boolean isUsed;
-    private final String slug;
-
-    @Override
-    protected int getAdditionItemViewType(int i) {
-        return 6;
-    }
-
-    public static void show(String str, Browser.Progress progress) {
-        GiftInfoBottomSheet.show(LaunchActivity.getLastFragment(), str, progress);
-    }
-
-    public static void show(String str, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, TLRPC.User user, boolean z) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment == null || instance != null) {
-            return;
-        }
-        PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet = new PremiumPreviewGiftLinkBottomSheet(lastFragment, UserConfig.selectedAccount, user, new GiftPremiumBottomSheet$GiftTier(tL_premiumGiftOption, (Object) null), str, z, lastFragment.getResourceProvider());
-        premiumPreviewGiftLinkBottomSheet.show();
-        instance = premiumPreviewGiftLinkBottomSheet;
-    }
+public final class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet {
+    public static PremiumPreviewGiftLinkBottomSheet instance;
+    public final ActionBtnCell actionBtn;
+    public final String slug;
 
     public PremiumPreviewGiftLinkBottomSheet(BaseFragment baseFragment, int i, TLRPC.User user, GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, String str, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(baseFragment, i, user, giftPremiumBottomSheet$GiftTier, null, resourcesProvider);
         this.slug = str;
-        this.isUsed = z;
-        init();
+        Bulletin.addDelegate((FrameLayout) this.containerView, new LaunchActivity.AnonymousClass7(7));
+        if (!z) {
+            int i2 = this.backgroundPaddingLeft;
+            this.recyclerListView.setPadding(i2, 0, i2, AndroidUtilities.dp(68.0f));
+            ActionBtnCell actionBtnCell = new ActionBtnCell(getContext(), this.resourcesProvider);
+            this.actionBtn = actionBtnCell;
+            actionBtnCell.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 18));
+            ActionBtnCell actionBtnCell2 = this.actionBtn;
+            actionBtnCell2.drawDivider = true;
+            ButtonWithCounterView buttonWithCounterView = actionBtnCell2.button;
+            buttonWithCounterView.setEnabled(true);
+            buttonWithCounterView.setText(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
+            actionBtnCell2.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, actionBtnCell2.resourcesProvider));
+            this.containerView.addView(this.actionBtn, LayoutHelper.createFrame(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        }
+        fixNavigationBar();
     }
 
     @Override
-    protected void updateRows() {
+    public final void dismissInternal() {
+        super.dismissInternal();
+        instance = null;
+    }
+
+    @Override
+    public final int getAdditionItemViewType() {
+        return 6;
+    }
+
+    public final void lambda$init$1() {
+        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(this.baseFragment, UserConfig.selectedAccount, null, null, null, this.resourcesProvider);
+        premiumPreviewBottomSheet.animateConfetti = true;
+        premiumPreviewBottomSheet.animateConfettiWithStars = true;
+        premiumPreviewBottomSheet.isOutboundGift = true;
+        this.baseFragment.showDialog(premiumPreviewBottomSheet);
+    }
+
+    public final void lambda$init$3(TLRPC.TL_error tL_error) {
+        this.actionBtn.button.setLoading(false);
+        BoostDialogs.processApplyGiftCodeError(tL_error, (FrameLayout) this.containerView, this.resourcesProvider, new PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda0(this, 0));
+    }
+
+    @Override
+    public final void onBindAdditionCell(View view) {
+        ((LinkCell) view).setSlug(this.slug);
+    }
+
+    @Override
+    public final View onCreateAdditionCell(Context context, int i) {
+        if (i != 6) {
+            return null;
+        }
+        LinkCell linkCell = new LinkCell(context, this.resourcesProvider);
+        linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
+        return linkCell;
+    }
+
+    @Override
+    public final void setTitle(boolean z) {
+        super.setTitle(z);
+        this.subtitleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(14.0f);
+        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
+        this.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), Theme.key_chat_messageLinkIn, 0, new PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda0(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
+    }
+
+    @Override
+    public final void updateRows$2() {
         int i = this.rowCount;
         this.paddingRow = i;
         this.additionStartRow = i + 1;
@@ -69,175 +104,9 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         this.rowCount = i2;
         this.additionEndRow = i2;
         this.featuresStartRow = i2;
-        int size = i2 + this.premiumFeatures.size();
+        int size = this.premiumFeatures.size() + i2;
         this.featuresEndRow = size;
         this.rowCount = size + 1;
         this.sectionRow = size;
-    }
-
-    @Override
-    public void setTitle(boolean z) {
-        super.setTitle(z);
-        this.subtitleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(14.0f);
-        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
-        this.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), Theme.key_chat_messageLinkIn, 0, new PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1(this)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
-    }
-
-    public void share() {
-        final String str = "https://t.me/giftcode/" + this.slug;
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("onlySelect", true);
-        bundle.putInt("dialogsType", 3);
-        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
-        dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
-            @Override
-            public boolean canSelectStories() {
-                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
-            }
-
-            @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-                return PremiumPreviewGiftLinkBottomSheet.m2650$r8$lambda$UgaBuxxFI61SFp4i0M18dgpa9U(this.f$0, str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
-            }
-
-            @Override
-            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
-                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
-            }
-        });
-        getBaseFragment().presentFragment(dialogsActivity);
-        dismiss();
-    }
-
-    public static boolean m2650$r8$lambda$UgaBuxxFI61SFp4i0M18dgpa9U(PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-        premiumPreviewGiftLinkBottomSheet.getClass();
-        long j = 0;
-        int i3 = 0;
-        while (i3 < arrayList.size()) {
-            long j2 = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
-            premiumPreviewGiftLinkBottomSheet.getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
-            i3++;
-            j = j2;
-        }
-        dialogsActivity.finishFragment();
-        BoostDialogs.showGiftLinkForwardedBulletin(j);
-        return true;
-    }
-
-    @Override
-    protected View onCreateAdditionCell(int i, Context context) {
-        if (i != 6) {
-            return null;
-        }
-        LinkCell linkCell = new LinkCell(context, getBaseFragment(), this.resourcesProvider);
-        linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
-        return linkCell;
-    }
-
-    @Override
-    protected void onBindAdditionCell(View view, int i) {
-        ((LinkCell) view).setSlug(this.slug);
-    }
-
-    private void init() {
-        Bulletin.addDelegate((FrameLayout) this.containerView, new Bulletin.Delegate() {
-            @Override
-            public boolean allowLayoutChanges() {
-                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
-            }
-
-            @Override
-            public boolean bottomOffsetAnimated() {
-                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
-            }
-
-            @Override
-            public boolean clipWithGradient(int i) {
-                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
-            }
-
-            @Override
-            public int getTopOffset(int i) {
-                return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
-            }
-
-            @Override
-            public void onBottomOffsetChange(float f) {
-                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
-            }
-
-            @Override
-            public void onHide(Bulletin bulletin) {
-                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
-            }
-
-            @Override
-            public void onShow(Bulletin bulletin) {
-                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
-            }
-
-            @Override
-            public int getBottomOffset(int i) {
-                return AndroidUtilities.dp(68.0f);
-            }
-        });
-        if (!this.isUsed) {
-            RecyclerListView recyclerListView = this.recyclerListView;
-            int i = this.backgroundPaddingLeft;
-            recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(68.0f));
-            ActionBtnCell actionBtnCell = new ActionBtnCell(getContext(), this.resourcesProvider);
-            this.actionBtn = actionBtnCell;
-            actionBtnCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    PremiumPreviewGiftLinkBottomSheet.$r8$lambda$VSSJRo0515LG5qg5d14pBrjBw7M(this.f$0, view);
-                }
-            });
-            this.actionBtn.setActivateForFreeStyle();
-            this.containerView.addView(this.actionBtn, LayoutHelper.createFrame(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        }
-        fixNavigationBar();
-    }
-
-    public static void $r8$lambda$VSSJRo0515LG5qg5d14pBrjBw7M(final PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, View view) {
-        if (premiumPreviewGiftLinkBottomSheet.actionBtn.isLoading()) {
-            return;
-        }
-        premiumPreviewGiftLinkBottomSheet.actionBtn.updateLoading(true);
-        BoostRepository.applyGiftCode(premiumPreviewGiftLinkBottomSheet.slug, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                PremiumPreviewGiftLinkBottomSheet.m2648$r8$lambda$0lHm0LXGIfmCZ2Bq_tiwdKDl0M(this.f$0, (Void) obj);
-            }
-        }, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                PremiumPreviewGiftLinkBottomSheet.$r8$lambda$4wfg7nV2s96dYviKwKmtfKrXuuU(this.f$0, (TLRPC.TL_error) obj);
-            }
-        });
-    }
-
-    public static void m2648$r8$lambda$0lHm0LXGIfmCZ2Bq_tiwdKDl0M(final PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, Void r3) {
-        premiumPreviewGiftLinkBottomSheet.actionBtn.updateLoading(false);
-        premiumPreviewGiftLinkBottomSheet.dismiss();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet2 = this.f$0;
-                premiumPreviewGiftLinkBottomSheet2.getBaseFragment().showDialog(new PremiumPreviewBottomSheet(premiumPreviewGiftLinkBottomSheet2.getBaseFragment(), UserConfig.selectedAccount, null, null, null, premiumPreviewGiftLinkBottomSheet2.resourcesProvider).setAnimateConfetti(true).setAnimateConfettiWithStars(true).setOutboundGift(true));
-            }
-        }, 200L);
-    }
-
-    public static void $r8$lambda$4wfg7nV2s96dYviKwKmtfKrXuuU(PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet, TLRPC.TL_error tL_error) {
-        premiumPreviewGiftLinkBottomSheet.actionBtn.updateLoading(false);
-        BoostDialogs.processApplyGiftCodeError(tL_error, (FrameLayout) premiumPreviewGiftLinkBottomSheet.containerView, premiumPreviewGiftLinkBottomSheet.resourcesProvider, new PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1(premiumPreviewGiftLinkBottomSheet));
-    }
-
-    @Override
-    public void dismissInternal() {
-        super.dismissInternal();
-        instance = null;
     }
 }

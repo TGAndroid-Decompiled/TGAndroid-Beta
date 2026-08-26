@@ -1,17 +1,42 @@
 package kotlinx.coroutines.scheduling;
 
 import java.util.concurrent.TimeUnit;
-import kotlin.ranges.RangesKt;
-import kotlinx.coroutines.internal.SystemPropsKt;
-import kotlinx.coroutines.internal.SystemPropsKt__SystemProps_commonKt;
+import kotlinx.coroutines.internal.AtomicKt;
+import kotlinx.coroutines.internal.SystemPropsKt__SystemPropsKt;
+import org.telegram.ui.CastSync;
 
 public abstract class TasksKt {
-    public static final String DEFAULT_SCHEDULER_NAME = SystemPropsKt.systemProp("kotlinx.coroutines.scheduler.default.name", "DefaultDispatcher");
-    public static final long WORK_STEALING_TIME_RESOLUTION_NS = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.scheduler.resolution.ns", 100000L, 0L, 0L, 12, (Object) null);
-    public static final int CORE_POOL_SIZE = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.scheduler.core.pool.size", RangesKt.coerceAtLeast(SystemPropsKt.getAVAILABLE_PROCESSORS(), 2), 1, 0, 8, (Object) null);
-    public static final int MAX_POOL_SIZE = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.scheduler.max.pool.size", 2097150, 0, 2097150, 4, (Object) null);
-    public static final long IDLE_WORKER_KEEP_ALIVE_NS = TimeUnit.SECONDS.toNanos(SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.scheduler.keep.alive.sec", 60L, 0L, 0L, 12, (Object) null));
-    public static SchedulerTimeSource schedulerTimeSource = NanoTimeSource.INSTANCE;
-    public static final TaskContext NonBlockingContext = new TaskContextImpl(0);
-    public static final TaskContext BlockingContext = new TaskContextImpl(1);
+    public static final CastSync.AnonymousClass1 BlockingContext;
+    public static final int CORE_POOL_SIZE;
+    public static final String DEFAULT_SCHEDULER_NAME;
+    public static final long IDLE_WORKER_KEEP_ALIVE_NS;
+    public static final int MAX_POOL_SIZE;
+    public static final CastSync.AnonymousClass1 NonBlockingContext;
+    public static final long WORK_STEALING_TIME_RESOLUTION_NS;
+    public static final NanoTimeSource schedulerTimeSource;
+
+    static {
+        String property;
+        int i = SystemPropsKt__SystemPropsKt.AVAILABLE_PROCESSORS;
+        try {
+            property = System.getProperty("kotlinx.coroutines.scheduler.default.name");
+        } catch (SecurityException unused) {
+            property = null;
+        }
+        if (property == null) {
+            property = "DefaultDispatcher";
+        }
+        DEFAULT_SCHEDULER_NAME = property;
+        WORK_STEALING_TIME_RESOLUTION_NS = AtomicKt.systemProp("kotlinx.coroutines.scheduler.resolution.ns", 100000L, 1L, Long.MAX_VALUE);
+        int i2 = SystemPropsKt__SystemPropsKt.AVAILABLE_PROCESSORS;
+        if (i2 < 2) {
+            i2 = 2;
+        }
+        CORE_POOL_SIZE = AtomicKt.systemProp$default(i2, 8, "kotlinx.coroutines.scheduler.core.pool.size");
+        MAX_POOL_SIZE = AtomicKt.systemProp$default(2097150, 4, "kotlinx.coroutines.scheduler.max.pool.size");
+        IDLE_WORKER_KEEP_ALIVE_NS = TimeUnit.SECONDS.toNanos(AtomicKt.systemProp("kotlinx.coroutines.scheduler.keep.alive.sec", 60L, 1L, Long.MAX_VALUE));
+        schedulerTimeSource = NanoTimeSource.INSTANCE;
+        NonBlockingContext = new CastSync.AnonymousClass1(0);
+        BlockingContext = new CastSync.AnonymousClass1(1);
+    }
 }

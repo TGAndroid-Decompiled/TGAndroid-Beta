@@ -3,113 +3,57 @@ package org.telegram.ui.Components.inset;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.PathInterpolator;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsAnimationCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.credentials.Credential;
 import java.util.Iterator;
 import java.util.List;
+import java.util.WeakHashMap;
 import me.vkryl.core.BitwiseUtils;
 import me.vkryl.core.reference.ReferenceList;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 
-public class WindowAnimatedInsetsProvider extends WindowInsetsAnimationCompat.Callback {
-    private int activeAnimationsCounter;
-    private final ReferenceList listeners;
-    private final ViewGroup root;
-    private static final PointF tmpPointF = new PointF();
-    private static final RectF tmpRectF = new RectF();
-    private static final Rect tmpRect = new Rect();
+public final class WindowAnimatedInsetsProvider extends Credential {
+    public static final Rect tmpRect;
+    public static final RectF tmpRectF;
+    public int activeAnimationsCounter;
+    public final ReferenceList listeners = new ReferenceList(true);
+    public final ViewGroup root;
 
     public interface Listener {
-
-        public abstract class CC {
-            public static void $default$onAnimatedInsetsFinished(Listener listener) {
-            }
-
-            public static void $default$onAnimatedInsetsStarted(Listener listener) {
-            }
-        }
-
         View getAnimatedInsetsTargetView();
 
-        void onAnimatedInsetsChanged(View view, WindowInsetsCompat windowInsetsCompat);
+        void onAnimatedInsetsChanged(WindowInsetsCompat windowInsetsCompat);
 
         void onAnimatedInsetsFinished();
 
         void onAnimatedInsetsStarted();
     }
 
+    static {
+        new PointF();
+        tmpRectF = new RectF();
+        tmpRect = new Rect();
+    }
+
     public WindowAnimatedInsetsProvider(ViewGroup viewGroup) {
-        super(0);
-        this.listeners = new ReferenceList();
         this.root = viewGroup;
-        ViewCompat.setWindowInsetsAnimationCallback(viewGroup, this);
-    }
-
-    @Override
-    public WindowInsetsCompat onProgress(WindowInsetsCompat windowInsetsCompat, List list) {
-        Iterator it = list.iterator();
-        int typeMask = 0;
-        while (it.hasNext()) {
-            typeMask |= ((WindowInsetsAnimationCompat) it.next()).getTypeMask();
+        WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
+        if (Build.VERSION.SDK_INT >= 30) {
+            viewGroup.setWindowInsetsAnimationCallback(new WindowInsetsAnimationCompat.Impl30.ProxyCallback(this));
+            return;
         }
-        if (BitwiseUtils.hasFlag(typeMask, WindowInsetsCompat.Type.ime())) {
-            dispatchWindowInsetsAnimationChange(windowInsetsCompat);
+        PathInterpolator pathInterpolator = WindowInsetsAnimationCompat.Impl21.SHOW_IME_INTERPOLATOR;
+        View.OnApplyWindowInsetsListener impl21OnApplyWindowInsetsListener = new WindowInsetsAnimationCompat.Impl21.Impl21OnApplyWindowInsetsListener(viewGroup, this);
+        viewGroup.setTag(2131296698, impl21OnApplyWindowInsetsListener);
+        if (viewGroup.getTag(2131296686) == null && viewGroup.getTag(2131296687) == null) {
+            viewGroup.setOnApplyWindowInsetsListener(impl21OnApplyWindowInsetsListener);
         }
-        return windowInsetsCompat;
-    }
-
-    @Override
-    public WindowInsetsAnimationCompat.BoundsCompat onStart(WindowInsetsAnimationCompat windowInsetsAnimationCompat, WindowInsetsAnimationCompat.BoundsCompat boundsCompat) {
-        if (this.activeAnimationsCounter == 0) {
-            dispatchWindowInsetsAnimationStart();
-        }
-        this.activeAnimationsCounter++;
-        return super.onStart(windowInsetsAnimationCompat, boundsCompat);
-    }
-
-    @Override
-    public void onEnd(WindowInsetsAnimationCompat windowInsetsAnimationCompat) {
-        super.onEnd(windowInsetsAnimationCompat);
-        int i = this.activeAnimationsCounter - 1;
-        this.activeAnimationsCounter = i;
-        if (i == 0) {
-            dispatchWindowInsetsAnimationFinish();
-        }
-    }
-
-    public void subscribeToWindowInsetsAnimation(Listener listener) {
-        this.listeners.add(listener);
-    }
-
-    private void dispatchWindowInsetsAnimationStart() {
-        Iterator it = this.listeners.iterator();
-        while (it.hasNext()) {
-            ((Listener) it.next()).onAnimatedInsetsStarted();
-        }
-    }
-
-    private void dispatchWindowInsetsAnimationFinish() {
-        Iterator it = this.listeners.iterator();
-        while (it.hasNext()) {
-            ((Listener) it.next()).onAnimatedInsetsFinished();
-        }
-    }
-
-    private void dispatchWindowInsetsAnimationChange(WindowInsetsCompat windowInsetsCompat) {
-        for (Listener listener : this.listeners) {
-            View animatedInsetsTargetView = listener.getAnimatedInsetsTargetView();
-            WindowInsetsCompat windowInsetsCompatCalculateWindowInsets = calculateWindowInsets(windowInsetsCompat, animatedInsetsTargetView, this.root);
-            if (windowInsetsCompatCalculateWindowInsets != null) {
-                listener.onAnimatedInsetsChanged(animatedInsetsTargetView, windowInsetsCompatCalculateWindowInsets);
-            }
-        }
-    }
-
-    public static WindowInsetsCompat calculateWindowInsets(View view) {
-        return calculateWindowInsets(ViewCompat.getRootWindowInsets(view), view, view.getRootView());
     }
 
     public static WindowInsetsCompat calculateWindowInsets(WindowInsetsCompat windowInsetsCompat, View view, View view2) {
@@ -126,6 +70,39 @@ public class WindowAnimatedInsetsProvider extends WindowInsetsAnimationCompat.Ca
         int i2 = rect.top;
         int width = view2.getWidth() - rect.right;
         int height = view2.getHeight() - rect.bottom;
-        return (i == 0 && i2 == 0 && width == 0 && height == 0) ? windowInsetsCompat : windowInsetsCompat.inset(Math.max(0, i), Math.max(0, i2), Math.max(0, width), Math.max(0, height));
+        if (i == 0 && i2 == 0 && width == 0 && height == 0) {
+            return windowInsetsCompat;
+        }
+        return windowInsetsCompat.mImpl.inset(Math.max(0, i), Math.max(0, i2), Math.max(0, width), Math.max(0, height));
+    }
+
+    @Override
+    public final void onEnd() {
+        int i = this.activeAnimationsCounter - 1;
+        this.activeAnimationsCounter = i;
+        if (i == 0) {
+            Iterator it = this.listeners.iterator();
+            while (it.hasNext()) {
+                ((Listener) it.next()).onAnimatedInsetsFinished();
+            }
+        }
+    }
+
+    @Override
+    public final WindowInsetsCompat onProgress(WindowInsetsCompat windowInsetsCompat, List list) {
+        Iterator it = list.iterator();
+        int typeMask = 0;
+        while (it.hasNext()) {
+            typeMask |= ((WindowInsetsAnimationCompat) it.next()).mImpl.getTypeMask();
+        }
+        if (BitwiseUtils.hasFlag(typeMask, 8)) {
+            for (Listener listener : this.listeners) {
+                WindowInsetsCompat windowInsetsCompatCalculateWindowInsets = calculateWindowInsets(windowInsetsCompat, listener.getAnimatedInsetsTargetView(), this.root);
+                if (windowInsetsCompatCalculateWindowInsets != null) {
+                    listener.onAnimatedInsetsChanged(windowInsetsCompatCalculateWindowInsets);
+                }
+            }
+        }
+        return windowInsetsCompat;
     }
 }

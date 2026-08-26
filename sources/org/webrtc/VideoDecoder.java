@@ -12,15 +12,15 @@ public interface VideoDecoder {
         void onDecodedFrame(VideoFrame videoFrame, Integer num, Integer num2);
     }
 
-    long createNative(long j);
+    public static class DecodeInfo {
+        public final boolean isMissingFrames;
+        public final long renderTimeMs;
 
-    VideoCodecStatus decode(EncodedImage encodedImage, DecodeInfo decodeInfo);
-
-    String getImplementationName();
-
-    VideoCodecStatus initDecode(Settings settings, Callback callback);
-
-    VideoCodecStatus release();
+        public DecodeInfo(boolean z, long j) {
+            this.isMissingFrames = z;
+            this.renderTimeMs = j;
+        }
+    }
 
     public static class Settings {
         public final int height;
@@ -34,13 +34,13 @@ public interface VideoDecoder {
         }
     }
 
-    public static class DecodeInfo {
-        public final boolean isMissingFrames;
-        public final long renderTimeMs;
+    long createNative(long j);
 
-        public DecodeInfo(boolean z, long j) {
-            this.isMissingFrames = z;
-            this.renderTimeMs = j;
-        }
-    }
+    VideoCodecStatus decode(EncodedImage encodedImage, DecodeInfo decodeInfo);
+
+    String getImplementationName();
+
+    VideoCodecStatus initDecode(Settings settings, Callback callback);
+
+    VideoCodecStatus release();
 }

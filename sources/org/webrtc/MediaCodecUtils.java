@@ -20,27 +20,7 @@ class MediaCodecUtils {
     static final int[] ENCODER_COLOR_FORMATS = {19, 21, 2141391872, 2141391876};
     static final int[] TEXTURE_COLOR_FORMATS = {2130708361};
 
-    static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        for (int i : iArr) {
-            for (int i2 : codecCapabilities.colorFormats) {
-                if (i2 == i) {
-                    return Integer.valueOf(i2);
-                }
-            }
-        }
-        return null;
-    }
-
-    static boolean codecSupportsType(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
-        for (String str : mediaCodecInfo.getSupportedTypes()) {
-            if (videoCodecMimeType.mimeType().equals(str)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    static class AnonymousClass1 {
+    public static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -69,7 +49,19 @@ class MediaCodecUtils {
         }
     }
 
-    static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z) {
+    private MediaCodecUtils() {
+    }
+
+    public static boolean codecSupportsType(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
+        for (String str : mediaCodecInfo.getSupportedTypes()) {
+            if (videoCodecMimeType.mimeType().equals(str)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z) {
         int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2 || i == 3 || i == 4) {
             return new HashMap();
@@ -80,18 +72,15 @@ class MediaCodecUtils {
         throw new IllegalArgumentException("Unsupported codec: " + videoCodecMimeType);
     }
 
-    static boolean isHardwareAccelerated(MediaCodecInfo mediaCodecInfo) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            return isHardwareAcceleratedQOrHigher(mediaCodecInfo);
-        }
-        return !isSoftwareOnly(mediaCodecInfo);
+    public static boolean isHardwareAccelerated(MediaCodecInfo mediaCodecInfo) {
+        return Build.VERSION.SDK_INT >= 29 ? isHardwareAcceleratedQOrHigher(mediaCodecInfo) : !isSoftwareOnly(mediaCodecInfo);
     }
 
     private static boolean isHardwareAcceleratedQOrHigher(MediaCodecInfo mediaCodecInfo) {
         return mediaCodecInfo.isHardwareAccelerated();
     }
 
-    static boolean isSoftwareOnly(MediaCodecInfo mediaCodecInfo) {
+    public static boolean isSoftwareOnly(MediaCodecInfo mediaCodecInfo) {
         if (Build.VERSION.SDK_INT >= 29) {
             return isSoftwareOnlyQOrHigher(mediaCodecInfo);
         }
@@ -108,6 +97,14 @@ class MediaCodecUtils {
         return mediaCodecInfo.isSoftwareOnly();
     }
 
-    private MediaCodecUtils() {
+    public static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        for (int i : iArr) {
+            for (int i2 : codecCapabilities.colorFormats) {
+                if (i2 == i) {
+                    return Integer.valueOf(i2);
+                }
+            }
+        }
+        return null;
     }
 }

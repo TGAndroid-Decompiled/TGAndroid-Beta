@@ -7,6 +7,7 @@ import android.opengl.EGLDisplay;
 import android.opengl.EGLSurface;
 import android.opengl.GLES20;
 import android.view.Surface;
+import com.google.android.gms.internal.mlkit_language_id_common.zzil;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
 import org.telegram.messenger.FileLog;
@@ -37,23 +38,10 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         this.mSurface = new Surface(this.mSurfaceTexture);
     }
 
-    public void release() {
-        TextureRenderer textureRenderer = this.mTextureRender;
-        if (textureRenderer != null) {
-            textureRenderer.release();
+    private void checkEglError(String str) {
+        if (EGL14.eglGetError() != 12288) {
+            throw new RuntimeException(zzil.m("EGL error encountered (see log) at: ", str));
         }
-        this.mSurface.release();
-        this.mEGLDisplay = null;
-        this.mEGLContext = null;
-        this.mEGLSurface = null;
-        this.mEGL = null;
-        this.mTextureRender = null;
-        this.mSurface = null;
-        this.mSurfaceTexture = null;
-    }
-
-    public Surface getSurface() {
-        return this.mSurface;
     }
 
     public void awaitNewImage() {
@@ -73,8 +61,16 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         this.mSurfaceTexture.updateTexImage();
     }
 
+    public void changeFragmentShader(String str, String str2, boolean z) {
+        this.mTextureRender.changeFragmentShader(str, str2, z);
+    }
+
     public void drawImage(long j) {
         this.mTextureRender.drawFrame(this.mSurfaceTexture, j);
+    }
+
+    public Surface getSurface() {
+        return this.mSurface;
     }
 
     @Override
@@ -92,15 +88,19 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         }
     }
 
-    private void checkEglError(String str) {
-        if (EGL14.eglGetError() == 12288) {
-            return;
+    public void release() {
+        TextureRenderer textureRenderer = this.mTextureRender;
+        if (textureRenderer != null) {
+            textureRenderer.release();
         }
-        throw new RuntimeException("EGL error encountered (see log) at: " + str);
-    }
-
-    public void changeFragmentShader(String str, String str2, boolean z) {
-        this.mTextureRender.changeFragmentShader(str, str2, z);
+        this.mSurface.release();
+        this.mEGLDisplay = null;
+        this.mEGLContext = null;
+        this.mEGLSurface = null;
+        this.mEGL = null;
+        this.mTextureRender = null;
+        this.mSurface = null;
+        this.mSurfaceTexture = null;
     }
 
     public boolean supportsEXTYUV() {

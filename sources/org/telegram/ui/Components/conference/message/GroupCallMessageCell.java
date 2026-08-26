@@ -12,14 +12,12 @@ import android.graphics.RectF;
 import android.graphics.RenderNode;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.text.style.ClickableSpan;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.components.Component;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.android.util.ClickHelper;
@@ -29,150 +27,78 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessageObject$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.OKLCH;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+import org.telegram.ui.GroupCallActivity;
 
-public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Delegate, NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
-    private static final Rect tmpRect = new Rect();
-    private AnimatedEmojiDrawable animatedReactionDrawable;
-    private final ImageReceiver animatedReactionReceiver;
-    private final ImageReceiver avatarReceiver;
-    private final Paint bgPaint;
-    private View blurRoot;
-    private final ClickHelper clickHelper;
-    private Delegate delegate;
-    private final Paint errPaint;
-    private final CellFlickerDrawable flickerDrawable;
-    private GroupCallMessage groupCallMessage;
-    private final BoolAnimator isSendDelayedAnimator;
-    private final BoolAnimator isSendErrorAnimator;
-    private Layout layout;
-    private boolean layoutInvalidated;
-    private ReactionsLayoutInBubble.VisibleReaction messageReaction;
-    private final SpoilersTextView messageTextView;
-    private final Runnable onMessageStateUpdateListener;
-    private RenderNode renderNode;
-    private float renderNodeScale;
-    private final ClickableSpan senderNameSpan;
-    private final RectF tmpRectF;
+public final class GroupCallMessageCell extends ViewGroup implements ClickHelper.Delegate, NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
+    public static final Rect tmpRect = new Rect();
+    public AnimatedEmojiDrawable animatedReactionDrawable;
+    public final ImageReceiver animatedReactionReceiver;
+    public final ImageReceiver avatarReceiver;
+    public final Paint bgPaint;
+    public View blurRoot;
+    public final ClickHelper clickHelper;
+    public Delegate delegate;
+    public final Paint errPaint;
+    public final CellFlickerDrawable flickerDrawable;
+    public GroupCallMessage groupCallMessage;
+    public final BoolAnimator isSendDelayedAnimator;
+    public final BoolAnimator isSendErrorAnimator;
+    public Component.Builder layout;
+    public boolean layoutInvalidated;
+    public ReactionsLayoutInBubble.VisibleReaction messageReaction;
+    public final SpoilersTextView messageTextView;
+    public final Tooltip$$ExternalSyntheticLambda0 onMessageStateUpdateListener;
+    public RenderNode renderNode;
+    public float renderNodeScale;
+    public final ChatActivity.AnonymousClass102 senderNameSpan;
+    public final RectF tmpRectF;
 
     public interface Delegate {
-        void didClickAvatar(GroupCallMessageCell groupCallMessageCell, GroupCallMessage groupCallMessage, float f, float f2);
-
-        void didClickSenderName(GroupCallMessageCell groupCallMessageCell, GroupCallMessage groupCallMessage);
     }
 
-    @Override
-    public boolean forceEnableVibration() {
-        return ClickHelper.Delegate.CC.$default$forceEnableVibration(this);
-    }
+    public final class VH extends RecyclerView.ViewHolder {
+        public final GroupCallMessageCell cell;
 
-    @Override
-    public long getLongPressDuration() {
-        return ViewConfiguration.getLongPressTimeout();
-    }
-
-    @Override
-    public boolean ignoreHapticFeedbackSettings(float f, float f2) {
-        return ClickHelper.Delegate.CC.$default$ignoreHapticFeedbackSettings(this, f, f2);
-    }
-
-    @Override
-    public boolean needCancelTouchBySlopMove() {
-        return ClickHelper.Delegate.CC.$default$needCancelTouchBySlopMove(this);
-    }
-
-    @Override
-    public boolean needLongPress(float f, float f2) {
-        return ClickHelper.Delegate.CC.$default$needLongPress(this, f, f2);
-    }
-
-    @Override
-    public void onClickTouchDown(View view, float f, float f2) {
-        ClickHelper.Delegate.CC.$default$onClickTouchDown(this, view, f, f2);
-    }
-
-    @Override
-    public void onClickTouchMove(View view, float f, float f2) {
-        ClickHelper.Delegate.CC.$default$onClickTouchMove(this, view, f, f2);
-    }
-
-    @Override
-    public void onClickTouchUp(View view, float f, float f2) {
-        ClickHelper.Delegate.CC.$default$onClickTouchUp(this, view, f, f2);
-    }
-
-    @Override
-    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-        FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
-    }
-
-    @Override
-    public void onLongPressCancelled(View view, float f, float f2) {
-        ClickHelper.Delegate.CC.$default$onLongPressCancelled(this, view, f, f2);
-    }
-
-    @Override
-    public void onLongPressFinish(View view, float f, float f2) {
-        ClickHelper.Delegate.CC.$default$onLongPressFinish(this, view, f, f2);
-    }
-
-    @Override
-    public void onLongPressMove(View view, MotionEvent motionEvent, float f, float f2, float f3, float f4) {
-        ClickHelper.Delegate.CC.$default$onLongPressMove(this, view, motionEvent, f, f2, f3, f4);
-    }
-
-    @Override
-    public boolean onLongPressRequestedAt(View view, float f, float f2) {
-        return ClickHelper.Delegate.CC.$default$onLongPressRequestedAt(this, view, f, f2);
+        public VH(GroupCallMessageCell groupCallMessageCell) {
+            super(groupCallMessageCell);
+            this.cell = groupCallMessageCell;
+        }
     }
 
     public GroupCallMessageCell(Context context) {
         super(context);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.isSendDelayedAnimator = new BoolAnimator(0, this, cubicBezierInterpolator, 320L);
-        this.isSendErrorAnimator = new BoolAnimator(1, this, cubicBezierInterpolator, 320L);
+        this.isSendDelayedAnimator = new BoolAnimator(0, this, cubicBezierInterpolator, 320L, false);
+        this.isSendErrorAnimator = new BoolAnimator(1, this, cubicBezierInterpolator, 320L, false);
         this.clickHelper = new ClickHelper(this);
         Paint paint = new Paint(1);
         this.bgPaint = paint;
         Paint paint2 = new Paint(1);
         this.errPaint = paint2;
-        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
+        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(64, 204, 160);
         this.flickerDrawable = cellFlickerDrawable;
-        this.onMessageStateUpdateListener = new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.onMessageStateUpdate(true);
-            }
-        };
-        this.senderNameSpan = new ClickableSpan() {
-            @Override
-            public void updateDrawState(TextPaint textPaint) {
-            }
-
-            @Override
-            public void onClick(View view) {
-                if (GroupCallMessageCell.this.delegate == null || GroupCallMessageCell.this.groupCallMessage == null) {
-                    return;
-                }
-                Delegate delegate = GroupCallMessageCell.this.delegate;
-                GroupCallMessageCell groupCallMessageCell = GroupCallMessageCell.this;
-                delegate.didClickSenderName(groupCallMessageCell, groupCallMessageCell.groupCallMessage);
-            }
-        };
+        this.onMessageStateUpdateListener = new Tooltip$$ExternalSyntheticLambda0(this, 18);
+        this.senderNameSpan = new ChatActivity.AnonymousClass102(this, 6);
         this.tmpRectF = new RectF();
-        SpoilersTextView spoilersTextView = new SpoilersTextView(context);
+        SpoilersTextView spoilersTextView = new SpoilersTextView(context, null, true);
         this.messageTextView = spoilersTextView;
         spoilersTextView.setDisablePaddingsOffset(true);
         spoilersTextView.setTextSize(14.0f);
@@ -186,134 +112,123 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.avatarReceiver = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(11.0f));
-        cellFlickerDrawable.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        cellFlickerDrawable.paintOutline.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.animatedReactionReceiver = new ImageReceiver(this);
         setWillNotDraw(false);
     }
 
-    public void onMessageStateUpdate(boolean z) {
-        GroupCallMessage groupCallMessage = this.groupCallMessage;
-        if (groupCallMessage != null) {
-            this.isSendDelayedAnimator.setValue(groupCallMessage.isSendDelayed(), z);
-            this.isSendErrorAnimator.setValue(this.groupCallMessage.isSendError(), z);
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.emojiLoaded) {
+            invalidate();
         }
-    }
-
-    public void setSingleLine() {
-        this.messageTextView.setMaxLines(1);
-        this.messageTextView.setSingleLine(true);
-        this.messageTextView.setEllipsize(TextUtils.TruncateAt.END);
     }
 
     @Override
-    public void setBackgroundColor(int i) {
-        this.bgPaint.setColor(i);
-    }
-
-    public void setRenderNode(View view, RenderNode renderNode, float f) {
-        this.blurRoot = view;
-        this.renderNode = renderNode;
-        this.renderNodeScale = f;
-    }
-
-    public void set(GroupCallMessage groupCallMessage) {
-        CharSequence charSequenceConcat;
-        GroupCallMessage groupCallMessage2;
-        GroupCallMessage groupCallMessage3;
-        if (isAttachedToWindow() && (groupCallMessage3 = this.groupCallMessage) != null) {
-            groupCallMessage3.unsubscribeFromStateUpdates(this.onMessageStateUpdateListener);
+    public final void dispatchDraw(Canvas canvas) {
+        Component.Builder builder = this.layout;
+        if (builder == null) {
+            return;
         }
-        this.groupCallMessage = groupCallMessage;
-        if (isAttachedToWindow() && (groupCallMessage2 = this.groupCallMessage) != null) {
-            groupCallMessage2.subscribeToStateUpdates(this.onMessageStateUpdateListener);
-        }
-        onMessageStateUpdate(false);
-        TLObject userOrChat = MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(groupCallMessage.fromId);
-        String name = DialogObject.getName(userOrChat);
-        AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setInfo(groupCallMessage.currentAccount, userOrChat);
-        this.avatarReceiver.setForUserOrChat(userOrChat, avatarDrawable);
-        this.animatedReactionReceiver.setImage(null, null, null, null, null, 0);
-        if (this.animatedReactionDrawable != null && isAttachedToWindow()) {
-            this.animatedReactionDrawable.removeView(this);
-        }
-        this.animatedReactionDrawable = null;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(name);
-        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
-        spannableStringBuilder.setSpan(this.senderNameSpan, 0, spannableStringBuilder.length(), 33);
-        ReactionsLayoutInBubble.VisibleReaction visibleReaction = groupCallMessage.visibleReaction;
-        if (visibleReaction == null) {
-            charSequenceConcat = concat(spannableStringBuilder, MessageObject.formatTextWithEntities(groupCallMessage.message, false, true, this.messageTextView.getPaint()));
-        } else if (visibleReaction.emojicon != null) {
-            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.emojicon);
-            if (tL_availableReaction != null) {
-                charSequenceConcat = spannableStringBuilder;
-                this.animatedReactionReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
-                charSequenceConcat = spannableStringBuilder;
+        canvas.drawPath((Path) builder.providedInterfaces, this.bgPaint);
+        if (Build.VERSION.SDK_INT >= 29 && this.renderNode != null && canvas.isHardwareAccelerated()) {
+            float y = 0.0f;
+            View view = this;
+            while (view != this.blurRoot) {
+                y += view.getY();
+                Object parent = view.getParent();
+                if (!(parent instanceof View)) {
+                    return;
+                } else {
+                    view = (View) parent;
+                }
             }
-        } else if (visibleReaction.documentId != 0) {
-            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.documentId);
-            this.animatedReactionDrawable = animatedEmojiDrawable;
-            animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            if (isAttachedToWindow()) {
-                charSequenceConcat = spannableStringBuilder;
-                charSequenceConcat = spannableStringBuilder;
-                this.animatedReactionDrawable.addView(this);
-                charSequenceConcat = spannableStringBuilder;
-            }
+            canvas.save();
+            canvas.clipPath((Path) this.layout.providedInterfaces);
+            canvas.translate(0.0f, -y);
+            float f = this.renderNodeScale;
+            canvas.scale(f, f);
+            canvas.drawRenderNode(this.renderNode);
+            canvas.restore();
         }
-        charSequenceConcat = spannableStringBuilder;
-        charSequenceConcat = spannableStringBuilder;
-        charSequenceConcat = spannableStringBuilder;
-        charSequenceConcat = spannableStringBuilder;
-        this.messageReaction = groupCallMessage.visibleReaction;
-        this.layoutInvalidated = true;
-        this.messageTextView.setText(charSequenceConcat);
-        requestLayout();
+        Paint paint = this.errPaint;
+        if (paint.getAlpha() > 0) {
+            canvas.drawPath((Path) this.layout.providedInterfaces, paint);
+        }
+        if (this.isSendDelayedAnimator.floatValue > 0.0f) {
+            RectF rectF = this.tmpRectF;
+            rectF.set((RectF) this.layout.name);
+            rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+            this.flickerDrawable.draw(AndroidUtilities.dp(14.0f), canvas, rectF, null);
+            invalidate();
+        }
+        super.dispatchDraw(canvas);
+        this.avatarReceiver.draw(canvas);
+        this.animatedReactionReceiver.draw(canvas);
+        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedReactionDrawable;
+        if (animatedEmojiDrawable != null) {
+            animatedEmojiDrawable.draw(canvas);
+        }
     }
 
-    public void setDelegate(Delegate delegate) {
-        this.delegate = delegate;
+    @Override
+    public final boolean forceEnableVibration() {
+        return false;
+    }
+
+    public final int getClickTarget(float f, float f2) {
+        Component.Builder builder = this.layout;
+        if (builder == null) {
+            return -1;
+        }
+        RectF rectF = this.tmpRectF;
+        rectF.set((RectF) builder.dependencies);
+        rectF.inset(-AndroidUtilities.dp(5.0f), -AndroidUtilities.dp(5.0f));
+        if (rectF.contains(f, f2)) {
+            return 1;
+        }
+        return ((RectF) this.layout.name).contains(f, f2) ? 0 : -1;
+    }
+
+    @Override
+    public long getLongPressDuration() {
+        return ViewConfiguration.getLongPressTimeout();
     }
 
     public GroupCallMessage getMessage() {
         return this.groupCallMessage;
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        Layout layout = this.layout;
-        if (layout == null || this.layoutInvalidated || layout.viewWidth != size) {
-            Layout layoutBuild = Layout.build(size, getPaddingLeft(), getPaddingRight(), this.messageTextView, this.messageReaction);
-            this.layout = layoutBuild;
-            this.avatarReceiver.setImageCoords(layoutBuild.avatar);
-            this.animatedReactionReceiver.setImageCoords(this.layout.reaction);
-            if (this.animatedReactionDrawable != null) {
-                RectF rectF = this.layout.reaction;
-                Rect rect = tmpRect;
-                rectF.round(rect);
-                this.animatedReactionDrawable.setBounds(rect);
-            }
+    public float getReactionCenterX() {
+        Component.Builder builder = this.layout;
+        if (builder != null) {
+            return ((RectF) builder.publishedEvents).centerX();
         }
-        setMeasuredDimension(size, this.layout.viewHeight);
-        this.flickerDrawable.setParentWidth(Math.round(this.layout.bubble.width() + AndroidUtilities.dp(48.0f)));
+        return 0.0f;
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        Layout layout = this.layout;
-        if (layout == null) {
-            return;
-        }
-        int iRound = Math.round(layout.text.x);
-        int iRound2 = Math.round(this.layout.text.y);
-        SpoilersTextView spoilersTextView = this.messageTextView;
-        spoilersTextView.layout(iRound, iRound2, spoilersTextView.getMeasuredWidth() + iRound, this.messageTextView.getMeasuredHeight() + iRound2);
+    public final boolean ignoreHapticFeedbackSettings(float f, float f2) {
+        return false;
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final boolean needCancelTouchBySlopMove() {
+        return true;
+    }
+
+    @Override
+    public final boolean needClickAt(View view, float f, float f2) {
+        return getClickTarget(f, f2) == 1;
+    }
+
+    @Override
+    public final boolean needLongPress(float f, float f2) {
+        return false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.avatarReceiver.onAttachedToWindow();
         this.animatedReactionReceiver.onAttachedToWindow();
@@ -329,7 +244,29 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onClickAt(View view, float f, float f2) {
+        Delegate delegate;
+        GroupCallMessage groupCallMessage;
+        if (getClickTarget(f, f2) != 1 || (delegate = this.delegate) == null || (groupCallMessage = this.groupCallMessage) == null) {
+            return;
+        }
+        ((GroupCallActivity.AnonymousClass35) delegate).openSenderProfile(groupCallMessage);
+    }
+
+    @Override
+    public final void onClickTouchDown(View view, float f, float f2) {
+    }
+
+    @Override
+    public final void onClickTouchMove(View view, float f, float f2) {
+    }
+
+    @Override
+    public final void onClickTouchUp(View view, float f, float f2) {
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.avatarReceiver.onDetachedFromWindow();
         this.animatedReactionReceiver.onDetachedFromWindow();
@@ -344,211 +281,260 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         }
     }
 
-    public boolean isInsideBubble(float f, float f2) {
-        Layout layout = this.layout;
-        if (layout == null) {
-            return false;
-        }
-        return layout.bubble.contains(f, f2);
+    @Override
+    public final void onFactorChangeFinished(float f, int i) {
     }
 
     @Override
-    public boolean needClickAt(View view, float f, float f2) {
-        return getClickTarget(f, f2) == 1;
-    }
-
-    @Override
-    public void onClickAt(View view, float f, float f2) {
-        Delegate delegate;
-        GroupCallMessage groupCallMessage;
-        if (getClickTarget(f, f2) != 1 || (delegate = this.delegate) == null || (groupCallMessage = this.groupCallMessage) == null) {
-            return;
-        }
-        delegate.didClickAvatar(this, groupCallMessage, f, f2);
-    }
-
-    private int getClickTarget(float f, float f2) {
-        Layout layout = this.layout;
-        if (layout == null) {
-            return -1;
-        }
-        this.tmpRectF.set(layout.avatar);
-        this.tmpRectF.inset(-AndroidUtilities.dp(5.0f), -AndroidUtilities.dp(5.0f));
-        if (this.tmpRectF.contains(f, f2)) {
-            return 1;
-        }
-        return this.layout.bubble.contains(f, f2) ? 0 : -1;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.clickHelper.onTouchEvent(this, motionEvent);
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        Layout layout = this.layout;
-        if (layout == null) {
-            return;
-        }
-        canvas.drawPath(layout.bubblePath, this.bgPaint);
-        if (Build.VERSION.SDK_INT >= 29 && this.renderNode != null && canvas.isHardwareAccelerated()) {
-            float y = 0.0f;
-            View view = this;
-            while (view != this.blurRoot) {
-                y += view.getY();
-                Object parent = view.getParent();
-                if (!(parent instanceof View)) {
-                    return;
-                } else {
-                    view = (View) parent;
-                }
-            }
-            canvas.save();
-            canvas.clipPath(this.layout.bubblePath);
-            canvas.translate(0.0f, -y);
-            float f = this.renderNodeScale;
-            canvas.scale(f, f);
-            canvas.drawRenderNode(this.renderNode);
-            canvas.restore();
-        }
-        if (this.errPaint.getAlpha() > 0) {
-            canvas.drawPath(this.layout.bubblePath, this.errPaint);
-        }
-        if (this.isSendDelayedAnimator.getFloatValue() > 0.0f) {
-            this.tmpRectF.set(this.layout.bubble);
-            this.tmpRectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            this.flickerDrawable.draw(canvas, this.tmpRectF, AndroidUtilities.dp(14.0f), null);
-            invalidate();
-        }
-        super.dispatchDraw(canvas);
-        this.avatarReceiver.draw(canvas);
-        this.animatedReactionReceiver.draw(canvas);
-        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedReactionDrawable;
-        if (animatedEmojiDrawable != null) {
-            animatedEmojiDrawable.draw(canvas);
-        }
-    }
-
-    public float getReactionCenterX() {
-        Layout layout = this.layout;
-        if (layout != null) {
-            return layout.reaction.centerX();
-        }
-        return 0.0f;
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.emojiLoaded) {
-            invalidate();
-        }
-    }
-
-    @Override
-    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-        this.errPaint.setAlpha(Math.round(this.isSendErrorAnimator.getFloatValue() * 100.0f));
-        this.flickerDrawable.setAlpha(Math.round(this.isSendDelayedAnimator.getFloatValue() * 220.0f));
+    public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        this.errPaint.setAlpha(Math.round(this.isSendErrorAnimator.floatValue * 100.0f));
+        int iRound = Math.round(this.isSendDelayedAnimator.floatValue * 220.0f);
+        CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
+        cellFlickerDrawable.paint.setAlpha(iRound);
+        cellFlickerDrawable.paintOutline.setAlpha(iRound);
         invalidate();
     }
 
-    private static class Layout {
-        public int viewHeight;
-        public int viewWidth;
-        public final RectF bubble = new RectF();
-        public final Path bubblePath = new Path();
-        public final RectF avatar = new RectF();
-        public final RectF reaction = new RectF();
-        public final PointF text = new PointF();
-
-        private Layout() {
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        Component.Builder builder = this.layout;
+        if (builder == null) {
+            return;
         }
+        int iRound = Math.round(((PointF) builder.factory).x);
+        int iRound2 = Math.round(((PointF) this.layout.factory).y);
+        SpoilersTextView spoilersTextView = this.messageTextView;
+        spoilersTextView.layout(iRound, iRound2, spoilersTextView.getMeasuredWidth() + iRound, spoilersTextView.getMeasuredHeight() + iRound2);
+    }
 
-        public static Layout build(int i, int i2, int i3, SpoilersTextView spoilersTextView, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-            int iDp;
-            spoilersTextView.measure(View.MeasureSpec.makeMeasureSpec(((i - i2) - i3) - AndroidUtilities.dp(44.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
+    @Override
+    public final void onLongPressCancelled(View view, float f, float f2) {
+    }
+
+    @Override
+    public final void onLongPressFinish(View view, float f, float f2) {
+    }
+
+    @Override
+    public final void onLongPressMove(View view, MotionEvent motionEvent, float f, float f2, float f3, float f4) {
+    }
+
+    @Override
+    public final boolean onLongPressRequestedAt(View view, float f, float f2) {
+        return false;
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int iCeil;
+        int size = View.MeasureSpec.getSize(i);
+        Component.Builder builder = this.layout;
+        if (builder == null || this.layoutInvalidated || builder.instantiation != size) {
+            int paddingLeft = getPaddingLeft();
+            int paddingRight = getPaddingRight();
+            SpoilersTextView spoilersTextView = this.messageTextView;
+            ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.messageReaction;
+            spoilersTextView.measure(OKLCH.m((size - paddingLeft) - paddingRight, 44.0f, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
             float measuredWidth = spoilersTextView.getMeasuredWidth();
             if (visibleReaction == null) {
-                iDp = ((int) Math.ceil(measuredWidth)) + AndroidUtilities.dp(44.0f);
+                iCeil = AndroidUtilities.dp(44.0f) + ((int) Math.ceil(measuredWidth));
             } else {
-                iDp = AndroidUtilities.dp(70.0f) + ((int) Math.ceil(measuredWidth));
+                iCeil = ((int) Math.ceil(measuredWidth)) + AndroidUtilities.dp(70.0f);
             }
-            int iMax = Math.max(AndroidUtilities.dp(28.0f), spoilersTextView.getMeasuredHeight() + AndroidUtilities.dp(8.0f));
-            Layout layout = new Layout();
-            layout.viewWidth = i;
-            layout.viewHeight = iMax;
-            layout.bubble.set(0.0f, 0.0f, iDp, iMax);
-            layout.bubble.offset((i - iDp) / 2.0f, 0.0f);
-            layout.bubblePath.addRoundRect(layout.bubble, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), Path.Direction.CW);
+            int iM = MessageObject$$ExternalSyntheticOutline0.m(spoilersTextView.getMeasuredHeight(), 8.0f, AndroidUtilities.dp(28.0f));
+            Component.Builder builder2 = new Component.Builder();
+            builder2.instantiation = size;
+            builder2.type = iM;
+            RectF rectF = (RectF) builder2.name;
+            rectF.set(0.0f, 0.0f, iCeil, iM);
+            rectF.offset((size - iCeil) / 2.0f, 0.0f);
+            ((Path) builder2.providedInterfaces).addRoundRect(rectF, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), Path.Direction.CW);
             boolean z = spoilersTextView.getLayout().getParagraphDirection(0) == -1;
-            layout.avatar.set(0.0f, 0.0f, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
+            RectF rectF2 = (RectF) builder2.dependencies;
+            rectF2.set(0.0f, 0.0f, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
             if (z) {
-                RectF rectF = layout.avatar;
-                RectF rectF2 = layout.bubble;
-                rectF.offset(rectF2.right, rectF2.top);
-                layout.avatar.offset((-AndroidUtilities.dp(4.0f)) - layout.avatar.width(), AndroidUtilities.dp(3.0f));
+                rectF2.offset(rectF.right, rectF.top);
+                rectF2.offset((-AndroidUtilities.dp(4.0f)) - rectF2.width(), AndroidUtilities.dp(3.0f));
             } else {
-                RectF rectF3 = layout.avatar;
-                RectF rectF4 = layout.bubble;
-                rectF3.offset(rectF4.left, rectF4.top);
-                layout.avatar.offset(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.0f));
+                rectF2.offset(rectF.left, rectF.top);
+                rectF2.offset(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.0f));
             }
-            layout.reaction.set(0.0f, 0.0f, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f));
+            RectF rectF3 = (RectF) builder2.publishedEvents;
+            rectF3.set(0.0f, 0.0f, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f));
             if (z) {
-                layout.reaction.offset(layout.bubble.left + AndroidUtilities.dp(5.0f), 0.0f);
+                rectF3.offset(rectF.left + AndroidUtilities.dp(5.0f), 0.0f);
             } else {
-                layout.reaction.offset(layout.bubble.right - AndroidUtilities.dp(33.0f), 0.0f);
+                rectF3.offset(rectF.right - AndroidUtilities.dp(33.0f), 0.0f);
             }
-            layout.reaction.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            layout.text.set(0.0f, (layout.bubble.top + AndroidUtilities.dp(19.0f)) - spoilersTextView.getLayout().getLineBaseline(0));
+            rectF3.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+            PointF pointF = (PointF) builder2.factory;
+            pointF.set(0.0f, (rectF.top + AndroidUtilities.dp(19.0f)) - spoilersTextView.getLayout().getLineBaseline(0));
             if (z) {
-                layout.text.offset((layout.bubble.right - AndroidUtilities.dp(32.0f)) - measuredWidth, 0.0f);
-                return layout;
+                pointF.offset((rectF.right - AndroidUtilities.dp(32.0f)) - measuredWidth, 0.0f);
+            } else {
+                pointF.offset(rectF.left + AndroidUtilities.dp(32.0f), 0.0f);
             }
-            layout.text.offset(layout.bubble.left + AndroidUtilities.dp(32.0f), 0.0f);
-            return layout;
-        }
-    }
-
-    public static class VH extends RecyclerView.ViewHolder {
-        public final GroupCallMessageCell cell;
-
-        public VH(GroupCallMessageCell groupCallMessageCell) {
-            super(groupCallMessageCell);
-            this.cell = groupCallMessageCell;
-        }
-    }
-
-    public static CharSequence concat(CharSequence charSequence, CharSequence charSequence2) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        boolean zIsRtlByFirstStrong = isRtlByFirstStrong(charSequence);
-        boolean zIsRtlByFirstStrong2 = isRtlByFirstStrong(charSequence2);
-        if (zIsRtlByFirstStrong != zIsRtlByFirstStrong2) {
-            spannableStringBuilder.append(zIsRtlByFirstStrong2 ? (char) 8295 : (char) 8294);
-            spannableStringBuilder.append(charSequence);
-            spannableStringBuilder.append((char) 8297);
-        } else {
-            spannableStringBuilder.append(charSequence);
-        }
-        spannableStringBuilder.append((CharSequence) "  ");
-        spannableStringBuilder.append(charSequence2);
-        return spannableStringBuilder;
-    }
-
-    private static boolean isRtlByFirstStrong(CharSequence charSequence) {
-        int length = charSequence.length();
-        int iCharCount = 0;
-        while (iCharCount < length) {
-            int iCodePointAt = Character.codePointAt(charSequence, iCharCount);
-            iCharCount += Character.charCount(iCodePointAt);
-            byte directionality = Character.getDirectionality(iCodePointAt);
-            if (directionality == 0) {
-                break;
-            }
-            if (directionality == 1 || directionality == 2) {
-                return true;
+            this.layout = builder2;
+            this.avatarReceiver.setImageCoords(rectF2);
+            this.animatedReactionReceiver.setImageCoords((RectF) this.layout.publishedEvents);
+            if (this.animatedReactionDrawable != null) {
+                RectF rectF4 = (RectF) this.layout.publishedEvents;
+                Rect rect = tmpRect;
+                rectF4.round(rect);
+                this.animatedReactionDrawable.setBounds(rect);
             }
         }
-        return false;
+        setMeasuredDimension(size, this.layout.type);
+        this.flickerDrawable.parentWidth = Math.round(((RectF) this.layout.name).width() + AndroidUtilities.dp(48.0f));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return this.clickHelper.onTouchEvent(motionEvent, this);
+    }
+
+    public void set(GroupCallMessage groupCallMessage) {
+        boolean z;
+        int length;
+        int iCharCount;
+        char c;
+        byte directionality;
+        GroupCallMessage groupCallMessage2;
+        GroupCallMessage groupCallMessage3;
+        boolean zIsAttachedToWindow = isAttachedToWindow();
+        Tooltip$$ExternalSyntheticLambda0 tooltip$$ExternalSyntheticLambda0 = this.onMessageStateUpdateListener;
+        if (zIsAttachedToWindow && (groupCallMessage3 = this.groupCallMessage) != null) {
+            groupCallMessage3.unsubscribeFromStateUpdates(tooltip$$ExternalSyntheticLambda0);
+        }
+        this.groupCallMessage = groupCallMessage;
+        if (isAttachedToWindow() && (groupCallMessage2 = this.groupCallMessage) != null) {
+            groupCallMessage2.subscribeToStateUpdates(tooltip$$ExternalSyntheticLambda0);
+        }
+        GroupCallMessage groupCallMessage4 = this.groupCallMessage;
+        boolean z2 = false;
+        if (groupCallMessage4 != null) {
+            this.isSendDelayedAnimator.setValue(groupCallMessage4.isSendDelayed(), false);
+            this.isSendErrorAnimator.setValue(this.groupCallMessage.isSendError(), false);
+        }
+        TLObject userOrChat = MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(groupCallMessage.fromId);
+        String name = DialogObject.getName(userOrChat);
+        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        avatarDrawable.setInfo(groupCallMessage.currentAccount, userOrChat);
+        this.avatarReceiver.setForUserOrChat(userOrChat, avatarDrawable);
+        ImageReceiver imageReceiver = this.animatedReactionReceiver;
+        imageReceiver.setImage(null, null, null, null, null, 0);
+        if (this.animatedReactionDrawable != null && isAttachedToWindow()) {
+            this.animatedReactionDrawable.removeView(this);
+        }
+        this.animatedReactionDrawable = null;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(name);
+        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(this.senderNameSpan, 0, spannableStringBuilder.length(), 33);
+        ReactionsLayoutInBubble.VisibleReaction visibleReaction = groupCallMessage.visibleReaction;
+        SpoilersTextView spoilersTextView = this.messageTextView;
+        if (visibleReaction == null) {
+            CharSequence textWithEntities = MessageObject.formatTextWithEntities(groupCallMessage.message, false, true, spoilersTextView.getPaint());
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            int length2 = spannableStringBuilder.length();
+            int iCharCount2 = 0;
+            while (true) {
+                if (iCharCount2 < length2) {
+                    int iCodePointAt = Character.codePointAt(spannableStringBuilder, iCharCount2);
+                    iCharCount2 += Character.charCount(iCodePointAt);
+                    byte directionality2 = Character.getDirectionality(iCodePointAt);
+                    if (directionality2 != 0) {
+                        if (directionality2 == 1 || directionality2 == 2) {
+                            z = true;
+                        }
+                    }
+                    length = textWithEntities.length();
+                    iCharCount = 0;
+                    while (iCharCount < length) {
+                        int iCodePointAt2 = Character.codePointAt(textWithEntities, iCharCount);
+                        iCharCount += Character.charCount(iCodePointAt2);
+                        directionality = Character.getDirectionality(iCodePointAt2);
+                        if (directionality != 0) {
+                            break;
+                        }
+                        if (directionality != 1 || directionality == 2) {
+                            z2 = true;
+                            break;
+                        }
+                    }
+                    if (z != z2) {
+                        if (z2) {
+                            c = 8295;
+                        } else {
+                            c = 8294;
+                        }
+                        spannableStringBuilder2.append(c);
+                        spannableStringBuilder2.append((CharSequence) spannableStringBuilder);
+                        spannableStringBuilder2.append((char) 8297);
+                    } else {
+                        spannableStringBuilder2.append((CharSequence) spannableStringBuilder);
+                    }
+                    spannableStringBuilder2.append((CharSequence) "  ");
+                    spannableStringBuilder2.append(textWithEntities);
+                    spannableStringBuilder = spannableStringBuilder2;
+                }
+                z = false;
+                length = textWithEntities.length();
+                iCharCount = 0;
+                while (iCharCount < length) {
+                    int iCodePointAt3 = Character.codePointAt(textWithEntities, iCharCount);
+                    iCharCount += Character.charCount(iCodePointAt3);
+                    directionality = Character.getDirectionality(iCodePointAt3);
+                    if (directionality != 0) {
+                        if (directionality != 1) {
+                        }
+                        z2 = true;
+                        break;
+                    } else {
+                        break;
+                        break;
+                    }
+                }
+                if (z != z2) {
+                    if (z2) {
+                        c = 8295;
+                    } else {
+                        c = 8294;
+                    }
+                    spannableStringBuilder2.append(c);
+                    spannableStringBuilder2.append((CharSequence) spannableStringBuilder);
+                    spannableStringBuilder2.append((char) 8297);
+                } else {
+                    spannableStringBuilder2.append((CharSequence) spannableStringBuilder);
+                }
+                spannableStringBuilder2.append((CharSequence) "  ");
+                spannableStringBuilder2.append(textWithEntities);
+                spannableStringBuilder = spannableStringBuilder2;
+            }
+        } else if (visibleReaction.emojicon != null) {
+            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.emojicon);
+            if (tL_availableReaction != null) {
+                imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
+            }
+        } else if (visibleReaction.documentId != 0) {
+            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.documentId);
+            this.animatedReactionDrawable = animatedEmojiDrawable;
+            animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            if (isAttachedToWindow()) {
+                this.animatedReactionDrawable.addView(this);
+            }
+        }
+        this.messageReaction = groupCallMessage.visibleReaction;
+        this.layoutInvalidated = true;
+        spoilersTextView.setText(spannableStringBuilder);
+        requestLayout();
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        this.bgPaint.setColor(i);
+    }
+
+    public void setDelegate(Delegate delegate) {
+        this.delegate = delegate;
     }
 }

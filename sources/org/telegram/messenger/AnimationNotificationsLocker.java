@@ -11,11 +11,8 @@ public class AnimationNotificationsLocker {
         this(null);
     }
 
-    public AnimationNotificationsLocker(int[] iArr) {
-        this.currentAccount = UserConfig.selectedAccount;
-        this.notificationsIndex = -1;
-        this.globalNotificationsIndex = -1;
-        this.allowedNotifications = iArr;
+    public void disable() {
+        this.disabled = true;
     }
 
     public void lock() {
@@ -40,7 +37,10 @@ public class AnimationNotificationsLocker {
         NotificationCenter.getGlobalInstance().onAnimationFinish(this.globalNotificationsIndex);
     }
 
-    public void disable() {
-        this.disabled = true;
+    public AnimationNotificationsLocker(int[] iArr) {
+        this.currentAccount = UserConfig.selectedAccount;
+        this.notificationsIndex = -1;
+        this.globalNotificationsIndex = -1;
+        this.allowedNotifications = iArr;
     }
 }

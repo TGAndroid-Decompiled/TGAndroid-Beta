@@ -28,13 +28,13 @@ public enum BotWebViewVibrationEffect {
 
     public VibrationEffect getVibrationEffectForOreo() {
         if (this.vibrationEffect == null) {
-            if (!AndroidUtilities.getVibrator().hasAmplitudeControl()) {
-                this.vibrationEffect = VibrationEffect.createWaveform(this.fallbackTimings, -1);
-            } else {
+            if (AndroidUtilities.getVibrator().hasAmplitudeControl()) {
                 this.vibrationEffect = VibrationEffect.createWaveform(this.timings, this.amplitudes, -1);
+            } else {
+                this.vibrationEffect = VibrationEffect.createWaveform(this.fallbackTimings, -1);
             }
         }
-        return BotWebViewVibrationEffect$$ExternalSyntheticApiModelOutline3.m(this.vibrationEffect);
+        return AndroidUtilities$$ExternalSyntheticApiModelOutline1.m(this.vibrationEffect);
     }
 
     public void vibrate() {

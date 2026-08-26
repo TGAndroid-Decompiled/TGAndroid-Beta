@@ -10,37 +10,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
 
-public class MessageSeenCheckDrawable {
-    private int colorKey;
-    private Drawable drawable;
-    private int h;
-    private int lastColor;
-    private float lastDensity;
-    private CharSequence lastSpanned;
-    private float oy;
-    private int resId;
-    private int w;
+public final class MessageSeenCheckDrawable {
+    public final int colorKey;
+    public Drawable drawable;
+    public int lastColor;
+    public float lastDensity;
+    public SpannableStringBuilder lastSpanned;
+    public final int resId;
+    public int w = -1;
+    public int h = -1;
 
     public MessageSeenCheckDrawable(int i, int i2) {
-        this.w = -1;
-        this.h = -1;
-        this.oy = 4.66f;
         this.resId = i;
         this.colorKey = i2;
     }
 
-    public MessageSeenCheckDrawable(int i, int i2, int i3, int i4, float f) {
-        this(i, i2);
-        this.w = i3;
-        this.h = i4;
-        this.oy = f;
-    }
-
-    public CharSequence getSpanned(Context context, Theme.ResourcesProvider resourcesProvider) {
-        if (this.lastSpanned != null && this.drawable != null && AndroidUtilities.density == this.lastDensity) {
-            if (this.lastColor != Theme.getColor(this.colorKey, resourcesProvider)) {
+    public final SpannableStringBuilder getSpanned(Context context, Theme.ResourcesProvider resourcesProvider) {
+        SpannableStringBuilder spannableStringBuilder = this.lastSpanned;
+        int i = this.colorKey;
+        if (spannableStringBuilder != null && this.drawable != null && AndroidUtilities.density == this.lastDensity) {
+            if (this.lastColor != Theme.getColor(i, resourcesProvider)) {
                 Drawable drawable = this.drawable;
-                int color = Theme.getColor(this.colorKey, resourcesProvider);
+                int color = Theme.getColor(i, resourcesProvider);
                 this.lastColor = color;
                 drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
             }
@@ -49,22 +40,22 @@ public class MessageSeenCheckDrawable {
         if (context == null) {
             return null;
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v ");
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("v ");
         this.lastDensity = AndroidUtilities.density;
         Drawable drawableMutate = context.getResources().getDrawable(this.resId).mutate();
         this.drawable = drawableMutate;
-        int color2 = Theme.getColor(this.colorKey, resourcesProvider);
+        int color2 = Theme.getColor(i, resourcesProvider);
         this.lastColor = color2;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.SRC_IN));
-        int i = this.w;
-        int intrinsicWidth = i <= 0 ? this.drawable.getIntrinsicWidth() : AndroidUtilities.dp(i);
-        int i2 = this.h;
-        int intrinsicHeight = i2 <= 0 ? this.drawable.getIntrinsicHeight() : AndroidUtilities.dp(i2);
-        int iDp = AndroidUtilities.dp(this.oy);
+        int i2 = this.w;
+        int intrinsicWidth = i2 <= 0 ? this.drawable.getIntrinsicWidth() : AndroidUtilities.dp(i2);
+        int i3 = this.h;
+        int intrinsicHeight = i3 <= 0 ? this.drawable.getIntrinsicHeight() : AndroidUtilities.dp(i3);
+        int iDp = AndroidUtilities.dp(4.66f);
         this.drawable.setBounds(0, iDp, intrinsicWidth, intrinsicHeight + iDp);
-        spannableStringBuilder.setSpan(new ImageSpan(this.drawable, 2), 0, 1, 33);
-        spannableStringBuilder.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(2.0f)), 1, 2, 33);
-        this.lastSpanned = spannableStringBuilder;
-        return spannableStringBuilder;
+        spannableStringBuilder2.setSpan(new ImageSpan(this.drawable, 2), 0, 1, 33);
+        spannableStringBuilder2.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(2.0f)), 1, 2, 33);
+        this.lastSpanned = spannableStringBuilder2;
+        return spannableStringBuilder2;
     }
 }

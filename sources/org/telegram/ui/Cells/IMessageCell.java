@@ -1,6 +1,5 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 
@@ -13,11 +12,7 @@ public interface IMessageCell {
 
     float getAlpha();
 
-    ImageReceiver getAvatarImage();
-
     float getCheckBoxTranslation();
-
-    MessageObject.GroupedMessagePosition getCurrentPosition();
 
     float getDeltaBottom();
 
@@ -44,41 +39,4 @@ public interface IMessageCell {
     boolean shouldDrawAlphaLayer();
 
     boolean willRemovedAfterAnimation();
-
-    public abstract class CC {
-        public static boolean $default$drawPinnedBottom(IMessageCell iMessageCell) {
-            return false;
-        }
-
-        public static boolean $default$drawPinnedTop(IMessageCell iMessageCell) {
-            return false;
-        }
-
-        public static ImageReceiver $default$getAvatarImage(IMessageCell iMessageCell) {
-            return null;
-        }
-
-        public static float $default$getCheckBoxTranslation(IMessageCell iMessageCell) {
-            return 0.0f;
-        }
-
-        public static MessageObject.GroupedMessagePosition $default$getCurrentPosition(IMessageCell iMessageCell) {
-            return null;
-        }
-
-        public static float $default$getSlidingOffsetX(IMessageCell iMessageCell) {
-            return 0.0f;
-        }
-
-        public static void $default$setAnimationRunning(IMessageCell iMessageCell, boolean z, boolean z2) {
-        }
-
-        public static boolean $default$shouldDrawAlphaLayer(IMessageCell iMessageCell) {
-            return false;
-        }
-
-        public static boolean $default$willRemovedAfterAnimation(IMessageCell iMessageCell) {
-            return false;
-        }
-    }
 }

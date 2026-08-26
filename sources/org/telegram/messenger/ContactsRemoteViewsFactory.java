@@ -29,30 +29,6 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
     private ArrayList<Long> dids = new ArrayList<>();
     private LongSparseArray dialogs = new LongSparseArray();
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public RemoteViews getLoadingView() {
-        return null;
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
-    public void onDestroy() {
-    }
-
     public ContactsRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
         Theme.createDialogsResources(context);
@@ -62,15 +38,9 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         if (i >= 0) {
             this.accountInstance = AccountInstance.getInstance(i);
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("deleted");
+        StringBuilder sb = new StringBuilder("deleted");
         sb.append(this.appWidgetId);
         this.deleted = sharedPreferences.getBoolean(sb.toString(), false) || this.accountInstance == null;
-    }
-
-    @Override
-    public void onCreate() {
-        ApplicationLoader.postInitApplication();
     }
 
     @Override
@@ -82,8 +52,18 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
     }
 
     @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public RemoteViews getLoadingView() {
+        return null;
+    }
+
+    @Override
     public RemoteViews getViewAt(int i) {
-        String firstName;
+        String string;
         TLRPC.Chat chat;
         TLRPC.User user;
         TLRPC.FileLocation fileLocation;
@@ -120,13 +100,11 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                 if (DialogObject.isUserDialog(l.longValue())) {
                     user = this.accountInstance.getMessagesController().getUser(l);
                     if (UserObject.isUserSelf(user)) {
-                        firstName = LocaleController.getString(R.string.SavedMessages);
+                        string = LocaleController.getString(R.string.SavedMessages);
                     } else if (UserObject.isReplyUser(user)) {
-                        firstName = LocaleController.getString(R.string.RepliesTitle);
-                    } else if (UserObject.isDeleted(user)) {
-                        firstName = LocaleController.getString(R.string.HiddenName);
+                        string = LocaleController.getString(R.string.RepliesTitle);
                     } else {
-                        firstName = UserObject.getFirstName(user);
+                        string = UserObject.isDeleted(user) ? LocaleController.getString(R.string.HiddenName) : UserObject.getFirstName(user);
                     }
                     if (UserObject.isReplyUser(user) || UserObject.isUserSelf(user) || user == null || (userProfilePhoto = user.photo) == null || (fileLocation = userProfilePhoto.photo_small) == null || fileLocation.volume_id == 0 || fileLocation.local_id == 0) {
                         chat = null;
@@ -137,20 +115,20 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                 } else {
                     TLRPC.Chat chat2 = this.accountInstance.getMessagesController().getChat(Long.valueOf(-l.longValue()));
                     if (chat2 != null) {
-                        firstName = chat2.title;
+                        string = chat2.title;
                         TLRPC.ChatPhoto chatPhoto = chat2.photo;
                         if (chatPhoto != null && (fileLocation = chatPhoto.photo_small) != null && fileLocation.volume_id != 0 && fileLocation.local_id != 0) {
                             chat = chat2;
                             user = null;
                         }
                     } else {
-                        firstName = "";
+                        string = "";
                     }
                     chat = chat2;
                     user = null;
                     fileLocation = null;
                 }
-                remoteViews3.setTextViewText(i3 == 0 ? R.id.contacts_widget_item_text1 : R.id.contacts_widget_item_text2, firstName);
+                remoteViews3.setTextViewText(i3 == 0 ? R.id.contacts_widget_item_text1 : R.id.contacts_widget_item_text2, string);
                 if (fileLocation != null) {
                     try {
                         bitmapDecodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(fileLocation, true).toString());
@@ -173,7 +151,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                             avatarDrawable.setAvatarType(1);
                         }
                     } else {
-                        AvatarDrawable avatarDrawable2 = new AvatarDrawable();
+                        AvatarDrawable avatarDrawable2 = new AvatarDrawable((Theme.ResourcesProvider) null);
                         avatarDrawable2.setInfo(this.accountInstance.getCurrentAccount(), chat);
                         avatarDrawable = avatarDrawable2;
                     }
@@ -197,11 +175,11 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                 canvas.setBitmap(null);
                 remoteViews3.setImageViewBitmap(i3 == 0 ? R.id.contacts_widget_item_avatar1 : R.id.contacts_widget_item_avatar2, bitmapCreateBitmap);
                 TLRPC.Dialog dialog = (TLRPC.Dialog) this.dialogs.get(l.longValue());
-                if (dialog != null && (i2 = dialog.unread_count) > 0) {
+                if (dialog == null || (i2 = dialog.unread_count) <= 0) {
+                    remoteViews3.setViewVisibility(i3 == 0 ? R.id.contacts_widget_item_badge_bg1 : R.id.contacts_widget_item_badge_bg2, 8);
+                } else {
                     remoteViews3.setTextViewText(i3 == 0 ? R.id.contacts_widget_item_badge1 : R.id.contacts_widget_item_badge2, i2 > 99 ? String.format("%d+", 99) : String.format("%d", Integer.valueOf(i2)));
                     remoteViews3.setViewVisibility(i3 == 0 ? R.id.contacts_widget_item_badge_bg1 : R.id.contacts_widget_item_badge_bg2, 0);
-                } else {
-                    remoteViews3.setViewVisibility(i3 == 0 ? R.id.contacts_widget_item_badge_bg1 : R.id.contacts_widget_item_badge_bg2, 8);
                 }
                 Bundle bundle2 = new Bundle();
                 if (DialogObject.isUserDialog(l.longValue())) {
@@ -220,6 +198,21 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
     }
 
     @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
+    }
+
+    @Override
+    public void onCreate() {
+        ApplicationLoader.postInitApplication();
+    }
+
+    @Override
     public void onDataSetChanged() {
         this.dids.clear();
         AccountInstance accountInstance = this.accountInstance;
@@ -231,5 +224,9 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         this.accountInstance.getMessagesStorage().getWidgetDialogs(this.appWidgetId, 1, this.dids, this.dialogs, new LongSparseArray(), arrayList, arrayList2);
         this.accountInstance.getMessagesController().putUsers(arrayList, true);
         this.accountInstance.getMessagesController().putChats(arrayList2, true);
+    }
+
+    @Override
+    public void onDestroy() {
     }
 }

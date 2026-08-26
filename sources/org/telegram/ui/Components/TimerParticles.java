@@ -6,97 +6,60 @@ import android.graphics.RectF;
 import android.os.SystemClock;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticOutline1;
+import org.telegram.messenger.Emoji$EmojiSpan$$ExternalSyntheticOutline0;
 import org.telegram.messenger.Utilities;
 
-public class TimerParticles {
+public final class TimerParticles {
     public boolean big;
-    private ArrayList freeParticles;
-    private boolean hasLast;
-    private long lastAnimationTime;
-    private float lastCx;
-    private float lastCy;
-    private ArrayList particles;
-    private final int particlesCount;
+    public final ArrayList freeParticles;
+    public boolean hasLast;
+    public long lastAnimationTime;
+    public float lastCx;
+    public float lastCy;
+    public final ArrayList particles;
+    public final int particlesCount;
 
-    private static class Particle {
-        float alpha;
-        float currentTime;
-        float lifeTime;
-        float velocity;
-        float vx;
-        float vy;
-        float x;
-        float y;
-
-        private Particle() {
-        }
+    public final class Particle {
+        public float alpha;
+        public float currentTime;
+        public float lifeTime;
+        public float velocity;
+        public float vx;
+        public float vy;
+        public float x;
+        public float y;
     }
 
     public TimerParticles() {
         this(40);
     }
 
-    public TimerParticles(int i) {
-        this.particles = new ArrayList();
-        this.freeParticles = new ArrayList();
-        this.particlesCount = i;
-        for (int i2 = 0; i2 < i; i2++) {
-            this.freeParticles.add(new Particle());
-        }
-    }
-
-    private void updateParticles(long j) {
-        int size = this.particles.size();
-        int i = 0;
-        while (i < size) {
-            Particle particle = (Particle) this.particles.get(i);
-            float f = particle.currentTime;
-            float f2 = particle.lifeTime;
-            if (f >= f2) {
-                if (this.freeParticles.size() < this.particlesCount) {
-                    this.freeParticles.add(particle);
-                }
-                this.particles.remove(i);
-                i--;
-                size--;
-            } else {
-                particle.alpha = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f / f2);
-                float f3 = particle.x;
-                float f4 = particle.vx;
-                float f5 = particle.velocity;
-                float f6 = j;
-                particle.x = f3 + (((f4 * f5) * f6) / 200.0f);
-                particle.y += ((particle.vy * f5) * f6) / 200.0f;
-                particle.currentTime += f6;
-            }
-            i++;
-        }
-    }
-
-    public void draw(Canvas canvas, Paint paint, RectF rectF, float f, float f2) {
+    public final void draw(float f, float f2, Canvas canvas, Paint paint, RectF rectF) {
         Particle particle;
-        int size = this.particles.size();
+        ArrayList arrayList = this.particles;
+        int size = arrayList.size();
         int i = 0;
         for (int i2 = 0; i2 < size; i2++) {
-            Particle particle2 = (Particle) this.particles.get(i2);
+            Particle particle2 = (Particle) arrayList.get(i2);
             paint.setAlpha((int) (particle2.alpha * 255.0f * f2));
             canvas.drawPoint(particle2.x, particle2.y, paint);
         }
-        double d = 0.017453292519943295d;
-        double d2 = ((double) (f - 90.0f)) * 0.017453292519943295d;
-        double dSin = Math.sin(d2);
-        double d3 = -Math.cos(d2);
+        double d = ((double) (f - 90.0f)) * 0.017453292519943295d;
+        double dSin = Math.sin(d);
+        double d2 = -Math.cos(d);
         double dWidth = rectF.width() / 2.0f;
-        float fCenterX = (float) (((-d3) * dWidth) + ((double) rectF.centerX()));
+        float fCenterX = (float) (((-d2) * dWidth) + ((double) rectF.centerX()));
         float fCenterY = (float) ((dWidth * dSin) + ((double) rectF.centerY()));
-        int iClamp = Utilities.clamp(this.freeParticles.size() / 12, 3, 1);
+        ArrayList arrayList2 = this.freeParticles;
+        int iClamp = Utilities.clamp(arrayList2.size() / 12, 3, 1);
         int i3 = 0;
         while (i3 < iClamp) {
-            if (!this.freeParticles.isEmpty()) {
-                particle = (Particle) this.freeParticles.get(i);
-                this.freeParticles.remove(i);
-            } else {
+            if (arrayList2.isEmpty()) {
                 particle = new Particle();
+            } else {
+                particle = (Particle) arrayList2.get(i);
+                arrayList2.remove(i);
             }
             if (this.big && this.hasLast) {
                 float f3 = (i3 + 1) / iClamp;
@@ -106,31 +69,69 @@ public class TimerParticles {
                 particle.x = fCenterX;
                 particle.y = fCenterY;
             }
-            double dNextInt = ((double) (Utilities.random.nextInt(140) - 70)) * d;
+            double d3 = dSin;
+            double dNextInt = ((double) (Utilities.random.nextInt(140) - 70)) * 0.017453292519943295d;
             if (dNextInt < 0.0d) {
                 dNextInt += 6.283185307179586d;
             }
-            particle.vx = (float) ((Math.cos(dNextInt) * dSin) - (Math.sin(dNextInt) * d3));
-            particle.vy = (float) ((Math.sin(dNextInt) * dSin) + (Math.cos(dNextInt) * d3));
-            particle.alpha = 1.0f;
-            particle.currentTime = 0.0f;
+            particle.vx = (float) ((Math.cos(dNextInt) * d3) - (Math.sin(dNextInt) * d2));
+            double dSin2 = Math.sin(dNextInt) * d3;
+            double d4 = dNextInt;
+            Particle particle3 = particle;
+            particle3.vy = (float) AndroidUtilities$$ExternalSyntheticOutline1.m(d4, d2, dSin2);
+            particle3.alpha = 1.0f;
+            particle3.currentTime = 0.0f;
             if (this.big) {
-                particle.lifeTime = Utilities.random.nextInt(200) + 600;
-                particle.velocity = (Utilities.random.nextFloat() * 20.0f) + 30.0f;
+                particle3.lifeTime = Utilities.random.nextInt(200) + 600;
+                particle3.velocity = (Utilities.random.nextFloat() * 20.0f) + 30.0f;
             } else {
-                particle.lifeTime = Utilities.random.nextInt(100) + 400;
-                particle.velocity = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
+                particle3.lifeTime = Utilities.random.nextInt(100) + 400;
+                particle3.velocity = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
             }
-            this.particles.add(particle);
+            arrayList.add(particle3);
             i3++;
+            dSin = d3;
             i = 0;
-            d = 0.017453292519943295d;
         }
         this.hasLast = true;
         this.lastCx = fCenterX;
         this.lastCy = fCenterY;
         long jElapsedRealtime = SystemClock.elapsedRealtime();
-        updateParticles(Math.min(20L, jElapsedRealtime - this.lastAnimationTime));
+        long jMin = Math.min(20L, jElapsedRealtime - this.lastAnimationTime);
+        int size2 = arrayList.size();
+        int i4 = 0;
+        while (i4 < size2) {
+            Particle particle4 = (Particle) arrayList.get(i4);
+            float f4 = particle4.currentTime;
+            float f5 = particle4.lifeTime;
+            if (f4 >= f5) {
+                if (arrayList2.size() < this.particlesCount) {
+                    arrayList2.add(particle4);
+                }
+                arrayList.remove(i4);
+                i4--;
+                size2--;
+            } else {
+                particle4.alpha = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f4 / f5);
+                float f6 = particle4.x;
+                float f7 = particle4.vx;
+                float f8 = particle4.velocity;
+                float f9 = jMin;
+                particle4.x = Emoji$EmojiSpan$$ExternalSyntheticOutline0.m(f7 * f8, f9, 200.0f, f6);
+                particle4.y = (((particle4.vy * f8) * f9) / 200.0f) + particle4.y;
+                particle4.currentTime += f9;
+            }
+            i4++;
+        }
         this.lastAnimationTime = jElapsedRealtime;
+    }
+
+    public TimerParticles(int i) {
+        this.particles = new ArrayList();
+        this.freeParticles = new ArrayList();
+        this.particlesCount = i;
+        for (int i2 = 0; i2 < i; i2++) {
+            this.freeParticles.add(new Particle());
+        }
     }
 }

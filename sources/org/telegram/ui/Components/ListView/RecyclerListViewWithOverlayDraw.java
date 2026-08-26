@@ -1,34 +1,30 @@
 package org.telegram.ui.Components.ListView;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
+import org.telegram.ui.Cells.StickerEmojiCell;
 import org.telegram.ui.Components.RecyclerListView;
 
 public abstract class RecyclerListViewWithOverlayDraw extends RecyclerListView {
-    boolean invalidated;
+    public boolean invalidated;
 
     public interface OverlayView {
         float getX();
 
         float getY();
-
-        void preDraw(View view, Canvas canvas);
-    }
-
-    public RecyclerListViewWithOverlayDraw(Context context) {
-        super(context);
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         this.invalidated = false;
         for (int i = 0; i < getChildCount(); i++) {
             if (getChildAt(i) instanceof OverlayView) {
                 OverlayView overlayView = (OverlayView) getChildAt(i);
                 canvas.save();
                 canvas.translate(overlayView.getX(), overlayView.getY());
-                overlayView.preDraw(this, canvas);
+                StickerEmojiCell stickerEmojiCell = (StickerEmojiCell) overlayView;
+                if (stickerEmojiCell.drawInParentView) {
+                    stickerEmojiCell.drawInternal(canvas, this);
+                }
                 canvas.restore();
             }
         }
@@ -36,7 +32,7 @@ public abstract class RecyclerListViewWithOverlayDraw extends RecyclerListView {
     }
 
     @Override
-    public void invalidate() {
+    public final void invalidate() {
         if (this.invalidated) {
             return;
         }

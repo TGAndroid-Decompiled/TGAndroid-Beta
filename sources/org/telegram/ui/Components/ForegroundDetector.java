@@ -22,6 +22,34 @@ public abstract class ForegroundDetector implements Application.ActivityLifecycl
         void onBecameForeground();
     }
 
+    public ForegroundDetector(Application application) {
+        Instance = this;
+        application.registerActivityLifecycleCallbacks(this);
+    }
+
+    public static ForegroundDetector getInstance() {
+        return Instance;
+    }
+
+    public void addListener(Listener listener) {
+        this.listeners.add(listener);
+    }
+
+    public boolean isBackground() {
+        return this.refs == 0;
+    }
+
+    public boolean isForeground() {
+        return this.refs > 0;
+    }
+
+    public boolean isWasInBackground(boolean z) {
+        if (z && SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
+            this.wasInBackground = false;
+        }
+        return this.wasInBackground;
+    }
+
     @Override
     public void onActivityCreated(Activity activity, Bundle bundle) {
     }
@@ -40,31 +68,6 @@ public abstract class ForegroundDetector implements Application.ActivityLifecycl
 
     @Override
     public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
-    }
-
-    public static ForegroundDetector getInstance() {
-        return Instance;
-    }
-
-    public ForegroundDetector(Application application) {
-        Instance = this;
-        application.registerActivityLifecycleCallbacks(this);
-    }
-
-    public boolean isForeground() {
-        return this.refs > 0;
-    }
-
-    public boolean isBackground() {
-        return this.refs == 0;
-    }
-
-    public void addListener(Listener listener) {
-        this.listeners.add(listener);
-    }
-
-    public void removeListener(Listener listener) {
-        this.listeners.remove(listener);
     }
 
     @Override
@@ -89,17 +92,6 @@ public abstract class ForegroundDetector implements Application.ActivityLifecycl
         }
     }
 
-    public boolean isWasInBackground(boolean z) {
-        if (z && SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
-            this.wasInBackground = false;
-        }
-        return this.wasInBackground;
-    }
-
-    public void resetBackgroundVar() {
-        this.wasInBackground = false;
-    }
-
     @Override
     public void onActivityStopped(Activity activity) {
         int i = this.refs - 1;
@@ -119,5 +111,13 @@ public abstract class ForegroundDetector implements Application.ActivityLifecycl
                 }
             }
         }
+    }
+
+    public void removeListener(Listener listener) {
+        this.listeners.remove(listener);
+    }
+
+    public void resetBackgroundVar() {
+        this.wasInBackground = false;
     }
 }

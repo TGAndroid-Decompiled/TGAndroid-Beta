@@ -1,15 +1,8 @@
 package org.telegram.ui.Stories;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.Theme;
-
-abstract class HwStoriesViewPager extends StoriesViewPager {
-    public HwStoriesViewPager(int i, Context context, StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider) {
-        super(i, context, storyViewer, resourcesProvider);
-    }
-
+public abstract class HwStoriesViewPager extends StoriesViewPager {
     @Override
-    public void invalidate() {
+    public final void invalidate() {
         if (HwFrameLayout.hwEnabled) {
             HwFrameLayout.hwViews.add(this);
         } else {
@@ -18,7 +11,7 @@ abstract class HwStoriesViewPager extends StoriesViewPager {
     }
 
     @Override
-    public void invalidate(int i, int i2, int i3, int i4) {
+    public final void invalidate(int i, int i2, int i3, int i4) {
         if (HwFrameLayout.hwEnabled) {
             HwFrameLayout.hwViews.add(this);
         } else {

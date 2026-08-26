@@ -2,104 +2,99 @@ package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.text.style.ReplacementSpan;
 import android.view.View;
+import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline2;
+import org.telegram.messenger.RichMessageLayout$MediaCell$$ExternalSyntheticOutline0;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ContactsActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda1;
 import org.telegram.ui.web.WebInstantView;
 
-public class TextPaintImageReceiverSpan extends ReplacementSpan {
-    private boolean alignTop;
-    private boolean baselineMode;
-    private int depth;
-    private int height;
-    private ImageReceiver imageReceiver;
-    private int width;
+public final class TextPaintImageReceiverSpan extends ReplacementSpan {
+    public static final int $r8$clinit = 0;
+    public final boolean baselineMode;
+    public final int depth;
+    public final int height;
+    public final ImageReceiver imageReceiver;
+    public final int width;
 
-    public static void $r8$lambda$njb1CVCkH53R0cVT72Kh89O4uj4() {
-    }
-
-    public TextPaintImageReceiverSpan(View view, TLRPC.Document document, Object obj, int i, int i2, boolean z, boolean z2) {
-        String str = String.format(Locale.US, "%d_%d_i", Integer.valueOf(i), Integer.valueOf(i2));
+    public TextPaintImageReceiverSpan(View view, TLRPC.Document document, TLRPC.WebPage webPage, int i, int i2, boolean z) {
+        Locale locale = Locale.US;
+        String str = i + "_" + i2 + "_i";
         this.width = i;
         this.height = i2;
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.imageReceiver = imageReceiver;
         imageReceiver.setInvalidateAll(true);
-        if (z2) {
-            this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
-                @Override
-                public final void didSetImage(ImageReceiver imageReceiver2, boolean z3, boolean z4, boolean z5) {
-                    TextPaintImageReceiverSpan.$r8$lambda$4MMEUN7lGItDcmEJ4PJPQuQdpRk(imageReceiver2, z3, z4, z5);
-                }
-
-                @Override
-                public void didSetImageBitmap(int i3, String str2, Drawable drawable) {
-                    ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i3, str2, drawable);
-                }
-
-                @Override
-                public void onAnimationReady(ImageReceiver imageReceiver2) {
-                    ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
-                }
-            });
+        if (z) {
+            imageReceiver.setDelegate(new ContactsActivity$$ExternalSyntheticLambda18(6));
         }
-        this.imageReceiver.setImage(ImageLocation.getForDocument(document), str, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), str, -1L, null, obj, 1);
-        this.alignTop = z;
+        imageReceiver.setImage(ImageLocation.getForDocument(document), str, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), str, -1L, null, webPage, 1);
     }
 
-    public static void $r8$lambda$4MMEUN7lGItDcmEJ4PJPQuQdpRk(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        if (imageReceiver.canInvertBitmap()) {
-            imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        canvas.save();
+        ImageReceiver imageReceiver = this.imageReceiver;
+        boolean z = this.baselineMode;
+        int i6 = this.width;
+        int i7 = this.height;
+        if (z) {
+            imageReceiver.setImageCoords((int) f, i4 - (i7 - this.depth), i6, i7);
+        } else {
+            imageReceiver.setImageCoords((int) f, RichMessageLayout$MediaCell$$ExternalSyntheticOutline0.m(RichMessageLayout$$ExternalSyntheticOutline2.m(i5, 4.0f, i3), i7, 2, i3), i6, i7);
         }
+        imageReceiver.draw(canvas);
+        canvas.restore();
     }
 
-    public TextPaintImageReceiverSpan(View view, WebInstantView.WebPhoto webPhoto, Object obj, int i, int i2, boolean z, boolean z2) {
-        this.width = i;
-        this.height = i2;
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.imageReceiver = imageReceiver;
-        imageReceiver.setInvalidateAll(true);
-        if (z2) {
-            this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
-                @Override
-                public final void didSetImage(ImageReceiver imageReceiver2, boolean z3, boolean z4, boolean z5) {
-                    TextPaintImageReceiverSpan.$r8$lambda$hL00ZSraoBvcqklhxroC5of8_Ck(imageReceiver2, z3, z4, z5);
-                }
-
-                @Override
-                public void didSetImageBitmap(int i3, String str, Drawable drawable) {
-                    ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i3, str, drawable);
-                }
-
-                @Override
-                public void onAnimationReady(ImageReceiver imageReceiver2) {
-                    ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
-                }
-            });
-        }
-        WebInstantView.loadPhoto(webPhoto, this.imageReceiver, new Runnable() {
-            @Override
-            public final void run() {
-                TextPaintImageReceiverSpan.$r8$lambda$njb1CVCkH53R0cVT72Kh89O4uj4();
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        if (fontMetricsInt != null) {
+            boolean z = this.baselineMode;
+            int i3 = this.height;
+            if (z) {
+                int i4 = this.depth;
+                int i5 = -(i3 - i4);
+                fontMetricsInt.ascent = i5;
+                fontMetricsInt.top = i5;
+                fontMetricsInt.descent = i4;
+                fontMetricsInt.bottom = i4;
+            } else {
+                int iDp = ((-i3) / 2) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.ascent = iDp;
+                fontMetricsInt.top = iDp;
+                int iDp2 = (i3 - (i3 / 2)) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.descent = iDp2;
+                fontMetricsInt.bottom = iDp2;
             }
-        });
-        this.alignTop = z;
+        }
+        return this.width;
     }
 
-    public static void $r8$lambda$hL00ZSraoBvcqklhxroC5of8_Ck(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        if (imageReceiver.canInvertBitmap()) {
-            imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
+    public TextPaintImageReceiverSpan(View view, WebInstantView.WebPhoto webPhoto, int i, int i2) {
+        WebInstantView webInstantView;
+        this.width = i;
+        this.height = i2;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.imageReceiver = imageReceiver;
+        imageReceiver.setInvalidateAll(true);
+        QrActivity$5$$ExternalSyntheticLambda1 qrActivity$5$$ExternalSyntheticLambda1 = new QrActivity$5$$ExternalSyntheticLambda1(5);
+        HashMap map = WebInstantView.instants;
+        if (webPhoto == null || (webInstantView = webPhoto.instantView) == null) {
+            return;
         }
+        webInstantView.loadPhotoInternal(webPhoto, imageReceiver, qrActivity$5$$ExternalSyntheticLambda1);
     }
 
     public TextPaintImageReceiverSpan(View view, Bitmap bitmap, int i, int i2, int i3, int i4) {
@@ -108,58 +103,9 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.imageReceiver = imageReceiver;
         imageReceiver.setInvalidateAll(true);
-        this.imageReceiver.setImageBitmap(bitmap);
-        this.imageReceiver.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN));
+        imageReceiver.setImageBitmap(bitmap);
+        imageReceiver.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN));
         this.depth = i4;
         this.baselineMode = true;
-    }
-
-    @Override
-    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            if (this.baselineMode) {
-                int i3 = this.height;
-                int i4 = this.depth;
-                int i5 = -(i3 - i4);
-                fontMetricsInt.ascent = i5;
-                fontMetricsInt.top = i5;
-                fontMetricsInt.descent = i4;
-                fontMetricsInt.bottom = i4;
-            } else if (this.alignTop) {
-                int iDp = (fontMetricsInt.descent - fontMetricsInt.ascent) - AndroidUtilities.dp(4.0f);
-                int i6 = this.height - iDp;
-                fontMetricsInt.descent = i6;
-                fontMetricsInt.bottom = i6;
-                int i7 = 0 - iDp;
-                fontMetricsInt.ascent = i7;
-                fontMetricsInt.top = i7;
-            } else {
-                int iDp2 = ((-this.height) / 2) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.ascent = iDp2;
-                fontMetricsInt.top = iDp2;
-                int i8 = this.height;
-                int iDp3 = (i8 - (i8 / 2)) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.descent = iDp3;
-                fontMetricsInt.bottom = iDp3;
-            }
-        }
-        return this.width;
-    }
-
-    @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        canvas.save();
-        if (this.baselineMode) {
-            int i6 = this.height;
-            this.imageReceiver.setImageCoords((int) f, i4 - (i6 - this.depth), this.width, i6);
-        } else if (this.alignTop) {
-            this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
-        } else {
-            int iDp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
-            int i7 = this.height;
-            this.imageReceiver.setImageCoords((int) f, i3 + ((iDp - i7) / 2), this.width, i7);
-        }
-        this.imageReceiver.draw(canvas);
-        canvas.restore();
     }
 }

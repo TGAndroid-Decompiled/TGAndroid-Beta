@@ -2,27 +2,21 @@ package kotlin;
 
 import java.io.Serializable;
 import kotlin.jvm.functions.Function0;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 
-final class SynchronizedLazyImpl implements Lazy, Serializable {
-    private volatile Object _value;
-    private Function0 initializer;
-    private final Object lock;
+public final class SynchronizedLazyImpl implements Lazy, Serializable {
+    public volatile Object _value;
+    public Function0 initializer;
+    public final Object lock;
 
-    public SynchronizedLazyImpl(Function0 initializer, Object obj) {
+    public SynchronizedLazyImpl(Function0 initializer) {
         Intrinsics.checkNotNullParameter(initializer, "initializer");
         this.initializer = initializer;
         this._value = UNINITIALIZED_VALUE.INSTANCE;
-        this.lock = obj == null ? this : obj;
+        this.lock = this;
     }
 
-    public SynchronizedLazyImpl(Function0 function0, Object obj, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(function0, (i & 2) != 0 ? null : obj);
-    }
-
-    @Override
-    public Object getValue() {
+    public final Object getValue() {
         Object objInvoke;
         Object obj = this._value;
         UNINITIALIZED_VALUE uninitialized_value = UNINITIALIZED_VALUE.INSTANCE;
@@ -42,11 +36,7 @@ final class SynchronizedLazyImpl implements Lazy, Serializable {
         return objInvoke;
     }
 
-    public boolean isInitialized() {
-        return this._value != UNINITIALIZED_VALUE.INSTANCE;
-    }
-
-    public String toString() {
-        return isInitialized() ? String.valueOf(getValue()) : "Lazy value not initialized yet.";
+    public final String toString() {
+        return this._value != UNINITIALIZED_VALUE.INSTANCE ? String.valueOf(getValue()) : "Lazy value not initialized yet.";
     }
 }

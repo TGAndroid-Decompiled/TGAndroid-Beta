@@ -2,38 +2,36 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.util.LongSparseArray;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Delegates.MemberRequestsDelegate;
 
-public class MemberRequestCell extends FrameLayout {
-    private final AvatarDrawable avatarDrawable;
-    private final BackupImageView avatarImageView;
-    private TLRPC.TL_chatInviteImporter importer;
-    private boolean isNeedDivider;
-    private final SimpleTextView nameTextView;
-    private final SimpleTextView statusTextView;
+public final class MemberRequestCell extends FrameLayout {
+    public final AvatarDrawable avatarDrawable;
+    public final BackupImageView avatarImageView;
+    public TLRPC.TL_chatInviteImporter importer;
+    public boolean isNeedDivider;
+    public final SimpleTextView nameTextView;
+    public final SimpleTextView statusTextView;
 
     public interface OnClickListener {
-        void onAddClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter);
-
-        void onDismissClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter);
     }
 
     public MemberRequestCell(Context context, final OnClickListener onClickListener, boolean z) {
         super(context);
-        this.avatarDrawable = new AvatarDrawable();
+        final int i = 0;
+        final int i2 = 1;
+        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
         BackupImageView backupImageView = new BackupImageView(getContext());
         this.avatarImageView = backupImageView;
         SimpleTextView simpleTextView = new SimpleTextView(getContext());
@@ -44,49 +42,112 @@ public class MemberRequestCell extends FrameLayout {
         addView(backupImageView, LayoutHelper.createFrame(46, 46.0f, LocaleController.isRTL ? 5 : 3, 12.0f, 8.0f, 12.0f, 0.0f));
         simpleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView.setMaxLines(1);
-        simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        simpleTextView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
         simpleTextView.setTextSize(17);
         simpleTextView.setTypeface(AndroidUtilities.bold());
         boolean z2 = LocaleController.isRTL;
         addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, 48, z2 ? 12.0f : 74.0f, 12.0f, z2 ? 74.0f : 12.0f, 0.0f));
         simpleTextView2.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView2.setMaxLines(1);
-        simpleTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+        simpleTextView2.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false));
         simpleTextView2.setTextSize(14);
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, 48, z3 ? 12.0f : 74.0f, 36.0f, z3 ? 74.0f : 12.0f, 0.0f));
         int iDp = AndroidUtilities.dp(17.0f);
         TextView textView = new TextView(getContext());
-        textView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 16.0f));
+        textView.setBackground(Theme.AdaptiveRipple.filledRectByKey(new float[]{16.0f}, Theme.key_featuredStickers_addButton));
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView.setMaxLines(1);
         textView.setPadding(iDp, 0, iDp, 0);
         textView.setText(LocaleController.getString(z ? R.string.AddToChannel : R.string.AddToGroup));
-        textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        textView.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
         textView.setTextSize(14.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        textView.setOnClickListener(new View.OnClickListener() {
+        textView.setOnClickListener(new View.OnClickListener(this) {
+            public final MemberRequestCell f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                MemberRequestCell.$r8$lambda$nX4cCNLzQwEtuNG7lopzxZZbENY(this.f$0, onClickListener, view);
+                switch (i) {
+                    case 0:
+                        MemberRequestCell memberRequestCell = this.f$0;
+                        MemberRequestCell.OnClickListener onClickListener2 = onClickListener;
+                        if (onClickListener2 == null) {
+                            memberRequestCell.getClass();
+                        } else {
+                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = memberRequestCell.importer;
+                            if (tL_chatInviteImporter != null) {
+                                ((MemberRequestsDelegate) onClickListener2).hideChatJoinRequest(tL_chatInviteImporter, true);
+                            }
+                        }
+                        break;
+                    default:
+                        MemberRequestCell memberRequestCell2 = this.f$0;
+                        MemberRequestCell.OnClickListener onClickListener3 = onClickListener;
+                        if (onClickListener3 == null) {
+                            memberRequestCell2.getClass();
+                        } else {
+                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = memberRequestCell2.importer;
+                            if (tL_chatInviteImporter2 != null) {
+                                ((MemberRequestsDelegate) onClickListener3).hideChatJoinRequest(tL_chatInviteImporter2, false);
+                            }
+                        }
+                        break;
+                }
             }
         });
         boolean z4 = LocaleController.isRTL;
         addView(textView, LayoutHelper.createFrame(-2, 32.0f, z4 ? 5 : 3, z4 ? 0.0f : 73.0f, 62.0f, z4 ? 73.0f : 0.0f, 0.0f));
         float fMeasureText = textView.getPaint().measureText(textView.getText().toString()) + (iDp * 2);
         TextView textView2 = new TextView(getContext());
-        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_listSelector), -16777216));
+        int iDp2 = AndroidUtilities.dp(16.0f);
+        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp2, iDp2, iDp2, iDp2, 0, Theme.getColor(null, Theme.key_listSelector, false), -16777216));
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView2.setMaxLines(1);
         textView2.setPadding(iDp, 0, iDp, 0);
         textView2.setText(LocaleController.getString(R.string.Dismiss));
-        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
+        textView2.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false));
         textView2.setTextSize(14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setOnClickListener(new View.OnClickListener() {
+        textView2.setOnClickListener(new View.OnClickListener(this) {
+            public final MemberRequestCell f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onClick(View view) {
-                MemberRequestCell.$r8$lambda$JFD_BLMi_pnFLJJBwGLc3DkMXBg(this.f$0, onClickListener, view);
+                switch (i2) {
+                    case 0:
+                        MemberRequestCell memberRequestCell = this.f$0;
+                        MemberRequestCell.OnClickListener onClickListener2 = onClickListener;
+                        if (onClickListener2 == null) {
+                            memberRequestCell.getClass();
+                        } else {
+                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = memberRequestCell.importer;
+                            if (tL_chatInviteImporter != null) {
+                                ((MemberRequestsDelegate) onClickListener2).hideChatJoinRequest(tL_chatInviteImporter, true);
+                            }
+                        }
+                        break;
+                    default:
+                        MemberRequestCell memberRequestCell2 = this.f$0;
+                        MemberRequestCell.OnClickListener onClickListener3 = onClickListener;
+                        if (onClickListener3 == null) {
+                            memberRequestCell2.getClass();
+                        } else {
+                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = memberRequestCell2.importer;
+                            if (tL_chatInviteImporter2 != null) {
+                                ((MemberRequestsDelegate) onClickListener3).hideChatJoinRequest(tL_chatInviteImporter2, false);
+                            }
+                        }
+                        break;
+                }
             }
         });
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, AndroidUtilities.dp(32.0f), LocaleController.isRTL ? 5 : 3);
@@ -96,60 +157,12 @@ public class MemberRequestCell extends FrameLayout {
         addView(textView2, layoutParams);
     }
 
-    public static void $r8$lambda$nX4cCNLzQwEtuNG7lopzxZZbENY(MemberRequestCell memberRequestCell, OnClickListener onClickListener, View view) {
-        if (onClickListener == null) {
-            memberRequestCell.getClass();
-            return;
-        }
-        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = memberRequestCell.importer;
-        if (tL_chatInviteImporter != null) {
-            onClickListener.onAddClicked(tL_chatInviteImporter);
-        }
-    }
-
-    public static void $r8$lambda$JFD_BLMi_pnFLJJBwGLc3DkMXBg(MemberRequestCell memberRequestCell, OnClickListener onClickListener, View view) {
-        if (onClickListener == null) {
-            memberRequestCell.getClass();
-            return;
-        }
-        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = memberRequestCell.importer;
-        if (tL_chatInviteImporter != null) {
-            onClickListener.onDismissClicked(tL_chatInviteImporter);
-        }
-    }
-
-    public void setData(LongSparseArray longSparseArray, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z) {
-        this.importer = tL_chatInviteImporter;
-        this.isNeedDivider = z;
-        setWillNotDraw(!z);
-        TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
-        this.avatarDrawable.setInfo(user);
-        this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
-        this.nameTextView.setText(UserObject.getUserName(user));
-        String dateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
-        if (tL_chatInviteImporter.via_chatlist) {
-            this.statusTextView.setText(LocaleController.getString(R.string.JoinedViaFolder));
-            return;
-        }
-        long j = tL_chatInviteImporter.approved_by;
-        if (j == 0) {
-            this.statusTextView.setText(LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, dateAudio));
-            return;
-        }
-        TLRPC.User user2 = (TLRPC.User) longSparseArray.get(j);
-        if (user2 != null) {
-            this.statusTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(user2), dateAudio));
-        } else {
-            this.statusTextView.setText("");
-        }
+    public BackupImageView getAvatarImageView() {
+        return this.avatarImageView;
     }
 
     public TLRPC.TL_chatInviteImporter getImporter() {
         return this.importer;
-    }
-
-    public BackupImageView getAvatarImageView() {
-        return this.avatarImageView;
     }
 
     public String getStatus() {
@@ -157,15 +170,15 @@ public class MemberRequestCell extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(107.0f), 1073741824));
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.isNeedDivider) {
             canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(72.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(107.0f), 1073741824));
     }
 }

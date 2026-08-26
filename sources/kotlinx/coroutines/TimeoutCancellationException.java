@@ -3,14 +3,10 @@ package kotlinx.coroutines;
 import java.util.concurrent.CancellationException;
 
 public final class TimeoutCancellationException extends CancellationException {
-    public final transient Job coroutine;
+    public final transient TimeoutCoroutine coroutine;
 
-    public TimeoutCancellationException(String str, Job job) {
+    public TimeoutCancellationException(String str, TimeoutCoroutine timeoutCoroutine) {
         super(str);
-        this.coroutine = job;
-    }
-
-    public TimeoutCancellationException(String str) {
-        this(str, null);
+        this.coroutine = timeoutCoroutine;
     }
 }

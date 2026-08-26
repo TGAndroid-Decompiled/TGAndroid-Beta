@@ -3,69 +3,57 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Build;
 import android.view.View;
+import androidx.core.app.NotificationCompatBuilder;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticOutline1;
+import org.telegram.messenger.Emoji$EmojiSpan$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline2;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 
-public class SnowflakesEffect {
-    private final BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer;
-    private final Paint batchParticlesPaint;
-    private int color;
-    private int forcedColor;
-    private long lastAnimationTime;
-    private final int maxCount;
-    Bitmap particleBitmap;
-    private final Paint particlePaint;
-    private final Paint particleThinPaint;
-    private final int viewType;
-    private final Paint bitmapPaint = new Paint();
-    private int colorKey = Theme.key_actionBarDefaultTitle;
-    private final ArrayList particles = new ArrayList();
-    private final ArrayList freeParticles = new ArrayList();
+public final class SnowflakesEffect {
+    public final NotificationCompatBuilder batchParticlesBuffer;
+    public final Paint batchParticlesPaint;
+    public final Paint bitmapPaint = new Paint();
+    public int color;
+    public int forcedColor;
+    public final ArrayList freeParticles;
+    public long lastAnimationTime;
+    public final int maxCount;
+    public Bitmap particleBitmap;
+    public final Paint particlePaint;
+    public final Paint particleThinPaint;
+    public final ArrayList particles;
+    public final int viewType;
 
-    private class Particle {
-        float alpha;
-        float currentTime;
-        float lifeTime;
-        float scale;
-        int type;
-        float velocity;
-        float vx;
-        float vy;
-        float x;
-        float y;
+    public final class Particle {
+        public float alpha;
+        public float currentTime;
+        public float lifeTime;
+        public float scale;
+        public int type;
+        public float velocity;
+        public float vx;
+        public float vy;
+        public float x;
+        public float y;
 
-        private Particle() {
-        }
-
-        public void draw(Canvas canvas) {
-            if (this.type == 0) {
-                SnowflakesEffect.this.particlePaint.setAlpha((int) (this.alpha * 255.0f));
-                canvas.drawPoint(this.x, this.y, SnowflakesEffect.this.particlePaint);
-                return;
-            }
-            SnowflakesEffect snowflakesEffect = SnowflakesEffect.this;
-            if (snowflakesEffect.particleBitmap == null) {
-                snowflakesEffect.particleBitmap = SnowflakesEffect.createParticlesBitmap(false);
-            }
-            SnowflakesEffect.this.bitmapPaint.setAlpha((int) (this.alpha * 255.0f));
-            canvas.save();
-            float f = this.scale;
-            canvas.scale(f, f, this.x, this.y);
-            SnowflakesEffect snowflakesEffect2 = SnowflakesEffect.this;
-            canvas.drawBitmap(snowflakesEffect2.particleBitmap, this.x, this.y, snowflakesEffect2.bitmapPaint);
-            canvas.restore();
+        public Particle() {
         }
     }
 
     public SnowflakesEffect(int i) {
+        int i2 = Theme.key_actionBarDefaultTitle;
+        this.particles = new ArrayList();
+        this.freeParticles = new ArrayList();
         this.viewType = i;
-        int i2 = i == 0 ? 100 : 300;
-        this.maxCount = i2;
+        int i3 = i == 0 ? 100 : 300;
+        this.maxCount = i3;
         Paint paint = new Paint(1);
         this.particlePaint = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
@@ -78,150 +66,23 @@ public class SnowflakesEffect {
         paint2.setStrokeWidth(AndroidUtilities.dp(0.5f));
         paint2.setStrokeCap(cap);
         paint2.setStyle(style);
-        if (BatchParticlesDrawHelper.isAvailable()) {
-            this.batchParticlesBuffer = new BatchParticlesDrawHelper.BatchParticlesBuffer(i2);
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.batchParticlesBuffer = new NotificationCompatBuilder(i3);
             this.batchParticlesPaint = BatchParticlesDrawHelper.createBatchParticlesPaint(createParticlesBitmap(true));
         } else {
             this.batchParticlesBuffer = null;
             this.batchParticlesPaint = null;
         }
-        updateColors();
-        for (int i3 = 0; i3 < 20; i3++) {
-            this.freeParticles.add(new Particle());
-        }
-    }
-
-    public void setForcedColor(int i) {
-        this.forcedColor = i;
-        updateColors();
-    }
-
-    public void updateColors() {
         int color = this.forcedColor;
-        if (color == 0) {
-            color = Theme.getColor(this.colorKey) & (-1644826);
-        }
+        color = color == 0 ? Theme.getColor(null, i2, false) & (-1644826) : color;
         if (this.color != color) {
             this.color = color;
-            this.particlePaint.setColor(color);
-            this.particleThinPaint.setColor(color);
+            paint.setColor(color);
+            paint2.setColor(color);
         }
-    }
-
-    private void updateParticles(long j) {
-        int size = this.particles.size();
-        int i = 0;
-        while (i < size) {
-            Particle particle = (Particle) this.particles.get(i);
-            float f = particle.currentTime;
-            float f2 = particle.lifeTime;
-            if (f >= f2) {
-                if (this.freeParticles.size() < 40) {
-                    this.freeParticles.add(particle);
-                }
-                this.particles.remove(i);
-                i--;
-                size--;
-            } else {
-                if (this.viewType == 0) {
-                    if (f < 200.0f) {
-                        particle.alpha = AndroidUtilities.accelerateInterpolator.getInterpolation(f / 200.0f);
-                    } else {
-                        particle.alpha = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation((f - 200.0f) / (f2 - 200.0f));
-                    }
-                } else if (f < 200.0f) {
-                    particle.alpha = AndroidUtilities.accelerateInterpolator.getInterpolation(f / 200.0f);
-                } else {
-                    float f3 = f2 - f;
-                    if (f3 < 2000.0f) {
-                        particle.alpha = AndroidUtilities.decelerateInterpolator.getInterpolation(f3 / 2000.0f);
-                    }
-                }
-                float f4 = particle.x;
-                float f5 = particle.vx;
-                float f6 = particle.velocity;
-                float f7 = j;
-                particle.x = f4 + (((f5 * f6) * f7) / 500.0f);
-                particle.y += ((particle.vy * f6) * f7) / 500.0f;
-                particle.currentTime += f7;
-            }
-            i++;
+        for (int i4 = 0; i4 < 20; i4++) {
+            this.freeParticles.add(new Particle());
         }
-    }
-
-    public void onDraw(View view, Canvas canvas) {
-        float measuredHeight;
-        Particle particle;
-        if (view == null || canvas == null || !LiteMode.isEnabled(32)) {
-            return;
-        }
-        if (this.batchParticlesBuffer != null) {
-            int iMin = Math.min(this.maxCount, this.particles.size());
-            int iDp = AndroidUtilities.dp(10.0f);
-            for (int i = 0; i < iMin; i++) {
-                Particle particle2 = (Particle) this.particles.get(i);
-                float f = particle2.x;
-                float f2 = particle2.y;
-                int i2 = particle2.type;
-                float f3 = iDp / 2.0f;
-                if (i2 != 0) {
-                    f3 *= particle2.scale;
-                }
-                float f4 = i2 == 0 ? iDp : 0.0f;
-                this.batchParticlesBuffer.setParticleColor(i, ColorUtils.setAlphaComponent(this.color, (int) (particle2.alpha * 255.0f)));
-                this.batchParticlesBuffer.setParticleVertexCords(i, f - f3, f2 - f3, f + f3, f2 + f3);
-                float f5 = iDp;
-                this.batchParticlesBuffer.setParticleTextureCords(i, f4, 0.0f, f4 + f5, f5);
-            }
-            BatchParticlesDrawHelper.draw(canvas, this.batchParticlesBuffer, iMin, this.batchParticlesPaint);
-        } else {
-            int size = this.particles.size();
-            for (int i3 = 0; i3 < size; i3++) {
-                ((Particle) this.particles.get(i3)).draw(canvas);
-            }
-        }
-        int i4 = this.viewType == 0 ? 1 : 10;
-        if (this.particles.size() < this.maxCount) {
-            for (int i5 = 0; i5 < i4; i5++) {
-                if (this.particles.size() < this.maxCount && Utilities.random.nextFloat() > 0.7f) {
-                    int i6 = AndroidUtilities.statusBarHeight;
-                    float fNextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
-                    if (this.viewType == 0) {
-                        measuredHeight = i6 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i6));
-                    } else {
-                        measuredHeight = view.getMeasuredHeight() * Utilities.random.nextFloat();
-                    }
-                    double dNextInt = ((double) (Utilities.random.nextInt(40) + 70)) * 0.017453292519943295d;
-                    float fCos = (float) Math.cos(dNextInt);
-                    float fSin = (float) Math.sin(dNextInt);
-                    if (!this.freeParticles.isEmpty()) {
-                        particle = (Particle) this.freeParticles.get(0);
-                        this.freeParticles.remove(0);
-                    } else {
-                        particle = new Particle();
-                    }
-                    particle.x = fNextFloat;
-                    particle.y = measuredHeight;
-                    particle.vx = fCos;
-                    particle.vy = fSin;
-                    particle.alpha = 0.0f;
-                    particle.currentTime = 0.0f;
-                    particle.scale = Utilities.random.nextFloat() * 1.2f;
-                    particle.type = Utilities.random.nextInt(2);
-                    if (this.viewType == 0) {
-                        particle.lifeTime = Utilities.random.nextInt(100) + 2000;
-                    } else {
-                        particle.lifeTime = Utilities.random.nextInt(2000) + 3000;
-                    }
-                    particle.velocity = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
-                    this.particles.add(particle);
-                }
-            }
-        }
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        updateParticles(Math.min(17L, jCurrentTimeMillis - this.lastAnimationTime));
-        this.lastAnimationTime = jCurrentTimeMillis;
-        view.invalidate();
     }
 
     public static Bitmap createParticlesBitmap(boolean z) {
@@ -253,14 +114,10 @@ public class SnowflakesEffect {
             double d2 = (float) (d - 1.5707963267948966d);
             double d3 = f;
             double d4 = fDpf3;
-            float fCos2 = (float) ((Math.cos(d2) * d3) - (Math.sin(d2) * d4));
-            Canvas canvas2 = canvas;
-            float fSin2 = (float) ((Math.sin(d2) * d3) + (Math.cos(d2) * d4));
             float f8 = f6 + f4;
             float f9 = f7 + f5;
-            canvas2.drawLine(f8, f9, f6 + fCos2, fSin2 + f7, paint);
-            canvas = canvas2;
-            canvas.drawLine(f8, f9, f6 + ((float) (((-Math.cos(d2)) * d3) - (Math.sin(d2) * d4))), ((float) (((-Math.sin(d2)) * d3) + (Math.cos(d2) * d4))) + f7, paint);
+            canvas.drawLine(f8, f9, f6 + ((float) ((Math.cos(d2) * d3) - (Math.sin(d2) * d4))), ((float) AndroidUtilities$$ExternalSyntheticOutline1.m(d2, d4, Math.sin(d2) * d3)) + f7, paint);
+            canvas.drawLine(f8, f9, f6 + ((float) (((-Math.cos(d2)) * d3) - (Math.sin(d2) * d4))), ((float) AndroidUtilities$$ExternalSyntheticOutline1.m(d2, d4, (-Math.sin(d2)) * d3)) + f7, paint);
             f2 = f3 + 1.0471976f;
             i++;
             fDp2 = f7;
@@ -277,5 +134,165 @@ public class SnowflakesEffect {
             canvas.drawPoint(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(5.0f), paint2);
         }
         return bitmap2;
+    }
+
+    public final void onDraw(Canvas canvas, View view) {
+        int i;
+        int i2;
+        Particle particle;
+        float[] fArr;
+        float[] fArr2;
+        int[] iArr;
+        if (view == null || canvas == null || !LiteMode.isEnabled(32)) {
+            return;
+        }
+        ArrayList arrayList = this.particles;
+        int i3 = this.maxCount;
+        NotificationCompatBuilder notificationCompatBuilder = this.batchParticlesBuffer;
+        if (notificationCompatBuilder != null) {
+            int iMin = Math.min(i3, arrayList.size());
+            int iDp = AndroidUtilities.dp(10.0f);
+            int i4 = 0;
+            while (true) {
+                fArr = (float[]) notificationCompatBuilder.mBuilder;
+                fArr2 = (float[]) notificationCompatBuilder.mContext;
+                iArr = (int[]) notificationCompatBuilder.mExtras;
+                if (i4 >= iMin) {
+                    break;
+                }
+                Particle particle2 = (Particle) arrayList.get(i4);
+                float f = particle2.x;
+                float f2 = particle2.y;
+                int i5 = particle2.type;
+                float f3 = iDp / 2.0f;
+                if (i5 != 0) {
+                    f3 *= particle2.scale;
+                }
+                float f4 = i5 == 0 ? iDp : 0.0f;
+                int alphaComponent = ColorUtils.setAlphaComponent(this.color, (int) (particle2.alpha * 255.0f));
+                int i6 = i4 * 4;
+                iArr[i6] = alphaComponent;
+                iArr[i6 + 1] = alphaComponent;
+                iArr[i6 + 2] = alphaComponent;
+                iArr[i6 + 3] = alphaComponent;
+                NotificationCompatBuilder.bufferVertexSet(fArr2, i4, f - f3, f2 - f3, f + f3, f2 + f3);
+                float f5 = iDp;
+                NotificationCompatBuilder.bufferVertexSet(fArr, i4, f4, 0.0f, f4 + f5, f5);
+                i4++;
+            }
+            i = i3;
+            canvas.drawVertices(Canvas.VertexMode.TRIANGLES, iMin * 8, fArr2, 0, fArr, 0, iArr, 0, (short[]) notificationCompatBuilder.mBuilderCompat, 0, iMin * 6, this.batchParticlesPaint);
+        } else {
+            i = i3;
+            int size = arrayList.size();
+            for (int i7 = 0; i7 < size; i7++) {
+                Particle particle3 = (Particle) arrayList.get(i7);
+                int i8 = particle3.type;
+                SnowflakesEffect snowflakesEffect = SnowflakesEffect.this;
+                if (i8 != 0) {
+                    if (snowflakesEffect.particleBitmap == null) {
+                        snowflakesEffect.particleBitmap = createParticlesBitmap(false);
+                    }
+                    Paint paint = snowflakesEffect.bitmapPaint;
+                    paint.setAlpha((int) (particle3.alpha * 255.0f));
+                    canvas.save();
+                    float f6 = particle3.scale;
+                    canvas.scale(f6, f6, particle3.x, particle3.y);
+                    canvas.drawBitmap(snowflakesEffect.particleBitmap, particle3.x, particle3.y, paint);
+                    canvas.restore();
+                } else {
+                    snowflakesEffect.particlePaint.setAlpha((int) (particle3.alpha * 255.0f));
+                    canvas.drawPoint(particle3.x, particle3.y, snowflakesEffect.particlePaint);
+                }
+            }
+        }
+        int i9 = this.viewType;
+        int i10 = i9 == 0 ? 1 : 10;
+        int size2 = arrayList.size();
+        ArrayList arrayList2 = this.freeParticles;
+        int i11 = 40;
+        if (size2 < i) {
+            int i12 = 0;
+            while (i12 < i10) {
+                if (arrayList.size() >= i || Utilities.random.nextFloat() <= 0.7f) {
+                    i2 = i9;
+                } else {
+                    int i13 = AndroidUtilities.statusBarHeight;
+                    float fNextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
+                    float fNextFloat2 = i9 == 0 ? (Utilities.random.nextFloat() * RichMessageLayout$$ExternalSyntheticOutline2.m(view.getMeasuredHeight(), 20.0f, i13)) + i13 : Utilities.random.nextFloat() * view.getMeasuredHeight();
+                    double dNextInt = ((double) (Utilities.random.nextInt(40) + 70)) * 0.017453292519943295d;
+                    i2 = i9;
+                    float fCos = (float) Math.cos(dNextInt);
+                    float fSin = (float) Math.sin(dNextInt);
+                    if (arrayList2.isEmpty()) {
+                        particle = new Particle();
+                    } else {
+                        particle = (Particle) arrayList2.get(0);
+                        arrayList2.remove(0);
+                    }
+                    particle.x = fNextFloat;
+                    particle.y = fNextFloat2;
+                    particle.vx = fCos;
+                    particle.vy = fSin;
+                    particle.alpha = 0.0f;
+                    particle.currentTime = 0.0f;
+                    particle.scale = Utilities.random.nextFloat() * 1.2f;
+                    particle.type = Utilities.random.nextInt(2);
+                    if (i2 == 0) {
+                        particle.lifeTime = Utilities.random.nextInt(100) + 2000;
+                    } else {
+                        particle.lifeTime = Utilities.random.nextInt(2000) + 3000;
+                    }
+                    particle.velocity = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
+                    arrayList.add(particle);
+                }
+                i12++;
+                i9 = i2;
+            }
+        }
+        int i14 = i9;
+        int i15 = 0;
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long jMin = Math.min(17L, jCurrentTimeMillis - this.lastAnimationTime);
+        int size3 = arrayList.size();
+        while (i15 < size3) {
+            Particle particle4 = (Particle) arrayList.get(i15);
+            float f7 = particle4.currentTime;
+            float f8 = particle4.lifeTime;
+            if (f7 >= f8) {
+                if (arrayList2.size() < i11) {
+                    arrayList2.add(particle4);
+                }
+                arrayList.remove(i15);
+                i15--;
+                size3--;
+            } else {
+                if (i14 == 0) {
+                    if (f7 < 200.0f) {
+                        particle4.alpha = AndroidUtilities.accelerateInterpolator.getInterpolation(f7 / 200.0f);
+                    } else {
+                        particle4.alpha = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation((f7 - 200.0f) / (f8 - 200.0f));
+                    }
+                } else if (f7 < 200.0f) {
+                    particle4.alpha = AndroidUtilities.accelerateInterpolator.getInterpolation(f7 / 200.0f);
+                } else {
+                    float f9 = f8 - f7;
+                    if (f9 < 2000.0f) {
+                        particle4.alpha = AndroidUtilities.decelerateInterpolator.getInterpolation(f9 / 2000.0f);
+                    }
+                }
+                float f10 = particle4.x;
+                float f11 = particle4.vx;
+                float f12 = particle4.velocity;
+                float f13 = jMin;
+                particle4.x = Emoji$EmojiSpan$$ExternalSyntheticOutline0.m(f11 * f12, f13, 500.0f, f10);
+                particle4.y = (((particle4.vy * f12) * f13) / 500.0f) + particle4.y;
+                particle4.currentTime += f13;
+            }
+            i15++;
+            i11 = 40;
+        }
+        this.lastAnimationTime = jCurrentTimeMillis;
+        view.invalidate();
     }
 }

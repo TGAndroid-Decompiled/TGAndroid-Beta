@@ -20,16 +20,10 @@ public class URLAlphabetRegistration implements AlphabetRegistration {
     }
 
     @Override
-    public Character.UnicodeBlock[] getUnicodeBlock() {
-        return this.blocks;
-    }
-
-    @Override
     public Object getPackage() throws AlphabetRegistrationException {
         URL[] urlArr = {this.url};
         this.language = this.language.toLowerCase();
-        StringBuilder sb = new StringBuilder();
-        sb.append("org.scilab.forge.jlatexmath.");
+        StringBuilder sb = new StringBuilder("org.scilab.forge.jlatexmath.");
         sb.append(this.language);
         sb.append(".");
         sb.append(Character.toString(Character.toUpperCase(this.language.charAt(0))));
@@ -50,5 +44,10 @@ public class URLAlphabetRegistration implements AlphabetRegistration {
     @Override
     public String getTeXFontFileName() {
         return this.pack.getTeXFontFileName();
+    }
+
+    @Override
+    public Character.UnicodeBlock[] getUnicodeBlock() {
+        return this.blocks;
     }
 }

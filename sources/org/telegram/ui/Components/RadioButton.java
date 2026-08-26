@@ -11,22 +11,23 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 
 public class RadioButton extends View {
-    private static Paint checkedPaint;
-    private static Paint eraser;
-    private static Paint paint;
-    private boolean attachedToWindow;
-    private ObjectAnimator checkAnimator;
-    private int checkedColor;
-    private int color;
-    private Drawable icon;
-    private int iconColor;
-    private boolean isChecked;
-    private float progress;
-    private int size;
+    public static Paint checkedPaint;
+    public static Paint eraser;
+    public static Paint paint;
+    public boolean attachedToWindow;
+    public ObjectAnimator checkAnimator;
+    public int checkedColor;
+    public int color;
+    public Drawable icon;
+    public int iconColor;
+    public boolean isChecked;
+    public float progress;
+    public int size;
 
     public RadioButton(Context context) {
         super(context);
@@ -44,97 +45,28 @@ public class RadioButton extends View {
         }
     }
 
-    public void setProgress(float f) {
-        if (this.progress == f) {
-            return;
-        }
-        this.progress = f;
-        invalidate();
+    public int getColor() {
+        return this.color;
     }
 
     public float getProgress() {
         return this.progress;
     }
 
-    public void setSize(int i) {
-        if (this.size == i) {
-            return;
-        }
-        this.size = i;
-    }
-
-    public void setIcon(Drawable drawable) {
-        this.iconColor = 0;
-        this.icon = drawable;
-        invalidate();
-    }
-
-    public int getColor() {
-        return this.color;
-    }
-
-    public void setColor(int i, int i2) {
-        this.color = i;
-        this.checkedColor = i2;
-        invalidate();
-    }
-
     @Override
-    public void setBackgroundColor(int i) {
-        this.color = i;
-        invalidate();
-    }
-
-    public void setCheckedColor(int i) {
-        this.checkedColor = i;
-        invalidate();
-    }
-
-    private void cancelCheckAnimator() {
-        ObjectAnimator objectAnimator = this.checkAnimator;
-        if (objectAnimator != null) {
-            objectAnimator.cancel();
-        }
-    }
-
-    private void animateToCheckedState(boolean z) {
-        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-        this.checkAnimator = objectAnimatorOfFloat;
-        objectAnimatorOfFloat.setDuration(200L);
-        this.checkAnimator.start();
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attachedToWindow = true;
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attachedToWindow = false;
     }
 
-    public void setChecked(boolean z, boolean z2) {
-        if (z == this.isChecked) {
-            return;
-        }
-        this.isChecked = z;
-        if (this.attachedToWindow && z2) {
-            animateToCheckedState(z);
-        } else {
-            cancelCheckAnimator();
-            setProgress(z ? 1.0f : 0.0f);
-        }
-    }
-
-    public boolean isChecked() {
-        return this.isChecked;
-    }
-
     @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         float f;
         float f2 = this.progress;
         if (f2 <= 0.5f) {
@@ -159,21 +91,72 @@ public class RadioButton extends View {
         if (this.icon == null) {
             if (this.progress <= 0.5f) {
                 canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f4 - AndroidUtilities.dp(1.0f), checkedPaint);
-                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (f4 - AndroidUtilities.dp(1.0f)) * (1.0f - f), eraser);
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (1.0f - f) * (f4 - AndroidUtilities.dp(1.0f)), eraser);
             } else {
-                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (this.size / 4) + (((f4 - AndroidUtilities.dp(1.0f)) - (this.size / 4)) * f), checkedPaint);
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, DiffUtil.m(f4 - AndroidUtilities.dp(1.0f), this.size / 4, f, this.size / 4), checkedPaint);
             }
         }
         canvas.restore();
         if (this.icon != null) {
-            int iBlendARGB = ColorUtils.blendARGB(this.color, this.checkedColor, Utilities.clamp(this.progress, 1.0f, 0.0f));
+            int iBlendARGB = ColorUtils.blendARGB(Utilities.clamp(this.progress, 1.0f, 0.0f), this.color, this.checkedColor);
             if (this.iconColor != iBlendARGB) {
                 Drawable drawable = this.icon;
                 this.iconColor = iBlendARGB;
                 drawable.setColorFilter(new PorterDuffColorFilter(iBlendARGB, PorterDuff.Mode.SRC_IN));
             }
-            this.icon.setBounds((int) ((getWidth() / 2.0f) - (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) - (this.icon.getIntrinsicHeight() / 2.0f)), (int) ((getWidth() / 2.0f) + (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) + (this.icon.getIntrinsicHeight() / 2.0f)));
+            this.icon.setBounds((int) ((getWidth() / 2.0f) - (this.icon.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) - (this.icon.getIntrinsicHeight() / 2.0f)), (int) ((this.icon.getIntrinsicWidth() / 2.0f) + (getWidth() / 2.0f)), (int) ((this.icon.getIntrinsicHeight() / 2.0f) + (getHeight() / 2.0f)));
             this.icon.draw(canvas);
         }
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        this.color = i;
+        invalidate();
+    }
+
+    public final void setChecked(boolean z, boolean z2) {
+        if (z == this.isChecked) {
+            return;
+        }
+        this.isChecked = z;
+        if (this.attachedToWindow && z2) {
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
+            this.checkAnimator = objectAnimatorOfFloat;
+            objectAnimatorOfFloat.setDuration(200L);
+            this.checkAnimator.start();
+            return;
+        }
+        ObjectAnimator objectAnimator = this.checkAnimator;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+        }
+        setProgress(z ? 1.0f : 0.0f);
+    }
+
+    public void setCheckedColor(int i) {
+        this.checkedColor = i;
+        invalidate();
+    }
+
+    public void setIcon(Drawable drawable) {
+        this.iconColor = 0;
+        this.icon = drawable;
+        invalidate();
+    }
+
+    public void setProgress(float f) {
+        if (this.progress == f) {
+            return;
+        }
+        this.progress = f;
+        invalidate();
+    }
+
+    public void setSize(int i) {
+        if (this.size == i) {
+            return;
+        }
+        this.size = i;
     }
 }

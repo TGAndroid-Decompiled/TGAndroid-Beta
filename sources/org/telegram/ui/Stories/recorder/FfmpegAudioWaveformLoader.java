@@ -2,38 +2,33 @@ package org.telegram.ui.Stories.recorder;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda2;
+import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
 
 public class FfmpegAudioWaveformLoader {
     private Utilities.Callback2<short[], Integer> onChunkReceived;
     private volatile boolean running = true;
 
-    public native void init(String str, int i);
-
-    public FfmpegAudioWaveformLoader(final String str, final int i, Utilities.Callback2<short[], Integer> callback2) {
+    public FfmpegAudioWaveformLoader(String str, int i, Utilities.Callback2<short[], Integer> callback2) {
         this.onChunkReceived = callback2;
-        Utilities.phoneBookQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.init(str, i);
-            }
-        });
+        Utilities.phoneBookQueue.postRunnable(new TodoItemMenu$$ExternalSyntheticLambda2(this, str, i, 10));
     }
 
-    private void receiveChunk(final short[] sArr, final int i) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.onChunkReceived.run(sArr, Integer.valueOf(i));
-            }
-        });
+    public native void lambda$new$0(String str, int i);
+
+    public void lambda$destroy$2() {
+        this.running = false;
+    }
+
+    public void lambda$receiveChunk$1(short[] sArr, int i) {
+        this.onChunkReceived.run(sArr, Integer.valueOf(i));
+    }
+
+    private void receiveChunk(short[] sArr, int i) {
+        AndroidUtilities.runOnUIThread(new TodoItemMenu$$ExternalSyntheticLambda2(this, sArr, i, 11));
     }
 
     public void destroy() {
-        Utilities.phoneBookQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.running = false;
-            }
-        });
+        Utilities.phoneBookQueue.postRunnable(new VoIPFragment$12$$ExternalSyntheticLambda0(this, 9));
     }
 }

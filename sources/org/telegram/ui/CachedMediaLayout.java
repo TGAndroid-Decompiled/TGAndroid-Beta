@@ -3,10 +3,6 @@ package org.telegram.ui;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaMetadataRetriever;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -14,16 +10,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.util.ConditionVariable;
 import j$.util.Objects;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -34,8 +32,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BackDrawable;
@@ -44,8 +40,8 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SharedAudioCell;
 import org.telegram.ui.Cells.SharedDocumentCell;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
-import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
@@ -54,608 +50,134 @@ import org.telegram.ui.Components.NestedSizeNotifierLayout;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Storage.CacheModel;
-import org.telegram.ui.Stories.StoriesListPlaceProvider;
 
 public abstract class CachedMediaLayout extends FrameLayout implements NestedSizeNotifierLayout.ChildLayout {
-    private final LinearLayout actionModeLayout;
-    private final ArrayList actionModeViews;
-    Page[] allPages;
-    private final BackDrawable backDrawable;
-    private int bottomPadding;
-    CacheModel cacheModel;
-    private final ActionBarMenuItem clearItem;
-    private final ImageView closeButton;
-    Delegate delegate;
-    private final View divider;
-    ArrayList pages;
-    BaseFragment parentFragment;
-    BasePlaceProvider placeProvider;
-    public final AnimatedTextView selectedMessagesCountTextView;
-    private final ViewPagerFixed.TabsView tabs;
-    ViewPagerFixed viewPagerFixed;
+    public final ArrayList actionModeViews;
+    public final Page[] allPages;
+    public int bottomPadding;
+    public CacheModel cacheModel;
+    public Delegate delegate;
+    public final View divider;
+    public final ArrayList pages;
+    public final BaseFragment parentFragment;
+    public BasePlaceProvider placeProvider;
+    public final ViewPagerFixed.AnonymousClass3 tabs;
+    public final ViewPagerFixed viewPagerFixed;
 
-    public interface Delegate {
+    public final class AnonymousClass1 extends ViewPagerFixed.Adapter {
+        public ActionBarPopupWindow popupWindow;
+        public final Context val$context;
+        public final BaseFragment val$parentFragment;
 
-        public abstract class CC {
-            public static void $default$dismiss(Delegate delegate) {
-            }
-        }
-
-        void clear();
-
-        void clearSelection();
-
-        void dismiss();
-
-        void onItemSelected(CacheControlActivity.DialogFileEntities dialogFileEntities, CacheModel.FileInfo fileInfo, boolean z);
-    }
-
-    @Override
-    public boolean isAttached() {
-        return true;
-    }
-
-    protected void showActionMode(boolean z) {
-    }
-
-    public CachedMediaLayout(Context context, BaseFragment baseFragment) {
-        super(context);
-        this.actionModeViews = new ArrayList();
-        this.pages = new ArrayList();
-        Page[] pageArr = new Page[5];
-        this.allPages = pageArr;
-        this.parentFragment = baseFragment;
-        AnonymousClass1 anonymousClass1 = null;
-        AnonymousClass1 anonymousClass2 = null;
-        pageArr[0] = new Page(this, LocaleController.getString(R.string.FilterChats), 0, new DialogsAdapter(this, anonymousClass1), anonymousClass2);
-        this.allPages[1] = new Page(this, LocaleController.getString(R.string.MediaTab), 1, new MediaAdapter(this, false, anonymousClass1), anonymousClass2);
-        this.allPages[2] = new Page(this, LocaleController.getString(R.string.SharedFilesTab2), 2, new DocumentsAdapter(this, anonymousClass1), anonymousClass2);
-        this.allPages[3] = new Page(this, LocaleController.getString(R.string.Music), 3, new MusicAdapter(this, anonymousClass1), anonymousClass2);
-        int i = 0;
-        while (true) {
-            Page[] pageArr2 = this.allPages;
-            if (i < pageArr2.length) {
-                Page page = pageArr2[i];
-                if (page != null) {
-                    this.pages.add(i, page);
-                }
-                i++;
-            } else {
-                ViewPagerFixed viewPagerFixed = new ViewPagerFixed(getContext());
-                this.viewPagerFixed = viewPagerFixed;
-                viewPagerFixed.setAllowDisallowInterceptTouch(false);
-                addView(this.viewPagerFixed, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 48.0f, 0.0f, 0.0f));
-                ViewPagerFixed.TabsView tabsViewCreateTabsView = this.viewPagerFixed.createTabsView(true, 3);
-                this.tabs = tabsViewCreateTabsView;
-                addView(tabsViewCreateTabsView, LayoutHelper.createFrame(-1, 48.0f));
-                View view = new View(getContext());
-                this.divider = view;
-                view.setBackgroundColor(Theme.getColor(Theme.key_divider));
-                addView(view, LayoutHelper.createFrame(-1, 1.0f, 0, 0.0f, 48.0f, 0.0f, 0.0f));
-                view.getLayoutParams().height = 1;
-                this.viewPagerFixed.setAdapter(new AnonymousClass1(context, baseFragment));
-                LinearLayout linearLayout = new LinearLayout(context);
-                this.actionModeLayout = linearLayout;
-                linearLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                linearLayout.setAlpha(0.0f);
-                linearLayout.setClickable(true);
-                addView(linearLayout, LayoutHelper.createFrame(-1, 48.0f));
-                AndroidUtilities.updateViewVisibilityAnimated(linearLayout, false, 1.0f, false);
-                ImageView imageView = new ImageView(context);
-                this.closeButton = imageView;
-                imageView.setScaleType(ImageView.ScaleType.CENTER);
-                BackDrawable backDrawable = new BackDrawable(true);
-                this.backDrawable = backDrawable;
-                imageView.setImageDrawable(backDrawable);
-                int i2 = Theme.key_actionBarActionModeDefaultIcon;
-                backDrawable.setColor(Theme.getColor(i2));
-                int i3 = Theme.key_actionBarActionModeDefaultSelector;
-                imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i3), 1));
-                imageView.setContentDescription(LocaleController.getString(R.string.Close));
-                linearLayout.addView(imageView, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
-                this.actionModeViews.add(imageView);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        this.f$0.delegate.clearSelection();
-                    }
-                });
-                AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
-                this.selectedMessagesCountTextView = animatedTextView;
-                animatedTextView.setTextSize(AndroidUtilities.dp(18.0f));
-                animatedTextView.setTypeface(AndroidUtilities.bold());
-                animatedTextView.setTextColor(Theme.getColor(i2));
-                linearLayout.addView(animatedTextView, LayoutHelper.createLinear(0, -1, 1.0f, 18, 0, 0, 0));
-                this.actionModeViews.add(animatedTextView);
-                ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, (ActionBarMenu) null, Theme.getColor(i3), Theme.getColor(i2), false);
-                this.clearItem = actionBarMenuItem;
-                actionBarMenuItem.setIcon(R.drawable.msg_clear);
-                actionBarMenuItem.setContentDescription(LocaleController.getString(R.string.Delete));
-                actionBarMenuItem.setDuplicateParentStateEnabled(false);
-                linearLayout.addView(actionBarMenuItem, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
-                this.actionModeViews.add(actionBarMenuItem);
-                actionBarMenuItem.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        this.f$0.delegate.clear();
-                    }
-                });
-                return;
-            }
-        }
-    }
-
-    class AnonymousClass1 extends ViewPagerFixed.Adapter {
-        private ActionBarPopupWindow popupWindow;
-        final Context val$context;
-        final BaseFragment val$parentFragment;
-
-        @Override
-        public boolean hasStableId() {
-            return true;
-        }
-
-        AnonymousClass1(Context context, BaseFragment baseFragment) {
+        public AnonymousClass1(Context context, BaseFragment baseFragment) {
             this.val$context = context;
             this.val$parentFragment = baseFragment;
         }
 
         @Override
-        public String getItemTitle(int i) {
-            return ((Page) CachedMediaLayout.this.pages.get(i)).title;
+        public final void bindView(View view, int i, int i2) {
+            RecyclerListView recyclerListView = (RecyclerListView) view;
+            CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
+            recyclerListView.setAdapter(((Page) cachedMediaLayout.pages.get(i)).adapter);
+            ArrayList arrayList = cachedMediaLayout.pages;
+            if (((Page) arrayList.get(i)).type == 1 || ((Page) arrayList.get(i)).type == 4) {
+                view.getContext();
+                recyclerListView.setLayoutManager(new GridLayoutManager(3));
+            } else {
+                view.getContext();
+                recyclerListView.setLayoutManager(new LinearLayoutManager(1, false));
+            }
+            recyclerListView.setTag(Integer.valueOf(((Page) arrayList.get(i)).type));
         }
 
         @Override
-        public int getItemCount() {
-            return CachedMediaLayout.this.pages.size();
-        }
-
-        @Override
-        public int getItemId(int i) {
-            return ((Page) CachedMediaLayout.this.pages.get(i)).type;
-        }
-
-        @Override
-        public View createView(int i) {
-            final RecyclerListView recyclerListView = new RecyclerListView(this.val$context);
+        public final View createView(int i) {
+            final RecyclerListView recyclerListView = new RecyclerListView(this.val$context, null);
             DefaultItemAnimator defaultItemAnimator = (DefaultItemAnimator) recyclerListView.getItemAnimator();
-            defaultItemAnimator.setDelayAnimations(false);
-            defaultItemAnimator.setSupportsChangeAnimations(false);
+            defaultItemAnimator.delayAnimations = false;
+            defaultItemAnimator.mSupportsChangeAnimations = false;
             recyclerListView.setClipToPadding(false);
             recyclerListView.setPadding(0, 0, 0, CachedMediaLayout.this.bottomPadding);
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
-                public void onItemClick(View view, int i2) {
-                    BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
+                public final void onItemClick(int i2, View view) {
+                    RecyclerListView recyclerListView2 = recyclerListView;
+                    BaseAdapter baseAdapter = (BaseAdapter) recyclerListView2.getAdapter();
                     ItemInner itemInner = (ItemInner) baseAdapter.itemInners.get(i2);
-                    if (view instanceof SharedPhotoVideoCell2) {
-                        MediaAdapter mediaAdapter = (MediaAdapter) baseAdapter;
-                        if (!mediaAdapter.isStories) {
-                            CachedMediaLayout.this.openPhoto(itemInner, mediaAdapter, recyclerListView, (SharedPhotoVideoCell2) view);
-                            return;
+                    boolean z = view instanceof SharedPhotoVideoCell2;
+                    AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                    if (z) {
+                        CachedMediaLayout.access$600(CachedMediaLayout.this, itemInner, (MediaAdapter) baseAdapter, recyclerListView2);
+                    } else {
+                        Delegate delegate = CachedMediaLayout.this.delegate;
+                        if (delegate != null) {
+                            delegate.onItemSelected(itemInner.entities, itemInner.file, false);
                         }
-                        TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
-                        CacheModel.FileInfo fileInfo = itemInner.file;
-                        tL_storyItem.dialogId = fileInfo.dialogId;
-                        tL_storyItem.id = Objects.hash(fileInfo.file.getAbsolutePath());
-                        tL_storyItem.attachPath = itemInner.file.file.getAbsolutePath();
-                        tL_storyItem.date = -1;
-                        AnonymousClass1.this.val$parentFragment.getOrCreateStoryViewer().open(AnonymousClass1.this.val$context, tL_storyItem, StoriesListPlaceProvider.of(recyclerListView));
-                        return;
-                    }
-                    Delegate delegate = CachedMediaLayout.this.delegate;
-                    if (delegate != null) {
-                        delegate.onItemSelected(itemInner.entities, itemInner.file, false);
                     }
                 }
             });
-            final BaseFragment baseFragment = this.val$parentFragment;
-            recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
-                @Override
-                public final boolean onItemClick(View view, int i2, float f, float f2) {
-                    return CachedMediaLayout.AnonymousClass1.$r8$lambda$MoX0w7VckYxqA1B2hE6LcApPigU(this.f$0, recyclerListView, baseFragment, view, i2, f, f2);
-                }
-
-                @Override
-                public void onLongClickRelease() {
-                    RecyclerListView.OnItemLongClickListenerExtended.CC.$default$onLongClickRelease(this);
-                }
-
-                @Override
-                public void onMove(float f, float f2) {
-                    RecyclerListView.OnItemLongClickListenerExtended.CC.$default$onMove(this, f, f2);
-                }
-            });
+            recyclerListView.setOnItemLongClickListener(new ChatActivity$$ExternalSyntheticLambda248(this, recyclerListView, this.val$parentFragment, 9));
             return recyclerListView;
         }
 
-        public static boolean $r8$lambda$MoX0w7VckYxqA1B2hE6LcApPigU(final AnonymousClass1 anonymousClass1, final RecyclerListView recyclerListView, final BaseFragment baseFragment, final View view, int i, float f, float f2) {
-            anonymousClass1.getClass();
-            final BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
-            final ItemInner itemInner = (ItemInner) baseAdapter.itemInners.get(i);
-            if ((view instanceof CacheCell) || (view instanceof SharedPhotoVideoCell2)) {
-                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(CachedMediaLayout.this.getContext());
-                if (view instanceof SharedPhotoVideoCell2) {
-                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view2) {
-                            CachedMediaLayout.AnonymousClass1.$r8$lambda$dMdwR_9VldD6JAf5K_FHwSdxtPE(this.f$0, itemInner, baseAdapter, recyclerListView, view, view2);
-                        }
-                    });
-                } else if (((CacheCell) view).container.getChildAt(0) instanceof SharedAudioCell) {
-                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_played, LocaleController.getString(R.string.PlayFile), false, null).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view2) {
-                            CachedMediaLayout.AnonymousClass1.$r8$lambda$EyMtRyLqx7w2LGRjRkH5PuzJ4Fo(this.f$0, itemInner, view, view2);
-                        }
-                    });
-                } else {
-                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view2) {
-                            CachedMediaLayout.AnonymousClass1.$r8$lambda$tQSlYLOxCY1xteXD68aMQngCVOc(this.f$0, itemInner, view, view2);
-                        }
-                    });
-                }
-                CacheModel.FileInfo fileInfo = itemInner.file;
-                if (fileInfo.dialogId != 0 && fileInfo.messageId != 0) {
-                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_viewintopic, LocaleController.getString(R.string.ViewInChat), false, null).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view2) {
-                            CachedMediaLayout.AnonymousClass1.m1438$r8$lambda$H6Dlzvcu4aeyycMq2m0jzndFRI(this.f$0, itemInner, baseFragment, view2);
-                        }
-                    });
-                }
-                ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_select, LocaleController.getString(!CachedMediaLayout.this.cacheModel.selectedFiles.contains(itemInner.file) ? R.string.Select : R.string.Deselect), false, null).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        CachedMediaLayout.AnonymousClass1.$r8$lambda$En7sboSWdrr88mkAPOKI_IdRDeo(this.f$0, itemInner, view2);
-                    }
-                });
-                anonymousClass1.popupWindow = AlertsCreator.createSimplePopup(baseFragment, actionBarPopupWindowLayout, view, (int) f, (int) f2);
-                CachedMediaLayout.this.getRootView().dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                return true;
-            }
-            Delegate delegate = CachedMediaLayout.this.delegate;
-            if (delegate != null) {
-                delegate.onItemSelected(itemInner.entities, itemInner.file, true);
-            }
-            return true;
-        }
-
-        public static void $r8$lambda$dMdwR_9VldD6JAf5K_FHwSdxtPE(AnonymousClass1 anonymousClass1, ItemInner itemInner, BaseAdapter baseAdapter, RecyclerListView recyclerListView, View view, View view2) {
-            CachedMediaLayout.this.openPhoto(itemInner, (MediaAdapter) baseAdapter, recyclerListView, (SharedPhotoVideoCell2) view);
-            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
-            if (actionBarPopupWindow != null) {
-                actionBarPopupWindow.dismiss();
-            }
-        }
-
-        public static void $r8$lambda$EyMtRyLqx7w2LGRjRkH5PuzJ4Fo(AnonymousClass1 anonymousClass1, ItemInner itemInner, View view, View view2) {
-            CachedMediaLayout.this.openItem(itemInner.file, (CacheCell) view);
-            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
-            if (actionBarPopupWindow != null) {
-                actionBarPopupWindow.dismiss();
-            }
-        }
-
-        public static void $r8$lambda$tQSlYLOxCY1xteXD68aMQngCVOc(AnonymousClass1 anonymousClass1, ItemInner itemInner, View view, View view2) {
-            CachedMediaLayout.this.openItem(itemInner.file, (CacheCell) view);
-            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
-            if (actionBarPopupWindow != null) {
-                actionBarPopupWindow.dismiss();
-            }
-        }
-
-        public static void m1438$r8$lambda$H6Dlzvcu4aeyycMq2m0jzndFRI(AnonymousClass1 anonymousClass1, ItemInner itemInner, BaseFragment baseFragment, View view) {
-            anonymousClass1.getClass();
-            Bundle bundle = new Bundle();
-            long j = itemInner.file.dialogId;
-            if (j > 0) {
-                bundle.putLong("user_id", j);
-            } else {
-                bundle.putLong("chat_id", -j);
-            }
-            bundle.putInt("message_id", itemInner.file.messageId);
-            baseFragment.presentFragment(new ChatActivity(bundle));
-            CachedMediaLayout.this.delegate.dismiss();
-            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
-            if (actionBarPopupWindow != null) {
-                actionBarPopupWindow.dismiss();
-            }
-        }
-
-        public static void $r8$lambda$En7sboSWdrr88mkAPOKI_IdRDeo(AnonymousClass1 anonymousClass1, ItemInner itemInner, View view) {
-            Delegate delegate = CachedMediaLayout.this.delegate;
-            if (delegate != null) {
-                delegate.onItemSelected(itemInner.entities, itemInner.file, true);
-            }
-            ActionBarPopupWindow actionBarPopupWindow = anonymousClass1.popupWindow;
-            if (actionBarPopupWindow != null) {
-                actionBarPopupWindow.dismiss();
-            }
+        @Override
+        public final int getItemCount() {
+            return CachedMediaLayout.this.pages.size();
         }
 
         @Override
-        public void bindView(View view, int i, int i2) {
-            RecyclerListView recyclerListView = (RecyclerListView) view;
-            recyclerListView.setAdapter(((Page) CachedMediaLayout.this.pages.get(i)).adapter);
-            if (((Page) CachedMediaLayout.this.pages.get(i)).type == 1 || ((Page) CachedMediaLayout.this.pages.get(i)).type == 4) {
-                recyclerListView.setLayoutManager(new GridLayoutManager(view.getContext(), 3));
-            } else {
-                recyclerListView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-            }
-            recyclerListView.setTag(Integer.valueOf(((Page) CachedMediaLayout.this.pages.get(i)).type));
+        public final int getItemId(int i) {
+            return ((Page) CachedMediaLayout.this.pages.get(i)).type;
+        }
+
+        @Override
+        public final CharSequence getItemTitle(int i) {
+            return ((Page) CachedMediaLayout.this.pages.get(i)).title;
         }
     }
 
-    public void openPhoto(ItemInner itemInner, MediaAdapter mediaAdapter, RecyclerListView recyclerListView, SharedPhotoVideoCell2 sharedPhotoVideoCell2) {
-        PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-        if (this.placeProvider == null) {
-            this.placeProvider = new BasePlaceProvider(this, null);
-        }
-        this.placeProvider.setRecyclerListView(recyclerListView);
-        if (mediaAdapter.itemInners.indexOf(itemInner) >= 0) {
-            PhotoViewer.getInstance().openPhotoForSelect(mediaAdapter.getPhotos(), mediaAdapter.itemInners.indexOf(itemInner), -1, false, this.placeProvider, null);
-        }
-    }
-
-    public void openItem(CacheModel.FileInfo fileInfo, CacheCell cacheCell) {
-        RecyclerListView recyclerListView = (RecyclerListView) this.viewPagerFixed.getCurrentView();
-        if (cacheCell.type == 2) {
-            if (!(recyclerListView.getAdapter() instanceof DocumentsAdapter)) {
-                return;
-            }
-            PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-            if (this.placeProvider == null) {
-                this.placeProvider = new BasePlaceProvider(this, null);
-            }
-            this.placeProvider.setRecyclerListView(recyclerListView);
-            if (fileIsMedia(fileInfo.file)) {
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, fileInfo.file.getPath(), 0, fileInfo.type == 1, 0, 0, 0L));
-                PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, -1, false, this.placeProvider, null);
-            } else {
-                File file = fileInfo.file;
-                AndroidUtilities.openForView(file, file.getName(), null, this.parentFragment.getParentActivity(), null, false);
-            }
-        }
-        if (cacheCell.type == 3) {
-            if (MediaController.getInstance().isPlayingMessage(fileInfo.messageObject)) {
-                if (!MediaController.getInstance().isMessagePaused()) {
-                    MediaController.getInstance().pauseMessage(fileInfo.messageObject);
-                    return;
-                } else {
-                    MediaController.getInstance().playMessage(fileInfo.messageObject);
-                    return;
-                }
-            }
-            MediaController.getInstance().playMessage(fileInfo.messageObject);
-        }
-    }
-
-    public SharedPhotoVideoCell2 getCellForIndex(int i) {
-        RecyclerListView listView = getListView();
-        for (int i2 = 0; i2 < listView.getChildCount(); i2++) {
-            View childAt = listView.getChildAt(i2);
-            if (listView.getChildAdapterPosition(childAt) == i && (childAt instanceof SharedPhotoVideoCell2)) {
-                return (SharedPhotoVideoCell2) childAt;
-            }
-        }
-        return null;
-    }
-
-    public void setCacheModel(CacheModel cacheModel) {
-        this.cacheModel = cacheModel;
-        update();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
-    }
-
-    public void update() {
-        ArrayList arrayList = new ArrayList();
-        arrayList.addAll(this.pages);
-        this.pages.clear();
-        if (this.cacheModel != null) {
-            int i = 0;
-            while (true) {
-                Page[] pageArr = this.allPages;
-                if (i >= pageArr.length) {
-                    break;
-                }
-                Page page = pageArr[i];
-                if (page != null) {
-                    if (page.type == 0 && !this.cacheModel.entities.isEmpty()) {
-                        this.pages.add(this.allPages[i]);
-                    } else if (this.allPages[i].type == 1 && !this.cacheModel.media.isEmpty()) {
-                        this.pages.add(this.allPages[i]);
-                    } else if (this.allPages[i].type == 2 && !this.cacheModel.documents.isEmpty()) {
-                        this.pages.add(this.allPages[i]);
-                    } else if (this.allPages[i].type == 3 && !this.cacheModel.music.isEmpty()) {
-                        this.pages.add(this.allPages[i]);
-                    } else if (this.allPages[i].type == 5 && !this.cacheModel.voice.isEmpty()) {
-                        this.pages.add(this.allPages[i]);
-                    } else if (this.allPages[i].type == 4 && !this.cacheModel.stories.isEmpty()) {
-                        this.pages.add(this.allPages[i]);
-                    }
-                }
-                i++;
-            }
-        }
-        if (this.pages.size() == 1 && this.cacheModel.isDialog) {
-            this.tabs.setVisibility(8);
-            ((ViewGroup.MarginLayoutParams) this.viewPagerFixed.getLayoutParams()).topMargin = 0;
-            ((ViewGroup.MarginLayoutParams) this.divider.getLayoutParams()).topMargin = 0;
-        }
-        if (arrayList.size() == this.pages.size()) {
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                if (((Page) arrayList.get(i2)).type != ((Page) this.pages.get(i2)).type) {
-                    this.viewPagerFixed.rebuild(true);
-                    break;
-                }
-            }
-        } else {
-            this.viewPagerFixed.rebuild(true);
-            break;
-        }
-        for (int i3 = 0; i3 < this.pages.size(); i3++) {
-            if (((Page) this.pages.get(i3)).adapter != null) {
-                ((Page) this.pages.get(i3)).adapter.update();
-            }
-        }
-    }
-
-    @Override
-    public RecyclerListView getListView() {
-        if (this.viewPagerFixed.getCurrentView() == null) {
-            return null;
-        }
-        return (RecyclerListView) this.viewPagerFixed.getCurrentView();
-    }
-
-    public void updateVisibleRows() {
-        for (int i = 0; i < this.viewPagerFixed.getViewPages().length; i++) {
-            AndroidUtilities.updateVisibleRows((RecyclerListView) this.viewPagerFixed.getViewPages()[i]);
-        }
-    }
-
-    public void setBottomPadding(int i) {
-        this.bottomPadding = i;
-        for (int i2 = 0; i2 < this.viewPagerFixed.getViewPages().length; i2++) {
-            RecyclerListView recyclerListView = (RecyclerListView) this.viewPagerFixed.getViewPages()[i2];
-            if (recyclerListView != null) {
-                recyclerListView.setPadding(0, 0, 0, i);
-            }
-        }
-    }
-
-    private class Page {
-        public final BaseAdapter adapter;
-        public final String title;
+    public abstract class BaseAdapter extends AdapterWithDiffUtils {
+        public final ArrayList itemInners = new ArrayList();
         public final int type;
 
-        Page(CachedMediaLayout cachedMediaLayout, String str, int i, BaseAdapter baseAdapter, AnonymousClass1 anonymousClass1) {
-            this(str, i, baseAdapter);
-        }
-
-        private Page(String str, int i, BaseAdapter baseAdapter) {
-            this.title = str;
-            this.type = i;
-            this.adapter = baseAdapter;
-        }
-    }
-
-    abstract class BaseAdapter extends AdapterWithDiffUtils {
-        ArrayList itemInners = new ArrayList();
-        final int type;
-
-        abstract void update();
-
-        protected BaseAdapter(int i) {
+        public BaseAdapter(int i) {
             this.type = i;
         }
 
         @Override
-        public int getItemViewType(int i) {
+        public final int getItemCount() {
+            return this.itemInners.size();
+        }
+
+        @Override
+        public final int getItemViewType(int i) {
             return ((ItemInner) this.itemInners.get(i)).viewType;
         }
 
-        @Override
-        public int getItemCount() {
-            return this.itemInners.size();
-        }
+        public abstract void update();
     }
 
-    private class DialogsAdapter extends BaseAdapter {
-        ArrayList old;
+    public abstract class BaseFilesAdapter extends BaseAdapter {
+        public final ArrayList oldItems;
 
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return true;
-        }
-
-        DialogsAdapter(CachedMediaLayout cachedMediaLayout, AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private DialogsAdapter() {
-            super(0);
-            this.old = new ArrayList();
-        }
-
-        @Override
-        void update() {
-            this.old.clear();
-            this.old.addAll(this.itemInners);
-            this.itemInners.clear();
-            if (CachedMediaLayout.this.cacheModel != null) {
-                for (int i = 0; i < CachedMediaLayout.this.cacheModel.entities.size(); i++) {
-                    ArrayList arrayList = this.itemInners;
-                    CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
-                    arrayList.add(cachedMediaLayout.new ItemInner(1, (CacheControlActivity.DialogFileEntities) cachedMediaLayout.cacheModel.entities.get(i)));
-                }
-            }
-            setItems(this.old, this.itemInners);
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            CacheControlActivity.UserCell userCell = null;
-            if (i == 1) {
-                CacheControlActivity.UserCell userCell2 = new CacheControlActivity.UserCell(CachedMediaLayout.this.getContext(), null);
-                userCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                userCell = userCell2;
-            }
-            return new RecyclerListView.Holder(userCell);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            String dialogPhotoTitle;
-            if (viewHolder.getItemViewType() != 1) {
-                return;
-            }
-            CacheControlActivity.UserCell userCell = (CacheControlActivity.UserCell) viewHolder.itemView;
-            CacheControlActivity.DialogFileEntities dialogFileEntities = ((ItemInner) this.itemInners.get(i)).entities;
-            TLObject userOrChat = CachedMediaLayout.this.parentFragment.getMessagesController().getUserOrChat(dialogFileEntities.dialogId);
-            CacheControlActivity.DialogFileEntities dialogFileEntities2 = userCell.dialogFileEntities;
-            boolean z = dialogFileEntities2 != null && dialogFileEntities2.dialogId == dialogFileEntities.dialogId;
-            if (dialogFileEntities.dialogId == Long.MAX_VALUE) {
-                dialogPhotoTitle = LocaleController.getString(R.string.CacheOtherChats);
-                userCell.getImageView().getAvatarDrawable().setAvatarType(14);
-                userCell.getImageView().setForUserOrChat(null, userCell.getImageView().getAvatarDrawable());
-            } else {
-                dialogPhotoTitle = DialogObject.setDialogPhotoTitle(userCell.getImageView(), userOrChat);
-            }
-            userCell.dialogFileEntities = dialogFileEntities;
-            userCell.getImageView().setRoundRadius(AndroidUtilities.dp(((userOrChat instanceof TLRPC.Chat) && ((TLRPC.Chat) userOrChat).forum) ? 12.0f : 19.0f));
-            userCell.setTextAndValue(dialogPhotoTitle, AndroidUtilities.formatFileSize(dialogFileEntities.totalSize), i < getItemCount() - 1);
-            userCell.setChecked(CachedMediaLayout.this.cacheModel.isSelected(dialogFileEntities.dialogId), z);
-        }
-    }
-
-    private abstract class BaseFilesAdapter extends BaseAdapter {
-        ArrayList oldItems;
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return true;
-        }
-
-        protected BaseFilesAdapter(int i) {
+        public BaseFilesAdapter(int i) {
             super(i);
             this.oldItems = new ArrayList();
         }
 
         @Override
-        void update() {
+        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return !(this instanceof MediaAdapter);
+        }
+
+        @Override
+        public void update() {
             ArrayList arrayList;
-            this.oldItems.clear();
-            this.oldItems.addAll(this.itemInners);
-            this.itemInners.clear();
+            ArrayList arrayList2 = this.oldItems;
+            arrayList2.clear();
+            ArrayList arrayList3 = this.itemInners;
+            arrayList2.addAll(arrayList3);
+            arrayList3.clear();
             CacheModel cacheModel = CachedMediaLayout.this.cacheModel;
             if (cacheModel != null) {
                 int i = this.type;
@@ -672,29 +194,713 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                 }
                 if (arrayList != null) {
                     for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                        this.itemInners.add(CachedMediaLayout.this.new ItemInner(2, (CacheModel.FileInfo) arrayList.get(i2)));
+                        arrayList3.add(new ItemInner((CacheModel.FileInfo) arrayList.get(i2)));
                     }
                 }
             }
-            setItems(this.oldItems, this.itemInners);
+            setItems(arrayList2, arrayList3);
         }
     }
 
-    class ItemInner extends AdapterWithDiffUtils.Item {
-        CacheControlActivity.DialogFileEntities entities;
-        CacheModel.FileInfo file;
+    public final class BasePlaceProvider extends PhotoViewer.EmptyPhotoViewerProvider {
+        public RecyclerListView recyclerListView;
 
-        public ItemInner(int i, CacheControlActivity.DialogFileEntities dialogFileEntities) {
-            super(i, true);
+        public BasePlaceProvider() {
+        }
+
+        @Override
+        public final PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
+            SharedPhotoVideoCell2 sharedPhotoVideoCell2;
+            RecyclerListView listView = CachedMediaLayout.this.getListView();
+            int i2 = 0;
+            while (true) {
+                if (i2 >= listView.getChildCount()) {
+                    sharedPhotoVideoCell2 = null;
+                    break;
+                }
+                View childAt = listView.getChildAt(i2);
+                if (RecyclerView.getChildAdapterPosition(childAt) == i && (childAt instanceof SharedPhotoVideoCell2)) {
+                    sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) childAt;
+                    break;
+                }
+                i2++;
+            }
+            if (sharedPhotoVideoCell2 == null) {
+                return null;
+            }
+            int[] iArr = new int[2];
+            sharedPhotoVideoCell2.getLocationInWindow(iArr);
+            PhotoViewer.PlaceProviderObject placeProviderObject = new PhotoViewer.PlaceProviderObject();
+            placeProviderObject.viewX = iArr[0];
+            placeProviderObject.viewY = iArr[1];
+            placeProviderObject.parentView = this.recyclerListView;
+            ImageReceiver imageReceiver = sharedPhotoVideoCell2.imageReceiver;
+            placeProviderObject.imageReceiver = imageReceiver;
+            placeProviderObject.thumb = imageReceiver.getBitmapSafe();
+            placeProviderObject.scale = sharedPhotoVideoCell2.getScaleX();
+            return placeProviderObject;
+        }
+    }
+
+    public interface Delegate {
+        void clear();
+
+        void clearSelection();
+
+        void dismiss();
+
+        void onItemSelected(CacheControlActivity.DialogFileEntities dialogFileEntities, CacheModel.FileInfo fileInfo, boolean z);
+    }
+
+    public final class DialogsAdapter extends BaseAdapter {
+        public final ArrayList old;
+
+        public DialogsAdapter() {
+            super(0);
+            this.old = new ArrayList();
+        }
+
+        @Override
+        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return true;
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            String dialogPhotoTitle;
+            if (viewHolder.mItemViewType != 1) {
+                return;
+            }
+            CacheControlActivity.UserCell userCell = (CacheControlActivity.UserCell) viewHolder.itemView;
+            ArrayList arrayList = this.itemInners;
+            CacheControlActivity.DialogFileEntities dialogFileEntities = ((ItemInner) arrayList.get(i)).entities;
+            CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
+            TLObject userOrChat = cachedMediaLayout.parentFragment.getMessagesController().getUserOrChat(dialogFileEntities.dialogId);
+            CacheControlActivity.DialogFileEntities dialogFileEntities2 = userCell.dialogFileEntities;
+            boolean z = dialogFileEntities2 != null && dialogFileEntities2.dialogId == dialogFileEntities.dialogId;
+            if (dialogFileEntities.dialogId == Long.MAX_VALUE) {
+                dialogPhotoTitle = LocaleController.getString(R.string.CacheOtherChats);
+                userCell.getImageView().getAvatarDrawable().setAvatarType(14);
+                BackupImageView imageView = userCell.getImageView();
+                imageView.imageReceiver.setForUserOrChat(null, userCell.getImageView().getAvatarDrawable());
+                imageView.onNewImageSet();
+            } else {
+                dialogPhotoTitle = DialogObject.setDialogPhotoTitle(userCell.getImageView(), userOrChat);
+            }
+            userCell.dialogFileEntities = dialogFileEntities;
+            userCell.getImageView().setRoundRadius(AndroidUtilities.dp(((userOrChat instanceof TLRPC.Chat) && ((TLRPC.Chat) userOrChat).forum) ? 12.0f : 19.0f));
+            String fileSize = AndroidUtilities.formatFileSize(dialogFileEntities.totalSize);
+            boolean z2 = i < arrayList.size() - 1;
+            TextView textView = userCell.textView;
+            textView.setText(Emoji.replaceEmoji(dialogPhotoTitle, textView.getPaint().getFontMetricsInt(), false));
+            AnimatedTextView animatedTextView = userCell.valueTextView;
+            if (fileSize != null) {
+                animatedTextView.setText(fileSize, false, true);
+                animatedTextView.setVisibility(0);
+            } else {
+                animatedTextView.setVisibility(4);
+            }
+            userCell.needDivider = z2;
+            userCell.setWillNotDraw(!z2);
+            userCell.requestLayout();
+            boolean zContains = cachedMediaLayout.cacheModel.selectedDialogs.contains(Long.valueOf(dialogFileEntities.dialogId));
+            CheckBox2 checkBox2 = userCell.checkBox;
+            if (checkBox2 != null || zContains) {
+                if (checkBox2 == null) {
+                    CheckBox2 checkBox3 = new CheckBox2(userCell.getContext(), 21, userCell.resourcesProvider);
+                    userCell.checkBox = checkBox3;
+                    checkBox3.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+                    userCell.checkBox.setDrawUnchecked(false);
+                    userCell.checkBox.setDrawBackgroundAsArc(3);
+                    userCell.addView(userCell.checkBox, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 48, 38.0f, 25.0f, 38.0f, 0.0f));
+                }
+                userCell.checkBox.checkBoxBase.setChecked(-1, zContains, z);
+            }
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            CacheControlActivity.UserCell userCell = null;
+            if (i == 1) {
+                CacheControlActivity.UserCell userCell2 = new CacheControlActivity.UserCell(CachedMediaLayout.this.getContext(), null);
+                userCell2.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+                userCell = userCell2;
+            }
+            return new RecyclerListView.Holder(userCell);
+        }
+
+        @Override
+        public final void update() {
+            ArrayList arrayList = this.old;
+            arrayList.clear();
+            ArrayList arrayList2 = this.itemInners;
+            arrayList.addAll(arrayList2);
+            arrayList2.clear();
+            CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
+            if (cachedMediaLayout.cacheModel != null) {
+                for (int i = 0; i < cachedMediaLayout.cacheModel.entities.size(); i++) {
+                    arrayList2.add(new ItemInner((CacheControlActivity.DialogFileEntities) cachedMediaLayout.cacheModel.entities.get(i)));
+                }
+            }
+            setItems(arrayList, arrayList2);
+        }
+    }
+
+    public final class DocumentsAdapter extends BaseFilesAdapter {
+        public final ArrayList photoEntries;
+
+        public DocumentsAdapter() {
+            super(2);
+            this.photoEntries = new ArrayList();
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            View view = viewHolder.itemView;
+            MusicAdapter.AnonymousClass1 anonymousClass1 = (MusicAdapter.AnonymousClass1) view;
+            SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) anonymousClass1.container.getChildAt(0);
+            ArrayList arrayList = this.itemInners;
+            CacheModel.FileInfo fileInfo = ((ItemInner) arrayList.get(i)).file;
+            boolean z = fileInfo == view.getTag();
+            boolean z2 = i != arrayList.size() - 1;
+            view.setTag(fileInfo);
+            long jLastModified = fileInfo.file.lastModified();
+            int i2 = fileInfo.messageType;
+            File file = fileInfo.file;
+            sharedDocumentCell.setTextAndValueAndTypeAndThumb(z2, i2 == 5 ? LocaleController.getString(R.string.AttachRound) : file.getName(), 0, LocaleController.formatDateAudio(jLastModified / 1000, true), Utilities.getExtension(file.getName()), null);
+            if (!z) {
+                sharedDocumentCell.setPhoto(file.getPath());
+            }
+            sharedDocumentCell.getImageView().setRoundRadius(AndroidUtilities.dp(fileInfo.messageType == 5 ? 20.0f : 4.0f));
+            anonymousClass1.drawDivider = z2;
+            anonymousClass1.sizeTextView.setText(AndroidUtilities.formatFileSize(fileInfo.size));
+            anonymousClass1.checkBox.checkBoxBase.setChecked(-1, CachedMediaLayout.this.cacheModel.selectedFiles.contains(fileInfo), z);
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            MusicAdapter.AnonymousClass1 anonymousClass1 = new MusicAdapter.AnonymousClass1(this, viewGroup.getContext(), 1);
+            anonymousClass1.type = 2;
+            anonymousClass1.container.addView(new SharedDocumentCell(viewGroup.getContext(), 3, null));
+            return new RecyclerListView.Holder(anonymousClass1);
+        }
+
+        @Override
+        public final void update() {
+            super.update();
+            ArrayList arrayList = this.photoEntries;
+            arrayList.clear();
+            int i = 0;
+            while (true) {
+                ArrayList arrayList2 = this.itemInners;
+                if (i >= arrayList2.size()) {
+                    return;
+                }
+                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, ((ItemInner) arrayList2.get(i)).file.file.getPath(), 0, ((ItemInner) arrayList2.get(i)).file.type == 1, 0, 0, 0L));
+                i++;
+            }
+        }
+    }
+
+    public final class MediaAdapter extends BaseFilesAdapter {
+        public final ArrayList photoEntries;
+        public SharedPhotoVideoCell2.SharedResources sharedResources;
+        public CombinedDrawable thumb;
+
+        public MediaAdapter() {
+            super(1);
+            this.photoEntries = new ArrayList();
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            if (this.thumb == null) {
+                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(null, Theme.key_chat_attachPhotoBackground, false)), Theme.chat_attachEmptyDrawable);
+                this.thumb = combinedDrawable;
+                combinedDrawable.fullSize = true;
+            }
+            SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) viewHolder.itemView;
+            CacheModel.FileInfo fileInfo = ((ItemInner) this.itemInners.get(i)).file;
+            boolean z = fileInfo == sharedPhotoVideoCell2.getTag();
+            sharedPhotoVideoCell2.setTag(fileInfo);
+            int iMax = (int) Math.max(100.0f, AndroidUtilities.getRealScreenSize().x / AndroidUtilities.density);
+            int i2 = fileInfo.type;
+            ImageReceiver imageReceiver = sharedPhotoVideoCell2.imageReceiver;
+            File file = fileInfo.file;
+            if (i2 == 1) {
+                imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), DiffUtil.m(iMax, iMax, "_"), this.thumb, null, null, 0);
+                sharedPhotoVideoCell2.setVideoText(AndroidUtilities.formatFileSize(fileInfo.size), true);
+            } else {
+                imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), DiffUtil.m(iMax, iMax, "_"), this.thumb, null, null, 0);
+                sharedPhotoVideoCell2.setVideoText(AndroidUtilities.formatFileSize(fileInfo.size), false);
+            }
+            sharedPhotoVideoCell2.setChecked(CachedMediaLayout.this.cacheModel.selectedFiles.contains(fileInfo), z);
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            if (this.sharedResources == null) {
+                this.sharedResources = new SharedPhotoVideoCell2.SharedResources(viewGroup.getContext(), null);
+            }
+            SharedPhotoVideoCell2 sharedPhotoVideoCell2 = new SharedPhotoVideoCell2(viewGroup.getContext(), this.sharedResources, CachedMediaLayout.this.parentFragment.getCurrentAccount()) {
+                @Override
+                public final void onCheckBoxPressed() {
+                    CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
+                }
+            };
+            sharedPhotoVideoCell2.setStyle(1);
+            return new RecyclerListView.Holder(sharedPhotoVideoCell2);
+        }
+
+        @Override
+        public final void update() {
+            super.update();
+            ArrayList arrayList = this.photoEntries;
+            arrayList.clear();
+            int i = 0;
+            while (true) {
+                ArrayList arrayList2 = this.itemInners;
+                if (i >= arrayList2.size()) {
+                    return;
+                }
+                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, ((ItemInner) arrayList2.get(i)).file.file.getPath(), 0, ((ItemInner) arrayList2.get(i)).file.type == 1, 0, 0, 0L));
+                i++;
+            }
+        }
+    }
+
+    public final class MusicAdapter extends BaseFilesAdapter {
+
+        public final class AnonymousClass1 extends FrameLayout {
+            public final int $r8$classId;
+            public final CheckBox2 checkBox;
+            public final FrameLayout container;
+            public boolean drawDivider;
+            public final TextView sizeTextView;
+            public final BaseFilesAdapter this$1;
+            public int type;
+
+            public AnonymousClass1(BaseFilesAdapter baseFilesAdapter, Context context, int i) {
+                super(context);
+                this.$r8$classId = i;
+                this.this$1 = baseFilesAdapter;
+                CheckBox2 checkBox2 = new CheckBox2(context, 21);
+                this.checkBox = checkBox2;
+                checkBox2.setDrawBackgroundAsArc(14);
+                checkBox2.checkBoxBase.setColor(Theme.key_checkbox, Theme.key_radioBackground, Theme.key_checkboxCheck);
+                View view = new View(getContext());
+                view.setOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 15));
+                FrameLayout frameLayout = new FrameLayout(context);
+                this.container = frameLayout;
+                TextView textView = new TextView(context);
+                this.sizeTextView = textView;
+                textView.setTextSize(1, 16.0f);
+                textView.setGravity(5);
+                textView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false));
+                if (LocaleController.isRTL) {
+                    addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+                    addView(view, LayoutHelper.createFrame(40, 40.0f, 21, 0.0f, 0.0f, 0.0f, 0.0f));
+                    addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 90.0f, 0.0f, 40.0f, 0.0f));
+                    addView(textView, LayoutHelper.createFrame(69, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+                    return;
+                }
+                addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, 19, 18.0f, 0.0f, 0.0f, 0.0f));
+                addView(view, LayoutHelper.createFrame(40, 40.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+                addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 48.0f, 0.0f, 90.0f, 0.0f));
+                addView(textView, LayoutHelper.createFrame(69, -2.0f, 21, 0.0f, 0.0f, 21.0f, 0.0f));
+            }
+
+            @Override
+            public final void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                if (this.drawDivider) {
+                    if (LocaleController.isRTL) {
+                        canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(48.0f), getMeasuredHeight() - 1, Theme.dividerPaint);
+                    } else {
+                        canvas.drawLine(getMeasuredWidth() - AndroidUtilities.dp(90.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                    }
+                }
+            }
+        }
+
+        public MusicAdapter() {
+            super(3);
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            AnonymousClass1 anonymousClass1 = (AnonymousClass1) viewHolder.itemView;
+            SharedAudioCell sharedAudioCell = (SharedAudioCell) anonymousClass1.container.getChildAt(0);
+            CacheModel.FileInfo fileInfo = ((ItemInner) this.itemInners.get(i)).file;
+            boolean z = fileInfo == anonymousClass1.getTag();
+            boolean z2 = i != this.itemInners.size() - 1;
+            anonymousClass1.setTag(fileInfo);
+            CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
+            cachedMediaLayout.getClass();
+            if (fileInfo.messageObject == null) {
+                TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                tL_message.out = true;
+                tL_message.id = i;
+                tL_message.peer_id = new TLRPC.TL_peerUser();
+                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                tL_message.from_id = tL_peerUser;
+                TLRPC.Peer peer = tL_message.peer_id;
+                long clientUserId = UserConfig.getInstance(cachedMediaLayout.parentFragment.getCurrentAccount()).getClientUserId();
+                tL_peerUser.user_id = clientUserId;
+                peer.user_id = clientUserId;
+                tL_message.date = (int) (System.currentTimeMillis() / 1000);
+                tL_message.message = "";
+                tL_message.attachPath = fileInfo.file.getPath();
+                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+                tL_message.media = tL_messageMediaDocument;
+                tL_messageMediaDocument.flags |= 3;
+                tL_messageMediaDocument.document = new TLRPC.TL_document();
+                tL_message.flags |= 768;
+                tL_message.dialog_id = fileInfo.dialogId;
+                String fileExtension = FileLoader.getFileExtension(fileInfo.file);
+                TLRPC.Document document = tL_message.media.document;
+                document.id = 0L;
+                document.access_hash = 0L;
+                document.file_reference = new byte[0];
+                document.date = tL_message.date;
+                if (fileExtension.length() <= 0) {
+                    fileExtension = "mp3";
+                }
+                document.mime_type = "audio/".concat(fileExtension);
+                TLRPC.Document document2 = tL_message.media.document;
+                document2.size = fileInfo.size;
+                document2.dc_id = 0;
+                TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
+                if (fileInfo.metadata == null) {
+                    ConditionVariable conditionVariable = new ConditionVariable();
+                    fileInfo.metadata = conditionVariable;
+                    conditionVariable.isOpen = true;
+                    Utilities.globalQueue.postRunnable(new ChatActivity$$ExternalSyntheticLambda102(cachedMediaLayout, fileInfo, tL_documentAttributeAudio, 1));
+                }
+                tL_documentAttributeAudio.flags |= 3;
+                tL_message.media.document.attributes.add(tL_documentAttributeAudio);
+                TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+                tL_documentAttributeFilename.file_name = fileInfo.file.getName();
+                tL_message.media.document.attributes.add(tL_documentAttributeFilename);
+                MessageObject messageObject = new MessageObject(cachedMediaLayout.parentFragment.getCurrentAccount(), tL_message, false, false);
+                fileInfo.messageObject = messageObject;
+                messageObject.mediaExists = true;
+            }
+            sharedAudioCell.setMessageObject(fileInfo.messageObject, z2);
+            boolean z3 = fileInfo.metadata.isOpen;
+            boolean z4 = !z3;
+            if (!z) {
+                sharedAudioCell.showNameProgress = !z3 ? 1.0f : 0.0f;
+            }
+            if (sharedAudioCell.showName != z4) {
+                sharedAudioCell.showName = z4;
+                sharedAudioCell.invalidate();
+            }
+            anonymousClass1.drawDivider = z2;
+            anonymousClass1.sizeTextView.setText(AndroidUtilities.formatFileSize(fileInfo.size));
+            anonymousClass1.checkBox.checkBoxBase.setChecked(-1, CachedMediaLayout.this.cacheModel.selectedFiles.contains(fileInfo), z);
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            final AnonymousClass1 anonymousClass1 = new AnonymousClass1(this, viewGroup.getContext(), 0);
+            anonymousClass1.type = 3;
+            SharedAudioCell sharedAudioCell = new SharedAudioCell(viewGroup.getContext()) {
+                @Override
+                public final void didPressedButton() {
+                    CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
+                    AnonymousClass1 anonymousClass2 = anonymousClass1;
+                    CachedMediaLayout.access$700(cachedMediaLayout, (CacheModel.FileInfo) anonymousClass2.getTag(), anonymousClass2);
+                }
+            };
+            sharedAudioCell.setCheckForButtonPress(true);
+            anonymousClass1.container.addView(sharedAudioCell);
+            return new RecyclerListView.Holder(anonymousClass1);
+        }
+    }
+
+    public final class Page {
+        public final BaseAdapter adapter;
+        public final String title;
+        public final int type;
+
+        public Page(String str, int i, BaseAdapter baseAdapter) {
+            this.title = str;
+            this.type = i;
+            this.adapter = baseAdapter;
+        }
+    }
+
+    public CachedMediaLayout(Context context, BaseFragment baseFragment) {
+        super(context);
+        this.actionModeViews = new ArrayList();
+        this.pages = new ArrayList();
+        Page[] pageArr = new Page[5];
+        this.allPages = pageArr;
+        this.parentFragment = baseFragment;
+        pageArr[0] = new Page(LocaleController.getString(R.string.FilterChats), 0, new DialogsAdapter());
+        pageArr[1] = new Page(LocaleController.getString(R.string.MediaTab), 1, new MediaAdapter());
+        pageArr[2] = new Page(LocaleController.getString(R.string.SharedFilesTab2), 2, new DocumentsAdapter());
+        pageArr[3] = new Page(LocaleController.getString(R.string.Music), 3, new MusicAdapter());
+        int i = 0;
+        while (true) {
+            Page[] pageArr2 = this.allPages;
+            if (i >= pageArr2.length) {
+                ViewPagerFixed viewPagerFixed = new ViewPagerFixed(getContext(), null);
+                this.viewPagerFixed = viewPagerFixed;
+                viewPagerFixed.setAllowDisallowInterceptTouch(false);
+                addView(viewPagerFixed, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 48.0f, 0.0f, 0.0f));
+                ViewPagerFixed.AnonymousClass3 anonymousClass3CreateTabsView = viewPagerFixed.createTabsView(3, true);
+                this.tabs = anonymousClass3CreateTabsView;
+                addView(anonymousClass3CreateTabsView, LayoutHelper.createFrame(48.0f, -1));
+                View view = new View(getContext());
+                this.divider = view;
+                view.setBackgroundColor(Theme.getColor(null, Theme.key_divider, false));
+                addView(view, LayoutHelper.createFrame(-1, 1.0f, 0, 0.0f, 48.0f, 0.0f, 0.0f));
+                view.getLayoutParams().height = 1;
+                viewPagerFixed.setAdapter(new AnonymousClass1(context, baseFragment));
+                LinearLayout linearLayout = new LinearLayout(context);
+                linearLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+                linearLayout.setAlpha(0.0f);
+                linearLayout.setClickable(true);
+                addView(linearLayout, LayoutHelper.createFrame(48.0f, -1));
+                AndroidUtilities.updateViewVisibilityAnimated(linearLayout, false, 1.0f, false);
+                ImageView imageView = new ImageView(context);
+                imageView.setScaleType(ImageView.ScaleType.CENTER);
+                BackDrawable backDrawable = new BackDrawable(true);
+                imageView.setImageDrawable(backDrawable);
+                int i2 = Theme.key_actionBarActionModeDefaultIcon;
+                backDrawable.color = Theme.getColor(null, i2, false);
+                backDrawable.invalidateSelf();
+                int i3 = Theme.key_actionBarActionModeDefaultSelector;
+                imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, i3, false), 1, -1));
+                imageView.setContentDescription(LocaleController.getString(R.string.Close));
+                linearLayout.addView(imageView, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
+                this.actionModeViews.add(imageView);
+                final int i4 = 0;
+                imageView.setOnClickListener(new View.OnClickListener(this) {
+                    public final CachedMediaLayout f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view2) {
+                        switch (i4) {
+                            case 0:
+                                this.f$0.delegate.clearSelection();
+                                break;
+                            default:
+                                this.f$0.delegate.clear();
+                                break;
+                        }
+                    }
+                });
+                AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
+                animatedTextView.setTextSize(AndroidUtilities.dp(18.0f));
+                animatedTextView.setTypeface(AndroidUtilities.bold());
+                animatedTextView.setTextColor(Theme.getColor(null, i2, false));
+                linearLayout.addView(animatedTextView, LayoutHelper.createLinear(1.0f, 0, -1, 18, 0, 0));
+                this.actionModeViews.add(animatedTextView);
+                ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, null, Theme.getColor(null, i3, false), Theme.getColor(null, i2, false), false, null);
+                actionBarMenuItem.setIcon(R.drawable.msg_clear);
+                actionBarMenuItem.setContentDescription(LocaleController.getString(R.string.Delete));
+                actionBarMenuItem.setDuplicateParentStateEnabled(false);
+                linearLayout.addView(actionBarMenuItem, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
+                this.actionModeViews.add(actionBarMenuItem);
+                final int i5 = 1;
+                actionBarMenuItem.setOnClickListener(new View.OnClickListener(this) {
+                    public final CachedMediaLayout f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view2) {
+                        switch (i5) {
+                            case 0:
+                                this.f$0.delegate.clearSelection();
+                                break;
+                            default:
+                                this.f$0.delegate.clear();
+                                break;
+                        }
+                    }
+                });
+                return;
+            }
+            Page page = pageArr2[i];
+            if (page != null) {
+                this.pages.add(i, page);
+            }
+            i++;
+        }
+    }
+
+    public static void access$600(CachedMediaLayout cachedMediaLayout, ItemInner itemInner, MediaAdapter mediaAdapter, RecyclerListView recyclerListView) {
+        PhotoViewer.getInstance().setParentActivity(null, cachedMediaLayout.parentFragment, null);
+        if (cachedMediaLayout.placeProvider == null) {
+            cachedMediaLayout.placeProvider = cachedMediaLayout.new BasePlaceProvider();
+        }
+        cachedMediaLayout.placeProvider.recyclerListView = recyclerListView;
+        ArrayList arrayList = mediaAdapter.itemInners;
+        if (arrayList.indexOf(itemInner) >= 0) {
+            PhotoViewer.getInstance().openPhotoForSelect(mediaAdapter.photoEntries, arrayList.indexOf(itemInner), -1, false, cachedMediaLayout.placeProvider, null);
+        }
+    }
+
+    public static void access$700(CachedMediaLayout cachedMediaLayout, CacheModel.FileInfo fileInfo, MusicAdapter.AnonymousClass1 anonymousClass1) {
+        RecyclerListView recyclerListView = (RecyclerListView) cachedMediaLayout.viewPagerFixed.getCurrentView();
+        if (anonymousClass1.type == 2) {
+            if (!(recyclerListView.getAdapter() instanceof DocumentsAdapter)) {
+                return;
+            }
+            PhotoViewer photoViewer = PhotoViewer.getInstance();
+            BaseFragment baseFragment = cachedMediaLayout.parentFragment;
+            photoViewer.setParentActivity(null, baseFragment, null);
+            if (cachedMediaLayout.placeProvider == null) {
+                cachedMediaLayout.placeProvider = cachedMediaLayout.new BasePlaceProvider();
+            }
+            cachedMediaLayout.placeProvider.recyclerListView = recyclerListView;
+            File file = fileInfo.file;
+            String lowerCase = file.getName().toLowerCase();
+            boolean zEndsWith = file.getName().endsWith("mp4");
+            File file2 = fileInfo.file;
+            if (zEndsWith || file.getName().endsWith(".jpg") || lowerCase.endsWith(".jpeg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif")) {
+                ArrayList arrayList = new ArrayList();
+                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, file2.getPath(), 0, fileInfo.type == 1, 0, 0, 0L));
+                PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, -1, false, cachedMediaLayout.placeProvider, null);
+            } else {
+                AndroidUtilities.openForView(file2, file2.getName(), null, baseFragment.getParentActivity(), null, false);
+            }
+        }
+        if (anonymousClass1.type == 3) {
+            if (!MediaController.getInstance().isPlayingMessage(fileInfo.messageObject)) {
+                MediaController.getInstance().playMessage(fileInfo.messageObject);
+            } else if (MediaController.getInstance().isMessagePaused()) {
+                MediaController.getInstance().playMessage(fileInfo.messageObject);
+            } else {
+                MediaController.getInstance().lambda$startAudioAgain$7(fileInfo.messageObject);
+            }
+        }
+    }
+
+    public RecyclerListView getListView() {
+        ViewPagerFixed viewPagerFixed = this.viewPagerFixed;
+        if (viewPagerFixed.getCurrentView() == null) {
+            return null;
+        }
+        return (RecyclerListView) viewPagerFixed.getCurrentView();
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
+    }
+
+    public void setBottomPadding(int i) {
+        this.bottomPadding = i;
+        int i2 = 0;
+        while (true) {
+            ViewPagerFixed viewPagerFixed = this.viewPagerFixed;
+            if (i2 >= viewPagerFixed.getViewPages().length) {
+                return;
+            }
+            RecyclerListView recyclerListView = (RecyclerListView) viewPagerFixed.getViewPages()[i2];
+            if (recyclerListView != null) {
+                recyclerListView.setPadding(0, 0, 0, i);
+            }
+            i2++;
+        }
+    }
+
+    public void setCacheModel(CacheModel cacheModel) {
+        this.cacheModel = cacheModel;
+        update();
+    }
+
+    public void setDelegate(Delegate delegate) {
+        this.delegate = delegate;
+    }
+
+    public final void update() {
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = this.pages;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        if (this.cacheModel != null) {
+            int i = 0;
+            while (true) {
+                Page[] pageArr = this.allPages;
+                if (i >= pageArr.length) {
+                    break;
+                }
+                Page page = pageArr[i];
+                if (page != null) {
+                    if (page.type == 0 && !this.cacheModel.entities.isEmpty()) {
+                        arrayList2.add(pageArr[i]);
+                    } else if (pageArr[i].type == 1 && !this.cacheModel.media.isEmpty()) {
+                        arrayList2.add(pageArr[i]);
+                    } else if (pageArr[i].type == 2 && !this.cacheModel.documents.isEmpty()) {
+                        arrayList2.add(pageArr[i]);
+                    } else if (pageArr[i].type == 3 && !this.cacheModel.music.isEmpty()) {
+                        arrayList2.add(pageArr[i]);
+                    } else if (pageArr[i].type == 5 && !this.cacheModel.voice.isEmpty()) {
+                        arrayList2.add(pageArr[i]);
+                    } else if (pageArr[i].type == 4 && !this.cacheModel.stories.isEmpty()) {
+                        arrayList2.add(pageArr[i]);
+                    }
+                }
+                i++;
+            }
+        }
+        int size = arrayList2.size();
+        ViewPagerFixed viewPagerFixed = this.viewPagerFixed;
+        if (size == 1 && this.cacheModel.isDialog) {
+            this.tabs.setVisibility(8);
+            ((ViewGroup.MarginLayoutParams) viewPagerFixed.getLayoutParams()).topMargin = 0;
+            ((ViewGroup.MarginLayoutParams) this.divider.getLayoutParams()).topMargin = 0;
+        }
+        if (arrayList.size() != arrayList2.size()) {
+            viewPagerFixed.rebuild(true);
+            break;
+        }
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            if (((Page) arrayList.get(i2)).type != ((Page) arrayList2.get(i2)).type) {
+                viewPagerFixed.rebuild(true);
+                break;
+            }
+        }
+        for (int i3 = 0; i3 < arrayList2.size(); i3++) {
+            BaseAdapter baseAdapter = ((Page) arrayList2.get(i3)).adapter;
+            ((Page) arrayList2.get(i3)).adapter.update();
+        }
+    }
+
+    public final void updateVisibleRows() {
+        int i = 0;
+        while (true) {
+            ViewPagerFixed viewPagerFixed = this.viewPagerFixed;
+            if (i >= viewPagerFixed.getViewPages().length) {
+                return;
+            }
+            AndroidUtilities.updateVisibleRows((RecyclerListView) viewPagerFixed.getViewPages()[i]);
+            i++;
+        }
+    }
+
+    public final class ItemInner extends AdapterWithDiffUtils.Item {
+        public final CacheControlActivity.DialogFileEntities entities;
+        public final CacheModel.FileInfo file;
+
+        public ItemInner(CacheControlActivity.DialogFileEntities dialogFileEntities) {
+            super(1, true);
             this.entities = dialogFileEntities;
         }
 
-        public ItemInner(int i, CacheModel.FileInfo fileInfo) {
-            super(i, true);
-            this.file = fileInfo;
-        }
-
-        public boolean equals(Object obj) {
+        public final boolean equals(Object obj) {
             CacheModel.FileInfo fileInfo;
             CacheModel.FileInfo fileInfo2;
             CacheControlActivity.DialogFileEntities dialogFileEntities;
@@ -702,7 +908,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             if (this == obj) {
                 return true;
             }
-            if (obj != null && getClass() == obj.getClass()) {
+            if (obj != null && ItemInner.class == obj.getClass()) {
                 ItemInner itemInner = (ItemInner) obj;
                 int i = this.viewType;
                 if (i == itemInner.viewType) {
@@ -716,456 +922,10 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             }
             return false;
         }
-    }
 
-    class MediaAdapter extends BaseFilesAdapter {
-        boolean isStories;
-        ArrayList photoEntries;
-        private SharedPhotoVideoCell2.SharedResources sharedResources;
-        CombinedDrawable thumb;
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return false;
+        public ItemInner(CacheModel.FileInfo fileInfo) {
+            super(2, true);
+            this.file = fileInfo;
         }
-
-        MediaAdapter(CachedMediaLayout cachedMediaLayout, boolean z, AnonymousClass1 anonymousClass1) {
-            this(z);
-        }
-
-        private MediaAdapter(boolean z) {
-            super(z ? 4 : 1);
-            this.photoEntries = new ArrayList();
-            this.isStories = z;
-        }
-
-        @Override
-        void update() {
-            super.update();
-            this.photoEntries.clear();
-            for (int i = 0; i < this.itemInners.size(); i++) {
-                this.photoEntries.add(new MediaController.PhotoEntry(0, 0, 0L, ((ItemInner) this.itemInners.get(i)).file.file.getPath(), 0, ((ItemInner) this.itemInners.get(i)).file.type == 1, 0, 0, 0L));
-            }
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            if (this.sharedResources == null) {
-                this.sharedResources = new SharedPhotoVideoCell2.SharedResources(viewGroup.getContext(), null);
-            }
-            SharedPhotoVideoCell2 sharedPhotoVideoCell2 = new SharedPhotoVideoCell2(viewGroup.getContext(), this.sharedResources, CachedMediaLayout.this.parentFragment.getCurrentAccount()) {
-                @Override
-                public void onCheckBoxPressed() {
-                    CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
-                }
-            };
-            sharedPhotoVideoCell2.setStyle(1);
-            return new RecyclerListView.Holder(sharedPhotoVideoCell2);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            if (this.thumb == null) {
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_chat_attachPhotoBackground)), Theme.chat_attachEmptyDrawable);
-                this.thumb = combinedDrawable;
-                combinedDrawable.setFullsize(true);
-            }
-            SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) viewHolder.itemView;
-            CacheModel.FileInfo fileInfo = ((ItemInner) this.itemInners.get(i)).file;
-            boolean z = fileInfo == sharedPhotoVideoCell2.getTag();
-            sharedPhotoVideoCell2.setTag(fileInfo);
-            int iMax = (int) Math.max(100.0f, AndroidUtilities.getRealScreenSize().x / AndroidUtilities.density);
-            if (this.isStories) {
-                if (fileInfo.file.getAbsolutePath().endsWith(".mp4")) {
-                    sharedPhotoVideoCell2.imageReceiver.setImage(ImageLocation.getForPath(fileInfo.file.getAbsolutePath()), iMax + "_" + iMax + "_pframe", this.thumb, null, null, 0);
-                } else {
-                    sharedPhotoVideoCell2.imageReceiver.setImage(ImageLocation.getForPath(fileInfo.file.getAbsolutePath()), iMax + "_" + iMax, this.thumb, null, null, 0);
-                }
-                sharedPhotoVideoCell2.storyId = Objects.hash(fileInfo.file.getAbsolutePath());
-                sharedPhotoVideoCell2.isStory = true;
-                sharedPhotoVideoCell2.setVideoText(AndroidUtilities.formatFileSize(fileInfo.size), true);
-            } else if (fileInfo.type == 1) {
-                sharedPhotoVideoCell2.imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + fileInfo.file.getAbsolutePath()), iMax + "_" + iMax, this.thumb, null, null, 0);
-                sharedPhotoVideoCell2.setVideoText(AndroidUtilities.formatFileSize(fileInfo.size), true);
-            } else {
-                sharedPhotoVideoCell2.imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + fileInfo.file.getAbsolutePath()), iMax + "_" + iMax, this.thumb, null, null, 0);
-                sharedPhotoVideoCell2.setVideoText(AndroidUtilities.formatFileSize(fileInfo.size), false);
-            }
-            sharedPhotoVideoCell2.setChecked(CachedMediaLayout.this.cacheModel.isSelected(fileInfo), z);
-        }
-
-        public ArrayList getPhotos() {
-            return this.photoEntries;
-        }
-    }
-
-    private class DocumentsAdapter extends BaseFilesAdapter {
-        ArrayList photoEntries;
-
-        DocumentsAdapter(CachedMediaLayout cachedMediaLayout, AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private DocumentsAdapter() {
-            super(2);
-            this.photoEntries = new ArrayList();
-        }
-
-        @Override
-        void update() {
-            super.update();
-            this.photoEntries.clear();
-            for (int i = 0; i < this.itemInners.size(); i++) {
-                this.photoEntries.add(new MediaController.PhotoEntry(0, 0, 0L, ((ItemInner) this.itemInners.get(i)).file.file.getPath(), 0, ((ItemInner) this.itemInners.get(i)).file.type == 1, 0, 0, 0L));
-            }
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            CacheCell cacheCell = new CacheCell(viewGroup.getContext()) {
-                {
-                    CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
-                }
-
-                @Override
-                public void onCheckBoxPressed() {
-                    CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
-                }
-            };
-            cacheCell.type = 2;
-            cacheCell.container.addView(new SharedDocumentCell(viewGroup.getContext(), 3, null));
-            return new RecyclerListView.Holder(cacheCell);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            CacheCell cacheCell = (CacheCell) viewHolder.itemView;
-            SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) cacheCell.container.getChildAt(0);
-            CacheModel.FileInfo fileInfo = ((ItemInner) this.itemInners.get(i)).file;
-            boolean z = fileInfo == viewHolder.itemView.getTag();
-            boolean z2 = i != this.itemInners.size() - 1;
-            viewHolder.itemView.setTag(fileInfo);
-            sharedDocumentCell.setTextAndValueAndTypeAndThumb(fileInfo.messageType == 5 ? LocaleController.getString(R.string.AttachRound) : fileInfo.file.getName(), LocaleController.formatDateAudio(fileInfo.file.lastModified() / 1000, true), Utilities.getExtension(fileInfo.file.getName()), null, 0, z2);
-            if (!z) {
-                sharedDocumentCell.setPhoto(fileInfo.file.getPath());
-            }
-            sharedDocumentCell.getImageView().setRoundRadius(AndroidUtilities.dp(fileInfo.messageType == 5 ? 20.0f : 4.0f));
-            cacheCell.drawDivider = z2;
-            cacheCell.sizeTextView.setText(AndroidUtilities.formatFileSize(fileInfo.size));
-            cacheCell.checkBox.setChecked(CachedMediaLayout.this.cacheModel.isSelected(fileInfo), z);
-        }
-    }
-
-    private class MusicAdapter extends BaseFilesAdapter {
-        MusicAdapter(CachedMediaLayout cachedMediaLayout, AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        private MusicAdapter() {
-            super(3);
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            final CacheCell cacheCell = new CacheCell(viewGroup.getContext()) {
-                {
-                    CachedMediaLayout cachedMediaLayout = CachedMediaLayout.this;
-                }
-
-                @Override
-                public void onCheckBoxPressed() {
-                    CachedMediaLayout.this.delegate.onItemSelected(null, (CacheModel.FileInfo) getTag(), true);
-                }
-            };
-            cacheCell.type = 3;
-            SharedAudioCell sharedAudioCell = new SharedAudioCell(viewGroup.getContext(), 0, null) {
-                @Override
-                public void didPressedButton() {
-                    CachedMediaLayout.this.openItem((CacheModel.FileInfo) cacheCell.getTag(), cacheCell);
-                }
-            };
-            sharedAudioCell.setCheckForButtonPress(true);
-            cacheCell.container.addView(sharedAudioCell);
-            return new RecyclerListView.Holder(cacheCell);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            CacheCell cacheCell = (CacheCell) viewHolder.itemView;
-            SharedAudioCell sharedAudioCell = (SharedAudioCell) cacheCell.container.getChildAt(0);
-            CacheModel.FileInfo fileInfo = ((ItemInner) this.itemInners.get(i)).file;
-            boolean z = fileInfo == cacheCell.getTag();
-            boolean z2 = i != this.itemInners.size() - 1;
-            cacheCell.setTag(fileInfo);
-            CachedMediaLayout.this.checkMessageObjectForAudio(fileInfo, i);
-            sharedAudioCell.setMessageObject(fileInfo.messageObject, z2);
-            sharedAudioCell.showName(!fileInfo.metadata.loading, z);
-            cacheCell.drawDivider = z2;
-            cacheCell.sizeTextView.setText(AndroidUtilities.formatFileSize(fileInfo.size));
-            cacheCell.checkBox.setChecked(CachedMediaLayout.this.cacheModel.isSelected(fileInfo), z);
-        }
-    }
-
-    public void checkMessageObjectForAudio(final CacheModel.FileInfo fileInfo, int i) {
-        if (fileInfo.messageObject == null) {
-            TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.out = true;
-            tL_message.id = i;
-            tL_message.peer_id = new TLRPC.TL_peerUser();
-            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-            tL_message.from_id = tL_peerUser;
-            TLRPC.Peer peer = tL_message.peer_id;
-            long clientUserId = UserConfig.getInstance(this.parentFragment.getCurrentAccount()).getClientUserId();
-            tL_peerUser.user_id = clientUserId;
-            peer.user_id = clientUserId;
-            tL_message.date = (int) (System.currentTimeMillis() / 1000);
-            tL_message.message = "";
-            tL_message.attachPath = fileInfo.file.getPath();
-            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-            tL_message.media = tL_messageMediaDocument;
-            tL_messageMediaDocument.flags |= 3;
-            tL_messageMediaDocument.document = new TLRPC.TL_document();
-            tL_message.flags |= 768;
-            tL_message.dialog_id = fileInfo.dialogId;
-            String fileExtension = FileLoader.getFileExtension(fileInfo.file);
-            TLRPC.Document document = tL_message.media.document;
-            document.id = 0L;
-            document.access_hash = 0L;
-            document.file_reference = new byte[0];
-            document.date = tL_message.date;
-            StringBuilder sb = new StringBuilder();
-            sb.append("audio/");
-            if (fileExtension.length() <= 0) {
-                fileExtension = "mp3";
-            }
-            sb.append(fileExtension);
-            document.mime_type = sb.toString();
-            TLRPC.Document document2 = tL_message.media.document;
-            document2.size = fileInfo.size;
-            document2.dc_id = 0;
-            final TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-            if (fileInfo.metadata == null) {
-                CacheModel.FileInfo.FileMetadata fileMetadata = new CacheModel.FileInfo.FileMetadata();
-                fileInfo.metadata = fileMetadata;
-                fileMetadata.loading = true;
-                Utilities.globalQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() throws Throwable {
-                        CachedMediaLayout.m1437$r8$lambda$SXwQEwURU4BsHU8U5Grstgo0Hw(this.f$0, fileInfo, tL_documentAttributeAudio);
-                    }
-                });
-            }
-            tL_documentAttributeAudio.flags |= 3;
-            tL_message.media.document.attributes.add(tL_documentAttributeAudio);
-            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
-            tL_documentAttributeFilename.file_name = fileInfo.file.getName();
-            tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-            MessageObject messageObject = new MessageObject(this.parentFragment.getCurrentAccount(), tL_message, false, false);
-            fileInfo.messageObject = messageObject;
-            messageObject.mediaExists = true;
-        }
-    }
-
-    public static void m1437$r8$lambda$SXwQEwURU4BsHU8U5Grstgo0Hw(final CachedMediaLayout cachedMediaLayout, final CacheModel.FileInfo fileInfo, final TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio) throws Throwable {
-        String str;
-        Throwable th;
-        MediaMetadataRetriever mediaMetadataRetriever;
-        String strExtractMetadata;
-        final String str2;
-        final String str3;
-        cachedMediaLayout.getClass();
-        String strExtractMetadata2 = "";
-        MediaMetadataRetriever mediaMetadataRetriever2 = null;
-        try {
-            try {
-                mediaMetadataRetriever = new MediaMetadataRetriever();
-                try {
-                    try {
-                        mediaMetadataRetriever.setDataSource(cachedMediaLayout.getContext(), Uri.fromFile(fileInfo.file));
-                        strExtractMetadata = mediaMetadataRetriever.extractMetadata(7);
-                        try {
-                            strExtractMetadata2 = mediaMetadataRetriever.extractMetadata(2);
-                            try {
-                                mediaMetadataRetriever.release();
-                            } catch (Throwable unused) {
-                            }
-                            str2 = strExtractMetadata2;
-                            str3 = strExtractMetadata;
-                        } catch (Exception e) {
-                            e = e;
-                            str = strExtractMetadata;
-                            mediaMetadataRetriever2 = mediaMetadataRetriever;
-                            FileLog.e(e);
-                            if (mediaMetadataRetriever2 != null) {
-                                try {
-                                    mediaMetadataRetriever2.release();
-                                } catch (Throwable unused2) {
-                                    strExtractMetadata = str;
-                                    str2 = strExtractMetadata2;
-                                    str3 = strExtractMetadata;
-                                }
-                            }
-                            str2 = "";
-                            str3 = str;
-                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    CachedMediaLayout.m1436$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(this.f$0, fileInfo, tL_documentAttributeAudio, str3, str2);
-                                }
-                            });
-                        }
-                    } catch (Exception e2) {
-                        e = e2;
-                        strExtractMetadata = "";
-                    }
-                } catch (Throwable th2) {
-                    th = th2;
-                    if (mediaMetadataRetriever != null) {
-                        try {
-                            mediaMetadataRetriever.release();
-                            throw th;
-                        } catch (Throwable unused3) {
-                            throw th;
-                        }
-                    }
-                    throw th;
-                }
-            } catch (Throwable th3) {
-                th = th3;
-                mediaMetadataRetriever = mediaMetadataRetriever2;
-            }
-        } catch (Exception e3) {
-            e = e3;
-            str = "";
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                CachedMediaLayout.m1436$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(this.f$0, fileInfo, tL_documentAttributeAudio, str3, str2);
-            }
-        });
-    }
-
-    public static void m1436$r8$lambda$0twu0M1jes6O5C5iTUyecCYf98(CachedMediaLayout cachedMediaLayout, CacheModel.FileInfo fileInfo, TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio, String str, String str2) {
-        cachedMediaLayout.getClass();
-        CacheModel.FileInfo.FileMetadata fileMetadata = fileInfo.metadata;
-        fileMetadata.loading = false;
-        fileMetadata.title = str;
-        tL_documentAttributeAudio.title = str;
-        fileMetadata.author = str2;
-        tL_documentAttributeAudio.performer = str2;
-        cachedMediaLayout.updateRow(fileInfo, 3);
-    }
-
-    private void updateRow(CacheModel.FileInfo fileInfo, int i) {
-        for (int i2 = 0; i2 < this.viewPagerFixed.getViewPages().length; i2++) {
-            RecyclerListView recyclerListView = (RecyclerListView) this.viewPagerFixed.getViewPages()[i2];
-            if (recyclerListView != null && ((BaseAdapter) recyclerListView.getAdapter()).type == i) {
-                BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
-                for (int i3 = 0; i3 < baseAdapter.itemInners.size(); i3++) {
-                    if (((ItemInner) baseAdapter.itemInners.get(i3)).file == fileInfo) {
-                        baseAdapter.notifyItemChanged(i3);
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    public void setDelegate(Delegate delegate) {
-        this.delegate = delegate;
-    }
-
-    private class BasePlaceProvider extends PhotoViewer.EmptyPhotoViewerProvider {
-        RecyclerListView recyclerListView;
-
-        private BasePlaceProvider() {
-        }
-
-        BasePlaceProvider(CachedMediaLayout cachedMediaLayout, AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        public void setRecyclerListView(RecyclerListView recyclerListView) {
-            this.recyclerListView = recyclerListView;
-        }
-
-        @Override
-        public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-            SharedPhotoVideoCell2 cellForIndex = CachedMediaLayout.this.getCellForIndex(i);
-            if (cellForIndex == null) {
-                return null;
-            }
-            int[] iArr = new int[2];
-            cellForIndex.getLocationInWindow(iArr);
-            PhotoViewer.PlaceProviderObject placeProviderObject = new PhotoViewer.PlaceProviderObject();
-            placeProviderObject.viewX = iArr[0];
-            placeProviderObject.viewY = iArr[1];
-            placeProviderObject.parentView = this.recyclerListView;
-            ImageReceiver imageReceiver = cellForIndex.imageReceiver;
-            placeProviderObject.imageReceiver = imageReceiver;
-            placeProviderObject.thumb = imageReceiver.getBitmapSafe();
-            placeProviderObject.scale = cellForIndex.getScaleX();
-            return placeProviderObject;
-        }
-    }
-
-    class CacheCell extends FrameLayout {
-        CheckBox2 checkBox;
-        FrameLayout container;
-        boolean drawDivider;
-        TextView sizeTextView;
-        int type;
-
-        public abstract void onCheckBoxPressed();
-
-        public CacheCell(Context context) {
-            super(context);
-            CheckBox2 checkBox2 = new CheckBox2(context, 21);
-            this.checkBox = checkBox2;
-            checkBox2.setDrawBackgroundAsArc(14);
-            this.checkBox.setColor(Theme.key_checkbox, Theme.key_radioBackground, Theme.key_checkboxCheck);
-            View view = new View(getContext());
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    this.f$0.onCheckBoxPressed();
-                }
-            });
-            this.container = new FrameLayout(context);
-            TextView textView = new TextView(context);
-            this.sizeTextView = textView;
-            textView.setTextSize(1, 16.0f);
-            this.sizeTextView.setGravity(5);
-            this.sizeTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
-            if (LocaleController.isRTL) {
-                addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
-                addView(view, LayoutHelper.createFrame(40, 40.0f, 21, 0.0f, 0.0f, 0.0f, 0.0f));
-                addView(this.container, LayoutHelper.createFrame(-1, -2.0f, 0, 90.0f, 0.0f, 40.0f, 0.0f));
-                addView(this.sizeTextView, LayoutHelper.createFrame(69, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
-                return;
-            }
-            addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 19, 18.0f, 0.0f, 0.0f, 0.0f));
-            addView(view, LayoutHelper.createFrame(40, 40.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
-            addView(this.container, LayoutHelper.createFrame(-1, -2.0f, 0, 48.0f, 0.0f, 90.0f, 0.0f));
-            addView(this.sizeTextView, LayoutHelper.createFrame(69, -2.0f, 21, 0.0f, 0.0f, 21.0f, 0.0f));
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            super.dispatchDraw(canvas);
-            if (this.drawDivider) {
-                if (LocaleController.isRTL) {
-                    canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(48.0f), getMeasuredHeight() - 1, Theme.dividerPaint);
-                } else {
-                    canvas.drawLine(getMeasuredWidth() - AndroidUtilities.dp(90.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
-                }
-            }
-        }
-    }
-
-    public static boolean fileIsMedia(File file) {
-        String lowerCase = file.getName().toLowerCase();
-        return file.getName().endsWith("mp4") || file.getName().endsWith(".jpg") || lowerCase.endsWith(".jpeg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif");
     }
 }

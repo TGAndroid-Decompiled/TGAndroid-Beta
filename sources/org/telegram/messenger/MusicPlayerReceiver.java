@@ -19,7 +19,7 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                     MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
                     return;
                 } else {
-                    MediaController.getInstance().pauseMessage(MediaController.getInstance().getPlayingMessageObject());
+                    MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
                     return;
                 }
             }
@@ -37,7 +37,7 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                 if (keyCode != 127) {
                     return;
                 }
-                MediaController.getInstance().pauseMessage(MediaController.getInstance().getPlayingMessageObject());
+                MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
             }
         }
         String action = intent.getAction();
@@ -51,7 +51,7 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                 break;
             case "org.telegram.android.musicplayer.pause":
             case "android.media.AUDIO_BECOMING_NOISY":
-                MediaController.getInstance().pauseMessage(MediaController.getInstance().getPlayingMessageObject());
+                MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
                 break;
             case "org.telegram.android.musicplayer.next":
                 MediaController.getInstance().playNextMessage();
@@ -63,11 +63,11 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                 MediaController.getInstance().playPreviousMessage();
                 break;
             case "org.telegram.android.musicplayer.shuffle":
-                if (SharedConfig.shuffleMusic) {
-                    MediaController.getInstance().setPlaybackOrderType(0);
+                if (!SharedConfig.shuffleMusic) {
+                    MediaController.getInstance().setPlaybackOrderType(2);
                     break;
                 } else {
-                    MediaController.getInstance().setPlaybackOrderType(2);
+                    MediaController.getInstance().setPlaybackOrderType(0);
                     break;
                 }
                 break;

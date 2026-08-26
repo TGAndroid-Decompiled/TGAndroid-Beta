@@ -22,10 +22,6 @@ public class TextLayout {
         this.bounds = new Rectangle2D.Float(rect.left, rect.top, rect.width(), rect.height());
     }
 
-    public Rectangle2D getBounds() {
-        return this.bounds;
-    }
-
     public void draw(Graphics2D graphics2D, int i, int i2) {
         Font font = graphics2D.getFont();
         Font font2 = this.font;
@@ -38,5 +34,9 @@ public class TextLayout {
         if (z) {
             graphics2D.setFont(font);
         }
+    }
+
+    public Rectangle2D getBounds() {
+        return this.bounds;
     }
 }

@@ -1,20 +1,19 @@
 package kotlin.ranges;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
-import kotlin.collections.CharIterator;
-import kotlin.jvm.internal.Intrinsics;
 
-public final class CharProgressionIterator extends CharIterator {
-    private final int finalElement;
-    private boolean hasNext;
-    private int next;
-    private final int step;
+public final class CharProgressionIterator implements Iterator {
+    public final int finalElement;
+    public boolean hasNext;
+    public int next;
+    public final int step;
 
     public CharProgressionIterator(char c, char c2, int i) {
         this.step = i;
         this.finalElement = c2;
         boolean z = false;
-        if (i <= 0 ? Intrinsics.compare((int) c, (int) c2) >= 0 : Intrinsics.compare((int) c, (int) c2) <= 0) {
+        if (i <= 0 ? c >= c2 : c < c2 || c == c2) {
             z = true;
         }
         this.hasNext = z;
@@ -22,21 +21,26 @@ public final class CharProgressionIterator extends CharIterator {
     }
 
     @Override
-    public boolean hasNext() {
+    public final boolean hasNext() {
         return this.hasNext;
     }
 
     @Override
-    public char nextChar() {
+    public final Object next() {
         int i = this.next;
-        if (i == this.finalElement) {
+        if (i != this.finalElement) {
+            this.next = this.step + i;
+        } else {
             if (!this.hasNext) {
                 throw new NoSuchElementException();
             }
             this.hasNext = false;
-        } else {
-            this.next = this.step + i;
         }
-        return (char) i;
+        return Character.valueOf((char) i);
+    }
+
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

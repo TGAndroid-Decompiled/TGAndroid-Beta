@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ReplacementSpan;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -14,30 +14,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SavedMessagesController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository;
+import org.telegram.ui.Components.MessageContainsEmojiButton;
+import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.adapters.SelectorAdapter;
-import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorHeaderCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
@@ -45,142 +44,51 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.recyclerview.LinearSmoothScrollerCustom;
 
-public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerListView {
-    private static MultiContactsSelectorBottomSheet instance;
-    private final ButtonWithCounterView actionButton;
-    private final HashMap allSelectedObjects;
-    private final SelectorBtnCell buttonContainer;
-    private final List contacts;
-    private final List contactsLetters;
-    private final Map contactsMap;
-    private Boolean filterBots;
-    private Boolean filterPremium;
-    private final List foundUsers;
-    private final SelectorHeaderCell headerView;
-    private final List hints;
-    private final ArrayList items;
-    private int lastRequestId;
-    private int listPaddingTop;
-    private int maxCount;
-    private final ArrayList oldItems;
-    private String query;
-    private float recipientsBtnExtraSpace;
-    private ReplacementSpan recipientsBtnSpaceSpan;
-    private final Runnable remoteSearchRunnable;
-    private final SelectorSearchCell searchField;
-    private final View sectionCell;
-    private final HashSet selectedIds;
-    private SelectorAdapter selectorAdapter;
-    private SelectorListener selectorListener;
+public final class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerListView {
+    public static MultiContactsSelectorBottomSheet instance;
+    public final AnonymousClass6 actionButton;
+    public final LinkedHashMap allSelectedObjects;
+    public final ArrayList contactsLetters;
+    public final HashMap contactsMap;
+    public final Boolean filterBots;
+    public final Boolean filterPremium;
+    public final ArrayList foundUsers;
+    public final AnonymousClass3 headerView;
+    public final ArrayList hints;
+    public final ArrayList items;
+    public int lastRequestId;
+    public int listPaddingTop;
+    public final int maxCount;
+    public final ArrayList oldItems;
+    public String query;
+    public float recipientsBtnExtraSpace;
+    public AnonymousClass2 recipientsBtnSpaceSpan;
+    public final LaunchActivity.AnonymousClass18 remoteSearchRunnable;
+    public final AnonymousClass4 searchField;
+    public final QrActivity.AnonymousClass2 sectionCell;
+    public final HashSet selectedIds;
+    public SelectorAdapter selectorAdapter;
+    public final SelectorListener selectorListener;
+
+    public final class AnonymousClass3 extends SelectorHeaderCell {
+        @Override
+        public final int getHeaderHeight() {
+            return getResources().getConfiguration().orientation == 2 ? AndroidUtilities.dp(48.0f) : AndroidUtilities.dp(54.0f);
+        }
+    }
 
     public interface SelectorListener {
-        void onUserSelected(List list);
+        void onUserSelected(ArrayList arrayList);
     }
 
-    public static MultiContactsSelectorBottomSheet open(Boolean bool, Boolean bool2, int i, SelectorListener selectorListener) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment == null) {
-            return null;
-        }
-        MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet = instance;
-        if (multiContactsSelectorBottomSheet != null) {
-            return multiContactsSelectorBottomSheet;
-        }
-        MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet2 = new MultiContactsSelectorBottomSheet(lastFragment, true, i, bool, bool2, selectorListener);
-        multiContactsSelectorBottomSheet2.show();
-        instance = multiContactsSelectorBottomSheet2;
-        return multiContactsSelectorBottomSheet2;
-    }
-
-    private boolean filter(TLRPC.User user) {
-        if (user == null) {
-            return false;
-        }
-        if (this.filterBots != null && UserObject.isBot(user) != this.filterBots.booleanValue()) {
-            return false;
-        }
-        Boolean bool = this.filterPremium;
-        return bool == null || user.premium == bool.booleanValue();
-    }
-
-    public void loadData(final String str) {
-        if (this.lastRequestId >= 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.lastRequestId, true);
-            this.lastRequestId = -1;
-        }
-        Boolean bool = this.filterBots;
-        BoostRepository.searchContactsLocally(str, bool != null && bool.booleanValue(), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                MultiContactsSelectorBottomSheet.$r8$lambda$NPuWJRHjC0X8X2y2XcTz4reVyIg(this.f$0, str, (List) obj);
-            }
-        });
-    }
-
-    public static void $r8$lambda$NPuWJRHjC0X8X2y2XcTz4reVyIg(final MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet, String str, List list) {
-        multiContactsSelectorBottomSheet.getClass();
-        final HashSet hashSet = new HashSet();
-        multiContactsSelectorBottomSheet.foundUsers.clear();
-        if (list != null) {
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                TLRPC.User user = (TLRPC.User) it.next();
-                if (user != null && !hashSet.contains(Long.valueOf(user.id)) && multiContactsSelectorBottomSheet.filter(user)) {
-                    multiContactsSelectorBottomSheet.foundUsers.add(user);
-                    hashSet.add(Long.valueOf(user.id));
-                }
-            }
-        }
-        Boolean bool = multiContactsSelectorBottomSheet.filterBots;
-        if (bool != null && bool.booleanValue()) {
-            multiContactsSelectorBottomSheet.lastRequestId = BoostRepository.searchContacts(str, true, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    MultiContactsSelectorBottomSheet.$r8$lambda$35ZY_4ozpvm5N6LP2rpdkHjXVWU(this.f$0, hashSet, (List) obj);
-                }
-            });
-        } else {
-            multiContactsSelectorBottomSheet.updateList(true, true);
-        }
-    }
-
-    public static void $r8$lambda$35ZY_4ozpvm5N6LP2rpdkHjXVWU(MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet, HashSet hashSet, List list) {
-        if (list != null) {
-            multiContactsSelectorBottomSheet.getClass();
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                TLRPC.User user = (TLRPC.User) it.next();
-                if (user != null && !hashSet.contains(Long.valueOf(user.id)) && multiContactsSelectorBottomSheet.filter(user)) {
-                    multiContactsSelectorBottomSheet.foundUsers.add(user);
-                    hashSet.add(Long.valueOf(user.id));
-                }
-            }
-        }
-        multiContactsSelectorBottomSheet.updateList(true, true);
-    }
-
-    public void createRecipientsBtnSpaceSpan() {
-        this.recipientsBtnSpaceSpan = new ReplacementSpan() {
-            @Override
-            public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-            }
-
-            @Override
-            public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-                return (int) MultiContactsSelectorBottomSheet.this.recipientsBtnExtraSpace;
-            }
-        };
-    }
-
-    public MultiContactsSelectorBottomSheet(BaseFragment baseFragment, boolean z, final int i, Boolean bool, Boolean bool2, SelectorListener selectorListener) {
-        super(baseFragment, z, false, false, baseFragment.getResourceProvider());
+    public MultiContactsSelectorBottomSheet(BaseFragment baseFragment, int i, Boolean bool, Boolean bool2, SelectorListener selectorListener) {
+        super(baseFragment.getParentActivity(), baseFragment, true, false, false, baseFragment.getResourceProvider());
         this.oldItems = new ArrayList();
         ArrayList arrayList = new ArrayList();
         this.items = arrayList;
         HashSet hashSet = new HashSet();
         this.selectedIds = hashSet;
         ArrayList arrayList2 = new ArrayList();
-        this.contacts = arrayList2;
         ArrayList arrayList3 = new ArrayList();
         this.hints = arrayList3;
         this.foundUsers = new ArrayList();
@@ -191,294 +99,292 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         this.allSelectedObjects = new LinkedHashMap();
         this.listPaddingTop = AndroidUtilities.dp(120.0f);
         this.lastRequestId = -1;
-        this.remoteSearchRunnable = new Runnable() {
-            @Override
-            public void run() {
-                String str = MultiContactsSelectorBottomSheet.this.query;
-                if (str != null) {
-                    MultiContactsSelectorBottomSheet.this.loadData(str);
-                }
-            }
-        };
+        this.remoteSearchRunnable = new LaunchActivity.AnonymousClass18(this, 16);
         this.maxCount = i;
         this.filterBots = bool;
         this.filterPremium = bool2;
         this.selectorListener = selectorListener;
         this.actionBar.setTitle(getTitle());
-        SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(getContext(), this.resourcesProvider) {
-            @Override
-            protected int getHeaderHeight() {
-                if (getResources().getConfiguration().orientation == 2) {
-                    return AndroidUtilities.dp(48.0f);
-                }
-                return AndroidUtilities.dp(54.0f);
-            }
-        };
-        this.headerView = selectorHeaderCell;
-        selectorHeaderCell.setOnCloseClickListener(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.dismiss();
-            }
-        });
-        selectorHeaderCell.setText(getTitle());
-        selectorHeaderCell.setCloseImageVisible(false);
-        selectorHeaderCell.backDrawable.setRotation(0.0f, false);
-        createRecipientsBtnSpaceSpan();
-        SelectorSearchCell selectorSearchCell = new SelectorSearchCell(getContext(), this.resourcesProvider, null) {
-            private boolean isKeyboardVisible;
+        AnonymousClass3 anonymousClass3 = new AnonymousClass3(getContext(), this.resourcesProvider);
+        this.headerView = anonymousClass3;
+        anonymousClass3.setOnCloseClickListener(new MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda1(this, 0));
+        anonymousClass3.setText(getTitle());
+        anonymousClass3.setCloseImageVisible(false);
+        anonymousClass3.backDrawable.setRotation(0.0f, false);
+        this.recipientsBtnSpaceSpan = new AnonymousClass2(this, 0);
+        ?? r12 = new SelectorSearchCell(getContext(), this.resourcesProvider) {
+            public boolean isKeyboardVisible;
 
             @Override
-            protected void onLayout(boolean z2, int i2, int i3, int i4, int i5) {
-                super.onLayout(z2, i2, i3, i4, i5);
-                MultiContactsSelectorBottomSheet.this.listPaddingTop = getMeasuredHeight() + AndroidUtilities.dp(64.0f);
-                MultiContactsSelectorBottomSheet.this.selectorAdapter.notifyChangedLast();
-                if (this.isKeyboardVisible != MultiContactsSelectorBottomSheet.this.isKeyboardVisible()) {
-                    boolean zIsKeyboardVisible = MultiContactsSelectorBottomSheet.this.isKeyboardVisible();
+            public final void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                super.onLayout(z, i2, i3, i4, i5);
+                int iDp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
+                MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet = MultiContactsSelectorBottomSheet.this;
+                multiContactsSelectorBottomSheet.listPaddingTop = iDp;
+                SelectorAdapter selectorAdapter = multiContactsSelectorBottomSheet.selectorAdapter;
+                ArrayList arrayList5 = selectorAdapter.items;
+                if (arrayList5 != null && !arrayList5.isEmpty()) {
+                    selectorAdapter.notifyItemChanged(selectorAdapter.items.size() - 1);
+                }
+                if (this.isKeyboardVisible != multiContactsSelectorBottomSheet.isKeyboardVisible()) {
+                    boolean zIsKeyboardVisible = multiContactsSelectorBottomSheet.isKeyboardVisible();
                     this.isKeyboardVisible = zIsKeyboardVisible;
                     if (zIsKeyboardVisible) {
-                        MultiContactsSelectorBottomSheet.this.scrollToTop(true);
+                        LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(multiContactsSelectorBottomSheet.getContext(), 2, 0.6f);
+                        linearSmoothScrollerCustom.mTargetPosition = 1;
+                        linearSmoothScrollerCustom.offset = AndroidUtilities.dp(36.0f);
+                        multiContactsSelectorBottomSheet.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
                     }
                 }
             }
         };
-        this.searchField = selectorSearchCell;
+        this.searchField = r12;
         int i2 = Theme.key_dialogBackground;
-        selectorSearchCell.setBackgroundColor(getThemedColor(i2));
-        selectorSearchCell.setOnSearchTextChange(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                this.f$0.onSearch((String) obj);
-            }
-        });
-        selectorSearchCell.setHintText(LocaleController.getString(R.string.Search), false);
-        View view = new View(getContext()) {
-            @Override
-            protected void onDraw(Canvas canvas) {
-                canvas.drawColor(MultiContactsSelectorBottomSheet.this.getThemedColor(Theme.key_graySection));
-            }
-        };
-        this.sectionCell = view;
+        r12.setBackgroundColor(getThemedColor(i2));
+        r12.setOnSearchTextChange(new PollItemMenu$$ExternalSyntheticLambda14(this, 20));
+        r12.editText.setHintText(LocaleController.getString(R.string.Search), false);
+        QrActivity.AnonymousClass2 anonymousClass2 = new QrActivity.AnonymousClass2(this, getContext(), 23);
+        this.sectionCell = anonymousClass2;
         ViewGroup viewGroup = this.containerView;
         int i3 = this.backgroundPaddingLeft;
-        viewGroup.addView(selectorHeaderCell, 0, LayoutHelper.createFrameMarginPx(-1, -2.0f, 55, i3, 0, i3, 0));
+        viewGroup.addView(anonymousClass3, 0, LayoutHelper.createFrameMarginPx(-2.0f, 55, i3, 0, i3, 0));
         ViewGroup viewGroup2 = this.containerView;
         int i4 = this.backgroundPaddingLeft;
-        viewGroup2.addView(selectorSearchCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 55, i4, 0, i4, 0));
+        viewGroup2.addView((View) r12, LayoutHelper.createFrameMarginPx(-2.0f, 55, i4, 0, i4, 0));
         ViewGroup viewGroup3 = this.containerView;
         int i5 = this.backgroundPaddingLeft;
-        viewGroup3.addView(view, LayoutHelper.createFrameMarginPx(-1, 1.0f, 55, i5, 0, i5, 0));
-        SelectorBtnCell selectorBtnCell = new SelectorBtnCell(getContext(), this.resourcesProvider, null);
-        this.buttonContainer = selectorBtnCell;
-        selectorBtnCell.setClickable(true);
-        selectorBtnCell.setOrientation(1);
-        selectorBtnCell.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-        selectorBtnCell.setBackgroundColor(Theme.getColor(i2, this.resourcesProvider));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), this.resourcesProvider) {
+        viewGroup3.addView(anonymousClass2, LayoutHelper.createFrameMarginPx(1.0f, 55, i5, 0, i5, 0));
+        GradientHeaderActivity.AnonymousClass5 anonymousClass5 = new GradientHeaderActivity.AnonymousClass5(getContext(), this.resourcesProvider, (RecyclerListView) null);
+        anonymousClass5.setClickable(true);
+        anonymousClass5.setOrientation(1);
+        anonymousClass5.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+        anonymousClass5.setBackgroundColor(Theme.getColor(i2, this.resourcesProvider));
+        ?? r8 = new ButtonWithCounterView(getContext(), this.resourcesProvider) {
             @Override
-            protected float calculateCounterWidth(float f, float f2) {
-                boolean z2 = MultiContactsSelectorBottomSheet.this.recipientsBtnExtraSpace == 0.0f;
-                MultiContactsSelectorBottomSheet.this.recipientsBtnExtraSpace = f;
-                if (z2) {
-                    MultiContactsSelectorBottomSheet.this.createRecipientsBtnSpaceSpan();
-                    MultiContactsSelectorBottomSheet.this.updateActionButton(false);
+            public final float calculateCounterWidth(float f, float f2) {
+                MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet = MultiContactsSelectorBottomSheet.this;
+                boolean z = multiContactsSelectorBottomSheet.recipientsBtnExtraSpace == 0.0f;
+                multiContactsSelectorBottomSheet.recipientsBtnExtraSpace = f;
+                if (z) {
+                    multiContactsSelectorBottomSheet.recipientsBtnSpaceSpan = new AnonymousClass2(multiContactsSelectorBottomSheet, 0);
+                    multiContactsSelectorBottomSheet.updateActionButton$4(false);
                 }
                 return f;
             }
         };
-        this.actionButton = buttonWithCounterView;
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                this.f$0.next();
-            }
-        });
-        selectorBtnCell.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
+        this.actionButton = r8;
+        r8.setOnClickListener(new MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda0(this, 1));
+        anonymousClass5.addView((View) r8, LayoutHelper.createLinear(-1, 48, 87));
         ViewGroup viewGroup4 = this.containerView;
         int i6 = this.backgroundPaddingLeft;
-        viewGroup4.addView(selectorBtnCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i6, 0, i6, 0));
-        this.selectorAdapter.setData(arrayList, this.recyclerListView);
+        viewGroup4.addView(anonymousClass5, LayoutHelper.createFrameMarginPx(-2.0f, 87, i6, 0, i6, 0));
+        SelectorAdapter selectorAdapter = this.selectorAdapter;
         RecyclerListView recyclerListView = this.recyclerListView;
+        selectorAdapter.items = arrayList;
+        selectorAdapter.listView = recyclerListView;
         int i7 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i7, 0, i7, AndroidUtilities.dp(60.0f));
-        this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i8) {
-                if (i8 == 1) {
-                    AndroidUtilities.hideKeyboard(MultiContactsSelectorBottomSheet.this.searchField.getEditText());
-                }
-            }
-        });
-        this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
-            @Override
-            public boolean hasDoubleTap(View view2, int i8) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view2, i8);
-            }
-
-            @Override
-            public void onDoubleTap(View view2, int i8, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view2, i8, f, f2);
-            }
-
-            @Override
-            public final void onItemClick(View view2, int i8, float f, float f2) {
-                MultiContactsSelectorBottomSheet.$r8$lambda$gYWblS8jqWdnmqMolqwSqbs6JBs(this.f$0, i, view2, i8, f, f2);
-            }
-        });
+        this.recyclerListView.addOnScrollListener(new LocationActivity.AnonymousClass10(this, 29));
+        this.recyclerListView.setOnItemClickListener(new LaunchActivity$$ExternalSyntheticLambda9(this, i, 13));
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
-        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        defaultItemAnimator.setDelayAnimations(false);
-        defaultItemAnimator.setSupportsChangeAnimations(false);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.delayAnimations = false;
+        defaultItemAnimator.mSupportsChangeAnimations = false;
         this.recyclerListView.setItemAnimator(defaultItemAnimator);
-        this.recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void getItemOffsets(Rect rect, View view2, RecyclerView recyclerView, RecyclerView.State state) {
-                super.getItemOffsets(rect, view2, recyclerView, state);
-                if (recyclerView.getChildAdapterPosition(view2) == MultiContactsSelectorBottomSheet.this.items.size()) {
-                    rect.bottom = MultiContactsSelectorBottomSheet.this.listPaddingTop;
-                }
-            }
-        });
-        selectorSearchCell.setText("");
-        selectorSearchCell.spansContainer.removeAllSpans(false);
-        selectorSearchCell.updateSpans(false, hashSet, new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.updateList(true, false);
-            }
-        }, null);
-        selectorHeaderCell.setText(getTitle());
-        updateActionButton(false);
+        this.recyclerListView.addItemDecoration(new MessageSeenView.AnonymousClass2(this, 6));
+        r12.setText("");
+        r12.spansContainer.removeAllSpans(false);
+        r12.updateSpans(false, hashSet, new MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda1(this, 1), null);
+        anonymousClass3.setText(getTitle());
+        updateActionButton$4(false);
         arrayList2.addAll(ContactsController.getInstance(this.currentAccount).contacts);
         map.putAll(ContactsController.getInstance(this.currentAccount).usersSectionsDict);
         arrayList4.addAll(ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray);
         arrayList3.addAll(MediaDataController.getInstance(this.currentAccount).hints);
-        Boolean bool3 = this.filterBots;
-        if (bool3 != null && bool3.booleanValue()) {
+        if (bool != null && bool.booleanValue()) {
             arrayList3.addAll(MediaDataController.getInstance(this.currentAccount).webapps);
         }
-        updateList(false, true);
+        updateList$2(false, true);
         fixNavigationBar();
     }
 
-    public static void $r8$lambda$gYWblS8jqWdnmqMolqwSqbs6JBs(final MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet, int i, View view, int i2, float f, float f2) {
-        multiContactsSelectorBottomSheet.getClass();
-        if (view instanceof SelectorUserCell) {
-            TLRPC.User user = ((SelectorUserCell) view).getUser();
-            long j = user.id;
-            if (multiContactsSelectorBottomSheet.selectedIds.contains(Long.valueOf(j))) {
-                multiContactsSelectorBottomSheet.selectedIds.remove(Long.valueOf(j));
-            } else {
-                multiContactsSelectorBottomSheet.selectedIds.add(Long.valueOf(j));
-                multiContactsSelectorBottomSheet.allSelectedObjects.put(Long.valueOf(j), user);
-            }
-            if (multiContactsSelectorBottomSheet.selectedIds.size() == i + 1) {
-                multiContactsSelectorBottomSheet.selectedIds.remove(Long.valueOf(j));
-                multiContactsSelectorBottomSheet.showMaximumUsersToast();
-            } else {
-                multiContactsSelectorBottomSheet.searchField.updateSpans(true, multiContactsSelectorBottomSheet.selectedIds, new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.updateList(true, false);
-                    }
-                }, null);
-                multiContactsSelectorBottomSheet.updateList(true, false);
-                multiContactsSelectorBottomSheet.clearSearchAfterSelect();
-            }
-        }
+    @Override
+    public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), this.resourcesProvider, true);
+        this.selectorAdapter = selectorAdapter;
+        selectorAdapter.isGreenSelector = true;
+        return selectorAdapter;
     }
 
     @Override
-    protected void onPreDraw(Canvas canvas, int i, float f) {
-        this.headerView.setTranslationY(Math.max(i, AndroidUtilities.statusBarHeight + (((this.headerView.getMeasuredHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(40.0f)) / 2.0f)) + AndroidUtilities.dp(8.0f));
-        this.searchField.setTranslationY(this.headerView.getTranslationY() + this.headerView.getMeasuredHeight());
-        this.sectionCell.setTranslationY(this.searchField.getTranslationY() + this.searchField.getMeasuredHeight());
-        this.recyclerListView.setTranslationY(((this.headerView.getMeasuredHeight() + this.searchField.getMeasuredHeight()) + this.sectionCell.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
-    }
-
-    public void next() {
-        if (this.selectedIds.size() == 0 || this.selectorListener == null) {
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        for (TLRPC.User user : this.allSelectedObjects.values()) {
-            if (this.selectedIds.contains(Long.valueOf(user.id))) {
-                arrayList.add(Long.valueOf(user.id));
-            }
-        }
-        this.selectorListener.onUserSelected(arrayList);
-        dismiss();
-    }
-
-    public void scrollToTop(boolean z) {
-        if (z) {
-            LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.6f);
-            linearSmoothScrollerCustom.setTargetPosition(1);
-            linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(36.0f));
-            this.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
-            return;
-        }
-        this.recyclerListView.scrollToPosition(0);
+    public final void lambda$showGiftOfferSheet$15() {
+        AndroidUtilities.hideKeyboard(getEditText());
+        super.lambda$showGiftOfferSheet$15();
     }
 
     @Override
-    public void dismissInternal() {
+    public final void dismissInternal() {
         super.dismissInternal();
         instance = null;
         AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
     }
 
-    private void showMaximumUsersToast() {
-        BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.formatPluralString("BotMultiContactsSelectorLimit", this.maxCount, new Object[0])).show(true);
-        try {
-            this.container.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
+    public final boolean filter(TLRPC.User user) {
+        if (user == null) {
+            return false;
         }
+        Boolean bool = this.filterBots;
+        if (bool != null && UserObject.isBot(user) != bool.booleanValue()) {
+            return false;
+        }
+        Boolean bool2 = this.filterPremium;
+        return bool2 == null || user.premium == bool2.booleanValue();
     }
 
-    public void updateList(boolean z, boolean z2) {
-        updateItems(z, z2);
-        updateCheckboxes(z);
-        updateActionButton(z);
+    @Override
+    public final CharSequence getTitle() {
+        Boolean bool = this.filterBots;
+        if (bool == null || !bool.booleanValue()) {
+            return LocaleController.getString(R.string.ChooseUsers);
+        }
+        return LocaleController.getString(this.maxCount > 1 ? R.string.ChooseBots : R.string.ChooseBot);
     }
 
-    private void updateCheckboxes(boolean z) {
-        int childAdapterPosition;
-        int i = -1;
-        int i2 = 0;
-        for (int i3 = 0; i3 < this.recyclerListView.getChildCount(); i3++) {
-            View childAt = this.recyclerListView.getChildAt(i3);
-            if ((childAt instanceof SelectorUserCell) && (childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt)) > 0) {
-                if (i == -1) {
-                    i = childAdapterPosition;
-                }
-                int i4 = childAdapterPosition - 1;
-                if (i4 >= 0 && i4 < this.items.size()) {
-                    SelectorAdapter.Item item = (SelectorAdapter.Item) this.items.get(i4);
-                    SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
-                    selectorUserCell.setChecked(item.checked, z);
-                    TLRPC.Chat chat = item.chat;
-                    if (chat != null) {
-                        selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount(chat) > 200 ? 0.3f : 1.0f, z);
-                    } else {
-                        selectorUserCell.setCheckboxAlpha(1.0f, z);
-                    }
-                }
-                i2 = childAdapterPosition;
+    public final void lambda$new$2$17$1() {
+        SelectorListener selectorListener;
+        HashSet hashSet = this.selectedIds;
+        if (hashSet.size() == 0 || (selectorListener = this.selectorListener) == null) {
+            return;
+        }
+        ArrayList arrayList = new ArrayList();
+        for (TLRPC.User user : this.allSelectedObjects.values()) {
+            if (hashSet.contains(Long.valueOf(user.id))) {
+                arrayList.add(Long.valueOf(user.id));
             }
         }
-        if (z) {
-            this.selectorAdapter.notifyItemRangeChanged(0, i);
-            SelectorAdapter selectorAdapter = this.selectorAdapter;
-            selectorAdapter.notifyItemRangeChanged(i2, selectorAdapter.getItemCount() - i2);
+        selectorListener.onUserSelected(arrayList);
+        AndroidUtilities.hideKeyboard(getEditText());
+        super.lambda$showGiftOfferSheet$15();
+    }
+
+    public final void lambda$new$4(int i, View view) {
+        if (view instanceof SelectorUserCell) {
+            TLRPC.User user = ((SelectorUserCell) view).getUser();
+            long j = user.id;
+            HashSet hashSet = this.selectedIds;
+            if (hashSet.contains(Long.valueOf(j))) {
+                hashSet.remove(Long.valueOf(j));
+            } else {
+                hashSet.add(Long.valueOf(j));
+                this.allSelectedObjects.put(Long.valueOf(j), user);
+            }
+            if (hashSet.size() == i + 1) {
+                hashSet.remove(Long.valueOf(j));
+                new BulletinFactory(this.container, this.resourcesProvider).createSimpleBulletinWithIconSize(R.raw.chats_infotip, 36, LocaleController.formatPluralString("BotMultiContactsSelectorLimit", this.maxCount, new Object[0])).show(true);
+                try {
+                    this.container.performHapticFeedback(3, 2);
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            }
+            MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda1 multiContactsSelectorBottomSheet$$ExternalSyntheticLambda1 = new MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda1(this, 2);
+            AnonymousClass4 anonymousClass4 = this.searchField;
+            anonymousClass4.updateSpans(true, hashSet, multiContactsSelectorBottomSheet$$ExternalSyntheticLambda1, null);
+            updateList$2(true, false);
+            if (TextUtils.isEmpty(this.query)) {
+                return;
+            }
+            this.query = null;
+            anonymousClass4.setText("");
+            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+            updateItems(true, true);
         }
     }
 
-    public void updateActionButton(boolean z) {
-        this.actionButton.setShowZero(false);
+    public final void loadData(String str) {
+        TLRPC.User user;
+        if (this.lastRequestId >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.lastRequestId, true);
+            this.lastRequestId = -1;
+        }
+        Boolean bool = this.filterBots;
+        boolean z = bool != null && bool.booleanValue();
+        OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13 = new OAuthSheet$$ExternalSyntheticLambda13(15, this, str);
+        int i = UserConfig.selectedAccount;
+        ArrayList arrayList = new ArrayList();
+        ArrayList<TLRPC.TL_contact> arrayList2 = ContactsController.getInstance(i).contacts;
+        if (arrayList2 == null || arrayList2.isEmpty()) {
+            ContactsController.getInstance(i).loadContacts(false, 0L);
+        }
+        MessagesController messagesController = MessagesController.getInstance(i);
+        String lowerCase = str.toLowerCase();
+        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+        if (arrayList2 != null) {
+            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                TLRPC.TL_contact tL_contact = arrayList2.get(i2);
+                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && ((z || !user.bot) && !UserObject.isService(user.id) && !UserObject.isUserSelf(user))) {
+                    String lowerCase2 = UserObject.getUserName(user).toLowerCase();
+                    String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                    if (lowerCase2.startsWith(lowerCase) || SavedMessagesController$$ExternalSyntheticOutline0.m(" ", lowerCase, lowerCase2) || strTranslitSafe2.startsWith(strTranslitSafe) || SavedMessagesController$$ExternalSyntheticOutline0.m(" ", strTranslitSafe, strTranslitSafe2)) {
+                        arrayList.add(user);
+                    } else if (user.usernames != null) {
+                        for (int i3 = 0; i3 < user.usernames.size(); i3++) {
+                            TLRPC.TL_username tL_username = user.usernames.get(i3);
+                            if (tL_username != null && tL_username.active) {
+                                String lowerCase3 = tL_username.username.toLowerCase();
+                                if (lowerCase3.startsWith(lowerCase) || SavedMessagesController$$ExternalSyntheticOutline0.m("_", lowerCase, lowerCase3) || lowerCase3.startsWith(strTranslitSafe) || SavedMessagesController$$ExternalSyntheticOutline0.m(" ", strTranslitSafe, lowerCase3)) {
+                                    arrayList.add(user);
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        String str2 = user.username;
+                        if (str2 != null) {
+                            String lowerCase4 = str2.toLowerCase();
+                            if (lowerCase4.startsWith(lowerCase) || SavedMessagesController$$ExternalSyntheticOutline0.m("_", lowerCase, lowerCase4) || lowerCase4.startsWith(strTranslitSafe) || SavedMessagesController$$ExternalSyntheticOutline0.m(" ", strTranslitSafe, lowerCase4)) {
+                                arrayList.add(user);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        oAuthSheet$$ExternalSyntheticLambda13.run(arrayList);
+    }
+
+    @Override
+    public final void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        updateItems(false, true);
+    }
+
+    @Override
+    public final void onPreDraw(Canvas canvas, int i) {
+        float f = AndroidUtilities.statusBarHeight;
+        AnonymousClass3 anonymousClass3 = this.headerView;
+        anonymousClass3.setTranslationY(Math.max(i, (((anonymousClass3.getMeasuredHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(40.0f)) / 2.0f) + f) + AndroidUtilities.dp(8.0f));
+        float translationY = anonymousClass3.getTranslationY() + anonymousClass3.getMeasuredHeight();
+        AnonymousClass4 anonymousClass4 = this.searchField;
+        anonymousClass4.setTranslationY(translationY);
+        float translationY2 = anonymousClass4.getTranslationY() + anonymousClass4.getMeasuredHeight();
+        QrActivity.AnonymousClass2 anonymousClass2 = this.sectionCell;
+        anonymousClass2.setTranslationY(translationY2);
+        this.recyclerListView.setTranslationY((anonymousClass2.getMeasuredHeight() + (anonymousClass4.getMeasuredHeight() + anonymousClass3.getMeasuredHeight())) - AndroidUtilities.dp(8.0f));
+    }
+
+    public final void updateActionButton$4(boolean z) {
+        AnonymousClass6 anonymousClass6 = this.actionButton;
+        anonymousClass6.setShowZero(false);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (this.selectedIds.size() == 0) {
+        HashSet hashSet = this.selectedIds;
+        if (hashSet.size() == 0) {
             spannableStringBuilder.append((CharSequence) "d").setSpan(this.recipientsBtnSpaceSpan, 0, 1, 33);
             Boolean bool = this.filterBots;
             if (bool == null || !bool.booleanValue()) {
@@ -489,175 +395,246 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         } else {
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.GiftPremiumProceedBtn));
         }
-        this.actionButton.setCount(this.selectedIds.size(), true);
-        this.actionButton.setText(spannableStringBuilder, z, false);
-        this.actionButton.setEnabled(true);
+        anonymousClass6.setCount(hashSet.size(), true);
+        anonymousClass6.setText(spannableStringBuilder, z, false);
+        anonymousClass6.setEnabled(true);
     }
 
-    public void onSearch(String str) {
-        this.query = str;
-        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 100L);
-    }
-
-    private void clearSearchAfterSelect() {
-        if (isSearching()) {
-            this.query = null;
-            this.searchField.setText("");
-            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-            updateItems(true, true);
-        }
-    }
-
-    private void updateSectionCell(boolean z) {
-        HashSet hashSet = this.selectedIds;
-        if (hashSet == null) {
-            return;
-        }
-        if (hashSet.size() > 0) {
-            this.selectorAdapter.setTopSectionClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    MultiContactsSelectorBottomSheet.$r8$lambda$cMgSGY9jTfEJSjPzdJWqAbvESFE(this.f$0, view);
-                }
-            });
-        } else {
-            this.selectorAdapter.setTopSectionClickListener(null);
-        }
-    }
-
-    public static void $r8$lambda$cMgSGY9jTfEJSjPzdJWqAbvESFE(MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet, View view) {
-        multiContactsSelectorBottomSheet.selectedIds.clear();
-        multiContactsSelectorBottomSheet.searchField.spansContainer.removeAllSpans(true);
-        multiContactsSelectorBottomSheet.updateList(true, false);
-    }
-
-    private boolean isSearching() {
-        return !TextUtils.isEmpty(this.query);
-    }
-
-    public void updateItems(boolean z, boolean z2) {
+    public final void updateItems(boolean z, boolean z2) {
+        float f;
         int iDp;
+        long j;
+        float f2;
         int iDp2;
+        long j2;
         SelectorAdapter selectorAdapter;
-        this.oldItems.clear();
-        this.oldItems.addAll(this.items);
-        this.items.clear();
-        if (isSearching()) {
-            iDp2 = 0;
-            for (TLRPC.User user : this.foundUsers) {
-                iDp2 += AndroidUtilities.dp(56.0f);
-                this.items.add(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id))));
-            }
-        } else {
-            if (this.hints.isEmpty()) {
+        ArrayList arrayList = this.oldItems;
+        arrayList.clear();
+        ArrayList arrayList2 = this.items;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        boolean zIsEmpty = TextUtils.isEmpty(this.query);
+        HashSet hashSet = this.selectedIds;
+        if (zIsEmpty) {
+            ArrayList arrayList3 = this.hints;
+            if (arrayList3.isEmpty()) {
+                f = 32.0f;
                 iDp = 0;
             } else {
-                ArrayList arrayList = new ArrayList();
-                Iterator it = this.hints.iterator();
+                ArrayList arrayList4 = new ArrayList();
+                int size = arrayList3.size();
+                int i = 0;
                 iDp = 0;
-                while (it.hasNext()) {
-                    TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TLRPC.TL_topPeer) it.next()).peer.user_id));
-                    if (!user2.self && !user2.bot && !UserObject.isService(user2.id) && !UserObject.isDeleted(user2) && filter(user2)) {
+                while (i < size) {
+                    Object obj = arrayList3.get(i);
+                    i++;
+                    int i2 = size;
+                    TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TLRPC.TL_topPeer) obj).peer.user_id));
+                    if (!user.self && !user.bot && !UserObject.isService(user.id) && !UserObject.isDeleted(user) && filter(user)) {
                         iDp += AndroidUtilities.dp(56.0f);
-                        arrayList.add(SelectorAdapter.Item.asUser(user2, this.selectedIds.contains(Long.valueOf(user2.id))));
+                        arrayList4.add(SelectorAdapter.Item.asUser(user, hashSet.contains(Long.valueOf(user.id))));
                     }
+                    size = i2;
                 }
-                if (!arrayList.isEmpty()) {
+                f = 32.0f;
+                if (!arrayList4.isEmpty()) {
                     iDp += AndroidUtilities.dp(32.0f);
-                    this.items.add(SelectorAdapter.Item.asTopSection(LocaleController.getString(R.string.GiftPremiumFrequentContacts)));
-                    this.items.addAll(arrayList);
+                    String string = LocaleController.getString(R.string.GiftPremiumFrequentContacts);
+                    SelectorAdapter.Item item = new SelectorAdapter.Item(8, false);
+                    item.text = string;
+                    arrayList2.add(item);
+                    arrayList2.addAll(arrayList4);
                 }
             }
             long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
             Boolean bool = this.filterBots;
-            if (bool != null && bool.booleanValue()) {
-                ArrayList arrayList2 = new ArrayList();
+            if (bool == null || !bool.booleanValue()) {
+                j = clientUserId;
+                f2 = 56.0f;
+            } else {
+                ArrayList arrayList5 = new ArrayList();
                 ArrayList<TLRPC.Dialog> allDialogs = MessagesController.getInstance(this.currentAccount).getAllDialogs();
-                int size = allDialogs.size();
-                int i = 0;
-                while (i < size) {
-                    TLRPC.Dialog dialog = allDialogs.get(i);
-                    i++;
+                int size2 = allDialogs.size();
+                int i3 = 0;
+                while (i3 < size2) {
+                    TLRPC.Dialog dialog = allDialogs.get(i3);
+                    i3++;
                     TLRPC.Dialog dialog2 = dialog;
-                    if (dialog2.id >= 0) {
-                        TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialog2.id));
-                        if (filter(user3)) {
+                    if (dialog2.id < 0) {
+                        j2 = clientUserId;
+                    } else {
+                        j2 = clientUserId;
+                        TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialog2.id));
+                        if (filter(user2)) {
                             iDp += AndroidUtilities.dp(56.0f);
-                            arrayList2.add(SelectorAdapter.Item.asUser(user3, this.selectedIds.contains(Long.valueOf(user3.id))));
+                            arrayList5.add(SelectorAdapter.Item.asUser(user2, hashSet.contains(Long.valueOf(user2.id))));
                         }
                     }
+                    clientUserId = j2;
                 }
-                if (!arrayList2.isEmpty()) {
-                    iDp += AndroidUtilities.dp(32.0f);
-                    this.items.add(SelectorAdapter.Item.asTopSection(LocaleController.getString(R.string.SearchApps)));
-                    this.items.addAll(arrayList2);
+                j = clientUserId;
+                f2 = 56.0f;
+                if (!arrayList5.isEmpty()) {
+                    iDp += AndroidUtilities.dp(f);
+                    String string2 = LocaleController.getString(R.string.SearchApps);
+                    SelectorAdapter.Item item2 = new SelectorAdapter.Item(8, false);
+                    item2.text = string2;
+                    arrayList2.add(item2);
+                    arrayList2.addAll(arrayList5);
                 }
             }
-            for (String str : this.contactsLetters) {
-                ArrayList arrayList3 = new ArrayList();
+            ArrayList arrayList6 = this.contactsLetters;
+            int size3 = arrayList6.size();
+            iDp2 = iDp;
+            int i4 = 0;
+            while (i4 < size3) {
+                Object obj2 = arrayList6.get(i4);
+                i4++;
+                String str = (String) obj2;
+                ArrayList arrayList7 = new ArrayList();
                 List<TLRPC.TL_contact> list = (List) this.contactsMap.get(str);
                 if (list != null) {
                     for (TLRPC.TL_contact tL_contact : list) {
-                        if (tL_contact.user_id != clientUserId) {
-                            TLRPC.User user4 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_contact.user_id));
-                            if (filter(user4)) {
-                                iDp += AndroidUtilities.dp(56.0f);
-                                arrayList3.add(SelectorAdapter.Item.asUser(user4, this.selectedIds.contains(Long.valueOf(user4.id))));
+                        if (tL_contact.user_id != j) {
+                            TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_contact.user_id));
+                            if (filter(user3)) {
+                                iDp2 += AndroidUtilities.dp(f2);
+                                arrayList7.add(SelectorAdapter.Item.asUser(user3, hashSet.contains(Long.valueOf(user3.id))));
                             }
                         }
                     }
-                    if (!arrayList3.isEmpty()) {
-                        iDp += AndroidUtilities.dp(32.0f);
-                        this.items.add(SelectorAdapter.Item.asLetter(str.toUpperCase()));
-                        this.items.addAll(arrayList3);
+                    if (!arrayList7.isEmpty()) {
+                        iDp2 += AndroidUtilities.dp(f);
+                        String upperCase = str.toUpperCase();
+                        SelectorAdapter.Item item3 = new SelectorAdapter.Item(7, false);
+                        item3.text = upperCase;
+                        arrayList2.add(item3);
+                        arrayList2.addAll(arrayList7);
                     }
                 }
             }
-            iDp2 = iDp;
+        } else {
+            ArrayList arrayList8 = this.foundUsers;
+            int size4 = arrayList8.size();
+            int i5 = 0;
+            iDp2 = 0;
+            while (i5 < size4) {
+                Object obj3 = arrayList8.get(i5);
+                i5++;
+                TLRPC.User user4 = (TLRPC.User) obj3;
+                iDp2 += AndroidUtilities.dp(56.0f);
+                arrayList2.add(SelectorAdapter.Item.asUser(user4, hashSet.contains(Long.valueOf(user4.id))));
+            }
         }
-        if (this.items.isEmpty()) {
-            this.items.add(SelectorAdapter.Item.asNoUsers());
+        if (arrayList2.isEmpty()) {
+            arrayList2.add(new SelectorAdapter.Item(5, false));
             iDp2 += AndroidUtilities.dp(150.0f);
         }
-        this.items.add(SelectorAdapter.Item.asPad(Math.max(0, ((int) (AndroidUtilities.displaySize.y * 0.6f)) - iDp2)));
-        updateSectionCell(z);
+        int iMax = Math.max(0, ((int) (AndroidUtilities.displaySize.y * 0.6f)) - iDp2);
+        SelectorAdapter.Item item4 = new SelectorAdapter.Item(-1, false);
+        item4.padHeight = iMax;
+        arrayList2.add(item4);
+        if (hashSet != null) {
+            if (hashSet.size() > 0) {
+                SelectorAdapter selectorAdapter2 = this.selectorAdapter;
+                MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda0 multiContactsSelectorBottomSheet$$ExternalSyntheticLambda0 = new MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda0(this, 0);
+                GraySectionCell graySectionCell = selectorAdapter2.topSectionCell;
+                if (graySectionCell != null) {
+                    graySectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), multiContactsSelectorBottomSheet$$ExternalSyntheticLambda0);
+                }
+            } else {
+                GraySectionCell graySectionCell2 = this.selectorAdapter.topSectionCell;
+                if (graySectionCell2 != null) {
+                    graySectionCell2.setRightText(null);
+                }
+            }
+        }
         if (!z2 || (selectorAdapter = this.selectorAdapter) == null) {
             return;
         }
         if (z) {
-            selectorAdapter.setItems(this.oldItems, this.items);
+            selectorAdapter.setItems(arrayList, arrayList2);
         } else {
-            selectorAdapter.notifyDataSetChanged();
+            selectorAdapter.mObservable.notifyChanged();
         }
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        updateItems(false, true);
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        Boolean bool = this.filterBots;
-        if (bool == null || !bool.booleanValue()) {
-            return LocaleController.getString(R.string.ChooseUsers);
+    public final void updateList$2(boolean z, boolean z2) {
+        int childAdapterPosition;
+        updateItems(z, z2);
+        int i = 0;
+        int i2 = -1;
+        int i3 = 0;
+        while (true) {
+            RecyclerListView recyclerListView = this.recyclerListView;
+            if (i >= recyclerListView.getChildCount()) {
+                break;
+            }
+            View childAt = recyclerListView.getChildAt(i);
+            if ((childAt instanceof SelectorUserCell) && (childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt)) > 0) {
+                if (i2 == -1) {
+                    i2 = childAdapterPosition;
+                }
+                int i4 = childAdapterPosition - 1;
+                if (i4 >= 0) {
+                    ArrayList arrayList = this.items;
+                    if (i4 < arrayList.size()) {
+                        SelectorAdapter.Item item = (SelectorAdapter.Item) arrayList.get(i4);
+                        SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
+                        selectorUserCell.setChecked(item.checked, z);
+                        TLRPC.Chat chat = item.chat;
+                        if (chat != null) {
+                            selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount$2(chat) > 200 ? 0.3f : 1.0f, z);
+                        } else {
+                            selectorUserCell.setCheckboxAlpha(1.0f, z);
+                        }
+                    }
+                }
+                i3 = childAdapterPosition;
+            }
+            i++;
         }
-        return LocaleController.getString(this.maxCount > 1 ? R.string.ChooseBots : R.string.ChooseBot);
+        if (z) {
+            this.selectorAdapter.mObservable.notifyItemRangeChanged(0, i2, null);
+            SelectorAdapter selectorAdapter = this.selectorAdapter;
+            selectorAdapter.mObservable.notifyItemRangeChanged(i3, selectorAdapter.getItemCount() - i3, null);
+        }
+        updateActionButton$4(z);
     }
 
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), true, this.resourcesProvider);
-        this.selectorAdapter = selectorAdapter;
-        selectorAdapter.setGreenSelector(true);
-        return this.selectorAdapter;
-    }
+    public final class AnonymousClass2 extends ReplacementSpan {
+        public final int $r8$classId;
+        public final KeyEvent.Callback this$0;
 
-    @Override
-    public void dismiss() {
-        AndroidUtilities.hideKeyboard(this.searchField.getEditText());
-        super.dismiss();
+        public AnonymousClass2(KeyEvent.Callback callback, int i) {
+            this.$r8$classId = i;
+            this.this$0 = callback;
+        }
+
+        @Override
+        public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+            int i6 = this.$r8$classId;
+        }
+
+        @Override
+        public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+            switch (this.$r8$classId) {
+                case 0:
+                    return (int) ((MultiContactsSelectorBottomSheet) this.this$0).recipientsBtnExtraSpace;
+                case 1:
+                    return ((MessageContainsEmojiButton) this.this$0).lastLineMargin;
+                default:
+                    return (int) ((UserSelectorBottomSheet) this.this$0).recipientsBtnExtraSpace;
+            }
+        }
+
+        private final void draw$org$telegram$ui$Components$MessageContainsEmojiButton$2(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        }
+
+        private final void draw$org$telegram$ui$Components$Premium$boosts$UserSelectorBottomSheet$3(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        }
+
+        private final void draw$org$telegram$ui$MultiContactsSelectorBottomSheet$2(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        }
     }
 }

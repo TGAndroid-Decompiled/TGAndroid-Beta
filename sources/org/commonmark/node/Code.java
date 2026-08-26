@@ -1,18 +1,18 @@
 package org.commonmark.node;
 
-public class Code extends Node {
-    private String literal;
+public final class Code extends Node {
+    public final int $r8$classId;
+    public String literal;
 
     @Override
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
-    }
-
-    public String getLiteral() {
-        return this.literal;
-    }
-
-    public void setLiteral(String str) {
-        this.literal = str;
+    public final void accept(AbstractVisitor abstractVisitor) {
+        switch (this.$r8$classId) {
+            case 0:
+                abstractVisitor.visit(this);
+                break;
+            default:
+                abstractVisitor.visit$1(this);
+                break;
+        }
     }
 }

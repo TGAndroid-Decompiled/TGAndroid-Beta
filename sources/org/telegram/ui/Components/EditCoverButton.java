@@ -2,9 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
@@ -22,44 +20,86 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 
 public class EditCoverButton extends View {
-    private final Drawable arrowDrawable;
-    private BlurredBackgroundDrawable blurredBackgroundDrawable;
-    private final Rect bounds;
-    private final RectF imageBounds;
-    private final ImageReceiver imageReceiver;
-    private final Text text;
+    public final Drawable arrowDrawable;
+    public BlurredBackgroundDrawable blurredBackgroundDrawable;
+    public final Rect bounds;
+    public final RectF imageBounds;
+    public final ImageReceiver imageReceiver;
+    public final Text text;
 
-    public EditCoverButton(Context context, CharSequence charSequence, boolean z) {
+    public EditCoverButton(Context context, String str) {
         super(context);
         this.bounds = new Rect();
         this.imageBounds = new RectF();
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.imageReceiver = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(22.66f));
-        this.text = new Text(charSequence, 14.0f, AndroidUtilities.bold());
-        if (z) {
-            Drawable drawableMutate = context.getResources().getDrawable(R.drawable.arrow_newchat).mutate();
-            this.arrowDrawable = drawableMutate;
-            drawableMutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
-            return;
-        }
-        this.arrowDrawable = null;
-    }
-
-    public void setBlurredBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
-        this.blurredBackgroundDrawable = blurredBackgroundDrawable.setPadding(AndroidUtilities.dp(4.0f)).setRadius(AndroidUtilities.dp(11.0f));
+        this.text = new Text(str, 14.0f, AndroidUtilities.bold());
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.arrow_newchat).mutate();
+        this.arrowDrawable = drawableMutate;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.bounds.contains((int) motionEvent.getX(), (int) motionEvent.getY()) || motionEvent.getAction() != 0) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        return false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.imageReceiver.onAttachedToWindow();
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.imageReceiver.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        ImageReceiver imageReceiver = this.imageReceiver;
+        boolean zHasBitmapImage = imageReceiver.hasBitmapImage();
+        int iDp = AndroidUtilities.dp(zHasBitmapImage ? 30.33f : 11.33f);
+        int iDp2 = AndroidUtilities.dp(19.0f) + ((int) Math.ceil(this.text.width)) + iDp;
+        int iDp3 = AndroidUtilities.dp(24.0f);
+        int width = (getWidth() - iDp2) / 2;
+        int height = getHeight() / 2;
+        int i = height - (iDp3 / 2);
+        int i2 = iDp2 + width;
+        Rect rect = this.bounds;
+        rect.set(width, i, i2, iDp3 + i);
+        rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
+        if (blurredBackgroundDrawable != null) {
+            blurredBackgroundDrawable.setBounds(rect);
+            this.blurredBackgroundDrawable.draw(canvas);
+        }
+        if (zHasBitmapImage) {
+            RectF rectF = this.imageBounds;
+            float f = height;
+            rectF.set(AndroidUtilities.dp(0.66f) + width, f - (AndroidUtilities.dp(22.66f) / 2.0f), AndroidUtilities.dp(23.32f) + width, (AndroidUtilities.dp(22.66f) / 2.0f) + f);
+            imageReceiver.setImageCoords(rectF);
+            imageReceiver.draw(canvas);
+        }
+        this.text.draw(width + iDp, height, 1.0f, -1, canvas);
+        int iDp4 = i2 - AndroidUtilities.dp(17.0f);
+        int iDp5 = height - AndroidUtilities.dp(6.0f);
+        int iDp6 = i2 - AndroidUtilities.dp(5.0f);
+        int iDp7 = AndroidUtilities.dp(6.0f) + height;
+        Drawable drawable = this.arrowDrawable;
+        drawable.setBounds(iDp4, iDp5, iDp6, iDp7);
+        drawable.draw(canvas);
+    }
+
+    public void setBlurredBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+        blurredBackgroundDrawable.setPadding(AndroidUtilities.dp(4.0f));
+        blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(11.0f));
+        this.blurredBackgroundDrawable = blurredBackgroundDrawable;
     }
 
     public void setImage(Bitmap bitmap) {
@@ -67,79 +107,16 @@ public class EditCoverButton extends View {
         invalidate();
     }
 
-    public void setImage(TLRPC.Photo photo, Object obj) {
-        if (photo == null) {
-            setImage((Bitmap) null);
-            return;
-        }
+    public final void setImage(TLRPC.Photo photo, Object obj) {
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(48.0f), false, null, true);
         this.imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), "24_24", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(24.0f), false, closestPhotoSizeWithSize, false), photo), "24_24", 0L, null, obj, 0);
     }
 
-    public void setImage(final String str) {
+    public void setImage(String str) {
         if (str == null) {
             setImage((Bitmap) null);
         } else {
-            Utilities.globalQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    EditCoverButton.$r8$lambda$pysu0SFoxHhWHjB2ZrE7IuiCJ28(this.f$0, str);
-                }
-            });
+            Utilities.globalQueue.postRunnable(new EmojiView$2$$ExternalSyntheticLambda1(16, this, str));
         }
-    }
-
-    public static void $r8$lambda$pysu0SFoxHhWHjB2ZrE7IuiCJ28(final EditCoverButton editCoverButton, String str) {
-        editCoverButton.getClass();
-        final Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(str);
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmapCreateBitmap);
-        Paint paint = new Paint(3);
-        canvas.translate(bitmapCreateBitmap.getWidth() / 2.0f, bitmapCreateBitmap.getHeight() / 2.0f);
-        float fMax = Math.max(bitmapCreateBitmap.getWidth() / bitmapDecodeFile.getWidth(), bitmapCreateBitmap.getHeight() / bitmapDecodeFile.getHeight());
-        canvas.scale(fMax, fMax);
-        canvas.drawBitmap(bitmapDecodeFile, (-bitmapDecodeFile.getWidth()) / 2.0f, (-bitmapDecodeFile.getHeight()) / 2.0f, paint);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.setImage(bitmapDecodeFile);
-            }
-        });
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        boolean zHasBitmapImage = this.imageReceiver.hasBitmapImage();
-        int iDp = AndroidUtilities.dp(zHasBitmapImage ? 30.33f : 11.33f);
-        int iCeil = ((int) Math.ceil(this.text.getCurrentWidth())) + iDp + AndroidUtilities.dp(19.0f);
-        int iDp2 = AndroidUtilities.dp(24.0f);
-        int width = (getWidth() - iCeil) / 2;
-        int height = getHeight() / 2;
-        int i = height - (iDp2 / 2);
-        int i2 = iCeil + width;
-        this.bounds.set(width, i, i2, iDp2 + i);
-        this.bounds.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
-        BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
-        if (blurredBackgroundDrawable != null) {
-            blurredBackgroundDrawable.setBounds(this.bounds);
-            this.blurredBackgroundDrawable.draw(canvas);
-        }
-        if (zHasBitmapImage) {
-            float f = height;
-            this.imageBounds.set(AndroidUtilities.dp(0.66f) + width, f - (AndroidUtilities.dp(22.66f) / 2.0f), AndroidUtilities.dp(23.32f) + width, f + (AndroidUtilities.dp(22.66f) / 2.0f));
-            this.imageReceiver.setImageCoords(this.imageBounds);
-            this.imageReceiver.draw(canvas);
-        }
-        this.text.draw(canvas, width + iDp, height, -1, 1.0f);
-        this.arrowDrawable.setBounds(i2 - AndroidUtilities.dp(17.0f), height - AndroidUtilities.dp(6.0f), i2 - AndroidUtilities.dp(5.0f), height + AndroidUtilities.dp(6.0f));
-        this.arrowDrawable.draw(canvas);
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.bounds.contains((int) motionEvent.getX(), (int) motionEvent.getY()) || motionEvent.getAction() != 0) {
-            return super.dispatchTouchEvent(motionEvent);
-        }
-        return false;
     }
 }

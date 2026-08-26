@@ -14,17 +14,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
 
-public class DraftSavedHint extends View {
-    private final Paint backgroundPaint;
-    private Runnable hideRunnable;
-    private final StaticLayout layout;
-    private final float layoutLeft;
-    private final float layoutWidth;
-    private final Path path;
-    private final AnimatedFloat showT;
-    private boolean shown;
-    private final TextPaint textPaint;
+public final class DraftSavedHint extends View {
+    public final Paint backgroundPaint;
+    public VoIPFragment$12$$ExternalSyntheticLambda0 hideRunnable;
+    public final StaticLayout layout;
+    public final float layoutLeft;
+    public final float layoutWidth;
+    public final Path path;
+    public final AnimatedFloat showT;
+    public boolean shown;
+    public final TextPaint textPaint;
 
     public DraftSavedHint(Context context) {
         super(context);
@@ -46,42 +47,8 @@ public class DraftSavedHint extends View {
         animatedFloat.set(0.0f, true);
     }
 
-    public void hide(boolean z) {
-        show(false, z);
-    }
-
-    public void show(boolean z, boolean z2) {
-        Runnable runnable;
-        if (!z && (runnable = this.hideRunnable) != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.hideRunnable = null;
-        }
-        this.shown = z;
-        if (!z2) {
-            this.showT.set(z, true);
-        }
-        invalidate();
-    }
-
-    public void show() {
-        this.showT.set(0.0f, true);
-        show(true, true);
-        Runnable runnable = this.hideRunnable;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        Runnable runnable2 = new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.hide(true);
-            }
-        };
-        this.hideRunnable = runnable2;
-        AndroidUtilities.runOnUIThread(runnable2, 3500L);
-    }
-
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    public final void dispatchDraw(Canvas canvas) {
         float f = this.showT.set(this.shown);
         if (f <= 0.0f) {
             return;
@@ -94,29 +61,44 @@ public class DraftSavedHint extends View {
         float fDp = AndroidUtilities.dp(22.0f) + this.layoutWidth;
         float fMin = (measuredWidth / 2.0f) - Math.min(AndroidUtilities.dp(135.0f), 0.35f * measuredWidth);
         float fMax = Math.max(AndroidUtilities.dp(8.0f), fMin - (fDp / 2.0f));
-        this.path.rewind();
-        this.path.moveTo(fMax, 0.0f);
+        Path path = this.path;
+        path.rewind();
+        path.moveTo(fMax, 0.0f);
         float f2 = fDp + fMax;
-        this.path.lineTo(f2, 0.0f);
-        this.path.lineTo(f2, measuredHeight - AndroidUtilities.dp(18.0f));
-        this.path.lineTo(AndroidUtilities.dp(7.0f) + fMin, measuredHeight - AndroidUtilities.dp(18.0f));
-        this.path.lineTo(AndroidUtilities.dp(1.0f) + fMin, measuredHeight - AndroidUtilities.dp(12.0f));
-        this.path.lineTo(fMin - AndroidUtilities.dp(1.0f), measuredHeight - AndroidUtilities.dp(12.0f));
-        this.path.lineTo(fMin - AndroidUtilities.dp(7.0f), measuredHeight - AndroidUtilities.dp(18.0f));
-        this.path.lineTo(fMax, measuredHeight - AndroidUtilities.dp(18.0f));
-        this.path.close();
-        this.backgroundPaint.setAlpha((int) (204.0f * interpolation));
-        canvas.drawPath(this.path, this.backgroundPaint);
+        path.lineTo(f2, 0.0f);
+        path.lineTo(f2, measuredHeight - AndroidUtilities.dp(18.0f));
+        path.lineTo(AndroidUtilities.dp(7.0f) + fMin, measuredHeight - AndroidUtilities.dp(18.0f));
+        path.lineTo(AndroidUtilities.dp(1.0f) + fMin, measuredHeight - AndroidUtilities.dp(12.0f));
+        path.lineTo(fMin - AndroidUtilities.dp(1.0f), measuredHeight - AndroidUtilities.dp(12.0f));
+        path.lineTo(fMin - AndroidUtilities.dp(7.0f), measuredHeight - AndroidUtilities.dp(18.0f));
+        path.lineTo(fMax, measuredHeight - AndroidUtilities.dp(18.0f));
+        path.close();
+        Paint paint = this.backgroundPaint;
+        paint.setAlpha((int) (204.0f * interpolation));
+        canvas.drawPath(path, paint);
         canvas.save();
-        canvas.translate((fMax + AndroidUtilities.dp(11.0f)) - this.layoutLeft, ((measuredHeight - AndroidUtilities.dp(18.0f)) - this.layout.getHeight()) / 2.0f);
+        float fDp2 = (fMax + AndroidUtilities.dp(11.0f)) - this.layoutLeft;
+        float fDp3 = measuredHeight - AndroidUtilities.dp(18.0f);
+        StaticLayout staticLayout = this.layout;
+        canvas.translate(fDp2, (fDp3 - staticLayout.getHeight()) / 2.0f);
         this.textPaint.setAlpha((int) (interpolation * 255.0f));
-        this.layout.draw(canvas);
+        staticLayout.draw(canvas);
         canvas.restore();
         canvas.restore();
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onMeasure(int i, int i2) {
         setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(50.0f));
+    }
+
+    public final void show(boolean z) {
+        VoIPFragment$12$$ExternalSyntheticLambda0 voIPFragment$12$$ExternalSyntheticLambda0;
+        if (!z && (voIPFragment$12$$ExternalSyntheticLambda0 = this.hideRunnable) != null) {
+            AndroidUtilities.cancelRunOnUIThread(voIPFragment$12$$ExternalSyntheticLambda0);
+            this.hideRunnable = null;
+        }
+        this.shown = z;
+        invalidate();
     }
 }

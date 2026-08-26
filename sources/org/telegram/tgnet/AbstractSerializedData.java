@@ -4,6 +4,11 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
     private TLDataSourceType dataSourceType = TLDataSourceType.UNKNOWN;
 
     @Override
+    public TLDataSourceType getDataSourceType() {
+        return this.dataSourceType;
+    }
+
+    @Override
     public abstract int getPosition();
 
     @Override
@@ -44,6 +49,10 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
 
     @Override
     public abstract int remaining();
+
+    public void setDataSourceType(TLDataSourceType tLDataSourceType) {
+        this.dataSourceType = tLDataSourceType;
+    }
 
     @Override
     public abstract void skip(int i);
@@ -86,13 +95,4 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
 
     @Override
     public abstract void writeString(String str);
-
-    public void setDataSourceType(TLDataSourceType tLDataSourceType) {
-        this.dataSourceType = tLDataSourceType;
-    }
-
-    @Override
-    public TLDataSourceType getDataSourceType() {
-        return this.dataSourceType;
-    }
 }

@@ -1,91 +1,83 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
+import com.google.firebase.messaging.GmsRpc;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
+import org.telegram.ui.PhotoViewer$41$1;
+import org.telegram.ui.QrActivity$$ExternalSyntheticLambda14;
 
-public class VoIpGradientLayout extends FrameLayout {
-    private boolean allowAnimations;
-    private int alphaBlueGreen;
-    private int alphaBlueViolet;
-    private int alphaGreen;
-    private int alphaOrangeRed;
-    private final VoIPBackgroundProvider backgroundProvider;
-    private ValueAnimator badConnectionAnimator;
-    private final Drawable bgBlueGreen;
-    private final Drawable bgBlueGreenDark;
-    private final Drawable bgBlueGreenLight;
-    private final Drawable bgBlueViolet;
-    private final Drawable bgBlueVioletDark;
-    private final Drawable bgBlueVioletLight;
-    private final MotionBackgroundDrawable bgGreen;
-    private final MotionBackgroundDrawable bgGreenDark;
-    private final MotionBackgroundDrawable bgGreenDarkReveal;
-    private final MotionBackgroundDrawable bgGreenLight;
-    private final MotionBackgroundDrawable bgGreenLightReveal;
-    private final MotionBackgroundDrawable bgOrangeRed;
-    private final MotionBackgroundDrawable bgOrangeRedDark;
-    private final MotionBackgroundDrawable bgOrangeRedLight;
-    private ValueAnimator callingAnimator;
-    private int clipCx;
-    private int clipCy;
-    private final Path clipPath;
-    private float clipRadius;
-    private AnimatorSet connectedAnimatorSet;
-    private final AnimatorSet defaultAnimatorSet;
-    private boolean isPaused;
+public final class VoIpGradientLayout extends FrameLayout {
+    public final boolean allowAnimations;
+    public int alphaBlueGreen;
+    public int alphaBlueViolet;
+    public int alphaGreen;
+    public int alphaOrangeRed;
+    public final VoIPBackgroundProvider backgroundProvider;
+    public ValueAnimator badConnectionAnimator;
+    public final Drawable bgBlueGreen;
+    public final Drawable bgBlueGreenDark;
+    public final Drawable bgBlueGreenLight;
+    public final Drawable bgBlueViolet;
+    public final Drawable bgBlueVioletDark;
+    public final Drawable bgBlueVioletLight;
+    public final MotionBackgroundDrawable bgGreen;
+    public final MotionBackgroundDrawable bgGreenDark;
+    public final MotionBackgroundDrawable bgGreenDarkReveal;
+    public final MotionBackgroundDrawable bgGreenLight;
+    public final MotionBackgroundDrawable bgGreenLightReveal;
+    public final MotionBackgroundDrawable bgOrangeRed;
+    public final MotionBackgroundDrawable bgOrangeRedDark;
+    public final MotionBackgroundDrawable bgOrangeRedLight;
+    public ValueAnimator callingAnimator;
+    public int clipCx;
+    public int clipCy;
+    public final Path clipPath;
+    public float clipRadius;
+    public AnimatorSet connectedAnimatorSet;
+    public final AnimatorSet defaultAnimatorSet;
+    public boolean isPaused;
     public volatile boolean lockDrawing;
-    private boolean showClip;
-    private GradientState state;
+    public boolean showClip;
+    public int state;
 
-    public enum GradientState {
-        CALLING,
-        CONNECTED,
-        BAD_CONNECTION
-    }
-
-    private class PureColorDrawable extends Drawable {
-        private final int color;
+    public final class PureColorDrawable extends Drawable {
+        public final int color = -15130842;
 
         @Override
-        public int getOpacity() {
+        public final void draw(Canvas canvas) {
+            canvas.drawColor(this.color);
+        }
+
+        @Override
+        public final int getOpacity() {
             return -2;
         }
 
         @Override
-        public void setAlpha(int i) {
+        public final void setAlpha(int i) {
         }
 
         @Override
-        public void setColorFilter(ColorFilter colorFilter) {
-        }
-
-        public PureColorDrawable(int i) {
-            this.color = i;
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            canvas.drawColor(this.color);
+        public final void setColorFilter(ColorFilter colorFilter) {
         }
     }
 
-    public VoIpGradientLayout(Context context, boolean z, final VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(context);
+    public VoIpGradientLayout(Activity activity, boolean z, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(activity);
         this.alphaBlueViolet = 0;
         this.alphaBlueGreen = 0;
         this.alphaGreen = 0;
@@ -98,29 +90,30 @@ public class VoIpGradientLayout extends FrameLayout {
         this.isPaused = false;
         this.lockDrawing = false;
         this.backgroundProvider = voIPBackgroundProvider;
-        this.allowAnimations = LiteMode.isEnabled(512);
-        this.bgBlueViolet = z ? new PureColorDrawable(-15130842) : new MotionBackgroundDrawable(-4958504, -8304404, -14637865, -12612630, 0, false, true);
-        this.bgBlueGreen = z ? new PureColorDrawable(-15130842) : new MotionBackgroundDrawable(-12224791, -12879119, -16207709, -15226140, 0, false, true);
-        this.bgGreen = new MotionBackgroundDrawable(-16275028, -16270749, -5649306, -10833593, 0, false, true);
-        this.bgOrangeRed = new MotionBackgroundDrawable(-1545896, -1613425, -2387892, -2198984, 0, false, true);
-        Drawable pureColorDrawable = z ? new PureColorDrawable(-15130842) : new MotionBackgroundDrawable(-5818672, -9819171, -15755831, -14124319, 0, false, true);
+        boolean zIsEnabled = LiteMode.isEnabled(512);
+        this.allowAnimations = zIsEnabled;
+        this.bgBlueViolet = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-4958504, -8304404, -14637865, -12612630, false, 0, true);
+        this.bgBlueGreen = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-12224791, -12879119, -16207709, -15226140, false, 0, true);
+        this.bgGreen = new MotionBackgroundDrawable(-16275028, -16270749, -5649306, -10833593, false, 0, true);
+        this.bgOrangeRed = new MotionBackgroundDrawable(-1545896, -1613425, -2387892, -2198984, false, 0, true);
+        Drawable pureColorDrawable = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-5818672, -9819171, -15755831, -14124319, false, 0, true);
         this.bgBlueVioletDark = pureColorDrawable;
-        Drawable pureColorDrawable2 = z ? new PureColorDrawable(-15130842) : new MotionBackgroundDrawable(-13803306, -13866273, -16738923, -16608823, 0, false, true);
+        Drawable pureColorDrawable2 = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-13803306, -13866273, -16738923, -16608823, false, 0, true);
         this.bgBlueGreenDark = pureColorDrawable2;
-        MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable(-16741490, -16673972, -7357129, -13525721, 0, false, true);
+        MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable(-16741490, -16673972, -7357129, -13525721, false, 0, true);
         this.bgGreenDark = motionBackgroundDrawable;
-        MotionBackgroundDrawable motionBackgroundDrawable2 = new MotionBackgroundDrawable(-1949911, -1691537, -3705322, -2663914, 0, false, true);
+        MotionBackgroundDrawable motionBackgroundDrawable2 = new MotionBackgroundDrawable(-1949911, -1691537, -3705322, -2663914, false, 0, true);
         this.bgOrangeRedDark = motionBackgroundDrawable2;
-        Drawable pureColorDrawable3 = z ? new PureColorDrawable(-15130842) : new MotionBackgroundDrawable(-2726657, -7186179, -13778695, -11034113, 0, false, true);
+        Drawable pureColorDrawable3 = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-2726657, -7186179, -13778695, -11034113, false, 0, true);
         this.bgBlueVioletLight = pureColorDrawable3;
-        Drawable pureColorDrawable4 = z ? new PureColorDrawable(-15130842) : new MotionBackgroundDrawable(-11170817, -10507265, -16458548, -14105857, 0, false, true);
+        Drawable pureColorDrawable4 = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-11170817, -10507265, -16458548, -14105857, false, 0, true);
         this.bgBlueGreenLight = pureColorDrawable4;
-        MotionBackgroundDrawable motionBackgroundDrawable3 = new MotionBackgroundDrawable(-16723243, -16129415, -3674272, -9578153, 0, false, true);
+        MotionBackgroundDrawable motionBackgroundDrawable3 = new MotionBackgroundDrawable(-16723243, -16129415, -3674272, -9578153, false, 0, true);
         this.bgGreenLight = motionBackgroundDrawable3;
-        MotionBackgroundDrawable motionBackgroundDrawable4 = new MotionBackgroundDrawable(-34714, -32091, -85931, -29103, 0, false, true);
+        MotionBackgroundDrawable motionBackgroundDrawable4 = new MotionBackgroundDrawable(-34714, -32091, -85931, -29103, false, 0, true);
         this.bgOrangeRedLight = motionBackgroundDrawable4;
-        this.bgGreenLightReveal = new MotionBackgroundDrawable(-16723243, -16129415, -3674272, -9578153, 0, false, true);
-        this.bgGreenDarkReveal = new MotionBackgroundDrawable(-16741490, -16673972, -7357129, -13525721, 0, false, true);
+        this.bgGreenLightReveal = new MotionBackgroundDrawable(-16723243, -16129415, -3674272, -9578153, false, 0, true);
+        this.bgGreenDarkReveal = new MotionBackgroundDrawable(-16741490, -16673972, -7357129, -13525721, false, 0, true);
         pureColorDrawable.setBounds(0, 0, 80, 80);
         pureColorDrawable2.setBounds(0, 0, 80, 80);
         motionBackgroundDrawable.setBounds(0, 0, 80, 80);
@@ -134,39 +127,34 @@ public class VoIpGradientLayout extends FrameLayout {
         AnimatorSet animatorSet = new AnimatorSet();
         this.defaultAnimatorSet = animatorSet;
         ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 360);
-        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoIpGradientLayout.$r8$lambda$HQkk_DnxZ04zcOfBc3TAaWifPdM(this.f$0, voIPBackgroundProvider, valueAnimator);
-            }
-        });
+        valueAnimatorOfInt.addUpdateListener(new QrActivity$$ExternalSyntheticLambda14(20, this, voIPBackgroundProvider));
         valueAnimatorOfInt.setRepeatCount(-1);
         valueAnimatorOfInt.setRepeatMode(1);
         animatorSet.setInterpolator(new LinearInterpolator());
         animatorSet.playTogether(valueAnimatorOfInt);
         animatorSet.setDuration(12000L);
-        if (this.allowAnimations) {
+        if (zIsEnabled) {
             animatorSet.start();
         }
-        switchToCalling();
-    }
-
-    public static void $r8$lambda$HQkk_DnxZ04zcOfBc3TAaWifPdM(VoIpGradientLayout voIpGradientLayout, VoIPBackgroundProvider voIPBackgroundProvider, ValueAnimator valueAnimator) {
-        voIpGradientLayout.getClass();
-        voIPBackgroundProvider.setDegree(((Integer) valueAnimator.getAnimatedValue()).intValue());
-        int degree = voIPBackgroundProvider.getDegree();
-        if (((degree < 0 || degree > 2) && (degree < 180 || degree > 182)) || !voIpGradientLayout.isPaused) {
+        if (this.state == 1) {
             return;
         }
-        voIpGradientLayout.defaultAnimatorSet.pause();
-        AnimatorSet animatorSet = voIpGradientLayout.connectedAnimatorSet;
-        if (animatorSet != null) {
-            animatorSet.pause();
+        this.state = 1;
+        this.alphaBlueGreen = 255;
+        ValueAnimator valueAnimatorOfInt2 = ValueAnimator.ofInt(255, 0, 255);
+        this.callingAnimator = valueAnimatorOfInt2;
+        valueAnimatorOfInt2.addUpdateListener(new VoIpGradientLayout$$ExternalSyntheticLambda0(this, 3));
+        this.callingAnimator.setRepeatCount(-1);
+        this.callingAnimator.setRepeatMode(1);
+        this.callingAnimator.setInterpolator(new LinearInterpolator());
+        this.callingAnimator.setDuration(12000L);
+        if (zIsEnabled) {
+            this.callingAnimator.start();
         }
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         AnimatorSet animatorSet = this.defaultAnimatorSet;
         if (animatorSet != null) {
@@ -182,265 +170,29 @@ public class VoIpGradientLayout extends FrameLayout {
         }
     }
 
-    public void switchToCalling() {
-        GradientState gradientState = this.state;
-        GradientState gradientState2 = GradientState.CALLING;
-        if (gradientState == gradientState2) {
-            return;
-        }
-        this.state = gradientState2;
-        this.alphaBlueGreen = 255;
-        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(255, 0, 255);
-        this.callingAnimator = valueAnimatorOfInt;
-        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoIpGradientLayout.m3012$r8$lambda$NdAtpf0Wp0qwPG1r12koW7hMYs(this.f$0, valueAnimator);
-            }
-        });
-        this.callingAnimator.setRepeatCount(-1);
-        this.callingAnimator.setRepeatMode(1);
-        this.callingAnimator.setInterpolator(new LinearInterpolator());
-        this.callingAnimator.setDuration(12000L);
-        if (this.allowAnimations) {
-            this.callingAnimator.start();
-        }
-    }
-
-    public static void m3012$r8$lambda$NdAtpf0Wp0qwPG1r12koW7hMYs(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
-        voIpGradientLayout.getClass();
-        voIpGradientLayout.alphaBlueViolet = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        voIpGradientLayout.invalidate();
-    }
-
-    public boolean isConnectedCalled() {
-        GradientState gradientState = this.state;
-        return gradientState == GradientState.CONNECTED || gradientState == GradientState.BAD_CONNECTION;
-    }
-
-    public void switchToCallConnected(int i, int i2, boolean z) {
-        GradientState gradientState = this.state;
-        GradientState gradientState2 = GradientState.CONNECTED;
-        if (gradientState == gradientState2 || gradientState == GradientState.BAD_CONNECTION) {
-            return;
-        }
-        this.state = gradientState2;
-        ValueAnimator valueAnimator = this.callingAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllUpdateListeners();
-            this.callingAnimator.cancel();
-            this.callingAnimator = null;
-        }
-        this.clipCx = i;
-        this.clipCy = i2;
-        Point point = AndroidUtilities.displaySize;
-        int i3 = point.x - i;
-        int i4 = i3 * i3;
-        int i5 = ((point.y + AndroidUtilities.statusBarHeight) + AndroidUtilities.navigationBarHeight) - i2;
-        int i6 = i5 * i5;
-        int i7 = i * i;
-        int i8 = i2 * i2;
-        double dMax = Math.max(Math.max(Math.max(Math.sqrt(i4 + i6), Math.sqrt(i6 + i7)), Math.sqrt(i7 + i8)), Math.sqrt(i4 + i8));
-        this.showClip = true;
-        this.backgroundProvider.setReveal(true);
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, (float) dMax);
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIpGradientLayout.$r8$lambda$foitUgjB7vq3edwIu70VlbsCbkE(this.f$0, valueAnimator2);
-            }
-        });
-        valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                VoIpGradientLayout.this.showClip = false;
-                VoIpGradientLayout.this.backgroundProvider.setReveal(false);
-                if (VoIpGradientLayout.this.allowAnimations && VoIpGradientLayout.this.defaultAnimatorSet != null) {
-                    VoIpGradientLayout.this.defaultAnimatorSet.cancel();
-                    VoIpGradientLayout.this.defaultAnimatorSet.start();
-                }
-                VoIpGradientLayout.this.switchToConnectedAnimator();
-            }
-        });
-        valueAnimatorOfFloat.setDuration(z ? 400L : 0L);
-        valueAnimatorOfFloat.start();
-    }
-
-    public static void $r8$lambda$foitUgjB7vq3edwIu70VlbsCbkE(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
-        voIpGradientLayout.getClass();
-        voIpGradientLayout.clipRadius = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        voIpGradientLayout.invalidate();
-        voIpGradientLayout.backgroundProvider.invalidateViews();
-    }
-
-    public void switchToConnectedAnimator() {
-        if (this.connectedAnimatorSet != null) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.callingAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllUpdateListeners();
-            this.callingAnimator.cancel();
-            this.callingAnimator = null;
-        }
-        this.alphaGreen = 255;
-        this.connectedAnimatorSet = new AnimatorSet();
-        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 255, 255, 255, 0);
-        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIpGradientLayout.$r8$lambda$Lu6ZbXrhPf_0kjh3OVBIO1ARXco(this.f$0, valueAnimator2);
-            }
-        });
-        valueAnimatorOfInt.setRepeatCount(-1);
-        valueAnimatorOfInt.setRepeatMode(1);
-        ValueAnimator valueAnimatorOfInt2 = ValueAnimator.ofInt(0, 0, 255, 0, 0);
-        valueAnimatorOfInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIpGradientLayout.$r8$lambda$aA1m3nWKJtOaWmDC0ZePcZMDyb0(this.f$0, valueAnimator2);
-            }
-        });
-        valueAnimatorOfInt2.setRepeatCount(-1);
-        valueAnimatorOfInt2.setRepeatMode(1);
-        this.connectedAnimatorSet.playTogether(valueAnimatorOfInt2, valueAnimatorOfInt);
-        this.connectedAnimatorSet.setInterpolator(new LinearInterpolator());
-        this.connectedAnimatorSet.setDuration(24000L);
-        if (this.allowAnimations) {
-            this.connectedAnimatorSet.start();
-        } else {
-            this.alphaBlueGreen = 0;
-            this.alphaBlueViolet = 0;
-        }
-        invalidate();
-    }
-
-    public static void $r8$lambda$Lu6ZbXrhPf_0kjh3OVBIO1ARXco(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
-        voIpGradientLayout.getClass();
-        voIpGradientLayout.alphaBlueGreen = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        voIpGradientLayout.invalidate();
-    }
-
-    public static void $r8$lambda$aA1m3nWKJtOaWmDC0ZePcZMDyb0(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
-        voIpGradientLayout.getClass();
-        voIpGradientLayout.alphaBlueViolet = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        voIpGradientLayout.invalidate();
-    }
-
-    public void showToBadConnection() {
-        GradientState gradientState = this.state;
-        GradientState gradientState2 = GradientState.BAD_CONNECTION;
-        if (gradientState == gradientState2) {
-            return;
-        }
-        this.state = gradientState2;
-        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(this.alphaOrangeRed, 255);
-        this.badConnectionAnimator = valueAnimatorOfInt;
-        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoIpGradientLayout.$r8$lambda$kzDbnNgLrL54LmPLhYF2RfPahsg(this.f$0, valueAnimator);
-            }
-        });
-        this.badConnectionAnimator.setDuration(500L);
-        this.badConnectionAnimator.start();
-    }
-
-    public static void $r8$lambda$kzDbnNgLrL54LmPLhYF2RfPahsg(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
-        voIpGradientLayout.getClass();
-        voIpGradientLayout.alphaOrangeRed = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        voIpGradientLayout.invalidate();
-        voIpGradientLayout.backgroundProvider.invalidateViews();
-    }
-
-    public void hideBadConnection() {
-        GradientState gradientState = this.state;
-        GradientState gradientState2 = GradientState.CONNECTED;
-        if (gradientState == gradientState2) {
-            return;
-        }
-        this.state = gradientState2;
-        switchToConnectedAnimator();
-        ValueAnimator valueAnimator = this.badConnectionAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllUpdateListeners();
-            this.badConnectionAnimator.cancel();
-        }
-        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(this.alphaOrangeRed, 0);
-        this.badConnectionAnimator = valueAnimatorOfInt;
-        valueAnimatorOfInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                VoIpGradientLayout.$r8$lambda$qThKa9FOWGNYjCoHGarIUDPuE1k(this.f$0, valueAnimator2);
-            }
-        });
-        this.badConnectionAnimator.setDuration(500L);
-        this.badConnectionAnimator.start();
-    }
-
-    public static void $r8$lambda$qThKa9FOWGNYjCoHGarIUDPuE1k(VoIpGradientLayout voIpGradientLayout, ValueAnimator valueAnimator) {
-        voIpGradientLayout.getClass();
-        voIpGradientLayout.alphaOrangeRed = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        voIpGradientLayout.invalidate();
-        voIpGradientLayout.backgroundProvider.invalidateViews();
-    }
-
-    public void pause() {
-        if (this.isPaused) {
-            return;
-        }
-        this.isPaused = true;
-    }
-
-    public void resume() {
-        if (this.isPaused) {
-            this.isPaused = false;
-            if (this.defaultAnimatorSet.isPaused()) {
-                this.defaultAnimatorSet.resume();
-            }
-            AnimatorSet animatorSet = this.connectedAnimatorSet;
-            if (animatorSet == null || !animatorSet.isPaused()) {
-                return;
-            }
-            this.connectedAnimatorSet.resume();
-        }
-    }
-
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.bgGreen.setBounds(0, 0, getWidth(), getHeight());
-        this.bgOrangeRed.setBounds(0, 0, getWidth(), getHeight());
-        this.bgBlueGreen.setBounds(0, 0, getWidth(), getHeight());
-        this.bgBlueViolet.setBounds(0, 0, getWidth(), getHeight());
-        this.bgGreenLightReveal.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
-        this.bgGreenDarkReveal.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
-        this.backgroundProvider.setTotalSize(getWidth(), getHeight());
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         if (this.lockDrawing) {
             return;
         }
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
         canvas.save();
-        float fSqrt = ((float) Math.sqrt((width * width) + (height * width))) / Math.min(height, width);
+        float fSqrt = ((float) Math.sqrt((height * width) + (width * width))) / Math.min(height, width);
         canvas.scale(fSqrt, fSqrt, width, height);
-        canvas.rotate(this.backgroundProvider.getDegree(), width, height);
-        Canvas lightCanvas = this.backgroundProvider.getLightCanvas();
+        canvas.rotate(this.backgroundProvider.degree, width, height);
+        Canvas canvas2 = (Canvas) this.backgroundProvider.lightShaderTools.metadata;
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        lightCanvas.drawColor(0, mode);
-        this.backgroundProvider.getDarkCanvas().drawColor(0, mode);
+        canvas2.drawColor(0, mode);
+        ((Canvas) this.backgroundProvider.darkShaderTools.metadata).drawColor(0, mode);
         int i = this.alphaGreen;
         if (i != 0 && this.alphaOrangeRed != 255) {
             this.bgGreen.setAlpha(i);
             this.bgGreenLight.setAlpha(this.alphaGreen);
             this.bgGreenDark.setAlpha(this.alphaGreen);
             this.bgGreen.draw(canvas);
-            this.bgGreenLight.draw(this.backgroundProvider.getLightCanvas());
-            this.bgGreenDark.draw(this.backgroundProvider.getDarkCanvas());
+            this.bgGreenLight.draw((Canvas) this.backgroundProvider.lightShaderTools.metadata);
+            this.bgGreenDark.draw((Canvas) this.backgroundProvider.darkShaderTools.metadata);
         }
         int i2 = this.alphaBlueGreen;
         if (i2 != 0 && this.alphaOrangeRed != 255) {
@@ -448,8 +200,8 @@ public class VoIpGradientLayout extends FrameLayout {
             this.bgBlueGreenDark.setAlpha(this.alphaBlueGreen);
             this.bgBlueGreenLight.setAlpha(this.alphaBlueGreen);
             this.bgBlueGreen.draw(canvas);
-            this.bgBlueGreenDark.draw(this.backgroundProvider.getDarkCanvas());
-            this.bgBlueGreenLight.draw(this.backgroundProvider.getLightCanvas());
+            this.bgBlueGreenDark.draw((Canvas) this.backgroundProvider.darkShaderTools.metadata);
+            this.bgBlueGreenLight.draw((Canvas) this.backgroundProvider.lightShaderTools.metadata);
         }
         int i3 = this.alphaBlueViolet;
         if (i3 != 0 && this.alphaOrangeRed != 255) {
@@ -457,8 +209,8 @@ public class VoIpGradientLayout extends FrameLayout {
             this.bgBlueVioletDark.setAlpha(this.alphaBlueViolet);
             this.bgBlueVioletLight.setAlpha(this.alphaBlueViolet);
             this.bgBlueViolet.draw(canvas);
-            this.bgBlueVioletDark.draw(this.backgroundProvider.getDarkCanvas());
-            this.bgBlueVioletLight.draw(this.backgroundProvider.getLightCanvas());
+            this.bgBlueVioletDark.draw((Canvas) this.backgroundProvider.darkShaderTools.metadata);
+            this.bgBlueVioletLight.draw((Canvas) this.backgroundProvider.lightShaderTools.metadata);
         }
         int i4 = this.alphaOrangeRed;
         if (i4 != 0) {
@@ -466,8 +218,8 @@ public class VoIpGradientLayout extends FrameLayout {
             this.bgOrangeRedDark.setAlpha(this.alphaOrangeRed);
             this.bgOrangeRedLight.setAlpha(this.alphaOrangeRed);
             this.bgOrangeRed.draw(canvas);
-            this.bgOrangeRedDark.draw(this.backgroundProvider.getDarkCanvas());
-            this.bgOrangeRedLight.draw(this.backgroundProvider.getLightCanvas());
+            this.bgOrangeRedDark.draw((Canvas) this.backgroundProvider.darkShaderTools.metadata);
+            this.bgOrangeRedLight.draw((Canvas) this.backgroundProvider.lightShaderTools.metadata);
         }
         canvas.restore();
         if (this.showClip) {
@@ -486,19 +238,120 @@ public class VoIpGradientLayout extends FrameLayout {
             this.bgGreen.draw(canvas);
             this.clipPath.rewind();
             this.clipPath.addCircle(this.clipCx / 4.0f, this.clipCy / 4.0f, this.clipRadius / 4.0f, direction);
-            this.backgroundProvider.getRevealCanvas().drawColor(0, mode);
-            this.backgroundProvider.getRevealCanvas().save();
-            this.backgroundProvider.getRevealCanvas().clipPath(this.clipPath);
+            ((Canvas) this.backgroundProvider.revealShaderTools.metadata).drawColor(0, mode);
+            ((Canvas) this.backgroundProvider.revealShaderTools.metadata).save();
+            ((Canvas) this.backgroundProvider.revealShaderTools.metadata).clipPath(this.clipPath);
             this.bgGreenLightReveal.setAlpha(255);
-            this.bgGreenLightReveal.draw(this.backgroundProvider.getRevealCanvas());
-            this.backgroundProvider.getRevealCanvas().restore();
-            this.backgroundProvider.getRevealDrakCanvas().drawColor(0, mode);
-            this.backgroundProvider.getRevealDrakCanvas().save();
-            this.backgroundProvider.getRevealDrakCanvas().clipPath(this.clipPath);
+            this.bgGreenLightReveal.draw((Canvas) this.backgroundProvider.revealShaderTools.metadata);
+            ((Canvas) this.backgroundProvider.revealShaderTools.metadata).restore();
+            ((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata).drawColor(0, mode);
+            ((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata).save();
+            ((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata).clipPath(this.clipPath);
             this.bgGreenDarkReveal.setAlpha(255);
-            this.bgGreenDarkReveal.draw(this.backgroundProvider.getRevealDrakCanvas());
-            this.backgroundProvider.getRevealDrakCanvas().restore();
+            this.bgGreenDarkReveal.draw((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata);
+            ((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata).restore();
         }
         super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        this.bgGreen.setBounds(0, 0, getWidth(), getHeight());
+        this.bgOrangeRed.setBounds(0, 0, getWidth(), getHeight());
+        this.bgBlueGreen.setBounds(0, 0, getWidth(), getHeight());
+        this.bgBlueViolet.setBounds(0, 0, getWidth(), getHeight());
+        this.bgGreenLightReveal.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
+        this.bgGreenDarkReveal.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
+        int width = getWidth();
+        int height = getHeight();
+        VoIPBackgroundProvider voIPBackgroundProvider = this.backgroundProvider;
+        voIPBackgroundProvider.totalWidth = width;
+        voIPBackgroundProvider.totalHeight = height;
+        int i5 = width / 4;
+        int i6 = height / 4;
+        voIPBackgroundProvider.revealShaderTools = new GmsRpc(i5, i6);
+        GmsRpc gmsRpc = new GmsRpc(i5, i6);
+        voIPBackgroundProvider.revealDarkShaderTools = gmsRpc;
+        ((Paint) gmsRpc.app).setAlpha(180);
+    }
+
+    public final void resume() {
+        if (this.isPaused) {
+            this.isPaused = false;
+            AnimatorSet animatorSet = this.defaultAnimatorSet;
+            if (animatorSet.isPaused()) {
+                animatorSet.resume();
+            }
+            AnimatorSet animatorSet2 = this.connectedAnimatorSet;
+            if (animatorSet2 == null || !animatorSet2.isPaused()) {
+                return;
+            }
+            this.connectedAnimatorSet.resume();
+        }
+    }
+
+    public final void switchToCallConnected(int i, int i2, boolean z) {
+        int i3 = 3;
+        int i4 = this.state;
+        if (i4 == 2 || i4 == 3) {
+            return;
+        }
+        this.state = 2;
+        ValueAnimator valueAnimator = this.callingAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllUpdateListeners();
+            this.callingAnimator.cancel();
+            this.callingAnimator = null;
+        }
+        this.clipCx = i;
+        this.clipCy = i2;
+        Point point = AndroidUtilities.displaySize;
+        int i5 = point.x - i;
+        int i6 = i5 * i5;
+        int i7 = ((point.y + AndroidUtilities.statusBarHeight) + AndroidUtilities.navigationBarHeight) - i2;
+        int i8 = i7 * i7;
+        int i9 = i * i;
+        int i10 = i2 * i2;
+        double dMax = Math.max(Math.max(Math.max(Math.sqrt(i6 + i8), Math.sqrt(i8 + i9)), Math.sqrt(i9 + i10)), Math.sqrt(i6 + i10));
+        this.showClip = true;
+        this.backgroundProvider.isReveal = true;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, (float) dMax);
+        valueAnimatorOfFloat.addUpdateListener(new VoIpGradientLayout$$ExternalSyntheticLambda0(this, 1));
+        valueAnimatorOfFloat.addListener(new PhotoViewer$41$1(this, i3));
+        valueAnimatorOfFloat.setDuration(z ? 400L : 0L);
+        valueAnimatorOfFloat.start();
+    }
+
+    public final void switchToConnectedAnimator() {
+        if (this.connectedAnimatorSet != null) {
+            return;
+        }
+        ValueAnimator valueAnimator = this.callingAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllUpdateListeners();
+            this.callingAnimator.cancel();
+            this.callingAnimator = null;
+        }
+        this.alphaGreen = 255;
+        this.connectedAnimatorSet = new AnimatorSet();
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 255, 255, 255, 0);
+        valueAnimatorOfInt.addUpdateListener(new VoIpGradientLayout$$ExternalSyntheticLambda0(this, 4));
+        valueAnimatorOfInt.setRepeatCount(-1);
+        valueAnimatorOfInt.setRepeatMode(1);
+        ValueAnimator valueAnimatorOfInt2 = ValueAnimator.ofInt(0, 0, 255, 0, 0);
+        valueAnimatorOfInt2.addUpdateListener(new VoIpGradientLayout$$ExternalSyntheticLambda0(this, 5));
+        valueAnimatorOfInt2.setRepeatCount(-1);
+        valueAnimatorOfInt2.setRepeatMode(1);
+        this.connectedAnimatorSet.playTogether(valueAnimatorOfInt2, valueAnimatorOfInt);
+        this.connectedAnimatorSet.setInterpolator(new LinearInterpolator());
+        this.connectedAnimatorSet.setDuration(24000L);
+        if (this.allowAnimations) {
+            this.connectedAnimatorSet.start();
+        } else {
+            this.alphaBlueGreen = 0;
+            this.alphaBlueViolet = 0;
+        }
+        invalidate();
     }
 }

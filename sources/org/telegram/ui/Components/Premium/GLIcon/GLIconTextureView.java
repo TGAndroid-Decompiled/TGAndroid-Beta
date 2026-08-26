@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
+import com.google.android.exoplayer2.decoder.SimpleDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.microedition.khronos.egl.EGL10;
@@ -24,94 +25,157 @@ import javax.microedition.khronos.opengles.GL10;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.EmuDetector;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocationController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.ItemOptions$$ExternalSyntheticLambda4;
 import org.telegram.ui.Components.Premium.StarParticlesView;
+import org.telegram.ui.Stars.StarsReactionsSheet$$ExternalSyntheticLambda11;
+import org.telegram.ui.Stories.SelfStoriesPreviewView;
+import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda35;
 
 public class GLIconTextureView extends TextureView implements TextureView.SurfaceTextureListener {
-    ArrayList animationIndexes;
-    int animationPointer;
-    private final int animationsCount;
-    AnimatorSet animatorSet;
-    boolean attached;
-    ValueAnimator backAnimation;
-    private boolean dialogIsVisible;
-    private EGLConfig eglConfig;
-    GestureDetector gestureDetector;
-    Runnable idleAnimation;
-    private long idleDelay;
+    public final ArrayList animationIndexes;
+    public int animationPointer;
+    public final int animationsCount;
+    public AnimatorSet animatorSet;
+    public boolean attached;
+    public ValueAnimator backAnimation;
+    public boolean dialogIsVisible;
+    public EGLConfig eglConfig;
+    public final GestureDetector gestureDetector;
+    public final AnonymousClass2 idleAnimation;
+    public final long idleDelay;
     public boolean isRunning;
-    private EGL10 mEgl;
-    private EGLContext mEglContext;
-    private EGLDisplay mEglDisplay;
-    private EGLSurface mEglSurface;
-    private GL10 mGl;
+    public EGL10 mEgl;
+    public EGLContext mEglContext;
+    public EGLDisplay mEglDisplay;
+    public EGLSurface mEglSurface;
+    public GL10 mGl;
     public GLIconRenderer mRenderer;
-    private SurfaceTexture mSurface;
-    private boolean paused;
-    private volatile boolean ready;
-    private volatile Runnable readyListener;
-    private boolean rendererChanged;
-    StarParticlesView starParticlesView;
-    private int surfaceHeight;
-    private int surfaceWidth;
-    private int targetFps;
-    private int targetFrameDurationMillis;
-    private RenderThread thread;
+    public SurfaceTexture mSurface;
+    public boolean paused;
+    public volatile boolean ready;
+    public volatile StarsReactionsSheet$$ExternalSyntheticLambda11 readyListener;
+    public boolean rendererChanged;
+    public StarParticlesView starParticlesView;
+    public int surfaceHeight;
+    public int surfaceWidth;
+    public final int targetFps;
+    public int targetFrameDurationMillis;
+    public SimpleDecoder.AnonymousClass1 thread;
     public boolean touched;
-    int type;
-    ValueAnimator.AnimatorUpdateListener xUpdater;
-    ValueAnimator.AnimatorUpdateListener xUpdater2;
-    ValueAnimator.AnimatorUpdateListener yUpdater;
+    public final int type;
+    public final GLIconTextureView$$ExternalSyntheticLambda0 xUpdater;
+    public final GLIconTextureView$$ExternalSyntheticLambda0 xUpdater2;
+    public final GLIconTextureView$$ExternalSyntheticLambda0 yUpdater;
 
-    public void onLongPress() {
-    }
+    public final class AnonymousClass2 implements Runnable {
+        public final int $r8$classId;
+        public final GLIconTextureView this$0;
 
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-    }
+        public AnonymousClass2(GLIconTextureView gLIconTextureView, int i) {
+            this.$r8$classId = i;
+            this.this$0 = gLIconTextureView;
+        }
 
-    public GLIconTextureView(Context context, int i) {
-        this(context, i, 0);
+        @Override
+        public final void run() {
+            ValueAnimator valueAnimator;
+            switch (this.$r8$classId) {
+                case 0:
+                    GLIconTextureView gLIconTextureView = this.this$0;
+                    AnimatorSet animatorSet = gLIconTextureView.animatorSet;
+                    if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = gLIconTextureView.backAnimation) != null && valueAnimator.isRunning())) {
+                        gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
+                    } else {
+                        gLIconTextureView.startIdleAnimation();
+                    }
+                    break;
+                default:
+                    this.this$0.startBackAnimation();
+                    break;
+            }
+        }
     }
 
     public GLIconTextureView(Context context, int i, int i2) {
         super(context);
+        int iM = 0;
         this.isRunning = false;
         this.paused = true;
         this.rendererChanged = false;
         this.dialogIsVisible = false;
         this.animationIndexes = new ArrayList();
         this.animatorSet = new AnimatorSet();
-        this.idleAnimation = new Runnable() {
+        final int i3 = 0;
+        this.idleAnimation = new AnonymousClass2(this, i3);
+        this.xUpdater2 = new ValueAnimator.AnimatorUpdateListener(this) {
+            public final GLIconTextureView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
-            public void run() {
-                ValueAnimator valueAnimator;
-                AnimatorSet animatorSet = GLIconTextureView.this.animatorSet;
-                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = GLIconTextureView.this.backAnimation) != null && valueAnimator.isRunning())) {
-                    GLIconTextureView gLIconTextureView = GLIconTextureView.this;
-                    gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
-                } else {
-                    GLIconTextureView.this.startIdleAnimation();
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                switch (i3) {
+                    case 0:
+                        this.f$0.mRenderer.angleX2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        break;
+                    case 1:
+                        this.f$0.mRenderer.angleX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        break;
+                    default:
+                        this.f$0.mRenderer.angleY = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        break;
                 }
             }
         };
-        this.xUpdater2 = new ValueAnimator.AnimatorUpdateListener() {
+        final int i4 = 1;
+        this.xUpdater = new ValueAnimator.AnimatorUpdateListener(this) {
+            public final GLIconTextureView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.mRenderer.angleX2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                switch (i4) {
+                    case 0:
+                        this.f$0.mRenderer.angleX2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        break;
+                    case 1:
+                        this.f$0.mRenderer.angleX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        break;
+                    default:
+                        this.f$0.mRenderer.angleY = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        break;
+                }
             }
         };
-        this.xUpdater = new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.mRenderer.angleX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        final int i5 = 2;
+        this.yUpdater = new ValueAnimator.AnimatorUpdateListener(this) {
+            public final GLIconTextureView f$0;
+
+            {
+                this.f$0 = this;
             }
-        };
-        this.yUpdater = new ValueAnimator.AnimatorUpdateListener() {
+
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.mRenderer.angleY = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                switch (i5) {
+                    case 0:
+                        this.f$0.mRenderer.angleX2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        break;
+                    case 1:
+                        this.f$0.mRenderer.angleX = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        break;
+                    default:
+                        this.f$0.mRenderer.angleY = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        break;
+                }
             }
         };
         this.type = i2;
@@ -119,419 +183,102 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         this.idleDelay = i2 == 4 ? 0L : 2000L;
         setOpaque(false);
         setRenderer(new GLIconRenderer(context, i, i2));
-        initialize(context);
-        GestureDetector gestureDetector = new GestureDetector(context, new AnonymousClass1());
+        this.targetFps = (int) AndroidUtilities.screenRefreshRate;
+        setSurfaceTextureListener(this);
+        GestureDetector gestureDetector = new GestureDetector(context, new SelfStoriesPreviewView.AnonymousClass1(1, this));
         this.gestureDetector = gestureDetector;
         gestureDetector.setIsLongpressEnabled(true);
-        for (int i3 = 0; i3 < this.animationsCount; i3++) {
-            this.animationIndexes.add(Integer.valueOf(i3));
+        while (iM < this.animationsCount) {
+            iM = LocationController$$ExternalSyntheticOutline0.m(iM, iM, 1, this.animationIndexes);
         }
         Collections.shuffle(this.animationIndexes);
     }
 
-    class AnonymousClass1 implements GestureDetector.OnGestureListener {
-        @Override
-        public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-            return false;
-        }
-
-        @Override
-        public void onShowPress(MotionEvent motionEvent) {
-        }
-
-        AnonymousClass1() {
-        }
-
-        @Override
-        public boolean onDown(MotionEvent motionEvent) {
-            ValueAnimator valueAnimator = GLIconTextureView.this.backAnimation;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                GLIconTextureView.this.backAnimation.cancel();
-                GLIconTextureView.this.backAnimation = null;
-            }
-            AnimatorSet animatorSet = GLIconTextureView.this.animatorSet;
-            if (animatorSet != null) {
-                animatorSet.removeAllListeners();
-                GLIconTextureView.this.animatorSet.cancel();
-                GLIconTextureView.this.animatorSet = null;
-            }
-            AndroidUtilities.cancelRunOnUIThread(GLIconTextureView.this.idleAnimation);
-            GLIconTextureView.this.touched = true;
-            return true;
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent motionEvent) {
-            float measuredWidth = GLIconTextureView.this.getMeasuredWidth() / 2.0f;
-            final float fNextInt = ((Utilities.random.nextInt(30) + 40) * (measuredWidth - motionEvent.getX())) / measuredWidth;
-            final float fNextInt2 = ((Utilities.random.nextInt(30) + 40) * (measuredWidth - motionEvent.getY())) / measuredWidth;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    GLIconTextureView.AnonymousClass1.$r8$lambda$nu0ruVaKQ5jIEF3MuPrAqEayuR4(this.f$0, fNextInt, fNextInt2);
-                }
-            }, 16L);
-            return true;
-        }
-
-        public static void $r8$lambda$nu0ruVaKQ5jIEF3MuPrAqEayuR4(AnonymousClass1 anonymousClass1, float f, float f2) {
-            ValueAnimator valueAnimator = GLIconTextureView.this.backAnimation;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                GLIconTextureView.this.backAnimation.cancel();
-                GLIconTextureView.this.backAnimation = null;
-            }
-            AnimatorSet animatorSet = GLIconTextureView.this.animatorSet;
-            if (animatorSet != null) {
-                animatorSet.removeAllListeners();
-                GLIconTextureView.this.animatorSet.cancel();
-                GLIconTextureView.this.animatorSet = null;
-            }
-            if (Math.abs(GLIconTextureView.this.mRenderer.angleX) > 10.0f) {
-                GLIconTextureView.this.startBackAnimation();
-                return;
-            }
-            AndroidUtilities.cancelRunOnUIThread(GLIconTextureView.this.idleAnimation);
-            GLIconTextureView.this.animatorSet = new AnimatorSet();
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(GLIconTextureView.this.mRenderer.angleX, f);
-            valueAnimatorOfFloat.addUpdateListener(GLIconTextureView.this.xUpdater);
-            long j = 220;
-            valueAnimatorOfFloat.setDuration(j);
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            valueAnimatorOfFloat.setInterpolator(cubicBezierInterpolator);
-            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(f, 0.0f);
-            valueAnimatorOfFloat2.addUpdateListener(GLIconTextureView.this.xUpdater);
-            valueAnimatorOfFloat2.setStartDelay(j);
-            valueAnimatorOfFloat2.setDuration(600L);
-            valueAnimatorOfFloat2.setInterpolator(AndroidUtilities.overshootInterpolator);
-            ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(GLIconTextureView.this.mRenderer.angleY, f2);
-            valueAnimatorOfFloat3.addUpdateListener(GLIconTextureView.this.yUpdater);
-            valueAnimatorOfFloat3.setDuration(j);
-            valueAnimatorOfFloat3.setInterpolator(cubicBezierInterpolator);
-            ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(f2, 0.0f);
-            valueAnimatorOfFloat4.addUpdateListener(GLIconTextureView.this.yUpdater);
-            valueAnimatorOfFloat4.setStartDelay(j);
-            valueAnimatorOfFloat4.setDuration(600L);
-            valueAnimatorOfFloat4.setInterpolator(AndroidUtilities.overshootInterpolator);
-            GLIconTextureView.this.animatorSet.playTogether(valueAnimatorOfFloat, valueAnimatorOfFloat2, valueAnimatorOfFloat3, valueAnimatorOfFloat4);
-            GLIconTextureView.this.animatorSet.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    super.onAnimationEnd(animator);
-                    GLIconTextureView gLIconTextureView = GLIconTextureView.this;
-                    gLIconTextureView.mRenderer.angleX = 0.0f;
-                    gLIconTextureView.animatorSet = null;
-                    gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
-                }
-            });
-            GLIconTextureView.this.animatorSet.start();
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-            GLIconRenderer gLIconRenderer = GLIconTextureView.this.mRenderer;
-            gLIconRenderer.angleX += f * 0.5f;
-            gLIconRenderer.angleY += f2 * 0.05f;
-            return true;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent motionEvent) {
-            GLIconTextureView.this.onLongPress();
-        }
-    }
-
-    public synchronized void setRenderer(GLIconRenderer gLIconRenderer) {
-        this.mRenderer = gLIconRenderer;
-        this.rendererChanged = true;
-    }
-
-    private void initialize(Context context) {
-        this.targetFps = (int) AndroidUtilities.screenRefreshRate;
-        setSurfaceTextureListener(this);
-    }
-
-    @Override
-    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-        startThread(surfaceTexture, i, i2);
-    }
-
-    public void startThread(SurfaceTexture surfaceTexture, int i, int i2) {
-        this.thread = new RenderThread(this, null);
-        this.mSurface = surfaceTexture;
-        setDimensions(i, i2);
-        this.targetFrameDurationMillis = Math.max(0, ((int) ((1.0f / this.targetFps) * 1000.0f)) - 1);
-        this.thread.start();
-    }
-
-    @Override
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
-        setDimensions(i, i2);
-        GLIconRenderer gLIconRenderer = this.mRenderer;
-        if (gLIconRenderer != null) {
-            gLIconRenderer.onSurfaceChanged(this.mGl, i, i2);
-        }
-    }
-
-    public synchronized void setPaused(boolean z) {
-        this.paused = z;
-    }
-
-    public synchronized boolean isPaused() {
-        return this.paused;
-    }
-
-    @Override
-    public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        this.ready = false;
-        stopThread();
-        return false;
-    }
-
-    public void stopThread() {
-        if (this.thread != null) {
-            this.isRunning = false;
-            this.thread = null;
-        }
-    }
-
-    public boolean shouldSleep() {
-        return isPaused() || this.mRenderer == null;
-    }
-
-    public void setBackgroundBitmap(Bitmap bitmap) {
-        this.mRenderer.setBackground(bitmap);
-    }
-
-    public void whenReady(Runnable runnable) {
-        if (this.ready) {
-            runnable.run();
-        } else {
-            this.readyListener = runnable;
-        }
-    }
-
-    private class RenderThread extends Thread {
-        private RenderThread() {
-        }
-
-        RenderThread(GLIconTextureView gLIconTextureView, AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        @Override
-        public void run() {
-            GLIconTextureView gLIconTextureView;
-            GLIconTextureView gLIconTextureView2 = GLIconTextureView.this;
-            gLIconTextureView2.isRunning = true;
-            try {
-                gLIconTextureView2.initGL();
-                GLIconTextureView.this.checkGlError();
-                long jCurrentTimeMillis = System.currentTimeMillis();
-                while (GLIconTextureView.this.isRunning) {
-                    while (true) {
-                        gLIconTextureView = GLIconTextureView.this;
-                        if (gLIconTextureView.mRenderer != null) {
-                            break;
-                        } else {
-                            try {
-                                Thread.sleep(100L);
-                            } catch (InterruptedException unused) {
-                            }
-                        }
-                    }
-                    if (gLIconTextureView.rendererChanged) {
-                        GLIconTextureView gLIconTextureView3 = GLIconTextureView.this;
-                        gLIconTextureView3.initializeRenderer(gLIconTextureView3.mRenderer);
-                        GLIconTextureView.this.rendererChanged = false;
-                    }
-                    try {
-                        if (!GLIconTextureView.this.shouldSleep()) {
-                            long jCurrentTimeMillis2 = System.currentTimeMillis();
-                            GLIconTextureView.this.drawSingleFrame((jCurrentTimeMillis2 - jCurrentTimeMillis) / 1000.0f);
-                            if (!GLIconTextureView.this.ready) {
-                                GLIconTextureView.this.ready = true;
-                                AndroidUtilities.runOnUIThread(GLIconTextureView.this.readyListener);
-                                GLIconTextureView.this.readyListener = null;
-                            }
-                            jCurrentTimeMillis = jCurrentTimeMillis2;
-                        }
-                        try {
-                            if (GLIconTextureView.this.shouldSleep()) {
-                                Thread.sleep(100L);
-                            } else {
-                                for (long jCurrentTimeMillis3 = System.currentTimeMillis(); jCurrentTimeMillis3 - jCurrentTimeMillis < GLIconTextureView.this.targetFrameDurationMillis; jCurrentTimeMillis3 = System.currentTimeMillis()) {
-                                }
-                            }
-                        } catch (InterruptedException unused2) {
-                        }
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
-            } catch (Exception e2) {
-                FileLog.e(e2);
-                GLIconTextureView.this.isRunning = false;
-            }
-        }
-    }
-
-    public synchronized void initializeRenderer(GLIconRenderer gLIconRenderer) {
-        if (gLIconRenderer != null) {
-            if (this.isRunning) {
-                gLIconRenderer.onSurfaceCreated(this.mGl, this.eglConfig);
-                gLIconRenderer.onSurfaceChanged(this.mGl, this.surfaceWidth, this.surfaceHeight);
-            }
-        }
-    }
-
-    public synchronized void drawSingleFrame(float f) {
-        try {
-            checkCurrent();
-            GLIconRenderer gLIconRenderer = this.mRenderer;
-            if (gLIconRenderer != null) {
-                gLIconRenderer.setDeltaTime(f);
-                this.mRenderer.onDrawFrame(this.mGl);
-            }
-            checkGlError();
-            this.mEgl.eglSwapBuffers(this.mEglDisplay, this.mEglSurface);
-        } catch (Throwable th) {
-            throw th;
-        }
-    }
-
-    public void setDimensions(int i, int i2) {
-        this.surfaceWidth = i;
-        this.surfaceHeight = i2;
-    }
-
-    private void checkCurrent() {
-        if (this.mEglContext.equals(this.mEgl.eglGetCurrentContext()) && this.mEglSurface.equals(this.mEgl.eglGetCurrentSurface(12377))) {
-            return;
-        }
-        checkEglError();
-        EGL10 egl10 = this.mEgl;
-        EGLDisplay eGLDisplay = this.mEglDisplay;
-        EGLSurface eGLSurface = this.mEglSurface;
-        if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEglContext)) {
-            throw new RuntimeException("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.mEgl.eglGetError()));
-        }
-        checkEglError();
-    }
-
-    private void checkEglError() {
-        if (this.mEgl.eglGetError() != 12288) {
-            FileLog.e("cannot swap buffers!");
-        }
-    }
-
-    public void checkGlError() {
-        int iGlGetError = this.mGl.glGetError();
-        if (iGlGetError != 0) {
-            FileLog.e("GL error = 0x" + Integer.toHexString(iGlGetError));
-        }
-    }
-
-    public void initGL() {
-        int[] iArr;
+    public static void access$200(GLIconTextureView gLIconTextureView) {
         EGL10 egl10 = (EGL10) EGLContext.getEGL();
-        this.mEgl = egl10;
+        gLIconTextureView.mEgl = egl10;
         EGLDisplay eGLDisplayEglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-        this.mEglDisplay = eGLDisplayEglGetDisplay;
+        gLIconTextureView.mEglDisplay = eGLDisplayEglGetDisplay;
         if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            throw new RuntimeException("eglGetDisplay failed " + GLUtils.getEGLErrorString(this.mEgl.eglGetError()));
+            throw new RuntimeException("eglGetDisplay failed " + GLUtils.getEGLErrorString(gLIconTextureView.mEgl.eglGetError()));
         }
-        if (!this.mEgl.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
-            throw new RuntimeException("eglInitialize failed " + GLUtils.getEGLErrorString(this.mEgl.eglGetError()));
+        if (!gLIconTextureView.mEgl.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
+            throw new RuntimeException("eglInitialize failed " + GLUtils.getEGLErrorString(gLIconTextureView.mEgl.eglGetError()));
         }
-        int[] iArr2 = new int[1];
+        int[] iArr = new int[1];
         EGLConfig[] eGLConfigArr = new EGLConfig[1];
-        if (EmuDetector.with(getContext()).detect()) {
-            iArr = new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12344};
-        } else {
-            iArr = new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12326, 0, 12338, 1, 12344};
+        int[] iArr2 = EmuDetector.with(gLIconTextureView.getContext()).detect() ? new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12344} : new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12326, 0, 12338, 1, 12344};
+        gLIconTextureView.eglConfig = null;
+        if (!gLIconTextureView.mEgl.eglChooseConfig(gLIconTextureView.mEglDisplay, iArr2, eGLConfigArr, 1, iArr)) {
+            throw new IllegalArgumentException("eglChooseConfig failed " + GLUtils.getEGLErrorString(gLIconTextureView.mEgl.eglGetError()));
         }
-        this.eglConfig = null;
-        if (!this.mEgl.eglChooseConfig(this.mEglDisplay, iArr, eGLConfigArr, 1, iArr2)) {
-            throw new IllegalArgumentException("eglChooseConfig failed " + GLUtils.getEGLErrorString(this.mEgl.eglGetError()));
+        if (iArr[0] > 0) {
+            gLIconTextureView.eglConfig = eGLConfigArr[0];
         }
-        if (iArr2[0] > 0) {
-            this.eglConfig = eGLConfigArr[0];
-        }
-        EGLConfig eGLConfig = this.eglConfig;
+        EGLConfig eGLConfig = gLIconTextureView.eglConfig;
         if (eGLConfig == null) {
             throw new RuntimeException("eglConfig not initialized");
         }
-        this.mEglContext = this.mEgl.eglCreateContext(this.mEglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
-        checkEglError();
-        this.mEglSurface = this.mEgl.eglCreateWindowSurface(this.mEglDisplay, this.eglConfig, this.mSurface, null);
-        checkEglError();
-        EGLSurface eGLSurface = this.mEglSurface;
+        gLIconTextureView.mEglContext = gLIconTextureView.mEgl.eglCreateContext(gLIconTextureView.mEglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
+        gLIconTextureView.checkEglError();
+        gLIconTextureView.mEglSurface = gLIconTextureView.mEgl.eglCreateWindowSurface(gLIconTextureView.mEglDisplay, gLIconTextureView.eglConfig, gLIconTextureView.mSurface, null);
+        gLIconTextureView.checkEglError();
+        EGLSurface eGLSurface = gLIconTextureView.mEglSurface;
         if (eGLSurface == null || eGLSurface == EGL10.EGL_NO_SURFACE) {
-            int iEglGetError = this.mEgl.eglGetError();
+            int iEglGetError = gLIconTextureView.mEgl.eglGetError();
             if (iEglGetError == 12299) {
                 FileLog.e("eglCreateWindowSurface returned EGL10.EGL_BAD_NATIVE_WINDOW");
                 return;
+            } else {
+                throw new RuntimeException("eglCreateWindowSurface failed " + GLUtils.getEGLErrorString(iEglGetError));
             }
-            throw new RuntimeException("eglCreateWindowSurface failed " + GLUtils.getEGLErrorString(iEglGetError));
         }
-        if (!this.mEgl.eglMakeCurrent(this.mEglDisplay, eGLSurface, eGLSurface, this.mEglContext)) {
-            throw new RuntimeException("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.mEgl.eglGetError()));
+        if (!gLIconTextureView.mEgl.eglMakeCurrent(gLIconTextureView.mEglDisplay, eGLSurface, eGLSurface, gLIconTextureView.mEglContext)) {
+            throw new RuntimeException("eglMakeCurrent failed " + GLUtils.getEGLErrorString(gLIconTextureView.mEgl.eglGetError()));
         }
-        checkEglError();
-        this.mGl = (GL10) this.mEglContext.getGL();
-        checkEglError();
+        gLIconTextureView.checkEglError();
+        gLIconTextureView.mGl = (GL10) gLIconTextureView.mEglContext.getGL();
+        gLIconTextureView.checkEglError();
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.touched = false;
-            startBackAnimation();
-            getParent().requestDisallowInterceptTouchEvent(false);
+    public static boolean access$600(GLIconTextureView gLIconTextureView) {
+        boolean z;
+        synchronized (gLIconTextureView) {
+            z = gLIconTextureView.paused;
         }
-        return this.gestureDetector.onTouchEvent(motionEvent);
+        return z || gLIconTextureView.mRenderer == null;
     }
 
-    public void startBackAnimation() {
-        cancelAnimatons();
-        GLIconRenderer gLIconRenderer = this.mRenderer;
-        final float f = gLIconRenderer.angleX;
-        final float f2 = gLIconRenderer.angleY;
-        final float f3 = gLIconRenderer.angleX2;
-        float f4 = f + f2;
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-        this.backAnimation = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                GLIconTextureView.m2586$r8$lambda$RoeAmLTxcl1yTBHo_oeMcSmbWQ(this.f$0, f, f3, f2, valueAnimator);
+    public static void access$700(GLIconTextureView gLIconTextureView, float f) {
+        synchronized (gLIconTextureView) {
+            try {
+                if (!gLIconTextureView.mEglContext.equals(gLIconTextureView.mEgl.eglGetCurrentContext()) || !gLIconTextureView.mEglSurface.equals(gLIconTextureView.mEgl.eglGetCurrentSurface(12377))) {
+                    gLIconTextureView.checkEglError();
+                    EGL10 egl10 = gLIconTextureView.mEgl;
+                    EGLDisplay eGLDisplay = gLIconTextureView.mEglDisplay;
+                    EGLSurface eGLSurface = gLIconTextureView.mEglSurface;
+                    if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, gLIconTextureView.mEglContext)) {
+                        throw new RuntimeException("eglMakeCurrent failed " + GLUtils.getEGLErrorString(gLIconTextureView.mEgl.eglGetError()));
+                    }
+                    gLIconTextureView.checkEglError();
+                }
+                GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
+                if (gLIconRenderer != null) {
+                    gLIconRenderer.dt = f;
+                    gLIconRenderer.onDrawFrame(gLIconTextureView.mGl);
+                }
+                int iGlGetError = gLIconTextureView.mGl.glGetError();
+                if (iGlGetError != 0) {
+                    FileLog.e("GL error = 0x" + Integer.toHexString(iGlGetError));
+                }
+                gLIconTextureView.mEgl.eglSwapBuffers(gLIconTextureView.mEglDisplay, gLIconTextureView.mEglSurface);
+            } catch (Throwable th) {
+                throw th;
             }
-        });
-        this.backAnimation.setDuration(600L);
-        this.backAnimation.setInterpolator(new OvershootInterpolator());
-        this.backAnimation.start();
-        StarParticlesView starParticlesView = this.starParticlesView;
-        if (starParticlesView != null) {
-            starParticlesView.flingParticles(Math.abs(f4));
         }
-        scheduleIdleAnimation(this.idleDelay);
     }
 
-    public static void m2586$r8$lambda$RoeAmLTxcl1yTBHo_oeMcSmbWQ(GLIconTextureView gLIconTextureView, float f, float f2, float f3, ValueAnimator valueAnimator) {
-        gLIconTextureView.getClass();
-        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
-        gLIconRenderer.angleX = f * fFloatValue;
-        gLIconRenderer.angleX2 = f2 * fFloatValue;
-        gLIconRenderer.angleY = fFloatValue * f3;
-    }
-
-    public void cancelAnimatons() {
+    public final void cancelAnimatons() {
         ValueAnimator valueAnimator = this.backAnimation;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
@@ -546,8 +293,14 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         }
     }
 
+    public final void checkEglError() {
+        if (this.mEgl.eglGetError() != 12288) {
+            FileLog.e("cannot swap buffers!");
+        }
+    }
+
     @Override
-    protected void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attached = true;
         this.rendererChanged = true;
@@ -555,7 +308,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         cancelAnimatons();
         GLIconRenderer gLIconRenderer = this.mRenderer;
@@ -567,203 +320,407 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         this.attached = false;
     }
 
-    public void scheduleIdleAnimation(long j) {
-        AndroidUtilities.cancelRunOnUIThread(this.idleAnimation);
+    public void onLongPress() {
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        this.thread = new SimpleDecoder.AnonymousClass1(this);
+        this.mSurface = surfaceTexture;
+        this.surfaceWidth = i;
+        this.surfaceHeight = i2;
+        this.targetFrameDurationMillis = Math.max(0, ((int) ((1.0f / this.targetFps) * 1000.0f)) - 1);
+        this.thread.start();
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        this.ready = false;
+        if (this.thread != null) {
+            this.isRunning = false;
+            this.thread = null;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+        this.surfaceWidth = i;
+        this.surfaceHeight = i2;
+        GLIconRenderer gLIconRenderer = this.mRenderer;
+        if (gLIconRenderer != null) {
+            gLIconRenderer.onSurfaceChanged(this.mGl, i, i2);
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            getParent().requestDisallowInterceptTouchEvent(true);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            this.touched = false;
+            startBackAnimation();
+            getParent().requestDisallowInterceptTouchEvent(false);
+        }
+        return this.gestureDetector.onTouchEvent(motionEvent);
+    }
+
+    public final void scheduleIdleAnimation(long j) {
+        AnonymousClass2 anonymousClass2 = this.idleAnimation;
+        AndroidUtilities.cancelRunOnUIThread(anonymousClass2);
         if (this.dialogIsVisible) {
             return;
         }
-        AndroidUtilities.runOnUIThread(this.idleAnimation, j);
+        AndroidUtilities.runOnUIThread(anonymousClass2, j);
     }
 
-    public void cancelIdleAnimation() {
-        AndroidUtilities.cancelRunOnUIThread(this.idleAnimation);
-    }
-
-    protected void startIdleAnimation() {
-        if (this.attached) {
-            int iIntValue = ((Integer) this.animationIndexes.get(this.animationPointer)).intValue();
-            int i = this.animationPointer + 1;
-            this.animationPointer = i;
-            if (i >= this.animationIndexes.size()) {
-                Collections.shuffle(this.animationIndexes);
-                this.animationPointer = 0;
-            }
-            if (iIntValue == 0) {
-                pullAnimation();
-                return;
-            }
-            if (iIntValue == 1) {
-                slowFlipAnimation();
-            } else if (iIntValue == 2) {
-                sleepAnimation();
-            } else {
-                flipAnimation();
-            }
+    public void setBackgroundBitmap(Bitmap bitmap) {
+        GLIconRenderer gLIconRenderer = this.mRenderer;
+        Icon3D icon3D = gLIconRenderer.model;
+        if (icon3D != null) {
+            icon3D.backgroundBitmap = bitmap;
         }
+        gLIconRenderer.backgroundBitmap = bitmap;
     }
 
-    private void slowFlipAnimation() {
-        this.animatorSet = new AnimatorSet();
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.mRenderer.angleX, 360.0f);
-        valueAnimatorOfFloat.addUpdateListener(this.xUpdater);
-        valueAnimatorOfFloat.setDuration(8000L);
-        valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.animatorSet.playTogether(valueAnimatorOfFloat);
-        this.animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                super.onAnimationEnd(animator);
-                GLIconTextureView gLIconTextureView = GLIconTextureView.this;
-                gLIconTextureView.mRenderer.angleX = 0.0f;
-                gLIconTextureView.animatorSet = null;
-                gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
-            }
-        });
-        this.animatorSet.start();
-    }
-
-    private void pullAnimation() {
-        int iAbs = Math.abs(Utilities.random.nextInt() % 4);
-        this.animatorSet = new AnimatorSet();
-        int i = this.type;
-        if (i == 4) {
-            float f = this.mRenderer.angleX;
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 360.0f + f);
-            valueAnimatorOfFloat.addUpdateListener(this.xUpdater);
-            valueAnimatorOfFloat.setDuration(12000L);
-            valueAnimatorOfFloat.setInterpolator(new LinearInterpolator());
-            this.animatorSet.playTogether(valueAnimatorOfFloat);
-        } else if (iAbs == 0 && i != 1 && i != 3) {
-            float f2 = 48;
-            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.mRenderer.angleY, f2);
-            valueAnimatorOfFloat2.addUpdateListener(this.yUpdater);
-            valueAnimatorOfFloat2.setDuration(2300L);
-            valueAnimatorOfFloat2.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(f2, 0.0f);
-            valueAnimatorOfFloat3.addUpdateListener(this.yUpdater);
-            valueAnimatorOfFloat3.setDuration(500L);
-            valueAnimatorOfFloat3.setStartDelay(2300L);
-            valueAnimatorOfFloat3.setInterpolator(AndroidUtilities.overshootInterpolator);
-            this.animatorSet.playTogether(valueAnimatorOfFloat2, valueAnimatorOfFloat3);
+    public void setDialogVisible(boolean z) {
+        this.dialogIsVisible = z;
+        if (!z) {
+            scheduleIdleAnimation(this.idleDelay);
         } else {
-            int i2 = (i == 1 || i == 3) ? 360 : 485;
-            if (iAbs == 2) {
-                i2 = -i2;
-            }
-            float f3 = i2;
-            ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(this.mRenderer.angleY, f3);
-            valueAnimatorOfFloat4.addUpdateListener(this.xUpdater);
-            valueAnimatorOfFloat4.setDuration(3000L);
-            valueAnimatorOfFloat4.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ValueAnimator valueAnimatorOfFloat5 = ValueAnimator.ofFloat(f3, 0.0f);
-            valueAnimatorOfFloat5.addUpdateListener(this.xUpdater);
-            valueAnimatorOfFloat5.setDuration(1000L);
-            valueAnimatorOfFloat5.setStartDelay(3000L);
-            valueAnimatorOfFloat5.setInterpolator(AndroidUtilities.overshootInterpolator);
-            this.animatorSet.playTogether(valueAnimatorOfFloat4, valueAnimatorOfFloat5);
+            AndroidUtilities.cancelRunOnUIThread(this.idleAnimation);
+            startBackAnimation();
         }
-        this.animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                super.onAnimationEnd(animator);
-                GLIconTextureView gLIconTextureView = GLIconTextureView.this;
-                gLIconTextureView.mRenderer.angleX = 0.0f;
-                gLIconTextureView.animatorSet = null;
-                gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
-            }
-        });
-        this.animatorSet.start();
     }
 
-    private void flipAnimation() {
-        this.animatorSet = new AnimatorSet();
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.mRenderer.angleX, 180.0f);
-        valueAnimatorOfFloat.addUpdateListener(this.xUpdater);
-        valueAnimatorOfFloat.setDuration(600L);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        valueAnimatorOfFloat.setInterpolator(cubicBezierInterpolator);
-        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(180.0f, 360.0f);
-        valueAnimatorOfFloat2.addUpdateListener(this.xUpdater);
-        valueAnimatorOfFloat2.setDuration(600L);
-        valueAnimatorOfFloat2.setStartDelay(2000L);
-        valueAnimatorOfFloat2.setInterpolator(cubicBezierInterpolator);
-        this.animatorSet.playTogether(valueAnimatorOfFloat, valueAnimatorOfFloat2);
-        this.animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                super.onAnimationEnd(animator);
-                GLIconTextureView gLIconTextureView = GLIconTextureView.this;
-                gLIconTextureView.mRenderer.angleX = 0.0f;
-                gLIconTextureView.animatorSet = null;
-                gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
-            }
-        });
-        this.animatorSet.start();
+    public synchronized void setPaused(boolean z) {
+        this.paused = z;
     }
 
-    private void sleepAnimation() {
-        this.animatorSet = new AnimatorSet();
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.mRenderer.angleX, 184.0f);
-        valueAnimatorOfFloat.addUpdateListener(this.xUpdater);
-        valueAnimatorOfFloat.setDuration(600L);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
-        valueAnimatorOfFloat.setInterpolator(cubicBezierInterpolator);
-        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.mRenderer.angleY, 50.0f);
-        valueAnimatorOfFloat2.addUpdateListener(this.yUpdater);
-        valueAnimatorOfFloat2.setDuration(600L);
-        valueAnimatorOfFloat2.setInterpolator(cubicBezierInterpolator);
-        ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(180.0f, 0.0f);
-        valueAnimatorOfFloat3.addUpdateListener(this.xUpdater);
-        valueAnimatorOfFloat3.setDuration(800L);
-        valueAnimatorOfFloat3.setStartDelay(10000L);
-        valueAnimatorOfFloat3.setInterpolator(AndroidUtilities.overshootInterpolator);
-        ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(60.0f, 0.0f);
-        valueAnimatorOfFloat4.addUpdateListener(this.yUpdater);
-        valueAnimatorOfFloat4.setDuration(800L);
-        valueAnimatorOfFloat4.setStartDelay(10000L);
-        valueAnimatorOfFloat4.setInterpolator(AndroidUtilities.overshootInterpolator);
-        ValueAnimator valueAnimatorOfFloat5 = ValueAnimator.ofFloat(0.0f, 2.0f, -3.0f, 2.0f, -1.0f, 2.0f, -3.0f, 2.0f, -1.0f, 0.0f);
-        valueAnimatorOfFloat5.addUpdateListener(this.xUpdater2);
-        valueAnimatorOfFloat5.setDuration(10000L);
-        valueAnimatorOfFloat5.setInterpolator(new LinearInterpolator());
-        this.animatorSet.playTogether(valueAnimatorOfFloat, valueAnimatorOfFloat2, valueAnimatorOfFloat3, valueAnimatorOfFloat4, valueAnimatorOfFloat5);
-        this.animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                super.onAnimationEnd(animator);
-                GLIconTextureView gLIconTextureView = GLIconTextureView.this;
-                gLIconTextureView.mRenderer.angleX = 0.0f;
-                gLIconTextureView.animatorSet = null;
-                gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
-            }
-        });
-        this.animatorSet.start();
+    public synchronized void setRenderer(GLIconRenderer gLIconRenderer) {
+        this.mRenderer = gLIconRenderer;
+        this.rendererChanged = true;
     }
 
     public void setStarParticlesView(StarParticlesView starParticlesView) {
         this.starParticlesView = starParticlesView;
     }
 
-    public void startEnterAnimation(int i, long j) {
+    public final void startBackAnimation() {
+        float f;
+        cancelAnimatons();
         GLIconRenderer gLIconRenderer = this.mRenderer;
-        if (gLIconRenderer != null) {
-            gLIconRenderer.angleX = -180.0f;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public void run() {
-                    GLIconTextureView.this.startBackAnimation();
-                }
-            }, j);
+        float f2 = gLIconRenderer.angleX;
+        float f3 = gLIconRenderer.angleY;
+        float f4 = gLIconRenderer.angleX2;
+        float f5 = f2 + f3;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
+        this.backAnimation = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda35(this, f2, f4, f3, 1));
+        this.backAnimation.setDuration(600L);
+        this.backAnimation.setInterpolator(new OvershootInterpolator());
+        this.backAnimation.start();
+        StarParticlesView starParticlesView = this.starParticlesView;
+        if (starParticlesView != null) {
+            float fAbs = Math.abs(f5);
+            if (fAbs < 60.0f) {
+                f = 5.0f;
+            } else {
+                f = fAbs < 180.0f ? 9.0f : 15.0f;
+            }
+            AnimatorSet animatorSet = new AnimatorSet();
+            ItemOptions$$ExternalSyntheticLambda4 itemOptions$$ExternalSyntheticLambda4 = new ItemOptions$$ExternalSyntheticLambda4(starParticlesView, 29);
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(1.0f, f);
+            valueAnimatorOfFloat2.addUpdateListener(itemOptions$$ExternalSyntheticLambda4);
+            valueAnimatorOfFloat2.setDuration(600L);
+            ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(f, 1.0f);
+            valueAnimatorOfFloat3.addUpdateListener(itemOptions$$ExternalSyntheticLambda4);
+            valueAnimatorOfFloat3.setDuration(2000L);
+            animatorSet.playTogether(valueAnimatorOfFloat2, valueAnimatorOfFloat3);
+            animatorSet.start();
         }
+        scheduleIdleAnimation(this.idleDelay);
     }
 
-    public void setDialogVisible(boolean z) {
-        this.dialogIsVisible = z;
-        if (z) {
-            AndroidUtilities.cancelRunOnUIThread(this.idleAnimation);
-            startBackAnimation();
-        } else {
-            scheduleIdleAnimation(this.idleDelay);
+    public void startIdleAnimation() {
+        final int i = 3;
+        final int i2 = 0;
+        final int i3 = 1;
+        final int i4 = 2;
+        if (this.attached) {
+            ArrayList arrayList = this.animationIndexes;
+            int iIntValue = ((Integer) arrayList.get(this.animationPointer)).intValue();
+            int i5 = this.animationPointer + 1;
+            this.animationPointer = i5;
+            if (i5 >= arrayList.size()) {
+                Collections.shuffle(arrayList);
+                this.animationPointer = 0;
+            }
+            GLIconTextureView$$ExternalSyntheticLambda0 gLIconTextureView$$ExternalSyntheticLambda0 = this.yUpdater;
+            GLIconTextureView$$ExternalSyntheticLambda0 gLIconTextureView$$ExternalSyntheticLambda1 = this.xUpdater;
+            if (iIntValue == 0) {
+                int iAbs = Math.abs(Utilities.random.nextInt() % 4);
+                this.animatorSet = new AnimatorSet();
+                int i6 = this.type;
+                if (i6 == 4) {
+                    float f = this.mRenderer.angleX;
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 360.0f + f);
+                    valueAnimatorOfFloat.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda1);
+                    valueAnimatorOfFloat.setDuration(12000L);
+                    valueAnimatorOfFloat.setInterpolator(new LinearInterpolator());
+                    this.animatorSet.playTogether(valueAnimatorOfFloat);
+                } else if (iAbs != 0 || i6 == 1 || i6 == 3) {
+                    int i7 = (i6 == 1 || i6 == 3) ? 360 : 485;
+                    if (iAbs == 2) {
+                        i7 = -i7;
+                    }
+                    float f2 = i7;
+                    ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.mRenderer.angleY, f2);
+                    valueAnimatorOfFloat2.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda1);
+                    valueAnimatorOfFloat2.setDuration(3000L);
+                    valueAnimatorOfFloat2.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                    ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(f2, 0.0f);
+                    valueAnimatorOfFloat3.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda1);
+                    valueAnimatorOfFloat3.setDuration(1000L);
+                    valueAnimatorOfFloat3.setStartDelay(3000L);
+                    valueAnimatorOfFloat3.setInterpolator(AndroidUtilities.overshootInterpolator);
+                    this.animatorSet.playTogether(valueAnimatorOfFloat2, valueAnimatorOfFloat3);
+                } else {
+                    float f3 = 48;
+                    ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(this.mRenderer.angleY, f3);
+                    valueAnimatorOfFloat4.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda0);
+                    valueAnimatorOfFloat4.setDuration(2300L);
+                    valueAnimatorOfFloat4.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                    ValueAnimator valueAnimatorOfFloat5 = ValueAnimator.ofFloat(f3, 0.0f);
+                    valueAnimatorOfFloat5.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda0);
+                    valueAnimatorOfFloat5.setDuration(500L);
+                    valueAnimatorOfFloat5.setStartDelay(2300L);
+                    valueAnimatorOfFloat5.setInterpolator(AndroidUtilities.overshootInterpolator);
+                    this.animatorSet.playTogether(valueAnimatorOfFloat4, valueAnimatorOfFloat5);
+                }
+                this.animatorSet.addListener(new AnimatorListenerAdapter(this) {
+                    public final GLIconTextureView this$0;
+
+                    {
+                        this.this$0 = this;
+                    }
+
+                    @Override
+                    public final void onAnimationEnd(Animator animator) {
+                        switch (i3) {
+                            case 0:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView = this.this$0;
+                                gLIconTextureView.mRenderer.angleX = 0.0f;
+                                gLIconTextureView.animatorSet = null;
+                                gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
+                                break;
+                            case 1:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView2 = this.this$0;
+                                gLIconTextureView2.mRenderer.angleX = 0.0f;
+                                gLIconTextureView2.animatorSet = null;
+                                gLIconTextureView2.scheduleIdleAnimation(gLIconTextureView2.idleDelay);
+                                break;
+                            case 2:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView3 = this.this$0;
+                                gLIconTextureView3.mRenderer.angleX = 0.0f;
+                                gLIconTextureView3.animatorSet = null;
+                                gLIconTextureView3.scheduleIdleAnimation(gLIconTextureView3.idleDelay);
+                                break;
+                            default:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView4 = this.this$0;
+                                gLIconTextureView4.mRenderer.angleX = 0.0f;
+                                gLIconTextureView4.animatorSet = null;
+                                gLIconTextureView4.scheduleIdleAnimation(gLIconTextureView4.idleDelay);
+                                break;
+                        }
+                    }
+                });
+                this.animatorSet.start();
+                return;
+            }
+            if (iIntValue == 1) {
+                this.animatorSet = new AnimatorSet();
+                ValueAnimator valueAnimatorOfFloat6 = ValueAnimator.ofFloat(this.mRenderer.angleX, 360.0f);
+                valueAnimatorOfFloat6.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda1);
+                valueAnimatorOfFloat6.setDuration(8000L);
+                valueAnimatorOfFloat6.setInterpolator(CubicBezierInterpolator.DEFAULT);
+                this.animatorSet.playTogether(valueAnimatorOfFloat6);
+                this.animatorSet.addListener(new AnimatorListenerAdapter(this) {
+                    public final GLIconTextureView this$0;
+
+                    {
+                        this.this$0 = this;
+                    }
+
+                    @Override
+                    public final void onAnimationEnd(Animator animator) {
+                        switch (i2) {
+                            case 0:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView = this.this$0;
+                                gLIconTextureView.mRenderer.angleX = 0.0f;
+                                gLIconTextureView.animatorSet = null;
+                                gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
+                                break;
+                            case 1:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView2 = this.this$0;
+                                gLIconTextureView2.mRenderer.angleX = 0.0f;
+                                gLIconTextureView2.animatorSet = null;
+                                gLIconTextureView2.scheduleIdleAnimation(gLIconTextureView2.idleDelay);
+                                break;
+                            case 2:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView3 = this.this$0;
+                                gLIconTextureView3.mRenderer.angleX = 0.0f;
+                                gLIconTextureView3.animatorSet = null;
+                                gLIconTextureView3.scheduleIdleAnimation(gLIconTextureView3.idleDelay);
+                                break;
+                            default:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView4 = this.this$0;
+                                gLIconTextureView4.mRenderer.angleX = 0.0f;
+                                gLIconTextureView4.animatorSet = null;
+                                gLIconTextureView4.scheduleIdleAnimation(gLIconTextureView4.idleDelay);
+                                break;
+                        }
+                    }
+                });
+                this.animatorSet.start();
+                return;
+            }
+            if (iIntValue != 2) {
+                this.animatorSet = new AnimatorSet();
+                ValueAnimator valueAnimatorOfFloat7 = ValueAnimator.ofFloat(this.mRenderer.angleX, 180.0f);
+                valueAnimatorOfFloat7.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda1);
+                valueAnimatorOfFloat7.setDuration(600L);
+                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+                valueAnimatorOfFloat7.setInterpolator(cubicBezierInterpolator);
+                ValueAnimator valueAnimatorOfFloat8 = ValueAnimator.ofFloat(180.0f, 360.0f);
+                valueAnimatorOfFloat8.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda1);
+                valueAnimatorOfFloat8.setDuration(600L);
+                valueAnimatorOfFloat8.setStartDelay(2000L);
+                valueAnimatorOfFloat8.setInterpolator(cubicBezierInterpolator);
+                this.animatorSet.playTogether(valueAnimatorOfFloat7, valueAnimatorOfFloat8);
+                this.animatorSet.addListener(new AnimatorListenerAdapter(this) {
+                    public final GLIconTextureView this$0;
+
+                    {
+                        this.this$0 = this;
+                    }
+
+                    @Override
+                    public final void onAnimationEnd(Animator animator) {
+                        switch (i4) {
+                            case 0:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView = this.this$0;
+                                gLIconTextureView.mRenderer.angleX = 0.0f;
+                                gLIconTextureView.animatorSet = null;
+                                gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
+                                break;
+                            case 1:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView2 = this.this$0;
+                                gLIconTextureView2.mRenderer.angleX = 0.0f;
+                                gLIconTextureView2.animatorSet = null;
+                                gLIconTextureView2.scheduleIdleAnimation(gLIconTextureView2.idleDelay);
+                                break;
+                            case 2:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView3 = this.this$0;
+                                gLIconTextureView3.mRenderer.angleX = 0.0f;
+                                gLIconTextureView3.animatorSet = null;
+                                gLIconTextureView3.scheduleIdleAnimation(gLIconTextureView3.idleDelay);
+                                break;
+                            default:
+                                super.onAnimationEnd(animator);
+                                GLIconTextureView gLIconTextureView4 = this.this$0;
+                                gLIconTextureView4.mRenderer.angleX = 0.0f;
+                                gLIconTextureView4.animatorSet = null;
+                                gLIconTextureView4.scheduleIdleAnimation(gLIconTextureView4.idleDelay);
+                                break;
+                        }
+                    }
+                });
+                this.animatorSet.start();
+                return;
+            }
+            this.animatorSet = new AnimatorSet();
+            ValueAnimator valueAnimatorOfFloat9 = ValueAnimator.ofFloat(this.mRenderer.angleX, 184.0f);
+            valueAnimatorOfFloat9.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda1);
+            valueAnimatorOfFloat9.setDuration(600L);
+            CubicBezierInterpolator cubicBezierInterpolator2 = CubicBezierInterpolator.EASE_OUT;
+            valueAnimatorOfFloat9.setInterpolator(cubicBezierInterpolator2);
+            ValueAnimator valueAnimatorOfFloat10 = ValueAnimator.ofFloat(this.mRenderer.angleY, 50.0f);
+            valueAnimatorOfFloat10.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda0);
+            valueAnimatorOfFloat10.setDuration(600L);
+            valueAnimatorOfFloat10.setInterpolator(cubicBezierInterpolator2);
+            ValueAnimator valueAnimatorOfFloat11 = ValueAnimator.ofFloat(180.0f, 0.0f);
+            valueAnimatorOfFloat11.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda1);
+            valueAnimatorOfFloat11.setDuration(800L);
+            valueAnimatorOfFloat11.setStartDelay(10000L);
+            valueAnimatorOfFloat11.setInterpolator(AndroidUtilities.overshootInterpolator);
+            ValueAnimator valueAnimatorOfFloat12 = ValueAnimator.ofFloat(60.0f, 0.0f);
+            valueAnimatorOfFloat12.addUpdateListener(gLIconTextureView$$ExternalSyntheticLambda0);
+            valueAnimatorOfFloat12.setDuration(800L);
+            valueAnimatorOfFloat12.setStartDelay(10000L);
+            valueAnimatorOfFloat12.setInterpolator(AndroidUtilities.overshootInterpolator);
+            ValueAnimator valueAnimatorOfFloat13 = ValueAnimator.ofFloat(0.0f, 2.0f, -3.0f, 2.0f, -1.0f, 2.0f, -3.0f, 2.0f, -1.0f, 0.0f);
+            valueAnimatorOfFloat13.addUpdateListener(this.xUpdater2);
+            valueAnimatorOfFloat13.setDuration(10000L);
+            valueAnimatorOfFloat13.setInterpolator(new LinearInterpolator());
+            this.animatorSet.playTogether(valueAnimatorOfFloat9, valueAnimatorOfFloat10, valueAnimatorOfFloat11, valueAnimatorOfFloat12, valueAnimatorOfFloat13);
+            this.animatorSet.addListener(new AnimatorListenerAdapter(this) {
+                public final GLIconTextureView this$0;
+
+                {
+                    this.this$0 = this;
+                }
+
+                @Override
+                public final void onAnimationEnd(Animator animator) {
+                    switch (i) {
+                        case 0:
+                            super.onAnimationEnd(animator);
+                            GLIconTextureView gLIconTextureView = this.this$0;
+                            gLIconTextureView.mRenderer.angleX = 0.0f;
+                            gLIconTextureView.animatorSet = null;
+                            gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
+                            break;
+                        case 1:
+                            super.onAnimationEnd(animator);
+                            GLIconTextureView gLIconTextureView2 = this.this$0;
+                            gLIconTextureView2.mRenderer.angleX = 0.0f;
+                            gLIconTextureView2.animatorSet = null;
+                            gLIconTextureView2.scheduleIdleAnimation(gLIconTextureView2.idleDelay);
+                            break;
+                        case 2:
+                            super.onAnimationEnd(animator);
+                            GLIconTextureView gLIconTextureView3 = this.this$0;
+                            gLIconTextureView3.mRenderer.angleX = 0.0f;
+                            gLIconTextureView3.animatorSet = null;
+                            gLIconTextureView3.scheduleIdleAnimation(gLIconTextureView3.idleDelay);
+                            break;
+                        default:
+                            super.onAnimationEnd(animator);
+                            GLIconTextureView gLIconTextureView4 = this.this$0;
+                            gLIconTextureView4.mRenderer.angleX = 0.0f;
+                            gLIconTextureView4.animatorSet = null;
+                            gLIconTextureView4.scheduleIdleAnimation(gLIconTextureView4.idleDelay);
+                            break;
+                    }
+                }
+            });
+            this.animatorSet.start();
         }
     }
 }

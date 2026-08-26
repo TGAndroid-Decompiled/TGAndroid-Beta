@@ -11,33 +11,19 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 
-public class MuteDrawable extends Drawable {
-    private final AnimatedFloat animatedMuted;
-    private Drawable baseDrawable;
-    private final Paint clipPaint;
-    private boolean muted;
-    private final Paint strokePaint;
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
+public final class MuteDrawable extends Drawable {
+    public final AnimatedFloat animatedMuted;
+    public final Drawable baseDrawable;
+    public final Paint clipPaint;
+    public boolean muted;
+    public final Paint strokePaint;
 
     public MuteDrawable(Context context) {
         Paint paint = new Paint(1);
         this.strokePaint = paint;
         Paint paint2 = new Paint(1);
         this.clipPaint = paint2;
-        this.animatedMuted = new AnimatedFloat(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.invalidateSelf();
-            }
-        }, 0L, 200L, CubicBezierInterpolator.EASE_OUT);
+        this.animatedMuted = new AnimatedFloat(new HintView$1$$ExternalSyntheticLambda0(this, 24), 200L, CubicBezierInterpolator.EASE_OUT, 0);
         this.baseDrawable = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
@@ -56,56 +42,59 @@ public class MuteDrawable extends Drawable {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        this.baseDrawable.setBounds(bounds);
-        this.baseDrawable.draw(canvas);
+        Drawable drawable = this.baseDrawable;
+        drawable.setBounds(bounds);
+        drawable.draw(canvas);
         float f = this.animatedMuted.set(this.muted);
         if (f > 0.0f) {
             float fDpf2 = AndroidUtilities.dpf2(0.783f);
             float fCenterX = (bounds.centerX() - AndroidUtilities.dp(9.0f)) + fDpf2;
             float fCenterY = (bounds.centerY() - AndroidUtilities.dp(9.0f)) + fDpf2;
-            float fCenterX2 = (bounds.centerX() + AndroidUtilities.dp(9.0f)) - fDpf2;
-            float fCenterY2 = (bounds.centerY() + AndroidUtilities.dp(9.0f)) - fDpf2;
+            float fDp = (AndroidUtilities.dp(9.0f) + bounds.centerX()) - fDpf2;
+            float fDp2 = (AndroidUtilities.dp(9.0f) + bounds.centerY()) - fDpf2;
             if (this.muted) {
-                fCenterX = AndroidUtilities.lerp(fCenterX2, fCenterX, f);
-                fCenterY = AndroidUtilities.lerp(fCenterY2, fCenterY, f);
+                fCenterX = AndroidUtilities.lerp(fDp, fCenterX, f);
+                fCenterY = AndroidUtilities.lerp(fDp2, fCenterY, f);
             } else {
-                fCenterX2 = AndroidUtilities.lerp(fCenterX, fCenterX2, f);
-                fCenterY2 = AndroidUtilities.lerp(fCenterY, fCenterY2, f);
+                fDp = AndroidUtilities.lerp(fCenterX, fDp, f);
+                fDp2 = AndroidUtilities.lerp(fCenterY, fDp2, f);
             }
-            float f2 = fCenterY2;
+            float f2 = fDp2;
             float f3 = fCenterX;
             float f4 = fCenterY;
-            float f5 = fCenterX2;
+            float f5 = fDp;
             canvas.drawLine(f3, f4, f5, f2, this.clipPaint);
-            this.strokePaint.setAlpha((int) (Math.min(1.0f, f * 10.0f) * 255.0f));
-            canvas.drawLine(f3, f4, f5, f2, this.strokePaint);
+            Paint paint = this.strokePaint;
+            paint.setAlpha((int) (Math.min(1.0f, f * 10.0f) * 255.0f));
+            canvas.drawLine(f3, f4, f5, f2, paint);
         }
         canvas.restore();
     }
 
-    public void setMuted(boolean z, boolean z2) {
-        this.muted = z;
-        if (!z2) {
-            this.animatedMuted.set(z, true);
-        }
-        invalidateSelf();
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public void setAlpha(int i) {
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
         this.baseDrawable.setAlpha(i);
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

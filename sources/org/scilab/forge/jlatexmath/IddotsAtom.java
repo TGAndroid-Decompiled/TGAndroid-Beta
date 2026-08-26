@@ -15,7 +15,7 @@ public class IddotsAtom extends Atom {
         verticalBox.add(horizontalBox2);
         verticalBox.add(boxCreateBox2);
         verticalBox.add(horizontalBox3);
-        verticalBox.setHeight(verticalBox.getHeight() + verticalBox.getDepth());
+        verticalBox.setHeight(verticalBox.getDepth() + verticalBox.getHeight());
         verticalBox.setDepth(0.0f);
         return verticalBox;
     }

@@ -2,95 +2,48 @@ package org.telegram.ui.Components;
 
 import android.graphics.CornerPathEffect;
 import android.graphics.Path;
-import android.graphics.RectF;
 import android.os.Build;
 import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
 
-public class LinkPath extends CornerPath {
-    private static CornerPathEffect roundedEffect;
-    private static int roundedEffectRadius;
-    private int baselineShift;
-    public float centerX;
-    public float centerY;
-    private Layout currentLayout;
-    private int currentLine;
-    private float insetHoriz;
-    private float insetVert;
-    private int lineHeight;
-    private float maxX;
-    private float maxY;
-    private boolean useRoundRect;
-    private float xOffset;
-    private float yOffset;
-    private float lastTop = -1.0f;
-    private boolean allowReset = true;
-    private float minX = Float.MAX_VALUE;
-    private float minY = Float.MAX_VALUE;
+public final class LinkPath extends CornerPath {
+    public static CornerPathEffect roundedEffect;
+    public static int roundedEffectRadius;
+    public boolean allowReset;
+    public int baselineShift;
+    public Layout currentLayout;
+    public int currentLine;
+    public float insetHoriz;
+    public float insetVert;
+    public float lastTop;
+    public int lineHeight;
+    public float maxX;
+    public float maxY;
+    public float minX;
+    public float minY;
+    public final boolean useRoundRect;
+    public float xOffset;
+    public float yOffset;
 
-    public static int getRadius() {
-        return AndroidUtilities.dp(5.0f);
+    public LinkPath() {
+        this.lastTop = -1.0f;
+        this.allowReset = true;
+        this.minX = Float.MAX_VALUE;
+        this.minY = Float.MAX_VALUE;
+        this.useCornerPathImplementation = false;
     }
 
     public static CornerPathEffect getRoundedEffect() {
-        if (roundedEffect == null || roundedEffectRadius != getRadius()) {
-            int radius = getRadius();
-            roundedEffectRadius = radius;
-            roundedEffect = new CornerPathEffect(radius);
+        if (roundedEffect == null || roundedEffectRadius != AndroidUtilities.dp(5.0f)) {
+            int iDp = AndroidUtilities.dp(5.0f);
+            roundedEffectRadius = iDp;
+            roundedEffect = new CornerPathEffect(iDp);
         }
         return roundedEffect;
     }
 
-    public LinkPath() {
-        this.useCornerPathImplementation = false;
-    }
-
-    public LinkPath(boolean z) {
-        this.useRoundRect = z;
-        this.useCornerPathImplementation = false;
-    }
-
-    public void setCurrentLayout(Layout layout, int i, float f) {
-        setCurrentLayout(layout, i, 0.0f, f);
-    }
-
-    public void setCurrentLayout(Layout layout, int i, float f, float f2) {
-        int lineCount;
-        if (layout == null) {
-            this.currentLayout = null;
-            this.currentLine = 0;
-            this.lastTop = -1.0f;
-            this.xOffset = f;
-            this.yOffset = f2;
-            return;
-        }
-        this.currentLayout = layout;
-        this.currentLine = layout.getLineForOffset(i);
-        this.lastTop = -1.0f;
-        this.xOffset = f;
-        this.yOffset = f2;
-        if (Build.VERSION.SDK_INT < 28 || (lineCount = layout.getLineCount()) <= 0) {
-            return;
-        }
-        int i2 = lineCount - 1;
-        this.lineHeight = layout.getLineBottom(i2) - layout.getLineTop(i2);
-    }
-
-    public void setAllowReset(boolean z) {
-        this.allowReset = z;
-    }
-
-    public void setBaselineShift(int i) {
-        this.baselineShift = i;
-    }
-
-    public void setInset(float f, float f2) {
-        this.insetVert = f;
-        this.insetHoriz = f2;
-    }
-
     @Override
-    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+    public final void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
         Layout layout = this.currentLayout;
         if (layout == null) {
             superAddRect(f, f2, f3, f4, direction);
@@ -133,10 +86,8 @@ public class LinkPath extends CornerPath {
                     }
                     float f11 = f6;
                     float f12 = spacingAdd;
-                    this.centerX = (f10 + f9) / 2.0f;
-                    this.centerY = (f12 + f11) / 2.0f;
                     if (this.useRoundRect) {
-                        superAddRect(f9 - (getRadius() / 2.0f), f11, f10 + (getRadius() / 2.0f), f12, direction);
+                        superAddRect(f9 - (AndroidUtilities.dp(5.0f) / 2.0f), f11, f10 + (AndroidUtilities.dp(5.0f) / 2.0f), f12, direction);
                     } else {
                         superAddRect(f9, f11, f10, f12, direction);
                     }
@@ -146,7 +97,36 @@ public class LinkPath extends CornerPath {
         }
     }
 
-    private void superAddRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+    @Override
+    public final void reset() {
+        if (this.allowReset) {
+            super.reset();
+        }
+    }
+
+    public final void setCurrentLayout(Layout layout, int i, float f, float f2) {
+        int lineCount;
+        if (layout == null) {
+            this.currentLayout = null;
+            this.currentLine = 0;
+            this.lastTop = -1.0f;
+            this.xOffset = f;
+            this.yOffset = f2;
+            return;
+        }
+        this.currentLayout = layout;
+        this.currentLine = layout.getLineForOffset(i);
+        this.lastTop = -1.0f;
+        this.xOffset = f;
+        this.yOffset = f2;
+        if (Build.VERSION.SDK_INT < 28 || (lineCount = layout.getLineCount()) <= 0) {
+            return;
+        }
+        int i2 = lineCount - 1;
+        this.lineHeight = layout.getLineBottom(i2) - layout.getLineTop(i2);
+    }
+
+    public final void superAddRect(float f, float f2, float f3, float f4, Path.Direction direction) {
         float f5 = this.insetHoriz;
         float f6 = f - f5;
         float f7 = this.insetVert;
@@ -160,14 +140,12 @@ public class LinkPath extends CornerPath {
         super.addRect(f6, f8, f9, f10, direction);
     }
 
-    public void getBounds(RectF rectF) {
-        rectF.set(this.minX, this.minY, this.maxX, this.maxY);
-    }
-
-    @Override
-    public void reset() {
-        if (this.allowReset) {
-            super.reset();
-        }
+    public LinkPath(int i) {
+        this.lastTop = -1.0f;
+        this.allowReset = true;
+        this.minX = Float.MAX_VALUE;
+        this.minY = Float.MAX_VALUE;
+        this.useRoundRect = true;
+        this.useCornerPathImplementation = false;
     }
 }

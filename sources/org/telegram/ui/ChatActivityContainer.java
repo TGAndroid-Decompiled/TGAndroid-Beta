@@ -9,85 +9,73 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.Components.LayoutHelper;
 
 public abstract class ChatActivityContainer extends FrameLayout {
-    public final ChatActivity chatActivity;
-    private View fragmentView;
-    private boolean isActive;
-    private final INavigationLayout parentLayout;
-    private int topPadding;
-
-    protected void onSearchLoadingUpdate(boolean z) {
-    }
+    public final AnonymousClass1 chatActivity;
+    public View fragmentView;
+    public boolean isActive;
+    public final INavigationLayout parentLayout;
+    public int topPadding;
 
     public ChatActivityContainer(Context context, INavigationLayout iNavigationLayout, Bundle bundle) {
         super(context);
         this.isActive = true;
         this.parentLayout = iNavigationLayout;
-        ChatActivity chatActivity = new ChatActivity(bundle) {
+        ?? r2 = new ChatActivity(bundle) {
             @Override
-            public void setNavigationBarColor(int i) {
-            }
-
-            @Override
-            protected void onSearchLoadingUpdate(boolean z) {
+            public final void onSearchLoadingUpdate(boolean z) {
                 ChatActivityContainer.this.onSearchLoadingUpdate(z);
             }
+
+            @Override
+            public final void setNavigationBarColor(int i) {
+            }
         };
-        this.chatActivity = chatActivity;
-        chatActivity.isInsideContainer = true;
+        this.chatActivity = r2;
+        r2.isInsideContainer = true;
     }
 
-    public void setTopPadding(int i) {
-        this.topPadding = i;
+    public void initChatActivity() {
+        int i;
+        AnonymousClass1 anonymousClass1 = this.chatActivity;
+        if (anonymousClass1.onFragmentCreate()) {
+            this.fragmentView = anonymousClass1.fragmentView;
+            anonymousClass1.setParentLayout(this.parentLayout);
+            View view = this.fragmentView;
+            if (view == null) {
+                this.fragmentView = anonymousClass1.createView(getContext());
+            } else {
+                ViewGroup viewGroup = (ViewGroup) view.getParent();
+                if (viewGroup != null) {
+                    anonymousClass1.onRemoveFromParent();
+                    viewGroup.removeView(this.fragmentView);
+                }
+            }
+            ChatActivity.AnonymousClass21 anonymousClass21 = anonymousClass1.chatListView;
+            if (anonymousClass21 != null && (i = this.topPadding) != 0) {
+                anonymousClass21.setPadding(0, i, 0, 0);
+            }
+            anonymousClass1.openedInstantly();
+            addView(this.fragmentView, LayoutHelper.createFrame(-1.0f, -1));
+            if (this.isActive) {
+                anonymousClass1.onResume();
+            }
+        }
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         initChatActivity();
     }
 
-    protected void initChatActivity() {
-        if (this.chatActivity.onFragmentCreate()) {
-            ChatActivity chatActivity = this.chatActivity;
-            this.fragmentView = chatActivity.fragmentView;
-            chatActivity.setParentLayout(this.parentLayout);
-            View view = this.fragmentView;
-            if (view == null) {
-                this.fragmentView = this.chatActivity.createView(getContext());
-            } else {
-                ViewGroup viewGroup = (ViewGroup) view.getParent();
-                if (viewGroup != null) {
-                    this.chatActivity.onRemoveFromParent();
-                    viewGroup.removeView(this.fragmentView);
-                }
-            }
-            if (this.chatActivity.getChatListView() != null && this.topPadding != 0) {
-                this.chatActivity.getChatListView().setPadding(0, this.topPadding, 0, 0);
-            }
-            this.chatActivity.openedInstantly();
-            addView(this.fragmentView, LayoutHelper.createFrame(-1, -1.0f));
-            if (this.isActive) {
-                this.chatActivity.onResume();
-            }
-        }
-    }
-
-    public void onPause() {
-        this.isActive = false;
-        if (this.fragmentView != null) {
-            this.chatActivity.onPause();
-        }
-    }
-
-    public void onResume() {
-        this.isActive = true;
-        if (this.fragmentView != null) {
-            this.chatActivity.onResume();
-        }
-    }
-
     @Override
-    protected void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+    }
+
+    public void onSearchLoadingUpdate(boolean z) {
+    }
+
+    public void setTopPadding(int i) {
+        this.topPadding = i;
     }
 }

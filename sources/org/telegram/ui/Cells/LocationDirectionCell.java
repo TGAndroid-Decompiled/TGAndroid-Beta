@@ -6,49 +6,43 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BadWayToMakeButtonRound;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 
-public class LocationDirectionCell extends FrameLayout {
-    private SimpleTextView buttonTextView;
-    private FrameLayout frameLayout;
-    private final Theme.ResourcesProvider resourcesProvider;
+public final class LocationDirectionCell extends FrameLayout {
+    public final FrameLayout frameLayout;
 
     public LocationDirectionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.resourcesProvider = resourcesProvider;
         FrameLayout frameLayout = new FrameLayout(context);
         this.frameLayout = frameLayout;
-        frameLayout.setBackground(Theme.AdaptiveRipple.filledRect(getThemedColor(Theme.key_featuredStickers_addButton), 8.0f));
-        addView(this.frameLayout, LayoutHelper.createFrame(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
+        int color = Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider);
+        frameLayout.setBackground(Theme.AdaptiveRipple.createRect(new float[]{8.0f}, color, Theme.AdaptiveRipple.calcRippleColor(color)));
+        addView(frameLayout, LayoutHelper.createFrame(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
-        this.buttonTextView = simpleTextView;
         simpleTextView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        this.buttonTextView.setGravity(17);
-        this.buttonTextView.setDrawablePadding(AndroidUtilities.dp(8.0f));
-        this.buttonTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
-        this.buttonTextView.setTextSize(14);
-        this.buttonTextView.setText(LocaleController.getString(R.string.Directions));
-        this.buttonTextView.setLeftDrawable(R.drawable.filled_directions);
-        this.buttonTextView.setTypeface(AndroidUtilities.bold());
-        this.frameLayout.addView(this.buttonTextView, LayoutHelper.createFrame(-1, -1.0f));
-        BadWayToMakeButtonRound.round(this.frameLayout);
-        ScaleStateListAnimator.apply(this.frameLayout, 0.02f, 1.2f);
+        simpleTextView.setGravity(17);
+        simpleTextView.setDrawablePadding(AndroidUtilities.dp(8.0f));
+        simpleTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
+        simpleTextView.setTextSize(14);
+        simpleTextView.setText(LocaleController.getString(R.string.Directions), false);
+        simpleTextView.setLeftDrawable(R.drawable.filled_directions);
+        simpleTextView.setTypeface(AndroidUtilities.bold());
+        frameLayout.addView(simpleTextView, LayoutHelper.createFrame(-1.0f, -1));
+        frameLayout.setOutlineProvider(ViewOutlineProviderImpl.BOUNDS_ROUND_RECT);
+        frameLayout.setClipToOutline(true);
+        ScaleStateListAnimator.apply(frameLayout, 0.02f, 1.2f);
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(73.0f), 1073741824));
     }
 
     public void setOnButtonClick(View.OnClickListener onClickListener) {
         this.frameLayout.setOnClickListener(onClickListener);
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
     }
 }

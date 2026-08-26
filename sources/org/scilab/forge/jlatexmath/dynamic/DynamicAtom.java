@@ -35,19 +35,6 @@ public class DynamicAtom extends Atom {
         ecFactory = externalConverterFactory;
     }
 
-    public boolean getInsertMode() {
-        return this.insert;
-    }
-
-    public Atom getAtom() {
-        if (!this.refreshed) {
-            this.formula.setLaTeX(this.converter.getLaTeXString(this.externalCode));
-            this.refreshed = true;
-        }
-        Atom atom = this.formula.root;
-        return atom == null ? new EmptyAtom() : atom;
-    }
-
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         ExternalConverter externalConverter = this.converter;
@@ -63,5 +50,18 @@ public class DynamicAtom extends Atom {
             }
         }
         return new StrutBox(0.0f, 0.0f, 0.0f, 0.0f);
+    }
+
+    public Atom getAtom() {
+        if (!this.refreshed) {
+            this.formula.setLaTeX(this.converter.getLaTeXString(this.externalCode));
+            this.refreshed = true;
+        }
+        Atom atom = this.formula.root;
+        return atom == null ? new EmptyAtom() : atom;
+    }
+
+    public boolean getInsertMode() {
+        return this.insert;
     }
 }

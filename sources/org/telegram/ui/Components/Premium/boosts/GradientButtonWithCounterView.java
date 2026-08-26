@@ -9,16 +9,16 @@ import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-public class GradientButtonWithCounterView extends ButtonWithCounterView {
-    private final CellFlickerDrawable flickerDrawable;
-    private boolean incGradient;
-    private float progress;
-    private final RectF rect;
+public final class GradientButtonWithCounterView extends ButtonWithCounterView {
+    public final CellFlickerDrawable flickerDrawable;
+    public boolean incGradient;
+    public float progress;
+    public final RectF rect;
 
-    public GradientButtonWithCounterView(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        super(context, z, resourcesProvider);
+    public GradientButtonWithCounterView(Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(context, resourcesProvider, true);
         this.rect = new RectF();
-        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
+        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(64, 204, 160);
         this.flickerDrawable = cellFlickerDrawable;
         cellFlickerDrawable.animationSpeedScale = 1.2f;
         cellFlickerDrawable.drawFrame = false;
@@ -26,7 +26,7 @@ public class GradientButtonWithCounterView extends ButtonWithCounterView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         if (this.incGradient) {
             float f = this.progress + 0.016f;
             this.progress = f;
@@ -40,11 +40,15 @@ public class GradientButtonWithCounterView extends ButtonWithCounterView {
                 this.incGradient = true;
             }
         }
-        this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * this.progress, 0.0f);
-        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), PremiumGradient.getInstance().getMainGradientPaint());
-        this.flickerDrawable.setParentWidth(getMeasuredWidth());
-        this.flickerDrawable.draw(canvas, this.rect, AndroidUtilities.dp(8.0f), null);
+        RectF rectF = this.rect;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        PremiumGradient premiumGradient = PremiumGradient.getInstance();
+        premiumGradient.mainGradient.gradientMatrix(0, (-getMeasuredWidth()) * 0.1f * this.progress, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), PremiumGradient.getInstance().getMainGradientPaint());
+        int measuredWidth = getMeasuredWidth();
+        CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
+        cellFlickerDrawable.parentWidth = measuredWidth;
+        cellFlickerDrawable.draw(AndroidUtilities.dp(8.0f), canvas, rectF, null);
         super.onDraw(canvas);
         invalidate();
     }

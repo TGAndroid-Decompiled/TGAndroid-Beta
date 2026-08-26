@@ -8,31 +8,10 @@ public class KeepAliveJob extends JobIntentService {
     private static volatile CountDownLatch countDownLatch;
     private static volatile boolean startingJob;
     private static final Object sync = new Object();
-    private static Runnable finishJobByTimeoutRunnable = new KeepAliveJob$$ExternalSyntheticLambda0();
+    private static Runnable finishJobByTimeoutRunnable = new Emoji$$ExternalSyntheticLambda1(9);
 
-    public static void startJob() {
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                KeepAliveJob.$r8$lambda$KunmSAUOG7za9CVFvrm3r_2vjUE();
-            }
-        });
-    }
-
-    public static void $r8$lambda$KunmSAUOG7za9CVFvrm3r_2vjUE() {
-        if (startingJob || countDownLatch != null) {
-            return;
-        }
-        try {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("starting keep-alive job");
-            }
-            synchronized (sync) {
-                startingJob = true;
-            }
-            JobIntentService.enqueueWork(ApplicationLoader.applicationContext, KeepAliveJob.class, 1000, new Intent());
-        } catch (Exception unused) {
-        }
+    public static void finishJob() {
+        Utilities.globalQueue.postRunnable(new Emoji$$ExternalSyntheticLambda1(9));
     }
 
     public static void finishJobInternal() {
@@ -56,12 +35,28 @@ public class KeepAliveJob extends JobIntentService {
         }
     }
 
-    public static void finishJob() {
-        Utilities.globalQueue.postRunnable(new KeepAliveJob$$ExternalSyntheticLambda0());
+    public static void lambda$startJob$0() {
+        if (startingJob || countDownLatch != null) {
+            return;
+        }
+        try {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("starting keep-alive job");
+            }
+            synchronized (sync) {
+                startingJob = true;
+            }
+            JobIntentService.enqueueWork(ApplicationLoader.applicationContext, KeepAliveJob.class, 1000, new Intent());
+        } catch (Exception unused) {
+        }
+    }
+
+    public static void startJob() {
+        Utilities.globalQueue.postRunnable(new Emoji$$ExternalSyntheticLambda1(10));
     }
 
     @Override
-    protected void onHandleWork(Intent intent) {
+    public void onHandleWork(Intent intent) {
         synchronized (sync) {
             try {
                 if (startingJob) {

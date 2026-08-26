@@ -10,35 +10,8 @@ public class FencedAtom extends Atom {
     private final List<MiddleAtom> middle;
     private SymbolAtom right;
 
-    @Override
-    public int getLeftType() {
-        return 7;
-    }
-
-    @Override
-    public int getRightType() {
-        return 7;
-    }
-
     public FencedAtom(Atom atom, SymbolAtom symbolAtom, SymbolAtom symbolAtom2) {
         this(atom, symbolAtom, null, symbolAtom2);
-    }
-
-    public FencedAtom(Atom atom, SymbolAtom symbolAtom, List<MiddleAtom> list, SymbolAtom symbolAtom2) {
-        this.left = null;
-        this.right = null;
-        if (atom == null) {
-            this.base = new RowAtom();
-        } else {
-            this.base = atom;
-        }
-        if (symbolAtom == null || !symbolAtom.getName().equals("normaldot")) {
-            this.left = symbolAtom;
-        }
-        if (symbolAtom2 == null || !symbolAtom2.getName().equals("normaldot")) {
-            this.right = symbolAtom2;
-        }
-        this.middle = list;
     }
 
     private static void center(Box box, float f) {
@@ -91,5 +64,32 @@ public class FencedAtom extends Atom {
             horizontalBox.add(boxCreate3);
         }
         return horizontalBox;
+    }
+
+    @Override
+    public int getLeftType() {
+        return 7;
+    }
+
+    @Override
+    public int getRightType() {
+        return 7;
+    }
+
+    public FencedAtom(Atom atom, SymbolAtom symbolAtom, List<MiddleAtom> list, SymbolAtom symbolAtom2) {
+        this.left = null;
+        this.right = null;
+        if (atom == null) {
+            this.base = new RowAtom();
+        } else {
+            this.base = atom;
+        }
+        if (symbolAtom == null || !symbolAtom.getName().equals("normaldot")) {
+            this.left = symbolAtom;
+        }
+        if (symbolAtom2 == null || !symbolAtom2.getName().equals("normaldot")) {
+            this.right = symbolAtom2;
+        }
+        this.middle = list;
     }
 }

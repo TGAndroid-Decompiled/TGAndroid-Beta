@@ -11,50 +11,38 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 
-public class ScamDrawable extends Drawable {
-    int alpha;
-    int colorAlpha;
-    private int currentType;
-    private String text;
-    private TextPaint textPaint;
-    private int textWidth;
-    private RectF rect = new RectF();
-    private Paint paint = new Paint(1);
+public final class ScamDrawable extends Drawable {
+    public final int alpha;
+    public int colorAlpha;
+    public final int currentType;
+    public final Paint paint;
+    public final RectF rect = new RectF();
+    public String text;
+    public final TextPaint textPaint;
+    public int textWidth;
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public ScamDrawable(int i, int i2) {
+    public ScamDrawable(int i) {
+        Paint paint = new Paint(1);
+        this.paint = paint;
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         this.colorAlpha = 255;
         this.alpha = 255;
-        this.currentType = i2;
-        textPaint.setTextSize(AndroidUtilities.dp(i));
-        this.textPaint.setTypeface(AndroidUtilities.bold());
-        this.paint.setStyle(Paint.Style.STROKE);
-        this.paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        if (i2 == 0) {
+        this.currentType = i;
+        textPaint.setTextSize(AndroidUtilities.dp(11));
+        textPaint.setTypeface(AndroidUtilities.bold());
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        if (i == 0) {
             this.text = LocaleController.getString(R.string.ScamMessage);
         } else {
             this.text = LocaleController.getString(R.string.FakeMessage);
         }
-        this.textWidth = (int) Math.ceil(this.textPaint.measureText(this.text));
+        this.textWidth = (int) Math.ceil(textPaint.measureText(this.text));
     }
 
-    public void checkText() {
-        String string;
-        if (this.currentType == 0) {
-            string = LocaleController.getString(R.string.ScamMessage);
-        } else {
-            string = LocaleController.getString(R.string.FakeMessage);
-        }
+    public final void checkText() {
+        String string = this.currentType == 0 ? LocaleController.getString(R.string.ScamMessage) : LocaleController.getString(R.string.FakeMessage);
         if (string.equals(this.text)) {
             return;
         }
@@ -62,35 +50,45 @@ public class ScamDrawable extends Drawable {
         this.textWidth = (int) Math.ceil(this.textPaint.measureText(string));
     }
 
-    public void setColor(int i) {
+    @Override
+    public final void draw(Canvas canvas) {
+        RectF rectF = this.rect;
+        rectF.set(getBounds());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.paint);
+        canvas.drawText(this.text, rectF.left + AndroidUtilities.dp(5.0f), rectF.top + AndroidUtilities.dp(12.0f), this.textPaint);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(16.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(10.0f) + this.textWidth;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        if (this.alpha != i) {
+            int i2 = (int) ((i / 255.0f) * this.colorAlpha);
+            this.paint.setAlpha(i2);
+            this.textPaint.setAlpha(i2);
+        }
+    }
+
+    public final void setColor(int i) {
         this.textPaint.setColor(i);
         this.paint.setColor(i);
         this.colorAlpha = Color.alpha(i);
     }
 
     @Override
-    public void setAlpha(int i) {
-        if (this.alpha != i) {
-            int i2 = (int) (this.colorAlpha * (i / 255.0f));
-            this.paint.setAlpha(i2);
-            this.textPaint.setAlpha(i2);
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return this.textWidth + AndroidUtilities.dp(10.0f);
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(16.0f);
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        this.rect.set(getBounds());
-        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.paint);
-        canvas.drawText(this.text, this.rect.left + AndroidUtilities.dp(5.0f), this.rect.top + AndroidUtilities.dp(12.0f), this.textPaint);
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

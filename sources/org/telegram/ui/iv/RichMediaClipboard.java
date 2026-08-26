@@ -1,31 +1,36 @@
 package org.telegram.ui.iv;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import org.telegram.tgnet.TLRPC;
 
 public abstract class RichMediaClipboard {
-    private static final HashMap photos = new HashMap();
-    private static final HashMap documents = new HashMap();
+    public static final HashMap photos = new HashMap();
+    public static final HashMap documents = new HashMap();
 
-    public static synchronized void set(List list, List list2) {
+    public static synchronized void set(ArrayList arrayList, ArrayList arrayList2) {
         try {
             photos.clear();
             documents.clear();
-            if (list != null) {
-                Iterator it = list.iterator();
-                while (it.hasNext()) {
-                    TLRPC.Photo photo = (TLRPC.Photo) it.next();
+            int i = 0;
+            if (arrayList != null) {
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    TLRPC.Photo photo = (TLRPC.Photo) obj;
                     if (photo != null) {
                         photos.put(Long.valueOf(photo.id), photo);
                     }
                 }
             }
-            if (list2 != null) {
-                Iterator it2 = list2.iterator();
-                while (it2.hasNext()) {
-                    TLRPC.Document document = (TLRPC.Document) it2.next();
+            if (arrayList2 != null) {
+                int size2 = arrayList2.size();
+                while (i < size2) {
+                    Object obj2 = arrayList2.get(i);
+                    i++;
+                    TLRPC.Document document = (TLRPC.Document) obj2;
                     if (document != null) {
                         documents.put(Long.valueOf(document.id), document);
                     }
@@ -34,19 +39,5 @@ public abstract class RichMediaClipboard {
         } catch (Throwable th) {
             throw th;
         }
-    }
-
-    public static synchronized TLRPC.Photo photo(long j) {
-        if (j == 0) {
-            return null;
-        }
-        return (TLRPC.Photo) photos.get(Long.valueOf(j));
-    }
-
-    public static synchronized TLRPC.Document document(long j) {
-        if (j == 0) {
-            return null;
-        }
-        return (TLRPC.Document) documents.get(Long.valueOf(j));
     }
 }

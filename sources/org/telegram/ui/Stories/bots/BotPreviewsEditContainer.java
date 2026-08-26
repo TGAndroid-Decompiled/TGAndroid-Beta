@@ -1,32 +1,27 @@
 package org.telegram.ui.Stories.bots;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
-import android.text.Layout;
+import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
-import android.view.MotionEvent;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.activity.OnBackPressedDispatcher$$ExternalSyntheticNonNull0;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.appcompat.view.menu.BaseMenuWrapper;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
-import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -35,6 +30,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.NotificationsController$$ExternalSyntheticOutline1;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.TranslateController;
@@ -43,119 +39,971 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.SharedPhotoVideoCell;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
+import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda0;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.ChatAttachAlert;
+import org.telegram.ui.Components.ChatAttachAlert$$ExternalSyntheticLambda7;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.ExtendedGridLayoutManager;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SharedMediaLayout;
-import org.telegram.ui.Components.Size;
 import org.telegram.ui.Components.StickerEmptyView;
+import org.telegram.ui.Components.StickersAlert;
 import org.telegram.ui.Components.TranslateAlert2;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
-import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.IntroActivity;
+import org.telegram.ui.LinkManager$$ExternalSyntheticLambda1;
+import org.telegram.ui.ProfileStoriesCollectionTabs;
+import org.telegram.ui.Stars.BotStarsActivity;
+import org.telegram.ui.Stories.LivePlayer$1$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.Stories.StoriesListPlaceProvider;
+import org.telegram.ui.Stories.StoriesViewPager$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
+import org.telegram.ui.Stories.recorder.StoryRecorder$$ExternalSyntheticLambda7;
+import org.telegram.ui.ThemePreviewActivity;
+import org.telegram.ui.TodoItemMenu;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda5;
+import org.telegram.ui.TopicsFragment$$ExternalSyntheticLambda9;
+import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
+import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
 
 public abstract class BotPreviewsEditContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    private static LongSparseArray attachedContainers;
-    private static LongSparseArray cachedLists;
-    private final long bot_id;
-    private final int currentAccount;
-    private final BaseFragment fragment;
-    private final ArrayList langLists;
-    private final ArrayList localLangs;
-    private final StoriesController.BotPreviewsList mainList;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private int setColumnsCount;
-    private Boolean shownTabs;
-    private float tabsAlpha;
-    private ValueAnimator tabsAnimator;
-    private final ViewPagerFixed.TabsView tabsView;
-    private final ViewPagerFixed viewPager;
-    private int visibleHeight;
+    public static LongSparseArray attachedContainers;
+    public static LongSparseArray cachedLists;
+    public final long bot_id;
+    public final int currentAccount;
+    public final BaseFragment fragment;
+    public final ArrayList langLists;
+    public final ArrayList localLangs;
+    public final StoriesController.BotPreviewsList mainList;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public int setColumnsCount;
+    public Boolean shownTabs;
+    public float tabsAlpha;
+    public ValueAnimator tabsAnimator;
+    public final ViewPagerFixed.AnonymousClass3 tabsView;
+    public final ProfileStoriesCollectionTabs.AnonymousClass1 viewPager;
+    public int visibleHeight;
 
-    public int getStartedTrackingX() {
-        return 0;
-    }
+    public final class BotPreviewsEditLangContainer extends FrameLayout {
+        public static final int $r8$clinit = 0;
+        public final AnonymousClass7 adapter;
+        public boolean allowStoriesSingleColumn;
+        public int animateToColumnsCount;
+        public boolean columnsAnimation;
+        public float columnsAnimationProgress;
+        public int columnsCount;
+        public final StickerEmptyView emptyView;
+        public final ButtonWithCounterView emptyViewButton2;
+        public final IntroActivity.AnonymousClass4 emptyViewOr;
+        public final FooterView footer;
+        public boolean isInPinchToZoomTouchMode;
+        public final DefaultItemAnimator itemAnimator;
+        public final UniversalRecyclerView.AnonymousClass6 layoutManager;
+        public StoriesController.BotPreviewsList list;
+        public final AnonymousClass3 listView;
+        public boolean maybePinchToZoomTouchMode;
+        public boolean maybePinchToZoomTouchMode2;
+        public int pinchCenterOffset;
+        public int pinchCenterPosition;
+        public int pinchCenterX;
+        public float pinchScale;
+        public boolean pinchScaleUp;
+        public float pinchStartDistance;
+        public int pointerId1;
+        public int pointerId2;
+        public final AnonymousClass8 progressView;
+        public final Rect rect;
+        public final ItemTouchHelper reorder;
+        public boolean storiesColumnsCountSet;
+        public final StoriesAdapter supportingAdapter;
+        public final StickersAlert.AnonymousClass7 supportingLayoutManager;
+        public final SharedMediaLayout.InternalListView supportingListView;
+        public final SharedMediaLayout.AnonymousClass12 this$0;
 
-    protected abstract boolean isActionModeShowed();
+        public final class AnonymousClass2 extends BaseMenuWrapper {
+            public final int $r8$classId;
+            public final BotPreviewsEditLangContainer this$1;
 
-    protected abstract boolean isSelected(MessageObject messageObject);
+            public AnonymousClass2(BotPreviewsEditLangContainer botPreviewsEditLangContainer, int i) {
+                this.$r8$classId = i;
+                this.this$1 = botPreviewsEditLangContainer;
+            }
 
-    public abstract void onSelectedTabChanged();
+            @Override
+            public final int getSpanSize(int i) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        this.this$1.adapter.getClass();
+                        break;
+                    default:
+                        this.this$1.adapter.getClass();
+                        break;
+                }
+                return 1;
+            }
+        }
 
-    protected abstract boolean select(MessageObject messageObject);
+        public final class AnonymousClass7 extends StoriesAdapter {
+            public AnonymousClass7(Context context) {
+                super(context);
+            }
 
-    protected abstract boolean unselect(MessageObject messageObject);
-
-    public static void push(int i, long j, String str, TL_bots.botPreviewMedia botpreviewmedia) {
-        LongSparseArray longSparseArray;
-        BotPreviewsEditContainer botPreviewsEditContainer;
-        LongSparseArray longSparseArray2;
-        LongSparseArray longSparseArray3 = cachedLists;
-        if (longSparseArray3 != null && (longSparseArray2 = (LongSparseArray) longSparseArray3.get(i)) != null) {
-            StoriesController.BotPreviewsList botPreviewsList = (StoriesController.BotPreviewsList) longSparseArray2.get(j);
-            if (botPreviewsList.currentAccount == i) {
-                if (TextUtils.equals(botPreviewsList.lang_code, str)) {
-                    botPreviewsList.push(botpreviewmedia);
-                } else if (!TextUtils.isEmpty(str) && !botPreviewsList.lang_codes.contains(str)) {
-                    botPreviewsList.lang_codes.add(str);
-                    botPreviewsList.notifyUpdate();
+            @Override
+            public final void notifyDataSetChanged() {
+                super.notifyDataSetChanged();
+                BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
+                if (botPreviewsEditLangContainer.supportingListView.getVisibility() == 0) {
+                    botPreviewsEditLangContainer.supportingAdapter.notifyDataSetChanged();
+                }
+                StickerEmptyView stickerEmptyView = botPreviewsEditLangContainer.emptyView;
+                if (stickerEmptyView != null) {
+                    StoriesController.BotPreviewsList botPreviewsList = this.storiesList;
+                    stickerEmptyView.showProgress(botPreviewsList != null && botPreviewsList.loading, true);
                 }
             }
         }
-        LongSparseArray longSparseArray4 = attachedContainers;
-        if (longSparseArray4 == null || (longSparseArray = (LongSparseArray) longSparseArray4.get(i)) == null || (botPreviewsEditContainer = (BotPreviewsEditContainer) longSparseArray.get(j)) == null) {
-            return;
-        }
-        for (int i2 = 0; i2 < botPreviewsEditContainer.langLists.size(); i2++) {
-            StoriesController.BotPreviewsList botPreviewsList2 = (StoriesController.BotPreviewsList) botPreviewsEditContainer.langLists.get(i2);
-            if (botPreviewsList2.currentAccount == i && TextUtils.equals(botPreviewsList2.lang_code, str)) {
-                botPreviewsList2.push(botpreviewmedia);
+
+        public final class FooterView extends LinearLayout {
+            public final ButtonWithCounterView button2View;
+            public final BotStarsActivity.AnonymousClass6 buttonView;
+            public final IntroActivity.AnonymousClass4 orTextView;
+            public final TextView textView;
+
+            public FooterView(Context context, Theme.ResourcesProvider resourcesProvider) {
+                super(context);
+                setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f));
+                setOrientation(1);
+                TextView textView = new TextView(context);
+                this.textView = textView;
+                int i = Theme.key_windowBackgroundWhiteGrayText;
+                OKLCH.m(i, resourcesProvider, textView, 14.0f);
+                textView.setGravity(17);
+                textView.setTextAlignment(4);
+                addView(textView, LayoutHelper.createLinear(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
+                BotStarsActivity.AnonymousClass6 anonymousClass6 = new BotStarsActivity.AnonymousClass6(1, context, resourcesProvider, true);
+                this.buttonView = anonymousClass6;
+                anonymousClass6.setMinWidth(AndroidUtilities.dp(200.0f));
+                anonymousClass6.setText(LocaleController.getString(R.string.ProfileBotAddPreview), false, true);
+                addView(anonymousClass6, LayoutHelper.createLinear(-2, 44, 17));
+                IntroActivity.AnonymousClass4 anonymousClass4 = new IntroActivity.AnonymousClass4(context, resourcesProvider);
+                this.orTextView = anonymousClass4;
+                anonymousClass4.setTextColor(Theme.getColor(i, resourcesProvider));
+                anonymousClass4.setText(LocaleController.getString(R.string.ProfileBotOr));
+                anonymousClass4.setTextSize(1, 14.0f);
+                anonymousClass4.setTextAlignment(4);
+                anonymousClass4.setGravity(17);
+                anonymousClass4.setTypeface(AndroidUtilities.bold());
+                addView(anonymousClass4, LayoutHelper.createLinear(165, -2, 17, 0, 17, 0, 12));
+                ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, false);
+                this.button2View = buttonWithCounterView;
+                buttonWithCounterView.setMinWidth(AndroidUtilities.dp(200.0f));
+                addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 44, 17));
             }
         }
-    }
 
-    public static void edit(int i, long j, String str, TLRPC.InputMedia inputMedia, TL_bots.botPreviewMedia botpreviewmedia) {
-        LongSparseArray longSparseArray;
-        BotPreviewsEditContainer botPreviewsEditContainer;
-        LongSparseArray longSparseArray2;
-        LongSparseArray longSparseArray3 = cachedLists;
-        if (longSparseArray3 != null && (longSparseArray2 = (LongSparseArray) longSparseArray3.get(i)) != null) {
-            StoriesController.BotPreviewsList botPreviewsList = (StoriesController.BotPreviewsList) longSparseArray2.get(j);
-            if (botPreviewsList.currentAccount == i) {
-                if (TextUtils.equals(botPreviewsList.lang_code, str)) {
-                    botPreviewsList.edit(inputMedia, botpreviewmedia);
-                } else if (!TextUtils.isEmpty(str) && !botPreviewsList.lang_codes.contains(str)) {
-                    botPreviewsList.lang_codes.add(str);
-                    botPreviewsList.notifyUpdate();
+        public class StoriesAdapter extends RecyclerListView.FastScrollAdapter {
+            public boolean applyingReorder;
+            public final Context context;
+            public SharedPhotoVideoCell2.SharedResources sharedResources;
+            public StoriesController.BotPreviewsList storiesList;
+            public StoriesAdapter supportingAdapter;
+            public final ArrayList uploadingStories = new ArrayList();
+            public final ArrayList lastPinnedIds = new ArrayList();
+
+            public final class AnonymousClass1 extends MessageObject {
+                @Override
+                public final float getProgress() {
+                    return this.uploadingStory.progress;
+                }
+            }
+
+            public StoriesAdapter(Context context) {
+                this.context = context;
+                checkColumns$1();
+            }
+
+            public final boolean canReorder(int i) {
+                if (this.storiesList == null) {
+                    return false;
+                }
+                BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
+                TLRPC.User user = MessagesController.getInstance(botPreviewsEditLangContainer.this$0.currentAccount).getUser(Long.valueOf(botPreviewsEditLangContainer.this$0.bot_id));
+                return user != null && user.bot && user.bot_has_main_app && user.bot_can_edit;
+            }
+
+            public final void checkColumns$1() {
+                if (this.storiesList == null) {
+                    return;
+                }
+                BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
+                if ((!botPreviewsEditLangContainer.storiesColumnsCountSet || (botPreviewsEditLangContainer.allowStoriesSingleColumn && getItemCount() > 1)) && getItemCount() > 0) {
+                    if (getItemCount() < 5) {
+                        int iMax = Math.max(1, getItemCount());
+                        botPreviewsEditLangContainer.columnsCount = iMax;
+                        botPreviewsEditLangContainer.allowStoriesSingleColumn = iMax == 1;
+                    } else if (botPreviewsEditLangContainer.allowStoriesSingleColumn || botPreviewsEditLangContainer.columnsCount == 1) {
+                        botPreviewsEditLangContainer.allowStoriesSingleColumn = false;
+                        botPreviewsEditLangContainer.columnsCount = Math.max(2, SharedConfig.storiesColumnsCount);
+                    }
+                    botPreviewsEditLangContainer.layoutManager.setSpanCount(botPreviewsEditLangContainer.columnsCount);
+                    botPreviewsEditLangContainer.storiesColumnsCountSet = true;
+                }
+            }
+
+            @Override
+            public final int getItemCount() {
+                if (this.storiesList == null) {
+                    return 0;
+                }
+                return this.storiesList.messageObjects.size() + this.uploadingStories.size();
+            }
+
+            @Override
+            public final int getItemViewType(int i) {
+                return 19;
+            }
+
+            @Override
+            public final String getLetter(int i) {
+                MessageObject messageObject;
+                TL_stories.StoryItem storyItem;
+                StoriesController.BotPreviewsList botPreviewsList = this.storiesList;
+                if (botPreviewsList == null || i < 0 || i >= botPreviewsList.messageObjects.size() || (messageObject = (MessageObject) this.storiesList.messageObjects.get(i)) == null || (storyItem = messageObject.storyItem) == null) {
+                    return null;
+                }
+                return LocaleController.formatYearMont(storyItem.date, true);
+            }
+
+            @Override
+            public final void getPositionForScrollProgress(RecyclerListView recyclerListView, float f, int[] iArr) {
+                int measuredHeight = recyclerListView.getChildAt(0).getMeasuredHeight();
+                StoriesAdapter storiesAdapter = this.supportingAdapter;
+                BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
+                int i = this == storiesAdapter ? botPreviewsEditLangContainer.animateToColumnsCount : botPreviewsEditLangContainer.columnsCount;
+                int iCeil = (int) (Math.ceil(getItemCount() / i) * ((double) measuredHeight));
+                int measuredHeight2 = recyclerListView.getMeasuredHeight() - recyclerListView.getPaddingTop();
+                if (measuredHeight == 0) {
+                    iArr[1] = 0;
+                    iArr[0] = 0;
+                } else {
+                    float f2 = f * (iCeil - measuredHeight2);
+                    iArr[0] = ((int) (f2 / measuredHeight)) * i;
+                    iArr[1] = ((int) f2) % measuredHeight;
+                }
+            }
+
+            @Override
+            public final int getTotalItemsCount() {
+                return getItemCount();
+            }
+
+            @Override
+            public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+                return false;
+            }
+
+            @Override
+            public void notifyDataSetChanged() {
+                StoriesController.BotPreviewsList botPreviewsList = this.storiesList;
+                boolean z = botPreviewsList != null;
+                BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
+                if (z) {
+                    ArrayList arrayList = this.uploadingStories;
+                    arrayList.clear();
+                    ArrayList arrayList2 = (ArrayList) MessagesController.getInstance(this.storiesList.currentAccount).getStoriesController().uploadingStoriesByDialogId.get(botPreviewsEditLangContainer.this$0.bot_id);
+                    if (arrayList2 != null) {
+                        for (int i = 0; i < arrayList2.size(); i++) {
+                            StoriesController.UploadingStory uploadingStory = (StoriesController.UploadingStory) arrayList2.get(i);
+                            StoryEntry storyEntry = uploadingStory.entry;
+                            if (storyEntry != null && !storyEntry.isEdit && TextUtils.equals(storyEntry.botLang, botPreviewsList.lang_code)) {
+                                arrayList.add(uploadingStory);
+                            }
+                        }
+                    }
+                }
+                this.mObservable.notifyChanged();
+                StoriesAdapter storiesAdapter = this.supportingAdapter;
+                if (storiesAdapter != null) {
+                    storiesAdapter.notifyDataSetChanged();
+                }
+                if (this != botPreviewsEditLangContainer.supportingAdapter) {
+                    checkColumns$1();
+                    botPreviewsEditLangContainer.updateFooter();
+                }
+            }
+
+            @Override
+            public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                if (this.storiesList == null) {
+                    return;
+                }
+                View view = viewHolder.itemView;
+                if (view instanceof SharedPhotoVideoCell2) {
+                    SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) view;
+                    sharedPhotoVideoCell2.isStory = true;
+                    ArrayList arrayList = this.uploadingStories;
+                    BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
+                    if (i >= 0 && i < arrayList.size()) {
+                        StoriesController.UploadingStory uploadingStory = (StoriesController.UploadingStory) arrayList.get(i);
+                        sharedPhotoVideoCell2.isStoryPinned = false;
+                        if (uploadingStory.sharedMessageObject == null) {
+                            TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
+                            long j = uploadingStory.random_id;
+                            int i2 = (int) (j ^ (j >>> 32));
+                            tL_storyItem.messageId = i2;
+                            tL_storyItem.id = i2;
+                            tL_storyItem.attachPath = uploadingStory.firstFramePath;
+                            AnonymousClass1 anonymousClass1 = new AnonymousClass1(this.storiesList.currentAccount, tL_storyItem);
+                            uploadingStory.sharedMessageObject = anonymousClass1;
+                            anonymousClass1.uploadingStory = uploadingStory;
+                        }
+                        sharedPhotoVideoCell2.setMessageObject(uploadingStory.sharedMessageObject, this == this.supportingAdapter ? botPreviewsEditLangContainer.animateToColumnsCount : botPreviewsEditLangContainer.columnsCount, false);
+                        sharedPhotoVideoCell2.isStory = true;
+                        sharedPhotoVideoCell2.setReorder(false);
+                        sharedPhotoVideoCell2.setChecked(false, false);
+                        return;
+                    }
+                    int size = i - arrayList.size();
+                    if (size < 0 || size >= this.storiesList.messageObjects.size()) {
+                        sharedPhotoVideoCell2.isStoryPinned = false;
+                        sharedPhotoVideoCell2.setMessageObject(null, this == this.supportingAdapter ? botPreviewsEditLangContainer.animateToColumnsCount : botPreviewsEditLangContainer.columnsCount, false);
+                        sharedPhotoVideoCell2.isStory = true;
+                        return;
+                    }
+                    MessageObject messageObject = (MessageObject) this.storiesList.messageObjects.get(size);
+                    sharedPhotoVideoCell2.isStoryPinned = messageObject != null && this.storiesList.isPinned(messageObject.getId());
+                    sharedPhotoVideoCell2.setReorder(true);
+                    sharedPhotoVideoCell2.setMessageObject(messageObject, this == this.supportingAdapter ? botPreviewsEditLangContainer.animateToColumnsCount : botPreviewsEditLangContainer.columnsCount, false);
+                    SharedMediaLayout.AnonymousClass12 anonymousClass12 = botPreviewsEditLangContainer.this$0;
+                    if (!SharedMediaLayout.this.isActionModeShowed || messageObject == null) {
+                        sharedPhotoVideoCell2.setChecked(false, false);
+                    } else {
+                        sharedPhotoVideoCell2.setChecked(anonymousClass12.isSelected(messageObject), true);
+                    }
+                }
+            }
+
+            @Override
+            public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                SharedPhotoVideoCell2.SharedResources sharedResources = this.sharedResources;
+                BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
+                if (sharedResources == null) {
+                    this.sharedResources = new SharedPhotoVideoCell2.SharedResources(viewGroup.getContext(), botPreviewsEditLangContainer.this$0.resourcesProvider);
+                }
+                SharedPhotoVideoCell2 sharedPhotoVideoCell2 = new SharedPhotoVideoCell2(this.context, this.sharedResources, botPreviewsEditLangContainer.this$0.currentAccount);
+                sharedPhotoVideoCell2.check2 = true;
+                sharedPhotoVideoCell2.setGradientView(null);
+                sharedPhotoVideoCell2.isStory = true;
+                return new RecyclerListView.Holder(sharedPhotoVideoCell2);
+            }
+
+            @Override
+            public final void onFastScrollSingleTap() {
+            }
+        }
+
+        public BotPreviewsEditLangContainer(SharedMediaLayout.AnonymousClass12 anonymousClass12, Context context) {
+            super(context);
+            this.this$0 = anonymousClass12;
+            this.columnsCount = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
+            this.animateToColumnsCount = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
+            this.allowStoriesSingleColumn = false;
+            this.storiesColumnsCountSet = false;
+            this.rect = new Rect();
+            UniversalRecyclerView.AnonymousClass6 anonymousClass6 = new UniversalRecyclerView.AnonymousClass6();
+            this.layoutManager = anonymousClass6;
+            anonymousClass6.mSpanSizeLookup = new AnonymousClass2(this, 0);
+            anonymousClass6.setSpanCount(this.columnsCount);
+            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+            this.itemAnimator = defaultItemAnimator;
+            defaultItemAnimator.setDurations(280L);
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
+            defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
+            defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
+            defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+            defaultItemAnimator.mSupportsChangeAnimations = false;
+            ?? r6 = new SharedMediaLayout.SharedMediaListView(context) {
+                @Override
+                public final void dispatchDraw(Canvas canvas) {
+                    super.dispatchDraw(canvas);
+                    int i = 0;
+                    for (int i2 = 0; i2 < getChildCount(); i2++) {
+                        int bottom = getChildAt(i2).getBottom() - getPaddingTop();
+                        if (bottom > i) {
+                            i = bottom;
+                        }
+                    }
+                    float fLerp = i;
+                    BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
+                    if (botPreviewsEditLangContainer.columnsAnimation) {
+                        SharedMediaLayout.InternalListView internalListView = botPreviewsEditLangContainer.supportingListView;
+                        int i3 = 0;
+                        for (int i4 = 0; i4 < internalListView.getChildCount(); i4++) {
+                            int bottom2 = internalListView.getChildAt(i4).getBottom() - internalListView.getPaddingTop();
+                            if (bottom2 > i3) {
+                                i3 = bottom2;
+                            }
+                        }
+                        fLerp = AndroidUtilities.lerp(fLerp, i3, botPreviewsEditLangContainer.columnsAnimationProgress);
+                    }
+                    int i5 = botPreviewsEditLangContainer.adapter.getItemCount() <= 0 ? 8 : 0;
+                    FooterView footerView = botPreviewsEditLangContainer.footer;
+                    footerView.setVisibility(i5);
+                    footerView.setTranslationY(fLerp);
+                }
+
+                @Override
+                public final int getAnimateToColumnsCount() {
+                    return BotPreviewsEditLangContainer.this.animateToColumnsCount;
+                }
+
+                @Override
+                public final float getChangeColumnsProgress() {
+                    return BotPreviewsEditLangContainer.this.columnsAnimationProgress;
+                }
+
+                @Override
+                public final int getColumnsCount() {
+                    return BotPreviewsEditLangContainer.this.columnsCount;
+                }
+
+                @Override
+                public final RecyclerListView.FastScrollAdapter getMovingAdapter() {
+                    BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
+                    if (botPreviewsEditLangContainer.reorder.mActionState != 0 || SharedMediaLayout.this.isActionModeShowed) {
+                        return null;
+                    }
+                    return botPreviewsEditLangContainer.adapter;
+                }
+
+                @Override
+                public final RecyclerListView.FastScrollAdapter getSupportingAdapter() {
+                    return BotPreviewsEditLangContainer.this.supportingAdapter;
+                }
+
+                @Override
+                public final SharedMediaLayout.InternalListView getSupportingListView() {
+                    return BotPreviewsEditLangContainer.this.supportingListView;
+                }
+
+                @Override
+                public final boolean isChangeColumnsAnimation() {
+                    return BotPreviewsEditLangContainer.this.columnsAnimation;
+                }
+
+                @Override
+                public final boolean isStories() {
+                    return true;
+                }
+            };
+            this.listView = r6;
+            r6.setScrollingTouchSlop(1);
+            r6.setPinnedSectionOffsetY(-AndroidUtilities.dp(2.0f));
+            r6.setPadding(0, 0, 0, 0);
+            r6.setItemAnimator(null);
+            r6.setClipToPadding(false);
+            r6.setSectionsType(2);
+            r6.setLayoutManager(anonymousClass6);
+            addView((View) r6, LayoutHelper.createFrame(-1.0f, -1));
+            final int i = 0;
+            r6.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+                public final BotPreviewsEditLangContainer this$1;
+
+                {
+                    this.this$1 = this;
+                }
+
+                @Override
+                public final void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+                    switch (i) {
+                        case 0:
+                            if (!(view instanceof SharedPhotoVideoCell2)) {
+                                rect.left = 0;
+                                rect.top = 0;
+                                rect.bottom = 0;
+                                rect.right = 0;
+                            } else {
+                                SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) view;
+                                BotPreviewsEditLangContainer botPreviewsEditLangContainer = this.this$1;
+                                botPreviewsEditLangContainer.listView.getClass();
+                                int childAdapterPosition = RecyclerView.getChildAdapterPosition(sharedPhotoVideoCell2);
+                                int i2 = botPreviewsEditLangContainer.layoutManager.mSpanCount;
+                                sharedPhotoVideoCell2.isTop = childAdapterPosition < i2;
+                                int i3 = childAdapterPosition % i2;
+                                sharedPhotoVideoCell2.isFirst = i3 == 0;
+                                sharedPhotoVideoCell2.isLast = i3 == i2 - 1;
+                                rect.left = 0;
+                                rect.top = 0;
+                                rect.bottom = 0;
+                                rect.right = 0;
+                            }
+                            break;
+                        default:
+                            if (!(view instanceof SharedPhotoVideoCell2)) {
+                                rect.left = 0;
+                                rect.top = 0;
+                                rect.bottom = 0;
+                                rect.right = 0;
+                            } else {
+                                SharedPhotoVideoCell2 sharedPhotoVideoCell3 = (SharedPhotoVideoCell2) view;
+                                BotPreviewsEditLangContainer botPreviewsEditLangContainer2 = this.this$1;
+                                botPreviewsEditLangContainer2.supportingListView.getClass();
+                                int childAdapterPosition2 = RecyclerView.getChildAdapterPosition(sharedPhotoVideoCell3);
+                                int i4 = botPreviewsEditLangContainer2.supportingLayoutManager.mSpanCount;
+                                sharedPhotoVideoCell3.isTop = childAdapterPosition2 < i4;
+                                int i5 = childAdapterPosition2 % i4;
+                                sharedPhotoVideoCell3.isFirst = i5 == 0;
+                                sharedPhotoVideoCell3.isLast = i5 == i4 - 1;
+                                rect.left = 0;
+                                rect.top = 0;
+                                rect.bottom = 0;
+                                rect.right = 0;
+                            }
+                            break;
+                    }
+                }
+            });
+            r6.setOnItemClickListener(new TopicsFragment$$ExternalSyntheticLambda9(this, 14));
+            r6.setOnItemLongClickListener(new StoriesViewPager$$ExternalSyntheticLambda0(this, 22));
+            SharedMediaLayout.InternalListView internalListView = new SharedMediaLayout.InternalListView(context, null);
+            this.supportingListView = internalListView;
+            StickersAlert.AnonymousClass7 anonymousClass7 = new StickersAlert.AnonymousClass7(this);
+            this.supportingLayoutManager = anonymousClass7;
+            internalListView.setLayoutManager(anonymousClass7);
+            final int i2 = 1;
+            internalListView.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+                public final BotPreviewsEditLangContainer this$1;
+
+                {
+                    this.this$1 = this;
+                }
+
+                @Override
+                public final void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+                    switch (i2) {
+                        case 0:
+                            if (!(view instanceof SharedPhotoVideoCell2)) {
+                                rect.left = 0;
+                                rect.top = 0;
+                                rect.bottom = 0;
+                                rect.right = 0;
+                            } else {
+                                SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) view;
+                                BotPreviewsEditLangContainer botPreviewsEditLangContainer = this.this$1;
+                                botPreviewsEditLangContainer.listView.getClass();
+                                int childAdapterPosition = RecyclerView.getChildAdapterPosition(sharedPhotoVideoCell2);
+                                int i3 = botPreviewsEditLangContainer.layoutManager.mSpanCount;
+                                sharedPhotoVideoCell2.isTop = childAdapterPosition < i3;
+                                int i4 = childAdapterPosition % i3;
+                                sharedPhotoVideoCell2.isFirst = i4 == 0;
+                                sharedPhotoVideoCell2.isLast = i4 == i3 - 1;
+                                rect.left = 0;
+                                rect.top = 0;
+                                rect.bottom = 0;
+                                rect.right = 0;
+                            }
+                            break;
+                        default:
+                            if (!(view instanceof SharedPhotoVideoCell2)) {
+                                rect.left = 0;
+                                rect.top = 0;
+                                rect.bottom = 0;
+                                rect.right = 0;
+                            } else {
+                                SharedPhotoVideoCell2 sharedPhotoVideoCell3 = (SharedPhotoVideoCell2) view;
+                                BotPreviewsEditLangContainer botPreviewsEditLangContainer2 = this.this$1;
+                                botPreviewsEditLangContainer2.supportingListView.getClass();
+                                int childAdapterPosition2 = RecyclerView.getChildAdapterPosition(sharedPhotoVideoCell3);
+                                int i5 = botPreviewsEditLangContainer2.supportingLayoutManager.mSpanCount;
+                                sharedPhotoVideoCell3.isTop = childAdapterPosition2 < i5;
+                                int i6 = childAdapterPosition2 % i5;
+                                sharedPhotoVideoCell3.isFirst = i6 == 0;
+                                sharedPhotoVideoCell3.isLast = i6 == i5 - 1;
+                                rect.left = 0;
+                                rect.top = 0;
+                                rect.bottom = 0;
+                                rect.right = 0;
+                            }
+                            break;
+                    }
+                }
+            });
+            anonymousClass7.setSpanCount(this.animateToColumnsCount);
+            internalListView.setVisibility(8);
+            addView(internalListView, LayoutHelper.createFrame(-1.0f, -1));
+            AnonymousClass7 anonymousClass8 = new AnonymousClass7(context);
+            this.adapter = anonymousClass8;
+            r6.setAdapter(anonymousClass8);
+            StoriesAdapter storiesAdapter = new StoriesAdapter(getContext());
+            anonymousClass8.supportingAdapter = storiesAdapter;
+            this.supportingAdapter = storiesAdapter;
+            internalListView.setAdapter(storiesAdapter);
+            ?? r9 = new FlickerLoadingView(context) {
+                public final Paint backgroundPaint = new Paint();
+
+                @Override
+                public final int getColumnsCount() {
+                    return BotPreviewsEditLangContainer.this.columnsCount;
+                }
+
+                @Override
+                public final int getViewType() {
+                    setIsSingleCell(false);
+                    return 27;
+                }
+
+                @Override
+                public final void onDraw(Canvas canvas) {
+                    Paint paint = this.backgroundPaint;
+                    paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, BotPreviewsEditLangContainer.this.this$0.resourcesProvider));
+                    canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
+                    super.onDraw(canvas);
+                }
+            };
+            this.progressView = r9;
+            r9.showDate = false;
+            StickerEmptyView stickerEmptyView = new StickerEmptyView(1, null, context, r9);
+            this.emptyView = stickerEmptyView;
+            stickerEmptyView.setVisibility(8);
+            stickerEmptyView.setAnimateLayoutChange(true);
+            addView(stickerEmptyView, LayoutHelper.createFrame(-1.0f, -1));
+            stickerEmptyView.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(29));
+            stickerEmptyView.showProgress(true, false);
+            stickerEmptyView.stickerView.setVisibility(8);
+            stickerEmptyView.title.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
+            stickerEmptyView.subtitle.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(anonymousClass12.currentAccount).botPreviewMediasMax, new Object[0]));
+            ButtonWithCounterView buttonWithCounterView = stickerEmptyView.button;
+            buttonWithCounterView.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
+            buttonWithCounterView.setVisibility(0);
+            buttonWithCounterView.setOnClickListener(new BotPreviewsEditContainer$BotPreviewsEditLangContainer$$ExternalSyntheticLambda3(this, 0));
+            IntroActivity.AnonymousClass4 anonymousClass4 = new IntroActivity.AnonymousClass4(this, context);
+            this.emptyViewOr = anonymousClass4;
+            int i3 = Theme.key_windowBackgroundWhiteGrayText;
+            Theme.ResourcesProvider resourcesProvider = anonymousClass12.resourcesProvider;
+            anonymousClass4.setTextColor(Theme.getColor(i3, resourcesProvider));
+            anonymousClass4.setText(LocaleController.getString(R.string.ProfileBotOr));
+            anonymousClass4.setTextSize(1, 14.0f);
+            anonymousClass4.setTextAlignment(4);
+            anonymousClass4.setGravity(17);
+            anonymousClass4.setTypeface(AndroidUtilities.bold());
+            LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(165, -2, 17, 0, 17, 0, 12);
+            StickerEmptyView.AnonymousClass2 anonymousClass2 = stickerEmptyView.linearLayout;
+            anonymousClass2.addView(anonymousClass4, layoutParamsCreateLinear);
+            ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, resourcesProvider, false);
+            this.emptyViewButton2 = buttonWithCounterView2;
+            buttonWithCounterView2.setMinWidth(AndroidUtilities.dp(200.0f));
+            anonymousClass2.addView(buttonWithCounterView2, LayoutHelper.createLinear(-2, 44, 17));
+            stickerEmptyView.addView((View) r9, 0, LayoutHelper.createFrame(-1.0f, -1));
+            r6.setEmptyView(stickerEmptyView);
+            r6.animateEmptyView = true;
+            r6.emptyViewAnimationType = 0;
+            new SparseArray();
+            new HashMap();
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ViewPagerFixed.TabsView.AnonymousClass6(this, 6));
+            this.reorder = itemTouchHelper;
+            itemTouchHelper.attachToRecyclerView(r6);
+            FooterView footerView = new FooterView(context, resourcesProvider);
+            this.footer = footerView;
+            addView(footerView, LayoutHelper.createFrame(-1, -2, 48));
+        }
+
+        @Override
+        public final boolean drawChild(Canvas canvas, View view, long j) {
+            if (view == this.supportingListView) {
+                return true;
+            }
+            return super.drawChild(canvas, view, j);
+        }
+
+        public final void finishPinchToMediaColumnsCount() {
+            if (this.columnsAnimation) {
+                float f = this.columnsAnimationProgress;
+                SharedMediaLayout.InternalListView internalListView = this.supportingListView;
+                AnonymousClass3 anonymousClass3 = this.listView;
+                if (f != 1.0f) {
+                    if (f == 0.0f) {
+                        this.columnsAnimation = false;
+                        internalListView.setVisibility(8);
+                        anonymousClass3.invalidate();
+                        return;
+                    }
+                    boolean z = f > 0.2f;
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
+                    valueAnimatorOfFloat.addUpdateListener(new ChatActivity.AnonymousClass133(this, 14));
+                    valueAnimatorOfFloat.addListener(new TodoItemMenu.AnonymousClass15(5, this, z));
+                    valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.DEFAULT);
+                    valueAnimatorOfFloat.setDuration(200L);
+                    valueAnimatorOfFloat.start();
+                    return;
+                }
+                this.columnsAnimation = false;
+                int i = this.animateToColumnsCount;
+                this.columnsCount = i;
+                this.this$0.setColumnsCount = i;
+                SharedConfig.setStoriesColumnsCount(i);
+                AnonymousClass7 anonymousClass7 = this.adapter;
+                int itemCount = anonymousClass7.getItemCount();
+                internalListView.setVisibility(8);
+                int i2 = this.columnsCount;
+                UniversalRecyclerView.AnonymousClass6 anonymousClass6 = this.layoutManager;
+                anonymousClass6.setSpanCount(i2);
+                anonymousClass3.invalidateItemDecorations();
+                anonymousClass3.invalidate();
+                if (anonymousClass7.getItemCount() == itemCount) {
+                    AndroidUtilities.updateVisibleRows(anonymousClass3);
+                } else {
+                    anonymousClass7.notifyDataSetChanged();
+                }
+                int i3 = this.pinchCenterPosition;
+                if (i3 >= 0) {
+                    View viewFindViewByPosition = this.supportingLayoutManager.findViewByPosition(i3);
+                    if (viewFindViewByPosition != null) {
+                        this.pinchCenterOffset = viewFindViewByPosition.getTop();
+                    }
+                    anonymousClass6.scrollToPositionWithOffset(this.pinchCenterPosition, (-anonymousClass3.getPaddingTop()) + this.pinchCenterOffset, anonymousClass6.mShouldReverseLayout);
                 }
             }
         }
-        LongSparseArray longSparseArray4 = attachedContainers;
-        if (longSparseArray4 == null || (longSparseArray = (LongSparseArray) longSparseArray4.get(i)) == null || (botPreviewsEditContainer = (BotPreviewsEditContainer) longSparseArray.get(j)) == null) {
-            return;
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            AnonymousClass3 anonymousClass3 = this.listView;
+            anonymousClass3.setPadding(anonymousClass3.getPaddingLeft(), anonymousClass3.topPadding, anonymousClass3.getPaddingRight(), this.footer.getMeasuredHeight() + AndroidUtilities.dp(42.0f));
         }
-        for (int i2 = 0; i2 < botPreviewsEditContainer.langLists.size(); i2++) {
-            StoriesController.BotPreviewsList botPreviewsList2 = (StoriesController.BotPreviewsList) botPreviewsEditContainer.langLists.get(i2);
-            if (botPreviewsList2.currentAccount == i && TextUtils.equals(botPreviewsList2.lang_code, str)) {
-                botPreviewsList2.edit(inputMedia, botpreviewmedia);
+
+        public void setList(StoriesController.BotPreviewsList botPreviewsList) {
+            if (this.list != botPreviewsList) {
+                this.allowStoriesSingleColumn = false;
+                this.storiesColumnsCountSet = false;
+                this.columnsCount = this.this$0.setColumnsCount;
             }
+            this.list = botPreviewsList;
+            AnonymousClass7 anonymousClass7 = this.adapter;
+            anonymousClass7.storiesList = botPreviewsList;
+            if (anonymousClass7 != BotPreviewsEditLangContainer.this.supportingAdapter) {
+                anonymousClass7.checkColumns$1();
+            }
+            anonymousClass7.notifyDataSetChanged();
+            StoriesAdapter storiesAdapter = this.supportingAdapter;
+            storiesAdapter.storiesList = botPreviewsList;
+            if (storiesAdapter != BotPreviewsEditLangContainer.this.supportingAdapter) {
+                storiesAdapter.checkColumns$1();
+            }
+            storiesAdapter.notifyDataSetChanged();
+            updateFooter();
+        }
+
+        public void setVisibleHeight(int i) {
+            float f = (-(getMeasuredHeight() - Math.max(i, AndroidUtilities.dp(280.0f)))) / 2.0f;
+            this.emptyView.setTranslationY(f);
+            setTranslationY(-f);
+        }
+
+        public final void startPinchToMediaColumnsCount(boolean z) {
+            if (this.columnsAnimation || SharedMediaLayout.this.isActionModeShowed) {
+                return;
+            }
+            int i = this.columnsCount + (!z ? 1 : -1);
+            if (i > 6) {
+                i = !z ? 9 : 6;
+            }
+            int iClamp = Utilities.clamp(i, 6, this.allowStoriesSingleColumn ? 1 : 2);
+            this.animateToColumnsCount = iClamp;
+            if (iClamp == this.columnsCount || this.allowStoriesSingleColumn) {
+                return;
+            }
+            SharedMediaLayout.InternalListView internalListView = this.supportingListView;
+            internalListView.setVisibility(0);
+            internalListView.setAdapter(this.supportingAdapter);
+            internalListView.setPadding(internalListView.getPaddingLeft(), 0, internalListView.getPaddingRight(), this.footer.getMeasuredHeight() + AndroidUtilities.dp(42.0f));
+            StickersAlert.AnonymousClass7 anonymousClass7 = this.supportingLayoutManager;
+            anonymousClass7.setSpanCount(iClamp);
+            internalListView.invalidateItemDecorations();
+            anonymousClass7.mSpanSizeLookup = new AnonymousClass2(this, 1);
+            AndroidUtilities.updateVisibleRows(this.listView);
+            this.columnsAnimation = true;
+            this.columnsAnimationProgress = 0.0f;
+            int i2 = this.pinchCenterPosition;
+            if (i2 >= 0) {
+                anonymousClass7.scrollToPositionWithOffset(i2, this.pinchCenterOffset - internalListView.getPaddingTop(), anonymousClass7.mShouldReverseLayout);
+            }
+        }
+
+        public final void updateFooter() {
+            String string;
+            int i = 1;
+            StoriesController.BotPreviewsList botPreviewsList = this.list;
+            int size = botPreviewsList == null ? 0 : botPreviewsList.messageObjects.size();
+            StoriesController.BotPreviewsList botPreviewsList2 = this.list;
+            boolean z = botPreviewsList2 == null || TextUtils.isEmpty(botPreviewsList2.lang_code);
+            int i2 = size > 0 ? 0 : 8;
+            FooterView footerView = this.footer;
+            footerView.setVisibility(i2);
+            String string2 = z ? LocaleController.getString(R.string.ProfileBotPreviewFooterGeneral) : LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, TranslateAlert2.languageName(this.list.lang_code, null, null));
+            String string3 = LocaleController.getString(R.string.ProfileBotAddPreview);
+            LivePlayer$1$$ExternalSyntheticLambda0 livePlayer$1$$ExternalSyntheticLambda0 = new LivePlayer$1$$ExternalSyntheticLambda0(this, 27);
+            if (z || size <= 0) {
+                string = LocaleController.getString(z ? R.string.ProfileBotPreviewFooterCreateTranslation : R.string.ProfileBotPreviewFooterDeleteTranslation);
+            } else {
+                string = null;
+            }
+            TodoItemMenu$$ExternalSyntheticLambda5 todoItemMenu$$ExternalSyntheticLambda5 = (z || size <= 0) ? new TodoItemMenu$$ExternalSyntheticLambda5(10, this, z) : null;
+            footerView.textView.setText(string2);
+            BotStarsActivity.AnonymousClass6 anonymousClass6 = footerView.buttonView;
+            anonymousClass6.setText(string3, false, true);
+            anonymousClass6.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(livePlayer$1$$ExternalSyntheticLambda0, 21));
+            ButtonWithCounterView buttonWithCounterView = footerView.button2View;
+            IntroActivity.AnonymousClass4 anonymousClass4 = footerView.orTextView;
+            if (string == null) {
+                anonymousClass4.setVisibility(8);
+                buttonWithCounterView.setVisibility(8);
+            } else {
+                anonymousClass4.setVisibility(0);
+                buttonWithCounterView.setVisibility(0);
+                buttonWithCounterView.setText(string, false, true);
+                buttonWithCounterView.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(todoItemMenu$$ExternalSyntheticLambda5, 22));
+            }
+            SharedMediaLayout.AnonymousClass12 anonymousClass12 = this.this$0;
+            ButtonWithCounterView buttonWithCounterView2 = this.emptyViewButton2;
+            StickerEmptyView stickerEmptyView = this.emptyView;
+            IntroActivity.AnonymousClass4 anonymousClass5 = this.emptyViewOr;
+            int i3 = anonymousClass12.currentAccount;
+            if (z) {
+                stickerEmptyView.title.setVisibility(0);
+                stickerEmptyView.title.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
+                stickerEmptyView.subtitle.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(i3).botPreviewMediasMax, new Object[0]));
+                stickerEmptyView.button.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
+                anonymousClass5.setVisibility(8);
+                buttonWithCounterView2.setVisibility(8);
+            } else {
+                stickerEmptyView.title.setVisibility(8);
+                stickerEmptyView.subtitle.setText(LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, TranslateAlert2.languageName(this.list.lang_code, null, null)));
+                stickerEmptyView.button.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
+                anonymousClass5.setVisibility(0);
+                buttonWithCounterView2.setVisibility(0);
+                buttonWithCounterView2.setText(LocaleController.getString(R.string.ProfileBotPreviewFooterDeleteTranslation), false, true);
+                buttonWithCounterView2.setOnClickListener(new BotPreviewsEditContainer$BotPreviewsEditLangContainer$$ExternalSyntheticLambda3(this, i));
+            }
+            stickerEmptyView.button.setVisibility(this.adapter.getItemCount() >= MessagesController.getInstance(i3).botPreviewMediasMax ? 8 : 0);
+        }
+    }
+
+    public final class ChooseLanguageSheet extends BottomSheetWithRecyclerListView {
+        public UniversalAdapter adapter;
+        public final int currentAccount;
+        public final String title;
+
+        public final class LanguageView extends LinearLayout {
+            public boolean needDivider;
+            public final TextView subtitle;
+            public final TextView title;
+
+            public final class Factory extends UItem.UItemFactory {
+                public static final int $r8$clinit = 0;
+
+                static {
+                    UItem.UItemFactory.setup(new Factory());
+                }
+
+                @Override
+                public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                    LanguageView languageView = (LanguageView) view;
+                    TranslateController.Language language = (TranslateController.Language) uItem.object;
+                    languageView.title.setText(language.displayName);
+                    languageView.subtitle.setText(language.ownDisplayName);
+                    if (languageView.needDivider != z) {
+                        languageView.invalidate();
+                    }
+                    languageView.needDivider = z;
+                    languageView.setWillNotDraw(!z);
+                }
+
+                @Override
+                public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                    return new LanguageView(context);
+                }
+            }
+
+            public LanguageView(Context context) {
+                super(context);
+                setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+                setOrientation(1);
+                TextView textView = new TextView(context);
+                this.title = textView;
+                textView.setTextSize(1, 16.0f);
+                textView.setTextColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
+                textView.setGravity(LocaleController.isRTL ? 5 : 3);
+                addView(textView, LayoutHelper.createLinear(-1, -2, 51, 0, 7, 0, 0));
+                TextView textView2 = new TextView(context);
+                this.subtitle = textView2;
+                textView2.setTextSize(1, 13.0f);
+                textView2.setTextColor(Theme.getColor(null, Theme.key_dialogTextGray2, false));
+                textView2.setGravity(LocaleController.isRTL ? 5 : 3);
+                addView(textView2, LayoutHelper.createLinear(-1, -2, 51, 0, 4, 0, 0));
+            }
+
+            @Override
+            public final void onDraw(Canvas canvas) {
+                super.onDraw(canvas);
+                if (this.needDivider) {
+                    canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
+                }
+            }
+
+            @Override
+            public final void onMeasure(int i, int i2) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+            }
+        }
+
+        public ChooseLanguageSheet(BaseFragment baseFragment, String str, VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7) {
+            super(baseFragment.getParentActivity(), baseFragment, true, false, false, baseFragment.getResourceProvider());
+            new FrameLayout(getContext());
+            new ImageView(getContext());
+            this.currentAccount = baseFragment.getCurrentAccount();
+            this.title = str;
+            updateTitle$1();
+            this.topPadding = 0.6f;
+            this.showHandle = true;
+            this.handleOffset = true;
+            fixNavigationBar();
+            setSlidingActionBar();
+            RecyclerListView recyclerListView = this.recyclerListView;
+            int i = this.backgroundPaddingLeft;
+            recyclerListView.setPadding(i, 0, i, 0);
+            this.recyclerListView.setOnItemClickListener(new BoostsActivity$$ExternalSyntheticLambda0(22, this, voIPFragment$$ExternalSyntheticLambda7));
+        }
+
+        @Override
+        public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+            UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, false, new LinkManager$$ExternalSyntheticLambda1(this, 25), this.resourcesProvider);
+            this.adapter = universalAdapter;
+            universalAdapter.applyBackground = false;
+            return universalAdapter;
+        }
+
+        @Override
+        public final CharSequence getTitle() {
+            return this.title;
         }
     }
 
@@ -172,7 +1020,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         Theme.ResourcesProvider resourceProvider = baseFragment.getResourceProvider();
         this.resourcesProvider = resourceProvider;
         this.bot_id = j;
-        setBackgroundColor(Theme.blendOver(Theme.getColor(Theme.key_windowBackgroundWhite, resourceProvider), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourceProvider), 0.04f)));
+        setBackgroundColor(Theme.blendOver(Theme.getColor(Theme.key_windowBackgroundWhite, resourceProvider), Theme.multAlpha(0.04f, Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourceProvider))));
         if (cachedLists == null) {
             cachedLists = new LongSparseArray();
         }
@@ -191,257 +1039,283 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             botPreviewsList = botPreviewsList2;
         }
         this.mainList = botPreviewsList;
-        ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context) {
-            private String lastLang;
-
+        final SharedMediaLayout.AnonymousClass12 anonymousClass12 = (SharedMediaLayout.AnonymousClass12) this;
+        ProfileStoriesCollectionTabs.AnonymousClass1 anonymousClass1 = new ProfileStoriesCollectionTabs.AnonymousClass1(anonymousClass12, context);
+        this.viewPager = anonymousClass1;
+        anonymousClass1.setAllowDisallowInterceptTouch(true);
+        anonymousClass1.setAdapter(new ViewPagerFixed.Adapter() {
             @Override
-            protected boolean canScroll(MotionEvent motionEvent) {
-                if (BotPreviewsEditContainer.this.isActionModeShowed()) {
-                    return false;
-                }
-                return super.canScroll(motionEvent);
+            public final void bindView(View view, int i, int i2) {
+                BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) view;
+                SharedMediaLayout.AnonymousClass12 anonymousClass13 = anonymousClass12;
+                StoriesController.BotPreviewsList botPreviewsList3 = i == 0 ? anonymousClass13.mainList : (StoriesController.BotPreviewsList) anonymousClass13.langLists.get(i - 1);
+                botPreviewsList3.loadInternal(null);
+                botPreviewsEditLangContainer.setList(botPreviewsList3);
+                botPreviewsEditLangContainer.setVisibleHeight(anonymousClass13.visibleHeight);
             }
 
             @Override
-            public void onTabAnimationUpdate(boolean z) {
-                String currentLang = BotPreviewsEditContainer.this.getCurrentLang();
-                if (TextUtils.equals(this.lastLang, currentLang)) {
-                    return;
-                }
-                this.lastLang = currentLang;
-                BotPreviewsEditContainer.this.onSelectedTabChanged();
+            public final View createView(int i) {
+                return new BotPreviewsEditLangContainer(anonymousClass12, context);
             }
 
             @Override
-            protected void onTabPageSelected(int i) {
-                String currentLang = BotPreviewsEditContainer.this.getCurrentLang();
-                if (TextUtils.equals(this.lastLang, currentLang)) {
-                    return;
-                }
-                this.lastLang = currentLang;
-                BotPreviewsEditContainer.this.onSelectedTabChanged();
+            public final int getItemCount() {
+                return anonymousClass12.langLists.size() + 1;
             }
 
             @Override
-            protected void onTabScrollEnd(int i) {
-                super.onTabScrollEnd(i);
-                String currentLang = BotPreviewsEditContainer.this.getCurrentLang();
-                if (TextUtils.equals(this.lastLang, currentLang)) {
-                    return;
-                }
-                this.lastLang = currentLang;
-                BotPreviewsEditContainer.this.onSelectedTabChanged();
-            }
-        };
-        this.viewPager = viewPagerFixed;
-        viewPagerFixed.setAllowDisallowInterceptTouch(true);
-        viewPagerFixed.setAdapter(new ViewPagerFixed.Adapter() {
-            @Override
-            public int getItemCount() {
-                return BotPreviewsEditContainer.this.langLists.size() + 1;
-            }
-
-            @Override
-            public View createView(int i) {
-                return BotPreviewsEditContainer.this.new BotPreviewsEditLangContainer(context);
-            }
-
-            @Override
-            public int getItemId(int i) {
+            public final int getItemId(int i) {
                 if (i == 0) {
                     return 0;
                 }
-                return ((StoriesController.BotPreviewsList) BotPreviewsEditContainer.this.langLists.get(i - 1)).lang_code.hashCode();
+                return ((StoriesController.BotPreviewsList) anonymousClass12.langLists.get(i - 1)).lang_code.hashCode();
             }
 
             @Override
-            public void bindView(View view, int i, int i2) {
-                BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) view;
-                StoriesController.BotPreviewsList botPreviewsList3 = i == 0 ? BotPreviewsEditContainer.this.mainList : (StoriesController.BotPreviewsList) BotPreviewsEditContainer.this.langLists.get(i - 1);
-                botPreviewsList3.load(true, 0, null);
-                botPreviewsEditLangContainer.setList(botPreviewsList3);
-                botPreviewsEditLangContainer.setVisibleHeight(BotPreviewsEditContainer.this.visibleHeight);
-            }
-
-            @Override
-            public String getItemTitle(int i) {
-                if (i != 0) {
-                    return TranslateAlert2.languageNameCapital(((StoriesController.BotPreviewsList) BotPreviewsEditContainer.this.langLists.get(i - 1)).lang_code);
+            public final CharSequence getItemTitle(int i) {
+                if (i == 0) {
+                    return LocaleController.getString(R.string.ProfileBotLanguageGeneral);
                 }
-                return LocaleController.getString(R.string.ProfileBotLanguageGeneral);
+                String strLanguageName = TranslateAlert2.languageName(((StoriesController.BotPreviewsList) anonymousClass12.langLists.get(i - 1)).lang_code, null, null);
+                if (strLanguageName == null) {
+                    return null;
+                }
+                return strLanguageName.substring(0, 1).toUpperCase() + strLanguageName.substring(1);
             }
         });
-        addView(viewPagerFixed, LayoutHelper.createFrame(-1, -1, 119));
-        ViewPagerFixed.TabsView tabsViewCreateTabsView = viewPagerFixed.createTabsView(true, 9);
-        this.tabsView = tabsViewCreateTabsView;
-        tabsViewCreateTabsView.tabMarginDp = 12;
-        tabsViewCreateTabsView.setPreTabClick(new Utilities.Callback2Return() {
-            @Override
-            public final Object run(Object obj, Object obj2) {
-                return BotPreviewsEditContainer.m4464$r8$lambda$DqBxhg5FKuU67rHBRd2Z8QOmJs(this.f$0, (Integer) obj, (Integer) obj2);
-            }
-        });
-        addView(tabsViewCreateTabsView, LayoutHelper.createFrame(-1, 42, 48));
+        addView(anonymousClass1, LayoutHelper.createFrame(-1, -1, 119));
+        ViewPagerFixed.AnonymousClass3 anonymousClass3CreateTabsView = anonymousClass1.createTabsView(9, true);
+        this.tabsView = anonymousClass3CreateTabsView;
+        anonymousClass3CreateTabsView.tabMarginDp = 12;
+        anonymousClass3CreateTabsView.setPreTabClick(new StoriesViewPager$$ExternalSyntheticLambda0((SharedMediaLayout.AnonymousClass12) this, 21));
+        addView(anonymousClass3CreateTabsView, LayoutHelper.createFrame(-1, 42, 48));
         updateLangs(false);
     }
 
-    public static Boolean m4464$r8$lambda$DqBxhg5FKuU67rHBRd2Z8QOmJs(BotPreviewsEditContainer botPreviewsEditContainer, Integer num, Integer num2) {
-        botPreviewsEditContainer.getClass();
-        if (num.intValue() == -1) {
-            botPreviewsEditContainer.addTranslation();
-            return Boolean.TRUE;
+    public final void createStory(final String str) {
+        BaseFragment baseFragment = this.fragment;
+        if (baseFragment == null || baseFragment.getParentActivity() == null) {
+            return;
         }
-        return Boolean.FALSE;
-    }
-
-    public void addTranslation() {
-        new ChooseLanguageSheet(this.fragment, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                BotPreviewsEditContainer.$r8$lambda$NRJl3j2Ltd2OMTnuEfZnr91LSlo(this.f$0, (String) obj);
-            }
-        }).show();
-    }
-
-    public static void $r8$lambda$NRJl3j2Ltd2OMTnuEfZnr91LSlo(final BotPreviewsEditContainer botPreviewsEditContainer, final String str) {
-        if (!botPreviewsEditContainer.localLangs.contains(str)) {
-            botPreviewsEditContainer.localLangs.add(str);
-            botPreviewsEditContainer.updateLangs(true);
+        final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(baseFragment.getParentActivity(), baseFragment, false, false, false, this.resourcesProvider);
+        chatAttachAlert.setMaxSelectedPhotos(1, false);
+        chatAttachAlert.storyMediaPicker = true;
+        chatAttachAlert.typeButtonsAvailable = false;
+        chatAttachAlert.selectedTextView.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+        chatAttachAlert.photoLayout.loadGalleryPhotos();
+        int i = Build.VERSION.SDK_INT;
+        if (i == 21 || i == 22) {
+            AndroidUtilities.hideKeyboard(baseFragment.getFragmentView().findFocus());
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
+        chatAttachAlert.delegate = new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
-            public final void run() {
-                BotPreviewsEditContainer.m4465$r8$lambda$WiwNshCu0txWIeAQxYn8rqNx7k(this.f$0, str);
+            public final void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) {
+                StoryRecorder.WindowView windowView;
+                ChatAttachAlert chatAttachAlert2 = chatAttachAlert;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = chatAttachAlert2.photoLayout;
+                if (chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
+                    return;
+                }
+                HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
+                chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
+                if (selectedPhotos.size() != 1) {
+                    return;
+                }
+                Object next = selectedPhotos.values().iterator().next();
+                if (next instanceof MediaController.PhotoEntry) {
+                    StoryEntry storyEntryFromPhotoEntry = StoryEntry.fromPhotoEntry((MediaController.PhotoEntry) next);
+                    BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
+                    storyEntryFromPhotoEntry.botId = botPreviewsEditContainer.bot_id;
+                    String str2 = str;
+                    storyEntryFromPhotoEntry.botLang = str2;
+                    storyEntryFromPhotoEntry.setupMatrix();
+                    StoryRecorder storyRecorder = StoryRecorder.getInstance(botPreviewsEditContainer.fragment.getParentActivity(), botPreviewsEditContainer.currentAccount);
+                    if (!storyRecorder.isShown) {
+                        int i5 = storyRecorder.currentAccount;
+                        if (MessagesController.getInstance(i5).isFrozen()) {
+                            AccountFrozenAlert.show(i5);
+                        } else {
+                            long j3 = botPreviewsEditContainer.bot_id;
+                            storyRecorder.botId = j3;
+                            storyRecorder.botLang = str2;
+                            storyRecorder.isReposting = false;
+                            storyRecorder.prepareClosing = false;
+                            storyRecorder.forceBackgroundVisible = false;
+                            WindowManager windowManager = storyRecorder.windowManager;
+                            if (windowManager != null && (windowView = storyRecorder.windowView) != null && windowView.getParent() == null) {
+                                StoryRecorder.WindowView windowView2 = storyRecorder.windowView;
+                                WindowManager.LayoutParams layoutParams = storyRecorder.windowLayoutParams;
+                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, windowView2, layoutParams);
+                                windowManager.addView(storyRecorder.windowView, layoutParams);
+                                storyRecorder.setupBackDispatcher();
+                            }
+                            storyRecorder.outputEntry = storyEntryFromPhotoEntry;
+                            storyEntryFromPhotoEntry.botId = j3;
+                            storyEntryFromPhotoEntry.botLang = str2;
+                            storyRecorder.mode = storyEntryFromPhotoEntry.isVideo ? 1 : 0;
+                            storyRecorder.videoTextureHolder.active = false;
+                            storyRecorder.openType = 0;
+                            storyRecorder.fromRect.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
+                            storyRecorder.fromRounding = AndroidUtilities.dp(8.0f);
+                            storyRecorder.containerView.updateBackground();
+                            ThemePreviewActivity.AnonymousClass14 anonymousClass14 = storyRecorder.previewContainer;
+                            int i6 = storyRecorder.openType;
+                            anonymousClass14.setBackgroundColor((i6 == 1 || i6 == 0) ? 0 : -14737633);
+                            storyRecorder.containerView.setTranslationX(0.0f);
+                            storyRecorder.containerView.setTranslationY(0.0f);
+                            storyRecorder.containerView.setTranslationY2(0.0f);
+                            storyRecorder.containerView.setScaleX(1.0f);
+                            storyRecorder.containerView.setScaleY(1.0f);
+                            storyRecorder.dismissProgress = 0.0f;
+                            AndroidUtilities.lockOrientation(storyRecorder.activity, 1);
+                            StoryEntry storyEntry = storyRecorder.outputEntry;
+                            if (storyEntry != null) {
+                                storyRecorder.captionEdit.setText(storyEntry.caption);
+                            }
+                            storyRecorder.navigateTo(1, false);
+                            storyRecorder.switchToEditMode(-1, false, false);
+                            storyRecorder.previewButtons.appear(false, false);
+                            storyRecorder.previewButtons.appear(true, true);
+                            storyRecorder.animateOpenTo(1.0f, true, new StoryRecorder$$ExternalSyntheticLambda7(storyRecorder, 10));
+                            storyRecorder.addNotificationObservers();
+                        }
+                    }
+                    AndroidUtilities.runOnUIThread(new ChatAttachAlert$$ExternalSyntheticLambda7(chatAttachAlert2, 4), 400L);
+                }
             }
-        }, 120L);
+
+            @Override
+            public final void didSelectBot(TLRPC.User user) {
+            }
+
+            @Override
+            public final void doOnIdle(ChatAttachAlert$$ExternalSyntheticLambda7 chatAttachAlert$$ExternalSyntheticLambda7) {
+                chatAttachAlert$$ExternalSyntheticLambda7.run();
+            }
+
+            @Override
+            public final boolean needEnterComment() {
+                return false;
+            }
+
+            @Override
+            public final void onCameraOpened() {
+            }
+
+            @Override
+            public final void onWallpaperSelected(Object obj) {
+            }
+
+            @Override
+            public final void openAvatarsSearch() {
+            }
+
+            @Override
+            public final boolean selectItemOnClicking() {
+                return true;
+            }
+
+            @Override
+            public final void sendAudio(ArrayList arrayList, Editable editable, boolean z, int i2, int i3, long j, boolean z2, long j2) {
+            }
+        };
+        chatAttachAlert.init();
+        chatAttachAlert.show();
     }
 
-    public static void m4465$r8$lambda$WiwNshCu0txWIeAQxYn8rqNx7k(BotPreviewsEditContainer botPreviewsEditContainer, String str) {
+    public final void deleteLang(String str) {
+        StoriesController.BotPreviewsList botPreviewsList;
+        TLRPC.MessageMedia messageMedia;
+        if (TextUtils.isEmpty(str)) {
+            return;
+        }
+        this.mainList.lang_codes.remove(str);
+        this.localLangs.remove(str);
         int i = 0;
         while (true) {
-            if (i >= botPreviewsEditContainer.langLists.size()) {
-                i = -1;
+            ArrayList arrayList = this.langLists;
+            if (i >= arrayList.size()) {
+                botPreviewsList = null;
                 break;
-            } else if (TextUtils.equals(((StoriesController.BotPreviewsList) botPreviewsEditContainer.langLists.get(i)).lang_code, str)) {
+            }
+            botPreviewsList = (StoriesController.BotPreviewsList) arrayList.get(i);
+            if (botPreviewsList != null && TextUtils.equals(botPreviewsList.lang_code, str)) {
                 break;
             } else {
                 i++;
             }
         }
-        if (i >= 0) {
-            botPreviewsEditContainer.tabsView.scrollToTab(str.hashCode(), i + 1);
-        }
-    }
-
-    public RecyclerListView getCurrentListView() {
-        View currentView = this.viewPager.getCurrentView();
-        if (currentView instanceof BotPreviewsEditLangContainer) {
-            return ((BotPreviewsEditLangContainer) currentView).listView;
-        }
-        return null;
-    }
-
-    public String getCurrentLang() {
-        View view;
-        View[] viewPages = this.viewPager.getViewPages();
-        if (Math.abs(this.viewPager.getCurrentPosition() - this.viewPager.getPositionAnimated()) >= 0.5f || (view = viewPages[1]) == null) {
-            view = viewPages[0];
-        }
-        if (!(view instanceof BotPreviewsEditLangContainer)) {
-            return null;
-        }
-        BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) view;
-        if (botPreviewsEditLangContainer.list != null) {
-            return botPreviewsEditLangContainer.list.lang_code;
-        }
-        return null;
-    }
-
-    public StoriesController.BotPreviewsList getCurrentList() {
-        View currentView = this.viewPager.getCurrentView();
-        if (!(currentView instanceof BotPreviewsEditLangContainer)) {
-            return null;
-        }
-        BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) currentView;
-        if (botPreviewsEditLangContainer.list != null) {
-            return botPreviewsEditLangContainer.list;
-        }
-        return null;
-    }
-
-    public int getItemsCount() {
-        View currentView = this.viewPager.getCurrentView();
-        if (!(currentView instanceof BotPreviewsEditLangContainer)) {
-            return 0;
-        }
-        BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) currentView;
-        if (botPreviewsEditLangContainer.list != null) {
-            return botPreviewsEditLangContainer.list.getCount();
-        }
-        return 0;
-    }
-
-    public boolean canScroll(boolean z) {
-        if (z) {
-            return this.viewPager.getCurrentPosition() == this.langLists.size();
-        }
-        return this.viewPager.getCurrentPosition() == 0;
-    }
-
-    public boolean isSelectedAll() {
-        StoriesController.BotPreviewsList botPreviewsList;
-        View currentView = this.viewPager.getCurrentView();
-        if ((currentView instanceof BotPreviewsEditLangContainer) && (botPreviewsList = ((BotPreviewsEditLangContainer) currentView).list) != null) {
-            for (int i = 0; i < botPreviewsList.messageObjects.size(); i++) {
-                if (!isSelected((MessageObject) botPreviewsList.messageObjects.get(i))) {
-                    return false;
+        if (botPreviewsList != null) {
+            TL_bots.deletePreviewMedia deletepreviewmedia = new TL_bots.deletePreviewMedia();
+            int i2 = this.currentAccount;
+            deletepreviewmedia.bot = MessagesController.getInstance(i2).getInputUser(this.bot_id);
+            deletepreviewmedia.lang_code = str;
+            int i3 = 0;
+            while (true) {
+                ArrayList arrayList2 = botPreviewsList.messageObjects;
+                if (i3 >= arrayList2.size()) {
+                    break;
                 }
+                TL_stories.StoryItem storyItem = ((MessageObject) arrayList2.get(i3)).storyItem;
+                if (storyItem != null && (messageMedia = storyItem.media) != null) {
+                    deletepreviewmedia.media.add(MessagesController.toInputMedia(messageMedia));
+                }
+                i3++;
             }
+            ConnectionsManager.getInstance(i2).sendRequest(deletepreviewmedia, null);
         }
-        return true;
+        updateLangs(true);
+        this.tabsView.scrollToTab(-1, 0);
     }
 
-    public void selectAll() {
-        StoriesController.BotPreviewsList botPreviewsList;
-        View currentView = this.viewPager.getCurrentView();
-        if (!(currentView instanceof BotPreviewsEditLangContainer) || (botPreviewsList = ((BotPreviewsEditLangContainer) currentView).list) == null) {
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        int i3 = NotificationCenter.storiesListUpdated;
+        ProfileStoriesCollectionTabs.AnonymousClass1 anonymousClass1 = this.viewPager;
+        int i4 = 0;
+        if (i != i3) {
+            if (i == NotificationCenter.storiesUpdated) {
+                updateLangs(true);
+                View[] viewPages = anonymousClass1.getViewPages();
+                int length = viewPages.length;
+                while (i4 < length) {
+                    View view = viewPages[i4];
+                    if ((view instanceof BotPreviewsEditLangContainer) && ((BotPreviewsEditLangContainer) view) != null) {
+                        ((BotPreviewsEditLangContainer) view).adapter.notifyDataSetChanged();
+                    }
+                    i4++;
+                }
+                return;
+            }
             return;
         }
-        for (int i = 0; i < botPreviewsList.messageObjects.size(); i++) {
-            if (!isSelected((MessageObject) botPreviewsList.messageObjects.get(i))) {
-                select((MessageObject) botPreviewsList.messageObjects.get(i));
+        Object obj = objArr[0];
+        StoriesController.BotPreviewsList botPreviewsList = this.mainList;
+        if (obj == botPreviewsList) {
+            updateLangs(true);
+            View[] viewPages2 = anonymousClass1.getViewPages();
+            int length2 = viewPages2.length;
+            while (i4 < length2) {
+                View view2 = viewPages2[i4];
+                if (view2 instanceof BotPreviewsEditLangContainer) {
+                    BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) view2;
+                    if (botPreviewsEditLangContainer.list == botPreviewsList) {
+                        botPreviewsEditLangContainer.adapter.notifyDataSetChanged();
+                    }
+                }
+                i4++;
             }
-        }
-    }
-
-    public void unselectAll() {
-        StoriesController.BotPreviewsList botPreviewsList;
-        View currentView = this.viewPager.getCurrentView();
-        if (!(currentView instanceof BotPreviewsEditLangContainer) || (botPreviewsList = ((BotPreviewsEditLangContainer) currentView).list) == null) {
             return;
         }
-        for (int i = 0; i < botPreviewsList.messageObjects.size(); i++) {
-            if (isSelected((MessageObject) botPreviewsList.messageObjects.get(i))) {
-                unselect((MessageObject) botPreviewsList.messageObjects.get(i));
-            }
-        }
-    }
-
-    public boolean checkPinchToZoom(MotionEvent motionEvent) {
-        View currentView = this.viewPager.getCurrentView();
-        if (currentView instanceof BotPreviewsEditLangContainer) {
-            return ((BotPreviewsEditLangContainer) currentView).checkPinchToZoom(motionEvent);
-        }
-        return false;
-    }
-
-    public void setVisibleHeight(int i) {
-        this.visibleHeight = i;
-        View[] viewPages = this.viewPager.getViewPages();
-        if (viewPages != null) {
-            for (View view : viewPages) {
-                if (view instanceof BotPreviewsEditLangContainer) {
-                    ((BotPreviewsEditLangContainer) view).setVisibleHeight(i);
+        if (this.langLists.indexOf(obj) >= 0) {
+            View[] viewPages3 = anonymousClass1.getViewPages();
+            for (View view3 : viewPages3) {
+                if (view3 instanceof BotPreviewsEditLangContainer) {
+                    BotPreviewsEditLangContainer botPreviewsEditLangContainer2 = (BotPreviewsEditLangContainer) view3;
+                    if (botPreviewsEditLangContainer2.list == objArr[0]) {
+                        botPreviewsEditLangContainer2.adapter.notifyDataSetChanged();
+                    }
                 }
             }
         }
@@ -456,10 +1330,15 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         if (currentView instanceof BotPreviewsEditLangContainer) {
             StoriesController.BotPreviewsList botPreviewsList = ((BotPreviewsEditLangContainer) currentView).list;
             if (botPreviewsList != null) {
+                int i3 = 0;
                 i = 0;
                 i2 = 0;
-                for (int i3 = 0; i3 < botPreviewsList.messageObjects.size(); i3++) {
-                    MessageObject messageObject = (MessageObject) botPreviewsList.messageObjects.get(i3);
+                while (true) {
+                    ArrayList arrayList = botPreviewsList.messageObjects;
+                    if (i3 >= arrayList.size()) {
+                        break;
+                    }
+                    MessageObject messageObject = (MessageObject) arrayList.get(i3);
                     TL_stories.StoryItem storyItem = messageObject.storyItem;
                     if (storyItem != null && (messageMedia = storyItem.media) != null) {
                         if (MessageObject.isVideoDocument(messageMedia.document)) {
@@ -468,6 +1347,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                             i++;
                         }
                     }
+                    i3++;
                 }
             } else {
                 i = 0;
@@ -489,1658 +1369,263 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         return sb.toString();
     }
 
+    public String getCurrentLang() {
+        View view;
+        StoriesController.BotPreviewsList botPreviewsList;
+        ProfileStoriesCollectionTabs.AnonymousClass1 anonymousClass1 = this.viewPager;
+        View[] viewPages = anonymousClass1.getViewPages();
+        if (Math.abs(anonymousClass1.getCurrentPosition() - anonymousClass1.getPositionAnimated()) >= 0.5f || (view = viewPages[1]) == null) {
+            view = viewPages[0];
+        }
+        if (!(view instanceof BotPreviewsEditLangContainer) || (botPreviewsList = ((BotPreviewsEditLangContainer) view).list) == null) {
+            return null;
+        }
+        return botPreviewsList.lang_code;
+    }
+
+    public StoriesController.BotPreviewsList getCurrentList() {
+        StoriesController.BotPreviewsList botPreviewsList;
+        View currentView = this.viewPager.getCurrentView();
+        if (!(currentView instanceof BotPreviewsEditLangContainer) || (botPreviewsList = ((BotPreviewsEditLangContainer) currentView).list) == null) {
+            return null;
+        }
+        return botPreviewsList;
+    }
+
+    public RecyclerListView getCurrentListView() {
+        View currentView = this.viewPager.getCurrentView();
+        if (currentView instanceof BotPreviewsEditLangContainer) {
+            return ((BotPreviewsEditLangContainer) currentView).listView;
+        }
+        return null;
+    }
+
+    public int getItemsCount() {
+        StoriesController.BotPreviewsList botPreviewsList;
+        View currentView = this.viewPager.getCurrentView();
+        if (!(currentView instanceof BotPreviewsEditLangContainer) || (botPreviewsList = ((BotPreviewsEditLangContainer) currentView).list) == null) {
+            return 0;
+        }
+        return botPreviewsList.messageObjects.size();
+    }
+
+    public int getStartedTrackingX() {
+        return 0;
+    }
+
+    public abstract boolean isSelected(MessageObject messageObject);
+
+    public final boolean isSelectedAll() {
+        StoriesController.BotPreviewsList botPreviewsList;
+        View currentView = this.viewPager.getCurrentView();
+        if (!(currentView instanceof BotPreviewsEditLangContainer) || (botPreviewsList = ((BotPreviewsEditLangContainer) currentView).list) == null) {
+            return true;
+        }
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = botPreviewsList.messageObjects;
+            if (i >= arrayList.size()) {
+                return true;
+            }
+            if (!isSelected((MessageObject) arrayList.get(i))) {
+                return false;
+            }
+            i++;
+        }
+    }
+
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        int i3 = 0;
-        if (i == NotificationCenter.storiesListUpdated) {
-            Object obj = objArr[0];
-            if (obj == this.mainList) {
-                updateLangs(true);
-                View[] viewPages = this.viewPager.getViewPages();
-                int length = viewPages.length;
-                while (i3 < length) {
-                    View view = viewPages[i3];
-                    if (view instanceof BotPreviewsEditLangContainer) {
-                        BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) view;
-                        if (botPreviewsEditLangContainer.list == this.mainList) {
-                            botPreviewsEditLangContainer.adapter.notifyDataSetChanged();
-                        }
-                    }
-                    i3++;
-                }
-                return;
-            }
-            if (this.langLists.indexOf(obj) >= 0) {
-                for (View view2 : this.viewPager.getViewPages()) {
-                    if (view2 instanceof BotPreviewsEditLangContainer) {
-                        BotPreviewsEditLangContainer botPreviewsEditLangContainer2 = (BotPreviewsEditLangContainer) view2;
-                        if (botPreviewsEditLangContainer2.list == objArr[0]) {
-                            botPreviewsEditLangContainer2.adapter.notifyDataSetChanged();
-                        }
-                    }
-                }
-                return;
-            }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (attachedContainers == null) {
+            attachedContainers = new LongSparseArray();
+        }
+        LongSparseArray longSparseArray = attachedContainers;
+        int i = this.currentAccount;
+        LongSparseArray longSparseArray2 = (LongSparseArray) longSparseArray.get(i);
+        if (longSparseArray2 == null) {
+            LongSparseArray longSparseArray3 = new LongSparseArray();
+            attachedContainers.put(i, longSparseArray3);
+            longSparseArray2 = longSparseArray3;
+        }
+        longSparseArray2.put(this.bot_id, this);
+        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.storiesListUpdated);
+        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.storiesUpdated);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (attachedContainers == null) {
+            attachedContainers = new LongSparseArray();
+        }
+        LongSparseArray longSparseArray = attachedContainers;
+        int i = this.currentAccount;
+        LongSparseArray longSparseArray2 = (LongSparseArray) longSparseArray.get(i);
+        if (longSparseArray2 != null) {
+            longSparseArray2.remove(this.bot_id);
+        }
+        NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.storiesListUpdated);
+        NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.storiesUpdated);
+    }
+
+    public abstract boolean select(MessageObject messageObject);
+
+    public final void selectAll() {
+        StoriesController.BotPreviewsList botPreviewsList;
+        View currentView = this.viewPager.getCurrentView();
+        if (!(currentView instanceof BotPreviewsEditLangContainer) || (botPreviewsList = ((BotPreviewsEditLangContainer) currentView).list) == null) {
             return;
         }
-        if (i == NotificationCenter.storiesUpdated) {
-            updateLangs(true);
-            View[] viewPages2 = this.viewPager.getViewPages();
-            int length2 = viewPages2.length;
-            while (i3 < length2) {
-                View view3 = viewPages2[i3];
-                if ((view3 instanceof BotPreviewsEditLangContainer) && OnBackPressedDispatcher$$ExternalSyntheticNonNull0.m(view3)) {
-                    ((BotPreviewsEditLangContainer) view3).adapter.notifyDataSetChanged();
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = botPreviewsList.messageObjects;
+            if (i >= arrayList.size()) {
+                return;
+            }
+            if (!isSelected((MessageObject) arrayList.get(i))) {
+                select((MessageObject) arrayList.get(i));
+            }
+            i++;
+        }
+    }
+
+    public void setVisibleHeight(int i) {
+        this.visibleHeight = i;
+        View[] viewPages = this.viewPager.getViewPages();
+        if (viewPages != null) {
+            for (View view : viewPages) {
+                if (view instanceof BotPreviewsEditLangContainer) {
+                    ((BotPreviewsEditLangContainer) view).setVisibleHeight(i);
                 }
-                i3++;
             }
         }
     }
 
-    private void updateLangs(boolean z) {
+    public abstract boolean unselect(MessageObject messageObject);
+
+    public final void unselectAll() {
+        StoriesController.BotPreviewsList botPreviewsList;
+        View currentView = this.viewPager.getCurrentView();
+        if (!(currentView instanceof BotPreviewsEditLangContainer) || (botPreviewsList = ((BotPreviewsEditLangContainer) currentView).list) == null) {
+            return;
+        }
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = botPreviewsList.messageObjects;
+            if (i >= arrayList.size()) {
+                return;
+            }
+            if (isSelected((MessageObject) arrayList.get(i))) {
+                unselect((MessageObject) arrayList.get(i));
+            }
+            i++;
+        }
+    }
+
+    public final void updateLangs(boolean z) {
         StoriesController.BotPreviewsList botPreviewsList;
         StoryEntry storyEntry;
+        int i = 4;
         ArrayList arrayList = new ArrayList(this.mainList.lang_codes);
         ArrayList arrayList2 = this.localLangs;
         int size = arrayList2.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList2.get(i);
-            i++;
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList2.get(i2);
+            i2++;
             String str = (String) obj;
             if (!arrayList.contains(str)) {
                 arrayList.add(str);
             }
         }
-        ArrayList uploadingStories = MessagesController.getInstance(this.currentAccount).getStoriesController().getUploadingStories(this.bot_id);
-        if (uploadingStories != null) {
-            int size2 = uploadingStories.size();
-            int i2 = 0;
-            while (i2 < size2) {
-                Object obj2 = uploadingStories.get(i2);
-                i2++;
+        androidx.collection.LongSparseArray longSparseArray = MessagesController.getInstance(this.currentAccount).getStoriesController().uploadingStoriesByDialogId;
+        long j = this.bot_id;
+        ArrayList arrayList3 = (ArrayList) longSparseArray.get(j);
+        if (arrayList3 != null) {
+            int size2 = arrayList3.size();
+            int i3 = 0;
+            while (i3 < size2) {
+                Object obj2 = arrayList3.get(i3);
+                i3++;
                 StoriesController.UploadingStory uploadingStory = (StoriesController.UploadingStory) obj2;
-                if (uploadingStory != null && (storyEntry = uploadingStory.entry) != null && storyEntry.botId == this.bot_id && !TextUtils.isEmpty(storyEntry.botLang) && !arrayList.contains(uploadingStory.entry.botLang)) {
-                    arrayList.add(uploadingStory.entry.botLang);
+                if (uploadingStory != null && (storyEntry = uploadingStory.entry) != null && storyEntry.botId == j && !TextUtils.isEmpty(storyEntry.botLang) && !arrayList.contains(storyEntry.botLang)) {
+                    arrayList.add(storyEntry.botLang);
                 }
             }
         }
-        ArrayList arrayList3 = new ArrayList(this.langLists);
-        this.langLists.clear();
+        ArrayList arrayList4 = this.langLists;
+        ArrayList arrayList5 = new ArrayList(arrayList4);
+        arrayList4.clear();
         int size3 = arrayList.size();
-        int i3 = 0;
-        while (i3 < size3) {
-            Object obj3 = arrayList.get(i3);
-            i3++;
+        int i4 = 0;
+        while (i4 < size3) {
+            Object obj3 = arrayList.get(i4);
+            i4++;
             String str2 = (String) obj3;
-            int i4 = 0;
+            int i5 = 0;
             while (true) {
-                if (i4 >= arrayList3.size()) {
+                if (i5 >= arrayList5.size()) {
                     botPreviewsList = null;
                     break;
                 } else {
-                    if (TextUtils.equals(((StoriesController.BotPreviewsList) arrayList3.get(i4)).lang_code, str2)) {
-                        botPreviewsList = (StoriesController.BotPreviewsList) arrayList3.get(i4);
+                    if (TextUtils.equals(((StoriesController.BotPreviewsList) arrayList5.get(i5)).lang_code, str2)) {
+                        botPreviewsList = (StoriesController.BotPreviewsList) arrayList5.get(i5);
                         break;
                     }
-                    i4++;
+                    i5++;
                 }
             }
             if (botPreviewsList == null) {
                 StoriesController.BotPreviewsList botPreviewsList2 = new StoriesController.BotPreviewsList(this.currentAccount, this.bot_id, str2, null);
-                botPreviewsList2.load(true, 0, null);
+                botPreviewsList2.loadInternal(null);
                 botPreviewsList = botPreviewsList2;
             }
-            this.langLists.add(botPreviewsList);
+            arrayList4.add(botPreviewsList);
         }
-        this.viewPager.fillTabs(true);
-        SpannableString spannableString = new SpannableString("+ " + LocaleController.getString(R.string.ProfileBotLanguageAdd));
+        ProfileStoriesCollectionTabs.AnonymousClass1 anonymousClass1 = this.viewPager;
+        anonymousClass1.fillTabs$1(true);
+        SpannableString spannableString = new SpannableString(NotificationsController$$ExternalSyntheticOutline1.m(new StringBuilder("+ "), R.string.ProfileBotLanguageAdd));
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_filled_plus);
         coloredImageSpan.setScale(0.9f, 0.9f);
         coloredImageSpan.spaceScaleX = 0.85f;
         spannableString.setSpan(coloredImageSpan, 0, 1, 33);
-        this.tabsView.addTab(-1, spannableString);
-        this.tabsView.finishAddingTabs();
-        updateTabs(this.langLists.size() + 1 > 1, z);
-    }
-
-    public void deleteLang(String str) {
-        StoriesController.BotPreviewsList botPreviewsList;
-        TLRPC.MessageMedia messageMedia;
-        if (TextUtils.isEmpty(str)) {
-            return;
-        }
-        this.mainList.lang_codes.remove(str);
-        this.localLangs.remove(str);
-        int i = 0;
-        while (true) {
-            if (i >= this.langLists.size()) {
-                botPreviewsList = null;
-                break;
-            }
-            botPreviewsList = (StoriesController.BotPreviewsList) this.langLists.get(i);
-            if (botPreviewsList != null && TextUtils.equals(botPreviewsList.lang_code, str)) {
-                break;
-            } else {
-                i++;
-            }
-        }
-        if (botPreviewsList != null) {
-            TL_bots.deletePreviewMedia deletepreviewmedia = new TL_bots.deletePreviewMedia();
-            deletepreviewmedia.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.bot_id);
-            deletepreviewmedia.lang_code = str;
-            for (int i2 = 0; i2 < botPreviewsList.messageObjects.size(); i2++) {
-                TL_stories.StoryItem storyItem = ((MessageObject) botPreviewsList.messageObjects.get(i2)).storyItem;
-                if (storyItem != null && (messageMedia = storyItem.media) != null) {
-                    deletepreviewmedia.media.add(MessagesController.toInputMedia(messageMedia));
-                }
-            }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(deletepreviewmedia, null);
-        }
-        updateLangs(true);
-        this.tabsView.scrollToTab(-1, 0);
-    }
-
-    private void updateTabs(final boolean z, boolean z2) {
+        ViewPagerFixed.AnonymousClass3 anonymousClass3 = this.tabsView;
+        anonymousClass3.addTab(-1, spannableString);
+        anonymousClass3.adapter.mObservable.notifyChanged();
+        boolean z2 = arrayList4.size() + 1 > 1;
         Boolean bool = this.shownTabs;
-        if (bool == null || bool.booleanValue() != z) {
+        if (bool == null || bool.booleanValue() != z2) {
             ValueAnimator valueAnimator = this.tabsAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.shownTabs = Boolean.valueOf(z);
-            if (!z2) {
-                this.tabsAlpha = z ? 1.0f : 0.0f;
-                this.tabsView.setTranslationY(AndroidUtilities.dp(z ? 0.0f : -42.0f));
-                this.viewPager.setTranslationY(AndroidUtilities.dp(z ? 42.0f : 0.0f));
+            this.shownTabs = Boolean.valueOf(z2);
+            if (!z) {
+                this.tabsAlpha = z2 ? 1.0f : 0.0f;
+                anonymousClass3.setTranslationY(AndroidUtilities.dp(z2 ? 0.0f : -42.0f));
+                anonymousClass1.setTranslationY(AndroidUtilities.dp(z2 ? 42.0f : 0.0f));
                 return;
             }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.tabsAlpha, z ? 1.0f : 0.0f);
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.tabsAlpha, z2 ? 1.0f : 0.0f);
             this.tabsAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    BotPreviewsEditContainer.m4466$r8$lambda$ny00lQ3lqX_sga8u7GliUNtgA(this.f$0, valueAnimator2);
-                }
-            });
-            this.tabsAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    BotPreviewsEditContainer.this.tabsAlpha = z ? 1.0f : 0.0f;
-                    BotPreviewsEditContainer.this.tabsView.setTranslationY(AndroidUtilities.dp(z ? 0.0f : -42.0f));
-                    BotPreviewsEditContainer.this.viewPager.setTranslationY(AndroidUtilities.dp(z ? 42.0f : 0.0f));
-                }
-            });
+            valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, i));
+            this.tabsAnimator.addListener(new TodoItemMenu.AnonymousClass15(4, this, z2));
             this.tabsAnimator.setDuration(320L);
             this.tabsAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             this.tabsAnimator.start();
         }
     }
 
-    public static void m4466$r8$lambda$ny00lQ3lqX_sga8u7GliUNtgA(BotPreviewsEditContainer botPreviewsEditContainer, ValueAnimator valueAnimator) {
-        botPreviewsEditContainer.getClass();
-        botPreviewsEditContainer.tabsAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        botPreviewsEditContainer.tabsView.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(42.0f), 0, botPreviewsEditContainer.tabsAlpha));
-        botPreviewsEditContainer.viewPager.setTranslationY(AndroidUtilities.lerp(0, AndroidUtilities.dp(42.0f), botPreviewsEditContainer.tabsAlpha));
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (attachedContainers == null) {
-            attachedContainers = new LongSparseArray();
-        }
-        LongSparseArray longSparseArray = (LongSparseArray) attachedContainers.get(this.currentAccount);
-        if (longSparseArray == null) {
-            LongSparseArray longSparseArray2 = attachedContainers;
-            long j = this.currentAccount;
-            LongSparseArray longSparseArray3 = new LongSparseArray();
-            longSparseArray2.put(j, longSparseArray3);
-            longSparseArray = longSparseArray3;
-        }
-        longSparseArray.put(this.bot_id, this);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesUpdated);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (attachedContainers == null) {
-            attachedContainers = new LongSparseArray();
-        }
-        LongSparseArray longSparseArray = (LongSparseArray) attachedContainers.get(this.currentAccount);
-        if (longSparseArray != null) {
-            longSparseArray.remove(this.bot_id);
-        }
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesUpdated);
-    }
-
-    public void updateSelection(boolean z) {
+    public final void updateSelection() {
         View currentView = this.viewPager.getCurrentView();
         if (currentView instanceof BotPreviewsEditLangContainer) {
-            ((BotPreviewsEditLangContainer) currentView).updateSelection(z);
-        }
-    }
-
-    public void createStory(final String str) {
-        BaseFragment baseFragment = this.fragment;
-        if (baseFragment == null || baseFragment.getParentActivity() == null) {
-            return;
-        }
-        final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(this.fragment.getParentActivity(), this.fragment, false, false, false, this.resourcesProvider);
-        chatAttachAlert.setMaxSelectedPhotos(1, false);
-        chatAttachAlert.setStoryMediaPicker();
-        chatAttachAlert.getPhotoLayout().loadGalleryPhotos();
-        int i = Build.VERSION.SDK_INT;
-        if (i == 21 || i == 22) {
-            AndroidUtilities.hideKeyboard(this.fragment.getFragmentView().findFocus());
-        }
-        chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
-            @Override
-            public void didSelectBot(TLRPC.User user) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, user);
-            }
-
-            @Override
-            public void doOnIdle(Runnable runnable) {
-                runnable.run();
-            }
-
-            @Override
-            public boolean needEnterComment() {
-                return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$needEnterComment(this);
-            }
-
-            @Override
-            public void onCameraOpened() {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onCameraOpened(this);
-            }
-
-            @Override
-            public void onWallpaperSelected(Object obj) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
-            }
-
-            @Override
-            public void openAvatarsSearch() {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$openAvatarsSearch(this);
-            }
-
-            @Override
-            public boolean selectItemOnClicking() {
-                return true;
-            }
-
-            @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i2, int i3, long j, boolean z2, long j2) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i2, i3, j, z2, j2);
-            }
-
-            @Override
-            public void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) {
-                if (chatAttachAlert.getPhotoLayout().getSelectedPhotos().isEmpty()) {
-                    return;
-                }
-                HashMap<Object, Object> selectedPhotos = chatAttachAlert.getPhotoLayout().getSelectedPhotos();
-                chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
-                if (selectedPhotos.size() != 1) {
-                    return;
-                }
-                Object next = selectedPhotos.values().iterator().next();
-                if (next instanceof MediaController.PhotoEntry) {
-                    StoryEntry storyEntryFromPhotoEntry = StoryEntry.fromPhotoEntry((MediaController.PhotoEntry) next);
-                    storyEntryFromPhotoEntry.botId = BotPreviewsEditContainer.this.bot_id;
-                    storyEntryFromPhotoEntry.botLang = str;
-                    storyEntryFromPhotoEntry.setupMatrix();
-                    StoryRecorder.getInstance(BotPreviewsEditContainer.this.fragment.getParentActivity(), BotPreviewsEditContainer.this.currentAccount).openBotEntry(BotPreviewsEditContainer.this.bot_id, str, storyEntryFromPhotoEntry, null);
-                    final ChatAttachAlert chatAttachAlert2 = chatAttachAlert;
-                    Objects.requireNonNull(chatAttachAlert2);
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            chatAttachAlert2.hide();
-                        }
-                    }, 400L);
-                }
-            }
-        });
-        chatAttachAlert.init();
-        chatAttachAlert.show();
-    }
-
-    public class BotPreviewsEditLangContainer extends FrameLayout {
-        private final StoriesAdapter adapter;
-        private boolean allowStoriesSingleColumn;
-        private int animateToColumnsCount;
-        private boolean columnsAnimation;
-        private float columnsAnimationProgress;
-        private int columnsCount;
-        private final StickerEmptyView emptyView;
-        private final ButtonWithCounterView emptyViewButton2;
-        private final TextView emptyViewOr;
-        private final FooterView footer;
-        boolean isInPinchToZoomTouchMode;
-        private final DefaultItemAnimator itemAnimator;
-        private final ExtendedGridLayoutManager layoutManager;
-        private StoriesController.BotPreviewsList list;
-        private final SharedMediaLayout.SharedMediaListView listView;
-        boolean maybePinchToZoomTouchMode;
-        boolean maybePinchToZoomTouchMode2;
-        int pinchCenterOffset;
-        int pinchCenterPosition;
-        int pinchCenterX;
-        int pinchCenterY;
-        float pinchScale;
-        boolean pinchScaleUp;
-        float pinchStartDistance;
-        private int pointerId1;
-        private int pointerId2;
-        private final FlickerLoadingView progressView;
-        Rect rect;
-        private ItemTouchHelper reorder;
-        private final RecyclerAnimationScrollHelper scrollHelper;
-        private boolean storiesColumnsCountSet;
-        private final StoriesAdapter supportingAdapter;
-        private final GridLayoutManager supportingLayoutManager;
-        private final SharedMediaLayout.InternalListView supportingListView;
-
-        public static boolean $r8$lambda$UDXAPm1EybWHkcBQjKLVRqKyFb8(View view, MotionEvent motionEvent) {
-            return true;
-        }
-
-        public void saveScrollPosition() {
-        }
-
-        public void setList(StoriesController.BotPreviewsList botPreviewsList) {
-            if (this.list != botPreviewsList) {
-                this.allowStoriesSingleColumn = false;
-                this.storiesColumnsCountSet = false;
-                this.columnsCount = BotPreviewsEditContainer.this.setColumnsCount;
-            }
-            this.list = botPreviewsList;
-            this.adapter.setList(botPreviewsList);
-            this.supportingAdapter.setList(botPreviewsList);
-            updateFooter();
-        }
-
-        public void updateFooter() {
-            String string;
-            int i;
-            String string2;
-            StoriesController.BotPreviewsList botPreviewsList = this.list;
-            int count = botPreviewsList == null ? 0 : botPreviewsList.getCount();
-            StoriesController.BotPreviewsList botPreviewsList2 = this.list;
-            final boolean z = botPreviewsList2 == null || TextUtils.isEmpty(botPreviewsList2.lang_code);
-            this.footer.setVisibility(count > 0 ? 0 : 8);
-            FooterView footerView = this.footer;
-            if (z) {
-                string = LocaleController.getString(R.string.ProfileBotPreviewFooterGeneral);
-            } else {
-                string = LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, TranslateAlert2.languageName(this.list.lang_code));
-            }
-            String str = string;
-            String string3 = LocaleController.getString(R.string.ProfileBotAddPreview);
-            Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$ChVuz5yOLsPu0eiyIcIbuFvdhvY(this.f$0);
-                }
-            };
-            if (z || count <= 0) {
-                if (z) {
-                    i = R.string.ProfileBotPreviewFooterCreateTranslation;
-                } else {
-                    i = R.string.ProfileBotPreviewFooterDeleteTranslation;
-                }
-                string2 = LocaleController.getString(i);
-            } else {
-                string2 = null;
-            }
-            footerView.set(str, string3, runnable, string2, (z || count <= 0) ? new Runnable() {
-                @Override
-                public final void run() {
-                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.m4467$r8$lambda$b3iLNlcjIDsSOZXCIhCO0DT3M(this.f$0, z);
-                }
-            } : null);
-            if (z) {
-                this.emptyView.title.setVisibility(0);
-                this.emptyView.title.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
-                this.emptyView.subtitle.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(BotPreviewsEditContainer.this.currentAccount).botPreviewMediasMax, new Object[0]));
-                this.emptyView.button.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false);
-                this.emptyViewOr.setVisibility(8);
-                this.emptyViewButton2.setVisibility(8);
-            } else {
-                this.emptyView.title.setVisibility(8);
-                this.emptyView.subtitle.setText(LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, TranslateAlert2.languageName(this.list.lang_code)));
-                this.emptyView.button.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false);
-                this.emptyViewOr.setVisibility(0);
-                this.emptyViewButton2.setVisibility(0);
-                this.emptyViewButton2.setText(LocaleController.getString(R.string.ProfileBotPreviewFooterDeleteTranslation), false);
-                this.emptyViewButton2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        BotPreviewsEditContainer.BotPreviewsEditLangContainer botPreviewsEditLangContainer = this.f$0;
-                        BotPreviewsEditContainer.this.deleteLang(botPreviewsEditLangContainer.list.lang_code);
-                    }
-                });
-            }
-            this.emptyView.button.setVisibility(this.adapter.getItemCount() >= MessagesController.getInstance(BotPreviewsEditContainer.this.currentAccount).botPreviewMediasMax ? 8 : 0);
-        }
-
-        public static void $r8$lambda$ChVuz5yOLsPu0eiyIcIbuFvdhvY(BotPreviewsEditLangContainer botPreviewsEditLangContainer) {
-            BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
-            StoriesController.BotPreviewsList botPreviewsList = botPreviewsEditLangContainer.list;
-            botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
-        }
-
-        public static void m4467$r8$lambda$b3iLNlcjIDsSOZXCIhCO0DT3M(BotPreviewsEditLangContainer botPreviewsEditLangContainer, boolean z) {
-            if (z) {
-                BotPreviewsEditContainer.this.addTranslation();
-            } else {
-                BotPreviewsEditContainer.this.deleteLang(botPreviewsEditLangContainer.list.lang_code);
-            }
-        }
-
-        public void setVisibleHeight(int i) {
-            float f = (-(getMeasuredHeight() - Math.max(i, AndroidUtilities.dp(280.0f)))) / 2.0f;
-            this.emptyView.setTranslationY(f);
-            this.progressView.setTranslationY(-f);
-        }
-
-        public BotPreviewsEditLangContainer(Context context) {
-            super(context);
-            this.columnsCount = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
-            this.animateToColumnsCount = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
-            this.allowStoriesSingleColumn = false;
-            this.storiesColumnsCountSet = false;
-            this.rect = new Rect();
-            ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(context, 100) {
-                private final Size size = new Size();
-
-                @Override
-                protected int getFlowItemCount() {
-                    return 0;
-                }
-
-                @Override
-                public boolean supportsPredictiveItemAnimations() {
-                    return false;
-                }
-
-                @Override
-                protected void calculateExtraLayoutSpace(RecyclerView.State state, int[] iArr) {
-                    super.calculateExtraLayoutSpace(state, iArr);
-                    iArr[1] = Math.max(iArr[1], SharedPhotoVideoCell.getItemSize(1) * 2);
-                }
-
-                @Override
-                protected Size getSizeForItem(int i) {
-                    Size size = this.size;
-                    size.height = 100.0f;
-                    size.width = 100.0f;
-                    return size;
-                }
-
-                @Override
-                public void onInitializeAccessibilityNodeInfoForItem(RecyclerView.Recycler recycler, RecyclerView.State state, View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-                    super.onInitializeAccessibilityNodeInfoForItem(recycler, state, view, accessibilityNodeInfoCompat);
-                    AccessibilityNodeInfoCompat.CollectionItemInfoCompat collectionItemInfo = accessibilityNodeInfoCompat.getCollectionItemInfo();
-                    if (collectionItemInfo == null || !collectionItemInfo.isHeading()) {
-                        return;
-                    }
-                    accessibilityNodeInfoCompat.setCollectionItemInfo(AccessibilityNodeInfoCompat.CollectionItemInfoCompat.obtain(collectionItemInfo.getRowIndex(), collectionItemInfo.getRowSpan(), collectionItemInfo.getColumnIndex(), collectionItemInfo.getColumnSpan(), false));
-                }
-
-                @Override
-                public void setSpanCount(int i) {
-                    super.setSpanCount(i);
-                }
-            };
-            this.layoutManager = extendedGridLayoutManager;
-            extendedGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int i) {
-                    if (BotPreviewsEditLangContainer.this.adapter.getItemViewType(i) == 2) {
-                        return BotPreviewsEditLangContainer.this.columnsCount;
-                    }
-                    return 1;
-                }
-            });
-            extendedGridLayoutManager.setSpanCount(this.columnsCount);
-            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-            this.itemAnimator = defaultItemAnimator;
-            defaultItemAnimator.setDurations(280L);
-            defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            defaultItemAnimator.setSupportsChangeAnimations(false);
-            SharedMediaLayout.SharedMediaListView sharedMediaListView = new SharedMediaLayout.SharedMediaListView(context) {
-                @Override
-                public boolean isStories() {
-                    return true;
-                }
-
-                @Override
-                public int getColumnsCount() {
-                    return BotPreviewsEditLangContainer.this.columnsCount;
-                }
-
-                @Override
-                public int getAnimateToColumnsCount() {
-                    return BotPreviewsEditLangContainer.this.animateToColumnsCount;
-                }
-
-                @Override
-                public boolean isChangeColumnsAnimation() {
-                    return BotPreviewsEditLangContainer.this.columnsAnimation;
-                }
-
-                @Override
-                public float getChangeColumnsProgress() {
-                    return BotPreviewsEditLangContainer.this.columnsAnimationProgress;
-                }
-
-                @Override
-                public SharedMediaLayout.InternalListView getSupportingListView() {
-                    return BotPreviewsEditLangContainer.this.supportingListView;
-                }
-
-                @Override
-                public RecyclerListView.FastScrollAdapter getMovingAdapter() {
-                    if (!BotPreviewsEditLangContainer.this.reorder.isIdle() || BotPreviewsEditContainer.this.isActionModeShowed()) {
-                        return null;
-                    }
-                    return BotPreviewsEditLangContainer.this.adapter;
-                }
-
-                @Override
-                public RecyclerListView.FastScrollAdapter getSupportingAdapter() {
-                    return BotPreviewsEditLangContainer.this.supportingAdapter;
-                }
-
-                @Override
-                protected void dispatchDraw(Canvas canvas) {
-                    super.dispatchDraw(canvas);
-                    float listBottom = getListBottom(this);
-                    if (BotPreviewsEditLangContainer.this.columnsAnimation) {
-                        listBottom = AndroidUtilities.lerp(listBottom, getListBottom(BotPreviewsEditLangContainer.this.supportingListView), BotPreviewsEditLangContainer.this.columnsAnimationProgress);
-                    }
-                    BotPreviewsEditLangContainer.this.footer.setVisibility(BotPreviewsEditLangContainer.this.adapter.getItemCount() > 0 ? 0 : 8);
-                    BotPreviewsEditLangContainer.this.footer.setTranslationY(listBottom);
-                }
-
-                private int getListBottom(ViewGroup viewGroup) {
-                    int i = 0;
-                    for (int i2 = 0; i2 < viewGroup.getChildCount(); i2++) {
-                        int bottom = viewGroup.getChildAt(i2).getBottom() - viewGroup.getPaddingTop();
-                        if (bottom > i) {
-                            i = bottom;
-                        }
-                    }
-                    return i;
-                }
-            };
-            this.listView = sharedMediaListView;
-            sharedMediaListView.setScrollingTouchSlop(1);
-            sharedMediaListView.setPinnedSectionOffsetY(-AndroidUtilities.dp(2.0f));
-            sharedMediaListView.setPadding(0, 0, 0, 0);
-            sharedMediaListView.setItemAnimator(null);
-            sharedMediaListView.setClipToPadding(false);
-            sharedMediaListView.setSectionsType(2);
-            sharedMediaListView.setLayoutManager(extendedGridLayoutManager);
-            addView(sharedMediaListView, LayoutHelper.createFrame(-1, -1.0f));
-            sharedMediaListView.addItemDecoration(new RecyclerView.ItemDecoration() {
-                @Override
-                public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
-                    if (view instanceof SharedPhotoVideoCell2) {
-                        SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) view;
-                        int childAdapterPosition = BotPreviewsEditLangContainer.this.listView.getChildAdapterPosition(sharedPhotoVideoCell2);
-                        int spanCount = BotPreviewsEditLangContainer.this.layoutManager.getSpanCount();
-                        sharedPhotoVideoCell2.isTop = childAdapterPosition < spanCount;
-                        int i = childAdapterPosition % spanCount;
-                        sharedPhotoVideoCell2.isFirst = i == 0;
-                        sharedPhotoVideoCell2.isLast = i == spanCount - 1;
-                        rect.left = 0;
-                        rect.top = 0;
-                        rect.bottom = 0;
-                        rect.right = 0;
-                        return;
-                    }
-                    rect.left = 0;
-                    rect.top = 0;
-                    rect.bottom = 0;
-                    rect.right = 0;
-                }
-            });
-            sharedMediaListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-                @Override
-                public final void onItemClick(View view, int i) {
-                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$7gUW4SiTeCe8OL8kAsNpKNN8oFg(this.f$0, view, i);
-                }
-            });
-            sharedMediaListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
-                @Override
-                public final boolean onItemClick(View view, int i) {
-                    return BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$5DMNcAkV1cZvreBNXpuFaAmxJ3c(this.f$0, view, i);
-                }
-            });
-            SharedMediaLayout.InternalListView internalListView = new SharedMediaLayout.InternalListView(context);
-            this.supportingListView = internalListView;
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3) {
-                @Override
-                public boolean supportsPredictiveItemAnimations() {
-                    return false;
-                }
-
-                @Override
-                public int scrollVerticallyBy(int i, RecyclerView.Recycler recycler, RecyclerView.State state) {
-                    if (BotPreviewsEditLangContainer.this.columnsAnimation) {
-                        i = 0;
-                    }
-                    return super.scrollVerticallyBy(i, recycler, state);
-                }
-            };
-            this.supportingLayoutManager = gridLayoutManager;
-            internalListView.setLayoutManager(gridLayoutManager);
-            internalListView.addItemDecoration(new RecyclerView.ItemDecoration() {
-                @Override
-                public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
-                    if (view instanceof SharedPhotoVideoCell2) {
-                        SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) view;
-                        int childAdapterPosition = BotPreviewsEditLangContainer.this.supportingListView.getChildAdapterPosition(sharedPhotoVideoCell2);
-                        int spanCount = BotPreviewsEditLangContainer.this.supportingLayoutManager.getSpanCount();
-                        sharedPhotoVideoCell2.isTop = childAdapterPosition < spanCount;
-                        int i = childAdapterPosition % spanCount;
-                        sharedPhotoVideoCell2.isFirst = i == 0;
-                        sharedPhotoVideoCell2.isLast = i == spanCount - 1;
-                        rect.left = 0;
-                        rect.top = 0;
-                        rect.bottom = 0;
-                        rect.right = 0;
-                        return;
-                    }
-                    rect.left = 0;
-                    rect.top = 0;
-                    rect.bottom = 0;
-                    rect.right = 0;
-                }
-            });
-            gridLayoutManager.setSpanCount(this.animateToColumnsCount);
-            internalListView.setVisibility(8);
-            addView(internalListView, LayoutHelper.createFrame(-1, -1.0f));
-            StoriesAdapter storiesAdapter = new StoriesAdapter(context) {
-                @Override
-                public void notifyDataSetChanged() {
-                    super.notifyDataSetChanged();
-                    if (BotPreviewsEditLangContainer.this.supportingListView.getVisibility() == 0) {
-                        BotPreviewsEditLangContainer.this.supportingAdapter.notifyDataSetChanged();
-                    }
-                    if (BotPreviewsEditLangContainer.this.emptyView != null) {
-                        StickerEmptyView stickerEmptyView = BotPreviewsEditLangContainer.this.emptyView;
-                        StoriesController.StoriesList storiesList = this.storiesList;
-                        stickerEmptyView.showProgress(storiesList != null && storiesList.isLoading());
-                    }
-                }
-            };
-            this.adapter = storiesAdapter;
-            sharedMediaListView.setAdapter(storiesAdapter);
-            StoriesAdapter storiesAdapterMakeSupporting = storiesAdapter.makeSupporting();
-            this.supportingAdapter = storiesAdapterMakeSupporting;
-            internalListView.setAdapter(storiesAdapterMakeSupporting);
-            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context) {
-                private final Paint backgroundPaint = new Paint();
-
-                @Override
-                public int getColumnsCount() {
-                    return BotPreviewsEditLangContainer.this.columnsCount;
-                }
-
-                @Override
-                public int getViewType() {
-                    setIsSingleCell(false);
-                    return 27;
-                }
-
-                @Override
-                protected void onDraw(Canvas canvas) {
-                    this.backgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, BotPreviewsEditContainer.this.resourcesProvider));
-                    canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.backgroundPaint);
-                    super.onDraw(canvas);
-                }
-            };
-            this.progressView = flickerLoadingView;
-            flickerLoadingView.showDate(false);
-            StickerEmptyView stickerEmptyView = new StickerEmptyView(context, flickerLoadingView, 1);
-            this.emptyView = stickerEmptyView;
-            stickerEmptyView.setVisibility(8);
-            stickerEmptyView.setAnimateLayoutChange(true);
-            addView(stickerEmptyView, LayoutHelper.createFrame(-1, -1.0f));
-            stickerEmptyView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public final boolean onTouch(View view, MotionEvent motionEvent) {
-                    return BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$UDXAPm1EybWHkcBQjKLVRqKyFb8(view, motionEvent);
-                }
-            });
-            stickerEmptyView.showProgress(true, false);
-            stickerEmptyView.stickerView.setVisibility(8);
-            stickerEmptyView.title.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
-            stickerEmptyView.subtitle.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(BotPreviewsEditContainer.this.currentAccount).botPreviewMediasMax, new Object[0]));
-            stickerEmptyView.button.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false);
-            stickerEmptyView.button.setVisibility(0);
-            stickerEmptyView.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.$r8$lambda$PbY7DccQtGmm4JcpfKTc2fVbbL8(this.f$0, view);
-                }
-            });
-            TextView textView = new TextView(context) {
-                private final Paint paint = new Paint(1);
-
-                @Override
-                protected void dispatchDraw(Canvas canvas) {
-                    Canvas canvas2;
-                    int height = (getHeight() / 2) + AndroidUtilities.dp(1.0f);
-                    int iMax = Math.max(1, AndroidUtilities.dp(0.66f));
-                    Layout layout = getLayout();
-                    if (layout != null) {
-                        this.paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, BotPreviewsEditContainer.this.resourcesProvider), 0.45f));
-                        float f = height;
-                        float f2 = iMax / 2.0f;
-                        float f3 = f - f2;
-                        float f4 = f + f2;
-                        canvas2 = canvas;
-                        canvas2.drawRect(0.0f, f3, (getWidth() - (layout.getLineWidth(0) + AndroidUtilities.dp(16.0f))) / 2.0f, f4, this.paint);
-                        canvas2.drawRect(((getWidth() + layout.getLineWidth(0)) + AndroidUtilities.dp(16.0f)) / 2.0f, f3, getWidth(), f4, this.paint);
-                    } else {
-                        canvas2 = canvas;
-                    }
-                    super.dispatchDraw(canvas2);
-                }
-            };
-            this.emptyViewOr = textView;
-            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, BotPreviewsEditContainer.this.resourcesProvider));
-            textView.setText(LocaleController.getString(R.string.ProfileBotOr));
-            textView.setTextSize(1, 14.0f);
-            textView.setTextAlignment(4);
-            textView.setGravity(17);
-            textView.setTypeface(AndroidUtilities.bold());
-            stickerEmptyView.linearLayout.addView(textView, LayoutHelper.createLinear(165, -2, 17, 0, 17, 0, 12));
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, false, BotPreviewsEditContainer.this.resourcesProvider);
-            this.emptyViewButton2 = buttonWithCounterView;
-            buttonWithCounterView.setMinWidth(AndroidUtilities.dp(200.0f));
-            stickerEmptyView.linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 44, 17));
-            stickerEmptyView.addView(flickerLoadingView, 0, LayoutHelper.createFrame(-1, -1.0f));
-            sharedMediaListView.setEmptyView(stickerEmptyView);
-            sharedMediaListView.setAnimateEmptyView(true, 0);
-            this.scrollHelper = new RecyclerAnimationScrollHelper(sharedMediaListView, extendedGridLayoutManager);
-            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
-                @Override
-                public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
-                }
-
-                @Override
-                public boolean isLongPressDragEnabled() {
-                    return BotPreviewsEditContainer.this.isActionModeShowed();
-                }
-
-                @Override
-                public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                    if (BotPreviewsEditContainer.this.isActionModeShowed() && BotPreviewsEditLangContainer.this.adapter.canReorder(viewHolder.getAdapterPosition())) {
-                        BotPreviewsEditLangContainer.this.listView.setItemAnimator(BotPreviewsEditLangContainer.this.itemAnimator);
-                        return ItemTouchHelper.Callback.makeMovementFlags(15, 0);
-                    }
-                    return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
-                }
-
-                @Override
-                public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-                    if (!BotPreviewsEditLangContainer.this.adapter.canReorder(viewHolder.getAdapterPosition()) || !BotPreviewsEditLangContainer.this.adapter.canReorder(viewHolder2.getAdapterPosition())) {
-                        return false;
-                    }
-                    BotPreviewsEditLangContainer.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
-                    return true;
-                }
-
-                @Override
-                public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
-                    if (viewHolder != null) {
-                        BotPreviewsEditLangContainer.this.listView.hideSelector(false);
-                    }
-                    if (i == 0) {
-                        BotPreviewsEditLangContainer.this.adapter.reorderDone();
-                        BotPreviewsEditLangContainer.this.listView.setItemAnimator(null);
-                    } else {
-                        BotPreviewsEditLangContainer.this.listView.cancelClickRunnables(false);
-                        if (viewHolder != null) {
-                            viewHolder.itemView.setPressed(true);
-                        }
-                    }
-                    super.onSelectedChanged(viewHolder, i);
-                }
-
-                @Override
-                public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                    super.clearView(recyclerView, viewHolder);
-                    viewHolder.itemView.setPressed(false);
-                }
-            });
-            this.reorder = itemTouchHelper;
-            itemTouchHelper.attachToRecyclerView(sharedMediaListView);
-            FooterView footerView = new FooterView(context, BotPreviewsEditContainer.this.resourcesProvider);
-            this.footer = footerView;
-            addView(footerView, LayoutHelper.createFrame(-1, -2, 48));
-        }
-
-        public static void $r8$lambda$7gUW4SiTeCe8OL8kAsNpKNN8oFg(BotPreviewsEditLangContainer botPreviewsEditLangContainer, View view, int i) {
-            botPreviewsEditLangContainer.getClass();
-            if (view instanceof SharedPhotoVideoCell2) {
-                MessageObject messageObject = ((SharedPhotoVideoCell2) view).getMessageObject();
-                if (BotPreviewsEditContainer.this.isActionModeShowed()) {
-                    if (BotPreviewsEditContainer.this.isSelected(messageObject)) {
-                        BotPreviewsEditContainer.this.unselect(messageObject);
-                        return;
-                    } else {
-                        BotPreviewsEditContainer.this.select(messageObject);
-                        return;
-                    }
-                }
-                BotPreviewsEditContainer.this.fragment.getOrCreateStoryViewer().open(botPreviewsEditLangContainer.getContext(), messageObject.getId(), botPreviewsEditLangContainer.list, StoriesListPlaceProvider.of(botPreviewsEditLangContainer.listView).addBottomClip(((BotPreviewsEditContainer.this.fragment instanceof ProfileActivity) && ((ProfileActivity) BotPreviewsEditContainer.this.fragment).myProfile) ? AndroidUtilities.dp(68.0f) : 0));
-            }
-        }
-
-        public static boolean $r8$lambda$5DMNcAkV1cZvreBNXpuFaAmxJ3c(BotPreviewsEditLangContainer botPreviewsEditLangContainer, View view, int i) {
-            if (BotPreviewsEditContainer.this.isActionModeShowed() || !(view instanceof SharedPhotoVideoCell2)) {
-                return false;
-            }
-            MessageObject messageObject = ((SharedPhotoVideoCell2) view).getMessageObject();
-            if (BotPreviewsEditContainer.this.isSelected(messageObject)) {
-                BotPreviewsEditContainer.this.unselect(messageObject);
-                return true;
-            }
-            BotPreviewsEditContainer.this.select(messageObject);
-            return true;
-        }
-
-        public static void $r8$lambda$PbY7DccQtGmm4JcpfKTc2fVbbL8(BotPreviewsEditLangContainer botPreviewsEditLangContainer, View view) {
-            BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
-            StoriesController.BotPreviewsList botPreviewsList = botPreviewsEditLangContainer.list;
-            botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-            SharedMediaLayout.SharedMediaListView sharedMediaListView = this.listView;
-            int paddingLeft = sharedMediaListView.getPaddingLeft();
-            SharedMediaLayout.SharedMediaListView sharedMediaListView2 = this.listView;
-            sharedMediaListView.setPadding(paddingLeft, sharedMediaListView2.topPadding, sharedMediaListView2.getPaddingRight(), AndroidUtilities.dp(42.0f) + this.footer.getMeasuredHeight());
-        }
-
-        public void updateSelection(boolean z) {
-            for (int i = 0; i < this.listView.getChildCount(); i++) {
-                View childAt = this.listView.getChildAt(i);
+            BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) currentView;
+            for (int i = 0; i < botPreviewsEditLangContainer.listView.getChildCount(); i++) {
+                View childAt = botPreviewsEditLangContainer.listView.getChildAt(i);
                 if (childAt instanceof SharedPhotoVideoCell2) {
                     SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) childAt;
-                    sharedPhotoVideoCell2.setChecked(BotPreviewsEditContainer.this.isSelected(sharedPhotoVideoCell2.getMessageObject()), z);
-                }
-            }
-        }
-
-        @Override
-        protected boolean drawChild(Canvas canvas, View view, long j) {
-            if (view == this.supportingListView) {
-                return true;
-            }
-            return super.drawChild(canvas, view, j);
-        }
-
-        public class StoriesAdapter extends RecyclerListView.FastScrollAdapter {
-            public boolean applyingReorder;
-            private final Context context;
-            FlickerLoadingView globalGradientView;
-            private SharedPhotoVideoCell2.SharedResources sharedResources;
-            public StoriesController.StoriesList storiesList;
-            private StoriesAdapter supportingAdapter;
-            private final ArrayList uploadingStories = new ArrayList();
-            public ArrayList lastPinnedIds = new ArrayList();
-
-            @Override
-            public int getItemViewType(int i) {
-                return 19;
-            }
-
-            @Override
-            public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                return false;
-            }
-
-            @Override
-            public void onFastScrollSingleTap() {
-            }
-
-            public StoriesAdapter(Context context) {
-                this.context = context;
-                checkColumns();
-            }
-
-            public void setList(StoriesController.StoriesList storiesList) {
-                this.storiesList = storiesList;
-                if (this != BotPreviewsEditLangContainer.this.supportingAdapter) {
-                    checkColumns();
-                }
-                notifyDataSetChanged();
-            }
-
-            public StoriesAdapter makeSupporting() {
-                BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
-                StoriesAdapter storiesAdapter = botPreviewsEditLangContainer.new StoriesAdapter(botPreviewsEditLangContainer.getContext());
-                this.supportingAdapter = storiesAdapter;
-                return storiesAdapter;
-            }
-
-            private void checkColumns() {
-                if (this.storiesList == null) {
-                    return;
-                }
-                if ((!BotPreviewsEditLangContainer.this.storiesColumnsCountSet || (BotPreviewsEditLangContainer.this.allowStoriesSingleColumn && getItemCount() > 1)) && getItemCount() > 0) {
-                    if (getItemCount() < 5) {
-                        BotPreviewsEditLangContainer.this.columnsCount = Math.max(1, getItemCount());
-                        BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
-                        botPreviewsEditLangContainer.allowStoriesSingleColumn = botPreviewsEditLangContainer.columnsCount == 1;
-                    } else if (BotPreviewsEditLangContainer.this.allowStoriesSingleColumn || BotPreviewsEditLangContainer.this.columnsCount == 1) {
-                        BotPreviewsEditLangContainer.this.allowStoriesSingleColumn = false;
-                        BotPreviewsEditLangContainer.this.columnsCount = Math.max(2, SharedConfig.storiesColumnsCount);
-                    }
-                    BotPreviewsEditLangContainer.this.layoutManager.setSpanCount(BotPreviewsEditLangContainer.this.columnsCount);
-                    BotPreviewsEditLangContainer.this.storiesColumnsCountSet = true;
-                }
-            }
-
-            @Override
-            public void notifyDataSetChanged() {
-                StoriesController.StoriesList storiesList = this.storiesList;
-                if (storiesList instanceof StoriesController.BotPreviewsList) {
-                    StoriesController.BotPreviewsList botPreviewsList = (StoriesController.BotPreviewsList) storiesList;
-                    this.uploadingStories.clear();
-                    ArrayList uploadingStories = MessagesController.getInstance(this.storiesList.currentAccount).getStoriesController().getUploadingStories(BotPreviewsEditContainer.this.bot_id);
-                    if (uploadingStories != null) {
-                        for (int i = 0; i < uploadingStories.size(); i++) {
-                            StoriesController.UploadingStory uploadingStory = (StoriesController.UploadingStory) uploadingStories.get(i);
-                            StoryEntry storyEntry = uploadingStory.entry;
-                            if (storyEntry != null && !storyEntry.isEdit && TextUtils.equals(storyEntry.botLang, botPreviewsList.lang_code)) {
-                                this.uploadingStories.add(uploadingStory);
-                            }
-                        }
-                    }
-                }
-                super.notifyDataSetChanged();
-                StoriesAdapter storiesAdapter = this.supportingAdapter;
-                if (storiesAdapter != null) {
-                    storiesAdapter.notifyDataSetChanged();
-                }
-                if (this != BotPreviewsEditLangContainer.this.supportingAdapter) {
-                    checkColumns();
-                    BotPreviewsEditLangContainer.this.updateFooter();
-                }
-            }
-
-            @Override
-            public int getItemCount() {
-                if (this.storiesList == null) {
-                    return 0;
-                }
-                return this.uploadingStories.size() + this.storiesList.getCount();
-            }
-
-            @Override
-            public int getTotalItemsCount() {
-                return getItemCount();
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                if (this.sharedResources == null) {
-                    this.sharedResources = new SharedPhotoVideoCell2.SharedResources(viewGroup.getContext(), BotPreviewsEditContainer.this.resourcesProvider);
-                }
-                SharedPhotoVideoCell2 sharedPhotoVideoCell2 = new SharedPhotoVideoCell2(this.context, this.sharedResources, BotPreviewsEditContainer.this.currentAccount);
-                sharedPhotoVideoCell2.setCheck2();
-                sharedPhotoVideoCell2.setGradientView(this.globalGradientView);
-                sharedPhotoVideoCell2.isStory = true;
-                return new RecyclerListView.Holder(sharedPhotoVideoCell2);
-            }
-
-            private int columnsCount() {
-                return this == this.supportingAdapter ? BotPreviewsEditLangContainer.this.animateToColumnsCount : BotPreviewsEditLangContainer.this.columnsCount;
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                if (this.storiesList == null) {
-                    return;
-                }
-                viewHolder.getItemViewType();
-                View view = viewHolder.itemView;
-                if (view instanceof SharedPhotoVideoCell2) {
-                    SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) view;
-                    sharedPhotoVideoCell2.isStory = true;
-                    if (i >= 0 && i < this.uploadingStories.size()) {
-                        StoriesController.UploadingStory uploadingStory = (StoriesController.UploadingStory) this.uploadingStories.get(i);
-                        sharedPhotoVideoCell2.isStoryPinned = false;
-                        if (uploadingStory.sharedMessageObject == null) {
-                            TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
-                            int iM = SessionDetails$$ExternalSyntheticBackport0.m(uploadingStory.random_id);
-                            tL_storyItem.messageId = iM;
-                            tL_storyItem.id = iM;
-                            tL_storyItem.attachPath = uploadingStory.firstFramePath;
-                            MessageObject messageObject = new MessageObject(this.storiesList.currentAccount, tL_storyItem) {
-                                @Override
-                                public float getProgress() {
-                                    return this.uploadingStory.progress;
-                                }
-                            };
-                            uploadingStory.sharedMessageObject = messageObject;
-                            messageObject.uploadingStory = uploadingStory;
-                        }
-                        sharedPhotoVideoCell2.setMessageObject(uploadingStory.sharedMessageObject, columnsCount());
-                        sharedPhotoVideoCell2.isStory = true;
-                        sharedPhotoVideoCell2.setReorder(false);
-                        sharedPhotoVideoCell2.setChecked(false, false);
-                        return;
-                    }
-                    int size = i - this.uploadingStories.size();
-                    if (size < 0 || size >= this.storiesList.messageObjects.size()) {
-                        sharedPhotoVideoCell2.isStoryPinned = false;
-                        sharedPhotoVideoCell2.setMessageObject(null, columnsCount());
-                        sharedPhotoVideoCell2.isStory = true;
-                        return;
-                    }
-                    MessageObject messageObject2 = (MessageObject) this.storiesList.messageObjects.get(size);
-                    sharedPhotoVideoCell2.isStoryPinned = messageObject2 != null && this.storiesList.isPinned(messageObject2.getId());
-                    sharedPhotoVideoCell2.setReorder(true);
-                    sharedPhotoVideoCell2.setMessageObject(messageObject2, columnsCount());
-                    if (BotPreviewsEditContainer.this.isActionModeShowed() && messageObject2 != null) {
-                        sharedPhotoVideoCell2.setChecked(BotPreviewsEditContainer.this.isSelected(messageObject2), true);
-                    } else {
-                        sharedPhotoVideoCell2.setChecked(false, false);
-                    }
-                }
-            }
-
-            @Override
-            public String getLetter(int i) {
-                MessageObject messageObject;
-                TL_stories.StoryItem storyItem;
-                StoriesController.StoriesList storiesList = this.storiesList;
-                if (storiesList == null || i < 0 || i >= storiesList.messageObjects.size() || (messageObject = (MessageObject) this.storiesList.messageObjects.get(i)) == null || (storyItem = messageObject.storyItem) == null) {
-                    return null;
-                }
-                return LocaleController.formatYearMont(storyItem.date, true);
-            }
-
-            public boolean canReorder(int i) {
-                StoriesController.StoriesList storiesList = this.storiesList;
-                if (storiesList == null) {
-                    return false;
-                }
-                if (storiesList instanceof StoriesController.BotPreviewsList) {
-                    TLRPC.User user = MessagesController.getInstance(BotPreviewsEditContainer.this.currentAccount).getUser(Long.valueOf(BotPreviewsEditContainer.this.bot_id));
-                    return user != null && user.bot && user.bot_has_main_app && user.bot_can_edit;
-                }
-                if (i < 0 || i >= storiesList.messageObjects.size()) {
-                    return false;
-                }
-                return this.storiesList.isPinned(((MessageObject) this.storiesList.messageObjects.get(i)).getId());
-            }
-
-            public boolean swapElements(int i, int i2) {
-                ArrayList arrayList;
-                StoriesController.StoriesList storiesList = this.storiesList;
-                if (storiesList == null || i < 0 || i >= storiesList.messageObjects.size() || i2 < 0 || i2 >= this.storiesList.messageObjects.size()) {
-                    return false;
-                }
-                if (this.storiesList instanceof StoriesController.BotPreviewsList) {
-                    arrayList = new ArrayList();
-                    for (int i3 = 0; i3 < this.storiesList.messageObjects.size(); i3++) {
-                        arrayList.add(Integer.valueOf(((MessageObject) this.storiesList.messageObjects.get(i3)).getId()));
-                    }
-                } else {
-                    arrayList = new ArrayList(this.storiesList.pinnedIds);
-                }
-                if (!this.applyingReorder) {
-                    this.lastPinnedIds.clear();
-                    this.lastPinnedIds.addAll(arrayList);
-                    this.applyingReorder = true;
-                }
-                MessageObject messageObject = (MessageObject) this.storiesList.messageObjects.get(i);
-                arrayList.remove(Integer.valueOf(messageObject.getId()));
-                arrayList.add(Utilities.clamp(i2, arrayList.size(), 0), Integer.valueOf(messageObject.getId()));
-                this.storiesList.updatePinnedOrder(arrayList, false);
-                notifyItemMoved(i, i2);
-                return true;
-            }
-
-            public void reorderDone() {
-                ArrayList arrayList;
-                StoriesController.StoriesList storiesList = this.storiesList;
-                if (storiesList != null && this.applyingReorder) {
-                    if (storiesList instanceof StoriesController.BotPreviewsList) {
-                        arrayList = new ArrayList();
-                        for (int i = 0; i < this.storiesList.messageObjects.size(); i++) {
-                            arrayList.add(Integer.valueOf(((MessageObject) this.storiesList.messageObjects.get(i)).getId()));
-                        }
-                    } else {
-                        arrayList = storiesList.pinnedIds;
-                    }
-                    boolean z = this.lastPinnedIds.size() != arrayList.size();
-                    if (!z) {
-                        for (int i2 = 0; i2 < this.lastPinnedIds.size(); i2++) {
-                            if (this.lastPinnedIds.get(i2) != arrayList.get(i2)) {
-                                z = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (z) {
-                        this.storiesList.updatePinnedOrder(arrayList, true);
-                    }
-                    this.applyingReorder = false;
-                }
-            }
-
-            @Override
-            public void getPositionForScrollProgress(RecyclerListView recyclerListView, float f, int[] iArr) {
-                int measuredHeight = recyclerListView.getChildAt(0).getMeasuredHeight();
-                int iColumnsCount = columnsCount();
-                int iCeil = (int) (Math.ceil(getTotalItemsCount() / iColumnsCount) * ((double) measuredHeight));
-                int measuredHeight2 = recyclerListView.getMeasuredHeight() - recyclerListView.getPaddingTop();
-                if (measuredHeight == 0) {
-                    iArr[1] = 0;
-                    iArr[0] = 0;
-                } else {
-                    float f2 = f * (iCeil - measuredHeight2);
-                    iArr[0] = ((int) (f2 / measuredHeight)) * iColumnsCount;
-                    iArr[1] = ((int) f2) % measuredHeight;
-                }
-            }
-        }
-
-        public boolean checkPinchToZoom(MotionEvent motionEvent) {
-            if (this.list == null || getParent() == null) {
-                return false;
-            }
-            if (this.columnsAnimation && !this.isInPinchToZoomTouchMode) {
-                return true;
-            }
-            if (motionEvent.getActionMasked() == 0 || motionEvent.getActionMasked() == 5) {
-                if (this.maybePinchToZoomTouchMode && !this.isInPinchToZoomTouchMode && motionEvent.getPointerCount() == 2) {
-                    this.pinchStartDistance = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
-                    this.pinchScale = 1.0f;
-                    this.pointerId1 = motionEvent.getPointerId(0);
-                    this.pointerId2 = motionEvent.getPointerId(1);
-                    this.listView.cancelClickRunnables(false);
-                    this.listView.cancelLongPress();
-                    this.listView.dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                    View view = (View) getParent();
-                    this.pinchCenterX = (int) ((((int) ((motionEvent.getX(0) + motionEvent.getX(1)) / 2.0f)) - view.getX()) - getX());
-                    int y = (int) ((((int) ((motionEvent.getY(0) + motionEvent.getY(1)) / 2.0f)) - view.getY()) - getY());
-                    this.pinchCenterY = y;
-                    selectPinchPosition(this.pinchCenterX, y);
-                    this.maybePinchToZoomTouchMode2 = true;
-                }
-                if (motionEvent.getActionMasked() == 0) {
-                    if ((motionEvent.getY() - ((View) getParent()).getY()) - getY() > 0.0f) {
-                        this.maybePinchToZoomTouchMode = true;
-                    }
-                }
-            } else if (motionEvent.getActionMasked() == 2 && (this.isInPinchToZoomTouchMode || this.maybePinchToZoomTouchMode2)) {
-                int i = -1;
-                int i2 = -1;
-                for (int i3 = 0; i3 < motionEvent.getPointerCount(); i3++) {
-                    if (this.pointerId1 == motionEvent.getPointerId(i3)) {
-                        i = i3;
-                    }
-                    if (this.pointerId2 == motionEvent.getPointerId(i3)) {
-                        i2 = i3;
-                    }
-                }
-                if (i == -1 || i2 == -1) {
-                    this.maybePinchToZoomTouchMode = false;
-                    this.maybePinchToZoomTouchMode2 = false;
-                    this.isInPinchToZoomTouchMode = false;
-                    finishPinchToMediaColumnsCount();
-                    return false;
-                }
-                float fHypot = ((float) Math.hypot(motionEvent.getX(i2) - motionEvent.getX(i), motionEvent.getY(i2) - motionEvent.getY(i))) / this.pinchStartDistance;
-                this.pinchScale = fHypot;
-                if (!this.isInPinchToZoomTouchMode && (fHypot > 1.01f || fHypot < 0.99f)) {
-                    this.isInPinchToZoomTouchMode = true;
-                    boolean z = fHypot > 1.0f;
-                    this.pinchScaleUp = z;
-                    startPinchToMediaColumnsCount(z);
-                }
-                if (this.isInPinchToZoomTouchMode) {
-                    boolean z2 = this.pinchScaleUp;
-                    if ((!z2 || this.pinchScale >= 1.0f) && (z2 || this.pinchScale <= 1.0f)) {
-                        this.columnsAnimationProgress = Math.max(0.0f, Math.min(1.0f, z2 ? 1.0f - ((2.0f - this.pinchScale) / 1.0f) : (1.0f - this.pinchScale) / 0.5f));
-                    } else {
-                        this.columnsAnimationProgress = 0.0f;
-                    }
-                    float f = this.columnsAnimationProgress;
-                    if (f == 1.0f || f == 0.0f) {
-                        if (f == 1.0f) {
-                            int iCeil = (int) Math.ceil(this.pinchCenterPosition / this.animateToColumnsCount);
-                            float startedTrackingX = BotPreviewsEditContainer.this.getStartedTrackingX() / (this.listView.getMeasuredWidth() - ((int) (this.listView.getMeasuredWidth() / this.animateToColumnsCount)));
-                            int i4 = this.animateToColumnsCount;
-                            int itemCount = (iCeil * i4) + ((int) (startedTrackingX * (i4 - 1)));
-                            if (itemCount >= this.adapter.getItemCount()) {
-                                itemCount = this.adapter.getItemCount() - 1;
-                            }
-                            this.pinchCenterPosition = itemCount;
-                        }
-                        finishPinchToMediaColumnsCount();
-                        if (this.columnsAnimationProgress == 0.0f) {
-                            this.pinchScaleUp = !this.pinchScaleUp;
-                        }
-                        startPinchToMediaColumnsCount(this.pinchScaleUp);
-                        this.pinchStartDistance = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
-                    }
-                    this.listView.invalidate();
-                }
-            } else if ((motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && checkPointerIds(motionEvent)) || motionEvent.getActionMasked() == 3)) && this.isInPinchToZoomTouchMode) {
-                this.maybePinchToZoomTouchMode2 = false;
-                this.maybePinchToZoomTouchMode = false;
-                this.isInPinchToZoomTouchMode = false;
-                finishPinchToMediaColumnsCount();
-            }
-            return this.isInPinchToZoomTouchMode;
-        }
-
-        private void selectPinchPosition(int i, int i2) {
-            this.pinchCenterPosition = -1;
-            int i3 = i2 + this.listView.blurTopPadding;
-            for (int i4 = 0; i4 < this.listView.getChildCount(); i4++) {
-                View childAt = this.listView.getChildAt(i4);
-                childAt.getHitRect(this.rect);
-                if (this.rect.contains(i, i3)) {
-                    this.pinchCenterPosition = this.listView.getChildLayoutPosition(childAt);
-                    this.pinchCenterOffset = childAt.getTop();
-                }
-            }
-        }
-
-        private boolean checkPointerIds(MotionEvent motionEvent) {
-            if (motionEvent.getPointerCount() < 2) {
-                return false;
-            }
-            if (this.pointerId1 == motionEvent.getPointerId(0) && this.pointerId2 == motionEvent.getPointerId(1)) {
-                return true;
-            }
-            return this.pointerId1 == motionEvent.getPointerId(1) && this.pointerId2 == motionEvent.getPointerId(0);
-        }
-
-        public int getNextMediaColumnsCount(int i, boolean z) {
-            int i2 = i + (!z ? 1 : -1);
-            if (i2 > 6) {
-                i2 = !z ? 9 : 6;
-            }
-            return Utilities.clamp(i2, 6, this.allowStoriesSingleColumn ? 1 : 2);
-        }
-
-        private void startPinchToMediaColumnsCount(boolean z) {
-            if (this.columnsAnimation || BotPreviewsEditContainer.this.isActionModeShowed()) {
-                return;
-            }
-            int nextMediaColumnsCount = getNextMediaColumnsCount(this.columnsCount, z);
-            this.animateToColumnsCount = nextMediaColumnsCount;
-            if (nextMediaColumnsCount == this.columnsCount || this.allowStoriesSingleColumn) {
-                return;
-            }
-            this.supportingListView.setVisibility(0);
-            this.supportingListView.setAdapter(this.supportingAdapter);
-            SharedMediaLayout.InternalListView internalListView = this.supportingListView;
-            internalListView.setPadding(internalListView.getPaddingLeft(), 0, this.supportingListView.getPaddingRight(), AndroidUtilities.dp(42.0f) + this.footer.getMeasuredHeight());
-            this.supportingLayoutManager.setSpanCount(nextMediaColumnsCount);
-            this.supportingListView.invalidateItemDecorations();
-            this.supportingLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int i) {
-                    if (BotPreviewsEditLangContainer.this.adapter.getItemViewType(i) == 2) {
-                        return BotPreviewsEditLangContainer.this.columnsCount;
-                    }
-                    return 1;
-                }
-            });
-            AndroidUtilities.updateVisibleRows(this.listView);
-            this.columnsAnimation = true;
-            this.columnsAnimationProgress = 0.0f;
-            int i = this.pinchCenterPosition;
-            if (i >= 0) {
-                this.supportingLayoutManager.scrollToPositionWithOffset(i, this.pinchCenterOffset - this.supportingListView.getPaddingTop());
-            } else {
-                saveScrollPosition();
-            }
-        }
-
-        private void finishPinchToMediaColumnsCount() {
-            if (this.columnsAnimation) {
-                float f = this.columnsAnimationProgress;
-                if (f != 1.0f) {
-                    if (f == 0.0f) {
-                        this.columnsAnimation = false;
-                        this.supportingListView.setVisibility(8);
-                        this.listView.invalidate();
-                        return;
-                    }
-                    final boolean z = f > 0.2f;
-                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
-                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotPreviewsEditLangContainer.this.columnsAnimationProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            BotPreviewsEditLangContainer.this.listView.invalidate();
-                        }
-                    });
-                    valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            View viewFindViewByPosition;
-                            BotPreviewsEditLangContainer.this.columnsAnimation = false;
-                            if (z) {
-                                BotPreviewsEditLangContainer botPreviewsEditLangContainer = BotPreviewsEditLangContainer.this;
-                                botPreviewsEditLangContainer.columnsCount = botPreviewsEditLangContainer.animateToColumnsCount;
-                                BotPreviewsEditLangContainer botPreviewsEditLangContainer2 = BotPreviewsEditLangContainer.this;
-                                BotPreviewsEditContainer.this.setColumnsCount = botPreviewsEditLangContainer2.columnsCount;
-                                SharedConfig.setStoriesColumnsCount(BotPreviewsEditLangContainer.this.animateToColumnsCount);
-                            }
-                            int itemCount = BotPreviewsEditLangContainer.this.adapter.getItemCount();
-                            if (z) {
-                                BotPreviewsEditLangContainer.this.layoutManager.setSpanCount(BotPreviewsEditLangContainer.this.columnsCount);
-                                BotPreviewsEditLangContainer.this.listView.invalidateItemDecorations();
-                                if (BotPreviewsEditLangContainer.this.adapter.getItemCount() == itemCount) {
-                                    AndroidUtilities.updateVisibleRows(BotPreviewsEditLangContainer.this.listView);
-                                } else {
-                                    BotPreviewsEditLangContainer.this.adapter.notifyDataSetChanged();
-                                }
-                            }
-                            BotPreviewsEditLangContainer.this.supportingListView.setVisibility(8);
-                            BotPreviewsEditLangContainer botPreviewsEditLangContainer3 = BotPreviewsEditLangContainer.this;
-                            if (botPreviewsEditLangContainer3.pinchCenterPosition < 0) {
-                                botPreviewsEditLangContainer3.saveScrollPosition();
-                            } else {
-                                if (z && (viewFindViewByPosition = botPreviewsEditLangContainer3.supportingLayoutManager.findViewByPosition(BotPreviewsEditLangContainer.this.pinchCenterPosition)) != null) {
-                                    BotPreviewsEditLangContainer.this.pinchCenterOffset = viewFindViewByPosition.getTop();
-                                }
-                                ExtendedGridLayoutManager extendedGridLayoutManager = BotPreviewsEditLangContainer.this.layoutManager;
-                                BotPreviewsEditLangContainer botPreviewsEditLangContainer4 = BotPreviewsEditLangContainer.this;
-                                extendedGridLayoutManager.scrollToPositionWithOffset(botPreviewsEditLangContainer4.pinchCenterPosition, (-botPreviewsEditLangContainer4.listView.getPaddingTop()) + BotPreviewsEditLangContainer.this.pinchCenterOffset);
-                            }
-                            super.onAnimationEnd(animator);
-                        }
-                    });
-                    valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.DEFAULT);
-                    valueAnimatorOfFloat.setDuration(200L);
-                    valueAnimatorOfFloat.start();
-                    return;
-                }
-                this.columnsAnimation = false;
-                BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
-                int i = this.animateToColumnsCount;
-                this.columnsCount = i;
-                botPreviewsEditContainer.setColumnsCount = i;
-                SharedConfig.setStoriesColumnsCount(this.animateToColumnsCount);
-                int itemCount = this.adapter.getItemCount();
-                this.supportingListView.setVisibility(8);
-                this.layoutManager.setSpanCount(this.columnsCount);
-                this.listView.invalidateItemDecorations();
-                this.listView.invalidate();
-                if (this.adapter.getItemCount() == itemCount) {
-                    AndroidUtilities.updateVisibleRows(this.listView);
-                } else {
-                    this.adapter.notifyDataSetChanged();
-                }
-                int i2 = this.pinchCenterPosition;
-                if (i2 >= 0) {
-                    View viewFindViewByPosition = this.supportingLayoutManager.findViewByPosition(i2);
-                    if (viewFindViewByPosition != null) {
-                        this.pinchCenterOffset = viewFindViewByPosition.getTop();
-                    }
-                    this.layoutManager.scrollToPositionWithOffset(this.pinchCenterPosition, (-this.listView.getPaddingTop()) + this.pinchCenterOffset);
-                    return;
-                }
-                saveScrollPosition();
-            }
-        }
-
-        public class FooterView extends LinearLayout {
-            private final ButtonWithCounterView button2View;
-            private final ButtonWithCounterView buttonView;
-            private final TextView orTextView;
-            private final TextView textView;
-
-            public FooterView(Context context, final Theme.ResourcesProvider resourcesProvider) {
-                super(context);
-                setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f));
-                setOrientation(1);
-                TextView textView = new TextView(context);
-                this.textView = textView;
-                int i = Theme.key_windowBackgroundWhiteGrayText;
-                textView.setTextColor(Theme.getColor(i, resourcesProvider));
-                textView.setTextSize(1, 14.0f);
-                textView.setGravity(17);
-                textView.setTextAlignment(4);
-                addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 19.0f));
-                ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider) {
-                    @Override
-                    protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(i2, i3);
-                    }
-                };
-                this.buttonView = buttonWithCounterView;
-                buttonWithCounterView.setMinWidth(AndroidUtilities.dp(200.0f));
-                buttonWithCounterView.setText(LocaleController.getString(R.string.ProfileBotAddPreview), false);
-                addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 44, 17));
-                TextView textView2 = new TextView(context) {
-                    private final Paint paint = new Paint(1);
-
-                    @Override
-                    protected void dispatchDraw(Canvas canvas) {
-                        Canvas canvas2;
-                        int height = (getHeight() / 2) + AndroidUtilities.dp(1.0f);
-                        int iMax = Math.max(1, AndroidUtilities.dp(0.66f));
-                        Layout layout = getLayout();
-                        if (layout != null) {
-                            this.paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider), 0.45f));
-                            float f = height;
-                            float f2 = iMax / 2.0f;
-                            float f3 = f - f2;
-                            float f4 = f + f2;
-                            canvas2 = canvas;
-                            canvas2.drawRect(0.0f, f3, (getWidth() - (layout.getLineWidth(0) + AndroidUtilities.dp(16.0f))) / 2.0f, f4, this.paint);
-                            canvas2.drawRect(((getWidth() + layout.getLineWidth(0)) + AndroidUtilities.dp(16.0f)) / 2.0f, f3, getWidth(), f4, this.paint);
-                        } else {
-                            canvas2 = canvas;
-                        }
-                        super.dispatchDraw(canvas2);
-                    }
-                };
-                this.orTextView = textView2;
-                textView2.setTextColor(Theme.getColor(i, resourcesProvider));
-                textView2.setText(LocaleController.getString(R.string.ProfileBotOr));
-                textView2.setTextSize(1, 14.0f);
-                textView2.setTextAlignment(4);
-                textView2.setGravity(17);
-                textView2.setTypeface(AndroidUtilities.bold());
-                addView(textView2, LayoutHelper.createLinear(165, -2, 17, 0, 17, 0, 12));
-                ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, resourcesProvider);
-                this.button2View = buttonWithCounterView2;
-                buttonWithCounterView2.setMinWidth(AndroidUtilities.dp(200.0f));
-                addView(buttonWithCounterView2, LayoutHelper.createLinear(-2, 44, 17));
-            }
-
-            public void set(CharSequence charSequence, CharSequence charSequence2, final Runnable runnable, CharSequence charSequence3, final Runnable runnable2) {
-                this.textView.setText(charSequence);
-                this.buttonView.setText(charSequence2, false);
-                this.buttonView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        runnable.run();
-                    }
-                });
-                if (charSequence3 == null) {
-                    this.orTextView.setVisibility(8);
-                    this.button2View.setVisibility(8);
-                } else {
-                    this.orTextView.setVisibility(0);
-                    this.button2View.setVisibility(0);
-                    this.button2View.setText(charSequence3, false);
-                    this.button2View.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            runnable2.run();
-                        }
-                    });
-                }
-            }
-        }
-    }
-
-    static class ChooseLanguageSheet extends BottomSheetWithRecyclerListView {
-        private UniversalAdapter adapter;
-        private final int currentAccount;
-        private FrameLayout searchContainer;
-        private ImageView searchImageView;
-        private final CharSequence title;
-
-        public ChooseLanguageSheet(BaseFragment baseFragment, CharSequence charSequence, final Utilities.Callback callback) {
-            super(baseFragment, true, false, false, baseFragment.getResourceProvider());
-            this.searchContainer = new FrameLayout(getContext());
-            this.searchImageView = new ImageView(getContext());
-            this.currentAccount = baseFragment.getCurrentAccount();
-            this.title = charSequence;
-            updateTitle();
-            this.topPadding = 0.6f;
-            setShowHandle(true);
-            this.handleOffset = true;
-            fixNavigationBar();
-            setSlidingActionBar();
-            RecyclerListView recyclerListView = this.recyclerListView;
-            int i = this.backgroundPaddingLeft;
-            recyclerListView.setPadding(i, 0, i, 0);
-            this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-                @Override
-                public final void onItemClick(View view, int i2) {
-                    BotPreviewsEditContainer.ChooseLanguageSheet.$r8$lambda$jpu_D3FCYDqmJbx2e3IMJoTKxXY(this.f$0, callback, view, i2);
-                }
-            });
-        }
-
-        public static void $r8$lambda$jpu_D3FCYDqmJbx2e3IMJoTKxXY(ChooseLanguageSheet chooseLanguageSheet, Utilities.Callback callback, View view, int i) {
-            UItem item;
-            UniversalAdapter universalAdapter = chooseLanguageSheet.adapter;
-            if (universalAdapter == null || (item = universalAdapter.getItem(i - 1)) == null) {
-                return;
-            }
-            Object obj = item.object;
-            if (obj instanceof TranslateController.Language) {
-                callback.run(((TranslateController.Language) obj).code);
-                chooseLanguageSheet.dismiss();
-            }
-        }
-
-        @Override
-        protected CharSequence getTitle() {
-            return this.title;
-        }
-
-        @Override
-        protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-            UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, new Utilities.Callback2() {
-                @Override
-                public final void run(Object obj, Object obj2) {
-                    this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-                }
-            }, this.resourcesProvider);
-            this.adapter = universalAdapter;
-            universalAdapter.setApplyBackground(false);
-            return this.adapter;
-        }
-
-        public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-            ArrayList<TranslateController.Language> languages = TranslateController.getLanguages();
-            int size = languages.size();
-            int i = 0;
-            while (i < size) {
-                TranslateController.Language language = languages.get(i);
-                i++;
-                arrayList.add(LanguageView.Factory.of(language));
-            }
-        }
-
-        public static class LanguageView extends LinearLayout {
-            private boolean needDivider;
-            private final TextView subtitle;
-            private final TextView title;
-
-            public LanguageView(Context context) {
-                super(context);
-                setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
-                setOrientation(1);
-                TextView textView = new TextView(context);
-                this.title = textView;
-                textView.setTextSize(1, 16.0f);
-                textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-                textView.setGravity(LocaleController.isRTL ? 5 : 3);
-                addView(textView, LayoutHelper.createLinear(-1, -2, 51, 0, 7, 0, 0));
-                TextView textView2 = new TextView(context);
-                this.subtitle = textView2;
-                textView2.setTextSize(1, 13.0f);
-                textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray2));
-                textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-                addView(textView2, LayoutHelper.createLinear(-1, -2, 51, 0, 4, 0, 0));
-            }
-
-            @Override
-            protected void onMeasure(int i, int i2) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-            }
-
-            public void set(TranslateController.Language language, boolean z) {
-                this.title.setText(language.displayName);
-                this.subtitle.setText(language.ownDisplayName);
-                if (this.needDivider != z) {
-                    invalidate();
-                }
-                this.needDivider = z;
-                setWillNotDraw(!z);
-            }
-
-            @Override
-            protected void onDraw(Canvas canvas) {
-                super.onDraw(canvas);
-                if (this.needDivider) {
-                    canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
-                }
-            }
-
-            public static class Factory extends UItem.UItemFactory {
-                static {
-                    UItem.UItemFactory.setup(new Factory());
-                }
-
-                @Override
-                public LanguageView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                    return new LanguageView(context);
-                }
-
-                @Override
-                public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                    ((LanguageView) view).set((TranslateController.Language) uItem.object, z);
-                }
-
-                public static UItem of(TranslateController.Language language) {
-                    UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-                    uItemOfFactory.object = language;
-                    return uItemOfFactory;
+                    sharedPhotoVideoCell2.setChecked(botPreviewsEditLangContainer.this$0.isSelected(sharedPhotoVideoCell2.getMessageObject()), true);
                 }
             }
         }

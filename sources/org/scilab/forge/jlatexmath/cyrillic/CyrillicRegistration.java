@@ -9,12 +9,12 @@ public class CyrillicRegistration implements AlphabetRegistration {
     }
 
     @Override
-    public Character.UnicodeBlock[] getUnicodeBlock() {
-        return new Character.UnicodeBlock[]{Character.UnicodeBlock.CYRILLIC};
+    public String getTeXFontFileName() {
+        return "fonts/language_cyrillic.xml";
     }
 
     @Override
-    public String getTeXFontFileName() {
-        return "fonts/language_cyrillic.xml";
+    public Character.UnicodeBlock[] getUnicodeBlock() {
+        return new Character.UnicodeBlock[]{Character.UnicodeBlock.CYRILLIC};
     }
 }

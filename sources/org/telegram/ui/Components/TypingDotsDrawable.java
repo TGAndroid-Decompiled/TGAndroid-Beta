@@ -9,26 +9,17 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
 
-public class TypingDotsDrawable extends StatusDrawable {
-    private Paint currentPaint;
-    private boolean ignoreAnimationLocks;
-    private int currentAccount = UserConfig.selectedAccount;
-    private boolean isChat = false;
-    private float[] scales = new float[3];
-    private float[] startTimes = {0.0f, 150.0f, 300.0f};
-    private float[] elapsedTimes = {0.0f, 0.0f, 0.0f};
-    private long lastUpdateTime = 0;
-    private boolean started = false;
-    private DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator();
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
+public final class TypingDotsDrawable extends StatusDrawable {
+    public final Paint currentPaint;
+    public boolean ignoreAnimationLocks;
+    public final int currentAccount = UserConfig.selectedAccount;
+    public boolean isChat = false;
+    public final float[] scales = new float[3];
+    public final float[] startTimes = {0.0f, 150.0f, 300.0f};
+    public final float[] elapsedTimes = {0.0f, 0.0f, 0.0f};
+    public long lastUpdateTime = 0;
+    public boolean started = false;
+    public final DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator();
 
     public TypingDotsDrawable(boolean z) {
         if (z) {
@@ -36,75 +27,48 @@ public class TypingDotsDrawable extends StatusDrawable {
         }
     }
 
-    public void setIgnoreAnimationLocks() {
-        this.ignoreAnimationLocks = true;
-    }
-
-    @Override
-    public void setColor(int i) {
-        Paint paint = this.currentPaint;
-        if (paint != null) {
-            paint.setColor(i);
-        }
-    }
-
-    @Override
-    public void setIsChat(boolean z) {
-        this.isChat = z;
-    }
-
-    private void update() {
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        long j = jCurrentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = jCurrentTimeMillis;
-        if (j > 50) {
-            j = 50;
-        }
-        for (int i = 0; i < 3; i++) {
-            float[] fArr = this.elapsedTimes;
-            float f = fArr[i] + j;
-            fArr[i] = f;
-            float[] fArr2 = this.startTimes;
-            float f2 = f - fArr2[i];
-            if (f2 <= 0.0f) {
-                this.scales[i] = 1.33f;
-            } else if (f2 <= 320.0f) {
-                this.scales[i] = this.decelerateInterpolator.getInterpolation(f2 / 320.0f) + 1.33f;
-            } else if (f2 <= 640.0f) {
-                this.scales[i] = (1.0f - this.decelerateInterpolator.getInterpolation((f2 - 320.0f) / 320.0f)) + 1.33f;
-            } else if (f2 >= 800.0f) {
-                fArr[i] = 0.0f;
-                fArr2[i] = 0.0f;
-                this.scales[i] = 1.33f;
-            } else {
-                this.scales[i] = 1.33f;
+    public final void checkUpdate$1() {
+        if (this.started) {
+            if (NotificationCenter.getInstance(this.currentAccount).isAnimationInProgress() && !this.ignoreAnimationLocks) {
+                AndroidUtilities.runOnUIThread(new Tooltip$$ExternalSyntheticLambda0(this, 7), 100L);
+                return;
             }
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long j = jCurrentTimeMillis - this.lastUpdateTime;
+            this.lastUpdateTime = jCurrentTimeMillis;
+            if (j > 50) {
+                j = 50;
+            }
+            for (int i = 0; i < 3; i++) {
+                float[] fArr = this.elapsedTimes;
+                float f = fArr[i] + j;
+                fArr[i] = f;
+                float[] fArr2 = this.startTimes;
+                float f2 = f - fArr2[i];
+                float[] fArr3 = this.scales;
+                if (f2 > 0.0f) {
+                    DecelerateInterpolator decelerateInterpolator = this.decelerateInterpolator;
+                    if (f2 <= 320.0f) {
+                        fArr3[i] = decelerateInterpolator.getInterpolation(f2 / 320.0f) + 1.33f;
+                    } else if (f2 <= 640.0f) {
+                        fArr3[i] = (1.0f - decelerateInterpolator.getInterpolation((f2 - 320.0f) / 320.0f)) + 1.33f;
+                    } else if (f2 >= 800.0f) {
+                        fArr[i] = 0.0f;
+                        fArr2[i] = 0.0f;
+                        fArr3[i] = 1.33f;
+                    } else {
+                        fArr3[i] = 1.33f;
+                    }
+                } else {
+                    fArr3[i] = 1.33f;
+                }
+            }
+            invalidateLimited();
         }
-        invalidateLimited();
     }
 
     @Override
-    public void start() {
-        this.lastUpdateTime = System.currentTimeMillis();
-        this.started = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public void stop() {
-        for (int i = 0; i < 3; i++) {
-            this.elapsedTimes[i] = 0.0f;
-            this.scales[i] = 1.33f;
-        }
-        float[] fArr = this.startTimes;
-        fArr[0] = 0.0f;
-        fArr[1] = 150.0f;
-        fArr[2] = 300.0f;
-        this.started = false;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         int iDp;
         int i;
         int i2 = getBounds().left;
@@ -121,30 +85,44 @@ public class TypingDotsDrawable extends StatusDrawable {
             paint = Theme.chat_statusPaint;
             paint.setAlpha(255);
         }
+        float fDp = AndroidUtilities.dp(3.0f) + i2;
         float f = i3;
-        canvas.drawCircle(AndroidUtilities.dp(3.0f) + i2, f, this.scales[0] * AndroidUtilities.density, paint);
-        canvas.drawCircle(AndroidUtilities.dp(9.0f) + i2, f, this.scales[1] * AndroidUtilities.density, paint);
-        canvas.drawCircle(i2 + AndroidUtilities.dp(15.0f), f, this.scales[2] * AndroidUtilities.density, paint);
-        checkUpdate();
+        float[] fArr = this.scales;
+        canvas.drawCircle(fDp, f, fArr[0] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(9.0f) + i2, f, fArr[1] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(15.0f) + i2, f, fArr[2] * AndroidUtilities.density, paint);
+        checkUpdate$1();
     }
 
-    public void checkUpdate() {
-        if (this.started) {
-            if (!NotificationCenter.getInstance(this.currentAccount).isAnimationInProgress() || this.ignoreAnimationLocks) {
-                update();
-            } else {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.checkUpdate();
-                    }
-                }, 100L);
-            }
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColor(int i) {
+        Paint paint = this.currentPaint;
+        if (paint != null) {
+            paint.setColor(i);
         }
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
+    public final void setColorFilter(ColorFilter colorFilter) {
         Paint paint = this.currentPaint;
         if (paint != null) {
             paint.setColorFilter(colorFilter);
@@ -152,12 +130,27 @@ public class TypingDotsDrawable extends StatusDrawable {
     }
 
     @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
+    public final void setIsChat(boolean z) {
+        this.isChat = z;
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
+    public final void start() {
+        this.lastUpdateTime = System.currentTimeMillis();
+        this.started = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void stop() {
+        for (int i = 0; i < 3; i++) {
+            this.elapsedTimes[i] = 0.0f;
+            this.scales[i] = 1.33f;
+        }
+        float[] fArr = this.startTimes;
+        fArr[0] = 0.0f;
+        fArr[1] = 150.0f;
+        fArr[2] = 300.0f;
+        this.started = false;
     }
 }

@@ -13,48 +13,6 @@ public class VRowAtom extends Atom {
     public VRowAtom() {
     }
 
-    public VRowAtom(Atom atom) {
-        if (atom != null) {
-            if (atom instanceof VRowAtom) {
-                this.elements.addAll(((VRowAtom) atom).elements);
-            } else {
-                this.elements.add(atom);
-            }
-        }
-    }
-
-    public void setAddInterline(boolean z) {
-        this.addInterline = z;
-    }
-
-    public boolean getAddInterline() {
-        return this.addInterline;
-    }
-
-    public void setHalign(int i) {
-        this.halign = i;
-    }
-
-    public int getHalign() {
-        return this.halign;
-    }
-
-    public void setVtop(boolean z) {
-        this.vtop = z;
-    }
-
-    public boolean getVtop() {
-        return this.vtop;
-    }
-
-    public void setRaise(int i, float f) {
-        this.raise = new SpaceAtom(i, f, 0.0f, 0.0f);
-    }
-
-    public Atom getLastAtom() {
-        return this.elements.removeLast();
-    }
-
     public final void add(Atom atom) {
         if (atom != null) {
             this.elements.add(0, atom);
@@ -104,12 +62,54 @@ public class VRowAtom extends Atom {
         if (this.vtop) {
             depth = verticalBox.getSize() != 0 ? verticalBox.children.getFirst().getHeight() : 0.0f;
             verticalBox.setHeight(depth);
-            verticalBox.setDepth((verticalBox.getDepth() + verticalBox.getHeight()) - depth);
+            verticalBox.setDepth((verticalBox.getHeight() + verticalBox.getDepth()) - depth);
             return verticalBox;
         }
         depth = verticalBox.getSize() != 0 ? verticalBox.children.getLast().getDepth() : 0.0f;
-        verticalBox.setHeight((verticalBox.getDepth() + verticalBox.getHeight()) - depth);
+        verticalBox.setHeight((verticalBox.getHeight() + verticalBox.getDepth()) - depth);
         verticalBox.setDepth(depth);
         return verticalBox;
+    }
+
+    public boolean getAddInterline() {
+        return this.addInterline;
+    }
+
+    public int getHalign() {
+        return this.halign;
+    }
+
+    public Atom getLastAtom() {
+        return this.elements.removeLast();
+    }
+
+    public boolean getVtop() {
+        return this.vtop;
+    }
+
+    public void setAddInterline(boolean z) {
+        this.addInterline = z;
+    }
+
+    public void setHalign(int i) {
+        this.halign = i;
+    }
+
+    public void setRaise(int i, float f) {
+        this.raise = new SpaceAtom(i, f, 0.0f, 0.0f);
+    }
+
+    public void setVtop(boolean z) {
+        this.vtop = z;
+    }
+
+    public VRowAtom(Atom atom) {
+        if (atom != null) {
+            if (atom instanceof VRowAtom) {
+                this.elements.addAll(((VRowAtom) atom).elements);
+            } else {
+                this.elements.add(atom);
+            }
+        }
     }
 }

@@ -16,12 +16,13 @@ public class OverUnderDelimiter extends Atom {
         this.over = z;
     }
 
-    public void addScript(Atom atom) {
-        this.script = atom;
+    private static float getMaxWidth(Box box, Box box2, Box box3) {
+        float fMax = Math.max(box.getWidth(), box2.getDepth() + box2.getHeight());
+        return box3 != null ? Math.max(fMax, box3.getWidth()) : fMax;
     }
 
-    public boolean isOver() {
-        return this.over;
+    public void addScript(Atom atom) {
+        this.script = atom;
     }
 
     @Override
@@ -40,8 +41,7 @@ public class OverUnderDelimiter extends Atom {
         return new OverUnderBox(maxWidth - strutBox.getWidth() > 1.0E-7f ? new HorizontalBox(strutBox, maxWidth, 2) : strutBox, new VerticalBox(boxCreate, maxWidth, 2), (boxCreateBox == null || maxWidth - boxCreateBox.getWidth() <= 1.0E-7f) ? boxCreateBox : new HorizontalBox(boxCreateBox, maxWidth, 2), this.kern.createBox(teXEnvironment).getHeight(), this.over);
     }
 
-    private static float getMaxWidth(Box box, Box box2, Box box3) {
-        float fMax = Math.max(box.getWidth(), box2.getHeight() + box2.getDepth());
-        return box3 != null ? Math.max(fMax, box3.getWidth()) : fMax;
+    public boolean isOver() {
+        return this.over;
     }
 }

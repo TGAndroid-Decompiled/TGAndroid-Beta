@@ -8,30 +8,31 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
-public class ContextProgressView extends View {
-    private RectF cicleRect;
-    private int innerColor;
-    private int innerKey;
-    private Paint innerPaint;
-    private long lastUpdateTime;
-    private int outerColor;
-    private int outerKey;
-    private Paint outerPaint;
-    private int radOffset;
+public final class ContextProgressView extends View {
+    public final RectF cicleRect;
+    public int innerColor;
+    public int innerKey;
+    public final Paint innerPaint;
+    public long lastUpdateTime;
+    public int outerColor;
+    public int outerKey;
+    public final Paint outerPaint;
+    public int radOffset;
 
     public ContextProgressView(Context context, int i) {
         super(context);
-        this.innerPaint = new Paint(1);
-        this.outerPaint = new Paint(1);
+        Paint paint = new Paint(1);
+        this.innerPaint = paint;
+        Paint paint2 = new Paint(1);
+        this.outerPaint = paint2;
         this.cicleRect = new RectF();
         this.radOffset = 0;
-        Paint paint = this.innerPaint;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
-        this.innerPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.outerPaint.setStyle(style);
-        this.outerPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.outerPaint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint2.setStrokeCap(Paint.Cap.ROUND);
         if (i == 0) {
             this.innerKey = Theme.key_contextProgressInner1;
             this.outerKey = Theme.key_contextProgressOuter1;
@@ -48,28 +49,37 @@ public class ContextProgressView extends View {
         updateColors();
     }
 
-    public void setColors(int i, int i2) {
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.lastUpdateTime = System.currentTimeMillis();
+        invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (getVisibility() != 0) {
+            return;
+        }
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
+        this.radOffset = (int) (((j * 360) / 1000.0f) + this.radOffset);
+        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
+        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
+        RectF rectF = this.cicleRect;
+        rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
+        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.innerPaint);
+        canvas.drawArc(rectF, this.radOffset - 90, 90.0f, false, this.outerPaint);
+        invalidate();
+    }
+
+    public final void setColors(int i, int i2) {
         this.innerKey = -1;
         this.outerKey = -1;
         this.innerColor = i;
         this.outerColor = i2;
         updateColors();
-    }
-
-    public void updateColors() {
-        int i = this.innerKey;
-        if (i >= 0) {
-            this.innerPaint.setColor(Theme.getColor(i));
-        } else {
-            this.innerPaint.setColor(this.innerColor);
-        }
-        int i2 = this.outerKey;
-        if (i2 >= 0) {
-            this.outerPaint.setColor(Theme.getColor(i2));
-        } else {
-            this.outerPaint.setColor(this.outerColor);
-        }
-        invalidate();
     }
 
     @Override
@@ -79,27 +89,21 @@ public class ContextProgressView extends View {
         invalidate();
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.lastUpdateTime = System.currentTimeMillis();
-        invalidate();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
-            return;
+    public final void updateColors() {
+        int i = this.innerKey;
+        Paint paint = this.innerPaint;
+        if (i >= 0) {
+            paint.setColor(Theme.getColor(null, i, false));
+        } else {
+            paint.setColor(this.innerColor);
         }
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        long j = jCurrentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = jCurrentTimeMillis;
-        this.radOffset = (int) (this.radOffset + ((j * 360) / 1000.0f));
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        this.cicleRect.set(measuredWidth, measuredHeight, measuredWidth + AndroidUtilities.dp(18.0f), measuredHeight + AndroidUtilities.dp(18.0f));
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.innerPaint);
-        canvas.drawArc(this.cicleRect, this.radOffset - 90, 90.0f, false, this.outerPaint);
+        int i2 = this.outerKey;
+        Paint paint2 = this.outerPaint;
+        if (i2 >= 0) {
+            paint2.setColor(Theme.getColor(null, i2, false));
+        } else {
+            paint2.setColor(this.outerColor);
+        }
         invalidate();
     }
 }

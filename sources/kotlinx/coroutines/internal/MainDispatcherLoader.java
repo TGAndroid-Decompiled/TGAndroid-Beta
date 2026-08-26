@@ -1,56 +1,55 @@
 package kotlinx.coroutines.internal;
 
+import android.os.Looper;
+import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ServiceLoader;
+import java.util.ServiceConfigurationError;
+import kotlin.jvm.internal.Intrinsics;
+import kotlin.sequences.ConstrainedOnceSequence;
 import kotlin.sequences.SequencesKt;
-import kotlinx.coroutines.MainCoroutineDispatcher;
+import kotlin.text.StringsKt__StringsKt$lineSequence$$inlined$Sequence$1;
+import kotlinx.coroutines.android.AndroidDispatcherFactory;
+import kotlinx.coroutines.android.HandlerContext;
+import kotlinx.coroutines.android.HandlerDispatcherKt;
 
-public final class MainDispatcherLoader {
-    public static final MainDispatcherLoader INSTANCE;
-    public static final MainCoroutineDispatcher dispatcher;
-
-    private MainDispatcherLoader() {
-    }
+public abstract class MainDispatcherLoader {
+    public static final HandlerContext dispatcher;
 
     static {
-        MainDispatcherLoader mainDispatcherLoader = new MainDispatcherLoader();
-        INSTANCE = mainDispatcherLoader;
-        SystemPropsKt.systemProp("kotlinx.coroutines.fast.service.loader", true);
-        dispatcher = mainDispatcherLoader.loadMainDispatcher();
-    }
-
-    private final MainCoroutineDispatcher loadMainDispatcher() {
-        Object next;
-        MainCoroutineDispatcher mainCoroutineDispatcherTryCreateDispatcher;
+        String property;
+        int i = SystemPropsKt__SystemPropsKt.AVAILABLE_PROCESSORS;
+        Object next = null;
         try {
-            List list = SequencesKt.toList(SequencesKt.asSequence(ServiceLoader.load(MainDispatcherFactory.class, MainDispatcherFactory.class.getClassLoader()).iterator()));
-            Iterator it = list.iterator();
-            if (it.hasNext()) {
-                next = it.next();
-                if (it.hasNext()) {
-                    int loadPriority = ((MainDispatcherFactory) next).getLoadPriority();
+            property = System.getProperty("kotlinx.coroutines.fast.service.loader");
+        } catch (SecurityException unused) {
+            property = null;
+        }
+        if (property != null) {
+            Boolean.parseBoolean(property);
+        }
+        try {
+            Iterator it = Arrays.asList(new AndroidDispatcherFactory()).iterator();
+            Intrinsics.checkNotNullParameter(it, "<this>");
+            Iterator it2 = SequencesKt.toList(new ConstrainedOnceSequence(new StringsKt__StringsKt$lineSequence$$inlined$Sequence$1(it, 2))).iterator();
+            if (it2.hasNext()) {
+                next = it2.next();
+                if (it2.hasNext()) {
+                    ((AndroidDispatcherFactory) next).getClass();
                     do {
-                        Object next2 = it.next();
-                        int loadPriority2 = ((MainDispatcherFactory) next2).getLoadPriority();
-                        if (loadPriority < loadPriority2) {
-                            next = next2;
-                            loadPriority = loadPriority2;
-                        }
-                    } while (it.hasNext());
+                        ((AndroidDispatcherFactory) it2.next()).getClass();
+                    } while (it2.hasNext());
                 }
-            } else {
-                next = null;
             }
-            MainDispatcherFactory mainDispatcherFactory = (MainDispatcherFactory) next;
-            if (mainDispatcherFactory != null && (mainCoroutineDispatcherTryCreateDispatcher = MainDispatchersKt.tryCreateDispatcher(mainDispatcherFactory, list)) != null) {
-                return mainCoroutineDispatcherTryCreateDispatcher;
+            if (((AndroidDispatcherFactory) next) == null) {
+                throw new IllegalStateException("Module with the Main dispatcher is missing. Add dependency providing the Main dispatcher, e.g. 'kotlinx-coroutines-android' and ensure it has the same version as 'kotlinx-coroutines-core'");
             }
-            MainDispatchersKt.createMissingDispatcher$default(null, null, 3, null);
-            return null;
+            Looper mainLooper = Looper.getMainLooper();
+            if (mainLooper == null) {
+                throw new IllegalStateException("The main looper is not available");
+            }
+            dispatcher = new HandlerContext(HandlerDispatcherKt.asHandler(mainLooper), false);
         } catch (Throwable th) {
-            MainDispatchersKt.createMissingDispatcher$default(th, null, 2, null);
-            return null;
+            throw new ServiceConfigurationError(th.getMessage(), th);
         }
     }
 }

@@ -1,14 +1,17 @@
 package kotlin.coroutines;
 
 import kotlin.jvm.functions.Function2;
-import kotlin.jvm.internal.Intrinsics;
 
 public abstract class AbstractCoroutineContextElement implements CoroutineContext.Element {
-    private final CoroutineContext.Key key;
+    public final CoroutineContext.Key key;
+
+    public AbstractCoroutineContextElement(CoroutineContext.Key key) {
+        this.key = key;
+    }
 
     @Override
-    public Object fold(Object obj, Function2 function2) {
-        return CoroutineContext.Element.DefaultImpls.fold(this, obj, function2);
+    public final Object fold(Object obj, Function2 function2) {
+        return function2.invoke(obj, this);
     }
 
     @Override
@@ -17,22 +20,17 @@ public abstract class AbstractCoroutineContextElement implements CoroutineContex
     }
 
     @Override
+    public final CoroutineContext.Key getKey() {
+        return this.key;
+    }
+
+    @Override
     public CoroutineContext minusKey(CoroutineContext.Key key) {
         return CoroutineContext.Element.DefaultImpls.minusKey(this, key);
     }
 
     @Override
-    public CoroutineContext plus(CoroutineContext coroutineContext) {
+    public final CoroutineContext plus(CoroutineContext coroutineContext) {
         return CoroutineContext.Element.DefaultImpls.plus(this, coroutineContext);
-    }
-
-    public AbstractCoroutineContextElement(CoroutineContext.Key key) {
-        Intrinsics.checkNotNullParameter(key, "key");
-        this.key = key;
-    }
-
-    @Override
-    public CoroutineContext.Key getKey() {
-        return this.key;
     }
 }

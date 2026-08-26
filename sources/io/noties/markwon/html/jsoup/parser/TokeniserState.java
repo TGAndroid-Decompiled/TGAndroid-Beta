@@ -1,37 +1,63 @@
 package io.noties.markwon.html.jsoup.parser;
 
-enum TokeniserState {
+import java.util.Locale;
+
+public enum TokeniserState {
     Data {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            int i;
+            char[] cArr;
+            char c;
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
                 tokeniser.emit(characterReader.consume());
-            } else {
-                if (cCurrent == '&') {
-                    tokeniser.advanceTransition(TokeniserState.CharacterReferenceInData);
-                    return;
-                }
-                if (cCurrent == '<') {
-                    tokeniser.advanceTransition(TokeniserState.TagOpen);
-                } else if (cCurrent == 65535) {
-                    tokeniser.emit(new Token.EOF());
+                return;
+            }
+            if (cCurrent == '&') {
+                tokeniser.advanceTransition(TokeniserState.CharacterReferenceInData);
+                return;
+            }
+            if (cCurrent == '<') {
+                tokeniser.advanceTransition(TokeniserState.TagOpen);
+                return;
+            }
+            if (cCurrent == 65535) {
+                tokeniser.emit(new Token.EOF());
+                return;
+            }
+            characterReader.bufferUp();
+            int i2 = characterReader.bufPos;
+            int i3 = characterReader.bufLength;
+            while (true) {
+                i = characterReader.bufPos;
+                cArr = characterReader.charBuf;
+                if (i >= i3 || (c = cArr[i]) == '&' || c == '<' || c == 0) {
+                    break;
                 } else {
-                    tokeniser.emit(characterReader.consumeData());
+                    characterReader.bufPos = i + 1;
                 }
             }
+            tokeniser.emit(i > i2 ? CharacterReader.cacheString(cArr, characterReader.stringCache, i2, i - i2) : "");
         }
     },
     CharacterReferenceInData {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.readCharRef(tokeniser, TokeniserState.Data);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
+            int[] iArrConsumeCharacterReference = tokeniser.consumeCharacterReference(null, false);
+            if (iArrConsumeCharacterReference == null) {
+                tokeniser.emit('&');
+            } else {
+                tokeniser.emit(new String(iArrConsumeCharacterReference, 0, iArrConsumeCharacterReference.length));
+            }
+            tokeniser.state = anonymousClass1;
         }
     },
     Rcdata {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
@@ -44,50 +70,57 @@ enum TokeniserState {
                 }
                 if (cCurrent == '<') {
                     tokeniser.advanceTransition(TokeniserState.RcdataLessthanSign);
-                } else if (cCurrent == 65535) {
-                    tokeniser.emit(new Token.EOF());
-                } else {
+                } else if (cCurrent != 65535) {
                     tokeniser.emit(characterReader.consumeToAny('&', '<', 0));
+                } else {
+                    tokeniser.emit(new Token.EOF());
                 }
             }
         }
     },
     CharacterReferenceInRcdata {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.readCharRef(tokeniser, TokeniserState.Rcdata);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            AnonymousClass3 anonymousClass3 = TokeniserState.Rcdata;
+            int[] iArrConsumeCharacterReference = tokeniser.consumeCharacterReference(null, false);
+            if (iArrConsumeCharacterReference == null) {
+                tokeniser.emit('&');
+            } else {
+                tokeniser.emit(new String(iArrConsumeCharacterReference, 0, iArrConsumeCharacterReference.length));
+            }
+            tokeniser.state = anonymousClass3;
         }
     },
     Rawtext {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.readData(tokeniser, characterReader, this, TokeniserState.RawtextLessthanSign);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            TokeniserState.access$200(tokeniser, characterReader, this, TokeniserState.RawtextLessthanSign);
         }
     },
     ScriptData {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.readData(tokeniser, characterReader, this, TokeniserState.ScriptDataLessthanSign);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            TokeniserState.access$200(tokeniser, characterReader, this, TokeniserState.ScriptDataLessthanSign);
         }
     },
-    PLAINTEXT {
+    EF6 {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
                 characterReader.advance();
                 tokeniser.emit((char) 65533);
-            } else if (cCurrent == 65535) {
-                tokeniser.emit(new Token.EOF());
-            } else {
+            } else if (cCurrent != 65535) {
                 tokeniser.emit(characterReader.consumeTo((char) 0));
+            } else {
+                tokeniser.emit(new Token.EOF());
             }
         }
     },
     TagOpen {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == '!') {
                 tokeniser.advanceTransition(TokeniserState.MarkupDeclarationOpen);
@@ -103,27 +136,29 @@ enum TokeniserState {
             }
             if (characterReader.matchesLetter()) {
                 tokeniser.createTagPending(true);
-                tokeniser.transition(TokeniserState.TagName);
+                tokeniser.state = TokeniserState.TagName;
             } else {
                 tokeniser.error(this);
                 tokeniser.emit('<');
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = TokeniserState.Data;
             }
         }
     },
     EndTagOpen {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            if (characterReader.isEmpty()) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            boolean zIsEmpty = characterReader.isEmpty();
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
+            if (zIsEmpty) {
                 tokeniser.eofError(this);
                 tokeniser.emit("</");
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else if (characterReader.matchesLetter()) {
                 tokeniser.createTagPending(false);
-                tokeniser.transition(TokeniserState.TagName);
+                tokeniser.state = TokeniserState.TagName;
             } else if (characterReader.matches('>')) {
                 tokeniser.error(this);
-                tokeniser.advanceTransition(TokeniserState.Data);
+                tokeniser.advanceTransition(anonymousClass1);
             } else {
                 tokeniser.error(this);
                 tokeniser.advanceTransition(TokeniserState.BogusComment);
@@ -132,8 +167,23 @@ enum TokeniserState {
     },
     TagName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            tokeniser.tagPending.appendTagName(characterReader.consumeTagName());
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            int i;
+            char[] cArr;
+            char c;
+            characterReader.bufferUp();
+            int i2 = characterReader.bufPos;
+            int i3 = characterReader.bufLength;
+            while (true) {
+                i = characterReader.bufPos;
+                cArr = characterReader.charBuf;
+                if (i >= i3 || (c = cArr[i]) == '\t' || c == '\n' || c == '\r' || c == '\f' || c == ' ' || c == '/' || c == '>' || c == 0) {
+                    break;
+                } else {
+                    characterReader.bufPos = i + 1;
+                }
+            }
+            tokeniser.tagPending.appendTagName(i > i2 ? CharacterReader.cacheString(cArr, characterReader.stringCache, i2, i - i2) : "");
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.tagPending.appendTagName(TokeniserState.replacementStr);
@@ -141,63 +191,84 @@ enum TokeniserState {
             }
             if (cConsume != ' ') {
                 if (cConsume == '/') {
-                    tokeniser.transition(TokeniserState.SelfClosingStartTag);
+                    tokeniser.state = TokeniserState.SelfClosingStartTag;
                     return;
                 }
+                AnonymousClass1 anonymousClass1 = TokeniserState.Data;
                 if (cConsume == '>') {
                     tokeniser.emitTagPending();
-                    tokeniser.transition(TokeniserState.Data);
+                    tokeniser.state = anonymousClass1;
                     return;
-                } else if (cConsume == 65535) {
+                }
+                if (cConsume == 65535) {
                     tokeniser.eofError(this);
-                    tokeniser.transition(TokeniserState.Data);
+                    tokeniser.state = anonymousClass1;
                     return;
                 } else if (cConsume != '\t' && cConsume != '\n' && cConsume != '\f' && cConsume != '\r') {
-                    tokeniser.tagPending.appendTagName(cConsume);
+                    Token.Tag tag = tokeniser.tagPending;
+                    tag.getClass();
+                    tag.appendTagName(String.valueOf(cConsume));
                     return;
                 }
             }
-            tokeniser.transition(TokeniserState.BeforeAttributeName);
+            tokeniser.state = TokeniserState.BeforeAttributeName;
         }
     },
     RcdataLessthanSign {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.matches('/')) {
                 tokeniser.createTempBuffer();
                 tokeniser.advanceTransition(TokeniserState.RCDATAEndTagOpen);
                 return;
             }
-            if (characterReader.matchesLetter() && tokeniser.appropriateEndTagName() != null) {
-                if (!characterReader.containsIgnoreCase("</" + tokeniser.appropriateEndTagName())) {
-                    tokeniser.tagPending = tokeniser.createTagPending(false).name(tokeniser.appropriateEndTagName());
+            if (characterReader.matchesLetter() && tokeniser.lastStartTag != null) {
+                String str = "</" + tokeniser.lastStartTag;
+                Locale locale = Locale.ENGLISH;
+                String lowerCase = str.toLowerCase(locale);
+                String upperCase = str.toUpperCase(locale);
+                if (characterReader.nextIndexOf(lowerCase) <= -1 && characterReader.nextIndexOf(upperCase) <= -1) {
+                    Token.Tag tagCreateTagPending = tokeniser.createTagPending(false);
+                    String str2 = tokeniser.lastStartTag;
+                    tagCreateTagPending.tagName = str2;
+                    tagCreateTagPending.normalName = str2 != null ? str2.toLowerCase(locale) : "";
+                    tokeniser.tagPending = tagCreateTagPending;
                     tokeniser.emitTagPending();
                     characterReader.unconsume();
-                    tokeniser.transition(TokeniserState.Data);
+                    tokeniser.state = TokeniserState.Data;
                     return;
                 }
             }
             tokeniser.emit("<");
-            tokeniser.transition(TokeniserState.Rcdata);
+            tokeniser.state = TokeniserState.Rcdata;
         }
     },
     RCDATAEndTagOpen {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            if (characterReader.matchesLetter()) {
-                tokeniser.createTagPending(false);
-                tokeniser.tagPending.appendTagName(characterReader.current());
-                tokeniser.dataBuffer.append(characterReader.current());
-                tokeniser.advanceTransition(TokeniserState.RCDATAEndTagName);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            if (!characterReader.matchesLetter()) {
+                tokeniser.emit("</");
+                tokeniser.state = TokeniserState.Rcdata;
                 return;
             }
-            tokeniser.emit("</");
-            tokeniser.transition(TokeniserState.Rcdata);
+            tokeniser.createTagPending(false);
+            Token.Tag tag = tokeniser.tagPending;
+            char cCurrent = characterReader.current();
+            tag.getClass();
+            tag.appendTagName(String.valueOf(cCurrent));
+            tokeniser.dataBuffer.append(characterReader.current());
+            tokeniser.advanceTransition(TokeniserState.RCDATAEndTagName);
         }
     },
     RCDATAEndTagName {
+        public static void anythingElse(Tokeniser tokeniser, CharacterReader characterReader) {
+            tokeniser.emit("</" + tokeniser.dataBuffer.toString());
+            characterReader.unconsume();
+            tokeniser.state = TokeniserState.Rcdata;
+        }
+
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.matchesLetter()) {
                 String strConsumeLetterSequence = characterReader.consumeLetterSequence();
                 tokeniser.tagPending.appendTagName(strConsumeLetterSequence);
@@ -207,7 +278,7 @@ enum TokeniserState {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 if (tokeniser.isAppropriateEndTagToken()) {
-                    tokeniser.transition(TokeniserState.BeforeAttributeName);
+                    tokeniser.state = TokeniserState.BeforeAttributeName;
                     return;
                 } else {
                     anythingElse(tokeniser, characterReader);
@@ -216,113 +287,120 @@ enum TokeniserState {
             }
             if (cConsume == '/') {
                 if (tokeniser.isAppropriateEndTagToken()) {
-                    tokeniser.transition(TokeniserState.SelfClosingStartTag);
+                    tokeniser.state = TokeniserState.SelfClosingStartTag;
                     return;
                 } else {
                     anythingElse(tokeniser, characterReader);
                     return;
                 }
             }
-            if (cConsume == '>') {
-                if (tokeniser.isAppropriateEndTagToken()) {
-                    tokeniser.emitTagPending();
-                    tokeniser.transition(TokeniserState.Data);
-                    return;
-                } else {
-                    anythingElse(tokeniser, characterReader);
-                    return;
-                }
+            if (cConsume != '>') {
+                anythingElse(tokeniser, characterReader);
+            } else if (!tokeniser.isAppropriateEndTagToken()) {
+                anythingElse(tokeniser, characterReader);
+            } else {
+                tokeniser.emitTagPending();
+                tokeniser.state = TokeniserState.Data;
             }
-            anythingElse(tokeniser, characterReader);
-        }
-
-        private void anythingElse(Tokeniser tokeniser, CharacterReader characterReader) {
-            tokeniser.emit("</" + tokeniser.dataBuffer.toString());
-            characterReader.unconsume();
-            tokeniser.transition(TokeniserState.Rcdata);
         }
     },
     RawtextLessthanSign {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.matches('/')) {
                 tokeniser.createTempBuffer();
                 tokeniser.advanceTransition(TokeniserState.RawtextEndTagOpen);
             } else {
                 tokeniser.emit('<');
-                tokeniser.transition(TokeniserState.Rawtext);
+                tokeniser.state = TokeniserState.Rawtext;
             }
         }
     },
     RawtextEndTagOpen {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.readEndTag(tokeniser, characterReader, TokeniserState.RawtextEndTagName, TokeniserState.Rawtext);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            AnonymousClass16 anonymousClass16 = TokeniserState.RawtextEndTagName;
+            AnonymousClass5 anonymousClass5 = TokeniserState.Rawtext;
+            if (characterReader.matchesLetter()) {
+                tokeniser.createTagPending(false);
+                tokeniser.state = anonymousClass16;
+            } else {
+                tokeniser.emit("</");
+                tokeniser.state = anonymousClass5;
+            }
         }
     },
     RawtextEndTagName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.handleDataEndTag(tokeniser, characterReader, TokeniserState.Rawtext);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            TokeniserState.access$500(tokeniser, characterReader, TokeniserState.Rawtext);
         }
     },
     ScriptDataLessthanSign {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '!') {
                 tokeniser.emit("<!");
-                tokeniser.transition(TokeniserState.ScriptDataEscapeStart);
+                tokeniser.state = TokeniserState.ScriptDataEscapeStart;
             } else if (cConsume == '/') {
                 tokeniser.createTempBuffer();
-                tokeniser.transition(TokeniserState.ScriptDataEndTagOpen);
+                tokeniser.state = TokeniserState.ScriptDataEndTagOpen;
             } else {
                 tokeniser.emit("<");
                 characterReader.unconsume();
-                tokeniser.transition(TokeniserState.ScriptData);
+                tokeniser.state = TokeniserState.ScriptData;
             }
         }
     },
     ScriptDataEndTagOpen {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.readEndTag(tokeniser, characterReader, TokeniserState.ScriptDataEndTagName, TokeniserState.ScriptData);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            AnonymousClass19 anonymousClass19 = TokeniserState.ScriptDataEndTagName;
+            AnonymousClass6 anonymousClass6 = TokeniserState.ScriptData;
+            if (characterReader.matchesLetter()) {
+                tokeniser.createTagPending(false);
+                tokeniser.state = anonymousClass19;
+            } else {
+                tokeniser.emit("</");
+                tokeniser.state = anonymousClass6;
+            }
         }
     },
     ScriptDataEndTagName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.handleDataEndTag(tokeniser, characterReader, TokeniserState.ScriptData);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            TokeniserState.access$500(tokeniser, characterReader, TokeniserState.ScriptData);
         }
     },
     ScriptDataEscapeStart {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            if (characterReader.matches('-')) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            if (!characterReader.matches('-')) {
+                tokeniser.state = TokeniserState.ScriptData;
+            } else {
                 tokeniser.emit('-');
                 tokeniser.advanceTransition(TokeniserState.ScriptDataEscapeStartDash);
-            } else {
-                tokeniser.transition(TokeniserState.ScriptData);
             }
         }
     },
     ScriptDataEscapeStartDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            if (characterReader.matches('-')) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            if (!characterReader.matches('-')) {
+                tokeniser.state = TokeniserState.ScriptData;
+            } else {
                 tokeniser.emit('-');
                 tokeniser.advanceTransition(TokeniserState.ScriptDataEscapedDashDash);
-            } else {
-                tokeniser.transition(TokeniserState.ScriptData);
             }
         }
     },
     ScriptDataEscaped {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.isEmpty()) {
                 tokeniser.eofError(this);
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = TokeniserState.Data;
                 return;
             }
             char cCurrent = characterReader.current();
@@ -333,70 +411,72 @@ enum TokeniserState {
             } else if (cCurrent == '-') {
                 tokeniser.emit('-');
                 tokeniser.advanceTransition(TokeniserState.ScriptDataEscapedDash);
-            } else if (cCurrent == '<') {
-                tokeniser.advanceTransition(TokeniserState.ScriptDataEscapedLessthanSign);
-            } else {
+            } else if (cCurrent != '<') {
                 tokeniser.emit(characterReader.consumeToAny('-', '<', 0));
+            } else {
+                tokeniser.advanceTransition(TokeniserState.ScriptDataEscapedLessthanSign);
             }
         }
     },
     ScriptDataEscapedDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.isEmpty()) {
                 tokeniser.eofError(this);
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = TokeniserState.Data;
                 return;
             }
             char cConsume = characterReader.consume();
+            AnonymousClass22 anonymousClass22 = TokeniserState.ScriptDataEscaped;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 tokeniser.emit((char) 65533);
-                tokeniser.transition(TokeniserState.ScriptDataEscaped);
+                tokeniser.state = anonymousClass22;
             } else if (cConsume == '-') {
                 tokeniser.emit(cConsume);
-                tokeniser.transition(TokeniserState.ScriptDataEscapedDashDash);
+                tokeniser.state = TokeniserState.ScriptDataEscapedDashDash;
             } else if (cConsume == '<') {
-                tokeniser.transition(TokeniserState.ScriptDataEscapedLessthanSign);
+                tokeniser.state = TokeniserState.ScriptDataEscapedLessthanSign;
             } else {
                 tokeniser.emit(cConsume);
-                tokeniser.transition(TokeniserState.ScriptDataEscaped);
+                tokeniser.state = anonymousClass22;
             }
         }
     },
     ScriptDataEscapedDashDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.isEmpty()) {
                 tokeniser.eofError(this);
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = TokeniserState.Data;
                 return;
             }
             char cConsume = characterReader.consume();
+            AnonymousClass22 anonymousClass22 = TokeniserState.ScriptDataEscaped;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 tokeniser.emit((char) 65533);
-                tokeniser.transition(TokeniserState.ScriptDataEscaped);
+                tokeniser.state = anonymousClass22;
             } else {
                 if (cConsume == '-') {
                     tokeniser.emit(cConsume);
                     return;
                 }
                 if (cConsume == '<') {
-                    tokeniser.transition(TokeniserState.ScriptDataEscapedLessthanSign);
-                } else if (cConsume == '>') {
+                    tokeniser.state = TokeniserState.ScriptDataEscapedLessthanSign;
+                } else if (cConsume != '>') {
                     tokeniser.emit(cConsume);
-                    tokeniser.transition(TokeniserState.ScriptData);
+                    tokeniser.state = anonymousClass22;
                 } else {
                     tokeniser.emit(cConsume);
-                    tokeniser.transition(TokeniserState.ScriptDataEscaped);
+                    tokeniser.state = TokeniserState.ScriptData;
                 }
             }
         }
     },
     ScriptDataEscapedLessthanSign {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.matchesLetter()) {
                 tokeniser.createTempBuffer();
                 tokeniser.dataBuffer.append(characterReader.current());
@@ -409,39 +489,42 @@ enum TokeniserState {
                 tokeniser.advanceTransition(TokeniserState.ScriptDataEscapedEndTagOpen);
             } else {
                 tokeniser.emit('<');
-                tokeniser.transition(TokeniserState.ScriptDataEscaped);
+                tokeniser.state = TokeniserState.ScriptDataEscaped;
             }
         }
     },
     ScriptDataEscapedEndTagOpen {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            if (characterReader.matchesLetter()) {
-                tokeniser.createTagPending(false);
-                tokeniser.tagPending.appendTagName(characterReader.current());
-                tokeniser.dataBuffer.append(characterReader.current());
-                tokeniser.advanceTransition(TokeniserState.ScriptDataEscapedEndTagName);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            if (!characterReader.matchesLetter()) {
+                tokeniser.emit("</");
+                tokeniser.state = TokeniserState.ScriptDataEscaped;
                 return;
             }
-            tokeniser.emit("</");
-            tokeniser.transition(TokeniserState.ScriptDataEscaped);
+            tokeniser.createTagPending(false);
+            Token.Tag tag = tokeniser.tagPending;
+            char cCurrent = characterReader.current();
+            tag.getClass();
+            tag.appendTagName(String.valueOf(cCurrent));
+            tokeniser.dataBuffer.append(characterReader.current());
+            tokeniser.advanceTransition(TokeniserState.ScriptDataEscapedEndTagName);
         }
     },
     ScriptDataEscapedEndTagName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.handleDataEndTag(tokeniser, characterReader, TokeniserState.ScriptDataEscaped);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            TokeniserState.access$500(tokeniser, characterReader, TokeniserState.ScriptDataEscaped);
         }
     },
     ScriptDataDoubleEscapeStart {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.handleDataDoubleEscapeTag(tokeniser, characterReader, TokeniserState.ScriptDataDoubleEscaped, TokeniserState.ScriptDataEscaped);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            TokeniserState.access$600(tokeniser, characterReader, TokeniserState.ScriptDataDoubleEscaped, TokeniserState.ScriptDataEscaped);
         }
     },
     ScriptDataDoubleEscaped {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
@@ -453,45 +536,47 @@ enum TokeniserState {
             } else if (cCurrent == '<') {
                 tokeniser.emit(cCurrent);
                 tokeniser.advanceTransition(TokeniserState.ScriptDataDoubleEscapedLessthanSign);
-            } else if (cCurrent == 65535) {
-                tokeniser.eofError(this);
-                tokeniser.transition(TokeniserState.Data);
-            } else {
+            } else if (cCurrent != 65535) {
                 tokeniser.emit(characterReader.consumeToAny('-', '<', 0));
+            } else {
+                tokeniser.eofError(this);
+                tokeniser.state = TokeniserState.Data;
             }
         }
     },
     ScriptDataDoubleEscapedDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass29 anonymousClass29 = TokeniserState.ScriptDataDoubleEscaped;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 tokeniser.emit((char) 65533);
-                tokeniser.transition(TokeniserState.ScriptDataDoubleEscaped);
+                tokeniser.state = anonymousClass29;
             } else if (cConsume == '-') {
                 tokeniser.emit(cConsume);
-                tokeniser.transition(TokeniserState.ScriptDataDoubleEscapedDashDash);
+                tokeniser.state = TokeniserState.ScriptDataDoubleEscapedDashDash;
             } else if (cConsume == '<') {
                 tokeniser.emit(cConsume);
-                tokeniser.transition(TokeniserState.ScriptDataDoubleEscapedLessthanSign);
-            } else if (cConsume == 65535) {
-                tokeniser.eofError(this);
-                tokeniser.transition(TokeniserState.Data);
-            } else {
+                tokeniser.state = TokeniserState.ScriptDataDoubleEscapedLessthanSign;
+            } else if (cConsume != 65535) {
                 tokeniser.emit(cConsume);
-                tokeniser.transition(TokeniserState.ScriptDataDoubleEscaped);
+                tokeniser.state = anonymousClass29;
+            } else {
+                tokeniser.eofError(this);
+                tokeniser.state = TokeniserState.Data;
             }
         }
     },
     ScriptDataDoubleEscapedDashDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass29 anonymousClass29 = TokeniserState.ScriptDataDoubleEscaped;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 tokeniser.emit((char) 65533);
-                tokeniser.transition(TokeniserState.ScriptDataDoubleEscaped);
+                tokeniser.state = anonymousClass29;
                 return;
             }
             if (cConsume == '-') {
@@ -500,57 +585,59 @@ enum TokeniserState {
             }
             if (cConsume == '<') {
                 tokeniser.emit(cConsume);
-                tokeniser.transition(TokeniserState.ScriptDataDoubleEscapedLessthanSign);
+                tokeniser.state = TokeniserState.ScriptDataDoubleEscapedLessthanSign;
             } else if (cConsume == '>') {
                 tokeniser.emit(cConsume);
-                tokeniser.transition(TokeniserState.ScriptData);
-            } else if (cConsume == 65535) {
-                tokeniser.eofError(this);
-                tokeniser.transition(TokeniserState.Data);
-            } else {
+                tokeniser.state = TokeniserState.ScriptData;
+            } else if (cConsume != 65535) {
                 tokeniser.emit(cConsume);
-                tokeniser.transition(TokeniserState.ScriptDataDoubleEscaped);
+                tokeniser.state = anonymousClass29;
+            } else {
+                tokeniser.eofError(this);
+                tokeniser.state = TokeniserState.Data;
             }
         }
     },
     ScriptDataDoubleEscapedLessthanSign {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            if (characterReader.matches('/')) {
-                tokeniser.emit('/');
-                tokeniser.createTempBuffer();
-                tokeniser.advanceTransition(TokeniserState.ScriptDataDoubleEscapeEnd);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            if (!characterReader.matches('/')) {
+                tokeniser.state = TokeniserState.ScriptDataDoubleEscaped;
                 return;
             }
-            tokeniser.transition(TokeniserState.ScriptDataDoubleEscaped);
+            tokeniser.emit('/');
+            tokeniser.createTempBuffer();
+            tokeniser.advanceTransition(TokeniserState.ScriptDataDoubleEscapeEnd);
         }
     },
     ScriptDataDoubleEscapeEnd {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            TokeniserState.handleDataDoubleEscapeTag(tokeniser, characterReader, TokeniserState.ScriptDataEscaped, TokeniserState.ScriptDataDoubleEscaped);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            TokeniserState.access$600(tokeniser, characterReader, TokeniserState.ScriptDataEscaped, TokeniserState.ScriptDataDoubleEscaped);
         }
     },
     BeforeAttributeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass35 anonymousClass35 = TokeniserState.AttributeName;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 tokeniser.tagPending.newAttribute();
                 characterReader.unconsume();
-                tokeniser.transition(TokeniserState.AttributeName);
+                tokeniser.state = anonymousClass35;
                 return;
             }
             if (cConsume != ' ') {
                 if (cConsume != '\"' && cConsume != '\'') {
                     if (cConsume == '/') {
-                        tokeniser.transition(TokeniserState.SelfClosingStartTag);
+                        tokeniser.state = TokeniserState.SelfClosingStartTag;
                         return;
                     }
+                    AnonymousClass1 anonymousClass1 = TokeniserState.Data;
                     if (cConsume == 65535) {
                         tokeniser.eofError(this);
-                        tokeniser.transition(TokeniserState.Data);
+                        tokeniser.state = anonymousClass1;
                         return;
                     }
                     if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r') {
@@ -562,12 +649,12 @@ enum TokeniserState {
                             break;
                         case '>':
                             tokeniser.emitTagPending();
-                            tokeniser.transition(TokeniserState.Data);
+                            tokeniser.state = anonymousClass1;
                             break;
                         default:
                             tokeniser.tagPending.newAttribute();
                             characterReader.unconsume();
-                            tokeniser.transition(TokeniserState.AttributeName);
+                            tokeniser.state = anonymousClass35;
                             break;
                     }
                     return;
@@ -575,75 +662,84 @@ enum TokeniserState {
                 tokeniser.error(this);
                 tokeniser.tagPending.newAttribute();
                 tokeniser.tagPending.appendAttributeName(cConsume);
-                tokeniser.transition(TokeniserState.AttributeName);
+                tokeniser.state = anonymousClass35;
             }
         }
     },
     AttributeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            tokeniser.tagPending.appendAttributeName(characterReader.consumeToAnySorted(TokeniserState.attributeNameCharsSorted));
-            char cConsume = characterReader.consume();
-            if (cConsume != 0) {
-                if (cConsume != ' ') {
-                    if (cConsume != '\"' && cConsume != '\'') {
-                        if (cConsume == '/') {
-                            tokeniser.transition(TokeniserState.SelfClosingStartTag);
-                            return;
-                        }
-                        if (cConsume == 65535) {
-                            tokeniser.eofError(this);
-                            tokeniser.transition(TokeniserState.Data);
-                            return;
-                        }
-                        if (cConsume != '\t' && cConsume != '\n' && cConsume != '\f' && cConsume != '\r') {
-                            switch (cConsume) {
-                                case '<':
-                                    break;
-                                case '=':
-                                    tokeniser.transition(TokeniserState.BeforeAttributeValue);
-                                    break;
-                                case '>':
-                                    tokeniser.emitTagPending();
-                                    tokeniser.transition(TokeniserState.Data);
-                                    break;
-                                default:
-                                    tokeniser.tagPending.appendAttributeName(cConsume);
-                                    break;
-                            }
-                            return;
-                        }
-                    }
-                    tokeniser.error(this);
-                    tokeniser.tagPending.appendAttributeName(cConsume);
-                    return;
-                }
-                tokeniser.transition(TokeniserState.AfterAttributeName);
-                return;
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            String strConsumeToAnySorted = characterReader.consumeToAnySorted(TokeniserState.attributeNameCharsSorted);
+            Token.Tag tag = tokeniser.tagPending;
+            String str = tag.pendingAttributeName;
+            if (str != null) {
+                strConsumeToAnySorted = str.concat(strConsumeToAnySorted);
             }
-            tokeniser.error(this);
-            tokeniser.tagPending.appendAttributeName((char) 65533);
-        }
-    },
-    AfterAttributeName {
-        @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            tag.pendingAttributeName = strConsumeToAnySorted;
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
                 tokeniser.tagPending.appendAttributeName((char) 65533);
-                tokeniser.transition(TokeniserState.AttributeName);
                 return;
             }
             if (cConsume != ' ') {
                 if (cConsume != '\"' && cConsume != '\'') {
                     if (cConsume == '/') {
-                        tokeniser.transition(TokeniserState.SelfClosingStartTag);
+                        tokeniser.state = TokeniserState.SelfClosingStartTag;
                         return;
                     }
+                    AnonymousClass1 anonymousClass1 = TokeniserState.Data;
                     if (cConsume == 65535) {
                         tokeniser.eofError(this);
-                        tokeniser.transition(TokeniserState.Data);
+                        tokeniser.state = anonymousClass1;
+                        return;
+                    }
+                    if (cConsume != '\t' && cConsume != '\n' && cConsume != '\f' && cConsume != '\r') {
+                        switch (cConsume) {
+                            case '<':
+                                break;
+                            case '=':
+                                tokeniser.state = TokeniserState.BeforeAttributeValue;
+                                break;
+                            case '>':
+                                tokeniser.emitTagPending();
+                                tokeniser.state = anonymousClass1;
+                                break;
+                            default:
+                                tokeniser.tagPending.appendAttributeName(cConsume);
+                                break;
+                        }
+                        return;
+                    }
+                }
+                tokeniser.error(this);
+                tokeniser.tagPending.appendAttributeName(cConsume);
+                return;
+            }
+            tokeniser.state = TokeniserState.AfterAttributeName;
+        }
+    },
+    AfterAttributeName {
+        @Override
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            char cConsume = characterReader.consume();
+            AnonymousClass35 anonymousClass35 = TokeniserState.AttributeName;
+            if (cConsume == 0) {
+                tokeniser.error(this);
+                tokeniser.tagPending.appendAttributeName((char) 65533);
+                tokeniser.state = anonymousClass35;
+                return;
+            }
+            if (cConsume != ' ') {
+                if (cConsume != '\"' && cConsume != '\'') {
+                    if (cConsume == '/') {
+                        tokeniser.state = TokeniserState.SelfClosingStartTag;
+                        return;
+                    }
+                    AnonymousClass1 anonymousClass1 = TokeniserState.Data;
+                    if (cConsume == 65535) {
+                        tokeniser.eofError(this);
+                        tokeniser.state = anonymousClass1;
                         return;
                     }
                     if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r') {
@@ -653,16 +749,16 @@ enum TokeniserState {
                         case '<':
                             break;
                         case '=':
-                            tokeniser.transition(TokeniserState.BeforeAttributeValue);
+                            tokeniser.state = TokeniserState.BeforeAttributeValue;
                             break;
                         case '>':
                             tokeniser.emitTagPending();
-                            tokeniser.transition(TokeniserState.Data);
+                            tokeniser.state = anonymousClass1;
                             break;
                         default:
                             tokeniser.tagPending.newAttribute();
                             characterReader.unconsume();
-                            tokeniser.transition(TokeniserState.AttributeName);
+                            tokeniser.state = anonymousClass35;
                             break;
                     }
                     return;
@@ -670,30 +766,32 @@ enum TokeniserState {
                 tokeniser.error(this);
                 tokeniser.tagPending.newAttribute();
                 tokeniser.tagPending.appendAttributeName(cConsume);
-                tokeniser.transition(TokeniserState.AttributeName);
+                tokeniser.state = anonymousClass35;
             }
         }
     },
     BeforeAttributeValue {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass40 anonymousClass40 = TokeniserState.AttributeValue_unquoted;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 tokeniser.tagPending.appendAttributeValue((char) 65533);
-                tokeniser.transition(TokeniserState.AttributeValue_unquoted);
+                tokeniser.state = anonymousClass40;
                 return;
             }
             if (cConsume != ' ') {
                 if (cConsume == '\"') {
-                    tokeniser.transition(TokeniserState.AttributeValue_doubleQuoted);
+                    tokeniser.state = TokeniserState.AttributeValue_doubleQuoted;
                     return;
                 }
                 if (cConsume != '`') {
+                    AnonymousClass1 anonymousClass1 = TokeniserState.Data;
                     if (cConsume == 65535) {
                         tokeniser.eofError(this);
                         tokeniser.emitTagPending();
-                        tokeniser.transition(TokeniserState.Data);
+                        tokeniser.state = anonymousClass1;
                         return;
                     }
                     if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r') {
@@ -701,11 +799,11 @@ enum TokeniserState {
                     }
                     if (cConsume == '&') {
                         characterReader.unconsume();
-                        tokeniser.transition(TokeniserState.AttributeValue_unquoted);
+                        tokeniser.state = anonymousClass40;
                         return;
                     }
                     if (cConsume == '\'') {
-                        tokeniser.transition(TokeniserState.AttributeValue_singleQuoted);
+                        tokeniser.state = TokeniserState.AttributeValue_singleQuoted;
                         return;
                     }
                     switch (cConsume) {
@@ -715,29 +813,29 @@ enum TokeniserState {
                         case '>':
                             tokeniser.error(this);
                             tokeniser.emitTagPending();
-                            tokeniser.transition(TokeniserState.Data);
+                            tokeniser.state = anonymousClass1;
                             break;
                         default:
                             characterReader.unconsume();
-                            tokeniser.transition(TokeniserState.AttributeValue_unquoted);
+                            tokeniser.state = anonymousClass40;
                             break;
                     }
                     return;
                 }
                 tokeniser.error(this);
                 tokeniser.tagPending.appendAttributeValue(cConsume);
-                tokeniser.transition(TokeniserState.AttributeValue_unquoted);
+                tokeniser.state = anonymousClass40;
             }
         }
     },
     AttributeValue_doubleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             String strConsumeToAny = characterReader.consumeToAny(TokeniserState.attributeDoubleValueCharsSorted);
             if (strConsumeToAny.length() > 0) {
                 tokeniser.tagPending.appendAttributeValue(strConsumeToAny);
             } else {
-                tokeniser.tagPending.setEmptyAttributeValue();
+                tokeniser.tagPending.hasEmptyAttributeValue = true;
             }
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
@@ -746,16 +844,16 @@ enum TokeniserState {
                 return;
             }
             if (cConsume == '\"') {
-                tokeniser.transition(TokeniserState.AfterAttributeValue_quoted);
+                tokeniser.state = TokeniserState.AfterAttributeValue_quoted;
                 return;
             }
             if (cConsume != '&') {
-                if (cConsume == 65535) {
-                    tokeniser.eofError(this);
-                    tokeniser.transition(TokeniserState.Data);
+                if (cConsume != 65535) {
+                    tokeniser.tagPending.appendAttributeValue(cConsume);
                     return;
                 } else {
-                    tokeniser.tagPending.appendAttributeValue(cConsume);
+                    tokeniser.eofError(this);
+                    tokeniser.state = TokeniserState.Data;
                     return;
                 }
             }
@@ -769,12 +867,12 @@ enum TokeniserState {
     },
     AttributeValue_singleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             String strConsumeToAny = characterReader.consumeToAny(TokeniserState.attributeSingleValueCharsSorted);
             if (strConsumeToAny.length() > 0) {
                 tokeniser.tagPending.appendAttributeValue(strConsumeToAny);
             } else {
-                tokeniser.tagPending.setEmptyAttributeValue();
+                tokeniser.tagPending.hasEmptyAttributeValue = true;
             }
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
@@ -784,15 +882,15 @@ enum TokeniserState {
             }
             if (cConsume == 65535) {
                 tokeniser.eofError(this);
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = TokeniserState.Data;
                 return;
             }
             if (cConsume != '&') {
-                if (cConsume == '\'') {
-                    tokeniser.transition(TokeniserState.AfterAttributeValue_quoted);
+                if (cConsume != '\'') {
+                    tokeniser.tagPending.appendAttributeValue(cConsume);
                     return;
                 } else {
-                    tokeniser.tagPending.appendAttributeValue(cConsume);
+                    tokeniser.state = TokeniserState.AfterAttributeValue_quoted;
                     return;
                 }
             }
@@ -806,108 +904,111 @@ enum TokeniserState {
     },
     AttributeValue_unquoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             String strConsumeToAnySorted = characterReader.consumeToAnySorted(TokeniserState.attributeValueUnquoted);
             if (strConsumeToAnySorted.length() > 0) {
                 tokeniser.tagPending.appendAttributeValue(strConsumeToAnySorted);
             }
             char cConsume = characterReader.consume();
-            if (cConsume != 0) {
-                if (cConsume != ' ') {
-                    if (cConsume != '\"' && cConsume != '`') {
-                        if (cConsume == 65535) {
-                            tokeniser.eofError(this);
-                            tokeniser.transition(TokeniserState.Data);
-                            return;
-                        }
-                        if (cConsume != '\t' && cConsume != '\n' && cConsume != '\f' && cConsume != '\r') {
-                            if (cConsume == '&') {
-                                int[] iArrConsumeCharacterReference = tokeniser.consumeCharacterReference('>', true);
-                                if (iArrConsumeCharacterReference != null) {
-                                    tokeniser.tagPending.appendAttributeValue(iArrConsumeCharacterReference);
-                                    return;
-                                } else {
-                                    tokeniser.tagPending.appendAttributeValue('&');
-                                    return;
-                                }
-                            }
-                            if (cConsume != '\'') {
-                                switch (cConsume) {
-                                    case '<':
-                                    case '=':
-                                        break;
-                                    case '>':
-                                        tokeniser.emitTagPending();
-                                        tokeniser.transition(TokeniserState.Data);
-                                        break;
-                                    default:
-                                        tokeniser.tagPending.appendAttributeValue(cConsume);
-                                        break;
-                                }
+            if (cConsume == 0) {
+                tokeniser.error(this);
+                tokeniser.tagPending.appendAttributeValue((char) 65533);
+                return;
+            }
+            if (cConsume != ' ') {
+                if (cConsume != '\"' && cConsume != '`') {
+                    AnonymousClass1 anonymousClass1 = TokeniserState.Data;
+                    if (cConsume == 65535) {
+                        tokeniser.eofError(this);
+                        tokeniser.state = anonymousClass1;
+                        return;
+                    }
+                    if (cConsume != '\t' && cConsume != '\n' && cConsume != '\f' && cConsume != '\r') {
+                        if (cConsume == '&') {
+                            int[] iArrConsumeCharacterReference = tokeniser.consumeCharacterReference('>', true);
+                            if (iArrConsumeCharacterReference != null) {
+                                tokeniser.tagPending.appendAttributeValue(iArrConsumeCharacterReference);
+                                return;
+                            } else {
+                                tokeniser.tagPending.appendAttributeValue('&');
                                 return;
                             }
                         }
+                        if (cConsume != '\'') {
+                            switch (cConsume) {
+                                case '<':
+                                case '=':
+                                    break;
+                                case '>':
+                                    tokeniser.emitTagPending();
+                                    tokeniser.state = anonymousClass1;
+                                    break;
+                                default:
+                                    tokeniser.tagPending.appendAttributeValue(cConsume);
+                                    break;
+                            }
+                            return;
+                        }
                     }
-                    tokeniser.error(this);
-                    tokeniser.tagPending.appendAttributeValue(cConsume);
-                    return;
                 }
-                tokeniser.transition(TokeniserState.BeforeAttributeName);
+                tokeniser.error(this);
+                tokeniser.tagPending.appendAttributeValue(cConsume);
                 return;
             }
-            tokeniser.error(this);
-            tokeniser.tagPending.appendAttributeValue((char) 65533);
+            tokeniser.state = TokeniserState.BeforeAttributeName;
         }
     },
     AfterAttributeValue_quoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass34 anonymousClass34 = TokeniserState.BeforeAttributeName;
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
-                tokeniser.transition(TokeniserState.BeforeAttributeName);
+                tokeniser.state = anonymousClass34;
                 return;
             }
             if (cConsume == '/') {
-                tokeniser.transition(TokeniserState.SelfClosingStartTag);
+                tokeniser.state = TokeniserState.SelfClosingStartTag;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.emitTagPending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else if (cConsume == 65535) {
                 tokeniser.eofError(this);
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else {
                 tokeniser.error(this);
                 characterReader.unconsume();
-                tokeniser.transition(TokeniserState.BeforeAttributeName);
+                tokeniser.state = anonymousClass34;
             }
         }
     },
     SelfClosingStartTag {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.tagPending.selfClosing = true;
                 tokeniser.emitTagPending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else if (cConsume == 65535) {
                 tokeniser.eofError(this);
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else {
                 tokeniser.error(this);
                 characterReader.unconsume();
-                tokeniser.transition(TokeniserState.BeforeAttributeName);
+                tokeniser.state = TokeniserState.BeforeAttributeName;
             }
         }
     },
     BogusComment {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             characterReader.unconsume();
             Token.Comment comment = new Token.Comment();
-            comment.bogus = true;
             comment.data.append(characterReader.consumeTo('>'));
             tokeniser.emit(comment);
             tokeniser.advanceTransition(TokeniserState.Data);
@@ -915,15 +1016,15 @@ enum TokeniserState {
     },
     MarkupDeclarationOpen {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.matchConsume("--")) {
-                tokeniser.createCommentPending();
-                tokeniser.transition(TokeniserState.CommentStart);
+                tokeniser.commentPending.reset();
+                tokeniser.state = TokeniserState.CommentStart;
             } else if (characterReader.matchConsumeIgnoreCase("DOCTYPE")) {
-                tokeniser.transition(TokeniserState.Doctype);
+                tokeniser.state = TokeniserState.Doctype;
             } else if (characterReader.matchConsume("[CDATA[")) {
                 tokeniser.createTempBuffer();
-                tokeniser.transition(TokeniserState.CdataSection);
+                tokeniser.state = TokeniserState.CdataSection;
             } else {
                 tokeniser.error(this);
                 tokeniser.advanceTransition(TokeniserState.BogusComment);
@@ -932,63 +1033,67 @@ enum TokeniserState {
     },
     CommentStart {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass47 anonymousClass47 = TokeniserState.Comment;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 tokeniser.commentPending.data.append((char) 65533);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass47;
                 return;
             }
             if (cConsume == '-') {
-                tokeniser.transition(TokeniserState.CommentStartDash);
+                tokeniser.state = TokeniserState.CommentStartDash;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
                 tokeniser.emitCommentPending();
-                tokeniser.transition(TokeniserState.Data);
-            } else if (cConsume == 65535) {
+                tokeniser.state = anonymousClass1;
+            } else if (cConsume != 65535) {
+                tokeniser.commentPending.data.append(cConsume);
+                tokeniser.state = anonymousClass47;
+            } else {
                 tokeniser.eofError(this);
                 tokeniser.emitCommentPending();
-                tokeniser.transition(TokeniserState.Data);
-            } else {
-                tokeniser.commentPending.data.append(cConsume);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass1;
             }
         }
     },
     CommentStartDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass47 anonymousClass47 = TokeniserState.Comment;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 tokeniser.commentPending.data.append((char) 65533);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass47;
                 return;
             }
             if (cConsume == '-') {
-                tokeniser.transition(TokeniserState.CommentStartDash);
+                tokeniser.state = TokeniserState.CommentStartDash;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
                 tokeniser.emitCommentPending();
-                tokeniser.transition(TokeniserState.Data);
-            } else if (cConsume == 65535) {
+                tokeniser.state = anonymousClass1;
+            } else if (cConsume != 65535) {
+                tokeniser.commentPending.data.append(cConsume);
+                tokeniser.state = anonymousClass47;
+            } else {
                 tokeniser.eofError(this);
                 tokeniser.emitCommentPending();
-                tokeniser.transition(TokeniserState.Data);
-            } else {
-                tokeniser.commentPending.data.append(cConsume);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass1;
             }
         }
     },
     Comment {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
@@ -997,59 +1102,61 @@ enum TokeniserState {
             } else if (cCurrent == '-') {
                 tokeniser.advanceTransition(TokeniserState.CommentEndDash);
             } else {
-                if (cCurrent == 65535) {
-                    tokeniser.eofError(this);
-                    tokeniser.emitCommentPending();
-                    tokeniser.transition(TokeniserState.Data);
+                if (cCurrent != 65535) {
+                    tokeniser.commentPending.data.append(characterReader.consumeToAny('-', 0));
                     return;
                 }
-                tokeniser.commentPending.data.append(characterReader.consumeToAny('-', 0));
+                tokeniser.eofError(this);
+                tokeniser.emitCommentPending();
+                tokeniser.state = TokeniserState.Data;
             }
         }
     },
     CommentEndDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass47 anonymousClass47 = TokeniserState.Comment;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 StringBuilder sb = tokeniser.commentPending.data;
                 sb.append('-');
                 sb.append((char) 65533);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass47;
                 return;
             }
             if (cConsume == '-') {
-                tokeniser.transition(TokeniserState.CommentEnd);
+                tokeniser.state = TokeniserState.CommentEnd;
                 return;
             }
             if (cConsume == 65535) {
                 tokeniser.eofError(this);
                 tokeniser.emitCommentPending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = TokeniserState.Data;
             } else {
                 StringBuilder sb2 = tokeniser.commentPending.data;
                 sb2.append('-');
                 sb2.append(cConsume);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass47;
             }
         }
     },
     CommentEnd {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass47 anonymousClass47 = TokeniserState.Comment;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 StringBuilder sb = tokeniser.commentPending.data;
                 sb.append("--");
                 sb.append((char) 65533);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass47;
                 return;
             }
             if (cConsume == '!') {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.CommentEndBang);
+                tokeniser.state = TokeniserState.CommentEndBang;
                 return;
             }
             if (cConsume == '-') {
@@ -1057,154 +1164,162 @@ enum TokeniserState {
                 tokeniser.commentPending.data.append('-');
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.emitCommentPending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else if (cConsume == 65535) {
                 tokeniser.eofError(this);
                 tokeniser.emitCommentPending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else {
                 tokeniser.error(this);
                 StringBuilder sb2 = tokeniser.commentPending.data;
                 sb2.append("--");
                 sb2.append(cConsume);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass47;
             }
         }
     },
     CommentEndBang {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass47 anonymousClass47 = TokeniserState.Comment;
             if (cConsume == 0) {
                 tokeniser.error(this);
                 StringBuilder sb = tokeniser.commentPending.data;
                 sb.append("--!");
                 sb.append((char) 65533);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass47;
                 return;
             }
             if (cConsume == '-') {
                 tokeniser.commentPending.data.append("--!");
-                tokeniser.transition(TokeniserState.CommentEndDash);
+                tokeniser.state = TokeniserState.CommentEndDash;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.emitCommentPending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else if (cConsume == 65535) {
                 tokeniser.eofError(this);
                 tokeniser.emitCommentPending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else {
                 StringBuilder sb2 = tokeniser.commentPending.data;
                 sb2.append("--!");
                 sb2.append(cConsume);
-                tokeniser.transition(TokeniserState.Comment);
+                tokeniser.state = anonymousClass47;
             }
         }
     },
     Doctype {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass52 anonymousClass52 = TokeniserState.BeforeDoctypeName;
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
-                tokeniser.transition(TokeniserState.BeforeDoctypeName);
+                tokeniser.state = anonymousClass52;
                 return;
             }
             if (cConsume != '>') {
-                if (cConsume == 65535) {
-                    tokeniser.eofError(this);
-                } else {
+                if (cConsume != 65535) {
                     tokeniser.error(this);
-                    tokeniser.transition(TokeniserState.BeforeDoctypeName);
+                    tokeniser.state = anonymousClass52;
                     return;
                 }
+                tokeniser.eofError(this);
             }
             tokeniser.error(this);
-            tokeniser.createDoctypePending();
-            tokeniser.doctypePending.forceQuirks = true;
+            tokeniser.doctypePending.reset();
+            tokeniser.doctypePending.getClass();
             tokeniser.emitDoctypePending();
-            tokeniser.transition(TokeniserState.Data);
+            tokeniser.state = TokeniserState.Data;
         }
     },
     BeforeDoctypeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            if (characterReader.matchesLetter()) {
-                tokeniser.createDoctypePending();
-                tokeniser.transition(TokeniserState.DoctypeName);
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            boolean zMatchesLetter = characterReader.matchesLetter();
+            AnonymousClass53 anonymousClass53 = TokeniserState.DoctypeName;
+            if (zMatchesLetter) {
+                tokeniser.doctypePending.reset();
+                tokeniser.state = anonymousClass53;
                 return;
             }
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
-                tokeniser.createDoctypePending();
+                tokeniser.doctypePending.reset();
                 tokeniser.doctypePending.name.append((char) 65533);
-                tokeniser.transition(TokeniserState.DoctypeName);
+                tokeniser.state = anonymousClass53;
                 return;
             }
             if (cConsume != ' ') {
                 if (cConsume == 65535) {
                     tokeniser.eofError(this);
-                    tokeniser.createDoctypePending();
-                    tokeniser.doctypePending.forceQuirks = true;
+                    tokeniser.doctypePending.reset();
+                    tokeniser.doctypePending.getClass();
                     tokeniser.emitDoctypePending();
-                    tokeniser.transition(TokeniserState.Data);
+                    tokeniser.state = TokeniserState.Data;
                     return;
                 }
                 if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r') {
                     return;
                 }
-                tokeniser.createDoctypePending();
+                tokeniser.doctypePending.reset();
                 tokeniser.doctypePending.name.append(cConsume);
-                tokeniser.transition(TokeniserState.DoctypeName);
+                tokeniser.state = anonymousClass53;
             }
         }
     },
     DoctypeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.matchesLetter()) {
                 tokeniser.doctypePending.name.append(characterReader.consumeLetterSequence());
                 return;
             }
             char cConsume = characterReader.consume();
-            if (cConsume != 0) {
-                if (cConsume != ' ') {
-                    if (cConsume == '>') {
-                        tokeniser.emitDoctypePending();
-                        tokeniser.transition(TokeniserState.Data);
-                        return;
-                    }
-                    if (cConsume == 65535) {
-                        tokeniser.eofError(this);
-                        tokeniser.doctypePending.forceQuirks = true;
-                        tokeniser.emitDoctypePending();
-                        tokeniser.transition(TokeniserState.Data);
-                        return;
-                    }
-                    if (cConsume != '\t' && cConsume != '\n' && cConsume != '\f' && cConsume != '\r') {
-                        tokeniser.doctypePending.name.append(cConsume);
-                        return;
-                    }
-                }
-                tokeniser.transition(TokeniserState.AfterDoctypeName);
+            if (cConsume == 0) {
+                tokeniser.error(this);
+                tokeniser.doctypePending.name.append((char) 65533);
                 return;
             }
-            tokeniser.error(this);
-            tokeniser.doctypePending.name.append((char) 65533);
+            if (cConsume != ' ') {
+                AnonymousClass1 anonymousClass1 = TokeniserState.Data;
+                if (cConsume == '>') {
+                    tokeniser.emitDoctypePending();
+                    tokeniser.state = anonymousClass1;
+                    return;
+                }
+                if (cConsume == 65535) {
+                    tokeniser.eofError(this);
+                    tokeniser.doctypePending.getClass();
+                    tokeniser.emitDoctypePending();
+                    tokeniser.state = anonymousClass1;
+                    return;
+                }
+                if (cConsume != '\t' && cConsume != '\n' && cConsume != '\f' && cConsume != '\r') {
+                    tokeniser.doctypePending.name.append(cConsume);
+                    return;
+                }
+            }
+            tokeniser.state = TokeniserState.AfterDoctypeName;
         }
     },
     AfterDoctypeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            if (characterReader.isEmpty()) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            boolean zIsEmpty = characterReader.isEmpty();
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
+            if (zIsEmpty) {
                 tokeniser.eofError(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
                 return;
             }
             if (characterReader.matchesAny('\t', '\n', '\r', '\f', ' ')) {
@@ -1213,96 +1328,98 @@ enum TokeniserState {
             }
             if (characterReader.matches('>')) {
                 tokeniser.emitDoctypePending();
-                tokeniser.advanceTransition(TokeniserState.Data);
+                tokeniser.advanceTransition(anonymousClass1);
                 return;
             }
             if (characterReader.matchConsumeIgnoreCase("PUBLIC")) {
-                tokeniser.doctypePending.pubSysKey = "PUBLIC";
-                tokeniser.transition(TokeniserState.AfterDoctypePublicKeyword);
+                tokeniser.doctypePending.getClass();
+                tokeniser.state = TokeniserState.AfterDoctypePublicKeyword;
             } else if (characterReader.matchConsumeIgnoreCase("SYSTEM")) {
-                tokeniser.doctypePending.pubSysKey = "SYSTEM";
-                tokeniser.transition(TokeniserState.AfterDoctypeSystemKeyword);
+                tokeniser.doctypePending.getClass();
+                tokeniser.state = TokeniserState.AfterDoctypeSystemKeyword;
             } else {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.advanceTransition(TokeniserState.BogusDoctype);
             }
         }
     },
     AfterDoctypePublicKeyword {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
-                tokeniser.transition(TokeniserState.BeforeDoctypePublicIdentifier);
+                tokeniser.state = TokeniserState.BeforeDoctypePublicIdentifier;
                 return;
             }
             if (cConsume == '\"') {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.DoctypePublicIdentifier_doubleQuoted);
+                tokeniser.state = TokeniserState.DoctypePublicIdentifier_doubleQuoted;
                 return;
             }
             if (cConsume == '\'') {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.DoctypePublicIdentifier_singleQuoted);
+                tokeniser.state = TokeniserState.DoctypePublicIdentifier_singleQuoted;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
                 return;
             }
-            if (cConsume == 65535) {
+            if (cConsume != 65535) {
+                tokeniser.error(this);
+                tokeniser.doctypePending.getClass();
+                tokeniser.state = TokeniserState.BogusDoctype;
+            } else {
                 tokeniser.eofError(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
-                return;
+                tokeniser.state = anonymousClass1;
             }
-            tokeniser.error(this);
-            tokeniser.doctypePending.forceQuirks = true;
-            tokeniser.transition(TokeniserState.BogusDoctype);
         }
     },
     BeforeDoctypePublicIdentifier {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 return;
             }
             if (cConsume == '\"') {
-                tokeniser.transition(TokeniserState.DoctypePublicIdentifier_doubleQuoted);
+                tokeniser.state = TokeniserState.DoctypePublicIdentifier_doubleQuoted;
                 return;
             }
             if (cConsume == '\'') {
-                tokeniser.transition(TokeniserState.DoctypePublicIdentifier_singleQuoted);
+                tokeniser.state = TokeniserState.DoctypePublicIdentifier_singleQuoted;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
                 return;
             }
-            if (cConsume == 65535) {
+            if (cConsume != 65535) {
+                tokeniser.error(this);
+                tokeniser.doctypePending.getClass();
+                tokeniser.state = TokeniserState.BogusDoctype;
+            } else {
                 tokeniser.eofError(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
-                return;
+                tokeniser.state = anonymousClass1;
             }
-            tokeniser.error(this);
-            tokeniser.doctypePending.forceQuirks = true;
-            tokeniser.transition(TokeniserState.BogusDoctype);
         }
     },
     DoctypePublicIdentifier_doubleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1310,29 +1427,30 @@ enum TokeniserState {
                 return;
             }
             if (cConsume == '\"') {
-                tokeniser.transition(TokeniserState.AfterDoctypePublicIdentifier);
+                tokeniser.state = TokeniserState.AfterDoctypePublicIdentifier;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
                 return;
             }
-            if (cConsume == 65535) {
-                tokeniser.eofError(this);
-                tokeniser.doctypePending.forceQuirks = true;
-                tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+            if (cConsume != 65535) {
+                tokeniser.doctypePending.publicIdentifier.append(cConsume);
                 return;
             }
-            tokeniser.doctypePending.publicIdentifier.append(cConsume);
+            tokeniser.eofError(this);
+            tokeniser.doctypePending.getClass();
+            tokeniser.emitDoctypePending();
+            tokeniser.state = anonymousClass1;
         }
     },
     DoctypePublicIdentifier_singleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1340,169 +1458,170 @@ enum TokeniserState {
                 return;
             }
             if (cConsume == '\'') {
-                tokeniser.transition(TokeniserState.AfterDoctypePublicIdentifier);
+                tokeniser.state = TokeniserState.AfterDoctypePublicIdentifier;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
                 return;
             }
-            if (cConsume == 65535) {
-                tokeniser.eofError(this);
-                tokeniser.doctypePending.forceQuirks = true;
-                tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+            if (cConsume != 65535) {
+                tokeniser.doctypePending.publicIdentifier.append(cConsume);
                 return;
             }
-            tokeniser.doctypePending.publicIdentifier.append(cConsume);
+            tokeniser.eofError(this);
+            tokeniser.doctypePending.getClass();
+            tokeniser.emitDoctypePending();
+            tokeniser.state = anonymousClass1;
         }
     },
     AfterDoctypePublicIdentifier {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
-                tokeniser.transition(TokeniserState.BetweenDoctypePublicAndSystemIdentifiers);
+                tokeniser.state = TokeniserState.BetweenDoctypePublicAndSystemIdentifiers;
                 return;
             }
             if (cConsume == '\"') {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.DoctypeSystemIdentifier_doubleQuoted);
+                tokeniser.state = TokeniserState.DoctypeSystemIdentifier_doubleQuoted;
                 return;
             }
             if (cConsume == '\'') {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.DoctypeSystemIdentifier_singleQuoted);
+                tokeniser.state = TokeniserState.DoctypeSystemIdentifier_singleQuoted;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
-            } else {
-                if (cConsume == 65535) {
-                    tokeniser.eofError(this);
-                    tokeniser.doctypePending.forceQuirks = true;
-                    tokeniser.emitDoctypePending();
-                    tokeniser.transition(TokeniserState.Data);
-                    return;
-                }
+                tokeniser.state = anonymousClass1;
+            } else if (cConsume != 65535) {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
-                tokeniser.transition(TokeniserState.BogusDoctype);
+                tokeniser.doctypePending.getClass();
+                tokeniser.state = TokeniserState.BogusDoctype;
+            } else {
+                tokeniser.eofError(this);
+                tokeniser.doctypePending.getClass();
+                tokeniser.emitDoctypePending();
+                tokeniser.state = anonymousClass1;
             }
         }
     },
     BetweenDoctypePublicAndSystemIdentifiers {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 return;
             }
             if (cConsume == '\"') {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.DoctypeSystemIdentifier_doubleQuoted);
+                tokeniser.state = TokeniserState.DoctypeSystemIdentifier_doubleQuoted;
                 return;
             }
             if (cConsume == '\'') {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.DoctypeSystemIdentifier_singleQuoted);
+                tokeniser.state = TokeniserState.DoctypeSystemIdentifier_singleQuoted;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
-            } else {
-                if (cConsume == 65535) {
-                    tokeniser.eofError(this);
-                    tokeniser.doctypePending.forceQuirks = true;
-                    tokeniser.emitDoctypePending();
-                    tokeniser.transition(TokeniserState.Data);
-                    return;
-                }
+                tokeniser.state = anonymousClass1;
+            } else if (cConsume != 65535) {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
-                tokeniser.transition(TokeniserState.BogusDoctype);
+                tokeniser.doctypePending.getClass();
+                tokeniser.state = TokeniserState.BogusDoctype;
+            } else {
+                tokeniser.eofError(this);
+                tokeniser.doctypePending.getClass();
+                tokeniser.emitDoctypePending();
+                tokeniser.state = anonymousClass1;
             }
         }
     },
     AfterDoctypeSystemKeyword {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
-                tokeniser.transition(TokeniserState.BeforeDoctypeSystemIdentifier);
+                tokeniser.state = TokeniserState.BeforeDoctypeSystemIdentifier;
                 return;
             }
             if (cConsume == '\"') {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.DoctypeSystemIdentifier_doubleQuoted);
+                tokeniser.state = TokeniserState.DoctypeSystemIdentifier_doubleQuoted;
                 return;
             }
             if (cConsume == '\'') {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.DoctypeSystemIdentifier_singleQuoted);
+                tokeniser.state = TokeniserState.DoctypeSystemIdentifier_singleQuoted;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
                 return;
             }
-            if (cConsume == 65535) {
+            if (cConsume != 65535) {
+                tokeniser.error(this);
+                tokeniser.doctypePending.getClass();
+                tokeniser.emitDoctypePending();
+            } else {
                 tokeniser.eofError(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
-                return;
+                tokeniser.state = anonymousClass1;
             }
-            tokeniser.error(this);
-            tokeniser.doctypePending.forceQuirks = true;
-            tokeniser.emitDoctypePending();
         }
     },
     BeforeDoctypeSystemIdentifier {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 return;
             }
             if (cConsume == '\"') {
-                tokeniser.transition(TokeniserState.DoctypeSystemIdentifier_doubleQuoted);
+                tokeniser.state = TokeniserState.DoctypeSystemIdentifier_doubleQuoted;
                 return;
             }
             if (cConsume == '\'') {
-                tokeniser.transition(TokeniserState.DoctypeSystemIdentifier_singleQuoted);
+                tokeniser.state = TokeniserState.DoctypeSystemIdentifier_singleQuoted;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
                 return;
             }
-            if (cConsume == 65535) {
+            if (cConsume != 65535) {
+                tokeniser.error(this);
+                tokeniser.doctypePending.getClass();
+                tokeniser.state = TokeniserState.BogusDoctype;
+            } else {
                 tokeniser.eofError(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
-                return;
+                tokeniser.state = anonymousClass1;
             }
-            tokeniser.error(this);
-            tokeniser.doctypePending.forceQuirks = true;
-            tokeniser.transition(TokeniserState.BogusDoctype);
         }
     },
     DoctypeSystemIdentifier_doubleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1510,29 +1629,30 @@ enum TokeniserState {
                 return;
             }
             if (cConsume == '\"') {
-                tokeniser.transition(TokeniserState.AfterDoctypeSystemIdentifier);
+                tokeniser.state = TokeniserState.AfterDoctypeSystemIdentifier;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
                 return;
             }
-            if (cConsume == 65535) {
-                tokeniser.eofError(this);
-                tokeniser.doctypePending.forceQuirks = true;
-                tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+            if (cConsume != 65535) {
+                tokeniser.doctypePending.systemIdentifier.append(cConsume);
                 return;
             }
-            tokeniser.doctypePending.systemIdentifier.append(cConsume);
+            tokeniser.eofError(this);
+            tokeniser.doctypePending.getClass();
+            tokeniser.emitDoctypePending();
+            tokeniser.state = anonymousClass1;
         }
     },
     DoctypeSystemIdentifier_singleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1540,114 +1660,100 @@ enum TokeniserState {
                 return;
             }
             if (cConsume == '\'') {
-                tokeniser.transition(TokeniserState.AfterDoctypeSystemIdentifier);
+                tokeniser.state = TokeniserState.AfterDoctypeSystemIdentifier;
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.error(this);
-                tokeniser.doctypePending.forceQuirks = true;
+                tokeniser.doctypePending.getClass();
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
                 return;
             }
-            if (cConsume == 65535) {
-                tokeniser.eofError(this);
-                tokeniser.doctypePending.forceQuirks = true;
-                tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+            if (cConsume != 65535) {
+                tokeniser.doctypePending.systemIdentifier.append(cConsume);
                 return;
             }
-            tokeniser.doctypePending.systemIdentifier.append(cConsume);
+            tokeniser.eofError(this);
+            tokeniser.doctypePending.getClass();
+            tokeniser.emitDoctypePending();
+            tokeniser.state = anonymousClass1;
         }
     },
     AfterDoctypeSystemIdentifier {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 return;
             }
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
-            } else {
-                if (cConsume == 65535) {
-                    tokeniser.eofError(this);
-                    tokeniser.doctypePending.forceQuirks = true;
-                    tokeniser.emitDoctypePending();
-                    tokeniser.transition(TokeniserState.Data);
-                    return;
-                }
+                tokeniser.state = anonymousClass1;
+            } else if (cConsume != 65535) {
                 tokeniser.error(this);
-                tokeniser.transition(TokeniserState.BogusDoctype);
+                tokeniser.state = TokeniserState.BogusDoctype;
+            } else {
+                tokeniser.eofError(this);
+                tokeniser.doctypePending.getClass();
+                tokeniser.emitDoctypePending();
+                tokeniser.state = anonymousClass1;
             }
         }
     },
     BogusDoctype {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
+            AnonymousClass1 anonymousClass1 = TokeniserState.Data;
             if (cConsume == '>') {
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             } else {
                 if (cConsume != 65535) {
                     return;
                 }
                 tokeniser.emitDoctypePending();
-                tokeniser.transition(TokeniserState.Data);
+                tokeniser.state = anonymousClass1;
             }
         }
     },
     CdataSection {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) {
-            tokeniser.dataBuffer.append(characterReader.consumeTo("]]>"));
+        public final void read(Tokeniser tokeniser, CharacterReader characterReader) {
+            String strCacheString;
+            int iNextIndexOf = characterReader.nextIndexOf("]]>");
+            String[] strArr = characterReader.stringCache;
+            char[] cArr = characterReader.charBuf;
+            if (iNextIndexOf != -1) {
+                strCacheString = CharacterReader.cacheString(cArr, strArr, characterReader.bufPos, iNextIndexOf);
+                characterReader.bufPos += iNextIndexOf;
+            } else {
+                characterReader.bufferUp();
+                int i = characterReader.bufPos;
+                strCacheString = CharacterReader.cacheString(cArr, strArr, i, characterReader.bufLength - i);
+                characterReader.bufPos = characterReader.bufLength;
+            }
+            tokeniser.dataBuffer.append(strCacheString);
             if (characterReader.matchConsume("]]>") || characterReader.isEmpty()) {
-                tokeniser.emit(new Token.CData(tokeniser.dataBuffer.toString()));
-                tokeniser.transition(TokeniserState.Data);
+                String string = tokeniser.dataBuffer.toString();
+                Token.CData cData = new Token.CData(5, 0);
+                cData.data = string;
+                tokeniser.emit(cData);
+                tokeniser.state = TokeniserState.Data;
             }
         }
     };
 
-    static final char[] attributeSingleValueCharsSorted = {0, '&', '\''};
-    static final char[] attributeDoubleValueCharsSorted = {0, '\"', '&'};
-    static final char[] attributeNameCharsSorted = {0, '\t', '\n', '\f', '\r', ' ', '\"', '\'', '/', '<', '=', '>'};
-    static final char[] attributeValueUnquoted = {0, '\t', '\n', '\f', '\r', ' ', '\"', '&', '\'', '<', '=', '>', '`'};
-    private static final String replacementStr = String.valueOf((char) 65533);
+    public static final char[] attributeSingleValueCharsSorted = {0, '&', '\''};
+    public static final char[] attributeDoubleValueCharsSorted = {0, '\"', '&'};
+    public static final char[] attributeNameCharsSorted = {0, '\t', '\n', '\f', '\r', ' ', '\"', '\'', '/', '<', '=', '>'};
+    public static final char[] attributeValueUnquoted = {0, '\t', '\n', '\f', '\r', ' ', '\"', '&', '\'', '<', '=', '>', '`'};
+    public static final String replacementStr = String.valueOf((char) 65533);
 
-    abstract void read(Tokeniser tokeniser, CharacterReader characterReader);
-
-    public static void handleDataEndTag(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState) {
-        if (characterReader.matchesLetter()) {
-            String strConsumeLetterSequence = characterReader.consumeLetterSequence();
-            tokeniser.tagPending.appendTagName(strConsumeLetterSequence);
-            tokeniser.dataBuffer.append(strConsumeLetterSequence);
-            return;
-        }
-        if (tokeniser.isAppropriateEndTagToken() && !characterReader.isEmpty()) {
-            char cConsume = characterReader.consume();
-            if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
-                tokeniser.transition(BeforeAttributeName);
-                return;
-            }
-            if (cConsume == '/') {
-                tokeniser.transition(SelfClosingStartTag);
-                return;
-            } else {
-                if (cConsume == '>') {
-                    tokeniser.emitTagPending();
-                    tokeniser.transition(Data);
-                    return;
-                }
-                tokeniser.dataBuffer.append(cConsume);
-            }
-        }
-        tokeniser.emit("</" + tokeniser.dataBuffer.toString());
-        tokeniser.transition(tokeniserState);
-    }
-
-    public static void readData(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState, TokeniserState tokeniserState2) {
+    public static void access$200(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState, TokeniserState tokeniserState2) {
         char cCurrent = characterReader.current();
         if (cCurrent == 0) {
             tokeniser.error(tokeniserState);
@@ -1655,34 +1761,45 @@ enum TokeniserState {
             tokeniser.emit((char) 65533);
         } else if (cCurrent == '<') {
             tokeniser.advanceTransition(tokeniserState2);
-        } else if (cCurrent == 65535) {
-            tokeniser.emit(new Token.EOF());
-        } else {
+        } else if (cCurrent != 65535) {
             tokeniser.emit(characterReader.consumeToAny('<', 0));
-        }
-    }
-
-    public static void readCharRef(Tokeniser tokeniser, TokeniserState tokeniserState) {
-        int[] iArrConsumeCharacterReference = tokeniser.consumeCharacterReference(null, false);
-        if (iArrConsumeCharacterReference == null) {
-            tokeniser.emit('&');
         } else {
-            tokeniser.emit(iArrConsumeCharacterReference);
+            tokeniser.emit(new Token.EOF());
         }
-        tokeniser.transition(tokeniserState);
     }
 
-    public static void readEndTag(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState, TokeniserState tokeniserState2) {
+    public static void access$500(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState) {
         if (characterReader.matchesLetter()) {
-            tokeniser.createTagPending(false);
-            tokeniser.transition(tokeniserState);
-        } else {
-            tokeniser.emit("</");
-            tokeniser.transition(tokeniserState2);
+            String strConsumeLetterSequence = characterReader.consumeLetterSequence();
+            tokeniser.tagPending.appendTagName(strConsumeLetterSequence);
+            tokeniser.dataBuffer.append(strConsumeLetterSequence);
+            return;
         }
+        boolean zIsAppropriateEndTagToken = tokeniser.isAppropriateEndTagToken();
+        StringBuilder sb = tokeniser.dataBuffer;
+        if (zIsAppropriateEndTagToken && !characterReader.isEmpty()) {
+            char cConsume = characterReader.consume();
+            if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
+                tokeniser.state = BeforeAttributeName;
+                return;
+            }
+            if (cConsume == '/') {
+                tokeniser.state = SelfClosingStartTag;
+                return;
+            } else {
+                if (cConsume == '>') {
+                    tokeniser.emitTagPending();
+                    tokeniser.state = Data;
+                    return;
+                }
+                sb.append(cConsume);
+            }
+        }
+        tokeniser.emit("</" + sb.toString());
+        tokeniser.state = tokeniserState;
     }
 
-    public static void handleDataDoubleEscapeTag(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState, TokeniserState tokeniserState2) {
+    public static void access$600(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState, TokeniserState tokeniserState2) {
         if (characterReader.matchesLetter()) {
             String strConsumeLetterSequence = characterReader.consumeLetterSequence();
             tokeniser.dataBuffer.append(strConsumeLetterSequence);
@@ -1690,16 +1807,18 @@ enum TokeniserState {
             return;
         }
         char cConsume = characterReader.consume();
-        if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ' || cConsume == '/' || cConsume == '>') {
+        if (cConsume != '\t' && cConsume != '\n' && cConsume != '\f' && cConsume != '\r' && cConsume != ' ' && cConsume != '/' && cConsume != '>') {
+            characterReader.unconsume();
+            tokeniser.state = tokeniserState2;
+        } else {
             if (tokeniser.dataBuffer.toString().equals("script")) {
-                tokeniser.transition(tokeniserState);
+                tokeniser.state = tokeniserState;
             } else {
-                tokeniser.transition(tokeniserState2);
+                tokeniser.state = tokeniserState2;
             }
             tokeniser.emit(cConsume);
-            return;
         }
-        characterReader.unconsume();
-        tokeniser.transition(tokeniserState2);
     }
+
+    public abstract void read(Tokeniser tokeniser, CharacterReader characterReader);
 }

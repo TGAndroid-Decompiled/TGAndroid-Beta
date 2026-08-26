@@ -1,6 +1,6 @@
 package org.telegram.ui.Charts.view_data;
 
-public class ChartBottomSignatureData {
+public final class ChartBottomSignatureData {
     public int alpha;
     public int fixedAlpha = 255;
     public final int step;

@@ -15,7 +15,7 @@ public class SpaceAtom extends Atom {
     private int wUnit;
     private float width;
 
-    private interface UnitConversion {
+    public interface UnitConversion {
         float getPixelConversion(TeXEnvironment teXEnvironment);
     }
 
@@ -116,45 +116,14 @@ public class SpaceAtom extends Atom {
         this.blankSpace = true;
     }
 
-    public SpaceAtom(int i) {
-        this.blankSpace = true;
-        this.blankType = i;
-    }
-
-    public SpaceAtom(int i, float f, float f2, float f3) {
-        checkUnit(i);
-        this.wUnit = i;
-        this.hUnit = i;
-        this.dUnit = i;
-        this.width = f;
-        this.height = f2;
-        this.depth = f3;
-    }
-
     public static void checkUnit(int i) {
         if (i < 0 || i >= unitConversions.length) {
             throw new InvalidUnitException();
         }
     }
 
-    public SpaceAtom(int i, float f, int i2, float f2, int i3, float f3) {
-        checkUnit(i);
-        checkUnit(i2);
-        checkUnit(i3);
-        this.wUnit = i;
-        this.hUnit = i2;
-        this.dUnit = i3;
-        this.width = f;
-        this.height = f2;
-        this.depth = f3;
-    }
-
-    public static int getUnit(String str) {
-        Integer num = units.get(str);
-        if (num == null) {
-            return 2;
-        }
-        return num.intValue();
+    public static float getFactor(int i, TeXEnvironment teXEnvironment) {
+        return unitConversions[i].getPixelConversion(teXEnvironment);
     }
 
     public static float[] getLength(String str) {
@@ -172,33 +141,62 @@ public class SpaceAtom extends Atom {
         }
     }
 
+    public static int getUnit(String str) {
+        Integer num = units.get(str);
+        if (num == null) {
+            return 2;
+        }
+        return num.intValue();
+    }
+
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box box;
-        if (this.blankSpace) {
-            int i = this.blankType;
-            if (i == 0) {
-                return new StrutBox(teXEnvironment.getSpace(), 0.0f, 0.0f, 0.0f);
-            }
-            if (i < 0) {
-                i = -i;
-            }
-            if (i == 1) {
-                box = Glue.get(7, 1, teXEnvironment);
-            } else if (i == 2) {
-                box = Glue.get(2, 1, teXEnvironment);
-            } else {
-                box = Glue.get(3, 1, teXEnvironment);
-            }
-            if (this.blankType < 0) {
-                box.negWidth();
-            }
-            return box;
+        if (!this.blankSpace) {
+            return new StrutBox(getFactor(this.wUnit, teXEnvironment) * this.width, getFactor(this.hUnit, teXEnvironment) * this.height, getFactor(this.dUnit, teXEnvironment) * this.depth, 0.0f);
         }
-        return new StrutBox(this.width * getFactor(this.wUnit, teXEnvironment), this.height * getFactor(this.hUnit, teXEnvironment), this.depth * getFactor(this.dUnit, teXEnvironment), 0.0f);
+        int i = this.blankType;
+        if (i == 0) {
+            return new StrutBox(teXEnvironment.getSpace(), 0.0f, 0.0f, 0.0f);
+        }
+        if (i < 0) {
+            i = -i;
+        }
+        if (i == 1) {
+            box = Glue.get(7, 1, teXEnvironment);
+        } else {
+            box = i == 2 ? Glue.get(2, 1, teXEnvironment) : Glue.get(3, 1, teXEnvironment);
+        }
+        if (this.blankType < 0) {
+            box.negWidth();
+        }
+        return box;
     }
 
-    public static float getFactor(int i, TeXEnvironment teXEnvironment) {
-        return unitConversions[i].getPixelConversion(teXEnvironment);
+    public SpaceAtom(int i) {
+        this.blankSpace = true;
+        this.blankType = i;
+    }
+
+    public SpaceAtom(int i, float f, float f2, float f3) {
+        checkUnit(i);
+        this.wUnit = i;
+        this.hUnit = i;
+        this.dUnit = i;
+        this.width = f;
+        this.height = f2;
+        this.depth = f3;
+    }
+
+    public SpaceAtom(int i, float f, int i2, float f2, int i3, float f3) {
+        checkUnit(i);
+        checkUnit(i2);
+        checkUnit(i3);
+        this.wUnit = i;
+        this.hUnit = i2;
+        this.dUnit = i3;
+        this.width = f;
+        this.height = f2;
+        this.depth = f3;
     }
 }

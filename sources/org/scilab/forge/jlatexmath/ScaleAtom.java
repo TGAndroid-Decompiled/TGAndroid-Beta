@@ -12,11 +12,9 @@ public class ScaleAtom extends Atom {
         this.yscl = d2;
     }
 
-    public ScaleAtom(Atom atom, double d) {
-        this.type = atom.type;
-        this.base = atom;
-        this.xscl = d;
-        this.yscl = d;
+    @Override
+    public Box createBox(TeXEnvironment teXEnvironment) {
+        return new ScaleBox(this.base.createBox(teXEnvironment), this.xscl, this.yscl);
     }
 
     @Override
@@ -29,8 +27,10 @@ public class ScaleAtom extends Atom {
         return this.base.getRightType();
     }
 
-    @Override
-    public Box createBox(TeXEnvironment teXEnvironment) {
-        return new ScaleBox(this.base.createBox(teXEnvironment), this.xscl, this.yscl);
+    public ScaleAtom(Atom atom, double d) {
+        this.type = atom.type;
+        this.base = atom;
+        this.xscl = d;
+        this.yscl = d;
     }
 }

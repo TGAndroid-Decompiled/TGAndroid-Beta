@@ -35,47 +35,25 @@ public final class RenderSynchronizer {
         this.targetFrameIntervalNanos = Math.round(TimeUnit.SECONDS.toNanos(1L) / f);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
-        handler.post(new Runnable() {
-            @Override
-            public final void run() {
-                RenderSynchronizer.$r8$lambda$ypMjvJEck2JfIcOoFbNLKvq1c18(this.f$0);
-            }
-        });
+        handler.post(new RenderSynchronizer$$ExternalSyntheticLambda1(this, 1));
         Logging.d("RenderSynchronizer", "Created");
     }
 
-    public static void $r8$lambda$ypMjvJEck2JfIcOoFbNLKvq1c18(RenderSynchronizer renderSynchronizer) {
-        renderSynchronizer.getClass();
-        renderSynchronizer.choreographer = Choreographer.getInstance();
-    }
-
-    public RenderSynchronizer() {
-        this(30.0f);
-    }
-
-    public void registerListener(Listener listener) {
-        this.listeners.add(listener);
-        synchronized (this.lock) {
-            try {
-                if (!this.isListening) {
-                    Logging.d("RenderSynchronizer", "First listener, subscribing to frame callbacks");
-                    this.isListening = true;
-                    this.mainThreadHandler.post(new Runnable() {
-                        @Override
-                        public final void run() {
-                            RenderSynchronizer renderSynchronizer = this.f$0;
-                            renderSynchronizer.choreographer.postFrameCallback(new RenderSynchronizer$$ExternalSyntheticLambda2(renderSynchronizer));
-                        }
-                    });
-                }
-            } catch (Throwable th) {
-                throw th;
-            }
+    private void closeRenderWindow() {
+        this.renderWindowOpen = false;
+        traceRenderWindowChange();
+        Iterator<Listener> it = this.listeners.iterator();
+        while (it.hasNext()) {
+            it.next().onRenderWindowClose();
         }
     }
 
-    public void removeListener(Listener listener) {
-        this.listeners.remove(listener);
+    public void lambda$new$0() {
+        this.choreographer = Choreographer.getInstance();
+    }
+
+    public void lambda$registerListener$1() {
+        this.choreographer.postFrameCallback(new RenderSynchronizer$$ExternalSyntheticLambda2(this));
     }
 
     public void onDisplayRefreshCycleBegin(long j) {
@@ -102,12 +80,6 @@ public final class RenderSynchronizer {
         }
     }
 
-    private void traceRenderWindowChange() {
-        if (Build.VERSION.SDK_INT >= 29) {
-            Trace.setCounter("RenderWindow", this.renderWindowOpen ? 1L : 0L);
-        }
-    }
-
     private void openRenderWindow() {
         this.renderWindowOpen = true;
         traceRenderWindowChange();
@@ -117,12 +89,32 @@ public final class RenderSynchronizer {
         }
     }
 
-    private void closeRenderWindow() {
-        this.renderWindowOpen = false;
-        traceRenderWindowChange();
-        Iterator<Listener> it = this.listeners.iterator();
-        while (it.hasNext()) {
-            it.next().onRenderWindowClose();
+    private void traceRenderWindowChange() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            Trace.setCounter("RenderWindow", this.renderWindowOpen ? 1L : 0L);
         }
+    }
+
+    public void registerListener(Listener listener) {
+        this.listeners.add(listener);
+        synchronized (this.lock) {
+            try {
+                if (!this.isListening) {
+                    Logging.d("RenderSynchronizer", "First listener, subscribing to frame callbacks");
+                    this.isListening = true;
+                    this.mainThreadHandler.post(new RenderSynchronizer$$ExternalSyntheticLambda1(this, 0));
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+    }
+
+    public void removeListener(Listener listener) {
+        this.listeners.remove(listener);
+    }
+
+    public RenderSynchronizer() {
+        this(30.0f);
     }
 }

@@ -12,11 +12,6 @@ public class JavaFontRenderingAtom extends Atom {
         this.type = i;
     }
 
-    public JavaFontRenderingAtom(String str, TeXFormula.FontInfos fontInfos) {
-        this(str, 0);
-        this.fontInfos = fontInfos;
-    }
-
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Font font;
@@ -50,5 +45,10 @@ public class JavaFontRenderingAtom extends Atom {
             }
         }
         return new JavaFontRenderingBox(this.str, i, DefaultTeXFont.getSizeFactor(teXEnvironment.getStyle()), font3, z);
+    }
+
+    public JavaFontRenderingAtom(String str, TeXFormula.FontInfos fontInfos) {
+        this(str, 0);
+        this.fontInfos = fontInfos;
     }
 }

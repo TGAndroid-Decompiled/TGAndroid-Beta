@@ -5,37 +5,36 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class StickerSetGroupInfoCell extends LinearLayout {
-    private TextView addButton;
-    private boolean isLast;
+public final class StickerSetGroupInfoCell extends LinearLayout {
+    public final TextView addButton;
+    public boolean isLast;
 
     public StickerSetGroupInfoCell(Context context) {
         super(context);
         setOrientation(1);
         TextView textView = new TextView(context);
-        textView.setTextColor(Theme.getColor(Theme.key_chat_emojiPanelTrendingDescription));
+        textView.setTextColor(Theme.getColor(null, Theme.key_chat_emojiPanelTrendingDescription, false));
         textView.setTextSize(1, 14.0f);
         textView.setText(LocaleController.getString(R.string.GroupStickersInfo));
         addView(textView, LayoutHelper.createLinear(-1, -2, 51, 17, 4, 17, 0));
         TextView textView2 = new TextView(context);
         this.addButton = textView2;
         textView2.setPadding(AndroidUtilities.dp(17.0f), 0, AndroidUtilities.dp(17.0f), 0);
-        this.addButton.setGravity(17);
-        this.addButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        this.addButton.setTextSize(1, 14.0f);
-        this.addButton.setTypeface(AndroidUtilities.bold());
-        this.addButton.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
-        this.addButton.setText(LocaleController.getString(R.string.ChooseStickerSet).toUpperCase());
-        addView(this.addButton, LayoutHelper.createLinear(-2, 28, 51, 17, 10, 14, 8));
+        textView2.setGravity(17);
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(14.0f, Theme.getColor(null, Theme.key_featuredStickers_buttonText, false), 1, textView2);
+        textView2.setBackground(Theme.AdaptiveRipple.filledRectByKey(new float[]{4.0f}, Theme.key_featuredStickers_addButton));
+        textView2.setText(LocaleController.getString(R.string.ChooseStickerSet).toUpperCase());
+        addView(textView2, LayoutHelper.createLinear(-2, 28, 51, 17, 10, 14, 8));
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onMeasure(int i, int i2) {
         View view;
         int measuredHeight;
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);

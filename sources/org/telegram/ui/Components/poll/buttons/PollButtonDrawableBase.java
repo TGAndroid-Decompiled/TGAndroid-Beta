@@ -3,63 +3,37 @@ package org.telegram.ui.Components.poll.buttons;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.util.StateSet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.BaseCell;
+import org.telegram.ui.Cells.ChatMessageCell;
 
 public abstract class PollButtonDrawableBase extends Drawable {
-    private int alpha = 255;
-    protected final Theme.ResourcesProvider resourcesProvider;
-    protected final Drawable selectorDrawable;
-    protected int selectorDrawableColor;
-
-    @Override
-    public int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
+    public int alpha = 255;
+    public final BaseCell.RippleDrawableSafe selectorDrawable;
+    public int selectorDrawableColor;
 
     public PollButtonDrawableBase(Theme.ResourcesProvider resourcesProvider) {
         int color = Theme.getColor(Theme.key_listSelector, resourcesProvider);
         this.selectorDrawableColor = color;
-        this.resourcesProvider = resourcesProvider;
         this.selectorDrawable = Theme.createRadSelectorDrawable(color, 0, 0);
     }
 
-    public Drawable getSelectorDrawable() {
-        return this.selectorDrawable;
-    }
-
-    public void setupCallbacks(Drawable.Callback callback) {
-        setCallback(callback);
-        this.selectorDrawable.setCallback(callback);
-    }
-
-    public boolean verifyDrawable(Drawable drawable) {
-        return drawable == this || drawable == this.selectorDrawable;
-    }
-
-    public final void setSelectorsColor(int i) {
-        if (this.selectorDrawableColor != i) {
-            onSelectorColorChanged(i);
-            this.selectorDrawableColor = i;
-        }
+    @Override
+    public final int getAlpha() {
+        return this.alpha;
     }
 
     @Override
-    protected void onBoundsChange(Rect rect) {
+    public final int getOpacity() {
+        return 0;
+    }
+
+    public abstract void onAlphaChanged(int i);
+
+    @Override
+    public void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
         this.selectorDrawable.setBounds(rect);
-    }
-
-    public void resetSelectors() {
-        this.selectorDrawable.setState(StateSet.NOTHING);
-    }
-
-    protected void onAlphaChanged(int i) {
-        this.selectorDrawable.setAlpha(i);
     }
 
     @Override
@@ -71,11 +45,11 @@ public abstract class PollButtonDrawableBase extends Drawable {
     }
 
     @Override
-    public final int getAlpha() {
-        return this.alpha;
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 
-    protected void onSelectorColorChanged(int i) {
-        Theme.setSelectorDrawableColor(this.selectorDrawable, i, false);
+    public void setupCallbacks(ChatMessageCell chatMessageCell) {
+        setCallback(chatMessageCell);
+        this.selectorDrawable.setCallback(chatMessageCell);
     }
 }

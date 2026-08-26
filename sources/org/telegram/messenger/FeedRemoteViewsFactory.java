@@ -25,30 +25,6 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     private ArrayList<MessageObject> messages = new ArrayList<>();
     private CountDownLatch countDownLatch = new CountDownLatch(1);
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public RemoteViews getLoadingView() {
-        return null;
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 1;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
-    public void onDestroy() {
-    }
-
     public FeedRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
@@ -60,9 +36,21 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
         }
     }
 
+    public void lambda$onDataSetChanged$0() {
+        this.accountInstance.getNotificationCenter().addObserver(this, NotificationCenter.messagesDidLoad);
+        if (this.classGuid == 0) {
+            this.classGuid = ConnectionsManager.generateClassGuid();
+        }
+        this.accountInstance.getMessagesController().loadMessages(this.dialogId, 0L, false, 20, 0, 0, true, 0, this.classGuid, 0, 0, 0, 0L, 0, 1, false);
+    }
+
     @Override
-    public void onCreate() {
-        ApplicationLoader.postInitApplication();
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.messagesDidLoad && ((Integer) objArr[10]).intValue() == this.classGuid) {
+            this.messages.clear();
+            this.messages.addAll((ArrayList) objArr[2]);
+            this.countDownLatch.countDown();
+        }
     }
 
     @Override
@@ -70,13 +58,14 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
         return this.messages.size();
     }
 
-    protected void grantUriAccessToWidget(Context context, Uri uri) {
-        Intent intent = new Intent("android.intent.action.MAIN");
-        intent.addCategory("android.intent.category.HOME");
-        Iterator<ResolveInfo> it = context.getPackageManager().queryIntentActivities(intent, 65536).iterator();
-        while (it.hasNext()) {
-            context.grantUriPermission(it.next().activityInfo.packageName, uri, 1);
-        }
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public RemoteViews getLoadingView() {
+        return null;
     }
 
     @Override
@@ -120,18 +109,37 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     }
 
     @Override
+    public int getViewTypeCount() {
+        return 1;
+    }
+
+    public void grantUriAccessToWidget(Context context, Uri uri) {
+        Intent intent = new Intent("android.intent.action.MAIN");
+        intent.addCategory("android.intent.category.HOME");
+        Iterator<ResolveInfo> it = context.getPackageManager().queryIntentActivities(intent, 65536).iterator();
+        while (it.hasNext()) {
+            context.grantUriPermission(it.next().activityInfo.packageName, uri, 1);
+        }
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
+    }
+
+    @Override
+    public void onCreate() {
+        ApplicationLoader.postInitApplication();
+    }
+
+    @Override
     public void onDataSetChanged() {
         AccountInstance accountInstance = this.accountInstance;
         if (accountInstance == null || !accountInstance.getUserConfig().isClientActivated()) {
             this.messages.clear();
             return;
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                FeedRemoteViewsFactory.$r8$lambda$xDSQDzYXaikYM_m7VQOCMfhrlVE(this.f$0);
-            }
-        });
+        AndroidUtilities.runOnUIThread(new ANRDetector$$ExternalSyntheticLambda0(this, 2));
         try {
             this.countDownLatch.await();
         } catch (Exception e) {
@@ -139,20 +147,7 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
         }
     }
 
-    public static void $r8$lambda$xDSQDzYXaikYM_m7VQOCMfhrlVE(FeedRemoteViewsFactory feedRemoteViewsFactory) {
-        feedRemoteViewsFactory.accountInstance.getNotificationCenter().addObserver(feedRemoteViewsFactory, NotificationCenter.messagesDidLoad);
-        if (feedRemoteViewsFactory.classGuid == 0) {
-            feedRemoteViewsFactory.classGuid = ConnectionsManager.generateClassGuid();
-        }
-        feedRemoteViewsFactory.accountInstance.getMessagesController().loadMessages(feedRemoteViewsFactory.dialogId, 0L, false, 20, 0, 0, true, 0, feedRemoteViewsFactory.classGuid, 0, 0, 0, 0L, 0, 1, false);
-    }
-
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.messagesDidLoad && ((Integer) objArr[10]).intValue() == this.classGuid) {
-            this.messages.clear();
-            this.messages.addAll((ArrayList) objArr[2]);
-            this.countDownLatch.countDown();
-        }
+    public void onDestroy() {
     }
 }

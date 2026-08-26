@@ -11,12 +11,14 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkc;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
@@ -32,59 +34,57 @@ import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.PollItemMenu;
 
-public class RichAudioCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
-    private boolean attached;
-    private final TextPaint audioTimePaint;
-    private boolean blockRtl;
-    private TLRPC.Document boundDocument;
-    private boolean buttonPressed;
-    private int buttonState;
-    private int buttonX;
-    private final int buttonY;
-    private final RichCaptionController caption;
-    private final int currentAccount;
-    private Delegate delegate;
-    private StaticLayout durationLayout;
-    private String lastTimeString;
-    private MessageObject messageObject;
-    private final int observerTag;
-    private final RadialProgress2 radialProgress;
-    private final Theme.ResourcesProvider resourcesProvider;
-    private final SeekBar seekBar;
-    private int seekBarWidth;
-    private int seekBarX;
-    private int seekBarY;
-    private final Paint selectionPaint;
-    private final int size;
-    private StaticLayout titleLayout;
+public final class RichAudioCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
+    public boolean attached;
+    public final TextPaint audioTimePaint;
+    public boolean blockRtl;
+    public TLRPC.Document boundDocument;
+    public boolean buttonPressed;
+    public int buttonState;
+    public int buttonX;
+    public final int buttonY;
+    public final RichCaptionController caption;
+    public final int currentAccount;
+    public RichEditorListView.AnonymousClass7 delegate;
+    public StaticLayout durationLayout;
+    public String lastTimeString;
+    public MessageObject messageObject;
+    public final int observerTag;
+    public final RadialProgress2 radialProgress;
+    public final Theme.ResourcesProvider resourcesProvider;
+    public final SeekBar seekBar;
+    public int seekBarWidth;
+    public int seekBarX;
+    public int seekBarY;
+    public final Paint selectionPaint;
+    public final int size;
+    public StaticLayout titleLayout;
 
-    public interface Delegate {
-        TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper();
+    public final class Factory extends UItem.UItemFactory {
+        public static final int $r8$clinit = 0;
 
-        void onCancelUpload(BlockRow blockRow);
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
 
-        void onCaptionChanged(BlockRow blockRow);
+        @Override
+        public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            ((RichAudioCell) view).bind((BlockRow) uItem.object, (RichEditorListView.AnonymousClass7) uItem.object2);
+        }
 
-        void onCaptionEnter(BlockRow blockRow);
+        @Override
+        public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            RichAudioCell richAudioCell = new RichAudioCell(context, i, resourcesProvider);
+            richAudioCell.setBackground(new RichEditor.DraggingDrawable(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider)));
+            return richAudioCell;
+        }
 
-        void onCaptionLockedInsert(CharSequence charSequence);
-
-        boolean onCaptionSelectAll(BlockRow blockRow);
-
-        void onCaptionSpansChanged(BlockRow blockRow);
-
-        void onCaptionWillChange(BlockRow blockRow, int i, int i2);
-
-        void onRequestWindowFocusable(RichEditText richEditText, boolean z);
-    }
-
-    public int[] getColorKeys() {
-        return Theme.Colorable.CC.$default$getColorKeys(this);
-    }
-
-    @Override
-    public void onProgressUpload(String str, long j, long j2, boolean z) {
+        @Override
+        public final boolean isClickable() {
+            return false;
+        }
     }
 
     public RichAudioCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
@@ -100,200 +100,19 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
         this.observerTag = DownloadController.getInstance(i).generateObserverTag();
-        RadialProgress2 radialProgress2 = new RadialProgress2(this, resourcesProvider);
+        RadialProgress2 radialProgress2 = new RadialProgress2(resourcesProvider, this);
         this.radialProgress = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i2 = this.buttonX;
         radialProgress2.setProgressRect(i2, iDp, i2 + iDp2, iDp2 + iDp);
         SeekBar seekBar = new SeekBar(this);
         this.seekBar = seekBar;
-        seekBar.setDelegate(new SeekBar.SeekBarDelegate() {
-            @Override
-            public boolean isSeekBarDragAllowed() {
-                return SeekBar.SeekBarDelegate.CC.$default$isSeekBarDragAllowed(this);
-            }
-
-            @Override
-            public void onSeekBarPressed() {
-                SeekBar.SeekBarDelegate.CC.$default$onSeekBarPressed(this);
-            }
-
-            @Override
-            public void onSeekBarReleased() {
-                SeekBar.SeekBarDelegate.CC.$default$onSeekBarReleased(this);
-            }
-
-            @Override
-            public boolean reverseWaveform() {
-                return SeekBar.SeekBarDelegate.CC.$default$reverseWaveform(this);
-            }
-
-            @Override
-            public void onSeekBarDrag(float f) {
-                if (RichAudioCell.this.messageObject == null) {
-                    return;
-                }
-                RichAudioCell.this.messageObject.audioProgress = f;
-                MediaController.getInstance().seekToProgress(RichAudioCell.this.messageObject, f);
-            }
-
-            @Override
-            public void onSeekBarContinuousDrag(float f) {
-                if (RichAudioCell.this.messageObject == null) {
-                    return;
-                }
-                RichAudioCell.this.messageObject.audioProgress = f;
-            }
-        });
+        seekBar.delegate = new PollItemMenu.AnonymousClass6(this, 11);
         setMinimumHeight(AndroidUtilities.dp(66.0f));
-        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new RichCaptionController.Host() {
-            @Override
-            public BlockRow currentRow() {
-                return RichAudioCell.this.currentRow;
-            }
-
-            @Override
-            public TextSelectionHelper.ArticleTextSelectionHelper selectionHelper() {
-                if (RichAudioCell.this.delegate != null) {
-                    return RichAudioCell.this.delegate.getSelectionHelper();
-                }
-                return null;
-            }
-
-            @Override
-            public TextSelectionHelper.ArticleSelectableView cell() {
-                return RichAudioCell.this;
-            }
-
-            @Override
-            public void onCaptionWillChange(int i3, int i4) {
-                if (RichAudioCell.this.delegate != null) {
-                    RichAudioCell.this.delegate.onCaptionWillChange(RichAudioCell.this.currentRow, i3, i4);
-                }
-            }
-
-            @Override
-            public void onCaptionChanged() {
-                if (RichAudioCell.this.delegate != null) {
-                    RichAudioCell.this.delegate.onCaptionChanged(RichAudioCell.this.currentRow);
-                }
-            }
-
-            @Override
-            public void onCaptionSpansChanged() {
-                if (RichAudioCell.this.delegate != null) {
-                    RichAudioCell.this.delegate.onCaptionSpansChanged(RichAudioCell.this.currentRow);
-                }
-            }
-
-            @Override
-            public void onCaptionEnter() {
-                if (RichAudioCell.this.delegate != null) {
-                    RichAudioCell.this.delegate.onCaptionEnter(RichAudioCell.this.currentRow);
-                }
-            }
-
-            @Override
-            public void onRequestWindowFocusable(RichEditText richEditText, boolean z) {
-                if (RichAudioCell.this.delegate != null) {
-                    RichAudioCell.this.delegate.onRequestWindowFocusable(richEditText, z);
-                }
-            }
-
-            @Override
-            public void onCaptionLockedInsert(CharSequence charSequence) {
-                if (RichAudioCell.this.delegate != null) {
-                    RichAudioCell.this.delegate.onCaptionLockedInsert(charSequence);
-                }
-            }
-
-            @Override
-            public boolean onCaptionSelectAll() {
-                return RichAudioCell.this.delegate != null && RichAudioCell.this.delegate.onCaptionSelectAll(RichAudioCell.this.currentRow);
-            }
-        });
+        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new RichEditor.AnonymousClass3(this, 2));
         this.caption = richCaptionController;
         addView(richCaptionController.editText, LayoutHelper.createFrame(-2, -2, 51));
-        updateColors();
-    }
-
-    @Override
-    protected void onBlockInsetChanged(int i) {
-        int iDp = AndroidUtilities.dp(16.0f);
-        if (this.blockRtl) {
-            i = 0;
-        }
-        int i2 = iDp + i;
-        this.buttonX = i2;
-        RadialProgress2 radialProgress2 = this.radialProgress;
-        int i3 = this.buttonY;
-        int i4 = this.size;
-        radialProgress2.setProgressRect(i2, i3, i2 + i4, i4 + i3);
-        requestLayout();
-        invalidate();
-    }
-
-    public void bind(BlockRow blockRow, Delegate delegate) {
-        this.currentRow = blockRow;
-        this.delegate = delegate;
-        if (blockRow != null && blockRow.media == null) {
-            blockRow.media = new MediaUploadState();
-        }
-        this.blockRtl = RichBlockChrome.rtl();
-        bindBlockInset(blockRow);
-        this.caption.bind();
-        rebuildFromRow();
-        requestLayout();
-        invalidate();
-    }
-
-    @Override
-    public BlockRow getRow() {
-        return this.currentRow;
-    }
-
-    @Override
-    public RichEditText getCaptionEditText() {
-        return this.caption.editText;
-    }
-
-    @Override
-    public void persistCaption() {
-        this.caption.persist();
-    }
-
-    @Override
-    public boolean isPressOnCaption(int i, int i2) {
-        return this.caption.isPressOnCaption(i, i2);
-    }
-
-    private void rebuildFromRow() {
-        TLRPC.Document displayDocument = getDisplayDocument();
-        if (displayDocument != this.boundDocument) {
-            this.boundDocument = displayDocument;
-            this.messageObject = null;
-            this.lastTimeString = null;
-            this.durationLayout = null;
-        }
-        if (isReady() && this.messageObject == null && displayDocument != null) {
-            this.messageObject = buildMessageObject(displayDocument);
-        }
-        layoutInner();
-        if (this.attached) {
-            updateButtonState(false);
-        }
-    }
-
-    private boolean isReady() {
-        MediaUploadState mediaUploadState;
-        BlockRow blockRow = this.currentRow;
-        return (blockRow == null || (mediaUploadState = blockRow.media) == null || !mediaUploadState.isReady()) ? false : true;
-    }
-
-    private boolean isUploading() {
-        MediaUploadState mediaUploadState;
-        BlockRow blockRow = this.currentRow;
-        return (blockRow == null || (mediaUploadState = blockRow.media) == null || !mediaUploadState.isPending()) ? false : true;
+        updateColors$1();
     }
 
     private TLRPC.Document getDisplayDocument() {
@@ -304,126 +123,6 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
         }
         TLRPC.Document document = mediaUploadState.document;
         return document != null ? document : mediaUploadState.audioDisplayDocument;
-    }
-
-    private MessageObject buildMessageObject(TLRPC.Document document) {
-        MediaUploadState mediaUploadState;
-        TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.out = true;
-        tL_message.id = -Long.valueOf(document.id).hashCode();
-        tL_message.peer_id = new TLRPC.TL_peerUser();
-        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-        tL_message.from_id = tL_peerUser;
-        TLRPC.Peer peer = tL_message.peer_id;
-        long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-        peer.user_id = clientUserId;
-        tL_peerUser.user_id = clientUserId;
-        tL_message.date = (int) (System.currentTimeMillis() / 1000);
-        tL_message.message = "";
-        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-        tL_message.media = tL_messageMediaDocument;
-        tL_messageMediaDocument.flags |= 3;
-        tL_messageMediaDocument.document = document;
-        tL_message.flags |= 768;
-        BlockRow blockRow = this.currentRow;
-        if (blockRow != null && (mediaUploadState = blockRow.media) != null && !TextUtils.isEmpty(mediaUploadState.localPath)) {
-            tL_message.attachPath = this.currentRow.media.localPath;
-        }
-        return new MessageObject(this.currentAccount, tL_message, false, true);
-    }
-
-    private void layoutInner() {
-        SpannableStringBuilder spannableStringBuilder;
-        this.seekBarX = this.buttonX + AndroidUtilities.dp(50.0f) + this.size;
-        this.seekBarWidth = Math.max(0, (((getMeasuredWidth() > 0 ? getMeasuredWidth() : AndroidUtilities.displaySize.x) - this.seekBarX) - AndroidUtilities.dp(16.0f)) - (this.blockRtl ? blockInset() : 0));
-        String strAudioAuthor = audioAuthor();
-        String strAudioTitle = audioTitle();
-        if (!TextUtils.isEmpty(strAudioTitle) || !TextUtils.isEmpty(strAudioAuthor)) {
-            if (!TextUtils.isEmpty(strAudioTitle) && !TextUtils.isEmpty(strAudioAuthor)) {
-                spannableStringBuilder = new SpannableStringBuilder(String.format("%s - %s", strAudioAuthor, strAudioTitle));
-            } else if (!TextUtils.isEmpty(strAudioTitle)) {
-                spannableStringBuilder = new SpannableStringBuilder(strAudioTitle);
-            } else {
-                spannableStringBuilder = new SpannableStringBuilder(strAudioAuthor);
-            }
-            if (!TextUtils.isEmpty(strAudioAuthor)) {
-                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, strAudioAuthor.length(), 18);
-            }
-            this.audioTimePaint.setTextSize(AndroidUtilities.dp(16.0f));
-            this.titleLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, this.audioTimePaint, this.seekBarWidth, TextUtils.TruncateAt.END), this.audioTimePaint, this.seekBarWidth + AndroidUtilities.dp(50.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.seekBarY = this.buttonY + ((this.size - AndroidUtilities.dp(30.0f)) / 2) + AndroidUtilities.dp(11.0f);
-        } else {
-            this.titleLayout = null;
-            this.seekBarY = this.buttonY + ((this.size - AndroidUtilities.dp(30.0f)) / 2);
-        }
-        this.seekBar.setSize(this.seekBarWidth, AndroidUtilities.dp(30.0f));
-    }
-
-    private String audioAuthor() {
-        MessageObject messageObject = this.messageObject;
-        if (messageObject != null) {
-            return messageObject.getMusicAuthor(false);
-        }
-        if (attribute() != null) {
-            return attribute().performer;
-        }
-        return null;
-    }
-
-    private String audioTitle() {
-        MessageObject messageObject = this.messageObject;
-        if (messageObject != null) {
-            return messageObject.getMusicTitle(false);
-        }
-        if (attribute() != null) {
-            return attribute().title;
-        }
-        return null;
-    }
-
-    private TLRPC.TL_documentAttributeAudio attribute() {
-        TLRPC.Document displayDocument = getDisplayDocument();
-        if (displayDocument == null) {
-            return null;
-        }
-        for (int i = 0; i < displayDocument.attributes.size(); i++) {
-            if (displayDocument.attributes.get(i) instanceof TLRPC.TL_documentAttributeAudio) {
-                return (TLRPC.TL_documentAttributeAudio) displayDocument.attributes.get(i);
-            }
-        }
-        return null;
-    }
-
-    private int audioDuration() {
-        if (this.messageObject != null && MediaController.getInstance().isPlayingMessage(this.messageObject)) {
-            return this.messageObject.audioProgressSec;
-        }
-        TLRPC.TL_documentAttributeAudio tL_documentAttributeAudioAttribute = attribute();
-        if (tL_documentAttributeAudioAttribute != null) {
-            return (int) tL_documentAttributeAudioAttribute.duration;
-        }
-        return 0;
-    }
-
-    @Override
-    public void updateColors() {
-        this.selectionPaint.setColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, this.resourcesProvider));
-        RichCaptionController richCaptionController = this.caption;
-        if (richCaptionController != null) {
-            richCaptionController.applyColors();
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        setMeasuredDimension(size, AndroidUtilities.dp(66.0f) + this.caption.measure(this.blockRtl ? 0 : blockInset(), this.blockRtl ? blockInset() : 0, size));
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        this.caption.layout(this.blockRtl ? 0 : blockInset(), this.blockRtl ? blockInset() : 0, i3 - i, AndroidUtilities.dp(66.0f));
-        layoutInner();
     }
 
     private int getIconForCurrentState() {
@@ -440,143 +139,73 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
         return i == 3 ? 3 : 0;
     }
 
-    public void updateButtonState(boolean z) {
+    public final TLRPC.TL_documentAttributeAudio attribute() {
+        TLRPC.Document displayDocument = getDisplayDocument();
+        if (displayDocument == null) {
+            return null;
+        }
+        for (int i = 0; i < displayDocument.attributes.size(); i++) {
+            if (displayDocument.attributes.get(i) instanceof TLRPC.TL_documentAttributeAudio) {
+                return (TLRPC.TL_documentAttributeAudio) displayDocument.attributes.get(i);
+            }
+        }
+        return null;
+    }
+
+    public final void bind(BlockRow blockRow, RichEditorListView.AnonymousClass7 anonymousClass7) {
         MediaUploadState mediaUploadState;
-        this.radialProgress.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
-        this.radialProgress.setProgressColor(Theme.getColor(Theme.key_chat_inFileProgress, this.resourcesProvider));
-        if (isUploading()) {
-            DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-            this.radialProgress.setProgress(this.currentRow.media.progress, z);
-            this.radialProgress.setIcon(3, false, z);
-            updatePlayingMessageProgress();
-            return;
+        MediaUploadState mediaUploadState2;
+        this.currentRow = blockRow;
+        this.delegate = anonymousClass7;
+        if (blockRow != null && blockRow.media == null) {
+            blockRow.media = new MediaUploadState();
         }
-        TLRPC.Document document = isReady() ? this.currentRow.media.document : null;
-        String attachFileName = FileLoader.getAttachFileName(document);
-        BlockRow blockRow = this.currentRow;
-        boolean z2 = (blockRow == null || (mediaUploadState = blockRow.media) == null || TextUtils.isEmpty(mediaUploadState.localPath) || !new File(this.currentRow.media.localPath).exists()) ? false : true;
-        File pathToAttach = document == null ? null : FileLoader.getInstance(this.currentAccount).getPathToAttach(document, true);
-        boolean z3 = z2 || (pathToAttach != null && pathToAttach.exists());
-        if (TextUtils.isEmpty(attachFileName)) {
-            this.radialProgress.setIcon(4, false, false);
-            return;
+        this.blockRtl = LocaleController.isRTL;
+        bindBlockInset(blockRow);
+        this.caption.bind();
+        TLRPC.Document displayDocument = getDisplayDocument();
+        if (displayDocument != this.boundDocument) {
+            this.boundDocument = displayDocument;
+            this.messageObject = null;
+            this.lastTimeString = null;
+            this.durationLayout = null;
         }
-        if (z3) {
-            DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-            this.buttonState = (!MediaController.getInstance().isPlayingMessage(this.messageObject) || MediaController.getInstance().isMessagePaused()) ? 0 : 1;
-            this.radialProgress.setIcon(getIconForCurrentState(), false, z);
-        } else {
-            DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(attachFileName, null, this);
-            if (!FileLoader.getInstance(this.currentAccount).isLoadingFile(attachFileName)) {
-                this.buttonState = 2;
-                this.radialProgress.setProgress(0.0f, z);
-                this.radialProgress.setIcon(getIconForCurrentState(), false, z);
-            } else {
-                this.buttonState = 3;
-                Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
-                this.radialProgress.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, z);
-                this.radialProgress.setIcon(getIconForCurrentState(), true, z);
+        BlockRow blockRow2 = this.currentRow;
+        if (blockRow2 != null && (mediaUploadState = blockRow2.media) != null && mediaUploadState.isReady() && this.messageObject == null && displayDocument != null) {
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.out = true;
+            tL_message.id = -Long.valueOf(displayDocument.id).hashCode();
+            tL_message.peer_id = new TLRPC.TL_peerUser();
+            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+            tL_message.from_id = tL_peerUser;
+            TLRPC.Peer peer = tL_message.peer_id;
+            int i = this.currentAccount;
+            long clientUserId = UserConfig.getInstance(i).getClientUserId();
+            peer.user_id = clientUserId;
+            tL_peerUser.user_id = clientUserId;
+            tL_message.date = (int) (System.currentTimeMillis() / 1000);
+            tL_message.message = "";
+            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+            tL_message.media = tL_messageMediaDocument;
+            tL_messageMediaDocument.flags |= 3;
+            tL_messageMediaDocument.document = displayDocument;
+            tL_message.flags |= 768;
+            BlockRow blockRow3 = this.currentRow;
+            if (blockRow3 != null && (mediaUploadState2 = blockRow3.media) != null && !TextUtils.isEmpty(mediaUploadState2.localPath)) {
+                tL_message.attachPath = this.currentRow.media.localPath;
             }
+            this.messageObject = new MessageObject(i, tL_message, false, true);
         }
-        updatePlayingMessageProgress();
-    }
-
-    private void didPressedButton(boolean z) {
-        if (isUploading()) {
-            Delegate delegate = this.delegate;
-            if (delegate != null) {
-                delegate.onCancelUpload(this.currentRow);
-                return;
-            }
-            return;
+        layoutInner();
+        if (this.attached) {
+            updateButtonState(false);
         }
-        if (this.messageObject == null) {
-            return;
-        }
-        TLRPC.Document document = isReady() ? this.currentRow.media.document : null;
-        int i = this.buttonState;
-        if (i == 0) {
-            ArrayList<MessageObject> arrayList = new ArrayList<>();
-            arrayList.add(this.messageObject);
-            if (MediaController.getInstance().setPlaylist(arrayList, this.messageObject, 0L, false, null)) {
-                this.buttonState = 1;
-                this.radialProgress.setIcon(getIconForCurrentState(), false, z);
-                invalidate();
-                return;
-            }
-            return;
-        }
-        if (i == 1) {
-            if (MediaController.getInstance().pauseMessage(this.messageObject)) {
-                this.buttonState = 0;
-                this.radialProgress.setIcon(getIconForCurrentState(), false, z);
-                invalidate();
-                return;
-            }
-            return;
-        }
-        if (i == 2) {
-            this.radialProgress.setProgress(0.0f, false);
-            FileLoader.getInstance(this.currentAccount).loadFile(document, this.messageObject, 1, 1);
-            this.buttonState = 3;
-            this.radialProgress.setIcon(getIconForCurrentState(), true, z);
-            invalidate();
-            return;
-        }
-        if (i == 3) {
-            FileLoader.getInstance(this.currentAccount).cancelLoadFile(document);
-            this.buttonState = 2;
-            this.radialProgress.setIcon(getIconForCurrentState(), false, z);
-            invalidate();
-        }
-    }
-
-    public void updatePlayingMessageProgress() {
-        int iAudioDuration;
-        if (!isUploading() && this.messageObject != null && !this.seekBar.isDragging()) {
-            this.seekBar.setProgress(this.messageObject.audioProgress);
-        }
-        if (isUploading()) {
-            iAudioDuration = attribute() != null ? (int) attribute().duration : 0;
-        } else {
-            iAudioDuration = audioDuration();
-        }
-        String shortDuration = AndroidUtilities.formatShortDuration(iAudioDuration);
-        String str = this.lastTimeString;
-        if (str == null || !str.equals(shortDuration)) {
-            this.lastTimeString = shortDuration;
-            this.audioTimePaint.setTextSize(AndroidUtilities.dp(16.0f));
-            this.durationLayout = new StaticLayout(shortDuration, this.audioTimePaint, (int) Math.ceil(this.audioTimePaint.measureText(shortDuration)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
+        requestLayout();
         invalidate();
     }
 
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.attached = true;
-        this.radialProgress.setParent(this);
-        this.seekBar.setParent(this);
-        updateButtonState(false);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidStart);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidReset);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.attached = false;
-        DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidStart);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidReset);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
         MessageObject playingMessageObject;
         MessageObject messageObject = this.messageObject;
         if (messageObject == null || i2 != this.currentAccount) {
@@ -599,78 +228,219 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
     }
 
     @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.caption.drawSelection(canvas);
+    }
+
+    @Override
+    public final void fillTextLayoutBlocks(ArrayList arrayList) {
+        this.caption.fillTextLayoutBlocks(arrayList);
+    }
+
+    @Override
+    public RichEditText getCaptionEditText() {
+        return this.caption.editText;
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
     public int getObserverTag() {
         return this.observerTag;
     }
 
     @Override
-    public void onFailedDownload(String str, boolean z) {
+    public BlockRow getRow() {
+        return this.currentRow;
+    }
+
+    @Override
+    public final boolean isPressOnCaption(int i, int i2) {
+        return this.caption.isPressOnCaption(i, i2);
+    }
+
+    public final boolean isUploading() {
+        MediaUploadState mediaUploadState;
+        BlockRow blockRow = this.currentRow;
+        return (blockRow == null || (mediaUploadState = blockRow.media) == null || !mediaUploadState.isPending()) ? false : true;
+    }
+
+    public final void layoutInner() {
+        String musicAuthor;
+        String musicTitle;
+        SpannableStringBuilder spannableStringBuilder;
+        int iDp = AndroidUtilities.dp(50.0f) + this.buttonX;
+        int i = this.size;
+        this.seekBarX = iDp + i;
+        this.seekBarWidth = Math.max(0, (((getMeasuredWidth() > 0 ? getMeasuredWidth() : AndroidUtilities.displaySize.x) - this.seekBarX) - AndroidUtilities.dp(16.0f)) - (this.blockRtl ? this.blockInset : 0));
+        MessageObject messageObject = this.messageObject;
+        if (messageObject != null) {
+            musicAuthor = messageObject.getMusicAuthor(false);
+        } else {
+            musicAuthor = attribute() != null ? attribute().performer : null;
+        }
+        MessageObject messageObject2 = this.messageObject;
+        if (messageObject2 != null) {
+            musicTitle = messageObject2.getMusicTitle(false);
+        } else {
+            musicTitle = attribute() != null ? attribute().title : null;
+        }
+        boolean zIsEmpty = TextUtils.isEmpty(musicTitle);
+        int i2 = this.buttonY;
+        if (zIsEmpty && TextUtils.isEmpty(musicAuthor)) {
+            this.titleLayout = null;
+            this.seekBarY = ((i - AndroidUtilities.dp(30.0f)) / 2) + i2;
+        } else {
+            if (TextUtils.isEmpty(musicTitle) || TextUtils.isEmpty(musicAuthor)) {
+                spannableStringBuilder = !TextUtils.isEmpty(musicTitle) ? new SpannableStringBuilder(musicTitle) : new SpannableStringBuilder(musicAuthor);
+            } else {
+                spannableStringBuilder = new SpannableStringBuilder(zzkc.m(musicAuthor, " - ", musicTitle));
+            }
+            if (!TextUtils.isEmpty(musicAuthor)) {
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, musicAuthor.length(), 18);
+            }
+            float fDp = AndroidUtilities.dp(16.0f);
+            TextPaint textPaint = this.audioTimePaint;
+            textPaint.setTextSize(fDp);
+            this.titleLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint, this.seekBarWidth, TextUtils.TruncateAt.END), this.audioTimePaint, AndroidUtilities.dp(50.0f) + this.seekBarWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.seekBarY = AndroidUtilities.dp(11.0f) + ((i - AndroidUtilities.dp(30.0f)) / 2) + i2;
+        }
+        this.seekBar.setSize(this.seekBarWidth, AndroidUtilities.dp(30.0f));
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.attached = true;
+        this.radialProgress.setParent(this);
+        this.seekBar.parentView = this;
+        updateButtonState(false);
+        int i = this.currentAccount;
+        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.messagePlayingDidStart);
+        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.messagePlayingDidReset);
+        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
+        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
+    }
+
+    @Override
+    public final void onBlockInsetChanged(int i) {
+        int iDp = AndroidUtilities.dp(16.0f);
+        if (this.blockRtl) {
+            i = 0;
+        }
+        int i2 = iDp + i;
+        this.buttonX = i2;
+        int i3 = this.size;
+        int i4 = this.buttonY;
+        this.radialProgress.setProgressRect(i2, i4, i2 + i3, i3 + i4);
+        requestLayout();
+        invalidate();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.attached = false;
+        int i = this.currentAccount;
+        DownloadController.getInstance(i).removeLoadingFileObserver(this);
+        NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.messagePlayingDidStart);
+        NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.messagePlayingDidReset);
+        NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
+        NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+        if (getDisplayDocument() == null) {
+            return;
+        }
+        this.radialProgress.draw(canvas);
+        SeekBar seekBar = this.seekBar;
+        int i = Theme.key_chat_inAudioSeekbar;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        int color = Theme.getColor(i, resourcesProvider);
+        int color2 = Theme.getColor(Theme.key_chat_inAudioCacheSeekbar, resourcesProvider);
+        int i2 = Theme.key_chat_inAudioSeekbarFill;
+        seekBar.setColors(color, color2, Theme.getColor(i2, resourcesProvider), Theme.getColor(i2, resourcesProvider), Theme.getColor(Theme.key_chat_inAudioSeekbarSelected, resourcesProvider));
+        if (!isUploading()) {
+            canvas.save();
+            canvas.translate(this.seekBarX, this.seekBarY);
+            seekBar.draw(canvas);
+            canvas.restore();
+        }
+        TextPaint textPaint = this.audioTimePaint;
+        textPaint.setColor(Theme.getColor(Theme.key_chat_inTimeText, resourcesProvider));
+        if (this.durationLayout != null) {
+            canvas.save();
+            canvas.translate(AndroidUtilities.dp(54.0f) + this.buttonX, AndroidUtilities.dp(6.0f) + this.seekBarY);
+            this.durationLayout.draw(canvas);
+            canvas.restore();
+        }
+        if (this.titleLayout != null) {
+            textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+            canvas.save();
+            canvas.translate(AndroidUtilities.dp(54.0f) + this.buttonX, this.seekBarY - AndroidUtilities.dp(16.0f));
+            this.titleLayout.draw(canvas);
+            canvas.restore();
+        }
+        RichEditorListView.AnonymousClass7 anonymousClass7 = this.delegate;
+        if (anonymousClass7 != null && (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) != null && textSelectionHelper.isInSelectionMode() && (getParent() instanceof RecyclerView)) {
+            ((RecyclerView) getParent()).getClass();
+            int childAdapterPosition = RecyclerView.getChildAdapterPosition(this);
+            if (childAdapterPosition >= 0 && childAdapterPosition > textSelectionHelper.startViewPosition && childAdapterPosition <= textSelectionHelper.endViewPosition) {
+                canvas.drawRoundRect(AndroidUtilities.dp(8.0f) + (this.blockRtl ? 0 : this.blockInset), AndroidUtilities.dp(2.0f), (getWidth() - (this.blockRtl ? this.blockInset : 0)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectionPaint);
+            }
+        }
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z) {
         updateButtonState(true);
     }
 
     @Override
-    public void onSuccessDownload(String str) {
-        this.radialProgress.setProgress(1.0f, true);
-        updateButtonState(true);
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        boolean z2 = this.blockRtl;
+        this.caption.layout(z2 ? 0 : this.blockInset, z2 ? this.blockInset : 0, i3 - i, AndroidUtilities.dp(66.0f));
+        layoutInner();
     }
 
     @Override
-    public void onProgressDownload(String str, long j, long j2) {
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        boolean z = this.blockRtl;
+        setMeasuredDimension(size, AndroidUtilities.dp(66.0f) + this.caption.measure(z ? 0 : this.blockInset, z ? this.blockInset : 0, size));
+    }
+
+    @Override
+    public final void onProgressDownload(String str, long j, long j2) {
         this.radialProgress.setProgress(Math.min(1.0f, j2 <= 0 ? 0.0f : j / j2), true);
         if (this.buttonState != 3) {
             updateButtonState(true);
         }
     }
 
-    private boolean isCellSelected() {
-        TextSelectionHelper.ArticleTextSelectionHelper selectionHelper;
-        int childAdapterPosition;
-        Delegate delegate = this.delegate;
-        return delegate != null && (selectionHelper = delegate.getSelectionHelper()) != null && selectionHelper.isInSelectionMode() && (getParent() instanceof RecyclerView) && (childAdapterPosition = ((RecyclerView) getParent()).getChildAdapterPosition(this)) >= 0 && childAdapterPosition > selectionHelper.getStartCell() && childAdapterPosition <= selectionHelper.getEndCell();
+    @Override
+    public final void onProgressUpload(String str, long j, long j2, boolean z) {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        if (getDisplayDocument() == null) {
-            return;
-        }
-        this.radialProgress.draw(canvas);
-        SeekBar seekBar = this.seekBar;
-        int color = Theme.getColor(Theme.key_chat_inAudioSeekbar, this.resourcesProvider);
-        int color2 = Theme.getColor(Theme.key_chat_inAudioCacheSeekbar, this.resourcesProvider);
-        int i = Theme.key_chat_inAudioSeekbarFill;
-        seekBar.setColors(color, color2, Theme.getColor(i, this.resourcesProvider), Theme.getColor(i, this.resourcesProvider), Theme.getColor(Theme.key_chat_inAudioSeekbarSelected, this.resourcesProvider));
-        if (!isUploading()) {
-            canvas.save();
-            canvas.translate(this.seekBarX, this.seekBarY);
-            this.seekBar.draw(canvas);
-            canvas.restore();
-        }
-        this.audioTimePaint.setColor(Theme.getColor(Theme.key_chat_inTimeText, this.resourcesProvider));
-        if (this.durationLayout != null) {
-            canvas.save();
-            canvas.translate(this.buttonX + AndroidUtilities.dp(54.0f), this.seekBarY + AndroidUtilities.dp(6.0f));
-            this.durationLayout.draw(canvas);
-            canvas.restore();
-        }
-        if (this.titleLayout != null) {
-            this.audioTimePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-            canvas.save();
-            canvas.translate(this.buttonX + AndroidUtilities.dp(54.0f), this.seekBarY - AndroidUtilities.dp(16.0f));
-            this.titleLayout.draw(canvas);
-            canvas.restore();
-        }
-        if (isCellSelected()) {
-            canvas.drawRoundRect((this.blockRtl ? 0 : blockInset()) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), (getWidth() - (this.blockRtl ? blockInset() : 0)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectionPaint);
-        }
+    public final void onSuccessDownload(String str) {
+        this.radialProgress.setProgress(1.0f, true);
+        updateButtonState(true);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        MediaUploadState mediaUploadState;
         int actionMasked = motionEvent.getActionMasked();
         float x = motionEvent.getX();
         float y = motionEvent.getY();
-        if (!isUploading() && this.seekBar.onTouch(actionMasked, x - this.seekBarX, y - this.seekBarY)) {
+        if (!isUploading() && this.seekBar.onTouch(x - this.seekBarX, y - this.seekBarY, actionMasked)) {
             if (actionMasked == 0) {
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
@@ -694,7 +464,65 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
             if (this.buttonPressed) {
                 this.buttonPressed = false;
                 playSoundEffect(0);
-                didPressedButton(true);
+                if (isUploading()) {
+                    RichEditorListView.AnonymousClass7 anonymousClass7 = this.delegate;
+                    if (anonymousClass7 != null) {
+                        BlockRow blockRow = this.currentRow;
+                        RichEditorListView richEditorListView = RichEditorListView.this;
+                        RichMediaUploader richMediaUploader = (RichMediaUploader) richEditorListView.uploaders.remove(blockRow.media);
+                        if (richMediaUploader != null) {
+                            richMediaUploader.cancel();
+                        }
+                        ArrayList arrayList = richEditorListView.rows;
+                        int iIndexOf = arrayList.indexOf(blockRow);
+                        if (iIndexOf >= 0) {
+                            RichEditorHistory richEditorHistory = richEditorListView.history;
+                            if (richEditorHistory != null) {
+                                AndroidUtilities.cancelRunOnUIThread(richEditorHistory.commitRunnable);
+                                richEditorHistory.commit();
+                            }
+                            arrayList.remove(iIndexOf);
+                            richEditorListView.adapter.update(true);
+                            RichEditorHistory richEditorHistory2 = richEditorListView.history;
+                            if (richEditorHistory2 != null) {
+                                richEditorHistory2.record();
+                            }
+                        }
+                        richEditorListView.delegate.onContentChanged();
+                    }
+                } else if (this.messageObject != null) {
+                    BlockRow blockRow2 = this.currentRow;
+                    TLRPC.Document document = (blockRow2 == null || (mediaUploadState = blockRow2.media) == null || !mediaUploadState.isReady()) ? null : this.currentRow.media.document;
+                    int i4 = this.buttonState;
+                    RadialProgress2 radialProgress2 = this.radialProgress;
+                    if (i4 == 0) {
+                        ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+                        arrayList2.add(this.messageObject);
+                        if (MediaController.getInstance().setPlaylist(arrayList2, this.messageObject, 0L, false, null)) {
+                            this.buttonState = 1;
+                            radialProgress2.setIcon(getIconForCurrentState(), false, true);
+                            invalidate();
+                        }
+                    } else if (i4 != 1) {
+                        int i5 = this.currentAccount;
+                        if (i4 == 2) {
+                            radialProgress2.setProgress(0.0f, false);
+                            FileLoader.getInstance(i5).loadFile(document, this.messageObject, 1, 1);
+                            this.buttonState = 3;
+                            radialProgress2.setIcon(getIconForCurrentState(), true, true);
+                            invalidate();
+                        } else if (i4 == 3) {
+                            FileLoader.getInstance(i5).cancelLoadFile(document);
+                            this.buttonState = 2;
+                            radialProgress2.setIcon(getIconForCurrentState(), false, true);
+                            invalidate();
+                        }
+                    } else if (MediaController.getInstance().lambda$startAudioAgain$7(this.messageObject)) {
+                        this.buttonState = 0;
+                        radialProgress2.setIcon(getIconForCurrentState(), false, true);
+                        invalidate();
+                    }
+                }
                 invalidate();
                 return true;
             }
@@ -705,43 +533,109 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
     }
 
     @Override
-    public void fillTextLayoutBlocks(ArrayList arrayList) {
-        this.caption.fillTextLayoutBlocks(arrayList);
+    public final void persistCaption() {
+        this.caption.persist();
+    }
+
+    public final void updateButtonState(boolean z) {
+        MediaUploadState mediaUploadState;
+        MediaUploadState mediaUploadState2;
+        int i = Theme.key_chat_inLoader;
+        int i2 = Theme.key_chat_inLoaderSelected;
+        int i3 = Theme.key_chat_inMediaIcon;
+        int i4 = Theme.key_chat_inMediaIconSelected;
+        RadialProgress2 radialProgress2 = this.radialProgress;
+        radialProgress2.circleColorKey = i;
+        radialProgress2.circlePressedColorKey = i2;
+        radialProgress2.iconColorKey = i3;
+        radialProgress2.iconPressedColorKey = i4;
+        radialProgress2.progressColor = Theme.getColor(Theme.key_chat_inFileProgress, this.resourcesProvider);
+        boolean zIsUploading = isUploading();
+        int i5 = this.currentAccount;
+        if (zIsUploading) {
+            DownloadController.getInstance(i5).removeLoadingFileObserver(this);
+            radialProgress2.setProgress(this.currentRow.media.progress, z);
+            radialProgress2.setIcon(3, false, z);
+            updatePlayingMessageProgress();
+            return;
+        }
+        BlockRow blockRow = this.currentRow;
+        TLRPC.Document document = (blockRow == null || (mediaUploadState2 = blockRow.media) == null || !mediaUploadState2.isReady()) ? null : this.currentRow.media.document;
+        String attachFileName = FileLoader.getAttachFileName(document);
+        BlockRow blockRow2 = this.currentRow;
+        boolean z2 = (blockRow2 == null || (mediaUploadState = blockRow2.media) == null || TextUtils.isEmpty(mediaUploadState.localPath) || !new File(this.currentRow.media.localPath).exists()) ? false : true;
+        File pathToAttach = document == null ? null : FileLoader.getInstance(i5).getPathToAttach(document, true);
+        boolean z3 = z2 || (pathToAttach != null && pathToAttach.exists());
+        if (TextUtils.isEmpty(attachFileName)) {
+            radialProgress2.setIcon(4, false, false);
+            return;
+        }
+        if (z3) {
+            DownloadController.getInstance(i5).removeLoadingFileObserver(this);
+            this.buttonState = (!MediaController.getInstance().isPlayingMessage(this.messageObject) || MediaController.getInstance().isMessagePaused()) ? 0 : 1;
+            radialProgress2.setIcon(getIconForCurrentState(), false, z);
+        } else {
+            DownloadController.getInstance(i5).addLoadingFileObserver(attachFileName, null, this);
+            if (FileLoader.getInstance(i5).isLoadingFile(attachFileName)) {
+                this.buttonState = 3;
+                Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
+                radialProgress2.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, z);
+                radialProgress2.setIcon(getIconForCurrentState(), true, z);
+            } else {
+                this.buttonState = 2;
+                radialProgress2.setProgress(0.0f, z);
+                radialProgress2.setIcon(getIconForCurrentState(), false, z);
+            }
+        }
+        updatePlayingMessageProgress();
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.caption.drawSelection(canvas);
+    public final void updateColors$1() {
+        this.selectionPaint.setColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, this.resourcesProvider));
+        RichCaptionController richCaptionController = this.caption;
+        if (richCaptionController != null) {
+            richCaptionController.applyColors();
+        }
     }
 
-    public static final class Factory extends UItem.UItemFactory {
-        @Override
-        public boolean isClickable() {
-            return false;
+    public final void updatePlayingMessageProgress() {
+        double d;
+        int i;
+        MessageObject messageObject;
+        if (!isUploading() && (messageObject = this.messageObject) != null) {
+            SeekBar seekBar = this.seekBar;
+            if (!seekBar.pressed) {
+                seekBar.setProgress(messageObject.audioProgress);
+            }
         }
-
-        static {
-            UItem.UItemFactory.setup(new Factory());
+        if (isUploading()) {
+            if (attribute() != null) {
+                d = attribute().duration;
+                i = (int) d;
+            } else {
+                i = 0;
+            }
+        } else if (this.messageObject == null || !MediaController.getInstance().isPlayingMessage(this.messageObject)) {
+            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudioAttribute = attribute();
+            if (tL_documentAttributeAudioAttribute != null) {
+                d = tL_documentAttributeAudioAttribute.duration;
+                i = (int) d;
+            } else {
+                i = 0;
+            }
+        } else {
+            i = this.messageObject.audioProgressSec;
         }
-
-        @Override
-        public RichAudioCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-            RichAudioCell richAudioCell = new RichAudioCell(context, i, resourcesProvider);
-            richAudioCell.setBackground(new RichEditor.DraggingDrawable(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider)));
-            return richAudioCell;
+        String shortDuration = AndroidUtilities.formatShortDuration(i);
+        String str = this.lastTimeString;
+        if (str == null || !str.equals(shortDuration)) {
+            this.lastTimeString = shortDuration;
+            float fDp = AndroidUtilities.dp(16.0f);
+            TextPaint textPaint = this.audioTimePaint;
+            textPaint.setTextSize(fDp);
+            this.durationLayout = new StaticLayout(shortDuration, textPaint, (int) Math.ceil(textPaint.measureText(shortDuration)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
-
-        @Override
-        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-            ((RichAudioCell) view).bind((BlockRow) uItem.object, (Delegate) uItem.object2);
-        }
-
-        public static UItem of(BlockRow blockRow, Delegate delegate) {
-            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-            uItemOfFactory.object = blockRow;
-            uItemOfFactory.object2 = delegate;
-            return uItemOfFactory;
-        }
+        invalidate();
     }
 }

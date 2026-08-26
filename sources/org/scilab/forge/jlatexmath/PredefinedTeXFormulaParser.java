@@ -24,8 +24,12 @@ public class PredefinedTeXFormulaParser {
         }
     }
 
-    public PredefinedTeXFormulaParser(String str, String str2) {
-        this(JLatexMathAndroid.getResourceAsStream(str), str2);
+    private static String getAttrValueAndCheckIfNotNull(String str, Element element) {
+        String attribute = element.getAttribute(str);
+        if (attribute.equals("")) {
+            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
+        }
+        return attribute;
     }
 
     public void parse(Map map) {
@@ -45,11 +49,7 @@ public class PredefinedTeXFormulaParser {
         }
     }
 
-    private static String getAttrValueAndCheckIfNotNull(String str, Element element) {
-        String attribute = element.getAttribute(str);
-        if (attribute.equals("")) {
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
-        }
-        return attribute;
+    public PredefinedTeXFormulaParser(String str, String str2) {
+        this(JLatexMathAndroid.getResourceAsStream(str), str2);
     }
 }

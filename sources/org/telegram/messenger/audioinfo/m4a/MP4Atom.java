@@ -1,93 +1,50 @@
 package org.telegram.messenger.audioinfo.m4a;
 
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import java.io.DataInputStream;
 import java.io.EOFException;
-import java.io.IOException;
-import java.math.BigDecimal;
+import org.commonmark.node.Node;
+import org.telegram.messenger.audioinfo.util.PositionInputStream;
 import org.telegram.messenger.audioinfo.util.RangeInputStream;
 
-public class MP4Atom extends MP4Box {
-    public MP4Atom(RangeInputStream rangeInputStream, MP4Box mP4Box, String str) {
-        super(rangeInputStream, mP4Box, str);
+public final class MP4Atom extends Node {
+    public final int $r8$classId;
+
+    public MP4Atom(PositionInputStream positionInputStream, Node node, String str, int i) {
+        super(positionInputStream, node, str);
+        this.$r8$classId = i;
     }
 
-    public long getLength() {
-        return ((RangeInputStream) getInput()).getPosition() + ((RangeInputStream) getInput()).getRemainingLength();
-    }
-
-    public long getOffset() {
-        return getParent().getPosition() - getPosition();
+    public static void appendPath(StringBuffer stringBuffer, Node node) {
+        Node node2 = (Node) node.firstChild;
+        if (node2 != null) {
+            appendPath(stringBuffer, node2);
+            stringBuffer.append("/");
+        }
+        stringBuffer.append((String) node.lastChild);
     }
 
     public long getRemaining() {
-        return ((RangeInputStream) getInput()).getRemainingLength();
+        return ((RangeInputStream) ((PositionInputStream) this.parent)).getRemainingLength();
     }
 
     public boolean hasMoreChildren() {
-        return (getChild() != null ? getChild().getRemaining() : 0L) < getRemaining();
-    }
-
-    public MP4Atom nextChildUpTo(String str) throws IOException {
-        while (getRemaining() > 0) {
-            MP4Atom mP4AtomNextChild = nextChild();
-            if (mP4AtomNextChild.getType().matches(str)) {
-                return mP4AtomNextChild;
-            }
-        }
-        throw new IOException("atom type mismatch, not found: " + str);
-    }
-
-    public boolean readBoolean() {
-        return this.data.readBoolean();
-    }
-
-    public byte readByte() {
-        return this.data.readByte();
-    }
-
-    public short readShort() {
-        return this.data.readShort();
-    }
-
-    public int readInt() {
-        return this.data.readInt();
-    }
-
-    public long readLong() {
-        return this.data.readLong();
-    }
-
-    public byte[] readBytes(int i) throws IOException {
-        byte[] bArr = new byte[i];
-        this.data.readFully(bArr);
-        return bArr;
-    }
-
-    public byte[] readBytes() {
-        return readBytes((int) getRemaining());
-    }
-
-    public BigDecimal readShortFixedPoint() throws IOException {
-        return new BigDecimal(String.valueOf((int) this.data.readByte()) + "" + String.valueOf(this.data.readUnsignedByte()));
-    }
-
-    public BigDecimal readIntegerFixedPoint() throws IOException {
-        return new BigDecimal(String.valueOf((int) this.data.readShort()) + "" + String.valueOf(this.data.readUnsignedShort()));
+        MP4Atom mP4Atom = (MP4Atom) this.next;
+        return (mP4Atom != null ? mP4Atom.getRemaining() : 0L) < getRemaining();
     }
 
     public String readString(int i, String str) {
-        String str2 = new String(readBytes(i), str);
+        byte[] bArr = new byte[i];
+        ((DataInputStream) this.prev).readFully(bArr);
+        String str2 = new String(bArr, str);
         int iIndexOf = str2.indexOf(0);
         return iIndexOf < 0 ? str2 : str2.substring(0, iIndexOf);
-    }
-
-    public String readString(String str) {
-        return readString((int) getRemaining(), str);
     }
 
     public void skip(int i) {
         int i2 = 0;
         while (i2 < i) {
-            int iSkipBytes = this.data.skipBytes(i - i2);
+            int iSkipBytes = ((DataInputStream) this.prev).skipBytes(i - i2);
             if (iSkipBytes <= 0) {
                 throw new EOFException();
             }
@@ -95,37 +52,25 @@ public class MP4Atom extends MP4Box {
         }
     }
 
-    public void skip() throws EOFException {
-        while (getRemaining() > 0) {
-            if (((RangeInputStream) getInput()).skip(getRemaining()) == 0) {
-                throw new EOFException("Cannot skip atom");
-            }
+    @Override
+    public final String toString() {
+        switch (this.$r8$classId) {
+            case 0:
+                StringBuffer stringBuffer = new StringBuffer();
+                appendPath(stringBuffer, this);
+                stringBuffer.append("[off=");
+                long j = ((PositionInputStream) ((Node) this.firstChild).parent).position;
+                PositionInputStream positionInputStream = (PositionInputStream) this.parent;
+                stringBuffer.append(j - positionInputStream.position);
+                stringBuffer.append(",pos=");
+                stringBuffer.append(positionInputStream.position);
+                stringBuffer.append(",len=");
+                RangeInputStream rangeInputStream = (RangeInputStream) positionInputStream;
+                stringBuffer.append(rangeInputStream.getRemainingLength() + rangeInputStream.position);
+                stringBuffer.append("]");
+                return stringBuffer.toString();
+            default:
+                return SurfaceContainer$$ExternalSyntheticOutline0.m(new StringBuilder("mp4[pos="), ((PositionInputStream) this.parent).position, "]");
         }
-    }
-
-    private StringBuffer appendPath(StringBuffer stringBuffer, MP4Box mP4Box) {
-        if (mP4Box.getParent() != null) {
-            appendPath(stringBuffer, mP4Box.getParent());
-            stringBuffer.append("/");
-        }
-        stringBuffer.append(mP4Box.getType());
-        return stringBuffer;
-    }
-
-    public String getPath() {
-        return appendPath(new StringBuffer(), this).toString();
-    }
-
-    public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
-        appendPath(stringBuffer, this);
-        stringBuffer.append("[off=");
-        stringBuffer.append(getOffset());
-        stringBuffer.append(",pos=");
-        stringBuffer.append(getPosition());
-        stringBuffer.append(",len=");
-        stringBuffer.append(getLength());
-        stringBuffer.append("]");
-        return stringBuffer.toString();
     }
 }

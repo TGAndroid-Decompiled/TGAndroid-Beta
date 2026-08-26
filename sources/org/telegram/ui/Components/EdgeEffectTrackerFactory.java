@@ -7,135 +7,90 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFactory {
-    private final TrackingEdgeEffect[] edgeEffects = new TrackingEdgeEffect[4];
-    private final ArrayList listeners = new ArrayList();
-
-    public interface OnEdgeEffectListener {
-        void onEdgeEffectVisibilityChange(int i, boolean z);
-    }
-
-    public void addEdgeEffectListener(OnEdgeEffectListener onEdgeEffectListener) {
-        this.listeners.add(onEdgeEffectListener);
-    }
-
-    public boolean hasVisibleEdges() {
-        for (TrackingEdgeEffect trackingEdgeEffect : this.edgeEffects) {
-            if (trackingEdgeEffect != null && trackingEdgeEffect.isVisible()) {
-                return true;
-            }
-        }
-        return false;
-    }
+    public final TrackingEdgeEffect[] edgeEffects = new TrackingEdgeEffect[4];
+    public final ArrayList listeners = new ArrayList();
 
     @Override
-    protected EdgeEffect createEdgeEffect(RecyclerView recyclerView, int i) {
-        TrackingEdgeEffect trackingEdgeEffect = new TrackingEdgeEffect(recyclerView, i, new OnEdgeEffectListener() {
-            @Override
-            public final void onEdgeEffectVisibilityChange(int i2, boolean z) {
-                this.f$0.onEdgeEffectVisibilityChange(i2, z);
-            }
-        });
+    public final EdgeEffect createEdgeEffect(RecyclerView recyclerView, int i) {
+        TrackingEdgeEffect trackingEdgeEffect = new TrackingEdgeEffect(recyclerView, i, new RecyclerListView$$ExternalSyntheticLambda5(this, 1));
         this.edgeEffects[i] = trackingEdgeEffect;
         return trackingEdgeEffect;
     }
 
-    public void onEdgeEffectVisibilityChange(int i, boolean z) {
-        ArrayList arrayList = this.listeners;
-        int size = arrayList.size();
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            ((OnEdgeEffectListener) obj).onEdgeEffectVisibilityChange(i, z);
-        }
-    }
+    public final class TrackingEdgeEffect extends EdgeEffect {
+        public final int direction;
+        public boolean lastVisibility;
+        public final RecyclerListView$$ExternalSyntheticLambda5 listener;
+        public final Bulletin$2$$ExternalSyntheticLambda1 mCheckEdgeVisibility;
+        public final RecyclerView view;
 
-    static final class TrackingEdgeEffect extends EdgeEffect {
-        private final int direction;
-        private boolean lastVisibility;
-        private final OnEdgeEffectListener listener;
-        private final Runnable mCheckEdgeVisibility;
-        private final RecyclerView view;
-
-        TrackingEdgeEffect(RecyclerView recyclerView, int i, OnEdgeEffectListener onEdgeEffectListener) {
+        public TrackingEdgeEffect(RecyclerView recyclerView, int i, RecyclerListView$$ExternalSyntheticLambda5 recyclerListView$$ExternalSyntheticLambda5) {
             super(recyclerView.getContext());
-            this.mCheckEdgeVisibility = new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.checkEdgeVisibility();
-                }
-            };
+            this.mCheckEdgeVisibility = new Bulletin$2$$ExternalSyntheticLambda1(this, 27);
             this.view = recyclerView;
             this.direction = i;
-            this.listener = onEdgeEffectListener;
+            this.listener = recyclerListView$$ExternalSyntheticLambda5;
         }
 
-        public boolean isVisible() {
-            if (isFinished()) {
-                return false;
-            }
-            return Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f;
-        }
-
-        public void checkEdgeVisibility() {
-            boolean zIsVisible = isVisible();
-            if (this.lastVisibility != zIsVisible) {
-                this.lastVisibility = zIsVisible;
-                OnEdgeEffectListener onEdgeEffectListener = this.listener;
-                if (onEdgeEffectListener != null) {
-                    onEdgeEffectListener.onEdgeEffectVisibilityChange(this.direction, zIsVisible);
+        public final void checkEdgeVisibility() {
+            boolean z = !isFinished() && (Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f);
+            if (this.lastVisibility != z) {
+                this.lastVisibility = z;
+                RecyclerListView$$ExternalSyntheticLambda5 recyclerListView$$ExternalSyntheticLambda5 = this.listener;
+                if (recyclerListView$$ExternalSyntheticLambda5 != null) {
+                    recyclerListView$$ExternalSyntheticLambda5.onEdgeEffectVisibilityChange(this.direction, z);
                 }
             }
         }
 
         @Override
-        public void setSize(int i, int i2) {
-            super.setSize(i, i2);
-            checkEdgeVisibility();
+        public final boolean draw(Canvas canvas) {
+            boolean zDraw = super.draw(canvas);
+            this.view.postOnAnimation(this.mCheckEdgeVisibility);
+            return zDraw;
         }
 
         @Override
-        public void finish() {
+        public final void finish() {
             super.finish();
             checkEdgeVisibility();
         }
 
         @Override
-        public void onPull(float f) {
+        public final void onAbsorb(int i) {
+            super.onAbsorb(i);
+            checkEdgeVisibility();
+        }
+
+        @Override
+        public final void onPull(float f) {
             super.onPull(f);
             checkEdgeVisibility();
         }
 
         @Override
-        public void onPull(float f, float f2) {
-            super.onPull(f, f2);
-            checkEdgeVisibility();
-        }
-
-        @Override
-        public float onPullDistance(float f, float f2) {
+        public final float onPullDistance(float f, float f2) {
             float fOnPullDistance = super.onPullDistance(f, f2);
             checkEdgeVisibility();
             return fOnPullDistance;
         }
 
         @Override
-        public void onRelease() {
+        public final void onRelease() {
             super.onRelease();
             checkEdgeVisibility();
         }
 
         @Override
-        public void onAbsorb(int i) {
-            super.onAbsorb(i);
+        public final void setSize(int i, int i2) {
+            super.setSize(i, i2);
             checkEdgeVisibility();
         }
 
         @Override
-        public boolean draw(Canvas canvas) {
-            boolean zDraw = super.draw(canvas);
-            this.view.postOnAnimation(this.mCheckEdgeVisibility);
-            return zDraw;
+        public final void onPull(float f, float f2) {
+            super.onPull(f, f2);
+            checkEdgeVisibility();
         }
     }
 }

@@ -9,28 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
+import org.telegram.ui.Cells.ChatMessageCell;
 
 public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
-    private static final int[] tmpCords = new int[2];
-    private static RectF tmpRectF2 = new RectF();
-    private final View anchorView;
-    private boolean listening;
-    private ViewTreeObserver vto;
-    private final WeakHashMap tracked = new WeakHashMap();
-    private final RectF tmpRect = new RectF();
+    public static final int[] tmpCords = new int[2];
+    public static final RectF tmpRectF2 = new RectF();
+    public final View anchorView;
+    public boolean listening;
+    public ViewTreeObserver vto;
+    public final WeakHashMap tracked = new WeakHashMap();
+    public final RectF tmpRect = new RectF();
 
     public interface OnChangedListener {
         void onPositionChanged(View view, RectF rectF);
     }
 
-    private static final class Tracked {
-        boolean hasLast;
-        final RectF last = new RectF();
-        final OnChangedListener listener;
-        boolean multiwindow;
-        final ViewGroup parent;
+    public final class Tracked {
+        public boolean hasLast;
+        public final RectF last = new RectF();
+        public final OnChangedListener listener;
+        public boolean multiwindow;
+        public final ViewGroup parent;
 
-        Tracked(ViewGroup viewGroup, OnChangedListener onChangedListener) {
+        public Tracked(ViewGroup viewGroup, OnChangedListener onChangedListener) {
             this.parent = viewGroup;
             this.listener = onChangedListener;
         }
@@ -42,30 +43,49 @@ public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawList
         attachIfPossible();
     }
 
-    public void subscribe(View view, ViewGroup viewGroup, OnChangedListener onChangedListener) {
-        subscribe(view, viewGroup, onChangedListener, false);
+    public static boolean computeCoordinatesInParent(View view, ViewGroup viewGroup, PointF pointF) {
+        RectF rectF = tmpRectF2;
+        boolean zComputeRectInParent = computeRectInParent(view, viewGroup, rectF);
+        if (zComputeRectInParent) {
+            pointF.x = rectF.left;
+            pointF.y = rectF.top;
+        }
+        return zComputeRectInParent;
     }
 
-    public void subscribe(View view, ViewGroup viewGroup, OnChangedListener onChangedListener, boolean z) {
-        Tracked tracked = new Tracked(viewGroup, onChangedListener);
-        tracked.multiwindow = z;
-        List arrayList = (List) this.tracked.get(view);
-        if (arrayList == null) {
-            arrayList = new ArrayList(1);
-            this.tracked.put(view, arrayList);
+    public static boolean computeRectInParent(View view, View view2, RectF rectF) {
+        float f = 0.0f;
+        float scrollY = 0.0f;
+        View view3 = view;
+        while (view3 != null && view3 != view2) {
+            float x = view3.getX() + f;
+            float y = view3.getY() + scrollY;
+            Object parent = view3.getParent();
+            if (!(parent instanceof View)) {
+                return false;
+            }
+            view3 = (View) parent;
+            float scrollX = x - view3.getScrollX();
+            scrollY = y - view3.getScrollY();
+            f = scrollX;
         }
-        arrayList.add(tracked);
-        computeRectInParent(view, viewGroup, this.tmpRect);
-        tracked.last.set(this.tmpRect);
-        ensureListening();
-        if (z) {
-            view.getViewTreeObserver().addOnPreDrawListener(this);
+        if (view3 != view2) {
+            return false;
         }
+        rectF.set(f, scrollY, view.getWidth() + f, view.getHeight() + scrollY);
+        return true;
     }
 
-    private void attachIfPossible() {
+    public static float computeYCoordinateInParent(ChatMessageCell chatMessageCell, ViewGroup viewGroup) {
+        RectF rectF = tmpRectF2;
+        computeRectInParent(chatMessageCell, viewGroup, rectF);
+        return rectF.top;
+    }
+
+    public final void attachIfPossible() {
         ViewTreeObserver viewTreeObserver;
-        if (this.anchorView.isAttachedToWindow() && (viewTreeObserver = this.anchorView.getViewTreeObserver()) != null && viewTreeObserver.isAlive()) {
+        View view = this.anchorView;
+        if (view.isAttachedToWindow() && (viewTreeObserver = view.getViewTreeObserver()) != null && viewTreeObserver.isAlive()) {
             this.vto = viewTreeObserver;
             if (this.listening) {
                 return;
@@ -75,64 +95,46 @@ public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawList
         }
     }
 
-    private void ensureListening() {
-        if (this.listening) {
-            return;
-        }
-        attachIfPossible();
-    }
-
-    private void detachIfListening() {
-        ViewTreeObserver viewTreeObserver;
-        if (this.listening && (viewTreeObserver = this.vto) != null && viewTreeObserver.isAlive()) {
-            this.vto.removeOnPreDrawListener(this);
-        }
-        this.listening = false;
-        this.vto = null;
-    }
-
     @Override
-    public void onViewAttachedToWindow(View view) {
-        attachIfPossible();
-    }
-
-    @Override
-    public void onViewDetachedFromWindow(View view) {
-        if (view == this.anchorView) {
-            detachIfListening();
-        }
-    }
-
-    @Override
-    public boolean onPreDraw() {
-        if (this.anchorView.getViewTreeObserver() != this.vto) {
-            detachIfListening();
+    public final boolean onPreDraw() {
+        ViewTreeObserver viewTreeObserver = this.anchorView.getViewTreeObserver();
+        ViewTreeObserver viewTreeObserver2 = this.vto;
+        if (viewTreeObserver != viewTreeObserver2) {
+            if (this.listening && viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
+                this.vto.removeOnPreDrawListener(this);
+            }
+            this.listening = false;
+            this.vto = null;
             attachIfPossible();
         }
-        if (this.tracked.isEmpty()) {
-            return true;
-        }
-        for (Map.Entry entry : this.tracked.entrySet()) {
-            View view = (View) entry.getKey();
-            List<Tracked> list = (List) entry.getValue();
-            if (view != null && list != null) {
-                for (Tracked tracked : list) {
-                    if (tracked.multiwindow) {
-                        int[] iArr = tmpCords;
-                        view.getLocationOnScreen(iArr);
+        WeakHashMap weakHashMap = this.tracked;
+        if (!weakHashMap.isEmpty()) {
+            for (Map.Entry entry : weakHashMap.entrySet()) {
+                View view = (View) entry.getKey();
+                List<Tracked> list = (List) entry.getValue();
+                if (view != null && list != null) {
+                    for (Tracked tracked : list) {
+                        boolean z = tracked.multiwindow;
                         RectF rectF = this.tmpRect;
-                        int i = iArr[0];
-                        rectF.set(i, iArr[1], i + view.getWidth(), iArr[1] + view.getHeight());
-                        tracked.parent.getLocationOnScreen(iArr);
-                        this.tmpRect.offset(-iArr[0], -iArr[1]);
-                    } else if (!computeRectInParent(view, tracked.parent, this.tmpRect)) {
-                    }
-                    if (!tracked.hasLast || !this.tmpRect.equals(tracked.last)) {
-                        tracked.last.set(this.tmpRect);
-                        tracked.hasLast = true;
-                        try {
-                            tracked.listener.onPositionChanged(view, new RectF(this.tmpRect));
-                        } catch (Throwable unused) {
+                        ViewGroup viewGroup = tracked.parent;
+                        if (z) {
+                            int[] iArr = tmpCords;
+                            view.getLocationOnScreen(iArr);
+                            int i = iArr[0];
+                            rectF.set(i, iArr[1], view.getWidth() + i, view.getHeight() + iArr[1]);
+                            viewGroup.getLocationOnScreen(iArr);
+                            rectF.offset(-iArr[0], -iArr[1]);
+                        } else if (!computeRectInParent(view, viewGroup, rectF)) {
+                        }
+                        boolean z2 = tracked.hasLast;
+                        RectF rectF2 = tracked.last;
+                        if (!z2 || !rectF.equals(rectF2)) {
+                            rectF2.set(rectF);
+                            tracked.hasLast = true;
+                            try {
+                                tracked.listener.onPositionChanged(view, new RectF(rectF));
+                            } catch (Throwable unused) {
+                            }
                         }
                     }
                 }
@@ -141,45 +143,41 @@ public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawList
         return true;
     }
 
-    public static float computeYCoordinateInParent(View view, ViewGroup viewGroup) {
-        computeRectInParent(view, viewGroup, tmpRectF2);
-        return tmpRectF2.top;
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        attachIfPossible();
     }
 
-    public static float computeXCoordinateInParent(View view, ViewGroup viewGroup) {
-        computeRectInParent(view, viewGroup, tmpRectF2);
-        return tmpRectF2.left;
-    }
-
-    public static boolean computeCoordinatesInParent(View view, ViewGroup viewGroup, PointF pointF) {
-        boolean zComputeRectInParent = computeRectInParent(view, viewGroup, tmpRectF2);
-        if (zComputeRectInParent) {
-            RectF rectF = tmpRectF2;
-            pointF.x = rectF.left;
-            pointF.y = rectF.top;
-        }
-        return zComputeRectInParent;
-    }
-
-    public static boolean computeRectInParent(View view, View view2, RectF rectF) {
-        float scrollX = 0.0f;
-        float scrollY = 0.0f;
-        View view3 = view;
-        while (view3 != null && view3 != view2) {
-            float x = scrollX + view3.getX();
-            float y = scrollY + view3.getY();
-            Object parent = view3.getParent();
-            if (!(parent instanceof View)) {
-                return false;
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        ViewTreeObserver viewTreeObserver;
+        if (view == this.anchorView) {
+            if (this.listening && (viewTreeObserver = this.vto) != null && viewTreeObserver.isAlive()) {
+                this.vto.removeOnPreDrawListener(this);
             }
-            view3 = (View) parent;
-            scrollX = x - view3.getScrollX();
-            scrollY = y - view3.getScrollY();
+            this.listening = false;
+            this.vto = null;
         }
-        if (view3 != view2) {
-            return false;
+    }
+
+    public final void subscribe(View view, ViewGroup viewGroup, OnChangedListener onChangedListener, boolean z) {
+        Tracked tracked = new Tracked(viewGroup, onChangedListener);
+        tracked.multiwindow = z;
+        WeakHashMap weakHashMap = this.tracked;
+        List arrayList = (List) weakHashMap.get(view);
+        if (arrayList == null) {
+            arrayList = new ArrayList(1);
+            weakHashMap.put(view, arrayList);
         }
-        rectF.set(scrollX, scrollY, view.getWidth() + scrollX, view.getHeight() + scrollY);
-        return true;
+        arrayList.add(tracked);
+        RectF rectF = this.tmpRect;
+        computeRectInParent(view, viewGroup, rectF);
+        tracked.last.set(rectF);
+        if (!this.listening) {
+            attachIfPossible();
+        }
+        if (z) {
+            view.getViewTreeObserver().addOnPreDrawListener(this);
+        }
     }
 }

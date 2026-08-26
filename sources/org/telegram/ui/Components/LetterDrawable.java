@@ -12,43 +12,25 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.Theme;
 
-public class LetterDrawable extends Drawable {
-    private static TextPaint namePaint;
-    private static TextPaint namePaintSmallTopic;
-    private static TextPaint namePaintTopic;
-    public static Paint paint = new Paint();
-    int style;
-    private float textHeight;
-    private StaticLayout textLayout;
-    private float textLeft;
-    final TextPaint textPaint;
-    private float textWidth;
-    private RectF rect = new RectF();
-    private StringBuilder stringBuilder = new StringBuilder(5);
+public final class LetterDrawable extends Drawable {
+    public static TextPaint namePaint;
+    public static TextPaint namePaintSmallTopic;
+    public static TextPaint namePaintTopic;
+    public static final Paint paint = new Paint();
+    public final int style;
+    public float textHeight;
+    public StaticLayout textLayout;
+    public float textLeft;
+    public final TextPaint textPaint;
+    public float textWidth;
+    public final RectF rect = new RectF();
+    public final StringBuilder stringBuilder = new StringBuilder(5);
     public float scale = 1.0f;
 
-    @Override
-    public int getIntrinsicHeight() {
-        return 0;
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return 0;
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public LetterDrawable(Theme.ResourcesProvider resourcesProvider, int i) {
+    public LetterDrawable(int i, Theme.ResourcesProvider resourcesProvider) {
         this.style = i;
         if (i == 0) {
             if (namePaint == null) {
@@ -79,47 +61,16 @@ public class LetterDrawable extends Drawable {
         this.textPaint = namePaintSmallTopic;
     }
 
-    public void setBackgroundColor(int i) {
-        paint.setColor(i);
-    }
-
-    public void setColor(int i) {
-        this.textPaint.setColor(i);
-    }
-
-    public void setTitle(String str) {
-        this.stringBuilder.setLength(0);
-        if (str != null && str.length() > 0) {
-            this.stringBuilder.append(str.substring(0, 1));
-        }
-        if (this.stringBuilder.length() > 0) {
-            try {
-                StaticLayout staticLayout = new StaticLayout(this.stringBuilder.toString().toUpperCase(), this.textPaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.textLayout = staticLayout;
-                if (staticLayout.getLineCount() > 0) {
-                    this.textLeft = this.textLayout.getLineLeft(0);
-                    this.textWidth = this.textLayout.getLineWidth(0);
-                    this.textHeight = this.textLayout.getLineBottom(0);
-                    return;
-                }
-                return;
-            } catch (Exception e) {
-                FileLog.e(e);
-                return;
-            }
-        }
-        this.textLayout = null;
-    }
-
     @Override
-    public void draw(Canvas canvas) {
+    public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         if (bounds == null) {
             return;
         }
         if (this.style == 0) {
-            this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-            canvas.drawRoundRect(this.rect, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+            RectF rectF = this.rect;
+            rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
         }
         canvas.save();
         float f = this.scale;
@@ -128,15 +79,57 @@ public class LetterDrawable extends Drawable {
         }
         if (this.textLayout != null) {
             float fWidth = bounds.width();
-            canvas.translate((bounds.left + ((fWidth - this.textWidth) / 2.0f)) - this.textLeft, bounds.top + ((fWidth - this.textHeight) / 2.0f));
+            canvas.translate(ImageReceiver$$ExternalSyntheticOutline0.m(fWidth, this.textWidth, 2.0f, bounds.left) - this.textLeft, ImageReceiver$$ExternalSyntheticOutline0.m(fWidth, this.textHeight, 2.0f, bounds.top));
             this.textLayout.draw(canvas);
         }
         canvas.restore();
     }
 
     @Override
-    public void setAlpha(int i) {
+    public final int getIntrinsicHeight() {
+        return 0;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return 0;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
         this.textPaint.setAlpha(i);
         paint.setAlpha(i);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public final void setTitle(String str) {
+        StringBuilder sb = this.stringBuilder;
+        sb.setLength(0);
+        if (str != null && str.length() > 0) {
+            sb.append(str.substring(0, 1));
+        }
+        if (sb.length() <= 0) {
+            this.textLayout = null;
+            return;
+        }
+        try {
+            StaticLayout staticLayout = new StaticLayout(sb.toString().toUpperCase(), this.textPaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.textLayout = staticLayout;
+            if (staticLayout.getLineCount() > 0) {
+                this.textLeft = this.textLayout.getLineLeft(0);
+                this.textWidth = this.textLayout.getLineWidth(0);
+                this.textHeight = this.textLayout.getLineBottom(0);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 }

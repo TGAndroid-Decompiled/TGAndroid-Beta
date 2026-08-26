@@ -1,7 +1,5 @@
 package org.telegram.ui.Components.Premium;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,185 +7,324 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import androidx.core.graphics.ColorUtils;
+import com.google.android.gms.internal.mlkit_vision_common.zzkf;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BadWayToMakeButtonRound;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.ItemOptions;
+import org.telegram.ui.Components.ItemOptions$$ExternalSyntheticLambda4;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Loadable;
+import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+import org.telegram.ui.LoginActivity;
 
 public class PremiumButtonView extends FrameLayout implements Loadable {
-    public FrameLayout buttonLayout;
-    public AnimatedTextView buttonTextView;
-    AnimatedFloat counterOffset;
-    AnimatedFloat counterOffset2;
-    CounterView counterView;
+    public final ChatActivity.AnonymousClass60 buttonLayout;
+    public final AnonymousClass1 buttonTextView;
+    public final AnimatedFloat counterOffset;
+    public final AnimatedFloat counterOffset2;
+    public CounterView counterView;
     public boolean drawGradient;
-    private boolean drawOverlayColor;
-    CellFlickerDrawable flickerDrawable;
-    RLottieImageView iconView;
-    private boolean inc;
-    private boolean isButtonTextSet;
-    private boolean isFlickerDisabled;
-    private boolean loading;
-    private ValueAnimator loadingAnimator;
-    private CircularProgressDrawable loadingDrawable;
-    private float loadingT;
-    private boolean nonClickable;
-    ValueAnimator overlayAnimator;
-    private float overlayProgress;
-    public AnimatedTextView overlayTextView;
-    private Paint paintOverlayPaint;
-    Path path;
-    private float progress;
-    private int radius;
-    private boolean showOverlay;
+    public boolean drawOverlayColor;
+    public final CellFlickerDrawable flickerDrawable;
+    public final RLottieImageView iconView;
+    public boolean inc;
+    public boolean isButtonTextSet;
+    public boolean isFlickerDisabled;
+    public boolean loading;
+    public ValueAnimator loadingAnimator;
+    public CircularProgressDrawable loadingDrawable;
+    public float loadingT;
+    public boolean nonClickable;
+    public ValueAnimator overlayAnimator;
+    public float overlayProgress;
+    public final AnonymousClass1 overlayTextView;
+    public final Paint paintOverlayPaint;
+    public final Path path;
+    public float progress;
+    public final int radius;
+    public boolean showOverlay;
 
-    public PremiumButtonView(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        this(context, AndroidUtilities.dp(8.0f), z, resourcesProvider);
-    }
-
-    public PremiumButtonView(Context context, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
+    public PremiumButtonView(int i, Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context);
-        this.paintOverlayPaint = new Paint(1);
+        Paint paint = new Paint(1);
+        this.paintOverlayPaint = paint;
         this.path = new Path();
         this.drawGradient = true;
         this.counterOffset = new AnimatedFloat(this);
         this.counterOffset2 = new AnimatedFloat(this);
         this.loadingT = 0.0f;
         this.radius = i;
-        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
+        CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(64, 204, 160);
         this.flickerDrawable = cellFlickerDrawable;
         cellFlickerDrawable.animationSpeedScale = 1.2f;
         cellFlickerDrawable.drawFrame = false;
         cellFlickerDrawable.repeatProgress = 4.0f;
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true) {
+        LinearLayout linearLayoutM = zzkf.m(context, 0);
+        final int i2 = 0;
+        ?? r15 = new AnimatedTextView(this, context) {
+            public final PremiumButtonView this$0;
+
+            {
+                this.this$0 = this;
+            }
+
             @Override
-            protected void onDraw(Canvas canvas) {
-                if (PremiumButtonView.this.loadingT > 0.0f) {
-                    if (PremiumButtonView.this.loadingDrawable == null) {
-                        PremiumButtonView.this.loadingDrawable = new CircularProgressDrawable(PremiumButtonView.this.buttonTextView.getTextColor());
-                    }
-                    int iDp = (int) ((1.0f - PremiumButtonView.this.loadingT) * AndroidUtilities.dp(24.0f));
-                    PremiumButtonView.this.loadingDrawable.setBounds(0, iDp, getWidth(), getHeight() + iDp);
-                    PremiumButtonView.this.loadingDrawable.setAlpha((int) (PremiumButtonView.this.loadingT * 255.0f));
-                    PremiumButtonView.this.loadingDrawable.draw(canvas);
-                    invalidate();
-                }
-                if (PremiumButtonView.this.loadingT < 1.0f) {
-                    if (PremiumButtonView.this.loadingT != 0.0f) {
-                        canvas.save();
-                        canvas.translate(0.0f, (int) (PremiumButtonView.this.loadingT * AndroidUtilities.dp(-24.0f)));
-                        canvas.scale(1.0f, 1.0f - (PremiumButtonView.this.loadingT * 0.4f));
-                        super.onDraw(canvas);
-                        canvas.restore();
-                        return;
-                    }
-                    super.onDraw(canvas);
+            public final void onDraw(Canvas canvas) {
+                switch (i2) {
+                    case 0:
+                        PremiumButtonView premiumButtonView = this.this$0;
+                        if (premiumButtonView.loadingT > 0.0f) {
+                            if (premiumButtonView.loadingDrawable == null) {
+                                premiumButtonView.loadingDrawable = new CircularProgressDrawable(premiumButtonView.buttonTextView.getTextColor());
+                            }
+                            int iDp = (int) ((1.0f - premiumButtonView.loadingT) * AndroidUtilities.dp(24.0f));
+                            premiumButtonView.loadingDrawable.setBounds(0, iDp, getWidth(), getHeight() + iDp);
+                            premiumButtonView.loadingDrawable.paint.setAlpha((int) (premiumButtonView.loadingT * 255.0f));
+                            premiumButtonView.loadingDrawable.draw(canvas);
+                            invalidate();
+                        }
+                        float f = premiumButtonView.loadingT;
+                        if (f < 1.0f) {
+                            if (f == 0.0f) {
+                                super.onDraw(canvas);
+                            } else {
+                                canvas.save();
+                                canvas.translate(0.0f, (int) (premiumButtonView.loadingT * AndroidUtilities.dp(-24.0f)));
+                                canvas.scale(1.0f, 1.0f - (premiumButtonView.loadingT * 0.4f));
+                                super.onDraw(canvas);
+                                canvas.restore();
+                            }
+                        }
+                        break;
+                    default:
+                        PremiumButtonView premiumButtonView2 = this.this$0;
+                        if (premiumButtonView2.loadingT > 0.0f) {
+                            if (premiumButtonView2.loadingDrawable == null) {
+                                premiumButtonView2.loadingDrawable = new CircularProgressDrawable(premiumButtonView2.buttonTextView.getTextColor());
+                            }
+                            int iDp2 = (int) ((1.0f - premiumButtonView2.loadingT) * AndroidUtilities.dp(24.0f));
+                            premiumButtonView2.loadingDrawable.setBounds(0, iDp2, getWidth(), getHeight() + iDp2);
+                            premiumButtonView2.loadingDrawable.paint.setAlpha((int) (premiumButtonView2.loadingT * 255.0f));
+                            premiumButtonView2.loadingDrawable.draw(canvas);
+                            invalidate();
+                        }
+                        float f2 = premiumButtonView2.loadingT;
+                        if (f2 < 1.0f) {
+                            if (f2 == 0.0f) {
+                                super.onDraw(canvas);
+                            } else {
+                                canvas.save();
+                                canvas.translate(0.0f, (int) (premiumButtonView2.loadingT * AndroidUtilities.dp(-24.0f)));
+                                canvas.scale(1.0f, 1.0f - (premiumButtonView2.loadingT * 0.4f));
+                                super.onDraw(canvas);
+                                canvas.restore();
+                            }
+                        }
+                        break;
                 }
             }
         };
-        this.buttonTextView = animatedTextView;
-        animatedTextView.setAnimationProperties(0.35f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.buttonTextView.setGravity(17);
-        this.buttonTextView.setTextColor(-1);
-        this.buttonTextView.setTextSize(AndroidUtilities.dp(14.0f));
-        this.buttonTextView.setTypeface(AndroidUtilities.bold());
+        this.buttonTextView = r15;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = r15.drawable;
+        animatedTextDrawable.moveAmplitude = 0.35f;
+        animatedTextDrawable.animateDuration = 350L;
+        animatedTextDrawable.animateWave = 1.0f;
+        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        r15.setGravity(17);
+        r15.setTextColor(-1);
+        r15.setTextSize(AndroidUtilities.dp(14.0f));
+        r15.setTypeface(AndroidUtilities.bold());
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.iconView = rLottieImageView;
         rLottieImageView.setColorFilter(-1);
-        this.iconView.setVisibility(8);
-        FrameLayout frameLayout = new FrameLayout(context) {
-            @Override
-            public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-                AnimatedTextView animatedTextView2;
-                AnimatedTextView animatedTextView3;
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setClassName("android.widget.Button");
-                CharSequence text = (!PremiumButtonView.this.showOverlay || (animatedTextView3 = PremiumButtonView.this.overlayTextView) == null) ? null : animatedTextView3.getText();
-                if (text == null && (animatedTextView2 = PremiumButtonView.this.buttonTextView) != null) {
-                    text = animatedTextView2.getText();
-                }
-                if (text != null) {
-                    accessibilityNodeInfo.setText(text);
-                    if (getContentDescription() == null) {
-                        accessibilityNodeInfo.setContentDescription(text);
-                    }
-                }
-            }
-        };
-        this.buttonLayout = frameLayout;
-        frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
-        this.buttonLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(i, 0, ColorUtils.setAlphaComponent(-1, 120)));
-        linearLayout.addView(this.buttonTextView, LayoutHelper.createLinear(-2, -2, 16));
-        linearLayout.addView(this.iconView, LayoutHelper.createLinear(24, 24, 0.0f, 16, 4, 0, 0, 0));
-        addView(this.buttonLayout);
-        BadWayToMakeButtonRound.round(this);
+        rLottieImageView.setVisibility(8);
+        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(this, context, 18);
+        this.buttonLayout = anonymousClass60;
+        anonymousClass60.addView(linearLayoutM, LayoutHelper.createFrame(-2, -2, 17));
+        int alphaComponent = ColorUtils.setAlphaComponent(-1, 120);
+        anonymousClass60.setBackground(Theme.createSimpleSelectorRoundRectDrawable(i, i, i, i, 0, alphaComponent, alphaComponent));
+        linearLayoutM.addView((View) r15, LayoutHelper.createLinear(-2, -2, 16));
+        linearLayoutM.addView(rLottieImageView, LayoutHelper.createLinear(24, 24, 0.0f, 16, 4, 0, 0, 0));
+        addView(anonymousClass60);
+        setOutlineProvider(ViewOutlineProviderImpl.BOUNDS_ROUND_RECT);
+        setClipToOutline(true);
         ScaleStateListAnimator.apply(this, 0.02f, 1.2f);
         if (z) {
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true) {
+            final int i3 = 1;
+            ?? r4 = new AnimatedTextView(this, context) {
+                public final PremiumButtonView this$0;
+
+                {
+                    this.this$0 = this;
+                }
+
                 @Override
-                protected void onDraw(Canvas canvas) {
-                    if (PremiumButtonView.this.loadingT > 0.0f) {
-                        if (PremiumButtonView.this.loadingDrawable == null) {
-                            PremiumButtonView.this.loadingDrawable = new CircularProgressDrawable(PremiumButtonView.this.buttonTextView.getTextColor());
-                        }
-                        int iDp = (int) ((1.0f - PremiumButtonView.this.loadingT) * AndroidUtilities.dp(24.0f));
-                        PremiumButtonView.this.loadingDrawable.setBounds(0, iDp, getWidth(), getHeight() + iDp);
-                        PremiumButtonView.this.loadingDrawable.setAlpha((int) (PremiumButtonView.this.loadingT * 255.0f));
-                        PremiumButtonView.this.loadingDrawable.draw(canvas);
-                        invalidate();
-                    }
-                    if (PremiumButtonView.this.loadingT < 1.0f) {
-                        if (PremiumButtonView.this.loadingT != 0.0f) {
-                            canvas.save();
-                            canvas.translate(0.0f, (int) (PremiumButtonView.this.loadingT * AndroidUtilities.dp(-24.0f)));
-                            canvas.scale(1.0f, 1.0f - (PremiumButtonView.this.loadingT * 0.4f));
-                            super.onDraw(canvas);
-                            canvas.restore();
-                            return;
-                        }
-                        super.onDraw(canvas);
+                public final void onDraw(Canvas canvas) {
+                    switch (i3) {
+                        case 0:
+                            PremiumButtonView premiumButtonView = this.this$0;
+                            if (premiumButtonView.loadingT > 0.0f) {
+                                if (premiumButtonView.loadingDrawable == null) {
+                                    premiumButtonView.loadingDrawable = new CircularProgressDrawable(premiumButtonView.buttonTextView.getTextColor());
+                                }
+                                int iDp = (int) ((1.0f - premiumButtonView.loadingT) * AndroidUtilities.dp(24.0f));
+                                premiumButtonView.loadingDrawable.setBounds(0, iDp, getWidth(), getHeight() + iDp);
+                                premiumButtonView.loadingDrawable.paint.setAlpha((int) (premiumButtonView.loadingT * 255.0f));
+                                premiumButtonView.loadingDrawable.draw(canvas);
+                                invalidate();
+                            }
+                            float f = premiumButtonView.loadingT;
+                            if (f < 1.0f) {
+                                if (f == 0.0f) {
+                                    super.onDraw(canvas);
+                                } else {
+                                    canvas.save();
+                                    canvas.translate(0.0f, (int) (premiumButtonView.loadingT * AndroidUtilities.dp(-24.0f)));
+                                    canvas.scale(1.0f, 1.0f - (premiumButtonView.loadingT * 0.4f));
+                                    super.onDraw(canvas);
+                                    canvas.restore();
+                                }
+                            }
+                            break;
+                        default:
+                            PremiumButtonView premiumButtonView2 = this.this$0;
+                            if (premiumButtonView2.loadingT > 0.0f) {
+                                if (premiumButtonView2.loadingDrawable == null) {
+                                    premiumButtonView2.loadingDrawable = new CircularProgressDrawable(premiumButtonView2.buttonTextView.getTextColor());
+                                }
+                                int iDp2 = (int) ((1.0f - premiumButtonView2.loadingT) * AndroidUtilities.dp(24.0f));
+                                premiumButtonView2.loadingDrawable.setBounds(0, iDp2, getWidth(), getHeight() + iDp2);
+                                premiumButtonView2.loadingDrawable.paint.setAlpha((int) (premiumButtonView2.loadingT * 255.0f));
+                                premiumButtonView2.loadingDrawable.draw(canvas);
+                                invalidate();
+                            }
+                            float f2 = premiumButtonView2.loadingT;
+                            if (f2 < 1.0f) {
+                                if (f2 == 0.0f) {
+                                    super.onDraw(canvas);
+                                } else {
+                                    canvas.save();
+                                    canvas.translate(0.0f, (int) (premiumButtonView2.loadingT * AndroidUtilities.dp(-24.0f)));
+                                    canvas.scale(1.0f, 1.0f - (premiumButtonView2.loadingT * 0.4f));
+                                    super.onDraw(canvas);
+                                    canvas.restore();
+                                }
+                            }
+                            break;
                     }
                 }
             };
-            this.overlayTextView = animatedTextView2;
-            animatedTextView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-            this.overlayTextView.setGravity(17);
-            this.overlayTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
-            this.overlayTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.overlayTextView.setTypeface(AndroidUtilities.bold());
-            this.overlayTextView.getDrawable().setAllowCancel(true);
-            this.overlayTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(-1, 120)));
-            addView(this.overlayTextView);
-            this.paintOverlayPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
+            this.overlayTextView = r4;
+            r4.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+            r4.setGravity(17);
+            r4.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
+            r4.setTextSize(AndroidUtilities.dp(14.0f));
+            r4.setTypeface(AndroidUtilities.bold());
+            r4.getDrawable().allowCancel = true;
+            int iDp = AndroidUtilities.dp(8.0f);
+            int alphaComponent2 = ColorUtils.setAlphaComponent(-1, 120);
+            r4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, 0, alphaComponent2, alphaComponent2));
+            addView(r4);
+            paint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
             updateOverlayProgress();
         }
     }
 
-    public void setNonClickable() {
-        this.nonClickable = true;
-        setClickable(false);
-        this.buttonLayout.setClickable(false);
-        setStateListAnimator(null);
-    }
-
-    public boolean isShowOverlay() {
-        return this.showOverlay;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int iDp;
+        CounterView counterView = this.counterView;
+        AnonymousClass1 anonymousClass1 = this.overlayTextView;
+        if (counterView != null) {
+            CounterView.CounterDrawable counterDrawable = counterView.counterDrawable;
+            if (counterDrawable.currentCount == 0) {
+                iDp = 0;
+            } else {
+                iDp = AndroidUtilities.dp(counterDrawable.radius - 0.5f) + counterDrawable.countWidth;
+            }
+            float fDp = ((iDp * 0.85f) + AndroidUtilities.dp(3.0f)) / 2.0f;
+            AnimatedFloat animatedFloat = this.counterOffset;
+            animatedFloat.set(fDp, false);
+            float measuredWidth = getMeasuredWidth() / 2.0f;
+            AnimatedTextView.AnimatedTextDrawable drawable = anonymousClass1.getDrawable();
+            float fMax = (Math.max(drawable.currentWidth, drawable.oldWidth) / 2.0f) + measuredWidth + AndroidUtilities.dp(3.0f);
+            AnimatedFloat animatedFloat2 = this.counterOffset2;
+            animatedFloat2.set(fMax, false);
+            anonymousClass1.setTranslationX(-animatedFloat.value);
+            this.counterView.setTranslationX(animatedFloat2.value - animatedFloat.value);
+        } else if (anonymousClass1 != null) {
+            anonymousClass1.setTranslationX(0.0f);
+        }
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        float f = this.overlayProgress;
+        Paint paint = this.paintOverlayPaint;
+        int i = this.radius;
+        if (f != 1.0f || !this.drawOverlayColor) {
+            if (this.inc) {
+                float f2 = this.progress + 0.016f;
+                this.progress = f2;
+                if (f2 > 3.0f) {
+                    this.inc = false;
+                }
+            } else {
+                float f3 = this.progress - 0.016f;
+                this.progress = f3;
+                if (f3 < 1.0f) {
+                    this.inc = true;
+                }
+            }
+            if (this.drawGradient) {
+                PremiumGradient premiumGradient = PremiumGradient.getInstance();
+                premiumGradient.mainGradient.gradientMatrix(0, (-getMeasuredWidth()) * 0.1f * this.progress, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
+                float f4 = i;
+                canvas.drawRoundRect(rectF, f4, f4, PremiumGradient.getInstance().getMainGradientPaint());
+            } else {
+                paint.setAlpha(255);
+                float f5 = i;
+                canvas.drawRoundRect(rectF, f5, f5, paint);
+            }
+            invalidate();
+        }
+        if (!BuildVars.IS_BILLING_UNAVAILABLE && !this.isFlickerDisabled) {
+            int measuredWidth2 = getMeasuredWidth();
+            CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
+            cellFlickerDrawable.parentWidth = measuredWidth2;
+            cellFlickerDrawable.draw(i, canvas, rectF, null);
+        }
+        float f6 = this.overlayProgress;
+        if (f6 != 0.0f && this.drawOverlayColor) {
+            paint.setAlpha((int) (f6 * 255.0f));
+            if (this.overlayProgress != 1.0f) {
+                Path path = this.path;
+                path.rewind();
+                path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.overlayProgress, Path.Direction.CW);
+                canvas.save();
+                canvas.clipPath(path);
+                float f7 = i;
+                canvas.drawRoundRect(rectF, f7, f7, paint);
+                canvas.restore();
+            } else {
+                float f8 = i;
+                canvas.drawRoundRect(rectF, f8, f8, paint);
+            }
+        }
+        super.dispatchDraw(canvas);
     }
 
     public RLottieImageView getIconView() {
@@ -199,12 +336,61 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
+    public final boolean isEnabled() {
+        return this.buttonLayout.isEnabled();
     }
 
     @Override
-    public void setLoading(final boolean z) {
+    public final boolean isLoading() {
+        return this.loading;
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+    }
+
+    public final void setButton(String str, View.OnClickListener onClickListener, boolean z) {
+        if (!this.isButtonTextSet && z) {
+            z = true;
+        }
+        this.isButtonTextSet = true;
+        AnonymousClass1 anonymousClass1 = this.buttonTextView;
+        if (z && anonymousClass1.drawable.isAnimating()) {
+            anonymousClass1.drawable.cancelAnimation();
+        }
+        anonymousClass1.setText(str, z, true);
+        ChatActivity.AnonymousClass60 anonymousClass60 = this.buttonLayout;
+        anonymousClass60.setContentDescription(str);
+        if (this.nonClickable) {
+            return;
+        }
+        anonymousClass60.setOnClickListener(onClickListener);
+    }
+
+    @Override
+    public void setEnabled(boolean z) {
+        super.setEnabled(z);
+        this.buttonLayout.setEnabled(z);
+    }
+
+    public void setFlickerDisabled(boolean z) {
+        this.isFlickerDisabled = z;
+        invalidate();
+    }
+
+    public void setIcon(int i) {
+        RLottieImageView rLottieImageView = this.iconView;
+        rLottieImageView.setAnimation(i, 24, 24, null);
+        CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
+        cellFlickerDrawable.progress = 2.0f;
+        cellFlickerDrawable.onRestartCallback = new PasscodeView$9$$ExternalSyntheticLambda0(this, 14);
+        invalidate();
+        rLottieImageView.setVisibility(0);
+    }
+
+    @Override
+    public void setLoading(boolean z) {
         if (this.loading != z) {
             ValueAnimator valueAnimator = this.loadingAnimator;
             if (valueAnimator != null) {
@@ -215,117 +401,24 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
             this.loading = z;
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
             this.loadingAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    PremiumButtonView.$r8$lambda$MyHMbP_TnK0zalz814PRP5AOafY(this.f$0, valueAnimator2);
-                }
-            });
-            this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    PremiumButtonView.this.loadingT = z ? 1.0f : 0.0f;
-                    PremiumButtonView.this.buttonTextView.invalidate();
-                    AnimatedTextView animatedTextView = PremiumButtonView.this.overlayTextView;
-                    if (animatedTextView != null) {
-                        animatedTextView.invalidate();
-                    }
-                }
-            });
+            valueAnimatorOfFloat.addUpdateListener(new ItemOptions$$ExternalSyntheticLambda4(this, 28));
+            this.loadingAnimator.addListener(new LoginActivity.AnonymousClass9(5, this, z));
             this.loadingAnimator.setDuration(320L);
             this.loadingAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             this.loadingAnimator.start();
         }
     }
 
-    public static void $r8$lambda$MyHMbP_TnK0zalz814PRP5AOafY(PremiumButtonView premiumButtonView, ValueAnimator valueAnimator) {
-        premiumButtonView.getClass();
-        premiumButtonView.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        premiumButtonView.buttonTextView.invalidate();
-        AnimatedTextView animatedTextView = premiumButtonView.overlayTextView;
-        if (animatedTextView != null) {
-            animatedTextView.invalidate();
-        }
-    }
-
-    @Override
-    public boolean isLoading() {
-        return this.loading;
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        CounterView counterView = this.counterView;
-        if (counterView != null) {
-            this.counterOffset.set(((counterView.counterDrawable.getWidth() * 0.85f) + AndroidUtilities.dp(3.0f)) / 2.0f);
-            this.counterOffset2.set((getMeasuredWidth() / 2.0f) + (this.overlayTextView.getDrawable().getWidth() / 2.0f) + AndroidUtilities.dp(3.0f));
-            this.overlayTextView.setTranslationX(-this.counterOffset.get());
-            this.counterView.setTranslationX(this.counterOffset2.get() - this.counterOffset.get());
-        } else {
-            AnimatedTextView animatedTextView = this.overlayTextView;
-            if (animatedTextView != null) {
-                animatedTextView.setTranslationX(0.0f);
-            }
-        }
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        if (this.overlayProgress != 1.0f || !this.drawOverlayColor) {
-            if (this.inc) {
-                float f = this.progress + 0.016f;
-                this.progress = f;
-                if (f > 3.0f) {
-                    this.inc = false;
-                }
-            } else {
-                float f2 = this.progress - 0.016f;
-                this.progress = f2;
-                if (f2 < 1.0f) {
-                    this.inc = true;
-                }
-            }
-            if (this.drawGradient) {
-                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * this.progress, 0.0f);
-                float f3 = this.radius;
-                canvas.drawRoundRect(rectF, f3, f3, PremiumGradient.getInstance().getMainGradientPaint());
-            } else {
-                this.paintOverlayPaint.setAlpha(255);
-                float f4 = this.radius;
-                canvas.drawRoundRect(rectF, f4, f4, this.paintOverlayPaint);
-            }
-            invalidate();
-        }
-        if (!BuildVars.IS_BILLING_UNAVAILABLE && !this.isFlickerDisabled) {
-            this.flickerDrawable.setParentWidth(getMeasuredWidth());
-            this.flickerDrawable.draw(canvas, rectF, this.radius, null);
-        }
-        float f5 = this.overlayProgress;
-        if (f5 != 0.0f && this.drawOverlayColor) {
-            this.paintOverlayPaint.setAlpha((int) (f5 * 255.0f));
-            if (this.overlayProgress != 1.0f) {
-                this.path.rewind();
-                this.path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.overlayProgress, Path.Direction.CW);
-                canvas.save();
-                canvas.clipPath(this.path);
-                float f6 = this.radius;
-                canvas.drawRoundRect(rectF, f6, f6, this.paintOverlayPaint);
-                canvas.restore();
-            } else {
-                float f7 = this.radius;
-                canvas.drawRoundRect(rectF, f7, f7, this.paintOverlayPaint);
-            }
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    public void setOverlayText(CharSequence charSequence, boolean z, boolean z2) {
+    public final void setOverlayText(CharSequence charSequence, boolean z, boolean z2) {
         this.showOverlay = true;
         this.drawOverlayColor = z;
-        this.overlayTextView.setText(charSequence, z2);
-        this.overlayTextView.setContentDescription(charSequence);
+        AnonymousClass1 anonymousClass1 = this.overlayTextView;
+        anonymousClass1.setText(charSequence, z2, true);
+        anonymousClass1.setContentDescription(charSequence);
         updateOverlay(z2);
     }
 
-    private void updateOverlay(boolean z) {
+    public final void updateOverlay(boolean z) {
         ValueAnimator valueAnimator = this.overlayAnimator;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
@@ -338,110 +431,24 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.overlayProgress, this.showOverlay ? 1.0f : 0.0f);
         this.overlayAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                PremiumButtonView.this.overlayProgress = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                PremiumButtonView.this.updateOverlayProgress();
-            }
-        });
-        this.overlayAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                PremiumButtonView premiumButtonView = PremiumButtonView.this;
-                premiumButtonView.overlayProgress = premiumButtonView.showOverlay ? 1.0f : 0.0f;
-                PremiumButtonView.this.updateOverlayProgress();
-            }
-        });
+        valueAnimatorOfFloat.addUpdateListener(new ChatActivity.AnonymousClass133(this, 8));
+        this.overlayAnimator.addListener(new ItemOptions.AnonymousClass3(this, 18));
         this.overlayAnimator.setDuration(250L);
         this.overlayAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.overlayAnimator.start();
     }
 
-    public void updateOverlayProgress() {
-        this.overlayTextView.setAlpha(this.overlayProgress);
-        this.overlayTextView.setTranslationY(AndroidUtilities.dp(12.0f) * (1.0f - this.overlayProgress));
-        this.buttonLayout.setAlpha(1.0f - this.overlayProgress);
-        this.buttonLayout.setTranslationY((-AndroidUtilities.dp(12.0f)) * this.overlayProgress);
-        this.buttonLayout.setVisibility(this.overlayProgress == 1.0f ? 4 : 0);
-        this.overlayTextView.setVisibility(this.overlayProgress == 0.0f ? 4 : 0);
+    public final void updateOverlayProgress() {
+        float f = this.overlayProgress;
+        AnonymousClass1 anonymousClass1 = this.overlayTextView;
+        anonymousClass1.setAlpha(f);
+        anonymousClass1.setTranslationY((1.0f - this.overlayProgress) * AndroidUtilities.dp(12.0f));
+        float f2 = 1.0f - this.overlayProgress;
+        ChatActivity.AnonymousClass60 anonymousClass60 = this.buttonLayout;
+        anonymousClass60.setAlpha(f2);
+        anonymousClass60.setTranslationY((-AndroidUtilities.dp(12.0f)) * this.overlayProgress);
+        anonymousClass60.setVisibility(this.overlayProgress == 1.0f ? 4 : 0);
+        anonymousClass1.setVisibility(this.overlayProgress == 0.0f ? 4 : 0);
         invalidate();
-    }
-
-    public void clearOverlayText() {
-        this.showOverlay = false;
-        updateOverlay(true);
-    }
-
-    public void setIcon(int i) {
-        this.iconView.setAnimation(i, 24, 24);
-        CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
-        cellFlickerDrawable.progress = 2.0f;
-        cellFlickerDrawable.setOnRestartCallback(new Runnable() {
-            @Override
-            public final void run() {
-                PremiumButtonView.m2597$r8$lambda$zRkv0O1Cyq7obwNcXr8cmU0hCk(this.f$0);
-            }
-        });
-        invalidate();
-        this.iconView.setVisibility(0);
-    }
-
-    public static void m2597$r8$lambda$zRkv0O1Cyq7obwNcXr8cmU0hCk(PremiumButtonView premiumButtonView) {
-        premiumButtonView.iconView.getAnimatedDrawable().setCurrentFrame(0, true);
-        premiumButtonView.iconView.playAnimation();
-    }
-
-    public void hideIcon() {
-        this.flickerDrawable.setOnRestartCallback(null);
-        this.iconView.setVisibility(8);
-    }
-
-    public void setFlickerDisabled(boolean z) {
-        this.isFlickerDisabled = z;
-        invalidate();
-    }
-
-    @Override
-    public void setEnabled(boolean z) {
-        super.setEnabled(z);
-        this.buttonLayout.setEnabled(z);
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return this.buttonLayout.isEnabled();
-    }
-
-    public void setButton(String str, View.OnClickListener onClickListener) {
-        setButton(str, onClickListener, false);
-    }
-
-    public void setButton(String str, View.OnClickListener onClickListener, boolean z) {
-        if (!this.isButtonTextSet && z) {
-            z = true;
-        }
-        this.isButtonTextSet = true;
-        if (z && this.buttonTextView.isAnimating()) {
-            this.buttonTextView.cancelAnimation();
-        }
-        this.buttonTextView.setText(str, z);
-        this.buttonLayout.setContentDescription(str);
-        if (this.nonClickable) {
-            return;
-        }
-        this.buttonLayout.setOnClickListener(onClickListener);
-    }
-
-    public void checkCounterView() {
-        if (this.counterView == null) {
-            CounterView counterView = new CounterView(getContext(), null);
-            this.counterView = counterView;
-            counterView.setGravity(3);
-            this.counterView.setColors(Theme.key_featuredStickers_addButton, Theme.key_featuredStickers_buttonText);
-            this.counterView.counterDrawable.circleScale = 0.8f;
-            setClipChildren(false);
-            addView(this.counterView, LayoutHelper.createFrame(-1, 24, 16));
-        }
     }
 }

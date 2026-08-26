@@ -11,24 +11,43 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 
-public class RichDetailsEndCell extends View implements Theme.Colorable {
-    private BlockRow currentRow;
-    private final Paint paint;
-    private final Theme.ResourcesProvider resourcesProvider;
+public final class RichDetailsEndCell extends View implements Theme.Colorable {
+    public BlockRow currentRow;
+    public final Paint paint;
+    public final Theme.ResourcesProvider resourcesProvider;
 
-    public int[] getColorKeys() {
-        return Theme.Colorable.CC.$default$getColorKeys(this);
+    public final class Factory extends UItem.UItemFactory {
+        public static final int $r8$clinit = 0;
+
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
+
+        @Override
+        public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            ((RichDetailsEndCell) view).currentRow = (BlockRow) uItem.object;
+        }
+
+        @Override
+        public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            return new RichDetailsEndCell(context, resourcesProvider);
+        }
+
+        @Override
+        public final boolean isClickable() {
+            return false;
+        }
     }
 
     public RichDetailsEndCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.paint = new Paint();
         this.resourcesProvider = resourcesProvider;
-        updateColors();
+        updateColors$1();
     }
 
-    public void bind(BlockRow blockRow) {
-        this.currentRow = blockRow;
+    public int[] getColorKeys() {
+        return null;
     }
 
     public BlockRow getRow() {
@@ -36,44 +55,17 @@ public class RichDetailsEndCell extends View implements Theme.Colorable {
     }
 
     @Override
-    public void updateColors() {
-        this.paint.setColor(Theme.getColor(Theme.key_chat_inArticleDetailsLine, this.resourcesProvider));
+    public final void onDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.paint);
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public final void onMeasure(int i, int i2) {
         setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(6.0f) + 1);
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.paint);
-    }
-
-    public static final class Factory extends UItem.UItemFactory {
-        @Override
-        public boolean isClickable() {
-            return false;
-        }
-
-        static {
-            UItem.UItemFactory.setup(new Factory());
-        }
-
-        @Override
-        public RichDetailsEndCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-            return new RichDetailsEndCell(context, resourcesProvider);
-        }
-
-        @Override
-        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-            ((RichDetailsEndCell) view).bind((BlockRow) uItem.object);
-        }
-
-        public static UItem of(BlockRow blockRow) {
-            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-            uItemOfFactory.object = blockRow;
-            return uItemOfFactory;
-        }
+    public final void updateColors$1() {
+        this.paint.setColor(Theme.getColor(Theme.key_chat_inArticleDetailsLine, this.resourcesProvider));
     }
 }

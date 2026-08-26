@@ -1,42 +1,41 @@
 package kotlinx.coroutines;
 
+import java.util.concurrent.CancellationException;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 
-final class CompletedContinuation {
+public final class CompletedContinuation {
     public final Throwable cancelCause;
     public final CancelHandler cancelHandler;
     public final Object idempotentResume;
     public final Function1 onCancellation;
     public final Object result;
 
-    public static CompletedContinuation copy$default(CompletedContinuation completedContinuation, Object obj, CancelHandler cancelHandler, Function1 function1, Object obj2, Throwable th, int i, Object obj3) {
-        if ((i & 1) != 0) {
-            obj = completedContinuation.result;
-        }
+    public CompletedContinuation(Object obj, CancelHandler cancelHandler, Function1 function1, Object obj2, Throwable th) {
+        this.result = obj;
+        this.cancelHandler = cancelHandler;
+        this.onCancellation = function1;
+        this.idempotentResume = obj2;
+        this.cancelCause = th;
+    }
+
+    public static CompletedContinuation copy$default(CompletedContinuation completedContinuation, CancelHandler cancelHandler, CancellationException cancellationException, int i) {
+        Object obj = completedContinuation.result;
         if ((i & 2) != 0) {
             cancelHandler = completedContinuation.cancelHandler;
         }
-        if ((i & 4) != 0) {
-            function1 = completedContinuation.onCancellation;
-        }
-        if ((i & 8) != 0) {
-            obj2 = completedContinuation.idempotentResume;
-        }
+        CancelHandler cancelHandler2 = cancelHandler;
+        Function1 function1 = completedContinuation.onCancellation;
+        Object obj2 = completedContinuation.idempotentResume;
+        Throwable th = cancellationException;
         if ((i & 16) != 0) {
             th = completedContinuation.cancelCause;
         }
-        Throwable th2 = th;
-        Function1 function2 = function1;
-        return completedContinuation.copy(obj, cancelHandler, function2, obj2, th2);
+        completedContinuation.getClass();
+        return new CompletedContinuation(obj, cancelHandler2, function1, obj2, th);
     }
 
-    public final CompletedContinuation copy(Object obj, CancelHandler cancelHandler, Function1 function1, Object obj2, Throwable th) {
-        return new CompletedContinuation(obj, cancelHandler, function1, obj2, th);
-    }
-
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -47,7 +46,7 @@ final class CompletedContinuation {
         return Intrinsics.areEqual(this.result, completedContinuation.result) && Intrinsics.areEqual(this.cancelHandler, completedContinuation.cancelHandler) && Intrinsics.areEqual(this.onCancellation, completedContinuation.onCancellation) && Intrinsics.areEqual(this.idempotentResume, completedContinuation.idempotentResume) && Intrinsics.areEqual(this.cancelCause, completedContinuation.cancelCause);
     }
 
-    public int hashCode() {
+    public final int hashCode() {
         Object obj = this.result;
         int iHashCode = (obj == null ? 0 : obj.hashCode()) * 31;
         CancelHandler cancelHandler = this.cancelHandler;
@@ -60,34 +59,11 @@ final class CompletedContinuation {
         return iHashCode4 + (th != null ? th.hashCode() : 0);
     }
 
-    public String toString() {
+    public final String toString() {
         return "CompletedContinuation(result=" + this.result + ", cancelHandler=" + this.cancelHandler + ", onCancellation=" + this.onCancellation + ", idempotentResume=" + this.idempotentResume + ", cancelCause=" + this.cancelCause + ')';
     }
 
-    public CompletedContinuation(Object obj, CancelHandler cancelHandler, Function1 function1, Object obj2, Throwable th) {
-        this.result = obj;
-        this.cancelHandler = cancelHandler;
-        this.onCancellation = function1;
-        this.idempotentResume = obj2;
-        this.cancelCause = th;
-    }
-
-    public CompletedContinuation(Object obj, CancelHandler cancelHandler, Function1 function1, Object obj2, Throwable th, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(obj, (i & 2) != 0 ? null : cancelHandler, (i & 4) != 0 ? null : function1, (i & 8) != 0 ? null : obj2, (i & 16) != 0 ? null : th);
-    }
-
-    public final boolean getCancelled() {
-        return this.cancelCause != null;
-    }
-
-    public final void invokeHandlers(CancellableContinuationImpl cancellableContinuationImpl, Throwable th) {
-        CancelHandler cancelHandler = this.cancelHandler;
-        if (cancelHandler != null) {
-            cancellableContinuationImpl.callCancelHandler(cancelHandler, th);
-        }
-        Function1 function1 = this.onCancellation;
-        if (function1 != null) {
-            cancellableContinuationImpl.callOnCancellation(function1, th);
-        }
+    public CompletedContinuation(Object obj, CancelHandler cancelHandler, Function1 function1, CancellationException cancellationException, int i) {
+        this(obj, (i & 2) != 0 ? null : cancelHandler, (i & 4) != 0 ? null : function1, (Object) null, (i & 16) != 0 ? null : cancellationException);
     }
 }

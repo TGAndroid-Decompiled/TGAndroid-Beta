@@ -1,15 +1,11 @@
 package kotlinx.coroutines;
 
-import kotlin.coroutines.CoroutineContext;
+import java.lang.reflect.InvocationTargetException;
 
-class StandaloneCoroutine extends AbstractCoroutine {
-    public StandaloneCoroutine(CoroutineContext coroutineContext, boolean z) {
-        super(coroutineContext, true, z);
-    }
-
+public class StandaloneCoroutine extends AbstractCoroutine {
     @Override
-    protected boolean handleJobException(Throwable th) {
-        CoroutineExceptionHandlerKt.handleCoroutineException(getContext(), th);
+    public final boolean handleJobException(Throwable th) throws IllegalAccessException, InvocationTargetException {
+        JobKt.handleCoroutineException(th, this.context);
         return true;
     }
 }

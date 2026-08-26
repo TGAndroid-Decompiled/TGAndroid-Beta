@@ -18,69 +18,77 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
+import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.OKLCH;
 
-public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable implements DownloadController.FileDownloadProgressListener {
-    private int TAG;
-    private String ext;
-    private String fileName;
-    private String fileSize;
-    private boolean loaded;
-    private boolean loading;
-    private MessageObject parentMessageObject;
-    private View parentView;
-    private String progress;
-    private boolean progressVisible;
-    private Drawable thumbDrawable;
-    private static Paint paint = new Paint();
-    private static Paint progressPaint = new Paint(1);
-    private static TextPaint docPaint = new TextPaint(1);
-    private static TextPaint namePaint = new TextPaint(1);
-    private static TextPaint sizePaint = new TextPaint(1);
-    private static TextPaint buttonPaint = new TextPaint(1);
-    private static TextPaint percentPaint = new TextPaint(1);
-    private static TextPaint openPaint = new TextPaint(1);
-    private static DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator();
-    private long lastUpdateTime = 0;
-    private float currentProgress = 0.0f;
-    private float animationProgressStart = 0.0f;
-    private long currentProgressTime = 0;
-    private float animatedProgressValue = 0.0f;
-    private float animatedAlphaValue = 1.0f;
-
-    @Override
-    public int getOpacity() {
-        return -1;
-    }
-
-    @Override
-    public void onProgressUpload(String str, long j, long j2, boolean z) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
+public final class OtherDocumentPlaceholderDrawable extends RecyclableDrawable implements DownloadController.FileDownloadProgressListener {
+    public static final TextPaint buttonPaint;
+    public static final DecelerateInterpolator decelerateInterpolator;
+    public static final TextPaint docPaint;
+    public static final TextPaint namePaint;
+    public static final TextPaint openPaint;
+    public static final Paint paint;
+    public static final TextPaint percentPaint;
+    public static final Paint progressPaint;
+    public static final TextPaint sizePaint;
+    public final int TAG;
+    public final String ext;
+    public final String fileName;
+    public final String fileSize;
+    public boolean loaded;
+    public boolean loading;
+    public MessageObject parentMessageObject;
+    public View parentView;
+    public String progress;
+    public boolean progressVisible;
+    public final Drawable thumbDrawable;
+    public long lastUpdateTime = 0;
+    public float currentProgress = 0.0f;
+    public float animationProgressStart = 0.0f;
+    public long currentProgressTime = 0;
+    public float animatedProgressValue = 0.0f;
+    public float animatedAlphaValue = 1.0f;
 
     static {
-        progressPaint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setColor(-14209998);
-        docPaint.setColor(-1);
-        namePaint.setColor(-1);
-        sizePaint.setColor(-10327179);
-        buttonPaint.setColor(-10327179);
-        percentPaint.setColor(-1);
-        openPaint.setColor(-1);
-        docPaint.setTypeface(AndroidUtilities.bold());
-        namePaint.setTypeface(AndroidUtilities.bold());
-        buttonPaint.setTypeface(AndroidUtilities.bold());
-        percentPaint.setTypeface(AndroidUtilities.bold());
-        openPaint.setTypeface(AndroidUtilities.bold());
+        Paint paint2 = new Paint();
+        paint = paint2;
+        Paint paint3 = new Paint(1);
+        progressPaint = paint3;
+        TextPaint textPaint = new TextPaint(1);
+        docPaint = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        namePaint = textPaint2;
+        TextPaint textPaint3 = new TextPaint(1);
+        sizePaint = textPaint3;
+        TextPaint textPaint4 = new TextPaint(1);
+        buttonPaint = textPaint4;
+        TextPaint textPaint5 = new TextPaint(1);
+        percentPaint = textPaint5;
+        TextPaint textPaint6 = new TextPaint(1);
+        openPaint = textPaint6;
+        decelerateInterpolator = new DecelerateInterpolator();
+        paint3.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-14209998);
+        textPaint.setColor(-1);
+        textPaint2.setColor(-1);
+        textPaint3.setColor(-10327179);
+        textPaint4.setColor(-10327179);
+        textPaint5.setColor(-1);
+        textPaint6.setColor(-1);
+        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint2.setTypeface(AndroidUtilities.bold());
+        textPaint4.setTypeface(AndroidUtilities.bold());
+        textPaint5.setTypeface(AndroidUtilities.bold());
+        textPaint6.setTypeface(AndroidUtilities.bold());
     }
 
     public OtherDocumentPlaceholderDrawable(Context context, View view, MessageObject messageObject) {
-        docPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        namePaint.setTextSize(AndroidUtilities.dp(19.0f));
+        TextPaint textPaint = docPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        TextPaint textPaint2 = namePaint;
+        textPaint2.setTextSize(AndroidUtilities.dp(19.0f));
         sizePaint.setTextSize(AndroidUtilities.dp(15.0f));
         buttonPaint.setTextSize(AndroidUtilities.dp(15.0f));
         percentPaint.setTextSize(AndroidUtilities.dp(15.0f));
@@ -99,137 +107,19 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
             int iLastIndexOf = this.fileName.lastIndexOf(46);
             String upperCase = iLastIndexOf == -1 ? "" : this.fileName.substring(iLastIndexOf + 1).toUpperCase();
             this.ext = upperCase;
-            if (((int) Math.ceil(docPaint.measureText(upperCase))) > AndroidUtilities.dp(40.0f)) {
-                this.ext = TextUtils.ellipsize(this.ext, docPaint, AndroidUtilities.dp(40.0f), TextUtils.TruncateAt.END).toString();
+            if (((int) Math.ceil(textPaint.measureText(upperCase))) > AndroidUtilities.dp(40.0f)) {
+                this.ext = TextUtils.ellipsize(upperCase, textPaint, AndroidUtilities.dp(40.0f), TextUtils.TruncateAt.END).toString();
             }
             this.thumbDrawable = context.getResources().getDrawable(AndroidUtilities.getThumbForNameOrMime(this.fileName, messageObject.getDocument().mime_type, true)).mutate();
             this.fileSize = AndroidUtilities.formatFileSize(document.size);
-            if (((int) Math.ceil(namePaint.measureText(this.fileName))) > AndroidUtilities.dp(320.0f)) {
-                this.fileName = TextUtils.ellipsize(this.fileName, namePaint, AndroidUtilities.dp(320.0f), TextUtils.TruncateAt.END).toString();
+            if (((int) Math.ceil(textPaint2.measureText(this.fileName))) > AndroidUtilities.dp(320.0f)) {
+                this.fileName = TextUtils.ellipsize(this.fileName, textPaint2, AndroidUtilities.dp(320.0f), TextUtils.TruncateAt.END).toString();
             }
         }
         checkFileExist();
     }
 
-    @Override
-    public void setAlpha(int i) {
-        Drawable drawable = this.thumbDrawable;
-        if (drawable != null) {
-            drawable.setAlpha(i);
-        }
-        paint.setAlpha(i);
-        docPaint.setAlpha(i);
-        namePaint.setAlpha(i);
-        sizePaint.setAlpha(i);
-        buttonPaint.setAlpha(i);
-        percentPaint.setAlpha(i);
-        openPaint.setAlpha(i);
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        String string;
-        int iDp;
-        TextPaint textPaint;
-        Rect bounds = getBounds();
-        int iWidth = bounds.width();
-        int iHeight = bounds.height();
-        canvas.save();
-        canvas.translate(bounds.left, bounds.top);
-        canvas.drawRect(0.0f, 0.0f, iWidth, iHeight, paint);
-        int iDp2 = (iHeight - AndroidUtilities.dp(240.0f)) / 2;
-        int iDp3 = (iWidth - AndroidUtilities.dp(48.0f)) / 2;
-        this.thumbDrawable.setBounds(iDp3, iDp2, AndroidUtilities.dp(48.0f) + iDp3, AndroidUtilities.dp(48.0f) + iDp2);
-        this.thumbDrawable.draw(canvas);
-        canvas.drawText(this.ext, (iWidth - ((int) Math.ceil(docPaint.measureText(this.ext)))) / 2, AndroidUtilities.dp(31.0f) + iDp2, docPaint);
-        canvas.drawText(this.fileName, (iWidth - ((int) Math.ceil(namePaint.measureText(this.fileName)))) / 2, AndroidUtilities.dp(96.0f) + iDp2, namePaint);
-        canvas.drawText(this.fileSize, (iWidth - ((int) Math.ceil(sizePaint.measureText(this.fileSize)))) / 2, AndroidUtilities.dp(125.0f) + iDp2, sizePaint);
-        if (this.loaded) {
-            string = LocaleController.getString(R.string.OpenFile);
-            textPaint = openPaint;
-            iDp = 0;
-        } else {
-            if (this.loading) {
-                string = LocaleController.getString(R.string.Cancel).toUpperCase();
-            } else {
-                string = LocaleController.getString(R.string.TapToDownload);
-            }
-            iDp = AndroidUtilities.dp(28.0f);
-            textPaint = buttonPaint;
-        }
-        canvas.drawText(string, (iWidth - ((int) Math.ceil(textPaint.measureText(string)))) / 2, AndroidUtilities.dp(235.0f) + iDp2 + iDp, textPaint);
-        if (this.progressVisible) {
-            String str = this.progress;
-            if (str != null) {
-                canvas.drawText(this.progress, (iWidth - ((int) Math.ceil(percentPaint.measureText(str)))) / 2, AndroidUtilities.dp(210.0f) + iDp2, percentPaint);
-            }
-            int iDp4 = (iWidth - AndroidUtilities.dp(240.0f)) / 2;
-            int iDp5 = iDp2 + AndroidUtilities.dp(232.0f);
-            progressPaint.setColor(-10327179);
-            progressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f));
-            float f = iDp5;
-            canvas.drawRect(((int) (AndroidUtilities.dp(240.0f) * this.animatedProgressValue)) + iDp4, f, AndroidUtilities.dp(240.0f) + iDp4, AndroidUtilities.dp(2.0f) + iDp5, progressPaint);
-            progressPaint.setColor(-1);
-            progressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f));
-            float f2 = iDp4;
-            canvas.drawRect(f2, f, f2 + (AndroidUtilities.dp(240.0f) * this.animatedProgressValue), iDp5 + AndroidUtilities.dp(2.0f), progressPaint);
-            updateAnimation();
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return this.parentView.getMeasuredWidth();
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return this.parentView.getMeasuredHeight();
-    }
-
-    @Override
-    public int getMinimumWidth() {
-        return this.parentView.getMeasuredWidth();
-    }
-
-    @Override
-    public int getMinimumHeight() {
-        return this.parentView.getMeasuredHeight();
-    }
-
-    @Override
-    public void onFailedDownload(String str, boolean z) {
-        checkFileExist();
-    }
-
-    @Override
-    public void onSuccessDownload(String str) {
-        setProgress(1.0f, true);
-        checkFileExist();
-    }
-
-    @Override
-    public void onProgressDownload(String str, long j, long j2) {
-        if (!this.progressVisible) {
-            checkFileExist();
-        }
-        setProgress(Math.min(1.0f, j / j2), true);
-    }
-
-    @Override
-    public int getObserverTag() {
-        return this.TAG;
-    }
-
-    @Override
-    public void recycle() {
-        DownloadController.getInstance(this.parentMessageObject.currentAccount).removeLoadingFileObserver(this);
-        this.parentView = null;
-        this.parentMessageObject = null;
-    }
-
-    public void checkFileExist() {
+    public final void checkFileExist() {
         MessageObject messageObject = this.parentMessageObject;
         if (messageObject != null) {
             TLRPC.Message message = messageObject.messageOwner;
@@ -273,51 +163,177 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
         this.parentView.invalidate();
     }
 
-    private void updateAnimation() {
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        long j = jCurrentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = jCurrentTimeMillis;
-        float f = this.animatedProgressValue;
-        if (f != 1.0f) {
-            float f2 = this.currentProgress;
-            if (f != f2) {
-                float f3 = this.animationProgressStart;
-                float f4 = f2 - f3;
-                if (f4 > 0.0f) {
-                    long j2 = this.currentProgressTime + j;
-                    this.currentProgressTime = j2;
-                    if (j2 >= 300) {
-                        this.animatedProgressValue = f2;
-                        this.animationProgressStart = f2;
-                        this.currentProgressTime = 0L;
-                    } else {
-                        this.animatedProgressValue = f3 + (f4 * decelerateInterpolator.getInterpolation(j2 / 300.0f));
+    @Override
+    public final void draw(Canvas canvas) {
+        String upperCase;
+        int iDp;
+        TextPaint textPaint;
+        Rect bounds = getBounds();
+        int iWidth = bounds.width();
+        int iHeight = bounds.height();
+        canvas.save();
+        canvas.translate(bounds.left, bounds.top);
+        canvas.drawRect(0.0f, 0.0f, iWidth, iHeight, paint);
+        int iM$2 = OKLCH.m$2(240.0f, iHeight, 2);
+        int iM$3 = OKLCH.m$2(48.0f, iWidth, 2);
+        int iDp2 = AndroidUtilities.dp(48.0f) + iM$3;
+        int iDp3 = AndroidUtilities.dp(48.0f) + iM$2;
+        Drawable drawable = this.thumbDrawable;
+        drawable.setBounds(iM$3, iM$2, iDp2, iDp3);
+        drawable.draw(canvas);
+        TextPaint textPaint2 = docPaint;
+        String str = this.ext;
+        canvas.drawText(str, (iWidth - ((int) Math.ceil(textPaint2.measureText(str)))) / 2, AndroidUtilities.dp(31.0f) + iM$2, textPaint2);
+        TextPaint textPaint3 = namePaint;
+        String str2 = this.fileName;
+        canvas.drawText(str2, (iWidth - ((int) Math.ceil(textPaint3.measureText(str2)))) / 2, AndroidUtilities.dp(96.0f) + iM$2, textPaint3);
+        TextPaint textPaint4 = sizePaint;
+        String str3 = this.fileSize;
+        canvas.drawText(str3, (iWidth - ((int) Math.ceil(textPaint4.measureText(str3)))) / 2, AndroidUtilities.dp(125.0f) + iM$2, textPaint4);
+        if (this.loaded) {
+            upperCase = LocaleController.getString(R.string.OpenFile);
+            textPaint = openPaint;
+            iDp = 0;
+        } else {
+            upperCase = this.loading ? LocaleController.getString(R.string.Cancel).toUpperCase() : LocaleController.getString(R.string.TapToDownload);
+            iDp = AndroidUtilities.dp(28.0f);
+            textPaint = buttonPaint;
+        }
+        canvas.drawText(upperCase, (iWidth - ((int) Math.ceil(textPaint.measureText(upperCase)))) / 2, RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(iM$2, 235.0f, iDp), textPaint);
+        if (this.progressVisible) {
+            String str4 = this.progress;
+            if (str4 != null) {
+                TextPaint textPaint5 = percentPaint;
+                canvas.drawText(this.progress, (iWidth - ((int) Math.ceil(textPaint5.measureText(str4)))) / 2, AndroidUtilities.dp(210.0f) + iM$2, textPaint5);
+            }
+            int iM$4 = OKLCH.m$2(240.0f, iWidth, 2);
+            int iDp4 = AndroidUtilities.dp(232.0f) + iM$2;
+            Paint paint2 = progressPaint;
+            paint2.setColor(-10327179);
+            paint2.setAlpha((int) (this.animatedAlphaValue * 255.0f));
+            float f = iDp4;
+            canvas.drawRect(((int) (AndroidUtilities.dp(240.0f) * this.animatedProgressValue)) + iM$4, f, AndroidUtilities.dp(240.0f) + iM$4, AndroidUtilities.dp(2.0f) + iDp4, paint2);
+            paint2.setColor(-1);
+            paint2.setAlpha((int) (this.animatedAlphaValue * 255.0f));
+            float f2 = iM$4;
+            canvas.drawRect(f2, f, (AndroidUtilities.dp(240.0f) * this.animatedProgressValue) + f2, AndroidUtilities.dp(2.0f) + iDp4, paint2);
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long j = jCurrentTimeMillis - this.lastUpdateTime;
+            this.lastUpdateTime = jCurrentTimeMillis;
+            float f3 = this.animatedProgressValue;
+            if (f3 != 1.0f) {
+                float f4 = this.currentProgress;
+                if (f3 != f4) {
+                    float f5 = this.animationProgressStart;
+                    float f6 = f4 - f5;
+                    if (f6 > 0.0f) {
+                        long j2 = this.currentProgressTime + j;
+                        this.currentProgressTime = j2;
+                        if (j2 >= 300) {
+                            this.animatedProgressValue = f4;
+                            this.animationProgressStart = f4;
+                            this.currentProgressTime = 0L;
+                        } else {
+                            this.animatedProgressValue = (decelerateInterpolator.getInterpolation(j2 / 300.0f) * f6) + f5;
+                        }
                     }
+                    this.parentView.invalidate();
                 }
-                this.parentView.invalidate();
+            }
+            float f7 = this.animatedProgressValue;
+            if (f7 >= 1.0f && f7 == 1.0f) {
+                float f8 = this.animatedAlphaValue;
+                if (f8 != 0.0f) {
+                    float f9 = f8 - (j / 200.0f);
+                    this.animatedAlphaValue = f9;
+                    if (f9 <= 0.0f) {
+                        this.animatedAlphaValue = 0.0f;
+                    }
+                    this.parentView.invalidate();
+                }
             }
         }
-        float f5 = this.animatedProgressValue;
-        if (f5 < 1.0f || f5 != 1.0f) {
-            return;
-        }
-        float f6 = this.animatedAlphaValue;
-        if (f6 != 0.0f) {
-            float f7 = f6 - (j / 200.0f);
-            this.animatedAlphaValue = f7;
-            if (f7 <= 0.0f) {
-                this.animatedAlphaValue = 0.0f;
-            }
-            this.parentView.invalidate();
-        }
+        canvas.restore();
     }
 
-    public void setProgress(float f, boolean z) {
-        if (!z) {
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.parentView.getMeasuredHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.parentView.getMeasuredWidth();
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        return this.parentView.getMeasuredHeight();
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        return this.parentView.getMeasuredWidth();
+    }
+
+    @Override
+    public final int getObserverTag() {
+        return this.TAG;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -1;
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z) {
+        checkFileExist();
+    }
+
+    @Override
+    public final void onProgressDownload(String str, long j, long j2) {
+        if (!this.progressVisible) {
+            checkFileExist();
+        }
+        setProgress(Math.min(1.0f, j / j2), true);
+    }
+
+    @Override
+    public final void onProgressUpload(String str, long j, long j2, boolean z) {
+    }
+
+    @Override
+    public final void onSuccessDownload(String str) {
+        setProgress(1.0f, true);
+        checkFileExist();
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        Drawable drawable = this.thumbDrawable;
+        if (drawable != null) {
+            drawable.setAlpha(i);
+        }
+        paint.setAlpha(i);
+        docPaint.setAlpha(i);
+        namePaint.setAlpha(i);
+        sizePaint.setAlpha(i);
+        buttonPaint.setAlpha(i);
+        percentPaint.setAlpha(i);
+        openPaint.setAlpha(i);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public final void setProgress(float f, boolean z) {
+        if (z) {
+            this.animationProgressStart = this.animatedProgressValue;
+        } else {
             this.animatedProgressValue = f;
             this.animationProgressStart = f;
-        } else {
-            this.animationProgressStart = this.animatedProgressValue;
         }
         this.progress = String.format("%d%%", Integer.valueOf((int) (100.0f * f)));
         if (f != 1.0f) {

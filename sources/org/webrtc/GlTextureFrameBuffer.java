@@ -1,6 +1,8 @@
 package org.webrtc;
 
 import android.opengl.GLES20;
+import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.recyclerview.widget.DiffUtil;
 
 public class GlTextureFrameBuffer {
     private int frameBufferId;
@@ -19,13 +21,38 @@ public class GlTextureFrameBuffer {
                 this.height = 0;
                 return;
             default:
-                throw new IllegalArgumentException("Invalid pixel format: " + i);
+                throw new IllegalArgumentException(DiffUtil.m(i, "Invalid pixel format: "));
         }
+    }
+
+    public int getFrameBufferId() {
+        return this.frameBufferId;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getTextureId() {
+        return this.textureId;
+    }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public void release() {
+        GLES20.glDeleteTextures(1, new int[]{this.textureId}, 0);
+        this.textureId = 0;
+        GLES20.glDeleteFramebuffers(1, new int[]{this.frameBufferId}, 0);
+        this.frameBufferId = 0;
+        this.width = 0;
+        this.height = 0;
     }
 
     public void setSize(int i, int i2) {
         if (i <= 0 || i2 <= 0) {
-            throw new IllegalArgumentException("Invalid size: " + i + "x" + i2);
+            throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "Invalid size: ", "x"));
         }
         if (i == this.width && i2 == this.height) {
             return;
@@ -50,33 +77,8 @@ public class GlTextureFrameBuffer {
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.textureId, 0);
         int iGlCheckFramebufferStatus = GLES20.glCheckFramebufferStatus(36160);
         if (iGlCheckFramebufferStatus != 36053) {
-            throw new IllegalStateException("Framebuffer not complete, status: " + iGlCheckFramebufferStatus);
+            throw new IllegalStateException(DiffUtil.m(iGlCheckFramebufferStatus, "Framebuffer not complete, status: "));
         }
         GLES20.glBindFramebuffer(36160, 0);
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
-    public int getHeight() {
-        return this.height;
-    }
-
-    public int getFrameBufferId() {
-        return this.frameBufferId;
-    }
-
-    public int getTextureId() {
-        return this.textureId;
-    }
-
-    public void release() {
-        GLES20.glDeleteTextures(1, new int[]{this.textureId}, 0);
-        this.textureId = 0;
-        GLES20.glDeleteFramebuffers(1, new int[]{this.frameBufferId}, 0);
-        this.frameBufferId = 0;
-        this.width = 0;
-        this.height = 0;
     }
 }

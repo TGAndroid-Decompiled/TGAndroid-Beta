@@ -4,11 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -26,6 +24,8 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkk;
+import com.google.android.gms.internal.mlkit_vision_common.zzkr;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
@@ -34,11 +34,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
@@ -46,579 +47,885 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BatteryDrawable;
 import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.CacheChart;
 import org.telegram.ui.Components.CheckBox2;
+import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.IntSeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.SeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.Components.ThanosEffect;
 
-public class LiteModeSettingsActivity extends BaseFragment {
-    private int FLAGS_CHAT;
-    Adapter adapter;
-    FrameLayout contentView;
-    LinearLayoutManager layoutManager;
-    RecyclerListView listView;
-    Bulletin restrictBulletin;
-    private Utilities.Callback onPowerAppliedChange = new Utilities.Callback() {
-        @Override
-        public final void run(Object obj) {
-            this.f$0.updateValues();
-        }
-    };
-    private boolean[] expanded = new boolean[3];
-    private ArrayList oldItems = new ArrayList();
-    private ArrayList items = new ArrayList();
+public final class LiteModeSettingsActivity extends BaseFragment {
+    public int FLAGS_CHAT;
+    public Adapter adapter;
+    public FrameLayout contentView;
+    public final boolean[] expanded;
+    public final ArrayList items;
+    public LinearLayoutManager layoutManager;
+    public RecyclerListView listView;
+    public final ArrayList oldItems;
+    public final PollItemMenu$$ExternalSyntheticLambda14 onPowerAppliedChange;
+    public Bulletin restrictBulletin;
 
-    @Override
-    public boolean isSupportEdgeToEdge() {
-        return true;
-    }
+    public final class Adapter extends AdapterWithDiffUtils {
+        public final int $r8$classId;
+        public final Object this$0;
 
-    @Override
-    public View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.PowerUsage));
-        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+        public final class AnonymousClass1 extends TextInfoPrivacyCell {
             @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
-                    LiteModeSettingsActivity.this.finishFragment();
-                }
-            }
-        });
-        INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout != null && iNavigationLayout.isRightLayout()) {
-            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
-        }
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.contentView = frameLayout;
-        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        RecyclerListView recyclerListView = new RecyclerListView(context);
-        this.listView = recyclerListView;
-        recyclerListView.setSections();
-        this.actionBar.setAdaptiveBackground(this.listView);
-        RecyclerListView recyclerListView2 = this.listView;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        this.layoutManager = linearLayoutManager;
-        recyclerListView2.setLayoutManager(linearLayoutManager);
-        RecyclerListView recyclerListView3 = this.listView;
-        Adapter adapter = new Adapter();
-        this.adapter = adapter;
-        recyclerListView3.setAdapter(adapter);
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-        defaultItemAnimator.setDurations(350L);
-        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        defaultItemAnimator.setDelayAnimations(false);
-        defaultItemAnimator.setSupportsChangeAnimations(false);
-        this.listView.setItemAnimator(defaultItemAnimator);
-        this.contentView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
-            @Override
-            public boolean hasDoubleTap(View view, int i) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
+            public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setEnabled(true);
             }
 
             @Override
-            public void onDoubleTap(View view, int i, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
-            }
-
-            @Override
-            public final void onItemClick(View view, int i, float f, float f2) {
-                LiteModeSettingsActivity.m3416$r8$lambda$UjYFGZuQC79daPf2ke4bOF_PXM(this.f$0, view, i, f, f2);
-            }
-        });
-        this.fragmentView = this.contentView;
-        this.FLAGS_CHAT = AndroidUtilities.isTablet() ? 360864 : 360928;
-        updateItems();
-        return this.fragmentView;
-    }
-
-    public static void m3416$r8$lambda$UjYFGZuQC79daPf2ke4bOF_PXM(LiteModeSettingsActivity liteModeSettingsActivity, View view, int i, float f, float f2) {
-        int expandedIndex;
-        liteModeSettingsActivity.getClass();
-        if (view == null || i < 0 || i >= liteModeSettingsActivity.items.size()) {
-            return;
-        }
-        Item item = (Item) liteModeSettingsActivity.items.get(i);
-        int i2 = item.viewType;
-        if (i2 == 3 || i2 == 4) {
-            if (LiteMode.isPowerSaverApplied()) {
-                liteModeSettingsActivity.restrictBulletin = BulletinFactory.of(liteModeSettingsActivity).createSimpleBulletin(new BatteryDrawable(0.1f, -1, Theme.getColor(Theme.key_dialogSwipeRemove), 1.3f), LocaleController.getString(R.string.LiteBatteryRestricted)).show();
-                return;
-            }
-            if (item.viewType == 3 && item.getFlagsCount() > 1 && (!LocaleController.isRTL ? f < view.getMeasuredWidth() - AndroidUtilities.dp(75.0f) : f > AndroidUtilities.dp(75.0f)) && (expandedIndex = liteModeSettingsActivity.getExpandedIndex(item.flags)) != -1) {
-                boolean[] zArr = liteModeSettingsActivity.expanded;
-                zArr[expandedIndex] = !zArr[expandedIndex];
-                liteModeSettingsActivity.updateValues();
-                liteModeSettingsActivity.updateItems();
-                return;
-            }
-            LiteMode.toggleFlag(item.flags, !LiteMode.isEnabledSetting(item.flags));
-            liteModeSettingsActivity.updateValues();
-            return;
-        }
-        if (i2 == 5 && item.type == 1) {
-            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-            boolean z = globalMainSettings.getBoolean("view_animations", true);
-            SharedPreferences.Editor editorEdit = globalMainSettings.edit();
-            boolean z2 = !z;
-            editorEdit.putBoolean("view_animations", z2);
-            SharedConfig.setAnimationsEnabled(z2);
-            editorEdit.commit();
-            ((TextCell) view).setChecked(z2);
-        }
-    }
-
-    @Override
-    public void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        LiteMode.addOnPowerSaverAppliedListener(this.onPowerAppliedChange);
-    }
-
-    @Override
-    public void onBecomeFullyHidden() {
-        super.onBecomeFullyHidden();
-        LiteMode.removeOnPowerSaverAppliedListener(this.onPowerAppliedChange);
-    }
-
-    public int getExpandedIndex(int i) {
-        if (i == 3) {
-            return 0;
-        }
-        if (i == 28700) {
-            return 1;
-        }
-        return i == this.FLAGS_CHAT ? 2 : -1;
-    }
-
-    public void setExpanded(int i, boolean z) {
-        int expandedIndex = getExpandedIndex(i);
-        if (expandedIndex == -1) {
-            return;
-        }
-        this.expanded[expandedIndex] = z;
-        updateValues();
-        updateItems();
-    }
-
-    public void scrollToType(int i) {
-        for (int i2 = 0; i2 < this.items.size(); i2++) {
-            if (((Item) this.items.get(i2)).type == i) {
-                highlightRow(i2);
-                return;
+            public final void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+                super.onPopulateAccessibilityEvent(accessibilityEvent);
+                accessibilityEvent.setContentDescription(getTextView().getText());
+                setContentDescription(getTextView().getText());
             }
         }
-    }
 
-    public void scrollToFlags(int i) {
-        for (int i2 = 0; i2 < this.items.size(); i2++) {
-            if (((Item) this.items.get(i2)).flags == i) {
-                highlightRow(i2);
-                return;
-            }
-        }
-    }
-
-    private void highlightRow(final int i) {
-        this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
-            @Override
-            public final int run() {
-                return LiteModeSettingsActivity.m3417$r8$lambda$sVuUwulOjX_0iWbyVRgUMQ2Dsg(this.f$0, i);
-            }
-        });
-    }
-
-    public static int m3417$r8$lambda$sVuUwulOjX_0iWbyVRgUMQ2Dsg(LiteModeSettingsActivity liteModeSettingsActivity, int i) {
-        liteModeSettingsActivity.layoutManager.scrollToPositionWithOffset(i, AndroidUtilities.dp(60.0f));
-        return i;
-    }
-
-    private void updateItems() {
-        String string;
-        this.oldItems.clear();
-        this.oldItems.addAll(this.items);
-        this.items.clear();
-        int i = Build.VERSION.SDK_INT;
-        this.items.add(Item.asSlider());
-        ArrayList arrayList = this.items;
-        if (LiteMode.getPowerSaverLevel() <= 0) {
-            string = LocaleController.getString(R.string.LiteBatteryInfoDisabled);
-        } else if (LiteMode.getPowerSaverLevel() >= 100) {
-            string = LocaleController.getString(R.string.LiteBatteryInfoEnabled);
-        } else {
-            string = LocaleController.formatString(R.string.LiteBatteryInfoBelow, String.format("%d%%", Integer.valueOf(LiteMode.getPowerSaverLevel())));
-        }
-        arrayList.add(Item.asInfo(string));
-        this.items.add(Item.asHeader(LocaleController.getString(R.string.LiteOptionsTitle)));
-        this.items.add(Item.asSwitch(R.drawable.msg2_sticker, LocaleController.getString(R.string.LiteOptionsStickers), 3));
-        if (this.expanded[0]) {
-            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard), 1));
-            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayChat), 2));
-        }
-        this.items.add(Item.asSwitch(R.drawable.msg2_smile_status, LocaleController.getString(R.string.LiteOptionsEmoji), 28700));
-        if (this.expanded[1]) {
-            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard), 16388));
-            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayReactions), 8200));
-            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayChat), 4112));
-        }
-        this.items.add(Item.asSwitch(R.drawable.msg2_ask_question, LocaleController.getString(R.string.LiteOptionsChat), this.FLAGS_CHAT));
-        if (this.expanded[2]) {
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBackground"), 32));
-            if (!AndroidUtilities.isTablet()) {
-                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsTopics"), 64));
-            }
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsSpoiler"), 128));
-            if (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION) {
-                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBlur2"), 256));
-            }
-            if (i >= 33 && (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION)) {
-                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsLiquidGlass"), 262144));
-            }
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsScale"), 32768));
-            if (ThanosEffect.supports()) {
-                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsThanos"), 65536));
-            }
-        }
-        this.items.add(Item.asSwitch(R.drawable.msg2_call_earpiece, LocaleController.getString(R.string.LiteOptionsCalls), 512));
-        this.items.add(Item.asSwitch(R.drawable.msg2_videocall, LocaleController.getString(R.string.LiteOptionsAutoplayVideo), 1024));
-        this.items.add(Item.asSwitch(R.drawable.msg2_gif, LocaleController.getString(R.string.LiteOptionsAutoplayGifs), 2048));
-        this.items.add(Item.asSwitch(R.drawable.photo_star, LocaleController.getString(R.string.LiteOptionsParticles), 131072));
-        this.items.add(Item.asInfo(""));
-        this.items.add(Item.asSwitch(LocaleController.getString(R.string.LiteSmoothTransitions), 1));
-        this.items.add(Item.asInfo(LocaleController.getString("LiteSmoothTransitionsInfo")));
-        this.adapter.setItems(this.oldItems, this.items);
-    }
-
-    public void updateInfo() {
-        String string;
-        if (this.items.isEmpty()) {
-            updateItems();
-            return;
-        }
-        if (this.items.size() >= 2) {
-            ArrayList arrayList = this.items;
-            if (LiteMode.getPowerSaverLevel() <= 0) {
-                string = LocaleController.getString(R.string.LiteBatteryInfoDisabled);
-            } else if (LiteMode.getPowerSaverLevel() >= 100) {
-                string = LocaleController.getString(R.string.LiteBatteryInfoEnabled);
-            } else {
-                string = LocaleController.formatString(R.string.LiteBatteryInfoBelow, String.format("%d%%", Integer.valueOf(LiteMode.getPowerSaverLevel())));
-            }
-            arrayList.set(1, Item.asInfo(string));
-            this.adapter.notifyItemChanged(1);
-        }
-    }
-
-    public void updateValues() {
-        int childAdapterPosition;
-        if (this.listView == null) {
-            return;
-        }
-        for (int i = 0; i < this.listView.getChildCount(); i++) {
-            View childAt = this.listView.getChildAt(i);
-            if (childAt != null && (childAdapterPosition = this.listView.getChildAdapterPosition(childAt)) >= 0 && childAdapterPosition < this.items.size()) {
-                Item item = (Item) this.items.get(childAdapterPosition);
-                int i2 = item.viewType;
-                if (i2 == 3 || i2 == 4) {
-                    ((SwitchCell) childAt).update(item);
-                } else if (i2 == 1) {
-                    ((PowerSaverSlider) childAt).update();
-                }
-            }
-        }
-        if (this.restrictBulletin == null || LiteMode.isPowerSaverApplied()) {
-            return;
-        }
-        this.restrictBulletin.hide();
-        this.restrictBulletin = null;
-    }
-
-    private class Adapter extends AdapterWithDiffUtils {
-        private Adapter() {
+        public Adapter(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View switchCell;
-            Context context = viewGroup.getContext();
-            if (i == 0) {
-                switchCell = new HeaderCell(context);
-            } else if (i == 1) {
-                switchCell = LiteModeSettingsActivity.this.new PowerSaverSlider(context);
-            } else if (i == 2) {
-                switchCell = new TextInfoPrivacyCell(context) {
-                    @Override
-                    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-                        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                        accessibilityNodeInfo.setEnabled(true);
+        public final int getItemCount() {
+            switch (this.$r8$classId) {
+                case 0:
+                    return ((LiteModeSettingsActivity) this.this$0).items.size();
+                default:
+                    return ((DataUsage2Activity.ListView) this.this$0).itemInners.size();
+            }
+        }
+
+        @Override
+        public final int getItemViewType(int i) {
+            switch (this.$r8$classId) {
+                case 0:
+                    if (i >= 0) {
+                        LiteModeSettingsActivity liteModeSettingsActivity = (LiteModeSettingsActivity) this.this$0;
+                        if (i < liteModeSettingsActivity.items.size()) {
+                            return ((Item) liteModeSettingsActivity.items.get(i)).viewType;
+                        }
                     }
-
-                    @Override
-                    public void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-                        super.onPopulateAccessibilityEvent(accessibilityEvent);
-                        accessibilityEvent.setContentDescription(getTextView().getText());
-                        setContentDescription(getTextView().getText());
-                    }
-                };
-            } else if (i == 3 || i == 4) {
-                switchCell = LiteModeSettingsActivity.this.new SwitchCell(context);
-            } else {
-                switchCell = i == 5 ? new TextCell(context, 23, false, true, null) : null;
+                    return 2;
+                default:
+                    return ((DataUsage2Activity.ItemInner) ((DataUsage2Activity.ListView) this.this$0).itemInners.get(i)).viewType;
             }
-            return new RecyclerListView.Holder(switchCell);
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            if (i < 0 || i >= LiteModeSettingsActivity.this.items.size()) {
-                return;
+        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            switch (this.$r8$classId) {
+                case 0:
+                    int i = viewHolder.mItemViewType;
+                    return i == 4 || i == 3 || i == 5;
+                default:
+                    DataUsage2Activity.ItemInner itemInner = (DataUsage2Activity.ItemInner) ((DataUsage2Activity.ListView) this.this$0).itemInners.get(viewHolder.getAdapterPosition());
+                    int i2 = itemInner.viewType;
+                    return i2 == 5 || (i2 == 2 && itemInner.index != -1);
             }
-            Item item = (Item) LiteModeSettingsActivity.this.items.get(i);
-            int itemViewType = viewHolder.getItemViewType();
-            if (itemViewType == 0) {
-                ((HeaderCell) viewHolder.itemView).setText(item.text);
-                return;
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            Boolean boolValueOf;
+            switch (this.$r8$classId) {
+                case 0:
+                    if (i >= 0) {
+                        ArrayList arrayList = ((LiteModeSettingsActivity) this.this$0).items;
+                        if (i < arrayList.size()) {
+                            Item item = (Item) arrayList.get(i);
+                            int i2 = viewHolder.mItemViewType;
+                            View view = viewHolder.itemView;
+                            if (i2 == 0) {
+                                ((HeaderCell) view).setText(item.text);
+                            } else if (i2 == 1) {
+                                ((PowerSaverSlider) view).update();
+                            } else if (i2 == 2) {
+                                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) view;
+                                if (TextUtils.isEmpty(item.text)) {
+                                    textInfoPrivacyCell.setFixedSize(12);
+                                } else {
+                                    textInfoPrivacyCell.setFixedSize(0);
+                                }
+                                String str = item.text;
+                                textInfoPrivacyCell.setText(str);
+                                textInfoPrivacyCell.setContentDescription(str);
+                                textInfoPrivacyCell.setBackground(null);
+                            } else if (i2 == 3 || i2 == 4) {
+                                int i3 = i + 1;
+                                boolean z = i3 < arrayList.size() && ((Item) arrayList.get(i3)).viewType != 2;
+                                SwitchCell switchCell = (SwitchCell) view;
+                                switchCell.getClass();
+                                int i4 = item.viewType;
+                                Switch r5 = switchCell.switchView;
+                                ImageView imageView = switchCell.arrowView;
+                                AnimatedTextView animatedTextView = switchCell.countTextView;
+                                ImageView imageView2 = switchCell.imageView;
+                                CheckBox2 checkBox2 = switchCell.checkBoxView;
+                                ArticleViewer.AnonymousClass9 anonymousClass9 = switchCell.textView;
+                                String str2 = item.text;
+                                int i5 = item.flags;
+                                if (i4 == 3) {
+                                    checkBox2.setVisibility(8);
+                                    imageView2.setVisibility(0);
+                                    imageView2.setImageResource(item.iconResId);
+                                    anonymousClass9.setText(str2);
+                                    boolean z2 = Integer.bitCount(i5) > 1;
+                                    switchCell.containing = z2;
+                                    if (z2) {
+                                        switchCell.updateCount(item, false);
+                                        animatedTextView.setVisibility(0);
+                                        imageView.setVisibility(0);
+                                    } else {
+                                        animatedTextView.setVisibility(8);
+                                        imageView.setVisibility(8);
+                                    }
+                                    anonymousClass9.setTranslationX(0.0f);
+                                    r5.setVisibility(0);
+                                    r5.setChecked(r5.drawIconType, LiteMode.isEnabled(i5), false);
+                                    switchCell.needLine = Integer.bitCount(i5) > 1;
+                                } else {
+                                    checkBox2.setVisibility(0);
+                                    checkBox2.checkBoxBase.setChecked(-1, LiteMode.isEnabled(i5), false);
+                                    imageView2.setVisibility(8);
+                                    r5.setVisibility(8);
+                                    animatedTextView.setVisibility(8);
+                                    imageView.setVisibility(8);
+                                    anonymousClass9.setText(str2);
+                                    anonymousClass9.setTranslationX(AndroidUtilities.dp(41.0f) * (LocaleController.isRTL ? -2.2f : 1.0f));
+                                    switchCell.containing = false;
+                                    switchCell.needLine = false;
+                                }
+                                ((ViewGroup.MarginLayoutParams) switchCell.textViewLayout.getLayoutParams()).rightMargin = AndroidUtilities.dp(item.viewType == 3 ? (LocaleController.isRTL ? 64 : 75) + 4 : 8.0f);
+                                switchCell.needDivider = z;
+                                switchCell.setWillNotDraw((z || switchCell.needLine) ? false : true);
+                                switchCell.setDisabled(LiteMode.isPowerSaverApplied(), false);
+                            } else if (i2 == 5) {
+                                TextCell textCell = (TextCell) view;
+                                if (item.type == 1) {
+                                    textCell.setTextAndCheck(item.text, MessagesController.getGlobalMainSettings().getBoolean("view_animations", true), false);
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    DataUsage2Activity.ListView listView = (DataUsage2Activity.ListView) this.this$0;
+                    DataUsage2Activity.ItemInner itemInner = (DataUsage2Activity.ItemInner) listView.itemInners.get(viewHolder.getAdapterPosition());
+                    int i6 = viewHolder.mItemViewType;
+                    View view2 = viewHolder.itemView;
+                    if (i6 == 0) {
+                        CacheChart cacheChart = (CacheChart) view2;
+                        if (listView.segments != null) {
+                            cacheChart.setSegments(listView.totalSize, listView.animateChart, listView.chartSegments);
+                        }
+                        listView.animateChart = false;
+                    } else if (i6 == 1) {
+                        ((DataUsage2Activity.SubtitleCell) view2).textView.setText(itemInner.text);
+                    } else if (i6 == 2) {
+                        DataUsage2Activity.Cell cell = (DataUsage2Activity.Cell) view2;
+                        int i7 = itemInner.imageColorTop;
+                        int i8 = i + 1;
+                        boolean z3 = i8 < getItemCount() && ((DataUsage2Activity.ItemInner) listView.itemInners.get(i8)).viewType == i6;
+                        ImageView imageView3 = cell.imageView;
+                        int i9 = itemInner.imageResId;
+                        if (i9 == 0) {
+                            imageView3.setVisibility(8);
+                        } else {
+                            imageView3.setVisibility(0);
+                            boolean zIsDark = Theme.currentTheme.isDark();
+                            SettingsActivity.SettingCell.Background background = new SettingsActivity.SettingCell.Background();
+                            background.setColor(i7, itemInner.imageColorBottom);
+                            background.border = zIsDark;
+                            imageView3.setBackground(background);
+                            imageView3.setImageResource(i9);
+                        }
+                        cell.textView.setText(itemInner.text);
+                        cell.valueTextView.setText(itemInner.valueText);
+                        cell.divider = z3;
+                        cell.setWillNotDraw(!z3);
+                        int i10 = itemInner.index;
+                        if (i10 >= 0) {
+                            DataUsage2Activity.ListView.Size[] sizeArr = listView.segments;
+                            if (i10 >= sizeArr.length || sizeArr[i10].size > 0) {
+                                boolValueOf = Boolean.valueOf(listView.collapsed[i10]);
+                            } else {
+                                boolValueOf = null;
+                            }
+                        } else {
+                            boolValueOf = null;
+                        }
+                        cell.setArrow(boolValueOf);
+                    } else if (i6 == 3) {
+                        ((TextInfoPrivacyCell) view2).setText(itemInner.text);
+                    } else if (i6 == 4) {
+                        ((HeaderCell) view2).setText(itemInner.text);
+                    } else if (i6 == 5) {
+                        ((TextCell) view2).setText(itemInner.text.toString(), false);
+                    } else if (i6 == 6) {
+                        ((DataUsage2Activity.RoundingCell) view2).setTop(true);
+                    }
+                    break;
             }
-            if (itemViewType == 1) {
-                ((PowerSaverSlider) viewHolder.itemView).update();
-                return;
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View subtitleCell;
+            View textInfoPrivacyCell;
+            View switchCell = null;
+            Object obj = this.this$0;
+            switch (this.$r8$classId) {
+                case 0:
+                    Context context = viewGroup.getContext();
+                    if (i == 0) {
+                        switchCell = new HeaderCell(context);
+                    } else {
+                        LiteModeSettingsActivity liteModeSettingsActivity = (LiteModeSettingsActivity) obj;
+                        if (i == 1) {
+                            switchCell = liteModeSettingsActivity.new PowerSaverSlider(context);
+                        } else if (i == 2) {
+                            switchCell = new AnonymousClass1(context, 24, null);
+                        } else if (i == 3 || i == 4) {
+                            switchCell = liteModeSettingsActivity.new SwitchCell(context);
+                        } else if (i == 5) {
+                            switchCell = new TextCell(23, context, null, false, true);
+                        }
+                    }
+                    return new RecyclerListView.Holder(switchCell);
+                default:
+                    DataUsage2Activity.ListView listView = (DataUsage2Activity.ListView) obj;
+                    if (i != 0) {
+                        if (i == 1) {
+                            subtitleCell = new DataUsage2Activity.SubtitleCell(DataUsage2Activity.this, listView.getContext());
+                            subtitleCell.setTag(-33024);
+                        } else if (i == 3) {
+                            textInfoPrivacyCell = new TextInfoPrivacyCell(listView.getContext(), 24, null);
+                        } else if (i == 4) {
+                            HeaderCell headerCell = new HeaderCell(listView.getContext());
+                            headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, listView.resourcesProvider));
+                            textInfoPrivacyCell = headerCell;
+                        } else if (i == 5) {
+                            TextCell textCell = new TextCell(listView.getContext());
+                            int i2 = Theme.key_text_RedRegular;
+                            Theme.ResourcesProvider resourcesProvider = listView.resourcesProvider;
+                            textCell.setTextColor(Theme.getColor(i2, resourcesProvider));
+                            textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
+                            textInfoPrivacyCell = textCell;
+                        } else if (i == 6) {
+                            textInfoPrivacyCell = new DataUsage2Activity.RoundingCell(listView.getContext());
+                        } else if (i != 7) {
+                            textInfoPrivacyCell = new DataUsage2Activity.Cell(DataUsage2Activity.this, listView.getContext());
+                        } else {
+                            PaymentFormActivity.AnonymousClass2 anonymousClass2 = new PaymentFormActivity.AnonymousClass2(listView.getContext(), 14);
+                            int i3 = Theme.key_windowBackgroundWhite;
+                            int i4 = DataUsage2Activity.ListView.$r8$clinit;
+                            anonymousClass2.setBackgroundColor(Theme.getColor(i3, listView.resourcesProvider));
+                            textInfoPrivacyCell = anonymousClass2;
+                        }
+                        return new RecyclerListView.Holder(textInfoPrivacyCell);
+                    }
+                    final Context context2 = listView.getContext();
+                    final int[] iArr = DataUsage2Activity.colors;
+                    final int length = iArr.length;
+                    final int[] iArr2 = DataUsage2Activity.particles;
+                    ?? r0 = new CacheChart(context2, length, iArr, iArr2) {
+                        @Override
+                        public final int heightDp() {
+                            return 216;
+                        }
+
+                        @Override
+                        public final void onSectionDown(int i5, boolean z) {
+                            int i6;
+                            DataUsage2Activity.ListView listView2 = (DataUsage2Activity.ListView) this.this$2.this$0;
+                            if (!z) {
+                                listView2.removeHighlightRow();
+                                return;
+                            }
+                            if (i5 < 0 || i5 >= listView2.segments.length) {
+                                return;
+                            }
+                            int i7 = 0;
+                            while (true) {
+                                DataUsage2Activity.ListView.Size[] sizeArr = listView2.segments;
+                                i6 = -1;
+                                if (i7 >= sizeArr.length) {
+                                    i7 = -1;
+                                    break;
+                                } else if (sizeArr[i7].index == i5) {
+                                    break;
+                                } else {
+                                    i7++;
+                                }
+                            }
+                            for (int i8 = 0; i8 < listView2.itemInners.size(); i8++) {
+                                DataUsage2Activity.ItemInner itemInner = (DataUsage2Activity.ItemInner) listView2.itemInners.get(i8);
+                                if (itemInner != null && itemInner.viewType == 2 && itemInner.index == i7) {
+                                    i6 = i8;
+                                    break;
+                                }
+                            }
+                            if (i6 >= 0) {
+                                listView2.highlightRowInternal(new LogoutActivity$$ExternalSyntheticLambda1(i6, 3), 0, true);
+                            } else {
+                                listView2.removeHighlightRow();
+                            }
+                        }
+
+                        @Override
+                        public final int padInsideDp() {
+                            return 10;
+                        }
+                    };
+                    listView.chart = r0;
+                    r0.setInterceptTouch(false);
+                    subtitleCell = listView.chart;
+                    subtitleCell.setTag(-33024);
+                    textInfoPrivacyCell = subtitleCell;
+                    return new RecyclerListView.Holder(textInfoPrivacyCell);
             }
-            if (itemViewType == 2) {
-                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                if (TextUtils.isEmpty(item.text)) {
-                    textInfoPrivacyCell.setFixedSize(12);
+        }
+    }
+
+    public final class Item extends AdapterWithDiffUtils.Item {
+        public final int flags;
+        public final int iconResId;
+        public final String text;
+        public final int type;
+
+        public Item(String str, int i, int i2, int i3, int i4) {
+            super(i, false);
+            this.text = str;
+            this.iconResId = i2;
+            this.flags = i3;
+            this.type = i4;
+        }
+
+        public static Item asCheckbox(int i, String str) {
+            return new Item(str, 4, 0, i, 0);
+        }
+
+        public final boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof Item)) {
+                return false;
+            }
+            Item item = (Item) obj;
+            int i = item.viewType;
+            int i2 = this.viewType;
+            if (i != i2) {
+                return false;
+            }
+            if (i2 == 3 && item.iconResId != this.iconResId) {
+                return false;
+            }
+            if (i2 == 5 && item.type != this.type) {
+                return false;
+            }
+            if ((i2 == 3 || i2 == 4) && item.flags != this.flags) {
+                return false;
+            }
+            return !(i2 == 0 || i2 == 2 || i2 == 3 || i2 == 4 || i2 == 5) || TextUtils.equals(item.text, this.text);
+        }
+    }
+
+    public final class PowerSaverSlider extends FrameLayout {
+        public final BatteryDrawable batteryIcon;
+        public final SpannableStringBuilder batteryText;
+        public final CheckBoxCell.AnonymousClass1 headerOnView;
+        public boolean headerOnVisible;
+        public final TextView leftTextView;
+        public final CheckBoxCell.AnonymousClass1 middleTextView;
+        public ValueAnimator offActiveAnimator;
+        public float offActiveT;
+        public ValueAnimator onActiveAnimator;
+        public float onActiveT;
+        public final TextView rightTextView;
+        public final AnonymousClass4 seekBarAccessibilityDelegate;
+        public final SeekBarView seekBarView;
+
+        public final class AnonymousClass4 extends IntSeekBarAccessibilityDelegate {
+            public AnonymousClass4() {
+            }
+
+            @Override
+            public final int getDelta() {
+                return 5;
+            }
+
+            @Override
+            public final int getMaxValue() {
+                return 100;
+            }
+
+            @Override
+            public final int getProgress() {
+                return LiteMode.getPowerSaverLevel();
+            }
+
+            @Override
+            public final void onInitializeAccessibilityNodeInfoInternal(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+                super.onInitializeAccessibilityNodeInfoInternal(view, accessibilityNodeInfo);
+                accessibilityNodeInfo.setEnabled(true);
+            }
+
+            @Override
+            public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+                super.onPopulateAccessibilityEvent(view, accessibilityEvent);
+                StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
+                sb.append(", ");
+                int powerSaverLevel = LiteMode.getPowerSaverLevel();
+                if (powerSaverLevel <= 0) {
+                    sb.append(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled));
+                } else if (powerSaverLevel >= 100) {
+                    sb.append(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled));
                 } else {
-                    textInfoPrivacyCell.setFixedSize(0);
+                    sb.append(LocaleController.formatString(R.string.AccDescrLiteBatteryWhenBelow, Integer.valueOf(Math.round(powerSaverLevel))));
                 }
-                textInfoPrivacyCell.setText(item.text);
-                textInfoPrivacyCell.setContentDescription(item.text);
-                textInfoPrivacyCell.setBackground(null);
-                return;
+                accessibilityEvent.setContentDescription(sb);
+                PowerSaverSlider.this.setContentDescription(sb);
             }
-            if (itemViewType == 3 || itemViewType == 4) {
-                int i2 = i + 1;
-                ((SwitchCell) viewHolder.itemView).set(item, i2 < LiteModeSettingsActivity.this.items.size() && ((Item) LiteModeSettingsActivity.this.items.get(i2)).viewType != 2);
-            } else if (itemViewType == 5) {
-                TextCell textCell = (TextCell) viewHolder.itemView;
-                if (item.type == 1) {
-                    textCell.setTextAndCheck(item.text, MessagesController.getGlobalMainSettings().getBoolean("view_animations", true), false);
+
+            @Override
+            public final void setProgress(int i) {
+                PowerSaverSlider powerSaverSlider = PowerSaverSlider.this;
+                float f = i / 100.0f;
+                powerSaverSlider.seekBarView.delegate.onSeekBarDrag(f, true);
+                powerSaverSlider.seekBarView.setProgress(f);
+            }
+        }
+
+        public PowerSaverSlider(Context context) {
+            super(context);
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setGravity(LocaleController.isRTL ? 5 : 3);
+            linearLayout.setImportantForAccessibility(4);
+            TextView textView = new TextView(context);
+            zzkk.m(15.0f, 1, textView);
+            int i = Theme.key_windowBackgroundWhiteBlueHeader;
+            textView.setTextColor(Theme.getColor(null, i, false));
+            textView.setGravity(LocaleController.isRTL ? 5 : 3);
+            textView.setText(LocaleController.getString("LiteBatteryTitle"));
+            linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 16));
+            CheckBoxCell.AnonymousClass1 anonymousClass1 = new CheckBoxCell.AnonymousClass1(context);
+            this.headerOnView = anonymousClass1;
+            anonymousClass1.setTypeface(AndroidUtilities.bold());
+            anonymousClass1.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f));
+            anonymousClass1.setTextSize(AndroidUtilities.dp(12.0f));
+            anonymousClass1.setTextColor(Theme.getColor(null, i, false));
+            linearLayout.addView(anonymousClass1, LayoutHelper.createLinear(-2, 17, 16, 6, 1, 0, 0));
+            addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 21.0f, 17.0f, 21.0f, 0.0f));
+            SeekBarView seekBarView = new SeekBarView(context, null, true);
+            this.seekBarView = seekBarView;
+            seekBarView.setReportChanges(true);
+            seekBarView.setDelegate(new ChatActivity.AnonymousClass1(this, 29));
+            seekBarView.setProgress(LiteMode.getPowerSaverLevel() / 100.0f);
+            seekBarView.setImportantForAccessibility(2);
+            addView(seekBarView, LayoutHelper.createFrame(-1, 44.0f, 48, 6.0f, 68.0f, 6.0f, 0.0f));
+            FrameLayout frameLayout = new FrameLayout(context);
+            frameLayout.setImportantForAccessibility(4);
+            TextView textView2 = new TextView(context);
+            this.leftTextView = textView2;
+            textView2.setTextSize(1, 13.0f);
+            int i2 = Theme.key_windowBackgroundWhiteGrayText;
+            zzkr.m(i2, textView2, 3);
+            textView2.setText(LocaleController.getString(R.string.LiteBatteryDisabled));
+            frameLayout.addView(textView2, LayoutHelper.createFrame(-2, -2, 19));
+            CheckBoxCell.AnonymousClass1 anonymousClass2 = new CheckBoxCell.AnonymousClass1(this, context);
+            this.middleTextView = anonymousClass2;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = anonymousClass2.drawable;
+            animatedTextDrawable.moveAmplitude = 0.45f;
+            animatedTextDrawable.animateDuration = 240L;
+            animatedTextDrawable.animateWave = 1.0f;
+            animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+            anonymousClass2.setGravity(1);
+            anonymousClass2.setTextSize(AndroidUtilities.dp(13.0f));
+            anonymousClass2.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false));
+            frameLayout.addView(anonymousClass2, LayoutHelper.createFrame(-2, -2, 17));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("b");
+            this.batteryText = spannableStringBuilder;
+            BatteryDrawable batteryDrawable = new BatteryDrawable();
+            this.batteryIcon = batteryDrawable;
+            batteryDrawable.paintReference = anonymousClass2.getPaint();
+            batteryDrawable.translateY = AndroidUtilities.dp(1.5f);
+            batteryDrawable.setBounds(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(-20.0f), AndroidUtilities.dp(23.0f), 0);
+            spannableStringBuilder.setSpan(new ImageSpan(batteryDrawable, 0), 0, spannableStringBuilder.length(), 33);
+            TextView textView3 = new TextView(context);
+            this.rightTextView = textView3;
+            textView3.setTextSize(1, 13.0f);
+            zzkr.m(i2, textView3, 5);
+            textView3.setText(LocaleController.getString(R.string.LiteBatteryEnabled));
+            frameLayout.addView(textView3, LayoutHelper.createFrame(-2, -2, 21));
+            addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 21.0f, 52.0f, 21.0f, 0.0f));
+            this.seekBarAccessibilityDelegate = new AnonymousClass4();
+            update();
+        }
+
+        @Override
+        public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            this.seekBarAccessibilityDelegate.onInitializeAccessibilityNodeInfo(this, accessibilityNodeInfo);
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(112.0f), 1073741824));
+        }
+
+        @Override
+        public final void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+            super.onPopulateAccessibilityEvent(accessibilityEvent);
+            this.seekBarAccessibilityDelegate.onPopulateAccessibilityEvent(this, accessibilityEvent);
+        }
+
+        @Override
+        public final boolean performAccessibilityAction(int i, Bundle bundle) {
+            return this.seekBarAccessibilityDelegate.performAccessibilityAction(this, i, bundle);
+        }
+
+        public final void update() {
+            final int i = 0;
+            final int i2 = 1;
+            int powerSaverLevel = LiteMode.getPowerSaverLevel();
+            CheckBoxCell.AnonymousClass1 anonymousClass1 = this.middleTextView;
+            ValueAnimator valueAnimator = anonymousClass1.drawable.animator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            if (powerSaverLevel <= 0) {
+                anonymousClass1.setText(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled), !LocaleController.isRTL, true);
+            } else if (powerSaverLevel >= 100) {
+                anonymousClass1.setText(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled), !LocaleController.isRTL, true);
+            } else {
+                float f = powerSaverLevel;
+                this.batteryIcon.setFillValue(f / 100.0f, true);
+                anonymousClass1.setText(AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.LiteBatteryWhenBelow), TextUtils.concat(String.format("%d%% ", Integer.valueOf(Math.round(f))), this.batteryText)), !LocaleController.isRTL, true);
+            }
+            String upperCase = LocaleController.getString(LiteMode.isPowerSaverApplied() ? R.string.LiteBatteryEnabled : R.string.LiteBatteryDisabled).toUpperCase();
+            CheckBoxCell.AnonymousClass1 anonymousClass2 = this.headerOnView;
+            anonymousClass2.setText(upperCase);
+            boolean z = powerSaverLevel > 0 && powerSaverLevel < 100;
+            if (z != this.headerOnVisible) {
+                this.headerOnVisible = z;
+                anonymousClass2.clearAnimation();
+                OKLCH.m(anonymousClass2.animate().alpha(z ? 1.0f : 0.0f), CubicBezierInterpolator.EASE_OUT_QUINT, 220L);
+            }
+            final float f2 = powerSaverLevel >= 100 ? 1.0f : 0.0f;
+            if (this.onActiveT != f2) {
+                this.onActiveT = f2;
+                ValueAnimator valueAnimator2 = this.onActiveAnimator;
+                if (valueAnimator2 != null) {
+                    valueAnimator2.cancel();
+                    this.onActiveAnimator = null;
                 }
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.onActiveT, f2);
+                this.onActiveAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                    public final LiteModeSettingsActivity.PowerSaverSlider f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                        switch (i) {
+                            case 0:
+                                LiteModeSettingsActivity.PowerSaverSlider powerSaverSlider = this.f$0;
+                                TextView textView = powerSaverSlider.rightTextView;
+                                int color = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false);
+                                int color2 = Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false);
+                                float fFloatValue = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
+                                powerSaverSlider.onActiveT = fFloatValue;
+                                textView.setTextColor(ColorUtils.blendARGB(fFloatValue, color, color2));
+                                break;
+                            default:
+                                LiteModeSettingsActivity.PowerSaverSlider powerSaverSlider2 = this.f$0;
+                                TextView textView2 = powerSaverSlider2.leftTextView;
+                                int color3 = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false);
+                                int color4 = Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false);
+                                float fFloatValue2 = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
+                                powerSaverSlider2.offActiveT = fFloatValue2;
+                                textView2.setTextColor(ColorUtils.blendARGB(fFloatValue2, color3, color4));
+                                break;
+                        }
+                    }
+                });
+                this.onActiveAnimator.addListener(new AnimatorListenerAdapter(this) {
+                    public final PowerSaverSlider this$1;
+
+                    {
+                        this.this$1 = this;
+                    }
+
+                    @Override
+                    public final void onAnimationEnd(Animator animator) {
+                        switch (i) {
+                            case 0:
+                                PowerSaverSlider powerSaverSlider = this.this$1;
+                                TextView textView = powerSaverSlider.rightTextView;
+                                int color = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false);
+                                int color2 = Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false);
+                                float f3 = f2;
+                                powerSaverSlider.onActiveT = f3;
+                                textView.setTextColor(ColorUtils.blendARGB(f3, color, color2));
+                                break;
+                            default:
+                                PowerSaverSlider powerSaverSlider2 = this.this$1;
+                                TextView textView2 = powerSaverSlider2.leftTextView;
+                                int color3 = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false);
+                                int color4 = Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false);
+                                float f4 = f2;
+                                powerSaverSlider2.offActiveT = f4;
+                                textView2.setTextColor(ColorUtils.blendARGB(f4, color3, color4));
+                                break;
+                        }
+                    }
+                });
+                this.onActiveAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.onActiveAnimator.setDuration(320L);
+                this.onActiveAnimator.start();
             }
-        }
+            final float f3 = powerSaverLevel <= 0 ? 1.0f : 0.0f;
+            if (this.offActiveT != f3) {
+                this.offActiveT = f3;
+                ValueAnimator valueAnimator3 = this.offActiveAnimator;
+                if (valueAnimator3 != null) {
+                    valueAnimator3.cancel();
+                    this.offActiveAnimator = null;
+                }
+                ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.offActiveT, f3);
+                this.offActiveAnimator = valueAnimatorOfFloat2;
+                valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                    public final LiteModeSettingsActivity.PowerSaverSlider f$0;
 
-        @Override
-        public int getItemViewType(int i) {
-            if (i < 0 || i >= LiteModeSettingsActivity.this.items.size()) {
-                return 2;
+                    {
+                        this.f$0 = this;
+                    }
+
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                        switch (i2) {
+                            case 0:
+                                LiteModeSettingsActivity.PowerSaverSlider powerSaverSlider = this.f$0;
+                                TextView textView = powerSaverSlider.rightTextView;
+                                int color = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false);
+                                int color2 = Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false);
+                                float fFloatValue = ((Float) valueAnimator4.getAnimatedValue()).floatValue();
+                                powerSaverSlider.onActiveT = fFloatValue;
+                                textView.setTextColor(ColorUtils.blendARGB(fFloatValue, color, color2));
+                                break;
+                            default:
+                                LiteModeSettingsActivity.PowerSaverSlider powerSaverSlider2 = this.f$0;
+                                TextView textView2 = powerSaverSlider2.leftTextView;
+                                int color3 = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false);
+                                int color4 = Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false);
+                                float fFloatValue2 = ((Float) valueAnimator4.getAnimatedValue()).floatValue();
+                                powerSaverSlider2.offActiveT = fFloatValue2;
+                                textView2.setTextColor(ColorUtils.blendARGB(fFloatValue2, color3, color4));
+                                break;
+                        }
+                    }
+                });
+                this.offActiveAnimator.addListener(new AnimatorListenerAdapter(this) {
+                    public final PowerSaverSlider this$1;
+
+                    {
+                        this.this$1 = this;
+                    }
+
+                    @Override
+                    public final void onAnimationEnd(Animator animator) {
+                        switch (i2) {
+                            case 0:
+                                PowerSaverSlider powerSaverSlider = this.this$1;
+                                TextView textView = powerSaverSlider.rightTextView;
+                                int color = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false);
+                                int color2 = Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false);
+                                float f4 = f3;
+                                powerSaverSlider.onActiveT = f4;
+                                textView.setTextColor(ColorUtils.blendARGB(f4, color, color2));
+                                break;
+                            default:
+                                PowerSaverSlider powerSaverSlider2 = this.this$1;
+                                TextView textView2 = powerSaverSlider2.leftTextView;
+                                int color3 = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false);
+                                int color4 = Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueText, false);
+                                float f5 = f3;
+                                powerSaverSlider2.offActiveT = f5;
+                                textView2.setTextColor(ColorUtils.blendARGB(f5, color3, color4));
+                                break;
+                        }
+                    }
+                });
+                this.offActiveAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.offActiveAnimator.setDuration(320L);
+                this.offActiveAnimator.start();
             }
-            return ((Item) LiteModeSettingsActivity.this.items.get(i)).viewType;
-        }
-
-        @Override
-        public int getItemCount() {
-            return LiteModeSettingsActivity.this.items.size();
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 4 || viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 5;
         }
     }
 
-    private class SwitchCell extends FrameLayout {
-        private int all;
-        private ImageView arrowView;
-        private CheckBox2 checkBoxView;
-        private boolean containing;
-        private AnimatedTextView countTextView;
-        private boolean disabled;
-        private int enabled;
-        private ImageView imageView;
-        private boolean needDivider;
-        private boolean needLine;
-        private Switch switchView;
-        private TextView textView;
-        private LinearLayout textViewLayout;
+    public final class SwitchCell extends FrameLayout {
+        public int all;
+        public final ImageView arrowView;
+        public final CheckBox2 checkBoxView;
+        public boolean containing;
+        public final AnimatedTextView countTextView;
+        public boolean disabled;
+        public int enabled;
+        public final ImageView imageView;
+        public boolean needDivider;
+        public boolean needLine;
+        public final Switch switchView;
+        public final ArticleViewer.AnonymousClass9 textView;
+        public final LinearLayout textViewLayout;
 
         public SwitchCell(Context context) {
             super(context);
             setImportantForAccessibility(1);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
-            int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon);
+            int color = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayIcon, false);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
-            this.imageView.setVisibility(8);
-            addView(this.imageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 20.0f, 0.0f, 20.0f, 0.0f));
-            TextView textView = new TextView(context) {
-                @Override
-                protected void onMeasure(int i, int i2) {
-                    if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
-                        i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i) - AndroidUtilities.dp(52.0f), Integer.MIN_VALUE);
-                    }
-                    super.onMeasure(i, i2);
-                }
-            };
-            this.textView = textView;
-            textView.setLines(1);
-            this.textView.setSingleLine(true);
-            this.textView.setEllipsize(TextUtils.TruncateAt.END);
-            this.textView.setTextSize(1, 16.0f);
-            TextView textView2 = this.textView;
+            imageView.setVisibility(8);
+            addView(imageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 20.0f, 0.0f, 20.0f, 0.0f));
+            ArticleViewer.AnonymousClass9 anonymousClass9 = new ArticleViewer.AnonymousClass9(context, 16);
+            this.textView = anonymousClass9;
+            anonymousClass9.setLines(1);
+            anonymousClass9.setSingleLine(true);
+            anonymousClass9.setEllipsize(TextUtils.TruncateAt.END);
+            anonymousClass9.setTextSize(1, 16.0f);
             int i = Theme.key_windowBackgroundWhiteBlackText;
-            textView2.setTextColor(Theme.getColor(i));
-            this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
-            this.textView.setImportantForAccessibility(2);
+            anonymousClass9.setTextColor(Theme.getColor(null, i, false));
+            anonymousClass9.setGravity(LocaleController.isRTL ? 5 : 3);
+            anonymousClass9.setImportantForAccessibility(2);
             AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
             this.countTextView = animatedTextView;
-            animatedTextView.setAnimationProperties(0.35f, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.countTextView.setTypeface(AndroidUtilities.bold());
-            this.countTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.countTextView.setTextColor(Theme.getColor(i));
-            this.countTextView.setImportantForAccessibility(2);
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = animatedTextView.drawable;
+            animatedTextDrawable.moveAmplitude = 0.35f;
+            animatedTextDrawable.animateDuration = 200L;
+            animatedTextDrawable.animateWave = 1.0f;
+            animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+            animatedTextView.setTypeface(AndroidUtilities.bold());
+            animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
+            animatedTextView.setTextColor(Theme.getColor(null, i, false));
+            animatedTextView.setImportantForAccessibility(2);
             ImageView imageView2 = new ImageView(context);
             this.arrowView = imageView2;
             imageView2.setVisibility(8);
-            this.arrowView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
-            this.arrowView.setImageResource(R.drawable.arrow_more);
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), mode));
+            imageView2.setImageResource(R.drawable.arrow_more);
             LinearLayout linearLayout = new LinearLayout(context);
             this.textViewLayout = linearLayout;
             linearLayout.setOrientation(0);
-            this.textViewLayout.setGravity(LocaleController.isRTL ? 5 : 3);
+            linearLayout.setGravity(LocaleController.isRTL ? 5 : 3);
             if (LocaleController.isRTL) {
-                this.textViewLayout.addView(this.arrowView, LayoutHelper.createLinear(16, 16, 0.0f, 16, 0, 0, 6, 0));
-                this.textViewLayout.addView(this.countTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 0, 0, 6, 0));
-                this.textViewLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
+                linearLayout.addView(imageView2, LayoutHelper.createLinear(16, 16, 0.0f, 16, 0, 0, 6, 0));
+                linearLayout.addView(animatedTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 0, 0, 6, 0));
+                linearLayout.addView(anonymousClass9, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
             } else {
-                this.textViewLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
-                this.textViewLayout.addView(this.countTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 6, 0, 0, 0));
-                this.textViewLayout.addView(this.arrowView, LayoutHelper.createLinear(16, 16, 0.0f, 16, 2, 0, 0, 0));
+                linearLayout.addView(anonymousClass9, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
+                linearLayout.addView(animatedTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 6, 0, 0, 0));
+                linearLayout.addView(imageView2, LayoutHelper.createLinear(16, 16, 0.0f, 16, 2, 0, 0, 0));
             }
-            addView(this.textViewLayout, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 64.0f, 0.0f, 8.0f, 0.0f));
-            Switch r4 = new Switch(context);
-            this.switchView = r4;
-            r4.setVisibility(8);
-            Switch r5 = this.switchView;
+            addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 64.0f, 0.0f, 8.0f, 0.0f));
+            Switch r3 = new Switch(context, null);
+            this.switchView = r3;
+            r3.setVisibility(8);
             int i2 = Theme.key_switchTrack;
             int i3 = Theme.key_switchTrackChecked;
             int i4 = Theme.key_windowBackgroundWhite;
-            r5.setColors(i2, i3, i4, i4);
-            this.switchView.setImportantForAccessibility(2);
-            addView(this.switchView, LayoutHelper.createFrame(37, 50.0f, (LocaleController.isRTL ? 3 : 5) | 16, 19.0f, 0.0f, 19.0f, 0.0f));
+            r3.trackColorKey = i2;
+            r3.trackCheckedColorKey = i3;
+            r3.thumbColorKey = i4;
+            r3.thumbCheckedColorKey = i4;
+            r3.setImportantForAccessibility(2);
+            addView(r3, LayoutHelper.createFrame(37, 50.0f, (LocaleController.isRTL ? 3 : 5) | 16, 19.0f, 0.0f, 19.0f, 0.0f));
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
             this.checkBoxView = checkBox2;
-            checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
-            this.checkBoxView.setDrawUnchecked(true);
-            this.checkBoxView.setChecked(true, false);
-            this.checkBoxView.setDrawBackgroundAsArc(10);
-            this.checkBoxView.setVisibility(8);
-            this.checkBoxView.setImportantForAccessibility(2);
-            CheckBox2 checkBox3 = this.checkBoxView;
+            int i5 = Theme.key_radioBackgroundChecked;
+            int i6 = Theme.key_checkboxDisabled;
+            int i7 = Theme.key_checkboxCheck;
+            CheckBoxBase checkBoxBase = checkBox2.checkBoxBase;
+            checkBoxBase.setColor(i5, i6, i7);
+            checkBox2.setDrawUnchecked(true);
+            checkBoxBase.setChecked(-1, true, false);
+            checkBox2.setDrawBackgroundAsArc(10);
+            checkBox2.setVisibility(8);
+            checkBox2.setImportantForAccessibility(2);
             boolean z = LocaleController.isRTL;
-            addView(checkBox3, LayoutHelper.createFrame(21, 21.0f, (z ? 5 : 3) | 16, z ? 0.0f : 64.0f, 0.0f, z ? 64.0f : 0.0f, 0.0f));
+            addView(checkBox2, LayoutHelper.createFrame(21, 21.0f, (z ? 5 : 3) | 16, z ? 0.0f : 64.0f, 0.0f, z ? 64.0f : 0.0f, 0.0f));
             setFocusable(true);
         }
 
-        public void setDisabled(boolean z, boolean z2) {
-            if (this.disabled != z) {
-                this.disabled = z;
-                if (z2) {
-                    this.imageView.animate().alpha(z ? 0.5f : 1.0f).setDuration(220L).start();
-                    this.textViewLayout.animate().alpha(z ? 0.5f : 1.0f).setDuration(220L).start();
-                    this.switchView.animate().alpha(z ? 0.5f : 1.0f).setDuration(220L).start();
-                    this.checkBoxView.animate().alpha(z ? 0.5f : 1.0f).setDuration(220L).start();
-                } else {
-                    this.imageView.setAlpha(z ? 0.5f : 1.0f);
-                    this.textViewLayout.setAlpha(z ? 0.5f : 1.0f);
-                    this.switchView.setAlpha(z ? 0.5f : 1.0f);
-                    this.checkBoxView.setAlpha(z ? 0.5f : 1.0f);
+        @Override
+        public final void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            boolean z = LocaleController.isRTL;
+            ArticleViewer.AnonymousClass9 anonymousClass9 = this.textView;
+            if (z) {
+                if (this.needLine) {
+                    float fDp = AndroidUtilities.dp(75.0f);
+                    canvas.drawRect(fDp - AndroidUtilities.dp(0.66f), (getMeasuredHeight() - AndroidUtilities.dp(20.0f)) / 2.0f, fDp, (AndroidUtilities.dp(20.0f) + getMeasuredHeight()) / 2.0f, Theme.dividerPaint);
                 }
-                setEnabled(!z);
+                if (this.needDivider) {
+                    canvas.drawLine((getMeasuredWidth() - AndroidUtilities.dp(64.0f)) + (anonymousClass9.getTranslationX() < 0.0f ? AndroidUtilities.dp(-32.0f) : 0), getMeasuredHeight() - 1, 0.0f, getMeasuredHeight() - 1, Theme.dividerPaint);
+                    return;
+                }
+                return;
+            }
+            if (this.needLine) {
+                float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(75.0f);
+                canvas.drawRect(measuredWidth - AndroidUtilities.dp(0.66f), (getMeasuredHeight() - AndroidUtilities.dp(20.0f)) / 2.0f, measuredWidth, (AndroidUtilities.dp(20.0f) + getMeasuredHeight()) / 2.0f, Theme.dividerPaint);
+            }
+            if (this.needDivider) {
+                canvas.drawLine(anonymousClass9.getTranslationX() + AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            CheckBox2 checkBox2 = this.checkBoxView;
+            accessibilityNodeInfo.setClassName(checkBox2.getVisibility() == 0 ? "android.widget.CheckBox" : "android.widget.Switch");
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setEnabled(true);
+            if (checkBox2.getVisibility() == 0) {
+                accessibilityNodeInfo.setChecked(checkBox2.checkBoxBase.isChecked);
+            } else {
+                accessibilityNodeInfo.setChecked(this.switchView.isChecked);
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.append(this.textView.getText());
+            if (this.containing) {
+                sb.append('\n');
+                sb.append(LocaleController.formatString("Of", R.string.Of, Integer.valueOf(this.enabled), Integer.valueOf(this.all)));
+            }
+            accessibilityNodeInfo.setContentDescription(sb);
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         }
 
-        public void set(Item item, boolean z) {
-            float f;
-            if (item.viewType == 3) {
-                this.checkBoxView.setVisibility(8);
-                this.imageView.setVisibility(0);
-                this.imageView.setImageResource(item.iconResId);
-                this.textView.setText(item.text);
-                boolean z2 = item.getFlagsCount() > 1;
-                this.containing = z2;
-                if (z2) {
-                    updateCount(item, false);
-                    this.countTextView.setVisibility(0);
-                    this.arrowView.setVisibility(0);
-                } else {
-                    this.countTextView.setVisibility(8);
-                    this.arrowView.setVisibility(8);
-                }
-                this.textView.setTranslationX(0.0f);
-                this.switchView.setVisibility(0);
-                this.switchView.setChecked(LiteMode.isEnabled(item.flags), false);
-                this.needLine = item.getFlagsCount() > 1;
-            } else {
-                this.checkBoxView.setVisibility(0);
-                this.checkBoxView.setChecked(LiteMode.isEnabled(item.flags), false);
-                this.imageView.setVisibility(8);
-                this.switchView.setVisibility(8);
-                this.countTextView.setVisibility(8);
-                this.arrowView.setVisibility(8);
-                this.textView.setText(item.text);
-                this.textView.setTranslationX(AndroidUtilities.dp(41.0f) * (LocaleController.isRTL ? -2.2f : 1.0f));
-                this.containing = false;
-                this.needLine = false;
-            }
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.textViewLayout.getLayoutParams();
-            if (item.viewType == 3) {
-                f = (LocaleController.isRTL ? 64 : 75) + 4;
-            } else {
-                f = 8.0f;
-            }
-            marginLayoutParams.rightMargin = AndroidUtilities.dp(f);
-            this.needDivider = z;
-            setWillNotDraw((z || this.needLine) ? false : true);
-            setDisabled(LiteMode.isPowerSaverApplied(), false);
-        }
-
-        public void update(Item item) {
-            if (item.viewType == 3) {
-                boolean z = item.getFlagsCount() > 1;
-                this.containing = z;
-                if (z) {
-                    updateCount(item, true);
-                    int expandedIndex = LiteModeSettingsActivity.this.getExpandedIndex(item.flags);
-                    this.arrowView.clearAnimation();
-                    this.arrowView.animate().rotation((expandedIndex < 0 || !LiteModeSettingsActivity.this.expanded[expandedIndex]) ? 0.0f : 180.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(240L).start();
-                }
-                this.switchView.setChecked(LiteMode.isEnabled(item.flags), true);
-            } else {
-                this.checkBoxView.setChecked(LiteMode.isEnabled(item.flags), true);
-            }
-            setDisabled(LiteMode.isPowerSaverApplied(), true);
-        }
-
-        private void updateCount(Item item, boolean z) {
-            this.enabled = preprocessFlagsCount(LiteMode.getValue(true) & item.flags);
-            this.all = preprocessFlagsCount(item.flags);
-            this.countTextView.setText(String.format("%d/%d", Integer.valueOf(this.enabled), Integer.valueOf(this.all)), z && !LocaleController.isRTL);
-        }
-
-        private int preprocessFlagsCount(int i) {
+        public final int preprocessFlagsCount(int i) {
             boolean zIsPremium = LiteModeSettingsActivity.this.getUserConfig().isPremium();
             int iBitCount = Integer.bitCount(i);
             if (zIsPremium) {
@@ -651,430 +958,113 @@ public class LiteModeSettingsActivity extends BaseFragment {
             return (ThanosEffect.supports() || (i & 65536) <= 0) ? iBitCount : iBitCount - 1;
         }
 
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            if (LocaleController.isRTL) {
-                if (this.needLine) {
-                    float fDp = AndroidUtilities.dp(75.0f);
-                    canvas.drawRect(fDp - AndroidUtilities.dp(0.66f), (getMeasuredHeight() - AndroidUtilities.dp(20.0f)) / 2.0f, fDp, (getMeasuredHeight() + AndroidUtilities.dp(20.0f)) / 2.0f, Theme.dividerPaint);
+        public final void setDisabled(boolean z, boolean z2) {
+            if (this.disabled != z) {
+                this.disabled = z;
+                CheckBox2 checkBox2 = this.checkBoxView;
+                Switch r1 = this.switchView;
+                LinearLayout linearLayout = this.textViewLayout;
+                ImageView imageView = this.imageView;
+                if (z2) {
+                    OKLCH.m(imageView.animate(), z ? 0.5f : 1.0f, 220L);
+                    OKLCH.m(linearLayout.animate(), z ? 0.5f : 1.0f, 220L);
+                    OKLCH.m(r1.animate(), z ? 0.5f : 1.0f, 220L);
+                    OKLCH.m(checkBox2.animate(), z ? 0.5f : 1.0f, 220L);
+                } else {
+                    imageView.setAlpha(z ? 0.5f : 1.0f);
+                    linearLayout.setAlpha(z ? 0.5f : 1.0f);
+                    r1.setAlpha(z ? 0.5f : 1.0f);
+                    checkBox2.setAlpha(z ? 0.5f : 1.0f);
                 }
-                if (this.needDivider) {
-                    canvas.drawLine((getMeasuredWidth() - AndroidUtilities.dp(64.0f)) + (this.textView.getTranslationX() < 0.0f ? AndroidUtilities.dp(-32.0f) : 0), getMeasuredHeight() - 1, 0.0f, getMeasuredHeight() - 1, Theme.dividerPaint);
-                    return;
-                }
-                return;
-            }
-            if (this.needLine) {
-                float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(75.0f);
-                canvas.drawRect(measuredWidth - AndroidUtilities.dp(0.66f), (getMeasuredHeight() - AndroidUtilities.dp(20.0f)) / 2.0f, measuredWidth, (getMeasuredHeight() + AndroidUtilities.dp(20.0f)) / 2.0f, Theme.dividerPaint);
-            }
-            if (this.needDivider) {
-                canvas.drawLine(AndroidUtilities.dp(64.0f) + this.textView.getTranslationX(), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                setEnabled(!z);
             }
         }
 
-        @Override
-        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            accessibilityNodeInfo.setClassName(this.checkBoxView.getVisibility() == 0 ? "android.widget.CheckBox" : "android.widget.Switch");
-            accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setEnabled(true);
-            if (this.checkBoxView.getVisibility() == 0) {
-                accessibilityNodeInfo.setChecked(this.checkBoxView.isChecked());
-            } else {
-                accessibilityNodeInfo.setChecked(this.switchView.isChecked());
+        public final void updateCount(Item item, boolean z) {
+            int value = LiteMode.getValue(true);
+            int i = item.flags;
+            this.enabled = preprocessFlagsCount(value & i);
+            this.all = preprocessFlagsCount(i);
+            AnimatedTextView animatedTextView = this.countTextView;
+            boolean z2 = false;
+            String str = String.format("%d/%d", Integer.valueOf(this.enabled), Integer.valueOf(this.all));
+            if (z && !LocaleController.isRTL) {
+                z2 = true;
             }
-            StringBuilder sb = new StringBuilder();
-            sb.append(this.textView.getText());
-            if (this.containing) {
-                sb.append('\n');
-                sb.append(LocaleController.formatString("Of", R.string.Of, Integer.valueOf(this.enabled), Integer.valueOf(this.all)));
-            }
-            accessibilityNodeInfo.setContentDescription(sb);
+            animatedTextView.setText(str, z2, true);
         }
     }
 
-    class PowerSaverSlider extends FrameLayout {
-        BatteryDrawable batteryIcon;
-        SpannableStringBuilder batteryText;
-        LinearLayout headerLayout;
-        AnimatedTextView headerOnView;
-        private boolean headerOnVisible;
-        TextView headerTextView;
-        TextView leftTextView;
-        AnimatedTextView middleTextView;
-        private ValueAnimator offActiveAnimator;
-        private float offActiveT;
-        private ValueAnimator onActiveAnimator;
-        private float onActiveT;
-        TextView rightTextView;
-        private SeekBarAccessibilityDelegate seekBarAccessibilityDelegate;
-        SeekBarView seekBarView;
-        FrameLayout valuesView;
-
-        public PowerSaverSlider(Context context) {
-            super(context);
-            LinearLayout linearLayout = new LinearLayout(context);
-            this.headerLayout = linearLayout;
-            linearLayout.setGravity(LocaleController.isRTL ? 5 : 3);
-            this.headerLayout.setImportantForAccessibility(4);
-            TextView textView = new TextView(context);
-            this.headerTextView = textView;
-            textView.setTextSize(1, 15.0f);
-            this.headerTextView.setTypeface(AndroidUtilities.bold());
-            TextView textView2 = this.headerTextView;
-            int i = Theme.key_windowBackgroundWhiteBlueHeader;
-            textView2.setTextColor(Theme.getColor(i));
-            this.headerTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-            this.headerTextView.setText(LocaleController.getString("LiteBatteryTitle"));
-            this.headerLayout.addView(this.headerTextView, LayoutHelper.createLinear(-2, -2, 16));
-            AnimatedTextView animatedTextView = new AnimatedTextView(context, true, false, false) {
-                Drawable backgroundDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader), 0.15f));
-
-                @Override
-                protected void onDraw(Canvas canvas) {
-                    this.backgroundDrawable.setBounds(0, 0, (int) (getPaddingLeft() + getDrawable().getCurrentWidth() + getPaddingRight()), getMeasuredHeight());
-                    this.backgroundDrawable.draw(canvas);
-                    super.onDraw(canvas);
-                }
-            };
-            this.headerOnView = animatedTextView;
-            animatedTextView.setTypeface(AndroidUtilities.bold());
-            this.headerOnView.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f));
-            this.headerOnView.setTextSize(AndroidUtilities.dp(12.0f));
-            this.headerOnView.setTextColor(Theme.getColor(i));
-            this.headerLayout.addView(this.headerOnView, LayoutHelper.createLinear(-2, 17, 16, 6, 1, 0, 0));
-            addView(this.headerLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 21.0f, 17.0f, 21.0f, 0.0f));
-            SeekBarView seekBarView = new SeekBarView(context, true, null);
-            this.seekBarView = seekBarView;
-            seekBarView.setReportChanges(true);
-            this.seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
-                @Override
-                public int getStepsCount() {
-                    return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
-                }
-
-                @Override
-                public boolean needVisuallyDivideSteps() {
-                    return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
-                }
-
-                @Override
-                public void onSeekBarPressed(boolean z) {
-                }
-
-                @Override
-                public void onSeekBarDrag(boolean z, float f) {
-                    int iRound = Math.round(f * 100.0f);
-                    if (iRound != LiteMode.getPowerSaverLevel()) {
-                        LiteMode.setPowerSaverLevel(iRound);
-                        LiteModeSettingsActivity.this.updateValues();
-                        LiteModeSettingsActivity.this.updateInfo();
-                        if (iRound <= 0 || iRound >= 100) {
-                            try {
-                                PowerSaverSlider.this.performHapticFeedback(3, 1);
-                            } catch (Exception unused) {
-                            }
-                        }
-                    }
-                }
-
-                @Override
-                public CharSequence getContentDescription() {
-                    return " ";
-                }
-            });
-            this.seekBarView.setProgress(LiteMode.getPowerSaverLevel() / 100.0f);
-            this.seekBarView.setImportantForAccessibility(2);
-            addView(this.seekBarView, LayoutHelper.createFrame(-1, 44.0f, 48, 6.0f, 68.0f, 6.0f, 0.0f));
-            FrameLayout frameLayout = new FrameLayout(context);
-            this.valuesView = frameLayout;
-            frameLayout.setImportantForAccessibility(4);
-            TextView textView3 = new TextView(context);
-            this.leftTextView = textView3;
-            textView3.setTextSize(1, 13.0f);
-            TextView textView4 = this.leftTextView;
-            int i2 = Theme.key_windowBackgroundWhiteGrayText;
-            textView4.setTextColor(Theme.getColor(i2));
-            this.leftTextView.setGravity(3);
-            this.leftTextView.setText(LocaleController.getString(R.string.LiteBatteryDisabled));
-            this.valuesView.addView(this.leftTextView, LayoutHelper.createFrame(-2, -2, 19));
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, true, true) {
-                @Override
-                protected void onMeasure(int i3, int i4) {
-                    int size = View.MeasureSpec.getSize(i3);
-                    if (size <= 0) {
-                        size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
-                    }
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - PowerSaverSlider.this.leftTextView.getPaint().measureText(PowerSaverSlider.this.leftTextView.getText().toString())) - PowerSaverSlider.this.rightTextView.getPaint().measureText(PowerSaverSlider.this.rightTextView.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
-                }
-            };
-            this.middleTextView = animatedTextView2;
-            animatedTextView2.setAnimationProperties(0.45f, 0L, 240L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.middleTextView.setGravity(1);
-            this.middleTextView.setTextSize(AndroidUtilities.dp(13.0f));
-            this.middleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
-            this.valuesView.addView(this.middleTextView, LayoutHelper.createFrame(-2, -2, 17));
-            this.batteryText = new SpannableStringBuilder("b");
-            BatteryDrawable batteryDrawable = new BatteryDrawable();
-            this.batteryIcon = batteryDrawable;
-            batteryDrawable.colorFromPaint(this.middleTextView.getPaint());
-            this.batteryIcon.setTranslationY(AndroidUtilities.dp(1.5f));
-            this.batteryIcon.setBounds(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(-20.0f), AndroidUtilities.dp(23.0f), 0);
-            this.batteryText.setSpan(new ImageSpan(this.batteryIcon, 0), 0, this.batteryText.length(), 33);
-            TextView textView5 = new TextView(context);
-            this.rightTextView = textView5;
-            textView5.setTextSize(1, 13.0f);
-            this.rightTextView.setTextColor(Theme.getColor(i2));
-            this.rightTextView.setGravity(5);
-            this.rightTextView.setText(LocaleController.getString(R.string.LiteBatteryEnabled));
-            this.valuesView.addView(this.rightTextView, LayoutHelper.createFrame(-2, -2, 21));
-            addView(this.valuesView, LayoutHelper.createFrame(-1, -2.0f, 55, 21.0f, 52.0f, 21.0f, 0.0f));
-            this.seekBarAccessibilityDelegate = new IntSeekBarAccessibilityDelegate() {
-                @Override
-                protected int getDelta() {
-                    return 5;
-                }
-
-                @Override
-                protected int getMaxValue() {
-                    return 100;
-                }
-
-                @Override
-                protected int getProgress() {
-                    return LiteMode.getPowerSaverLevel();
-                }
-
-                @Override
-                protected void setProgress(int i3) {
-                    float f = i3 / 100.0f;
-                    PowerSaverSlider.this.seekBarView.delegate.onSeekBarDrag(true, f);
-                    PowerSaverSlider.this.seekBarView.setProgress(f);
-                }
-
-                @Override
-                public void onInitializeAccessibilityNodeInfoInternal(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-                    super.onInitializeAccessibilityNodeInfoInternal(view, accessibilityNodeInfo);
-                    accessibilityNodeInfo.setEnabled(true);
-                }
-
-                @Override
-                public void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-                    super.onPopulateAccessibilityEvent(view, accessibilityEvent);
-                    StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
-                    sb.append(", ");
-                    int powerSaverLevel = LiteMode.getPowerSaverLevel();
-                    if (powerSaverLevel <= 0) {
-                        sb.append(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled));
-                    } else if (powerSaverLevel >= 100) {
-                        sb.append(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled));
-                    } else {
-                        sb.append(LocaleController.formatString(R.string.AccDescrLiteBatteryWhenBelow, Integer.valueOf(Math.round(powerSaverLevel))));
-                    }
-                    accessibilityEvent.setContentDescription(sb);
-                    PowerSaverSlider.this.setContentDescription(sb);
-                }
-            };
-            update();
-        }
-
-        @Override
-        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            this.seekBarAccessibilityDelegate.onInitializeAccessibilityNodeInfo(this, accessibilityNodeInfo);
-        }
-
-        @Override
-        public void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-            super.onPopulateAccessibilityEvent(accessibilityEvent);
-            this.seekBarAccessibilityDelegate.onPopulateAccessibilityEvent(this, accessibilityEvent);
-        }
-
-        @Override
-        public boolean performAccessibilityAction(int i, Bundle bundle) {
-            return this.seekBarAccessibilityDelegate.performAccessibilityAction(this, i, bundle);
-        }
-
-        public void update() {
-            int powerSaverLevel = LiteMode.getPowerSaverLevel();
-            this.middleTextView.cancelAnimation();
-            if (powerSaverLevel <= 0) {
-                this.middleTextView.setText(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled), !LocaleController.isRTL);
-            } else if (powerSaverLevel >= 100) {
-                this.middleTextView.setText(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled), !LocaleController.isRTL);
-            } else {
-                float f = powerSaverLevel;
-                this.batteryIcon.setFillValue(f / 100.0f, true);
-                this.middleTextView.setText(AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.LiteBatteryWhenBelow), TextUtils.concat(String.format("%d%% ", Integer.valueOf(Math.round(f))), this.batteryText)), !LocaleController.isRTL);
-            }
-            this.headerOnView.setText(LocaleController.getString(LiteMode.isPowerSaverApplied() ? R.string.LiteBatteryEnabled : R.string.LiteBatteryDisabled).toUpperCase());
-            updateHeaderOnVisibility(powerSaverLevel > 0 && powerSaverLevel < 100);
-            updateOnActive(powerSaverLevel >= 100);
-            updateOffActive(powerSaverLevel <= 0);
-        }
-
-        private void updateHeaderOnVisibility(boolean z) {
-            if (z != this.headerOnVisible) {
-                this.headerOnVisible = z;
-                this.headerOnView.clearAnimation();
-                this.headerOnView.animate().alpha(z ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(220L).start();
-            }
-        }
-
-        private void updateOnActive(boolean z) {
-            final float f = z ? 1.0f : 0.0f;
-            if (this.onActiveT != f) {
-                this.onActiveT = f;
-                ValueAnimator valueAnimator = this.onActiveAnimator;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.onActiveAnimator = null;
-                }
-                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.onActiveT, f);
-                this.onActiveAnimator = valueAnimatorOfFloat;
-                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        LiteModeSettingsActivity.PowerSaverSlider.$r8$lambda$1Jzm6Fl_TCKn6XZdPeH5E9ShRHc(this.f$0, valueAnimator2);
-                    }
-                });
-                this.onActiveAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        PowerSaverSlider.this.rightTextView.setTextColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText), PowerSaverSlider.this.onActiveT = f));
-                    }
-                });
-                this.onActiveAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                this.onActiveAnimator.setDuration(320L);
-                this.onActiveAnimator.start();
-            }
-        }
-
-        public static void $r8$lambda$1Jzm6Fl_TCKn6XZdPeH5E9ShRHc(PowerSaverSlider powerSaverSlider, ValueAnimator valueAnimator) {
-            TextView textView = powerSaverSlider.rightTextView;
-            int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText);
-            int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText);
-            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            powerSaverSlider.onActiveT = fFloatValue;
-            textView.setTextColor(ColorUtils.blendARGB(color, color2, fFloatValue));
-        }
-
-        private void updateOffActive(boolean z) {
-            final float f = z ? 1.0f : 0.0f;
-            if (this.offActiveT != f) {
-                this.offActiveT = f;
-                ValueAnimator valueAnimator = this.offActiveAnimator;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.offActiveAnimator = null;
-                }
-                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.offActiveT, f);
-                this.offActiveAnimator = valueAnimatorOfFloat;
-                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        LiteModeSettingsActivity.PowerSaverSlider.$r8$lambda$ZYcvDmzJtFogptxHYHBgGgU8xaw(this.f$0, valueAnimator2);
-                    }
-                });
-                this.offActiveAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        PowerSaverSlider.this.leftTextView.setTextColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText), PowerSaverSlider.this.offActiveT = f));
-                    }
-                });
-                this.offActiveAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                this.offActiveAnimator.setDuration(320L);
-                this.offActiveAnimator.start();
-            }
-        }
-
-        public static void $r8$lambda$ZYcvDmzJtFogptxHYHBgGgU8xaw(PowerSaverSlider powerSaverSlider, ValueAnimator valueAnimator) {
-            TextView textView = powerSaverSlider.leftTextView;
-            int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText);
-            int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText);
-            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            powerSaverSlider.offActiveT = fFloatValue;
-            textView.setTextColor(ColorUtils.blendARGB(color, color2, fFloatValue));
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(112.0f), 1073741824));
-        }
-    }
-
-    static class Item extends AdapterWithDiffUtils.Item {
-        public int flags;
-        public int iconResId;
-        public CharSequence text;
-        public int type;
-
-        private Item(int i, CharSequence charSequence, int i2, int i3, int i4) {
-            super(i, false);
-            this.text = charSequence;
-            this.iconResId = i2;
-            this.flags = i3;
-            this.type = i4;
-        }
-
-        public static Item asHeader(CharSequence charSequence) {
-            return new Item(0, charSequence, 0, 0, 0);
-        }
-
-        public static Item asSlider() {
-            return new Item(1, null, 0, 0, 0);
-        }
-
-        public static Item asInfo(CharSequence charSequence) {
-            return new Item(2, charSequence, 0, 0, 0);
-        }
-
-        public static Item asSwitch(int i, CharSequence charSequence, int i2) {
-            return new Item(3, charSequence, i, i2, 0);
-        }
-
-        public static Item asCheckbox(CharSequence charSequence, int i) {
-            return new Item(4, charSequence, 0, i, 0);
-        }
-
-        public static Item asSwitch(CharSequence charSequence, int i) {
-            return new Item(5, charSequence, 0, 0, i);
-        }
-
-        public int getFlagsCount() {
-            return Integer.bitCount(this.flags);
-        }
-
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof Item)) {
-                return false;
-            }
-            Item item = (Item) obj;
-            int i = item.viewType;
-            int i2 = this.viewType;
-            if (i != i2) {
-                return false;
-            }
-            if (i2 == 3 && item.iconResId != this.iconResId) {
-                return false;
-            }
-            if (i2 == 5 && item.type != this.type) {
-                return false;
-            }
-            if ((i2 == 3 || i2 == 4) && item.flags != this.flags) {
-                return false;
-            }
-            return !(i2 == 0 || i2 == 2 || i2 == 3 || i2 == 4 || i2 == 5) || TextUtils.equals(item.text, this.text);
-        }
+    public LiteModeSettingsActivity() {
+        super(null);
+        this.onPowerAppliedChange = new PollItemMenu$$ExternalSyntheticLambda14(this, 17);
+        this.expanded = new boolean[3];
+        this.oldItems = new ArrayList();
+        this.items = new ArrayList();
     }
 
     @Override
-    public void onFragmentDestroy() {
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.PowerUsage));
+        this.actionBar.setActionBarMenuOnItemClick(new LoginActivity.AnonymousClass1(this, 29));
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && ((ActionBarLayout) iNavigationLayout).isRightLayout) {
+            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
+        }
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.contentView = frameLayout;
+        frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
+        RecyclerListView recyclerListView = new RecyclerListView(context, null);
+        this.listView = recyclerListView;
+        recyclerListView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        RecyclerListView recyclerListView2 = this.listView;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(1, false);
+        this.layoutManager = linearLayoutManager;
+        recyclerListView2.setLayoutManager(linearLayoutManager);
+        RecyclerListView recyclerListView3 = this.listView;
+        Adapter adapter = new Adapter(this, 0);
+        this.adapter = adapter;
+        recyclerListView3.setAdapter(adapter);
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        defaultItemAnimator.setDurations(350L);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.delayAnimations = false;
+        defaultItemAnimator.mSupportsChangeAnimations = false;
+        this.listView.setItemAnimator(defaultItemAnimator);
+        this.contentView.addView(this.listView, LayoutHelper.createFrame(-1.0f, -1));
+        this.listView.setOnItemClickListener(new PhotoViewer$$ExternalSyntheticLambda115(this, 3));
+        this.fragmentView = this.contentView;
+        this.FLAGS_CHAT = AndroidUtilities.isTablet() ? 360864 : 360928;
+        updateItems$2();
+        return this.fragmentView;
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final void onBecomeFullyHidden() {
+        super.onBecomeFullyHidden();
+        LiteMode.removeOnPowerSaverAppliedListener(this.onPowerAppliedChange);
+    }
+
+    @Override
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        LiteMode.addOnPowerSaverAppliedListener(this.onPowerAppliedChange);
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         LiteMode.savePreference();
         AnimatedEmojiDrawable.updateAll();
@@ -1082,8 +1072,151 @@ public class LiteModeSettingsActivity extends BaseFragment {
     }
 
     @Override
-    public void onInsets(int i, int i2, int i3, int i4) {
+    public final void onInsets(int i, int i2, int i3, int i4) {
         this.listView.setPadding(0, 0, 0, i4);
         this.listView.setClipToPadding(false);
+    }
+
+    public final void scrollToFlags(int i) {
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.items;
+            if (i2 >= arrayList.size()) {
+                return;
+            }
+            if (((Item) arrayList.get(i2)).flags == i) {
+                this.listView.highlightRowInternal(new LaunchActivity$$ExternalSyntheticLambda9(this, i2, 11), 700, true);
+                return;
+            }
+            i2++;
+        }
+    }
+
+    public final void setExpanded(int i) {
+        byte b;
+        if (i == 3) {
+            b = 0;
+        } else if (i == 28700) {
+            b = 1;
+        } else {
+            b = i == this.FLAGS_CHAT ? (byte) 2 : (byte) -1;
+        }
+        if (b == -1) {
+            return;
+        }
+        this.expanded[b] = true;
+        updateValues();
+        updateItems$2();
+    }
+
+    public final void updateItems$2() {
+        String string;
+        ArrayList arrayList = this.oldItems;
+        arrayList.clear();
+        ArrayList arrayList2 = this.items;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        int i = Build.VERSION.SDK_INT;
+        arrayList2.add(new Item(null, 1, 0, 0, 0));
+        if (LiteMode.getPowerSaverLevel() <= 0) {
+            string = LocaleController.getString(R.string.LiteBatteryInfoDisabled);
+        } else {
+            string = LiteMode.getPowerSaverLevel() >= 100 ? LocaleController.getString(R.string.LiteBatteryInfoEnabled) : LocaleController.formatString(R.string.LiteBatteryInfoBelow, String.format("%d%%", Integer.valueOf(LiteMode.getPowerSaverLevel())));
+        }
+        arrayList2.add(new Item(string, 2, 0, 0, 0));
+        arrayList2.add(new Item(LocaleController.getString(R.string.LiteOptionsTitle), 0, 0, 0, 0));
+        arrayList2.add(new Item(LocaleController.getString(R.string.LiteOptionsStickers), 3, R.drawable.msg2_sticker, 3, 0));
+        boolean[] zArr = this.expanded;
+        if (zArr[0]) {
+            arrayList2.add(Item.asCheckbox(1, LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard)));
+            arrayList2.add(Item.asCheckbox(2, LocaleController.getString(R.string.LiteOptionsAutoplayChat)));
+        }
+        arrayList2.add(new Item(LocaleController.getString(R.string.LiteOptionsEmoji), 3, R.drawable.msg2_smile_status, 28700, 0));
+        if (zArr[1]) {
+            arrayList2.add(Item.asCheckbox(16388, LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard)));
+            arrayList2.add(Item.asCheckbox(8200, LocaleController.getString(R.string.LiteOptionsAutoplayReactions)));
+            arrayList2.add(Item.asCheckbox(4112, LocaleController.getString(R.string.LiteOptionsAutoplayChat)));
+        }
+        arrayList2.add(new Item(LocaleController.getString(R.string.LiteOptionsChat), 3, R.drawable.msg2_ask_question, this.FLAGS_CHAT, 0));
+        if (zArr[2]) {
+            arrayList2.add(Item.asCheckbox(32, LocaleController.getString("LiteOptionsBackground")));
+            if (!AndroidUtilities.isTablet()) {
+                arrayList2.add(Item.asCheckbox(64, LocaleController.getString("LiteOptionsTopics")));
+            }
+            arrayList2.add(Item.asCheckbox(128, LocaleController.getString("LiteOptionsSpoiler")));
+            if (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION) {
+                arrayList2.add(Item.asCheckbox(256, LocaleController.getString("LiteOptionsBlur2")));
+            }
+            if (i >= 33 && (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION)) {
+                arrayList2.add(Item.asCheckbox(262144, LocaleController.getString("LiteOptionsLiquidGlass")));
+            }
+            arrayList2.add(Item.asCheckbox(32768, LocaleController.getString("LiteOptionsScale")));
+            if (ThanosEffect.supports()) {
+                arrayList2.add(Item.asCheckbox(65536, LocaleController.getString("LiteOptionsThanos")));
+            }
+        }
+        arrayList2.add(new Item(LocaleController.getString(R.string.LiteOptionsCalls), 3, R.drawable.msg2_call_earpiece, 512, 0));
+        arrayList2.add(new Item(LocaleController.getString(R.string.LiteOptionsAutoplayVideo), 3, R.drawable.msg2_videocall, 1024, 0));
+        arrayList2.add(new Item(LocaleController.getString(R.string.LiteOptionsAutoplayGifs), 3, R.drawable.msg2_gif, 2048, 0));
+        arrayList2.add(new Item(LocaleController.getString(R.string.LiteOptionsParticles), 3, R.drawable.photo_star, 131072, 0));
+        arrayList2.add(new Item("", 2, 0, 0, 0));
+        arrayList2.add(new Item(LocaleController.getString(R.string.LiteSmoothTransitions), 5, 0, 0, 1));
+        arrayList2.add(new Item(LocaleController.getString("LiteSmoothTransitionsInfo"), 2, 0, 0, 0));
+        this.adapter.setItems(arrayList, arrayList2);
+    }
+
+    public final void updateValues() {
+        if (this.listView == null) {
+            return;
+        }
+        for (int i = 0; i < this.listView.getChildCount(); i++) {
+            View childAt = this.listView.getChildAt(i);
+            if (childAt != null) {
+                this.listView.getClass();
+                int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt);
+                if (childAdapterPosition >= 0) {
+                    ArrayList arrayList = this.items;
+                    if (childAdapterPosition < arrayList.size()) {
+                        Item item = (Item) arrayList.get(childAdapterPosition);
+                        int i2 = item.viewType;
+                        if (i2 == 3 || i2 == 4) {
+                            SwitchCell switchCell = (SwitchCell) childAt;
+                            byte b = -1;
+                            int i3 = item.flags;
+                            if (i2 == 3) {
+                                boolean z = Integer.bitCount(i3) > 1;
+                                switchCell.containing = z;
+                                if (z) {
+                                    switchCell.updateCount(item, true);
+                                    LiteModeSettingsActivity liteModeSettingsActivity = LiteModeSettingsActivity.this;
+                                    if (i3 == 3) {
+                                        b = 0;
+                                    } else if (i3 == 28700) {
+                                        b = 1;
+                                    } else if (i3 == liteModeSettingsActivity.FLAGS_CHAT) {
+                                        b = 2;
+                                    }
+                                    ImageView imageView = switchCell.arrowView;
+                                    imageView.clearAnimation();
+                                    OKLCH.m(imageView.animate().rotation((b < 0 || !liteModeSettingsActivity.expanded[b]) ? 0.0f : 180.0f), CubicBezierInterpolator.EASE_OUT_QUINT, 240L);
+                                }
+                                Switch r3 = switchCell.switchView;
+                                r3.setChecked(r3.drawIconType, LiteMode.isEnabled(i3), true);
+                            } else {
+                                switchCell.checkBoxView.checkBoxBase.setChecked(-1, LiteMode.isEnabled(i3), true);
+                            }
+                            switchCell.setDisabled(LiteMode.isPowerSaverApplied(), true);
+                        } else if (i2 == 1) {
+                            ((PowerSaverSlider) childAt).update();
+                        }
+                    }
+                }
+            }
+        }
+        if (this.restrictBulletin == null || LiteMode.isPowerSaverApplied()) {
+            return;
+        }
+        this.restrictBulletin.hide();
+        this.restrictBulletin = null;
     }
 }

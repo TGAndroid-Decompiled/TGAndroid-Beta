@@ -25,13 +25,6 @@ public class VideoCodecInfo {
         this.params = map;
     }
 
-    @Deprecated
-    public VideoCodecInfo(int i, String str, Map<String, String> map) {
-        this.payload = i;
-        this.name = str;
-        this.params = map;
-    }
-
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -46,6 +39,14 @@ public class VideoCodecInfo {
         return this.name.equalsIgnoreCase(videoCodecInfo.name) && this.params.equals(videoCodecInfo.params);
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public Map getParams() {
+        return this.params;
+    }
+
     public int hashCode() {
         return Arrays.hashCode(new Object[]{this.name.toUpperCase(Locale.ROOT), this.params});
     }
@@ -54,11 +55,10 @@ public class VideoCodecInfo {
         return "VideoCodec{" + this.name + " " + this.params + "}";
     }
 
-    String getName() {
-        return this.name;
-    }
-
-    Map getParams() {
-        return this.params;
+    @Deprecated
+    public VideoCodecInfo(int i, String str, Map<String, String> map) {
+        this.payload = i;
+        this.name = str;
+        this.params = map;
     }
 }

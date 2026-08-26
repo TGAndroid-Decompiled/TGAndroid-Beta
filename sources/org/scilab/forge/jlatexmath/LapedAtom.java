@@ -20,11 +20,11 @@ public class LapedAtom extends Atom {
             boxCreateBox.setShift(-boxCreateBox.getWidth());
             return verticalBox;
         }
-        if (c == 'r') {
-            boxCreateBox.setShift(0.0f);
+        if (c != 'r') {
+            boxCreateBox.setShift((-boxCreateBox.getWidth()) / 2.0f);
             return verticalBox;
         }
-        boxCreateBox.setShift((-boxCreateBox.getWidth()) / 2.0f);
+        boxCreateBox.setShift(0.0f);
         return verticalBox;
     }
 }

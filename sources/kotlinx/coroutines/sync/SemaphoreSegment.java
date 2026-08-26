@@ -4,12 +4,8 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.internal.Segment;
 
-final class SemaphoreSegment extends Segment {
-    private final AtomicReferenceArray acquirers;
-
-    public final AtomicReferenceArray getAcquirers() {
-        return this.acquirers;
-    }
+public final class SemaphoreSegment extends Segment {
+    public final AtomicReferenceArray acquirers;
 
     public SemaphoreSegment(long j, SemaphoreSegment semaphoreSegment, int i) {
         super(j, semaphoreSegment, i);
@@ -17,17 +13,17 @@ final class SemaphoreSegment extends Segment {
     }
 
     @Override
-    public int getNumberOfSlots() {
+    public final int getNumberOfSlots() {
         return SemaphoreKt.SEGMENT_SIZE;
     }
 
     @Override
-    public void onCancellation(int i, Throwable th, CoroutineContext coroutineContext) {
-        getAcquirers().set(i, SemaphoreKt.CANCELLED);
+    public final void onCancellation(int i, CoroutineContext coroutineContext) {
+        this.acquirers.set(i, SemaphoreKt.CANCELLED);
         onSlotCleaned();
     }
 
-    public String toString() {
+    public final String toString() {
         return "SemaphoreSegment[id=" + this.id + ", hashCode=" + hashCode() + ']';
     }
 }
